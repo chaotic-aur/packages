@@ -1,0 +1,12 @@
+[submodule "entries/osdlyrics-git/source"]
+	path = entries/osdlyrics-git/source
+	url = https://aur.archlinux.org/osdlyrics-git.git
+[submodule "outsiders/SolarAquarion"]
+	path = outsiders/SolarAquarion
+	url = https://github.com/SolarAquarion/PKGBUILD-CHAOTIC.git
+[submodule "outsiders/Frogging-Family/linux-tkg"]
+	path = outsiders/Frogging-Family/linux-tkg
+	url = https://github.com/Frogging-Family/linux-tkg.git
+[submodule "entries/firefox-wayland-hg/source"]
+	path = entries/firefox-wayland-hg/source
+	url = https://aur.archlinux.org/firefox-wayland-hg.git
