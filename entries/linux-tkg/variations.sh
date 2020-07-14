@@ -20,11 +20,11 @@ readonly _LINUX_MARCH=('generic'
 )
 
 for _VAR_SCHED in "${_LINUX_SCHED[@]}"; do
-    echo $_VAR_SCHED 'generic' 'lts'
+    echo $_LINUX_LTS $_VAR_SCHED 'generic' 'lts'
 done
 
 for _VAR_SCHED in "${_LINUX_SCHED[@]}"; do
     for _VAR_MARCH in "${_LINUX_MARCH[@]}"; do
-        echo $_VAR_SCHED $_VAR_MARCH
+        echo $_LINUX_STABLE $_VAR_SCHED $_VAR_MARCH
     done
 done
