@@ -3,7 +3,7 @@
 	url = https://aur.archlinux.org/osdlyrics-git.git
 [submodule "outsiders/SolarAquarion"]
 	path = outsiders/SolarAquarion
-	url = https://github.com/SolarAquarion/PKGBUILD-CHAOTIC.git
+	url = https://github.com/chaotic-aur/mesa-git.git
 [submodule "outsiders/Frogging-Family/linux-tkg"]
 	path = outsiders/Frogging-Family/linux-tkg
 	url = https://github.com/Frogging-Family/linux-tkg.git
