@@ -1,7 +1,7 @@
-export CAUR_SIGN_KEY='8A9E14A07010F7E3'
-export CAUR_GUEST_UID=5000
-export CAUR_GUEST_GID=5000
 export CAUR_DEST_PKG='/var/www/chaotic/http/chaotic-aur/x86_64'
-export CAUR_URL='http://localhost/x86_64'
+export CAUR_GUEST_GID=5000
+export CAUR_GUEST_UID=5000
 export CAUR_QUEUES='/mnt/queues'
+export CAUR_SIGN_KEY='8A9E14A07010F7E3'
 export CAUR_TYPE='cluster'
+export CAUR_URL='http://localhost/x86_64'
