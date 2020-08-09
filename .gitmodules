@@ -5665,3 +5665,6 @@
 [submodule "entries/chaotic-nvidia-tkg/source"]
 	path = entries/chaotic-nvidia-tkg/source
 	url = https://github.com/chaotic-aur/nvidia-tkg.git
+[submodule "outsiders/Frogging-Family/neofrog-git"]
+	path = outsiders/Frogging-Family/neofrog-git
+	url = https://github.com/Frogging-Family/neofrog-git
