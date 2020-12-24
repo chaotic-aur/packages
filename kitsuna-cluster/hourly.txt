@@ -1,0 +1,43 @@
+# Pedro
+chaotic-nvidia-tkg:https://github.com/chaotic-aur/nvidia-tkg
+chaotic-nvidia-dev-tkg:https://github.com/chaotic-aur/nvidia-tkg
+chaotic-keyring
+chaotic-mirrorlist
+
+android-sdk-platform-tools
+android-udev
+bytecode-viewer
+ca-certificates-icp_br
+checkmake
+discord_arch_electron
+dxvk-mingw-git
+elm-format-bin
+elm-platform-bin
+foo2zjs-nightly
+google-cloud-sdk
+hplip-plugin
+hunspell-pt-br
+intelbacklight-git
+msi-tools
+neovim-drop-in
+neovim-plug
+nm-eduroam-ufscar
+
+primus-vk-git
+lib32-primus-vk-git
+
+# Kitsuna
+gallium-nine-git
+goverlay-git
+neofrog-git:https://github.com/Frogging-Family/neofrog-git.git
+
+mangohud
+mangohud-git
+lib32-mangohud
+lib32-mangohud-git
+
+# RustemB
+
+# SolarAquarion
+
+# Dependencies (Only for non-AUR packages)
