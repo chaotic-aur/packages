@@ -1,6 +1,6 @@
 # Pedro
-chaotic-nvidia-tkg:https://github.com/chaotic-aur/nvidia-tkg
-chaotic-nvidia-dev-tkg:https://github.com/chaotic-aur/nvidia-tkg
+chaotic-nvidia-tkg:https://github.com/chaotic-aur/nvidia-tkg.git
+chaotic-nvidia-dev-tkg:https://github.com/chaotic-aur/nvidia-tkg.git
 chaotic-keyring
 chaotic-mirrorlist
 
@@ -22,6 +22,8 @@ msi-tools
 neovim-drop-in
 neovim-plug
 nm-eduroam-ufscar
+
+unreal-engine
 
 primus-vk-git
 lib32-primus-vk-git

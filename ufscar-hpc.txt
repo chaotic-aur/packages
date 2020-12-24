@@ -1,1 +1,14 @@
 firefox-wayland-hg
+quartus-130
+quartus-free-130
+quartus-free
+quartus-free-devinfo-arria_lite
+quartus-free-devinfo-cyclone
+quartus-free-devinfo-cyclone10lp
+quartus-free-devinfo-cyclonev
+quartus-free-devinfo-max
+quartus-free-devinfo-max10
+quartus-free-help
+quartus-free-hls
+quartus-free-modelsim
+quartus-free-quartus
