@@ -389,7 +389,6 @@ popsicle-git
 # Recbox
 qt5-styleplugins
 kvantum-theme-matcha-git
-betterlockscreen
 obkey
 i3lock-color
 obmenu-generator
@@ -402,7 +401,6 @@ lxqt-kwin-desktop-git
 # Dr460nized
 plasma5-applets-window-appmenu
 plasma5-applets-window-title
-firefox-appmenu
 
 #Nico
 paleofetch-git
