@@ -270,6 +270,7 @@ tela-circle-icon-theme-git
 tela-icon-theme-git
 timeshift
 timeshift-autosnap
+topgrade
 ttf-meslo-nerd-font-powerlevel10k
 update-grub
 ventoy-bin
@@ -404,15 +405,13 @@ plasma5-applets-window-title
 
 #Nico
 paleofetch-git
-spigot
+papermc
 c-lolcat
 kwin-lowlatency
 github-desktop-bin
 modprobed-db
-libquotient-git
 spicetify-cli
 spicetify-themes-git
 spotify-adblock-git
-topgrade
 visual-studio-code-insiders-bin
 tlauncher
