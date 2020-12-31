@@ -403,6 +403,10 @@ lxqt-kwin-desktop-git
 plasma5-applets-window-appmenu
 plasma5-applets-window-title
 
+# Setup assistant
+brave-bin
+joplin-desktop
+
 #Nico
 paleofetch-git
 papermc
