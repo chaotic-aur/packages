@@ -364,6 +364,7 @@ lightdm-settings
 picom-ibhagwan-git
 mugshot
 mintstick
+nautilus-mediainfo
 
 # Cinnamon
 mint-artwork-common
