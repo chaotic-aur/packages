@@ -98,7 +98,6 @@ kde-servicemenus-encfs
 kde-servicemenus-pdf
 kde-servicemenus-rootactions
 kega-fusion
-keyboard-visualizer-git
 key-mapper-git
 kmozillahelper
 ksmoothdock
@@ -404,6 +403,16 @@ lxqt-kwin-desktop-git
 plasma5-applets-window-appmenu
 plasma5-applets-window-title
 
+# Dr460nized-gaming
+itch
+openrgb
+keyboard-visualizer-git
+noisetorch-bin
+lib32-vkbasalt
+fastgame-git
+protontricks-git
+xpadneo-dkms-git
+
 # Setup assistant
 brave-bin
 joplin-desktop
@@ -419,4 +428,6 @@ spicetify-cli
 spicetify-themes-git
 spotify-adblock-git
 visual-studio-code-insiders-bin
-tlauncher
+gegl-git
+babl-git
+gimp-git
