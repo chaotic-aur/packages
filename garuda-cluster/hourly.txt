@@ -422,7 +422,7 @@ paleofetch-git
 papermc
 c-lolcat
 kwin-lowlatency
-ventoy-bin
+librewolf-bin
 modprobed-db
 spicetify-cli
 spicetify-themes-git

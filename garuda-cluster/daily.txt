@@ -1,1 +1,2 @@
 firefox-appmenu
+ungoogled-chromium
