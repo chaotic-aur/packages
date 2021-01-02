@@ -1,1 +1,4 @@
+# Firefox
+nss-hg
+nspr-hg
 firefox-wayland-hg
