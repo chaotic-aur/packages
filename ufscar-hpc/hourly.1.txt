@@ -15,6 +15,7 @@ fprintd-libfprint2
 vkcube-git
 wdisplays-git
 wlrobs-hg
+xdg-desktop-portal-wlr-git
 wl-clipboard-x11
 sway-launcher-desktop
 wps-office-extension-portuguese-brazilian-dictionary
