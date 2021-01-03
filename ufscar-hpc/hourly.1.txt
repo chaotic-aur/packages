@@ -27,7 +27,6 @@ sway-launcher-desktop
 python3-memoizedb
 python3-xcgf
 python3-xcpf
-python-xdg
 pm2ml
 powerpill
 
