@@ -1,2 +1,3 @@
 firefox-appmenu
 ungoogled-chromium
+llvm-git:https://github.com/chaotic-aur/llvm-git.git
