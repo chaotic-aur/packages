@@ -22,16 +22,24 @@ msitools
 neovim-drop-in
 neovim-plug
 nm-eduroam-ufscar
-
-unreal-engine
-
 primus-vk-git
 lib32-primus-vk-git
+
+#unreal-engine
 
 # Kitsuna
 gallium-nine-git
 goverlay-git
+amdvlk-tkg:https://github.com/Frogging-Family/amdvlk-opt.git
+faudio-tkg-git:https://github.com/Frogging-Family/faudio-git.git
+gamescope-tkg-git:https://github.com/Frogging-Family/gamescope-git.git
+llvm-tkg-git:https://github.com/Frogging-Family/llvm-git.git
+mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
 neofrog-git:https://github.com/Frogging-Family/neofrog-git.git
+spirv-tools-tkg-git:https://github.com/Frogging-Family/spirv-tools-git.git
+vkd3d-tkg-git:https://github.com/Frogging-Family/vkd3d-git.git
+vulkan-headers-tkg-git:https://github.com/Frogging-Family/vulkan-headers-git.git
+vulkan-icd-loader-tkg-git:https://github.com/Frogging-Family/vulkan-icd-loader-git.git
 
 mangohud
 mangohud-git
