@@ -1,2 +1,4 @@
 # Pedro
 electron-ozone
+llvm-git:https://github.com/chaotic-aur/llvm-git.git
+llvm-tkg-git:https://github.com/Frogging-Family/llvm-git.git

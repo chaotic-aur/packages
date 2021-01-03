@@ -34,7 +34,6 @@ goverlay-git
 amdvlk-tkg:https://github.com/Frogging-Family/amdvlk-opt.git
 faudio-tkg-git:https://github.com/Frogging-Family/faudio-git.git
 gamescope-tkg-git:https://github.com/Frogging-Family/gamescope-git.git
-llvm-tkg-git:https://github.com/Frogging-Family/llvm-git.git
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
 neofrog-git:https://github.com/Frogging-Family/neofrog-git.git
 spirv-tools-tkg-git:https://github.com/Frogging-Family/spirv-tools-git.git
