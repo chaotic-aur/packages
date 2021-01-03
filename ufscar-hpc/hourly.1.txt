@@ -18,5 +18,3 @@ wlrobs-hg
 xdg-desktop-portal-wlr-git
 wl-clipboard-x11
 sway-launcher-desktop
-wps-office-extension-portuguese-brazilian-dictionary
-wps-office-mui-pt-br
