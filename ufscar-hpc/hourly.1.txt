@@ -7,6 +7,7 @@ hal-git
 
 digilent.adept.runtime
 digilent.adept.utilities
+fxload
 ncurses5-compat-libs
 reaver-wps-fork-t6x-git
 radare2-git
@@ -19,9 +20,12 @@ fprintd-libfprint2
 vkcube-git
 wdisplays-git
 wlrobs-hg
+chromium-widevine
 xdg-desktop-portal-wlr-git
 wl-clipboard-x11
 sway-launcher-desktop
+i3status-rust-git
+systemd-boot-pacman-hook
 
 # powerpill
 python3-memoizedb
