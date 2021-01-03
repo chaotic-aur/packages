@@ -50,4 +50,8 @@ lib32-mangohud-git
 
 # SolarAquarion
 
-# Dependencies (Only for non-AUR packages)
+# @kprkpr
+
+cherrytree
+
+# Dependencies
