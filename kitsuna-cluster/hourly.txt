@@ -13,6 +13,7 @@ discord_arch_electron
 dxvk-mingw-git
 elm-format-bin
 elm-platform-bin
+ffmpeg-full
 foo2zjs-nightly
 google-cloud-sdk
 hplip-plugin
@@ -54,4 +55,15 @@ lib32-mangohud-git
 
 cherrytree
 
-# Dependencies
+# Dependencies from ffmpeg-full
+chromaprint-fftw
+davs2
+flite1-patched
+libklvanc-git
+libopenmpt-svn
+shine
+vo-amrwbenc
+xavs
+xavs2
+rockchip-mpp
+decklink-sdk
