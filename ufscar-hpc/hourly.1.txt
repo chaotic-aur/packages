@@ -1,7 +1,10 @@
 singularity-container
 bluespec-git
-lcov      # for hal-git
+
+# hal-git
+lcov
 hal-git
+
 digilent.adept.runtime
 digilent.adept.utilities
 ncurses5-compat-libs
@@ -19,4 +22,12 @@ wlrobs-hg
 xdg-desktop-portal-wlr-git
 wl-clipboard-x11
 sway-launcher-desktop
+
+# powerpill
+python3-memoizedb
+python3-xcgf
+python3-xcpf
+python-xdg
+pm2ml
 powerpill
+
