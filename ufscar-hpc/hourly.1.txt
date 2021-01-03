@@ -1,5 +1,6 @@
 singularity-container
 bluespec-git
+lcov      # for hal-git
 hal-git
 digilent.adept.runtime
 digilent.adept.utilities
