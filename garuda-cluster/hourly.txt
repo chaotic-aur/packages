@@ -353,15 +353,16 @@ sphinxbase
 
 # GNOME
 gesture-manager-x-git
-ttf-google-sans
 yaru-sound-theme
 whitesur-kvantum-theme-git
-lightdm-slick-greeter
-lightdm-settings
-picom-ibhagwan-git
 mugshot
 mintstick
 nautilus-mediainfo
+
+# BSPWM
+picom-ibhagwan-git
+lightdm-slick-greeter
+lightdm-settings
 
 # Cinnamon
 mint-artwork-common
@@ -374,9 +375,6 @@ kvantum-theme-qogir-git
 polybar
 skippy-xd-git
 flashfocus-git
-
-# Xfce
-# NOT IN AUR orage
 
 # Wayfire
 orchis-theme-git
@@ -415,9 +413,8 @@ xpadneo-dkms-git
 brave-bin
 joplin-desktop
 
-#Nico
+# Nico
 paleofetch-git
-papermc
 c-lolcat
 kwin-lowlatency
 librewolf-bin
@@ -426,6 +423,7 @@ spicetify-cli
 spicetify-themes-git
 spotify-adblock-git
 visual-studio-code-insiders-bin
+telegram-desktop-bin-dev
 gegl-git
 babl-git
 gimp-git
