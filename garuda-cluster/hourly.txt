@@ -41,7 +41,6 @@ downgrade
 droidcam
 dropbox
 duckstation-git
-dxvk-mingw-git
 eka2l1-git
 emulationstation
 epsxe
@@ -158,7 +157,6 @@ mkinitcpio-openswap
 mmsd-git
 mojave-gtk-theme-git
 moonlight-qt
-msitools
 ms-office-online
 mugshot
 multibootusb
@@ -348,7 +346,7 @@ subtitlecomposer
 pulseaudio-ctl
 discover-snap
 mystiq
-firefox-extension-xdm-browser-monitor 
+firefox-extension-xdm-browser-monitor
 fancontrol-gui-git
 pocketsphinx
 sphinxbase
@@ -368,7 +366,7 @@ nautilus-mediainfo
 # Cinnamon
 mint-artwork-common
 mint-artwork-cinnamon
-xviewer-plugins 
+xviewer-plugins
 gtkhash
 
 # i3

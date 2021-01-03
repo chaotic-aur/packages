@@ -18,12 +18,12 @@ google-cloud-sdk
 hplip-plugin
 hunspell-pt-br
 intelbacklight-git
+lib32-primus-vk-git
 msitools
 neovim-drop-in
 neovim-plug
 nm-eduroam-ufscar
 primus-vk-git
-lib32-primus-vk-git
 
 #unreal-engine
 
