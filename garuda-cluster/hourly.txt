@@ -134,6 +134,7 @@ kde-servicemenus-pdf
 kde-servicemenus-rootactions
 kmozillahelper
 kvantum-theme-sweet-git
+kwin-lowlatency
 kwin-scripts-forceblur
 latte-dock-git
 kwin-effects-sliding-notifications
@@ -144,15 +145,17 @@ sweet-theme-git
 xcursor-sweet
 
 # Dr460nized-gaming
+boxtron
+corectrl
 itch
-openrgb
 keyboard-visualizer-git
+minecraft-launcher
 noisetorch-bin
 lib32-vkbasalt
 fastgame-git
+openrgb
 protontricks-git
 xpadneo-dkms-git
-corectrl
 
 # GNOME
 gesture-manager-x-git
@@ -270,23 +273,26 @@ zoom
 ## Additional provided packages
 # -git stuff
 caja-pdf-tools-git
+meteo-qt-git
 micro-git
 neofetch-git
 nx-firewall-git
+paleofetch-git
 pywal-git
 vr-video-player-git
 webapp-manager-git
-spotify-adblock-git
-meteo-qt-git
 
 # Drivers
 r8168-dkms
 rtl88xxau-aircrack-dkms-git
+steamos-xpad-dkms
+xpadneo-dkms
+xbox-generic-controller
+xboxdrv
 
 # Emulators
 anbox-git
 antimicrox
-boxtron
 cemu
 cherrytree
 citra-canary-git
@@ -300,6 +306,9 @@ genymotion
 kega-fusion
 m64py
 mednaffe
+pcsxr
+pegasus-frontend-git
+play-emu-git
 regen
 sameboy
 xemu-git
@@ -311,7 +320,6 @@ fonts-tlwg
 # Gaming
 athenaeum-git
 fancontrol-gui
-fastgame-git
 gamehub
 gamerworld
 gamescope-git
@@ -319,22 +327,17 @@ game-devices-udev
 gwe
 hypnotix
 ialauncher-git
-itch
 key-mapper-git
 legendary
 lib32-vkbasalt
 libretro-mame-git
 libretro-stella2014-git
-minecraft-launcher
 minigalaxy
 moonlight-qt
 nestopia
 nyrna
 openrgb-git
 oversteer
-pcsxr
-pegasus-frontend-git
-play-emu-git
 play.it
 proton-caller
 protontricks-git
@@ -348,15 +351,11 @@ retrolink-git
 rpcs3
 sc-controller
 stacer
-steamos-xpad-dkms
 steamtinkerlaunch
 streamlink-twitch-gui
 stremio
 vkbasalt
-xboxdrv
-xbox-generic-controller
 xow
-xpadneo-dkms
 
 # General use applications
 anydesk-bin
@@ -369,12 +368,12 @@ davinci-resolve
 deezer
 discover-snap
 dropbox
-fotokilof
 foxitreader
 google-earth-pro
 google-meet-desktop
 guiscrcpy
 jellyfin
+librewolf-bin
 mailspring
 mattermost-desktop
 mellowplayer
@@ -406,6 +405,7 @@ caffeine
 ckbcomp
 debtap
 droidcam
+fotokilof
 growpart
 isoimagewriter
 isomaster
@@ -413,6 +413,7 @@ jade-application-kit
 lanshare
 mediawriter
 mmsd-git
+modprobed-db
 multibootusb
 neard
 networkmanager-dmenu-git
@@ -457,8 +458,6 @@ vimix-gtk-themes-git
 vimix-icon-theme
 vimix-icon-theme-git
 xcursor-breeze
-
-
 
 
 ## NEEDED DEPENDENCIES
@@ -507,16 +506,12 @@ sibs
 
 ## MAINTAINERS
 # Nico
-paleofetch-git
 c-lolcat
-kwin-lowlatency
-librewolf-bin
-modprobed-db
 spicetify-cli
 spicetify-themes-git
 spotify-adblock-git
-visual-studio-code-insiders-bin
 telegram-desktop-bin-dev
+visual-studio-code-insiders-bin
 gegl-git
 babl-git
 gimp-git
