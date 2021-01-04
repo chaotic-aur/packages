@@ -25,6 +25,7 @@ neovim-drop-in
 neovim-plug
 nm-eduroam-ufscar
 primus-vk-git
+proton-ge-custom-bin
 
 #unreal-engine
 
@@ -66,3 +67,7 @@ xavs
 xavs2
 rockchip-mpp
 decklink-sdk
+
+# Dependencies from proton-ge-custom
+wine-gecko-bin
+wine-mono-bin
