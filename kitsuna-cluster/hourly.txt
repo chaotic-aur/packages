@@ -69,5 +69,18 @@ rockchip-mpp
 decklink-sdk
 
 # Dependencies from proton-ge-custom
+afdko
+lib32-gsm
+psautohint
+python-booleanoperations
+python-defcon
+python-fontmath
+python-fontparts
+python-fontpens
+python-fonttools-git
+python-mutatormath
+python-pyclipper
+python-ufonormalizer
+python-ufoprocessor
 wine-gecko-bin
 wine-mono-bin
