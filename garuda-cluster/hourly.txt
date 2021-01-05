@@ -378,6 +378,7 @@ mailspring
 mattermost-desktop
 mellowplayer
 mendeleydesktop
+nordpy
 octopi
 octopi-notifier-frameworks
 octopi-notifier-qt5
