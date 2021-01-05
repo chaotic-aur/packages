@@ -5,10 +5,12 @@ chaotic-keyring
 chaotic-mirrorlist
 
 android-sdk-platform-tools
+android-studio-launcher
 android-udev
 bytecode-viewer
 ca-certificates-icp_br
 checkmake
+cozette-otb
 discord_arch_electron
 dxvk-mingw-git
 elm-format-bin
@@ -29,12 +31,12 @@ proton-ge-custom-bin
 
 #unreal-engine
 
-# Kitsuna
+# FroggingFamily
 gallium-nine-git
 goverlay-git
-amdvlk-tkg:https://github.com/Frogging-Family/amdvlk-opt.git
+#amdvlk-tkg:https://github.com/Frogging-Family/amdvlk-opt.git (broken)
 faudio-tkg-git:https://github.com/Frogging-Family/faudio-git.git
-gamescope-tkg-git:https://github.com/Frogging-Family/gamescope-git.git
+gamescope-git:https://github.com/Frogging-Family/gamescope-git.git
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
 neofrog-git:https://github.com/Frogging-Family/neofrog-git.git
 spirv-tools-tkg-git:https://github.com/Frogging-Family/spirv-tools-git.git
@@ -43,9 +45,9 @@ vulkan-headers-tkg-git:https://github.com/Frogging-Family/vulkan-headers-git.git
 vulkan-icd-loader-tkg-git:https://github.com/Frogging-Family/vulkan-icd-loader-git.git
 
 mangohud
-mangohud-git
+#mangohud-git (broken)
 lib32-mangohud
-lib32-mangohud-git
+#lib32-mangohud-git (broken)
 
 # RustemB
 
@@ -84,3 +86,6 @@ python-ufonormalizer
 python-ufoprocessor
 wine-gecko-bin
 wine-mono-bin
+
+# Dependenies for darling-git
+libavresample

@@ -35,3 +35,17 @@ python3-xcgf
 python3-xcpf
 pm2ml
 powerpill
+
+# Pedro
+obs-streamfx
+obs-v4l2sink
+oneko
+osdlyrics-git
+podman-compose-git
+repoctl
+#scrcpy-git (broken)
+slack-electron
+spotify-dev
+ttf-borg-sans-mono
+#waybar-git (broken)
+#zfs-dkms (broken)
