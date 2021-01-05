@@ -9,6 +9,7 @@ digilent.adept.runtime
 digilent.adept.utilities
 fxload
 ncurses5-compat-libs
+gr-limesdr-git
 reaver-wps-fork-t6x-git
 radare2-git
 ht
