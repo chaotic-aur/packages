@@ -257,6 +257,7 @@ jdownloader2
 jitsi-meet
 ms-office-online
 onlyoffice-bin
+system-config-samba
 virtualbox-ext-oracle
 wacom-utility
 wine-installer
