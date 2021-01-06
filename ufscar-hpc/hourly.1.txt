@@ -49,3 +49,9 @@ spotify-dev
 ttf-borg-sans-mono
 #waybar-git (broken)
 #zfs-dkms (broken)
+
+# Users requests
+hlsdl # Issue 322
+identity # Issue 322
+jellyfin # Issue 322
+qownnotes # Issue 322
