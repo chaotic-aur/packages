@@ -67,3 +67,7 @@ meteo-gtk
 palemoon-bin
 pamac-classic
 xfce4-panel-compiz
+
+# Issue 326
+dotnet-core-bin # (dep)
+powershell
