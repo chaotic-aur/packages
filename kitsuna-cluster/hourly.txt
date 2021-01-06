@@ -92,3 +92,7 @@ libavresample
 
 # Users requests
 lib32-wxgtk3 # Issue 309
+python38 # Issue 320 (dep)
+bombsquad # Issue 320
+ttf-freebanglafont # Issue 321 (dep)
+openbangla-keyboard # Issue 321

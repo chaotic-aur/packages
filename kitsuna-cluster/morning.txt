@@ -8,5 +8,3 @@ llvm-tkg-git:https://github.com/Frogging-Family/llvm-git.git
 # Users requests
 wine-git # Issue 315
 scummvm-git # Issue 316
-python38 # Issue 320 (dep)
-bombsquad # Issue 320
