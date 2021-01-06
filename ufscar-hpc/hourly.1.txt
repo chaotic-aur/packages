@@ -51,6 +51,7 @@ ttf-borg-sans-mono
 #zfs-dkms (broken)
 
 ## Users requests
+git-delta # Issue 328
 
 # Issue 322
 hlsdl
