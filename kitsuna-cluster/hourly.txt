@@ -52,6 +52,7 @@ lib32-mangohud
 # RustemB
 
 # SolarAquarion
+mesa-git:https://github.com/chaotic-aur/mesa-git.git
 
 # @kprkpr
 
