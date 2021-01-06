@@ -2,3 +2,6 @@
 nss-hg
 nspr-hg
 firefox-wayland-hg
+
+# Too heavy for Garuda cluster
+libretro-mame-git 

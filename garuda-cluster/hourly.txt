@@ -331,7 +331,6 @@ ialauncher-git
 key-mapper-git
 legendary
 lib32-vkbasalt
-libretro-mame-git
 libretro-stella2014-git
 minigalaxy
 moonlight-qt
