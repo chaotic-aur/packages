@@ -90,5 +90,5 @@ wine-mono-bin
 # Dependenies for darling-git
 libavresample
 
-# User requests
+# Users requests
 lib32-wxgtk3 # Issue 309

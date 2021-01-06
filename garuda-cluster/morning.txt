@@ -1,2 +1,5 @@
 firefox-appmenu
 ungoogled-chromium
+
+# Users requests
+wine-git # Issue 315
