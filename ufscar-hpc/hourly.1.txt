@@ -50,8 +50,20 @@ ttf-borg-sans-mono
 #waybar-git (broken)
 #zfs-dkms (broken)
 
-# Users requests
-hlsdl # Issue 322
-identity # Issue 322
-jellyfin # Issue 322
-qownnotes # Issue 322
+## Users requests
+
+# Issue 322
+hlsdl
+identity
+jellyfin
+lightly-qt
+qownnotes
+
+# Issue 324
+alsi
+compiz-core
+emerald-gtk3
+meteo-gtk
+palemoon-bin
+pamac-classic
+xfce4-panel-compiz
