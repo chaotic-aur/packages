@@ -29,6 +29,11 @@ i3status-rust-git
 systemd-boot-pacman-hook
 android-studio
 
+# sway
+wlroots-git
+swaybg-git
+sway-git
+
 # powerpill
 python3-memoizedb
 python3-xcgf
