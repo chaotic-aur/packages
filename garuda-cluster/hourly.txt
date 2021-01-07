@@ -148,7 +148,6 @@ xcursor-sweet
 8192eu-dkms
 8188eu-aircrack-dkms-git
 8188fu-kelebek333-dkms-git
-mt7610u_wifi_sta
 r8168-dkms
 realtek-firmware
 rtl8192cu-fixes-git
@@ -296,6 +295,7 @@ steamos-xpad-dkms
 xpadneo-dkms
 xbox-generic-controller
 xboxdrv
+ntfs3-dkms
 
 # Emulators
 anbox-git
