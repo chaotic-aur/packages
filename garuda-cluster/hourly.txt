@@ -110,18 +110,18 @@ wine-meta:https://gitlab.com/garuda-linux/packages/pkgbuilds/wine-meta.git
 zdummy-vlkdrv:https://gitlab.com/garuda-linux/packages/pkgbuilds/zdummy-vlkdrv.git
 
 # BSPWM
-picom-ibhagwan-git
 lightdm-slick-greeter
 lightdm-settings
+picom-ibhagwan-git
 
 # Cinnamon
+gtkhash
 mint-artwork-common
 mint-artwork-cinnamon
 mint-sounds
 mintstick
-xviewer-plugins
-gtkhash
 nemo-pdf-tools-git
+xviewer-plugins
 
 # Dr460nized
 alacritty-ligatures-git
@@ -143,6 +143,19 @@ sweet-kde-git
 sweet-theme-dark
 sweet-theme-git
 xcursor-sweet
+
+# Dr460nized-blackarch
+8192eu-dkms
+8188eu-aircrack-dkms-git
+8188fu-kelebek333-dkms-git
+8188fu-dkms-git#
+r8168-dkms
+realtek-firmware
+rtl88xxau-aircrack-dkms-git
+rtl8814au-aircrack-dkms-git
+rtl88x2bu-dkms-git
+rtl88x2ce-dkms
+rtw88-dkms-git
 
 # Dr460nized-gaming
 boxtron
@@ -284,8 +297,6 @@ vr-video-player-git
 webapp-manager-git
 
 # Drivers
-r8168-dkms
-rtl88xxau-aircrack-dkms-git
 steamos-xpad-dkms
 xpadneo-dkms
 xbox-generic-controller
