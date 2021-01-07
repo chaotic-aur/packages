@@ -397,6 +397,7 @@ teams
 teamviewer
 topgrade
 ventoy-bin
+visual-studio-code-bin
 yay
 
 # Networking & Tools
