@@ -148,9 +148,10 @@ xcursor-sweet
 8192eu-dkms
 8188eu-aircrack-dkms-git
 8188fu-kelebek333-dkms-git
-8188fu-dkms-git#
+mt7610u_wifi_sta
 r8168-dkms
 realtek-firmware
+rtl8192cu-fixes-git
 rtl88xxau-aircrack-dkms-git
 rtl8814au-aircrack-dkms-git
 rtl88x2bu-dkms-git
@@ -171,41 +172,31 @@ protontricks-git
 xpadneo-dkms-git
 
 # GNOME
-gesture-manager-x-git
-yaru-sound-theme
-whitesur-kvantum-theme-git
-mugshot
-mintstick
-nautilus-mediainfo
 firefox-extension-gnome-shell-integration
+gesture-manager-x-git
 gnome-terminal-transparency
 menulibre
+mintstick
+mugshot
 nautilus-admin
 nautilus-bluetooth
 nautilus-mediainfo
 nautilus-pdf-tools-git
 nautilus-typeahead
+whitesur-kvantum-theme-git
+yaru-sound-theme
 
 # i3
+flashfocus-git
 kvantum-theme-qogir-git
 polybar
 skippy-xd-git
-flashfocus-git
 
 # KDE Multimedia
-whitesur-cursor-theme-git
-plasma5-applets-tiledmenu
-plasma5-applets-presentwindows
-samba-mounter-git
 fancontrol-kcm-git
-subtitlecomposer
-pulseaudio-ctl
-discover-snap
-mystiq
-firefox-extension-xdm-browser-monitor
 fancontrol-gui-git
-pocketsphinx
-sphinxbase
+firefox-extension-xdm-browser-monitor
+mystiq
 plasma5-applets-eventcalendar
 plasma5-applets-kpplemenu-git
 plasma5-applets-latte-separator
@@ -217,6 +208,12 @@ plasma5-applets-simplemenu-git
 plasma5-applets-tiledmenu
 plasma5-applets-uswitch
 plasma5-wallpapers-dynamic
+pulseaudio-ctl
+pocketsphinx
+samba-mounter-git
+subtitlecomposer
+sphinxbase
+whitesur-cursor-theme-git
 
 # LXQT-Kwin
 kvantum-theme-vimix-git
@@ -228,28 +225,26 @@ mate-menu
 mate-tweak
 
 # Qtile
+betterlockscreen
 polybar
 xviewer
 xviewer-plugin
-betterlockscreen
 
 # Recbox
-obkey
-obmenu-generator
 i3lock-color
 kvantum-theme-matcha-git
+obkey
+obmenu-generator
 qt5-styleplugins
 
 # Wayfire
-orchis-theme-git
-orchis-kde-theme-git
-wayfire-desktop-git
-nautilus-pdf-tools-git
-nautilus-mediainfo
-popsicle-git
 greetd
 greetd-gtkgreet
+orchis-theme-git
+orchis-kde-theme-git
+popsicle-git
 redshift-wayland-git
+wayfire-desktop-git
 wdisplays
 
 # XFCE
