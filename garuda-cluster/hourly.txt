@@ -506,7 +506,6 @@ properties-cpp
 anbox-image-gapps-magisk
 
 # gamescope-git
-wlroots-git
 libliftoff-git
 
 # vr-video-player-git
