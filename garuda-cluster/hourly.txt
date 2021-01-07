@@ -401,6 +401,7 @@ snapd
 spotify
 teams
 teamviewer
+timeshift-bin
 topgrade
 ventoy-bin
 visual-studio-code-bin
