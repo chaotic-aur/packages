@@ -37,7 +37,7 @@ pm2ml
 powerpill
 
 ## Pedro
-depot-tools-git # servo-git
+depot-tools-git # servo-git dep
 discord-canary-electron-bin
 obs-streamfx
 obs-v4l2sink
@@ -45,7 +45,6 @@ oneko
 osdlyrics-git
 podman-compose-git
 repoctl
-servo-git
 #scrcpy-git (broken)
 slack-electron
 spotify-dev

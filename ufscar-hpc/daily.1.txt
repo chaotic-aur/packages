@@ -3,5 +3,8 @@ nss-hg
 nspr-hg
 firefox-wayland-hg
 
+# Pedro
+servo-git
+
 # Too heavy for Garuda cluster
-libretro-mame-git 
+libretro-mame-git
