@@ -36,13 +36,16 @@ python3-xcpf
 pm2ml
 powerpill
 
-# Pedro
+## Pedro
+depot-tools-git # servo-git
+discord-canary-electron-bin
 obs-streamfx
 obs-v4l2sink
 oneko
 osdlyrics-git
 podman-compose-git
 repoctl
+servo-git
 #scrcpy-git (broken)
 slack-electron
 spotify-dev
