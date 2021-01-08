@@ -156,7 +156,6 @@ rtl8814au-aircrack-dkms-git
 rtl88x2bu-dkms-git
 rtl88x2ce-dkms
 rtw88-dkms-git
-cppcheck:https://gitlab.com/garuda-linux/packages/pkgbuilds/cppcheck.git
 
 # Dr460nized-gaming
 boxtron
