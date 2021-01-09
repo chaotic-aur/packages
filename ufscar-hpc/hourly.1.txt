@@ -53,6 +53,7 @@ repoctl
 #scrcpy-git (broken)
 slack-electron
 spotify-dev
+tor-browser
 ttf-borg-sans-mono
 #waybar-git (broken)
 #zfs-dkms (broken)
