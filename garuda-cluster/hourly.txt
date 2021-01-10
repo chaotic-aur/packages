@@ -282,6 +282,8 @@ zoom
 ## NON-GARUDA PACKAGES
 # -git stuff
 caja-pdf-tools-git
+dolphin-git
+konsole-git
 meteo-qt-git
 micro-git
 neofetch-git
