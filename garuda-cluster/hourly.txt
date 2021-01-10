@@ -265,6 +265,7 @@ joplin-desktop
 ms-office-online
 onlyoffice-bin
 system-config-samba
+ttf-wps-fonts
 virtualbox-ext-oracle
 wacom-utility
 wine-installer
