@@ -6,8 +6,8 @@ auto-cpufreq-git
 bluetooth-autoconnect
 clipit
 clipman
-connman-gtk
 conky-lua-nv
+connman-gtk
 downgrade
 evdev-right-click-emulation
 firefox-extension-bitwarden
@@ -60,8 +60,8 @@ firefox-extension-localcdn:https://gitlab.com/garuda-linux/packages/pkgbuilds/fi
 garuda-assistant-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-assistant-git.git
 garuda-boot-options-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-boot-options-git.git
 garuda-boot-repair-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-boot-repair-git.git
-garuda-browser-settings:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-browser-settings.git
 garuda-browser-settings-hardened:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-browser-settings-hardened.git
+garuda-browser-settings:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-browser-settings.git
 garuda-bspwm-settings:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-bspwm-settings.git
 garuda-cinnamon-settings:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-cinnamon-settings.git
 garuda-common-settings:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-common-settings.git
@@ -82,8 +82,8 @@ garuda-qtile-settings:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-
 garuda-recbox-settings:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-recbox-settings.git
 garuda-setup-assistant:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-setup-assistant.git
 garuda-tools-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-tools-git.git
-garuda-wallpapers:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-wallpapers.git
 garuda-wallpapers-extra:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-wallpapers-extra.git
+garuda-wallpapers:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-wallpapers.git
 garuda-wayfire-settings:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-wayfire-settings.git
 garuda-welcome-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-welcome-git.git
 garuda-xfce-settings:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-xfce-settings.git
@@ -97,8 +97,8 @@ networkmanager-support:https://gitlab.com/garuda-linux/packages/pkgbuilds/networ
 os-prober-garuda:https://gitlab.com/garuda-linux/packages/pkgbuilds/os-prober-garuda.git
 paleofetch-garuda:https://gitlab.com/garuda-linux/packages/pkgbuilds/paleofetch-garuda.git
 pipewire-support:https://gitlab.com/garuda-linux/packages/pkgbuilds/pipewire-support.git
-plymouth-theme-garuda:https://gitlab.com/garuda-linux/packages/pkgbuilds/plymouth-theme-garuda.git
 plymouth-theme-garuda-purple:https://gitlab.com/garuda-linux/packages/pkgbuilds/plymouth-theme-garuda-purple.git
+plymouth-theme-garuda:https://gitlab.com/garuda-linux/packages/pkgbuilds/plymouth-theme-garuda.git
 printer-support:https://gitlab.com/garuda-linux/packages/pkgbuilds/printer-support.git
 pulseaudio-support:https://gitlab.com/garuda-linux/packages/pkgbuilds/pulseaudio-support.git
 reflector-simple:https://gitlab.com/garuda-linux/packages/pkgbuilds/reflector-simple.git
@@ -110,14 +110,14 @@ wine-meta:https://gitlab.com/garuda-linux/packages/pkgbuilds/wine-meta.git
 zdummy-vlkdrv:https://gitlab.com/garuda-linux/packages/pkgbuilds/zdummy-vlkdrv.git
 
 # BSPWM
-lightdm-slick-greeter
 lightdm-settings
+lightdm-slick-greeter
 picom-ibhagwan-git
 
 # Cinnamon
 gtkhash
-mint-artwork-common
 mint-artwork-cinnamon
+mint-artwork-common
 mint-sounds
 mintstick
 nemo-pdf-tools-git
@@ -125,8 +125,6 @@ xviewer-plugins
 
 # Dr460nized
 alacritty-ligatures-git
-plasma5-applets-window-appmenu
-plasma5-applets-window-title
 firefox-extension-plasma-integration
 kde-service-menu-reimage
 kde-servicemenus-encfs
@@ -134,38 +132,40 @@ kde-servicemenus-pdf
 kde-servicemenus-rootactions
 kmozillahelper
 kvantum-theme-sweet-git
+kwin-effects-sliding-notifications
 kwin-lowlatency
 kwin-scripts-forceblur
 latte-dock-git
-kwin-effects-sliding-notifications
 latte-dock-git
+plasma5-applets-window-appmenu
+plasma5-applets-window-title
 sweet-kde-git
 sweet-theme-dark
 sweet-theme-git
 xcursor-sweet
 
 # Dr460nized-blackarch
-8192eu-dkms
 8188eu-aircrack-dkms-git
 8188fu-kelebek333-dkms-git
+8192eu-dkms
 r8168-dkms
 realtek-firmware
 rtl8192cu-fixes-git
-rtl88xxau-aircrack-dkms-git
 rtl8814au-aircrack-dkms-git
 rtl88x2bu-dkms-git
 rtl88x2ce-dkms
+rtl88xxau-aircrack-dkms-git
 rtw88-dkms-git
 
 # Dr460nized-gaming
 boxtron
 corectrl
+fastgame-git
 itch
 keyboard-visualizer-git
+lib32-vkbasalt
 minecraft-launcher
 noisetorch-bin
-lib32-vkbasalt
-fastgame-git
 openrgb
 protontricks-git
 xpadneo-dkms-git
@@ -192,8 +192,8 @@ polybar
 skippy-xd-git
 
 # KDE Multimedia
-fancontrol-kcm-git
 fancontrol-gui-git
+fancontrol-kcm-git
 firefox-extension-xdm-browser-monitor
 mystiq
 plasma5-applets-eventcalendar
@@ -207,11 +207,11 @@ plasma5-applets-simplemenu-git
 plasma5-applets-tiledmenu
 plasma5-applets-uswitch
 plasma5-wallpapers-dynamic
-pulseaudio-ctl
 pocketsphinx
+pulseaudio-ctl
 samba-mounter-git
-subtitlecomposer
 sphinxbase
+subtitlecomposer
 whitesur-cursor-theme-git
 
 # LXQT-Kwin
@@ -239,8 +239,8 @@ qt5-styleplugins
 # Wayfire
 greetd
 greetd-gtkgreet
-orchis-theme-git
 orchis-kde-theme-git
+orchis-theme-git
 popsicle-git
 redshift-wayland-git
 wayfire-desktop-git
@@ -254,7 +254,6 @@ mugshot
 bitwig-studio
 brave-bin
 exe-thumbnailer
-joplin-desktop
 firefox-extension-xdm-browser-monitor
 freedownloadmanager
 freeoffice
@@ -262,6 +261,7 @@ gitkraken
 google-chrome
 jdownloader2
 jitsi-meet
+joplin-desktop
 ms-office-online
 onlyoffice-bin
 system-config-samba
@@ -278,7 +278,7 @@ yuzu-mainline-bin
 zoom
 
 
-## Additional provided packages
+## NON-GARUDA PACKAGES
 # -git stuff
 caja-pdf-tools-git
 meteo-qt-git
@@ -291,11 +291,11 @@ vr-video-player-git
 webapp-manager-git
 
 # Drivers
+ntfs3-dkms
 steamos-xpad-dkms
-xpadneo-dkms
 xbox-generic-controller
 xboxdrv
-ntfs3-dkms
+xpadneo-dkms
 
 # Emulators
 anbox-git
@@ -327,10 +327,10 @@ fonts-tlwg
 # Gaming
 athenaeum-git
 fancontrol-gui
+game-devices-udev
 gamehub
 gamerworld
 gamescope-git
-game-devices-udev
 gwe
 hypnotix
 ialauncher-git
@@ -385,6 +385,7 @@ mattermost-desktop
 mellowplayer
 mendeleydesktop
 nordpy
+nordvpn-bin
 octopi
 octopi-notifier-frameworks
 octopi-notifier-qt5
@@ -392,8 +393,8 @@ olivia
 paru
 plex-media-player
 popsicle
-scrcpy
 qt-scrcpy
+scrcpy
 shortwave
 skypeforlinux-stable-bin
 slack-desktop
@@ -474,10 +475,10 @@ xcursor-breeze
 alpm_octopi_utils
 
 # wacom-utility
-gksu
-pygtk
-libgksu
 gconf
+gksu
+libgksu
+pygtk
 
 # garuda-network-assistant
 linux-wifi-hotspot
@@ -502,8 +503,8 @@ python-injector
 python-pyparted
 
 # anbox-git
-properties-cpp
 anbox-image-gapps-magisk
+properties-cpp
 
 # gamescope-git
 libliftoff-git
@@ -512,15 +513,19 @@ libliftoff-git
 sibs
 
 
+## USER REQUESTS
+nordpy-plasmoid-git
+
+
 ## MAINTAINERS
 # Nico
+babl-git
 c-lolcat
+gegl-git
+gimp-git
 pacman-git
 spicetify-cli
 spicetify-themes-git
 spotify-adblock-git
 telegram-desktop-bin-dev
 visual-studio-code-insiders-bin
-gegl-git
-babl-git
-gimp-git
