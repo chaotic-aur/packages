@@ -46,9 +46,9 @@ vulkan-headers-tkg-git:https://github.com/Frogging-Family/vulkan-headers-git.git
 vulkan-icd-loader-tkg-git:https://github.com/Frogging-Family/vulkan-icd-loader-git.git
 
 mangohud
-#mangohud-git (broken)
+mangohud-git
 lib32-mangohud
-#lib32-mangohud-git (broken)
+lib32-mangohud-git
 
 # RustemB
 
