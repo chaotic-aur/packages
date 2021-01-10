@@ -28,6 +28,7 @@ neovim-plug
 nm-eduroam-ufscar
 primus-vk-git
 proton-ge-custom-bin
+python-telegram-send
 
 # Unreal-engine
 
