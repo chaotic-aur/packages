@@ -156,3 +156,9 @@ zsh-theme-powerlevel9k-git
 
 # Issue 348
 python2-gobject2
+
+# Issue 327
+ananicy
+boston-icon-theme
+microsoft-edge-dev-bin
+xow-git
