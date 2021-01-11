@@ -109,3 +109,6 @@ ttf-ms-fonts
 waifu2x-ncnn-vulkan-git
 winetricks-git
 xxd-standalone
+
+# Issue 337
+eclipse-java
