@@ -47,12 +47,11 @@ powerpill
 ## Pedro
 depot-tools-git # servo-git dep
 discord-canary-electron-bin
-gst-plugin-pipewire-git
 obs-streamfx
 obs-v4l2sink
 oneko
 osdlyrics-git
-pipewire-git
+pipewire-common-git
 podman-compose-git
 repoctl
 #scrcpy-git (broken)
