@@ -89,3 +89,6 @@ rclone-browser
 
 # Issue 346
 masterpdfeditor-free
+
+# Issue #342
+renamemytvseries-bin
