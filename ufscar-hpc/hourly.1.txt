@@ -162,3 +162,21 @@ ananicy
 boston-icon-theme
 microsoft-edge-dev-bin
 xow-git
+
+# Issue
+cantata-git
+eqonomize-git
+kcolorpicker-git # (dep ksnip-git)
+kimageannotator-git # (dep ksnip-git)
+ksnip-git
+libquotient-git # (dep neochat-git)
+lightly-qt
+lmdbxx # (dep nheko-git)
+plasma-systemmonitor-git
+pyradio-git
+straw-viewer-git
+strawberry-full-git
+strawberry-git
+systray-x-git
+taglib-extras # (dep cantata-git)
+tweeny # (dep nheko-git)
