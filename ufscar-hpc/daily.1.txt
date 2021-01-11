@@ -132,3 +132,11 @@ sonnet-git:https://gitlab.manjaro.org/packages/kde-unstable/kf5-git/sonnet-git.g
 syndication-git:https://gitlab.manjaro.org/packages/kde-unstable/kf5-git/syndication-git.git
 syntax-highlighting-git:https://gitlab.manjaro.org/packages/kde-unstable/kf5-git/syntax-highlighting-git.git
 threadweaver-git:https://gitlab.manjaro.org/packages/kde-unstable/kf5-git/threadweaver-git.git
+
+# Issue 331
+linux-mainline
+linux-mainline-headers
+
+# Issue 318
+linux-next-git
+linux-next-git-headers
