@@ -112,3 +112,9 @@ xxd-standalone
 
 # Issue 337
 eclipse-java
+
+# Issue 336
+giara
+
+# Issue 335
+compiz
