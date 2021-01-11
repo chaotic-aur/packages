@@ -124,3 +124,14 @@ trizen
 
 # Issue 325
 azure-cli
+
+# Issue 330
+1password-bin
+badwolf
+getmail6
+onedrive-abraunegg
+postman-bin
+pycharm-community-eap
+slack-term
+typora
+waterfox-g3-bin

@@ -102,3 +102,5 @@ python38 # Issue 320 (dep)
 bombsquad # Issue 320
 ttf-freebanglafont # Issue 321 (dep)
 openbangla-keyboard # Issue 321
+wine-x64 # Issue 330
+winbox64 # Issue 330
