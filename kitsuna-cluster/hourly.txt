@@ -30,6 +30,10 @@ primus-vk-git
 proton-ge-custom-bin
 python-telegram-send
 
+# Does not build on CentOS7
+# (https://bbs.archlinux.org/viewtopic.php?pid=1755257#p1755257)
+obs-studio-wayland-git
+
 # Unreal-engine
 
 # FroggingFamily

@@ -31,7 +31,6 @@ android-studio
 # obs wayland
 wlrobs-hg
 cef-minimal-3770-bin
-obs-studio-wayland-git
 
 # sway
 wlroots-git
