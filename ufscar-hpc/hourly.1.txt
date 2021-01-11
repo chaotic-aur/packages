@@ -90,6 +90,7 @@ rclone-browser
 
 # Issue 346
 masterpdfeditor-free
+masterpdfeditor
 
 # Issue 342
 renamemytvseries-bin
@@ -171,7 +172,6 @@ kimageannotator-git # (dep ksnip-git)
 ksnip-git
 libquotient-git # (dep neochat-git)
 lightly-qt
-lmdbxx # (dep nheko-git)
 plasma-systemmonitor-git
 pyradio-git
 straw-viewer-git
@@ -179,4 +179,3 @@ strawberry-full-git
 strawberry-git
 systray-x-git
 taglib-extras # (dep cantata-git)
-tweeny # (dep nheko-git)
