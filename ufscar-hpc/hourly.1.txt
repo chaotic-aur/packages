@@ -83,3 +83,9 @@ xfce4-panel-compiz
 # Issue 326
 dotnet-core-bin # (dep)
 powershell
+
+# Issue 347
+rclone-browser
+
+# Issue 346
+masterpdfeditor-free
