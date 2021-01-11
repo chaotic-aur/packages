@@ -95,3 +95,17 @@ renamemytvseries-bin
 
 # Issue 341
 filebot47
+
+# Issue 338
+clion
+graphite-mozilla
+intellij-idea-ultimate-edition
+neovim-nightly-git
+nodejs-nativefier
+pycharm-professional
+syncplay
+trackma-git
+ttf-ms-fonts
+waifu2x-ncnn-vulkan-git
+winetricks-git
+xxd-standalone
