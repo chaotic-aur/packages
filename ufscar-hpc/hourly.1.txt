@@ -57,6 +57,7 @@ repoctl
 slack-electron
 spotify-dev
 spotify-qt
+spotifyd-full-git
 tor-browser
 ttf-borg-sans-mono
 #waybar-git (broken)
