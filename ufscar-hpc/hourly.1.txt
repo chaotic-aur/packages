@@ -118,3 +118,9 @@ giara
 
 # Issue 335
 compiz
+crow-translate
+megasync-bin
+trizen
+
+# Issue 325
+azure-cli
