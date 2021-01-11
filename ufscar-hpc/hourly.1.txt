@@ -139,3 +139,17 @@ waterfox-g3-bin
 
 # Issue 303
 budgie-desktop-git
+
+# Issue 324
+compiz-git
+crow-translate-git
+dolphin-emu-git
+fsearch-git
+libfido2-git
+megasync-git
+pa-applet-git
+pacmanlogviewer-git
+pamac-classic
+pyradio-git
+trizen-git
+zsh-theme-powerlevel9k-git
