@@ -153,3 +153,6 @@ pamac-classic
 pyradio-git
 trizen-git
 zsh-theme-powerlevel9k-git
+
+# Issue 348
+python2-gobject2
