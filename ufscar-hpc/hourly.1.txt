@@ -20,7 +20,6 @@ libfprint-git
 fprintd-libfprint2
 vkcube-git
 wdisplays-git
-wlrobs-hg
 chromium-widevine
 xdg-desktop-portal-wlr-git
 wl-clipboard-x11
@@ -28,6 +27,11 @@ sway-launcher-desktop
 i3status-rust-git
 systemd-boot-pacman-hook
 android-studio
+
+# obs wayland
+wlrobs-hg
+cef-minimal-3770-bin
+obs-studio-wayland-git
 
 # sway
 wlroots-git
