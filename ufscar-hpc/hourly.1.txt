@@ -47,6 +47,7 @@ pm2ml
 powerpill
 
 ## Pedro
+asdf-vm
 depot-tools-git # servo-git dep
 discord-canary-electron-bin
 obs-streamfx
@@ -103,6 +104,10 @@ renamemytvseries-bin
 
 # Issue 341
 filebot47
+
+# Issue 339
+esy # (dep)
+#onivim2-git (broken)
 
 # Issue 338
 clion
