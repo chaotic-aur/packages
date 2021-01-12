@@ -59,6 +59,8 @@ lib32-mangohud-git
 # SolarAquarion
 mesa-git:https://github.com/chaotic-aur/mesa-git.git
 
+#Dependencies from mesa-git
+libclc-git
 # @kprkpr
 
 cherrytree
