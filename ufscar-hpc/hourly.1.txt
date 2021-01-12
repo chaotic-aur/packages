@@ -166,7 +166,7 @@ boston-icon-theme
 microsoft-edge-dev-bin
 xow-git
 
-# Issue
+# Issue 332
 cantata-git
 eqonomize-git
 kcolorpicker-git # (dep ksnip-git)
@@ -190,3 +190,6 @@ newsflash
 
 # Issue 352
 azure-functions-core-tools-bin
+
+# Issue 349
+librewolf-bin

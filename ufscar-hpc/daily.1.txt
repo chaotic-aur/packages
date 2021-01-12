@@ -1,3 +1,4 @@
+## Maintainers
 # Firefox
 nss-hg
 nspr-hg
@@ -133,6 +134,8 @@ syndication-git:https://gitlab.manjaro.org/packages/kde-unstable/kf5-git/syndica
 syntax-highlighting-git:https://gitlab.manjaro.org/packages/kde-unstable/kf5-git/syntax-highlighting-git.git
 threadweaver-git:https://gitlab.manjaro.org/packages/kde-unstable/kf5-git/threadweaver-git.git
 
+
+## User requests
 # Issue 331
 linux-mainline
 linux-mainline-headers
