@@ -45,7 +45,7 @@ plasma-nm-git:https://gitlab.manjaro.org/packages/kde-unstable/plasma-git/plasma
 plasma-pa-git:https://gitlab.manjaro.org/packages/kde-unstable/plasma-git/plasma-pa-git:git
 plasma-sdk-git:https://gitlab.manjaro.org/packages/kde-unstable/plasma-git/plasma-sdk-git.git
 plasma-vault-git:https://gitlab.manjaro.org/packages/kde-unstable/plasma-git/plasma-vault-git.git
-plasma-workspace-git:https://gitlab.manjaro.org/packages/kde-unstable/plasma-git/plasma-workspace-git.git
+plasma-workspace-git:https://gitlab.com/dr460nf1r3/plasma-workspace-git.git # Needs fixed PKGBUILD
 polkit-kde-agent-git:https://gitlab.manjaro.org/packages/kde-unstable/plasma-git/polkit-kde-agent-git.git
 powerdevil-git:https://gitlab.manjaro.org/packages/kde-unstable/plasma-git/powerdevil-git.git
 sddm-kcm-git:https://gitlab.manjaro.org/packages/kde-unstable/plasma-git/sddm-kcm-git.git
