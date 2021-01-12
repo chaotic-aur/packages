@@ -1,7 +1,9 @@
+## Maintainers
+# Paulo
 singularity-container
 bluespec-git
 
-# hal-git
+# Hal-git
 lcov
 hal-git
 
@@ -28,16 +30,16 @@ i3status-rust-git
 systemd-boot-pacman-hook
 android-studio
 
-# obs wayland
+# OBS Wayland
 wlrobs-hg
 cef-minimal
 
-# sway
+# Sway
 wlroots-git
 swaybg-git
 sway-git
 
-# powerpill
+# Powerpill
 python3-memoizedb
 python3-xcgf
 python3-xcpf
@@ -64,8 +66,10 @@ ttf-borg-sans-mono
 #waybar-git (broken)
 #zfs-dkms (broken)
 
+
 ## Users requests
-git-delta # Issue 328
+# Issue 328
+git-delta
 
 # Issue 322
 hlsdl

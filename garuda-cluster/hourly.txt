@@ -518,6 +518,7 @@ sibs
 
 ## USER REQUESTS
 nordpy-plasmoid-git
+vscodium-bin
 
 
 ## MAINTAINERS
