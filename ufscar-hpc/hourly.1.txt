@@ -113,6 +113,10 @@ ttf-ms-fonts
 waifu2x-ncnn-vulkan-git
 winetricks-git
 xxd-standalone
+system-config-samba
+gnome-doc-utils
+rarian
+libuser
 
 # Issue 337
 eclipse-java
