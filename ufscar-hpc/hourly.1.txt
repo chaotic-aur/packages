@@ -184,3 +184,6 @@ taglib-extras # (dep cantata-git)
 
 # Issue 350
 softmaker-office-2021-bin
+
+# Issue 351
+newsflash
