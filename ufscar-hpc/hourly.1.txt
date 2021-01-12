@@ -187,3 +187,6 @@ softmaker-office-2021-bin
 
 # Issue 351
 newsflash
+
+# Issue 352
+azure-functions-core-tools-bin
