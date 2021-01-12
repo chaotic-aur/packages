@@ -134,6 +134,11 @@ syndication-git:https://gitlab.manjaro.org/packages/kde-unstable/kf5-git/syndica
 syntax-highlighting-git:https://gitlab.manjaro.org/packages/kde-unstable/kf5-git/syntax-highlighting-git.git
 threadweaver-git:https://gitlab.manjaro.org/packages/kde-unstable/kf5-git/threadweaver-git.git
 
+# KwinFT
+kwinft-git:https://gitlab.manjaro.org/packages/kde-unstable/plasma-git/kwinft-git/kwinft-git.git
+kdisplay-git:https://gitlab.manjaro.org/packages/kde-unstable/plasma-git/kwinft-git/kdisplay-git.git
+disman-git:https://gitlab.manjaro.org/packages/kde-unstable/plasma-git/kwinft-git/disman-git.git
+wrapland-git:https://gitlab.manjaro.org/packages/kde-unstable/plasma-git/kwinft-git/wrapland-git.git
 
 ## User requests
 # Issue 331
@@ -145,5 +150,5 @@ linux-next-git
 linux-next-git-headers
 
 # Issue 353
-plasmafox
-kplasmafoxhelper
+plasmafox:https://github.com/torvic9/plasmafox.git
+kplasmafoxhelper:https://github.com/torvic9/kplasmafoxhelper.git

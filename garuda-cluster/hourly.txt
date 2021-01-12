@@ -56,6 +56,7 @@ bluetooth-support:https://gitlab.com/garuda-linux/packages/pkgbuilds/bluetooth-s
 calamares-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/calamares-git.git
 calamares-tools:https://gitlab.com/garuda-linux/packages/pkgbuilds/calamares-tools.git
 connman-support:https://gitlab.com/garuda-linux/packages/pkgbuilds/connman-support.git
+firefo-extension-flagfox:https://gitlab.com/garuda-linux/packages/pkgbuilds/firefox-extension-flagfox.git
 firefox-extension-localcdn:https://gitlab.com/garuda-linux/packages/pkgbuilds/firefox-extension-localcdn.git
 garuda-assistant-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-assistant-git.git
 garuda-boot-options-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-boot-options-git.git
