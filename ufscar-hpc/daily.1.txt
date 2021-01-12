@@ -143,3 +143,7 @@ linux-mainline-headers
 # Issue 318
 linux-next-git
 linux-next-git-headers
+
+# Issue 353
+plasmafox
+kplasmafoxhelper
