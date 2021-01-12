@@ -204,3 +204,6 @@ librewolf-bin
 
 # Issue 354
 pulseaudio-control
+
+# Issue 323
+chatterino2-git
