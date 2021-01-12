@@ -201,3 +201,6 @@ azure-functions-core-tools-bin
 
 # Issue 349
 librewolf-bin
+
+# Issue 354
+pulseaudio-control
