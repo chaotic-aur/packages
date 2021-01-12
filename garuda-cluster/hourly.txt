@@ -528,6 +528,7 @@ babl-git
 c-lolcat
 gegl-git
 gimp-git
+mullvad-vpn-beta
 pacman-git
 spicetify-cli
 spicetify-themes-git
