@@ -160,3 +160,6 @@ kplasmafoxhelper:https://github.com/torvic9/kplasmafoxhelper.git
 # Issue 356
 windscribe-cli
 mullvad-vpn
+
+# Issue 357 
+cheese-git
