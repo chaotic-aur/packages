@@ -111,21 +111,22 @@ esy # (dep)
 
 # Issue 338
 clion
+gnome-doc-utils # (dep system-config-samba)
 graphite-mozilla
 intellij-idea-ultimate-edition
+libuser # (dep system-config-samba)
+ncnn-git (dep waifu2x-ncnn-vulkan-git)
 neovim-nightly-git
 nodejs-nativefier
 pycharm-professional
+rarian # (dep system-config-samba)
 syncplay
+system-config-samba
 trackma-git
 ttf-ms-fonts
 waifu2x-ncnn-vulkan-git
 winetricks-git
 xxd-standalone
-system-config-samba
-gnome-doc-utils
-rarian
-libuser
 
 # Issue 337
 eclipse-java
@@ -212,3 +213,6 @@ pulseaudio-control
 
 # Issue 323
 chatterino2-git
+
+# Issue 355
+deadd-notification-center-git
