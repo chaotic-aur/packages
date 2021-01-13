@@ -2,13 +2,17 @@
 # Firefox
 nss-hg
 nspr-hg
+--
 firefox-wayland-hg
+--
 
 # Pedro
 servo-git
+--
 
 # Too heavy for Garuda cluster
 libretro-mame-git
+--
 
 # Plasma-git
 bluedevil-git:https://gitlab.manjaro.org/packages/kde-unstable/plasma-git/bluedevil-git.git
