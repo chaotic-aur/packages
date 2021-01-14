@@ -530,6 +530,7 @@ gegl-git
 gimp-git
 mullvad-vpn-beta
 pacman-git
+signal-desktop-beta
 spicetify-cli
 spicetify-themes-git
 spotify-adblock-git
