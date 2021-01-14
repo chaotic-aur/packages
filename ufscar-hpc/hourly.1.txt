@@ -222,3 +222,5 @@ chatterino2-git
 # Issue 355
 deadd-notification-center-git
 
+# Issue 358
+ncspot
