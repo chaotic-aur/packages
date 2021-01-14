@@ -68,6 +68,8 @@ spotifyd-full-git
 tor-browser
 ttf-borg-sans-mono
 ttf-font-awesome-4
+tuxclocker
+wattman-gtk-git
 #waybar-git (broken)
 zfs-dkms
 zfs-utils
