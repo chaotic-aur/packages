@@ -224,3 +224,13 @@ deadd-notification-center-git
 
 # Issue 358
 ncspot
+
+# Issue 356
+windscribe-cli
+mullvad-vpn
+
+# Issue 357 
+cheese-git
+
+# Issue 359
+jre8

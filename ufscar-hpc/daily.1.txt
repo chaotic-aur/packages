@@ -12,15 +12,11 @@ servo-git
 
 # Too heavy for Garuda cluster
 libretro-mame-git
+librewolf
 --
 
 # Plasma-git
-kglobalaccel-git
-attica-git
 extra-cmake-modules-git
-kwindowsystem-git
-ki18n-git
-kconfig-git
 
 
 ## User requests
@@ -35,10 +31,3 @@ linux-next-git-headers
 # Issue 353
 plasmafox:https://github.com/torvic9/plasmafox.git
 kplasmafoxhelper:https://github.com/torvic9/kplasmafoxhelper.git
-
-# Issue 356
-windscribe-cli
-mullvad-vpn
-
-# Issue 357 
-cheese-git
