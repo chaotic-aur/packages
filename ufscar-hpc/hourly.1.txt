@@ -237,3 +237,6 @@ jre8
 
 # Issue 361
 jitsi-meet-desktop-bin
+
+# Issue 363
+zsh-theme-powerlevel10k-git
