@@ -47,6 +47,7 @@ pm2ml
 powerpill
 
 ## Pedro
+autoconf-git
 asdf-vm
 depot-tools-git # servo-git dep
 discord-canary-electron-bin
@@ -56,6 +57,8 @@ oneko
 osdlyrics-git
 pipewire-common-git
 podman-compose-git
+r8125-dkms
+radeontop
 repoctl
 #scrcpy-git (broken)
 slack-electron
@@ -64,8 +67,10 @@ spotify-qt
 spotifyd-full-git
 tor-browser
 ttf-borg-sans-mono
+ttf-font-awesome-4
 #waybar-git (broken)
-#zfs-dkms (broken)
+zfs-dkms
+zfs-utils
 
 
 ## Users requests
@@ -216,3 +221,4 @@ chatterino2-git
 
 # Issue 355
 deadd-notification-center-git
+
