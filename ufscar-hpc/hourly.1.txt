@@ -242,3 +242,6 @@ jitsi-meet-desktop-bin
 
 # Issue 363
 zsh-theme-powerlevel10k-git
+
+# Issue 364
+gst-rtsp-server
