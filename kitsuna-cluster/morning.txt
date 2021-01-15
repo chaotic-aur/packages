@@ -1,6 +1,6 @@
 # Pedro
 #darling-git (broken)
-electron-ozone:https://github.com/Kodehawa/electron-ozone-pkgbuild.git
+electron-ozone
 llvm-git:https://github.com/chaotic-aur/llvm-git.git
 llvm-tkg-git:https://github.com/Frogging-Family/llvm-git.git
 #proton-ge-custom (broken)
