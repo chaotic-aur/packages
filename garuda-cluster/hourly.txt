@@ -535,4 +535,4 @@ spicetify-cli
 spicetify-themes-git
 spotify-adblock-git
 telegram-desktop-bin-dev
-visual-studio-code-insiders-bin
+vscodium-git
