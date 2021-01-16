@@ -136,7 +136,7 @@ waifu2x-ncnn-vulkan-git
 winetricks-git
 xxd-standalone
 lib32-libjasper
-lib32-libnumactl
+lib32-libnuma
 lib32-libwmf
 lib32-x265
 lib32-libraqm
@@ -237,7 +237,7 @@ ncspot
 windscribe-cli
 mullvad-vpn
 
-# Issue 357 
+# Issue 357
 cheese-git
 
 # Issue 359
