@@ -286,11 +286,17 @@ zoom
 caja-pdf-tools-git
 dolphin-git
 konsole-git
+kwin-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/kwin-git.git
 meteo-qt-git
 micro-git
 neofetch-git
 nx-firewall-git
 paleofetch-git
+plasma-desktop-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/plasma-desktop-git.git
+plasma-framework-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/plasma-framework-git.git
+plasma-nm-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/plasma-nm-git.git
+plasma-pa-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/plasma-pa-git.git
+plasma-workspace-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/plasma-workspace-git.git
 pywal-git
 vr-video-player-git
 webapp-manager-git
@@ -531,6 +537,7 @@ babl-git
 c-lolcat
 gegl-git
 gimp-git
+libreoffice-dev-bin
 mullvad-vpn-beta
 pacman-git
 sddm-git
