@@ -118,6 +118,7 @@ esy # (dep)
 
 # Issue 338
 clion
+expressvpn
 gnome-doc-utils # (dep system-config-samba)
 graphite-mozilla
 intellij-idea-ultimate-edition
