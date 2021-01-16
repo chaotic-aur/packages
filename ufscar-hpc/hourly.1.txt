@@ -122,6 +122,12 @@ expressvpn
 gnome-doc-utils # (dep system-config-samba)
 graphite-mozilla
 intellij-idea-ultimate-edition
+lib32-fltk # (dep)
+lib32-libnuma
+lib32-libwmf
+lib32-libzbar
+lib32-openexr
+lib32-x265
 libuser # (dep system-config-samba)
 ncnn-git (dep waifu2x-ncnn-vulkan-git)
 neovim-nightly-git
@@ -135,14 +141,6 @@ ttf-ms-fonts
 waifu2x-ncnn-vulkan-git
 winetricks-git
 xxd-standalone
-lib32-libjasper
-lib32-libnuma
-lib32-libwmf
-lib32-x265
-lib32-libraqm
-lib32-fltk # (dep)
-lib32-openexr
-lib32-liblqr
 
 # Issue 337
 eclipse-java
