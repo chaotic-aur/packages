@@ -26,6 +26,7 @@ extra-cmake-modules-git
 frameworkintegration-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/frameworkintegration-git.git
 kactivities-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/kactivities-git.git
 kactivities-stats-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/kactivities-stats-git.git
+kactivitymanagerd-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/kactivitymanagerd-git.git
 karchive-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/karchive-git.git
 kauth-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/kauth-git.git
 kbookmarks-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/kbookmarks-git.git
@@ -87,6 +88,7 @@ libksysguard-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/libksysguard-gi
 milou-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/milou-git.git
 modemmanager-qt-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/modemmanager-qt-git.git
 networkmanager-qt-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/networkmanager-qt-git.git
+okular-git
 partitionmanager-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/partitionmanager-git.git
 plasma-sdk-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/plasma-sdk-git.git
 polkit-kde-agent-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/polkit-kde-agent-git.git
