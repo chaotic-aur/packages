@@ -66,10 +66,12 @@ slack-electron
 spotify-dev
 spotify-qt
 spotifyd-full-git
+steinberg-asio-sdk # (wineasio-git dependencie)
 tor-browser
 ttf-borg-sans-mono
 ttf-font-awesome-4
 tuxclocker
+ums
 wattman-gtk-git
 #waybar-git (broken)
 zfs-dkms
