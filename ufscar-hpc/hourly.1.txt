@@ -248,3 +248,6 @@ gst-rtsp-server
 
 # Issue 368
 oh-my-zsh-git
+
+# Issue 367
+opensnitch
