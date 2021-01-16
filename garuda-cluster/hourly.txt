@@ -216,6 +216,9 @@ subtitlecomposer
 whitesur-cursor-theme-git
 
 # LXQT-Kwin
+ant-dracula-gtk-theme
+ant-dracula-kde-theme-git
+ant-dracula-kvantum-theme-git
 kvantum-theme-vimix-git
 kwin-decoration-sierra-breeze-enhanced-git
 lxqt-kwin-desktop-git
@@ -530,6 +533,7 @@ gegl-git
 gimp-git
 mullvad-vpn-beta
 pacman-git
+sddm-git
 signal-desktop-beta
 spicetify-cli
 spicetify-themes-git
