@@ -135,6 +135,14 @@ ttf-ms-fonts
 waifu2x-ncnn-vulkan-git
 winetricks-git
 xxd-standalone
+lib32-libjasper
+lib32-libnumactl
+lib32-libwmf
+lib32-x265
+lib32-libraqm
+lib32-fltk # (dep)
+lib32-openexr
+lib32-liblqr
 
 # Issue 337
 eclipse-java
