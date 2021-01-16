@@ -37,7 +37,6 @@ kcoreaddons-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/kcoreaddons-git.
 kcrash-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/kcrash-git.git
 kde-cli-tools-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/kde-cli-tools-git.git
 kdeclarative-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/kdeclarative-git.git
-kdeconnect-git
 kdeconnect-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/kdeconnect-git.git
 kdecoration-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/kdecoration-git.git
 kded-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/kded-git.git
