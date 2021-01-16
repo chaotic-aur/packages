@@ -219,8 +219,6 @@ whitesur-cursor-theme-git
 ant-dracula-gtk-theme
 ant-dracula-kde-theme-git
 ant-dracula-kvantum-theme-git
-kvantum-theme-vimix-git
-kwin-decoration-sierra-breeze-enhanced-git
 lxqt-kwin-desktop-git
 
 # MATE
@@ -452,6 +450,8 @@ kvantum-theme-layan-git
 kvantum-theme-matcha-git
 kvantum-theme-qogir-git
 kvantum-theme-vimix-git
+kvantum-theme-vimix-git
+kwin-decoration-sierra-breeze-enhanced-git
 kwin-decoration-sierra-breeze-enhanced-git
 kwin-effects-yet-another-magic-lamp
 kwin-scripts-krohnkite-git

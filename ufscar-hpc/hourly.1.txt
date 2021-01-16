@@ -245,3 +245,6 @@ zsh-theme-powerlevel10k-git
 
 # Issue 364
 gst-rtsp-server
+
+# Issue 368
+oh-my-zsh-git
