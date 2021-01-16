@@ -18,7 +18,6 @@ librewolf
 # Plasma-git
 extra-cmake-modules-git
 
-
 ## User requests
 # Issue 331
 linux-mainline
