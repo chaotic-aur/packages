@@ -56,6 +56,7 @@ obs-v4l2sink
 oneko
 osdlyrics-git
 pipewire-common-git
+pipewire-dropin
 podman-compose-git
 r8125-dkms
 radeontop
