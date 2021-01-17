@@ -273,3 +273,6 @@ lib32-amdgpu-pro-libgl
 lib32-vulkan-amdgpu-pro
 opencl-amd
 vulkan-amdgpu-pro
+
+# Issue 306
+omnisharp-roslyn
