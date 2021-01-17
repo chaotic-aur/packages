@@ -525,15 +525,6 @@ libliftoff-git
 # vr-video-player-git
 sibs
 
-# ytmdl-git
-python-itunespy
-downloader-cli
-python-ffmpeg
-python-xdg
-python-youtube-search-git
-python-pydes
-python-simber
-
 
 ## USER REQUESTS
 nordpy-plasmoid-git
@@ -558,4 +549,3 @@ spicetify-themes-git
 spotify-adblock-git
 telegram-desktop-bin-dev
 vscodium-git
-ytmdl-git
