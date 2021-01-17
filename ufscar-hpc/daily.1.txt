@@ -96,6 +96,7 @@ prison-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/prison-git.git
 qca-qt5-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/qca-qt5-git.git
 solid-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/solid-git.git
 sonnet-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/sonnet-git.git
+spectacle-git
 syntax-highlighting-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/syntax-highlighting-git.git
 systemsettings-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/systemsettings-git.git
 threadweaver-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/threadweaver-git.git
