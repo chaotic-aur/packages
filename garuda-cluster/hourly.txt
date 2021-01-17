@@ -311,6 +311,7 @@ xpadneo-dkms
 
 # Emulators
 anbox-git
+anbox-launchers-git
 antimicrox
 cemu
 cherrytree
@@ -526,6 +527,9 @@ libliftoff-git
 # vr-video-player-git
 sibs
 
+# pulseeffects-git
+librnnoise
+
 
 ## USER REQUESTS
 nordpy-plasmoid-git
@@ -543,6 +547,7 @@ libreoffice-dev-bin
 #mpv-git (broken)
 mullvad-vpn-beta
 pacman-git
+pulseeffects-git
 sddm-git
 signal-desktop-beta
 spicetify-cli
