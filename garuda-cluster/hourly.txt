@@ -285,7 +285,7 @@ zoom
 # -git stuff
 caja-pdf-tools-git
 dolphin-git
-konsole-git
+konsole-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/konsole-git.git
 kwin-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/kwin-git.git
 meteo-qt-git
 micro-git
