@@ -279,3 +279,13 @@ omnisharp-roslyn
 
 # Issue 369
 php80
+
+# Issue 371
+duf
+godot
+ly
+multimc5
+spotify-tui
+ttf-mac-fonts
+ttf-ms-fonts
+rocketchat-desktop
