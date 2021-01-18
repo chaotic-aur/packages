@@ -276,3 +276,6 @@ vulkan-amdgpu-pro
 
 # Issue 306
 omnisharp-roslyn
+
+# Issue 369
+php80

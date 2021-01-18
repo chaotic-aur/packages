@@ -534,12 +534,14 @@ librnnoise
 ## USER REQUESTS
 nordpy-plasmoid-git
 vscodium-bin
+youtubedl-gui-beta
 
 
 ## MAINTAINERS
 # Nico
 babl-git
 c-lolcat
+clementine-git
 electronmail-bin
 gegl-git
 gimp-git
