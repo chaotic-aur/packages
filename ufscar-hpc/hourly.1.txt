@@ -314,3 +314,6 @@ yuzu-mainline-git
 # Issue 376
 vala-panel-sntray-git
 vala-panel-git # (dep vala-panel-sntray-git)
+
+# Issue 374
+quixel-bridge
