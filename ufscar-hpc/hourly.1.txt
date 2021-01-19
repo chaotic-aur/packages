@@ -264,6 +264,7 @@ lib32-gsm
 lib32-gstreamer0.10-base
 lib32-libexif
 lib32-nss-mdns
+make-3.81
 
 # Issue 360
 amdgpu-pro-core-meta
