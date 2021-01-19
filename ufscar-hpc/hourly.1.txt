@@ -91,11 +91,13 @@ qownnotes
 
 # Issue 324
 alsi
+auracle-git
 compiz-core
 emerald-gtk3
 meteo-gtk
 palemoon-bin
 pamac-classic
+pod2man # (dep auracle-git)
 xfce4-panel-compiz
 
 # Issue 326
