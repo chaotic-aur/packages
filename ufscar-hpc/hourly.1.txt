@@ -317,3 +317,6 @@ vala-panel-git # (dep vala-panel-sntray-git)
 
 # Issue 374
 quixel-bridge
+
+# Issue 377
+edid-decode-git
