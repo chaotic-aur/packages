@@ -177,6 +177,7 @@ waterfox-g3-bin
 
 # Issue 303
 budgie-desktop-git
+budgie-extras-git
 
 # Issue 324
 compiz-git
@@ -309,3 +310,7 @@ python-node-semver # (dep conan)
 python-patch-ng # (dep conan)
 python-pluginbase # (dep conan)
 yuzu-mainline-git
+
+# Issue 376
+vala-panel-sntray-git
+vala-panel-git # (dep vala-panel-sntray-git)
