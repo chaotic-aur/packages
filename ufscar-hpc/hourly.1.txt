@@ -261,10 +261,11 @@ opensnitch
 
 # Issue 366
 lib32-gsm
+lib32-gstreamer0.10
 lib32-gstreamer0.10-base
 lib32-libexif
 lib32-nss-mdns
-make-3.81
+make-3.81 (dep lib32-gstreamer0.10-base)
 
 # Issue 360
 amdgpu-pro-core-meta
@@ -294,3 +295,6 @@ rocketchat-desktop
 # Issue 372
 mimalloc (dep nginx-zest-git)
 nginx-zest-git
+
+# Issue 345
+systemd-cron-next-git
