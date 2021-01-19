@@ -289,3 +289,7 @@ spotify-tui
 ttf-mac-fonts
 ttf-ms-fonts
 rocketchat-desktop
+
+# Issue 372
+mimalloc (dep nginx-zest-git)
+nginx-zest-git
