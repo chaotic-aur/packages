@@ -177,7 +177,6 @@ waterfox-g3-bin
 
 # Issue 303
 budgie-desktop-git
-budgie-extras-git
 
 # Issue 324
 compiz-git

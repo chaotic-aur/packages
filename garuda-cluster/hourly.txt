@@ -557,3 +557,11 @@ spicetify-themes-git
 spotify-adblock-git
 telegram-desktop-bin-dev
 vscodium-git
+
+# SGS
+libcgroup
+plasma5-applets-audio-device-switcher
+plasma5-applets-plasma-pstate
+qytdl
+sound-theme-smooth
+usbaudio-git
