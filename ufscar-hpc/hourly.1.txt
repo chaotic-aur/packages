@@ -319,3 +319,6 @@ quixel-bridge
 
 # Issue 377
 edid-decode-git
+
+# Issue 378
+kawaii-player
