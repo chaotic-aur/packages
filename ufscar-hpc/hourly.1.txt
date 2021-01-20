@@ -329,3 +329,12 @@ ckb-next
 osu-lazer
 tuxedo-control-center
 tuxedo-keyboard
+
+# Issue 380
+acestream-launcher
+pyidm
+python-acestream # (dep acestream-launcher)
+python-awesometkinter # (dep pyidm)
+python-plyer # (dep pyidm)
+python-pystray # (dep pyidm)
+youtube-dlc # (dep pyidm)
