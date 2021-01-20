@@ -322,3 +322,10 @@ edid-decode-git
 
 # Issue 378
 kawaii-player
+python-mpv
+
+# Issue 379
+ckb-next
+osu-lazer
+tuxedo-control-center
+tuxedo-keyboard
