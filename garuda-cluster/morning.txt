@@ -2,3 +2,7 @@ firefox-appmenu
 ungoogled-chromium
 qemu-git
 docker-git
+
+# SolarAquarion
+onivim2-git
+
