@@ -338,3 +338,8 @@ python-awesometkinter # (dep pyidm)
 python-plyer # (dep pyidm)
 python-pystray # (dep pyidm)
 youtube-dlc # (dep pyidm)
+
+# Issue 382
+dwm
+dwm-git
+st # (dep dwm)
