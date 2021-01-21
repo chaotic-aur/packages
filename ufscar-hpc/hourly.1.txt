@@ -343,3 +343,6 @@ youtube-dlc # (dep pyidm)
 dwm
 dwm-git
 st # (dep dwm)
+
+# Issue 381
+beaker
