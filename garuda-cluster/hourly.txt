@@ -39,6 +39,7 @@ pamac-all
 pamac-aur
 performance-tweaks
 plymouth-git
+precached-git
 prelockd-git
 pulseaudio-modules-bt
 qwikaccess-git
@@ -346,6 +347,7 @@ gamehub
 gamerworld
 gamescope-git
 gwe
+heroic-games-launcher-bin
 hypnotix
 ialauncher-git
 key-mapper-git
