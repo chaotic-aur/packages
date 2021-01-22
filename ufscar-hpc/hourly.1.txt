@@ -347,6 +347,8 @@ st # (dep dwm)
 # Issue 381
 beaker
 
+# Issue 383
+vte3-notification
 
 ################################################### FROM KITSUNA
 
