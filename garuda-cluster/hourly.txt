@@ -141,7 +141,11 @@ kwin-scripts-forceblur
 latte-dock-git
 latte-dock-git
 plasma5-applets-window-appmenu
+plasma5-applets-window-appmenu-git
+plasma5-applets-window-buttons
+plasma5-applets-window-buttons-git
 plasma5-applets-window-title
+plasma5-applets-window-title-git
 sweet-kde-git
 sweet-theme-dark
 sweet-theme-git
