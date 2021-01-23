@@ -350,6 +350,9 @@ beaker
 # Issue 383
 vte3-notification
 
+# Issue 385
+linux-firmware-git
+
 ################################################### FROM KITSUNA
 
 # Pedro
