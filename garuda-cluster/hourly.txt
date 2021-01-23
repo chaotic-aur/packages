@@ -540,6 +540,7 @@ librnnoise
 
 
 ## USER REQUESTS
+bitwarden
 nordpy-plasmoid-git
 vscodium-bin
 youtubedl-gui-beta
@@ -551,12 +552,14 @@ babl-git
 c-lolcat
 clementine-git
 electronmail-bin
+ffmpeg-git
 gegl-git
 gimp-git
 guiscrcpy-git
 libreoffice-dev-bin
+libsixel
 lutris-git
-mpv-git
+mpv-full-git
 mullvad-vpn-beta
 pacman-git
 plasma5-applets-systemd
@@ -568,6 +571,7 @@ sddm-git
 signal-desktop-beta
 spicetify-cli
 spicetify-themes-git
+spirv-cross
 spotify-adblock-git
 telegram-desktop-bin-dev
 vscodium-git
