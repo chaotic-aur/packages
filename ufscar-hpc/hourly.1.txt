@@ -353,6 +353,9 @@ vte3-notification
 # Issue 385
 linux-firmware-git
 
+# Issue 386
+furiusisomount
+
 ################################################### FROM KITSUNA
 
 # Pedro
