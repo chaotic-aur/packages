@@ -363,6 +363,9 @@ kwinft
 kwinft-git
 wrapland-kwinft # (dep)
 
+Issue 389
+gtk3-classic
+
 ################################################### FROM KITSUNA
 
 # Pedro
