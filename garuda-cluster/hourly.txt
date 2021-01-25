@@ -549,16 +549,19 @@ youtubedl-gui-beta
 
 ## MAINTAINERS
 # Nico
-apparmor-git
+#apparmor-git (broken)
 babl-git
 c-lolcat
 clementine-git
 electronmail-bin
 ffmpeg-git
+firejail-git
+firejail-pacman-hook
+firetools-git
 gegl-git
-imagemagick-git
 gimp-git
 guiscrcpy-git
+imagemagick-git
 libreoffice-dev-bin
 libsixel
 lutris-git
@@ -575,7 +578,6 @@ signal-desktop-beta
 spicetify-cli
 spicetify-themes-git
 spirv-cross
-spotify-adblock-git
 telegram-desktop-bin-dev
 vscodium-git
 
