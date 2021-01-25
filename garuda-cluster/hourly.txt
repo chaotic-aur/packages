@@ -304,7 +304,7 @@ plasma-pa-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/plasma-pa-git.git
 plasma-workspace-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/plasma-workspace-git.git
 plasma5-applets-window-appmenu-git
 plasma5-applets-window-buttons-git
-plasma5-applets-window-title-git
+#plasma5-applets-window-title-git (spamming the chat)
 pywal-git
 vr-video-player-git
 webapp-manager-git
