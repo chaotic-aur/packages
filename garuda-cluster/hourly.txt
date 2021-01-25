@@ -461,6 +461,7 @@ warpinator
 candy-icons-git
 flat-remix
 flat-remix-gtk
+gnome-shell-extension-pop-shell-git
 ksmoothdock
 kvantum-theme-layan-git
 kvantum-theme-matcha-git
@@ -548,12 +549,14 @@ youtubedl-gui-beta
 
 ## MAINTAINERS
 # Nico
+apparmor-git
 babl-git
 c-lolcat
 clementine-git
 electronmail-bin
 ffmpeg-git
 gegl-git
+imagemagick-git
 gimp-git
 guiscrcpy-git
 libreoffice-dev-bin

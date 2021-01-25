@@ -356,6 +356,13 @@ linux-firmware-git
 # Issue 386
 furiusisomount
 
+# Issue 388
+disman-kwinft # (dep)
+kdisplay-kwinft # (dep)
+kwinft
+kwinft-git
+wrapland-kwinft # (dep)
+
 ################################################### FROM KITSUNA
 
 # Pedro
