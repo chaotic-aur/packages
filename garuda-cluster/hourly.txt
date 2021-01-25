@@ -321,7 +321,6 @@ anbox-git
 anbox-launchers-git
 antimicrox
 cemu
-cherrytree
 citra-canary-git
 crossover
 decaf-emu-git
