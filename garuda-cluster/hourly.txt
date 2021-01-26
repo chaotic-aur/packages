@@ -357,6 +357,7 @@ key-mapper-git
 legendary
 lib32-vkbasalt
 libretro-stella2014-git
+luxtorpeda-git
 minigalaxy
 moonlight-qt
 nestopia
