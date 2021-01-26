@@ -2,6 +2,7 @@ firefox-appmenu
 ungoogled-chromium
 qemu-git
 docker-git
+plasma5-applets-window-title-git
 
 # SolarAquarion
 onivim2-git
