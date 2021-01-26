@@ -1,4 +1,4 @@
-## GARUDA PACKAGES
+﻿## GARUDA PACKAGES
 # Garuda base (AUR)
 ananicy-git
 archlinux-appstream-data-pamac
@@ -555,6 +555,8 @@ ffmpeg-git
 firejail-git
 firejail-pacman-hook
 firetools-git
+freeoffice-next
+freetube-git
 gegl-git
 gimp-git
 guiscrcpy-git
