@@ -368,6 +368,9 @@ wrapland-kwinft # (dep)
 Issue 389
 gtk3-classic
 
+Issue 390
+ttf-iosevka
+
 ################################################### FROM KITSUNA
 
 # Pedro
