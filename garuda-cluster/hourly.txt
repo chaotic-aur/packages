@@ -569,6 +569,7 @@ lutris-git
 mpv-full-git
 mullvad-vpn-beta
 pacman-git
+paru-git
 plasma5-applets-systemd
 pulseeffects-git
 python-magic-ahupp
