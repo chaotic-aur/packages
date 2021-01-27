@@ -258,6 +258,7 @@ mugshot
 # Setup assistant
 bitwig-studio
 brave-bin
+dissenter-browser-bin
 exe-thumbnailer
 firefox-esr-bin
 firefox-extension-xdm-browser-monitor
