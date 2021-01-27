@@ -51,6 +51,7 @@ autoconf-git
 asdf-vm
 depot-tools-git # servo-git dep
 discord-canary-electron-bin
+gotop
 obs-streamfx
 obs-v4l2sink
 oneko
