@@ -1,4 +1,4 @@
-﻿## Maintainers
+## Maintainers
 # Paulo
 singularity-container
 bluespec-git
@@ -75,6 +75,7 @@ tuxclocker
 ums
 wattman-gtk-git
 #waybar-git (broken)
+waynergy-git
 zfs-dkms
 zfs-utils
 
