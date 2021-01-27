@@ -376,6 +376,11 @@ xampp
 sdx # (dep xampp)
 tclkit # (dep xampp)
 
+# Issue 392
+lf
+olive
+sct
+
 ################################################### FROM KITSUNA
 
 # Pedro
