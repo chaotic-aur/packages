@@ -102,12 +102,15 @@ systemsettings-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/systemsetting
 threadweaver-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/threadweaver-git.git
 
 # GNOME-git
-nautilus-git
 gvfs-git
 gsettings-desktop-schemas-git
 libgweather-git
 mutter-40alfa
 gnome-shell-40alfa
+glib2-git
+geary-git
+gnome-shell-extension-extensions-git
+gnome-calendar-git
 
 
 ## User requests

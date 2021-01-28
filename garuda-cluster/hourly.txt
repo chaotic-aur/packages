@@ -552,6 +552,7 @@ youtubedl-gui-beta
 babl-git
 c-lolcat
 clementine-git
+code-nautilus-git
 electronmail-bin
 ffmpeg-git
 firejail-git
