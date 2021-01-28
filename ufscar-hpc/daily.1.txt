@@ -101,6 +101,14 @@ syntax-highlighting-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/syntax-h
 systemsettings-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/systemsettings-git.git
 threadweaver-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/threadweaver-git.git
 
+# GNOME-git
+nautilus-git
+gvfs-git
+gsettings-desktop-schemas-git
+libgweather-git
+mutter-40alfa
+gnome-shell-40alfa
+
 
 ## User requests
 # Issue 331
