@@ -384,6 +384,14 @@ lf
 olive
 sct
 
+# Issue 396
+p7zip-gui
+
+# Issue 397
+python-xdg # (dep ulauncher)
+ulauncher
+
+
 ################################################### FROM KITSUNA
 
 # Pedro

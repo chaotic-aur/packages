@@ -567,6 +567,7 @@ imagemagick-git
 libreoffice-dev-bin
 libsixel
 lutris-git
+bottom-git
 mpv-full-git
 mullvad-vpn-beta
 pacman-git
@@ -588,7 +589,7 @@ opendoas-git
 spirv-cross
 telegram-desktop-bin-dev
 vscodium-git
-nerd-fonts-fantasque-sans-mono 
+nerd-fonts-fantasque-sans-mono
 
 # SGS
 libcgroup
