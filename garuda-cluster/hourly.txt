@@ -588,6 +588,7 @@ opendoas-git
 spirv-cross
 telegram-desktop-bin-dev
 vscodium-git
+nerd-fonts-fantasque-sans-mono 
 
 # SGS
 libcgroup

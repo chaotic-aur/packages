@@ -126,6 +126,8 @@ linux-next-git-headers
 plasmafox:https://github.com/torvic9/plasmafox.git
 kplasmafoxhelper:https://github.com/torvic9/kplasmafoxhelper.git
 
+# Issue 394
+icecat
 
 ################################################### FROM KITSUNA
 
