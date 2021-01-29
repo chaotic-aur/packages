@@ -551,8 +551,6 @@ youtubedl-gui-beta
 #apparmor-git (broken)
 babl-git
 c-lolcat
-clementine-git
-code-nautilus-git
 electronmail-bin
 ffmpeg-git
 firejail-git
@@ -560,6 +558,8 @@ firejail-pacman-hook
 firetools-git
 freeoffice-next
 freetube-git
+elisa-git
+kvantum-qt5-git
 gegl-git
 gimp-git
 guiscrcpy-git
@@ -570,13 +570,15 @@ lutris-git
 mpv-full-git
 mullvad-vpn-beta
 pacman-git
-paru-git
 plasma5-applets-systemd
 pulseeffects-git
 python-magic-ahupp
 python-pynput
 python-setuptools-lint
 sddm-git
+starship-git
+ripgrep-git
+fish-git
 signal-desktop-beta
 spicetify-cli
 spicetify-themes-git
