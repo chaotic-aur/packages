@@ -290,19 +290,11 @@ zoom
 # -git stuff
 birdtray-git
 caja-pdf-tools-git
-dolphin-git
-konsole-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/konsole-git.git
-kwin-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/kwin-git.git
 meteo-qt-git
-micro-git
 neofetch-git
 nx-firewall-git
 paleofetch-git
-plasma-desktop-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/plasma-desktop-git.git
-plasma-framework-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/plasma-framework-git.git
-plasma-nm-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/plasma-nm-git.git
-plasma-pa-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/plasma-pa-git.git
-plasma-workspace-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/plasma-workspace-git.git
+
 plasma5-applets-window-appmenu-git
 plasma5-applets-window-buttons-git
 pywal-git
@@ -556,6 +548,7 @@ bottom-git
 c-lolcat
 clamav-git
 clamav-unofficial-sigs
+dolphin-git
 electronmail-bin
 elisa-git
 ffmpeg-git
@@ -574,6 +567,7 @@ kvantum-qt5-git
 libreoffice-dev-bin
 libsixel
 lutris-git
+micro-git
 mpv-full-git
 mullvad-vpn-beta
 pacman-git

@@ -65,6 +65,7 @@ kmenuedit-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/kmenuedit-git.git
 knewstuff-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/knewstuff-git.git
 knotifications-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/knotifications-git.git
 knotifyconfig-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/knotifyconfig-git.git
+konsole-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/konsole-git.git
 kparts-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/kparts-git.git
 kpeople-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/kpeople-git.git
 kpmcore-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/kpmcore-git.git
@@ -80,6 +81,7 @@ kwallet-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/kwallet-git.git
 kwayland-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/kwayland-git.git
 kwaylandintegration-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/kwaylandintegration-git.git
 kwaylandserver-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/kwaylandserver-git.git
+kwin-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/kwin-git.git
 kwindowsystem-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/kwindowsystem-git.git
 kxmlgui-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/kxmlgui-git.git
 kxmlrpcclient-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/kxmlrpcclient-git.git
@@ -90,7 +92,12 @@ modemmanager-qt-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/modemmanager
 networkmanager-qt-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/networkmanager-qt-git.git
 okular-git
 partitionmanager-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/partitionmanager-git.git
+plasma-desktop-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/plasma-desktop-git.git
+plasma-framework-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/plasma-framework-git.git
+plasma-nm-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/plasma-nm-git.git
+plasma-pa-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/plasma-pa-git.git
 plasma-sdk-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/plasma-sdk-git.git
+plasma-workspace-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/plasma-workspace-git.git
 polkit-kde-agent-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/polkit-kde-agent-git.git
 prison-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/prison-git.git
 qca-qt5-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/qca-qt5-git.git
