@@ -140,6 +140,7 @@ kwin-lowlatency
 kwin-scripts-forceblur
 latte-dock-git
 latte-dock-git
+nerd-fonts-fantasque-sans-mono
 plasma5-applets-window-appmenu
 plasma5-applets-window-buttons
 plasma5-applets-window-title
@@ -550,46 +551,43 @@ youtubedl-gui-beta
 # Nico
 #apparmor-git (broken)
 babl-git
+bottom-git
 c-lolcat
 electronmail-bin
+elisa-git
 ffmpeg-git
 firejail-git
 firejail-pacman-hook
 firetools-git
+fish-git
 freeoffice-next
 freetube-git
-elisa-git
-kvantum-qt5-git
 gegl-git
 gimp-git
 guiscrcpy-git
 imagemagick-git
+kvantum-qt5-git
 libreoffice-dev-bin
 libsixel
 lutris-git
-bottom-git
 mpv-full-git
 mullvad-vpn-beta
 pacman-git
-plasma5-applets-systemd
+pamac-aur-git
+paru-git
 pulseeffects-git
 python-magic-ahupp
 python-pynput
 python-setuptools-lint
-sddm-git
-starship-git
 ripgrep-git
-fish-git
+sddm-git
 signal-desktop-beta
 spicetify-cli
 spicetify-themes-git
-paru-git
-autoupgrade
-opendoas-git
 spirv-cross
+starship-git
 telegram-desktop-bin-dev
 vscodium-git
-nerd-fonts-fantasque-sans-mono
 
 # SGS
 libcgroup
