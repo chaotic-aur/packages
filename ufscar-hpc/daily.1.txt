@@ -112,6 +112,11 @@ geary-git
 gnome-shell-extension-extensions-git
 gnome-calendar-git
 
+# Kernels
+linux-xanmod
+linux-xanmod-anbox
+linux-xanmod-cacule
+
 
 ## User requests
 # Issue 331

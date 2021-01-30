@@ -389,7 +389,6 @@ emacs-pgtk-native-comp-git
 
 # Issue 396
 p7zip-gui
-yasm-git # (dep p7zip-gui)
 
 # Issue 397
 python-xdg # (dep ulauncher)

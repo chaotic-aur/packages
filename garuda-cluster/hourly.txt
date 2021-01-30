@@ -544,6 +544,7 @@ librnnoise
 bitwarden
 nordpy-plasmoid-git
 youtubedl-gui-beta
+java-openjdk-ea-bin
 
 
 ## MAINTAINERS
@@ -553,10 +554,13 @@ alacritty-git
 babl-git
 bottom-git
 c-lolcat
+clamav-git
+clamav-unofficial-sigs
 electronmail-bin
 elisa-git
 ffmpeg-git
 firejail-git
+firejail-no-apparmor
 firejail-pacman-hook
 firetools-git
 fish-git
@@ -590,6 +594,7 @@ telegram-desktop-bin-dev
 vscodium-git
 
 # SGS
+github-desktop-bin
 libcgroup
 plasma5-applets-audio-device-switcher
 plasma5-applets-plasma-pstate
