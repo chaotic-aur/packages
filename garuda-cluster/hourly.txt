@@ -127,7 +127,6 @@ nemo-pdf-tools-git
 xviewer-plugins
 
 # Dr460nized
-alacritty-ligatures-git
 firefox-extension-plasma-integration
 kde-service-menu-reimage
 kde-servicemenus-encfs
@@ -549,6 +548,7 @@ youtubedl-gui-beta
 
 ## MAINTAINERS
 # Nico
+alacritty-git
 #apparmor-git (broken)
 babl-git
 bottom-git
