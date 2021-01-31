@@ -541,8 +541,8 @@ java-openjdk-ea-bin
 
 ## MAINTAINERS
 # Nico
-alacritty-git
 #apparmor-git (broken)
+alacritty-git
 babl-git
 bottom-git
 c-lolcat
@@ -553,23 +553,23 @@ electronmail-bin
 elisa-git
 ffmpeg-git
 firejail-git
-firejail-no-apparmor
-firejail-pacman-hook
 firetools-git
 fish-git
-freeoffice-next
 freetube-git
 gegl-git
 gimp-git
+gst-plugins-base-git
+gstreamer-git
 guiscrcpy-git
 imagemagick-git
 kvantum-qt5-git
-libreoffice-dev-bin
 libsixel
+libtremor-git
 lutris-git
 micro-git
 mpv-full-git
 mullvad-vpn-beta
+networkmanager-git
 pacman-git
 pamac-aur-git
 paru-git
@@ -578,7 +578,6 @@ python-magic-ahupp
 python-pynput
 python-setuptools-lint
 ripgrep-git
-sddm-git
 signal-desktop-beta
 spicetify-cli
 spicetify-themes-git
