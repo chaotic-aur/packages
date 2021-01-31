@@ -84,6 +84,7 @@ garuda-network-assistant-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/
 garuda-qtile-settings:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-qtile-settings.git
 garuda-recbox-settings:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-recbox-settings.git
 garuda-setup-assistant:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-setup-assistant.git
+garuda-starship-prompt:https://gitlab.com/garuda-linux/themes-and-settings/settings/garuda-starship-prompt.git
 garuda-tools-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-tools-git.git
 garuda-wallpapers-extra:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-wallpapers-extra.git
 garuda-wallpapers:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-wallpapers.git
@@ -96,6 +97,7 @@ grub-theme-garuda:https://gitlab.com/garuda-linux/packages/pkgbuilds/grub-theme-
 gstreamer-meta:https://gitlab.com/garuda-linux/packages/pkgbuilds/gstreamer-meta.git
 input-devices-support:https://gitlab.com/garuda-linux/packages/pkgbuilds/input-devices-support.git
 jack-support:https://gitlab.com/garuda-linux/packages/pkgbuilds/jack-support.git
+libretro-meta:https://gitlab.com/garuda-linux/packages/pkgbuilds/libretro-meta.git
 networkmanager-support:https://gitlab.com/garuda-linux/packages/pkgbuilds/networkmanager-support.git
 os-prober-garuda:https://gitlab.com/garuda-linux/packages/pkgbuilds/os-prober-garuda.git
 paleofetch-garuda:https://gitlab.com/garuda-linux/packages/pkgbuilds/paleofetch-garuda.git
