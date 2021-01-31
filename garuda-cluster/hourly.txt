@@ -584,7 +584,6 @@ spicetify-themes-git
 spirv-cross
 starship-git
 telegram-desktop-bin-dev
-vscodium-git
 
 # SGS
 github-desktop-bin

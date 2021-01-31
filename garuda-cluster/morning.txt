@@ -1,8 +1,10 @@
 # Big applications
-firefox-appmenu
-ungoogled-chromium
-qemu-git
+code-git
 docker-git
+firefox-appmenu
+qemu-git
+ungoogled-chromium
+vscodium-git
 
 # Annoyances
 plasma5-applets-window-title-git
