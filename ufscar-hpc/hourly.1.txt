@@ -394,6 +394,9 @@ p7zip-gui
 python-xdg # (dep ulauncher)
 ulauncher
 
+# Issue 400
+pm-utils
+
 
 ################################################### FROM KITSUNA
 
