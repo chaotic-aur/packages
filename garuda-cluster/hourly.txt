@@ -82,6 +82,7 @@ garuda-gnome-settings:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-
 garuda-hooks:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-hooks.git
 garuda-i3-settings:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-i3-settings.git
 garuda-icons:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-icons.git
+garuda-librewolf:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-librewolf.git
 garuda-kde-settings:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-kde-settings.git
 garuda-live:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-live.git
 garuda-lxqt-kwin-settings:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-lxqt-kwin-settings.git
