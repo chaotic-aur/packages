@@ -540,12 +540,15 @@ sibs
 # pulseeffects-git
 librnnoise
 
+# gdm-plymouth
+plymouth
 
 ## USER REQUESTS
 bitwarden
 nordpy-plasmoid-git
 youtubedl-gui-beta
 java-openjdk-ea-bin
+gdm-plymouth
 
 
 ## MAINTAINERS
