@@ -58,11 +58,41 @@ lib32-mangohud-git
 
 # SolarAquarion
 mesa-git:https://github.com/chaotic-aur/mesa-git.git
-#Dependencies from mesa-git
-libclc-git
+libclc-git # (dep mesa-git)
+onivim2-git
+
 # @kprkpr
 
+# Nico
+babl-git # (dep gimp-git)
+code-git
+docker-git
+ffmpeg-git
+gegl-git # (dep gimp-git)
+gimp-git
+gst-plugins-base-git
+gstreamer-git
+imagemagick-git
+kvantum-qt5-git
+libsixel # (dep ffmpeg-git)
+libtremor-git # (dep ffmpeg-git)
+networkmanager-git
+pulseeffects-git
+qemu-git
+spirv-cross # (dep ffmpeg-git)
+vscodium-git
+
+# Moved from Garuda to save ressources
+bitwarden
 cherrytree
+citra-canary-git
+java-openjdk-ea-bin
+nordpy-plasmoid-git
+signal-desktop-beta
+spicetify-cli
+spicetify-themes-git
+telegram-desktop-bin-dev
+youtubedl-gui-beta
 
 # Dependencies from ffmpeg-full
 chromaprint-fftw

@@ -1,20 +1,10 @@
 # Big applications
-code-git
-docker-git
 firefox-appmenu
-qemu-git
 ungoogled-chromium
-vscodium-git
-
-# Save some ressources
-citra-canary-git
-ffmpeg-git
-gimp-git
-networkmanager-git
 
 # Annoyances
 plasma5-applets-window-title-git
 
 # SolarAquarion
-onivim2-git
+
 

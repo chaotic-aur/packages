@@ -13,6 +13,7 @@ evdev-right-click-emulation
 firefox-extension-bitwarden
 firefo-extension-flagfox
 firefox-extension-localcdn
+firefox-extension-plasma-integration
 garuda-settings-manager-git
 garuda-settings-manager-kcm-git
 garuda-settings-manager-notifier-git
@@ -136,7 +137,6 @@ nemo-pdf-tools-git
 xviewer-plugins
 
 # Dr460nized
-firefox-extension-plasma-integration
 kde-service-menu-reimage
 kde-servicemenus-encfs
 kde-servicemenus-pdf
@@ -540,18 +540,10 @@ sibs
 librnnoise
 
 
-## USER REQUESTS
-bitwarden
-nordpy-plasmoid-git
-youtubedl-gui-beta
-java-openjdk-ea-bin
-
-
 ## MAINTAINERS
 # Nico
 #apparmor-git (broken)
 alacritty-git
-babl-git
 bottom-git
 c-lolcat
 clamav-git
@@ -563,14 +555,7 @@ firejail-git
 firetools-git
 fish-git
 freetube-git
-gegl-git
-gst-plugins-base-git
-gstreamer-git
 guiscrcpy-git
-imagemagick-git
-kvantum-qt5-git
-libsixel
-libtremor-git
 lutris-git
 micro-git
 mpv-full-git
@@ -578,17 +563,11 @@ mullvad-vpn-beta
 pacman-git
 pamac-aur-git
 paru-git
-pulseeffects-git
-python-magic-ahupp
-python-pynput
-python-setuptools-lint
+python-magic-ahupp # (dep guiscrcpy-git)
+python-pynput # (dep guiscrcpy-git)
+python-setuptools-lint # (dep guiscrcpy-git)
 ripgrep-git
-signal-desktop-beta
-spicetify-cli
-spicetify-themes-git
-spirv-cross
 starship-git
-telegram-desktop-bin-dev
 
 # SGS
 github-desktop-bin
