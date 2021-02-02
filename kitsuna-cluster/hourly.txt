@@ -60,6 +60,9 @@ lib32-mangohud-git
 mesa-git:https://github.com/chaotic-aur/mesa-git.git
 libclc-git # (dep mesa-git)
 onivim2-git
+libselinux (dep glib2-selinux)
+libsepol  (dep glib2-selinux)
+glib2-selinux
 
 # @kprkpr
 
