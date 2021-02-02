@@ -61,7 +61,6 @@ pipewire-dropin
 hsphfpd-git
 podman-compose-git
 r8125-dkms
-radeontop
 repoctl
 #scrcpy-git (broken)
 slack-electron
