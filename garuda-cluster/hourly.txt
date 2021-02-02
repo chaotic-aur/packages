@@ -546,6 +546,7 @@ librnnoise
 #apparmor-git (broken)
 alacritty-git
 bottom-git
+brave-browser-nightly:https://gitlab.com/fixed-kde-unstable-pkgbuilds/brave-browser-nightly.git
 c-lolcat
 clamav-git
 clamav-unofficial-sigs
