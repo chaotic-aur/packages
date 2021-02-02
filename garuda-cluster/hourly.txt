@@ -30,6 +30,7 @@ librewolf-extension-gnome-shell-integration
 librewolf-extension-localcdn
 librewolf-extension-plasma-integration
 librewolf-extension-xdm-browser-monitor
+librewolf-ublock-origin
 memavaild-git
 mhwd-amdgpu
 mhwd-ati
