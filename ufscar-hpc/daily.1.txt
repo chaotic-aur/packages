@@ -176,16 +176,3 @@ kplasmafoxhelper:https://github.com/torvic9/kplasmafoxhelper.git
 
 # Issue 394
 icecat
-
-################################################### FROM KITSUNA
-
-# Pedro
-#darling-git (broken)
-electron-ozone
-llvm-git:https://github.com/chaotic-aur/llvm-git.git
-llvm-tkg-git:https://github.com/Frogging-Family/llvm-git.git
-#proton-ge-custom (broken)
-
-# Users requests
-wine-git # Issue 315
-scummvm-git # Issue 316
