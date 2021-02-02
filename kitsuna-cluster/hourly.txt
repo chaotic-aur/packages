@@ -30,6 +30,7 @@ primus-vk-git
 proton-ge-custom-bin
 python-telegram-send
 mingw-w64-tools # (proton-ge-custom makedep)
+proton-ge-custom
 
 # Does not build on CentOS7
 # (https://bbs.archlinux.org/viewtopic.php?pid=1755257#p1755257)
