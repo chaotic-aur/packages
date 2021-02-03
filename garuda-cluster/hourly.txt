@@ -45,6 +45,7 @@ optimus-manager
 optimus-manager-git
 optimus-manager-qt
 optimus-manager-qt-git
+pace
 pamac-all
 pamac-aur
 performance-tweaks
