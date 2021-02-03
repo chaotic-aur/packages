@@ -57,6 +57,8 @@ lib32-mangohud
 lib32-mangohud-git
 
 # RustemB
+cpufetch-git
+discord-canary
 firefox-nightly
 haskell-language-server-bin
 jetbrains-toolbox
@@ -66,6 +68,7 @@ qbe-git
 rakudo
 siji
 vimv-git
+wasmer-bin
 zef
 
 # SolarAquarion
