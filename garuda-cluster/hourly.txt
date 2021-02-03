@@ -11,7 +11,7 @@ connman-gtk
 downgrade
 evdev-right-click-emulation
 firefox-extension-bitwarden
-firefo-extension-flagfox
+firefox-extension-flagfox
 firefox-extension-localcdn
 firefox-extension-plasma-integration
 garuda-settings-manager-git
