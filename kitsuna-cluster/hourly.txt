@@ -59,10 +59,13 @@ lib32-mangohud-git
 # RustemB
 firefox-nightly
 haskell-language-server-bin
+jetbrains-toolbox
 moarvm
 nqp
+qbe-git
 rakudo
 siji
+vimv-git
 zef
 
 # SolarAquarion
