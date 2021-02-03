@@ -143,3 +143,5 @@ openbangla-keyboard # Issue 321
 wine-x64 # Issue 330
 winbox64 # Issue 330
 wine-stable # Issue 311
+gdm-plymouth # Issue 401
+plymouth # Issue 401
