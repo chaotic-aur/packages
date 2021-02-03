@@ -545,9 +545,8 @@ librnnoise
 ## MAINTAINERS
 # Nico
 #apparmor-git (broken)
-alacritty-git
-bleachbit-git
-bottom-git
+
+
 brave-browser-nightly:https://gitlab.com/fixed-kde-unstable-pkgbuilds/brave-browser-nightly.git
 c-lolcat
 clamav-git
@@ -555,27 +554,19 @@ clamav-unofficial-sigs
 dolphin-git
 electronmail-bin
 elisa-git
-exa-git
 firejail-git
 firetools-git
 fish-git
-flameshot-git
 freetube-git
 guiscrcpy-git
 lutris-git
 micro-git
-mpv-full-git
 mullvad-vpn-beta
-pacman-git
-pamac-aur-git
-paru-git
 python-magic-ahupp # (dep guiscrcpy-git)
 python-pynput # (dep guiscrcpy-git)
 python-setuptools-lint # (dep guiscrcpy-git)
 ripgrep-git
 starship-git
-syncthing-git
-tor-git
 torbrowser-launcher-git
 
 # SGS

@@ -71,10 +71,15 @@ glib2-selinux
 # @kprkpr
 
 # Nico
+alacritty-git
 babl-git # (dep gimp-git)
+bleachbit-git
+bottom-git
 code-git
 docker-git
+exa-git
 ffmpeg-git
+flameshot-git
 gegl-git # (dep gimp-git)
 gimp-git
 gst-plugins-base-git
@@ -83,10 +88,16 @@ imagemagick-git
 kvantum-qt5-git
 libsixel # (dep ffmpeg-git)
 libtremor-git # (dep ffmpeg-git)
+mpv-full-git
 networkmanager-git
+pacman-git
+pamac-aur-git
+paru-git
 pulseeffects-git
 qemu-git
 spirv-cross # (dep ffmpeg-git)
+syncthing-git
+tor-git
 vscodium-git
 
 # Moved from Garuda to save ressources
