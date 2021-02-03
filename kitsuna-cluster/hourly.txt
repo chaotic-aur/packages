@@ -57,10 +57,13 @@ lib32-mangohud
 lib32-mangohud-git
 
 # RustemB
+firefox-nightly
+haskell-language-server-bin
 moarvm
 nqp
 rakudo
 siji
+zef
 
 # SolarAquarion
 libsepol  (dep glib2-selinux)
