@@ -57,6 +57,10 @@ lib32-mangohud
 lib32-mangohud-git
 
 # RustemB
+moarvm
+nqp
+rakudo
+siji
 
 # SolarAquarion
 libsepol  (dep glib2-selinux)
