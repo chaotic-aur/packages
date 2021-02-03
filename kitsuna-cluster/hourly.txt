@@ -1,3 +1,4 @@
+## MAINTAINERS
 # Pedro
 chaotic-nvidia-tkg:https://github.com/chaotic-aur/nvidia-tkg.git
 chaotic-nvidia-dev-tkg:https://github.com/chaotic-aur/nvidia-tkg.git
@@ -50,7 +51,6 @@ spirv-tools-tkg-git:https://github.com/Frogging-Family/spirv-tools-git.git
 vkd3d-tkg-git:https://github.com/Frogging-Family/vkd3d-git.git
 vulkan-headers-tkg-git:https://github.com/Frogging-Family/vulkan-headers-git.git
 vulkan-icd-loader-tkg-git:https://github.com/Frogging-Family/vulkan-icd-loader-git.git
-
 mangohud
 mangohud-git
 lib32-mangohud
@@ -68,55 +68,296 @@ libselinux (dep glib2-selinux)
 mesa-git:https://github.com/chaotic-aur/mesa-git.git
 libclc-git # (dep mesa-git)
 onivim2-git
-
-
 glib2-selinux
 
-# @kprkpr
+# kprkpr
 
 # Nico
+alacritty-git
 babl-git # (dep gimp-git)
+birdtray-git
+bleachbit-git
+bottom-git
+brave-browser-nightly:https://gitlab.com/fixed-kde-unstable-pkgbuilds/brave-browser-nightly.git
+c-lolcat
+clamav-git
+clamav-unofficial-sigs
 code-git
 docker-git
+dolphin-git
+electronmail-bin
+elisa-git
+exa-git
 ffmpeg-git
+firejail-git
+firetools-git
+fish-git
+flameshot-git
+freetube-git
 gegl-git # (dep gimp-git)
 gimp-git
 gst-plugins-base-git
 gstreamer-git
+guiscrcpy-git
 imagemagick-git
+inxi-git
 kvantum-qt5-git
+librnnoise # (dep pulseeffects-git)
 libsixel # (dep ffmpeg-git)
 libtremor-git # (dep ffmpeg-git)
+lutris-git
+micro-git
+mpv-full-git
+mullvad-vpn-beta
 networkmanager-git
+obs-studio-git
+pacman-git
+pamac-aur-git
+paru-git
 pulseeffects-git
+python-magic-ahupp # (dep guiscrcpy-git)
+python-pynput # (dep guiscrcpy-git)
+python-setuptools-lint # (dep guiscrcpy-git)
 qemu-git
+ripgrep-git
 spirv-cross # (dep ffmpeg-git)
+starship-git
+syncthing-git
+tor-git
 vscodium-git
 
+# SGS
+github-desktop-bin
+libcgroup
+plasma5-applets-audio-device-switcher
+plasma5-applets-plasma-pstate
+qytdl
+sound-theme-smooth
+usbaudio-git
+
+## NEEDED FOR GARUDA
 # Moved from Garuda to save ressources
-bitwarden
-cherrytree
-citra-canary-git
 java-openjdk-ea-bin
+meteo-qt-git
+neofetch-git
 nordpy-plasmoid-git
+nx-firewall-git
+paleofetch-git
+plasma5-applets-window-appmenu-git
+plasma5-applets-window-buttons-git
+pywal-git
+sibs # (dep vr-video-player-git)
 signal-desktop-beta
 spicetify-cli
 spicetify-themes-git
 telegram-desktop-bin-dev
+vr-video-player-git
+
+# Drivers
+ntfs3-dkms
+steamos-xpad-dkms
+xbox-generic-controller
+xboxdrv
+xpadneo-dkms
+
+# Emulators
+anbox-git
+anbox-image-gapps-magisk # (dep anbox-git)
+anbox-launchers-git
+antimicrox
+cemu
+citra-canary-git
+crossover
+decaf-emu-git
+duckstation-git
+eka2l1-git
+emulationstation
+epsxe
+genymotion
+kega-fusion
+m64py
+mednaffe
+pcsxr
+pegasus-frontend-git
+play-emu-git
+properties-cpp # (dep anbox-git)
+regen
+sameboy
+xemu-git
+
+# Fonts
+lohit-fonts
+fonts-tlwg
+
+# Gaming
+athenaeum-git
+fancontrol-gui
+game-devices-udev
+gamehub
+gamerworld
+gwe
+heroic-games-launcher-bin
+hypnotix
+ialauncher-git
+key-mapper-git
+legendary
+lib32-vkbasalt
+libliftoff-git # (dep gamescope-git)
+libretro-stella2014-git
+luxtorpeda-git
+minigalaxy
+moonlight-qt
+nestopia
+nyrna
+openrgb-git
+oversteer
+play.it
+proton-caller
+protontricks-git
+q4wine
+rare-git
+reicast
+replay-sorcery
+reshade-shaders-git
+retroarch-autoconfig-udev-git
+retrolink-git
+rpcs3
+sc-controller
+stacer
+steamtinkerlaunch
+streamlink-twitch-gui
+stremio
+vkbasalt
+xow
+
+# General use applications
+anydesk-bin
+appimagelauncher
+balena-etcher
+bauh
+birdtray
+bitwarden
+bitwarden
+cherrytree
+davinci-resolve
+deezer
+discover-snap
+dropbox
+foxitreader
+google-earth-pro
+google-meet-desktop
+guiscrcpy
+jellyfin
+librewolf-bin
+mailspring
+mattermost-desktop
+mellowplayer
+mendeleydesktop
+nordpy
+nordvpn-bin
+octopi
+octopi-notifier-frameworks
+octopi-notifier-qt5
+olivia
+paru
+plex-media-player
+popsicle
+qt-scrcpy
+scrcpy
+shortwave
+skypeforlinux-stable-bin
+slack-desktop
+snapd
+spotify
+teams
+teamviewer
+timeshift-bin
+topgrade
+ventoy-bin
+visual-studio-code-bin
+yay
+
+# Networking & Tools
+bass-fish
+buttermanager
+caffeine
+caja-pdf-tools-git
+ckbcomp
+debtap
+droidcam
+fotokilof
+growpart
+isoimagewriter
+isomaster
+jade-application-kit
+lanshare
+mediawriter
+mmsd-git
+modprobed-db
+multibootusb
+neard
+networkmanager-dmenu-git
+nitroshare
+noisetorch
+ofono
+phonesim
+qomui
+qomui-git
+soundwire
+warpinator
+webapp-manager-git
 youtubedl-gui-beta
 
+# Theming & Customization
+candy-icons-git
+flat-remix
+flat-remix-gtk
+gnome-shell-extension-pop-shell-git
+ksmoothdock
+kvantum-theme-layan-git
+kvantum-theme-matcha-git
+kvantum-theme-qogir-git
+kvantum-theme-vimix-git
+kvantum-theme-vimix-git
+kwin-decoration-sierra-breeze-enhanced-git
+kwin-decoration-sierra-breeze-enhanced-git
+kwin-effects-yet-another-magic-lamp
+kwin-scripts-krohnkite-git
+kwin-scripts-window-colors
+layan-gtk-theme-git
+layan-kde-git
+loginized
+matcha-gtk-theme-git
+mcmojave-circle-icon-theme-git
+mcmojave-kde-theme-git
+mojave-gtk-theme-git
+nwg-launchers
+plymouth
+qogir-gtk-theme-git
+qogir-icon-theme-git
+qogir-kde-theme-git
+tela-icon-theme-git
+vimix-cursors
+vimix-gtk-themes
+vimix-gtk-themes-git
+vimix-icon-theme
+vimix-icon-theme-git
+xcursor-breeze
+
+
+## DEPENDENCIES
 # Dependencies from ffmpeg-full
 chromaprint-fftw
 davs2
+decklink-sdk
 flite1-patched
 libklvanc-git
 libopenmpt-svn
+rockchip-mpp
 shine
 vo-amrwbenc
 xavs
 xavs2
-rockchip-mpp
-decklink-sdk
 
 # Dependencies from proton-ge-custom
 afdko
@@ -147,3 +388,5 @@ openbangla-keyboard # Issue 321
 wine-x64 # Issue 330
 winbox64 # Issue 330
 wine-stable # Issue 311
+gdm-plymouth # Issue 401
+plymouth # Issue 401
