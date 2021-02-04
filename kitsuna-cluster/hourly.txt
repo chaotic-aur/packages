@@ -129,6 +129,7 @@ python-pynput # (dep guiscrcpy-git)
 python-setuptools-lint # (dep guiscrcpy-git)
 qemu-git
 ripgrep-git
+sddm-git
 spirv-cross # (dep ffmpeg-git)
 starship-git
 syncthing-git
@@ -193,7 +194,7 @@ pcsxr
 pegasus-frontend-git
 play-emu-git
 properties-cpp # (dep anbox-git)
-regen
+#regen broken deps (lib32-libffi5)
 sameboy
 xemu-git
 
