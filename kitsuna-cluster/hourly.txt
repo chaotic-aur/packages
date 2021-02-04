@@ -257,7 +257,6 @@ bitwarden
 cherrytree
 davinci-resolve
 deezer
-discover-snap
 dropbox
 foxitreader
 google-earth-pro
@@ -283,7 +282,6 @@ scrcpy
 shortwave
 skypeforlinux-stable-bin
 slack-desktop
-snapd
 spotify
 teams
 teamviewer

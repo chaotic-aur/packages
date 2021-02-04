@@ -46,7 +46,6 @@ optimus-manager-git
 optimus-manager-qt
 optimus-manager-qt-git
 pace
-pamac-all
 pamac-aur
 performance-tweaks
 plymouth-git
@@ -316,9 +315,6 @@ python-grcpio-tools
 # foxitreader:
 gstreamer0.10
 gstreamer0.10-base
-
-# snapd
-snapd-glib
 
 # optimus-manager-git
 python-py3nvml
