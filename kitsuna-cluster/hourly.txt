@@ -60,13 +60,16 @@ lib32-mangohud-git
 cpufetch-git
 discord-canary
 firefox-nightly
+glow
 haskell-language-server-bin
 jetbrains-toolbox
+languageclient-neovim
 moarvm
 nqp
 qbe-git
 rakudo
 siji
+telegram-tdlib
 vimv-git
 wasmer-bin
 zef
