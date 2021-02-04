@@ -94,7 +94,7 @@ garuda-network-assistant-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/
 garuda-qtile-settings:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-qtile-settings.git
 garuda-recbox-settings:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-recbox-settings.git
 garuda-setup-assistant:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-setup-assistant.git
-garuda-starship-prompt:https://gitlab.com/garuda-linux/themes-and-settings/settings/garuda-starship-prompt.git
+garuda-starship-prompt:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-starship-prompt.git
 garuda-tools-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-tools-git.git
 garuda-wallpapers-extra:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-wallpapers-extra.git
 garuda-wallpapers:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-wallpapers.git
