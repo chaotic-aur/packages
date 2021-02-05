@@ -134,9 +134,9 @@ gnome-doc-utils # (dep system-config-samba)
 graphite-mozilla
 intellij-idea-ultimate-edition
 lib32-fltk # (dep)
-lib32-libnuma
+lib32-numactl
 lib32-libwmf
-lib32-libzbar
+lib32-zbar
 lib32-openexr
 lib32-x265
 libgccjit
