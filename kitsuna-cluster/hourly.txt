@@ -175,6 +175,8 @@ usbaudio-git
 
 ## NEEDED FOR GARUDA
 # Moved from Garuda to save ressources
+dvdisaster
+j7z
 java-openjdk-ea-bin
 meteo-qt-git
 neofetch-git
@@ -184,10 +186,13 @@ paleofetch-git
 plasma5-applets-window-appmenu-git
 plasma5-applets-window-buttons-git
 pywal-git
+recoverjpeg
+scalpel-git
 sibs # (dep vr-video-player-git)
 signal-desktop-beta
 spicetify-cli
 spicetify-themes-git
+system-tar-and-restore
 telegram-desktop-bin-dev
 vr-video-player-git
 
