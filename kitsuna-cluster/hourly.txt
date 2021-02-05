@@ -91,6 +91,19 @@ mesa-git:https://github.com/chaotic-aur/mesa-git.git
 libclc-git # (dep mesa-git)
 onivim2-git
 glib2-selinux
+ayatana-ido
+libayatana-indicator
+cmake-extras-git
+properties-cpp
+libayatana-appindicator
+ayatana-indicator-messages
+ayatana-indicator-application
+ayatana-indicator-bluetooth
+ayatana-indicator-keyboard
+ayatana-indicator-notifications
+ayatana-indicator-power
+ayatana-indicator-sound
+ayatana-indicator-session
 
 # kprkpr
 
