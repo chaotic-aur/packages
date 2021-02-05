@@ -191,6 +191,7 @@ vr-video-player-git
 
 # Drivers
 ntfs3-dkms
+r8101-dkms
 steamos-xpad-dkms
 xbox-generic-controller
 xboxdrv
