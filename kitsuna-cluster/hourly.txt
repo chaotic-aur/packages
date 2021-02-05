@@ -150,7 +150,6 @@ usbaudio-git
 
 ## NEEDED FOR GARUDA
 # Moved from Garuda to save ressources
-electron8-bin # (dep rambox)
 java-openjdk-ea-bin
 meteo-qt-git
 neofetch-git
@@ -160,8 +159,6 @@ paleofetch-git
 plasma5-applets-window-appmenu-git
 plasma5-applets-window-buttons-git
 pywal-git
-rambox
-sencha-cmd-6  # (dep rambox)
 sibs # (dep vr-video-player-git)
 signal-desktop-beta
 spicetify-cli
