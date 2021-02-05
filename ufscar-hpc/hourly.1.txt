@@ -353,7 +353,8 @@ st # (dep dwm)
 beaker
 
 # Issue 383
-vte3-notification
+#vte3-notification broken now, using below instead
+vte-ng
 
 # Issue 385
 linux-firmware-git
