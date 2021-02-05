@@ -163,6 +163,10 @@ syntax-highlighting-git
 systemsettings-git
 threadweaver-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/threadweaver-git.git
 
+# Moved because too heavy for Garuda
+firefox-appmenu
+ungoogled-chromium
+
 # Users requests
 wine-git # Issue 315
 scummvm-git # Issue 316

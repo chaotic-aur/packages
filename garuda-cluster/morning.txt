@@ -1,6 +1,4 @@
 # Big applications
-firefox-appmenu
-ungoogled-chromium
 
 # Annoyances
 plasma5-applets-window-title-git
