@@ -401,3 +401,9 @@ pm-utils
 # Issue 408
 ardour-git
 cwiid # (dep ardour)
+
+# Issue 412
+magic-wormhole
+python-hkdf # (dep magic-wormhole)
+python-spake2 # (dep magic-wormhole)
+python-txtorcon # (dep magic-wormhole)
