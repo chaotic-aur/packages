@@ -70,6 +70,7 @@ moarvm
 nqp
 nteract-bin
 popura-git
+powder-toy-git
 python-spacy
 python-thinc # (dep python-spacy)
 python-srsly # (dep python-spacy)
