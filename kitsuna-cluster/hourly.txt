@@ -82,6 +82,7 @@ qbe-git
 rakudo
 siji
 telegram-tdlib
+tetrio-desktop
 vimv-git
 wasmer-bin
 zef
