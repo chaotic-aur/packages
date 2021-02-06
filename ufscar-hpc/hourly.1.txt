@@ -412,6 +412,7 @@ python-txtorcon # (dep magic-wormhole)
 antlr3 # (dep scylla-git)
 antlr3-cpp-headers-git # (dep scylla-git)
 cassandra
+gcc7
 scylla
 scylla-git
 systemtap # (dep scylla-git)
