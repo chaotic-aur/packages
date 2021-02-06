@@ -68,6 +68,7 @@ jetbrains-toolbox
 languageclient-neovim
 moarvm
 nqp
+popura-git
 python-spacy
 python-thinc # (dep python-spacy)
 python-srsly # (dep python-spacy)
