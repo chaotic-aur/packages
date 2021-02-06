@@ -161,6 +161,7 @@ sddm-git
 spirv-cross # (dep ffmpeg-git)
 starship-git
 syncthing-git
+tdesktop-x64
 tor-git
 vscodium-git
 
