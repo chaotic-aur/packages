@@ -308,13 +308,6 @@ nginx-zest-git
 # Issue 345
 systemd-cron-next-git
 
-# Issue 340
-conan # (dep yuzu-mainline-git)
-python-node-semver # (dep conan)
-python-patch-ng # (dep conan)
-python-pluginbase # (dep conan)
-yuzu-mainline-git
-
 # Issue 376
 vala-panel-sntray-git
 vala-panel-git # (dep vala-panel-sntray-git)

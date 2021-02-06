@@ -210,12 +210,14 @@ xboxdrv
 xpadneo-dkms
 
 # Emulators
+#regen broken deps (lib32-libffi5)
 anbox-git
 anbox-image-gapps-magisk # (dep anbox-git)
 anbox-launchers-git
 antimicrox
 cemu
 citra-canary-git
+conan # (dep yuzu-mainline-git)
 crossover
 decaf-emu-git
 duckstation-git
@@ -230,9 +232,12 @@ pcsxr
 pegasus-frontend-git
 play-emu-git
 properties-cpp # (dep anbox-git)
-#regen broken deps (lib32-libffi5)
+python-node-semver # (dep conan)
+python-patch-ng # (dep conan)
+python-pluginbase # (dep conan)
 sameboy
 xemu-git
+yuzu-mainline-git
 
 # Fonts
 lohit-fonts
