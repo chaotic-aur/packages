@@ -146,7 +146,7 @@ lutris-git
 micro-git
 mpv-full-git
 mullvad-vpn-beta
-networkmanager-git
+networkmanager-iwd
 obs-studio-git
 pacman-git
 pamac-aur-git
