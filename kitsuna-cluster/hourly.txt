@@ -115,6 +115,7 @@ ayatana-indicator-session
 
 # Nico
 alacritty-git
+apparmor-git
 babl-git # (dep gimp-git)
 birdtray-git
 bleachbit-git
@@ -146,6 +147,7 @@ kvantum-qt5-git
 librnnoise # (dep pulseeffects-git)
 libsixel # (dep ffmpeg-git)
 libtremor-git # (dep ffmpeg-git)
+linux-xanmod-lts
 lutris-git
 micro-git
 mpv-full-git
