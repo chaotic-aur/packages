@@ -170,6 +170,8 @@ syncthing-git
 tdesktop-x64
 tor-git
 vscodium-git
+wine-lol
+wine-lol-glibc
 
 # SGS
 github-desktop-bin
