@@ -6,11 +6,15 @@ llvm-tkg-git:https://github.com/Frogging-Family/llvm-git.git
 
 # Plasma-git
 akonadi-calendar-git
+akonadi-calendar-git
+akonadi-contacts-git
 akonadi-contacts-git
 akonadi-git
 akonadi-import-wizard-git
+akonadi-mime
 akonadi-mime-git
 akonadi-notes-git
+akonadi-search-git
 akonadi-search-git
 attica-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/attica-git.git
 baloo-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/baloo-git.git
@@ -35,6 +39,7 @@ karchive-git
 kauth-git
 kbookmarks-git
 kcalendarcore-git
+kcalutils-git
 kcalutils-git
 kcmutils-git
 kcodecs-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/kcodecs-git.git
@@ -73,6 +78,7 @@ khtml-git
 ki18n-git
 kiconthemes-git
 kidentitymanagement-git
+kidentitymanagement-git
 kidletime-git
 kimap-git
 kimap2-git
@@ -99,6 +105,7 @@ kontactinterface-git
 kpackage-git
 kparts-git
 kpeople-git
+kpimtextedit-git
 kpimtextedit-git
 kpkpass-git
 kplotting-git

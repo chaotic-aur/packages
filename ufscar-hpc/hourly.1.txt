@@ -410,3 +410,6 @@ scylla
 scylla-git
 systemtap # (dep scylla-git)
 thrift-0.10.0 # (dep scylla-git)
+
+# Issue 417
+paper-icon-theme-git
