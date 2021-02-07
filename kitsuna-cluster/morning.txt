@@ -7,6 +7,7 @@ llvm-tkg-git:https://github.com/Frogging-Family/llvm-git.git
 # Plasma-git
 akonadi-calendar-git
 akonadi-contacts-git
+akonadi-git
 akonadi-import-wizard-git
 akonadi-mime-git
 akonadi-notes-git
@@ -23,6 +24,8 @@ elf-dissector-git
 eventviews-git
 extra-cmake-modules-git
 frameworkintegration-git
+grantlee-git 
+grantleetheme-git
 grantleetheme-git
 incidenceeditor-git
 kactivities-git
@@ -83,6 +86,7 @@ kitinerary-git
 kjobwidgets-git
 kjs-git
 kldap-git
+kldap-git
 kmailtransport-git
 kmbox-git
 kmenuedit-git
@@ -127,6 +131,7 @@ kwrited-git
 kxmlgui-git
 kxmlrpcclient-git
 labplot-git
+libakonadi-git  
 libgravatar-git
 libkdepim-git
 libkleo-git
