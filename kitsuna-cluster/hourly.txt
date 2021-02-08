@@ -156,7 +156,7 @@ networkmanager-iwd
 obs-studio-git
 pacman-git
 pamac-aur-git
-paru-git
+paru6alfa-git
 pulseeffects-git
 python-magic-ahupp # (dep guiscrcpy-git)
 python-pynput # (dep guiscrcpy-git)
