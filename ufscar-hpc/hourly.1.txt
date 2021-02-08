@@ -424,4 +424,4 @@ arc-gtk-theme-git
 choosenim
 
 # Issue 420
-wpspin
+#wpspin (removed until build fixed)
