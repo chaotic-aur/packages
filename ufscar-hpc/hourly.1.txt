@@ -3,10 +3,11 @@
 singularity-container
 bluespec-git
 
-# Hal-git
+# Hal-git (Paulo)
 lcov
 hal-git
 
+# More Paulo
 digilent.adept.runtime
 digilent.adept.utilities
 fxload
@@ -30,21 +31,22 @@ i3status-rust-git
 systemd-boot-pacman-hook
 android-studio
 
-# OBS Wayland
+# OBS Wayland (Paulo)
 wlrobs-hg
 cef-minimal
 
-# Sway
+# Sway (Paulo)
 wlroots-git
 swaybg-git
 sway-git
 
-# Powerpill
+# Powerpill (Paulo)
 python3-memoizedb
 python3-xcgf
 python3-xcpf
 pm2ml
 powerpill
+
 
 ## Pedro
 autoconf-git
@@ -52,6 +54,7 @@ asdf-vm
 depot-tools-git # servo-git dep
 discord-canary-electron-bin
 gotop
+grim-git
 obs-streamfx
 obs-v4l2sink
 oneko
