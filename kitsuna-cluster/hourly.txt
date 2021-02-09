@@ -157,7 +157,7 @@ networkmanager-iwd
 obs-studio-git
 pacman-git
 pamac-aur-git
-paru6alfa-git
+paru6alfa-git:https://gitlab.com/dr460nf1r3/paru6alfa-git.git.git
 pulseeffects-git
 python-magic-ahupp # (dep guiscrcpy-git)
 python-pynput # (dep guiscrcpy-git)
