@@ -424,7 +424,7 @@ arc-gtk-theme-git
 choosenim
 
 # Issue 420
-#wpspin (removed until build fixed)
+wpspin
 
 # Issue 422
 arm-linux-gnueabi-binutils
