@@ -185,6 +185,7 @@ usbaudio-git
 
 ## NEEDED FOR GARUDA
 # Moved from Garuda to save ressources
+anaconda
 dvdisaster
 j7z
 java-openjdk-ea-bin
