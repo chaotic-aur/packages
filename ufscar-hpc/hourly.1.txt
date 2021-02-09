@@ -425,3 +425,7 @@ choosenim
 
 # Issue 420
 #wpspin (removed until build fixed)
+
+# Issue 422
+arm-linux-gnueabi-binutils
+arm-linux-gnueabi-gcc
