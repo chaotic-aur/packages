@@ -110,6 +110,7 @@ ayatana-indicator-notifications
 ayatana-indicator-power
 ayatana-indicator-sound
 ayatana-indicator-session
+wezterm-git
 
 # kprkpr
 
