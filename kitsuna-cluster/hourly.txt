@@ -111,6 +111,7 @@ ayatana-indicator-power
 ayatana-indicator-sound
 ayatana-indicator-session
 wezterm-git
+tilix-git:https://github.com/chaotic-aur/tilix-git-aur
 
 # kprkpr
 
