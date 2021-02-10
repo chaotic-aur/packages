@@ -158,6 +158,7 @@ mullvad-vpn-beta
 networkmanager-iwd
 obs-studio-git
 pacman-git
+pacroller-dev-git
 pamac-aur-git
 paru6alfa-git:https://gitlab.com/dr460nf1r3/paru6alfa-git.git.git
 pulseeffects-git
