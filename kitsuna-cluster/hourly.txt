@@ -183,7 +183,10 @@ github-desktop-bin
 libcgroup
 plasma5-applets-audio-device-switcher
 plasma5-applets-plasma-pstate
+python-pid # (dep refind-btrfs)
+python-transitions # (dep refind-btrfs)
 qytdl
+refind-btrfs
 sound-theme-smooth
 usbaudio-git
 
