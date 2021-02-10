@@ -103,6 +103,7 @@ garuda-xfce-settings:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-x
 garuda-zsh-config:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-zsh-config.git
 grub-garuda:https://gitlab.com/garuda-linux/packages/pkgbuilds/grub-garuda.git
 grub-theme-garuda:https://gitlab.com/garuda-linux/packages/pkgbuilds/grub-theme-garuda.git
+grub-theme-garuda-custom:https://gitlab.com/garuda-linux/packages/pkgbuilds/grub-theme-garuda-custom.git
 gstreamer-meta:https://gitlab.com/garuda-linux/packages/pkgbuilds/gstreamer-meta.git
 input-devices-support:https://gitlab.com/garuda-linux/packages/pkgbuilds/input-devices-support.git
 jack-support:https://gitlab.com/garuda-linux/packages/pkgbuilds/jack-support.git
