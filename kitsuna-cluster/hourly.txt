@@ -117,7 +117,7 @@ vlc-git
 # kprkpr
 
 # Nico
-alacritty-git
+alacritty-ligatures-git
 apparmor-git
 babl-git # (dep gimp-git)
 birdtray-git
