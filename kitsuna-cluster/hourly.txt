@@ -164,6 +164,7 @@ pulseeffects-git
 python-magic-ahupp # (dep guiscrcpy-git)
 python-pynput # (dep guiscrcpy-git)
 python-setuptools-lint # (dep guiscrcpy-git)
+qbittorrent-enhanced-git
 qemu-git
 ripgrep-git
 sddm-git
@@ -175,6 +176,7 @@ tor-git
 vscodium-git
 wine-lol
 wine-lol-glibc
+xorg-server-git
 
 # SGS
 github-desktop-bin

@@ -28,8 +28,6 @@ gnome-calendar-git
 
 # Kernels
 linux-xanmod
-linux-xanmod-anbox
-linux-xanmod-cacule
 
 
 ## User requests
