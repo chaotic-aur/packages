@@ -29,6 +29,7 @@ wl-clipboard-x11
 sway-launcher-desktop
 i3status-rust-git
 systemd-boot-pacman-hook
+realvnc-vnc-viewer
 android-studio
 
 # OBS Wayland (Paulo)
