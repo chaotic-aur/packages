@@ -217,6 +217,7 @@ kcolorpicker-git # (dep ksnip-git)
 kimageannotator-git # (dep ksnip-git)
 ksnip-git
 libquotient-git # (dep neochat-git)
+lightly-git
 lightly-qt
 plasma-systemmonitor-git
 pyradio-git
