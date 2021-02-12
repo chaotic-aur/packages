@@ -35,6 +35,9 @@ primus-vk-git
 proton-ge-custom
 proton-ge-custom-bin
 python-telegram-send
+ruby-coderay # ( dep logstalgia)
+ruby-method_source # ( dep logstalgia)
+ruby-pry # ( dep logstalgia)
 
 # Does not build on CentOS7
 # (https://bbs.archlinux.org/viewtopic.php?pid=1755257#p1755257)
