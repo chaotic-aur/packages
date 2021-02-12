@@ -459,3 +459,8 @@ winbox64 # Issue 330
 wine-stable # Issue 311
 gdm-plymouth # Issue 401
 plymouth # Issue 401
+
+## Not building on ufscar
+# Issue 322
+lightly-qt
+qownnotes

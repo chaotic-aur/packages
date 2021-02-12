@@ -93,10 +93,8 @@ git-delta
 hlsdl
 identity
 jellyfin
-lightly-qt
 material-kwin-decoration-git
 nheko-git
-qownnotes
 
 # Issue 324
 alsi
