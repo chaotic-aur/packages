@@ -225,6 +225,9 @@ strawberry-git
 systray-x-git
 taglib-extras # (dep cantata-git)
 
+# Issue 343
+wps-office-mui-zh-cn
+
 # Issue 350
 softmaker-office-2021-bin
 
