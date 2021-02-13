@@ -158,7 +158,7 @@ pimcommon-git
 plasma-browser-integration-git
 plasma-desktop-git
 plasma-integration-git
-plasma-nm-git
+plasma-nm-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/plasma-nm-git.git
 plasma-pa-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/plasma-pa-git.git
 plasma-sdk-git:https://gitlab.com/fixed-kde-unstable-pkgbuilds/plasma-sdk-git.git
 plasma-workspace-git

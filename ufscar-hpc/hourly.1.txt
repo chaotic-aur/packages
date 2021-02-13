@@ -444,3 +444,10 @@ tlp-git
 # Issue 428
 gnome-shell-extension-pop-shell
 pop-shell-shortcuts-git # (dep gnome-shell-extension-pop-shell)
+
+# Issue 433
+ddcui-git
+ddcutil-git
+
+# Issue 434
+webkitgtk
