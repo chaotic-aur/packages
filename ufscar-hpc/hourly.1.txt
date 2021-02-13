@@ -299,7 +299,6 @@ php80
 
 # Issue 371
 duf
-godot
 ly
 multimc5
 spotify-tui
