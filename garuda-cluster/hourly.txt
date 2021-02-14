@@ -53,6 +53,7 @@ precached-git
 prelockd-git
 pulseaudio-modules-bt
 qwikaccess-git
+starship
 systemd-guest-user
 tela-circle-icon-theme-git
 timeshift
