@@ -32,6 +32,7 @@ systemd-boot-pacman-hook
 realvnc-vnc-viewer
 android-studio
 android-emulator
+android-sdk
 
 # OBS Wayland (Paulo)
 wlrobs-hg
