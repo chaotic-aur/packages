@@ -465,3 +465,6 @@ plymouth # Issue 401
 lightly-qt
 material-kwin-decoration-git 
 qownnotes
+
+# Issue 323
+chatterino2-git
