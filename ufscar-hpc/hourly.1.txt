@@ -31,6 +31,8 @@ i3status-rust-git
 systemd-boot-pacman-hook
 realvnc-vnc-viewer
 android-studio
+android-emulator
+bytecode-viewer
 
 # OBS Wayland (Paulo)
 wlrobs-hg
