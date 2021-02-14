@@ -62,6 +62,7 @@ kdepim-apps-libs-git
 kdeplasma-addons-git
 kdesignerplugin-git
 kdesu-git
+kdiagram-git
 kdialog-git
 kdisplay-git
 kdnssd-git
