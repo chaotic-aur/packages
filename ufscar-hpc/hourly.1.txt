@@ -95,7 +95,6 @@ git-delta
 hlsdl
 identity
 jellyfin
-material-kwin-decoration-git
 nheko-git
 
 # Issue 324
@@ -452,3 +451,12 @@ ddcutil-git
 
 # Issue 434
 webkitgtk
+
+# Issue 435
+ffmpeg-full
+
+# Issue 436
+keymapper-git
+
+# Issue 437
+theia-electron

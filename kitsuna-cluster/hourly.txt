@@ -1,9 +1,9 @@
 ## MAINTAINERS
 # Pedro
-chaotic-nvidia-tkg:https://github.com/chaotic-aur/nvidia-tkg.git
-chaotic-nvidia-dev-tkg:https://github.com/chaotic-aur/nvidia-tkg.git
 chaotic-keyring
 chaotic-mirrorlist
+chaotic-nvidia-dev-tkg:https://github.com/chaotic-aur/nvidia-tkg.git
+chaotic-nvidia-tkg:https://github.com/chaotic-aur/nvidia-tkg.git
 
 android-sdk-platform-tools
 android-studio-launcher
@@ -46,21 +46,21 @@ obs-studio-wayland-git
 # Unreal-engine
 
 # FroggingFamily
-gallium-nine-git
-goverlay-git
 #amdvlk-tkg:https://github.com/Frogging-Family/amdvlk-opt.git (broken)
 faudio-tkg-git:https://github.com/Frogging-Family/faudio-git.git
+gallium-nine-git
 gamescope-git:https://github.com/Frogging-Family/gamescope-git.git
+goverlay-git
+lib32-mangohud
+lib32-mangohud-git
+mangohud-git
+mangohudmaterial-kwin-decoration-git 
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
 neofrog-git:https://github.com/Frogging-Family/neofrog-git.git
 spirv-tools-tkg-git:https://github.com/Frogging-Family/spirv-tools-git.git
 vkd3d-tkg-git:https://github.com/Frogging-Family/vkd3d-git.git
 vulkan-headers-tkg-git:https://github.com/Frogging-Family/vulkan-headers-git.git
 vulkan-icd-loader-tkg-git:https://github.com/Frogging-Family/vulkan-icd-loader-git.git
-mangohud
-mangohud-git
-lib32-mangohud
-lib32-mangohud-git
 
 # RustemB
 cpufetch-git
@@ -75,16 +75,16 @@ nqp
 nteract-bin
 popura-git
 powder-toy-git
-python-spacy
-python-thinc # (dep python-spacy)
-python-srsly # (dep python-spacy)
-python-catalogue # (dep python-spacy)
-python-preshed # (dep python-spacy)
-python-plac # (dep python-spacy)
-python-wasabi # (dep python-spacy)
-python-pathlib # (dep python-spacy)
-python-murmurhash # (dep python-spacy)
 python-blis # (dep python-spacy)
+python-catalogue # (dep python-spacy)
+python-murmurhash # (dep python-spacy)
+python-pathlib # (dep python-spacy)
+python-plac # (dep python-spacy)
+python-preshed # (dep python-spacy)
+python-spacy
+python-srsly # (dep python-spacy)
+python-thinc # (dep python-spacy)
+python-wasabi # (dep python-spacy)
 qbe-git
 rakudo
 siji
@@ -95,34 +95,35 @@ wasmer-bin
 zef
 
 # SolarAquarion
-libsepol  (dep glib2-selinux)
-libselinux (dep glib2-selinux)
-mesa-git:https://github.com/chaotic-aur/mesa-git.git
-libclc-git # (dep mesa-git)
-onivim2-git
-glib2-selinux
 ayatana-ido
-libayatana-indicator
-cmake-extras-git
-properties-cpp
-libayatana-appindicator
-ayatana-indicator-messages
 ayatana-indicator-application
 ayatana-indicator-bluetooth
 ayatana-indicator-keyboard
+ayatana-indicator-messages
 ayatana-indicator-notifications
 ayatana-indicator-power
-ayatana-indicator-sound
 ayatana-indicator-session
-wezterm-git
+ayatana-indicator-sound
+cmake-extras-git
+glib2-selinux
+libayatana-appindicator
+libayatana-indicator
+libclc-git # (dep mesa-git)
+libselinux (dep glib2-selinux)
+libsepol  (dep glib2-selinux)
+mesa-git:https://github.com/chaotic-aur/mesa-git.git
+onivim2-git
+properties-cpp
 tilix-git:https://github.com/chaotic-aur/tilix-git-aur
 vlc-git
+wezterm-git
 
 # kprkpr
 
 # Nico
 alacritty-ligatures-git
 apparmor-git
+arch-audit-git
 babl-git # (dep gimp-git)
 birdtray-git
 bleachbit-git
@@ -308,7 +309,6 @@ balena-etcher
 bauh
 birdtray
 bitwarden
-bitwarden
 cherrytree
 davinci-resolve
 deezer
@@ -463,4 +463,5 @@ plymouth # Issue 401
 ## Not building on ufscar
 # Issue 322
 lightly-qt
+material-kwin-decoration-git 
 qownnotes
