@@ -450,7 +450,7 @@ ddcutil-git
 webkitgtk
 
 # Issue 435
-ffmpeg-full
+#ffmpeg-full (broken)
 
 # Issue 436
 keymapper-git
