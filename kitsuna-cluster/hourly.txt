@@ -129,7 +129,7 @@ brave-browser-nightly:https://gitlab.com/fixed-kde-unstable-pkgbuilds/brave-brow
 c-lolcat
 clamav-git
 clamav-unofficial-sigs
-#code-git (broken currently)
+code-git
 docker-git
 dolphin-git
 electronmail-bin
