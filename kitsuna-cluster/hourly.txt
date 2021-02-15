@@ -465,3 +465,469 @@ qownnotes
 
 # Issue 323
 chatterino2-git
+
+
+
+### MOVED FROM UFSCAR
+## Maintainers
+# Paulo
+singularity-container
+bluespec-git
+
+# Hal-git (Paulo)
+lcov
+hal-git
+
+# More Paulo
+digilent.adept.runtime
+digilent.adept.utilities
+fxload
+ncurses5-compat-libs
+gr-limesdr-git
+reaver-wps-fork-t6x-git
+radare2-git
+ht-editor
+hashcash
+bear
+rqlite
+libfprint-git
+fprintd-libfprint2
+vkcube-git
+wdisplays-git
+chromium-widevine
+xdg-desktop-portal-wlr-git
+wl-clipboard-x11
+sway-launcher-desktop
+i3status-rust-git
+systemd-boot-pacman-hook
+realvnc-vnc-viewer
+android-studio
+android-emulator
+android-sdk
+
+# OBS Wayland (Paulo)
+wlrobs-hg
+cef-minimal
+
+# Sway (Paulo)
+wlroots-git
+swaybg-git
+sway-git
+
+# Powerpill (Paulo)
+python3-memoizedb
+python3-xcgf
+python3-xcpf
+pm2ml
+powerpill
+
+
+## Pedro
+autoconf-git
+asdf-vm
+depot-tools-git # servo-git dep
+discord-canary-electron-bin
+gotop
+grim-git
+obs-streamfx
+obs-v4l2sink
+oneko
+osdlyrics-git
+pipewire-common-git
+pipewire-dropin
+franz
+hsphfpd-git
+podman-compose-git
+r8125-dkms
+repoctl
+#scrcpy-git (broken)
+slack-electron
+spotify-dev
+spotify-qt
+spotifyd-full-git
+steinberg-asio-sdk # (wineasio-git dependencie)
+tor-browser
+ttf-borg-sans-mono
+ttf-font-awesome-4
+tuxclocker
+ums
+wattman-gtk-git
+#waybar-git (broken)
+waynergy-git
+zfs-dkms
+zfs-utils
+
+
+## Users requests
+# Issue 328
+git-delta
+
+# Issue 322
+hlsdl
+identity
+jellyfin
+nheko-git
+
+# Issue 324
+alsi
+auracle-git
+compiz-core
+emerald-gtk3
+meteo-gtk
+palemoon-bin
+pamac-classic
+pod2man # (dep auracle-git)
+xfce4-panel-compiz
+
+# Issue 326
+dotnet-core-bin # (dep)
+powershell
+
+# Issue 347
+rclone-browser
+
+# Issue 346
+masterpdfeditor-free
+masterpdfeditor
+
+# Issue 342
+renamemytvseries-bin
+
+# Issue 341
+filebot47
+
+# Issue 339
+esy # (dep)
+#onivim2-git (broken)
+
+# Issue 338
+clion
+emacs-native-comp-git
+expressvpn
+gnome-doc-utils # (dep system-config-samba)
+graphite-mozilla
+intellij-idea-ultimate-edition
+lib32-fltk # (dep)
+lib32-numactl
+lib32-libwmf
+lib32-zbar
+lib32-openexr
+lib32-x265
+libgccjit
+libuser # (dep system-config-samba)
+ncnn-git (dep waifu2x-ncnn-vulkan-git)
+neovim-nightly-git
+nodejs-nativefier
+pycharm-professional
+rarian # (dep system-config-samba)
+syncplay
+system-config-samba
+trackma-git
+ttf-ms-fonts
+waifu2x-ncnn-vulkan-git
+winetricks-git
+xxd-standalone
+
+# Issue 337
+eclipse-java
+
+# Issue 336
+giara
+
+# Issue 335
+compiz
+crow-translate
+megasync-bin
+trizen
+
+# Issue 325
+azure-cli
+
+# Issue 330
+1password-bin
+badwolf
+getmail6
+onedrive-abraunegg
+postman-bin
+pycharm-community-eap
+slack-term
+typora
+waterfox-g3-bin
+
+# Issue 303
+budgie-desktop-git
+
+# Issue 324
+compiz-git
+crow-translate-git
+dolphin-emu-git
+fsearch-git
+libfido2-git
+megasync-git
+pa-applet-git
+pacmanlogviewer-git
+pamac-classic
+pyradio-git
+trizen-git
+zsh-theme-powerlevel9k-git
+
+# Issue 348
+python2-gobject2
+
+# Issue 327
+ananicy
+boston-icon-theme
+microsoft-edge-dev-bin
+xow-git
+
+# Issue 332
+cantata-git
+eqonomize-git
+kcolorpicker-git # (dep ksnip-git)
+kimageannotator-git # (dep ksnip-git)
+ksnip-git
+libquotient-git # (dep neochat-git)
+lightly-git
+lightly-qt
+plasma-systemmonitor-git
+pyradio-git
+straw-viewer-git
+strawberry-full-git
+strawberry-git
+systray-x-git
+taglib-extras # (dep cantata-git)
+
+# Issue 343
+wps-office-mui-zh-cn
+
+# Issue 350
+softmaker-office-2021-bin
+
+# Issue 351
+newsflash
+
+# Issue 352
+azure-functions-core-tools-bin
+
+# Issue 354
+pulseaudio-control
+
+# Issue 355
+deadd-notification-center-git
+
+# Issue 358
+ncspot
+
+# Issue 356
+windscribe-cli
+mullvad-vpn
+
+# Issue 357
+cheese-git
+
+# Issue 359
+jre8
+
+# Issue 361
+jitsi-meet-desktop-bin
+
+# Issue 363
+zsh-theme-powerlevel10k-git
+
+# Issue 364
+gst-rtsp-server
+
+# Issue 368
+oh-my-zsh-git
+
+# Issue 367
+opensnitch
+
+# Issue 366
+lib32-gsm
+lib32-gstreamer0.10
+lib32-gstreamer0.10-base
+lib32-libexif
+lib32-nss-mdns
+make-3.81 (dep lib32-gstreamer0.10-base)
+
+# Issue 360
+amdgpu-pro-core-meta
+amdgpu-pro-libgl
+amf-amdgpu-pro
+lib32-amdgpu-pro-libgl
+lib32-vulkan-amdgpu-pro
+opencl-amd
+vulkan-amdgpu-pro
+
+# Issue 306
+omnisharp-roslyn
+
+# Issue 369
+php80
+
+# Issue 371
+duf
+ly
+multimc5
+spotify-tui
+ttf-mac-fonts
+ttf-ms-fonts
+rocketchat-desktop
+
+# Issue 372
+mimalloc (dep nginx-zest-git)
+nginx-zest-git
+
+# Issue 345
+systemd-cron-next-git
+
+# Issue 376
+vala-panel-sntray-git
+vala-panel-git # (dep vala-panel-sntray-git)
+
+# Issue 374
+quixel-bridge
+
+# Issue 377
+edid-decode-git
+
+# Issue 378
+kawaii-player
+python-mpv
+
+# Issue 379
+ckb-next
+osu-lazer
+tuxedo-control-center
+tuxedo-keyboard
+
+# Issue 380
+acestream-launcher
+pyidm
+python-acestream # (dep acestream-launcher)
+python-awesometkinter # (dep pyidm)
+python-plyer # (dep pyidm)
+python-pystray # (dep pyidm)
+youtube-dlc # (dep pyidm)
+
+# Issue 382
+dwm
+dwm-git
+st # (dep dwm)
+
+# Issue 381
+beaker
+
+# Issue 383
+#vte3-notification broken now, using below instead
+vte-ng
+
+# Issue 385
+linux-firmware-git
+
+# Issue 386
+furiusisomount
+
+# Issue 388
+disman-kwinft # (dep)
+kdisplay-kwinft # (dep)
+kwinft
+kwinft-git
+wrapland-kwinft # (dep)
+
+# Issue 389
+gtk3-classic
+
+# Issue 390
+ttf-iosevka
+
+# Issue 391
+xampp
+sdx # (dep xampp)
+tclkit # (dep xampp)
+
+# Issue 392
+lf
+olive
+sct
+
+# Issue 395
+emacs-pgtk-native-comp-git
+
+# Issue 396
+p7zip-gui
+
+# Issue 397
+python-xdg # (dep ulauncher)
+ulauncher
+
+# Issue 400
+pm-utils
+
+# Issue 408
+ardour-git
+cwiid # (dep ardour)
+
+# Issue 412
+magic-wormhole
+python-hkdf # (dep magic-wormhole)
+python-spake2 # (dep magic-wormhole)
+python-txtorcon # (dep magic-wormhole)
+
+# Issue 415
+antlr3 # (dep scylla-git)
+antlr3-cpp-headers-git # (dep scylla-git)
+cassandra
+gcc7
+scylla
+scylla-git
+systemtap # (dep scylla-git)
+thrift-0.10.0 # (dep scylla-git)
+
+# Issue 417
+paper-icon-theme-git
+
+# Issue 418
+arc-gtk-theme-git
+
+# Issue 419
+choosenim
+
+# Issue 420
+wpspin
+
+# Issue 422
+arm-linux-gnueabi-binutils
+arm-linux-gnueabi-gcc
+
+# Issue 423
+aws-cli-v2-bin
+aws2-wrap
+tflint
+
+# Issue 426
+tlp-git
+
+# Issue 428
+gnome-shell-extension-pop-shell
+pop-shell-shortcuts-git # (dep gnome-shell-extension-pop-shell)
+
+# Issue 433
+ddcui-git
+ddcutil-git
+
+# Issue 434
+webkitgtk
+
+# Issue 435
+#ffmpeg-full (broken)
+
+# Issue 436
+keymapper-git
+
+# Issue 437
+theia-electron
+
+# Issue 438
+ntfs2btrfs-git
