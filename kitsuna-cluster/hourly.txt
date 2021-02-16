@@ -35,10 +35,13 @@ primus-vk-git
 proton-ge-custom
 proton-ge-custom-bin
 python-telegram-send
+re3-git
+revc-git
+ripcord-arch-libs
 ruby-coderay # ( dep logstalgia)
 ruby-method_source # ( dep logstalgia)
 ruby-pry # ( dep logstalgia)
-ripcord-arch-libs
+wev
 
 # Unreal-engine
 
