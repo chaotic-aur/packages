@@ -119,6 +119,7 @@ wezterm-git
 
 # Nico
 alacritty-ligatures-git
+android-studio-beta
 apparmor-git
 arch-audit-git
 babl-git # (dep gimp-git)
@@ -170,6 +171,7 @@ qbittorrent-enhanced-git
 qemu-git
 ripgrep-git
 sddm-git
+smplayer-svn
 spirv-cross # (dep ffmpeg-git)
 starship-git
 syncthing-git
@@ -178,6 +180,7 @@ tor-git
 vscodium-git
 wine-lol
 wine-lol-glibc
+xf86-input-libinput-git
 xorg-server-git
 
 # SGS
