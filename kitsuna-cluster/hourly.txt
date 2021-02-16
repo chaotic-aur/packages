@@ -162,7 +162,7 @@ obs-studio-git
 pacman-git
 pacroller-dev-git
 pamac-aur-git
-paru6alfa-git:https://gitlab.com/dr460nf1r3/paru6alfa-git.git.git
+paru6alfa-git:https://gitlab.com/dr460nf1r3/paru6alfa-git.git
 pulseeffects-git
 python-magic-ahupp # (dep guiscrcpy-git)
 python-pynput # (dep guiscrcpy-git)
