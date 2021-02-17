@@ -947,3 +947,6 @@ wayfire
 wcm
 wf-config
 wf-shell
+
+# Issue 441
+wayfire-plugins-extra
