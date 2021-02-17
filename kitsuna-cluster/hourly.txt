@@ -151,6 +151,7 @@ gimp-git
 gst-plugins-base-git
 gstreamer-git
 guiscrcpy-git
+hw-probe-git
 imagemagick-git
 inxi-git
 kvantum-qt5-git
