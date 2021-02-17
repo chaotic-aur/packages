@@ -938,3 +938,12 @@ theia-electron
 
 # Issue 438
 ntfs2btrfs-git
+
+# Issue 439
+codelite
+
+# Issue 440
+wayfire
+wcm
+wf-config
+wf-shell
