@@ -146,6 +146,7 @@ libkleo-git
 libkscreen-git
 libksieve-git
 libksysguard-git
+libqaccessibilityclient-git
 mailcommon-git
 mailimporter-git
 messagelib-git
