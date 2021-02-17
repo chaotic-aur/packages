@@ -38,7 +38,6 @@ mhwd-db-garuda-git
 mhwd-garuda-git
 mhwd-nvidia
 mhwd-nvidia
-micro
 mkinitcpio-openswap
 nohang-git
 optimus-manager
