@@ -128,6 +128,7 @@ ktnef-git
 kunitconversion-git
 kuserfeedback-git:https://gitlab.com/chaotic-aur-pkgbuilds/kuserfeedback-git.git
 kwallet-pam-git
+kwallet-git:https://gitlab.com/chaotic-aur-pkgbuilds/kwallet-git
 kwalletmanager-git
 kwayland-git
 kwaylandintegration-git:https://gitlab.com/chaotic-aur-pkgbuilds/kwaylandintegration-git.git
@@ -159,6 +160,7 @@ partitionmanager-git:https://gitlab.com/chaotic-aur-pkgbuilds/partitionmanager-g
 pimcommon-git
 plasma-browser-integration-git
 plasma-desktop-git
+plasma-framework-git:https://gitlab.com/chaotic-aur-pkgbuilds/plasma-framework-git.git
 plasma-integration-git
 plasma-nm-git:https://gitlab.com/chaotic-aur-pkgbuilds/plasma-nm-git.git
 plasma-pa-git:https://gitlab.com/chaotic-aur-pkgbuilds/plasma-pa-git.git
@@ -167,7 +169,6 @@ plasma-workspace-git
 polkit-kde-agent-git
 powerdevil-git
 prison-git:https://gitlab.com/chaotic-aur-pkgbuilds/prison-git.git
-pulseeffects-legacy
 qca-qt5-git:https://gitlab.com/chaotic-aur-pkgbuilds/qca-qt5-git.git
 solid-git:https://gitlab.com/chaotic-aur-pkgbuilds/solid-git.git
 sonnet-git:https://gitlab.com/chaotic-aur-pkgbuilds/sonnet-git.git
@@ -175,7 +176,7 @@ spectacle-git
 syndication-git
 syntax-highlighting-git
 systemsettings-git
-threadweaver-git:https://gitlab.com/chaotic-aur-pkgbuilds/threadweaver-git.git
+threadweaver-git
 
 # Moved because too heavy for Garuda
 firefox-appmenu

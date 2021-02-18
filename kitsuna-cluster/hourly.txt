@@ -337,6 +337,7 @@ olivia
 paru
 plex-media-player
 popsicle
+pulseeffects-legacy
 qt-scrcpy
 scrcpy
 shortwave
