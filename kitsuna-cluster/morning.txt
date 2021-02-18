@@ -5,6 +5,7 @@ llvm-git:https://github.com/chaotic-aur/llvm-git.git
 llvm-tkg-git:https://github.com/Frogging-Family/llvm-git.git
 
 # Plasma-git
+#labplot-git (broken currently)
 akonadi-calendar-git
 akonadi-calendar-git
 akonadi-contacts-git
@@ -67,6 +68,8 @@ kdialog-git
 kdisplay-git
 kdnssd-git
 kdoctools-git
+kdsoap-git
+kdsoap-ws-discovery-client-git 
 kemoticons-git
 kfilemetadata-git
 kgamma5-git
@@ -78,7 +81,6 @@ khotkeys-git
 khtml-git
 ki18n-git
 kiconthemes-git
-kidentitymanagement-git
 kidentitymanagement-git
 kidletime-git
 kimap-git
@@ -106,6 +108,7 @@ kontactinterface-git
 kpackage-git
 kparts-git
 kpeople-git
+kpeoplevcard-git:https://gitlab.com/chaotic-aur-pkgbuilds/kpeoplevcard-git.git
 kpimtextedit-git
 kpimtextedit-git
 kpkpass-git
@@ -127,8 +130,8 @@ ktextwidgets-git
 ktnef-git
 kunitconversion-git
 kuserfeedback-git:https://gitlab.com/chaotic-aur-pkgbuilds/kuserfeedback-git.git
-kwallet-pam-git
 kwallet-git:https://gitlab.com/chaotic-aur-pkgbuilds/kwallet-git
+kwallet-pam-git
 kwalletmanager-git
 kwayland-git
 kwaylandintegration-git:https://gitlab.com/chaotic-aur-pkgbuilds/kwaylandintegration-git.git
@@ -139,7 +142,6 @@ kwindowsystem-git
 kwrited-git
 kxmlgui-git
 kxmlrpcclient-git
-#labplot-git (broken currently)
 libakonadi-git  
 libgravatar-git
 libkdepim-git
@@ -170,7 +172,9 @@ polkit-kde-agent-git
 poppler-git
 powerdevil-git
 prison-git:https://gitlab.com/chaotic-aur-pkgbuilds/prison-git.git
+purpose-git:https://gitlab.com/chaotic-aur-pkgbuilds/purpose-git.git
 qca-qt5-git:https://gitlab.com/chaotic-aur-pkgbuilds/qca-qt5-git.git
+signon-kwallet-extension-git 
 solid-git:https://gitlab.com/chaotic-aur-pkgbuilds/solid-git.git
 sonnet-git:https://gitlab.com/chaotic-aur-pkgbuilds/sonnet-git.git
 spectacle-git
