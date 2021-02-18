@@ -951,3 +951,7 @@ wf-shell
 
 # Issue 441
 wayfire-plugins-extra
+
+# Issue 442
+gdb-multiarch
+sourcetrail
