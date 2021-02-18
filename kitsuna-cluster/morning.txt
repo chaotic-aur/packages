@@ -101,7 +101,7 @@ kmime-git
 knewstuff-git
 knotifications-git
 knotifyconfig-git
-konsole-git:https://gitlab.com/chaotic-aur-pkgbuilds/konsole-git.git
+konsole-git
 kontactinterface-git
 kpackage-git
 kparts-git
