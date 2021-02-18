@@ -186,6 +186,7 @@ syncthing-git
 tdesktop-x64
 tor-git
 vscodium-git
+wayland-git
 wine-lol
 wine-lol-glibc
 xf86-input-libinput-git

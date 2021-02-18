@@ -179,6 +179,10 @@ syntax-highlighting-git
 systemsettings-git
 threadweaver-git
 
+# KwinFt-git
+disman-git
+wrapland-git
+
 # Moved because too heavy for Garuda
 firefox-appmenu
 ungoogled-chromium
