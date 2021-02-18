@@ -139,7 +139,7 @@ kwindowsystem-git
 kwrited-git
 kxmlgui-git
 kxmlrpcclient-git
-labplot-git
+#labplot-git (broken currently)
 libakonadi-git  
 libgravatar-git
 libkdepim-git
@@ -167,6 +167,7 @@ plasma-pa-git:https://gitlab.com/chaotic-aur-pkgbuilds/plasma-pa-git.git
 plasma-sdk-git:https://gitlab.com/chaotic-aur-pkgbuilds/plasma-sdk-git.git
 plasma-workspace-git
 polkit-kde-agent-git
+poppler-git
 powerdevil-git
 prison-git:https://gitlab.com/chaotic-aur-pkgbuilds/prison-git.git
 qca-qt5-git:https://gitlab.com/chaotic-aur-pkgbuilds/qca-qt5-git.git
@@ -236,3 +237,4 @@ kplasmafoxhelper:https://github.com/torvic9/kplasmafoxhelper.git
 
 # Issue 394
 icecat
+perl-file-rename # (dep icecat)
