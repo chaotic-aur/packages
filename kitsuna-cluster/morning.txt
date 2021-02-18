@@ -19,7 +19,7 @@ akonadi-search-git
 attica-git:https://gitlab.com/chaotic-aur-pkgbuilds/attica-git.git
 baloo-git:https://gitlab.com/chaotic-aur-pkgbuilds/baloo-git.git
 bluedevil-git
-bluez-qt-git:https://gitlab.com/chaotic-aur-pkgbuilds/bluez-qt-git.git
+bluez-qt-git
 breeze-git
 breeze-icons-git:https://gitlab.com/chaotic-aur-pkgbuilds/breeze-icons-git.git
 calendarsupport-git
