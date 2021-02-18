@@ -94,6 +94,10 @@ tetrio-desktop
 vimv-git
 wasmer-bin
 zef
+#blender-git
+openshadinglanguage-qfix # (dep blender-git)
+openimageio-qfix # (dep blender-git)
+opencolorio-qfix # (dep blender-git)
 
 # SolarAquarion
 ayatana-ido
