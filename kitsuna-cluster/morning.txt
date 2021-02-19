@@ -183,7 +183,7 @@ syntax-highlighting-git
 systemsettings-git
 threadweaver-git
 
-# KwinFt-git
+# Kwinft-git
 disman-git
 wrapland-git
 
@@ -213,6 +213,7 @@ servo-git
 # Too heavy for Garuda cluster
 libretro-mame-git
 librewolf
+librewolf-nightly:https://gitlab.com/chaotic-aur-pkgbuilds/librewolf-nightly.git
 --
 
 # GNOME-git
