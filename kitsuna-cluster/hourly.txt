@@ -214,6 +214,9 @@ obs-studio-git
 pacman-git
 pamac-aur-git
 paru6alfa-git:https://gitlab.com/chaotic-aur-pkgbuilds/paru6alfa-git.git
+plasma5-applets-window-appmenu-git
+plasma5-applets-window-buttons-git
+plasma5-applets-window-title-git
 pulseeffects-git
 python-magic-ahupp # (dep guiscrcpy-git)
 python-pynput # (dep guiscrcpy-git)
@@ -258,8 +261,6 @@ neofetch-git
 nordpy-plasmoid-git
 nx-firewall-git
 paleofetch-git
-plasma5-applets-window-appmenu-git
-plasma5-applets-window-buttons-git
 pywal-git
 recoverjpeg
 scalpel-git
@@ -1006,3 +1007,6 @@ wayfire-plugins-extra
 # Issue 442
 gdb-multiarch
 sourcetrail
+
+# Issue 445
+kwin-fs-redir:https://gitlab.com/chaotic-aur-pkgbuilds/kwin-fs-redir.git

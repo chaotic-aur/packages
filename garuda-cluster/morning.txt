@@ -1,8 +1,0 @@
-# Big applications
-
-# Annoyances
-plasma5-applets-window-title-git
-
-# SolarAquarion
-
-
