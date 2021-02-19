@@ -512,7 +512,7 @@ plymouth # Issue 401
 ## Not building on ufscar
 # Issue 322
 lightly-qt
-material-kwin-decoration-git 
+material-kwin-decoration-git
 qownnotes
 
 # Issue 323
