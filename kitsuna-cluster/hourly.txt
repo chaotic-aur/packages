@@ -74,6 +74,9 @@ languageclient-neovim
 moarvm
 nqp
 nteract-bin
+opencolorio-qfix # (dep blender-git)
+openimageio-qfix # (dep blender-git)
+openshadinglanguage-qfix # (dep blender-git)
 popura-git
 powder-toy-git
 python-blis # (dep python-spacy)
@@ -94,9 +97,6 @@ tetrio-desktop
 vimv-git
 wasmer-bin
 zef
-openshadinglanguage-qfix # (dep blender-git)
-openimageio-qfix # (dep blender-git)
-opencolorio-qfix # (dep blender-git)
 
 # SolarAquarion
 ayatana-ido
@@ -122,12 +122,23 @@ tilix-git:https://github.com/chaotic-aur/tilix-git-aur
 vlc-git
 wezterm-git
 
-granite-git
-gala-git
-switchboard-git
-wingpanel-git
-pantheon-videos-git
 contractor-git
+elementary-icon-theme-git
+gala-git
+granite-git
+gtk-theme-elementary-git
+lightdm-pantheon-greeter-git
+pantheon-applications-menu-git
+pantheon-calculator-git
+pantheon-calendar-git
+pantheon-code-git
+pantheon-default-settings-git
+pantheon-files-git
+pantheon-music-git
+pantheon-screenshot-git
+pantheon-session-git
+pantheon-videos-git
+switchboard-git
 switchboard-plug-a11y-git
 switchboard-plug-about-git
 switchboard-plug-applications-git
@@ -145,39 +156,26 @@ switchboard-plug-printers-git
 switchboard-plug-security-privacy-git
 switchboard-plug-sharing-git
 switchboard-plug-user-accounts-git
+wingpanel-git
 wingpanel-indicator-bluetooth-git
 wingpanel-indicator-datetime-git
 wingpanel-indicator-network-git
+wingpanel-indicator-nightlight-git
 wingpanel-indicator-notifications-git
 wingpanel-indicator-power-git
 wingpanel-indicator-session-git
 wingpanel-indicator-sound-git
-wingpanel-indicator-nightlight-git
-elementary-icon-theme-git
-gtk-theme-elementary-git
-lightdm-pantheon-greeter-git
-pantheon-music-git
-pantheon-calculator-git
-pantheon-default-settings-git
-pantheon-files-git
-pantheon-calendar-git
-pantheon-code-git
-pantheon-session-git
-pantheon-screenshot-git
-pantheon-applications-menu-git
 
 # kprkpr
 
 # Nico
 alacritty-ligatures-git
-android-studio-beta
 apparmor-git
 arch-audit-git
 babl-git # (dep gimp-git)
 birdtray-git
 bleachbit-git
 bottom-git
-brave-browser-nightly:https://gitlab.com/fixed-kde-unstable-pkgbuilds/brave-browser-nightly.git
 c-lolcat
 clamav-git
 clamav-unofficial-sigs
@@ -191,28 +189,24 @@ ffmpeg-git
 firejail-git
 firetools-git
 fish-git
-flameshot-git
 freetube-git
 gegl-git # (dep gimp-git)
 gimp-git
 gst-plugins-base-git
 gstreamer-git
 guiscrcpy-git
-hw-probe-git
 imagemagick-git
 inxi-git
 kvantum-qt5-git
+kwinft-git:https://gitlab.com/chaotic-aur-pkgbuilds/kwinft-git.git
 libsixel # (dep ffmpeg-git)
 libtremor-git # (dep ffmpeg-git)
-linux-xanmod-lts
 lutris-git
 micro-git
 mpv-full-git
 mullvad-vpn-beta
-networkmanager-iwd
 obs-studio-git
 pacman-git
-pacroller-dev-git
 pamac-aur-git
 paru6alfa-git:https://gitlab.com/chaotic-aur-pkgbuilds/paru6alfa-git.git
 pulseeffects-git
@@ -227,7 +221,6 @@ smplayer-svn
 spirv-cross # (dep ffmpeg-git)
 starship-git
 syncthing-git
-tdesktop-x64
 tor-git
 vscodium-git
 wayland-git
@@ -247,6 +240,7 @@ qytdl
 refind-btrfs
 sound-theme-smooth
 usbaudio-git
+
 
 ## NEEDED FOR GARUDA
 # Moved from Garuda to save ressources
