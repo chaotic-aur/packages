@@ -137,6 +137,10 @@ pantheon-default-settings-git
 pantheon-files-git
 pantheon-music-git
 pantheon-screenshot-git
+pantheon-terminal-git
+pantheon-camera-git
+pantheon-dock-instctl-git
+pantheon-code-git
 pantheon-session-git
 pantheon-videos-git
 switchboard-git
