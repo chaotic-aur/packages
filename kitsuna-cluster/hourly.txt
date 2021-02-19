@@ -536,6 +536,9 @@ digilent.adept.utilities
 fxload
 ncurses5-compat-libs
 gr-limesdr-git
+airspy-git
+airspyhf-git
+sdrpp-git
 reaver-wps-fork-t6x-git
 radare2-git
 ht-editor
