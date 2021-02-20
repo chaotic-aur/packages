@@ -206,9 +206,9 @@ servo-git
 --
 
 # Too heavy for Garuda cluster
+dragonwolf
 libretro-mame-git
 librewolf
-librewolf-nightly:https://gitlab.com/chaotic-aur-pkgbuilds/librewolf-nightly.git
 --
 
 # GNOME-git
