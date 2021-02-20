@@ -24,7 +24,6 @@ bluez-qt-git
 breeze-git
 breeze-icons-git:https://gitlab.com/chaotic-aur-pkgbuilds/breeze-icons-git.git
 calendarsupport-git
-disman-git
 elf-dissector-git
 eventviews-git
 extra-cmake-modules-git
@@ -182,10 +181,6 @@ syndication-git
 syntax-highlighting-git
 systemsettings-git
 threadweaver-git
-
-# Kwinft-git
-disman-git
-wrapland-git
 
 # Moved because too heavy for Garuda
 firefox-appmenu

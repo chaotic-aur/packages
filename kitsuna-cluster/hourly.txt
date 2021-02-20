@@ -204,7 +204,6 @@ guiscrcpy-git
 imagemagick-git
 inxi-git
 kvantum-qt5-git
-kwinft-git:https://gitlab.com/chaotic-aur-pkgbuilds/kwinft-git.git
 libsixel # (dep ffmpeg-git)
 libtremor-git # (dep ffmpeg-git)
 lutris-git
@@ -891,10 +890,12 @@ linux-firmware-git
 furiusisomount
 
 # Issue 388
+disman-git
 disman-kwinft # (dep)
 kdisplay-kwinft # (dep)
 kwinft
-kwinft-git
+kwinft-git:https://gitlab.com/chaotic-aur-pkgbuilds/kwinft-git.git
+wrapland-git
 wrapland-kwinft # (dep)
 
 # Issue 389
