@@ -1012,3 +1012,6 @@ sourcetrail
 
 # Issue 445
 kwin-fs-redir:https://gitlab.com/chaotic-aur-pkgbuilds/kwin-fs-redir.git
+
+# Issue 447
+spot-client
