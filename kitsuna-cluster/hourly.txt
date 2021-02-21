@@ -120,6 +120,7 @@ properties-cpp
 tilix-git:https://github.com/chaotic-aur/tilix-git-aur
 vlc-git
 wezterm-git
+pantheon-polkit-agent-git
 
 contractor-git
 elementary-icon-theme-git
