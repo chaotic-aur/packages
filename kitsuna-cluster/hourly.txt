@@ -1013,3 +1013,12 @@ kwin-fs-redir:https://gitlab.com/chaotic-aur-pkgbuilds/kwin-fs-redir.git
 
 # Issue 447
 spot-client
+
+# Issue 448
+ytfzf-git
+
+# Issue 449
+gdm-prime
+
+# Issue 450
+rate-arch-mirrors
