@@ -227,6 +227,7 @@ sddm-git
 smplayer-svn
 spirv-cross # (dep ffmpeg-git)
 starship-git
+sudo-git:https://gitlab.com/chaotic-aur-pkgbuilds/sudo-git
 syncthing-git
 tor-git
 vscodium-git
