@@ -1038,3 +1038,9 @@ sddm-config-editor-git
 # Isse 454
 woeusb
 woeusb-gui
+
+# Issue 457
+webkit2gtk-unstable
+
+# Issue 458
+xembed-sni-proxy-git
