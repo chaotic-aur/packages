@@ -175,7 +175,7 @@ wingpanel-indicator-sound-git
 
 # Nico
 alacritty-ligatures-git
-apparmor-git
+#apparmor-git (broken test)
 arch-audit-git
 babl-git # (dep gimp-git)
 birdtray-git
@@ -184,8 +184,8 @@ bottom-git
 c-lolcat
 clamav-git
 clamav-unofficial-sigs
-code-git
-docker-git
+#code-git (broken install)
+#docker-git (broken)
 dolphin-git
 electronmail-bin
 elisa-git
