@@ -2,6 +2,7 @@
 #darling-git (broken)
 electron-ozone
 llvm-git:https://github.com/chaotic-aur/llvm-git.git
+lib32-llvm-git:https://github.com/chaotic-aur/lib32-llvm-git.git
 llvm-tkg-git:https://github.com/Frogging-Family/llvm-git.git
 
 # Plasma-git
