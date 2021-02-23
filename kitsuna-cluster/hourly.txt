@@ -140,7 +140,7 @@ pantheon-terminal-git
 pantheon-camera-git
 pantheon-dock-instctl-git
 pantheon-code-git
-antheon-shortcut-overlay-git
+pantheon-shortcut-overlay-git
 pantheon-session-git
 pantheon-videos-git
 switchboard-git
