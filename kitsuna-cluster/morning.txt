@@ -82,6 +82,7 @@ ki18n-git
 kiconthemes-git
 kidentitymanagement-git
 kidletime-git
+kimageannotator-git:https://gitlab.com/chaotic-aur-pkgbuilds/kimageannotator-git
 kimap-git
 kimap2-git
 kinfocenter-git
@@ -180,7 +181,7 @@ spectacle-git
 syndication-git
 syntax-highlighting-git
 systemsettings-git
-threadweaver-git
+threadweaver-git:https://gitlab.com/chaotic-aur-pkgbuilds/threadweaver-git.git
 
 # Moved because too heavy for Garuda
 firefox-appmenu

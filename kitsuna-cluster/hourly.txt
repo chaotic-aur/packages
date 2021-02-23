@@ -1023,3 +1023,17 @@ gdm-prime
 
 # Issue 450
 rate-arch-mirrors
+
+# Issue 451
+kotatogram-desktop
+
+# Issue 452
+ibus-mozc-ut
+mozc-ut-common
+
+# Issue 453
+sddm-config-editor-git
+
+# Isse 454
+woeusb
+woeusb-gui
