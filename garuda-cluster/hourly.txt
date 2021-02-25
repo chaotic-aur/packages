@@ -18,6 +18,7 @@ flameshot-git
 garuda-settings-manager-git
 garuda-settings-manager-kcm-git
 garuda-settings-manager-notifier-git
+garuda-settings-manager-knotifier-git
 gesture-manager-x-git
 hblock
 hw-probe
@@ -39,7 +40,15 @@ mhwd-ati
 mhwd-db-garuda-git
 mhwd-garuda-git
 mhwd-nvidia
-mhwd-nvidia
+mhwd-nvidia-390xx
+nvidia-390xx
+nvidia-390xx-dkms
+nvidia-390xx-settings
+nvidia-390xx-utils
+opencl-nvidia-390xx
+lib32-nvidia-390xx-utils
+lib32-opencl-nvidia-390xx
+libxnvctrl-390xx
 mkinitcpio-openswap
 nohang-git
 optimus-manager
@@ -48,7 +57,6 @@ optimus-manager-qt
 optimus-manager-qt-git
 pace
 pamac-aur
-performance-tweaks
 plymouth-git
 precached-git
 prelockd-git
@@ -61,12 +69,18 @@ timeshift
 timeshift-autosnap
 ttf-meslo-nerd-font-powerlevel10k
 update-grub
+preload
+rebuild-detector
+dashbinsh
+wd719x-firmware
 
 # Garuda GitLab PKGBUILDS
+calamares:https://gitlab.com/garuda-linux/packages/pkgbuilds/calamares.git
+calamares-branding-garuda:https://gitlab.com/garuda-linux/packages/pkgbuilds/calamares-branding-garuda.git
 alsa-support:https://gitlab.com/garuda-linux/packages/pkgbuilds/alsa-support.git
 asian-fonts:https://gitlab.com/garuda-linux/packages/pkgbuilds/asian-fonts.git
 bluetooth-support:https://gitlab.com/garuda-linux/packages/pkgbuilds/bluetooth-support.git
-calamares-garuda-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/calamares-garuda-git
+calamares-garuda-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/calamares-garuda-git.git
 calamares-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/calamares-git.git
 calamares-tools:https://gitlab.com/garuda-linux/packages/pkgbuilds/calamares-tools.git
 connman-support:https://gitlab.com/garuda-linux/packages/pkgbuilds/connman-support.git
@@ -126,6 +140,9 @@ virt-manager-meta:https://gitlab.com/garuda-linux/packages/pkgbuilds/virt-manage
 virtualbox-meta:https://gitlab.com/garuda-linux/packages/pkgbuilds/virtualbox-meta.git
 wine-meta:https://gitlab.com/garuda-linux/packages/pkgbuilds/wine-meta.git
 zdummy-vlkdrv:https://gitlab.com/garuda-linux/packages/pkgbuilds/zdummy-vlkdrv.git
+performance-tweaks:https://gitlab.com/garuda-linux/packages/pkgbuilds/performance-tweaks.git
+powersave-tweaks:https://gitlab.com/garuda-linux/packages/pkgbuilds/powersave-tweaks.git
+libretro-meta:https://gitlab.com/garuda-linux/packages/pkgbuilds/libretro-meta.git
 
 # BSPWM
 lightdm-settings
@@ -140,6 +157,7 @@ mint-sounds
 mintstick
 nemo-pdf-tools-git
 xviewer-plugins
+cinnamon-sound-effects
 
 # Dr460nized
 kde-service-menu-reimage
@@ -161,6 +179,8 @@ sweet-kde-git
 sweet-theme-dark
 sweet-theme-git
 xcursor-sweet
+beautyline
+resvg
 
 # Dr460nized-blackarch
 8188eu-aircrack-dkms-git
@@ -174,6 +194,7 @@ rtl88x2bu-dkms-git
 rtl88x2ce-dkms
 rtl88xxau-aircrack-dkms-git
 rtw88-dkms-git
+8188fu-dkms-git
 
 # Dr460nized-gaming
 boxtron
@@ -202,6 +223,11 @@ nautilus-pdf-tools-git
 nautilus-typeahead
 whitesur-kvantum-theme-git
 yaru-sound-theme
+gtkhash-caja
+gtkhash-nautilus
+gtkhash-nemo
+gtkhash-peony
+gtkhash-thunar
 
 # i3
 flashfocus-git
@@ -237,6 +263,7 @@ ant-dracula-gtk-theme
 ant-dracula-kde-theme-git
 ant-dracula-kvantum-theme-git
 lxqt-kwin-desktop-git
+lxqt-kcm-integration-extra-git
 
 # MATE
 mate-menu
@@ -259,11 +286,15 @@ qt5-styleplugins
 greetd
 greetd-gtkgreet
 orchis-kde-theme-git
+kvantum-theme-orchis-git
 orchis-theme-git
 popsicle-git
 redshift-wayland-git
 wayfire-desktop-git
 wdisplays
+wf-osk-git
+whitesur-gtk-theme-git
+whitesur-kde-theme-git
 
 # XFCE
 gestures
@@ -282,6 +313,7 @@ gitkraken
 google-chrome
 jdownloader2
 jitsi-meet
+joplin
 joplin-desktop
 ms-office-online
 onlyoffice-bin
@@ -298,7 +330,15 @@ yozo-office
 yozo-office-fonts
 yuzu-mainline-bin
 zoom
+jellyfin-server
+jellyfin-web
 
+## other
+openh264
+wineasio
+wlogout
+pulseaudio-modules-bt-git
+tlpui
 
 ## NEEDED DEPENDENCIES
 # octopi
