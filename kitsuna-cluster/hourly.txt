@@ -7,7 +7,7 @@ chaotic-nvidia-tkg:https://github.com/chaotic-aur/nvidia-tkg.git
 
 android-sdk-platform-tools
 android-studio-launcher
-android-udev-git
+android-udev
 bytecode-viewer
 ca-certificates-icp_br
 checkmake
@@ -617,6 +617,7 @@ waynergy-git
 zfs-dkms
 zfs-utils
 
+
 ## Users requests
 # Issue 328
 git-delta
@@ -1043,4 +1044,3 @@ webkit2gtk-unstable
 
 # Issue 458
 xembed-sni-proxy-git
-
