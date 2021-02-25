@@ -176,3 +176,6 @@ syndication-git
 syntax-highlighting-git
 systemsettings-git
 threadweaver-git:https://gitlab.com/chaotic-aur-pkgbuilds/threadweaver-git.git
+
+# Too slow to be left on morning
+libretro-mame-git

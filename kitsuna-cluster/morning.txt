@@ -30,7 +30,6 @@ servo-git
 
 # Too heavy for Garuda cluster
 dragonwolf
-libretro-mame-git
 librewolf
 --
 
