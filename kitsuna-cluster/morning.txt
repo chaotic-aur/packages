@@ -66,4 +66,4 @@ icecat
 perl-file-rename # (dep icecat)
 
 # Issue 446
-librewolf-wayland-hg
+librewolf-nightly
