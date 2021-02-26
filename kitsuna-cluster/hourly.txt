@@ -1048,6 +1048,9 @@ xembed-sni-proxy-git
 # Issue 459
 emote
 
-# Issue 450
+# Issue 460
 cryptomator
 protonmail-bridge-bin
+
+# Issue 285
+wget2
