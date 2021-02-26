@@ -1044,3 +1044,10 @@ webkit2gtk-unstable
 
 # Issue 458
 xembed-sni-proxy-git
+
+# Issue 459
+emote
+
+# Issue 450
+cryptomator
+protonmail-bridge-bin
