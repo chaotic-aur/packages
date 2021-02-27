@@ -71,6 +71,7 @@ haskell-language-server-bin
 jetbrains-toolbox
 languageclient-neovim
 moarvm
+noti
 nqp
 nteract-bin
 opencolorio-qfix # (dep blender-git)
