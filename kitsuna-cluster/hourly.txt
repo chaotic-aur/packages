@@ -63,6 +63,7 @@ vulkan-headers-tkg-git:https://github.com/Frogging-Family/vulkan-headers-git.git
 vulkan-icd-loader-tkg-git:https://github.com/Frogging-Family/vulkan-icd-loader-git.git
 
 # RustemB
+bit
 cpufetch-git
 discord-canary
 firefox-nightly
