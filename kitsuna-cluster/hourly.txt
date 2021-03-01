@@ -1056,3 +1056,18 @@ protonmail-bridge-bin
 
 # Issue 285
 wget2
+
+# Issue 461
+surf-git
+
+# Issue 462
+emacs-git
+
+# Issue 463
+gnome-shell-extension-material-shell
+
+# Issue 464
+ttf-fonts-google-git
+
+# Issue 465
+imhex
