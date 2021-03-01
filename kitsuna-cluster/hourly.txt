@@ -50,8 +50,6 @@ faudio-tkg-git:https://github.com/Frogging-Family/faudio-git.git
 gallium-nine-git
 gamescope-git:https://github.com/Frogging-Family/gamescope-git.git
 goverlay-git
-lib32-mangohud
-lib32-mangohud-git
 mangohud-git
 mangohud
 material-kwin-decoration-git
