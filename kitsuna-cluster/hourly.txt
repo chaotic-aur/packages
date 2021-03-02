@@ -1069,3 +1069,7 @@ ttf-fonts-google-git
 
 # Issue 465
 imhex
+
+# Issue 467
+epiphany-git
+libhandy-git # (dep epiphany-git)
