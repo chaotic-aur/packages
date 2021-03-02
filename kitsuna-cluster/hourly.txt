@@ -1062,7 +1062,7 @@ surf-git
 emacs-git
 
 # Issue 463
-gnome-shell-extension-material-shell
+gnome-shell-extension-material-shell-git
 
 # Issue 464
 ttf-fonts-google-git
