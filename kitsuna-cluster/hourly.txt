@@ -188,6 +188,7 @@ clamav-unofficial-sigs
 #code-git (broken install)
 #docker-git (broken)
 dolphin-git
+dr460nized-git:https://gitlab.com/chaotic-aur-pkgbuilds/dr460nized-git.git
 electronmail-bin
 elisa-git
 exa-git
