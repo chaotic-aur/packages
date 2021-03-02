@@ -202,6 +202,7 @@ gstreamer-git
 guiscrcpy-git
 imagemagick-git
 inxi-git
+kde-git:https://gitlab.com/chaotic-aur-pkgbuilds/kde-git.git
 kvantum-qt5-git
 libsixel # (dep ffmpeg-git)
 libtremor-git # (dep ffmpeg-git)
@@ -1073,3 +1074,6 @@ imhex
 # Issue 467
 epiphany-git
 libhandy-git # (dep epiphany-git)
+
+# Issue 468
+freetube
