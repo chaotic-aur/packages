@@ -32,6 +32,7 @@ neovim-drop-in
 neovim-plug
 nm-eduroam-ufscar
 noisetorch
+openssh-hpn
 primus-vk-git
 proton-ge-custom
 proton-ge-custom-bin
