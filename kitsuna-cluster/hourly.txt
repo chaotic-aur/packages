@@ -1091,3 +1091,8 @@ vala-panel-appmenu-registrar-git
 # Issue 470
 distrho-ports-lv2-git
 distrho-ports-vst-git
+
+# Issue 471
+filebot
+masterpdfeditor-libs-included
+feem
