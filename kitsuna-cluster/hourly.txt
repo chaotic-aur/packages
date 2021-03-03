@@ -176,7 +176,6 @@ wingpanel-indicator-sound-git
 
 # Nico
 alacritty-ligatures-git
-#apparmor-git (broken test)
 arch-audit-git
 babl-git # (dep gimp-git)
 birdtray-git
@@ -185,8 +184,7 @@ bottom-git
 c-lolcat
 clamav-git
 clamav-unofficial-sigs
-#code-git (broken install)
-#docker-git (broken)
+code-git
 dolphin-git
 dr460nized-git:https://gitlab.com/chaotic-aur-pkgbuilds/dr460nized-git.git
 electronmail-bin
@@ -196,7 +194,6 @@ ffmpeg-git
 firejail-git
 firetools-git
 fish-git
-freetube-git
 gegl-git # (dep gimp-git)
 gimp-git
 gst-plugins-base-git
@@ -218,7 +215,6 @@ pamac-aur-git
 paru6alfa-git:https://gitlab.com/chaotic-aur-pkgbuilds/paru6alfa-git.git
 plasma5-applets-window-appmenu-git
 plasma5-applets-window-buttons-git
-plasma5-applets-window-title-git
 pulseeffects-git
 python-magic-ahupp # (dep guiscrcpy-git)
 python-pynput # (dep guiscrcpy-git)
