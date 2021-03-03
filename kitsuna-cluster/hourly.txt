@@ -215,6 +215,7 @@ pamac-aur-git
 paru6alfa-git:https://gitlab.com/chaotic-aur-pkgbuilds/paru6alfa-git.git
 plasma5-applets-window-appmenu-git
 plasma5-applets-window-buttons-git
+plasma5-runners-appmenu-git
 pulseeffects-git
 python-magic-ahupp # (dep guiscrcpy-git)
 python-pynput # (dep guiscrcpy-git)
