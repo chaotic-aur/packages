@@ -231,6 +231,7 @@ starship-git
 sudo-git:https://gitlab.com/chaotic-aur-pkgbuilds/sudo-git
 syncthing-git
 tor-git
+virt-manager-git
 vscodium-git
 wayland-git
 wine-lol
@@ -1097,3 +1098,11 @@ feem
 
 # Issue 472
 chromium-ublock-origin
+
+# Issue 473
+apostrophe
+aic94xx-firmware
+dmenu-height
+makemkv
+j4-dmenu-desktop
+farbfeld
