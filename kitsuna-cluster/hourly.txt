@@ -1094,3 +1094,6 @@ distrho-ports-vst-git
 filebot
 masterpdfeditor-libs-included
 feem
+
+# Issue 472
+chromium-ublock-origin
