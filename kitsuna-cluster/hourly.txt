@@ -19,6 +19,7 @@ elm-platform-bin
 ffmpeg-full
 figma-linux:https://github.com/chaotic-aur/archlinux-figma-linux.git
 foo2zjs-nightly
+glew-egl-glx
 google-cloud-sdk
 heroku-cli-bin
 hplip-plugin
