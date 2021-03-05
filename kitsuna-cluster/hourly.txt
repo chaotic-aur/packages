@@ -1112,3 +1112,8 @@ ccrtp # (dep twinkle)
 libzrtpcpp # (dep twinkle)
 twinkle
 ucommon # (dep twinkle)
+
+# Isssue 477
+phpstorm-eap
+phpstorm-eap-jre
+hopper
