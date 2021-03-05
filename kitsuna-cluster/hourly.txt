@@ -1106,3 +1106,9 @@ dmenu-height
 makemkv
 j4-dmenu-desktop
 farbfeld
+
+# Issue 474
+ccrtp # (dep twinkle)
+libzrtpcpp # (dep twinkle)
+twinkle
+ucommon # (dep twinkle)
