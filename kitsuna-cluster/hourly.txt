@@ -1114,7 +1114,19 @@ libzrtpcpp # (dep twinkle)
 twinkle
 ucommon # (dep twinkle)
 
-# Isssue 477
+# Issue 477
 phpstorm-eap
 phpstorm-eap-jre
 hopper
+
+# Issue 478
+#matrix-mirage
+python-babelfish # (dep sublimal-git)
+python-ezyme # (dep sublimal-git)
+#python-guessit # (dep sublimal-git)
+python-html-sanitizer # (dep matrix-mirage)
+python-rarfile # (dep sublimal-git)
+#python-rebulk # (dep sublimal-git) fails 
+#python-simpleaudio # (dep matrix-mirage) fails 
+python-sphinxcontrib-programoutput # (dep sublimal-git)
+#sublimal-git
