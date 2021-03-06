@@ -78,6 +78,7 @@ nteract-bin
 opencolorio-qfix # (dep blender-git)
 openimageio-qfix # (dep blender-git)
 openshadinglanguage-qfix # (dep blender-git)
+openxray
 popura-git
 powder-toy-git
 python-blis # (dep python-spacy)
