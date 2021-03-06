@@ -60,6 +60,7 @@ timeshift
 timeshift-autosnap
 ttf-meslo-nerd-font-powerlevel10k
 update-grub
+zsync2-git 
 
 # Garuda GitLab PKGBUILDS
 alsa-support:https://gitlab.com/garuda-linux/packages/pkgbuilds/alsa-support.git
