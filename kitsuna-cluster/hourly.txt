@@ -232,6 +232,7 @@ starship-git
 sudo-git:https://gitlab.com/chaotic-aur-pkgbuilds/sudo-git
 syncthing-git
 tor-git
+uutils-coreutils-git
 virt-manager-git
 vscodium-git
 wayland-git
@@ -1131,3 +1132,6 @@ python-rebulk # (dep sublimal-git)
 python-simpleaudio # (dep matrix-mirage)
 python-sphinxcontrib-programoutput # (dep sublimal-git)
 sublimal-git
+
+# Issue 480
+fluffychat
