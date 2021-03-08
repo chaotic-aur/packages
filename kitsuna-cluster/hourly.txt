@@ -66,6 +66,7 @@ vulkan-icd-loader-tkg-git:https://github.com/Frogging-Family/vulkan-icd-loader-g
 bit
 cpufetch-git
 discord-canary
+elm-bin
 firefox-nightly
 glow
 haskell-language-server-bin
