@@ -155,7 +155,7 @@ milou-git:https://gitlab.com/chaotic-aur-pkgbuilds/milou-git.git
 modemmanager-qt-git:https://gitlab.com/chaotic-aur-pkgbuilds/modemmanager-qt-git.git
 networkmanager-qt-git:https://gitlab.com/chaotic-aur-pkgbuilds/networkmanager-qt-git.git
 non-euclidean-git
-okular-git:https://gitlab.com/chaotic-aur-pkgbuilds/okular-git.git
+okular-git
 partitionmanager-git:https://gitlab.com/chaotic-aur-pkgbuilds/partitionmanager-git.git
 pimcommon-git
 plasma-browser-integration-git
