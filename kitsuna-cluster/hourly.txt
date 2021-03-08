@@ -187,6 +187,7 @@ c-lolcat
 clamav-git
 clamav-unofficial-sigs
 code-git
+coreutils-hybrid
 dolphin-git
 dr460nized-git:https://gitlab.com/chaotic-aur-pkgbuilds/dr460nized-git.git
 electronmail-bin
