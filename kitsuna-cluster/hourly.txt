@@ -231,6 +231,7 @@ spirv-cross # (dep ffmpeg-git)
 starship-git
 sudo-git:https://gitlab.com/chaotic-aur-pkgbuilds/sudo-git
 syncthing-git
+systemd-git
 tor-git
 uutils-coreutils-git
 virt-manager-git

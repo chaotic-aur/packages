@@ -27,6 +27,7 @@ grantlee-git
 grantleetheme-git
 grantleetheme-git
 incidenceeditor-git
+kaccounts-integration-git:https://gitlab.com/chaotic-aur-pkgbuilds/kaccounts-integration-git.git
 kactivities-git
 kactivities-stats-git
 kactivitymanagerd-git
@@ -38,6 +39,7 @@ kcalutils-git
 kcalutils-git
 kcmutils-git
 kcodecs-git:https://gitlab.com/chaotic-aur-pkgbuilds/kcodecs-git.git
+kcolorpicker-git:https://gitlab.com/chaotic-aur-pkgbuilds/kcolorpicker-git.git
 kcompletion-git
 kconfig-git
 kconfigwidgets-git
@@ -89,6 +91,7 @@ kitemviews-git
 kitinerary-git
 kjobwidgets-git
 kjs-git
+kjsembed-git:https://gitlab.com/chaotic-aur-pkgbuilds/kjsembed-git.git
 kldap-git
 kldap-git
 kmailtransport-git
@@ -125,7 +128,7 @@ ktextwidgets-git
 ktnef-git
 kunitconversion-git
 kuserfeedback-git:https://gitlab.com/chaotic-aur-pkgbuilds/kuserfeedback-git.git
-kwallet-git:https://gitlab.com/chaotic-aur-pkgbuilds/kwallet-git
+kwallet-git:https://gitlab.com/chaotic-aur-pkgbuilds/kwallet-git.git
 kwallet-pam-git
 kwalletmanager-git
 kwayland-git
@@ -152,7 +155,7 @@ milou-git:https://gitlab.com/chaotic-aur-pkgbuilds/milou-git.git
 modemmanager-qt-git:https://gitlab.com/chaotic-aur-pkgbuilds/modemmanager-qt-git.git
 networkmanager-qt-git:https://gitlab.com/chaotic-aur-pkgbuilds/networkmanager-qt-git.git
 non-euclidean-git
-okular-git
+okular-git:https://gitlab.com/chaotic-aur-pkgbuilds/okular-git.git
 partitionmanager-git:https://gitlab.com/chaotic-aur-pkgbuilds/partitionmanager-git.git
 pimcommon-git
 plasma-browser-integration-git
@@ -169,10 +172,11 @@ powerdevil-git
 prison-git:https://gitlab.com/chaotic-aur-pkgbuilds/prison-git.git
 purpose-git:https://gitlab.com/chaotic-aur-pkgbuilds/purpose-git.git
 qca-qt5-git:https://gitlab.com/chaotic-aur-pkgbuilds/qca-qt5-git.git
+qqc2-desktop-style-git:https://gitlab.com/chaotic-aur-pkgbuilds/qqc2-desktop-style-git.git
 signon-kwallet-extension-git 
 solid-git:https://gitlab.com/chaotic-aur-pkgbuilds/solid-git.git
 sonnet-git:https://gitlab.com/chaotic-aur-pkgbuilds/sonnet-git.git
-spectacle-git
+spectacle-git:https://gitlab.com/chaotic-aur-pkgbuilds/spectacle-git.git
 syndication-git
 syntax-highlighting-git
 systemsettings-git
