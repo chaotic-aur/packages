@@ -67,6 +67,7 @@ bit
 cpufetch-git
 discord-canary
 elm-bin
+elm-language-server
 firefox-nightly
 glow
 haskell-language-server-bin
@@ -99,6 +100,7 @@ smenu
 telegram-tdlib
 tetrio-desktop
 vimv-git
+vim-language-server
 wasmer-bin
 zef
 
