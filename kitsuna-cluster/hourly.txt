@@ -94,6 +94,7 @@ python-wasabi # (dep python-spacy)
 qbe-git
 rakudo
 siji
+smenu
 telegram-tdlib
 tetrio-desktop
 vimv-git
