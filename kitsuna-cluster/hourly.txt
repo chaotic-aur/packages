@@ -198,6 +198,7 @@ firetools-git
 fish-git
 gegl-git # (dep gimp-git)
 gimp-git
+git-git
 gst-plugins-base-git
 gstreamer-git
 guiscrcpy-git
