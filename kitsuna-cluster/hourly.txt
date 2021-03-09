@@ -1146,3 +1146,6 @@ fluffychat
 # Issue 482
 mcmojave-cursors-git
 whitesur-icon-theme-git
+
+# Issue 483
+setzer-git
