@@ -4,6 +4,7 @@ ananicy-git
 archlinux-appstream-data-pamac
 auto-cpufreq-git
 bluetooth-autoconnect
+cht.sh-git
 clipit
 clipman
 conky-lua-nv

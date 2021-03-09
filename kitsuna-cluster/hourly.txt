@@ -1142,3 +1142,7 @@ sublimal-git
 
 # Issue 480
 fluffychat
+
+# Issue 482
+mcmojave-cursors-git
+whitesur-icon-theme-git
