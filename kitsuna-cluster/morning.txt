@@ -10,6 +10,9 @@ electron9
 firefox-appmenu
 ungoogled-chromium
 
+# Daily builds are enough
+systemd-git
+
 # Users requests
 wine-git # Issue 315
 scummvm-git # Issue 316
