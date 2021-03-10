@@ -190,7 +190,6 @@ bottom-git
 c-lolcat
 clamav-git
 clamav-unofficial-sigs
-code-git
 coreutils-hybrid
 dolphin-git
 dr460nized-git:https://gitlab.com/chaotic-aur-pkgbuilds/dr460nized-git.git
@@ -246,6 +245,7 @@ wayland-git
 whoogle-git
 wine-lol
 wine-lol-glibc
+wireplumber-git
 xf86-input-libinput-git
 xorg-server-git
 
