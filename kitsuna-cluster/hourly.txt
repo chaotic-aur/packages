@@ -52,8 +52,8 @@ faudio-tkg-git:https://github.com/Frogging-Family/faudio-git.git
 gallium-nine-git
 gamescope-git:https://github.com/Frogging-Family/gamescope-git.git
 goverlay-git
-mangohud-git
 mangohud
+mangohud-git
 material-kwin-decoration-git
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
 neofrog-git:https://github.com/Frogging-Family/neofrog-git.git
@@ -99,8 +99,8 @@ siji
 smenu
 telegram-tdlib
 tetrio-desktop
-vimv-git
 vim-language-server
+vimv-git
 wasmer-bin
 zef
 
@@ -123,11 +123,11 @@ libselinux (dep glib2-selinux)
 libsepol  (dep glib2-selinux)
 mesa-git:https://github.com/chaotic-aur/mesa-git.git
 onivim2-git
+pantheon-polkit-agent-git
 properties-cpp
 tilix-git:https://github.com/chaotic-aur/tilix-git-aur
 vlc-git
 wezterm-git
-pantheon-polkit-agent-git
 
 contractor-git
 elementary-icon-theme-git
@@ -138,17 +138,17 @@ lightdm-pantheon-greeter-git
 pantheon-applications-menu-git
 pantheon-calculator-git
 pantheon-calendar-git
+pantheon-camera-git
+pantheon-code-git
 pantheon-code-git
 pantheon-default-settings-git
+pantheon-dock-instctl-git
 pantheon-files-git
 pantheon-music-git
 pantheon-screenshot-git
-pantheon-terminal-git
-pantheon-camera-git
-pantheon-dock-instctl-git
-pantheon-code-git
-pantheon-shortcut-overlay-git
 pantheon-session-git
+pantheon-shortcut-overlay-git
+pantheon-terminal-git
 pantheon-videos-git
 switchboard-git
 switchboard-plug-a11y-git
@@ -763,7 +763,6 @@ lightly-git
 lightly-qt
 plasma-systemmonitor-git
 pyradio-git
-straw-viewer-git
 strawberry-full-git
 strawberry-git
 systray-x-git
@@ -1149,3 +1148,29 @@ whitesur-icon-theme-git
 
 # Issue 483
 setzer-git
+
+# Issue 484
+multimc-curseforge
+multimc-git
+
+# Issue 485
+pipe-viewer-git
+
+# Issue 486
+dnf
+libcomps
+libdnf
+libmodulemd
+librepo
+libsolv
+mkosi-git
+python2-iniparse
+python2-pyliblzma
+python2-pysqlite
+urlgrabber
+yum
+yum-metadata-parser
+zchunk
+
+# Issue 487
+newaita-icons-git
