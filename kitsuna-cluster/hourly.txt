@@ -1174,3 +1174,9 @@ zchunk
 
 # Issue 487
 newaita-icons-git
+
+# Issue 488
+davinci-resolve-studio
+
+# Issue 489
+cozy-audiobooks
