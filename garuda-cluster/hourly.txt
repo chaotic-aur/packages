@@ -40,7 +40,14 @@ mhwd-ati
 mhwd-db-garuda-git
 mhwd-garuda-git
 mhwd-nvidia
-mhwd-nvidia
+mhwd-nvidia-390xx
+nvidia-390xx-dkms
+nvidia-390xx-settings
+nvidia-390xx-utils
+opencl-nvidia-390xx
+lib32-nvidia-390xx-utils
+lib32-opencl-nvidia-390xx
+libxnvctrl-390xx
 mkinitcpio-openswap
 nohang-git
 optimus-manager
@@ -62,12 +69,21 @@ timeshift-autosnap
 ttf-meslo-nerd-font-powerlevel10k
 update-grub
 zsync2-git 
+preload
+rebuild-detector
+dashbinsh
+wd719x-firmware
+pacman-sync
+pacman-pkgfile-hook
+kernel-modules-hook
 
 # Garuda GitLab PKGBUILDS
 alsa-support:https://gitlab.com/garuda-linux/packages/pkgbuilds/alsa-support.git
 asian-fonts:https://gitlab.com/garuda-linux/packages/pkgbuilds/asian-fonts.git
 bluetooth-support:https://gitlab.com/garuda-linux/packages/pkgbuilds/bluetooth-support.git
-calamares-garuda-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/calamares-garuda-git
+calamares-garuda-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/calamares-garuda-git.git
+calamares:https://gitlab.com/garuda-linux/packages/pkgbuilds/calamares.git
+calamares-branding-garuda:https://gitlab.com/garuda-linux/packages/pkgbuilds/calamares-branding-garuda.git
 calamares-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/calamares-git.git
 calamares-tools:https://gitlab.com/garuda-linux/packages/pkgbuilds/calamares-tools.git
 connman-support:https://gitlab.com/garuda-linux/packages/pkgbuilds/connman-support.git
@@ -127,6 +143,9 @@ virt-manager-meta:https://gitlab.com/garuda-linux/packages/pkgbuilds/virt-manage
 virtualbox-meta:https://gitlab.com/garuda-linux/packages/pkgbuilds/virtualbox-meta.git
 wine-meta:https://gitlab.com/garuda-linux/packages/pkgbuilds/wine-meta.git
 zdummy-vlkdrv:https://gitlab.com/garuda-linux/packages/pkgbuilds/zdummy-vlkdrv.git
+performance-tweaks:https://gitlab.com/garuda-linux/packages/pkgbuilds/performance-tweaks.git
+powersave-tweaks:https://gitlab.com/garuda-linux/packages/pkgbuilds/powersave-tweaks.git
+libretro-meta:https://gitlab.com/garuda-linux/packages/pkgbuilds/libretro-meta.git
 
 # BSPWM
 lightdm-settings
@@ -162,10 +181,13 @@ sweet-kde-git
 sweet-theme-dark
 sweet-theme-git
 xcursor-sweet
+beautyline
+resvg
 
 # Dr460nized-blackarch
 8188eu-aircrack-dkms-git
 8188fu-kelebek333-dkms-git
+8188fu-dkms-git
 8192eu-dkms
 r8168-dkms
 realtek-firmware
@@ -232,12 +254,15 @@ samba-mounter-git
 sphinxbase
 subtitlecomposer
 whitesur-cursor-theme-git
+whitesur-gtk-theme-git
+whitesur-kde-theme-git
 
 # LXQT-Kwin
 ant-dracula-gtk-theme
 ant-dracula-kde-theme-git
 ant-dracula-kvantum-theme-git
 lxqt-kwin-desktop-git
+lxqt-kcm-integration-extra-git
 
 # MATE
 mate-menu
@@ -260,11 +285,17 @@ qt5-styleplugins
 greetd
 greetd-gtkgreet
 orchis-kde-theme-git
+kvantum-theme-orchis-git
 orchis-theme-git
 popsicle-git
 redshift-wayland-git
 wayfire-desktop-git
 wdisplays
+wlogout
+wf-osk-git
+ydotool
+pulseaudio-modules-bt-git
+tlpui
 
 # XFCE
 gestures
@@ -284,16 +315,22 @@ google-chrome
 jdownloader2
 jitsi-meet
 joplin-desktop
+mendeleydesktop-bundled
 ms-office-online
 onlyoffice-bin
+openh264
 system-config-samba
+torbrowser-launcher-git
 ttf-wps-fonts
 virtualbox-ext-oracle
 wacom-utility
 wine-installer
+wineasio
 wps-office
 wps-office-fonts
 wps-office-mime
+wps-office-cn
+wps-office-mime-cn
 xdman
 yozo-office
 yozo-office-fonts
