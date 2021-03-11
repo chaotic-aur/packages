@@ -1182,3 +1182,8 @@ davinci-resolve-studio
 
 # Issue 489
 cozy-audiobooks
+
+# Issue 490
+libsearpc
+seafile
+seafile-client
