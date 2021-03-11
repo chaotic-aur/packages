@@ -148,6 +148,7 @@ libkscreen-git
 libksieve-git
 libksysguard-git
 libqaccessibilityclient-git
+libqalculate-git
 mailcommon-git
 mailimporter-git
 messagelib-git
