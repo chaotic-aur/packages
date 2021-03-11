@@ -51,6 +51,7 @@ mutter-40alfa
 
 # Kernels
 linux-xanmod
+linux-xanmod-anbox
 
 
 ## User requests
