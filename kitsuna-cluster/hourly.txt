@@ -402,7 +402,6 @@ scrcpy
 shortwave
 skypeforlinux-stable-bin
 slack-desktop
-spotify
 teams
 teamviewer
 timeshift-bin
@@ -1184,3 +1183,6 @@ cozy-audiobooks
 libsearpc
 seafile
 seafile-client
+
+# Issue 494
+spotify-snap
