@@ -612,7 +612,7 @@ r8125-dkms
 repoctl
 #scrcpy-git (broken)
 slack-electron
-spotify-dev
+spotify-edge-snap
 spotify-qt
 spotifyd-full-git
 steinberg-asio-sdk # (wineasio-git dependencie)
