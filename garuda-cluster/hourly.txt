@@ -1,5 +1,6 @@
 ﻿## GARUDA PACKAGES
 # Garuda base (AUR)
+7-zip
 ananicy-git
 archlinux-appstream-data-pamac
 auto-cpufreq-git
@@ -17,6 +18,7 @@ firefox-extension-flagfox
 firefox-extension-localcdn
 firefox-extension-plasma-integration
 fish-autopair
+fish-systemd-git
 flameshot-git
 garuda-settings-manager-git
 garuda-settings-manager-kcm-git
@@ -163,6 +165,7 @@ nemo-pdf-tools-git
 xviewer-plugins
 
 # Dr460nized
+alacritty-ligatures-git
 kde-service-menu-reimage
 kde-servicemenus-encfs
 kde-servicemenus-pdf
@@ -172,7 +175,6 @@ kvantum-theme-sweet-git
 kwin-effects-sliding-notifications
 kwin-lowlatency
 kwin-scripts-forceblur
-latte-dock-git
 latte-dock-git
 nerd-fonts-fantasque-sans-mono
 plasma5-applets-window-appmenu
