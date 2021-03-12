@@ -1,9 +1,9 @@
 ﻿## GARUDA PACKAGES
 # Garuda base (AUR)
 7-zip
-ananicy-git
+ananicy
 archlinux-appstream-data-pamac
-auto-cpufreq-git
+auto-cpufreq
 bluetooth-autoconnect
 cht.sh-git
 clipit
@@ -42,7 +42,7 @@ librewolf-extension-plasma-integration
 librewolf-extension-xdm-browser-monitor
 librewolf-ublock-origin
 libxnvctrl-390xx
-memavaild-git
+memavaild
 mhwd-amdgpu
 mhwd-ati
 mhwd-db-garuda-git
@@ -65,9 +65,8 @@ pacman-sync
 pamac-aur
 performance-tweaks
 plymouth-git
-precached-git
 preload
-prelockd-git
+prelockd
 pulseaudio-modules-bt
 qwikaccess-git
 rebuild-detector
@@ -371,3 +370,10 @@ python-injector
 
 # mugshot
 python-pyparted
+
+
+## TESTING
+ananicy-git
+auto-cpufreq-git
+memavaild-git
+prelockd-git
