@@ -40,9 +40,10 @@ proton-ge-custom
 proton-ge-custom-bin
 python-telegram-send
 ripcord-arch-libs
-ruby-coderay # ( dep logstalgia)
-ruby-method_source # ( dep logstalgia)
-ruby-pry # ( dep logstalgia)
+ruby-coderay # (dep logstalgia)
+ruby-method_source # (dep logstalgia)
+ruby-pry # (dep logstalgia)
+sdl2_compat12-git
 wev
 
 # Unreal-engine
