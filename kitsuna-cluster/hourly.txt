@@ -1184,5 +1184,10 @@ libsearpc
 seafile
 seafile-client
 
-# Issue 494
+# Issue 493
 spotify-snap
+
+# Issue 494
+python-deezer-py
+python-spotipy
+
