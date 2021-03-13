@@ -1192,3 +1192,8 @@ spotify-snap
 python-deezer-py
 python-spotipy
 
+# Issue 495
+aseprite
+
+# Issue 496
+xen
