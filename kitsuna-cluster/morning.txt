@@ -13,7 +13,7 @@ ungoogled-chromium
 # Daily builds are enough
 code-git
 linux-xanmod-git
-systemd-git
+#systemd-git (in need of a fix)
 
 # Users requests
 wine-git # Issue 315

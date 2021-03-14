@@ -1185,6 +1185,9 @@ libsearpc
 seafile
 seafile-client
 
+# Issue 492
+xfce4-panel-profiles
+
 # Issue 493
 spotify-snap
 
@@ -1196,4 +1199,7 @@ python-spotipy
 aseprite
 
 # Issue 496
-xen
+#xen (waiting upstream fix)
+
+# Issue 498
+xfdashboard
