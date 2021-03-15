@@ -1199,7 +1199,11 @@ python-spotipy
 aseprite
 
 # Issue 496
-#xen (waiting upstream fix)
+xen:https://gitlab.com/chaotic-aur-pkgbuilds/xen.git
 
 # Issue 498
 xfdashboard
+
+# Issue 500
+archlinux-java-run
+bluej
