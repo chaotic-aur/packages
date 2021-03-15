@@ -1207,3 +1207,6 @@ xfdashboard
 # Issue 500
 archlinux-java-run
 bluej
+
+# Issue 503
+lightcord-bin
