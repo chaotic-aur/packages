@@ -97,7 +97,8 @@ garuda-browser-settings:https://gitlab.com/garuda-linux/packages/pkgbuilds/garud
 garuda-bspwm-settings:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-bspwm-settings.git
 garuda-cinnamon-settings:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-cinnamon-settings.git
 garuda-common-settings:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-common-settings.git
-garuda-dr460nized:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-dr460nized.git
+garuda-dr460nized:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/garuda-dr460nized.git
+garuda-dr460nized-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-dr460nized.git
 garuda-firefox:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-firefox.git
 garuda-fish-config:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-fish-config.git
 garuda-gamer-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-gamer-git.git
