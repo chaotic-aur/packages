@@ -1208,5 +1208,13 @@ xfdashboard
 archlinux-java-run
 bluej
 
+# Issue 502
+neovim-git
+
 # Issue 503
 lightcord-bin
+
+# Issue 504
+gfeeds-git
+python-listparser
+python-readability-lxml
