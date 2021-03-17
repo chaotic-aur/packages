@@ -105,6 +105,7 @@ vim-language-server
 vimv-git
 wasmer-bin
 zef
+zlib-ng
 
 # SolarAquarion
 ayatana-ido
