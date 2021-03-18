@@ -51,6 +51,7 @@ mhwd-nvidia
 mhwd-nvidia-390xx
 mkinitcpio-openswap
 nohang-git
+nohang
 nvidia-390xx-dkms
 nvidia-390xx-settings
 nvidia-390xx-utils
@@ -80,20 +81,20 @@ wd719x-firmware
 zsync2-git 
 
 # Garuda GitLab PKGBUILDS
-alsa-support:https://gitlab.com/garuda-linux/packages/pkgbuilds/alsa-support.git
-asian-fonts:https://gitlab.com/garuda-linux/packages/pkgbuilds/asian-fonts.git
-bluetooth-support:https://gitlab.com/garuda-linux/packages/pkgbuilds/bluetooth-support.git
-calamares-branding-garuda:https://gitlab.com/garuda-linux/packages/pkgbuilds/calamares-branding-garuda.git
+alsa-support:https://gitlab.com/garuda-linux/stable-packages/pkgbuilds/alsa-support.git
+asian-fonts:https://gitlab.com/garuda-linux/stable-packages/pkgbuilds/asian-fonts.git
+bluetooth-support:https://gitlab.com/garuda-linux/stable-packages/pkgbuilds/bluetooth-support.git
+calamares-branding-garuda:https://gitlab.com/garuda-linux/stable-packages/pkgbuilds/calamares-branding-garuda.git
 calamares-garuda-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/calamares-garuda-git.git
 calamares-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/calamares-git.git
 calamares-tools:https://gitlab.com/garuda-linux/packages/pkgbuilds/calamares-tools.git
-calamares:https://gitlab.com/garuda-linux/packages/pkgbuilds/calamares.git
-connman-support:https://gitlab.com/garuda-linux/packages/pkgbuilds/connman-support.git
+calamares:https://gitlab.com/garuda-linux/stable-packages/pkgbuilds/calamares.git
+connman-support:https://gitlab.com/garuda-linux/stable-packages/pkgbuilds/connman-support.git
 garuda-assistant-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-assistant-git.git
 garuda-boot-options-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-boot-options-git.git
 garuda-boot-repair-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-boot-repair-git.git
-garuda-browser-settings-hardened:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-browser-settings-hardened.git
-garuda-browser-settings:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/garuda-browser-settings.git
+garuda-browser-settings-hardened:https://gitlab.com/garuda-linux/stable-packages/pkgbuilds/garuda-browser-settings-hardened.git
+garuda-browser-settings:https://gitlab.com/garuda-linux/stable-packages/stable-pkgbuilds/garuda-browser-settings.git
 garuda-bspwm-settings:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/garuda-bspwm-settings.git
 garuda-cinnamon-settings:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/garuda-cinnamon-settings.git
 garuda-common-settings:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/garuda-common-settings.git
@@ -116,38 +117,37 @@ garuda-recbox-settings:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds
 garuda-setup-assistant:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-setup-assistant.git
 garuda-starship-prompt:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/garuda-starship-prompt.git
 garuda-tools-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-tools-git.git
-garuda-wallpapers-2021:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-wallpapers-2021.git
-garuda-wallpapers-extra:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-wallpapers-extra.git
-garuda-wallpapers:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-wallpapers.git
+garuda-wallpapers-2021:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/garuda-wallpapers-2021.git
+garuda-wallpapers-extra:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/garuda-wallpapers-extra.git
+garuda-wallpapers:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/garuda-wallpapers.git
 garuda-wayfire-settings:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/garuda-wayfire-settings.git
 garuda-welcome-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-welcome-git.git
 garuda-xfce-settings:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/garuda-xfce-settings.git
 garuda-zsh-config:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/garuda-zsh-config.git
-grub-garuda:https://gitlab.com/garuda-linux/packages/pkgbuilds/grub-garuda.git
-grub-theme-garuda-custom:https://gitlab.com/garuda-linux/packages/pkgbuilds/grub-theme-garuda-custom.git
-grub-theme-garuda:https://gitlab.com/garuda-linux/packages/pkgbuilds/grub-theme-garuda.git
-gstreamer-meta:https://gitlab.com/garuda-linux/packages/pkgbuilds/gstreamer-meta.git
-input-devices-support:https://gitlab.com/garuda-linux/packages/pkgbuilds/input-devices-support.git
-jack-support:https://gitlab.com/garuda-linux/packages/pkgbuilds/jack-support.git
-libretro-meta:https://gitlab.com/garuda-linux/packages/pkgbuilds/libretro-meta.git
-libretro-meta:https://gitlab.com/garuda-linux/packages/pkgbuilds/libretro-meta.git
-networkmanager-support:https://gitlab.com/garuda-linux/packages/pkgbuilds/networkmanager-support.git
-os-prober-garuda:https://gitlab.com/garuda-linux/packages/pkgbuilds/os-prober-garuda.git
-paleofetch-garuda:https://gitlab.com/garuda-linux/packages/pkgbuilds/paleofetch-garuda.git
+grub-garuda:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/grub-garuda.git
+grub-theme-garuda-custom:https://gitlab.com/garuda-linux/stable-packages/pkgbuilds/grub-theme-garuda-custom.git
+grub-theme-garuda:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/grub-theme-garuda.git
+gstreamer-meta:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/gstreamer-meta.git
+input-devices-support:https://gitlab.com/garuda-linux/stable-packages/pkgbuilds/input-devices-support.git
+jack-support:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/jack-support.git
+libretro-meta:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/libretro-meta.git
+networkmanager-support:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/networkmanager-support.git
+os-prober-garuda:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/os-prober-garuda.git
+paleofetch-garuda:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/paleofetch-garuda.git
 performance-tweaks:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/performance-tweaks.git
-pipewire-support:https://gitlab.com/garuda-linux/packages/pkgbuilds/pipewire-support.git
-plymouth-theme-garuda-purple:https://gitlab.com/garuda-linux/packages/pkgbuilds/plymouth-theme-garuda-purple.git
-plymouth-theme-garuda:https://gitlab.com/garuda-linux/packages/pkgbuilds/plymouth-theme-garuda.git
-powersave-tweaks:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/powersave-tweaks.git
-printer-support:https://gitlab.com/garuda-linux/packages/pkgbuilds/printer-support.git
-pulseaudio-support:https://gitlab.com/garuda-linux/packages/pkgbuilds/pulseaudio-support.git
-reflector-simple:https://gitlab.com/garuda-linux/packages/pkgbuilds/reflector-simple.git
-samba-support:https://gitlab.com/garuda-linux/packages/pkgbuilds/samba-support.git
-scanner-support:https://gitlab.com/garuda-linux/packages/pkgbuilds/scanner-support.git
-virt-manager-meta:https://gitlab.com/garuda-linux/packages/pkgbuilds/virt-manager-meta.git
-virtualbox-meta:https://gitlab.com/garuda-linux/packages/pkgbuilds/virtualbox-meta.git
-wine-meta:https://gitlab.com/garuda-linux/packages/pkgbuilds/wine-meta.git
-zdummy-vlkdrv:https://gitlab.com/garuda-linux/packages/pkgbuilds/zdummy-vlkdrv.git
+pipewire-support:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/pipewire-support.git
+plymouth-theme-garuda-purple:https://gitlab.com/garuda-linux/stable-packages/pkgbuilds/plymouth-theme-garuda-purple.git
+plymouth-theme-garuda:https://gitlab.com/garuda-linux/stable-packages/pkgbuilds/plymouth-theme-garuda.git
+powersave-tweaks:https://gitlab.com/garuda-linux/stable-packages/stable-pkgbuilds/powersave-tweaks.git
+printer-support:https://gitlab.com/garuda-linux/stable-packages/pkgbuilds/printer-support.git
+pulseaudio-support:https://gitlab.com/garuda-linux/stable-packages/pkgbuilds/pulseaudio-support.git
+reflector-simple:https://gitlab.com/garuda-linux/stable-packages/pkgbuilds/reflector-simple.git
+samba-support:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/samba-support.git
+scanner-support:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/scanner-support.git
+virt-manager-meta:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/virt-manager-meta.git
+virtualbox-meta:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/virtualbox-meta.git
+wine-meta:https://gitlab.com/garuda-linux/packages/pkgbuilds/stable-wine-meta.git
+zdummy-vlkdrv:https://gitlab.com/garuda-linux/packages/pkgbuilds/stable-zdummy-vlkdrv.git
 
 # BSPWM
 lightdm-settings
@@ -355,6 +355,7 @@ pygtk
 # garuda-network-assistant
 linux-wifi-hotspot
 
+webapp-manager
 # warpinator
 python-grcpio-tools
 
