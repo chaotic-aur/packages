@@ -925,6 +925,9 @@ lf
 olive
 sct
 
+# Issue 394
+perl-file-rename # (dep icecat)
+
 # Issue 395
 emacs-pgtk-native-comp-git
 

@@ -70,7 +70,6 @@ kplasmafoxhelper:https://github.com/torvic9/kplasmafoxhelper.git
 
 # Issue 394
 icecat
-perl-file-rename # (dep icecat)
 
 # Issue 446
 librewolf-nightly
