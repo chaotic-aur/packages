@@ -75,6 +75,7 @@ glow
 haskell-language-server-bin
 jetbrains-toolbox
 languageclient-neovim
+manim-community
 moarvm
 noti
 nqp
@@ -87,10 +88,12 @@ popura-git
 powder-toy-git
 python-blis # (dep python-spacy)
 python-catalogue # (dep python-spacy)
+python-mainimpango # (dep manim-community)
 python-murmurhash # (dep python-spacy)
 python-pathlib # (dep python-spacy)
 python-plac # (dep python-spacy)
 python-preshed # (dep python-spacy)
+python-pydub # (dep manim-community)
 python-spacy
 python-srsly # (dep python-spacy)
 python-thinc # (dep python-spacy)
