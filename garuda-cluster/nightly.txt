@@ -1,2 +1,161 @@
+## GARUDA PACKAGES
+# Garuda base (AUR)
+7-zip
+ananicy
+archlinux-appstream-data-pamac
+auto-cpufreq
+bluetooth-autoconnect
+cht.sh-git
+clipit
+clipman
+conky-lua-nv
+connman-gtk
+dashbinsh
+downgrade
+evdev-right-click-emulation
+firefox-extension-bitwarden
+firefox-extension-flagfox
+firefox-extension-localcdn
+firefox-extension-plasma-integration
+fish-autopair
+fish-systemd-git
+flameshot-git
+garuda-settings-manager-git
+garuda-settings-manager-kcm-git
+garuda-settings-manager-notifier-git
+gesture-manager-x-git
+hblock
+hw-probe
+imagewriter
+inxi
+kernel-modules-hook
+ksnip
+lib32-nvidia-390xx-utils
+lib32-opencl-nvidia-390xx
+libinput-gestures
+libinput_gestures_qt
+librewolf-extension-bitwarden
+librewolf-extension-dark-reader
+librewolf-extension-gnome-shell-integration
+librewolf-extension-localcdn
+librewolf-extension-plasma-integration
+librewolf-extension-xdm-browser-monitor
+librewolf-ublock-origin
+libxnvctrl-390xx
+memavaild
+mhwd-amdgpu
+mhwd-ati
+mhwd-db-garuda-git
+mhwd-garuda-git
+mhwd-nvidia
+mhwd-nvidia-390xx
+mkinitcpio-openswap
+nohang-git
+nohang
+nvidia-390xx-dkms
+nvidia-390xx-settings
+nvidia-390xx-utils
+opencl-nvidia-390xx
+optimus-manager
+optimus-manager-git
+optimus-manager-qt
+optimus-manager-qt-git
+pace
+pacman-pkgfile-hook
+pacman-sync
+pamac-aur
+performance-tweaks
+plymouth-git
+preload
+prelockd
+pulseaudio-modules-bt
+qwikaccess-git
+rebuild-detector
+systemd-guest-user
+tela-circle-icon-theme-git
+timeshift
+timeshift-autosnap
+ttf-meslo-nerd-font-powerlevel10k
+update-grub
+wd719x-firmware
+zsync2-git 
+
+# Setup assistant
+bitwig-studio
+brave-bin
+dissenter-browser-bin
+exe-thumbnailer
+firefox-esr-bin
+firefox-extension-xdm-browser-monitor
+freedownloadmanager
+freeoffice
+gitkraken
+google-chrome
+jdownloader2
+jitsi-meet
+joplin-desktop
+mendeleydesktop-bundled
+ms-office-online
+onlyoffice-bin
+openh264
+system-config-samba
+torbrowser-launcher-git
+ttf-wps-fonts
+virtualbox-ext-oracle
+wacom-utility
+wine-installer
+wineasio
+wps-office
+wps-office-fonts
+wps-office-mime
+wps-office-cn
+wps-office-mime-cn
+xdman
+yozo-office
+yozo-office-fonts
+yuzu-mainline-bin
+zoom
+
+
+## NEEDED DEPENDENCIES
+# octopi
+alpm_octopi_utils
+
+# wacom-utility
+gconf
+gksu
+libgksu
+pygtk
+
+# garuda-network-assistant
+linux-wifi-hotspot
+
+webapp-manager
+# warpinator
+python-grcpio-tools
+
+# foxitreader:
+gstreamer0.10
+gstreamer0.10-base
+
+# optimus-manager-git
+python-py3nvml
+
+# gwe
+python-injector
+
+# mugshot
+python-pyparted
+
+
+## TESTING
+ananicy-git
+auto-cpufreq-git
+garuda-dr460nized-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-dr460nized.git
+memavaild-git
+prelockd-git
+
+
+## CHAOTIC
 # RustemB
 blender-git
