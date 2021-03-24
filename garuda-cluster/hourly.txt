@@ -90,6 +90,7 @@ calamares-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/calamares-git.g
 calamares-tools:https://gitlab.com/garuda-linux/packages/pkgbuilds/calamares-tools.git
 calamares:https://gitlab.com/garuda-linux/stable-packages/pkgbuilds/calamares.git
 connman-support:https://gitlab.com/garuda-linux/stable-packages/pkgbuilds/connman-support.git
+fastfetch-garuda:https://gitlab.com/garuda-linux/packages/pkgbuilds/fastfetch-garuda.git
 garuda-assistant-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-assistant-git.git
 garuda-boot-options-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-boot-options-git.git
 garuda-boot-repair-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-boot-repair-git.git
