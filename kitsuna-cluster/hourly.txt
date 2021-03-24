@@ -599,12 +599,14 @@ powerpill
 ## Pedro
 autoconf-git
 asdf-vm
+b43-firmware # not really needed
 depot-tools-git # servo-git dep
 discord-canary-electron-bin
 gotop
 grim-git
 obs-streamfx
 obs-v4l2sink
+obs-vkcapture-git
 oneko
 osdlyrics-git
 pipewire-common-git
