@@ -86,6 +86,7 @@ openshadinglanguage-qfix # (dep blender-git)
 openxray
 popura-git
 powder-toy-git
+pup
 python-blis # (dep python-spacy)
 python-catalogue # (dep python-spacy)
 python-mainimpango # (dep manim-community)
@@ -104,6 +105,7 @@ siji
 smenu
 telegram-tdlib
 tetrio-desktop
+tuxi-git
 vim-language-server
 vimv-git
 wasmer-bin
