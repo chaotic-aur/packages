@@ -635,6 +635,7 @@ ums
 wattman-gtk-git
 #waybar-git (broken)
 waynergy-git
+yaup-git
 zfs-dkms
 zfs-utils
 
