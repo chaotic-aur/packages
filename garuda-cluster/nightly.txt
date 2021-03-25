@@ -20,6 +20,7 @@ firefox-extension-plasma-integration
 fish-autopair
 fish-systemd-git
 flameshot-git
+garuda-downloader-git
 garuda-settings-manager-git
 garuda-settings-manager-kcm-git
 garuda-settings-manager-notifier-git
