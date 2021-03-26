@@ -609,6 +609,7 @@ depot-tools-git # servo-git dep
 discord-canary-electron-bin
 gotop
 grim-git
+irpf
 obs-streamfx
 obs-v4l2sink
 obs-vkcapture-git
