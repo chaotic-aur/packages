@@ -99,6 +99,7 @@ mendeleydesktop-bundled
 ms-office-online
 onlyoffice-bin
 openh264
+spotify-snap
 system-config-samba
 torbrowser-launcher-git
 ttf-wps-fonts
