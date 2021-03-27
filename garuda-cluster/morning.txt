@@ -68,6 +68,15 @@ virtualbox-meta:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/virtua
 wine-meta:https://gitlab.com/garuda-linux/packages/pkgbuilds/stable-wine-meta.git
 zdummy-vlkdrv:https://gitlab.com/garuda-linux/packages/pkgbuilds/stable-zdummy-vlkdrv.git
 
+# Fixed version PKGBUILDs
+garuda-assistant:https://gitlab.com/garuda-linux/applications/garuda-assistant.git 
+garuda-boot-options:https://gitlab.com/garuda-linux/applications/garuda-boot-options.git
+garuda-boot-repair:https://gitlab.com/garuda-linux/applications/garuda-boot-repair.git
+garuda-gamer:https://gitlab.com/garuda-linux/applications/garuda-gamer.git
+garuda-network-assistant:https://gitlab.com/garuda-linux/applications/garuda-network-assistant.git
+garuda-setup-assistant:https://gitlab.com/garuda-linux/applications/garuda-setup-assistant.git
+garuda-welcome:https://gitlab.com/garuda-linux/applications/garuda-welcome.git
+
 # BSPWM
 lightdm-settings
 lightdm-slick-greeter
