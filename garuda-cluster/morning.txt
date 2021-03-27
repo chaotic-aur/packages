@@ -93,6 +93,7 @@ xviewer-plugins
 
 # Dr460nized
 alacritty-ligatures-git
+firedragon-stable
 kde-service-menu-reimage
 kde-servicemenus-encfs
 kde-servicemenus-pdf
