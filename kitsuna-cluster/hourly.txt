@@ -572,7 +572,7 @@ rqlite
 libfprint-git
 fprintd-libfprint2
 vkcube-git
-wdisplays-git
+#wdisplays-git (404)
 chromium-widevine
 xdg-desktop-portal-wlr-git
 wl-clipboard-x11
