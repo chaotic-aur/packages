@@ -13,7 +13,7 @@ ungoogled-chromium
 # Daily builds are enough
 code-git
 linux-xanmod-git
-#systemd-git (in need of a fix)
+systemd-git
 
 # Users requests
 wine-git # Issue 315
@@ -35,7 +35,7 @@ servo-git
 --
 
 # Too heavy for Garuda cluster
-dragonwolf
+firedragon
 librewolf
 --
 
