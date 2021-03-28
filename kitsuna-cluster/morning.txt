@@ -39,17 +39,6 @@ dragonwolf
 librewolf
 --
 
-# GNOME-git
-geary-git
-glib2-git
-gnome-calendar-git
-gnome-shell-40alfa
-gnome-shell-extension-extensions-git
-gsettings-desktop-schemas-git
-gvfs-git
-libgweather-git
-mutter-40alfa
-
 # Kernels
 linux-xanmod
 linux-xanmod-anbox
