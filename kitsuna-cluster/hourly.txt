@@ -470,7 +470,10 @@ matcha-gtk-theme-git
 mcmojave-circle-icon-theme-git
 mcmojave-kde-theme-git
 mojave-gtk-theme-git
+autotiling
+azote
 nwg-launchers
+nwg-panel
 plymouth
 qogir-gtk-theme-git
 qogir-icon-theme-git
