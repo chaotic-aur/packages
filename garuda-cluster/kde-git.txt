@@ -183,5 +183,7 @@ syntax-highlighting-git
 systemsettings-git
 threadweaver-git:https://gitlab.com/chaotic-aur-pkgbuilds/threadweaver-git.git
 
-# Too slow to be left on morning
-libretro-mame-git
+# Kwinft-git
+disman-git
+kwinft-git:https://gitlab.com/chaotic-aur-pkgbuilds/kwinft-git.git
+wrapland-git

@@ -161,3 +161,6 @@ prelockd-git
 ## CHAOTIC
 # RustemB
 blender-git
+
+# Too slow to be left on morning
+libretro-mame-git
