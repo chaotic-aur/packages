@@ -1,47 +1,47 @@
 ## Garuda GitLab PKGBUILDS
 # Base theming & applications
 calamares-branding-garuda:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/calamares-branding-garuda.git
-calamares-garuda-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/calamares-garuda-git.git
-calamares-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/calamares-git.git
-calamares-tools:https://gitlab.com/garuda-linux/packages/pkgbuilds/calamares-tools.git
-calamares:https://gitlab.com/garuda-linux/stable-packages/pkgbuilds/calamares.git
-fastfetch-garuda:https://gitlab.com/garuda-linux/packages/pkgbuilds/fastfetch-garuda.git
-garuda-hooks:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-hooks.git
-garuda-icons:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-icons.git
-garuda-live:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-live.git
+calamares-garuda-git:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/calamares-garuda-git.git
+calamares-git:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/calamares-git.git
+calamares-tools:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/calamares-tools.git
+calamares:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/calamares.git
+fastfetch-garuda:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/fastfetch-garuda.git
+garuda-hooks:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/garuda-hooks.git
+garuda-icons:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/garuda-icons.git
+garuda-live:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/garuda-live.git
 garuda-wallpapers-2021:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/garuda-wallpapers-2021.git
 garuda-wallpapers-extra:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/garuda-wallpapers-extra.git
 garuda-wallpapers:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/garuda-wallpapers.git
 grub-garuda:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/grub-garuda.git
-grub-theme-garuda-custom:https://gitlab.com/garuda-linux/stable-packages/pkgbuilds/grub-theme-garuda-custom.git
+grub-theme-garuda-custom:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/grub-theme-garuda-custom.git
 grub-theme-garuda:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/grub-theme-garuda.git
 os-prober-garuda:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/os-prober-garuda.git
 paleofetch-garuda:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/paleofetch-garuda.git
-plymouth-theme-garuda-purple:https://gitlab.com/garuda-linux/stable-packages/pkgbuilds/plymouth-theme-garuda-purple.git
-plymouth-theme-garuda:https://gitlab.com/garuda-linux/stable-packages/pkgbuilds/plymouth-theme-garuda.git
-reflector-simple:https://gitlab.com/garuda-linux/stable-packages/pkgbuilds/reflector-simple.git
+plymouth-theme-garuda-purple:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/plymouth-theme-garuda-purple.git
+plymouth-theme-garuda:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/plymouth-theme-garuda.git
+reflector-simple:hhttps://gitlab.com/garuda-linux/packages/stable-pkgbuilds/reflector-simple.git
 
 # Metapkg
-alsa-support:https://gitlab.com/garuda-linux/stable-packages/pkgbuilds/alsa-support.git
-asian-fonts:https://gitlab.com/garuda-linux/stable-packages/pkgbuilds/asian-fonts.git
-bluetooth-support:https://gitlab.com/garuda-linux/stable-packages/pkgbuilds/bluetooth-support.git
-connman-support:https://gitlab.com/garuda-linux/stable-packages/pkgbuilds/connman-support.git
-garuda-firefox:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-firefox.git
-garuda-librewolf:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-librewolf.git
+alsa-support:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/alsa-support.git
+asian-fonts:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/asian-fonts.git
+bluetooth-support:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/bluetooth-support.git
+connman-support:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/connman-support.git
+garuda-firefox:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/garuda-firefox.git
+garuda-librewolf:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/garuda-librewolf.git
 gstreamer-meta:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/gstreamer-meta.git
-input-devices-support:https://gitlab.com/garuda-linux/stable-packages/pkgbuilds/input-devices-support.git
+input-devices-support:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/input-devices-support.git
 jack-support:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/jack-support.git
 libretro-meta:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/libretro-meta.git
 networkmanager-support:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/networkmanager-support.git
-pipewire-support:hchattps://gitlab.com/garuda-linux/packages/stable-pkgbuilds/pipewire-support.git
-printer-support:https://gitlab.com/garuda-linux/stable-packages/pkgbuilds/printer-support.
-pulseaudio-support:https://gitlab.com/garuda-linux/stable-packages/pkgbuilds/pulseaudio-support.git
+pipewire-support:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/pipewire-support.git
+printer-support:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/printer-support.
+pulseaudio-support:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/pulseaudio-support.git
 samba-support:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/samba-support.git
 scanner-support:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/scanner-support.git
 virt-manager-meta:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/virt-manager-meta.git
 virtualbox-meta:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/virtualbox-meta.git
-wine-meta:https://gitlab.com/garuda-linux/packages/pkgbuilds/stable-wine-meta.git
-zdummy-vlkdrv:https://gitlab.com/garuda-linux/packages/pkgbuilds/stable-zdummy-vlkdrv.git
+wine-meta:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/wine-meta.git
+zdummy-vlkdrv:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/zdummy-vlkdrv.git
 
 # Fixed version settings
 garuda-browser-settings:https://gitlab.com/garuda-linux/themes-and-settings/settings/garuda-browser-settings.git
