@@ -19,7 +19,7 @@ os-prober-garuda:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/os-pr
 paleofetch-garuda:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/paleofetch-garuda.git
 plymouth-theme-garuda-purple:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/plymouth-theme-garuda-purple.git
 plymouth-theme-garuda:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/plymouth-theme-garuda.git
-reflector-simple:hhttps://gitlab.com/garuda-linux/packages/stable-pkgbuilds/reflector-simple.git
+reflector-simple:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/reflector-simple.git
 
 # Metapkg
 alsa-support:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/alsa-support.git
@@ -34,7 +34,7 @@ jack-support:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/jack-supp
 libretro-meta:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/libretro-meta.git
 networkmanager-support:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/networkmanager-support.git
 pipewire-support:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/pipewire-support.git
-printer-support:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/printer-support.
+printer-support:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/printer-support.git
 pulseaudio-support:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/pulseaudio-support.git
 samba-support:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/samba-support.git
 scanner-support:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/scanner-support.git
