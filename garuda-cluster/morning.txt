@@ -1,6 +1,6 @@
 ## Garuda GitLab PKGBUILDS
 # Base theming & applications
-calamares-branding-garuda:https://gitlab.com/garuda-linux/stable-packages/pkgbuilds/calamares-branding-garuda.git
+calamares-branding-garuda:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/calamares-branding-garuda.git
 calamares-garuda-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/calamares-garuda-git.git
 calamares-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/calamares-git.git
 calamares-tools:https://gitlab.com/garuda-linux/packages/pkgbuilds/calamares-tools.git
