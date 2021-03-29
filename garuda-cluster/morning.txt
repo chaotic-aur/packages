@@ -1,66 +1,41 @@
-# Garuda GitLab PKGBUILDS
-alsa-support:https://gitlab.com/garuda-linux/stable-packages/pkgbuilds/alsa-support.git
-asian-fonts:https://gitlab.com/garuda-linux/stable-packages/pkgbuilds/asian-fonts.git
-bluetooth-support:https://gitlab.com/garuda-linux/stable-packages/pkgbuilds/bluetooth-support.git
+## Garuda GitLab PKGBUILDS
+# Base theming & applications
 calamares-branding-garuda:https://gitlab.com/garuda-linux/stable-packages/pkgbuilds/calamares-branding-garuda.git
 calamares-garuda-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/calamares-garuda-git.git
 calamares-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/calamares-git.git
 calamares-tools:https://gitlab.com/garuda-linux/packages/pkgbuilds/calamares-tools.git
 calamares:https://gitlab.com/garuda-linux/stable-packages/pkgbuilds/calamares.git
-connman-support:https://gitlab.com/garuda-linux/stable-packages/pkgbuilds/connman-support.git
 fastfetch-garuda:https://gitlab.com/garuda-linux/packages/pkgbuilds/fastfetch-garuda.git
-garuda-assistant-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-assistant-git.git
-garuda-boot-options-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-boot-options-git.git
-garuda-boot-repair-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-boot-repair-git.git
-garuda-browser-settings-hardened:https://gitlab.com/garuda-linux/stable-packages/pkgbuilds/garuda-browser-settings-hardened.git
-garuda-browser-settings:https://gitlab.com/garuda-linux/stable-packages/stable-pkgbuilds/garuda-browser-settings.git
-garuda-bspwm-settings:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/garuda-bspwm-settings.git
-garuda-cinnamon-settings:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/garuda-cinnamon-settings.git
-garuda-common-settings:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/garuda-common-settings.git
-garuda-dr460nized:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/garuda-dr460nized.git
-garuda-firefox:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-firefox.git
-garuda-fish-config:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/garuda-fish-config.git
-garuda-gamer-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-gamer-git.git
-garuda-gnome-settings:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/garuda-gnome-settings.git
 garuda-hooks:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-hooks.git
-garuda-i3-settings:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/garuda-i3-settings.git
 garuda-icons:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-icons.git
-garuda-kde-settings:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/garuda-kde-settings.git
-garuda-librewolf:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-librewolf.git
 garuda-live:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-live.git
-garuda-lxqt-kwin-settings:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/garuda-lxqt-kwin-settings.git
-garuda-mate-settings:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/garuda-mate-settings.git
-garuda-network-assistant-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-network-assistant-git.git
-garuda-qtile-settings:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/garuda-qtile-settings.git
-garuda-recbox-settings:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/garuda-recbox-settings.git
-garuda-setup-assistant:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-setup-assistant.git
-garuda-starship-prompt:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/garuda-starship-prompt.git
-garuda-tools-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-tools-git.git
 garuda-wallpapers-2021:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/garuda-wallpapers-2021.git
 garuda-wallpapers-extra:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/garuda-wallpapers-extra.git
 garuda-wallpapers:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/garuda-wallpapers.git
-garuda-wayfire-settings:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/garuda-wayfire-settings.git
-garuda-welcome-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-welcome-git.git
-garuda-xfce-settings:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/garuda-xfce-settings.git
-garuda-zsh-config:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/garuda-zsh-config.git
 grub-garuda:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/grub-garuda.git
 grub-theme-garuda-custom:https://gitlab.com/garuda-linux/stable-packages/pkgbuilds/grub-theme-garuda-custom.git
 grub-theme-garuda:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/grub-theme-garuda.git
+os-prober-garuda:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/os-prober-garuda.git
+paleofetch-garuda:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/paleofetch-garuda.git
+plymouth-theme-garuda-purple:https://gitlab.com/garuda-linux/stable-packages/pkgbuilds/plymouth-theme-garuda-purple.git
+plymouth-theme-garuda:https://gitlab.com/garuda-linux/stable-packages/pkgbuilds/plymouth-theme-garuda.git
+reflector-simple:https://gitlab.com/garuda-linux/stable-packages/pkgbuilds/reflector-simple.git
+
+# Metapkg
+alsa-support:https://gitlab.com/garuda-linux/stable-packages/pkgbuilds/alsa-support.git
+asian-fonts:https://gitlab.com/garuda-linux/stable-packages/pkgbuilds/asian-fonts.git
+bluetooth-support:https://gitlab.com/garuda-linux/stable-packages/pkgbuilds/bluetooth-support.git
+connman-support:https://gitlab.com/garuda-linux/stable-packages/pkgbuilds/connman-support.git
+garuda-firefox:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-firefox.git
+garuda-librewolf:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-librewolf.git
 gstreamer-meta:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/gstreamer-meta.git
 input-devices-support:https://gitlab.com/garuda-linux/stable-packages/pkgbuilds/input-devices-support.git
 jack-support:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/jack-support.git
 libretro-meta:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/libretro-meta.git
 networkmanager-support:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/networkmanager-support.git
-os-prober-garuda:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/os-prober-garuda.git
-paleofetch-garuda:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/paleofetch-garuda.git
-performance-tweaks:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/performance-tweaks.git
-pipewire-support:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/pipewire-support.git
-plymouth-theme-garuda-purple:https://gitlab.com/garuda-linux/stable-packages/pkgbuilds/plymouth-theme-garuda-purple.git
-plymouth-theme-garuda:https://gitlab.com/garuda-linux/stable-packages/pkgbuilds/plymouth-theme-garuda.git
-powersave-tweaks:https://gitlab.com/garuda-linux/stable-packages/stable-pkgbuilds/powersave-tweaks.git
-printer-support:https://gitlab.com/garuda-linux/stable-packages/pkgbuilds/printer-support.git
+pipewire-support:hchattps://gitlab.com/garuda-linux/packages/stable-pkgbuilds/pipewire-support.git
+printer-support:https://gitlab.com/garuda-linux/stable-packages/pkgbuilds/printer-support.
 pulseaudio-support:https://gitlab.com/garuda-linux/stable-packages/pkgbuilds/pulseaudio-support.git
-reflector-simple:https://gitlab.com/garuda-linux/stable-packages/pkgbuilds/reflector-simple.git
 samba-support:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/samba-support.git
 scanner-support:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/scanner-support.git
 virt-manager-meta:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/virt-manager-meta.git
@@ -68,7 +43,28 @@ virtualbox-meta:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/virtua
 wine-meta:https://gitlab.com/garuda-linux/packages/pkgbuilds/stable-wine-meta.git
 zdummy-vlkdrv:https://gitlab.com/garuda-linux/packages/pkgbuilds/stable-zdummy-vlkdrv.git
 
-# Fixed version PKGBUILDs
+# Fixed version settings
+garuda-browser-settings:https://gitlab.com/garuda-linux/themes-and-settings/settings/garuda-browser-settings.git
+garuda-bspwm-settings:https://gitlab.com/garuda-linux/themes-and-settings/settings/garuda-bspwm-settings.git
+garuda-cinnamon-settings:https://gitlab.com/garuda-linux/themes-and-settings/settings/garuda-cinnamon-settings.git
+garuda-common-settings:https://gitlab.com/garuda-linux/themes-and-settings/settings/garuda-common-settings.git
+garuda-dr460nized:https://gitlab.com/garuda-linux/themes-and-settings/settings/garuda-dr460nized.git
+garuda-fish-config:https://gitlab.com/garuda-linux/themes-and-settings/settings/garuda-fish-config.git
+garuda-gnome-settings:https://gitlab.com/garuda-linux/themes-and-settings/settings/garuda-gnome-settings.git
+garuda-i3-settings:https://gitlab.com/garuda-linux/themes-and-settings/settings/garuda-i3-settings.git
+garuda-kde-settings:https://gitlab.com/garuda-linux/themes-and-settings/settings/garuda-kde-settings.git
+garuda-lxqt-kwin-settings:https://gitlab.com/garuda-linux/themes-and-settings/settings/garuda-lxqt-kwin-settings.git
+garuda-mate-settings:https://gitlab.com/garuda-linux/themes-and-settings/settings/garuda-mate-settings.git
+garuda-qtile-settings:https://gitlab.com/garuda-linux/themes-and-settings/settings/garuda-qtile-settings.git
+garuda-recbox-settings:https://gitlab.com/garuda-linux/themes-and-settings/settings/garuda-recbox-settings.git
+garuda-starship-prompt:https://gitlab.com/garuda-linux/themes-and-settings/settings/garuda-starship-prompt.git
+garuda-wayfire-settings:https://gitlab.com/garuda-linux/themes-and-settings/settings/garuda-wayfire-settings.git
+garuda-xfce-settings:https://gitlab.com/garuda-linux/themes-and-settings/settings/garuda-xfce-settings.git
+garuda-zsh-config:https://gitlab.com/garuda-linux/themes-and-settings/settings/garuda-zsh-config.git
+performance-tweaks:https://gitlab.com/garuda-linux/themes-and-settings/settings/performance-tweaks.git
+powersave-tweaks:https://gitlab.com/garuda-linux/themes-and-settings/settings/powersave-tweaks.git
+
+# Fixed version applications
 garuda-assistant:https://gitlab.com/garuda-linux/applications/garuda-assistant.git 
 garuda-boot-options:https://gitlab.com/garuda-linux/applications/garuda-boot-options.git
 garuda-boot-repair:https://gitlab.com/garuda-linux/applications/garuda-boot-repair.git
@@ -76,6 +72,15 @@ garuda-gamer:https://gitlab.com/garuda-linux/applications/garuda-gamer.git
 garuda-network-assistant:https://gitlab.com/garuda-linux/applications/garuda-network-assistant.git
 garuda-setup-assistant:https://gitlab.com/garuda-linux/applications/garuda-setup-assistant.git
 garuda-welcome:https://gitlab.com/garuda-linux/applications/garuda-welcome.git
+
+# Building off git applications
+garuda-assistant-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-assistant-git.git
+garuda-boot-options-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-boot-options-git.git
+garuda-boot-repair-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-boot-repair-git.git
+garuda-gamer-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-gamer-git.git
+garuda-network-assistant-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-network-assistant-git.git
+garuda-tools-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-tools-git.git
+garuda-welcome-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-welcome-git.git
 
 # BSPWM
 lightdm-settings
