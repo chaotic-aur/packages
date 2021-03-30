@@ -32,6 +32,7 @@ kactivities-git
 kactivities-stats-git
 kactivitymanagerd-git
 karchive-git
+kate-git
 kauth-git
 kbookmarks-git
 kcalendarcore-git
@@ -54,6 +55,7 @@ kdeconnect-git:https://gitlab.com/chaotic-aur-pkgbuilds/kdeconnect-git.git
 kdecoration-git
 kded-git
 kdelibs4support-git
+kdenlive-git
 kdepim-addons-git
 kdepim-apps-libs-git
 kdeplasma-addons-git
