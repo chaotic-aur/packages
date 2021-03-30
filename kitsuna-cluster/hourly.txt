@@ -2,8 +2,6 @@
 # Pedro
 chaotic-keyring
 chaotic-mirrorlist
-chaotic-nvidia-dev-tkg:https://github.com/chaotic-aur/nvidia-tkg.git
-chaotic-nvidia-tkg:https://github.com/chaotic-aur/nvidia-tkg.git
 
 android-sdk-platform-tools
 android-studio-launcher
