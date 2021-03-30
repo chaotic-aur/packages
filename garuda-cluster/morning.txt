@@ -118,6 +118,7 @@ poki-launcher
 sweet-kde-git
 sweet-theme-dark
 sweet-theme-git
+thunderbird-appmenu
 xcursor-sweet
 beautyline
 resvg
