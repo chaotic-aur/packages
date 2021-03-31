@@ -1,0 +1,1 @@
+linux-xanmod-haswell-git:https://gitlab.com/chaotic-aur-pkgbuilds/linux-xanmod-haswell-git.git

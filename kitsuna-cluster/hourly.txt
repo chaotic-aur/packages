@@ -1090,7 +1090,7 @@ emacs-git
 gnome-shell-extension-material-shell-git
 
 # Issue 464
-ttf-fonts-google-git
+ttf-google-fonts-git 
 
 # Issue 465
 imhex
