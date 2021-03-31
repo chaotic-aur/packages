@@ -39,8 +39,8 @@ librewolf
 --
 
 # Kernels
-linux-xanmod
-linux-xanmod-anbox
+#linux-xanmod
+#linux-xanmod-anbox
 
 
 ## User requests
