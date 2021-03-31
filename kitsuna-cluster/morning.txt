@@ -12,7 +12,6 @@ ungoogled-chromium
 
 # Daily builds are enough
 code-git
-linux-xanmod-git
 systemd-git
 
 # Users requests
