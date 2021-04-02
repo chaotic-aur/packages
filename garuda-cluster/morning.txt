@@ -221,6 +221,7 @@ obmenu-generator
 qt5-styleplugins
 
 # Sway
+nordic-kde-git
 nordic-darker-theme
 wob
 
