@@ -220,6 +220,10 @@ obkey
 obmenu-generator
 qt5-styleplugins
 
+# Sway
+nordic-darker-theme
+wob
+
 # Wayfire
 greetd
 greetd-gtkgreet
