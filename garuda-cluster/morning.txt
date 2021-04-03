@@ -58,6 +58,7 @@ garuda-mate-settings:https://gitlab.com/garuda-linux/themes-and-settings/setting
 garuda-qtile-settings:https://gitlab.com/garuda-linux/themes-and-settings/settings/garuda-qtile-settings.git
 garuda-recbox-settings:https://gitlab.com/garuda-linux/themes-and-settings/settings/garuda-recbox-settings.git
 garuda-starship-prompt:https://gitlab.com/garuda-linux/themes-and-settings/settings/garuda-starship-prompt.git
+garuda-sway-settings:https://gitlab.com/garuda-linux/themes-and-settings/settings/garuda-sway-settings.git
 garuda-wayfire-settings:https://gitlab.com/garuda-linux/themes-and-settings/settings/garuda-wayfire-settings.git
 garuda-xfce-settings:https://gitlab.com/garuda-linux/themes-and-settings/settings/garuda-xfce-settings.git
 garuda-zsh-config:https://gitlab.com/garuda-linux/themes-and-settings/settings/garuda-zsh-config.git
