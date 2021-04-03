@@ -186,6 +186,10 @@ wingpanel-indicator-sound-git
 
 # kprkpr
 
+# Nico
+mullvad-vpn-beta
+vscodium-git
+
 # SGS
 github-desktop-bin
 libcgroup

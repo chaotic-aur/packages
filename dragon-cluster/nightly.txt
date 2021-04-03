@@ -1,14 +1,13 @@
 ## REBOOT NEEDED
 # Long compile times
 linux-xanmod-haswell-git:https://gitlab.com/chaotic-aur-pkgbuilds/linux-xanmod-haswell-git.git
-mullvad-vpn-beta
 qemu-git
-vscodium-git
 
 # Short compile times
 plasma5-applets-window-appmenu-git
 plasma5-applets-window-buttons-git
 sddm-git
+systemd-git
 virt-manager-git
 wayland-git
 wireplumber-git

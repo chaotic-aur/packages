@@ -12,7 +12,6 @@ ungoogled-chromium
 
 # Daily builds are enough
 code-git
-systemd-git
 
 # Users requests
 wine-git # Issue 315
