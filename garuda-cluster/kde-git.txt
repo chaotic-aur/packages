@@ -32,7 +32,6 @@ kactivities-git
 kactivities-stats-git
 kactivitymanagerd-git
 karchive-git
-kate-git
 kauth-git
 kbookmarks-git
 kcalendarcore-git
