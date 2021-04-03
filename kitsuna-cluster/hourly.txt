@@ -767,8 +767,6 @@ xow-git
 # Issue 332
 cantata-git
 eqonomize-git
-kcolorpicker-git # (dep ksnip-git)
-kimageannotator-git # (dep ksnip-git)
 ksnip-git
 libquotient-git # (dep neochat-git)
 lightly-git
