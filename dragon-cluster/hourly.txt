@@ -1,0 +1,9 @@
+## ALWAYS UPDATED
+# Some stuff
+dolphin-git
+dr460nized-git:https://gitlab.com/chaotic-aur-pkgbuilds/dr460nized-git.git
+kde-git:https://gitlab.com/chaotic-aur-pkgbuilds/kde-git.git
+konsole-git
+starship-git
+sudo-git:https://gitlab.com/chaotic-aur-pkgbuilds/sudo-git
+whoogle-git

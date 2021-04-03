@@ -1,0 +1,53 @@
+## NO REBOOT
+# Some stuff
+arch-audit-git
+babl-git # (dep gimp-git)
+birdtray-git
+bleachbit-git
+bottom-git
+brave-nightly-bin
+c-lolcat
+clamav-git
+clamav-unofficial-sigs
+coreutils-hybrid
+electronmail-bin
+elisa-git
+exa-git
+fastfetch-git
+ffmpeg-git
+firejail-git
+firetools-git
+fish-autopair-git
+fish-git
+gegl-git # (dep gimp-git)
+gimp-git
+git-git
+gst-plugins-base-git
+gstreamer-git
+guiscrcpy-git
+imagemagick-git
+inxi-git
+kvantum-qt5-git
+libsixel # (dep ffmpeg-git)
+libtremor-git # (dep ffmpeg-git)
+lutris-git
+meld-git
+micro-git
+mpv-full-git
+nextcloud-client-git
+obs-studio-git
+pacman-git
+pamac-aur-git
+paru6alfa-git:https://gitlab.com/chaotic-aur-pkgbuilds/paru6alfa-git.git
+pulseeffects-git
+python-magic-ahupp # (dep guiscrcpy-git)
+python-pynput # (dep guiscrcpy-git)
+python-setuptools-lint # (dep guiscrcpy-git)
+qbittorrent-enhanced-git
+ripgrep-git
+smplayer-svn
+spirv-cross # (dep ffmpeg-git)
+stress-ng
+tor-git
+wine-lol
+wine-lol-glibc
