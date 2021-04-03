@@ -6,5 +6,5 @@ kate-git
 kde-git:https://gitlab.com/chaotic-aur-pkgbuilds/kde-git.git
 konsole-git
 starship-git
-sudo-git:https://gitlab.com/chaotic-aur-pkgbuilds/sudo-git
+sudo-git:https://gitlab.com/chaotic-aur-pkgbuilds/sudo-git.git
 whoogle-git
