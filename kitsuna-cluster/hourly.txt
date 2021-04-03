@@ -242,6 +242,7 @@ sddm-git
 smplayer-svn
 spirv-cross # (dep ffmpeg-git)
 starship-git
+stress-ng
 sudo-git:https://gitlab.com/chaotic-aur-pkgbuilds/sudo-git
 tor-git
 virt-manager-git
