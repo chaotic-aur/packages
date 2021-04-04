@@ -229,6 +229,7 @@ wob
 # Wayfire
 greetd
 greetd-gtkgreet
+greetd-qtgreet
 orchis-kde-theme-git
 kvantum-theme-orchis-git
 orchis-theme-git
