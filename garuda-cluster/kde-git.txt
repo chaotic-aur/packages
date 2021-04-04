@@ -50,7 +50,6 @@ kdav-git
 kdbusaddons-git
 kde-cli-tools-git
 kdeclarative-git
-kdeconnect-git:https://gitlab.com/chaotic-aur-pkgbuilds/kdeconnect-git.git
 kdecoration-git
 kded-git
 kdelibs4support-git
@@ -160,13 +159,8 @@ okular-git
 partitionmanager-git:https://gitlab.com/chaotic-aur-pkgbuilds/partitionmanager-git.git
 pimcommon-git
 plasma-browser-integration-git
-plasma-desktop-git
-plasma-framework-git:https://gitlab.com/chaotic-aur-pkgbuilds/plasma-framework-git.git
 plasma-integration-git
-plasma-nm-git:https://gitlab.com/chaotic-aur-pkgbuilds/plasma-nm-git.git
-plasma-pa-git:https://gitlab.com/chaotic-aur-pkgbuilds/plasma-pa-git.git
 plasma-sdk-git:https://gitlab.com/chaotic-aur-pkgbuilds/plasma-sdk-git.git
-plasma-workspace-git
 polkit-kde-agent-git
 poppler-git
 powerdevil-git
@@ -177,7 +171,6 @@ qqc2-desktop-style-git:https://gitlab.com/chaotic-aur-pkgbuilds/qqc2-desktop-sty
 signon-kwallet-extension-git 
 solid-git:https://gitlab.com/chaotic-aur-pkgbuilds/solid-git.git
 sonnet-git:https://gitlab.com/chaotic-aur-pkgbuilds/sonnet-git.git
-spectacle-git
 syndication-git
 syntax-highlighting-git
 systemsettings-git

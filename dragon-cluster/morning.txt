@@ -5,7 +5,6 @@ babl-git # (dep gimp-git)
 birdtray-git
 bleachbit-git
 bottom-git
-brave-nightly-bin
 c-lolcat
 clamav-git
 clamav-unofficial-sigs
@@ -51,3 +50,9 @@ stress-ng
 tor-git
 wine-lol
 wine-lol-glibc
+
+
+## GARUDA
+# Fonts
+lohit-fonts
+fonts-tlwg
