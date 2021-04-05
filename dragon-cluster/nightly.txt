@@ -1,7 +1,9 @@
 ## REBOOT NEEDED
 # Long compile times
 linux-xanmod-haswell-git:https://gitlab.com/chaotic-aur-pkgbuilds/linux-xanmod-haswell-git.git
+npm6 # (dep signal-desktop-beta)
 qemu-git
+signal-desktop-beta
 
 # Short compile times
 plasma5-applets-window-appmenu-git
