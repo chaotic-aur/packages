@@ -829,7 +829,7 @@ kwin-unredirect
 spot-client
 
 # Issue 448
-ytfzf-git
+ytfzf
 
 # Issue 449
 gdm-prime
