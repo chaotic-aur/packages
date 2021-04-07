@@ -7,6 +7,7 @@ fastfetch-git
 kate-git
 kde-git:https://gitlab.com/chaotic-aur-pkgbuilds/kde-git.git
 konsole-git
+netdata-git
 paleofetch-git
 starship-git
 sudo-git:https://gitlab.com/chaotic-aur-pkgbuilds/sudo-git.git
