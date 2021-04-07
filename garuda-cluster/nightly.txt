@@ -51,7 +51,6 @@ mhwd-garuda-git
 mhwd-nvidia
 mhwd-nvidia-390xx
 mkinitcpio-openswap
-nohang-git
 nohang
 nvidia-390xx-dkms
 nvidia-390xx-settings
@@ -101,7 +100,6 @@ onlyoffice-bin
 openh264
 spotify-snap
 system-config-samba
-torbrowser-launcher-git
 ttf-wps-fonts
 virtualbox-ext-oracle
 wacom-utility
@@ -149,13 +147,6 @@ python-injector
 # mugshot
 python-pyparted
 
-
-## TESTING
-ananicy-git
-auto-cpufreq-git
-garuda-dr460nized-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-dr460nized.git
-memavaild-git
-prelockd-git
 
 
 ## CHAOTIC

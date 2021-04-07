@@ -559,7 +559,6 @@ ksnip-git
 libquotient-git # (dep neochat-git)
 lightly-git
 lightly-qt
-plasma-systemmonitor-git
 pyradio-git
 strawberry-full-git
 strawberry-git
@@ -699,12 +698,9 @@ linux-firmware-git
 furiusisomount
 
 # Issue 388
-disman-git
 disman-kwinft # (dep)
 kdisplay-kwinft # (dep)
 kwinft
-kwinft-git:https://gitlab.com/chaotic-aur-pkgbuilds/kwinft-git.git
-wrapland-git
 wrapland-kwinft # (dep)
 
 # Issue 389
