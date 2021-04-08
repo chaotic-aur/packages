@@ -12,7 +12,6 @@ paleofetch-git
 starship-git
 sudo-git:https://gitlab.com/chaotic-aur-pkgbuilds/sudo-git.git
 torbrowser-launcher-git
-whoogle-git
 
 # moved from Garuda
 ananicy-git

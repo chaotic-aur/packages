@@ -18,6 +18,8 @@ firejail-git
 firetools-git
 fish-autopair-git
 fish-git
+fluffychat
+flutter # (dep fluffychat)
 gegl-git # (dep gimp-git)
 gimp-git
 git-git
