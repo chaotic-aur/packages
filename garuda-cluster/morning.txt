@@ -123,6 +123,7 @@ thunderbird-appmenu
 xcursor-sweet
 beautyline
 resvg
+whoogle-git
 
 # Dr460nized-blackarch
 8188eu-aircrack-dkms-git
