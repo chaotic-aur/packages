@@ -50,6 +50,7 @@ smplayer-svn
 spirv-cross # (dep ffmpeg-git)
 stress-ng
 tor-git
+whoogle
 wine-lol
 wine-lol-glibc
 
