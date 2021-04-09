@@ -71,6 +71,7 @@ elm-language-server
 firefox-nightly
 glow
 haskell-language-server-bin
+j9-git
 jetbrains-toolbox
 languageclient-neovim
 manim-community
