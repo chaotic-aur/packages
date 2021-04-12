@@ -104,7 +104,7 @@ kde-service-menu-reimage
 kde-servicemenus-encfs
 kde-servicemenus-pdf
 kde-servicemenus-rootactions
-kmozillahelper
+kfiredragonhelper
 kvantum-theme-sweet-git
 kwin-effects-sliding-notifications
 kwin-lowlatency
