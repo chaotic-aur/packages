@@ -1,0 +1,2 @@
+# Ongoing development
+garuda-sway-settings-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-sway-settings-git.git
