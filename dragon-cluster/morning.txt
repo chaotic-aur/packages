@@ -28,6 +28,7 @@ gstreamer-git
 guiscrcpy-git
 imagemagick-git
 inxi-git
+kotatogram-dev-git
 kvantum-qt5-git
 libsixel # (dep ffmpeg-git)
 libtremor-git # (dep ffmpeg-git)
