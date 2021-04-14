@@ -46,6 +46,7 @@ google-earth-pro
 google-meet-desktop
 guiscrcpy
 jellyfin
+libadwaita # (dep shortwave)
 librewolf-bin
 mailspring
 mattermost-desktop
