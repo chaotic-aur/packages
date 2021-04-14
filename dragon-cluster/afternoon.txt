@@ -86,6 +86,7 @@ kinfocenter-git
 kinit-git
 kio-extras-git
 kio-git
+kirigami2-git
 kitemmodels-git
 kitemviews-git
 kitinerary-git
