@@ -42,6 +42,8 @@ ruby-coderay # (dep logstalgia)
 ruby-method_source # (dep logstalgia)
 ruby-pry # (dep logstalgia)
 sdl2_compat12-git
+split2flac-git
+unflac
 wev
 
 # Unreal-engine
