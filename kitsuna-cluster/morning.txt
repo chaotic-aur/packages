@@ -32,7 +32,7 @@ servo-git
 --
 
 # Too heavy for Garuda cluster
-firedragon
+firedragon-hg:https://gitlab.com/chaotic-aur-pkgbuilds/firedragon-hg.git
 librewolf
 --
 
