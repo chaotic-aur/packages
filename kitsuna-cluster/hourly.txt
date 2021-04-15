@@ -307,8 +307,6 @@ python-mutatormath
 python-pyclipper
 python-ufonormalizer
 python-ufoprocessor
-wine-gecko-bin
-wine-mono-bin
 
 # Dependenies for darling-git
 libavresample
