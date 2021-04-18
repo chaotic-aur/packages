@@ -177,8 +177,3 @@ syndication-git
 syntax-highlighting-git
 systemsettings-git
 threadweaver-git:https://gitlab.com/chaotic-aur-pkgbuilds/threadweaver-git.git
-
-# Kwinft
-disman-git
-kwinft-git:https://gitlab.com/chaotic-aur-pkgbuilds/kwinft-git.git
-wrapland-git

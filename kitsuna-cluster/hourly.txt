@@ -645,7 +645,7 @@ rocketchat-desktop
 
 # Issue 372
 mimalloc (dep nginx-zest-git)
-nginx-zest-git
+zestginx
 
 # Issue 345
 systemd-cron-next-git

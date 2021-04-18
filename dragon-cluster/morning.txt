@@ -61,3 +61,9 @@ wine-lol-glibc
 # Fonts
 lohit-fonts
 fonts-tlwg
+
+
+## CHAOTIC
+# Issue 560
+ion-git
+
