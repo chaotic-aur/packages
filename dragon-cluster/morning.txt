@@ -72,3 +72,9 @@ grimshot
 
 # Issue 508
 llvm-proton-bin
+
+# Issue 562
+lollypop-next-git
+
+# Issue 557 
+telegrand-git
