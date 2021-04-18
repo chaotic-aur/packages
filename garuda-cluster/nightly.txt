@@ -63,6 +63,7 @@ optimus-manager-qt-git
 pace
 pacman-pkgfile-hook
 pacman-sync
+pacui:https://github.com/excalibur1234/pacui.git
 pamac-aur
 performance-tweaks
 plymouth-git
