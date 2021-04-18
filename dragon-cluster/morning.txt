@@ -67,3 +67,8 @@ fonts-tlwg
 # Issue 560
 ion-git
 
+# Issue 521
+grimshot
+
+# Issue 508
+llvm-proton-bin
