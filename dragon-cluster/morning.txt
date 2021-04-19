@@ -51,6 +51,7 @@ python-setuptools-lint # (dep guiscrcpy-git)
 qbittorrent-enhanced-git
 qtemu-git
 ripgrep-git
+rusnapshot-git
 smplayer-svn
 spirv-cross # (dep ffmpeg-git)
 stress-ng
