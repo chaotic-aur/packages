@@ -1,5 +1,6 @@
 ## NO REBOOT
 # Some stuff
+alpm_octopi_utils-dev # (deo octopi-dev)
 arch-audit-git
 babl-git # (dep gimp-git)
 birdtray-git
@@ -39,6 +40,7 @@ micro-git
 mpv-full-git
 nextcloud-client-git
 obs-studio-git
+octopi-dev
 pacman-git
 pamac-aur-git
 paru6alfa-git:https://gitlab.com/chaotic-aur-pkgbuilds/paru6alfa-git.git
