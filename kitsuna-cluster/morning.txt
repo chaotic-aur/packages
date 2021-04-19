@@ -5,7 +5,6 @@ lib32-llvm-git:https://github.com/chaotic-aur/lib32-llvm-git.git
 llvm-tkg-git:https://github.com/Frogging-Family/llvm-git.git
 
 # Moved because too heavy for Garuda
-firefox-appmenu
 ungoogled-chromium
 
 # Daily builds are enough
