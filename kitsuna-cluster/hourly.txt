@@ -571,9 +571,6 @@ wps-office-mui-zh-cn
 # Issue 350
 softmaker-office-2021-bin
 
-# Issue 351
-newsflash
-
 # Issue 352
 azure-functions-core-tools-bin
 
@@ -1014,5 +1011,3 @@ lightcord-bin
 
 # Issue 504
 gfeeds-git
-python-listparser
-python-readability-lxml
