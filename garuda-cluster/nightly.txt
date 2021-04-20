@@ -71,7 +71,6 @@ preload
 prelockd
 pulseaudio-modules-bt
 qwikaccess-git
-rebuild-detector
 systemd-guest-user
 tela-circle-icon-theme-git
 timeshift
