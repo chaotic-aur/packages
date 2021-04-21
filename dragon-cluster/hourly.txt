@@ -1,14 +1,12 @@
 ## ALWAYS UPDATED
 # Some stuff
-brave-nightly-bin
+brave-nightly-bin:https://gitlab.com/chaotic-aur-pkgbuilds/brave-browser-nightly.git
 dolphin-git
 dr460nized-git:https://gitlab.com/chaotic-aur-pkgbuilds/dr460nized-git.git
 fastfetch-git
 kate-git
 kde-git:https://gitlab.com/chaotic-aur-pkgbuilds/kde-git.git
 konsole-git
-netdata-git
-paleofetch-git
 starship-git
 sudo-git:https://gitlab.com/chaotic-aur-pkgbuilds/sudo-git.git
 

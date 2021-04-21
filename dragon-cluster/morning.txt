@@ -38,10 +38,12 @@ lutris-git
 meld-git
 micro-git
 mpv-full-git
+netdata-git
 nextcloud-client-git
 obs-studio-git
 octopi-dev
 pacman-git
+paleofetch-git
 pamac-aur-git
 paru6alfa-git:https://gitlab.com/chaotic-aur-pkgbuilds/paru6alfa-git.git
 pulseeffects-git
