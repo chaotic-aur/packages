@@ -17,6 +17,7 @@ grub-theme-garuda-custom:https://gitlab.com/garuda-linux/packages/stable-pkgbuil
 grub-theme-garuda:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/grub-theme-garuda.git
 os-prober-garuda:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/os-prober-garuda.git
 paleofetch-garuda:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/paleofetch-garuda.git
+plymouth-theme-dr460nized:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/plymouth-theme-dr460nized.git
 plymouth-theme-garuda-purple:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/plymouth-theme-garuda-purple.git
 plymouth-theme-garuda:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/plymouth-theme-garuda.git
 reflector-simple:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/reflector-simple.git
