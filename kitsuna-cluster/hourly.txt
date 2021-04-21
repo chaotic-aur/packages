@@ -429,6 +429,12 @@ yaup-git
 zfs-dkms
 zfs-utils
 
+# Raytracing (Pedro)
+raytracinginvulkan-git
+imgui
+tinyobjloader
+stb
+
 
 ## Users requests
 # Issue 328
@@ -1011,3 +1017,6 @@ lightcord-bin
 
 # Issue 504
 gfeeds-git
+
+# IcarNS
+spot-client-git
