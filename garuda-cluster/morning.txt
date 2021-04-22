@@ -179,6 +179,7 @@ skippy-xd-git
 fancontrol-gui-git
 fancontrol-kcm-git
 firefox-extension-xdm-browser-monitor
+mcmojave-kde-theme-git
 mystiq
 plasma5-applets-eventcalendar
 plasma5-applets-kpplemenu-git
@@ -194,6 +195,7 @@ plasma5-wallpapers-dynamic
 pocketsphinx
 pulseaudio-ctl
 samba-mounter-git
+sierrabreeze-kwin-decoration-git
 sphinxbase
 subtitlecomposer
 whitesur-cursor-theme-git
