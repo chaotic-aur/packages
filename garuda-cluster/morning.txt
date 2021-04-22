@@ -100,7 +100,7 @@ xviewer-plugins
 
 # Dr460nized
 alacritty-ligatures-git
-firedragon:https://gitlab.com/chaotic-aur-pkgbuilds/firedragon.git
+firedragon
 kde-service-menu-reimage
 kde-servicemenus-encfs
 kde-servicemenus-pdf
