@@ -56,11 +56,13 @@ ripgrep-git
 rusnapshot-git
 smplayer-svn
 spirv-cross # (dep ffmpeg-git)
+starsector
 stress-ng
 tor-git
 whoogle
 wine-lol
 wine-lol-glibc
+zellij-git
 
 
 ## Daily pls
@@ -89,3 +91,117 @@ lollypop-next-git
 
 # Issue 557 
 telegrand-git
+
+# Issue 545
+flat-remix-gnome
+
+# Issue 546
+mindustry
+
+# Issue 547
+protonmail-bridge
+
+# Issue 552
+nautilus-folder-icons
+
+# Issue 536
+android-platform
+
+# Issue 527
+bash-complete-alias
+
+# Issue 541
+nginx-mainline-mod-auth_pam
+nginx-mainline-mod-brotli
+nginx-mainline-mod-dav-ext
+nginx-mainline-mod-echo
+nginx-mainline-mod-fancyindex
+nginx-mainline-mod-headers-more
+nginx-mainline-mod-lua
+nginx-mainline-mod-ndk
+nginx-mainline-mod-njs
+
+# Issue 513
+protonvpn-cli-ng
+
+# Issue 511
+swaylock-effects
+
+# Issue 524
+bibata-cursor-theme
+bibata-cursor-translucent
+bibata-extra-cursor-theme
+bibata-rainbow-cursor-theme
+python-clickgen # (dep bibata-cursors)
+
+# Issue 551
+tracktion-waveform
+
+# Issue 532
+libbaseencode
+libcotp
+otpclient
+
+# Issue 525
+booster-git
+
+# Issue 520
+conky-git
+
+# Issue 510
+vorta
+
+# Issue 555
+leftwm
+leftwm-git
+leftwm-theme-git
+
+# Issue 553
+diodon
+
+# Issue 538
+godot-beta-bin
+#godot-git (long compile time)
+godot-mono-bin
+
+# Issue 554
+python-elgato-streamdeck # (dep streamdeck-ui-git)
+streamdeck-ui-git
+
+# Issue 539
+python-openrgb-git
+
+# Issue 519
+unity-editor-lts
+unityhub
+
+# Issue 529
+libadwaita-git
+
+# Issue 514
+soundux
+
+# Issue 509
+zlib-ng-git
+
+# Issue 497
+mu-editor
+pigpio # (dep mu-editor)
+python-asttokens # (dep thonny)
+python-colorzero # (dep mu-editor)
+python-gpiozero # (dep mu-editor)
+python-guizero # (dep mu-editor)
+python-nudatus # (dep mu-editor)
+python-pgzero # (dep mu-editor)
+thonny
+thonny-git
+
+# Issue 559
+gdu-bin
+
+# Issue 563
+audiotube-git
+python-ytmusicapi # (dep audiotube-git)
+
+# Issue 512
+urbanterror
