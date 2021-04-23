@@ -3,6 +3,7 @@
 alacritty-git
 alpm_octopi_utils-dev # (deo octopi-dev)
 arch-audit-git
+asp-git
 babl-git # (dep gimp-git)
 birdtray-git
 bleachbit-git
