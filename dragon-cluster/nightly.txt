@@ -1,5 +1,6 @@
 ## REBOOT NEEDED
 # Long compile times
+linux-xanmod-anbox
 linux-xanmod-cacule
 qemu-git
 signal-desktop-beta
@@ -47,7 +48,6 @@ google-meet-desktop
 guiscrcpy
 jellyfin
 libadwaita # (dep shortwave)
-librewolf-bin
 mailspring
 mattermost-desktop
 mellowplayer
@@ -107,6 +107,8 @@ webapp-manager-git
 youtubedl-gui-beta
 
 # Theming & Customization
+autotiling
+azote
 candy-icons-git
 flat-remix
 flat-remix-gtk
@@ -129,8 +131,6 @@ matcha-gtk-theme-git
 mcmojave-circle-icon-theme-git
 mcmojave-kde-theme-git
 mojave-gtk-theme-git
-autotiling
-azote
 nwg-launchers
 nwg-panel
 plymouth
