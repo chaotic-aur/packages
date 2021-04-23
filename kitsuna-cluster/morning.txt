@@ -11,7 +11,7 @@ ungoogled-chromium
 code-git
 
 # Users requests
-wine-git # Issue 315
+#wine-git # Issue 315 (bad)
 scummvm-git # Issue 316
 
 
