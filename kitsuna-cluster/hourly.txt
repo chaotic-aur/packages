@@ -374,6 +374,9 @@ android-studio
 android-emulator
 android-sdk
 
+#for wlroots-git
+seatd
+
 # OBS Wayland (Paulo)
 wlrobs-hg
 cef-minimal
