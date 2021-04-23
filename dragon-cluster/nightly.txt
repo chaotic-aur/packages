@@ -12,6 +12,7 @@ sddm-git
 systemd-git
 virt-manager-git
 wayland-git
+wayland-protocols-git
 wireplumber-git
 xf86-input-libinput-git
 xorg-server-git

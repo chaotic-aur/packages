@@ -164,6 +164,7 @@ plasma-browser-integration-git
 plasma-integration-git
 plasma-sdk-git:https://gitlab.com/chaotic-aur-pkgbuilds/plasma-sdk-git.git
 plasma-systemmonitor-git
+plasma-wayland-protocols-git
 polkit-kde-agent-git
 poppler-git
 powerdevil-git
