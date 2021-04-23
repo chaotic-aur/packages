@@ -1,5 +1,6 @@
 ## NO REBOOT
 # Some stuff
+alacritty-git
 alpm_octopi_utils-dev # (deo octopi-dev)
 arch-audit-git
 babl-git # (dep gimp-git)

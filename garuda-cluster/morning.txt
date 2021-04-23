@@ -99,7 +99,6 @@ nemo-pdf-tools-git
 xviewer-plugins
 
 # Dr460nized
-alacritty-ligatures-git
 firedragon
 kde-service-menu-reimage
 kde-servicemenus-encfs
