@@ -207,3 +207,6 @@ python-ytmusicapi # (dep audiotube-git)
 
 # Issue 512
 urbanterror
+
+# Issue 564
+neovide-git
