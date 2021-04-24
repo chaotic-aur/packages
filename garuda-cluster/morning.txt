@@ -102,6 +102,7 @@ xviewer-plugins
 firedragon
 kde-service-menu-reimage
 kde-servicemenus-encfs
+kde-servicemenus-komparemenu
 kde-servicemenus-pdf
 kde-servicemenus-rootactions
 kfiredragonhelper
