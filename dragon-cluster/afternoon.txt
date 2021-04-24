@@ -111,6 +111,7 @@ kpimtextedit-git
 kpimtextedit-git
 kpkpass-git
 kplotting-git
+kompare-git:https://gitlab.com/chaotic-aur-pkgbuilds/kompare-git.git
 kpmcore-git:https://gitlab.com/chaotic-aur-pkgbuilds/kpmcore-git.git
 kpty-git
 kquickcharts-git
@@ -145,6 +146,7 @@ libakonadi-git
 libgravatar-git
 libkdepim-git
 libkleo-git
+libkomparediff2-git://gitlab.com/chaotic-aur-pkgbuilds/libkomparediff2-git.git
 libkscreen-git
 libksieve-git
 libksysguard-git
