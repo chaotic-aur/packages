@@ -131,6 +131,7 @@ libclc-git # (dep mesa-git)
 libselinux (dep glib2-selinux)
 libsepol  (dep glib2-selinux)
 mesa-git:https://github.com/chaotic-aur/mesa-git.git
+lib32-mesa-git:https://github.com/chaotic-aur/lib32-mesa-git.git
 onivim2-git
 pantheon-polkit-agent-git
 properties-cpp
