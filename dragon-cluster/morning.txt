@@ -70,11 +70,6 @@ wine-lol-glibc
 zellij-git
 
 
-## Daily pls
-firedragon-hg
-librewolf-nightly
-
-
 ## GARUDA
 # Fonts
 lohit-fonts

@@ -1,0 +1,2 @@
+firedragon-hg
+librewolf-nightly
