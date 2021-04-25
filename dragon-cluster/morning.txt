@@ -213,3 +213,6 @@ urbanterror
 
 # Issue 564
 neovide-git
+
+# Issue 566
+mediainfo-gui-qt
