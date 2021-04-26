@@ -1,4 +1,3 @@
 # Some stuff too heavy for dragon cluster
 firedragon-hg
 librewolf-nightly
-virtualbox-svn

@@ -212,3 +212,6 @@ neovide-git
 
 # Issue 566
 mediainfo-gui-qt
+
+# Issue 567
+telephant-git
