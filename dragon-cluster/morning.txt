@@ -147,9 +147,6 @@ otpclient
 # Issue 525
 booster-git
 
-# Issue 520
-conky-git
-
 # Issue 510
 vorta
 
