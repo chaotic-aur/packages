@@ -1,9 +1,9 @@
 ## ALWAYS UPDATED
 # Some stuff
+ananicy-cpp-git
 brave-nightly-bin:https://gitlab.com/chaotic-aur-pkgbuilds/brave-browser-nightly.git
 dolphin-git
 dr460nized-git:https://gitlab.com/chaotic-aur-pkgbuilds/dr460nized-git.git
-fastfetch-git
 kate-git
 kde-git:https://gitlab.com/chaotic-aur-pkgbuilds/kde-git.git
 konsole-git
