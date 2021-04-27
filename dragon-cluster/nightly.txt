@@ -96,14 +96,12 @@ modprobed-db
 multibootusb
 neard
 networkmanager-dmenu-git
-nitroshare
 noisetorch
 ofono
 phonesim
 qomui
 qomui-git
 soundwire
-warpinator
 webapp-manager-git
 youtubedl-gui-beta
 
