@@ -1,7 +1,7 @@
 ## REBOOT NEEDED
 # Long compile times
+linux-cacule
 linux-xanmod-anbox
-linux-xanmod-cacule
 qemu-git
 signal-desktop-beta
 
