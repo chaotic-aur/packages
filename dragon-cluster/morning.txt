@@ -17,7 +17,6 @@ electronmail-bin
 elisa-git
 exa-git
 fastfetch-git
-ffmpeg-git
 firejail-git
 firejail-noapparmor-git
 firetools-git
@@ -42,7 +41,6 @@ libtremor-git # (dep ffmpeg-git)
 lutris-git
 meld-git
 micro-git
-mpv-full-git
 netdata-git
 nextcloud-client-git
 obs-studio-git
