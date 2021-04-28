@@ -456,7 +456,7 @@ auracle-git
 compiz-core
 emerald-gtk3
 meteo-gtk
-palemoon-bin
+palemoon-gtk3-bin
 pamac-classic
 pod2man # (dep auracle-git)
 xfce4-panel-compiz
