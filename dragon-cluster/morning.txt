@@ -68,6 +68,7 @@ whoogle
 wine-lol
 wine-lol-glibc
 zellij-git
+zram-generator-git
 
 
 ## GARUDA
