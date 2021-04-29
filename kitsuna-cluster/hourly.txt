@@ -525,7 +525,7 @@ trizen
 azure-cli
 
 # Issue 330
-1password-bin
+1password
 badwolf
 getmail6
 onedrive-abraunegg
