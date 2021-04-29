@@ -223,3 +223,6 @@ meshlab-git
 mpir # (dep meshlab)
 zeal
 zeal-git  
+
+# Issue 576
+freerdp-git
