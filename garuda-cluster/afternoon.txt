@@ -3,7 +3,6 @@ firedragon-hg
 librewolf-nightly
 
 # GCC11
-binutils-git
 gcc-11
 glibc-git
 linux-api-headers-git
