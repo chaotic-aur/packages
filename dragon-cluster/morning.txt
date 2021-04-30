@@ -227,3 +227,6 @@ zeal-git
 
 # Issue 576
 freerdp-git
+
+# Issue 577
+remmina-git
