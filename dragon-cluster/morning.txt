@@ -240,3 +240,6 @@ freerdp-git
 
 # Issue 577
 remmina-git
+
+# Issue 579
+youtube-bin
