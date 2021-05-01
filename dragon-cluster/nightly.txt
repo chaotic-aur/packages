@@ -9,7 +9,7 @@ signal-desktop-beta
 plasma5-applets-window-appmenu-git
 plasma5-applets-window-buttons-git
 sddm-git
-systemd-git
+systemd-git:https://gitlab.com/chaotic-aur-pkgbuilds/systemd-git.git
 virt-manager-git
 wayland-git
 wayland-protocols-git
