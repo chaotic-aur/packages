@@ -3,6 +3,7 @@ firedragon-hg
 librewolf-nightly
 
 # GCC11
+binutils-git:https://gitlab.com/chaotic-aur-pkgbuilds/binutils-git.git
 gcc-11
 glibc-git
 linux-api-headers-git

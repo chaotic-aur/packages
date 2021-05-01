@@ -33,6 +33,8 @@ gst-plugins-base-git
 gstreamer-git
 guiscrcpy-git
 imagemagick-git
+intel-ucode-git:https://gitlab.com/chaotic-aur-pkgbuilds/intel-ucode-git.git
+intel-undervolt-git:https://gitlab.com/chaotic-aur-pkgbuilds/intel-undervolt-git.git
 inxi-git
 kotatogram-dev-git
 kvantum-qt5-git
@@ -40,9 +42,13 @@ leagueoflegends-git
 libsixel # (dep ffmpeg-git)
 libtorrent-rasterbar-1_2-git # (dep qbittorrent-enhanced-git)
 libtremor-git # (dep ffmpeg-git)
+libva-intel-driver-next-git:https://gitlab.com/chaotic-aur-pkgbuilds/libva-intel-driver-next-git.git
+libva-next-git:https://gitlab.com/chaotic-aur-pkgbuilds/libva-next-git.git
 lutris-git
 meld-git
 micro-git
+mkinitcpio-git:https://gitlab.com/chaotic-aur-pkgbuilds/mkinitpcio-git.git
+modprobed-db-git:https://gitlab.com/chaotic-aur-pkgbuilds/modprobed-db-git.git
 netdata-git
 nextcloud-client-git
 obs-studio-git
