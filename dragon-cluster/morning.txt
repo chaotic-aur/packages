@@ -12,11 +12,13 @@ bottom-git
 c-lolcat
 clamav-git
 clamav-unofficial-sigs
+cmake-git
 coreutils-hybrid
 electronmail-bin
 elisa-git
 exa-git
 fastfetch-git
+ffmpeg-git
 firejail-git
 firejail-noapparmor-git
 firetools-git
