@@ -44,6 +44,7 @@ libtorrent-rasterbar-1_2-git # (dep qbittorrent-enhanced-git)
 libtremor-git # (dep ffmpeg-git)
 libva-intel-driver-next-git:https://gitlab.com/chaotic-aur-pkgbuilds/libva-intel-driver-next-git.git
 libva-next-git:https://gitlab.com/chaotic-aur-pkgbuilds/libva-next-git.git
+lightcord-git
 lutris-git
 meld-git
 micro-git
