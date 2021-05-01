@@ -993,7 +993,7 @@ seafile-client
 xfce4-panel-profiles
 
 # Issue 493
-spotify-snap
+spotify
 
 # Issue 494
 python-deezer-py
