@@ -64,6 +64,7 @@ spirv-cross # (dep ffmpeg-git)
 starsector
 stress-ng
 tor-git
+ufw-git
 whoogle
 wine-lol
 wine-lol-glibc
