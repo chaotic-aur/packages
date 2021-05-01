@@ -72,6 +72,7 @@ wine-lol
 wine-lol-glibc
 zellij-git
 zram-generator-git
+zstd-git:https://gitlab.com/chaotic-aur-pkgbuilds/zstd-git.git
 
 
 ## GARUDA
