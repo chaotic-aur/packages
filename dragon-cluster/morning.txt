@@ -245,3 +245,6 @@ remmina-git
 
 # Issue 579
 youtube-bin
+
+# Issue 581
+python-qiskit
