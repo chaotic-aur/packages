@@ -21,6 +21,7 @@ fastfetch-git
 ffmpeg-git
 firejail-git
 firejail-noapparmor-git
+firejail-pacman-hook
 firetools-git
 fish-autopair-git
 fish-git
