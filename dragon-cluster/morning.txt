@@ -266,3 +266,12 @@ python-qiskit-terra # (dep python-qiskit)
 python-retworkx # (dep python-qiskit)
 python-yfinance # (dep python-qiskit)
 xcfun-git # (dep python-qiskit)
+
+# Issue 584
+geekbench
+hfsprogs
+megatools
+phoronix-test-suite
+radeon-profile-git
+trousers # (dep vboot-utils)
+vboot-utils
