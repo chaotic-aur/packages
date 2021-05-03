@@ -127,8 +127,8 @@ glib2-selinux
 libayatana-appindicator
 libayatana-indicator
 libclc-git # (dep mesa-git)
-libselinux (dep glib2-selinux)
-libsepol  (dep glib2-selinux)
+libselinux # (dep glib2-selinux)
+libsepol # (dep glib2-selinux)
 mesa-git:https://github.com/chaotic-aur/mesa-git.git
 lib32-mesa-git:https://github.com/chaotic-aur/lib32-mesa-git.git
 onivim2-git
@@ -496,7 +496,7 @@ lib32-openexr
 lib32-x265
 libgccjit
 libuser # (dep system-config-samba)
-ncnn-git (dep waifu2x-ncnn-vulkan-git)
+ncnn-git # (dep waifu2x-ncnn-vulkan-git)
 neovim-nightly-git
 nodejs-nativefier
 pycharm-professional
@@ -623,7 +623,7 @@ lib32-gstreamer0.10
 lib32-gstreamer0.10-base
 lib32-libexif
 lib32-nss-mdns
-make-3.81 (dep lib32-gstreamer0.10-base)
+make-3.81 # (dep lib32-gstreamer0.10-base)
 
 # Issue 360
 amdgpu-pro-core-meta
@@ -650,7 +650,7 @@ ttf-ms-fonts
 rocketchat-desktop
 
 # Issue 372
-mimalloc (dep nginx-zest-git)
+mimalloc # (dep nginx-zest-git)
 zestginx
 
 # Issue 345
