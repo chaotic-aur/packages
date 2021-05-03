@@ -181,6 +181,7 @@ skippy-xd-git
 fancontrol-gui-git
 fancontrol-kcm-git
 firefox-extension-xdm-browser-monitor
+kwin-decoration-sierra-breeze-enhanced-git
 mcmojave-kde-theme-git
 mystiq
 plasma5-applets-eventcalendar
