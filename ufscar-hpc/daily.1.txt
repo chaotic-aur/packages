@@ -1,0 +1,57 @@
+## Maintainers
+# Firefox
+nss-hg
+nspr-hg
+--
+firefox-wayland-hg
+--
+
+# Pedro
+servo-git
+--
+
+# Too heavy for Garuda cluster
+firedragon-hg:https://gitlab.com/chaotic-aur-pkgbuilds/firedragon-hg.git
+librewolf
+--
+
+# Kernels
+#linux-xanmod
+#linux-xanmod-anbox
+
+
+## User requests
+# Issue 331
+linux-mainline
+linux-mainline-headers
+
+# Issue 318
+linux-next-git
+linux-next-git-headers
+
+# Issue 353
+plasmafox:https://github.com/torvic9/plasmafox.git
+kplasmafoxhelper:https://github.com/torvic9/kplasmafoxhelper.git
+
+# Issue 394
+icecat
+
+# Issue 446
+librewolf-nightly
+
+# -------------------------------- MOVED FROM KITSUNA
+# Pedro
+#darling-git (broken)
+llvm-git:https://github.com/chaotic-aur/llvm-git.git
+lib32-llvm-git:https://github.com/chaotic-aur/lib32-llvm-git.git
+llvm-tkg-git:https://github.com/Frogging-Family/llvm-git.git
+
+# Moved because too heavy for Garuda
+ungoogled-chromium
+
+# Daily builds are enough
+code-git
+
+# Users requests
+#wine-git # Issue 315 (bad)
+scummvm-git # Issue 316
