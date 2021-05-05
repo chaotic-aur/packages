@@ -276,3 +276,6 @@ phoronix-test-suite
 radeon-profile-git
 trousers # (dep vboot-utils)
 vboot-utils
+
+# Issue 588
+alacritty-ligatures-git
