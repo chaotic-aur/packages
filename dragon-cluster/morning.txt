@@ -3,6 +3,7 @@
 alacritty-git
 alpm_octopi_utils-dev # (deo octopi-dev)
 ananicy-cpp
+anbox-image-nocsd
 arch-audit-git
 asp-git
 babl-git # (dep gimp-git)
