@@ -684,6 +684,15 @@ lightcord-bin
 # Issue 504
 gfeeds-git
 
+# Issue 585
+exifcleaner-bin
+
+# Issue 586
+motrix-bin
+
+# Issue 587
+humanity-icon-theme
+
 # IcarNS
 spot-client-git
 
