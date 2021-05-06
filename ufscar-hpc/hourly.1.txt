@@ -72,7 +72,7 @@ obs-vkcapture-git
 oneko
 osdlyrics-git
 pipewire-common-git
-pipewire-dropin
+#pipewire-dropin # (bad quality)
 hsphfpd-git
 podman-compose-git
 r8125-dkms
