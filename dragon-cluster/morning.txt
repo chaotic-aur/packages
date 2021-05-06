@@ -58,11 +58,12 @@ noto-color-emoji-fontconfig
 obs-studio-git
 octopi-dev
 openssh-hpn-git
-pacman-git:https://gitlab.com/chaotic-aur-pkgbuilds/pacman-git.git
+pacman-git
 paleofetch-git
 pamac-aur-git
 paru6alfa-git:https://gitlab.com/chaotic-aur-pkgbuilds/paru6alfa-git.git
 pulseeffects-git
+pyalpm-next-git
 python-magic-ahupp # (dep guiscrcpy-git)
 python-pynput # (dep guiscrcpy-git)
 python-setuptools-lint # (dep guiscrcpy-git)
