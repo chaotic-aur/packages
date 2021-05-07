@@ -45,6 +45,7 @@ sdl2_compat12-git
 split2flac-git
 unflac
 wev
+yambar-git
 
 # Unreal-engine
 
