@@ -42,6 +42,7 @@ inxi-git
 kotatogram-dev-git
 kvantum-qt5-git
 leagueoflegends-git
+libfprint-vfs009x-git
 libsixel # (dep ffmpeg-git)
 libtorrent-rasterbar-1_2-git # (dep qbittorrent-enhanced-git)
 libtremor-git # (dep ffmpeg-git)
