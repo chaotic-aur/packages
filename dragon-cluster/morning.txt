@@ -19,6 +19,7 @@ electronmail-bin
 elisa-git
 exa-git
 fastfetch-git
+ffmpeg-compat-57
 ffmpeg-git
 firejail-git
 firejail-noapparmor-git
@@ -57,6 +58,7 @@ nextcloud-client-git:https://gitlab.com/dr460nf1r3/nextcloud-client-git.git
 noto-color-emoji-fontconfig
 obs-studio-git
 octopi-dev
+openjpeg # (dep ffmpeg-compat-57)
 openssh-hpn-git
 pacman-git
 paleofetch-git
