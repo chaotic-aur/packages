@@ -50,7 +50,7 @@ micro-git
 mkinitcpio-git:https://gitlab.com/chaotic-aur-pkgbuilds/mkinitpcio-git.git
 modprobed-db-git:https://gitlab.com/chaotic-aur-pkgbuilds/modprobed-db-git.git
 netdata-git
-nextcloud-client-git:https://gitlab.com/dr460nf1r3/nextcloud-client-git.git
+nextcloud-client-git:https://gitlab.com/chaotic-aur-pkgbuilds/nextcloud-client-git
 noto-color-emoji-fontconfig
 obs-studio-git
 octopi-dev
