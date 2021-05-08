@@ -695,3 +695,13 @@ humanity-icon-theme
 
 # IcarNS
 spot-client-git
+
+# Issue 590
+mint-backgrounds
+mint-sounds
+mint-themes
+mint-x-icons
+mint-y-icons
+
+# Issue 591
+sushi-git
