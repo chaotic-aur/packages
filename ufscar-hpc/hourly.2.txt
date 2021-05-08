@@ -46,6 +46,8 @@ split2flac-git
 unflac
 wev
 yambar-git
+fcft # (dep yambar)
+tllist # (dep yambar)
 
 # Unreal-engine
 
