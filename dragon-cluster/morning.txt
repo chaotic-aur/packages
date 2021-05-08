@@ -3,7 +3,7 @@
 alacritty-git
 alpm_octopi_utils-dev # (deo octopi-dev)
 ananicy-cpp
-anbox-image-nocsd
+anbox-image-houdini-rooted
 arch-audit-git
 asp-git
 babl-git # (dep gimp-git)
@@ -20,7 +20,6 @@ elisa-git
 exa-git
 fastfetch-git
 ffmpeg-compat-57
-ffmpeg-git
 firejail-git
 firejail-noapparmor-git
 firejail-pacman-hook
@@ -43,14 +42,10 @@ kotatogram-dev-git
 kvantum-qt5-git
 leagueoflegends-git
 libfprint-vfs009x-git
-libsixel # (dep ffmpeg-git)
 libtorrent-rasterbar-1_2-git # (dep qbittorrent-enhanced-git)
-libtremor-git # (dep ffmpeg-git)
 libva-intel-driver-next-git:https://gitlab.com/chaotic-aur-pkgbuilds/libva-intel-driver-next-git.git
-libva-next-git:https://gitlab.com/chaotic-aur-pkgbuilds/libva-next-git.git
 lightcord-git
 lutris-git
-meld-git
 micro-git
 mkinitcpio-git:https://gitlab.com/chaotic-aur-pkgbuilds/mkinitpcio-git.git
 modprobed-db-git:https://gitlab.com/chaotic-aur-pkgbuilds/modprobed-db-git.git
@@ -66,17 +61,14 @@ paleofetch-git
 pamac-aur-git
 paru6alfa-git:https://gitlab.com/chaotic-aur-pkgbuilds/paru6alfa-git.git
 pulseeffects-git
-pyalpm-next-git
 python-magic-ahupp # (dep guiscrcpy-git)
 python-pynput # (dep guiscrcpy-git)
 python-setuptools-lint # (dep guiscrcpy-git)
 qbittorrent-enhanced-git
-qtemu-git
 ripgrep-git
 rmatrix-git:https://gitlab.com/chaotic-aur-pkgbuilds/rmatrix-git.git
 rusnapshot-git
 smplayer-svn
-spirv-cross # (dep ffmpeg-git)
 starsector
 stress-ng
 tor-git
