@@ -1,8 +1,9 @@
 ## NO REBOOT
 # Some stuff
 alacritty-git
-alpm_octopi_utils-dev # (deo octopi-dev)
+alpm_octopi_utils-dev # (dep octopi-dev)
 ananicy-cpp
+ananicy-cpp-git
 anbox-image-houdini-rooted
 arch-audit-git
 asp-git
@@ -15,7 +16,7 @@ clamav-git
 clamav-unofficial-sigs
 cmake-git
 coreutils-hybrid
-electronmail-bin
+dr460nized-git:https://gitlab.com/chaotic-aur-pkgbuilds/dr460nized-git.git
 elisa-git
 exa-git
 fastfetch-git
@@ -38,6 +39,7 @@ imagemagick-git
 intel-ucode-git:https://gitlab.com/chaotic-aur-pkgbuilds/intel-ucode-git.git
 intel-undervolt-git:https://gitlab.com/chaotic-aur-pkgbuilds/intel-undervolt-git.git
 inxi-git
+kde-git:https://gitlab.com/chaotic-aur-pkgbuilds/kde-git.git
 kotatogram-dev-git
 kvantum-qt5-git
 leagueoflegends-git
@@ -95,9 +97,6 @@ ion-git
 
 # Issue 521
 grimshot
-
-# Issue 508
-llvm-proton-bin
 
 # Issue 562
 lollypop-next-git
@@ -169,11 +168,6 @@ leftwm-theme-git
 # Issue 553
 diodon
 
-# Issue 538
-godot-beta-bin
-#godot-git (long compile time)
-godot-mono-bin
-
 # Issue 554
 python-elgato-streamdeck # (dep streamdeck-ui-git)
 streamdeck-ui-git
@@ -205,9 +199,6 @@ python-nudatus # (dep mu-editor)
 python-pgzero # (dep mu-editor)
 thonny
 thonny-git
-
-# Issue 559
-gdu-bin
 
 # Issue 563
 audiotube-git
@@ -243,8 +234,6 @@ freerdp-git
 # Issue 577
 remmina-git
 
-# Issue 579
-youtube-bin
 
 # Issue 581
 libcint # (dep python-qiskit)

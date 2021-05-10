@@ -1,19 +1,34 @@
 ## ALWAYS UPDATED
 # Some stuff
-ananicy-cpp-git
 brave-nightly-bin:https://gitlab.com/chaotic-aur-pkgbuilds/brave-browser-nightly.git
 dolphin-git
-dr460nized-git:https://gitlab.com/chaotic-aur-pkgbuilds/dr460nized-git.git
+electronmail-bin
 kate-git
-kde-git:https://gitlab.com/chaotic-aur-pkgbuilds/kde-git.git
 konsole-git
 starship-git
 sudo-git:https://gitlab.com/chaotic-aur-pkgbuilds/sudo-git.git
 
-# moved from Garuda
+
+## GARUDA
 ananicy-git
 auto-cpufreq-git
 garuda-dr460nized-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-dr460nized.git
 memavaild-git
 nohang-git
 prelockd-git
+
+
+## CHAOTIC
+# Issue 508
+llvm-proton-bin
+
+# Issue 538
+godot-beta-bin
+#godot-git (long compile time)
+godot-mono-bin
+
+# Issue 559
+gdu-bin
+
+# Issue 579
+youtube-bin
