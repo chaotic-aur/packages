@@ -49,6 +49,7 @@ libva-intel-driver-next-git:https://gitlab.com/chaotic-aur-pkgbuilds/libva-intel
 lightcord-git
 lutris-git
 micro-git
+mini-benchmarker
 mkinitcpio-git:https://gitlab.com/chaotic-aur-pkgbuilds/mkinitpcio-git.git
 modprobed-db-git:https://gitlab.com/chaotic-aur-pkgbuilds/modprobed-db-git.git
 netdata-git
