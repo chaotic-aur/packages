@@ -705,3 +705,18 @@ mint-y-icons
 
 # Issue 591
 sushi-git
+
+# Issue 592
+biglybt
+
+# Issue 593
+gigolo
+iso-flag-png # (dep mintlocale)
+mintlocale
+ttf-symbola
+xfce4-docklike-plugin
+xplayer
+xplayer-plparser # (xplayer)
+
+# Issue 594
+chrome-gnome-shell
