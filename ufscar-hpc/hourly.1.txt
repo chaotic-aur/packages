@@ -720,3 +720,12 @@ xplayer-plparser # (xplayer)
 
 # Issue 594
 chrome-gnome-shell
+
+# Issue 595
+plex-media-server
+
+# Issue 596
+mkinitcpio-firmware
+
+# Issue 597
+upd72020x-fw
