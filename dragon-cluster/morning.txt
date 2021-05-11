@@ -74,6 +74,7 @@ rusnapshot-git
 smplayer-svn
 starsector
 stress-ng
+thermald-git
 tlpui
 tpacpi-bat-git
 tor-git
