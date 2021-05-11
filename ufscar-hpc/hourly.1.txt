@@ -729,3 +729,9 @@ mkinitcpio-firmware
 
 # Issue 597
 upd72020x-fw
+
+# Issue 598
+grub-silent
+
+# Issue 599
+vital-synth
