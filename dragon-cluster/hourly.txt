@@ -22,11 +22,6 @@ prelockd-git
 # Issue 508
 llvm-proton-bin
 
-# Issue 538
-godot-beta-bin
-#godot-git (long compile time)
-godot-mono-bin
-
 # Issue 559
 gdu-bin
 
