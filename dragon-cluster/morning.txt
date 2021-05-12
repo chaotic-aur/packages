@@ -78,6 +78,7 @@ thermald-git
 tlpui
 tpacpi-bat-git
 tor-git
+ttyper-git
 ufw-git
 whoogle
 wine-lol
