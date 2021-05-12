@@ -36,8 +36,8 @@ gst-plugins-base-git
 gstreamer-git
 guiscrcpy-git
 imagemagick-git
-intel-ucode-git:https://gitlab.com/chaotic-aur-pkgbuilds/intel-ucode-git.git
-intel-undervolt-git:https://gitlab.com/chaotic-aur-pkgbuilds/intel-undervolt-git.git
+intel-ucode-git
+intel-undervolt-git
 inxi-git
 kde-git:https://gitlab.com/chaotic-aur-pkgbuilds/kde-git.git
 kotatogram-dev-git
@@ -45,7 +45,7 @@ kvantum-qt5-git
 leagueoflegends-git
 libfprint-vfs009x-git
 libtorrent-rasterbar-1_2-git # (dep qbittorrent-enhanced-git)
-libva-intel-driver-next-git:https://gitlab.com/chaotic-aur-pkgbuilds/libva-intel-driver-next-git.git
+libva-intel-driver-next-git
 lightcord-git
 lutris-git
 micro-git
