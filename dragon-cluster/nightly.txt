@@ -8,6 +8,7 @@ signal-desktop-beta
 # Short compile times
 plasma5-applets-window-appmenu-git
 plasma5-applets-window-buttons-git
+plasma5-applets-window-title-git
 sddm-git
 systemd-git:https://gitlab.com/chaotic-aur-pkgbuilds/systemd-git.git
 virt-manager-git

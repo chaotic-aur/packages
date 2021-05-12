@@ -745,7 +745,7 @@ vital-synth
 informant
 
 # Issue 601
-pantheon-mail
+#pantheon-mail broken right now
 
 # Issue 602
 overdue
