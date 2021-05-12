@@ -744,5 +744,8 @@ vital-synth
 # Issue 600
 informant
 
+# Issue 601
+pantheon-mail
+
 # Issue 602
 overdue
