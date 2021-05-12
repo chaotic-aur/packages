@@ -11,7 +11,7 @@ servo-git
 --
 
 # Nico
-libreoffice-slim-git:https://gitlab.com/chaotic-aur-pkgbuilds/libreoffice-slim-git.git
+libreoffice-slim-fixed-git
 linux-xanmod-anbox
 
 

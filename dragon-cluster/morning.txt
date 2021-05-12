@@ -53,23 +53,23 @@ mini-benchmarker
 mkinitcpio-git:https://gitlab.com/chaotic-aur-pkgbuilds/mkinitpcio-git.git
 modprobed-db-git:https://gitlab.com/chaotic-aur-pkgbuilds/modprobed-db-git.git
 netdata-git
-nextcloud-client-git:https://gitlab.com/chaotic-aur-pkgbuilds/nextcloud-client-git
+nextcloud-client-git
 noto-color-emoji-fontconfig
 obs-studio-git
 octopi-dev
 openjpeg # (dep ffmpeg-compat-57)
 openssh-hpn-git
-pacman-git:https://gitlab.com/chaotic-aur-pkgbuilds/pacman-git.git
+pacman-git:https://github.com/chaotic-aur/pkgbuild-pacman-git.git
 paleofetch-git
 pamac-aur-git
-paru6alfa-git:https://gitlab.com/chaotic-aur-pkgbuilds/paru6alfa-git.git
+paru6alfa-git:https://github.com/chaotic-aur/pkgbuild-paru6alfa-git.git
 pulseeffects-git
 python-magic-ahupp # (dep guiscrcpy-git)
 python-pynput # (dep guiscrcpy-git)
 python-setuptools-lint # (dep guiscrcpy-git)
 qbittorrent-enhanced-git
 ripgrep-git
-rmatrix-git:https://gitlab.com/chaotic-aur-pkgbuilds/rmatrix-git.git
+rmatrix-git
 rusnapshot-git
 smplayer-svn
 starsector
@@ -85,7 +85,7 @@ wine-lol
 wine-lol-glibc
 zellij-git
 zram-generator-git
-zstd-git:https://gitlab.com/chaotic-aur-pkgbuilds/zstd-git.git
+zstd-git
 
 
 ## GARUDA

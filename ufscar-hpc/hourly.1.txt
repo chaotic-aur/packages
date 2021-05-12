@@ -206,7 +206,6 @@ compiz-git
 crow-translate-git
 dolphin-emu-git
 fsearch-git
-libfido2-git
 megasync-git
 pa-applet-git
 pacmanlogviewer-git
