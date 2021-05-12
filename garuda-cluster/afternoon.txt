@@ -1,9 +1,4 @@
-# Some stuff too heavy for dragon cluster
+# Browsers
 firedragon-hg
-librewolf-hg
-
-# GCC11
-#binutils-git:https://gitlab.com/chaotic-aur-pkgbuilds/binutils-git.git
-#gcc-11
-glibc-git
-linux-api-headers-git:https://gitlab.com/chaotic-aur-pkgbuilds/linux-api-headers-git.git
+librewolf
+librewolf-hg # (Issue 446)

@@ -10,14 +10,9 @@ firefox-wayland-hg
 servo-git
 --
 
-# Too heavy for Garuda cluster
-firedragon-hg:https://gitlab.com/chaotic-aur-pkgbuilds/firedragon-hg.git
-librewolf
---
-
-# Kernels
-#linux-xanmod
-#linux-xanmod-anbox
+# Nico
+libreoffice-slim-git:https://gitlab.com/chaotic-aur-pkgbuilds/libreoffice-slim-git.git
+linux-xanmod-anbox
 
 
 ## User requests
@@ -35,9 +30,6 @@ kplasmafoxhelper:https://github.com/torvic9/kplasmafoxhelper.git
 
 # Issue 394
 icecat
-
-# Issue 446
-librewolf-nightly
 
 # -------------------------------- MOVED FROM KITSUNA
 # Pedro

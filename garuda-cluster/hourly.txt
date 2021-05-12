@@ -1,4 +1,0 @@
-# Ongoing development
-#garuda-kde-settings-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-kde-settings-git.git
-#garuda-mate-settings-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-mate-settings-git.git
-garuda-sway-settings-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-sway-settings-git.git
