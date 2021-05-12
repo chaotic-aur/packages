@@ -34,9 +34,13 @@ icecat
 # -------------------------------- MOVED FROM KITSUNA
 # Pedro
 #darling-git (broken)
+llvm-tkg-git:https://github.com/Frogging-Family/llvm-git.git
+
+#Solomon
+python-sphinx-automodapi
 llvm-git:https://github.com/chaotic-aur/llvm-git.git
 lib32-llvm-git:https://github.com/chaotic-aur/lib32-llvm-git.git
-llvm-tkg-git:https://github.com/Frogging-Family/llvm-git.git
+
 
 # Moved because too heavy for Garuda
 ungoogled-chromium
