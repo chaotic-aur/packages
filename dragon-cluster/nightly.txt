@@ -9,7 +9,7 @@ signal-desktop-beta
 plasma5-applets-window-appmenu-git
 plasma5-applets-window-buttons-git
 plasma5-applets-window-title-git
-sddm-git
+sddm-wayland-git
 systemd-git
 virt-manager-git
 wayland-git
