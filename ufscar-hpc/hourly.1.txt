@@ -8,6 +8,7 @@ lcov
 hal-git
 
 # More Paulo
+fujprog
 digilent.adept.runtime
 digilent.adept.utilities
 fxload
