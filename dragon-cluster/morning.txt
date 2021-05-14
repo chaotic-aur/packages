@@ -12,6 +12,7 @@ birdtray-git
 bleachbit-git
 bottom-git
 c-lolcat
+coreutils-git
 clamav-git
 clamav-unofficial-sigs
 cmake-git

@@ -1,6 +1,6 @@
 ## ALWAYS UPDATED
 # Some stuff
-brave-nightly-bin:https://gitlab.com/chaotic-aur-pkgbuilds/brave-browser-nightly.git
+brave-nightly-bin
 dolphin-git
 electronmail-bin
 kate-git
