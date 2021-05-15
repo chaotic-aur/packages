@@ -750,6 +750,16 @@ informant
 # Issue 602
 overdue
 
+# Issue 604
+artha
+dockbarx # (dep xfce4-dockbarx-plugin)
+gromit-mpx
+kazam
+macfanctld
+python-polib # (dep xfce4-dockbarx-plugin)
+wordnet # (dep artha)
+xfce4-dockbarx-plugin
+
 # Issue 605
 python-llvmlite
 
