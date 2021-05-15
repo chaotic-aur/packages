@@ -749,3 +749,9 @@ informant
 
 # Issue 602
 overdue
+
+# Issue 605
+python-llvmlite
+
+# Issue 606
+gtksourceview5
