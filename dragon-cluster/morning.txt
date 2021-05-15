@@ -61,6 +61,7 @@ obs-studio-git
 octopi-dev
 openjpeg # (dep ffmpeg-compat-57)
 openssh-hpn-git
+oxygen-sounds
 pacman-git:https://github.com/chaotic-aur/pkgbuild-pacman-git.git
 paleofetch-git
 pamac-aur-git
