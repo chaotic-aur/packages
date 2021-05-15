@@ -695,6 +695,10 @@ popcorntime
 # Issue 558
 ryujinx-git
 
+# Issue 561
+unrealtournament4
+qt4 # (dep unrealtournament4)
+
 # Issue 585
 exifcleaner-bin
 
