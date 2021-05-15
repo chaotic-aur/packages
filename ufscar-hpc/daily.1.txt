@@ -12,6 +12,7 @@ servo-git
 
 # Nico
 libreoffice-slim-fixed-git
+linux-cacule
 linux-xanmod-anbox
 
 
