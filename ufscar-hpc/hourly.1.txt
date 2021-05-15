@@ -1,4 +1,4 @@
-## Maintainers
+gi## Maintainers
 # Paulo
 singularity-container
 bluespec-git
@@ -688,6 +688,9 @@ gfeeds-git
 godot-beta-bin
 godot-git
 godot-mono-bin
+
+# Issue 543
+popcorntime
 
 # Issue 558
 ryujinx-git
