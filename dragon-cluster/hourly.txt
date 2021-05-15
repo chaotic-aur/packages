@@ -6,7 +6,7 @@ electronmail-bin
 kate-git
 konsole-git
 starship-git
-sudo-git:https://gitlab.com/chaotic-aur-pkgbuilds/sudo-git.git
+sudo-git
 
 
 ## GARUDA
