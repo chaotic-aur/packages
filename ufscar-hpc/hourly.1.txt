@@ -689,6 +689,9 @@ godot-beta-bin
 godot-git
 godot-mono-bin
 
+# Issue 558
+ryujinx-git
+
 # Issue 585
 exifcleaner-bin
 
