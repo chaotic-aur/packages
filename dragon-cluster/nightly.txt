@@ -1,7 +1,5 @@
 ## REBOOT NEEDED
 # Long compile times
-linux-cacule
-linux-xanmod-anbox
 qemu-git
 signal-desktop-beta
 
@@ -10,7 +8,6 @@ plasma5-applets-window-appmenu-git
 plasma5-applets-window-buttons-git
 plasma5-applets-window-title-git
 sddm-wayland-git
-systemd-git
 virt-manager-git
 wayland-git
 wayland-protocols-git
