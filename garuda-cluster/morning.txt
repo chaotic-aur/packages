@@ -118,6 +118,7 @@ nerd-fonts-fantasque-sans-mono
 plasma5-applets-window-appmenu
 plasma5-applets-window-buttons
 plasma5-applets-window-title
+plasma5-theme-sweet-git
 plasma5-runners-poki-launcher
 poki-launcher
 searx
