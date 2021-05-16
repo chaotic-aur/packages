@@ -775,3 +775,6 @@ python-llvmlite
 
 # Issue 606
 gtksourceview5
+
+# Issue 607
+albert
