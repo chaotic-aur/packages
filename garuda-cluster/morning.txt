@@ -122,7 +122,8 @@ plasma5-runners-poki-launcher
 poki-launcher
 searx
 sweet-kde-git
-sweet-theme-dark
+sweet-gtk-theme
+sweet-gtk-theme-dark
 sweet-theme-git
 thunderbird-appmenu
 xcursor-sweet
