@@ -77,13 +77,14 @@ rusnapshot-git
 smplayer-svn
 starsector
 stress-ng
+sweet-theme-git
 thermald-git
 tlpui
 tpacpi-bat-git
 tor-git
 ttyper-git
 ufw-git
-whoogle
+whoogle-git
 wine-lol
 wine-lol-glibc
 zellij-git

@@ -104,7 +104,6 @@ youtubedl-gui-beta
 
 # Theming & Customization
 autotiling
-azote
 candy-icons-git
 flat-remix
 flat-remix-gtk
@@ -114,8 +113,6 @@ kvantum-theme-layan-git
 kvantum-theme-matcha-git
 kvantum-theme-qogir-git
 kvantum-theme-vimix-git
-kvantum-theme-vimix-git
-kwin-decoration-sierra-breeze-enhanced-git
 kwin-decoration-sierra-breeze-enhanced-git
 kwin-effects-yet-another-magic-lamp
 kwin-scripts-krohnkite-git
@@ -127,8 +124,6 @@ matcha-gtk-theme-git
 mcmojave-circle-icon-theme-git
 mcmojave-kde-theme-git
 mojave-gtk-theme-git
-nwg-launchers
-nwg-panel
 plymouth
 qogir-gtk-theme-git
 qogir-icon-theme-git
@@ -139,4 +134,5 @@ vimix-gtk-themes
 vimix-gtk-themes-git
 vimix-icon-theme
 vimix-icon-theme-git
+whitesur-kvantum-theme-git
 xcursor-breeze

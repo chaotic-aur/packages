@@ -98,7 +98,7 @@ mendeleydesktop-bundled
 ms-office-online
 onlyoffice-bin
 openh264
-spotify-snap
+spotify
 system-config-samba
 ttf-wps-fonts
 virtualbox-ext-oracle
@@ -146,7 +146,6 @@ python-injector
 
 # mugshot
 python-pyparted
-
 
 
 ## CHAOTIC
