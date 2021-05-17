@@ -778,3 +778,14 @@ gtksourceview5
 
 # Issue 607
 albert
+
+# Issue 612
+touche
+touchegg
+
+# Issue 613
+papirus-folders
+
+# Issue 614
+libtd-git # (dep tok-git)
+#tok-git (broken currently)

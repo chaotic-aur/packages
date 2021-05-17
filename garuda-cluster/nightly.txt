@@ -98,6 +98,8 @@ mendeleydesktop-bundled
 ms-office-online
 onlyoffice-bin
 openh264
+python-pypresence # (dep rare)
+rare
 spotify
 system-config-samba
 ttf-wps-fonts
