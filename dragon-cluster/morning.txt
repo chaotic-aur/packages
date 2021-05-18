@@ -8,6 +8,7 @@ anbox-image-houdini-rooted
 arch-audit-git
 asp-git
 babl-git # (dep gimp-git)
+bcachefs-tools-git
 birdtray-git
 bleachbit-git
 bottom-git
@@ -46,6 +47,7 @@ kotatogram-dev-git
 kvantum-qt5-git
 leagueoflegends-git
 libfprint-vfs009x-git
+libscrypt
 libtorrent-rasterbar-1_2-git # (dep qbittorrent-enhanced-git)
 libva-intel-driver-next-git
 lightcord-git
