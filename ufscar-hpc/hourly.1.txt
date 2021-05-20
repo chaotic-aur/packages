@@ -789,3 +789,12 @@ papirus-folders
 # Issue 614
 libtd-git # (dep tok-git)
 #tok-git (broken currently)
+
+# Issue 615
+silo-trello
+trello
+trello-cli
+trello-git
+
+# Issue 617
+element-desktop-nightly-bin
