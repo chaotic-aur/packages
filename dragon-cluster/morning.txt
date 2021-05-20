@@ -8,7 +8,6 @@ anbox-image-houdini-rooted
 arch-audit-git
 asp-git
 babl-git # (dep gimp-git)
-bcachefs-tools-git
 birdtray-git
 bleachbit-git
 bottom-git
@@ -30,8 +29,10 @@ firejail-pacman-hook
 firetools-git
 fish-autopair-git
 fish-git
+fish-systemd-git
 fluffychat
 flutter # (dep fluffychat)
+fprintd-clients
 gegl-git # (dep gimp-git)
 gimp-git
 git-git
@@ -46,7 +47,6 @@ kde-git:https://gitlab.com/chaotic-aur-pkgbuilds/kde-git.git
 kotatogram-dev-git
 kvantum-qt5-git
 leagueoflegends-git
-libfprint-vfs009x-git
 libscrypt
 libtorrent-rasterbar-1_2-git # (dep qbittorrent-enhanced-git)
 libva-intel-driver-next-git
@@ -62,6 +62,7 @@ nextcloud-client-git
 noto-color-emoji-fontconfig
 obs-studio-git
 octopi-dev
+open-fprintd
 openjpeg # (dep ffmpeg-compat-57)
 openssh-hpn-git
 oxygen-sounds
@@ -73,6 +74,7 @@ pulseeffects-git
 python-magic-ahupp # (dep guiscrcpy-git)
 python-pynput # (dep guiscrcpy-git)
 python-setuptools-lint # (dep guiscrcpy-git)
+python-validity
 qbittorrent-enhanced-git
 ripgrep-git
 rmatrix-git

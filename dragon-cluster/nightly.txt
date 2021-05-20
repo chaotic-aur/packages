@@ -28,7 +28,6 @@ plasma-pa-git:https://gitlab.com/chaotic-aur-pkgbuilds/plasma-pa-git.git
 plasma-workspace-git
 spectacle-git
 
-## GARUDA
 # General use applications
 anydesk-bin
 appimagelauncher
