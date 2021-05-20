@@ -32,6 +32,9 @@ kplasmafoxhelper:https://github.com/torvic9/kplasmafoxhelper.git
 # Issue 394
 icecat
 
+# Issue 616
+brave
+
 # -------------------------------- MOVED FROM KITSUNA
 # Pedro
 #darling-git (broken)
