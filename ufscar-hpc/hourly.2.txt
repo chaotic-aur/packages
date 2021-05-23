@@ -23,6 +23,7 @@ heroku-cli-bin
 hplip-plugin
 hunspell-pt-br
 intelbacklight-git
+lib32-lzo # (proton-ge-custom makedep)
 lib32-primus-vk-git
 logstalgia
 mingw-w64-tools # (proton-ge-custom makedep)
