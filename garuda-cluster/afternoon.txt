@@ -1,4 +1,0 @@
-# Browsers
-firedragon-hg
-librewolf
-librewolf-hg # (Issue 446)

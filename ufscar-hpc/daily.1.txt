@@ -14,7 +14,7 @@ servo-git
 libreoffice-slim-fixed-git
 linux-cacule
 linux-xanmod-anbox
-
+firedragon-hg
 
 ## User requests
 # Issue 331
@@ -31,6 +31,9 @@ kplasmafoxhelper:https://github.com/torvic9/kplasmafoxhelper.git
 
 # Issue 394
 icecat
+
+# Issue 446
+librewolf-hg
 
 # Issue 616
 brave
