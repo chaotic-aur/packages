@@ -7,12 +7,6 @@ bluespec-git
 lcov
 hal-git
 
-# openwebrx (Paulo)
-csdr
-owrx_connector-git
-python-js8py-git
-openwebrx
-
 # More Paulo
 fujprog
 digilent.adept.runtime
