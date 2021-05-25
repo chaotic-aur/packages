@@ -51,6 +51,7 @@ libscrypt
 libtorrent-rasterbar-1_2-git # (dep qbittorrent-enhanced-git)
 libva-intel-driver-next-git
 lightcord-git
+lolcate
 lutris-git
 micro-git
 mini-benchmarker
@@ -59,6 +60,7 @@ modprobed-db-git:https://gitlab.com/chaotic-aur-pkgbuilds/modprobed-db-git.git
 netdata-git
 networkmanager-iwd
 nextcloud-client-git
+nspawn-git
 noto-color-emoji-fontconfig
 obs-studio-git
 octopi-dev
