@@ -806,4 +806,10 @@ discord-development-electron-bin
 bottles
 
 # Issue 621
-komorebiexi
+komorebi
+
+# Issue 623
+ffmpeg-git
+intel-gmmlib-git # (dep intel-media-driver-git)
+#intel-media-driver-git
+libva-git # (dep intel-media-driver-git
