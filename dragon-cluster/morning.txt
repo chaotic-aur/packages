@@ -18,6 +18,7 @@ clamav-unofficial-sigs
 cmake-git
 coreutils-hybrid
 czkawka-git
+diary-git
 dr460nized-git:https://gitlab.com/chaotic-aur-pkgbuilds/dr460nized-git.git
 elisa-git
 exa-git
