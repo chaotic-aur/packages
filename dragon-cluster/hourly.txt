@@ -1,8 +1,6 @@
 ## ALWAYS UPDATED
 # Some stuff
-brave-nightly-bin
 dolphin-git
-electronmail-bin
 kate-git
 konsole-git
 starship-git
@@ -16,14 +14,3 @@ garuda-dr460nized-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-
 memavaild-git
 nohang-git
 prelockd-git
-
-
-## CHAOTIC
-# Issue 508
-llvm-proton-bin
-
-# Issue 559
-gdu-bin
-
-# Issue 579
-youtube-bin

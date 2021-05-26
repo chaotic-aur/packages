@@ -686,6 +686,9 @@ lightcord-bin
 # Issue 504
 gfeeds-git
 
+# Issue 508
+llvm-proton-bin
+
 # Issue 538
 godot-beta-bin
 godot-git
@@ -697,9 +700,15 @@ popcorntime
 # Issue 558
 ryujinx-git
 
+# Issue 559
+gdu-bin
+
 # Issue 561
 unrealtournament4
 qt4 # (dep unrealtournament4)
+
+# Issue 579
+youtube-bin
 
 # Issue 585
 exifcleaner-bin

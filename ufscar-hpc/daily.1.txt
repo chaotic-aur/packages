@@ -15,6 +15,7 @@ libreoffice-slim-fixed-git
 linux-cacule
 linux-xanmod-anbox
 firedragon-hg
+signal-desktop-beta
 
 ## User requests
 # Issue 331
@@ -43,7 +44,7 @@ brave
 #darling-git (broken)
 llvm-tkg-git:https://github.com/Frogging-Family/llvm-git.git
 
-#Solomon
+# Solomon
 python-sphinx-automodapi
 llvm-git:https://github.com/chaotic-aur/llvm-git.git
 lib32-llvm-git:https://github.com/chaotic-aur/lib32-llvm-git.git

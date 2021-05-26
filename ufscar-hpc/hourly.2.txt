@@ -340,3 +340,179 @@ qownnotes
 
 # Issue 323
 chatterino2-git
+
+## MOVED FROM DRAGON CLUSTER
+# Issue 560
+ion-git
+
+# Issue 521
+grimshot
+
+# Issue 562
+lollypop-next-git
+
+# Issue 557
+telegrand-git
+
+# Issue 545
+flat-remix-gnome
+
+# Issue 546
+mindustry
+
+# Issue 547
+protonmail-bridge
+
+# Issue 552
+nautilus-folder-icons
+
+# Issue 536
+android-platform
+
+# Issue 527
+bash-complete-alias
+
+# Issue 541
+nginx-mainline-mod-auth_pam
+nginx-mainline-mod-brotli
+nginx-mainline-mod-dav-ext
+nginx-mainline-mod-echo
+nginx-mainline-mod-fancyindex
+nginx-mainline-mod-headers-more
+nginx-mainline-mod-lua
+nginx-mainline-mod-ndk
+nginx-mainline-mod-njs
+
+# Issue 513
+protonvpn-cli-ng
+
+# Issue 511
+swaylock-effects
+
+# Issue 524
+bibata-cursor-theme
+bibata-cursor-translucent
+bibata-extra-cursor-theme
+bibata-rainbow-cursor-theme
+python-clickgen # (dep bibata-cursors)
+
+# Issue 551
+tracktion-waveform
+
+# Issue 532
+libbaseencode
+libcotp
+otpclient
+
+# Issue 525
+booster-git
+
+# Issue 510
+vorta
+
+# Issue 555
+leftwm
+leftwm-git
+leftwm-theme-git
+
+# Issue 553
+diodon
+
+# Issue 554
+python-elgato-streamdeck # (dep streamdeck-ui-git)
+streamdeck-ui-git
+
+# Issue 539
+python-openrgb-git
+
+# Issue 519
+unity-editor-lts
+unityhub
+
+# Issue 529
+libadwaita-git
+
+# Issue 514
+soundux
+
+# Issue 509
+zlib-ng-git
+
+# Issue 497
+mu-editor
+pigpio # (dep mu-editor)
+python-asttokens # (dep thonny)
+python-colorzero # (dep mu-editor)
+python-gpiozero # (dep mu-editor)
+python-guizero # (dep mu-editor)
+python-nudatus # (dep mu-editor)
+python-pgzero # (dep mu-editor)
+thonny
+thonny-git
+
+# Issue 563
+audiotube-git
+python-ytmusicapi # (dep audiotube-git)
+
+# Issue 512
+urbanterror
+
+# Issue 564
+neovide-git
+
+# Issue 566
+mediainfo-gui-qt
+
+# Issue 567
+telephant-git
+
+# Issue 571
+authy
+f2c # (dep meshlab)
+fiji-bin
+levmar # (dep meshlab)
+lib3ds # (dep meshlab)
+meshlab
+meshlab-git
+mpir # (dep meshlab)
+zeal
+zeal-git
+
+# Issue 576
+freerdp-git
+
+# Issue 577
+remmina-git
+
+# Issue 581
+libcint # (dep python-qiskit)
+libxc # (dep python-qiskit)
+muparserx # (dep python-qiskit)
+pyhon-quandl # (dep python-qiskit)
+python-constraint # (dep python-qiskit)
+python-dlx # (dep python-qiskit)
+python-docplex # (dep python-qiskit)
+python-fastdtw # (dep python-qiskit)
+python-fastjsonschema # (dep python-qiskit)
+python-multitasking  # (dep python-qiskit)
+python-qiskit
+python-qiskit-aer # (dep python-qiskit)
+python-qiskit-aqua # (dep python-qiskit)
+python-qiskit-ibmq-provider # (dep python-qiskit)
+python-qiskit-ignis # (dep python-qiskit)
+python-qiskit-terra # (dep python-qiskit)
+python-retworkx # (dep python-qiskit)
+python-yfinance # (dep python-qiskit)
+xcfun-git # (dep python-qiskit)
+
+# Issue 584
+geekbench
+hfsprogs
+megatools
+phoronix-test-suite
+radeon-profile-git
+trousers # (dep vboot-utils)
+vboot-utils
+
+# Issue 588
+alacritty-ligatures-git

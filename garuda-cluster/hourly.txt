@@ -1,0 +1,2 @@
+brave-nightly-bin
+electronmail-bin
