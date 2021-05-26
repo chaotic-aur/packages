@@ -102,6 +102,8 @@ imgui
 tinyobjloader
 stb
 
+#Weather (Solomon)
+meteo-qt-git
 
 ## Users requests
 # Issue 328

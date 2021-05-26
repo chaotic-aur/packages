@@ -196,7 +196,7 @@ wingpanel-indicator-sound-git
 numix-circle-icon-theme-git
 numix-icon-theme-git
 
-
+kitty-git
 # kprkpr
 
 # Nico
