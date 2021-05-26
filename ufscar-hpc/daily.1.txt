@@ -51,6 +51,7 @@ flat-remix
 flat-remix-gnome
 lmdbxx
 tweeny
+ayatana-indicator-datetime
 
 # Moved because too heavy for Garuda
 ungoogled-chromium
