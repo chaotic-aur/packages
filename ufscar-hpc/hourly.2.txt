@@ -193,6 +193,9 @@ wingpanel-indicator-notifications-git
 wingpanel-indicator-power-git
 wingpanel-indicator-session-git
 wingpanel-indicator-sound-git
+numix-circle-icon-theme-git
+numix-icon-theme-git
+
 
 # kprkpr
 
@@ -333,7 +336,6 @@ plymouth # Issue 401
 ## Not building on ufscar
 # Issue 322
 lightly-qt
-material-kwin-decoration-git
 qownnotes
 
 # Issue 323
