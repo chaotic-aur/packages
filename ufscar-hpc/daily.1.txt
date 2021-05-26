@@ -50,7 +50,7 @@ lib32-llvm-git:https://github.com/chaotic-aur/lib32-llvm-git.git
 flat-remix
 flat-remix-gnome
 lmdbxx
-
+tweeny
 
 # Moved because too heavy for Garuda
 ungoogled-chromium
