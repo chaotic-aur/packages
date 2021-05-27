@@ -54,6 +54,8 @@ lmdbxx
 tweeny
 ayatana-indicator-datetime
 nvm
+python-pympv
+python-grpcio-tools
 
 # Moved because too heavy for Garuda
 ungoogled-chromium
