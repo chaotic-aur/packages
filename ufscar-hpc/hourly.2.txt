@@ -1,4 +1,13 @@
 ## MAINTAINERS
+# Paulo
+# Libre FPGA stuff
+python-crcmod
+capnproto-java
+prjapicula
+prjoxide-git
+icestorm-git
+nextpnr-git
+
 # Pedro
 chaotic-keyring
 chaotic-mirrorlist
