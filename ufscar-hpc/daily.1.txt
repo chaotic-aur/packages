@@ -53,6 +53,7 @@ flat-remix-gnome
 lmdbxx
 tweeny
 ayatana-indicator-datetime
+nvm
 
 # Moved because too heavy for Garuda
 ungoogled-chromium
