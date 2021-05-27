@@ -517,6 +517,9 @@ vboot-utils
 # Issue 588
 alacritty-ligatures-git
 
+# Issue 624
+gnome-network-displays
+
 # Issue 625
 gtk3-nocsd-git
 
