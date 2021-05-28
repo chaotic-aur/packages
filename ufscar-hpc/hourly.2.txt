@@ -6,6 +6,7 @@ python-crcmod
 capnproto-java
 prjapicula
 prjoxide-git
+prjtrellis-git
 icestorm-git
 nextpnr-git
 
