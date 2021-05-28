@@ -1,0 +1,1 @@
+linux-cacule-generic_v3:https://github.com/chaotic-aur/pkgbuild-linux-cacule-generic_v3.git
