@@ -108,6 +108,21 @@ meteo-qt-git
 #Programming (Solomon)
 clion-eap
 
+#Themes (Solomon)
+themix-icons-numix-git
+obsidian-2-theme-git
+themix-icons-suru-plus-git
+obsidian-icon-theme-git
+themix-theme-oomox-git
+themix-icons-archdroid-git
+delft-icon-theme-git
+vimix-gtk-themes-git
+mojave-gtk-theme-git
+
+#Web browsers (Solomon)
+otter-browser-git
+qutebrowser-git
+
 ## Users requests
 # Issue 328
 git-delta
