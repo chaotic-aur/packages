@@ -1,6 +1,7 @@
 ## MAINTAINERS
 # Paulo
 # Libre FPGA stuff
+yosys-git
 python-crcmod
 capnproto-java
 prjapicula
