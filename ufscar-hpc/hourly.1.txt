@@ -105,6 +105,9 @@ stb
 #Weather (Solomon)
 meteo-qt-git
 
+#Programming (Solomon)
+clion-eap
+
 ## Users requests
 # Issue 328
 git-delta
