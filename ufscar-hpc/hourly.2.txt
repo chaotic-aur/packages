@@ -117,6 +117,7 @@ python-thinc # (dep python-spacy)
 python-wasabi # (dep python-spacy)
 qbe-git
 rakudo
+shadowsocks-rust-git
 siji
 smenu
 telegram-tdlib
