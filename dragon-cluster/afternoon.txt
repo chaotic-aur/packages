@@ -32,7 +32,7 @@ kactivities-git
 kactivities-stats-git
 kactivitymanagerd-git
 karchive-git
-karbon-git
+marble-common-git
 kauth-git
 kbookmarks-git
 kcalendarcore-git
