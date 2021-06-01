@@ -553,3 +553,21 @@ quickdocs
 
 # Issue 631
 dust
+
+# Issue 633
+xorg-xwayland-git
+xorgproto-git
+
+# Issue 635
+#olive-git
+#opencolorio-git # (dep olive-git)
+openimageio-git # (dep olive-git)
+
+# Issue 636
+pikaur-git
+
+# Issue 637
+firefox-kde-opensuse-bin
+
+# Issue 639
+astronciaiptv
