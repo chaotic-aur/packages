@@ -56,7 +56,7 @@ ayatana-indicator-datetime
 nvm
 python-pympv
 python-grpcio-tools
-
+calligra-git
 # Moved because too heavy for Garuda
 ungoogled-chromium
 

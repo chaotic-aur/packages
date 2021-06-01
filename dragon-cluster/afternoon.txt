@@ -23,7 +23,7 @@ elf-dissector-git
 eventviews-git
 extra-cmake-modules-git
 frameworkintegration-git
-grantlee-git 
+grantlee-git
 grantleetheme-git
 grantleetheme-git
 incidenceeditor-git
@@ -32,6 +32,7 @@ kactivities-git
 kactivities-stats-git
 kactivitymanagerd-git
 karchive-git
+karbon-git
 kauth-git
 kbookmarks-git
 kcalendarcore-git
