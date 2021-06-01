@@ -571,3 +571,6 @@ firefox-kde-opensuse-bin
 
 # Issue 639
 astronciaiptv
+
+# Issue 641
+fractal-next
