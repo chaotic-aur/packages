@@ -72,7 +72,7 @@ oxygen-sounds
 pacman-git:https://github.com/chaotic-aur/pkgbuild-pacman-git.git
 paleofetch-git
 pamac-aur-git
-paru6alfa-git:https://github.com/chaotic-aur/pkgbuild-paru6alfa-git.git
+paru-git
 pulseeffects-git
 python-magic-ahupp # (dep guiscrcpy-git)
 python-pynput # (dep guiscrcpy-git)
