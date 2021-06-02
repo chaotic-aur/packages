@@ -1,4 +1,4 @@
-gi## Maintainers
+## Maintainers
 # Paulo
 singularity-container
 bluespec-git

@@ -247,6 +247,7 @@ emulationstation
 epsxe
 genymotion
 kega-fusion
+lxc-anbox # (dep anbox-git)
 m64py
 mednaffe
 pcsxr
