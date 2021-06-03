@@ -587,3 +587,6 @@ fractal-next
 
 # Issue 642
 picom-git
+
+# Issue 644
+tfsec
