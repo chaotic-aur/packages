@@ -214,7 +214,16 @@ kitty-git
 
 # Nico
 mullvad-vpn-beta
+plasma5-applets-window-appmenu-git
+plasma5-applets-window-buttons-git
+plasma5-applets-window-title-git
+sddm-wayland-git
+virt-manager-git
 vscodium-git
+wayland-git
+wayland-protocols-git
+wireplumber-git
+xf86-input-libinput-git
 
 # SGS
 github-desktop-bin

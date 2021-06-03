@@ -2,17 +2,6 @@
 # Long compile times
 qemu-git
 
-# Short compile times
-plasma5-applets-window-appmenu-git
-plasma5-applets-window-buttons-git
-plasma5-applets-window-title-git
-sddm-wayland-git
-virt-manager-git
-wayland-git
-wayland-protocols-git
-wireplumber-git
-xf86-input-libinput-git
-
 # Kwinft-git
 disman-git
 kwinft-git:https://gitlab.com/chaotic-aur-pkgbuilds/kwinft-git.git
