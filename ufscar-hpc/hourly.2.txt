@@ -575,3 +575,6 @@ astronciaiptv
 
 # Issue 641
 fractal-next
+
+# Issue 642
+picom-git

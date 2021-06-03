@@ -39,6 +39,10 @@ librewolf-hg
 # Issue 616
 brave
 
+# Issue 640
+rpcs3-git
+wolfssl # (dep rpcs3-git)
+
 # -------------------------------- MOVED FROM KITSUNA
 # Pedro
 #darling-git (broken)

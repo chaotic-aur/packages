@@ -12,6 +12,7 @@ conky-lua-nv
 connman-gtk
 dashbinsh
 downgrade
+etc-update
 evdev-right-click-emulation
 firefox-extension-bitwarden
 firefox-extension-flagfox
