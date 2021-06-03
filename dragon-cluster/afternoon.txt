@@ -27,6 +27,7 @@ grantlee-git
 grantleetheme-git
 grantleetheme-git
 incidenceeditor-git
+qca-git
 kaccounts-integration-git:https://gitlab.com/chaotic-aur-pkgbuilds/kaccounts-integration-git.git
 kactivities-git
 kactivities-stats-git
