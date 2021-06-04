@@ -489,9 +489,6 @@ mediainfo-gui-qt
 # Issue 567
 telephant-git
 
-# Issue 569
-freezer-git
-
 # Issue 571
 authy
 f2c # (dep meshlab)
@@ -593,3 +590,6 @@ picom-git
 
 # Issue 644
 tfsec
+
+# Issue 645
+minecraft-technic-launcher
