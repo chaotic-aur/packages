@@ -218,6 +218,7 @@ plasma5-applets-window-appmenu-git
 plasma5-applets-window-buttons-git
 plasma5-applets-window-title-git
 sddm-wayland-git
+signal-desktop-beta
 virt-manager-git
 vscodium-git
 wayland-git

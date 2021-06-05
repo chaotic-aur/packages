@@ -15,7 +15,6 @@ libreoffice-slim-fixed-git
 linux-cacule
 linux-xanmod-anbox
 firedragon-hg
-signal-desktop-beta
 
 ## User requests
 # Issue 331

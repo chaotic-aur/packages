@@ -1,1 +1,3 @@
 linux-cacule-generic_v3:https://github.com/chaotic-aur/pkgbuild-linux-cacule-generic_v3.git
+linux-cacule-rdb
+linux-cacule-rdb-generic_v3:https://github.com/chaotic-aur/pkgbuild-linux-cacule-rdb-generic_v3.git
