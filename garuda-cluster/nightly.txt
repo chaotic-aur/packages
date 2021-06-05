@@ -78,6 +78,7 @@ timeshift
 timeshift-autosnap
 ttf-meslo-nerd-font-powerlevel10k
 update-grub
+uresourced
 wd719x-firmware
 zsync2-git 
 
