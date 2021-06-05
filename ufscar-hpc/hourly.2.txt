@@ -598,5 +598,8 @@ minecraft-technic-launcher
 # Issue 647
 qgnomeplatform
 
-# Issue 648
+# Issue 649
 gitify
+
+# Issue 651
+redshift-minimal
