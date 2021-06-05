@@ -594,3 +594,6 @@ tfsec
 
 # Issue 645
 minecraft-technic-launcher
+
+# Issue 647
+qgnomeplatform
