@@ -597,3 +597,6 @@ minecraft-technic-launcher
 
 # Issue 647
 qgnomeplatform
+
+# Issue 648
+gitify
