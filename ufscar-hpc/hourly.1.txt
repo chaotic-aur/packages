@@ -181,7 +181,6 @@ lib32-x265
 libgccjit
 libuser # (dep system-config-samba)
 ncnn-git # (dep waifu2x-ncnn-vulkan-git)
-neovim-nightly-git
 nodejs-nativefier
 pycharm-professional
 rarian # (dep system-config-samba)
