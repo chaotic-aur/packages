@@ -664,9 +664,6 @@ newaita-icons-git
 # Issue 488
 davinci-resolve-studio
 
-# Issue 489
-cozy-audiobooks
-
 # Issue 490
 libsearpc
 seafile
