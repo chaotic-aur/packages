@@ -610,3 +610,7 @@ nnn-icons
 
 # Issue 654
 clifm-git
+
+# Issue 656
+python-casttube
+python-pychromecast
