@@ -615,15 +615,15 @@ hopper
 
 # Issue 478
 matrix-mirage
-python-babelfish # (dep sublimal-git)
-python-ezyme # (dep sublimal-git)
-python-guessit # (dep sublimal-git)
+python-babelfish # (dep subliminal-git)
+python-ezyme # (dep subliminal-git)
+python-guessit # (dep subliminal-git)
 python-html-sanitizer # (dep matrix-mirage)
-python-rarfile # (dep sublimal-git)
-python-rebulk # (dep sublimal-git)
+python-rarfile # (dep subliminal-git)
+python-rebulk # (dep subliminal-git)
 python-simpleaudio # (dep matrix-mirage)
-python-sphinxcontrib-programoutput # (dep sublimal-git)
-sublimal-git
+python-sphinxcontrib-programoutput # (dep subliminal-git)
+subliminal-git
 
 # Issue 480
 fluffychat
