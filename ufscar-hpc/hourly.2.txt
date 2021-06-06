@@ -603,3 +603,10 @@ gitify
 
 # Issue 651
 redshift-minimal
+
+# Issue 653
+icons-in-terminal # (dep nnn-icons)
+nnn-icons
+
+# Issue 654
+clifm-git
