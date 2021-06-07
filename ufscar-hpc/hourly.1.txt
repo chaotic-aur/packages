@@ -64,9 +64,11 @@ asdf-vm
 b43-firmware # not really needed
 depot-tools-git # servo-git dep
 discord-canary-electron-bin
+editline # (nix deps)
 gotop
 grim-git
 irpf
+nix
 obs-streamfx
 obs-v4l2sink
 obs-vkcapture-git
