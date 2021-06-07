@@ -97,6 +97,7 @@ waynergy-git
 yaup-git
 zfs-dkms
 zfs-utils
+ktweak-git:https://github.com/tytydraco/KTweak.git
 
 # Raytracing (Pedro)
 raytracinginvulkan-git
