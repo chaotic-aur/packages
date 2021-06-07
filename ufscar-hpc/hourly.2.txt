@@ -91,6 +91,7 @@ glow
 j9-git
 jetbrains-toolbox
 languageclient-neovim
+lua-format
 manim-community
 moarvm
 noti
