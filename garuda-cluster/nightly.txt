@@ -33,6 +33,7 @@ inxi
 kernel-modules-hook
 lib32-nvidia-390xx-utils
 lib32-opencl-nvidia-390xx
+libalpm12 # (until Pamac is fixed)
 libinput-gestures
 libinput_gestures_qt
 librewolf-extension-bitwarden
