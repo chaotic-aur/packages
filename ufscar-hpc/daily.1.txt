@@ -60,6 +60,7 @@ nvm
 python-pympv
 python-grpcio-tools
 calligra-git
+waterfox-classic-kpe
 # Moved because too heavy for Garuda
 ungoogled-chromium
 
