@@ -2,12 +2,10 @@
 # Paulo
 singularity-container
 bluespec-git
-
-# Hal-git (Paulo)
-lcov
+adms  # for qucs
+qucs
+lcov  # for hal-git
 hal-git
-
-# More Paulo
 fujprog
 digilent.adept.runtime
 digilent.adept.utilities
