@@ -1,3 +1,0 @@
-brave-nightly-bin
-electronmail-bin
-cozy-audiobooks

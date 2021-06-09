@@ -14,3 +14,6 @@ garuda-dr460nized-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-
 memavaild-git
 nohang-git
 prelockd-git
+brave-nightly-bin
+electronmail-bin
+cozy-audiobooks
