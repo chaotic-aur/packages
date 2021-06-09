@@ -56,7 +56,7 @@ lolcate
 lutris-git
 micro-git
 mini-benchmarker
-mkinitcpio-git:https://gitlab.com/chaotic-aur-pkgbuilds/mkinitpcio-git.git
+mkinitcpio-git
 modprobed-db-git
 netdata-git
 networkmanager-iwd
