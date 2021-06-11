@@ -621,3 +621,9 @@ bluemail
 
 # Issue 667
 yandex-browser-beta
+
+# Issue 668
+haguichi
+ledger-live
+ledger-udev # (dep ledger-live)
+logmein-hamachi # (dep haguichi)
