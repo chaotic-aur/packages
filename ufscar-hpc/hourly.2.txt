@@ -615,3 +615,9 @@ clifm-git
 # Issue 656
 python-casttube
 python-pychromecast
+
+# Issue 666
+bluemail
+
+# Issue 667
+yandex-browser-beta

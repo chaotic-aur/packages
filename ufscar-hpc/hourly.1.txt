@@ -361,12 +361,13 @@ tuxedo-keyboard
 
 # Issue 380
 acestream-launcher
-pyidm
+firedm
 python-acestream # (dep acestream-launcher)
-python-awesometkinter # (dep pyidm)
-python-plyer # (dep pyidm)
-python-pystray # (dep pyidm)
-youtube-dlc # (dep pyidm)
+python-awesometkinter # (dep firedm)
+python-bidi # (dep firedm)
+youtube-dlp   # (dep firedm)
+python-plyer # (dep firedm)
+python-pystray # (dep firedm)
 
 # Issue 382
 dwm
