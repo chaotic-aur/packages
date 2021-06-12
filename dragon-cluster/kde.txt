@@ -59,7 +59,7 @@ kdisplay-git
 kdnssd-git
 kdoctools-git
 kdsoap-git
-kdsoap-ws-discovery-client-git 
+kdsoap-ws-discovery-client-git
 kemoticons-git
 kfilemetadata-git
 kgamma5-git
