@@ -1,15 +1,11 @@
 # Plasma-git
 #labplot-git (broken currently)
 akonadi-calendar-git
-akonadi-calendar-git
-akonadi-contacts-git
 akonadi-contacts-git
 akonadi-git
 akonadi-import-wizard-git
-akonadi-mime
 akonadi-mime-git
 akonadi-notes-git
-akonadi-search-git
 akonadi-search-git
 attica-git:https://gitlab.com/chaotic-aur-pkgbuilds/attica-git.git
 baloo-git:https://gitlab.com/chaotic-aur-pkgbuilds/baloo-git.git
@@ -25,19 +21,15 @@ extra-cmake-modules-git
 frameworkintegration-git
 grantlee-git
 grantleetheme-git
-grantleetheme-git
 incidenceeditor-git
-qca-git
 kaccounts-integration-git:https://gitlab.com/chaotic-aur-pkgbuilds/kaccounts-integration-git.git
 kactivities-git
 kactivities-stats-git
 kactivitymanagerd-git
 karchive-git
-marble-common-git
 kauth-git
 kbookmarks-git
 kcalendarcore-git
-kcalutils-git
 kcalutils-git
 kcmutils-git
 kcodecs-git:https://gitlab.com/chaotic-aur-pkgbuilds/kcodecs-git.git
@@ -96,7 +88,6 @@ kjobwidgets-git
 kjs-git
 kjsembed-git:https://gitlab.com/chaotic-aur-pkgbuilds/kjsembed-git.git
 kldap-git
-kldap-git
 kmailtransport-git
 kmbox-git
 kmenuedit-git
@@ -104,16 +95,15 @@ kmime-git
 knewstuff-git
 knotifications-git
 knotifyconfig-git
+kompare-git:https://gitlab.com/chaotic-aur-pkgbuilds/kompare-git.git
 kontactinterface-git
 kpackage-git
 kparts-git
 kpeople-git
 kpeoplevcard-git:https://gitlab.com/chaotic-aur-pkgbuilds/kpeoplevcard-git.git
 kpimtextedit-git
-kpimtextedit-git
 kpkpass-git
 kplotting-git
-kompare-git:https://gitlab.com/chaotic-aur-pkgbuilds/kompare-git.git
 kpmcore-git:https://gitlab.com/chaotic-aur-pkgbuilds/kpmcore-git.git
 kpty-git
 kquickcharts-git
@@ -156,6 +146,7 @@ libqaccessibilityclient-git
 libqalculate-git
 mailcommon-git
 mailimporter-git
+marble-common-git
 messagelib-git
 milou-git:https://gitlab.com/chaotic-aur-pkgbuilds/milou-git.git
 modemmanager-qt-git:https://gitlab.com/chaotic-aur-pkgbuilds/modemmanager-qt-git.git
@@ -174,6 +165,7 @@ poppler-git
 powerdevil-git
 prison-git:https://gitlab.com/chaotic-aur-pkgbuilds/prison-git.git
 purpose-git:https://gitlab.com/chaotic-aur-pkgbuilds/purpose-git.git
+qca-git
 qca-qt5-git:https://gitlab.com/chaotic-aur-pkgbuilds/qca-qt5-git.git
 qqc2-desktop-style-git:https://gitlab.com/chaotic-aur-pkgbuilds/qqc2-desktop-style-git.git
 signon-kwallet-extension-git 
