@@ -66,10 +66,11 @@ editline # (nix deps)
 gotop
 grim-git
 irpf
-nix
+obs-rtspserver
 obs-streamfx
 obs-v4l2sink
 obs-vkcapture-git
+
 oneko
 osdlyrics-git
 pipewire-common-git
