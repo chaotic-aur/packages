@@ -154,6 +154,7 @@ networkmanager-qt-git:https://gitlab.com/chaotic-aur-pkgbuilds/networkmanager-qt
 non-euclidean-git
 okular-git
 partitionmanager-git:https://gitlab.com/chaotic-aur-pkgbuilds/partitionmanager-git.git
+phonon-git
 pimcommon-git
 plasma-browser-integration-git
 plasma-integration-git
