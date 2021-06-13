@@ -11,7 +11,7 @@ wrapland-git
 kdeconnect-git:https://gitlab.com/chaotic-aur-pkgbuilds/kdeconnect-git.git
 plasma-desktop-git
 plasma-framework-git:https://gitlab.com/chaotic-aur-pkgbuilds/plasma-framework-git.git
-plasma-nm-git:https://gitlab.com/chaotic-aur-pkgbuilds/plasma-nm-git.git
+plasma-nm-git:https://github.com/chaotic-aur/pkgbuild-plasma-nm-git.git
 plasma-pa-git:https://gitlab.com/chaotic-aur-pkgbuilds/plasma-pa-git.git
 plasma-workspace-git
 spectacle-git
