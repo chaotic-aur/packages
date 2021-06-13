@@ -24,6 +24,7 @@ elisa-git
 exa-git
 fastfetch-git
 ffmpeg-compat-57
+ffmpeg-compat-58
 firejail-git
 firejail-noapparmor-git
 firejail-pacman-hook
