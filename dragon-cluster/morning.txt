@@ -208,7 +208,6 @@ kde-servicemenus-rootactions
 kfiredragonhelper
 kvantum-theme-sweet-git
 kwin-effects-sliding-notifications
-kwin-lowlatency
 kwin-scripts-forceblur
 latte-dock-git
 nerd-fonts-fantasque-sans-mono
