@@ -631,5 +631,8 @@ logmein-hamachi # (dep haguichi)
 # Issue 672
 helvum
 
+# Issue 675
+lmms-git 
+
 # Issue 678
 mpv-git
