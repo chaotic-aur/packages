@@ -162,6 +162,7 @@ plasma-sdk-git:https://gitlab.com/chaotic-aur-pkgbuilds/plasma-sdk-git.git
 plasma-systemmonitor-git
 plasma-wayland-protocols-git
 polkit-kde-agent-git
+polkit-qt5-git
 poppler-git
 powerdevil-git
 prison-git:https://gitlab.com/chaotic-aur-pkgbuilds/prison-git.git
