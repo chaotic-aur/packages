@@ -627,3 +627,9 @@ haguichi
 ledger-live
 ledger-udev # (dep ledger-live)
 logmein-hamachi # (dep haguichi)
+
+# Issue 672
+helvum
+
+# Issue 678
+mpv-git
