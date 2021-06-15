@@ -22,7 +22,7 @@ ca-certificates-icp_br
 checkmake
 cozette-otb
 discord_arch_electron
-dxvk-mingw-git
+dxvk-git
 elm-format-bin
 elm-platform-bin
 ffmpeg-full
