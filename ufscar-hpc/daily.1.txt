@@ -62,6 +62,9 @@ python-grpcio-tools
 calligra-git
 kwaterfoxhelper
 waterfox-classic-kpe
+vim-colorschemes
+
+
 # Moved because too heavy for Garuda
 ungoogled-chromium
 
