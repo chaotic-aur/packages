@@ -114,7 +114,7 @@ gitkraken
 google-chrome
 jdownloader2
 jitsi-meet
-joplin-desktop
+joplin
 mendeleydesktop-bundled
 ms-office-online
 onlyoffice-bin
