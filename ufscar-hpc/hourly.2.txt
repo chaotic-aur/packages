@@ -126,7 +126,6 @@ tetrio-desktop
 tuxi-git
 vim-language-server
 vimv-git
-wasmer
 zef
 zlib-ng
 
