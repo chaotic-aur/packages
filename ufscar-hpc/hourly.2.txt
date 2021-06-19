@@ -636,3 +636,13 @@ lmms-git
 
 # Issue 678
 mpv-git
+
+# Issue 692
+htop-git
+
+# Issue 693
+plasmatube-git
+
+# Issue 694
+cotopi-notifier-frameworks
+
