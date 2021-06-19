@@ -655,7 +655,7 @@ htop-git
 plasmatube-git
 
 # Issue 694
-cotopi-notifier-frameworks
+octopi-notifier-frameworks
 
 # Issue 697
 noise-suppression-for-voice
