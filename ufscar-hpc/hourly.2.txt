@@ -643,6 +643,11 @@ ytmdesktop
 # Issue 690
 marktext-git
 
+# Issue 691
+discover-overlay
+python-pidfile # (dep discover-overlay) (also adds python2-pidfile)
+
+
 # Issue 692
 htop-git
 
