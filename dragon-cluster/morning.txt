@@ -257,10 +257,12 @@ xpadneo-dkms-git
 # GNOME
 firefox-extension-gnome-shell-integration
 gesture-manager-x-git
+gnome-control-center-x11-scaling
 gnome-terminal-transparency
 menulibre
 mintstick
 mugshot
+mutter-x11-scaling
 nautilus-admin
 nautilus-bluetooth
 nautilus-mediainfo
