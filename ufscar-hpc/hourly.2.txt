@@ -637,6 +637,13 @@ lmms-git
 # Issue 678
 mpv-git
 
+# Issue 686
+youtube-music-bin
+ytmdesktop
+
+# Issue 690
+marktext-git
+
 # Issue 692
 htop-git
 
@@ -646,3 +653,5 @@ plasmatube-git
 # Issue 694
 cotopi-notifier-frameworks
 
+# Issue 697
+noise-suppression-for-voice
