@@ -636,6 +636,11 @@ lmms-git
 # Issue 678
 mpv-git
 
+# Issue 683
+protonvpn-gui
+python-proton-client # (dep protonvpn-gui)
+python-protonvpn-nm-lib # (dep protonvpn-gui)
+
 # Issue 684
 openboard
 openboard-git
