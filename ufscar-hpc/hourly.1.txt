@@ -108,6 +108,10 @@ stb
 #Weather (Solomon)
 meteo-qt-git
 
+#Theming
+flat-remix-kde-git
+kvantum-theme-akava-git
+
 #Programming (Solomon)
 clion-eap
 
