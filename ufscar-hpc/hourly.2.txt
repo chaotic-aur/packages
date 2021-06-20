@@ -636,6 +636,10 @@ lmms-git
 # Issue 678
 mpv-git
 
+# Issue 684
+openboard
+openboard-git
+
 # Issue 686
 youtube-music-bin
 ytmdesktop
