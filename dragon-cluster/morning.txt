@@ -309,6 +309,7 @@ whitesur-kvantum-theme-git
 ant-dracula-gtk-theme
 ant-dracula-kde-theme-git
 ant-dracula-kvantum-theme-git
+cmst
 lxqt-kcm-integration-extra-git
 lxqt-kwin-desktop-git
 
