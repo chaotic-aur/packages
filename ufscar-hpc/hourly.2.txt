@@ -127,6 +127,7 @@ ttf-juliamono
 tuxi-git
 vim-language-server
 vimv-git
+yaml-language-server
 zef
 zlib-ng
 
