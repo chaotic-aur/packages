@@ -167,7 +167,8 @@ poppler-git
 powerdevil-git
 prison-git:https://gitlab.com/chaotic-aur-pkgbuilds/prison-git.git
 purpose-git:https://gitlab.com/chaotic-aur-pkgbuilds/purpose-git.git
-qca-git
+qca-qt5-git
+qca-qt6-git
 qqc2-desktop-style-git:https://gitlab.com/chaotic-aur-pkgbuilds/qqc2-desktop-style-git.git
 signon-kwallet-extension-git 
 solid-git:https://gitlab.com/chaotic-aur-pkgbuilds/solid-git.git
