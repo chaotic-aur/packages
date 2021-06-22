@@ -123,6 +123,7 @@ siji
 smenu
 telegram-tdlib
 tetrio-desktop
+ttf-juliamono
 tuxi-git
 vim-language-server
 vimv-git
