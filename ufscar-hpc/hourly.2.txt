@@ -89,6 +89,7 @@ elm-language-server
 firefox-nightly
 glow
 j9-git
+jdk8-graalvm-bin
 jetbrains-toolbox
 jupyter-metakernel
 languageclient-neovim
