@@ -636,6 +636,9 @@ lmms-git
 # Issue 678
 mpv-git
 
+# Issue 680
+mips64-elf-binutils
+
 # Issue 683
 protonvpn-gui
 python-proton-client # (dep protonvpn-gui)
