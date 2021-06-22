@@ -514,7 +514,7 @@ gdb-multiarch
 sourcetrail
 
 # Issue 445
-kwin-unredirect
+# kwin-unredirect completely outdated
 
 # Issue 447
 spot-client
