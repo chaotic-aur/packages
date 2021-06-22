@@ -1,0 +1,9 @@
+ananicy-git
+auto-cpufreq-git
+brave-nightly-bin
+cozy-audiobooks
+electronmail-bin
+garuda-dr460nized-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-dr460nized.git
+memavaild-git
+nohang-git
+prelockd-git
