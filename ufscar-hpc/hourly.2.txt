@@ -92,6 +92,7 @@ j9-git
 jdk8-graalvm-bin
 jetbrains-toolbox
 jupyter-metakernel
+koka-bin
 languageclient-neovim
 lua-format
 manim-community
