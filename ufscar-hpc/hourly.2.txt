@@ -118,6 +118,7 @@ python-thinc # (dep python-spacy)
 python-wasabi # (dep python-spacy)
 qbe-git
 rakudo
+jupyter-metakernel
 shadowsocks-rust-git
 siji
 smenu
