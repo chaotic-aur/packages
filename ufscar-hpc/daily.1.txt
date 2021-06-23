@@ -19,11 +19,9 @@ firedragon-hg
 ## User requests
 # Issue 331
 linux-mainline
-linux-mainline-headers
 
 # Issue 318
 linux-next-git
-linux-next-git-headers
 
 # Issue 353
 plasmafox:https://github.com/torvic9/plasmafox.git
