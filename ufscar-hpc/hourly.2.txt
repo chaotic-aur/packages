@@ -679,3 +679,6 @@ octopi-notifier-frameworks
 
 # Issue 697
 noise-suppression-for-voice
+
+# Issue 701
+melonds-git
