@@ -848,3 +848,4 @@ libva-git # (dep intel-media-driver-git
 
 ## Lost & found
 deadd-notification-center-git
+veloren-git
