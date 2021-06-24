@@ -281,8 +281,9 @@ deadd-notification-center-git
 ncspot
 
 # Issue 356
-windscribe-cli
+java-p7zip-binding
 mullvad-vpn
+windscribe-cli
 
 # Issue 357
 cheese-git
