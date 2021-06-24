@@ -336,7 +336,7 @@ python-pyparted
 alpm_octopi_utils # (dep octopi)
 anydesk-bin
 appimagelauncher
-balena-etcher
+etcher-bin # (name changed to balena-etcher as balena-etcher doesnt build)
 bauh
 birdtray
 bitwarden
