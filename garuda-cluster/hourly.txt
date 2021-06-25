@@ -15,7 +15,6 @@ xviewer-plugins
 
 # Dr460nized
 beautyline
-firedragon
 kde-service-menu-reimage
 kde-servicemenus-encfs
 kde-servicemenus-komparemenu
@@ -38,7 +37,6 @@ searx
 sweet-gtk-theme
 sweet-gtk-theme-dark
 sweet-kde-git
-thunderbird-appmenu
 whoogle
 xcursor-sweet
 
