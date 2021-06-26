@@ -174,7 +174,7 @@ esy # (dep)
 
 # Issue 338
 clion
-emacs-native-comp-git
+#emacs-native-comp-git # (pending merging with emacs-git)
 expressvpn
 gnome-doc-utils # (dep system-config-samba)
 graphite-mozilla
