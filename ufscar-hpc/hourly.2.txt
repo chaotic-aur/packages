@@ -682,3 +682,6 @@ noise-suppression-for-voice
 
 # Issue 701
 melonds-git
+
+# Issue 702
+tutanota-desktop-bin

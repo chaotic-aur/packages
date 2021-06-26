@@ -1,3 +1,6 @@
 # Dr460nized
 firedragon
 thunderbird-appmenu
+
+# Setup-assistant
+librewolf
