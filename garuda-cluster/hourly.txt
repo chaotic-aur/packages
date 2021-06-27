@@ -302,6 +302,19 @@ yozo-office-fonts
 yuzu-mainline-bin
 zoom
 
+# mycroft the voice assistant
+fann
+mimic
+mycroft-core
+mycroft-gui-git
+plasma5-applets-mycroft-git
+
+# howdy the face recognition similar to windows hello
+howdy
+python-face_recognition
+python-dlib
+python-face_recognition_models
+pam-python
 
 ## NEEDED DEPENDENCIES
 # wacom-utility
