@@ -688,3 +688,6 @@ tutanota-desktop-bin
 
 # Issue 704
 searx-git
+
+# Issue 709
+cloudflared
