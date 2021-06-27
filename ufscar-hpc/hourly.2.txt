@@ -685,3 +685,6 @@ melonds-git
 
 # Issue 702
 tutanota-desktop-bin
+
+# Issue 704
+searx-git
