@@ -7,3 +7,6 @@ linux-cacule-rdb-generic_v3:https://github.com/chaotic-aur/pkgbuild-linux-cacule
 ## Chaotic 
 # Issue 655
 linux-xanmod-lts
+
+## SGS
+xiaomitool-v2

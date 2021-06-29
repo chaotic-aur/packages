@@ -302,19 +302,19 @@ yozo-office-fonts
 yuzu-mainline-bin
 zoom
 
-# mycroft the voice assistant
+# Mycroft the voice assistant
 fann
 mimic
 mycroft-core
 mycroft-gui-git
 plasma5-applets-mycroft-git
 
-# howdy the face recognition similar to windows hello
+# Howdy the face recognition similar to Windows Hello
 howdy
-python-face_recognition
-python-dlib
-python-face_recognition_models
 pam-python
+python-dlib
+python-face_recognition
+python-face_recognition_models
 
 ## NEEDED DEPENDENCIES
 # wacom-utility
@@ -462,3 +462,5 @@ garuda-dr460nized-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-
 memavaild-git
 nohang-git
 prelockd-git
+qt-installer-framework
+riseup-vpn
