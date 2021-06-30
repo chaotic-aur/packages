@@ -698,5 +698,11 @@ cloudflared
 # Issue 710
 power-profiles-daemon
 
-Issue 711
+# Issue 711
 gedit-plugin-markdown_preview
+
+# Issue 712
+contour-git
+
+# Issue 713
+peazip-qt5
