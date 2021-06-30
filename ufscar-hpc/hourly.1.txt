@@ -583,7 +583,7 @@ freetube
 
 # Issue 469
 adwaita-qt
-lbry-app-bin
+lbry-desktop-bin
 gajim-git
 python-nbxmpp-git
 spotify-tray-git
