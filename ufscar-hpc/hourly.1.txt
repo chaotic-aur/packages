@@ -1,6 +1,5 @@
 ## Maintainers
 # Paulo
-singularity-container
 bluespec-git
 adms  # for qucs
 qucs
@@ -62,7 +61,6 @@ asdf-vm
 b43-firmware # not really needed
 depot-tools-git # servo-git dep
 discord-canary-electron-bin
-editline # (nix deps)
 gotop
 grim-git
 irpf
