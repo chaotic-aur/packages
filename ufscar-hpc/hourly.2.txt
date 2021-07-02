@@ -711,3 +711,12 @@ paq8o # (dep peazip-gtk2-bin)
 peazip-gtk2-bin
 peazip-qt5
 zpaq # (dep peazip-gtk2-bin)
+
+# Issue 714
+greetd-tuigreet
+
+# Issue 716
+find-the-command
+
+# Issue 717
+kooha
