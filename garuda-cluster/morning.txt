@@ -20,6 +20,7 @@ plymouth-theme-dr460nized:https://gitlab.com/garuda-linux/packages/stable-pkgbui
 plymouth-theme-garuda-purple:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/plymouth-theme-garuda-purple.git
 plymouth-theme-garuda:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/plymouth-theme-garuda.git
 reflector-simple:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/reflector-simple.git
+zram-generator:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/zram-generator.git
 
 # Metapkg
 alsa-support:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/alsa-support.git
