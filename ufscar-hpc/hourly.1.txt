@@ -688,7 +688,7 @@ python-spotipy
 aseprite
 
 # Issue 496
-xen:https://gitlab.com/chaotic-aur-pkgbuilds/xen.git
+xen
 
 # Issue 498
 xfdashboard
