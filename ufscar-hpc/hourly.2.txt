@@ -705,4 +705,9 @@ gedit-plugin-markdown_preview
 contour-git
 
 # Issue 713
+balz # (dep peazip-gtk2-bin)
+lib32-gmp4 # (dep peazip-gtk2-bin)
+paq8o # (dep peazip-gtk2-bin)
+peazip-gtk2-bin
 peazip-qt5
+zpaq # (dep peazip-gtk2-bin)
