@@ -147,6 +147,7 @@ qt5-styleplugins
 # Sway
 nordic-darker-theme
 nordic-kde-git
+nwg-bar
 nwg-dock
 nwg-drawer
 nwg-launchers
