@@ -552,6 +552,11 @@ emote
 
 # Issue 460
 cryptomator
+jlink # (dep cryptomator)
+jlink-software-and-documentation # (dep cryptomator)
+jlink-systemview # (dep cryptomator)
+jlink-systemview-target-src # (dep cryptomator)
+ozone # (dep cryptomator)
 protonmail-bridge-bin
 
 # Issue 285

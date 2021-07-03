@@ -33,6 +33,7 @@ plasma5-runners-poki-launcher
 plasma5-theme-sweet-git
 poki-launcher
 resvg
+rootactions-servicemenu
 searx
 sweet-gtk-theme
 sweet-gtk-theme-dark
