@@ -722,3 +722,6 @@ find-the-command
 
 # Issue 717
 kooha
+
+# Issue 718
+qview
