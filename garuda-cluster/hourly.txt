@@ -424,6 +424,7 @@ candy-icons-git
 flat-remix
 flat-remix-gtk
 gnome-shell-extension-pop-shell-git
+kali-themes
 ksmoothdock
 kvantum-theme-layan-git
 kvantum-theme-matcha-git
