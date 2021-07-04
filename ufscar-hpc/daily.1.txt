@@ -42,7 +42,7 @@ wolfssl # (dep rpcs3-git)
 
 # Issue 708
 emacs-ng
-#emacs-ng-git
+emacs-ng-git
 
 # -------------------------------- MOVED FROM KITSUNA
 # Pedro
