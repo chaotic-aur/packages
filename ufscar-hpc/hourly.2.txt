@@ -725,3 +725,7 @@ kooha
 
 # Issue 718
 qview
+
+# Issue 719
+opera-beta-ffmpeg-codecs
+yandex-browser-ffmpeg-codecs-opera
