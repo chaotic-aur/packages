@@ -732,3 +732,6 @@ yandex-browser-ffmpeg-codecs-opera
 
 # Issue 720
 adwaita-icon-theme-git
+
+# 721
+kotatogram-desktop-bin
