@@ -40,6 +40,10 @@ brave
 rpcs3-git
 wolfssl # (dep rpcs3-git)
 
+# Issue 708
+emacs-ng
+#emacs-ng-git
+
 # -------------------------------- MOVED FROM KITSUNA
 # Pedro
 #darling-git (broken)

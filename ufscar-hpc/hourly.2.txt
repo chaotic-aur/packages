@@ -729,3 +729,6 @@ qview
 # Issue 719
 opera-beta-ffmpeg-codecs
 yandex-browser-ffmpeg-codecs-opera
+
+# Issue 720
+adwaita-icon-theme-git
