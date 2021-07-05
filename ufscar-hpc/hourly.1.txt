@@ -157,7 +157,6 @@ lib32-spandsp
 lib32-webrtc-audio-processing
 lib32-wildmidi
 lib32-zvbi
-lib32-gst-plugins-bad
 lib32-libreplaygain
 lib32-libcue
 
