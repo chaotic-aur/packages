@@ -103,6 +103,17 @@ imgui
 tinyobjloader
 stb
 
+# lib32-gst-plugins-ugly (Pedro)
+lib32-libdvdcss
+lib32-libdvdread
+lib32-libmpeg2
+lib32-a52dec
+lib32-libsidplay
+lib32-libcdio
+lib32-libcdio
+lib32-l-smash
+lib32-x264
+
 #Weather (Solomon)
 meteo-qt-git
 
