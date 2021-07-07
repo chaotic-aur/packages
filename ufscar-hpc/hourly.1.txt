@@ -181,6 +181,9 @@ delft-icon-theme-git
 vimix-gtk-themes-git
 mojave-gtk-theme-git
 
+#Fonts (Solomon)
+ttf-iosevka-git
+
 #Web browsers (Solomon)
 otter-browser-git
 qutebrowser-git
