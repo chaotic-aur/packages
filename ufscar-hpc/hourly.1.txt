@@ -169,6 +169,8 @@ kvantum-theme-akava-git
 
 #Programming (Solomon)
 clion-eap
+helix-git
+helix
 
 #Themes (Solomon)
 themix-icons-numix-git
