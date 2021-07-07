@@ -23,10 +23,6 @@ linux-mainline
 # Issue 318
 linux-next-git
 
-# Issue 353
-plasmafox:https://github.com/torvic9/plasmafox.git
-kplasmafoxhelper
-
 # Issue 394
 icecat
 
