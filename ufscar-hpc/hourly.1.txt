@@ -182,6 +182,7 @@ vimix-gtk-themes-git
 mojave-gtk-theme-git
 
 #Fonts (Solomon)
+ttfautohint
 ttf-iosevka-git
 
 #Web browsers (Solomon)
