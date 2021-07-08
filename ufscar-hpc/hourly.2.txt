@@ -159,7 +159,7 @@ mesa-git:https://github.com/chaotic-aur/mesa-git.git
 
 lib32-mesa-git:https://github.com/chaotic-aur/lib32-mesa-git.git
 
-onivim2-git
+onivim2-git # issue 339
 pantheon-polkit-agent-git
 properties-cpp
 tilix-git:https://github.com/chaotic-aur/tilix-git-aur

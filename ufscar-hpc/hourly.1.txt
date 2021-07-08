@@ -249,7 +249,6 @@ filebot47
 
 # Issue 339
 esy # (dep)
-#onivim2-git (broken)
 
 # Issue 338
 clion
