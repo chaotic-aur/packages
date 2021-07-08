@@ -91,6 +91,7 @@ firefox-nightly
 glow
 j9-git
 jdk8-graalvm-bin
+jdk16-graalvm-bin
 jetbrains-toolbox
 jupyter-metakernel
 koka-bin
