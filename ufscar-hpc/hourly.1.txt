@@ -201,8 +201,6 @@ pamac-all
 pamac-all-git
 
 ## Users requests
-# Issue 328
-git-delta
 
 # Issue 322
 hlsdl
