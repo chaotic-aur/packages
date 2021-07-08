@@ -174,11 +174,22 @@ helix
 
 #Themes (Solomon)
 themix-icons-numix-git
+themix-gui-git
+themix-plugins-base16-git
+themix-icons-suru-plus-aspromauros-git
+themix-theme-arc-git
+themix-theme-materia-git
+themix-icons-gnome-colors-git
+themix-icons-numix-git
+themix-export-spotify-git
+themix-icons-papirus-git
+themix-import-images-git
 obsidian-2-theme-git
 themix-icons-suru-plus-git
 obsidian-icon-theme-git
 themix-theme-oomox-git
 themix-icons-archdroid-git
+themix-full-git
 delft-icon-theme-git
 vimix-gtk-themes-git
 mojave-gtk-theme-git
