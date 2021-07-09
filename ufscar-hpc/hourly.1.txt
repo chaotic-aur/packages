@@ -202,15 +202,6 @@ ttf-iosevka-git
 otter-browser-git
 qutebrowser-git
 
-#snap and flatpak
-snapd
-snapd-git
-snapd-glib
-snapd-glib-git
-libpamac-full
-pamac-all
-pamac-all-git
-
 ## Users requests
 
 # Issue 322
