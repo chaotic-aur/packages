@@ -77,6 +77,7 @@ mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
 neofrog-git:https://github.com/Frogging-Family/neofrog-git.git
 spirv-tools-tkg-git:https://github.com/Frogging-Family/spirv-tools-git.git
 vkd3d-tkg-git:https://github.com/Frogging-Family/vkd3d-git.git
+vkd3d-proton-tkg-git:https://github.com/Frogging-Family/vkd3d-git.git
 vulkan-headers-tkg-git:https://github.com/Frogging-Family/vulkan-headers-git.git
 vulkan-icd-loader-tkg-git:https://github.com/Frogging-Family/vulkan-icd-loader-git.git
 
