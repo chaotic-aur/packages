@@ -278,6 +278,7 @@ python-node-semver # (dep conan)
 python-patch-ng # (dep conan)
 python-pluginbase # (dep conan)
 sameboy
+sdbus-cpp # (dep anbox-git)
 xemu-git
 yuzu-mainline-git
 
