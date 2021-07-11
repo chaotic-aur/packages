@@ -249,6 +249,7 @@ pacman-pkgfile-hook
 pacman-sync
 pacui:https://github.com/excalibur1234/pacui.git
 pamac-aur
+pamac-classic
 paru
 performance-tweaks
 plymouth-git
