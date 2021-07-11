@@ -582,7 +582,7 @@ xorgproto-git
 
 # Issue 635
 #olive-git
-#opencolorio-git # (dep olive-git)
+#opencolorio-git # (dep olive-git) weird permissions issue
 openimageio-git # (dep olive-git)
 
 # Issue 636

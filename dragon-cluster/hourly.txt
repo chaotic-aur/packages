@@ -18,6 +18,7 @@ asp-git
 babl-git # (dep gimp-git)
 birdtray-git
 bleachbit-git
+bottom
 bottom-git
 c-lolcat
 coreutils-git
@@ -89,6 +90,7 @@ python-setuptools-lint # (dep guiscrcpy-git)
 python-validity
 qbittorrent-enhanced-git
 ripgrep-git
+riseup-vpn
 rmatrix-git
 rusnapshot-git
 smplayer-svn

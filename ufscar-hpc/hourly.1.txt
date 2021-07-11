@@ -277,7 +277,9 @@ giara
 # Issue 335
 compiz
 crow-translate
-megasync-bin
+ffmpeg3.4 # (dep megasync)
+libpdfium-nojs # (dep megasync)
+megasync
 trizen
 
 # Issue 325
@@ -922,5 +924,15 @@ intel-media-driver-git
 libva-git # (dep intel-media-driver-git
 
 ## Lost & found
+anaconda
+azure-cli
+davinci-resolve-studio
 deadd-notification-center-git
+fluent-reader
+fnott
+heroku-cli-bin
+java-openjdk-ea-bin
+kite
+telegram-desktop-bin-dev
 veloren-git
+vulkan-amdgpu-pro # (amdgpu-pro-installer)

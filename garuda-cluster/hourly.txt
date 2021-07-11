@@ -219,6 +219,7 @@ lib32-nvidia-390xx-utils
 lib32-opencl-nvidia-390xx
 libinput-gestures
 libinput_gestures_qt
+libpamac-aur
 librewolf-extension-bitwarden
 librewolf-extension-dark-reader
 librewolf-extension-gnome-shell-integration
