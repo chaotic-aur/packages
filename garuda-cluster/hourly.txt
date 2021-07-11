@@ -154,6 +154,7 @@ nwg-drawer
 nwg-launchers
 nwg-menu
 nwg-panel
+nwg-wrapper
 wob
 
 # Wayfire
