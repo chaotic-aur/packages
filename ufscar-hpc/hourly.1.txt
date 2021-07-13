@@ -21,7 +21,7 @@ hashcash
 bear
 rqlite
 libfprint-git
-fprintd-libfprint2
+fprintd-libfprint2:https://aur.archlinux.org/fprintd-libfprint2.git
 vkcube-git
 wdisplays-git
 chromium-widevine
