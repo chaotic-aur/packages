@@ -567,9 +567,6 @@ github-desktop
 # Issue 628
 libreoffice-extension-languagetool
 
-# Issue 629
-lua-language-server
-
 # Issue 630
 quickdocs
 
