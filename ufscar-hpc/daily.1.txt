@@ -44,6 +44,9 @@ wolfssl # (dep rpcs3-git)
 emacs-ng
 emacs-ng-git
 
+# Issue 729
+linux-vfio
+
 # -------------------------------- MOVED FROM KITSUNA
 # Pedro
 #darling-git (broken)
