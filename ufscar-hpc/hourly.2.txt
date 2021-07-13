@@ -751,3 +751,9 @@ qogir-gtk-theme
 dialect
 python-googletrans 
 python-gtts 
+
+# Issue 730
+git-fixup-git
+
+# Issue 731
+libglade
