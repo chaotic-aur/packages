@@ -40,12 +40,16 @@ brave
 rpcs3-git
 wolfssl # (dep rpcs3-git)
 
+# Issue 698
+yuzu-git:https://gitlab.com/tallero/yuzu-git-aur.git
+
 # Issue 708
 emacs-ng
 emacs-ng-git
 
 # Issue 729
 linux-vfio
+
 
 # -------------------------------- MOVED FROM KITSUNA
 # Pedro
