@@ -754,3 +754,6 @@ git-fixup-git
 
 # Issue 731
 libglade
+
+# Issue 733
+popcorntime
