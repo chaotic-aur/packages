@@ -757,3 +757,13 @@ libglade
 
 # Issue 733
 popcorntime
+
+# Issue 734
+solanum
+
+# Issue 735
+gtg
+python-liblarch # (dep gtg)
+
+# Issue 736
+basilisk-bin
