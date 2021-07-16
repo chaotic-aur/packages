@@ -771,3 +771,6 @@ basilisk-bin
 # Issue 739
 discord-rpc-api # (openrct2-git)
 openrct2-git
+
+# Issue 740
+rider
