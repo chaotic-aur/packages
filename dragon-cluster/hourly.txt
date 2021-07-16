@@ -57,6 +57,7 @@ kde-git:https://gitlab.com/chaotic-aur-pkgbuilds/kde-git.git
 kotatogram-dev-git
 kvantum-qt5-git
 leagueoflegends-git
+libreoffice-dev-bin
 libscrypt
 libtorrent-rasterbar-1_2-git # (dep qbittorrent-enhanced-git)
 libva-intel-driver-next-git
