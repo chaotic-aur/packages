@@ -767,3 +767,7 @@ python-liblarch # (dep gtg)
 
 # Issue 736
 basilisk-bin
+
+# Issue 739
+discord-rpc-api # (openrct2-git)
+openrct2-git
