@@ -774,3 +774,14 @@ openrct2-git
 
 # Issue 740
 rider
+
+# Issue 743
+foot
+foot-terminfo
+python-xkbcommon
+pywayland
+pywlroots
+qtile-git
+river-git
+spacefm-git
+tealdeer
