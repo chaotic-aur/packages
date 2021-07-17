@@ -84,6 +84,7 @@ pacman-git:https://github.com/chaotic-aur/pkgbuild-pacman-git.git
 paleofetch-git
 pamac-aur-git
 paru-git
+protobuf-go # (dep sysbox-ce)
 pulseeffects-git
 python-magic-ahupp # (dep guiscrcpy-git)
 python-pynput # (dep guiscrcpy-git)
@@ -96,6 +97,7 @@ rmatrix-git
 rusnapshot-git
 smplayer-svn
 sweet-theme-git
+sysbox-ce
 thermald-git
 tpacpi-bat-git
 tor-git
