@@ -775,6 +775,9 @@ openrct2-git
 # Issue 740
 rider
 
+# Issue 742
+sneedacity-git
+
 # Issue 743
 foot
 foot-terminfo
