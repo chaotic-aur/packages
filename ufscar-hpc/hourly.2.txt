@@ -785,7 +785,6 @@ sneedacity-git
 # Issue 743
 foot
 foot-terminfo
-python-xkbcommon
 pywayland
 pywlroots
 qtile-git
