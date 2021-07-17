@@ -642,7 +642,7 @@ helvum
 lmms-git 
 
 # Issue 678
-mpv-git
+mpv-vapoursynth-git
 
 # Issue 680
 mips64-elf-binutils
@@ -774,6 +774,10 @@ openrct2-git
 
 # Issue 740
 rider
+
+# Issue 741
+apparmor-git
+celluloid-git
 
 # Issue 742
 sneedacity-git
