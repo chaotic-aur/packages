@@ -459,6 +459,7 @@ xcursor-breeze
 
 
 ## Misc
+alma-git
 ananicy-git
 auto-cpufreq-git
 brave-nightly-bin
