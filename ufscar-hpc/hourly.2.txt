@@ -785,8 +785,6 @@ sneedacity-git
 # Issue 743
 foot
 foot-terminfo
-pywayland
-pywlroots
 qtile-git
 river-git
 spacefm-git
