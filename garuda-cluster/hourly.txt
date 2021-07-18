@@ -471,3 +471,6 @@ nohang-git
 prelockd-git
 qt-installer-framework
 riseup-vpn
+
+## User requests
+neovide-bin
