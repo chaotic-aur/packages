@@ -322,6 +322,7 @@ python-dlib
 python-face_recognition
 python-face_recognition_models
 
+
 ## NEEDED DEPENDENCIES
 # wacom-utility
 gconf
@@ -331,8 +332,8 @@ pygtk
 
 # garuda-network-assistant
 linux-wifi-hotspot
-
 webapp-manager
+
 # warpinator
 python-grcpio-tools
 
@@ -403,6 +404,7 @@ debtap
 droidcam
 fotokilof
 growpart
+ircd-hybrid
 isoimagewriter
 isomaster
 jade-application-kit
@@ -457,6 +459,12 @@ vimix-icon-theme
 vimix-icon-theme-git
 whitesur-kvantum-theme-git
 xcursor-breeze
+
+# P2P
+acestream-engine
+nicotine-plus-git
+python2-apsw # (dep acestream-engine)
+python2-xlib # (dep acestream-engine)
 
 
 ## Misc
