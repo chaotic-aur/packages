@@ -98,7 +98,7 @@ jupyter-metakernel
 koka-bin
 languageclient-neovim
 lua-format
-manim-community
+manim
 moarvm
 noti
 nqp
@@ -112,12 +112,14 @@ powder-toy-git
 pup
 python-blis # (dep python-spacy)
 python-catalogue # (dep python-spacy)
-python-mainimpango # (dep manim-community)
+python-mainimpango # (dep manim)
+python-moderngl-window # (dep manim)
 python-murmurhash # (dep python-spacy)
 python-pathlib # (dep python-spacy)
 python-plac # (dep python-spacy)
 python-preshed # (dep python-spacy)
-python-pydub # (dep manim-community)
+python-pydub # (dep manim)
+python-pyrr # (dep manim)
 python-spacy
 python-srsly # (dep python-spacy)
 python-thinc # (dep python-spacy)
