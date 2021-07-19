@@ -788,4 +788,3 @@ foot-terminfo
 qtile-git
 river-git
 spacefm-git
-tealdeer
