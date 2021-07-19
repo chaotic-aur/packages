@@ -49,9 +49,11 @@ gst-plugins-base-git
 gstreamer-git
 guiscrcpy-git
 imagemagick-git
+inspircd
 intel-ucode-git
 intel-undervolt-git
 inxi-git
+jackett
 kde-git:https://gitlab.com/chaotic-aur-pkgbuilds/kde-git.git
 kotatogram-dev-git
 kvantum-qt5-git
