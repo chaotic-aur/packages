@@ -18,7 +18,6 @@ asp-git
 babl-git # (dep gimp-git)
 birdtray-git
 bleachbit-git
-bottom
 bottom-git
 c-lolcat
 coreutils-git
