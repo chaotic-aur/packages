@@ -32,7 +32,7 @@ kbookmarks-git
 kcalendarcore-git
 kcalutils-git
 kcmutils-git
-kcodecs-git:https://gitlab.com/chaotic-aur-pkgbuilds/kcodecs-git.git
+kcodecs-git
 kcolorpicker-git:https://gitlab.com/chaotic-aur-pkgbuilds/kcolorpicker-git.git
 kcompletion-git
 kconfig-git
@@ -109,7 +109,7 @@ kquickcharts-git
 kross-git
 krunner-git
 kscreen-git
-kscreenlocker-git:https://gitlab.com/chaotic-aur-pkgbuilds/kscreenlocker-git.git
+kscreenlocker-git
 kservice-git
 ksmtp-git
 ksshaskpass-git
