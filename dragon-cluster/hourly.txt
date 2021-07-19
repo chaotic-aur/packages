@@ -102,6 +102,7 @@ tpacpi-bat-git
 tor-git
 ttyper-git
 ufw-git
+wavemon-git
 weechat-git
 whoogle-git
 zellij-git
