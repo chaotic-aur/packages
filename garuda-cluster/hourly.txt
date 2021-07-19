@@ -4,6 +4,15 @@ lightdm-settings
 lightdm-slick-greeter
 picom-ibhagwan-git
 
+# IRC servers
+ircd-hybrid
+charybdis
+charybdis-git
+
+# P2P
+nicotine-plus-git
+acestream-engine
+
 # Cinnamon
 gtkhash
 mint-artwork-cinnamon
