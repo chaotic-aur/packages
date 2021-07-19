@@ -788,3 +788,9 @@ foot-terminfo
 qtile-git
 river-git
 spacefm-git
+
+# Issue 744
+psst-git
+
+# Issue 745
+hakuneko-desktop
