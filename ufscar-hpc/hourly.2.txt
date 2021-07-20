@@ -796,3 +796,9 @@ psst-git
 
 # Issue 745
 hakuneko-desktop
+
+# Issue 748
+jackett
+
+# Issue 750
+clapper
