@@ -6,6 +6,7 @@ konsole-git
 starship-git
 sudo-git
 
+
 ## Try to get some more hourly builds in
 # Some stuff
 alacritty-git
@@ -18,7 +19,6 @@ asp-git
 babl-git # (dep gimp-git)
 birdtray-git
 bleachbit-git
-bmap-tools
 bottom-git
 c-lolcat
 coreutils-git
@@ -27,7 +27,6 @@ clamav-unofficial-sigs
 cmake-git
 coreutils-hybrid
 czkawka-git
-debianutils
 diary-git
 elisa-git
 exa-git
@@ -110,3 +109,11 @@ whoogle-git
 zellij-git
 zram-generator-git
 zstd-git
+
+
+## Development
+bitbake
+bmap-tools
+debianutils
+python-codegen
+python-simplediff
