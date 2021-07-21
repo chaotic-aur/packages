@@ -18,6 +18,7 @@ asp-git
 babl-git # (dep gimp-git)
 birdtray-git
 bleachbit-git
+bmap-tools
 bottom-git
 c-lolcat
 coreutils-git
@@ -26,6 +27,7 @@ clamav-unofficial-sigs
 cmake-git
 coreutils-hybrid
 czkawka-git
+debianutils
 diary-git
 elisa-git
 exa-git
