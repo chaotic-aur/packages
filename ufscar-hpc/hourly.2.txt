@@ -572,9 +572,6 @@ libreoffice-extension-languagetool
 # Issue 630
 quickdocs
 
-# Issue 631
-dust
-
 # Issue 633
 xorg-xwayland-git
 xorgproto-git
