@@ -802,3 +802,15 @@ jackett
 
 # Issue 750
 clapper
+
+# Issue 751
+gerrit
+
+# Issue 754
+pure-ftpd
+
+# Issue 755
+microsoft-edge-beta-bin
+
+# Issue 756
+microsoft-edge-dev-bin
