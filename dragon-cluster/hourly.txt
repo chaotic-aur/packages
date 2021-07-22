@@ -74,6 +74,7 @@ networkmanager-iwd
 nextcloud-client-git
 nspawn-git
 noto-color-emoji-fontconfig
+noto-fonts-emoji-git
 obs-studio-git
 octopi-dev
 open-fprintd
@@ -87,6 +88,7 @@ paru-git
 protobuf-go # (dep sysbox-ce)
 pulseeffects-git
 python-magic-ahupp # (dep guiscrcpy-git)
+python-nototools # (dep noto-fonts-emoji-git)
 python-pynput # (dep guiscrcpy-git)
 python-setuptools-lint # (dep guiscrcpy-git)
 python-validity
