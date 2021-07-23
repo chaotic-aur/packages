@@ -114,8 +114,8 @@ zstd-git
 
 
 ## Development
-bitbake
 bmap-tools
 debianutils
 python-codegen
 python-simplediff
+yocto-meta:https://github.com/chaotic-aur/pkgbuild-yocto-meta.git
