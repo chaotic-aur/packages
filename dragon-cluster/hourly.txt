@@ -13,6 +13,7 @@ alacritty-git
 alpm_octopi_utils-dev # (dep octopi-dev)
 ananicy-cpp
 ananicy-cpp-git
+ananicy-rules-git
 anbox-image-houdini-rooted
 arch-audit-git
 asp-git
