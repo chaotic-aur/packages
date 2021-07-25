@@ -837,9 +837,16 @@ gdcm # (dep itk-snap)
 insight-toolkit4 # (dep itk-snap)
 itk-snap
 
+# Issue 767
+caprice32-git
+
 # Issue 769
 sublime-text-3
 sublime-text-4
 
 # Issue 770
 chatterino-7tv-git
+
+# Issue 772
+dnf
+libdnf # (dep dnf)
