@@ -872,3 +872,7 @@ xerces2-java # (dep scilab)
 # Issue 772
 dnf
 libdnf # (dep dnf)
+
+# Issue 773
+libunarr # (dep yacreader)
+yacreader
