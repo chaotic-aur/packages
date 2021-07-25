@@ -831,3 +831,15 @@ odr-dabmux-git
 
 # Issue 761
 odr-dabmod-git
+
+# Issue 766
+gdcm # (dep itk-snap)
+insight-toolkit4 # (dep itk-snap)
+itk-snap
+
+# Issue 769
+sublime-text-3
+sublime-text-4
+
+# Issue 770
+chatterino-7tv-git
