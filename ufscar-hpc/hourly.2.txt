@@ -847,6 +847,28 @@ sublime-text-4
 # Issue 770
 chatterino-7tv-git
 
+# Issue 771
+#apache-lucene # (dep scilab) download 404
+bwidget # (dep scilab)
+fop-hyph # (dep scilab)
+java-flexdock # (dep scilab)
+java-qdox # (dep scilab)
+java-resolver # (dep scilab)
+java-skinlf # (dep scilab)
+#java-testng # (dep scilab) test failing
+javahelp2 # (dep scilab)
+jeuclid-core # (dep scilab)
+jgoodies-looks # (dep scilab)
+jgraphx-jre8 # (dep scilab)
+jlatexmath-fop # (dep scilab)
+jogl # (dep scilab)
+jrosetta # (dep scilab)
+libmatio # (dep scilab)
+saxon-he # (dep scilab)
+#scilab
+xalan-java # (dep scilab)
+xerces2-java # (dep scilab)
+
 # Issue 772
 dnf
 libdnf # (dep dnf)
