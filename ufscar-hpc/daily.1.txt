@@ -50,6 +50,8 @@ emacs-ng-git
 # Issue 729
 linux-vfio
 
+# Issue 774
+freecad-git
 
 # -------------------------------- MOVED FROM KITSUNA
 # Pedro
