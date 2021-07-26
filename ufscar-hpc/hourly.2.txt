@@ -875,3 +875,9 @@ libdnf # (dep dnf)
 # Issue 773
 libunarr # (dep yacreader)
 yacreader
+
+# Issue 775
+pakka
+
+# Issue 776
+denise
