@@ -9,7 +9,6 @@ sudo-git
 
 ## Try to get some more hourly builds in
 # Some stuff
-alacritty-git
 alpm_octopi_utils-dev # (dep octopi-dev)
 ananicy-cpp
 ananicy-cpp-git
@@ -22,18 +21,10 @@ birdtray-git
 bleachbit-git
 bottom-git
 c-lolcat
-coreutils-git
 clamav-git
 clamav-unofficial-sigs
-cmake-git
 coreutils-hybrid
-czkawka-git
-diary-git
-elisa-git
-exa-git
 fastfetch-git
-ffmpeg-compat-57
-ffmpeg-compat-58
 firejail-git
 firejail-noapparmor-git
 firejail-pacman-hook
@@ -45,8 +36,6 @@ fluffychat
 flutter # (dep fluffychat)
 fprintd-clients
 gegl-git # (dep gimp-git)
-gimp-git
-git-git
 gst-plugins-base-git
 gstreamer-git
 guiscrcpy-git
@@ -55,13 +44,10 @@ intel-ucode-git
 intel-undervolt-git
 inxi-git
 kde-git:https://gitlab.com/chaotic-aur-pkgbuilds/kde-git.git
-kotatogram-dev-git
 kvantum-qt5-git
 leagueoflegends-git
 libreoffice-dev-bin
 libscrypt
-libtorrent-rasterbar-1_2-git # (dep qbittorrent-enhanced-git)
-libva-intel-driver-next-git
 lightcord-git
 lolcate
 lutris-git
@@ -71,22 +57,16 @@ micro-git
 mini-benchmarker
 mkinitcpio-git
 modprobed-db-git
-netdata-git
 networkmanager-iwd
-nextcloud-client-git
 nspawn-git
 noto-color-emoji-fontconfig
-noto-fonts-emoji-git
-obs-studio-git
 octopi-dev
 open-fprintd
 openjpeg # (dep ffmpeg-compat-57)
-openssh-hpn-git
 oxygen-sounds
 pacman-git:https://github.com/chaotic-aur/pkgbuild-pacman-git.git
 paleofetch-git
 pamac-aur-git
-paru-git
 protobuf-go # (dep sysbox-ce)
 pulseeffects-git
 python-magic-ahupp # (dep guiscrcpy-git)
@@ -94,7 +74,6 @@ python-nototools # (dep noto-fonts-emoji-git)
 python-pynput # (dep guiscrcpy-git)
 python-setuptools-lint # (dep guiscrcpy-git)
 python-validity
-qbittorrent-enhanced-git
 ripgrep-git
 riseup-vpn
 rmatrix-git

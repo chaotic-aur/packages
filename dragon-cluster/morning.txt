@@ -1,0 +1,21 @@
+alacritty-git
+coreutils-git
+cmake-git
+czkawka-git
+diary-git
+elisa-git
+exa-git
+ffmpeg-compat-57
+ffmpeg-compat-58
+gimp-git
+git-git
+kotatogram-dev-git
+libtorrent-rasterbar-1_2-git # (dep qbittorrent-enhanced-git)
+libva-intel-driver-next-git
+netdata-git
+nextcloud-client-git
+noto-fonts-emoji-git
+obs-studio-git
+openssh-hpn-git
+paru-git
+qbittorrent-enhanced-git
