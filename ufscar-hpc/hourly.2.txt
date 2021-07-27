@@ -881,3 +881,12 @@ pakka
 
 # Issue 776
 denise
+
+# Issue 777
+lagrange
+
+# Issue 778
+k3s-bin
+
+# Issue 780
+rtl-sdr-git
