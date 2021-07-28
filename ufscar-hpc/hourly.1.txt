@@ -253,7 +253,7 @@ lib32-numactl
 lib32-libwmf
 lib32-zbar
 lib32-openexr
-lib32-x265
+#lib32-x265 # (banished)
 libgccjit
 libuser # (dep system-config-samba)
 ncnn-git # (dep waifu2x-ncnn-vulkan-git)
