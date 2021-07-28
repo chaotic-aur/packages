@@ -584,7 +584,7 @@ openimageio-git # (dep olive-git)
 pikaur-git
 
 # Issue 637
-firefox-kde-opensuse-bin
+firefox-kde-opensuse-rpm
 
 # Issue 639
 astronciaiptv
