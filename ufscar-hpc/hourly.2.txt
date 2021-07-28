@@ -232,6 +232,7 @@ sddm-wayland-git
 signal-desktop-beta
 virt-manager-git
 vscodium
+vscodium-git
 wayland-git
 wayland-protocols-git
 wireplumber-git
