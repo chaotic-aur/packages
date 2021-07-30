@@ -9,6 +9,7 @@ prjoxide-git
 prjtrellis-git
 icestorm-git
 nextpnr-git
+zenpower-dkms-git
 
 # Pedro
 chaotic-keyring
@@ -63,6 +64,7 @@ wev
 yambar-git
 fcft # (dep yambar)
 tllist # (dep yambar)
+zenpower3-dkms
 
 # FroggingFamily
 #amdvlk-tkg:https://github.com/Frogging-Family/amdvlk-opt.git (broken)
