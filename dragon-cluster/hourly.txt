@@ -39,6 +39,7 @@ gegl-git # (dep gimp-git)
 gst-plugins-base-git
 gstreamer-git
 guiscrcpy-git
+ideapad-cm
 imagemagick-git
 intel-ucode-git
 intel-undervolt-git
