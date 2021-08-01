@@ -57,6 +57,7 @@ ruby-method_source # (dep logstalgia)
 ruby-pry # (dep logstalgia)
 sdl2_compat12-git
 lib32-sdl2_compat12-git
+startgame:https://github.com/chaotic-aur/startgame.git
 spectral-matrix-git
 split2flac-git
 unflac
