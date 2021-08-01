@@ -904,3 +904,26 @@ proftpd
 
 # Issue 786
 tuner
+
+# Issue 798
+libxft-bgra
+
+# Issue 789
+htim
+
+# Issue 790
+vim-slime-git
+
+# Issue 791
+vim-vimwiki
+
+# Issue 793
+dogecoin-qt
+
+# Issue 795
+netflix-git
+
+# Issue 798
+silos
+silo-netflix
+silo-primevideo
