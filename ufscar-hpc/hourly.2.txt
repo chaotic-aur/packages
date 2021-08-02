@@ -928,3 +928,9 @@ netflix-git
 silos
 silo-netflix
 silo-primevideo
+
+# Issue 800
+gtk-gnutella-git
+
+# Issue 801
+gtk-gnutella

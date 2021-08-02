@@ -53,6 +53,12 @@ linux-vfio
 # Issue 774
 freecad-git
 
+# Issue 792
+linux-zen-g14
+
+# Issue 793
+dogecoin-qt
+
 # -------------------------------- MOVED FROM KITSUNA
 # Pedro
 #darling-git (broken)
