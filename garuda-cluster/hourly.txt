@@ -54,6 +54,7 @@ rtl88x2bu-dkms-git
 rtl88x2ce-dkms
 rtl88xxau-aircrack-dkms-git
 rtw88-dkms-git
+rtw89-dkms-git
 
 # Dr460nized-gaming
 boxtron
