@@ -947,3 +947,6 @@ dino-git
 # Issue 806
 gajim-plugin-omemo
 gajim-plugin-omemo-git
+
+# Issue 817
+airshipper
