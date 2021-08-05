@@ -955,6 +955,7 @@ gajim-plugin-omemo-git
 gnome-calendar-git
 gnome-contacts-git
 gnome-terminal-git
+vte3-git # (dep gnome-terminal-git)
 
 # Issue 812
 mobydroid
