@@ -20,6 +20,10 @@ kde-servicemenus-encfs
 kde-servicemenus-komparemenu
 kde-servicemenus-pdf
 kde-servicemenus-rootactions
+kde-servicemenus-pdf-encrypt-decrypt
+kde-servicemenus-officeconverter
+kde-servicemenus-sendtodesktop
+kde-servicemenus-setaswallpaper
 kfiredragonhelper
 kvantum-theme-sweet-git
 kwin-effects-sliding-notifications
