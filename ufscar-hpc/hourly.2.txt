@@ -61,6 +61,7 @@ startgame:https://github.com/chaotic-aur/startgame.git
 spectral-matrix-git
 split2flac-git
 unflac
+wineasio-git
 wev
 yambar-git
 fcft # (dep yambar)
