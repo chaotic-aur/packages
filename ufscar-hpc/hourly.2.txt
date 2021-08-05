@@ -937,3 +937,13 @@ gtk-gnutella-git
 
 # Issue 801
 gtk-gnutella
+
+# Issue 802
+quassel-git
+
+# Issue 805
+dino-git
+
+# Issue 806
+gajim-plugin-omemo
+gajim-plugin-omemo-git
