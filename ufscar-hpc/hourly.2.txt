@@ -941,6 +941,9 @@ gtk-gnutella
 # Issue 802
 quassel-git
 
+# Issue 804
+nvim-ghost-git
+
 # Issue 805
 dino-git
 
