@@ -951,6 +951,9 @@ dino-git
 gajim-plugin-omemo
 gajim-plugin-omemo-git
 
+# Issue 807
+libtd
+
 # Issue 811
 gnome-calendar-git
 gnome-contacts-git
