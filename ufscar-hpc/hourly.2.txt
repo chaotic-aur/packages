@@ -951,5 +951,8 @@ dino-git
 gajim-plugin-omemo
 gajim-plugin-omemo-git
 
+# Issue 812
+mobydroid
+
 # Issue 817
 airshipper
