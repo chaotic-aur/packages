@@ -54,6 +54,7 @@ linux-vfio
 freecad-git
 
 # Issue 792
+linux-g14
 linux-zen-g14
 
 # Issue 793

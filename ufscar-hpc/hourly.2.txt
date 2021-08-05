@@ -897,6 +897,9 @@ k3s-bin
 # Issue 780
 rtl-sdr-git
 
+# Issue 782
+openvpn3
+
 # Issue 784
 inspircd
 
