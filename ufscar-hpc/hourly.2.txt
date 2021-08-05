@@ -860,7 +860,7 @@ java-flexdock # (dep scilab)
 java-qdox # (dep scilab)
 java-resolver # (dep scilab)
 java-skinlf # (dep scilab)
-#java-testng # (dep scilab) test failing
+java-testng # (dep scilab) test failing
 javahelp2 # (dep scilab)
 jeuclid-core # (dep scilab)
 jgoodies-looks # (dep scilab)
