@@ -963,5 +963,8 @@ vte3-git # (dep gnome-terminal-git)
 # Issue 812
 mobydroid
 
+# Issue 816
+firefox-appmenu-bin
+
 # Issue 817
 airshipper
