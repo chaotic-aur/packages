@@ -924,6 +924,9 @@ intel-gmmlib-git # (dep intel-media-driver-git)
 intel-media-driver-git
 libva-git # (dep intel-media-driver-git
 
+# Issue 830
+mergerfs
+
 ## Lost & found
 anaconda
 azure-cli
