@@ -997,6 +997,9 @@ firefox-appmenu-bin
 # Issue 817
 airshipper
 
+# Issue 818
+google-webdesigner
+
 # Issue 819
 goodvibes
 
