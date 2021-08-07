@@ -942,6 +942,9 @@ gtk-gnutella
 # Issue 802
 quassel-git
 
+# Issue 803
+fzf-tab-git
+
 # Issue 804
 nvim-ghost-git
 

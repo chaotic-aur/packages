@@ -58,6 +58,9 @@ linux-zen-g14
 # Issue 793
 dogecoin-qt
 
+# Issue 808
+codelite-unstable
+
 # -------------------------------- MOVED FROM KITSUNA
 # Pedro
 #darling-git (broken)
