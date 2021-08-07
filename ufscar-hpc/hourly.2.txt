@@ -967,6 +967,30 @@ vte3-git # (dep gnome-terminal-git)
 # Issue 812
 mobydroid
 
+# Issue 813
+matrix-synapse-git
+
+# Issue 814
+matrix-synapse-rest-auth
+python2-automat # (dep matrix-synapse-rest-auth)
+python2-constantly # (dep matrix-synapse-rest-auth)
+python2-graphviz # (dep python2-service-identity)
+python2-hyperlink # (dep matrix-synapse-rest-auth)
+python2-incremental # (dep matrix-synapse-rest-auth)
+python2-m2r # (dep matrix-synapse-rest-auth)
+python2-mistune # (dep matrix-synapse-rest-auth)
+python2-pyasn1-modules # (dep matrix-synapse-rest-auth)
+python2-pygments # (dep python2-m2r)
+python2-pyhamcrest # (dep matrix-synapse-rest-auth)
+python2-service-identity # (dep matrix-synapse-rest-auth)
+python2-twisted # (dep matrix-synapse-rest-auth)
+python2-twisted # (dep matrix-synapse-rest-auth)
+
+# Issue 815
+matrix-registration
+python-flask-limiter # (dep matrix-registration)
+python-limits # (dep matrix-registration)
+
 # Issue 816
 firefox-appmenu-bin
 
