@@ -1006,6 +1006,9 @@ goodvibes
 # Issue 820
 goodvibes-git
 
+# Issue 822
+shortwave-git
+
 # Issue 828
 gallery-dl
 
