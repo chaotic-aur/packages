@@ -969,3 +969,9 @@ firefox-appmenu-bin
 
 # Issue 817
 airshipper
+
+# Issue 828
+gallery-dl
+
+# 830
+mergerfs
