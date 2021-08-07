@@ -997,6 +997,12 @@ firefox-appmenu-bin
 # Issue 817
 airshipper
 
+# Issue 819
+goodvibes
+
+# Issue 820
+goodvibes-git
+
 # Issue 828
 gallery-dl
 
