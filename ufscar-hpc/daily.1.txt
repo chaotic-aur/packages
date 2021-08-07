@@ -16,8 +16,6 @@ linux-cacule
 linux-xanmod-anbox
 firedragon-hg
 
-# RustemB
-aseprite-git
 --
 
 ## User requests
