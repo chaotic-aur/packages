@@ -1026,3 +1026,6 @@ aravis
 
 # Issue 832
 cryptobridge-bin
+
+# Issue 836
+nats-server

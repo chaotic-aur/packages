@@ -61,6 +61,9 @@ dogecoin-qt
 # Issue 808
 codelite-unstable
 
+# Issue 833
+lean4-git
+
 # -------------------------------- MOVED FROM KITSUNA
 # Pedro
 #darling-git (broken)
