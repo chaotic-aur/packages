@@ -1009,8 +1009,20 @@ goodvibes-git
 # Issue 822
 shortwave-git
 
+# Issue 825
+mysql57
+
+# Issue 826
+anope
+
 # Issue 828
 gallery-dl
 
 # 830
 mergerfs
+
+# Issue 831
+aravis
+
+# Issue 832
+cryptobridge-bin
