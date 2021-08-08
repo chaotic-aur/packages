@@ -30,6 +30,17 @@ This issue is about:
 - Are you sure we don't have this package already (test with `pacman -Ss <pkgname>`)?:
   - [ ] YES
 
+- Have you tested if this package builds in a clean chroot?:
+
+  - [ ] YES
+  - [ ] NO
+
+- Does the package's license allows us to redistribute it?:
+
+  - [ ] YES
+  - [ ] No clue.
+  - [ ] No, but the author doesn't really care, it's just for buriocracy.
+
 ## 👴 For outdated packages
 
 (You should delete this subsection if it's not useful for your issue.)
@@ -41,6 +52,11 @@ This issue is about:
 - Latest build: `v0.0.0.r0.gc0ffec0ffe`
 
 - Latest version available: `v1.0.0.r100.gdeadbeef`
+
+- Have you tested if the latest version of the package builds in a clean chroot?:
+
+  - [ ] YES
+  - [ ] NO
 
 ## 🐛 For bugs
 
