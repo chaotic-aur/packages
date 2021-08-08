@@ -1033,3 +1033,6 @@ nats-server
 # Issue 866
 dte
 
+# Issue 867
+souk-git
+
