@@ -1029,3 +1029,7 @@ cryptobridge-bin
 
 # Issue 836
 nats-server
+
+# Issue 866
+dte
+
