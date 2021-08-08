@@ -39,7 +39,7 @@ This issue is about:
 
   - [ ] YES
   - [ ] No clue.
-  - [ ] No, but the author doesn't really care, it's just for buriocracy.
+  - [ ] No, but the author doesn't really care, it's just for bureaucracy.
 
 ## 👴 For outdated packages
 
@@ -78,4 +78,4 @@ This issue is about:
 
 - Depending on how critical is making this information available, please send it to [critical at chaotic dot cx](mailto:critical@chaotic.cx)
 
-- Describe it briefly: Include the attacking vector, the possible outcomes, and, if possible, solutions.
+- Describe it briefly: Include the attacking vector, the possible outcomes and, if possible, solutions.
