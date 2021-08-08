@@ -1,13 +1,10 @@
-This issue is about:
+Note:
 
-- [ ] Requesting new packages;
-- [ ] Reporting outdated builds;
-- [ ] Bugs or incorrect package parameters;
-- [ ] Security reports.
+- We will delete issues not following this template!
+- You can add new information besides the ones required here.
+- You can delete the subsections that are not related to your issue.
 
-## 👶 For requesting packages
-
-(You should delete this subsection if it's not useful for your issue.)
+## 👶 For requesting new packages
 
 - Link to the package(s) in AUR: [put link here](https://example.com)
 
@@ -28,6 +25,7 @@ This issue is about:
   - [ ] NO
 
 - Are you sure we don't have this package already (test with `pacman -Ss <pkgname>`)?:
+
   - [ ] YES
 
 - Have you tested if this package builds in a clean chroot?:
@@ -41,9 +39,15 @@ This issue is about:
   - [ ] No clue.
   - [ ] No, but the author doesn't really care, it's just for bureaucracy.
 
-## 👴 For outdated packages
+- Have you searched the [issues](https://github.com/chaotic-aur/packages/issues) to ensure this request is new (not duplicated)?:
 
-(You should delete this subsection if it's not useful for your issue.)
+  - [ ] YES
+
+- Have you read the [README](https://github.com/chaotic-aur/packages#banished-and-rejected-packages) to ensure this package is not banned?:
+
+  - [ ] YES
+
+## 👴 For reporting outdated packages
 
 - (If available) Link to latest build ([find it here](https://builds.garudalinux.org/repos/chaotic-aur/logs/)): [some-package.log](https://builds.garudalinux.org/repos/chaotic-aur/logs/some-package.log)
 
@@ -58,9 +62,7 @@ This issue is about:
   - [ ] YES
   - [ ] NO
 
-## 🐛 For bugs
-
-(You should delete this subsection if it's not useful for your issue.)
+## 🐛 For reporting bugs
 
 - What happens?
 
@@ -72,9 +74,7 @@ This issue is about:
 
 - If possible, please attach logs.
 
-## Security reports.
-
-(You should delete this subsection if it's not useful for your issue.)
+## For security reports.
 
 - Depending on how critical is making this information available, please send it to [critical at chaotic dot cx](mailto:critical@chaotic.cx)
 
