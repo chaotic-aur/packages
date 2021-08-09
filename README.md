@@ -30,3 +30,7 @@ There are a few kind of requests which we will deny:
 - unreal-engine (and -git):
 	Not enougth spaces in some of our mirrors.
 
+# We cant distribute these package because of its license:
+
+- aseprite{-git}:
+    Redistribution is explicitly prohibited in its [FAQ](https://www.aseprite.org/faq/#can-i-redistribute-aseprite).
