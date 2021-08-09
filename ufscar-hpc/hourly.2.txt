@@ -754,6 +754,9 @@ dialect
 python-googletrans 
 python-gtts 
 
+# Issue 726
+godot-mono
+
 # Issue 730
 git-fixup-git
 
@@ -1036,3 +1039,8 @@ dte
 # Issue 867
 souk-git
 
+# Issue 868
+#phosh-git
+phosh
+phoc-embedded-wlroots
+feedbackd
