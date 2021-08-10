@@ -60,6 +60,7 @@ mkinitcpio-git
 modprobed-db-git
 networkmanager-iwd
 nspawn-git
+ntfs3-dkms
 noto-color-emoji-fontconfig
 octopi-dev
 open-fprintd
