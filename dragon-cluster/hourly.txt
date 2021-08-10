@@ -91,6 +91,7 @@ wavemon-git
 weechat-git
 whoogle-git
 zellij-git
+zenmonitor-git
 zram-generator-git
 zstd-git
 
