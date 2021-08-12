@@ -1052,3 +1052,7 @@ targetcli-fb
 
 # Issue 878
 tblock
+
+# Issue 879
+obs-hevc-vaapi-git
+vlc-luajit # (dep obs-hevc-vaapi-git)
