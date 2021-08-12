@@ -1040,7 +1040,10 @@ dte
 souk-git
 
 # Issue 868
-#phosh-git
-phosh
-phoc-embedded-wlroots
 feedbackd
+phoc-embedded-wlroots
+phosh
+#phosh-git
+
+# Issue 878
+tblock
