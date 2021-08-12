@@ -1045,6 +1045,12 @@ phoc-embedded-wlroots
 phosh
 #phosh-git
 
+# Issue 875
+kdocker
+
+# Issue 876
+xfce-theme-manager
+
 # Issue 877
 python-configshell-fb # (dep targetcli-fb)
 python-rtslib-fb # (dep targetcli-fb)
