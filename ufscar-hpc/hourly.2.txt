@@ -1036,6 +1036,9 @@ nats-server
 # Issue 866
 dte
 
+# Issue 841
+wine-wl-git
+
 # Issue 867
 souk-git
 
