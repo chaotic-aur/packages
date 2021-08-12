@@ -1045,5 +1045,10 @@ phoc-embedded-wlroots
 phosh
 #phosh-git
 
+# Issue 877
+python-configshell-fb # (dep targetcli-fb)
+python-rtslib-fb # (dep targetcli-fb)
+targetcli-fb
+
 # Issue 878
 tblock
