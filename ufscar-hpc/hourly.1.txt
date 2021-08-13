@@ -64,11 +64,12 @@ discord-canary-electron-bin
 gotop
 grim-git
 irpf
+libsixel # (mpv-git dep)
+mpv-full-git
 obs-rtspserver
 obs-streamfx
 obs-v4l2sink
 obs-vkcapture-git
-
 oneko
 osdlyrics-git
 pipewire-common-git
@@ -79,15 +80,17 @@ r8125-dkms
 repoctl
 #scrcpy-git (broken)
 slack-electron
+spirv-cross # (mpv-full-git dependency)
 spotify-edge-snap
 spotify-qt
 spotifyd-full-git
-steinberg-asio-sdk # (wineasio-git dependencie)
+steinberg-asio-sdk # (wineasio-git dependency)
 tor-browser
 ttf-borg-sans-mono
 ttf-font-awesome-4
 tuxclocker
 ums
+vapoursynth-git # (mpv-full-git dependency)
 wattman-gtk-git
 #waybar-git (broken)
 waynergy-git
