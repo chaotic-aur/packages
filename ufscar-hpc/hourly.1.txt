@@ -65,6 +65,7 @@ gotop
 grim-git
 irpf
 libsixel # (mpv-git dep)
+mpv-full
 mpv-full-git
 obs-rtspserver
 obs-streamfx
