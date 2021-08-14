@@ -1065,3 +1065,6 @@ tblock
 # Issue 879
 obs-hevc-vaapi-git
 vlc-luajit # (dep obs-hevc-vaapi-git)
+
+# Issue 880
+wired
