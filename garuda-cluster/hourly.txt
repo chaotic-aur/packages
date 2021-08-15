@@ -126,7 +126,7 @@ whitesur-kde-theme-git
 whitesur-kvantum-theme-git
 
 # LXQT-Kwin
-ant-dracula-gtk-theme-git
+ant-dracula-theme-git
 ant-dracula-kde-theme-git
 ant-dracula-kvantum-theme-git
 cmst
