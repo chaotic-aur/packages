@@ -1048,6 +1048,9 @@ phoc-embedded-wlroots
 phosh
 #phosh-git
 
+# Issue 870
+cpod-appimage
+
 # Issue 875
 kdocker
 
