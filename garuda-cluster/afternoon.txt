@@ -1,11 +1,18 @@
 ## Garuda
 linux-cacule-hardened
+linux-cacule-llvm
 linux-cacule-rdb
-linux-xanmod-cacule
+
+
+## SGS
+xiaomitool-v2
+
 
 ## Chaotic 
 # Issue 655
 linux-xanmod-lts
 
-## SGS
-xiaomitool-v2
+# Issue 881
+linux-xanmod-cacule
+
+
