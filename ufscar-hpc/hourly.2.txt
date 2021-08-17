@@ -694,6 +694,8 @@ melonds-git
 tutanota-desktop-bin
 
 # Issue 704
+python-httpx-socks
+python-python_socks
 searx-git
 
 # Issue 707
