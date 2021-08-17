@@ -1071,3 +1071,6 @@ vlc-luajit # (dep obs-hevc-vaapi-git)
 
 # Issue 880
 wired
+
+# Issue 885
+ttf-twemoji
