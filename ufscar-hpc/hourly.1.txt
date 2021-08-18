@@ -914,6 +914,7 @@ discord-development-electron-bin
 
 # Issue 620
 bottles
+patool
 
 # Issue 621
 komorebi
