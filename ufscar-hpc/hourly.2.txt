@@ -1080,5 +1080,8 @@ bcachefs-tools-git
 # Issue 885
 ttf-twemoji
 
+# Issue 886
+obs-studio-browser
+
 # Issue 887
 ocs-url
