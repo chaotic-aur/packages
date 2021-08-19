@@ -1045,10 +1045,11 @@ wine-wl-git
 souk-git
 
 # Issue 868
-feedbackd
-phoc-embedded-wlroots
+callaudiod # (dep phosh-git)
+feedbackd # (dep phosh)
+phoc-embedded-wlroots # (dep phosh)
 phosh
-#phosh-git
+phosh-git
 
 # Issue 870
 cpod-appimage
@@ -1085,3 +1086,6 @@ obs-studio-browser
 
 # Issue 887
 ocs-url
+
+# Issue 889
+metals
