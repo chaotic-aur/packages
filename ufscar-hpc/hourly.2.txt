@@ -1094,3 +1094,6 @@ ocs-url
 
 # Issue 889
 metals
+
+# Issue 890
+sardi-icons
