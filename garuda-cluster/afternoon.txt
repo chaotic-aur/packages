@@ -12,7 +12,8 @@ xiaomitool-v2
 # Issue 655
 linux-xanmod-lts
 
+# Issue 873
+linux-vfio-lts
+
 # Issue 881
 linux-xanmod-cacule
-
-
