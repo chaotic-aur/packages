@@ -488,4 +488,7 @@ qt-installer-framework
 riseup-vpn
 
 ## User requests
+cmst-git
+connman-git
+connman-gtk-git
 neovide-bin
