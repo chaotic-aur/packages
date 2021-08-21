@@ -221,7 +221,6 @@ hblock
 hw-probe
 imagewriter
 inxi
-kernel-modules-hook
 lib32-nvidia-390xx-utils
 lib32-opencl-nvidia-390xx
 libinput-gestures
