@@ -1097,3 +1097,9 @@ metals
 
 # Issue 890
 sardi-icons
+
+# Issue 894
+brisk-menu
+
+# Issue 895
+quassel-core-lighter-git
