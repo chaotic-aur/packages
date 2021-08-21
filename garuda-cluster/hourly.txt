@@ -204,6 +204,7 @@ dashbinsh
 downgrade
 etc-update
 evdev-right-click-emulation
+find-the-command-git
 firefox-extension-bitwarden
 firefox-extension-flagfox
 firefox-extension-localcdn

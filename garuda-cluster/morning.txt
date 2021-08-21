@@ -47,6 +47,7 @@ wine-meta:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/wine-meta.gi
 zdummy-vlkdrv:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/zdummy-vlkdrv.git
 
 # Fixed version settings
+garuda-bash-config:https://gitlab.com/garuda-linux/themes-and-settings/settings/garuda-bash-config.git
 garuda-blackarch:https://gitlab.com/garuda-linux/themes-and-settings/settings/garuda-blackarch.git
 garuda-browser-settings:https://gitlab.com/garuda-linux/themes-and-settings/settings/garuda-browser-settings.git
 garuda-bspwm-settings:https://gitlab.com/garuda-linux/themes-and-settings/settings/garuda-bspwm-settings.git
