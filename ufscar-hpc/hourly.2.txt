@@ -1103,3 +1103,6 @@ brisk-menu
 
 # Issue 895
 quassel-core-lighter-git
+
+# Issue 896
+libreddit-git
