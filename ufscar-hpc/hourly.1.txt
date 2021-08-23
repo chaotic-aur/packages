@@ -34,7 +34,6 @@ realvnc-vnc-viewer
 android-studio
 android-emulator
 android-sdk
-demorse
 
 #for wlroots-git
 seatd
