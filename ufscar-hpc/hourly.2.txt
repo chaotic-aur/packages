@@ -45,7 +45,6 @@ neovim-drop-in
 neovim-plug
 nm-eduroam-ufscar
 noisetorch
-nushell
 openssh-hpn
 primus-vk-git
 proton-ge-custom
