@@ -1105,3 +1105,27 @@ quassel-core-lighter-git
 
 # Issue 896
 libreddit-git
+
+# Issue 899
+fabric-installer
+
+# Issue 900
+grub2-signing-extension
+
+# Issue 901
+losslesscut-bin
+
+# Issue 902
+mokutil
+
+# Issue 903
+musixmatch-bin
+
+# Issue 904
+obs-nvfbc
+
+# Issue 905
+shim-signed
+
+# Issue 907
+pamac-tray-icon-plasma
