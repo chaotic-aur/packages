@@ -1129,3 +1129,6 @@ shim-signed
 
 # Issue 907
 pamac-tray-icon-plasma
+
+# Issue 910
+keepassxc-git
