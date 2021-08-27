@@ -1132,3 +1132,14 @@ pamac-tray-icon-plasma
 
 # Issue 910
 keepassxc-git
+
+# Issue 911
+ferdi
+ferdi-git
+
+# Issue 912
+git-bug
+git-bug-git
+
+# Issue 916
+dasel
