@@ -1130,6 +1130,12 @@ shim-signed
 # Issue 907
 pamac-tray-icon-plasma
 
+# Issue 908
+superslicer
+
+# Issue 909
+superslicer-profiles-git
+
 # Issue 910
 keepassxc-git
 
