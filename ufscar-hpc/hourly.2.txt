@@ -1127,6 +1127,9 @@ obs-nvfbc
 # Issue 905
 shim-signed
 
+# Issue 906
+openrazer-meta
+
 # Issue 907
 pamac-tray-icon-plasma
 
