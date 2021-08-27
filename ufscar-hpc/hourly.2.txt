@@ -1141,5 +1141,12 @@ ferdi-git
 git-bug
 git-bug-git
 
+# Issue 913
+vimiv-qt
+vimiv-qt-git
+
+# Issue 915
+dislocker
+
 # Issue 916
 dasel
