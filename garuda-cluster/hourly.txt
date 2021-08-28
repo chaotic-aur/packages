@@ -493,7 +493,15 @@ xiaomitool-v2
 
 
 ## User requests
+# LordPoseidon26
+neovide-bin
+
+# Zoeruda
 cmst-git
 connman-git
 connman-gtk-git
-neovide-bin
+
+# Alexjp
+bcache-tools
+libgaminggear # (dep roccat-tools)
+roccat-tools-common # (Also includes roccat-tools-kova2016, roccat-tools-ryosmk)
