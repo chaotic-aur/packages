@@ -1159,3 +1159,6 @@ dislocker
 
 # Issue 916
 dasel
+
+# Issue 917
+polychromatic
