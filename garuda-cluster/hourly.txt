@@ -504,4 +504,4 @@ connman-gtk-git
 # Alexjp
 bcache-tools
 libgaminggear # (dep roccat-tools)
-roccat-tools-common # (Also includes roccat-tools-kova2016, roccat-tools-ryosmk)
+roccat-tools-common # (Also includes roccat-tools-{isku,iskufx,kiro,kone,koneplus,konepure,konepuremilitary,konepureoptical,konextd,konextdoptical,kova2016,kovaplus,pyra,ryostkl,savu,skeltr,sova,suora}
