@@ -487,6 +487,11 @@ prelockd-git
 qt-installer-framework
 riseup-vpn
 
+
+## SGS
+xiaomitool-v2
+
+
 ## User requests
 cmst-git
 connman-git

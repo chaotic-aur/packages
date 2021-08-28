@@ -2,10 +2,7 @@
 linux-cacule-hardened
 linux-cacule-llvm
 linux-cacule-rdb
-
-
-## SGS
-xiaomitool-v2
+linux-lqx
 
 
 ## Chaotic 

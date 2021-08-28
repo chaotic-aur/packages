@@ -53,7 +53,7 @@ lightcord-git
 lolcate
 lutris-git
 networkmanager-iwd
-makedeb-alpha
+makedeb
 micro-git
 mini-benchmarker
 mkinitcpio-git
