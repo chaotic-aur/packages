@@ -5,6 +5,7 @@ calamares-garuda-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/calamare
 calamares-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/calamares-git.git
 calamares-tools:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/calamares-tools.git
 calamares:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/calamares.git
+garuda-graphics-configs:https://gitlab.com/garuda-linux/packages/garuda-graphics-configs.git
 garuda-hooks:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/garuda-hooks.git
 garuda-hotfixes:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/garuda-hotfixes.git
 garuda-icons:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/garuda-icons.git
