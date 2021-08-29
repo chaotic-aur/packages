@@ -17,6 +17,7 @@ garuda-wallpapers:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/garu
 grub-garuda:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/grub-garuda.git
 grub-theme-garuda-custom:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/grub-theme-garuda-custom.git
 grub-theme-garuda:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/grub-theme-garuda.git
+mhwd-db-garuda:https://gitlab.com/garuda-linux/applications/mhwd-db-garuda.git
 os-prober-garuda:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/os-prober-garuda.git
 paleofetch-garuda:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/paleofetch-garuda.git
 plymouth-theme-dr460nized:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/plymouth-theme-dr460nized.git
