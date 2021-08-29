@@ -70,7 +70,6 @@ pacman-git:https://github.com/chaotic-aur/pkgbuild-pacman-git.git
 paleofetch-git
 pamac-aur-git
 protobuf-go # (dep sysbox-ce)
-pulseeffects-git
 python-magic-ahupp # (dep guiscrcpy-git)
 python-nototools # (dep noto-fonts-emoji-git)
 python-pynput # (dep guiscrcpy-git)
