@@ -1162,3 +1162,6 @@ dasel
 
 # Issue 917
 polychromatic
+
+# Issue 918
+nvidia-utils-keylase
