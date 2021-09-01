@@ -64,6 +64,11 @@ codelite-unstable
 # Issue 833
 lean4-git
 
+# Issue 920
+aura
+aura-git
+
+
 # -------------------------------- MOVED FROM KITSUNA
 # Pedro
 #darling-git (broken)
