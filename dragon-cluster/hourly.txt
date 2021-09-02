@@ -46,7 +46,6 @@ intel-undervolt-git
 inxi-git
 kde-git:https://gitlab.com/chaotic-aur-pkgbuilds/kde-git.git
 kvantum-qt5-git
-leagueoflegends-git
 libreoffice-dev-bin
 libscrypt
 lightcord-git
