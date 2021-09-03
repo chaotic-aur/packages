@@ -1164,3 +1164,6 @@ polychromatic
 
 # Issue 918
 nvidia-utils-keylase
+
+# Issue 922
+chromium-snapshot-bin
