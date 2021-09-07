@@ -362,7 +362,6 @@ appimagelauncher
 etcher-bin # (name changed to balena-etcher as balena-etcher doesnt build)
 bauh
 birdtray
-bitwarden
 cherrytree
 davinci-resolve
 deezer
