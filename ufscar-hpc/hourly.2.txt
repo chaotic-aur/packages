@@ -1167,3 +1167,6 @@ nvidia-utils-keylase
 
 # Issue 922
 chromium-snapshot-bin
+
+# Issue 924
+act
