@@ -1,7 +1,6 @@
 ## Garuda editions need the following..
 # BSPWM
 lightdm-settings
-lightdm-slick-greeter
 picom-ibhagwan-git
 
 # Cinnamon
