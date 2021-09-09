@@ -202,7 +202,6 @@ conky-lua-nv
 connman-gtk
 dashbinsh
 downgrade
-etc-update
 evdev-right-click-emulation
 find-the-command-git
 firefox-extension-bitwarden
