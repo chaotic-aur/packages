@@ -508,12 +508,6 @@ pm-utils
 ardour-git
 cwiid # (dep ardour)
 
-# Issue 412
-magic-wormhole
-python-hkdf # (dep magic-wormhole)
-python-spake2 # (dep magic-wormhole)
-python-txtorcon # (dep magic-wormhole)
-
 # Issue 415
 antlr3 # (dep scylla-git)
 antlr3-cpp-headers-git # (dep scylla-git)
