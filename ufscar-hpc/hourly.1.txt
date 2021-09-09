@@ -404,7 +404,6 @@ omnisharp-roslyn
 php80
 
 # Issue 371
-duf
 ly
 multimc5
 spotify-tui
