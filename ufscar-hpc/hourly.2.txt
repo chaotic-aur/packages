@@ -89,6 +89,7 @@ aarch64-linux-musl
 bit
 cpufetch-git
 discord-canary
+dosbox-staging
 elm-bin
 elm-language-server
 firefox-nightly
