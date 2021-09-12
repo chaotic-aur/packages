@@ -1172,5 +1172,8 @@ chromium-snapshot-bin
 # Issue 924
 act
 
+# Issue 930
+surfn-icons-git
+
 # Issue 932
 lariza
