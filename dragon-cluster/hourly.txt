@@ -78,6 +78,7 @@ ripgrep-git
 riseup-vpn
 rmatrix-git
 rusnapshot-git
+rustdesk
 smplayer-svn
 sweet-theme-git
 sysbox-ce

@@ -371,6 +371,7 @@ guiscrcpy
 jellyfin
 mailspring
 mattermost-desktop
+mcfly
 mellowplayer
 mendeleydesktop
 nordpy
