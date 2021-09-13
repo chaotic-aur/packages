@@ -64,6 +64,7 @@ noto-color-emoji-fontconfig
 octopi-dev
 open-fprintd
 openjpeg # (dep ffmpeg-compat-57)
+opensnitch-git
 oxygen-sounds
 pacman-git:https://github.com/chaotic-aur/pkgbuild-pacman-git.git
 paleofetch-git
