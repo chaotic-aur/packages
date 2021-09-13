@@ -75,6 +75,7 @@ python-nototools # (dep noto-fonts-emoji-git)
 python-pynput # (dep guiscrcpy-git)
 python-setuptools-lint # (dep guiscrcpy-git)
 python-validity
+revolt-desktop-git
 ripgrep-git
 riseup-vpn
 rmatrix-git
