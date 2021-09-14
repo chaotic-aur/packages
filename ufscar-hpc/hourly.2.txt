@@ -23,6 +23,7 @@ ca-certificates-icp_br
 checkmake
 cozette-otb
 discord_arch_electron
+driconf
 dxvk-git:https://aur.archlinux.org/dxvk-git.git
 elm-format-bin
 elm-platform-bin
