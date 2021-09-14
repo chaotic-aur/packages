@@ -1190,3 +1190,6 @@ lariza
 
 # Issue 934
 gnome-obfuscate
+
+# Issue 935
+sedutil
