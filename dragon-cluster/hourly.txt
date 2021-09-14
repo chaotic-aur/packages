@@ -92,6 +92,7 @@ ufw-git
 wavemon-git
 weechat-git
 whoogle-git
+xorg-server-git
 zellij-git
 zenmonitor-git
 zenmonitor3-git

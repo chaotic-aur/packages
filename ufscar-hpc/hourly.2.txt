@@ -1187,3 +1187,6 @@ rocm-opencl-runtime
 
 # Issue 932
 lariza
+
+# Issue 934
+gnome-obfuscate

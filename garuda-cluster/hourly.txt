@@ -486,11 +486,13 @@ prelockd-git
 qt-installer-framework
 riseup-vpn
 
+
 ## input method support
-manjaro-asian-input-support
 fcitx-input-support
 fcitx5-input-support
 ibus-input-support
+manjaro-asian-input-support
+
 
 ## SGS
 xiaomitool-v2
