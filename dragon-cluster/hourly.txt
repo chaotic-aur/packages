@@ -57,6 +57,7 @@ micro-git
 mini-benchmarker
 mkinitcpio-git
 modprobed-db-git
+nerdctl-git
 networkmanager-iwd
 nspawn-git
 ntfs3-dkms
