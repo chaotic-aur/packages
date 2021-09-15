@@ -25,6 +25,7 @@ cozette-otb
 discord_arch_electron
 driconf
 dxvk-git:https://aur.archlinux.org/dxvk-git.git
+elfx86exts
 elm-format-bin
 elm-platform-bin
 ffmpeg-full
