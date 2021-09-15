@@ -28,9 +28,6 @@ linux-next-git
 # Issue 394
 icecat
 
-# Issue 446
-librewolf-hg
-
 # Issue 616
 brave
 

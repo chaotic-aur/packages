@@ -4,3 +4,8 @@ thunderbird-appmenu
 
 # Setup-assistant
 librewolf
+
+
+## Chaotic
+# Issue 446
+librewolf-hg
