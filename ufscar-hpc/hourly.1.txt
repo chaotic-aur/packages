@@ -37,9 +37,6 @@ android-emulator
 android-sdk
 voacapl
 
-#for wlroots-git
-seatd
-
 # OBS Wayland (Paulo)
 wlrobs-hg
 cef-minimal
