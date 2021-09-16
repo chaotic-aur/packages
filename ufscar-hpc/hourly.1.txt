@@ -911,12 +911,10 @@ libva-git # (dep intel-media-driver-git
 
 ## Lost & found
 anaconda
-azure-cli
 davinci-resolve-studio
 deadd-notification-center-git
 fluent-reader
 fnott
-heroku-cli-bin
 java-openjdk-ea-bin
 kite
 telegram-desktop-bin-dev
