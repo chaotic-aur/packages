@@ -66,6 +66,7 @@ irpf
 libsixel # (mpv-git dep)
 mpv-full
 mpv-full-git
+obs-backgroundremoval
 obs-rtspserver
 obs-streamfx
 obs-v4l2sink
@@ -386,13 +387,7 @@ lib32-nss-mdns
 make-3.81 # (dep lib32-gstreamer0.10-base)
 
 # Issue 360
-amdgpu-pro-core-meta
-amdgpu-pro-libgl
-amf-amdgpu-pro
-lib32-amdgpu-pro-libgl
-lib32-vulkan-amdgpu-pro
-opencl-amd
-vulkan-amdgpu-pro
+amdgpu-pro-installer
 
 # Issue 306
 omnisharp-roslyn
@@ -926,4 +921,4 @@ java-openjdk-ea-bin
 kite
 telegram-desktop-bin-dev
 veloren-git
-vulkan-amdgpu-pro # (amdgpu-pro-installer)
+
