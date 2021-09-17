@@ -1168,6 +1168,9 @@ gnome-obfuscate
 # Issue 935
 sedutil
 
+# Issue 940
+naiveproxy
+
 # Issue 941
 logiops
 
