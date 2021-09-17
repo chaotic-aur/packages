@@ -114,7 +114,6 @@ lib32-libmpeg2
 lib32-a52dec
 lib32-libsidplay
 lib32-libcdio
-lib32-libcdio
 lib32-l-smash
 lib32-x264
 
@@ -183,7 +182,6 @@ themix-icons-suru-plus-aspromauros-git
 themix-theme-arc-git
 themix-theme-materia-git
 themix-icons-gnome-colors-git
-themix-icons-numix-git
 themix-export-spotify-git
 themix-icons-papirus-git
 themix-import-images-git
@@ -194,8 +192,6 @@ themix-theme-oomox-git
 themix-icons-archdroid-git
 themix-full-git
 delft-icon-theme-git
-vimix-gtk-themes-git
-mojave-gtk-theme-git
 
 #Fonts (Solomon)
 ttfautohint
@@ -220,7 +216,6 @@ compiz-core
 emerald-gtk3
 meteo-gtk
 palemoon-gtk3-bin
-pamac-classic
 pod2man # (dep auracle-git)
 xfce4-panel-compiz
 
@@ -267,7 +262,6 @@ rarian # (dep system-config-samba)
 syncplay
 system-config-samba
 trackma-git
-ttf-ms-fonts
 waifu2x-ncnn-vulkan-git
 winetricks-git
 xxd-standalone
@@ -312,7 +306,6 @@ megasync-git
 pa-applet-git
 pacmanlogviewer-git
 pamac-classic
-pyradio-git
 trizen-git
 
 # Issue 348
@@ -321,7 +314,6 @@ python2-gobject2
 # Issue 327
 ananicy
 boston-icon-theme
-microsoft-edge-dev-bin
 xow-git
 
 # Issue 332
@@ -379,10 +371,8 @@ oh-my-zsh-git
 opensnitch
 
 # Issue 366
-lib32-gsm
 lib32-gstreamer0.10
 lib32-gstreamer0.10-base
-lib32-libexif
 lib32-nss-mdns
 make-3.81 # (dep lib32-gstreamer0.10-base)
 
@@ -714,7 +704,6 @@ multimc-git
 pipe-viewer-git
 
 # Issue 486
-dnf
 libcomps
 libdnf
 libmodulemd
@@ -742,9 +731,6 @@ seafile-client
 
 # Issue 492
 xfce4-panel-profiles
-
-# Issue 493
-spotify
 
 # Issue 494
 python-deezer-py
@@ -777,9 +763,6 @@ godot-beta-bin
 godot-git
 godot-mono-bin
 
-# Issue 543
-popcorntime
-
 # Issue 558
 ryujinx-git
 
@@ -807,7 +790,6 @@ spot-client-git
 
 # Issue 590
 mint-backgrounds
-mint-sounds
 mint-themes
 mint-x-icons
 mint-y-icons
@@ -911,8 +893,6 @@ libva-git # (dep intel-media-driver-git
 
 ## Lost & found
 anaconda
-davinci-resolve-studio
-deadd-notification-center-git
 fluent-reader
 fnott
 java-openjdk-ea-bin

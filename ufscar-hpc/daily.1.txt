@@ -82,8 +82,6 @@ llvm-tkg-git:https://github.com/Frogging-Family/llvm-git.git
 python-sphinx-automodapi
 llvm-git:https://github.com/chaotic-aur/llvm-git.git
 lib32-llvm-git:https://github.com/chaotic-aur/lib32-llvm-git.git
-flat-remix
-flat-remix-gnome
 lmdbxx
 tweeny
 ayatana-indicator-datetime

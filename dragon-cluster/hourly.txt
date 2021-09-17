@@ -10,7 +10,6 @@ sudo-git
 ## Try to get some more hourly builds in
 # Some stuff
 alpm_octopi_utils-dev # (dep octopi-dev)
-ananicy-cpp
 ananicy-cpp-git
 ananicy-rules-git
 anbox-image-houdini-rooted
@@ -32,7 +31,6 @@ firetools-git
 fish-autopair-git
 fish-git
 fish-systemd-git
-fluffychat
 flutter # (dep fluffychat)
 fprintd-clients
 gegl-git # (dep gimp-git)
@@ -51,7 +49,6 @@ libscrypt
 lightcord-git
 lolcate
 lutris-git
-networkmanager-iwd
 makedeb
 micro-git
 mini-benchmarker

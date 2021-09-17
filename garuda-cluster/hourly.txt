@@ -65,11 +65,9 @@ corectrl
 fastgame-git
 itch
 keyboard-visualizer-git
-lib32-vkbasalt
 minecraft-launcher
 noisetorch-bin
 openrgb
-protontricks-git
 xpadneo-dkms-git
 
 # GNOME
@@ -78,8 +76,6 @@ gesture-manager-x-git
 gnome-control-center-x11-scaling
 gnome-terminal-transparency
 menulibre
-mintstick
-mugshot
 mutter-x11-scaling
 nautilus-admin
 nautilus-bluetooth
@@ -92,13 +88,11 @@ yaru-sound-theme
 azote
 flashfocus-git
 kvantum-theme-qogir-git
-polybar
 skippy-xd-git
 
 # KDE Multimedia
 fancontrol-gui-git
 fancontrol-kcm-git
-firefox-extension-xdm-browser-monitor
 kwin-decoration-sierra-breeze-enhanced-git
 mcmojave-kde-theme-git
 mystiq
@@ -144,7 +138,6 @@ xviewer-plugin
 
 # Recbox
 i3lock-color
-kvantum-theme-matcha-git
 obkey
 obmenu-generator
 qt5-styleplugins
@@ -175,7 +168,6 @@ seatd
 wayfire-desktop-git
 wdisplays
 wlogout
-wlroots-git
 wf-config-git
 wf-osk-git
 ydotool
@@ -190,7 +182,7 @@ mugshot
 ## From nightly
 # Garuda base (AUR)
 7-zip
-ananicy
+ananicy-cpp
 archlinux-appstream-data-pamac
 auto-cpufreq
 bluetooth-autoconnect
@@ -208,13 +200,11 @@ firefox-extension-flagfox
 firefox-extension-localcdn
 firefox-extension-plasma-integration
 fish-autopair
-fish-systemd-git
 flameshot-git
 garuda-downloader-git
 garuda-settings-manager-git
 garuda-settings-manager-kcm-git
 garuda-settings-manager-notifier-git
-gesture-manager-x-git
 hblock
 hw-probe
 imagewriter
@@ -255,7 +245,6 @@ pacman-pkgfile-hook
 pacman-sync
 pacui:https://github.com/excalibur1234/pacui.git
 pamac-aur
-pamac-classic
 paru
 performance-tweaks
 plymouth-git
@@ -295,7 +284,6 @@ openh264
 python-pypresence # (dep rare)
 rare
 spotify
-system-config-samba
 ttf-wps-fonts
 virtualbox-ext-oracle
 wacom-utility
@@ -369,7 +357,6 @@ foxitreader
 google-earth-pro
 google-meet-desktop
 guiscrcpy
-jellyfin
 mailspring
 mattermost-desktop
 mcfly
@@ -381,7 +368,6 @@ octopi
 octopi-notifier-frameworks
 octopi-notifier-qt5
 olivia
-paru
 plex-media-player
 popsicle
 pulseeffects-legacy
@@ -419,7 +405,6 @@ modprobed-db
 multibootusb
 neard
 networkmanager-dmenu-git
-noisetorch
 ofono
 phonesim
 qomui
@@ -438,9 +423,7 @@ kali-themes
 ksmoothdock
 kvantum-theme-layan-git
 kvantum-theme-matcha-git
-kvantum-theme-qogir-git
 kvantum-theme-vimix-git
-kwin-decoration-sierra-breeze-enhanced-git
 kwin-effects-yet-another-magic-lamp
 kwin-scripts-krohnkite-git
 kwin-scripts-window-colors
@@ -449,7 +432,6 @@ layan-kde-git
 loginized
 matcha-gtk-theme-git
 mcmojave-circle-icon-theme-git
-mcmojave-kde-theme-git
 mojave-gtk-theme-git
 plymouth
 qogir-gtk-theme-git
@@ -461,7 +443,6 @@ vimix-gtk-themes
 vimix-gtk-themes-git
 vimix-icon-theme
 vimix-icon-theme-git
-whitesur-kvantum-theme-git
 xcursor-breeze
 
 # P2P
@@ -484,7 +465,6 @@ memavaild-git
 nohang-git
 prelockd-git
 qt-installer-framework
-riseup-vpn
 
 
 ## input method support

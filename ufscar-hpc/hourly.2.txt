@@ -187,7 +187,6 @@ pantheon-calculator-git
 pantheon-calendar-git
 pantheon-camera-git
 pantheon-code-git
-pantheon-code-git
 pantheon-default-settings-git
 pantheon-dock-instctl-git
 pantheon-files-git
@@ -379,7 +378,6 @@ plymouth # Issue 401
 
 ## Not building on ufscar
 # Issue 322
-lightly-qt
 qownnotes
 
 # Issue 323
@@ -682,9 +680,6 @@ htop-git
 # Issue 693
 plasmatube-git
 
-# Issue 694
-octopi-notifier-frameworks
-
 # Issue 697
 noise-suppression-for-voice
 
@@ -928,9 +923,6 @@ vim-slime-git
 # Issue 791
 vim-vimwiki
 
-# Issue 793
-dogecoin-qt
-
 # Issue 795
 netflix-git
 
@@ -989,7 +981,6 @@ python2-pyasn1-modules # (dep matrix-synapse-rest-auth)
 python2-pygments # (dep python2-m2r)
 python2-pyhamcrest # (dep matrix-synapse-rest-auth)
 python2-service-identity # (dep matrix-synapse-rest-auth)
-python2-twisted # (dep matrix-synapse-rest-auth)
 python2-twisted # (dep matrix-synapse-rest-auth)
 
 # Issue 815
