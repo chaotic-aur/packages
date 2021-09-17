@@ -681,9 +681,6 @@ archinstall-git
 # Issue 709
 cloudflared
 
-# Issue 710
-power-profiles-daemon
-
 # Issue 711
 gedit-plugin-markdown_preview
 
