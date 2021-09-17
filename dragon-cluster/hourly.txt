@@ -95,6 +95,14 @@ zram-generator-git
 zstd-git
 
 
+## Waydroid
+libgbinder
+libglibutil
+python-gbinder
+waydroid
+waydroid-image
+
+
 ## Development
 bmap-tools
 debianutils
