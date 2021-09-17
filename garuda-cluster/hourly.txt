@@ -159,27 +159,28 @@ doctest
 greetd
 greetd-gtkgreet
 greetd-qtgreet
-orchis-kde-theme-git
 kvantum-theme-orchis-git
+orchis-kde-theme-git
 orchis-theme-git
 popsicle-git
+pulseaudio-modules-bt-git
 redshift-wayland-git
 seatd
+tlpui
 wayfire-desktop-git
 wdisplays
-wlogout
 wf-config-git
 wf-osk-git
+wlogout
 ydotool
-pulseaudio-modules-bt-git
-tlpui
 
 # XFCE
 gestures
 mugshot
+python-pyparted # (dep mugshot)
 
 
-## From nightly
+## Further needed applications
 # Garuda base (AUR)
 7-zip
 ananicy-cpp
@@ -252,6 +253,7 @@ preload
 prelockd
 pulseaudio-modules-bt
 python-apprise
+python-py3nvml # (dep optimus-manager-git)
 qwikaccess-git
 systemd-guest-user
 tela-circle-icon-theme-git
@@ -261,7 +263,7 @@ ttf-meslo-nerd-font-powerlevel10k
 update-grub
 uresourced
 wd719x-firmware
-zsync2-git 
+zsync2-git
 
 # Setup assistant
 bitwig-studio
@@ -272,15 +274,19 @@ firefox-esr-bin
 firefox-extension-xdm-browser-monitor
 freedownloadmanager
 freeoffice
+gconf # (dep wacom-utility)
 gitkraken
+gksu # (dep wacom-utility)
 google-chrome
 jdownloader2
 jitsi-meet-desktop
 joplin
+libgksu # (dep wacom-utility)
 mendeleydesktop-bundled
 ms-office-online
 onlyoffice-bin
 openh264
+pygtk # (dep wacom-utility)
 python-pypresence # (dep rare)
 rare
 spotify
@@ -290,9 +296,9 @@ wacom-utility
 wine-installer
 wineasio
 wps-office
+wps-office-cn
 wps-office-fonts
 wps-office-mime
-wps-office-cn
 wps-office-mime-cn
 xdman
 yozo-office
@@ -300,62 +306,46 @@ yozo-office-fonts
 yuzu-mainline-bin
 zoom
 
-# Mycroft the voice assistant
+# Garuda network assistant
+linux-wifi-hotspot
+webapp-manager
+
+# Input method support
+fcitx-input-support
+fcitx5-input-support
+ibus-input-support
+manjaro-asian-input-support
+
+# Mycroft
 fann
 mimic
 mycroft-core
 mycroft-gui-git
 plasma5-applets-mycroft-git
 
-# Howdy the face recognition similar to Windows Hello
+# Howdy
 howdy
 pam-python
 python-dlib
 python-face_recognition
 python-face_recognition_models
 
-
-## NEEDED DEPENDENCIES
-# wacom-utility
-gconf
-gksu
-libgksu
-pygtk
-
-# garuda-network-assistant
-linux-wifi-hotspot
-webapp-manager
-
-# warpinator
-python-grcpio-tools
-
-# foxitreader:
-gstreamer0.10
-gstreamer0.10-base
-
-# optimus-manager-git
-python-py3nvml
-
-# gwe
-python-injector
-
-# mugshot
-python-pyparted
-
-# General use applications
+# Other, general use applications
 alpm_octopi_utils # (dep octopi)
 anydesk-bin
 appimagelauncher
-etcher-bin # (name changed to balena-etcher as balena-etcher doesnt build)
 bauh
 birdtray
 cherrytree
 davinci-resolve
 deezer
 dropbox
+etcher-bin # (name changed to balena-etcher as balena-etcher doesnt build)
 foxitreader
 google-earth-pro
 google-meet-desktop
+gstreamer0.10 # (dep foxitreader)
+gstreamer0.10-base # (dep foxitreader)
 guiscrcpy
 mailspring
 mattermost-desktop
@@ -454,11 +444,9 @@ python2-xlib # (dep acestream-engine)
 
 ## Misc
 alma-git
-ananicy-git
 auto-cpufreq-git
 brave-nightly-bin
 cozy-audiobooks
-electronmail-bin
 garuda-dr460nized-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-dr460nized.git
 garuda-system-maintenance-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-system-maintenance-git.git
 memavaild-git
@@ -467,14 +455,17 @@ prelockd-git
 qt-installer-framework
 
 
-## input method support
-fcitx-input-support
-fcitx5-input-support
-ibus-input-support
-manjaro-asian-input-support
-
-
 ## SGS
+github-desktop-bin
+libcgroup
+plasma5-applets-audio-device-switcher
+plasma5-applets-plasma-pstate
+python-pid # (dep refind-btrfs)
+python-transitions # (dep refind-btrfs)
+qytdl
+refind-btrfs
+sound-theme-smooth
+usbaudio-git
 xiaomitool-v2
 
 

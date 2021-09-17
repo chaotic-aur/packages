@@ -1,3 +1,4 @@
+## Potentially longer build times
 alacritty-git
 coreutils-git
 cmake-git

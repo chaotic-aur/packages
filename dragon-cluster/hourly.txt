@@ -1,15 +1,6 @@
-## ALWAYS UPDATED
-# Some stuff
-dolphin-git
-kate-git
-konsole-git
-starship-git
-sudo-git
-
-
 ## Try to get some more hourly builds in
-# Some stuff
 alpm_octopi_utils-dev # (dep octopi-dev)
+ananicy-git
 ananicy-cpp-git
 ananicy-rules-git
 anbox-image-houdini-rooted
@@ -23,6 +14,8 @@ c-lolcat
 clamav-git
 clamav-unofficial-sigs
 coreutils-hybrid
+dolphin-git
+electronmail-bin
 fastfetch-git
 firejail-git
 firejail-noapparmor-git
@@ -42,7 +35,9 @@ imagemagick-git
 intel-ucode-git
 intel-undervolt-git
 inxi-git
+kate-git
 kde-git:https://gitlab.com/chaotic-aur-pkgbuilds/kde-git.git
+konsole-git
 kvantum-qt5-git
 libreoffice-dev-bin
 libscrypt
@@ -56,9 +51,9 @@ mkinitcpio-git
 modprobed-db-git
 nerdctl-git
 networkmanager-iwd
+noto-color-emoji-fontconfig
 nspawn-git
 ntfs3-dkms
-noto-color-emoji-fontconfig
 octopi-dev
 open-fprintd
 openjpeg # (dep ffmpeg-compat-57)
@@ -80,11 +75,13 @@ rmatrix-git
 rusnapshot-git
 rustdesk
 smplayer-svn
+starship-git
+sudo-git
 sweet-theme-git
 sysbox-ce
 thermald-git
-tpacpi-bat-git
 tor-git
+tpacpi-bat-git
 ttyper-git
 ufw-git
 wavemon-git

@@ -1,5 +1,4 @@
 # Plasma-git
-#labplot-git (broken currently)
 akonadi-calendar-git
 akonadi-contacts-git
 akonadi-git
@@ -15,6 +14,7 @@ bluez-qt-git
 breeze-git
 breeze-icons-git:https://gitlab.com/chaotic-aur-pkgbuilds/breeze-icons-git.git
 calendarsupport-git
+disman-git
 elf-dissector-git
 eventviews-git
 extra-cmake-modules-git
@@ -43,8 +43,9 @@ kcoreaddons-git
 kcrash-git
 kdav-git
 kdbusaddons-git
-kdeclarative-git
 kde-cli-tools-git
+kdeclarative-git
+kdeconnect-git:https://gitlab.com/chaotic-aur-pkgbuilds/kdeconnect-git.git
 kdecoration-git
 kded-git
 kdelibs4support-git
@@ -75,8 +76,8 @@ kiconthemes-git
 kidentitymanagement-git
 kidletime-git
 kimageannotator-git:https://gitlab.com/chaotic-aur-pkgbuilds/kimageannotator-git
-kimap2-git
 kimap-git
+kimap2-git
 kinfocenter-git
 kinit-git
 kio-extras-git
@@ -86,8 +87,8 @@ kitemmodels-git
 kitemviews-git
 kitinerary-git
 kjobwidgets-git
-kjsembed-git:https://gitlab.com/chaotic-aur-pkgbuilds/kjsembed-git.git
 kjs-git
+kjsembed-git:https://gitlab.com/chaotic-aur-pkgbuilds/kjsembed-git.git
 kldap-git
 kleopatra-git
 kmail-account-wizard-git
@@ -126,19 +127,20 @@ ktnef-git
 kunitconversion-git
 kuserfeedback-git:https://gitlab.com/chaotic-aur-pkgbuilds/kuserfeedback-git.git
 kwallet-git:https://gitlab.com/chaotic-aur-pkgbuilds/kwallet-git.git
-kwalletmanager-git
 kwallet-pam-git
+kwalletmanager-git
 kwayland-git
 kwaylandintegration-git:https://gitlab.com/chaotic-aur-pkgbuilds/kwaylandintegration-git.git
 kwaylandserver-git:https://gitlab.com/chaotic-aur-pkgbuilds/kwaylandserver-git.git
 kwidgetsaddons-git
-kwindowsystem-git
 kwin-git
+kwindowsystem-git
+kwinft-git:https://gitlab.com/chaotic-aur-pkgbuilds/kwinft-git.git
 kwrited-git
 kxmlgui-git
 kxmlrpcclient-git
 layer-shell-qt-git
-libakonadi-git  
+libakonadi-git
 libgravatar-git
 libkdepim-git
 libkleo-git
@@ -159,14 +161,19 @@ networkmanager-qt-git:https://gitlab.com/chaotic-aur-pkgbuilds/networkmanager-qt
 non-euclidean-git
 okular-git
 partitionmanager-git:https://gitlab.com/chaotic-aur-pkgbuilds/partitionmanager-git.git
-pimcommon-git
 pim-data-exporter-git
 pim-sieve-editor-git
+pimcommon-git
 plasma-browser-integration-git
+plasma-desktop-git
+plasma-framework-git:https://gitlab.com/chaotic-aur-pkgbuilds/plasma-framework-git.git
 plasma-integration-git
+plasma-nm-git:https://github.com/chaotic-aur/pkgbuild-plasma-nm-git.git
+plasma-pa-git:https://gitlab.com/chaotic-aur-pkgbuilds/plasma-pa-git.git
 plasma-sdk-git:https://gitlab.com/chaotic-aur-pkgbuilds/plasma-sdk-git.git
 plasma-systemmonitor-git
 plasma-wayland-protocols-git
+plasma-workspace-git
 polkit-kde-agent-git
 polkit-qt5-git
 poppler-git
@@ -176,10 +183,12 @@ purpose-git:https://gitlab.com/chaotic-aur-pkgbuilds/purpose-git.git
 qca-qt5-git
 qca-qt6-git
 qqc2-desktop-style-git:https://gitlab.com/chaotic-aur-pkgbuilds/qqc2-desktop-style-git.git
-signon-kwallet-extension-git 
+signon-kwallet-extension-git
 solid-git:https://gitlab.com/chaotic-aur-pkgbuilds/solid-git.git
 sonnet-git:https://gitlab.com/chaotic-aur-pkgbuilds/sonnet-git.git
+spectacle-git
 syndication-git
 syntax-highlighting-git
 systemsettings-git
 threadweaver-git:https://gitlab.com/chaotic-aur-pkgbuilds/threadweaver-git.git
+wrapland-git

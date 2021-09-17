@@ -1,23 +1,20 @@
-## REBOOT NEEDED
-# Long compile times
+## Longer compile times
 qemu-git
 
-# Kwinft-git
+## Needs reboot
 disman-git
-kwinft-git:https://gitlab.com/chaotic-aur-pkgbuilds/kwinft-git.git
-wrapland-git
-
-# Plasma-git
 kdeconnect-git:https://gitlab.com/chaotic-aur-pkgbuilds/kdeconnect-git.git
+kwinft-git:https://gitlab.com/chaotic-aur-pkgbuilds/kwinft-git.git
 plasma-desktop-git
 plasma-framework-git:https://gitlab.com/chaotic-aur-pkgbuilds/plasma-framework-git.git
 plasma-nm-git:https://github.com/chaotic-aur/pkgbuild-plasma-nm-git.git
 plasma-pa-git:https://gitlab.com/chaotic-aur-pkgbuilds/plasma-pa-git.git
 plasma-workspace-git
 spectacle-git
+wrapland-git
 
 
-## CHAOTIC
+## Chaotic
 # RustemB
 blender-git
 

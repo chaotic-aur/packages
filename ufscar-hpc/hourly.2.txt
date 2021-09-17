@@ -1,25 +1,24 @@
 ## MAINTAINERS
 # Paulo
 # Libre FPGA stuff
-yosys-git
-python-crcmod
 capnproto-java
+icestorm-git
+nextpnr-git
 prjapicula
 prjoxide-git
 prjtrellis-git
-icestorm-git
-nextpnr-git
+python-crcmod
+yosys-git
 zenpower-dkms-git
 
 # Pedro
-chaotic-keyring
-chaotic-mirrorlist
-
 android-sdk-platform-tools
 android-studio-launcher
 android-udev
 bytecode-viewer
 ca-certificates-icp_br
+chaotic-keyring
+chaotic-mirrorlist
 checkmake
 cozette-otb
 discord_arch_electron
@@ -28,6 +27,7 @@ dxvk-git:https://aur.archlinux.org/dxvk-git.git
 elfx86exts
 elm-format-bin
 elm-platform-bin
+fcft # (dep yambar)
 ffmpeg-full
 figma-linux
 foo2zjs-nightly
@@ -40,6 +40,7 @@ intelbacklight-git
 lib32-imath
 lib32-lzo # (proton-ge-custom makedep)
 lib32-primus-vk-git
+lib32-sdl2_compat12-git
 logstalgia
 mingw-w64-tools # (proton-ge-custom makedep)
 msitools
@@ -57,16 +58,14 @@ ruby-coderay # (dep logstalgia)
 ruby-method_source # (dep logstalgia)
 ruby-pry # (dep logstalgia)
 sdl2_compat12-git
-lib32-sdl2_compat12-git
-startgame:https://github.com/chaotic-aur/startgame.git
 spectral-matrix-git
 split2flac-git
-unflac
-wineasio-git
-wev
-yambar-git
-fcft # (dep yambar)
+startgame:https://github.com/chaotic-aur/startgame.git
 tllist # (dep yambar)
+unflac
+wev
+wineasio-git
+yambar-git
 zenpower3-dkms
 
 # FroggingFamily
@@ -81,8 +80,8 @@ material-kwin-decoration-git
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
 neofrog-git:https://github.com/Frogging-Family/neofrog-git.git
 spirv-tools-tkg-git:https://github.com/Frogging-Family/spirv-tools-git.git
-vkd3d-tkg-git:https://github.com/Frogging-Family/vkd3d-git.git
 vkd3d-proton-tkg-git:https://github.com/Frogging-Family/vkd3d-git.git
+vkd3d-tkg-git:https://github.com/Frogging-Family/vkd3d-git.git
 vulkan-headers-tkg-git:https://github.com/Frogging-Family/vulkan-headers-git.git
 vulkan-icd-loader-tkg-git:https://github.com/Frogging-Family/vulkan-icd-loader-git.git
 
@@ -97,8 +96,8 @@ elm-language-server
 firefox-nightly
 glow
 j9-git
-jdk8-graalvm-bin
 jdk16-graalvm-bin
+jdk8-graalvm-bin
 jetbrains-toolbox
 jupyter-metakernel
 koka-bin
@@ -158,30 +157,24 @@ ayatana-indicator-power
 ayatana-indicator-session
 ayatana-indicator-sound
 cmake-extras-git
+contractor-git
+elementary-icon-theme-git
+gala-git
 glib2-selinux
+granite-git
+gtk-theme-elementary-git
+kitty-git
+lib32-mesa-git:https://github.com/chaotic-aur/lib32-mesa-git.git
 libayatana-appindicator
 libayatana-indicator
 libclc-git # (dep mesa-git)
 libselinux # (dep glib2-selinux)
 libsepol # (dep glib2-selinux)
-
-mesa-git:https://github.com/chaotic-aur/mesa-git.git
-
-lib32-mesa-git:https://github.com/chaotic-aur/lib32-mesa-git.git
-
-onivim2-git # issue 339
-pantheon-polkit-agent-git
-properties-cpp
-tilix-git:https://github.com/chaotic-aur/tilix-git-aur
-vlc-git
-wezterm-git
-
-contractor-git
-elementary-icon-theme-git
-gala-git
-granite-git
-gtk-theme-elementary-git
 lightdm-pantheon-greeter-git
+mesa-git:https://github.com/chaotic-aur/mesa-git.git
+numix-circle-icon-theme-git
+numix-icon-theme-git
+onivim2-git # issue 339
 pantheon-applications-menu-git
 pantheon-calculator-git
 pantheon-calendar-git
@@ -191,11 +184,13 @@ pantheon-default-settings-git
 pantheon-dock-instctl-git
 pantheon-files-git
 pantheon-music-git
+pantheon-polkit-agent-git
 pantheon-screenshot-git
 pantheon-session-git
 pantheon-shortcut-overlay-git
 pantheon-terminal-git
 pantheon-videos-git
+properties-cpp
 switchboard-git
 switchboard-plug-a11y-git
 switchboard-plug-about-git
@@ -214,6 +209,9 @@ switchboard-plug-printers-git
 switchboard-plug-security-privacy-git
 switchboard-plug-sharing-git
 switchboard-plug-user-accounts-git
+tilix-git:https://github.com/chaotic-aur/tilix-git-aur
+vlc-git
+wezterm-git
 wingpanel-git
 wingpanel-indicator-bluetooth-git
 wingpanel-indicator-datetime-git
@@ -223,11 +221,6 @@ wingpanel-indicator-notifications-git
 wingpanel-indicator-power-git
 wingpanel-indicator-session-git
 wingpanel-indicator-sound-git
-numix-circle-icon-theme-git
-numix-icon-theme-git
-
-kitty-git
-# kprkpr
 
 # Nico
 mullvad-vpn-beta
@@ -243,18 +236,6 @@ wayland-git
 wayland-protocols-git
 wireplumber-git
 xf86-input-libinput-git
-
-# SGS
-github-desktop-bin
-libcgroup
-plasma5-applets-audio-device-switcher
-plasma5-applets-plasma-pstate
-python-pid # (dep refind-btrfs)
-python-transitions # (dep refind-btrfs)
-qytdl
-refind-btrfs
-sound-theme-smooth
-usbaudio-git
 
 
 ## NEEDED FOR GARUDA
@@ -315,6 +296,7 @@ oversteer
 play.it
 proton-caller
 protontricks-git
+python-injector # (dep gwe)
 q4wine
 rare-git
 reicast
@@ -383,12 +365,11 @@ qownnotes
 # Issue 323
 chatterino2-git
 
-## MOVED FROM DRAGON CLUSTER
-# Issue 560
-ion-git
-
 # Issue 521
 grimshot
+
+# Issue 560
+ion-git
 
 # Issue 562
 lollypop-next-git

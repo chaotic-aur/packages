@@ -1,68 +1,73 @@
 ## Maintainers
-# Paulo
-bluespec-git
+## Paulo
 adms  # for qucs
-qucs
-lcov  # for hal-git
-hal-git
-fujprog
-digilent.adept.runtime
-digilent.adept.utilities
-fxload
-ncurses5-compat-libs
-gr-limesdr-git
 airspy-git
 airspyhf-git
-libsdrplay
-sdrpp-git
-reaver-wps-fork-t6x-git
-radare2-git
-ht-editor
-hashcash
-bear
-rqlite
-libfprint-git
-fprintd-libfprint2:https://aur.archlinux.org/fprintd-libfprint2.git
-vkcube-git
-wdisplays-git
-chromium-widevine
-xdg-desktop-portal-wlr-git
-wl-clipboard-x11
-sway-launcher-desktop
-i3status-rust-git
-systemd-boot-pacman-hook
-realvnc-vnc-viewer
-android-studio
 android-emulator
 android-sdk
+android-studio
+bear
+bluespec-git
+chromium-widevine
+digilent.adept.runtime
+digilent.adept.utilities
+fprintd-libfprint2:https://aur.archlinux.org/fprintd-libfprint2.git
+fujprog
+fxload
+gr-limesdr-git
+hal-git
+hashcash
+ht-editor
+i3status-rust-git
+lcov  # for hal-git
+libfprint-git
+libsdrplay
+ncurses5-compat-libs
+qucs
+radare2-git
+realvnc-vnc-viewer
+reaver-wps-fork-t6x-git
+rqlite
+sdrpp-git
+sway-launcher-desktop
+systemd-boot-pacman-hook
+vkcube-git
 voacapl
+wdisplays-git
+wl-clipboard-x11
+xdg-desktop-portal-wlr-git
 
 # OBS Wayland (Paulo)
-wlrobs-hg
 cef-minimal
+wlrobs-hg
 
 # Sway (Paulo)
-wlroots-git
-swaybg-git
 sway-git
+swaybg-git
+wlroots-git
 
 # Powerpill (Paulo)
+pm2ml
+powerpill
 python3-memoizedb
 python3-xcgf
 python3-xcpf
-pm2ml
-powerpill
 
 
 ## Pedro
-autoconf-git
+#pipewire-dropin # (bad quality)
+#scrcpy-git (broken)
+#waybar-git (broken)
 asdf-vm
+autoconf-git
 b43-firmware # not really needed
 depot-tools-git # servo-git dep
 discord-canary-electron-bin
 gotop
 grim-git
+hsphfpd-git
 irpf
+ktweak-git:https://github.com/tytydraco/KTweak.git
 libsixel # (mpv-git dep)
 mpv-full
 mpv-full-git
@@ -74,12 +79,9 @@ obs-vkcapture-git
 oneko
 osdlyrics-git
 pipewire-common-git
-#pipewire-dropin # (bad quality)
-hsphfpd-git
 podman-compose-git
 r8125-dkms
 repoctl
-#scrcpy-git (broken)
 slack-electron
 spirv-cross # (mpv-full-git dependency)
 spotify-edge-snap
@@ -93,116 +95,114 @@ tuxclocker
 ums
 vapoursynth-git # (mpv-full-git dependency)
 wattman-gtk-git
-#waybar-git (broken)
 waynergy-git
 waypipe-git
 yaup-git
 zfs-dkms
 zfs-utils
-ktweak-git:https://github.com/tytydraco/KTweak.git
 
 # Raytracing (Pedro)
-raytracinginvulkan-git
 imgui
-tinyobjloader
+raytracinginvulkan-git
 stb
+tinyobjloader
 
 # lib32-gst-plugins-ugly (Pedro)
+lib32-a52dec
+lib32-l-smash
+lib32-libcdio
 lib32-libdvdcss
 lib32-libdvdread
 lib32-libmpeg2
-lib32-a52dec
 lib32-libsidplay
-lib32-libcdio
-lib32-l-smash
 lib32-x264
 
 # lib32-gst-plugins-bad (Pedro)
-lib32-bluez-libs
-lib32-libexif
-lib32-lv2
-lib32-glslang
-lib32-shaderc
 lib32-aom
-lib32-lame
-lib32-dav1d
-lib32-ffmpeg
+lib32-bluez-libs
 lib32-chromaprint
+lib32-dav1d
 lib32-faac
 lib32-faad2
-lib32-libbs2b
-lib32-libdc1394
-lib32-libdca
-lib32-libdvdnav
-lib32-libfdk-aac
-lib32-libgme
-lib32-libkate
-lib32-raptor
-lib32-liblrdf
-lib32-libmms
-lib32-libmpcdec
+lib32-ffmpeg
+lib32-fftw
+lib32-glslang
 lib32-gssdp
 lib32-gupnp
 lib32-gupnp-igd
+lib32-lame
+lib32-libbs2b
+lib32-libcue
+lib32-libdc1394
+lib32-libdca
+lib32-libdvdnav
+lib32-libexif
+lib32-libfdk-aac
+lib32-libgme
+lib32-libkate
+lib32-liblrdf
+lib32-libmms
+lib32-libmpcdec
 lib32-libnice
-lib32-fftw
 lib32-libofa
+lib32-libreplaygain
 lib32-libsrtp
-lib32-serd
-lib32-sord
-lib32-sratom
 lib32-lilv
+lib32-lv2
 lib32-mjpegtools
 lib32-neon
+lib32-raptor
 lib32-rtmpdump
 lib32-sbc
+lib32-serd
+lib32-shaderc
+lib32-sord
 lib32-spandsp
+lib32-sratom
 lib32-webrtc-audio-processing
 lib32-wildmidi
 lib32-zvbi
-lib32-libreplaygain
-lib32-libcue
 
-#Weather (Solomon)
+
+## Solomon
+# Weather (Solomon)
 meteo-qt-git
 
-#Theming
+# Theming (Solomon)
+delft-icon-theme-git
 flat-remix-kde-git
 kvantum-theme-akava-git
+obsidian-2-theme-git
+obsidian-icon-theme-git
+themix-export-spotify-git
+themix-full-git
+themix-gui-git
+themix-icons-archdroid-git
+themix-icons-gnome-colors-git
+themix-icons-numix-git
+themix-icons-papirus-git
+themix-icons-suru-plus-aspromauros-git
+themix-icons-suru-plus-git
+themix-import-images-git
+themix-plugins-base16-git
+themix-theme-arc-git
+themix-theme-materia-git
+themix-theme-oomox-git
 
-#Programming (Solomon)
+# Programming (Solomon)
 clion-eap
 helix-git
 
-#Themes (Solomon)
-themix-icons-numix-git
-themix-gui-git
-themix-plugins-base16-git
-themix-icons-suru-plus-aspromauros-git
-themix-theme-arc-git
-themix-theme-materia-git
-themix-icons-gnome-colors-git
-themix-export-spotify-git
-themix-icons-papirus-git
-themix-import-images-git
-obsidian-2-theme-git
-themix-icons-suru-plus-git
-obsidian-icon-theme-git
-themix-theme-oomox-git
-themix-icons-archdroid-git
-themix-full-git
-delft-icon-theme-git
-
-#Fonts (Solomon)
-ttfautohint
+# Fonts (Solomon)
 ttf-iosevka-git
+ttfautohint
 
-#Web browsers (Solomon)
+# Web browsers (Solomon)
 otter-browser-git
 qutebrowser-git
 
-## Users requests
 
+## Users requests
 # Issue 322
 hlsdl
 identity
@@ -240,22 +240,22 @@ filebot47
 esy # (dep)
 
 # Issue 338
-clion
 #emacs-native-comp-git # (pending merging with emacs-git)
+#lib32-x265 # (banished)
+clion
 expressvpn
+glslang-git # (dep waifu2x-ncnn-vulkan-git)
 gnome-doc-utils # (dep system-config-samba)
 graphite-mozilla
 intellij-idea-ultimate-edition
 lib32-fltk # (dep)
-lib32-numactl
 lib32-libwmf
-lib32-zbar
+lib32-numactl
 lib32-openexr
-#lib32-x265 # (banished)
+lib32-zbar
 libgccjit
 libuser # (dep system-config-samba)
 ncnn-git # (dep waifu2x-ncnn-vulkan-git)
-glslang-git # (dep waifu2x-ncnn-vulkan-git)
 nodejs-nativefier
 pycharm-professional
 rarian # (dep system-config-samba)
@@ -891,6 +891,7 @@ intel-gmmlib-git # (dep intel-media-driver-git)
 intel-media-driver-git
 libva-git # (dep intel-media-driver-git
 
+
 ## Lost & found
 anaconda
 fluent-reader
@@ -899,4 +900,3 @@ java-openjdk-ea-bin
 kite
 telegram-desktop-bin-dev
 veloren-git
-
