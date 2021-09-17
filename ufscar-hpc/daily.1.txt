@@ -72,6 +72,9 @@ lib32-amdvlk-2021q2.5
 # Issue 927
 openblas-lapack
 
+# Issue 936
+musikcube
+
 
 # -------------------------------- MOVED FROM KITSUNA
 # Pedro
