@@ -10,7 +10,7 @@ There are a few kind of requests which we will deny:
 
 - snapd:
 	I didn't knew how to help my users with it, it breaks A LOT.
-	I recommend you using native packages or FlatPak instead.
+	I recommend you using native packages or FlatPak instead. Also, [this](https://old.reddit.com/r/linuxmemes/comments/ppyz0g/damn_you_ubuntu/hd7jg1p/).
 
 - lib32-x265:
 	There is no use-case in this face of the world where a 32-bit application (Linux or Windows) will want to ENCODE HEVC.
