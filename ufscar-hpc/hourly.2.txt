@@ -830,7 +830,7 @@ sublime-text-3
 sublime-text-4
 
 # Issue 770
-chatterino-7tv-git
+chatterino2-7tv-git
 
 # Issue 771
 #apache-lucene # (dep scilab) download 404
