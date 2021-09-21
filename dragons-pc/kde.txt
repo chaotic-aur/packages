@@ -17,7 +17,7 @@ calendarsupport-git
 disman-git
 elf-dissector-git
 eventviews-git
-extra-cmake-modules-git
+extra-cmake-modules-git:https://github.com/chaotic-aur/pkgbuild-extra-cmake-modules-git.git
 frameworkintegration-git
 grantlee-git
 grantleetheme-git
@@ -48,6 +48,7 @@ kdeclarative-git
 kdeconnect-git:https://gitlab.com/chaotic-aur-pkgbuilds/kdeconnect-git.git
 kdecoration-git
 kded-git
+kdegraphics-mobipocket-git
 kdelibs4support-git
 kdenlive-git
 kdepim-addons-git

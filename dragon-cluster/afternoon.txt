@@ -17,7 +17,7 @@ breeze-icons-git:https://gitlab.com/chaotic-aur-pkgbuilds/breeze-icons-git.git
 calendarsupport-git
 elf-dissector-git
 eventviews-git
-extra-cmake-modules-git
+extra-cmake-modules-git:https://github.com/chaotic-aur/pkgbuild-extra-cmake-modules-git.git
 frameworkintegration-git
 grantlee-git
 grantleetheme-git
@@ -47,6 +47,7 @@ kde-cli-tools-git
 kdeclarative-git
 kdecoration-git
 kded-git
+kdegraphics-mobipocket-git
 kdelibs4support-git
 kdenlive-git
 kdepim-addons-git
