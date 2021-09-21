@@ -2,7 +2,6 @@
 linux-cacule-hardened
 linux-cacule-llvm
 linux-cacule-rdb
-linux-lqx
 
 
 ## Chaotic 
