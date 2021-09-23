@@ -1172,3 +1172,12 @@ logiops
 
 # Issue 942
 qtfm
+
+# Issue 946
+graphite-gtk-theme-git
+
+# Issue 953
+autokey
+autokey-common
+autokey-gtk
+autokey-qt
