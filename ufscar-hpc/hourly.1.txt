@@ -19,7 +19,6 @@ hal-git
 hashcash
 ht-editor
 i3status-rust-git
-lcov  # for hal-git
 libfprint-git
 libsdrplay
 ncurses5-compat-libs
