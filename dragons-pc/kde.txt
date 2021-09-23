@@ -122,6 +122,7 @@ ksmtp-git
 ksshaskpass-git
 ksysguard-git
 ksystemlog-git
+ksystemstats-git
 ktexteditor-git
 ktextwidgets-git
 ktnef-git
