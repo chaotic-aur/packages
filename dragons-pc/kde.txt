@@ -27,6 +27,7 @@ kactivities-git
 kactivities-stats-git
 kactivitymanagerd-git
 kalarmcal-git
+kalendar-git
 karchive-git
 kauth-git
 kbookmarks-git
@@ -83,6 +84,7 @@ kinfocenter-git
 kinit-git
 kio-extras-git
 kio-git
+kirigami-addons-git
 kirigami2-git
 kitemmodels-git
 kitemviews-git
