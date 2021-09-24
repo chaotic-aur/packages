@@ -1183,9 +1183,6 @@ graphite-gtk-theme-git
 # Issue 948
 qps
 
-# Issue 949
-kicad-git
-
 # Issue 953
 autokey
 autokey-common

@@ -75,6 +75,9 @@ openblas-lapack
 # Issue 936
 musikcube
 
+# Issue 949
+kicad-git
+
 # Issue 956
 cling
 
