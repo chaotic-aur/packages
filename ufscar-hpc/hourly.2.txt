@@ -1173,6 +1173,10 @@ logiops
 # Issue 942
 qtfm
 
+# Issue 943
+lunarvim-git
+neovim-remote # (dep lunarvim-git)
+
 # Issue 946
 graphite-gtk-theme-git
 
