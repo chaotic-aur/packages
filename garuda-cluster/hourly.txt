@@ -196,6 +196,7 @@ dashbinsh
 downgrade
 evdev-right-click-emulation
 find-the-command-git
+firedragon-extension-plasma-integration
 firefox-extension-bitwarden
 firefox-extension-flagfox
 firefox-extension-localcdn
