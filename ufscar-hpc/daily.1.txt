@@ -75,6 +75,9 @@ openblas-lapack
 # Issue 936
 musikcube
 
+# Issue 956
+cling
+
 
 # -------------------------------- MOVED FROM KITSUNA
 # Pedro
