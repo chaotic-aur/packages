@@ -1177,6 +1177,15 @@ qtfm
 lunarvim-git
 neovim-remote # (dep lunarvim-git)
 
+# Issue 945
+insync
+insync-caja
+insync-dolphin
+insync-emblem-icons
+insync-nautilus
+insync-nemo
+insync-thunar
+
 # Issue 946
 graphite-gtk-theme-git
 
