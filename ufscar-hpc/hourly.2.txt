@@ -1185,6 +1185,7 @@ insync-emblem-icons
 insync-nautilus
 insync-nemo
 insync-thunar
+thunarx-python # (dep insync-thunar)
 
 # Issue 946
 graphite-gtk-theme-git
