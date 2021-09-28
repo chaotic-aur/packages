@@ -769,7 +769,6 @@ sneedacity-git
 foot
 foot-terminfo
 qtile-git
-river-git
 spacefm-git
 
 # Issue 744
