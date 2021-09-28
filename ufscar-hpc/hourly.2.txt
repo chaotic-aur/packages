@@ -1198,3 +1198,12 @@ autokey
 autokey-common
 autokey-gtk
 autokey-qt
+
+# Issue 961
+btop
+
+# Issue 962
+osh 
+
+# Issue 966
+qimgv-git
