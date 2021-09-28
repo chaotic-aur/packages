@@ -1208,5 +1208,8 @@ btop
 # Issue 962
 osh 
 
+# Issue 964
+pcsx2-git
+
 # Issue 966
 qimgv-git
