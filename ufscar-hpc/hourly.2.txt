@@ -1202,9 +1202,6 @@ autokey-qt
 anki
 python-mypy-protobuf # (dep anki)
 
-# Issue 961
-btop
-
 # Issue 962
 osh 
 
