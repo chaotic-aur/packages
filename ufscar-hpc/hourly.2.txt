@@ -1210,3 +1210,6 @@ pcsx2-git
 
 # Issue 966
 qimgv-git
+
+# Issue 968
+via-bin
