@@ -1219,3 +1219,6 @@ gdm-tools-git
 
 # Issue 971
 premid
+
+# Issue 973
+helvum-git
