@@ -1216,3 +1216,6 @@ via-bin
 
 # Issue 970
 gdm-tools-git
+
+# Issue 971
+premid
