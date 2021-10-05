@@ -1010,9 +1010,7 @@ dte
 wine-wl-git
 
 # Issue 842
-glib2-git
 gnome-text-editor-git
-gtk4-git
 
 # Issue 867
 souk-git
