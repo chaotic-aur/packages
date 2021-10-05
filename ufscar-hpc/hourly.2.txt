@@ -1214,6 +1214,9 @@ qimgv-git
 # Issue 968
 via-bin
 
+# Issue 969
+fondo
+
 # Issue 970
 gdm-tools-git
 
