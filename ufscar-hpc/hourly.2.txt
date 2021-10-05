@@ -1213,3 +1213,6 @@ qimgv-git
 
 # Issue 968
 via-bin
+
+# Issue 970
+gdm-tools-git
