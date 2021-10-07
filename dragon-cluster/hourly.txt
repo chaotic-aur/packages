@@ -39,6 +39,7 @@ kate-git
 kde-git:https://gitlab.com/chaotic-aur-pkgbuilds/kde-git.git
 konsole-git
 kvantum-qt5-git
+kwin-bismuth
 libreoffice-dev-bin
 libscrypt
 lightcord-git
