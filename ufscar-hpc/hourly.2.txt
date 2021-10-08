@@ -1229,3 +1229,7 @@ google-chrome-dev
 
 # Issue 975
 xbanish
+
+# Issue 978
+termv-git
+
