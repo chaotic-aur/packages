@@ -142,7 +142,6 @@ tuxi-git
 vim-language-server
 vimv-git
 xash3d-fwgs-git
-yaml-language-server
 zef
 zlib-ng
 
