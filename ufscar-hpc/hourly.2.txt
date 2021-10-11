@@ -1226,6 +1226,11 @@ google-chrome-dev
 # Issue 975
 xbanish
 
+# Issue 976
+śimple-mtpfs
+
 # Issue 978
 termv-git
 
+# Issue 979
+tangram
