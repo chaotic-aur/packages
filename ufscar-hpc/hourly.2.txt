@@ -1234,3 +1234,6 @@ termv-git
 
 # Issue 979
 tangram
+
+# Issue 983
+qdirstat
