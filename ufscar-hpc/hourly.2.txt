@@ -1078,9 +1078,6 @@ grub2-signing-extension
 # Issue 901
 losslesscut-bin
 
-# Issue 902
-mokutil
-
 # Issue 903
 musixmatch-bin
 
