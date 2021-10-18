@@ -1246,6 +1246,11 @@ nyxt
 fuse-emulator
 libspectrum # (dep fuse-emulator)
 
+# Issue 991
+deadbeef
+deadbeef-git
+libdispatch
+
 # Issue 992
 #gzdoom
 zmusic # (dep gzdoom)
