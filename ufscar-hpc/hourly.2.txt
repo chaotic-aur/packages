@@ -1246,6 +1246,9 @@ nyxt
 fuse-emulator
 libspectrum # (dep fuse-emulator)
 
+# Issue 993
+ytmdesktop-git
+
 # Issue 994
 protonup-git
 
