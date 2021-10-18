@@ -1248,3 +1248,6 @@ libspectrum # (dep fuse-emulator)
 
 # Issue 994
 protonup-git
+
+# Issue 995
+chrome-remote-desktop
