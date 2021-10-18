@@ -439,7 +439,6 @@ xcursor-breeze
 
 # P2P
 acestream-engine
-nicotine-plus-git
 python2-apsw # (dep acestream-engine)
 python2-xlib # (dep acestream-engine)
 

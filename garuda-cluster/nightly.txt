@@ -9,3 +9,7 @@ librewolf
 ## Chaotic
 # Issue 446
 librewolf-hg
+
+
+## Not building for whatever reason, lets try it here
+nicotine-plus-git
