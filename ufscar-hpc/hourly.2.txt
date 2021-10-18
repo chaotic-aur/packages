@@ -1235,5 +1235,8 @@ tangram
 # Issue 983
 qdirstat
 
+# Issue 986
+blesh-git
+
 # Issue 994
 protonup-git
