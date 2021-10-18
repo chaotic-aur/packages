@@ -1246,6 +1246,10 @@ nyxt
 fuse-emulator
 libspectrum # (dep fuse-emulator)
 
+# Issue 992
+#gzdoom
+zmusic # (dep gzdoom)
+
 # Issue 993
 ytmdesktop-git
 
