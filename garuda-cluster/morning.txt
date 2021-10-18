@@ -76,6 +76,7 @@ garuda-boot-options:https://gitlab.com/garuda-linux/applications/garuda-boot-opt
 garuda-boot-repair:https://gitlab.com/garuda-linux/applications/garuda-boot-repair.git
 garuda-gamer:https://gitlab.com/garuda-linux/applications/garuda-gamer.git
 garuda-network-assistant:https://gitlab.com/garuda-linux/applications/garuda-network-assistant.git
+garuda-update:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/garuda-update.git
 garuda-setup-assistant:https://gitlab.com/garuda-linux/applications/garuda-setup-assistant.git
 garuda-welcome:https://gitlab.com/garuda-linux/applications/garuda-welcome.git
 

@@ -256,6 +256,7 @@ pulseaudio-modules-bt
 python-apprise
 python-py3nvml # (dep optimus-manager-git)
 qwikaccess-git
+rate-mirrors
 systemd-guest-user
 tela-circle-icon-theme-git
 timeshift
