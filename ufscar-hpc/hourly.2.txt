@@ -1238,5 +1238,9 @@ qdirstat
 # Issue 986
 blesh-git
 
+# Issue 988
+libfixposix # (dep nyxt)
+nyxt
+
 # Issue 994
 protonup-git
