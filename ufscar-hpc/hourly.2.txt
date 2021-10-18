@@ -1234,3 +1234,6 @@ tangram
 
 # Issue 983
 qdirstat
+
+# Issue 994
+protonup-git
