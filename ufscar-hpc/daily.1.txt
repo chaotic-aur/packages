@@ -81,6 +81,9 @@ kicad-git
 # Issue 956
 cling
 
+# Issue 985
+wine-ge-custom
+
 
 # -------------------------------- MOVED FROM KITSUNA
 # Pedro
