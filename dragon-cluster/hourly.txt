@@ -10,6 +10,7 @@ babl-git # (dep gimp-git)
 birdtray-git
 bleachbit-git
 bottom-git
+btop-git
 c-lolcat
 clamav-git
 clamav-unofficial-sigs
