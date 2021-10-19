@@ -60,6 +60,7 @@ python3-xcpf
 asdf-vm
 autoconf-git
 b43-firmware # not really needed
+chaotic-neofetch-git:https://github.com/chaotic-aur/chaotic-neofetch-git.git
 depot-tools-git # servo-git dep
 discord-canary-electron-bin
 gotop
@@ -86,6 +87,7 @@ spirv-cross # (mpv-full-git dependency)
 spotify-edge-snap
 spotify-qt
 spotifyd-full-git
+swayfire-git
 steinberg-asio-sdk # (wineasio-git dependency)
 tor-browser
 ttf-borg-sans-mono
@@ -94,6 +96,7 @@ tuxclocker
 ums
 vapoursynth-git # (mpv-full-git dependency)
 wattman-gtk-git
+wayfire-git
 waynergy-git
 waypipe-git
 yaup-git
