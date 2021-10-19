@@ -1263,3 +1263,9 @@ protonup-git
 
 # Issue 995
 chrome-remote-desktop
+
+# Issue 999
+megacli
+
+# Issue 1000 - Party time
+storcli
