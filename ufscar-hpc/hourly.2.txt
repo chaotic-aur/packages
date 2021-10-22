@@ -1252,7 +1252,7 @@ deadbeef-git
 libdispatch
 
 # Issue 992
-#gzdoom
+gzdoom
 zmusic # (dep gzdoom)
 
 # Issue 993
@@ -1269,3 +1269,19 @@ megacli
 
 # Issue 1000 - Party time
 storcli
+
+# Issue 1001
+adcli # (dep realmd)
+freeipa
+freeipa-client # (-client-common,common,ipaclient,ipalib)
+realmd
+oddjob
+
+# Issue 1003
+kid3-cli
+
+# Issue 1005
+libffi7
+
+# Issue 1006
+git-credential-manager-core-bin
