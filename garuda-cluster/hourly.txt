@@ -451,7 +451,7 @@ brave-nightly-bin
 cozy-audiobooks
 garuda-dr460nized-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-dr460nized.git
 garuda-system-maintenance-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-system-maintenance-git.git
-jamesdesp
+jamesdsp
 memavaild-git
 nohang-git
 octopi-git
