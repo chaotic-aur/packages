@@ -722,7 +722,7 @@ qogir-gtk-theme
 
 # Issue 725
 dialect
-python-googletrans 
+python-googletrans-git
 python-gtts 
 
 # Issue 726
@@ -1288,3 +1288,18 @@ libffi7
 
 # Issue 1006
 git-credential-manager-core-bin
+
+# Issue 1008
+firefly-iii
+
+# Issue 1013
+stacer-git
+
+# Issue 1015
+opendoas-sudo
+
+# Issue 1017
+armorpaint-git
+
+# Issue 1018
+flacon
