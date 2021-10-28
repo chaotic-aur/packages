@@ -8,7 +8,7 @@ garuda-hooks:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/garuda-ho
 garuda-hotfixes:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/garuda-hotfixes.git
 garuda-icons:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/garuda-icons.git
 garuda-live:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-live.git
-garuda-system-maintenance:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/garuda-system-maintenance.git
+garuda-system-maintenance:https://gitlab.com/garuda-linux/applications/garuda-system-maintenance.git
 garuda-wallpapers-2021:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/garuda-wallpapers-2021.git
 garuda-wallpapers-extra:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/garuda-wallpapers-extra.git
 garuda-wallpapers:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/garuda-wallpapers.git
