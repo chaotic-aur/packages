@@ -82,6 +82,7 @@ nautilus-bluetooth
 nautilus-mediainfo
 nautilus-pdf-tools-git
 nautilus-typeahead
+yaru
 yaru-sound-theme
 
 # i3
