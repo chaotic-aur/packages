@@ -1303,3 +1303,18 @@ armorpaint-git
 
 # Issue 1018
 flacon
+
+# Issue 1021
+fzf-tab-bin-git
+
+# Issue 1022
+protonvpn-cli
+
+# Issue 1024
+plymouth-theme-aregression
+
+# Issue 1025
+android-sdk-build-tools
+
+# Issue 1027
+zenmap
