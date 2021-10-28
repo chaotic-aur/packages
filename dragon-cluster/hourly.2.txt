@@ -1,0 +1,42 @@
+## Split hourly builds
+ntfs3-dkms
+octopi-dev
+open-fprintd
+openjpeg # (dep ffmpeg-compat-57)
+opensnitch-git
+oxygen-sounds
+pacman-git:https://github.com/chaotic-aur/pkgbuild-pacman-git.git
+paleofetch-git
+pamac-aur-git
+protobuf-go # (dep sysbox-ce)
+python-magic-ahupp # (dep guiscrcpy-git)
+python-nototools # (dep noto-fonts-emoji-git)
+python-pynput # (dep guiscrcpy-git)
+python-setuptools-lint # (dep guiscrcpy-git)
+python-validity
+revolt-desktop-git
+ripgrep-git
+riseup-vpn
+rmatrix-git
+rusnapshot-git
+rustdesk
+smplayer-svn
+spotify-adblock-git
+starship-git
+sudo-git
+sweet-theme-git
+sysbox-ce
+thermald-git
+tor-git
+tpacpi-bat-git
+ttyper-git
+ufw-git
+wavemon-git
+weechat-git
+whoogle-git
+xorg-server-git
+zellij-git
+zenmonitor-git
+zenmonitor3-git
+zram-generator-git
+zstd-git
