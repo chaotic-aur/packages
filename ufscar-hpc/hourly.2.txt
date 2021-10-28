@@ -1318,3 +1318,6 @@ android-sdk-build-tools
 
 # Issue 1027
 zenmap
+
+# Issue 1029
+android-sdk-cmdline-tools-latest
