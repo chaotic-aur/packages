@@ -163,14 +163,25 @@ glib2-selinux
 granite-git
 gtk-theme-elementary-git
 kitty-git
-lib32-mesa-git:https://github.com/chaotic-aur/lib32-mesa-git.git
+
 libayatana-appindicator
 libayatana-indicator
 libclc-git # (dep mesa-git)
 libselinux # (dep glib2-selinux)
 libsepol # (dep glib2-selinux)
 lightdm-pantheon-greeter-git
+
 mesa-git:https://github.com/chaotic-aur/mesa-git.git
+lib32-mesa-git:https://github.com/chaotic-aur/lib32-mesa-git.git
+
+libxcb-git
+lib32-libxcb-git
+libdrm-git
+lib32-libdrm-git
+egl-wayland-git
+libglvnd-git
+lib32-libglvnd-git
+
 numix-circle-icon-theme-git
 numix-icon-theme-git
 onivim2-git # issue 339
