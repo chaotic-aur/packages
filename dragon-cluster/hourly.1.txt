@@ -36,6 +36,7 @@ imagemagick-git
 intel-ucode-git
 intel-undervolt-git
 inxi-git
+jamesdsp-git
 kate-git
 kde-git:https://gitlab.com/chaotic-aur-pkgbuilds/kde-git.git
 konsole-git
