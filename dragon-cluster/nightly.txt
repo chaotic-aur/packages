@@ -111,6 +111,15 @@ threadweaver-git:https://gitlab.com/chaotic-aur-pkgbuilds/threadweaver-git.git
 wrapland-git
 
 ## Chaotic
+# Issue 1034
+aura-fetch-git
+bitfetch-git
+freshfetch-git
+novafetch-git
+pfetch-git
+rufetch
+ufetch-git
+
 # RustemB
 blender-git
 
