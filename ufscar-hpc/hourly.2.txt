@@ -1333,6 +1333,9 @@ zenmap
 # Issue 1029
 android-sdk-cmdline-tools-latest
 
+# Issue 1031
+atomicwallet
+
 # Issue 1032
 android-messages-desktop
 
