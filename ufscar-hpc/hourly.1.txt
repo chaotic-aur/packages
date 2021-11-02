@@ -430,7 +430,6 @@ firedm
 python-acestream # (dep acestream-launcher)
 python-awesometkinter # (dep firedm)
 python-bidi # (dep firedm)
-youtube-dlp   # (dep firedm)
 python-plyer # (dep firedm)
 python-pystray # (dep firedm)
 
