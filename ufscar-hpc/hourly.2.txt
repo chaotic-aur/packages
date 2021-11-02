@@ -1332,3 +1332,9 @@ zenmap
 
 # Issue 1029
 android-sdk-cmdline-tools-latest
+
+# Issue 1032
+android-messages-desktop
+
+# Issue 1036
+snap-pac-grub
