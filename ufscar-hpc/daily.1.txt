@@ -2,6 +2,7 @@
 # Firefox
 nss-hg
 nspr-hg
+wasi-sdk-git
 --
 firefox-wayland-hg
 --
