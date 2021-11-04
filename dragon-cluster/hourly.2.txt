@@ -5,7 +5,7 @@ open-fprintd
 openjpeg # (dep ffmpeg-compat-57)
 opensnitch-git
 oxygen-sounds
-pacman-git:https://github.com/chaotic-aur/pkgbuild-pacman-git.git
+pacman-git
 paleofetch-git
 pamac-aur-git
 protobuf-go # (dep sysbox-ce)

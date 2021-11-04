@@ -17,6 +17,7 @@ clamav-unofficial-sigs
 coreutils-hybrid
 dolphin-git
 electronmail-bin
+esbuild # (dep kwin-bismuth)
 fastfetch-git
 firejail-git
 firejail-noapparmor-git
