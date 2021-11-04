@@ -44,7 +44,6 @@ kvantum-qt5-git
 kwin-bismuth
 libreoffice-dev-bin
 libscrypt
-lightcord-git
 lolcate
 lutris-git
 makedeb
