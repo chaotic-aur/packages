@@ -1315,6 +1315,9 @@ armorpaint-git
 # Issue 1018
 flacon
 
+# Issue 1020
+protonup-qt
+
 # Issue 1021
 fzf-tab-bin-git
 
