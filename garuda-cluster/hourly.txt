@@ -66,7 +66,6 @@ fastgame-git
 itch
 keyboard-visualizer-git
 minecraft-launcher
-noisetorch-bin
 openrgb
 xpadneo-dkms-git
 

@@ -764,7 +764,6 @@ llvm-proton-bin
 # Issue 538
 godot-beta-bin
 godot-git
-godot-mono-bin
 
 # Issue 558
 ryujinx-git
