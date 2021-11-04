@@ -33,6 +33,7 @@ tpacpi-bat-git
 ttyper-git
 ufw-git
 wavemon-git
+waydroid-git
 weechat-git
 whoogle-git
 xorg-server-git
