@@ -62,6 +62,7 @@ nspawn-git
 libgbinder
 libglibutil
 python-gbinder
+python-pyclip
 waydroid
 waydroid-image
 
