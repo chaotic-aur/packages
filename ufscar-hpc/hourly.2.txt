@@ -1116,6 +1116,7 @@ keepassxc-git
 # Issue 911
 ferdi
 ferdi-git
+pnpm # (dep ferdi)
 
 # Issue 912
 git-bug
