@@ -45,6 +45,7 @@ kvantum-qt5-git
 kwin-bismuth
 libreoffice-dev-bin
 libscrypt
+libtremor-git # (dep gst-plugins-base-git)
 lolcate
 lutris-git
 makedeb
