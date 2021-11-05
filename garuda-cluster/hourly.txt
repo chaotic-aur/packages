@@ -262,6 +262,7 @@ tela-circle-icon-theme-git
 timeshift
 timeshift-autosnap
 ttf-meslo-nerd-font-powerlevel10k
+uasm # (dep 7-zip)
 update-grub
 uresourced
 wd719x-firmware

@@ -610,6 +610,7 @@ jlink # (dep cryptomator)
 jlink-software-and-documentation # (dep cryptomator)
 jlink-systemview # (dep cryptomator)
 jlink-systemview-target-src # (dep cryptomator)
+libjffi # (dep cryptomator)
 ozone # (dep cryptomator)
 protonmail-bridge-bin
 
