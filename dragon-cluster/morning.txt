@@ -17,6 +17,5 @@ netdata-git
 nextcloud-client-git
 noto-fonts-emoji-git
 obs-studio-git
-openssh-hpn-git
 paru-git
 qbittorrent-enhanced-git

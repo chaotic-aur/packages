@@ -12,7 +12,6 @@ servo-git
 --
 
 # Nico
-libreoffice-slim-fixed-git
 linux-cacule
 linux-xanmod-anbox
 firedragon-hg
@@ -48,10 +47,6 @@ linux-vfio
 
 # Issue 774
 freecad-git
-
-# Issue 792
-linux-g14
-linux-zen-g14
 
 # Issue 793
 dogecoin-qt

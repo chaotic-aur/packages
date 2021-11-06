@@ -174,13 +174,14 @@ lightdm-pantheon-greeter-git
 mesa-git:https://github.com/chaotic-aur/mesa-git.git
 lib32-mesa-git:https://github.com/chaotic-aur/lib32-mesa-git.git
 
-libxcb-git
+egl-wayland-git
+lib32-libdrm-git
+lib32-libglvnd-git
 lib32-libxcb-git
 libdrm-git
-lib32-libdrm-git
-egl-wayland-git
 libglvnd-git
-lib32-libglvnd-git
+libxcb-git
+xcb-proto-git # (dep libxcb-git)
 
 numix-circle-icon-theme-git
 numix-icon-theme-git
@@ -507,6 +508,7 @@ lib3ds # (dep meshlab)
 meshlab
 meshlab-git
 mpir # (dep meshlab)
+openctm-tools
 zeal
 zeal-git
 
