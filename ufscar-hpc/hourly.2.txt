@@ -2032,3 +2032,6 @@ swayfx
 
 # Issue 2128
 cassowary
+
+# Issue 2134
+waterfox-g-bin
