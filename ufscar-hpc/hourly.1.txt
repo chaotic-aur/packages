@@ -301,6 +301,7 @@ pycharm-community-eap
 slack-term
 typora
 waterfox-g3-bin
+waterfox-g4-bin
 
 # Issue 303
 budgie-desktop-git
