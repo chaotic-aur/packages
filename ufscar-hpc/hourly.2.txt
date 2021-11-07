@@ -1347,3 +1347,6 @@ android-messages-desktop
 
 # Issue 1036
 snap-pac-grub
+
+# Issue 1045
+waterfox-g4-bin
