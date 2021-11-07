@@ -8,6 +8,9 @@ android-sdk
 android-studio
 bear
 bluespec-git
+itcl3:https://github.com/chaotic-aur/pkgbuild-itcl3.git  # for bluespec-bdw-git
+tk-itk3  # for bluespec-bdw-git
+bluespec-bdw-git
 chromium-widevine
 digilent.adept.runtime
 digilent.adept.utilities
