@@ -453,6 +453,9 @@ vte-ng
 mesa-git:https://github.com/chaotic-aur/mesa-git.git
 --
 
+## Lost & found
+veloren-git
+
 # Issue 385
 linux-firmware-git
 
@@ -910,6 +913,5 @@ fnott
 java-openjdk-ea-bin
 kite
 telegram-desktop-bin-dev
-veloren-git
 
 lib32-mesa-git:https://github.com/chaotic-aur/lib32-mesa-git.git
