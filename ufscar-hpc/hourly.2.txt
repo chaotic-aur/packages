@@ -81,8 +81,6 @@ goverlay-git
 mangohud
 mangohud-git
 material-kwin-decoration-git
-mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
---
 neofrog-git:https://github.com/Frogging-Family/neofrog-git.git
 spirv-tools-tkg-git:https://github.com/Frogging-Family/spirv-tools-git.git
 vkd3d-proton-tkg-git:https://github.com/Frogging-Family/vkd3d-git.git
@@ -1352,3 +1350,6 @@ snap-pac-grub
 
 # Issue 1045
 waterfox-g4-bin
+
+# FroggingFamily
+mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
