@@ -451,7 +451,6 @@ beaker
 vte-ng
 
 mesa-git:https://github.com/chaotic-aur/mesa-git.git
---
 
 ## Lost & found
 veloren-git
