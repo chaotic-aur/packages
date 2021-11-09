@@ -15,6 +15,7 @@ python-pynput # (dep guiscrcpy-git)
 python-setuptools-lint # (dep guiscrcpy-git)
 python-validity
 quickemu
+quickemu-git
 revolt-desktop-git
 ripgrep-git
 riseup-vpn
