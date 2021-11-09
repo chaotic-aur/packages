@@ -451,6 +451,7 @@ beaker
 vte-ng
 
 mesa-git:https://github.com/chaotic-aur/mesa-git.git
+--
 
 # Issue 385
 linux-firmware-git
