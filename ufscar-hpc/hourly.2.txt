@@ -176,9 +176,7 @@ libsepol # (dep glib2-selinux)
 lightdm-pantheon-greeter-git
 
 mesa-git:https://github.com/chaotic-aur/mesa-git.git
---
 lib32-mesa-git:https://github.com/chaotic-aur/lib32-mesa-git.git
---
 
 egl-wayland-git
 lib32-libdrm-git
