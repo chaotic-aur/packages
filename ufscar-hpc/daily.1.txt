@@ -80,6 +80,7 @@ cling
 # Issue 985
 wine-ge-custom
 
+--
 
 # -------------------------------- MOVED FROM KITSUNA
 # Pedro
@@ -88,8 +89,6 @@ llvm-tkg-git:https://github.com/Frogging-Family/llvm-git.git
 
 # Solomon
 python-sphinx-automodapi
-llvm-git:https://github.com/chaotic-aur/llvm-git.git
-lib32-llvm-git:https://github.com/chaotic-aur/lib32-llvm-git.git
 lmdbxx
 tweeny
 ayatana-indicator-datetime
@@ -111,3 +110,8 @@ code-git
 # Users requests
 #wine-git # Issue 315 (bad)
 scummvm-git # Issue 316
+
+--
+
+llvm-git:https://github.com/chaotic-aur/llvm-git.git
+lib32-llvm-git:https://github.com/chaotic-aur/lib32-llvm-git.git
