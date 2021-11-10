@@ -185,7 +185,7 @@ xcb-proto-git # (dep libxcb-git)
 
 numix-circle-icon-theme-git
 numix-icon-theme-git
-onivim2-git # issue 339
+#onivim2-git # issue 339  # package is broken
 pantheon-applications-menu-git
 pantheon-calculator-git
 pantheon-calendar-git
