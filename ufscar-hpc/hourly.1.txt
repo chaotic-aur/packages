@@ -1,3 +1,6 @@
+## Lost & found
+veloren-git  # really slow to build, not parallelizable
+
 ## Maintainers
 ## Paulo
 adms  # for qucs
@@ -451,9 +454,6 @@ beaker
 vte-ng
 
 mesa-git:https://github.com/chaotic-aur/mesa-git.git
-
-## Lost & found
-veloren-git
 
 # Issue 385
 linux-firmware-git
