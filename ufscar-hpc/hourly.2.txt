@@ -1348,8 +1348,23 @@ android-messages-desktop
 # Issue 1036
 snap-pac-grub
 
+# Issue 1041
+qtile-extras-git
+
+# Issue 1044
+pop-bin
+
 # Issue 1045
 waterfox-g4-bin
+
+# Issue 1046
+snapper-gui-git
+
+# Issue 1048
+nvidia-utils-nvlax
+
+# Issue 1049
+gmenu
 
 # Issue 1051
 microsoft-edge-stable-bin
