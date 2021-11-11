@@ -1351,5 +1351,8 @@ snap-pac-grub
 # Issue 1045
 waterfox-g4-bin
 
+# Issue 1051
+microsoft-edge-stable-bin
+
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
