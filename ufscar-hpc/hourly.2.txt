@@ -589,6 +589,7 @@ astronciaiptv
 
 # Issue 641
 fractal-next:https://aur.archlinux.org/fractal-next.git
+gtk4-git # (dep fractal-next)
 
 # Issue 642
 picom-git
