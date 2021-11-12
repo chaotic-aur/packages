@@ -1348,6 +1348,11 @@ android-messages-desktop
 # Issue 1036
 snap-pac-grub
 
+# Issue 1038
+cef-minimal-obs-bin # (dep obs-studio-tytan652)
+ftl-sdk # (dep obs-studio-tytan652)
+obs-studio-tytan652
+
 # Issue 1041
 qtile-extras-git
 
@@ -1368,6 +1373,9 @@ gmenu
 
 # Issue 1051
 microsoft-edge-stable-bin
+
+# Issue 1052
+firefox-pwa
 
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
