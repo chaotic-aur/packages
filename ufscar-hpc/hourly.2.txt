@@ -739,9 +739,6 @@ dialect
 python-googletrans-git
 python-gtts 
 
-# Issue 726
-godot-mono
-
 # Issue 730
 git-fixup-git
 
