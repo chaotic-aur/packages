@@ -1376,5 +1376,8 @@ microsoft-edge-stable-bin
 # Issue 1052
 firefox-pwa
 
+# Issue 1054
+mpd-mpris
+
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
