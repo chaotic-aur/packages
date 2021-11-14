@@ -213,6 +213,8 @@ imagewriter
 inxi
 lib32-nvidia-390xx-utils
 lib32-opencl-nvidia-390xx
+lib32-nvidia-470xx-utils
+lib32-opencl-nvidia-470xx
 libinput-gestures
 libinput_gestures_qt
 libpamac-aur
@@ -231,12 +233,17 @@ mhwd-db-garuda-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/mhwd-db-ga
 mhwd-garuda-git
 mhwd-nvidia
 mhwd-nvidia-390xx
+mhwd-nvidia-470xx
 mkinitcpio-openswap
 nohang
 nvidia-390xx-dkms
 nvidia-390xx-settings
 nvidia-390xx-utils
 opencl-nvidia-390xx
+nvidia-470xx-dkms
+nvidia-470xx-settings
+nvidia-470xx-utils
+opencl-nvidia-470xx
 optimus-manager
 optimus-manager-git
 optimus-manager-qt
