@@ -364,7 +364,7 @@ olivia
 plex-media-player
 popsicle
 pulseeffects-legacy
-qt-scrcpy
+qtscrcpy
 scrcpy
 shortwave
 skypeforlinux-stable-bin
