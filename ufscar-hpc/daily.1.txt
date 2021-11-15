@@ -45,9 +45,6 @@ emacs-ng-git
 # Issue 729
 linux-vfio
 
-# Issue 774
-freecad-git
-
 # Issue 793
 dogecoin-qt
 
@@ -115,3 +112,7 @@ scummvm-git # Issue 316
 
 llvm-git:https://github.com/chaotic-aur/llvm-git.git
 lib32-llvm-git:https://github.com/chaotic-aur/lib32-llvm-git.git
+
+# Issue 774
+freecad-git
+
