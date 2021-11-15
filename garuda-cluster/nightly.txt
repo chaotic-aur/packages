@@ -21,3 +21,5 @@ nicotine-plus-git
 # Issue 726
 godot-mono  # non parallelizable
 
+# Issue 339
+#onivim2-git # non paralellizable, package is currently broken
