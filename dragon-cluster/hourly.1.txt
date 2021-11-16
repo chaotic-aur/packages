@@ -32,11 +32,11 @@ gegl-git # (dep gimp-git)
 gst-plugins-base-git
 gstreamer-git
 guiscrcpy-git
-ideapad-cm
 imagemagick-git
 intel-ucode-git
 intel-undervolt-git
 inxi-git
+ipman
 jamesdsp-git
 kate-git
 kde-git:https://gitlab.com/chaotic-aur-pkgbuilds/kde-git.git
