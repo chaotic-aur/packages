@@ -101,6 +101,8 @@ vim-colorschemes
 # Moved because too heavy for Garuda
 ungoogled-chromium:https://github.com/ungoogled-software/ungoogled-chromium-archlinux.git
 
+--
+
 # Daily builds are enough
 code-git
 
