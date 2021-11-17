@@ -3,20 +3,15 @@
 nss-hg
 nspr-hg
 wasi-sdk-git
---
 firefox-wayland-hg
---
 
 # Pedro
 servo-git
---
 
 # Nico
 linux-cacule
 linux-xanmod-anbox
 firedragon-hg
-
---
 
 ## User requests
 # Issue 331
@@ -77,8 +72,6 @@ cling
 # Issue 985
 wine-ge-custom
 
---
-
 # -------------------------------- MOVED FROM KITSUNA
 # Pedro
 #darling-git (broken)
@@ -101,16 +94,12 @@ vim-colorschemes
 # Moved because too heavy for Garuda
 ungoogled-chromium:https://github.com/ungoogled-software/ungoogled-chromium-archlinux.git
 
---
-
 # Daily builds are enough
 code-git
 
 # Users requests
 #wine-git # Issue 315 (bad)
 scummvm-git # Issue 316
-
---
 
 llvm-git:https://github.com/chaotic-aur/llvm-git.git
 lib32-llvm-git:https://github.com/chaotic-aur/lib32-llvm-git.git
