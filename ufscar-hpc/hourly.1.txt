@@ -45,6 +45,7 @@ wl-clipboard-x11
 xdg-desktop-portal-wlr-git
 
 # OBS Wayland (Paulo)
+cef-minimal-obs-studio-browser-bin  # temporary until they update to build with latest cef-minimal
 cef-minimal
 wlrobs-hg
 
