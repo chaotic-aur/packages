@@ -59,8 +59,8 @@ kxmlrpcclient-git
 layer-shell-qt-git
 libakonadi-git
 libgravatar-git
-libkgapi-git
 libkdepim-git
+libkgapi-git
 libkleo-git
 libkomparediff2-git://gitlab.com/chaotic-aur-pkgbuilds/libkomparediff2-git.git
 libkscreen-git
