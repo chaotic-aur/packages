@@ -12,7 +12,6 @@ bleachbit-git
 bottom-git
 btop-git
 c-lolcat
-clamav-git
 clamav-unofficial-sigs
 coreutils-hybrid
 dolphin-git
