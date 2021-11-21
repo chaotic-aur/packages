@@ -146,6 +146,7 @@ tuxi-git
 vim-language-server
 vimv-git
 vivaldi-snapshot
+vivaldi-snapshot-ffmpeg-codecs
 xash3d-fwgs-git
 zef
 zlib-ng
