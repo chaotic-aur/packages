@@ -145,6 +145,7 @@ ttf-juliamono
 tuxi-git
 vim-language-server
 vimv-git
+vivaldi-snapshot
 xash3d-fwgs-git
 zef
 zlib-ng
