@@ -1399,5 +1399,15 @@ liblnk-tools-git
 # Issue 1064
 aptpac
 
+# Issue 1070
+atlauncher-bin
+
+# Issue 1072
+grapejuice
+
+# Issue 1074
+gcdemu
+kde-cdemu-manager
+
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
