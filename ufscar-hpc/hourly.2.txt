@@ -1340,9 +1340,6 @@ android-sdk-cmdline-tools-latest
 # Issue 1031
 atomicwallet
 
-# Issue 1032
-android-messages-desktop
-
 # Issue 1036
 snap-pac-grub
 
@@ -1378,6 +1375,9 @@ firefox-pwa
 
 # Issue 1054
 mpd-mpris
+
+# Issue 1067
+google-messages
 
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
