@@ -1379,5 +1379,17 @@ mpd-mpris
 # Issue 1067
 google-messages
 
+# Issue 1059
+darktable-git
+
+# Issue 1060
+standardnotes-bin
+
+# Issue 1061
+haruna
+
+# Issue 1062
+spicetify-cli-git
+
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
