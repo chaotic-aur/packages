@@ -1401,6 +1401,9 @@ liblnk-tools-git
 # Issue 1064
 aptpac
 
+# Issue 1065
+motivate
+
 # Issue 1070
 atlauncher-bin
 
@@ -1410,6 +1413,14 @@ grapejuice
 # Issue 1074
 gcdemu
 kde-cdemu-manager
+
+# Issue 1076
+guarda-appimage
+
+# Issue 1077
+boca # (dep freac)
+freac
+smooth # (dep boca)
 
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
