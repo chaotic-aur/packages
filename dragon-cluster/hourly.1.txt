@@ -48,6 +48,7 @@ libtremor-git # (dep gst-plugins-base-git)
 lolcate
 lutris-git
 makedeb
+makedeb-makepkg
 micro-git
 mini-benchmarker
 mkinitcpio-git
