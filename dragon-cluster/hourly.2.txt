@@ -37,6 +37,7 @@ wavemon-git
 waydroid-git
 weechat-git
 whoogle-git
+wlroots-eglstreams-git
 xorg-server-git
 zellij-git
 zenmonitor-git
