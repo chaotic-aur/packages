@@ -1422,5 +1422,9 @@ boca # (dep freac)
 freac
 smooth # (dep boca)
 
+# Issue 1080
+check-broken-packages-pacman-hook-git
+pacdiff-pacman-hook-git
+
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
