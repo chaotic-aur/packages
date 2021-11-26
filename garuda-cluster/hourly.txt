@@ -469,6 +469,42 @@ prelockd-git
 qt-installer-framework
 
 
+## Moved from dragon-cluster
+anbox-image-houdini-rooted
+bmap-tools
+c-lolcat
+clamav-unofficial-sigs
+coreutils-hybrid
+debianutils
+electronmail-bin
+esbuild # (dep kwin-bismuth)
+ffmpeg-compat-57
+ffmpeg-compat-58
+firejail-pacman-hook
+flutter # (dep fluffychat)
+fprintd-clients
+ipman
+kwin-bismuth
+libgbinder
+libglibutil
+libreoffice-dev-bin
+libscrypt
+lolcate
+makedeb
+makedeb-makepkg
+mini-benchmarker
+networkmanager-iwd
+noto-color-emoji-fontconfig
+python-codegen
+python-gbinder
+python-pyclip
+python-simplediff
+rufetch
+waydroid
+waydroid-image
+yocto-meta:https://github.com/chaotic-aur/pkgbuild-yocto-meta.git
+
+
 ## SGS
 github-desktop-bin
 libcgroup

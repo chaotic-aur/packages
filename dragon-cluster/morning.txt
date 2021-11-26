@@ -6,8 +6,6 @@ czkawka-git
 diary-git
 elisa-git
 exa-git
-ffmpeg-compat-57
-ffmpeg-compat-58
 gimp-git
 git-git
 kotatogram-dev-git

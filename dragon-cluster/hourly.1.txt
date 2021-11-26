@@ -3,7 +3,6 @@ alpm_octopi_utils-dev # (dep octopi-dev)
 ananicy-git
 ananicy-cpp-git
 ananicy-rules-git
-anbox-image-houdini-rooted
 arch-audit-git
 asp-git
 babl-git # (dep gimp-git)
@@ -11,22 +10,14 @@ birdtray-git
 bleachbit-git
 bottom-git
 btop-git
-c-lolcat
-clamav-unofficial-sigs
-coreutils-hybrid
 dolphin-git
-electronmail-bin
-esbuild # (dep kwin-bismuth)
 fastfetch-git
 firejail-git
 firejail-noapparmor-git
-firejail-pacman-hook
 firetools-git
 fish-autopair-git
 fish-git
 fish-systemd-git
-flutter # (dep fluffychat)
-fprintd-clients
 gegl-git # (dep gimp-git)
 gst-plugins-base-git
 gstreamer-git
@@ -35,42 +26,15 @@ imagemagick-git
 intel-ucode-git
 intel-undervolt-git
 inxi-git
-ipman
 jamesdsp-git
 kate-git
 kde-git:https://gitlab.com/chaotic-aur-pkgbuilds/kde-git.git
 konsole-git
 kvantum-qt5-git
-kwin-bismuth
-libreoffice-dev-bin
-libscrypt
 libtremor-git # (dep gst-plugins-base-git)
-lolcate
 lutris-git
-makedeb
-makedeb-makepkg
 micro-git
-mini-benchmarker
 mkinitcpio-git
 modprobed-db-git
 nerdctl-git
-networkmanager-iwd
-noto-color-emoji-fontconfig
 nspawn-git
-
-
-## Waydroid
-libgbinder
-libglibutil
-python-gbinder
-python-pyclip
-waydroid
-waydroid-image
-
-
-## Development
-bmap-tools
-debianutils
-python-codegen
-python-simplediff
-yocto-meta:https://github.com/chaotic-aur/pkgbuild-yocto-meta.git

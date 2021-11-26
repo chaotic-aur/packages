@@ -118,7 +118,6 @@ bitfetch-git
 freshfetch-git
 novafetch-git
 pfetch-git
-rufetch
 ufetch-git
 
 # RustemB
