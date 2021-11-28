@@ -7,13 +7,13 @@ akonadi-import-wizard-git
 akonadi-mime-git
 akonadi-notes-git
 akonadi-search-git
-attica-git:https://gitlab.com/chaotic-aur-pkgbuilds/attica-git.git
-baloo-git:https://gitlab.com/chaotic-aur-pkgbuilds/baloo-git.git
+attica-git:https://github.com/chaotic-aur/pkgbuild-attica-git.git
+baloo-git:https://github.com/chaotic-aur/pkgbuild-baloo-git.git
 bluedevil-git
 bluez-git # (dep bluez-qt-git)
 bluez-qt-git
 breeze-git
-breeze-icons-git:https://gitlab.com/chaotic-aur-pkgbuilds/breeze-icons-git.git
+breeze-icons-git:https://github.com/chaotic-aur/pkgbuild-breeze-icons-git.git
 calendarsupport-git
 elf-dissector-git
 eventviews-git
@@ -22,7 +22,7 @@ frameworkintegration-git
 grantlee-git
 grantleetheme-git
 incidenceeditor-git
-kaccounts-integration-git:https://gitlab.com/chaotic-aur-pkgbuilds/kaccounts-integration-git.git
+kaccounts-integration-git:https://github.com/chaotic-aur/pkgbuild-kaccounts-integration-git.git
 kactivities-git
 kactivities-stats-git
 kactivitymanagerd-git
@@ -35,7 +35,7 @@ kcalendarcore-git
 kcalutils-git
 kcmutils-git
 kcodecs-git
-kcolorpicker-git:https://gitlab.com/chaotic-aur-pkgbuilds/kcolorpicker-git.git
+kcolorpicker-git:https://github.com/chaotic-aur/pkgbuild-kcolorpicker-git.git
 kcompletion-git
 kconfig-git
 kconfigwidgets-git
@@ -76,8 +76,7 @@ ki18n-git
 kiconthemes-git
 kidentitymanagement-git
 kidletime-git
-kimageannotator-git:https://gitlab.com/chaotic-aur-pkgbuilds/kimageannotator-git
-kimap-git
+kimageannotator-git:https://github.com/chaotic-aur/pkgbuild-kimageannotator-git.git
 kimap2-git
 kinfocenter-git
 kinit-git
