@@ -1431,6 +1431,7 @@ papirus-icon-theme-git
 
 # Issue 1083
 rstudio-desktop
+soci # (dep rstudio-desktop)
 
 # Issue 1087
 graphite-cursor-theme-git
