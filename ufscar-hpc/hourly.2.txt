@@ -1426,5 +1426,14 @@ smooth # (dep boca)
 check-broken-packages-pacman-hook-git
 pacdiff-pacman-hook-git
 
+# Issue 1081
+papirus-icon-theme-git
+
+# Issue 1083
+rstudio-desktop
+
+# Issue 1087
+graphite-cursor-theme-git
+
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
