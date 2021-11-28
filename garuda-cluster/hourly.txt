@@ -452,20 +452,12 @@ python2-xlib # (dep acestream-engine)
 
 
 ## Misc
-alma-git
-alpm_octopi_utils-git
-auto-cpufreq-git
 brave-nightly-bin
 btrfs-assistant-git
 cozy-audiobooks
-garuda-dr460nized-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-dr460nized.git
 garuda-system-maintenance-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-system-maintenance-git.git
 jamesdsp
-memavaild-git
-nohang-git
-octopi-git
 polkit-duktape
-prelockd-git
 qt-installer-framework
 
 
@@ -495,11 +487,27 @@ makedeb-makepkg
 mini-benchmarker
 networkmanager-iwd
 noto-color-emoji-fontconfig
+ntfs3-dkms
+octopi-dev
+open-fprintd
+openjpeg # (dep ffmpeg-compat-57)
+oxygen-sounds
+protobuf-go # (dep sysbox-ce)
 python-codegen
 python-gbinder
+python-magic-ahupp # (dep guiscrcpy-git)
+python-nototools # (dep noto-fonts-emoji-git)
 python-pyclip
+python-pynput # (dep guiscrcpy-git)
+python-setuptools-lint # (dep guiscrcpy-git)
 python-simplediff
+python-validity
+quickemu
+riseup-vpn
 rufetch
+rustdesk
+smplayer-svn
+sysbox-ce
 waydroid
 waydroid-image
 yocto-meta:https://github.com/chaotic-aur/pkgbuild-yocto-meta.git

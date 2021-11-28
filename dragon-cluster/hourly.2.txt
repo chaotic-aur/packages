@@ -1,33 +1,17 @@
 ## Split hourly builds
-ntfs3-dkms
-octopi-dev
-open-fprintd
-openjpeg # (dep ffmpeg-compat-57)
 opensnitch-git
-oxygen-sounds
 pacman-git
 paleofetch-git
 pamac-aur-git
-protobuf-go # (dep sysbox-ce)
-python-magic-ahupp # (dep guiscrcpy-git)
-python-nototools # (dep noto-fonts-emoji-git)
-python-pynput # (dep guiscrcpy-git)
-python-setuptools-lint # (dep guiscrcpy-git)
-python-validity
-quickemu
 quickemu-git
 revolt-desktop-git
 ripgrep-git
-riseup-vpn
 rmatrix-git
 rusnapshot-git
-rustdesk
-smplayer-svn
 spotify-adblock-git
 starship-git
 sudo-git
 sweet-theme-git
-sysbox-ce
 thermald-git
 tor-git
 tpacpi-bat-git
@@ -44,3 +28,14 @@ zenmonitor-git
 zenmonitor3-git
 zram-generator-git
 zstd-git
+
+
+## Garuda git stuff
+alma-git
+alpm_octopi_utils-git
+auto-cpufreq-git
+garuda-dr460nized-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-dr460nized.git
+memavaild-git
+nohang-git
+octopi-git
+prelockd-git
