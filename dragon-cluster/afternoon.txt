@@ -2,7 +2,7 @@
 #labplot-git (broken currently)
 akonadi-calendar-git
 akonadi-contacts-git
-akonadi-git
+akonadi-git:https://github.com/chaotic-aur/pkgbuild-akonadi-git.git
 akonadi-import-wizard-git
 akonadi-mime-git
 akonadi-notes-git
