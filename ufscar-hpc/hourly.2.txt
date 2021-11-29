@@ -1433,6 +1433,9 @@ papirus-icon-theme-git
 rstudio-desktop
 soci # (dep rstudio-desktop)
 
+# Issue 1085
+gtksourceview-git
+
 # Issue 1087
 graphite-cursor-theme-git
 
