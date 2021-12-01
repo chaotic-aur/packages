@@ -1439,5 +1439,8 @@ gtksourceview-git
 # Issue 1087
 graphite-cursor-theme-git
 
+# Issue 1098
+rpi-imager
+
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
