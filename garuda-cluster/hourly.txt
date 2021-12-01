@@ -76,7 +76,7 @@ gnome-control-center-x11-scaling
 gnome-terminal-transparency
 menulibre
 mutter-x11-scaling
-nautilus-admin
+nautilus-admin-git
 nautilus-bluetooth
 nautilus-mediainfo
 nautilus-pdf-tools-git
