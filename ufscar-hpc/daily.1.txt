@@ -72,6 +72,9 @@ cling
 # Issue 985
 wine-ge-custom
 
+# Issue 1030
+linux-xanmod-rog
+
 # -------------------------------- MOVED FROM KITSUNA
 # Pedro
 #darling-git (broken)
