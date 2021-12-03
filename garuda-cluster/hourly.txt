@@ -465,6 +465,7 @@ qt-installer-framework
 anbox-image-houdini-rooted
 bmap-tools
 c-lolcat
+cfs-zen-tweaks
 clamav-unofficial-sigs
 coreutils-hybrid
 debianutils
