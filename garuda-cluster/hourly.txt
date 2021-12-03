@@ -372,7 +372,6 @@ plex-media-player
 popsicle
 pulseeffects-legacy
 qtscrcpy
-scrcpy
 shortwave
 skypeforlinux-stable-bin
 slack-desktop
