@@ -143,7 +143,6 @@ kwrited-git
 kxmlgui-git
 kxmlrpcclient-git
 layer-shell-qt-git
-libakonadi-git
 libgravatar-git
 libkdepim-git
 libkgapi-git
