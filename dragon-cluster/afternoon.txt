@@ -13,8 +13,11 @@ bluedevil-git
 bluez-git # (dep bluez-qt-git)
 bluez-qt-git
 breeze-git
+breeze-gtk-git:https://github.com/chaotic-aur/pkgbuild-breeze-gtk-git.git
 breeze-icons-git:https://github.com/chaotic-aur/pkgbuild-breeze-icons-git.git
 calendarsupport-git
+discover-git:https://github.com/chaotic-aur/pkgbuild-discover-git.git
+drkonqi-git:https://github.com/chaotic-aur/pkgbuild-drkonqi-git.git
 elf-dissector-git
 eventviews-git
 extra-cmake-modules-git:https://github.com/chaotic-aur/pkgbuild-extra-cmake-modules-git.git
@@ -32,6 +35,7 @@ karchive-git
 kauth-git
 kbookmarks-git
 kcalendarcore-git
+kcalendarcore-git:https://github.com/chaotic-aur/pkgbuild-kcalendarcore-git.git
 kcalutils-git
 kcmutils-git
 kcodecs-git
@@ -45,6 +49,7 @@ kcrash-git
 kdav-git
 kdbusaddons-git
 kde-cli-tools-git
+kde-gtk-config-git:https://github.com/chaotic-aur/pkgbuild-kde-gtk-config-git.git
 kdeclarative-git
 kdecoration-git
 kded-git
@@ -77,6 +82,7 @@ kiconthemes-git
 kidentitymanagement-git
 kidletime-git
 kimageannotator-git:https://github.com/chaotic-aur/pkgbuild-kimageannotator-git.git
+kimageformats-git:https://github.com/chaotic-aur/pkgbuild-kimageformats-git.git
 kimap2-git
 kinfocenter-git
 kinit-git

@@ -82,14 +82,20 @@ pim-sieve-editor-git
 pimcommon-git
 plasma-browser-integration-git
 plasma-desktop-git
+plasma-disks-git:https://github.com/chaotic-aur/pkgbuild-plasma-disks-git.git
+plasma-firewall-git:https://github.com/chaotic-aur/pkgbuild-plasma-firewall-git.git
 plasma-framework-git:https://github.com/chaotic-aur/pkgbuild-plasma-framework-git.git
 plasma-integration-git
 plasma-nm-git:https://github.com/chaotic-aur/pkgbuild-plasma-nm-git.git
 plasma-pa-git:https://github.com/chaotic-aur/pkgbuild-plasma-pa-git.git
 plasma-sdk-git:https://github.com/chaotic-aur/pkgbuild-plasma-sdk-git.git
 plasma-systemmonitor-git
+plasma-systemmonitor-git:https://github.com/chaotic-aur/pkgbuild-plasma-systemmonitor-git.git
+plasma-thunderbolt-git:https://github.com/chaotic-aur/pkgbuild-plasma-thunderbolt-git.git
+plasma-vault-git:https://github.com/chaotic-aur/pkgbuild-plasma-vault-git.git
 plasma-wayland-protocols-git
 plasma-workspace-git
+plasma-workspace-wallpapers-git:https://github.com/chaotic-aur/pkgbuild-plasma-workspace-wallpapers-git.git
 polkit-kde-agent-git
 polkit-qt5-git
 poppler-git
@@ -99,6 +105,7 @@ purpose-git:https://github.com/chaotic-aur/pkgbuild-purpose-git.git
 qca-qt5-git
 qca-qt6-git
 qqc2-desktop-style-git:https://github.com/chaotic-aur/pkgbuild-qqc2-desktop-style-git.git
+sddm-kcm-git:https://github.com/chaotic-aur/pkgbuild-sddm-kcm-git.git
 signon-kwallet-extension-git
 solid-git:https://github.com/chaotic-aur/pkgbuild-solid-git.git
 sonnet-git:https://github.com/chaotic-aur/pkgbuild-sonnet-git.git
@@ -108,6 +115,8 @@ syntax-highlighting-git
 systemsettings-git
 threadweaver-git:https://github.com/chaotic-aur/pkgbuild-threadweaver-git.git
 wrapland-git
+xdg-desktop-portal-kde-git:https://github.com/chaotic-aur/pkgbuild-xdg-desktop-portal-kde-git.git
+
 
 ## Chaotic
 # Issue 1034
