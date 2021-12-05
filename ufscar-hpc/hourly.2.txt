@@ -387,6 +387,7 @@ ion-git
 lollypop-next-git
 
 # Issue 557
+libtd-dev # (dep telegrand-git)
 telegrand-git
 
 # Issue 545
@@ -810,6 +811,7 @@ vmware-keymaps # (dep vmware-workstation)
 
 # Issue 759
 tenacity-git
+wxgtk3-dev-light # (dep tenacity-git)
 
 # Issue 758
 onedriver
