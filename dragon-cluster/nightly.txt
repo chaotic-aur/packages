@@ -4,6 +4,7 @@ qemu-git
 ## KDE-git, part 2
 disman-git
 kdeconnect-git:https://github.com/chaotic-aur/pkgbuild-kdeconnect-git.git
+kdenlive-git-git:git@github.com:chaotic-aur/pkgbuild-kdenlive-git-git.git
 kjsembed-git:https://github.com/chaotic-aur/pkgbuild-kjsembed-git.git
 kldap-git
 kleopatra-git

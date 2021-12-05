@@ -7,6 +7,7 @@ akonadi-import-wizard-git
 akonadi-mime-git
 akonadi-notes-git
 akonadi-search-git
+ark-git:https://github.com/chaotic-aur/pkgbuild-ark-git.git
 attica-git:https://github.com/chaotic-aur/pkgbuild-attica-git.git
 baloo-git:https://github.com/chaotic-aur/pkgbuild-baloo-git.git
 bluedevil-git
