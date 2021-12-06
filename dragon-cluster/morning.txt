@@ -1,5 +1,6 @@
 ## Potentially longer build times
 alacritty-git
+btrfs-progs-git
 coreutils-git
 cmake-git
 czkawka-git
