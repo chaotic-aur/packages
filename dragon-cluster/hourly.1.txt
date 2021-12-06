@@ -10,8 +10,7 @@ birdtray-git
 bleachbit-git
 bottom-git
 btop-git
-dolphin-git
-dolphin-git-git:https://github.com/chaotic-aur/pkgbuild-dolphin-git-git.git
+dolphin-git-git:https://github.com/chaotic-aur/pkgbuild-dolphin-git.git
 fastfetch-git
 firejail-git
 firejail-noapparmor-git
@@ -28,10 +27,9 @@ intel-ucode-git
 intel-undervolt-git
 inxi-git
 jamesdsp-git
-kate-git
+kate-git:https://github.com/chaotic-aur/pkgbuild-kate-git.git
 kde-git-meta:https://github.com/chaotic-aur/pkgbuild-kde-git-meta.git
-konsole-git
-konsole-git-git:https://github.com/chaotic-aur/pkgbuild-konsole-git-git.git
+konsole-git-git:https://github.com/chaotic-aur/pkgbuild-konsole-git.git
 kvantum-qt5-git
 libtremor-git # (dep gst-plugins-base-git)
 lutris-git

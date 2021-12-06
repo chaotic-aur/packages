@@ -56,7 +56,6 @@ kdecoration-git
 kded-git
 kdegraphics-mobipocket-git
 kdelibs4support-git
-kdenlive-git
 kdepim-addons-git
 kdepim-runtime-git
 kdeplasma-addons-git

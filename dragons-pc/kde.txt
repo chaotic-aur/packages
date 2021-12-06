@@ -16,6 +16,8 @@ breeze-gtk-git:https://github.com/chaotic-aur/pkgbuild-breeze-gtk-git.git
 breeze-icons-git:https://github.com/chaotic-aur/pkgbuild-breeze-icons-git.git
 calendarsupport-git
 discover-git:https://github.com/chaotic-aur/pkgbuild-discover-git.git
+disman-git
+dolphin-git-git:https://github.com/chaotic-aur/pkgbuild-dolphin-git.git
 drkonqi-git:https://github.com/chaotic-aur/pkgbuild-drkonqi-git.git
 elf-dissector-git
 eventviews-git
@@ -31,6 +33,7 @@ kactivitymanagerd-git
 kalarmcal-git
 kalendar-git
 karchive-git
+kate-git:https://github.com/chaotic-aur/pkgbuild-kate-git.git
 kauth-git
 kbookmarks-git
 kcalendarcore-git
@@ -50,11 +53,13 @@ kdbusaddons-git
 kde-cli-tools-git
 kde-gtk-config-git:https://github.com/chaotic-aur/pkgbuild-kde-gtk-config-git.git
 kdeclarative-git
+kdeconnect-git:https://github.com/chaotic-aur/pkgbuild-kdeconnect-git.git
 kdecoration-git
 kded-git
 kdegraphics-mobipocket-git
 kdelibs4support-git
 kdenlive-git
+kdenlive-git:https://github.com/chaotic-aur/pkgbuild-kdenlive-git.git
 kdepim-addons-git
 kdepim-runtime-git
 kdeplasma-addons-git
@@ -94,8 +99,6 @@ kitemviews-git
 kitinerary-git
 kjobwidgets-git
 kjs-git
-disman-git
-kdeconnect-git:https://github.com/chaotic-aur/pkgbuild-kdeconnect-git.git
 kjsembed-git:https://github.com/chaotic-aur/pkgbuild-kjsembed-git.git
 kldap-git
 kleopatra-git
@@ -109,6 +112,7 @@ knewstuff-git
 knotifications-git
 knotifyconfig-git
 kompare-git:https://github.com/chaotic-aur/pkgbuild-kompare-git.git
+konsole-git-git:https://github.com/chaotic-aur/pkgbuild-konsole-git.git
 kontactinterface-git
 kpackage-git
 kparts-git
