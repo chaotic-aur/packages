@@ -509,6 +509,7 @@ rufetch
 rustdesk
 smplayer-svn
 sysbox-ce
+ugrep
 waydroid
 waydroid-image
 yocto-meta:https://github.com/chaotic-aur/pkgbuild-yocto-meta.git
