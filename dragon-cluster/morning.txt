@@ -22,6 +22,4 @@ qbittorrent-enhanced-git
 
 ## Chaotic
 # Issue 1108
-kdeclarative-stabledeps-git:https://github.com/chaotic-aur/pkgbuild-kdeclarative-stabledeps-git.git
 kdenlive-stabledeps-git:https://github.com/chaotic-aur/pkgbuild-kdenlive-stabledeps-git.git
-kio-stabledeps-git:https://github.com/chaotic-aur/pkgbuild-kio-stabledeps-git.git
