@@ -1445,5 +1445,9 @@ graphite-cursor-theme-git
 # Issue 1098
 rpi-imager
 
+# Issue 1107
+libpamac-nosnap
+pamac-nosnap
+
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
