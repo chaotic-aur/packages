@@ -1110,6 +1110,7 @@ pamac-tray-icon-plasma
 
 # Issue 908
 superslicer
+wxgtk3-dev-314-opt # (dep superslicer)
 
 # Issue 909
 superslicer-profiles-git
