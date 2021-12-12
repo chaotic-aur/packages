@@ -468,6 +468,7 @@ cfs-zen-tweaks
 clamav-unofficial-sigs
 coreutils-hybrid
 debianutils
+distrobox
 electronmail-bin
 esbuild # (dep kwin-bismuth)
 ffmpeg-compat-57
