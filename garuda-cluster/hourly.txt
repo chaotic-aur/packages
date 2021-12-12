@@ -453,6 +453,7 @@ python2-xlib # (dep acestream-engine)
 ## Misc
 brave-nightly-bin
 btrfs-assistant-git
+btrfs-assistant
 cozy-audiobooks
 garuda-system-maintenance-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-system-maintenance-git.git
 jamesdsp
