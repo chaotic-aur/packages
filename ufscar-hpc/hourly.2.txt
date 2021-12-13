@@ -1209,6 +1209,7 @@ autokey-qt
 # Issue 960
 anki
 python-mypy-protobuf # (dep anki)
+python-springcase # (dep anki)
 
 # Issue 962
 osh 
@@ -1323,6 +1324,7 @@ flacon
 
 # Issue 1020
 protonup-qt
+python-inputs # (dep protonup-qt)
 
 # Issue 1021
 fzf-tab-bin-git

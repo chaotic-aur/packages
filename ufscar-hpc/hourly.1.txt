@@ -701,6 +701,7 @@ hopper
 # Issue 478
 matrix-mirage
 python-babelfish # (dep subliminal-git)
+python-blist # (dep matrix-mirage-git)
 python-ezyme # (dep subliminal-git)
 python-guessit # (dep subliminal-git)
 python-html-sanitizer # (dep matrix-mirage)
@@ -778,6 +779,7 @@ lightcord-bin
 
 # Issue 504
 gfeeds-git
+python-symdom-git # (dep gfeeds-git)
 
 # Issue 508
 llvm-proton-bin
