@@ -1,7 +1,7 @@
 ## Try to get some more hourly builds in
 alpm_octopi_utils-dev # (dep octopi-dev)
-ananicy-git
 ananicy-cpp-git
+ananicy-git
 ananicy-rules-git
 arch-audit-git
 asp-git
@@ -15,26 +15,48 @@ fastfetch-git
 firejail-git
 firejail-noapparmor-git
 firetools-git
-fish-autopair-git
 fish-git
-fish-systemd-git
 gegl-git # (dep gimp-git)
-gst-plugins-base-git
 gstreamer-git
 guiscrcpy-git
 imagemagick-git
-intel-ucode-git
-intel-undervolt-git
 inxi-git
 jamesdsp-git
 kate-git:https://github.com/chaotic-aur/pkgbuild-kate-git.git
 kde-git-meta:https://github.com/chaotic-aur/pkgbuild-kde-git-meta.git
 konsole-git-git:https://github.com/chaotic-aur/pkgbuild-konsole-git.git
 kvantum-qt5-git
-libtremor-git # (dep gst-plugins-base-git)
 lutris-git
-micro-git
 mkinitcpio-git
 modprobed-db-git
-nerdctl-git
 nspawn-git
+pacman-git
+pamac-aur-git
+quickemu-git
+ripgrep-git
+rusnapshot-git
+spotify-adblock-git
+starship-git
+sudo-git
+sweet-theme-git
+thermald-git
+ttyper-git
+ufw-git
+wavemon-git
+waydroid-git
+whoogle-git
+wlroots-eglstreams-git
+xorg-server-git
+zellij-git
+zenmonitor-git
+zram-generator-git
+zstd-git
+
+
+## Garuda git stuff
+alpm_octopi_utils-git
+garuda-dr460nized-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-dr460nized.git
+memavaild-git
+nohang-git
+octopi-git
+prelockd-git
