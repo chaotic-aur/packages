@@ -468,6 +468,7 @@ c-lolcat
 cfs-zen-tweaks
 clamav-unofficial-sigs
 coreutils-hybrid
+crowdsec
 debianutils
 distrobox
 electronmail-bin
