@@ -34,3 +34,6 @@ There are a few kind of requests which we will deny:
 
 - aseprite{-git}:
     Redistribution is explicitly prohibited in its [FAQ](https://www.aseprite.org/faq/#can-i-redistribute-aseprite).
+
+- multimc-git:
+    Redistribution is licensed under the Apache 2 license, which [prohibits distributing custom binaries](https://multimc.org/#Branding) as the one created by the PKGBUILD.

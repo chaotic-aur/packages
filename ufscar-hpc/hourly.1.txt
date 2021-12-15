@@ -723,7 +723,6 @@ setzer-git
 
 # Issue 484
 multimc-curseforge
-multimc-git
 
 # Issue 485
 pipe-viewer-git
