@@ -463,6 +463,7 @@ qt-installer-framework
 
 ## Moved from dragon-cluster
 anbox-image-houdini-rooted
+binfmt-qemu-static
 bmap-tools
 c-lolcat
 cfs-zen-tweaks
@@ -506,6 +507,7 @@ python-pynput # (dep guiscrcpy-git)
 python-setuptools-lint # (dep guiscrcpy-git)
 python-simplediff
 python-validity
+qemu-user-static
 quickemu
 riseup-vpn
 rufetch
