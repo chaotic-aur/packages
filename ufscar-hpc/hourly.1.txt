@@ -777,6 +777,7 @@ neovim-git
 lightcord-bin
 
 # Issue 504
+blueprint-compiler-git # (dep gfeeds-git)
 gfeeds-git
 python-symdom-git # (dep gfeeds-git)
 
