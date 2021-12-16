@@ -479,6 +479,7 @@ ffmpeg-compat-58
 firejail-pacman-hook
 flutter # (dep fluffychat)
 fprintd-clients
+glib2-static # (dep qemu-user-static)
 ipman
 kwin-bismuth
 kwin-lowlatency
@@ -497,6 +498,7 @@ octopi-dev
 open-fprintd
 openjpeg # (dep ffmpeg-compat-57)
 oxygen-sounds
+pcre-static # (dep qemu-user-static)
 protobuf-go # (dep sysbox-ce)
 python-codegen
 python-gbinder
