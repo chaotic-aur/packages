@@ -262,7 +262,6 @@ filebot47
 esy # (dep)
 
 # Issue 338
-#emacs-native-comp-git # (pending merging with emacs-git)
 #lib32-x265 # (banished)
 clion
 expressvpn
