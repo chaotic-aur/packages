@@ -415,7 +415,6 @@ ttf-ms-fonts
 rocketchat-desktop
 
 # Issue 372
-mimalloc # (dep nginx-zest-git)
 zestginx
 
 # Issue 345
