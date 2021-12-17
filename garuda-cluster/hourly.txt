@@ -155,7 +155,6 @@ nwg-wrapper
 wob
 
 # Wayfire
-doctest
 greetd
 greetd-gtkgreet
 greetd-qtgreet
