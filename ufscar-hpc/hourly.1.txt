@@ -727,7 +727,6 @@ multimc-curseforge
 pipe-viewer-git
 
 # Issue 486
-libcomps
 libdnf
 libmodulemd
 librepo
