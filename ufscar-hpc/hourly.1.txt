@@ -729,7 +729,6 @@ pipe-viewer-git
 # Issue 486
 libdnf
 libmodulemd
-libsolv
 mkosi-git
 python2-iniparse
 python2-pyliblzma
