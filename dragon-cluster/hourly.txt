@@ -25,6 +25,7 @@ jamesdsp-git
 kate-git:https://github.com/chaotic-aur/pkgbuild-kate-git.git
 kde-git-meta:https://github.com/chaotic-aur/pkgbuild-kde-git-meta.git
 konsole-git-git:https://github.com/chaotic-aur/pkgbuild-konsole-git.git
+kotatogram-dev-git
 kvantum-qt5-git
 lutris-git
 mkinitcpio-git
