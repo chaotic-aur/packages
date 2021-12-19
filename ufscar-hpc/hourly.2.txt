@@ -1451,5 +1451,8 @@ rpi-imager
 libpamac-nosnap
 pamac-nosnap
 
+# Issue 1127
+vscodium-marketplace
+
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
