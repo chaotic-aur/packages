@@ -1451,6 +1451,9 @@ rpi-imager
 libpamac-nosnap
 pamac-nosnap
 
+# Issue 1123
+tectonic
+
 # Issue 1127
 vscodium-marketplace
 
