@@ -727,7 +727,7 @@ yandex-browser-ffmpeg-codecs-opera
 adwaita-icon-theme-git
 
 # Issue 721
-kotatogram-desktop-bin
+kotatogram-desktop
 
 # Issue 723
 cloudflare-warp-bin
