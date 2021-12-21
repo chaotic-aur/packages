@@ -1453,6 +1453,16 @@ wgcf
 # Issue 1100
 papirus-folders-gui
 
+# Issue 1101
+sayonara-player-git
+
+# Issue 1102
+svgcleaner-bin
+
+# Issue 1105
+python-av
+python-torchvision
+
 # Issue 1107
 libpamac-nosnap
 pamac-nosnap
