@@ -9,6 +9,7 @@ babl-git # (dep gimp-git)
 birdtray-git
 bleachbit-git
 bottom-git
+bpytop-git
 btop-git
 dolphin-git:https://github.com/chaotic-aur/pkgbuild-dolphin-git.git
 fastfetch-git
