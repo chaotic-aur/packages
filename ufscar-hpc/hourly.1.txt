@@ -454,9 +454,6 @@ dwm
 dwm-git
 st # (dep dwm)
 
-# Issue 381
-beaker
-
 # Issue 383
 #vte3-notification broken now, using below instead
 vte-ng
