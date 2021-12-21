@@ -1467,6 +1467,9 @@ python-torchvision
 libpamac-nosnap
 pamac-nosnap
 
+# Issue 1112
+iota-firefly-wallet
+
 # Issue 1123
 tectonic
 
