@@ -1447,6 +1447,12 @@ graphite-cursor-theme-git
 # Issue 1098
 rpi-imager
 
+# Issue 1099
+wgcf
+
+# Issue 1100
+papirus-folders-gui
+
 # Issue 1107
 libpamac-nosnap
 pamac-nosnap
