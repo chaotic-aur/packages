@@ -1470,6 +1470,9 @@ pamac-nosnap
 # Issue 1112
 iota-firefly-wallet
 
+# Issue 1113
+stern
+
 # Issue 1123
 tectonic
 
