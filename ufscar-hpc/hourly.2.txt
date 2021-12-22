@@ -1459,6 +1459,9 @@ sayonara-player-git
 # Issue 1102
 svgcleaner-bin
 
+# Issue 1104
+pcloudcc-git
+
 # Issue 1105
 python-av
 python-torchvision
@@ -1486,11 +1489,20 @@ mint-themes-legacy
 mcpelauncher-linux-git
 mcpelauncher-ui-git
 
+# Issue 1121
+rum
+
 # Issue 1123
 tectonic
 
+# Issue 1125
+sonarr
+
 # Issue 1127
 vscodium-marketplace
+
+# Issue 1131
+qbittorrent-enhanced
 
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
