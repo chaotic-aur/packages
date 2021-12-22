@@ -1,39 +1,30 @@
-# Chaotic-AUR's packages
+### Chaotic-AUR package list
 
-Here it is the place to submit requests related to packages for Chaotic-AUR.
+This is the right place to submit package requests, bug reports or outdated packages of [Chaotic-AUR](https://aur.chaotic.cx). Please feel free to use issues!
 
-Please, use issues!
+![Chaotic-AUR](https://avatars.githubusercontent.com/u/66071775?s=400&u=99bc0536e7e77fe3e58839996600848f2d930ed5&v=4)
 
-There are a few kind of requests which we will deny:
+#### Banished and rejected packages 📑
 
-# Banished and rejected packages:
+This is a list of packages which we will reject for good reasons:
 
-- snapd:
-	I didn't knew how to help my users with it, it breaks A LOT.
-	I recommend you using native packages or FlatPak instead. Also, [this](https://old.reddit.com/r/linuxmemes/comments/ppyz0g/damn_you_ubuntu/hd7jg1p/).
+- **snapd**: I didn't know how to help my users with it since it breaks *A LOT*. 	I recommend using native packages or [FlatPak](https://wiki.archlinux.org/title/Flatpak) instead. Also [there are a lot of other reasons to not use Snaps](https://old.reddit.com/r/linuxmemes/comments/ppyz0g/damn_you_ubuntu/hd7jg1p/).
 
-- lib32-x265:
-	There is no use-case in this face of the world where a 32-bit application (Linux or Windows) will want to ENCODE HEVC.
-	I recommend you disabling x265 in the packages that depends on it (usually ffmpeg or gstreamer).
+- **lib32-x265**:	There is absolutely no use case in which a 32-bit application (Linux or Windows) would want to ENCODE HEVC. I recommend disabling x265 for the packages depending on it (usually `ffmpeg` or `gstreamer`).
 
-- gst-plugins-{ugly,bad} (and lib32):
-	Needs rebuilds too frequently, we don't control the pkgrel, so it would break user experience.
-	(Dependencies requests are welcomed)
+- **gst-plugins-{ugly,bad} (and lib32)**: These need too frequent rebuilds which can't by dealt with as we don't control the packages pkgrel. Ultimately this would result in a bad user experience - dependency request however are welcome!
 
-- ffmpeg-{full,headless} (and lib32):
-	Needs rebuilds too frequently, we don't control the pkgrel, so it would break user experience.
-	(Dependencies requests are welcomed)
+- **ffmpeg-{full,headless} (and lib32)**:  These need too frequent rebuilds which can't by dealt with as we don't control the packages pkgrel. Ultimately this would result in a bad user experience - dependency request however are welcome!
 
-- mpv-amd, ffmpeg-amd:
-	That's just MPV/FFMPEG without CUDA and NVENC for reducing building time, no gain for our end users.
+- **mpv-amd, ffmpeg-amd**: This is just MPV/FFMPEG without CUDA and NVENC to achieve shorter build times without actual end user benefit.
 
-- unreal-engine (and -git):
-	Not enougth spaces in some of our mirrors.
+- **unreal-engine (and -git)**: Some mirrors don't have sufficient storage space.
 
-# We cant distribute these package because of its license:
 
-- aseprite{-git}:
-    Redistribution is explicitly prohibited in its [FAQ](https://www.aseprite.org/faq/#can-i-redistribute-aseprite).
 
-- multimc-git:
-    Redistribution is licensed under the Apache 2 license, which [prohibits distributing custom binaries](https://multimc.org/#Branding) as the one created by the PKGBUILD.
+#### Banned due to licensing issues 🛑
+
+- **aseprite{-git}**: Redistribution is explicitly prohibited in its [FAQ](https://www.aseprite.org/faq/#can-i-redistribute-aseprite).
+
+- **multimc-git**: This application is licensed under the Apache 2 license, which [prohibits distributing custom binaries](https://multimc.org/#Branding) as the one built by us.
+
