@@ -1439,14 +1439,17 @@ rstudio-desktop
 soci # (dep rstudio-desktop)
 
 # Issue 1084
-#natron
-#natron-compositor
+libseexpr2 # (dep openfx)
+natron
+natron-compositor
+opencolorio1 # (dep openfx-arena)
 openfx-arena
 openfx-gmic
 openfx-io
 openfx-misc
-opencolorio1 # (dep openfx-arena)
-libseexpr2 # (dep openfx)
+phonon-qt4 # (dep natron-compositor)
+python-pyside # (dep natron-compositor)
+shiboken # (dep natron-compositor, also python-shiboken, python2-shiboken)
 
 # Issue 1085
 gtksourceview-git
