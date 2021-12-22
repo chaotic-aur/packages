@@ -1,55 +1,55 @@
-Note:
+**Notes:**
 
-- We will delete issues not following this template!
-- You can add new information besides the ones required here.
-- You can delete the subsections that are not related to your issue.
+- **We will delete issues not following this template!**
+- **You can add new information besides the ones required here.**
+- **You should delete the subsections that are not related to your issue.**
 
-## 👶 For requesting new packages
+##  👶 New package requests
 
-- Link to the package(s) in AUR: [put link here](https://example.com)
+- Link to the package(s) in AUR: [insert the link here](https://example.com)
 
-- Utility this package has for you:
+- **Utility** this package has for you
 
-  Describe it here, why you use this package, how it can be helpful.
+  *This is the place to describe how you use the package and how it can be helpful.*
 
-- Do you consider this package(s) to be useful for **every** chaotic user?:
+- Do you consider the package(s) to be useful for **every** Chaotic-AUR user?
 
-  - [ ] YES
-  - [ ] No, but yes for a great amount.
-  - [ ] No, but yes for a few.
+  - [ ] YES!
+  - [ ] No, but for a great amount.
+  - [ ] No, but for a few.
   - [ ] No, it's useful only for me.
 
-- Do you consider this package(s) to be useful for feature testing/preview (e.g: mesa-aco, wine-wayland)?:
+- Do you consider the package to be **useful for feature testing**/preview (e.g: mesa-aco, wine-wayland)?
 
-  - [ ] YES
-  - [ ] NO
+  - [ ] Yes
+  - [ ] No
 
-- Are you sure we don't have this package already (test with `pacman -Ss <pkgname>`)?:
+- Are you sure the package **isn't available already** (test with `pacman -Ss <pkgname>`) ?
 
-  - [ ] YES
+  - [ ] Yes
 
-- Have you tested if this package builds in a clean chroot?:
+- Have you tested if the package builds in a [**clean chroot**](https://wiki.archlinux.org/title/DeveloperWiki:Building_in_a_clean_chroot)?
 
-  - [ ] YES
-  - [ ] NO
+  - [ ] Yes
+  - [ ] No
 
-- Does the package's license allows us to redistribute it?:
+- Does the package's **license** allow redistributing it?
 
-  - [ ] YES
+  - [ ] YES!
   - [ ] No clue.
-  - [ ] No, but the author doesn't really care, it's just for bureaucracy.
+  - [ ] No, but the author doesn't really care anyways. It's just for bureaucracy.
 
-- Have you searched the [issues](https://github.com/chaotic-aur/packages/issues) to ensure this request is new (not duplicated)?:
+- Have you searched the [issues](https://github.com/chaotic-aur/packages/issues) to ensure this request **is unique**?
 
-  - [ ] YES
+  - [ ] YES!
 
-- Have you read the [README](https://github.com/chaotic-aur/packages#banished-and-rejected-packages) to ensure this package is not banned?:
+- Have you read the [README](https://github.com/chaotic-aur/packages#banished-and-rejected-packages) to ensure this package is **not banned**?
 
-  - [ ] YES
+  - [ ] YES!
 
-## 👴 For reporting outdated packages
+## 👴 Reporting outdated packages
 
-- (If available) Link to latest build ([find it here](https://builds.garudalinux.org/repos/chaotic-aur/logs/)): [some-package.log](https://builds.garudalinux.org/repos/chaotic-aur/logs/some-package.log)
+- If available: link to latest build ([find it here](https://builds.garudalinux.org/repos/chaotic-aur/logs/)): [some-package.log](https://builds.garudalinux.org/repos/chaotic-aur/logs/some-package.log)
 
 - Package name: `some-package`
 
@@ -57,25 +57,26 @@ Note:
 
 - Latest version available: `v1.0.0.r100.gdeadbeef`
 
-- Have you tested if the latest version of the package builds in a clean chroot?:
+- Have you tested if the latest version of the package builds in a clean chroot?
 
-  - [ ] YES
-  - [ ] NO
+  - [ ] Yes
+  - [ ] No
 
-## 🐛 For reporting bugs
+## 🐛 Reporting bugs
 
 - What happens?
 
-  Describe it here
+  *This is the place to describe whats happening*
 
 - What is expected to happen?
 
-  Describe it here
+  This is the place to describe whats expected*
 
 - If possible, please attach logs.
 
-## For security reports.
+## 🔓 Security reports
 
 - Depending on how critical is making this information available, please send it to [critical at chaotic dot cx](mailto:critical@chaotic.cx)
 
-- Describe it briefly: Include the attacking vector, the possible outcomes and, if possible, solutions.
+- Include a brief description of the attacking vector, the possible outcomes and, if possible, solutions.
+
