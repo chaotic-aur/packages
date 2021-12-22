@@ -1438,6 +1438,16 @@ papirus-icon-theme-git
 rstudio-desktop
 soci # (dep rstudio-desktop)
 
+# Issue 1084
+#natron
+#natron-compositor
+openfx-arena
+openfx-gmic
+openfx-io
+openfx-misc
+opencolorio1 # (dep openfx-arena)
+libseexpr2 # (dep openfx)
+
 # Issue 1085
 gtksourceview-git
 
