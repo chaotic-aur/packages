@@ -1483,6 +1483,10 @@ python-torchvision
 libpamac-nosnap
 pamac-nosnap
 
+# Issue 1110
+dosbox-x
+dosbox-x-git
+
 # Issue 1112
 iota-firefly-wallet
 
