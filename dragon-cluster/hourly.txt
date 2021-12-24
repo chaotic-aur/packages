@@ -20,6 +20,7 @@ fish-git
 gegl-git # (dep gimp-git)
 gstreamer-git
 guiscrcpy-git
+hugo-git
 imagemagick-git
 inxi-git
 jamesdsp-git
