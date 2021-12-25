@@ -18,6 +18,7 @@ zenpower-dkms-git
 wxgtk2.8  # for trustedqsl
 hamradio-menus  # for trustedqsl
 trustedqsl
+qlog-git
 
 # Pedro
 android-sdk-platform-tools
