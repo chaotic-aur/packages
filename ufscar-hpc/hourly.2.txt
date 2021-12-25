@@ -15,6 +15,10 @@ python-crcmod
 yosys-git
 zenpower-dkms-git
 
+wxgtk2.8  # for trustedqsl
+hamradio-menus  # for trustedqsl
+trustedqsl
+
 # Pedro
 android-sdk-platform-tools
 android-studio-launcher
