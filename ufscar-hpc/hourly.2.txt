@@ -1521,5 +1521,10 @@ vscodium-marketplace
 # Issue 1131
 qbittorrent-enhanced
 
+# Issue 1133
+leagueoflegends-git
+wine-lol
+wine-lol-glibc
+
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
