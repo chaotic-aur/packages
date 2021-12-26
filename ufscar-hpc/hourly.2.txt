@@ -16,9 +16,11 @@ yosys-git
 zenpower-dkms-git
 
 wxgtk2.8  # for trustedqsl
-hamradio-menus  # for trustedqsl
+hamradio-menus  # for trustedqsl, gpredict
 trustedqsl
 qlog-git
+goocanvas2  # for gpredict
+gpredict
 
 # Pedro
 android-sdk-platform-tools
