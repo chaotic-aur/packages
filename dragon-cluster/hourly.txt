@@ -1,4 +1,6 @@
 ## Try to get some more hourly builds in
+## Potentially longer build times
+alacritty-git
 alpm_octopi_utils-dev # (dep octopi-dev)
 ananicy-cpp-git
 ananicy-git
@@ -8,16 +10,25 @@ asp-git
 babl-git # (dep gimp-git)
 birdtray-git
 bleachbit-git
+blender-git
 bottom-git
 bpytop-git
 btop-git
+btrfs-progs-git
+cmake-git
+coreutils-git
+czkawka-git
 dolphin-git:https://github.com/chaotic-aur/pkgbuild-dolphin-git.git
+elisa-git
+exa-git
 fastfetch-git
 firejail-git
 firejail-noapparmor-git
 firetools-git
 fish-git
 gegl-git # (dep gimp-git)
+gimp-git
+git-git
 gstreamer-git
 guiscrcpy-git
 hugo-git
@@ -29,12 +40,20 @@ kde-git-meta:https://github.com/chaotic-aur/pkgbuild-kde-git-meta.git
 konsole-git-git:https://github.com/chaotic-aur/pkgbuild-konsole-git.git
 kotatogram-dev-git
 kvantum-qt5-git
+libretro-mame-git
+libtorrent-rasterbar-1_2-git # (dep qbittorrent-enhanced-git)
 lutris-git
 mkinitcpio-git
 modprobed-db-git
+nextcloud-client-git
+noto-fonts-emoji-git
 nspawn-git
+obs-studio-git
 pacman-git
 pamac-aur-git
+paru-git
+qbittorrent-enhanced-git
+qemu-git
 quickemu-git
 ripgrep-git
 rusnapshot-git
@@ -54,6 +73,19 @@ zellij-git
 zenmonitor-git
 zram-generator-git
 zstd-git
+
+
+## Chaotic
+# Issue 1034
+aura-fetch-git
+bitfetch-git
+freshfetch-git
+novafetch-git
+pfetch-git
+ufetch-git
+
+# Issue 1108
+kdenlive-stabledeps-git:https://github.com/chaotic-aur/pkgbuild-kdenlive-stabledeps-git.git
 
 
 ## Garuda git stuff
