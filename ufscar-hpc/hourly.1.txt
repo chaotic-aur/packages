@@ -221,7 +221,6 @@ qutebrowser-git
 # Anita OS - Issue 1092
 anita-core-configs:https://gitlab.com/a6209/chaotic-aur-builds/pkgbuild-anita-core-configs.git
 anita-calamares:https://gitlab.com/a6209/chaotic-aur-builds/pkgbuild-anita-calamares.git
-calamares-branding-anita:https://gitlab.com/a6209/chaotic-aur-builds/pkgbuild-calamares-configuration.git
 
 
 ## Users requests
