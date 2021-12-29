@@ -1359,7 +1359,9 @@ snap-pac-grub
 
 # Issue 1038
 cef-minimal-obs-bin # (dep obs-studio-tytan652)
+ffmpeg-obs # (dep obs-studio-tytan652)
 ftl-sdk # (dep obs-studio-tytan652)
+librist # (dep ffmpeg-obs)
 obs-studio-rc
 obs-studio-tytan652
 
