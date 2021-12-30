@@ -505,8 +505,11 @@ python-magic-ahupp # (dep guiscrcpy-git)
 python-nototools # (dep noto-fonts-emoji-git)
 python-pyclip
 python-pynput # (dep guiscrcpy-git)
+python-pytube # (dep python-spotdl)
+python-rapidfuzz # (dep python-spotdl)
 python-setuptools-lint # (dep guiscrcpy-git)
 python-simplediff
+python-spotdl
 python-validity
 qemu-user-static
 quickemu
