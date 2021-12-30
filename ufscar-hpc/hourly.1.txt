@@ -592,9 +592,6 @@ ytfzf
 # Issue 449
 gdm-prime
 
-# Issue 450
-rate-arch-mirrors
-
 # Issue 451
 kotatogram-desktop
 
