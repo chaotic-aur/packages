@@ -6,6 +6,7 @@ ananicy-cpp-git
 ananicy-git
 ananicy-rules-git
 arch-audit-git
+arch-deployer-git
 asp-git
 babl-git # (dep gimp-git)
 birdtray-git
