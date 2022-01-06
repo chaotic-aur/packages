@@ -255,7 +255,7 @@ pacui:https://github.com/excalibur1234/pacui.git
 pamac-aur
 paru
 performance-tweaks
-plymouth-git
+#plymouth-git KILL IT WITH FIRE 🔥
 preload
 prelockd
 pulseaudio-modules-bt
