@@ -107,9 +107,10 @@ code-git
 #wine-git # Issue 315 (bad)
 scummvm-git # Issue 316
 
-llvm-git:https://github.com/chaotic-aur/llvm-git.git
-lib32-llvm-git:https://github.com/chaotic-aur/lib32-llvm-git.git
-
 # Issue 774
 freecad-git
 
+--
+
+llvm-git:https://github.com/chaotic-aur/llvm-git.git
+lib32-llvm-git:https://github.com/chaotic-aur/lib32-llvm-git.git
