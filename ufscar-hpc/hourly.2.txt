@@ -1549,5 +1549,12 @@ moonlight-qt
 # Issue 1148
 papirus-libreoffice-theme
 
+# Issue 1149
+sunshine
+
+# Issue 1151
+kde-rounded-corners
+mutter-rounded
+
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
