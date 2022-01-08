@@ -1556,5 +1556,15 @@ sunshine
 kde-rounded-corners
 mutter-rounded
 
+# Issue 1152
+amarok
+exaile
+
+# Issue 1154
+polybar-git
+
+# Issue 1155
+headscale
+
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
