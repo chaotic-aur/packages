@@ -1534,5 +1534,11 @@ leagueoflegends-git
 wine-lol
 wine-lol-glibc
 
+# Issue 1141
+jamesdsp-pulse
+
+# Issue 1144
+adwmod-theme-git
+
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
