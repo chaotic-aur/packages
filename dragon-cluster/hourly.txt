@@ -53,6 +53,7 @@ obs-studio-git
 pacman-git
 pamac-aur-git
 paru-git
+plasma5-wallpapers-wallpaper-engine-git
 qbittorrent-enhanced-git
 qemu-git
 quickemu-git
