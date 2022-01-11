@@ -109,8 +109,3 @@ scummvm-git # Issue 316
 
 # Issue 774
 freecad-git
-
---
-
-llvm-git:https://github.com/chaotic-aur/llvm-git.git
-lib32-llvm-git:https://github.com/chaotic-aur/lib32-llvm-git.git
