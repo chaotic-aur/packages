@@ -300,7 +300,7 @@ gwe
 heroic-games-launcher-bin
 hypnotix
 ialauncher-git
-key-mapper-git
+input-remapper-git
 legendary
 lib32-vkbasalt
 libliftoff-git # (dep gamescope-git)
