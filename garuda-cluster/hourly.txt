@@ -398,6 +398,7 @@ isomaster
 jade-application-kit
 lanshare
 mediawriter
+megasync-bin
 mmsd-git
 modprobed-db
 multibootusb
