@@ -1222,6 +1222,7 @@ osh
 
 # Issue 964
 pcsx2-git
+rapidyaml-git # (dep pcsx2-git, also creates python-rapidyaml-git)
 
 # Issue 966
 qimgv-git
