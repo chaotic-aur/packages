@@ -22,6 +22,7 @@ digilent.adept.utilities
 fprintd-libfprint2:https://aur.archlinux.org/fprintd-libfprint2.git
 fujprog
 fxload
+tzsp2pcap-git
 gr-limesdr-git
 hal-git
 hashcash
