@@ -275,6 +275,7 @@ emulationstation
 epsxe
 genymotion
 kega-fusion
+libcpufeatures-git # (dep anbox-git)
 lxc-git # (dep anbox-git)
 m64py
 mednaffe
