@@ -70,6 +70,7 @@ openrgb
 xpadneo-dkms-git
 
 # GNOME
+dbus-x11
 firefox-extension-gnome-shell-integration
 gesture-manager-x-git
 gnome-control-center-x11-scaling
