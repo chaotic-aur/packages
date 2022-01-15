@@ -418,6 +418,8 @@ autotiling
 candy-icons-git
 flat-remix
 flat-remix-gtk
+fluent-gtk-theme-git
+fluent-icon-theme-git
 gnome-shell-extension-pop-shell-git
 kali-themes
 ksmoothdock
