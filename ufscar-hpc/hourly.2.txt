@@ -1571,5 +1571,8 @@ headscale
 # Issue 1157
 signalbackup-tools-git
 
+# Issue 1164
+qbittorrent-enhanced-qt5
+
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
