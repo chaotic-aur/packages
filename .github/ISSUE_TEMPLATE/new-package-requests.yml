@@ -52,7 +52,7 @@ body:
       required: true
   - type: checkboxes
     attributes:
-      label: "Have you searched the to ensure this request is unique?"
+      label: "Have you searched the issues to ensure this request is unique?"
       description: "https://github.com/chaotic-aur/packages/issues"
       options:
         - label: "YES!"
