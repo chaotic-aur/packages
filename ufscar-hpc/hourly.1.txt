@@ -94,6 +94,7 @@ oneko
 osdlyrics-git
 pipewire-common-git
 podman-compose-git
+pw-viz
 r8125-dkms
 repoctl
 slack-electron
