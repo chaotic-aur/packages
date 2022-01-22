@@ -1577,5 +1577,11 @@ qbittorrent-enhanced-qt5
 # Issue 1178
 qbittorrent-qt5
 
+# Issue 1162
+jitsi
+
+# Issue 1167
+desmume-git
+
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
