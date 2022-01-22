@@ -724,10 +724,10 @@ pipe-viewer-git
 libdnf
 libmodulemd
 mkosi-git
+python-urlgrabber
 python2-iniparse
 python2-pyliblzma
 python2-pysqlite
-urlgrabber
 yum
 yum-metadata-parser
 zchunk
