@@ -1580,6 +1580,9 @@ qbittorrent-qt5
 # Issue 1162
 jitsi
 
+# Issue 1163
+pokerth
+
 # Issue 1167
 desmume-git
 
