@@ -211,3 +211,4 @@ systemsettings-git
 threadweaver-git:https://github.com/chaotic-aur/pkgbuild-threadweaver-git.git
 wrapland-git
 xdg-desktop-portal-kde-git:https://github.com/chaotic-aur/pkgbuild-xdg-desktop-portal-kde-git.git
+qtkeychain-qt5-git:https://github.com/chaotic-aur/pkgbuild-qtkeychain-qt5-git
