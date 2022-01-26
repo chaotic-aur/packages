@@ -4,3 +4,6 @@ awesome-git
 
 # Issue 1186
 i3lock-fancy-git
+
+# Issue 1193
+stylepak-git
