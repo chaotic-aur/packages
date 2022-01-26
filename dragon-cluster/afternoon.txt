@@ -1,0 +1,6 @@
+## Chaotic-AUR
+# Issue 1185
+awesome-git
+
+# Issue 1186
+i3lock-fancy-git
