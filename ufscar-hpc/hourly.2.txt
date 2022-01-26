@@ -1592,6 +1592,9 @@ sddm-theme-astronaut
 # Issue 1172
 gnome-shell-extension-x11gestures
 
+# Issue 1173
+fontdownloader
+
 # Issue 1181
 miredo
 
