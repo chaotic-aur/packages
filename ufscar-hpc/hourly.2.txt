@@ -327,7 +327,7 @@ rpcs3
 sc-controller
 stacer
 steamtinkerlaunch
-streamlink-twitch-gui
+streamlink-twitch-gui-bin
 stremio
 vkbasalt
 xow
