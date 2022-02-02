@@ -27,6 +27,7 @@ firejail-git
 firejail-noapparmor-git
 firetools-git
 fish-git
+freetube-git
 gegl-git # (dep gimp-git)
 gimp-git
 git-git
