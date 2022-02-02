@@ -1,4 +1,7 @@
 ## Chaotic-AUR
+# Issue 446
+librewolf-hg:https://aur.archlinux.org/librewolf-hg.git
+
 # Issue 1185
 awesome-git
 
@@ -7,3 +10,8 @@ i3lock-fancy-git
 
 # Issue 1193
 stylepak-git
+
+
+## Garuda
+# Setup-assistant
+librewolf:https://aur.archlinux.org/librewolf.git

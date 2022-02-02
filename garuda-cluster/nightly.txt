@@ -2,24 +2,20 @@
 firedragon
 thunderbird-appmenu
 
-# Setup-assistant
-librewolf
-
 
 ## Chaotic
-# Issue 446
-librewolf-hg
-
 # Issue 1042
 linux-xanmod-tt
-
-
-## Not building for whatever reason, lets try it here
-nicotine-plus-git
-
 
 # Issue 726
 godot-mono  # non parallelizable
 
 # Issue 339
 #onivim2-git # non paralellizable, package is currently broken
+
+
+## Not building for whatever reason, lets try it here
+nicotine-plus-git
+
+
+
