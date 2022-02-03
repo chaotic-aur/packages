@@ -1,1 +1,2 @@
 nvlax-git
+logseq-desktop
