@@ -264,6 +264,7 @@ python-apprise
 python-py3nvml # (dep optimus-manager-git)
 qwikaccess-git
 rate-mirrors
+systemd-oomd-defaults
 systemd-guest-user
 tela-circle-icon-theme-git
 timeshift
