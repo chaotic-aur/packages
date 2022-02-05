@@ -281,7 +281,6 @@ ncnn-git # (dep waifu2x-ncnn-vulkan-git)
 nodejs-nativefier
 pycharm-professional
 rarian # (dep system-config-samba)
-syncplay
 system-config-samba
 trackma-git
 waifu2x-ncnn-vulkan-git
