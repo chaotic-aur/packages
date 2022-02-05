@@ -1603,5 +1603,13 @@ headset-bin
 # Issue 1192
 prospect-mail-bin
 
+# Issue 1196
+cl-alexandria-git # (dep stumpwm)
+cl-ppcre # (dep stumpwm)
+clx-git # (dep stumpwm)
+#stumpwm
+#stumpwm-contrib-git
+#stumpwm-git
+
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
