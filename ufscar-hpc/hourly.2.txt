@@ -1611,5 +1611,11 @@ clx-git # (dep stumpwm)
 #stumpwm-contrib-git
 #stumpwm-git
 
+# 1197
+clasp-cl-git
+
+# Issue 1205
+polymc
+
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
