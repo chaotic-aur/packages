@@ -78,6 +78,9 @@ linux-xanmod-rog
 # Issue 1103
 telegram-tdlib-git
 
+# Issue 1197
+clasp-cl-git
+
 # -------------------------------- MOVED FROM KITSUNA
 # Pedro
 #darling-git (broken)

@@ -1611,9 +1611,6 @@ clx-git # (dep stumpwm)
 #stumpwm-contrib-git
 #stumpwm-git
 
-# 1197
-clasp-cl-git
-
 # Issue 1205
 polymc
 
