@@ -422,6 +422,7 @@ flat-remix-gtk
 fluent-gtk-theme-git
 fluent-icon-theme-git
 gnome-shell-extension-pop-shell-git
+gnome-shell-extension-gnome-ui-tune-git
 kali-themes
 ksmoothdock
 kvantum-theme-layan-git
