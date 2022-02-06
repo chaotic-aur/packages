@@ -38,7 +38,6 @@ dxvk-git:https://aur.archlinux.org/dxvk-git.git
 elfx86exts
 elm-format-bin
 elm-platform-bin
-fcft # (dep yambar)
 ffmpeg-full
 figma-linux
 foo2zjs-nightly
@@ -73,7 +72,6 @@ sdl2_compat12-git
 spectral-matrix-git
 split2flac-git
 startgame:https://github.com/chaotic-aur/startgame.git
-tllist # (dep yambar)
 unflac
 wev
 wineasio-git
@@ -782,8 +780,6 @@ celluloid-git
 sneedacity-git
 
 # Issue 743
-foot
-foot-terminfo
 qtile-git
 spacefm-git
 
