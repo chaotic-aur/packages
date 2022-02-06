@@ -24,7 +24,8 @@ linux-next-git
 icecat
 
 # Issue 616
-brave
+# seems unmaintained on aur, as we already have brave-bin
+#brave
 
 # Issue 640
 rpcs3-git
