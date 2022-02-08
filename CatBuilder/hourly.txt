@@ -1,3 +1,6 @@
 nvlax-git
 logseq-desktop
 epson-inkjet-printer-escpr2
+ffmpeg-vulkan
+alvr
+obsidian
