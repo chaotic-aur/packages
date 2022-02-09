@@ -5,3 +5,4 @@ ffmpeg-vulkan
 alvr
 obsidian
 android-studio-canary
+google-chrome-beta
