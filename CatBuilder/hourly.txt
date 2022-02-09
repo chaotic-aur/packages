@@ -4,3 +4,4 @@ epson-inkjet-printer-escpr2
 ffmpeg-vulkan
 alvr
 obsidian
+android-studio-canary
