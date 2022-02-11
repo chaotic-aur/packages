@@ -6,3 +6,4 @@ alvr
 obsidian
 android-studio-canary
 google-chrome-beta
+signal-desktop-beta
