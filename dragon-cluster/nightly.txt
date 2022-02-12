@@ -32,6 +32,7 @@ kactivities-stats-git
 kactivitymanagerd-git
 kalarmcal-git
 kalendar-git
+kapidox-git
 karchive-git
 kauth-git
 kbookmarks-git
@@ -171,6 +172,7 @@ modemmanager-qt-git:https://github.com/chaotic-aur/pkgbuild-modemmanager-qt-git.
 networkmanager-qt-git:https://github.com/chaotic-aur/pkgbuild-networkmanager-qt-git.git
 non-euclidean-git
 okular-git
+oxygen-icons-git:https://github.com/chaotic-aur/pkgbuild-oxygen-icons-git.git
 partitionmanager-git:https://github.com/chaotic-aur/pkgbuild-partitionmanager-git.git
 pim-data-exporter-git
 pim-sieve-editor-git
