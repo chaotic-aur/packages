@@ -12,7 +12,7 @@ baloo-git:https://github.com/chaotic-aur/pkgbuild-baloo-git.git
 bluedevil-git
 bluez-git # (dep bluez-qt-git)
 bluez-qt-git
-breeze-git
+breeze-git:https://github.com/chaotic-aur/pkgbuild-breeze-git.git
 breeze-gtk-git:https://github.com/chaotic-aur/pkgbuild-breeze-gtk-git.git
 breeze-icons-git:https://github.com/chaotic-aur/pkgbuild-breeze-icons-git.git
 calendarsupport-git
