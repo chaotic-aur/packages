@@ -1,74 +1,126 @@
 ## Try to get some more hourly builds in
-## Potentially longer build times
 alacritty-git
 alpm_octopi_utils-dev # (dep octopi-dev)
 ananicy-cpp-git
 ananicy-git
 ananicy-rules-git
+anbox-image-houdini-rooted
 arch-audit-git
 arch-deployer-git
 asp-git
 babl-git # (dep gimp-git)
+binfmt-qemu-static
 birdtray-git
 bleachbit-git
 blender-git
+bmap-tools
 bottom-git
 bpytop-git
 btop-git
 btrfs-progs-git
+cfs-zen-tweaks
+clamav-unofficial-sigs
 cmake-git
 coreutils-git
+crowdsec
 czkawka-git
+debianutils
+distrobox
 dolphin-git:https://github.com/chaotic-aur/pkgbuild-dolphin-git.git
+electronmail-bin
 elisa-git
+esbuild # (dep kwin-bismuth)
 exa-git
 fastfetch-git
+ffmpeg-compat-57
+ffmpeg-compat-58
 firejail-git
 firejail-noapparmor-git
+firejail-pacman-hook
 firetools-git
 fish-git
+flutter # (dep fluffychat)
+fprintd-clients
 freetube-git
 gegl-git # (dep gimp-git)
 gimp-git
 git-git
+glib2-static # (dep qemu-user-static)
 gstreamer-git
 guiscrcpy-git
 hugo-git
 imagemagick-git
 inxi-git
+ipman
 jamesdsp-git
 kate-git:https://github.com/chaotic-aur/pkgbuild-kate-git.git
 kde-git-meta:https://github.com/chaotic-aur/pkgbuild-kde-git-meta.git
 konsole-git:https://github.com/chaotic-aur/pkgbuild-konsole-git.git
 kotatogram-dev-git
 kvantum-qt5-git
+kwin-bismuth
+kwin-lowlatency
+libgbinder
+libglibutil
 libretro-mame-git
+libscrypt
 libtorrent-rasterbar-1_2-git # (dep qbittorrent-enhanced-git)
+lolcate
 lutris-git
+makedeb
+makedeb-makepkg
+mini-benchmarker
 mkinitcpio-git
 modprobed-db-git
+networkmanager-iwd
 nextcloud-client-git
+noto-color-emoji-fontconfig
 noto-fonts-emoji-git
 nspawn-git
+ntfs3-dkms
 obs-studio-git
+octopi-dev
+open-fprintd
+openjpeg # (dep ffmpeg-compat-57)
+oxygen-sounds
 pacman-git
 pamac-aur-git
 paru-git
+pcre-static # (dep qemu-user-static)
 plasma5-wallpapers-wallpaper-engine-git
+protobuf-go # (dep sysbox-ce)
+python-codegen
+python-gbinder
+python-magic-ahupp # (dep guiscrcpy-git)
+python-nototools # (dep noto-fonts-emoji-git)
+python-pyclip
+python-pynput # (dep guiscrcpy-git)
+python-pytube # (dep python-spotdl)
+python-rapidfuzz # (dep python-spotdl)
+python-setuptools-lint # (dep guiscrcpy-git)
+python-simplediff
+python-spotdl
+python-validity
 qbittorrent-enhanced-git
 qemu-git
+qemu-user-static
+quickemu
 quickemu-git
 ripgrep-git
+riseup-vpn
+rufetch
 rusnapshot-git
 spotify-adblock-git
 starship-git
 sudo-git
 sweet-theme-git
-thermald-git
-ttyper-git
+sysbox-ce
 ufw-git
+ugrep
 wavemon-git
+waydroid
 waydroid-git
+waydroid-image
 whoogle-git
 wlroots-eglstreams-git
 xorg-server-git
