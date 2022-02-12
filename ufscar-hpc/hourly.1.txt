@@ -914,5 +914,6 @@ fnott
 java-openjdk-ea-bin
 kite
 telegram-desktop-bin-dev
+ytfzf-git
 
 lib32-mesa-git:https://github.com/chaotic-aur/lib32-mesa-git.git
