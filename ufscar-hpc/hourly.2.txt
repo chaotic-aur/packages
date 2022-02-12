@@ -811,10 +811,6 @@ microsoft-edge-dev-bin
 vmware-workstation
 vmware-keymaps # (dep vmware-workstation)
 
-# Issue 759
-tenacity-git
-wxgtk3-dev-light # (dep tenacity-git) (also adds wxbase-dev-light, wxcommon-dev-light, wxgtk2-dev-light)
-
 # Issue 758
 onedriver
 

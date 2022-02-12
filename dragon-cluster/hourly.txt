@@ -131,6 +131,10 @@ zstd-git
 
 
 ## Chaotic
+# Issue 759
+tenacity-git
+wxgtk3-dev-light # (dep tenacity-git) (also adds wxbase-dev-light, wxcommon-dev-light, wxgtk2-dev-light)
+
 # Issue 1034
 aura-fetch-git
 bitfetch-git
