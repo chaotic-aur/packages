@@ -1615,8 +1615,5 @@ sirula-git
 # Issue 1205
 polymc
 
-# Issue 1226
-sioyek-git
-
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
