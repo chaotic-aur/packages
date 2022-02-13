@@ -1620,5 +1620,8 @@ python-cleo-git # (dep python-peotry-git)
 python-poetry-core-git # (dep python-peotry-git)
 #python-poetry-git
 
+# Issue 1244
+video-trimmer
+
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
