@@ -462,7 +462,6 @@ btrfs-assistant
 cozy-audiobooks
 garuda-system-maintenance-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-system-maintenance-git.git
 jamesdsp
-polkit-duktape
 qt-installer-framework
 
 
