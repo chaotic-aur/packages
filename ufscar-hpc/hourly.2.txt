@@ -1603,8 +1603,20 @@ clx-git # (dep stumpwm)
 #stumpwm-contrib-git
 #stumpwm-git
 
+# Issue 1199
+dynamic-wallpaper-editor
+
+# Issue 1200
+extension-manager-git
+
+# Issue 1204
+sirula-git
+
 # Issue 1205
 polymc
+
+# Issue 1226
+sioyek-git
 
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
