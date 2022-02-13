@@ -11,6 +11,8 @@ i3lock-fancy-git
 # Issue 1193
 stylepak-git
 
+# Issue 1245
+linux-xanmod-edge
 
 ## Garuda
 # Setup-assistant
