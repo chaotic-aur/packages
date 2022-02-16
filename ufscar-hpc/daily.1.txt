@@ -9,7 +9,6 @@ firefox-wayland-hg
 servo-git
 
 # Nico
-linux-cacule
 linux-xanmod-anbox
 firedragon-hg
 

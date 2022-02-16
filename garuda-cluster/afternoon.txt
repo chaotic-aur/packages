@@ -1,8 +1,5 @@
 ## Garuda
-linux-cacule-hardened
-linux-cacule-llvm
-linux-cacule-rdb
-
+linux-cacule
 
 ## Chaotic 
 # Issue 655
