@@ -120,7 +120,6 @@ zfs-utils
 
 # Raytracing (Pedro)
 imgui
-raytracinginvulkan-git
 stb
 tinyobjloader
 
