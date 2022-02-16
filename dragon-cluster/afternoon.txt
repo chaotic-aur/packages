@@ -8,6 +8,9 @@ awesome-git
 # Issue 1186
 i3lock-fancy-git
 
+# Issue 1189
+linux-xanmod-rt
+
 # Issue 1193
 stylepak-git
 
