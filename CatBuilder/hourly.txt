@@ -6,4 +6,5 @@ alvr
 obsidian
 android-studio-canary
 google-chrome-beta
-signal-desktop-beta
+# signal-desktop-beta - waiting for https://github.com/electron-userland/electron-builder-binaries/issues/47
+pipewire-media-session-git
