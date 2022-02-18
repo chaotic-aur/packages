@@ -218,12 +218,6 @@ otter-browser-git
 qutebrowser-git
 
 
-## OTHER OS
-# Anita OS - Issue 1092
-anita-calamares:https://gitlab.com/a6209/chaotic-aur-builds/pkgbuild-anita-calamares.git
-anita-cinnamon-configuration:https://gitlab.com/a6209/chaotic-aur-builds/pkgbuild-anita-cinnamon-configuration.git
-anita-core-configs:https://gitlab.com/a6209/chaotic-aur-builds/pkgbuild-anita-core-configs.git
-
 ## Users requests
 # Issue 322
 hlsdl
