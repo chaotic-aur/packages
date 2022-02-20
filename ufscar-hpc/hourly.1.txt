@@ -23,7 +23,7 @@ fprintd-libfprint2:https://aur.archlinux.org/fprintd-libfprint2.git
 fujprog
 fxload
 tzsp2pcap-git
-gr-limesdr-git
+# gr-limesdr-git # (needs a too low version cmake)
 hal-git
 hashcash
 ht-editor
@@ -32,7 +32,7 @@ libfprint-git
 libsdrplay
 ncurses5-compat-libs
 qucs
-radare2-git
+# radare2-git # unknown build option
 realvnc-vnc-viewer
 reaver-wps-fork-t6x-git
 rqlite
@@ -200,7 +200,7 @@ themix-icons-papirus-git
 themix-icons-suru-plus-aspromauros-git
 themix-icons-suru-plus-git
 themix-import-images-git
-themix-plugins-base16-git
+themix-plugin-base16-git
 themix-theme-arc-git
 themix-theme-materia-git
 themix-theme-oomox-git
@@ -309,7 +309,7 @@ typora
 waterfox-g3-bin
 
 # Issue 303
-budgie-desktop-git
+# budgie-desktop-git # PKGBUILDs needs some fixes
 
 # Issue 324
 compiz-git
@@ -634,12 +634,16 @@ gnome-shell-extension-material-shell-git
 
 # Issue 464
 ttf-google-fonts-git
+ttf-merriweather-sans # (dep ttf-google-fonts-git)
+ttf-oswald # (dep ttf-google-fonts-git)
+ttf-quintessential # (dep ttf-google-fonts-git)
+ttf-signika # (dep ttf-google-fonts-git)
 
 # Issue 465
 imhex
 
 # Issue 467
-epiphany-git
+# epiphany-git # (dep webkit2gtk-unstable doesn't build as of now)
 libhandy-git # (dep epiphany-git)
 
 # Issue 468
@@ -654,7 +658,7 @@ spotify-tray-git
 vala-panel-appmenu-registrar-git
 
 # Issue 470
-distrho-ports-lv2-git
+#distrho-ports-lv2-git # dependency missing from AUR
 distrho-ports-vst-git
 
 # Issue 471
@@ -898,6 +902,7 @@ ffmpeg-git
 intel-gmmlib-git # (dep intel-media-driver-git)
 intel-media-driver-git
 libva-git # (dep intel-media-driver-git
+vmaf-git # (dep ffmpeg-git)
 
 
 ## Lost & found

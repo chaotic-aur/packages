@@ -207,7 +207,6 @@ pantheon-session-git
 pantheon-shortcut-overlay-git
 pantheon-terminal-git
 pantheon-videos-git
-properties-cpp
 switchboard-git
 switchboard-plug-a11y-git
 switchboard-plug-about-git
@@ -989,6 +988,7 @@ goodvibes
 goodvibes-git
 
 # Issue 822
+libshumate-git # (dep shortwave-git)
 shortwave-git
 
 # Issue 825
@@ -1524,6 +1524,7 @@ qbittorrent-enhanced
 
 # Issue 1133
 leagueoflegends-git
+lib32-unixodbc # (dep leagueoflegends-git)
 wine-lol
 wine-lol-glibc
 
