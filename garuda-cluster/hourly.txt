@@ -30,7 +30,7 @@ kwin-scripts-forceblur
 latte-dock-git
 nerd-fonts-fantasque-sans-mono
 plasma5-applets-window-appmenu
-plasma5-applets-window-buttons
+plasma5-applets-window-buttons:https://github.com/chaotic-aur/pkgbuild-plasma5-applets-window-buttons.git
 plasma5-applets-window-title
 plasma5-runners-poki-launcher
 plasma5-theme-sweet-git
