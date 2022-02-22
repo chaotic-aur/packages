@@ -62,6 +62,7 @@ kwin-bismuth
 kwin-lowlatency
 libgbinder
 libglibutil
+libpamac-git
 libretro-mame-git
 libscrypt
 libtorrent-rasterbar-1_2-git # (dep qbittorrent-enhanced-git)
