@@ -79,6 +79,7 @@ garuda-update:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/garuda-u
 garuda-setup-assistant:https://gitlab.com/garuda-linux/applications/garuda-setup-assistant.git
 garuda-welcome:https://gitlab.com/garuda-linux/applications/garuda-welcome.git
 garuda-libs:https://gitlab.com/garuda-linux/applications/garuda-libs.git
+garuda-settings-manager:https://gitlab.com/garuda-linux/applications/garuda-settings-manager.git
 
 # Building off git applications
 garuda-assistant-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-assistant-git.git
