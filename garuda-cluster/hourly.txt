@@ -82,8 +82,7 @@ nautilus-bluetooth
 nautilus-mediainfo
 nautilus-pdf-tools-git
 nautilus-typeahead
-yaru
-yaru-sound-theme
+yaru:https://aur.archlinux.org/yaru.git
 
 # i3
 azote
