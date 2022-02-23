@@ -285,6 +285,9 @@ steamtinkerlaunch
 streamlink-twitch-gui-bin
 stremio
 vkbasalt
+vr-video-player-git
+xbox-generic-controller
+xboxdrv
 xow
 
 

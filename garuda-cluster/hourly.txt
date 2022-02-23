@@ -375,6 +375,7 @@ qtscrcpy
 shortwave
 skypeforlinux-stable-bin
 slack-desktop
+streamlink-twitch-gui
 teams
 teamviewer
 timeshift-bin
