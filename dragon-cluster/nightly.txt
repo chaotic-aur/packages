@@ -175,6 +175,7 @@ okular-git
 oxygen-git
 oxygen-icons-git:https://github.com/chaotic-aur/pkgbuild-oxygen-icons-git.git
 partitionmanager-git:https://github.com/chaotic-aur/pkgbuild-partitionmanager-git.git
+phonon-git:https://github.com/chaotic-aur/pkgbuild-phonon-git.git
 pim-data-exporter-git
 pim-sieve-editor-git
 pimcommon-git
