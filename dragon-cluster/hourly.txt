@@ -60,6 +60,7 @@ kotatogram-dev-git
 kvantum-qt5-git
 kwin-bismuth
 kwin-lowlatency
+libart-lgpl # (dep gimp-git)
 libgbinder
 libglibutil
 libpamac-git
