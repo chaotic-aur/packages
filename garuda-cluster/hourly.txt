@@ -234,6 +234,7 @@ mhwd-nvidia
 mhwd-nvidia-390xx
 mhwd-nvidia-470xx
 mkinitcpio-openswap
+neofetch-git
 nohang
 nvidia-390xx-dkms
 nvidia-390xx-settings
