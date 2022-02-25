@@ -42,7 +42,6 @@ sweet-gtk-theme
 sweet-gtk-theme-dark
 sweet-kde-git
 whoogle
-xcursor-sweet
 
 # Dr460nized-blackarch
 8188eu-aircrack-dkms-git
@@ -448,7 +447,7 @@ vimix-gtk-themes
 vimix-gtk-themes-git
 vimix-icon-theme
 vimix-icon-theme-git
-xcursor-breeze
+sweet-cursor-theme-git
 
 # P2P
 acestream-engine
