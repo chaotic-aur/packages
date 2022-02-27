@@ -1598,5 +1598,8 @@ python2-sip-pyqt4 # (dep pyqt4)
 xmrig
 xmrig-donateless
 
+# Issue 1259
+nomachine
+
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
