@@ -1617,5 +1617,9 @@ syncthingtray
 libuvc # (dep webcamoid)
 webcamoid
 
+# Issue 1283
+labwc
+labwc-git
+
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
