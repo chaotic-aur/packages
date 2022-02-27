@@ -1595,7 +1595,8 @@ python2-opengl # (dep pyqt4)
 python2-sip-pyqt4 # (dep pyqt4)
 
 # Issue 1249
-xmrig # (also creates xmrig-donateless)
+xmrig
+xmrig-donateless
 
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
