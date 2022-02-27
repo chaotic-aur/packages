@@ -448,7 +448,6 @@ vimix-gtk-themes
 vimix-gtk-themes-git
 vimix-icon-theme
 vimix-icon-theme-git
-sweet-cursor-theme-git
 
 # P2P
 acestream-engine
