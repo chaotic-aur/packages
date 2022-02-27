@@ -1622,7 +1622,7 @@ labwc
 labwc-git
 
 # Issue 1287
-ttf-symbola
+font-symbola:https://aur.archlinux.org/font-symbola.git # {ttf,otf}-symbola
 
 # Issue 1289
 ntfsprogs-ntfs3
