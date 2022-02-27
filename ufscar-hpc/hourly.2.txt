@@ -1601,5 +1601,8 @@ xmrig-donateless
 # Issue 1259
 nomachine
 
+# Issue 1262
+yandex-disk
+
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
