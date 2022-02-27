@@ -1,30 +1,46 @@
 ## Maintainers
 # Firefox
-nss-hg
-nspr-hg
-wasi-sdk-git
 firefox-wayland-hg
+nspr-hg
+nss-hg
+wasi-sdk-git
 
 # Pedro
+#darling-git (broken)
+llvm-tkg-git:https://github.com/Frogging-Family/llvm-git.git
 servo-git
 
 # Nico
-linux-xanmod-anbox
 firedragon-hg
+linux-xanmod-anbox
+ungoogled-chromium:https://github.com/ungoogled-software/ungoogled-chromium-archlinux.git
+
+# Solomon
+ayatana-indicator-datetime
+calligra-git
+kwaterfoxhelper
+lmdbxx
+nvm
+python-grpcio-tools
+python-pympv
+python-sphinx-automodapi
+tweeny
+vim-colorschemes
+waterfox-classic-kpe
+
 
 ## User requests
-# Issue 331
-linux-mainline
+# Issue 316
+scummvm-git
 
 # Issue 318
 linux-next-git
 
+# Issue 331
+linux-mainline
+
 # Issue 394
 icecat
-
-# Issue 616
-# seems unmaintained on aur, as we already have brave-bin
-#brave
 
 # Issue 640
 rpcs3-git
@@ -39,6 +55,9 @@ emacs-ng-git
 
 # Issue 729
 linux-vfio
+
+# Issue 774
+freecad-git
 
 # Issue 793
 dogecoin-qt
@@ -81,34 +100,5 @@ telegram-tdlib-git
 # Issue 1197
 clasp-cl-git
 
-# -------------------------------- MOVED FROM KITSUNA
-# Pedro
-#darling-git (broken)
-llvm-tkg-git:https://github.com/Frogging-Family/llvm-git.git
-
-# Solomon
-python-sphinx-automodapi
-lmdbxx
-tweeny
-ayatana-indicator-datetime
-nvm
-python-pympv
-python-grpcio-tools
-calligra-git
-kwaterfoxhelper
-waterfox-classic-kpe
-vim-colorschemes
-
-
-# Moved because too heavy for Garuda
-ungoogled-chromium:https://github.com/ungoogled-software/ungoogled-chromium-archlinux.git
-
-# Daily builds are enough
-code-git
-
-# Users requests
-#wine-git # Issue 315 (bad)
-scummvm-git # Issue 316
-
-# Issue 774
-freecad-git
+# Issue 1247
+pyqt4:https://aur.archlinux.org/pyqt4.git

@@ -1588,5 +1588,11 @@ python-poetry-core-git # (dep python-peotry-git)
 # Issue 1244
 video-trimmer
 
+# Issue 1247
+python-sip-pyqt4 # (dep pyqt4)
+python2-dbus # (dep pyqt4)
+python2-opengl # (dep pyqt4)
+python2-sip-pyqt4 # (dep pyqt4)
+
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
