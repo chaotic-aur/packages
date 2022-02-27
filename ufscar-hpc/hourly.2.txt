@@ -141,7 +141,7 @@ qbe-git
 rakudo
 re3-git
 shadowsocks-rust-git
-siji
+siji-ttf
 smenu
 telegram-tdlib
 tetrio-desktop
