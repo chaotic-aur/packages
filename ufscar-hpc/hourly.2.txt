@@ -1624,5 +1624,8 @@ labwc-git
 # Issue 1287
 ttf-symbola
 
+# Issue 1289
+ntfsprogs-ntfs3
+
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
