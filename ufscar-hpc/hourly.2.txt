@@ -1630,5 +1630,8 @@ ntfsprogs-ntfs3
 # Issue 1290
 libajantv2
 
+# Issue 1291
+retroshare
+
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
