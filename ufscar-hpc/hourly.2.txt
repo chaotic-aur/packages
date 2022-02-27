@@ -1604,5 +1604,8 @@ nomachine
 # Issue 1262
 yandex-disk
 
+# Issue 1263
+lib32-libxcrypt-compat
+
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
