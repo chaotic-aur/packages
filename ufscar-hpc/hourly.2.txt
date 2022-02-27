@@ -1577,6 +1577,9 @@ sirula-git
 # Issue 1205
 polymc
 
+# Issue 1226
+sioyek-git
+
 # Issue 1227
 python-cleo-git # (dep python-peotry-git)
 python-poetry-core-git # (dep python-peotry-git)
