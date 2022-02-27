@@ -1627,5 +1627,8 @@ ttf-symbola
 # Issue 1289
 ntfsprogs-ntfs3
 
+# Issue 1290
+libajantv2
+
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
