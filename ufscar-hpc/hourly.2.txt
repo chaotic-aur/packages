@@ -1607,5 +1607,15 @@ yandex-disk
 # Issue 1263
 lib32-libxcrypt-compat
 
+# Issue 1267
+c++utilities # (dep syncthingtray)
+qtforkawesome # (dep syncthingtray)
+qtutilities # (dep syncthingtray)
+syncthingtray
+
+# Issue 1269
+libuvc # (dep webcamoid)
+webcamoid
+
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
