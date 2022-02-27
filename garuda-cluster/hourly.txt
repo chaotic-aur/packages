@@ -38,6 +38,7 @@ poki-launcher
 resvg
 rootactions-servicemenu
 searx
+sweet-cursor-theme-git:https://github.com/chaotic-aur/pkgbuild-sweet-cursor-theme-git.git
 sweet-gtk-theme
 sweet-gtk-theme-dark
 sweet-kde-git
@@ -81,7 +82,7 @@ nautilus-bluetooth
 nautilus-mediainfo
 nautilus-pdf-tools-git
 nautilus-typeahead
-yaru:https://aur.archlinux.org/yaru.git
+yaru:https://aur.archlinux.org/yaru.git # (creates other yaru-* packages as well)
 
 # i3
 azote
