@@ -113,6 +113,7 @@ riseup-vpn
 rufetch
 rusnapshot-git
 spotify-adblock-git
+spotify-snap
 starship-git
 sudo-git
 sweet-theme-git
