@@ -875,8 +875,11 @@ touchegg
 papirus-folders
 
 # Issue 614
+kquickchatcomponents-git # (dep tok-git)
 libtd-git # (dep tok-git)
-#tok-git
+qbs-git # (dep tok-git)
+rlottie-git # (dep tok-git)
+tok-git
 
 # Issue 615
 silo-trello
