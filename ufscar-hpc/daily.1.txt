@@ -101,7 +101,7 @@ telegram-tdlib-git
 clasp-cl-git
 
 # Issue 1243
-chromium-wayland-vaapi
+#chromium-wayland-vaapi # (not building right as of 220228)
 
 # Issue 1247
 pyqt4:https://aur.archlinux.org/pyqt4.git
