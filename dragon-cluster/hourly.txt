@@ -5,6 +5,7 @@ ananicy-cpp-git
 ananicy-git
 ananicy-rules-git
 anbox-image-houdini-rooted
+aqemu
 arch-audit-git
 arch-deployer-git
 asp-git
