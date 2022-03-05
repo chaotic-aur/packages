@@ -64,6 +64,7 @@ garuda-qtile-settings:https://gitlab.com/garuda-linux/themes-and-settings/settin
 garuda-starship-prompt:https://gitlab.com/garuda-linux/themes-and-settings/settings/garuda-starship-prompt.git
 garuda-sway-settings:https://gitlab.com/garuda-linux/themes-and-settings/settings/garuda-sway-settings.git
 garuda-wayfire-settings:https://gitlab.com/garuda-linux/themes-and-settings/settings/garuda-wayfire-settings.git
+garuda-xfce-kwin-settings:https://gitlab.com/garuda-linux/themes-and-settings/settings/garuda-xfce-kwin-settings.git
 garuda-xfce-settings:https://gitlab.com/garuda-linux/themes-and-settings/settings/garuda-xfce-settings.git
 garuda-zsh-config:https://gitlab.com/garuda-linux/themes-and-settings/settings/garuda-zsh-config.git
 performance-tweaks:https://gitlab.com/garuda-linux/themes-and-settings/settings/performance-tweaks.git
