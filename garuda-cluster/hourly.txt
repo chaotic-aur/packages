@@ -352,6 +352,7 @@ davinci-resolve
 deezer
 dropbox
 etcher-bin # (name changed to balena-etcher as balena-etcher doesnt build)
+fonts-tlwg
 foxitreader
 google-earth-pro
 google-meet-desktop
