@@ -562,15 +562,6 @@ ntfs2btrfs-git
 # Issue 439
 codelite
 
-# Issue 440
-wayfire
-wcm
-wf-config
-wf-shell
-
-# Issue 441
-wayfire-plugins-extra
-
 # Issue 442
 gdb-multiarch
 sourcetrail

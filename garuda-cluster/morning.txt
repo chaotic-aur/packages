@@ -93,3 +93,14 @@ garuda-welcome-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-wel
 
 # Building off git settings
 garuda-common-settings-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-common-settings-git.git
+
+
+## building wayfire
+# Issue 440
+wayfire:https://gitlab.com/garuda-linux/packages/other/wayfire.git
+wcm:https://gitlab.com/garuda-linux/packages/other/wcm.git
+wf-config:https://gitlab.com/garuda-linux/packages/other/wf-config.git
+wf-shell:https://gitlab.com/garuda-linux/packages/other/wf-shell.git
+
+# Issue 441
+wayfire-plugins-extra:https://gitlab.com/garuda-linux/packages/other/wayfire-plugins-extra.git
