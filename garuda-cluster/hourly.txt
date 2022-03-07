@@ -153,6 +153,7 @@ nwg-menu
 nwg-panel
 nwg-wrapper
 wob
+wlsunset
 
 # Wayfire
 greetd
