@@ -144,7 +144,7 @@ kwayland-git
 kwayland-integration-git:https://github.com/chaotic-aur/pkgbuild-kwayland-integration-git.git
 kwayland-server-git:https://github.com/chaotic-aur/pkgbuild-kwayland-server-git.git
 kwidgetsaddons-git
-kwin-git
+kwin-git:https://github.com/chaotic-aur/pkgbuild-kwin-git.git
 kwindowsystem-git
 kwinft-git:https://github.com/chaotic-aur/pkgbuild-kwinft-git.git
 kwrited-git
