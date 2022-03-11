@@ -8,3 +8,4 @@ android-studio-canary
 google-chrome-beta
 signal-desktop-beta
 pipewire-media-session-git
+noise-suppression-for-voice-git
