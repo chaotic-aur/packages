@@ -180,7 +180,6 @@ python-pyparted # (dep mugshot)
 
 ## Further needed applications
 # Garuda base (AUR)
-#plymouth-git KILL IT WITH FIRE 🔥
 7-zip
 ananicy-cpp
 archlinux-appstream-data-pamac
@@ -256,6 +255,7 @@ pacui:https://github.com/excalibur1234/pacui.git
 pamac-aur
 paru
 performance-tweaks
+plymouth-git
 preload
 prelockd
 python-apprise
