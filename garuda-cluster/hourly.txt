@@ -162,7 +162,6 @@ libuinputplus # (dep ydotool)
 orchis-kde-theme-git
 orchis-theme-git
 popsicle-git
-pulseaudio-modules-bt-git
 redshift-wayland-git
 tlpui
 wayfire-desktop-git
@@ -485,4 +484,4 @@ connman-gtk-git
 # Alexjp
 bcache-tools
 libgaminggear # (dep roccat-tools)
-roccat-tools-common # (Also includes roccat-tools-{isku,iskufx,kiro,kone,koneplus,konepure,konepuremilitary,konepureoptical,konextd,konextdoptical,kova2016,kovaplus,pyra,ryostkl,savu,skeltr,sova,suora}
+roccat-tools:https://aur.archlinux.org/roccat-tools.git # (Also includes roccat-tools-common,roccat-tools-{isku,iskufx,kiro,kone,koneplus,konepure,konepuremilitary,konepureoptical,konextd,konextdoptical,kova2016,kovaplus,pyra,ryostkl,savu,skeltr,sova,suora}
