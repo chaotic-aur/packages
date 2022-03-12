@@ -157,6 +157,8 @@ greetd
 greetd-gtkgreet
 greetd-qtgreet
 kvantum-theme-orchis-git
+libevdevplus # (dep ydotool)
+libuinputplus # (dep ydotool)
 orchis-kde-theme-git
 orchis-theme-git
 popsicle-git
@@ -178,6 +180,7 @@ python-pyparted # (dep mugshot)
 
 ## Further needed applications
 # Garuda base (AUR)
+#plymouth-git KILL IT WITH FIRE 🔥
 7-zip
 ananicy-cpp
 archlinux-appstream-data-pamac
@@ -208,8 +211,8 @@ hw-probe
 imagewriter
 inxi
 lib32-nvidia-390xx-utils
-lib32-opencl-nvidia-390xx
 lib32-nvidia-470xx-utils
+lib32-opencl-nvidia-390xx
 lib32-opencl-nvidia-470xx
 libinput-gestures
 libinput_gestures_qt
@@ -236,10 +239,10 @@ nohang
 nvidia-390xx-dkms
 nvidia-390xx-settings
 nvidia-390xx-utils
-opencl-nvidia-390xx
 nvidia-470xx-dkms
 nvidia-470xx-settings
 nvidia-470xx-utils
+opencl-nvidia-390xx
 opencl-nvidia-470xx
 optimus-manager
 optimus-manager-git
@@ -253,15 +256,14 @@ pacui:https://github.com/excalibur1234/pacui.git
 pamac-aur
 paru
 performance-tweaks
-#plymouth-git KILL IT WITH FIRE 🔥
 preload
 prelockd
 python-apprise
 python-py3nvml # (dep optimus-manager-git)
 qwikaccess-git
 rate-mirrors
-systemd-oomd-defaults
 systemd-guest-user
+systemd-oomd-defaults
 tela-circle-icon-theme-git
 timeshift
 timeshift-autosnap
