@@ -5,9 +5,6 @@ picom-ibhagwan-git
 
 # Cinnamon
 gtkhash
-mint-artwork-cinnamon
-mint-artwork-common
-mint-sounds
 mintstick
 nemo-pdf-tools-git
 xviewer-plugins
@@ -125,6 +122,7 @@ ant-dracula-kvantum-theme-git
 cmst
 lxqt-kcm-integration-extra-git
 lxqt-kwin-desktop-git
+nm-tray
 
 # MATE
 mate-menu
@@ -134,7 +132,6 @@ mate-tweak
 betterlockscreen
 polybar
 xviewer
-xviewer-plugin
 
 # Recbox
 i3lock-color
@@ -165,7 +162,6 @@ orchis-theme-git
 popsicle-git
 pulseaudio-modules-bt-git
 redshift-wayland-git
-seatd
 tlpui
 wayfire-desktop-git
 wdisplays
@@ -260,7 +256,6 @@ performance-tweaks
 #plymouth-git KILL IT WITH FIRE 🔥
 preload
 prelockd
-pulseaudio-modules-bt
 python-apprise
 python-py3nvml # (dep optimus-manager-git)
 qwikaccess-git
@@ -348,7 +343,6 @@ anydesk-bin
 appimagelauncher
 bauh
 birdtray
-cherrytree
 davinci-resolve
 deezer
 dropbox
@@ -361,8 +355,6 @@ gstreamer0.10 # (dep foxitreader)
 gstreamer0.10-base # (dep foxitreader)
 guiscrcpy
 mailspring
-mattermost-desktop
-mcfly
 mellowplayer
 mendeleydesktop
 nordpy
@@ -396,7 +388,6 @@ ckbcomp
 debtap
 droidcam
 fotokilof
-growpart
 ircd-hybrid
 isoimagewriter
 isomaster
@@ -415,7 +406,6 @@ qomui
 qomui-git
 soundwire
 webapp-manager-git
-youtubedl-gui-beta
 
 # Theming & Customization
 autotiling
