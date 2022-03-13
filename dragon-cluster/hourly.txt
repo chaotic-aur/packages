@@ -129,6 +129,7 @@ wlroots-eglstreams-git
 xorg-server-git
 zellij-git
 zenmonitor-git
+zenmonitor3-git
 zram-generator-git
 zstd-git
 
