@@ -396,9 +396,6 @@ amdgpu-pro-installer
 # Issue 306
 omnisharp-roslyn
 
-# Issue 369
-php80
-
 # Issue 371
 ly
 multimc5
