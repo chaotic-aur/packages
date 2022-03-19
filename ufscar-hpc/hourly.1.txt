@@ -491,7 +491,6 @@ emacs-pgtk-native-comp-git
 p7zip-gui
 
 # Issue 397
-python-xdg # (dep ulauncher)
 ulauncher
 
 # Issue 400
