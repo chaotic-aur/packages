@@ -1645,5 +1645,14 @@ elasticsearch
 # Issue 1318
 ausweisapp2
 
+# Issue 1321
+smartgit
+
+# Issue 1322
+atom-editor-beta-bin
+
+# Issue 1327
+vcpkg
+
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
