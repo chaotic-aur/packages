@@ -157,8 +157,6 @@ greetd
 greetd-gtkgreet
 greetd-qtgreet
 kvantum-theme-orchis-git
-libevdevplus # (dep ydotool)
-libuinputplus # (dep ydotool)
 orchis-kde-theme-git
 orchis-theme-git
 popsicle-git
