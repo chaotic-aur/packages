@@ -28,6 +28,7 @@ electronmail-bin
 elisa-git
 esbuild # (dep kwin-bismuth)
 exa-git
+fastfetch
 fastfetch-git
 ffmpeg-compat-57
 ffmpeg-compat-58
