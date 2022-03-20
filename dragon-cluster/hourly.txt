@@ -151,11 +151,16 @@ ufetch-git
 # Issue 1108
 kdenlive-stabledeps-git:https://github.com/chaotic-aur/pkgbuild-kdenlive-stabledeps-git.git
 
+# Issue 1310
+rum
+rum-git
+
 # Issue 1323
 nushell-git
 
 # Issue 1324
 qt-virt-manager
+scrub # (dep qt-virt-manager)
 
 # Issue 1328
 ankama-launcher
