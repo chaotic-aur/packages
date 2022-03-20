@@ -2,7 +2,6 @@
 alacritty-git
 alpm_octopi_utils-dev # (dep octopi-dev)
 ananicy-cpp-git
-ananicy-git
 ananicy-rules-git
 anbox-image-houdini-rooted
 aqemu
@@ -11,14 +10,11 @@ arch-deployer-git
 asp-git
 babl-git # (dep gimp-git)
 binfmt-qemu-static
-birdtray-git
 bleachbit-git
 blender-git
 bmap-tools
-bottom-git
 bpytop-git
 btop-git
-btrfs-progs-git
 cfs-zen-tweaks
 clamav-unofficial-sigs
 cmake-git
@@ -42,14 +38,12 @@ firetools-git
 fish-git
 flutter # (dep fluffychat)
 fprintd-clients
-freetube-git
 gegl-git # (dep gimp-git)
 gimp-git
 git-git
 glib2-static # (dep qemu-user-static)
 gstreamer-git
 guiscrcpy-git
-hugo-git
 imagemagick-git
 inxi-git
 ipman
@@ -68,13 +62,9 @@ libpamac-git
 libretro-mame-git
 libscrypt
 libtorrent-rasterbar-1_2-git # (dep qbittorrent-enhanced-git)
-lolcate
 lutris-git
-makedeb
-makedeb-makepkg
-mini-benchmarker
 mkinitcpio-git
-modprobed-db-git
+nerd-fonts-fira-code
 networkmanager-iwd
 nextcloud-client-git
 noto-color-emoji-fontconfig
