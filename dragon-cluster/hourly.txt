@@ -107,6 +107,7 @@ python-validity
 qbittorrent-enhanced-git
 qemu-git
 qemu-user-static
+qtwebflix-git
 quickemu
 quickemu-git
 ripgrep-git
@@ -149,6 +150,15 @@ ufetch-git
 
 # Issue 1108
 kdenlive-stabledeps-git:https://github.com/chaotic-aur/pkgbuild-kdenlive-stabledeps-git.git
+
+# Issue 1323
+nushell-git
+
+# Issue 1324
+qt-virt-manager
+
+# Issue 1328
+ankama-launcher
 
 
 ## Garuda git stuff
