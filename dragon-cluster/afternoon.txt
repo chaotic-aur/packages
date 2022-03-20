@@ -20,6 +20,9 @@ linux-xanmod-edge
 # Issue 1307
 linux-bore
 
+# Issue 1325
+linux-clear
+
 # Issue 1330
 linux-tt
 
