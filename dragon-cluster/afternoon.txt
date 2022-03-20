@@ -17,6 +17,13 @@ stylepak-git
 # Issue 1245
 linux-xanmod-edge
 
+# Issue 1307
+linux-bore
+
+# Issue 1330
+linux-tt
+
+
 ## Garuda
 # Setup-assistant
 librewolf:https://aur.archlinux.org/librewolf.git
