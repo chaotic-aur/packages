@@ -145,6 +145,9 @@ kdenlive-stabledeps-git:https://github.com/chaotic-aur/pkgbuild-kdenlive-stabled
 rum
 rum-git
 
+# Issue 1320
+86box
+
 # Issue 1323
 nushell-git
 
@@ -154,6 +157,9 @@ scrub # (dep qt-virt-manager)
 
 # Issue 1328
 ankama-launcher
+
+# Issue 1331
+spicetify-cli
 
 
 ## Garuda git stuff
