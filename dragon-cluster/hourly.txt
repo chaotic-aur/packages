@@ -161,6 +161,9 @@ ankama-launcher
 # Issue 1331
 spicetify-cli
 
+# Issue 1334
+steam-boilr-gui
+
 
 ## Garuda git stuff
 alpm_octopi_utils-git
