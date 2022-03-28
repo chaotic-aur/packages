@@ -10,3 +10,4 @@ linux-vfio-lts
 
 # Issue 944
 linux-mainline-anbox
+linux-mainline-anbox-git
