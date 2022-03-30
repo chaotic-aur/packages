@@ -111,6 +111,7 @@ sweet-theme-git
 sysbox-ce
 ufw-git
 ugrep
+visual-studio-code-insiders-bin
 wavemon-git
 waydroid
 waydroid-git
