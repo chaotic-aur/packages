@@ -1,4 +1,5 @@
 ## Try to get some more hourly builds in
+aconfmgr-git
 alacritty-git
 alpm_octopi_utils-dev # (dep octopi-dev)
 ananicy-cpp-git
@@ -75,6 +76,7 @@ obs-studio-git
 octopi-dev
 open-fprintd
 openjpeg # (dep ffmpeg-compat-57)
+opensnitch-git
 oxygen-sounds
 pacman-git
 pamac-aur-git
@@ -104,6 +106,7 @@ ripgrep-git
 riseup-vpn
 rufetch
 rusnapshot-git
+snapper-tools-git
 spotify-adblock-git
 starship-git
 sudo-git
