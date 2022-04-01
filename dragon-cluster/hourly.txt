@@ -130,6 +130,10 @@ zram-generator-git
 zstd-git
 
 
+## SGS
+pacseek
+
+
 ## Chaotic
 # Issue 759
 tenacity-git
