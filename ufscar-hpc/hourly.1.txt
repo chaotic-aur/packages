@@ -894,6 +894,30 @@ intel-media-driver-git
 libva-git # (dep intel-media-driver-git
 vmaf-git # (dep ffmpeg-git)
 
+# Issue 1339
+dee # dep libunity
+icu69-bin # dep libunity
+libunity
+vala0.44 # dep libunity
+vala0.52 # dep libunity
+
+# Issue 1340
+river
+
+# Issue 1341
+rofi-lbonn-wayland
+
+# Issue 1342
+otf-manjari
+ttf-malayalam-font-anjalioldlipi
+ttf-malayalam-font-chilanka
+ttf-malayalam-font-dyuthi
+ttf-malayalam-font-keraleeyam
+ttf-malayalam-font-meera
+ttf-malayalam-font-rachana
+ttf-malayalam-font-raghumalayalamsans
+ttf-malayalam-font-suruma
+ttf-malayalam-fonts-meta
 
 ## Lost & found
 anaconda
