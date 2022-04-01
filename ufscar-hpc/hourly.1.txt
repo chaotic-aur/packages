@@ -894,6 +894,12 @@ intel-media-driver-git
 libva-git # (dep intel-media-driver-git
 vmaf-git # (dep ffmpeg-git)
 
+# Issue 937
+river-git
+
+# Issue 987
+transset-df
+
 # Issue 1336
 maui-shell-git
 mauikit-git
