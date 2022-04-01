@@ -894,6 +894,10 @@ intel-media-driver-git
 libva-git # (dep intel-media-driver-git
 vmaf-git # (dep ffmpeg-git)
 
+# Issue 1336
+maui-shell-git
+mauikit-git
+
 # Issue 1339
 dee # dep libunity
 icu69-bin # dep libunity
