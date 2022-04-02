@@ -18,6 +18,7 @@ grub-theme-garuda-custom:https://gitlab.com/garuda-linux/packages/stable-pkgbuil
 grub-theme-garuda:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/grub-theme-garuda.git
 timeshift-support:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/timeshift-support.git
 snapper-support:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/snapper-support.git
+snapper-tools-git
 plymouth-theme-dr460nized:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/plymouth-theme-dr460nized.git
 plymouth-theme-garuda-purple:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/plymouth-theme-garuda-purple.git
 plymouth-theme-garuda:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/plymouth-theme-garuda.git
