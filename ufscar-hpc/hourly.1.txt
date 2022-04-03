@@ -574,9 +574,6 @@ ytfzf
 # Issue 449
 gdm-prime
 
-# Issue 451
-kotatogram-desktop
-
 # Issue 452
 ibus-mozc-ut
 mozc-ut-common
@@ -928,6 +925,9 @@ ttf-malayalam-font-rachana
 ttf-malayalam-font-raghumalayalamsans
 ttf-malayalam-font-suruma
 ttf-malayalam-fonts-meta
+
+# Issue 1345
+kotatogram-desktop-beta-dynamic-bin
 
 ## Lost & found
 anaconda
