@@ -176,6 +176,8 @@ spicetify-cli
 # Issue 1334
 steam-boilr-gui
 
+# Issue 1350
+hardinfo-git
 
 ## Garuda git stuff
 alpm_octopi_utils-git
