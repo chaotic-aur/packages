@@ -182,6 +182,9 @@ hardinfo-git
 # Issue 1351
 realvnc-vnc-server
 
+# Issue 1352
+adw-gtk3-git
+
 ## Garuda git stuff
 alpm_octopi_utils-git
 garuda-dr460nized-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-dr460nized.git
