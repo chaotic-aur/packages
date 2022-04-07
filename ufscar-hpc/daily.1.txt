@@ -105,3 +105,6 @@ clasp-cl-git
 
 # Issue 1247
 pyqt4:https://aur.archlinux.org/pyqt4.git
+
+# Issue 1347
+texlive-full
