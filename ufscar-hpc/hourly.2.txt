@@ -1633,9 +1633,6 @@ libajantv2
 # Issue 1291
 retroshare
 
-# Issue 1309
-amdgpu-pro-installer-cfe:https://aur.archlinux.org/amdgpu-pro-installer-cfe.git
-
 # Issue 1312
 guilded
 
