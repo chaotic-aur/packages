@@ -131,7 +131,12 @@ zstd-git
 
 
 ## SGS
+gimp-plugin-normalmap
+gnome-icon-theme
+gnome-icon-theme-symbolic # (dep gnome-icon-theme)
+lockdown-ms
 pacseek
+qpdfview
 
 
 ## Chaotic
