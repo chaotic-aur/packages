@@ -199,6 +199,11 @@ snowflake-pt-client-git
 # Issue 1356
 ffsend-bin
 
+# Issue 1358
+nx:https://aur.archlinux.org/nx.git # (dep x2goclient x2goserver)
+x2goclient
+x2goserver
+
 ## Garuda git stuff
 alpm_octopi_utils-git
 garuda-dr460nized-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-dr460nized.git
