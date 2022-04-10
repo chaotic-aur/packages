@@ -929,6 +929,9 @@ ttf-malayalam-fonts-meta
 # Issue 1345
 kotatogram-desktop-beta-dynamic-bin
 
+# Issue 1359
+deltachat-desktop-git
+
 ## Lost & found
 anaconda
 fluent-reader
