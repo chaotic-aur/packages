@@ -550,6 +550,7 @@ pikaur-git
 
 # Issue 637
 firefox-kde-opensuse-rpm
+kmozillahelper
 mozilla-common
 
 # Issue 639
