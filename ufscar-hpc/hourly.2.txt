@@ -934,9 +934,6 @@ matrix-registration
 python-flask-limiter # (dep matrix-registration)
 python-limits # (dep matrix-registration)
 
-# Issue 816
-firefox-appmenu-bin
-
 # Issue 817
 airshipper
 
