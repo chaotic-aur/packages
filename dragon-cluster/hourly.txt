@@ -151,6 +151,7 @@ paho-mqtt-c # (dep powerpanel)
 powerpanel
 qrcp-git
 snkrx-drmfree-git
+soundcloud-dl-git
 speedtest++
 
 
