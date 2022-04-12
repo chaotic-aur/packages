@@ -932,6 +932,9 @@ kotatogram-desktop-beta-dynamic-bin
 # Issue 1359
 deltachat-desktop-git
 
+# Issue 1362
+libplacebo-git
+
 ## Lost & found
 anaconda
 fluent-reader
