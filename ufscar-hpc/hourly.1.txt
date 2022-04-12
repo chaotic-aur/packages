@@ -938,6 +938,9 @@ libplacebo-git
 # Issue 1365
 notparadoxlauncher-bin
 
+# Issue 1366
+switcheroo-control
+
 ## Lost & found
 anaconda
 fluent-reader
