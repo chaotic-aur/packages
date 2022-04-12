@@ -142,6 +142,7 @@ qpdfview
 ## Technetium1
 acidrip
 betterdiscordctl-git
+croc-git
 das-keyboard-q
 easytether-bin
 jellyfin-media-player-git
