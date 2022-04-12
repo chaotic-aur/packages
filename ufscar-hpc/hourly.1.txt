@@ -935,6 +935,9 @@ deltachat-desktop-git
 # Issue 1362
 libplacebo-git
 
+# Issue 1365
+notparadoxlauncher-bin
+
 ## Lost & found
 anaconda
 fluent-reader
