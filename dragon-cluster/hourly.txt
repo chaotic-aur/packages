@@ -148,6 +148,7 @@ jellyfin-media-player-git
 pacvis-git
 paho-mqtt-c # (dep powerpanel)
 powerpanel
+qrcp-git
 snkrx-drmfree-git
 speedtest++
 
