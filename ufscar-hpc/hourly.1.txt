@@ -948,6 +948,9 @@ sendanywhere
 # Issue 1370
 akvcam-dkms
 
+# Issue 1371
+iriunwebcam-bin
+
 ## Lost & found
 anaconda
 fluent-reader
