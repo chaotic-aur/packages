@@ -945,6 +945,9 @@ switcheroo-control
 electron8-bin # (dep sendanywhere)
 sendanywhere
 
+# Issue 1370
+akvcam-dkms
+
 ## Lost & found
 anaconda
 fluent-reader
