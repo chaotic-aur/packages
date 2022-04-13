@@ -229,6 +229,10 @@ asusctl-git
 # Issue 1364
 gnome-console
 
+# Issue 1372
+duplicacy
+
+
 ## Garuda git stuff
 alpm_octopi_utils-git
 garuda-dr460nized-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-dr460nized.git
