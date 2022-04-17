@@ -122,6 +122,7 @@ waydroid-image
 waydroid-image-gapps
 whoogle-git
 wlroots-eglstreams-git
+woeusb-ng
 xorg-server-git
 zellij-git
 zenmonitor-git
