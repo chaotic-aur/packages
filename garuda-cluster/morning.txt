@@ -13,6 +13,7 @@ garuda-system-maintenance:https://gitlab.com/garuda-linux/applications/garuda-sy
 garuda-wallpapers-2021:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/garuda-wallpapers-2021.git
 garuda-wallpapers-extra:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/garuda-wallpapers-extra.git
 garuda-wallpapers:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/garuda-wallpapers.git
+garuda-backgrounds:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/garuda-backgrounds.git
 grub-garuda:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/grub-garuda.git
 grub-theme-garuda-custom:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/grub-theme-garuda-custom.git
 grub-theme-garuda:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/grub-theme-garuda.git
