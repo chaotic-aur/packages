@@ -233,6 +233,18 @@ gnome-console
 # Issue 1372
 duplicacy
 
+# Issue 1380
+cockroachdb-bin
+
+# Issue 1381
+yuzu-early-access
+
+# Issue 1384
+heimdall-grimler-git
+
+# Issue 1386
+whatsapp-for-linux
+
 
 ## Garuda git stuff
 alpm_octopi_utils-git
