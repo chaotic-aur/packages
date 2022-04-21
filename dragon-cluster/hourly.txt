@@ -233,6 +233,9 @@ gnome-console
 # Issue 1372
 duplicacy
 
+# Issue 1379
+android-ndk
+
 # Issue 1380
 cockroachdb-bin
 
