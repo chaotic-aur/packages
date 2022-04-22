@@ -248,6 +248,9 @@ heimdall-grimler-git
 # Issue 1386
 whatsapp-for-linux
 
+# Issue 1393
+libxcvt-git
+
 
 ## Garuda git stuff
 alpm_octopi_utils-git
