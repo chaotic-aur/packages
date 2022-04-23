@@ -952,6 +952,9 @@ akvcam-dkms
 # Issue 1371
 iriunwebcam-bin
 
+# Issue 1382
+webstorm
+
 # Issue 1387
 qmplay2-git
 
