@@ -248,6 +248,9 @@ heimdall-grimler-git
 # Issue 1386
 whatsapp-for-linux
 
+# Issue 1390
+swayr
+
 # Issue 1393
 libxcvt-git
 
