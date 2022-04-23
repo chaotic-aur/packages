@@ -952,6 +952,9 @@ akvcam-dkms
 # Issue 1371
 iriunwebcam-bin
 
+# Issue 1387
+qmplay2-git
+
 ## Lost & found
 anaconda
 fluent-reader
