@@ -223,6 +223,7 @@ anbox-image-gapps-magisk # (dep anbox-git)
 antimicrox
 cemu
 citra-canary-git
+citra-qt-git
 conan # (dep yuzu-mainline-git)
 crossover
 decaf-emu-git
