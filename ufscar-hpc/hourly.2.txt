@@ -1257,7 +1257,7 @@ storcli
 
 # Issue 1001
 adcli # (dep realmd)
-freeipa
+freeipa:https://aur.archlinux.org/freeipa.git
 freeipa-client # (-client-common,common,ipaclient,ipalib)
 realmd
 oddjob
