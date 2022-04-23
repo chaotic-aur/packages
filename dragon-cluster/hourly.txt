@@ -46,6 +46,7 @@ git-git
 glib2-static # (dep qemu-user-static)
 gstreamer-git
 guiscrcpy-git
+python-coloredlogs # (dep guiscrcpy-git)
 imagemagick-git
 inxi-git
 ipman
@@ -56,7 +57,6 @@ konsole-git:https://github.com/chaotic-aur/pkgbuild-konsole-git.git
 kotatogram-dev-git
 kvantum-qt5-git
 kwin-bismuth
-kwin-lowlatency
 libart-lgpl # (dep gimp-git)
 libgbinder
 libglibutil
@@ -110,6 +110,9 @@ snapper-tools-git
 spotify-adblock-git
 starship-git
 sudo-git
+sweet-folders-icons-git # (dep sweet-theme-full-git)
+sweet-kde-theme-git # (dep sweet-theme-full-git)
+sweet-theme-full-git
 sweet-theme-git
 sysbox-ce
 ufw-git
@@ -159,7 +162,7 @@ speedtest++
 ## Chaotic
 # Issue 759
 tenacity-git
-wxgtk3-dev-light # (dep tenacity-git) (also adds wxbase-dev-light, wxcommon-dev-light, wxgtk2-dev-light)
+wxwidgets-dev-light # (dep tenacity-git)
 
 # Issue 928
 rustdesk-git

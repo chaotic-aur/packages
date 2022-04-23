@@ -70,8 +70,9 @@ ruby-coderay # (dep logstalgia)
 ruby-method_source # (dep logstalgia)
 ruby-pry # (dep logstalgia)
 sdl2_compat12-git
+shntool # (dep split2flac)
 spectral-matrix-git
-split2flac-git
+split2flac
 startgame:https://github.com/chaotic-aur/startgame.git
 unflac
 wev
@@ -114,6 +115,7 @@ languageclient-neovim
 lua-format
 manim
 moarvm
+munt # (dep dosbox-staging)
 noti
 nqp
 nteract-bin
@@ -241,6 +243,7 @@ properties-cpp # (dep anbox-git)
 python-node-semver # (dep conan)
 python-patch-ng # (dep conan)
 python-pluginbase # (dep conan)
+python-pysdl2 # (dep m64py)
 sameboy
 sdbus-cpp # (dep anbox-git)
 xemu-git
@@ -327,6 +330,7 @@ libavresample
 # Users requests
 lib32-wxgtk3 # Issue 309
 python38 # Issue 320 (dep)
+python39 # Issue 320 (dep)
 bombsquad # Issue 320
 ttf-freebanglafont # Issue 321 (dep)
 openbangla-keyboard # Issue 321
@@ -375,6 +379,8 @@ android-platform
 bash-complete-alias
 
 # Issue 541
+lua-resty-core # (dep nginx-mainline-mod-lua)
+lua-resty-lrucache # (dep lua-resty-core)
 nginx-mainline-mod-auth_pam
 nginx-mainline-mod-brotli
 nginx-mainline-mod-dav-ext
@@ -722,6 +728,7 @@ solanum
 
 # Issue 735
 gtg
+python-caldav # (dep gtg)
 python-liblarch # (dep gtg)
 
 # Issue 736
@@ -1118,6 +1125,7 @@ llvm-amdgpu # (dep rocm-opencl-runtime)
 rocclr # (dep rocm-opencl-runtime)
 rocm-cmake # (dep rocm-opencl-runtime)
 rocm-device-libs # (dep rocm-opencl-runtime)
+rocm-llvm # (dep comgr)
 rocm-opencl-runtime
 
 # Issue 932
@@ -1569,6 +1577,7 @@ dynamic-wallpaper-editor
 
 # Issue 1200
 extension-manager-git
+text-engine # (dep extension-manager-git)
 
 # Issue 1204
 sirula-git

@@ -137,6 +137,7 @@ xviewer
 i3lock-color
 obkey
 obmenu-generator
+python-coloredlogs # (dep obmenu-generator)
 qt5-styleplugins
 
 # Sway
@@ -149,6 +150,7 @@ nwg-launchers
 nwg-menu
 nwg-panel
 nwg-wrapper
+python-dasbus # (dep nwg-panel)
 wob
 wlsunset
 

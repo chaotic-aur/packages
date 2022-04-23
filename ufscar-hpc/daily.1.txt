@@ -99,6 +99,7 @@ telegram-tdlib-git
 
 # Issue 1197
 clasp-cl-git
+seqan # (dep clasp-cl-git)
 
 # Issue 1243
 #chromium-wayland-vaapi # (not building right as of 220228)

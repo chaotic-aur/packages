@@ -116,6 +116,7 @@ wayfire-git
 waynergy-git
 waypipe-git
 yaup-git
+zimg-git # (dep vapoursynth-git)
 zfs-dkms
 zfs-utils
 
@@ -594,6 +595,7 @@ xembed-sni-proxy-git
 
 # Issue 459
 emote
+python-manimpango # (dep emote)
 
 # Issue 460
 cryptomator
@@ -606,6 +608,7 @@ ozone # (dep cryptomator)
 protonmail-bridge-bin
 
 # Issue 285
+nghttp2 # (dep wget2)
 wget2
 
 # Issue 461
@@ -708,8 +711,10 @@ libmodulemd
 mkosi-git
 python-urlgrabber
 python2-iniparse
+python2-pip
 python2-pyliblzma
 python2-pysqlite
+python2-urlgrabber
 yum
 yum-metadata-parser
 zchunk
@@ -743,6 +748,7 @@ archlinux-java-run
 bluej
 
 # Issue 502
+libvterm-0.1 # (dep neovim-git)
 neovim-git
 
 # Issue 503
@@ -840,7 +846,7 @@ gromit-mpx
 kazam
 macfanctld
 python-polib # (dep xfce4-dockbarx-plugin)
-wordnet # (dep artha)
+wordnet:https://aur.archlinux.org/wordnet.git # (dep artha)
 xfce4-dockbarx-plugin
 
 # Issue 605
