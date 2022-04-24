@@ -148,6 +148,7 @@ acidrip
 betterdiscordctl-git
 croc-git
 das-keyboard-q
+duc-git
 easytether-bin
 jellyfin-media-player-git
 pacvis-git
