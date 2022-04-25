@@ -258,6 +258,9 @@ swayr
 # Issue 1393
 libxcvt-git
 
+# Issue 1397
+bdf-unifont # (dep grub-improved-luks2-git)
+grub-improved-luks2-git
 
 ## Garuda git stuff
 alpm_octopi_utils-git
