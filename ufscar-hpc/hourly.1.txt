@@ -964,6 +964,9 @@ webstorm
 # Issue 1387
 qmplay2-git
 
+# Issue 1395
+subnetcalc
+
 ## Lost & found
 anaconda
 fluent-reader
