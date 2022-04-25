@@ -153,6 +153,7 @@ nwg-wrapper
 python-dasbus # (dep nwg-panel)
 wob
 wlsunset
+swayr
 
 # Wayfire
 greetd
