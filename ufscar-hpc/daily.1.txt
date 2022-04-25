@@ -109,3 +109,6 @@ pyqt4:https://aur.archlinux.org/pyqt4.git
 
 # Issue 1347
 texlive-full
+
+# Issue 1398
+lyx
