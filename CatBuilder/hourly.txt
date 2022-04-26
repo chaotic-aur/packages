@@ -7,7 +7,6 @@ hotspot
 logseq-desktop
 noise-suppression-for-voice-git
 nvlax-git
-obsidian
 pipewire-media-session-git
 signal-desktop-beta
 rustc-demangle
