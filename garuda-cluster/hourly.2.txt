@@ -194,6 +194,7 @@ downgrade
 evdev-right-click-emulation
 find-the-command-git
 firedragon-extension-plasma-integration
+firedragon-extension-xdm-browser-monitor
 firefox-extension-bitwarden
 firefox-extension-flagfox
 firefox-extension-localcdn
