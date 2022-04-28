@@ -967,6 +967,9 @@ qmplay2-git
 # Issue 1395
 subnetcalc
 
+# Issue 1406
+keybase-bin
+
 ## Lost & found
 anaconda
 fluent-reader
