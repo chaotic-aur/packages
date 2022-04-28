@@ -967,6 +967,9 @@ qmplay2-git
 # Issue 1395
 subnetcalc
 
+# Issue 1402
+libva-intel-driver-g45-h264
+
 # Issue 1403
 libcmrt # (dep intel-hybrid-codec-driver)
 intel-hybrid-codec-driver
