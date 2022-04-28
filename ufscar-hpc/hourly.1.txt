@@ -967,6 +967,10 @@ qmplay2-git
 # Issue 1395
 subnetcalc
 
+# Issue 1403
+libcmrt # (dep intel-hybrid-codec-driver)
+intel-hybrid-codec-driver
+
 # Issue 1406
 keybase-bin
 
