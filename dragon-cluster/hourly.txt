@@ -69,6 +69,7 @@ mkinitcpio-git
 nerd-fonts-fira-code
 networkmanager-iwd
 nextcloud-client-git
+notepadnext
 noto-color-emoji-fontconfig
 noto-fonts-emoji-git
 nspawn-git
