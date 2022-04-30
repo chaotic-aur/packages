@@ -44,6 +44,7 @@ gegl-git # (dep gimp-git)
 gimp-git
 git-git
 glib2-static # (dep qemu-user-static)
+gnome-boxes-git
 gstreamer-git
 guiscrcpy-git
 python-coloredlogs # (dep guiscrcpy-git)
@@ -262,6 +263,10 @@ libxcvt-git
 # Issue 1397
 bdf-unifont # (dep grub-improved-luks2-git)
 grub-improved-luks2-git
+
+# Issue 1399
+jdk:https://aur.archlinux.org/jdk.git
+
 
 ## Garuda git stuff
 alpm_octopi_utils-git
