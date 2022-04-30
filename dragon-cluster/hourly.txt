@@ -267,6 +267,9 @@ grub-improved-luks2-git
 # Issue 1399
 jdk:https://aur.archlinux.org/jdk.git
 
+# Issue 1407
+jellyfin-git # (also builts jellyfin-{server,web}-git
+
 
 ## Garuda git stuff
 alpm_octopi_utils-git
