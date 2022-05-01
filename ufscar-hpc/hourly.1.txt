@@ -270,7 +270,6 @@ lib32-libwmf
 lib32-numactl
 lib32-openexr
 lib32-zbar
-libgccjit
 libuser # (dep system-config-samba)
 ncnn-git # (dep waifu2x-ncnn-vulkan-git)
 nodejs-nativefier
@@ -848,12 +847,6 @@ macfanctld
 python-polib # (dep xfce4-dockbarx-plugin)
 wordnet:https://aur.archlinux.org/wordnet.git # (dep artha)
 xfce4-dockbarx-plugin
-
-# Issue 605
-python-llvmlite
-
-# Issue 606
-gtksourceview5
 
 # Issue 607
 albert

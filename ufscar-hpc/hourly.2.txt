@@ -503,7 +503,6 @@ python-constraint # (dep python-qiskit)
 python-dlx # (dep python-qiskit)
 python-docplex # (dep python-qiskit)
 python-fastdtw # (dep python-qiskit)
-python-fastjsonschema # (dep python-qiskit)
 python-multitasking  # (dep python-qiskit)
 python-qiskit
 python-qiskit-aer # (dep python-qiskit)
@@ -1223,10 +1222,6 @@ qdirstat
 
 # Issue 986
 blesh-git
-
-# Issue 988
-libfixposix # (dep nyxt)
-nyxt
 
 # Issue 989
 fuse-emulator
