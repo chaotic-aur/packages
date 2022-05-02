@@ -268,7 +268,10 @@ grub-improved-luks2-git
 jdk:https://aur.archlinux.org/jdk.git
 
 # Issue 1407
-jellyfin-git # (also builts jellyfin-{server,web}-git
+jellyfin-git # (also builds jellyfin-{server,web}-git
+
+# Issue 1408
+adguardhome
 
 
 ## Garuda git stuff
