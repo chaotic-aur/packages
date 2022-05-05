@@ -273,6 +273,10 @@ jellyfin-git # (also builds jellyfin-{server,web}-git
 # Issue 1408
 adguardhome
 
+# Issue 1409
+amberol
+amberol-git
+
 
 ## Garuda git stuff
 alpm_octopi_utils-git
