@@ -160,6 +160,7 @@ qrcp-git
 snkrx-drmfree-git
 soundcloud-dl-git
 speedtest++
+sshs
 
 
 ## Chaotic
