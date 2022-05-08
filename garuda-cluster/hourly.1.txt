@@ -3,7 +3,7 @@ bitwig-studio
 brave-bin
 dissenter-browser-bin
 exe-thumbnailer
-firefox-esr-bin
+firefox-esr
 firefox-extension-xdm-browser-monitor
 freedownloadmanager
 freeoffice
