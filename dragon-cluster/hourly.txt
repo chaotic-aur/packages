@@ -281,6 +281,9 @@ amberol-git
 # Issue 1415
 portainer-bin
 
+# Issue 1416
+system-monitoring-center
+
 # Issue 1420
 mypy-git
 
