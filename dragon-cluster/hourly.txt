@@ -284,6 +284,9 @@ portainer-bin
 # Issue 1416
 system-monitoring-center
 
+# Issue 1418
+appimagepool-appimage
+
 # Issue 1419
 app-outlet-bin
 
