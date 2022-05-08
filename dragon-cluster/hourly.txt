@@ -278,6 +278,9 @@ adguardhome
 amberol
 amberol-git
 
+# Issue 1420
+mypy-git
+
 
 ## Garuda git stuff
 alpm_octopi_utils-git
