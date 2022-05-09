@@ -298,6 +298,9 @@ app-outlet-bin
 # Issue 1420
 mypy-git
 
+# Issue 1421
+wxformbuilder
+
 
 ## Garuda git stuff
 alpm_octopi_utils-git
