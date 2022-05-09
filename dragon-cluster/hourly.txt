@@ -47,7 +47,7 @@ glib2-static # (dep qemu-user-static)
 gnome-boxes-git
 gstreamer-git
 guiscrcpy-git
-python-coloredlogs # (dep guiscrcpy-git)
+harmonoid-bin
 imagemagick-git
 inxi-git
 ipman
@@ -85,8 +85,10 @@ pamac-aur-git
 paru-git
 pcre-static # (dep qemu-user-static)
 plasma5-wallpapers-wallpaper-engine-git
+podman-git
 protobuf-go # (dep sysbox-ce)
 python-codegen
+python-coloredlogs # (dep guiscrcpy-git)
 python-gbinder
 python-magic-ahupp # (dep guiscrcpy-git)
 python-nototools # (dep noto-fonts-emoji-git)
