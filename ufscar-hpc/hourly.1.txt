@@ -969,6 +969,9 @@ intel-hybrid-codec-driver
 # Issue 1406
 keybase-bin
 
+# Issue 1423
+limine
+
 ## Lost & found
 anaconda
 fluent-reader
