@@ -301,6 +301,9 @@ mypy-git
 # Issue 1421
 wxformbuilder
 
+# Issue 1424
+nerd-fonts-jetbrains-mono
+
 
 ## Garuda git stuff
 alpm_octopi_utils-git
