@@ -304,6 +304,10 @@ wxformbuilder
 # Issue 1424
 nerd-fonts-jetbrains-mono
 
+# Issue 1428
+nvidia-open-beta
+nvidia-open-git
+
 
 ## Garuda git stuff
 alpm_octopi_utils-git
