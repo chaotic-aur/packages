@@ -972,6 +972,10 @@ keybase-bin
 # Issue 1423
 limine
 
+# Issue 1435
+apple-fonts
+
+
 ## Lost & found
 anaconda
 fluent-reader
