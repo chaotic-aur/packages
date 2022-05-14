@@ -308,6 +308,9 @@ nerd-fonts-jetbrains-mono
 nvidia-open-beta
 nvidia-open-git
 
+# Issue 1432
+elementary-planner
+
 
 ## Garuda git stuff
 alpm_octopi_utils-git
