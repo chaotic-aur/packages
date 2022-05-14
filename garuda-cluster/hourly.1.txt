@@ -175,6 +175,7 @@ python2-xlib # (dep acestream-engine)
 
 
 ## Misc
+bindfs
 brave-nightly-bin
 btrfs-assistant-git
 btrfs-assistant
