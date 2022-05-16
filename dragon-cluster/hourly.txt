@@ -315,6 +315,9 @@ elementary-planner
 # Issue 1438
 deluge-git
 
+# Issue 1425
+responsively
+
 # Issue 1427
 colorway
 
