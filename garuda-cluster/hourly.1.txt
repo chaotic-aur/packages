@@ -13,7 +13,7 @@ gksu # (dep wacom-utility)
 google-chrome
 jdownloader2
 jitsi-meet-desktop
-#joplin seems like an already applied patch fucks this entire routine
+joplin
 libgksu # (dep wacom-utility)
 mendeleydesktop-bundled
 ms-office-online
