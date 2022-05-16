@@ -315,6 +315,10 @@ elementary-planner
 # Issue 1438
 deluge-git
 
+# Issue 1427
+colorway
+
+
 ## Garuda git stuff
 alpm_octopi_utils-git
 garuda-dr460nized-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-dr460nized.git
