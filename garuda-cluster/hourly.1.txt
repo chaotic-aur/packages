@@ -1,4 +1,4 @@
-# Setup assistant
+# Setup assistan
 bitwig-studio
 brave-bin
 dissenter-browser-bin
@@ -21,6 +21,8 @@ onlyoffice-bin
 openh264
 pygtk # (dep wacom-utility)
 python-pypresence # (dep rare)
+python2-cairo # (dep pygtk)
+python2-numpy # (dep pygtk)
 rare
 spotify
 ttf-wps-fonts
