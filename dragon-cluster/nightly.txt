@@ -156,6 +156,7 @@ labplot-git
 layer-shell-qt-git
 libgravatar-git
 libkdepim-git
+libkexiv2-git
 libkgapi-git
 libkleo-git
 libkomparediff2-git:https://github.com/chaotic-aur/pkgbuild-libkomparediff2-git.git
