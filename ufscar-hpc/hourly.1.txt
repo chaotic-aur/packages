@@ -975,6 +975,10 @@ limine
 # Issue 1435
 apple-fonts
 
+# Issue 1437
+joystickwake
+xone-dkms
+
 
 ## Lost & found
 anaconda
