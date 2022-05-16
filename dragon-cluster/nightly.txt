@@ -87,6 +87,7 @@ kidletime-git
 kimageannotator-git
 #kimageannotator-git:https://github.com/chaotic-aur/pkgbuild-kimageannotator-git.git
 kimageformats-git:https://github.com/chaotic-aur/pkgbuild-kimageformats-git.git
+kimap-git
 kimap2-git
 kinfocenter-git
 kinit-git
