@@ -312,6 +312,8 @@ nvidia-open-git
 # Issue 1432
 elementary-planner
 
+# Issue 1438
+deluge-git
 
 ## Garuda git stuff
 alpm_octopi_utils-git
