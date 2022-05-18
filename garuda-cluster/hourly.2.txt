@@ -243,6 +243,7 @@ nvidia-470xx-settings
 nvidia-470xx-utils
 opencl-nvidia-390xx
 opencl-nvidia-470xx
+nvidia-zen:https://gitlab.com/garuda-linux/packages/pkgbuilds/nvidia-zen
 optimus-manager
 optimus-manager-git
 optimus-manager-qt
