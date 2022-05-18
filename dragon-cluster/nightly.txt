@@ -22,6 +22,7 @@ drkonqi-git:https://github.com/chaotic-aur/pkgbuild-drkonqi-git.git
 elf-dissector-git
 eventviews-git
 extra-cmake-modules-git:https://github.com/chaotic-aur/pkgbuild-extra-cmake-modules-git.git
+filelight-git
 frameworkintegration-git
 grantlee-git
 grantleetheme-git
@@ -30,12 +31,13 @@ kaccounts-integration-git:https://github.com/chaotic-aur/pkgbuild-kaccounts-inte
 kactivities-git
 kactivities-stats-git
 kactivitymanagerd-git
-kalarmcal-git
+kalarm-git
 kalendar-git
 kapidox-git
 karchive-git
 kauth-git
 kbookmarks-git
+kcalc-git
 kcalendarcore-git
 kcalendarcore-git:https://github.com/chaotic-aur/pkgbuild-kcalendarcore-git.git
 kcalutils-git
