@@ -31,13 +31,13 @@ filelight-git
 frameworkintegration-git
 grantlee-git
 grantleetheme-git
-gwenview-git
+gwenview-git:https://github.com/chaotic-aur/pkgbuild-gwenview-git.git
 incidenceeditor-git
 kaccounts-integration-git:https://github.com/chaotic-aur/pkgbuild-kaccounts-integration-git.git
 kactivities-git
 kactivities-stats-git
 kactivitymanagerd-git
-kalarm-git
+kalarm-git:https://github.com/chaotic-aur/pkgbuild-kalarm-git.git
 kalendar-git
 kapidox-git
 karchive-git
@@ -174,7 +174,7 @@ libkdcraw-git
 libkdepim-git
 libkexiv2-git
 libkgapi-git
-libkipi-git
+libkipi-git:https://github.com/chaotic-aur/pkgbuild-libkipi-git.git
 libkleo-git
 libkomparediff2-git:https://github.com/chaotic-aur/pkgbuild-libkomparediff2-git.git
 libkscreen-git
