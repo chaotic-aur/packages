@@ -28,6 +28,7 @@ elf-dissector-git
 eventviews-git
 extra-cmake-modules-git:https://github.com/chaotic-aur/pkgbuild-extra-cmake-modules-git.git
 filelight-git
+ffmpegthumbs-git:https://github.com/chaotic-aur/pkgbuild-ffmpegthumbs-git.git
 frameworkintegration-git
 grantlee-git
 grantleetheme-git
