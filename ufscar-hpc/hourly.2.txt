@@ -57,7 +57,7 @@ msitools
 neovim-drop-in
 neovim-plug
 nm-eduroam-ufscar
-noisetorch
+#noisetorch
 openal-git
 openssh-hpn
 primus-vk-git
