@@ -321,6 +321,9 @@ responsively
 # Issue 1427
 colorway
 
+# Issue 1441
+strawberry-qt5
+
 
 ## Garuda git stuff
 alpm_octopi_utils-git
