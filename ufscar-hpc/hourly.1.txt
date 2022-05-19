@@ -979,6 +979,10 @@ apple-fonts
 joystickwake
 xone-dkms
 
+# Issue 1440
+php-humbug-box-bin # (dep php-cs-fixer)
+php-cs-fixer
+
 
 ## Lost & found
 anaconda
