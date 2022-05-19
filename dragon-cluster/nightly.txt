@@ -22,7 +22,7 @@ calendarsupport-git
 discover-git:https://github.com/chaotic-aur/pkgbuild-discover-git.git
 disman-git
 dolphin-plugins-git
-dragon-git
+dragon-git:https://github.com/chaotic-aur/pkgbuild-dragon-git.git
 drkonqi-git:https://github.com/chaotic-aur/pkgbuild-drkonqi-git.git
 elf-dissector-git
 eventviews-git
