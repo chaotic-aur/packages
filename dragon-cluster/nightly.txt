@@ -25,7 +25,7 @@ disman-git
 dolphin-plugins-git
 dragon-git:https://github.com/chaotic-aur/pkgbuild-dragon-git.git
 drkonqi-git:https://github.com/chaotic-aur/pkgbuild-drkonqi-git.git
-elf-dissector-git
+# elf-dissector-git
 eventviews-git
 extra-cmake-modules-git:https://github.com/chaotic-aur/pkgbuild-extra-cmake-modules-git.git
 filelight-git
