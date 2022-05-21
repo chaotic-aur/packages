@@ -19,6 +19,7 @@ breeze-git:https://github.com/chaotic-aur/pkgbuild-breeze-git.git
 breeze-gtk-git:https://github.com/chaotic-aur/pkgbuild-breeze-gtk-git.git
 breeze-icons-git:https://github.com/chaotic-aur/pkgbuild-breeze-icons-git.git
 calendarsupport-git
+cantor-git
 discover-git:https://github.com/chaotic-aur/pkgbuild-discover-git.git
 disman-git
 dolphin-plugins-git
