@@ -324,6 +324,9 @@ colorway
 # Issue 1441
 strawberry-qt5
 
+# Issue 1439
+ta-lib
+
 
 ## Garuda git stuff
 alpm_octopi_utils-git
