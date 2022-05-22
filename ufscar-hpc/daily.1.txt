@@ -1,9 +1,10 @@
 ## Maintainers
 # Firefox
-firefox-wayland-hg
 nspr-hg
 nss-hg
 wasi-sdk-git
+--
+firefox-wayland-hg
 
 # Pedro
 #darling-git (broken)
