@@ -187,7 +187,7 @@ libqaccessibilityclient-git
 libqalculate-git
 mailcommon-git
 mailimporter-git
-marble-common-git
+marble-git
 mbox-importer-git
 messagelib-git
 milou-git:https://github.com/chaotic-aur/pkgbuild-milou-git.git
