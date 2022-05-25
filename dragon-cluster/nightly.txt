@@ -228,6 +228,7 @@ qca-qt5-git
 qca-qt6-git
 qqc2-desktop-style-git:https://github.com/chaotic-aur/pkgbuild-qqc2-desktop-style-git.git
 qtkeychain-qt5-git:https://github.com/chaotic-aur/pkgbuild-qtkeychain-qt5-git.git
+sddm-git
 sddm-kcm-git:https://github.com/chaotic-aur/pkgbuild-sddm-kcm-git.git
 signon-kwallet-extension-git
 solid-git:https://github.com/chaotic-aur/pkgbuild-solid-git.git

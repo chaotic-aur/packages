@@ -205,7 +205,6 @@ mullvad-vpn-beta
 plasma5-applets-window-appmenu-git
 plasma5-applets-window-buttons-git
 plasma5-applets-window-title-git
-sddm-git
 signal-desktop-beta
 virt-manager-git
 vscodium
