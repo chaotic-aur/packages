@@ -578,9 +578,6 @@ gdm-prime
 ibus-mozc-ut
 mozc-ut-common
 
-# Issue 453
-sddm-config-editor-git
-
 # Isse 454
 woeusb
 woeusb-gui

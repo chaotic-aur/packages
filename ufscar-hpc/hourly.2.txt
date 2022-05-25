@@ -1545,9 +1545,6 @@ pokerth
 # Issue 1167
 desmume-git
 
-# Issue 1168
-sddm-theme-astronaut
-
 # Issue 1172
 gnome-shell-extension-x11gestures
 
