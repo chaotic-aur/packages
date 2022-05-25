@@ -228,10 +228,8 @@ qca-qt5-git
 qca-qt6-git
 qqc2-desktop-style-git:https://github.com/chaotic-aur/pkgbuild-qqc2-desktop-style-git.git
 qtkeychain-qt5-git:https://github.com/chaotic-aur/pkgbuild-qtkeychain-qt5-git.git
-# Issue 453
-sddm-config-editor-git
-# Issue 1168
-sddm-theme-astronaut
+sddm-config-editor-git  # Issue 453
+sddm-theme-astronaut  # Issue 1168
 sddm-git
 sddm-kcm-git:https://github.com/chaotic-aur/pkgbuild-sddm-kcm-git.git
 signon-kwallet-extension-git
