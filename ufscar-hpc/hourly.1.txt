@@ -980,6 +980,9 @@ xone-dkms
 php-humbug-box-bin # (dep php-cs-fixer)
 php-cs-fixer
 
+# Issue 1451
+tomb-git
+
 
 ## Lost & found
 anaconda
