@@ -630,7 +630,7 @@ imhex
 libhandy-git # (dep epiphany-git)
 
 # Issue 468
-#freetube
+freetube
 
 # Issue 469
 adwaita-qt
