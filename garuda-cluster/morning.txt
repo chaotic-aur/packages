@@ -11,6 +11,7 @@ garuda-migrations:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/garu
 garuda-reduce-verbosity:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/garuda-reduce-verbosity.git
 garuda-system-maintenance:https://gitlab.com/garuda-linux/applications/garuda-system-maintenance.git
 garuda-wallpapers-2021:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/garuda-wallpapers-2021.git
+garuda-wallpapers-2022:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/garuda-wallpapers-2022.git
 garuda-wallpapers-extra:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/garuda-wallpapers-extra.git
 garuda-wallpapers:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/garuda-wallpapers.git
 garuda-backgrounds:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/garuda-backgrounds.git
