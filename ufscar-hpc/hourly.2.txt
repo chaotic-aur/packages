@@ -1646,5 +1646,8 @@ atom-editor-beta-bin
 # Issue 1327
 vcpkg
 
+# Issue 1391
+termius
+
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
