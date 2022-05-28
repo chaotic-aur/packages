@@ -1489,6 +1489,9 @@ wine-lol-glibc
 # Issue 1141
 jamesdsp-pulse
 
+# Issue 1143
+biglybt-extreme-mod
+
 # Issue 1144
 adwmod-theme-git
 
