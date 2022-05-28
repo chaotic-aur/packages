@@ -1557,9 +1557,8 @@ prospect-mail-bin
 # Issue 1196
 cl-alexandria-git # (dep stumpwm)
 clx-git # (dep stumpwm)
-#stumpwm
-#stumpwm-contrib-git
-#stumpwm-git
+stumpwm
+stumpwm-contrib-git
 
 # Issue 1199
 dynamic-wallpaper-editor
