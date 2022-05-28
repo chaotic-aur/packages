@@ -145,6 +145,7 @@ nordic-kde-git
 nwg-bar
 nwg-dock
 nwg-drawer
+nwg-icon-picker
 nwg-launchers
 nwg-menu
 nwg-panel
