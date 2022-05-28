@@ -16,6 +16,7 @@ blender-git
 bmap-tools
 bpytop-git
 btop-git
+cargo-make
 cfs-zen-tweaks
 clamav-unofficial-sigs
 cmake-git
@@ -136,6 +137,19 @@ zenmonitor-git
 zenmonitor3-git
 zram-generator-git
 zstd-git
+
+^[[1;2BDownloading: linphone-desktop-git
+Downloading: mediastreamer-git
+Downloading: bcmatroska2-git
+Downloading: bcg729-git
+Downloading: liblinphone-git
+Downloading: lime
+Downloading: belcard
+Downloading: belle-sip
+Downloading: belr
+Downloading: bctoolbox-git
+Downloading: libdecaf
+
 
 
 ## SGS
