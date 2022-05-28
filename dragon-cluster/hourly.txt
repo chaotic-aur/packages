@@ -345,6 +345,9 @@ ta-lib
 # Issue 1441
 strawberry-qt5
 
+# Issue 1452
+vlang-git
+
 
 ## Garuda git stuff
 alpm_octopi_utils-git
