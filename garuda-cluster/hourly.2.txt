@@ -129,7 +129,6 @@ mate-tweak
 
 # Qtile
 betterlockscreen
-polybar
 xviewer
 
 # Recbox

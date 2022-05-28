@@ -123,7 +123,6 @@ isomaster
 jade-application-kit
 lanshare
 mediawriter
-megasync-bin
 mmsd-git
 modprobed-db
 multibootusb
@@ -188,7 +187,6 @@ qt-installer-framework
 
 
 ## SGS
-github-desktop-bin
 libcgroup
 plasma5-applets-audio-device-switcher
 plasma5-applets-plasma-pstate

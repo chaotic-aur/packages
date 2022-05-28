@@ -44,7 +44,6 @@ icecat
 
 # Issue 640
 rpcs3-git
-wolfssl # (dep rpcs3-git)
 
 # Issue 698
 yuzu-git:https://gitlab.com/tallero/yuzu-git-aur.git

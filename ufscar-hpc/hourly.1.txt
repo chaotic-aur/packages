@@ -634,7 +634,6 @@ libhandy-git # (dep epiphany-git)
 freetube
 
 # Issue 469
-adwaita-qt
 lbry-app-bin
 gajim-git
 python-nbxmpp-git
@@ -764,9 +763,6 @@ godot-git
 
 # Issue 558
 ryujinx-git
-
-# Issue 559
-gdu-bin
 
 # Issue 561
 unrealtournament4
@@ -963,9 +959,6 @@ libva-intel-driver-g45-h264
 # Issue 1403
 libcmrt # (dep intel-hybrid-codec-driver)
 intel-hybrid-codec-driver
-
-# Issue 1406
-keybase-bin
 
 # Issue 1423
 limine

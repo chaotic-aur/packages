@@ -160,7 +160,6 @@ zef
 zlib-ng
 
 # SolarAquarion
-ayatana-ido
 ayatana-indicator-application
 ayatana-indicator-bluetooth
 ayatana-indicator-keyboard
@@ -178,8 +177,6 @@ granite-git
 gtk-theme-elementary-git
 kitty-git
 
-libayatana-appindicator
-libayatana-indicator
 libclc-git # (dep mesa-git)
 libselinux # (dep glib2-selinux)
 libsepol # (dep glib2-selinux)
@@ -287,7 +284,6 @@ rpcs3
 sc-controller
 stacer
 steamtinkerlaunch
-streamlink-twitch-gui-bin
 stremio
 vkbasalt
 vr-video-player-git
@@ -576,9 +572,6 @@ tfsec
 # Issue 645
 minecraft-technic-launcher
 
-# Issue 647
-qgnomeplatform
-
 # Issue 649
 gitify
 
@@ -825,7 +818,6 @@ jgraphx-jre8 # (dep scilab)
 jlatexmath-fop # (dep scilab)
 jogl # (dep scilab)
 jrosetta # (dep scilab)
-libmatio # (dep scilab)
 saxon-he # (dep scilab)
 #scilab
 xalan-java # (dep scilab)
@@ -1439,9 +1431,6 @@ papirus-folders-gui
 # Issue 1101
 sayonara-player-git
 
-# Issue 1102
-svgcleaner-bin
-
 # Issue 1104
 pcloudcc-git
 
@@ -1564,7 +1553,6 @@ prospect-mail-bin
 
 # Issue 1196
 cl-alexandria-git # (dep stumpwm)
-cl-ppcre # (dep stumpwm)
 clx-git # (dep stumpwm)
 #stumpwm
 #stumpwm-contrib-git
