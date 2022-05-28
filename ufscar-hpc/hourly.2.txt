@@ -62,7 +62,6 @@ openal-git
 openssh-hpn
 primus-vk-git
 proton-ge-custom
-proton-ge-custom-bin
 python-telegram-bot # (dep python-telegram-send)
 python-telegram-send
 ripcord-arch-libs
