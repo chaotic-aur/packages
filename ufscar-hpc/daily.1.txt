@@ -111,3 +111,6 @@ texlive-full
 
 # Issue 1398
 lyx
+
+# Issue 1404
+swiftshader-git
