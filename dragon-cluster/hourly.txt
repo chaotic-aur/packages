@@ -138,17 +138,18 @@ zenmonitor3-git
 zram-generator-git
 zstd-git
 
-^[[1;2BDownloading: linphone-desktop-git
-Downloading: mediastreamer-git
-Downloading: bcmatroska2-git
-Downloading: bcg729-git
-Downloading: liblinphone-git
-Downloading: lime
-Downloading: belcard
-Downloading: belle-sip
-Downloading: belr
-Downloading: bctoolbox-git
-Downloading: libdecaf
+# Linphone
+bcg729-git
+bcmatroska2-git
+bctoolbox-git
+belcard
+belle-sip
+belr
+libdecaf
+liblinphone-git
+lime
+linphone-desktop-git
+mediastreamer-git
 
 
 
