@@ -1017,6 +1017,7 @@ targetcli-fb
 tblock
 
 # Issue 879
+cef-minimal # (dep obs-hevc-vaapi-git)
 obs-hevc-vaapi-git
 vlc-luajit # (dep obs-hevc-vaapi-git)
 
