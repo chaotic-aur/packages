@@ -228,6 +228,7 @@ qca-qt5-git
 qca-qt6-git
 qqc2-desktop-style-git:https://github.com/chaotic-aur/pkgbuild-qqc2-desktop-style-git.git
 qtkeychain-qt5-git:https://github.com/chaotic-aur/pkgbuild-qtkeychain-qt5-git.git
+qutebrowser-qt6-git:https://github.com/chaotic-aur/pkgbuild-qutebrowser-qt6-git.git
 sddm-config-editor-git  # Issue 453
 sddm-theme-astronaut  # Issue 1168
 sddm-git
