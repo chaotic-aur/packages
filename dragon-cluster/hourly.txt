@@ -120,6 +120,7 @@ sweet-kde-theme-git # (dep sweet-theme-full-git)
 sweet-theme-full-git
 sweet-theme-git
 sysbox-ce
+traitor-git
 ufw-git
 visual-studio-code-insiders-bin
 wavemon-git
