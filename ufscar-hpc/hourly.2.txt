@@ -1649,5 +1649,9 @@ vcpkg
 # Issue 1391
 termius
 
+# Issue 1456
+python-chess-git (dep stockfish-git)
+stockfish-git
+
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
