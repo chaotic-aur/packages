@@ -986,6 +986,9 @@ python-rst.linker # (dep git-cola)
 python-jaraco.packaging # (dep git-cola)
 git-cola
 
+# Issue 1455
+ngrok
+
 
 ## Lost & found
 anaconda
