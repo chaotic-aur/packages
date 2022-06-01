@@ -1650,7 +1650,9 @@ vcpkg
 termius
 
 # Issue 1456
-python-chess-git (dep stockfish-git)
+python-chess-git # (dep stockfish-git)
+mongodb-bin # (dep polyglot)
+polyglot # (dep stockfish-git)
 stockfish-git
 
 # FroggingFamily
