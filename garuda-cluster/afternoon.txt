@@ -1,6 +1,3 @@
-## Garuda
-linux-cacule
-
 ## Chaotic 
 # Issue 655
 linux-xanmod-lts
