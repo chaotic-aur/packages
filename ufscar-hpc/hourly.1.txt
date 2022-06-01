@@ -383,6 +383,7 @@ gst-rtsp-server
 oh-my-zsh-git
 
 # Issue 367
+python-pyasn #(dep opensnitch opensnitch-git)
 opensnitch
 
 # Issue 366
