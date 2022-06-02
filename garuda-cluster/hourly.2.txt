@@ -1,20 +1,19 @@
 ## Garuda editions need the following..
-# BSPWM
-lightdm-settings
-picom-ibhagwan-git
-
 # Cinnamon
-gtkhash
 mintstick
-nemo-pdf-tools-git
+xviewer
 xviewer-plugins
 
 # Dr460nized
 beautyline
+firedragon-extension-plasma-integration
+jamesdsp
 kfiredragonhelper
 kwin-scripts-forceblur
 nerd-fonts-fantasque-sans-mono # (old font)
 nerd-fonts-fira-code
+plasma5-applets-eventcalendar
+plasma5-applets-netspeed
 plasma5-applets-window-appmenu
 plasma5-applets-window-title
 resvg
@@ -26,7 +25,7 @@ sweet-theme-full-git
 # Dr460nized-gaming
 boxtron
 corectrl
-fastgame-git
+firedragon-extension-xdm-browser-monitor
 itch
 kde-service-menu-reimage
 kde-servicemenus-encfs
@@ -49,42 +48,10 @@ xpadneo-dkms-git
 azote
 flashfocus-git
 kvantum-theme-qogir-git
+lightdm-settings
 skippy-xd-git
 
-# KDE Multimedia
-fancontrol-gui-git
-fancontrol-kcm-git
-kwin-decoration-sierra-breeze-enhanced-git
-mcmojave-kde-theme-git
-mystiq
-plasma5-applets-eventcalendar
-plasma5-applets-kpplemenu-git
-plasma5-applets-latte-separator
-plasma5-applets-latte-sidebar-button
-plasma5-applets-latte-spacer
-plasma5-applets-netspeed
-plasma5-applets-presentwindows
-plasma5-applets-simplemenu-git
-plasma5-applets-tiledmenu
-plasma5-applets-uswitch
-plasma5-wallpapers-dynamic
-pocketsphinx
-pulseaudio-ctl
-samba-mounter-git
-sierrabreeze-kwin-decoration-git
-sphinxbase
-subtitlecomposer
-whitesur-cursor-theme-git
-whitesur-gtk-theme-git
-whitesur-kde-theme-git
-whitesur-kvantum-theme-git
-
 # LXQT-Kwin
-ant-dracula-theme-git
-ant-dracula-kde-theme-git
-ant-dracula-kvantum-theme-git
-cmst
-lxqt-kcm-integration-extra-git
 lxqt-kwin-desktop-git
 nm-tray
 
@@ -93,19 +60,10 @@ mate-menu
 mate-tweak
 
 # Qtile
-betterlockscreen
-xviewer
-
-# Recbox
-i3lock-color
-obkey
-obmenu-generator
-python-coloredlogs # (dep obmenu-generator)
-qt5-styleplugins
+picom-ibhagwan-git
 
 # Sway
 nordic-darker-theme
-nordic-kde-git
 nwg-bar
 nwg-dock
 nwg-drawer
@@ -115,28 +73,24 @@ nwg-menu
 nwg-panel
 nwg-wrapper
 python-dasbus # (dep nwg-panel)
-wob
+tela-circle-icon-theme-git
 wlsunset
+wob
 
 # Wayfire
 greetd
-greetd-gtkgreet
 greetd-qtgreet
-kvantum-theme-orchis-git
-orchis-kde-theme-git
-orchis-theme-git
-popsicle-git
-redshift-wayland-git
-tlpui
 wayfire-desktop-git
+wayfire-plugins-extra:https://gitlab.com/garuda-linux/packages/other/wayfire-plugins-extra.git
+wayfire:https://gitlab.com/garuda-linux/packages/other/wayfire.git
+wcm:https://gitlab.com/garuda-linux/packages/other/wcm.git
 wdisplays
-wf-config-git
-wf-osk-git
-wlogout
-ydotool
+wf-config:https://gitlab.com/garuda-linux/packages/other/wf-config.git
+wf-shell:https://gitlab.com/garuda-linux/packages/other/wf-shell.git
 
 # XFCE
 gestures
+gtkhash
 mugshot
 python-pyparted # (dep mugshot)
 
@@ -149,18 +103,15 @@ ananicy-rules-git # (dep ananicy-cpp)
 archlinux-appstream-data-pamac
 auto-cpufreq
 bluetooth-autoconnect
-cht.sh-git
+btrfs-assistant
 clipit
 clipman
-conky-lua-nv
 connman-gtk
 dashbinsh
 downgrade
 evdev-right-click-emulation
 fastfetch
 find-the-command-git
-firedragon-extension-plasma-integration
-firedragon-extension-xdm-browser-monitor
 firefox-extension-bitwarden
 firefox-extension-flagfox
 firefox-extension-localcdn
@@ -171,7 +122,6 @@ garuda-downloader-git
 garuda-settings-manager-git
 garuda-settings-manager-kcm-git
 garuda-settings-manager-notifier-git
-gnome-control-center-x11-scaling
 hblock
 hw-probe
 imagewriter
@@ -183,14 +133,6 @@ lib32-opencl-nvidia-470xx
 libinput-gestures
 libinput_gestures_qt
 libpamac-aur
-librewolf-extension-bitwarden
-librewolf-extension-dark-reader
-librewolf-extension-gnome-shell-integration
-librewolf-extension-localcdn
-librewolf-extension-noscript
-librewolf-extension-plasma-integration
-librewolf-extension-xdm-browser-monitor
-librewolf-ublock-origin
 libxnvctrl-390xx
 memavaild
 menulibre
@@ -202,7 +144,6 @@ mhwd-nvidia
 mhwd-nvidia-390xx
 mhwd-nvidia-470xx
 mkinitcpio-openswap
-mutter-x11-scaling
 neofetch-git
 nohang
 noto-color-emoji-fontconfig
@@ -212,17 +153,15 @@ nvidia-390xx-utils
 nvidia-470xx-dkms
 nvidia-470xx-settings
 nvidia-470xx-utils
+nvidia-zen:https://gitlab.com/garuda-linux/packages/pkgbuilds/nvidia-zen
 opencl-nvidia-390xx
 opencl-nvidia-470xx
-nvidia-zen:https://gitlab.com/garuda-linux/packages/pkgbuilds/nvidia-zen
 optimus-manager
 optimus-manager-git
 optimus-manager-qt
 optimus-manager-qt-git
 os-prober-btrfs
 pace
-pacman-pkgfile-hook
-pacman-sync
 pacui:https://github.com/excalibur1234/pacui.git
 pamac-aur
 paru
@@ -236,20 +175,14 @@ qwikaccess-git
 rate-mirrors
 systemd-guest-user
 systemd-oomd-defaults
-tela-circle-icon-theme-git
 timeshift
 timeshift-autosnap
-ttf-meslo-nerd-font-powerlevel10k
 uasm # (dep 7-zip)
 update-grub
 uresourced
-waydroid
-waydroid-image
-waydroid-image-gapps
-wd719x-firmware
 zsync2-git
 
-# Firmware
+# Other firmware
 8188eu-aircrack-dkms-git
 8188fu-dkms-git
 8188fu-kelebek333-dkms-git
@@ -263,3 +196,4 @@ rtl88x2ce-dkms
 rtl88xxau-aircrack-dkms-git
 rtw88-dkms-git
 rtw89-dkms-git
+wd719x-firmware

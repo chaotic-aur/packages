@@ -21,7 +21,6 @@ grub-theme-garuda:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/grub
 timeshift-support:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/timeshift-support.git
 snapper-support:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/snapper-support.git
 snapper-tools
-snapper-tools-git
 plymouth-theme-dr460nized:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/plymouth-theme-dr460nized.git
 plymouth-theme-garuda-purple:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/plymouth-theme-garuda-purple.git
 plymouth-theme-garuda:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/plymouth-theme-garuda.git
@@ -96,17 +95,3 @@ garuda-welcome-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-wel
 
 # Building off git settings
 garuda-common-settings-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-common-settings-git.git
-
-
-## Building Chaotic
-# Issue 369
-php80
-
-# Issue 440
-wayfire:https://gitlab.com/garuda-linux/packages/other/wayfire.git
-wcm:https://gitlab.com/garuda-linux/packages/other/wcm.git
-wf-config:https://gitlab.com/garuda-linux/packages/other/wf-config.git
-wf-shell:https://gitlab.com/garuda-linux/packages/other/wf-shell.git
-
-# Issue 441
-wayfire-plugins-extra:https://gitlab.com/garuda-linux/packages/other/wayfire-plugins-extra.git

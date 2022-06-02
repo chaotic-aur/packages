@@ -65,12 +65,23 @@ python-dlib
 python-face_recognition
 python-face_recognition_models
 
+# Librewolf
+librewolf-extension-bitwarden
+librewolf-extension-dark-reader
+librewolf-extension-gnome-shell-integration
+librewolf-extension-localcdn
+librewolf-extension-noscript
+librewolf-extension-plasma-integration
+librewolf-extension-xdm-browser-monitor
+librewolf-ublock-origin
+
 # Other, general use applications
 alpm_octopi_utils # (dep octopi)
 anydesk-bin
 appimagelauncher
 bauh
 birdtray
+cozy-audiobooks
 davinci-resolve
 deezer
 dropbox
@@ -106,10 +117,14 @@ timeshift-bin
 topgrade
 ventoy-bin
 visual-studio-code-bin
+waydroid
+waydroid-image
+waydroid-image-gapps
 yay
 
 # Networking & Tools
 bass-fish
+bindfs
 buttermanager
 caffeine
 caja-pdf-tools-git
@@ -132,18 +147,24 @@ ofono
 phonesim
 qomui
 qomui-git
+qt-installer-framework
 soundwire
+tlpui
 webapp-manager-git
 
 # Theming & Customization
+ant-dracula-kde-theme-git
+ant-dracula-kvantum-theme-git
+ant-dracula-theme-git
 autotiling
 candy-icons-git
 flat-remix
 flat-remix-gtk
 fluent-gtk-theme-git
 fluent-icon-theme-git
-gnome-shell-extension-pop-shell-git
+gnome-control-center-x11-scaling
 gnome-shell-extension-gnome-ui-tune-git
+gnome-shell-extension-pop-shell-git
 kali-themes
 ksmoothdock
 kvantum-theme-layan-git
@@ -158,6 +179,8 @@ loginized
 matcha-gtk-theme-git
 mcmojave-circle-icon-theme-git
 mojave-gtk-theme-git
+mutter-x11-scaling
+nordic-kde-git
 plymouth
 qogir-gtk-theme-git
 qogir-icon-theme-git
@@ -168,6 +191,10 @@ vimix-gtk-themes
 vimix-gtk-themes-git
 vimix-icon-theme
 vimix-icon-theme-git
+whitesur-cursor-theme-git
+whitesur-gtk-theme-git
+whitesur-kde-theme-git
+whitesur-kvantum-theme-git
 yaru:https://aur.archlinux.org/yaru.git # (creates other yaru-* packages as well)
 
 # P2P
@@ -177,27 +204,9 @@ python2-xlib # (dep acestream-engine)
 
 
 ## Misc
-bindfs
-brave-nightly-bin
 btrfs-assistant-git
-btrfs-assistant
-cozy-audiobooks
 garuda-system-maintenance-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-system-maintenance-git.git
-jamesdsp
-qt-installer-framework
-
-
-## SGS
-libcgroup
-plasma5-applets-audio-device-switcher
-plasma5-applets-plasma-pstate
-python-pid # (dep refind-btrfs)
-python-transitions # (dep refind-btrfs)
-qytdl
-refind-btrfs
-sound-theme-smooth
-usbaudio-git
-xiaomitool-v2
+snapper-tools-git
 
 
 ## User requests

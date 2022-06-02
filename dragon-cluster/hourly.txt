@@ -1,6 +1,7 @@
 ## Try to get some more hourly builds in
 aconfmgr-git
 alacritty-git
+alpm_octopi_utils-git
 ananicy-cpp-git
 anbox-image-houdini-rooted
 aqemu
@@ -11,6 +12,7 @@ babl-git # (dep gimp-git)
 binfmt-qemu-static
 bmap-tools
 bpytop-git
+brave-nightly-bin
 btop-git
 cargo-make
 cfs-zen-tweaks
@@ -56,14 +58,17 @@ libpamac-git
 libretro-mame-git
 libscrypt
 lutris-git
+memavaild-git
 mkinitcpio-git
 networkmanager-iwd
 nextcloud-client-git
+nohang-git
 notepadnext
 noto-fonts-emoji-git
 nspawn-git
 ntfs3-dkms
 obs-studio-git
+octopi-git
 open-fprintd
 openjpeg # (dep ffmpeg-compat-57)
 opensnitch-git
@@ -75,6 +80,7 @@ pcre-static # (dep qemu-user-static)
 plasma5-wallpapers-wallpaper-engine
 plasma5-wallpapers-wallpaper-engine-without-mpv-git
 podman-git
+prelockd-git
 protobuf-go # (dep sysbox-ce)
 python-codegen
 python-coloredlogs # (dep guiscrcpy-git)
@@ -146,9 +152,19 @@ mediastreamer-git
 gimp-plugin-normalmap
 gnome-icon-theme
 gnome-icon-theme-symbolic # (dep gnome-icon-theme)
+libcgroup
 lockdown-ms
 pacseek
+plasma5-applets-audio-device-switcher
+plasma5-applets-plasma-pstate
+python-pid # (dep refind-btrfs)
+python-transitions # (dep refind-btrfs)
 qpdfview
+qytdl
+refind-btrfs
+sound-theme-smooth
+usbaudio-git
+xiaomitool-v2
 
 
 ## Technetium1
@@ -336,12 +352,3 @@ strawberry-qt5
 
 # Issue 1452
 vlang-git
-
-
-## Garuda git stuff
-alpm_octopi_utils-git
-garuda-dr460nized-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-dr460nized.git
-memavaild-git
-nohang-git
-octopi-git
-prelockd-git
