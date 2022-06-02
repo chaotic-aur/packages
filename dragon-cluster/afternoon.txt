@@ -1,6 +1,6 @@
 ## Chaotic-AUR
-# Issue 446
-librewolf-hg:https://aur.archlinux.org/librewolf-hg.git
+# Unclear
+blender-git
 
 # Issue 816 / 1361
 firefox-appmenu

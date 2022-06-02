@@ -1,4 +1,4 @@
-# Setup assistan
+# Setup assistant
 bitwig-studio
 brave-bin
 dissenter-browser-bin
@@ -168,6 +168,7 @@ vimix-gtk-themes
 vimix-gtk-themes-git
 vimix-icon-theme
 vimix-icon-theme-git
+yaru:https://aur.archlinux.org/yaru.git # (creates other yaru-* packages as well)
 
 # P2P
 acestream-engine

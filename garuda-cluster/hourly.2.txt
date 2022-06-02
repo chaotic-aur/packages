@@ -11,74 +11,39 @@ xviewer-plugins
 
 # Dr460nized
 beautyline
-kde-service-menu-reimage
-kde-servicemenus-encfs
-kde-servicemenus-komparemenu
-kde-servicemenus-pdf
-kde-servicemenus-rootactions
-kde-servicemenus-pdf-encrypt-decrypt
-kde-servicemenus-officeconverter
-kde-servicemenus-sendtodesktop
-kde-servicemenus-setaswallpaper
 kfiredragonhelper
-kvantum-theme-sweet-git
-kwin-effects-sliding-notifications
 kwin-scripts-forceblur
-latte-dock-git
-nerd-fonts-fantasque-sans-mono
+nerd-fonts-fantasque-sans-mono # (old font)
+nerd-fonts-fira-code
 plasma5-applets-window-appmenu
 plasma5-applets-window-title
-plasma5-runners-poki-launcher
-plasma5-theme-sweet-git
-poki-launcher
 resvg
 rootactions-servicemenu
-searx
-sweet-cursor-theme-git:https://github.com/chaotic-aur/pkgbuild-sweet-cursor-theme-git.git
-sweet-gtk-theme
-sweet-gtk-theme-dark
-sweet-kde-git
-whoogle
-
-# Dr460nized-blackarch
-8188eu-aircrack-dkms-git
-8188fu-dkms-git
-8188fu-kelebek333-dkms-git
-8192eu-dkms
-r8168-dkms
-realtek-firmware
-rtl8192cu-fixes-git
-rtl8814au-aircrack-dkms-git
-rtl88x2bu-dkms-git
-rtl88x2ce-dkms
-rtl88xxau-aircrack-dkms-git
-rtw88-dkms-git
-rtw89-dkms-git
+sweet-folders-icons-git # (dep sweet-theme-full-git)
+sweet-kde-theme-git # (dep sweet-theme-full-git)
+sweet-theme-full-git
 
 # Dr460nized-gaming
 boxtron
 corectrl
 fastgame-git
 itch
+kde-service-menu-reimage
+kde-servicemenus-encfs
+kde-servicemenus-komparemenu
+kde-servicemenus-officeconverter
+kde-servicemenus-pdf
+kde-servicemenus-pdf-encrypt-decrypt
+kde-servicemenus-rootactions
+kde-servicemenus-sendtodesktop
+kde-servicemenus-setaswallpaper
 keyboard-visualizer-git
 minecraft-launcher
 openrgb
 xpadneo-dkms-git
 
 # GNOME
-dbus-x11
-firefox-extension-gnome-shell-integration
-gesture-manager-x-git
-gnome-control-center-x11-scaling
-gnome-terminal-transparency
-menulibre
-mutter-x11-scaling
-nautilus-admin-git
-nautilus-bluetooth
-nautilus-mediainfo
-nautilus-pdf-tools-git
-nautilus-typeahead
-yaru:https://aur.archlinux.org/yaru.git # (creates other yaru-* packages as well)
+# Nothing as of now
 
 # i3
 azote
@@ -180,6 +145,7 @@ python-pyparted # (dep mugshot)
 # Garuda base (AUR)
 7-zip
 ananicy-cpp
+ananicy-rules-git # (dep ananicy-cpp)
 archlinux-appstream-data-pamac
 auto-cpufreq
 bluetooth-autoconnect
@@ -191,6 +157,7 @@ connman-gtk
 dashbinsh
 downgrade
 evdev-right-click-emulation
+fastfetch
 find-the-command-git
 firedragon-extension-plasma-integration
 firedragon-extension-xdm-browser-monitor
@@ -204,6 +171,7 @@ garuda-downloader-git
 garuda-settings-manager-git
 garuda-settings-manager-kcm-git
 garuda-settings-manager-notifier-git
+gnome-control-center-x11-scaling
 hblock
 hw-probe
 imagewriter
@@ -225,6 +193,7 @@ librewolf-extension-xdm-browser-monitor
 librewolf-ublock-origin
 libxnvctrl-390xx
 memavaild
+menulibre
 mhwd-amdgpu
 mhwd-ati
 mhwd-db-garuda-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/mhwd-db-garuda-git.git
@@ -233,8 +202,10 @@ mhwd-nvidia
 mhwd-nvidia-390xx
 mhwd-nvidia-470xx
 mkinitcpio-openswap
+mutter-x11-scaling
 neofetch-git
 nohang
+noto-color-emoji-fontconfig
 nvidia-390xx-dkms
 nvidia-390xx-settings
 nvidia-390xx-utils
@@ -272,5 +243,23 @@ ttf-meslo-nerd-font-powerlevel10k
 uasm # (dep 7-zip)
 update-grub
 uresourced
+waydroid
+waydroid-image
+waydroid-image-gapps
 wd719x-firmware
 zsync2-git
+
+# Firmware
+8188eu-aircrack-dkms-git
+8188fu-dkms-git
+8188fu-kelebek333-dkms-git
+8192eu-dkms
+r8168-dkms
+realtek-firmware
+rtl8192cu-fixes-git
+rtl8814au-aircrack-dkms-git
+rtl88x2bu-dkms-git
+rtl88x2ce-dkms
+rtl88xxau-aircrack-dkms-git
+rtw88-dkms-git
+rtw89-dkms-git

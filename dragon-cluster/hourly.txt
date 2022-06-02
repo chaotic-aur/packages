@@ -1,9 +1,7 @@
 ## Try to get some more hourly builds in
 aconfmgr-git
 alacritty-git
-alpm_octopi_utils-dev # (dep octopi-dev)
 ananicy-cpp-git
-ananicy-rules-git
 anbox-image-houdini-rooted
 aqemu
 arch-audit-git
@@ -11,8 +9,6 @@ arch-deployer-git
 asp-git
 babl-git # (dep gimp-git)
 binfmt-qemu-static
-bleachbit-git
-blender-git
 bmap-tools
 bpytop-git
 btop-git
@@ -26,10 +22,8 @@ czkawka-git
 debianutils
 distrobox
 electronmail-bin
-elisa-git
 esbuild # (dep kwin-bismuth)
 exa-git
-fastfetch
 fastfetch-git
 ffmpeg-compat-57
 ffmpeg-compat-58
@@ -63,16 +57,13 @@ libretro-mame-git
 libscrypt
 lutris-git
 mkinitcpio-git
-nerd-fonts-fira-code
 networkmanager-iwd
 nextcloud-client-git
 notepadnext
-noto-color-emoji-fontconfig
 noto-fonts-emoji-git
 nspawn-git
 ntfs3-dkms
 obs-studio-git
-octopi-dev
 open-fprintd
 openjpeg # (dep ffmpeg-compat-57)
 opensnitch-git
@@ -104,23 +95,17 @@ ripgrep-git
 riseup-vpn
 rufetch
 rusnapshot-git
+searx
 snapper-tools-git
 spotify-adblock-git
 starship-git
 sudo-git
-sweet-folders-icons-git # (dep sweet-theme-full-git)
-sweet-kde-theme-git # (dep sweet-theme-full-git)
-sweet-theme-full-git
-sweet-theme-git
 sysbox-ce
 traitor-git
-ufw-git
 visual-studio-code-insiders-bin
 wavemon-git
-waydroid
 waydroid-git
-waydroid-image
-waydroid-image-gapps
+whoogle
 whoogle-git
 wlroots-eglstreams-git
 woeusb-ng
@@ -155,7 +140,6 @@ liblinphone-git
 lime
 linphone-desktop-git
 mediastreamer-git
-
 
 
 ## SGS
