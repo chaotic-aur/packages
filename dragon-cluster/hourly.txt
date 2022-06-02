@@ -25,7 +25,6 @@ crowdsec
 czkawka-git
 debianutils
 distrobox
-dolphin-git:https://github.com/chaotic-aur/pkgbuild-dolphin-git.git
 electronmail-bin
 elisa-git
 esbuild # (dep kwin-bismuth)
@@ -53,9 +52,6 @@ imagemagick-git
 inxi-git
 ipman
 jamesdsp-git
-kate-git:https://github.com/chaotic-aur/pkgbuild-kate-git.git
-kde-git-meta:https://github.com/chaotic-aur/pkgbuild-kde-git-meta.git
-konsole-git:https://github.com/chaotic-aur/pkgbuild-konsole-git.git
 kotatogram-dev-git
 kvantum-qt5-git
 kwin-bismuth
@@ -95,12 +91,8 @@ python-gbinder
 python-magic-ahupp # (dep guiscrcpy-git)
 python-nototools # (dep noto-fonts-emoji-git)
 python-pyclip
-python-pynput # (dep guiscrcpy-git)
-python-pytube # (dep python-spotdl)
-python-rapidfuzz # (dep python-spotdl)
 python-setuptools-lint # (dep guiscrcpy-git)
 python-simplediff
-python-spotdl
 python-validity
 qbittorrent-enhanced-git
 qemu-git
@@ -139,6 +131,17 @@ zenmonitor-git
 zenmonitor3-git
 zram-generator-git
 zstd-git
+
+# Spotdl
+cpp-taskflow # (dep python-rapidfuzz)
+jarowinkler-cpp # (dep python-rapidfuzz)
+python-jarowinkler # (dep python-rapidfuzz)
+python-pynput # (dep guiscrcpy-git)
+python-pytube # (dep python-spotdl)
+python-rapidfuzz # (dep python-spotdl)
+python-rapidfuzz-capi  # (dep python-rapidfuzz)
+python-spotdl
+rapidfuzz-cpp # (dep python-rapidfuzz)
 
 # Linphone
 bcg729-git

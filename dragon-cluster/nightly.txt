@@ -1,13 +1,13 @@
 ## Plasma-git
 akonadi-calendar-git
 akonadi-calendar-tools-git
-akonadiconsole-git
 akonadi-contacts-git
 akonadi-git:https://github.com/chaotic-aur/pkgbuild-akonadi-git.git
 akonadi-import-wizard-git
 akonadi-mime-git
 akonadi-notes-git
 akonadi-search-git
+akonadiconsole-git
 akregator-git
 ark-git:https://github.com/chaotic-aur/pkgbuild-ark-git.git
 attica-git:https://github.com/chaotic-aur/pkgbuild-attica-git.git
@@ -22,14 +22,15 @@ calendarsupport-git
 cantor-git
 discover-git:https://github.com/chaotic-aur/pkgbuild-discover-git.git
 disman-git
+dolphin-git:https://github.com/chaotic-aur/pkgbuild-dolphin-git.git
 dolphin-plugins-git
 dragon-git:https://github.com/chaotic-aur/pkgbuild-dragon-git.git
 drkonqi-git:https://github.com/chaotic-aur/pkgbuild-drkonqi-git.git
 # elf-dissector-git
 eventviews-git
 extra-cmake-modules-git:https://github.com/chaotic-aur/pkgbuild-extra-cmake-modules-git.git
-filelight-git
 ffmpegthumbs-git:https://github.com/chaotic-aur/pkgbuild-ffmpegthumbs-git.git
+filelight-git
 frameworkintegration-git
 grantlee-git
 grantleetheme-git
@@ -43,6 +44,7 @@ kalarm-git:https://github.com/chaotic-aur/pkgbuild-kalarm-git.git
 kalendar-git
 kapidox-git
 karchive-git
+kate-git:https://github.com/chaotic-aur/pkgbuild-kate-git.git
 kauth-git
 kbookmarks-git
 kcalc-git
@@ -60,13 +62,14 @@ kcoreaddons-git
 kcrash-git
 kdav-git
 kdbusaddons-git
-kdeclarative-git
 kde-cli-tools-git
+kde-git-meta:https://github.com/chaotic-aur/pkgbuild-kde-git-meta.git
+kde-gtk-config-git:https://github.com/chaotic-aur/pkgbuild-kde-gtk-config-git.git
+kdeclarative-git
 kdeconnect-git:https://github.com/chaotic-aur/pkgbuild-kdeconnect-git.git
 kdecoration-git
 kded-git
 kdegraphics-mobipocket-git
-kde-gtk-config-git:https://github.com/chaotic-aur/pkgbuild-kde-gtk-config-git.git
 kdelibs4support-git
 kdenlive-git:https://github.com/chaotic-aur/pkgbuild-kdenlive-git.git
 kdepim-addons-git
@@ -96,22 +99,21 @@ kiconthemes-git
 kidentitymanagement-git
 kidletime-git
 kimageannotator-git
-#kimageannotator-git:https://github.com/chaotic-aur/pkgbuild-kimageannotator-git.git
 kimageformats-git:https://github.com/chaotic-aur/pkgbuild-kimageformats-git.git
-kimap2-git
 kimap-git
+kimap2-git
 kinfocenter-git
 kinit-git
 kio-extras-git
 kio-git
-kirigami2-git
 kirigami-addons-git
+kirigami2-git
 kitemmodels-git
 kitemviews-git
 kitinerary-git
 kjobwidgets-git
-kjsembed-git:https://github.com/chaotic-aur/pkgbuild-kjsembed-git.git
 kjs-git
+kjsembed-git:https://github.com/chaotic-aur/pkgbuild-kjsembed-git.git
 kldap-git
 kleopatra-git
 kmail-account-wizard-git
@@ -126,6 +128,7 @@ knotifications-git
 knotifyconfig-git
 kolourpaint-git
 kompare-git:https://github.com/chaotic-aur/pkgbuild-kompare-git.git
+konsole-git:https://github.com/chaotic-aur/pkgbuild-konsole-git.git
 kontact-git
 kontactinterface-git
 konversation-git
@@ -152,20 +155,20 @@ ksystemlog-git
 ksystemstats-git
 ktexteditor-git
 ktextwidgets-git
-ktorrent-git
 ktnef-git
+ktorrent-git
 kunitconversion-git
 kuserfeedback-git:https://github.com/chaotic-aur/pkgbuild-kuserfeedback-git.git
 kwallet-git:https://github.com/chaotic-aur/pkgbuild-kwallet-git.git
-kwalletmanager-git
 kwallet-pam-git
+kwalletmanager-git
 kwayland-git
 kwayland-integration-git:https://github.com/chaotic-aur/pkgbuild-kwayland-integration-git.git
 kwayland-server-git:https://github.com/chaotic-aur/pkgbuild-kwayland-server-git.git
 kwidgetsaddons-git
+kwin-git:https://github.com/chaotic-aur/pkgbuild-kwin-git.git
 kwindowsystem-git
 kwinft-git:https://github.com/chaotic-aur/pkgbuild-kwinft-git.git
-kwin-git:https://github.com/chaotic-aur/pkgbuild-kwin-git.git
 kwrited-git
 kxmlgui-git
 kxmlrpcclient-git
@@ -199,9 +202,9 @@ oxygen-git
 oxygen-icons-git:https://github.com/chaotic-aur/pkgbuild-oxygen-icons-git.git
 partitionmanager-git:https://github.com/chaotic-aur/pkgbuild-partitionmanager-git.git
 phonon-git:https://github.com/chaotic-aur/pkgbuild-phonon-git.git
-pimcommon-git
 pim-data-exporter-git
 pim-sieve-editor-git
+pimcommon-git
 plasma-browser-integration-git
 plasma-desktop-git
 plasma-disks-git:https://github.com/chaotic-aur/pkgbuild-plasma-disks-git.git
@@ -230,9 +233,9 @@ qqc2-desktop-style-git:https://github.com/chaotic-aur/pkgbuild-qqc2-desktop-styl
 qtkeychain-qt5-git:https://github.com/chaotic-aur/pkgbuild-qtkeychain-qt5-git.git
 qutebrowser-qt6-git:https://github.com/chaotic-aur/pkgbuild-qutebrowser-qt6-git.git
 sddm-config-editor-git  # Issue 453
-sddm-theme-astronaut  # Issue 1168
 sddm-git
 sddm-kcm-git:https://github.com/chaotic-aur/pkgbuild-sddm-kcm-git.git
+sddm-theme-astronaut  # Issue 1168
 signon-kwallet-extension-git
 solid-git:https://github.com/chaotic-aur/pkgbuild-solid-git.git
 sonnet-git:https://github.com/chaotic-aur/pkgbuild-sonnet-git.git
