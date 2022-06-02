@@ -61,7 +61,6 @@ garuda-dr460nized:https://gitlab.com/garuda-linux/themes-and-settings/settings/g
 garuda-fish-config:https://gitlab.com/garuda-linux/themes-and-settings/settings/garuda-fish-config.git
 garuda-gnome-settings:https://gitlab.com/garuda-linux/themes-and-settings/settings/garuda-gnome-settings.git
 garuda-i3-settings:https://gitlab.com/garuda-linux/themes-and-settings/settings/garuda-i3-settings.git
-garuda-kde-settings:https://gitlab.com/garuda-linux/themes-and-settings/settings/garuda-kde-settings.git
 garuda-lxqt-kwin-settings:https://gitlab.com/garuda-linux/themes-and-settings/settings/garuda-lxqt-kwin-settings.git
 garuda-mate-settings:https://gitlab.com/garuda-linux/themes-and-settings/settings/garuda-mate-settings.git
 garuda-qtile-settings:https://gitlab.com/garuda-linux/themes-and-settings/settings/garuda-qtile-settings.git
