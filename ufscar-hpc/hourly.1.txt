@@ -224,7 +224,6 @@ qutebrowser-git
 # Issue 322
 hlsdl
 identity
-jellyfin
 nheko-git
 
 # Issue 324

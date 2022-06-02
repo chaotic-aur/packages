@@ -130,6 +130,7 @@ python-blis # (dep python-spacy)
 python-catalogue # (dep python-spacy)
 python-mainimpango # (dep manim)
 python-moderngl-window # (dep manim)
+python-multipledispatch # (dep python-pyrr)
 python-murmurhash # (dep python-spacy)
 python-pathlib # (dep python-spacy)
 python-plac # (dep python-spacy)
@@ -500,6 +501,7 @@ python-dlx # (dep python-qiskit)
 python-docplex # (dep python-qiskit)
 python-fastdtw # (dep python-qiskit)
 python-multitasking  # (dep python-qiskit)
+python-pyscf # (dep python-qiskit-aqua)
 python-qiskit
 python-qiskit-aer # (dep python-qiskit)
 python-qiskit-aqua # (dep python-qiskit)
@@ -507,6 +509,7 @@ python-qiskit-ibmq-provider # (dep python-qiskit)
 python-qiskit-ignis # (dep python-qiskit)
 python-qiskit-terra # (dep python-qiskit)
 python-retworkx # (dep python-qiskit)
+python-tweedledum # (dep python-qiskit-terra)
 python-yfinance # (dep python-qiskit)
 xcfun-git # (dep python-qiskit)
 
@@ -914,21 +917,6 @@ mobydroid
 # Issue 813
 matrix-synapse-git
 
-# Issue 814
-matrix-synapse-rest-auth
-python2-automat # (dep matrix-synapse-rest-auth)
-python2-constantly # (dep matrix-synapse-rest-auth)
-python2-graphviz # (dep python2-service-identity)
-python2-hyperlink # (dep matrix-synapse-rest-auth)
-python2-incremental # (dep matrix-synapse-rest-auth)
-python2-m2r # (dep matrix-synapse-rest-auth)
-python2-mistune # (dep matrix-synapse-rest-auth)
-python2-pyasn1-modules # (dep matrix-synapse-rest-auth)
-python2-pygments # (dep python2-m2r)
-python2-pyhamcrest # (dep matrix-synapse-rest-auth)
-python2-service-identity # (dep matrix-synapse-rest-auth)
-python2-twisted # (dep matrix-synapse-rest-auth)
-
 # Issue 815
 matrix-registration
 python-flask-limiter # (dep matrix-registration)
@@ -979,9 +967,6 @@ wine-wl-git
 
 # Issue 842
 gnome-text-editor-git
-
-# Issue 867
-souk-git
 
 # Issue 868
 callaudiod # (dep phosh-git)
