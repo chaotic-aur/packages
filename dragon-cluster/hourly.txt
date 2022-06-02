@@ -85,7 +85,8 @@ pacman-git
 pamac-aur-git
 paru-git
 pcre-static # (dep qemu-user-static)
-plasma5-wallpapers-wallpaper-engine-git
+plasma5-wallpapers-wallpaper-engine
+plasma5-wallpapers-wallpaper-engine-without-mpv-git
 podman-git
 protobuf-go # (dep sysbox-ce)
 python-codegen
