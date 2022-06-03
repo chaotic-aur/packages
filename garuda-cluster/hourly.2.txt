@@ -82,7 +82,7 @@ greetd
 greetd-qtgreet
 wayfire-desktop-git
 wayfire-plugins-extra:https://gitlab.com/garuda-linux/packages/other/wayfire-plugins-extra.git
-wayfire:https://gitlab.com/garuda-linux/packages/other/wayfire.git
+wayfire
 wcm:https://gitlab.com/garuda-linux/packages/other/wcm.git
 wdisplays
 wf-config:https://gitlab.com/garuda-linux/packages/other/wf-config.git
