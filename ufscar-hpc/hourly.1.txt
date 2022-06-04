@@ -993,6 +993,9 @@ ngrok
 qt5-styleplugins
 ttf-meslo-nerd-font-powerlevel10k
 
+# Issue 1467
+natron-bin
+
 
 ## Lost & found
 anaconda
