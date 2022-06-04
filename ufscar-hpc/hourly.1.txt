@@ -989,6 +989,10 @@ git-cola
 # Issue 1455
 ngrok
 
+# Issue 1466
+qt5-styleplugins
+ttf-meslo-nerd-font-powerlevel10k
+
 
 ## Lost & found
 anaconda
@@ -1000,3 +1004,4 @@ telegram-desktop-bin-dev
 ytfzf-git
 
 lib32-mesa-git:https://github.com/chaotic-aur/lib32-mesa-git.git
+
