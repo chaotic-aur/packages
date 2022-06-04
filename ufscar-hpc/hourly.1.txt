@@ -989,6 +989,9 @@ git-cola
 # Issue 1455
 ngrok
 
+# Issue 1465
+mullvad-vpn-cli
+
 # Issue 1466
 qt5-styleplugins
 ttf-meslo-nerd-font-powerlevel10k
