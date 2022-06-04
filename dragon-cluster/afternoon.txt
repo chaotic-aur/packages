@@ -1,3 +1,8 @@
+## Maintainer
+# Nico
+firedragon-beta-generic_v3:https://gitlab.com/dr460nf1r3/firedragon-beta.git
+
+
 ## Chaotic-AUR
 # Unclear
 blender-git
