@@ -1,6 +1,6 @@
 ## Maintainer
 # Nico
-firedragon-beta-generic_v3:https://gitlab.com/dr460nf1r3/firedragon-beta.git
+firedragon-beta-znver2:https://gitlab.com/dr460nf1r3/firedragon-beta.git
 
 
 ## Chaotic-AUR
