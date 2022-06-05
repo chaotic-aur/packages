@@ -39,6 +39,7 @@ kde-servicemenus-rootactions
 kde-servicemenus-sendtodesktop
 kde-servicemenus-setaswallpaper
 keyboard-visualizer-git
+kwin-effects-sliding-notifications
 minecraft-launcher
 openrgb
 xpadneo-dkms-git
