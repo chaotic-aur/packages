@@ -225,6 +225,9 @@ plasma-vault-git:https://github.com/chaotic-aur/pkgbuild-plasma-vault-git.git
 plasma-wayland-protocols-git
 plasma-workspace-git
 plasma-workspace-wallpapers-git:https://github.com/chaotic-aur/pkgbuild-plasma-workspace-wallpapers-git.git
+plasma5-applets-window-appmenu-git
+plasma5-applets-window-buttons-git
+plasma5-applets-window-title-git
 polkit-kde-agent-git
 polkit-qt5-git
 poppler-git

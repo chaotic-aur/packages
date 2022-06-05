@@ -1,8 +1,17 @@
 ### Chaotic-AUR package list
 
-This is the right place to submit package requests, bug reports or outdated packages of [Chaotic-AUR](https://aur.chaotic.cx). Please feel free to use issues!
+This is the right place to submit package requests, bug reports or outdated packages of [Chaotic-AUR](https://aur.chaotic.cx). Please feel free to use issues! 📜
 
 ![Chaotic-AUR](https://avatars.githubusercontent.com/u/66071775?s=400&u=99bc0536e7e77fe3e58839996600848f2d930ed5&v=4)
+
+### Examples of packages we already build:
+
+- [Linux-tkg kernels](https://github.com/Frogging-Family/linux-tkg)
+- Other popular kernel variations such as [Mainline](https://aur.archlinux.org/packages/linux-mainline)-{[Anbox}(https://aur.archlinux.org/packages/linux-mainline-anbox)}, [Xanmod-{tt,anbox,rt,lts,edge}](https://aur.archlinux.org/packages?O=0&SeB=nd&K=xanmod), [Vfio](https://aur.archlinux.org/packages/linux-vfio)-{[lts](https://aur.archlinux.org/packages/linux-vfio-lts)}, [Next-git](https://aur.archlinux.org/packages/linux-next-git), [BORE](https://aur.archlinux.org/packages/linux-bore) or [TT](https://aur.archlinux.org/packages/linux-tt)
+- A quite complete [KDE stack build from master branch](https://invent.kde.org/explore/groups?sort=name_asc) 
+- Most of the existing emulators & gaming utilities like [Yuzu](https://yuzu-emu.org/), [RPCS3](https://github.com/RPCS3/rpcs3) or {[Proton](https://github.com/GloriousEggroll/proton-ge-custom),[Wine](https://github.com/GloriousEggroll/wine-ge-custom)}-GE-Custom
+- A lot of browsers like [Ungoogled Chromium](https://github.com/Eloston/ungoogled-chromium), [Firefox-wayland-hg](https://aur.archlinux.org/packages/firefox-wayland-hg), [Icecat](http://www.gnu.org/software/gnuzilla/) or the [Tor Browser](https://www.torproject.org/projects/torbrowser.html)
+- .. a lot more. Check out the [package lists](https://github.com/chaotic-aur/packages/find/main) to find out what exactly gets build when! 🕵️‍♀️
 
 #### Banished and rejected packages 📑
 
@@ -27,4 +36,3 @@ This is a list of packages which we will reject for good reasons:
 - **aseprite{-git}**: Redistribution is explicitly prohibited in its [FAQ](https://www.aseprite.org/faq/#can-i-redistribute-aseprite).
 
 - **multimc-git**: This application is licensed under the Apache 2 license, which [prohibits distributing custom binaries](https://multimc.org/#Branding) as the one built by us.
-

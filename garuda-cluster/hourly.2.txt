@@ -1,5 +1,6 @@
 ## Garuda editions need the following..
 # Cinnamon
+gnome-terminal-transparency
 mintstick
 xviewer
 xviewer-plugins
@@ -25,6 +26,7 @@ sweet-theme-full-git
 # Dr460nized-gaming
 boxtron
 corectrl
+fancontrol-gui-git
 firedragon-extension-xdm-browser-monitor
 itch
 kde-service-menu-reimage
