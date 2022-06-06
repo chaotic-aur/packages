@@ -207,6 +207,7 @@ python2-xlib # (dep acestream-engine)
 btrfs-assistant-git
 garuda-system-maintenance-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-system-maintenance-git.git
 snapper-tools-git
+otter-browser-git
 
 
 ## User requests
@@ -222,3 +223,8 @@ connman-gtk-git
 bcache-tools
 libgaminggear # (dep roccat-tools)
 roccat-tools:https://aur.archlinux.org/roccat-tools.git # (Also includes roccat-tools-common,roccat-tools-{isku,iskufx,kiro,kone,koneplus,konepure,konepuremilitary,konepureoptical,konextd,konextdoptical,kova2016,kovaplus,pyra,ryostkl,savu,skeltr,sova,suora}
+
+
+### Chaotic-AUR
+# Issue 946
+graphite-gtk-theme-git
