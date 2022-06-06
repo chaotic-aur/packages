@@ -1026,6 +1026,9 @@ organize
 python-exifread # (dep organize)
 python-simplematch # (dep organize)
 
+# Issue 1479
+twinkle-git
+
 
 ## Lost & found
 anaconda
