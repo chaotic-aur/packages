@@ -1006,6 +1006,9 @@ vibrantlinux
 # Issue 1470
 ludusavi
 
+# Issue 1471
+chiaki
+
 # Issue 1472
 libretro-opera-git
 
