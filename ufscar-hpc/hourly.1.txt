@@ -1015,6 +1015,9 @@ libretro-opera-git
 # Issue 1474
 onefetch-git
 
+# Issue 1475
+neovim-plug-git
+
 # Issue 1476
 steam-metadata-editor-git
 
@@ -1022,6 +1025,7 @@ steam-metadata-editor-git
 organize
 python-exifread # (dep organize)
 python-simplematch # (dep organize)
+
 
 ## Lost & found
 anaconda
