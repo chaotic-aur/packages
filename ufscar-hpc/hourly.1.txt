@@ -1018,6 +1018,10 @@ onefetch-git
 # Issue 1476
 steam-metadata-editor-git
 
+# Issue 1477
+organize
+python-exifread # (dep organize)
+python-simplematch # (dep organize)
 
 ## Lost & found
 anaconda
