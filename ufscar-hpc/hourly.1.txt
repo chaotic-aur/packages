@@ -1003,6 +1003,9 @@ natron-bin
 vibrant:https://aur.archlinux.org/vibrant.git # (dep vibrantlinux)
 vibrantlinux
 
+# Issue 1470
+ludusavi
+
 # Issue 1472
 libretro-opera-git
 
