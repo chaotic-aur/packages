@@ -64,6 +64,7 @@ primus-vk-git
 proton-ge-custom
 python-telegram-bot # (dep python-telegram-send)
 python-telegram-send
+quartus-130
 ripcord-arch-libs
 ruby-coderay # (dep logstalgia)
 ruby-method_source # (dep logstalgia)
