@@ -1015,6 +1015,9 @@ libretro-opera-git
 # Issue 1474
 onefetch-git
 
+# Issue 1476
+steam-metadata-editor-git
+
 
 ## Lost & found
 anaconda
