@@ -999,6 +999,9 @@ ttf-meslo-nerd-font-powerlevel10k
 # Issue 1467
 natron-bin
 
+# Issue 1472
+libretro-opera-git
+
 # Issue 1474
 onefetch-git
 

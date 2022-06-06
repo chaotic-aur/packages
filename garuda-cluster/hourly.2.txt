@@ -90,7 +90,9 @@ wayfire
 wcm:https://gitlab.com/garuda-linux/packages/other/wcm.git
 wdisplays
 wf-config:https://gitlab.com/garuda-linux/packages/other/wf-config.git
+wf-osk-git
 wf-shell:https://gitlab.com/garuda-linux/packages/other/wf-shell.git
+wlogout
 
 # XFCE
 gestures
