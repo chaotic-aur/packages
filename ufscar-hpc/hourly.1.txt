@@ -999,6 +999,10 @@ ttf-meslo-nerd-font-powerlevel10k
 # Issue 1467
 natron-bin
 
+# Issue 1469
+vibrant:https://aur.archlinux.org/vibrant.git # (dep vibrantlinux)
+vibrantlinux
+
 # Issue 1472
 libretro-opera-git
 
