@@ -639,9 +639,6 @@ htop-git
 # Issue 693
 plasmatube-git
 
-# Issue 697
-noise-suppression-for-voice
-
 # Issue 701
 melonds-git
 
