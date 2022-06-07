@@ -352,3 +352,6 @@ strawberry-qt5
 
 # Issue 1452
 vlang-git
+
+# Issue 1480
+imd-git
