@@ -1022,6 +1022,10 @@ python-simplematch # (dep organize)
 # Issue 1479
 twinkle-git
 
+# Issue 1483
+python-suntime # (dep ying-yang-git)
+yin-yang-git
+
 
 ## Lost & found
 anaconda
