@@ -354,3 +354,6 @@ vlang-git
 
 # Issue 1480
 imd-git
+
+# Issue 1482
+conserve-git
