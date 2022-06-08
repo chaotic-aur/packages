@@ -1531,8 +1531,6 @@ headset-bin
 prospect-mail-bin
 
 # Issue 1196
-cl-alexandria-git # (dep stumpwm)
-clx-git # (dep stumpwm)
 stumpwm-contrib-git
 
 # Issue 1199
