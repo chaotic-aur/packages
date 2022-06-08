@@ -1629,5 +1629,8 @@ mongodb-bin # (dep polyglot)
 polyglot # (dep stockfish-git)
 stockfish-git
 
+# Issue 1481
+spice-guest-tools-windows
+
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
