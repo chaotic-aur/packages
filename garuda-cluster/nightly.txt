@@ -4,14 +4,20 @@ thunderbird-appmenu
 
 
 ## Chaotic
-# Issue 1042
-linux-xanmod-tt
+# Issue 339
+#onivim2-git # non paralellizable, package is currently broken
+
+# Issue 395
+emacs-pgtk-native-comp-git
+
+# Issue 462
+emacs-git
 
 # Issue 726
 godot-mono  # non parallelizable
 
-# Issue 339
-#onivim2-git # non paralellizable, package is currently broken
+# Issue 1042
+linux-xanmod-tt
 
 
 ## Not building for whatever reason, lets try it here

@@ -10,6 +10,9 @@ blender-git
 # Issue 369
 php80
 
+# Issue 698
+yuzu-git:https://gitlab.com/tallero/yuzu-git-aur.git
+
 # Issue 816 / 1361
 firefox-appmenu
 

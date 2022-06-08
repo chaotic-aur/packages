@@ -80,7 +80,6 @@ chaotic-neofetch-git:https://github.com/chaotic-aur/chaotic-neofetch-git.git
 depot-tools-git # servo-git dep
 discord-canary-electron-bin
 gotop
-grim-git
 hsphfpd-git
 irpf
 ktweak-git:https://github.com/tytydraco/KTweak.git
@@ -93,7 +92,6 @@ obs-streamfx
 obs-v4l2sink
 obs-vkcapture-git
 oneko
-osdlyrics-git
 pipewire-common-git
 podman-compose-git
 pw-viz
@@ -417,9 +415,6 @@ vala-panel-git # (dep vala-panel-sntray-git)
 # Issue 374
 quixel-bridge
 
-# Issue 377
-edid-decode-git
-
 # Issue 378
 kawaii-player
 python-mpv
@@ -480,9 +475,6 @@ sct
 
 # Issue 394
 perl-file-rename # (dep icecat)
-
-# Issue 395
-emacs-pgtk-native-comp-git
 
 # Issue 396
 p7zip-gui
@@ -609,9 +601,6 @@ wget2
 # Issue 461
 surf-git
 
-# Issue 462
-emacs-git
-
 # Issue 463
 gnome-shell-extension-material-shell-git
 
@@ -702,7 +691,6 @@ pipe-viewer-git
 # Issue 486
 libdnf
 libmodulemd
-mkosi-git
 python-urlgrabber
 python2-iniparse
 python2-pip

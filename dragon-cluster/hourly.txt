@@ -135,18 +135,10 @@ python-rapidfuzz-capi  # (dep python-rapidfuzz)
 python-spotdl
 rapidfuzz-cpp # (dep python-rapidfuzz)
 
-# Linphone
-bcg729-git
-bcmatroska2-git
-bctoolbox-git
-belcard
-belle-sip
-belr
-libdecaf
-liblinphone-git
-lime
-linphone-desktop-git
-mediastreamer-git
+
+## Pedro
+grim-git
+osdlyrics-git
 
 
 ## SGS
@@ -188,6 +180,12 @@ sshs
 
 
 ## Chaotic
+# Issue 377
+edid-decode-git
+
+# Issue 486
+mkosi-git
+
 # Issue 759
 tenacity-git
 wxwidgets-dev-light # (dep tenacity-git)
