@@ -123,7 +123,6 @@ zfs-utils
 
 # Raytracing (Pedro)
 imgui
-stb
 tinyobjloader
 
 # lib32-gst-plugins-ugly (Pedro)
