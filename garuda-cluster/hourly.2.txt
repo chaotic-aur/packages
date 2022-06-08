@@ -85,13 +85,13 @@ wob
 greetd
 greetd-qtgreet
 wayfire-desktop-git
-wayfire-plugins-extra:https://gitlab.com/garuda-linux/packages/other/wayfire-plugins-extra.git
+wayfire-plugins-extra
 wayfire
-wcm:https://gitlab.com/garuda-linux/packages/other/wcm.git
+wcm
 wdisplays
-wf-config:https://gitlab.com/garuda-linux/packages/other/wf-config.git
+wf-config
 wf-osk-git
-wf-shell:https://gitlab.com/garuda-linux/packages/other/wf-shell.git
+wf-shell
 wlogout
 
 # XFCE
