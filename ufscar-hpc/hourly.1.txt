@@ -537,6 +537,9 @@ webkitgtk
 # Issue 435
 #ffmpeg-full (broken)
 
+# Issue 436
+keymapper-git
+
 # Issue 437
 theia-electron
 
