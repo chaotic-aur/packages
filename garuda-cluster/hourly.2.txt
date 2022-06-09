@@ -69,10 +69,12 @@ picom-ibhagwan-git
 # Sway
 nordic-darker-theme
 nwg-bar
+nwg-displays
 nwg-dock
 nwg-drawer
 nwg-icon-picker
 nwg-launchers
+nwg-look
 nwg-menu
 nwg-panel
 nwg-wrapper
