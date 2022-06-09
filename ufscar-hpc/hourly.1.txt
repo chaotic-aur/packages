@@ -325,7 +325,6 @@ python2-gobject2
 # Issue 327
 ananicy
 boston-icon-theme
-xow-git
 
 # Issue 332
 cantata-git
@@ -537,9 +536,6 @@ webkitgtk
 
 # Issue 435
 #ffmpeg-full (broken)
-
-# Issue 436
-keymapper-git
 
 # Issue 437
 theia-electron
@@ -961,7 +957,6 @@ apple-fonts
 
 # Issue 1437
 joystickwake
-xone-dkms
 
 # Issue 1440
 php-humbug-box-bin # (dep php-cs-fixer)

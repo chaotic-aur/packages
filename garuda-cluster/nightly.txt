@@ -1,6 +1,7 @@
 # Dr460nized
 firedragon
 thunderbird-appmenu
+kfiredragonhelper
 
 
 ## Chaotic

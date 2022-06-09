@@ -247,7 +247,10 @@ yuzu-mainline-git
 
 # Gaming
 athenaeum-git
+boxtron
+corectrl
 fancontrol-gui
+fancontrol-gui-git
 game-devices-udev
 gamehub
 gamerworld
@@ -256,22 +259,26 @@ heroic-games-launcher-bin
 hypnotix
 ialauncher-git
 input-remapper-git
+itch
+keyboard-visualizer-git
 legendary
 lib32-vkbasalt
 libliftoff-git # (dep gamescope-git)
 libretro-stella2014-git
 luxtorpeda-git
+minecraft-launcher
 minigalaxy
 moonlight-qt
 nestopia
 nyrna
+openrgb
 openrgb-git
 oversteer
 play.it
 proton-caller
 protontricks-git
 python-injector # (dep gwe)
-q4wine
+q4wine-git
 rare-git
 reicast
 replay-sorcery
@@ -287,7 +294,12 @@ vkbasalt
 vr-video-player-git
 xbox-generic-controller
 xboxdrv
+xone-dkms-git
+xone-dkms
 xow
+xow-git
+xpadneo-dkms-git
+xpadneo-dkms
 
 
 ## DEPENDENCIES

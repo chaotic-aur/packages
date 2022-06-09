@@ -9,7 +9,6 @@ xviewer-plugins
 beautyline
 firedragon-extension-plasma-integration
 jamesdsp
-kfiredragonhelper
 kwin-scripts-forceblur
 nerd-fonts-fantasque-sans-mono # (old font)
 nerd-fonts-fira-code
@@ -24,11 +23,7 @@ sweet-kde-theme-git # (dep sweet-theme-full-git)
 sweet-theme-full-git
 
 # Dr460nized-gaming
-boxtron
-corectrl
-fancontrol-gui-git
 firedragon-extension-xdm-browser-monitor
-itch
 kde-service-menu-reimage
 kde-servicemenus-encfs
 kde-servicemenus-komparemenu
@@ -38,11 +33,8 @@ kde-servicemenus-pdf-encrypt-decrypt
 kde-servicemenus-rootactions
 kde-servicemenus-sendtodesktop
 kde-servicemenus-setaswallpaper
-keyboard-visualizer-git
 kwin-effects-sliding-notifications
-minecraft-launcher
-openrgb
-xpadneo-dkms-git
+
 
 # GNOME
 # Nothing as of now
