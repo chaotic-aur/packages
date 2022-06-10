@@ -1644,5 +1644,9 @@ stockfish-git
 # Issue 1481
 spice-guest-tools-windows
 
+# Issue 1486
+kwallet-secrets
+
+
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
