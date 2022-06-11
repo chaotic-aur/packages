@@ -93,7 +93,6 @@ google-meet-desktop
 gstreamer0.10 # (dep foxitreader)
 gstreamer0.10-base # (dep foxitreader)
 guiscrcpy
-lapce
 mailspring
 mellowplayer
 mendeleydesktop
