@@ -180,6 +180,9 @@ sshs
 
 
 ## Chaotic
+# Via mail (9th June)
+schildichat-desktop
+
 # Issue 377
 edid-decode-git
 
