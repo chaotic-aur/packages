@@ -13,7 +13,7 @@ gksu # (dep wacom-utility)
 google-chrome
 jdownloader2
 jitsi-meet-desktop
-joplin
+joplin:https://github.com/chaotic-aur/pkgbuild-joplin
 libgksu # (dep wacom-utility)
 mendeleydesktop-bundled
 ms-office-online
