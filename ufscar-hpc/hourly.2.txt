@@ -1305,6 +1305,7 @@ ftl-sdk # (dep obs-studio-tytan652)
 librist # (dep ffmpeg-obs)
 obs-studio-rc
 obs-studio-tytan652
+svt-av1-git # (dep ffmpeg-obs)
 
 # Issue 1041
 qtile-extras-git
