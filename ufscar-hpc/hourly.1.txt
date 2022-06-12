@@ -1024,6 +1024,9 @@ twinkle-git
 python-suntime # (dep ying-yang-git)
 yin-yang-git
 
+# Issue
+memtest86-efi
+
 
 ## Lost & found
 anaconda
