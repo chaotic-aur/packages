@@ -162,6 +162,7 @@ xiaomitool-v2
 
 ## Technetium1
 acidrip
+android-messages-desktop
 betterdiscordctl-git
 croc-git
 das-keyboard-q
