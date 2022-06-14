@@ -50,6 +50,7 @@ threema-web
 srecord
 pip-tools
 fuse-ext2-git
+otf-firamath
 
 # OBS Wayland (Paulo)
 wlrobs-hg
