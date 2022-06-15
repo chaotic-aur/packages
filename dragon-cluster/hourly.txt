@@ -361,3 +361,6 @@ imd-git
 
 # Issue 1482
 conserve-git
+
+# Issue 1491
+gyroflow-git
