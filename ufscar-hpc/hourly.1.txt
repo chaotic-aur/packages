@@ -1026,8 +1026,11 @@ twinkle-git
 python-suntime # (dep ying-yang-git)
 yin-yang-git
 
-# Issue
+# Issue 1488
 memtest86-efi
+
+# Issue 1489
+handbrake-nvenc
 
 
 ## Lost & found
