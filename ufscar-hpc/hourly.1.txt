@@ -858,6 +858,7 @@ discord-development-electron-bin
 
 # Issue 620
 bottles
+icoextract # (dep bottles)
 patool
 
 # Issue 621
