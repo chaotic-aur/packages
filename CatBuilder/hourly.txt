@@ -9,3 +9,4 @@ noise-suppression-for-voice-git
 nvlax-git
 signal-desktop-beta
 rustc-demangle
+insomnia
