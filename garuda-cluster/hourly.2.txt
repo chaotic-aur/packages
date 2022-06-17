@@ -10,6 +10,7 @@ beautyline
 firedragon-extension-plasma-integration
 jamesdsp
 kwin-scripts-forceblur
+kwin-scripts-window-colors
 nerd-fonts-fantasque-sans-mono # (old font)
 nerd-fonts-fira-code
 plasma5-applets-eventcalendar
@@ -33,7 +34,10 @@ kde-servicemenus-pdf-encrypt-decrypt
 kde-servicemenus-rootactions
 kde-servicemenus-sendtodesktop
 kde-servicemenus-setaswallpaper
+kwin-effects-burn-my-windows-git
 kwin-effects-sliding-notifications
+kwin-effects-yet-another-magic-lamp
+kwin-scripts-krohnkite-git
 
 
 # GNOME

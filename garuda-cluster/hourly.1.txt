@@ -169,9 +169,6 @@ ksmoothdock
 kvantum-theme-layan-git
 kvantum-theme-matcha-git
 kvantum-theme-vimix-git
-kwin-effects-yet-another-magic-lamp
-kwin-scripts-krohnkite-git
-kwin-scripts-window-colors
 layan-gtk-theme-git
 layan-kde-git
 loginized
