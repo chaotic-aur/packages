@@ -24,6 +24,7 @@ czkawka-git
 debianutils
 distrobox
 electronmail-bin
+epiphany-git
 esbuild # (dep kwin-bismuth)
 exa-git
 fastfetch-git
