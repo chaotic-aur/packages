@@ -1032,6 +1032,9 @@ memtest86-efi
 # Issue 1489
 handbrake-nvenc
 
+# Issue 1496
+include-what-you-use
+
 
 ## Lost & found
 anaconda
