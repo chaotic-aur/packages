@@ -52,6 +52,7 @@ kpeople-git
 kplotting-git
 kpty-git
 kquickcharts-git
+plasma-framework-git:https://github.com/chaotic-aur/pkgbuild-plasma-framework-git.git
 krunner-git
 kservice-git
 ktexteditor-git
@@ -61,8 +62,8 @@ kwidgetsaddons-git
 kwindowsystem-git
 modemmanager-qt-git:https://github.com/chaotic-aur/pkgbuild-modemmanager-qt-git.git
 networkmanager-qt-git:https://github.com/chaotic-aur/pkgbuild-networkmanager-qt-git.git
-plasma-framework-git:https://github.com/chaotic-aur/pkgbuild-plasma-framework-git.git
 prison-git:https://github.com/chaotic-aur/pkgbuild-prison-git.git
+kaccounts-integration-git:https://github.com/chaotic-aur/pkgbuild-kaccounts-integration-git.git
 purpose-git:https://github.com/chaotic-aur/pkgbuild-purpose-git.git
 qqc2-desktop-style-git:https://github.com/chaotic-aur/pkgbuild-qqc2-desktop-style-git.git
 solid-git:https://github.com/chaotic-aur/pkgbuild-solid-git.git

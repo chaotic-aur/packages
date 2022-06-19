@@ -26,7 +26,6 @@ grantlee-git
 grantleetheme-git
 gwenview-git:https://github.com/chaotic-aur/pkgbuild-gwenview-git.git
 incidenceeditor-git
-kaccounts-integration-git:https://github.com/chaotic-aur/pkgbuild-kaccounts-integration-git.git
 kalarm-git:https://github.com/chaotic-aur/pkgbuild-kalarm-git.git
 kalendar-git
 kapidox-git
