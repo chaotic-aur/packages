@@ -1,8 +1,5 @@
-libkscreen-git
-kscreen-git
-breeze-icons-git:https://github.com/chaotic-aur/pkgbuild-breeze-icons-git.git
+kross-git
 breeze-git:https://github.com/chaotic-aur/pkgbuild-breeze-git.git
-kde-cli-tools-git
 kdeplasma-addons-git
 khotkeys-git
 kinfocenter-git
@@ -22,3 +19,4 @@ plasma-workspace-git
 powerdevil-git
 systemsettings-git
 sddm-kcm-git:https://github.com/chaotic-aur/pkgbuild-sddm-kcm-git.git
+kde-cli-tools-git

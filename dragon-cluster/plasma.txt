@@ -3,12 +3,12 @@ kdecoration-git
 libkscreen-git
 kscreen-git
 bluedevil-git
+kross-git
 breeze-icons-git:https://github.com/chaotic-aur/pkgbuild-breeze-icons-git.git
 breeze-git:https://github.com/chaotic-aur/pkgbuild-breeze-git.git
 discover-git:https://github.com/chaotic-aur/pkgbuild-discover-git.git
 drkonqi-git:https://github.com/chaotic-aur/pkgbuild-drkonqi-git.git
 kactivitymanagerd-git
-kde-cli-tools-git
 kde-gtk-config-git:https://github.com/chaotic-aur/pkgbuild-kde-gtk-config-git.git
 kdeplasma-addons-git
 kgamma5-git
@@ -39,6 +39,7 @@ plasma-systemmonitor-git:https://github.com/chaotic-aur/pkgbuild-plasma-systemmo
 plasma-thunderbolt-git:https://github.com/chaotic-aur/pkgbuild-plasma-thunderbolt-git.git
 plasma-vault-git:https://github.com/chaotic-aur/pkgbuild-plasma-vault-git.git
 plasma-workspace-git
+kde-cli-tools-git
 polkit-kde-agent-git
 powerdevil-git
 systemsettings-git

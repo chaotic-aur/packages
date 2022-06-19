@@ -74,7 +74,6 @@ kpeoplevcard-git:https://github.com/chaotic-aur/pkgbuild-kpeoplevcard-git.git
 kpimtextedit-git
 kpkpass-git
 kpmcore-git:https://github.com/chaotic-aur/pkgbuild-kpmcore-git.git
-kross-git
 ksmtp-git
 ksystemlog-git
 ktnef-git
