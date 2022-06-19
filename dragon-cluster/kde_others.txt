@@ -132,6 +132,5 @@ qutebrowser-qt6-git:https://github.com/chaotic-aur/pkgbuild-qutebrowser-qt6-git.
 sddm-config-editor-git  # Issue 453
 sddm-git
 sddm-theme-astronaut  # Issue 1168
-signon-kwallet-extension-git
 spectacle-git
 wrapland-git
