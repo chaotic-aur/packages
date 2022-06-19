@@ -10,7 +10,6 @@ akonadi-search-git
 akregator-git
 ark-git:https://github.com/chaotic-aur/pkgbuild-ark-git.git
 breeze-gtk-git:https://github.com/chaotic-aur/pkgbuild-breeze-gtk-git.git
-breeze-icons-git:https://github.com/chaotic-aur/pkgbuild-breeze-icons-git.git
 calendarsupport-git
 cantor-git
 disman-git
