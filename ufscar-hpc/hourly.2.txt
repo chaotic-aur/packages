@@ -1649,6 +1649,10 @@ kwallet-secrets
 # Issue 1497
 polymc-git
 
+# Issue 1500
+phoenicis-playonlinux
+playonlinux
+
 
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
