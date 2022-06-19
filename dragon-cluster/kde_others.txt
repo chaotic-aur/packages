@@ -39,7 +39,6 @@ kdegraphics-mobipocket-git
 kdenlive-git:https://github.com/chaotic-aur/pkgbuild-kdenlive-git.git
 kdepim-addons-git
 kdepim-runtime-git
-kdesignerplugin-git
 kdiagram-git
 kdialog-git
 kdisplay-git
@@ -78,7 +77,6 @@ kpkpass-git
 kpmcore-git:https://github.com/chaotic-aur/pkgbuild-kpmcore-git.git
 kross-git
 ksmtp-git
-ksysguard-git
 ksystemlog-git
 ktnef-git
 ktorrent-git

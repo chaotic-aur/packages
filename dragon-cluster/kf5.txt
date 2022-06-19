@@ -72,3 +72,4 @@ sonnet-git:https://github.com/chaotic-aur/pkgbuild-sonnet-git.git
 syndication-git
 syntax-highlighting-git
 threadweaver-git:https://github.com/chaotic-aur/pkgbuild-threadweaver-git.git
+kdesignerplugin-git

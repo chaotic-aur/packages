@@ -23,6 +23,7 @@ kwin-git:https://github.com/chaotic-aur/pkgbuild-kwin-git.git
 kwrited-git
 layer-shell-qt-git
 libksysguard-git
+ksysguard-git
 milou-git:https://github.com/chaotic-aur/pkgbuild-milou-git.git
 oxygen-git
 plasma-browser-integration-git
@@ -39,6 +40,6 @@ plasma-vault-git:https://github.com/chaotic-aur/pkgbuild-plasma-vault-git.git
 plasma-workspace-git
 polkit-kde-agent-git
 powerdevil-git
-sddm-kcm-git:https://github.com/chaotic-aur/pkgbuild-sddm-kcm-git.git
 systemsettings-git
 xdg-desktop-portal-kde-git:https://github.com/chaotic-aur/pkgbuild-xdg-desktop-portal-kde-git.git
+sddm-kcm-git:https://github.com/chaotic-aur/pkgbuild-sddm-kcm-git.git
