@@ -1,8 +1,12 @@
 ## KF5
 attica-git:https://github.com/chaotic-aur/pkgbuild-attica-git.git
+kfilemetadata-git
+kio-git
+kdoctools-git
 baloo-git:https://github.com/chaotic-aur/pkgbuild-baloo-git.git
 bluez-git # (dep bluez-qt-git)
 bluez-qt-git
+knewstuff-git
 frameworkintegration-git
 kactivities-git
 kactivities-stats-git
@@ -25,9 +29,7 @@ kdeclarative-git
 kded-git
 kdesu-git
 kdnssd-git
-kdoctools-git
 kemoticons-git
-kfilemetadata-git
 kglobalaccel-git
 kguiaddons-git
 kholidays-git
@@ -36,12 +38,10 @@ kiconthemes-git
 kidletime-git
 kimageformats-git:https://github.com/chaotic-aur/pkgbuild-kimageformats-git.git
 kinit-git
-kio-git
 kirigami2-git
 kitemmodels-git
 kitemviews-git
 kjobwidgets-git
-knewstuff-git
 knotifications-git
 knotifyconfig-git
 kpackage-git
@@ -73,6 +73,7 @@ syntax-highlighting-git
 threadweaver-git:https://github.com/chaotic-aur/pkgbuild-threadweaver-git.git
 
 ## PLASMA
+kdecoration-git
 bluedevil-git
 breeze-git:https://github.com/chaotic-aur/pkgbuild-breeze-git.git
 discover-git:https://github.com/chaotic-aur/pkgbuild-discover-git.git
@@ -80,7 +81,6 @@ drkonqi-git:https://github.com/chaotic-aur/pkgbuild-drkonqi-git.git
 kactivitymanagerd-git
 kde-cli-tools-git
 kde-gtk-config-git:https://github.com/chaotic-aur/pkgbuild-kde-gtk-config-git.git
-kdecoration-git
 kdeplasma-addons-git
 kgamma5-git
 khotkeys-git
