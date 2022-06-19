@@ -1035,6 +1035,9 @@ handbrake-nvenc
 # Issue 1496
 include-what-you-use
 
+# Issue 1499
+python-pdf2image
+
 
 ## Lost & found
 anaconda
