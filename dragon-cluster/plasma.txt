@@ -1,3 +1,4 @@
+kdelibs4support-git
 kdecoration-git
 libkscreen-git
 kscreen-git
@@ -32,7 +33,6 @@ plasma-integration-git
 plasma-nm-git:https://github.com/chaotic-aur/pkgbuild-plasma-nm-git.git
 plasma-pa-git:https://github.com/chaotic-aur/pkgbuild-plasma-pa-git.git
 plasma-sdk-git:https://github.com/chaotic-aur/pkgbuild-plasma-sdk-git.git
-plasma-systemmonitor-git
 plasma-systemmonitor-git:https://github.com/chaotic-aur/pkgbuild-plasma-systemmonitor-git.git
 plasma-thunderbolt-git:https://github.com/chaotic-aur/pkgbuild-plasma-thunderbolt-git.git
 plasma-vault-git:https://github.com/chaotic-aur/pkgbuild-plasma-vault-git.git

@@ -36,7 +36,6 @@ kcolorpicker-git:https://github.com/chaotic-aur/pkgbuild-kcolorpicker-git.git
 kdeconnect-git:https://github.com/chaotic-aur/pkgbuild-kdeconnect-git.git
 kde-git-meta:https://github.com/chaotic-aur/pkgbuild-kde-git-meta.git
 kdegraphics-mobipocket-git
-kdelibs4support-git
 kdenlive-git:https://github.com/chaotic-aur/pkgbuild-kdenlive-git.git
 kdepim-addons-git
 kdepim-runtime-git
