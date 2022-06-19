@@ -1,6 +1,10 @@
 attica-git:https://github.com/chaotic-aur/pkgbuild-attica-git.git
 kfilemetadata-git
 kjobwidgets-git
+kconfig-git
+kconfigwidgets-git
+kiconthemes-git
+kxmlgui-git
 kbookmarks-git
 kwallet-git:https://github.com/chaotic-aur/pkgbuild-kwallet-git.git
 ktextwidgets-git
@@ -22,8 +26,6 @@ kcalendarcore-git:https://github.com/chaotic-aur/pkgbuild-kcalendarcore-git.git
 kcmutils-git
 kcodecs-git
 kcompletion-git
-kconfig-git
-kconfigwidgets-git
 kcontacts-git
 kcoreaddons-git
 kcrash-git
@@ -37,7 +39,6 @@ kglobalaccel-git
 kguiaddons-git
 kholidays-git
 ki18n-git
-kiconthemes-git
 kidletime-git
 kimageformats-git:https://github.com/chaotic-aur/pkgbuild-kimageformats-git.git
 kinit-git
@@ -58,7 +59,6 @@ kunitconversion-git
 kwayland-git
 kwidgetsaddons-git
 kwindowsystem-git
-kxmlgui-git
 modemmanager-qt-git:https://github.com/chaotic-aur/pkgbuild-modemmanager-qt-git.git
 networkmanager-qt-git:https://github.com/chaotic-aur/pkgbuild-networkmanager-qt-git.git
 plasma-framework-git:https://github.com/chaotic-aur/pkgbuild-plasma-framework-git.git
