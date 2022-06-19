@@ -11,16 +11,18 @@ kwallet-git:https://github.com/chaotic-aur/pkgbuild-kwallet-git.git
 ktextwidgets-git
 kded-git
 kio-git
+karchive-git
+kcoreaddons-git
+kpackage-git
+kdeclarative-git
 kdoctools-git
 baloo-git:https://github.com/chaotic-aur/pkgbuild-baloo-git.git
 bluez-git # (dep bluez-qt-git)
 bluez-qt-git
-kpackage-git
 knewstuff-git
 frameworkintegration-git
 kactivities-git
 kactivities-stats-git
-karchive-git
 kauth-git
 kcalendarcore-git
 kcalendarcore-git:https://github.com/chaotic-aur/pkgbuild-kcalendarcore-git.git
@@ -28,11 +30,9 @@ kcmutils-git
 kcodecs-git
 kcompletion-git
 kcontacts-git
-kcoreaddons-git
 kcrash-git
 kdav-git
 kdbusaddons-git
-kdeclarative-git
 kdesu-git
 kdnssd-git
 kemoticons-git

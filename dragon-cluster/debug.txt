@@ -1,13 +1,7 @@
 knewstuff-git
 frameworkintegration-git
 kcmutils-git
-kdav-git
-kdeclarative-git
-kinit-git
-knotifyconfig-git
-kparts-git
 krunner-git
 ktexteditor-git
 plasma-framework-git:https://github.com/chaotic-aur/pkgbuild-plasma-framework-git.git
 purpose-git:https://github.com/chaotic-aur/pkgbuild-purpose-git.git
-qqc2-desktop-style-git:https://github.com/chaotic-aur/pkgbuild-qqc2-desktop-style-git.git
