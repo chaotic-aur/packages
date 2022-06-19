@@ -1,5 +1,6 @@
 attica-git:https://github.com/chaotic-aur/pkgbuild-attica-git.git
 kfilemetadata-git
+ki18n-git
 kjobwidgets-git
 kconfig-git
 kconfigwidgets-git
@@ -38,7 +39,6 @@ kemoticons-git
 kglobalaccel-git
 kguiaddons-git
 kholidays-git
-ki18n-git
 kidletime-git
 kimageformats-git:https://github.com/chaotic-aur/pkgbuild-kimageformats-git.git
 kinit-git
