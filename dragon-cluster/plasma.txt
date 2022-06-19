@@ -1,4 +1,6 @@
 kdecoration-git
+libkscreen-git
+kscreen-git
 bluedevil-git
 breeze-git:https://github.com/chaotic-aur/pkgbuild-breeze-git.git
 discover-git:https://github.com/chaotic-aur/pkgbuild-discover-git.git
@@ -11,8 +13,6 @@ kgamma5-git
 khotkeys-git
 kinfocenter-git
 kmenuedit-git
-kscreen-git
-libkscreen-git
 kscreenlocker-git
 ksshaskpass-git
 ksystemstats-git
