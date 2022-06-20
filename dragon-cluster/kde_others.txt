@@ -1,3 +1,5 @@
+calendarsupport-git
+messagelib-git
 akonadi-calendar-git
 akonadi-calendar-tools-git
 akonadiconsole-git
@@ -10,7 +12,6 @@ akonadi-search-git
 akregator-git
 ark-git:https://github.com/chaotic-aur/pkgbuild-ark-git.git
 breeze-gtk-git:https://github.com/chaotic-aur/pkgbuild-breeze-gtk-git.git
-calendarsupport-git
 cantor-git
 disman-git
 dolphin-git:https://github.com/chaotic-aur/pkgbuild-dolphin-git.git
@@ -41,11 +42,12 @@ kdepim-runtime-git
 kdiagram-git
 kdialog-git
 kdisplay-git
+khtml-git
+kmime-git
 kdsoap-git
 kdsoap-ws-discovery-client-git
 kget-git
 khelpcenter-git
-khtml-git
 kidentitymanagement-git
 kimageannotator-git
 kimap2-git
@@ -61,7 +63,6 @@ kmail-account-wizard-git
 kmail-git
 kmailtransport-git
 kmbox-git
-kmime-git
 knotes-git
 kolourpaint-git
 kompare-git:https://github.com/chaotic-aur/pkgbuild-kompare-git.git
@@ -101,7 +102,6 @@ mailcommon-git
 mailimporter-git
 marble-git
 mbox-importer-git
-messagelib-git
 non-euclidean-git
 okular-git
 oxygen-icons-git:https://github.com/chaotic-aur/pkgbuild-oxygen-icons-git.git
@@ -115,7 +115,6 @@ plasma5-applets-latte-spacer
 plasma5-applets-window-appmenu-git
 plasma5-applets-window-buttons-git
 plasma5-applets-window-title-git
-## Plasma-git
 plasma-wayland-protocols-git
 plasma-workspace-wallpapers-git:https://github.com/chaotic-aur/pkgbuild-plasma-workspace-wallpapers-git.git
 polkit-qt5-git
