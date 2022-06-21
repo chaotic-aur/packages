@@ -1653,6 +1653,9 @@ polymc-git
 phoenicis-playonlinux
 playonlinux
 
+# Issue 1505
+qt6gtk2
+
 
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
