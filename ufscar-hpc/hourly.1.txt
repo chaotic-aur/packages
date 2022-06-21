@@ -1041,6 +1041,9 @@ python-pdf2image
 # Issue 1502
 yay-git
 
+# Issue 1503
+ferdium-bin
+
 
 ## Lost & found
 anaconda
