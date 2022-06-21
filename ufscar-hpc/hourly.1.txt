@@ -1038,6 +1038,9 @@ include-what-you-use
 # Issue 1499
 python-pdf2image
 
+# Issue 1501
+python-qt-material-git
+
 # Issue 1502
 yay-git
 
