@@ -1,14 +1,4 @@
-akonadi-calendar-tools-git
-akonadi-import-wizard-git
-akonadiconsole-git
-akregator-git
 kdepim-addons-git
-kdepim-runtime-git
 kmail-git
 knotes-git
-kontact-git
 korganizer-git
-ktnef-git
-libksieve-git
-pim-data-exporter-git
-pim-sieve-editor-git
