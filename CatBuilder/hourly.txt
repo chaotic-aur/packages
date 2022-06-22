@@ -11,3 +11,4 @@ signal-desktop-beta
 rustc-demangle
 insomnia
 libreswan
+openswan
