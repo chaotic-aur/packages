@@ -51,7 +51,7 @@ inxi-git
 ipman
 jamesdsp-git
 kotatogram-dev-git
-kvantum-qt5-git
+kvantum-git
 kwin-bismuth
 libart-lgpl # (dep gimp-git)
 libgbinder
