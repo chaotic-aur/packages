@@ -1047,6 +1047,9 @@ yay-git
 # Issue 1503
 ferdium-bin
 
+# Issue 1508
+xdg-autostart
+
 
 ## Lost & found
 anaconda
