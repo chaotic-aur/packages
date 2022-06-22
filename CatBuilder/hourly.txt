@@ -10,3 +10,4 @@ nvlax-git
 signal-desktop-beta
 rustc-demangle
 insomnia
+libreswan
