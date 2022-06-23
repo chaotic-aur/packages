@@ -31,6 +31,7 @@ i3status-rust-git
 libfprint-git
 libsdrplay
 ncurses5-compat-libs
+qt4 # (dep qucs)
 qucs
 # radare2-git # unknown build option
 realvnc-vnc-viewer
@@ -750,10 +751,6 @@ godot-git
 
 # Issue 558
 ryujinx-git
-
-# Issue 561
-unrealtournament4
-qt4 # (dep unrealtournament4)
 
 # Issue 579
 youtube-bin
