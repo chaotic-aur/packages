@@ -254,3 +254,5 @@ sddm-git
 sddm-theme-astronaut  # Issue 1168
 spectacle-git
 wrapland-git
+## Non git packages
+kdeplasma-applets-fokus
