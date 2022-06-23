@@ -1047,6 +1047,9 @@ ferdium-bin
 # Issue 1508
 xdg-autostart
 
+# Issue 1509
+absolutely-proprietary
+
 
 ## Lost & found
 anaconda
