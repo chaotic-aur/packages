@@ -1659,6 +1659,9 @@ qt6gtk2
 # Issue 1507
 nsnake-git
 
+# Issue 1510
+polymc-cracked-git
+
 
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
