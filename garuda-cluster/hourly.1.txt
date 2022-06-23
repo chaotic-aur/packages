@@ -45,12 +45,6 @@ zoom
 linux-wifi-hotspot
 webapp-manager
 
-# Input method support
-fcitx-input-support
-fcitx5-input-support
-ibus-input-support
-manjaro-asian-input-support
-
 # Mycroft
 fann
 mimic
@@ -201,7 +195,6 @@ python2-xlib # (dep acestream-engine)
 
 ## Misc
 btrfs-assistant-git
-garuda-system-maintenance-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-system-maintenance-git.git
 snapper-tools-git
 otter-browser-git
 

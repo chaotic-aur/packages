@@ -123,9 +123,6 @@ firefox-extension-plasma-integration
 fish-autopair
 flameshot-git
 garuda-downloader-git
-garuda-settings-manager-git
-garuda-settings-manager-kcm-git
-garuda-settings-manager-notifier-git
 hblock
 hw-probe
 imagewriter
@@ -142,13 +139,6 @@ libxnvctrl-390xx
 lxc-git # (dep anbox-git)
 memavaild
 menulibre
-mhwd-amdgpu
-mhwd-ati
-mhwd-db-garuda-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/mhwd-db-garuda-git.git
-mhwd-garuda-git
-mhwd-nvidia
-mhwd-nvidia-390xx
-mhwd-nvidia-470xx
 mkinitcpio-openswap
 neofetch-git
 nohang
