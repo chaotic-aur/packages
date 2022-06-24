@@ -52,6 +52,7 @@ srecord
 pip-tools
 fuse-ext2-git
 otf-firamath
+wl-mirror
 
 # OBS Wayland (Paulo)
 wlrobs-hg
