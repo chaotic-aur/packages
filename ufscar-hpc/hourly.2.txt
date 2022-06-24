@@ -1655,6 +1655,10 @@ nsnake-git
 # Issue 1510
 polymc-cracked-git
 
+# Issue 1464
+noisetorch
+noisetorch-git
+
 
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
