@@ -1051,6 +1051,9 @@ xdg-autostart
 # Issue 1509
 absolutely-proprietary
 
+# Issue 1513
+ktlint
+
 
 ## Lost & found
 anaconda
