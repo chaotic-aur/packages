@@ -1659,6 +1659,9 @@ polymc-cracked-git
 noisetorch
 noisetorch-git
 
+# Issue 1514
+pika-backup
+
 
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
