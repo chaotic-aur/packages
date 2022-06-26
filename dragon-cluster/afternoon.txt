@@ -3,6 +3,9 @@
 coreutils-git
 firedragon-beta-znver2:https://gitlab.com/dr460nf1r3/firedragon-beta.git
 
+# A friend
+forkgram
+
 
 ## Chaotic-AUR
 # Unclear
