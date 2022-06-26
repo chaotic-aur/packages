@@ -11,9 +11,6 @@ forkgram
 # Unclear
 blender-git
 
-# Issue 369
-php80
-
 # Issue 698
 yuzu-git:https://gitlab.com/tallero/yuzu-git-aur.git
 
