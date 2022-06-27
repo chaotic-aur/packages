@@ -198,6 +198,43 @@ tilix-git:https://github.com/chaotic-aur/tilix-git-aur
 vlc-git
 wezterm-git
 
+# vim-extension
+nvim-yarp-git
+vim-coc-git
+vim-coc-rust-analyzer-git
+vim-coc-flutter-git 
+vim-coc-clangd-git 
+vim-coc-css-git
+vim-coc-html-git 
+vim-coc-json-git
+vim-coc-pairs-git
+vim-coc-pyright-git
+vim-coc-sh-git 
+vim-coc-tsserver-git
+vim-coc-vimlsp-git
+vim-coc-yaml-git
+vim-coc-deno-git
+vim-coc-java-git
+vim-coc-go-git
+vim-coc-syntax-git 
+vim-coc-tag-git
+vim-coc-dictionary-git
+vim-coc-word-git 
+vim-coc-emoji-git
+vim-coc-explorer-git
+vim-coc-git-git
+vim-coc-highlight-git
+vim-coc-lists-git
+vim-coc-marketplace-git
+vim-coc-tabnine-git
+vim-coc-snippets-git
+vim-coc-htmlhint-git
+vim-coc-diagnostic-git
+vim-coc-eslint-git
+vim-coc-vetur-git 
+vim-coc-zsh-git
+
+
 # Nico
 mullvad-vpn-beta
 signal-desktop-beta
