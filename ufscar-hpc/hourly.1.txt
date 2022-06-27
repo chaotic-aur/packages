@@ -220,6 +220,17 @@ ttfautohint
 qutebrowser-git
 
 
+## Technetium1
+# Tartube
+python-imageio# # (dep python-moviepy)
+python-proglog # (dep python-moviepy)
+python-imageio-ffmpeg # (dep python-moviepy)
+python-moviepy # (dep tartube)
+python-playsound # (dep tartube)
+python-pgi # (dep tartube)
+tartube
+
+
 ## Users requests
 # Issue 322
 hlsdl
