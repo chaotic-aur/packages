@@ -1699,6 +1699,9 @@ noisetorch-git
 # Issue 1514
 pika-backup
 
+# Issue 1523
+neovide
+
 
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
