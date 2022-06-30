@@ -1065,6 +1065,9 @@ absolutely-proprietary
 # Issue 1513
 ktlint
 
+# Issue 1519
+chromedriver
+
 
 ## Lost & found
 anaconda
