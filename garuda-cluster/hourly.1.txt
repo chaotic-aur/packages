@@ -200,9 +200,6 @@ otter-browser-git
 
 
 ## User requests
-# LordPoseidon26
-neovide-bin
-
 # Zoeruda
 cmst-git
 connman-git
