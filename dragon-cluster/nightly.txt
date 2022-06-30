@@ -125,7 +125,7 @@ xdg-desktop-portal-kde-git:https://github.com/chaotic-aur/pkgbuild-xdg-desktop-p
 sddm-kcm-git:https://github.com/chaotic-aur/pkgbuild-sddm-kcm-git.git
 plasma-wayland-protocols-git
 plasma-workspace-wallpapers-git:https://github.com/chaotic-aur/pkgbuild-plasma-workspace-wallpapers-git.git
-## KDE APPS and OTHERS
+## KDE APPS
 extra-cmake-modules-git:https://github.com/chaotic-aur/pkgbuild-extra-cmake-modules-git.git
 calendarsupport-git
 messagelib-git
@@ -256,3 +256,5 @@ spectacle-git
 wrapland-git
 ## Non git packages
 kdeplasma-applets-fokus
+## OTHERS
+goneovim-bin # neovim gui editor in go using go qt bindings
