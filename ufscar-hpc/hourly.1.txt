@@ -1065,11 +1065,16 @@ absolutely-proprietary
 # Issue 1513
 ktlint
 
+# Issue 1515
+lokinet:https://github.com/chaotic-aur/pkgbuild-lokinet
+
 # Issue 1519
 chromedriver
 
-# Issue 1515
-lokinet:https://github.com/chaotic-aur/pkgbuild-lokinet
+# Issue 1526
+superproductivity-bin
+
+
 ## Lost & found
 anaconda
 fluent-reader
