@@ -365,3 +365,6 @@ conserve-git
 
 # Issue 1491
 gyroflow-git
+
+# Issue 1516
+zecwallet-lite
