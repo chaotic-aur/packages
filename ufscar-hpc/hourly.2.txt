@@ -1702,6 +1702,9 @@ pika-backup
 # Issue 1523
 neovide
 
+# Issue 1521
+lightlyshaders-git
+
 
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
