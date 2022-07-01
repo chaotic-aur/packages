@@ -182,6 +182,9 @@ sshs
 
 
 ## Chaotic
+# Sorcerer (IRC)
+tabby
+
 # Via mail (9th June)
 schildichat-desktop
 
