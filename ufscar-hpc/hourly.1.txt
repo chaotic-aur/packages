@@ -549,6 +549,10 @@ ddcutil-git
 webkitgtk
 
 # Issue 435
+lensfun-git # (dep ffmpeg-full)
+#broken python-pocketsphinx-git # (dep ffmpeg-full)
+uavs3d-git # (dep ffmpeg-full)
+flite1 # (dep ffmpeg-full)
 #ffmpeg-full (broken)
 
 # Issue 436
