@@ -1710,6 +1710,10 @@ neovide
 # Issue 1521
 lightlyshaders-git
 
+# Issue 1528
+java-service-wrapper # (dep freenet)
+freenet
+
 
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
