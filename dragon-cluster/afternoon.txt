@@ -44,6 +44,9 @@ linux-clear
 # Issue 1330
 linux-tt
 
+# Issue 1522
+linux-nitrous
+
 
 ## Garuda
 # Setup-assistant
