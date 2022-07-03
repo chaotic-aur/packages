@@ -113,6 +113,7 @@ clipman
 connman-gtk
 dashbinsh
 downgrade
+dracut-hook-uefi
 evdev-right-click-emulation
 fastfetch
 find-the-command-git
