@@ -6,6 +6,7 @@ veloren-git  # really slow to build, not parallelizable
 adms  # for qucs
 airspy-git
 airspyhf-git
+soapysdr-git
 soapysdrplay-git
 android-emulator
 android-sdk
