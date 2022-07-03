@@ -1605,7 +1605,6 @@ python2-opengl # (dep pyqt4)
 python2-sip-pyqt4 # (dep pyqt4)
 
 # Issue 1249
-xmrig
 xmrig-donateless
 
 # Issue 1259
@@ -1703,9 +1702,6 @@ noisetorch-git
 
 # Issue 1514
 pika-backup
-
-# Issue 1523
-neovide
 
 # Issue 1521
 lightlyshaders-git

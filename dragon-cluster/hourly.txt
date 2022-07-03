@@ -74,7 +74,6 @@ octopi-git
 open-fprintd
 openjpeg # (dep ffmpeg-compat-57)
 opensnitch-git
-oxygen-sounds
 pacman-git
 pamac-aur-git
 paru-git
