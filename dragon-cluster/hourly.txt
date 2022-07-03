@@ -371,3 +371,6 @@ gyroflow-git
 
 # Issue 1516
 zecwallet-lite
+
+# Issue 1532
+shadowsocks-gtk-rs
