@@ -1710,6 +1710,15 @@ lightlyshaders-git
 java-service-wrapper # (dep freenet)
 freenet
 
+# Issue 1537
+btrfs-snapshots-git
+
+# Issue 1538
+yt-dlg-git
+
+# Issue 1539
+swaystatus-git
+
 
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
