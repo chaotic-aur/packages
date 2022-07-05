@@ -248,7 +248,7 @@ poppler-git
 qca-qt5-git
 qca-qt6-git
 qtkeychain-qt5-git:https://github.com/chaotic-aur/pkgbuild-qtkeychain-qt5-git.git
-qutebrowser-qt6-git:https://github.com/chaotic-aur/pkgbuild-qutebrowser-qt6-git.git
+qutebrowser-qt6-git # try to use the aur package, since its mantained by the dev :https://github.com/chaotic-aur/pkgbuild-qutebrowser-qt6-git.git
 sddm-config-editor-git  # Issue 453
 sddm-git
 sddm-theme-astronaut  # Issue 1168

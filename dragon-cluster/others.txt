@@ -1,0 +1,1 @@
+goneovim-bin # neovim gui editor in go using go qt bindings
