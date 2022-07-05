@@ -108,3 +108,6 @@ lyx
 
 # Issue 1404
 swiftshader-git
+
+# Issue 779
+swift-language-git:https://github.com/chaotic-aur/pkgbuild-swift-language-git
