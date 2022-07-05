@@ -297,6 +297,9 @@ grub-improved-luks2-git
 # Issue 1399
 jdk:https://aur.archlinux.org/jdk.git
 
+# Issue 1405
+anbox-modules-dkms:https://github.com/chaotic-aur/pkgbuild-anbox-modules-dkms.git
+
 # Issue 1407
 jellyfin-git # (also builds jellyfin-{server,web}-git
 
