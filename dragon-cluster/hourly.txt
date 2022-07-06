@@ -37,6 +37,7 @@ firetools-git
 fish-git
 flutter # (dep fluffychat)
 fprintd-clients
+garuda-fastfetch-git:https://github.com/sgse/fastfetch.git
 gegl-git # (dep gimp-git)
 gimp-git
 git-git
