@@ -1693,9 +1693,6 @@ qt6gtk2
 # Issue 1507
 nsnake-git
 
-# Issue 1510
-polymc-cracked-git
-
 # Issue 1464
 noisetorch
 noisetorch-git
