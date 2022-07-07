@@ -74,6 +74,7 @@ syndication-git
 syntax-highlighting-git
 threadweaver-git:https://github.com/chaotic-aur/pkgbuild-threadweaver-git.git
 kdesignerplugin-git
+kpipewire-git:https://github.com/chaotic-aur/pkgbuild-kpipewire-git.git
 --
 ## PLASMA
 kdelibs4support-git
