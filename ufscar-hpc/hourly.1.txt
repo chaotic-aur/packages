@@ -1089,6 +1089,9 @@ betterlockscreen
 # Issue 1544
 code-marketplace
 
+# Issue 1545
+ssacli
+
 
 ## Lost & found
 anaconda
