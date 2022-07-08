@@ -1082,6 +1082,10 @@ chromedriver
 # Issue 1526
 superproductivity-bin
 
+# Issue 1542
+i3lock-color # (dep betterlockscreen)
+betterlockscreen
+
 # Issue 1544
 code-marketplace
 
