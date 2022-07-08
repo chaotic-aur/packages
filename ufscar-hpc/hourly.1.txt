@@ -459,8 +459,6 @@ st # (dep dwm)
 #vte3-notification broken now, using below instead
 vte-ng
 
-mesa-git:https://github.com/chaotic-aur/mesa-git.git
-
 # Issue 385
 linux-firmware-git
 
@@ -1101,6 +1099,4 @@ java-openjdk-ea-bin
 kite
 telegram-desktop-bin-dev
 ytfzf-git
-
-lib32-mesa-git:https://github.com/chaotic-aur/lib32-mesa-git.git
 
