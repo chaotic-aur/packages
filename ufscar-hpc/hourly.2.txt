@@ -1716,6 +1716,12 @@ yt-dlg-git
 # Issue 1539
 swaystatus-git
 
+# Issue 1540
+reactgame
+
+# Issue 1541
+zulucrypt
+
 
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
