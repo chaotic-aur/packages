@@ -1072,7 +1072,7 @@ absolutely-proprietary
 ktlint
 
 # Issue 1515
-lokinet:https://github.com/chaotic-aur/pkgbuild-lokinet
+lokinet
 
 # Issue 1519
 chromedriver
