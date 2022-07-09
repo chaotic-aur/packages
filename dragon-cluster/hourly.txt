@@ -23,6 +23,7 @@ crowdsec
 czkawka-git
 debianutils
 distrobox
+drawio-desktop
 electronmail-bin
 epiphany-git
 esbuild # (dep kwin-bismuth)
