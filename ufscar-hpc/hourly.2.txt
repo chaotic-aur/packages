@@ -1722,6 +1722,9 @@ reactgame
 # Issue 1541
 zulucrypt
 
+# Issue 1553
+budgie-control-center
+
 
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
