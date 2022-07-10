@@ -1722,6 +1722,9 @@ reactgame
 # Issue 1541
 zulucrypt
 
+# Issue 1552
+steam-rom-manager-git
+
 # Issue 1553
 budgie-control-center
 
