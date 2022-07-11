@@ -1732,6 +1732,12 @@ steam-rom-manager-git
 # Issue 1553
 budgie-control-center
 
+# Issue 1560
+pingu
+
+# Issue 1561
+xnconvert
+
 
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
