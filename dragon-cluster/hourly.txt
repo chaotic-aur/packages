@@ -381,3 +381,7 @@ shadowsocks-gtk-rs
 
 # Issue 1546
 salad-git
+
+# Issue 1549
+dwarfs-git
+dwarfs
