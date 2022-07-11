@@ -893,11 +893,11 @@ river-git
 transset-df
 
 # Issue 1093
-gnome-shell-git
 libgweather-git # (dep gnome-shell-git)
 gjs-git # (dep gnome-shell-git)
 gsettings-desktop-schemas-git # (dep gnome-shell-git)
-mutter-git
+mutter-git # (dep gnome-shell-git)
+gnome-shell-git
 
 # Issue 1336
 maui-shell-git
