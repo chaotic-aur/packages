@@ -1101,6 +1101,9 @@ obfs4proxy
 # Issue 1551
 session-desktop-bin
 
+# Issue 1555
+tlauncher
+
 
 ## Lost & found
 anaconda
