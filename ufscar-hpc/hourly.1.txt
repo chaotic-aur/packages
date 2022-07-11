@@ -1101,9 +1101,6 @@ obfs4proxy
 # Issue 1551
 session-desktop-bin
 
-# Issue 1555
-tlauncher
-
 # Issue 1556
 lazydocker
 
