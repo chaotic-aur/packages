@@ -1116,6 +1116,9 @@ crazydiskinfo
 # Issue 1559
 avaloniailspy
 
+# Issue 1562
+pfetch
+
 
 ## Lost & found
 anaconda
