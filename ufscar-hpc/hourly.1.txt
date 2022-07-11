@@ -1119,6 +1119,9 @@ pfetch
 # Issue 1563
 neo-matrix-git
 
+# Issue 1565
+kotatogram-desktop-bin
+
 
 ## Lost & found
 anaconda
