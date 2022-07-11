@@ -232,6 +232,7 @@ python-moviepy # (dep tartube)
 python-playsound # (dep tartube)
 python-pgi # (dep tartube)
 tartube
+ocrmypdf
 
 
 ## Users requests
