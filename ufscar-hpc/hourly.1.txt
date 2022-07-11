@@ -1104,6 +1104,18 @@ session-desktop-bin
 # Issue 1555
 tlauncher
 
+# Issue 1556
+lazydocker
+
+# Issue 1557
+navi
+
+# Issue 1558
+crazydiskinfo
+
+# Issue 1559
+avaloniailspy
+
 
 ## Lost & found
 anaconda
