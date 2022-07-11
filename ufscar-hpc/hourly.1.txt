@@ -1119,6 +1119,9 @@ avaloniailspy
 # Issue 1562
 pfetch
 
+# Issue 1563
+neo-matrix-git
+
 
 ## Lost & found
 anaconda
