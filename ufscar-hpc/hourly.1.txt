@@ -1090,6 +1090,13 @@ code-marketplace
 # Issue 1545
 ssacli
 
+# Issue 1548
+budgie-screenshot-applet
+budgie-network-applet
+
+# Issue 1551
+session-desktop-bin
+
 
 ## Lost & found
 anaconda
