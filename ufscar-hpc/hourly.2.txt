@@ -1738,6 +1738,12 @@ pingu
 # Issue 1561
 xnconvert
 
+# Issue 1566
+polymc-qt5-git
+
+# Issue 1567
+synology-drive
+
 
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
