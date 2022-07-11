@@ -1094,6 +1094,9 @@ ssacli
 budgie-screenshot-applet
 budgie-network-applet
 
+# Issue 1550
+obfs4proxy
+
 # Issue 1551
 session-desktop-bin
 
