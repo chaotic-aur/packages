@@ -1744,6 +1744,9 @@ polymc-qt5-git
 # Issue 1567
 synology-drive
 
+# Issue 1569
+plasma5-applets-virtual-desktop-bar-git
+
 
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
