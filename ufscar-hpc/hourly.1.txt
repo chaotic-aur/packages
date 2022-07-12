@@ -224,6 +224,8 @@ qutebrowser-git
 
 
 ## Technetium1
+mrtg
+ocrmypdf
 # Tartube
 python-imageio# # (dep python-moviepy)
 python-proglog # (dep python-moviepy)
@@ -232,7 +234,6 @@ python-moviepy # (dep tartube)
 python-playsound # (dep tartube)
 python-pgi # (dep tartube)
 tartube
-ocrmypdf
 
 
 ## Users requests
