@@ -232,9 +232,17 @@ qutebrowser-git
 
 
 ## Technetium1
+c-lolcat
+dangerzone
+grype-bin
+metadata-cleaner
 mrtg
 ocrmypdf
 pandoc-bin
+pdf-xchange
+pdfquirk
+remoteplaywhatever-bin
+solvespace
 # Tartube
 python-imageio# # (dep python-moviepy)
 python-proglog # (dep python-moviepy)
@@ -243,6 +251,9 @@ python-moviepy # (dep tartube)
 python-playsound # (dep tartube)
 python-pgi # (dep tartube)
 tartube
+tuc
+viddy
+wahay-bin
 
 
 ## Users requests
