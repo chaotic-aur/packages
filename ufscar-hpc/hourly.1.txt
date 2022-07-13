@@ -146,6 +146,13 @@ lib32-dav1d
 lib32-faac
 lib32-faad2
 lib32-libass
+lib32-vmaf:https://aur.archlinux.org/lib32-vmaf.git # (dep lib32-ffmpeg)
+lib32-srt # (dep lib32-ffmpeg)
+lib32-jbigkit # (dep lib32-ffmpeg lib32-openjpeg2)
+lib32-openjpeg2 # (dep lib32-ffmpeg)
+lib32-opencore-amr # (dep lib32-ffmpeg)
+lib32-xvidcore # (dep lib32-ffmpeg)
+lib32-libbluray # (dep lib32-ffmpeg)
 lib32-ffmpeg
 lib32-fftw
 lib32-glslang
