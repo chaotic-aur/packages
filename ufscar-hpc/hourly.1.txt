@@ -718,8 +718,6 @@ python2-pip
 python2-pyliblzma
 python2-pysqlite
 python2-urlgrabber
-yum
-yum-metadata-parser
 zchunk
 
 # Issue 487
