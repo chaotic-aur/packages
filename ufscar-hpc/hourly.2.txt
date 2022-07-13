@@ -1272,10 +1272,15 @@ storcli
 
 # Issue 1001
 adcli # (dep realmd)
+oddjob # (dep python-ipaclient freeipa)
+authselect # (dep freeipa-client freeipa)
+autofs # (dep freeipa-client freeipa)
+certmonger # (dep freeipa-client freeipa)
+yp-tools # (dep freeipa-client freeipa)
+python-yubico # (dep python-ipalib freeipa)
 freeipa:https://aur.archlinux.org/freeipa.git
 freeipa-client # (-client-common,common,ipaclient,ipalib)
 realmd
-oddjob
 
 # Issue 1002
 gnome-shell-extension-dash-to-dock
