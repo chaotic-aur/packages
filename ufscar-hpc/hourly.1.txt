@@ -234,6 +234,7 @@ qutebrowser-git
 ## Technetium1
 mrtg
 ocrmypdf
+pandoc-bin
 # Tartube
 python-imageio# # (dep python-moviepy)
 python-proglog # (dep python-moviepy)
