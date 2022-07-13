@@ -232,9 +232,22 @@ qutebrowser-git
 
 
 ## Technetium1
+arp-scan-git
+agregore-browser-bin
+bootiso
 c-lolcat
+catia-git
+cpu-x-git
+cpupower-gui
 dangerzone
+discord-chat-exporter-cli
+fast
+fiddler
+gtkglarea # (dep fsv2)
+fsv2
+gamerworld-bin
 grype-bin
+jmencode
 metadata-cleaner
 mrtg
 ocrmypdf
