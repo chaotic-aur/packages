@@ -329,6 +329,7 @@ vkbasalt
 vr-video-player-git
 xbox-generic-controller
 xboxdrv
+xone-dongle-firmware # (dep xone-dkms-git)
 xone-dkms-git
 xone-dkms
 xow
