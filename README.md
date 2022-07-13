@@ -36,3 +36,7 @@ This is a list of packages that we will reject for good reasons:
 - **aseprite{-git}**: Redistribution is explicitly prohibited in its [FAQ](https://www.aseprite.org/faq/#can-i-redistribute-aseprite).
 
 - **multimc-git**: This application is licensed under the Apache 2 license, which prohibits distributing [custom binaries](https://multimc.org/#Branding) like the one built by us.
+
+- **polymc-cracked-git**: Even though the apps own license is GPL, it allows playing Minecraft without license. Therefore we are not adding it.
+
+- **tlauncher**: Same as above, it allows playing Minecraft without license.
