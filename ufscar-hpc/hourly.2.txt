@@ -1753,6 +1753,9 @@ synology-drive
 # Issue 1569
 plasma5-applets-virtual-desktop-bar-git
 
+# Issue 1572
+nsxiv
+
 
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
