@@ -1759,6 +1759,9 @@ zramswap
 # Issue 1572
 nsxiv
 
+# Issue 1573
+ff2mpv-native-messaging-host-git
+
 
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
