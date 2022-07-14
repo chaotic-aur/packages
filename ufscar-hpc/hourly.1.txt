@@ -250,11 +250,19 @@ grype-bin
 jmencode
 metadata-cleaner
 mrtg
+mystiq
+ocenaudio-bin
 ocrmypdf
+orjail
 pandoc-bin
+parsec-bin
 pdf-xchange
 pdfquirk
+pdfsam
 remoteplaywhatever-bin
+replay-sorcery-git
+revolt-desktop-git
+shutter-encoder
 solvespace
 # Tartube
 python-imageio# # (dep python-moviepy)
@@ -264,9 +272,14 @@ python-moviepy # (dep tartube)
 python-playsound # (dep tartube)
 python-pgi # (dep tartube)
 tartube
+todoist-electron
+todoist-nativefier
 tuc
 viddy
 wahay-bin
+wavebox-beta
+webtorrent-desktop-bin
+whalebird
 
 
 ## Users requests
