@@ -47,3 +47,4 @@ xdg-desktop-portal-kde-git:https://github.com/chaotic-aur/pkgbuild-xdg-desktop-p
 sddm-kcm-git:https://github.com/chaotic-aur/pkgbuild-sddm-kcm-git.git
 plasma-wayland-protocols-git
 plasma-workspace-wallpapers-git:https://github.com/chaotic-aur/pkgbuild-plasma-workspace-wallpapers-git.git
+kvantum-qt5-git
