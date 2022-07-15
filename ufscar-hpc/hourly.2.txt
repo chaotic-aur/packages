@@ -1762,6 +1762,11 @@ nsxiv
 # Issue 1573
 ff2mpv-native-messaging-host-git
 
+# Issue 1575
+gtk2-patched-filechooser-icon-view
+gtk3-patched-filechooser-icon-view
+glib2-patched-thumbnailer
+
 
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
