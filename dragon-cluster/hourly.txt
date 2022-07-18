@@ -16,6 +16,7 @@ brave-nightly-bin
 btop-git
 cargo-make
 cfs-zen-tweaks
+chkrootkit
 clamav-unofficial-sigs
 cmake-git
 coreutils-hybrid-git
