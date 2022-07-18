@@ -1770,6 +1770,12 @@ discord-game-sdk # (dep m64p)
 vosk-api # (dep m64p)
 m64p
 
+# Issue 1582
+bazelisk-bin
+
+# Issue 1583
+zotero-bin
+
 
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
