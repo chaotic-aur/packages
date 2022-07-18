@@ -1427,10 +1427,12 @@ rstudio-desktop
 soci # (dep rstudio-desktop)
 
 # Issue 1084
-natron-compositor
-phonon-qt4 # (dep natron-compositor)
+python2-config # (dep natron-compositor)
+openfx-gmic # (dep natron-compositor)
+phonon-qt4 # (dep python-pyside natron-compositor)
 python-pyside # (dep natron-compositor)
 shiboken # (dep natron-compositor, also python-shiboken, python2-shiboken)
+natron-compositor
 
 # Issue 1085
 gtksourceview-gitls
