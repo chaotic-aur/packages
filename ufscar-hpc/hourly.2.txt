@@ -1776,6 +1776,9 @@ bazelisk-bin
 # Issue 1583
 zotero-bin
 
+# Issue 1584
+yt-dlp-git
+
 
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
