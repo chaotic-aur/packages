@@ -1779,6 +1779,9 @@ zotero-bin
 # Issue 1584
 yt-dlp-git
 
+# Issue 1585
+system76-power
+
 
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
