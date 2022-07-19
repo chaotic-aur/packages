@@ -1170,6 +1170,10 @@ kotatogram-desktop-bin
 # Issue 1568
 path-of-building-community-git
 
+# Issue 1586
+gconf # (dep lbry-desktop-git)
+lbry-desktop-git
+
 
 ## Lost & found
 anaconda
