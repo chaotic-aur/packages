@@ -50,4 +50,5 @@ linux-nitrous
 
 ## Garuda
 # Setup-assistant
+firefox-esr
 librewolf:https://aur.archlinux.org/librewolf.git
