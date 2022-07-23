@@ -386,3 +386,9 @@ salad-git
 # Issue 1549
 dwarfs-git
 dwarfs
+
+# Issue 1590
+ipscan
+
+# Issue 1591
+flyctl-bin
