@@ -80,7 +80,7 @@ kpipewire-git:https://github.com/chaotic-aur/pkgbuild-kpipewire-git.git
 kdelibs4support-git
 kdecoration-git
 libkscreen-git
-kscreen-git
+kscreen-git:https://github.com/chaotic-aur/pkgbuild-kscreen-git.git
 bluedevil-git
 kross-git
 breeze-icons-git:https://github.com/chaotic-aur/pkgbuild-breeze-icons-git.git
