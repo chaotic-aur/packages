@@ -392,3 +392,11 @@ ipscan
 
 # Issue 1591
 flyctl-bin
+
+# Issue 1593
+mousai
+
+# Issue 1594
+python-freetype-py # (dep plots)
+python-pyglm # (dep plots)
+plots
