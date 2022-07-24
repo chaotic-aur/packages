@@ -1674,6 +1674,7 @@ velox-git
 
 # Issue 1456
 python-chess-git # (dep stockfish-git)
+mongosh-bin # (dep mongodb-bin)
 mongodb-bin # (dep polyglot)
 polyglot # (dep stockfish-git)
 stockfish-git
