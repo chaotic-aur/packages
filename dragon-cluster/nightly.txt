@@ -261,4 +261,4 @@ kdeplasma-applets-fokus
 goneovim-bin # neovim gui editor in go using go qt bindings
 bcg729-git # (dep media-downloader-git)
 bcmatroska2-git # (dep media-downloader-git)
-media-downloader-git # Issue Request #1592
+media-downloader-git:https://github.com/chaotic-aur/pkgbuild-media-downloader-git # Issue Request #1592
