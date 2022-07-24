@@ -259,3 +259,4 @@ wrapland-git
 kdeplasma-applets-fokus
 ## OTHERS
 goneovim-bin # neovim gui editor in go using go qt bindings
+media-downloader-git # Issue Request #1592
