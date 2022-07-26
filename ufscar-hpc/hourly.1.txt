@@ -1174,6 +1174,9 @@ path-of-building-community-git
 gconf # (dep lbry-desktop-git)
 lbry-desktop-git
 
+# Issue 1600
+bat-cat-git
+
 
 ## Lost & found
 anaconda
