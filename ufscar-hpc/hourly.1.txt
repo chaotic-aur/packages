@@ -1177,6 +1177,9 @@ lbry-desktop-git
 # Issue 1600
 bat-cat-git
 
+# Issue 1601
+koodo-reader-bin
+
 
 ## Lost & found
 anaconda
