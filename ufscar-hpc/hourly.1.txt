@@ -1180,6 +1180,15 @@ bat-cat-git
 # Issue 1601
 koodo-reader-bin
 
+# Issue 1603
+terasology
+
+# Issue 1604
+brickadia-launcher
+
+# Issue 1605
+blockbench-git
+
 
 ## Lost & found
 anaconda
