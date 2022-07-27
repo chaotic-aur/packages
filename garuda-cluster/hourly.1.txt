@@ -24,12 +24,13 @@ python2-cairo # (dep pygtk)
 python2-numpy # (dep pygtk)
 rare
 spotify
-ttf-wps-fonts
+ttf-wps-fonts # (dep wps-office wps-office-cn)
 virtualbox-ext-oracle
 wacom-utility
 wine-installer
 wineasio
 wps-office
+wps-office-all-dicts-win-languages # (optdep wps-office wps-office-cn)
 wps-office-cn
 wps-office-fonts
 wps-office-mime
