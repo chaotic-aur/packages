@@ -409,3 +409,6 @@ libadwaita-git # (dep blackbox-terminal-git)
 vte4-copy-patch-git # (dep blackbox-terminal-git)
 libmarble-git # (dep blackbox-terminal-git)
 blackbox-terminal-git
+
+# Issue 1606
+whatsie-git
