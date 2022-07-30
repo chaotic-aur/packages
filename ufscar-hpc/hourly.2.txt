@@ -283,7 +283,6 @@ yuzu-mainline-git
 # Gaming
 athenaeum-git
 boxtron
-corectrl
 fancontrol-gui
 fancontrol-gui-git
 game-devices-udev

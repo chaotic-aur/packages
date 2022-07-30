@@ -89,7 +89,6 @@ gotop
 hsphfpd-git
 irpf
 ktweak-git:https://github.com/tytydraco/KTweak.git
-libsixel # (mpv-git dep)
 mpv-full
 mpv-full-git
 obs-backgroundremoval
@@ -254,7 +253,6 @@ mystiq
 ocenaudio-bin
 ocrmypdf
 orjail
-pandoc-bin
 parsec-bin
 pdf-xchange
 pdfquirk
@@ -659,7 +657,6 @@ jlink-systemview # (dep cryptomator)
 jlink-systemview-target-src # (dep cryptomator)
 libjffi # (dep cryptomator)
 ozone # (dep cryptomator)
-protonmail-bridge-bin
 
 # Issue 285
 nghttp2 # (dep wget2)
