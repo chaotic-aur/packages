@@ -606,9 +606,6 @@ flite1 # (dep ffmpeg-full)
 # Issue 436
 keymapper-git
 
-# Issue 437
-theia-electron
-
 # Issue 438
 ntfs2btrfs-git
 
