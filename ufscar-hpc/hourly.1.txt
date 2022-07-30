@@ -595,14 +595,6 @@ ddcutil-git
 # Issue 434
 webkitgtk
 
-# Issue 435
-lensfun-git # (dep ffmpeg-full)
-sphinxbase # (dep pocketsphinx)
-pocketsphinx # (dep ffmpeg-full)
-uavs3d-git # (dep ffmpeg-full)
-flite1 # (dep ffmpeg-full)
-#ffmpeg-full (broken)
-
 # Issue 436
 keymapper-git
 

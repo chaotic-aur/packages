@@ -338,20 +338,27 @@ xpadneo-dkms
 
 
 ## DEPENDENCIES
-# Dependencies from ffmpeg-full
+# Dependencies of ffmpeg-full
 chromaprint-fftw
 davs2
 decklink-sdk
+flite1
 flite1-patched
+highway-git # (dep libjxl-git)
+lensfun-git
+libjxl-git
 libklvanc-git
 libopenmpt-svn
+pocketsphinx
 rockchip-mpp
 shine
+sphinxbase # (dep pocketsphinx)
+uavs3d-git
 vo-amrwbenc
 xavs
 xavs2
 
-# Dependencies from proton-ge-custom
+# Dependencies of proton-ge-custom
 afdko
 lib32-gsm
 psautohint
@@ -366,7 +373,7 @@ python-pyclipper
 python-ufonormalizer
 python-ufoprocessor
 
-# Dependenies for darling-git
+# Dependenies of darling-git
 libavresample
 
 # Users requests
@@ -410,7 +417,7 @@ flat-remix-gnome
 mindustry
 
 # Issue 547
-protonmail-bridge
+protonmail-bridge-bin # (switched to bin as non-bin doesn't build)
 
 # Issue 552
 nautilus-folder-icons
