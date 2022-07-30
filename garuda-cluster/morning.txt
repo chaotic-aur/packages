@@ -1,24 +1,3 @@
-## Garuda GitLab PKGBUILDS
-# Base theming & applications
-calamares-tools:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/calamares-tools.git
-calamares:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/calamares.git
-garuda-wallpapers-2021:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/garuda-wallpapers-2021.git
-garuda-wallpapers-2022:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/garuda-wallpapers-2022.git
-garuda-wallpapers-extra:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/garuda-wallpapers-extra.git
-garuda-wallpapers:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/garuda-wallpapers.git
-garuda-backgrounds:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/garuda-backgrounds.git
-grub-theme-garuda-custom:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/grub-theme-garuda-custom.git
-grub-theme-garuda:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/grub-theme-garuda.git
-snapper-tools
-plymouth-theme-dr460nized:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/plymouth-theme-dr460nized.git
-plymouth-theme-garuda-purple:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/plymouth-theme-garuda-purple.git
-plymouth-theme-garuda:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/plymouth-theme-garuda.git
-reflector-simple:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/reflector-simple.git
-
-# Still needed in chaotic for the transition
-garuda-update:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/garuda-update.git
-garuda-hooks:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/garuda-hooks.git
-
 # Metapkg
 asian-fonts:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/asian-fonts.git
 zdummy-vlkdrv:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/zdummy-vlkdrv.git
