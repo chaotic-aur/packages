@@ -55,6 +55,7 @@ pip-tools
 fuse-ext2-git
 otf-firamath
 wl-mirror
+texmacs
 
 # OBS Wayland (Paulo)
 wlrobs-hg
