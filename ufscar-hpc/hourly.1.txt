@@ -1176,6 +1176,9 @@ brickadia-launcher
 # Issue 1605
 blockbench-git
 
+# Issue 1609
+sqlcl
+
 
 ## Lost & found
 anaconda
