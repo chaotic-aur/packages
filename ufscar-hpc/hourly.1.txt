@@ -35,7 +35,7 @@ libsdrplay
 ncurses5-compat-libs
 qt4 # (dep qucs)
 qucs
-# radare2-git # unknown build option
+radare2-git
 realvnc-vnc-viewer
 reaver-wps-fork-t6x-git
 rqlite
