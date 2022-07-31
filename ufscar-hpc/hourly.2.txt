@@ -13,8 +13,8 @@ prjxray-db-git
 prjxray-tools-git
 python-crcmod
 yosys-git
-zenpower-dkms-git
 
+# Ham radio stuff
 wxgtk2.8  # for trustedqsl
 hamradio-menus  # for trustedqsl, gpredict
 trustedqsl
@@ -78,6 +78,7 @@ unflac
 wev
 wineasio-git
 yambar-git
+zenpower-dkms-git
 zenpower3-dkms
 
 # FroggingFamily
