@@ -1179,6 +1179,15 @@ blockbench-git
 # Issue 1609
 sqlcl
 
+# Issue 1610
+all-repository-fonts
+
+# Issue 1612
+windscribe-bin
+
+# Issue 1613
+firefox-userchromejs
+
 
 ## Lost & found
 anaconda
