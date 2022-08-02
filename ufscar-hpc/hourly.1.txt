@@ -3,7 +3,6 @@ veloren-git  # really slow to build, not parallelizable
 
 ## Maintainers
 ## Paulo
-adms  # for qucs
 airspy-git
 airspyhf-git
 soapysdr-git
@@ -33,8 +32,10 @@ i3status-rust-git
 libfprint-git
 libsdrplay
 ncurses5-compat-libs
-qt4 # (dep qucs)
+adms-git # (dep qucsator qucs-qt5-git qucs)
+qucsator-git # (dep qucs-qt5-git)
 qucs
+#broken qucs-qt5-git
 radare2-git
 realvnc-vnc-viewer
 reaver-wps-fork-t6x-git
