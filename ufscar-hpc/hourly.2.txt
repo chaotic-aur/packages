@@ -1790,6 +1790,9 @@ system76-power
 # Issue 1596
 dxvk-async-git
 
+# Issue 1614
+slade
+
 
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
