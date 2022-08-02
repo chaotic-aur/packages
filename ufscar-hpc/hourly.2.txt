@@ -1433,6 +1433,7 @@ soci # (dep rstudio-desktop)
 # Issue 1084
 python2-config # (dep natron-compositor)
 openfx-gmic # (dep natron-compositor)
+qt4 # (dep phonon-qt4)
 phonon-qt4 # (dep python-pyside natron-compositor)
 python-pyside # (dep natron-compositor)
 shiboken # (dep natron-compositor, also python-shiboken, python2-shiboken)
