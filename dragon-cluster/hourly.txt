@@ -63,6 +63,7 @@ libretro-mame-git
 libscrypt
 lutris-git
 memavaild-git
+micro-git
 mkinitcpio-git
 networkmanager-iwd
 nextcloud-client-git
