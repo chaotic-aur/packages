@@ -1794,6 +1794,9 @@ dxvk-async-git
 # Issue 1614
 slade
 
+# Issue 1617
+rocketlauncher2-git
+
 
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
