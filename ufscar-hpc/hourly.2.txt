@@ -1797,6 +1797,12 @@ slade
 # Issue 1617
 rocketlauncher2-git
 
+# Issue 1618
+flatseal
+
+# Issue 1619
+gnome-text-editor
+
 
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
