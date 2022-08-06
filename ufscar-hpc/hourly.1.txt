@@ -1189,6 +1189,9 @@ windscribe-bin
 # Issue 1613
 firefox-userchromejs
 
+# Issue 1626
+gnome-shell-pomodoro
+
 # Issue 1627
 libva-intel-driver-hybrid
 
