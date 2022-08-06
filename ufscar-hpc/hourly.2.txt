@@ -1803,6 +1803,9 @@ flatseal
 # Issue 1619
 gnome-text-editor
 
+# Issue 1624
+datagrip
+
 
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
