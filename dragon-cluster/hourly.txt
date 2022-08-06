@@ -412,3 +412,6 @@ blackbox-terminal-git
 
 # Issue 1606
 whatsie-git
+
+# Issue 1626
+wluma
