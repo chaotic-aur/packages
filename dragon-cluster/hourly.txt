@@ -413,5 +413,13 @@ blackbox-terminal-git
 # Issue 1606
 whatsie-git
 
+# Issue 1621
+tela-circle-icon-theme-git # (dep orchis-theme-git)
+kvantum-theme-orchis-git # (dep orchis-theme-git)
+orchis-theme-git
+
+# Issue 1625
+jdk-temurin
+
 # Issue 1626
 wluma
