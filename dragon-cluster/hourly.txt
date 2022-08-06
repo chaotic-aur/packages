@@ -418,6 +418,22 @@ tela-circle-icon-theme-git # (dep orchis-theme-git)
 kvantum-theme-orchis-git # (dep orchis-theme-git)
 orchis-theme-git
 
+# Issue 1623
+python-plaster-pastedeploy # (dep python-pyramid)
+python-plaster # (dep python-pyramid python-plaster-pastedeploy)
+python-hupper # (dep python-pyramid)
+python-pyramid # (dep python-sentry_sdk)
+python-pyramid-debugtoolbar # (dep python-pyramid)
+python-sanic-routing # (dep python-sanic)
+python-sanic # (dep python-sentry_sdk)
+python-pyspark # (dep python-sentry_sdk)
+python-rq # (dep python-sentry_sdk)
+python-sentry_sdk # (dep moodle-dl-git)
+python-aioopenssl # (dep python-aioxmpp)
+python-aiosasl # (dep python-aioxmpp)
+python-aioxmpp # (dep moodle-dl-git)
+moodle-dl-git
+
 # Issue 1625
 jdk-temurin
 
