@@ -147,7 +147,7 @@ osdlyrics-git
 ## SGS
 gimp-plugin-normalmap
 gnome-icon-theme
-gnome-icon-theme-symbolic # (dep gnome-icon-theme)
+gnome-icon-theme-symbolic # (dep gnome-icon-theme la-capitaine-icon-theme)
 libcgroup
 lockdown-ms
 pacseek
@@ -439,3 +439,6 @@ jdk-temurin
 
 # Issue 1626
 wluma
+
+# Issue 1630
+la-capitaine-icon-theme
