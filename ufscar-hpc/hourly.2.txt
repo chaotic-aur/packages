@@ -1806,6 +1806,9 @@ gnome-text-editor
 # Issue 1624
 datagrip
 
+# Issue 1629
+powerdevil-ddcutil
+
 
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
