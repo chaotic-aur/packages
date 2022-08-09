@@ -111,6 +111,9 @@ swiftshader-git
 # Issue 779
 swift-language-git:https://github.com/chaotic-aur/pkgbuild-swift-language-git
 
+# Issue 1632
+kodi-git
+
 --
 
 llvm-git:https://github.com/chaotic-aur/pkgbuild-llvm-git
