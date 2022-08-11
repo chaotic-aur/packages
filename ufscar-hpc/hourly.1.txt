@@ -1202,6 +1202,9 @@ gnome-browser-connector
 tone-bin
 m4b-tool-bin
 
+# Issue 1637
+intel-ucode-clear
+
 
 ## Lost & found
 anaconda
