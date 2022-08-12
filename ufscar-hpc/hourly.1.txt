@@ -1208,6 +1208,9 @@ intel-ucode-clear
 # Issue 1638
 nnn-nerd
 
+# Issue 1640
+rustdesk-server-bin
+
 
 ## Lost & found
 anaconda
