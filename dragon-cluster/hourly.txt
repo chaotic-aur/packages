@@ -45,6 +45,7 @@ git-git
 glib2-static # (dep qemu-user-static)
 gnome-boxes-git
 gstreamer-git
+guayadeque-git
 guiscrcpy-git
 harmonoid-bin
 huniq-git
