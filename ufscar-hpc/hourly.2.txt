@@ -1809,6 +1809,10 @@ datagrip
 # Issue 1629
 powerdevil-ddcutil
 
+# Issue 1639
+libmodule # (dep clightd)
+clightd # (dep clight)
+clight
 
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
