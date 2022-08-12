@@ -201,6 +201,7 @@ tenacity-git
 wxwidgets-dev-light # (dep tenacity-git)
 
 # Issue 928
+rustdesk
 rustdesk-git
 
 # Issue 1034
