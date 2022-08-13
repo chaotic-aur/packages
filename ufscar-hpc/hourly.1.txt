@@ -1211,6 +1211,13 @@ nnn-nerd
 # Issue 1640
 rustdesk-server-bin
 
+# Issue 1641
+amdfand-bin # (dep amdguid-glow-bin amdguid-wayland-bin)
+amdguid-glow-bin
+
+# Issue 1642
+amdguid-wayland-bin
+
 
 ## Lost & found
 anaconda
