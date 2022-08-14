@@ -12,3 +12,4 @@ rustc-demangle
 insomnia
 libreswan
 openswan
+tidal-hifi-bin
