@@ -114,6 +114,7 @@ sudo-git
 sysbox-ce
 traitor-git
 visual-studio-code-insiders-bin
+vscodium-git-marketplace
 wavemon-git
 waydroid-git
 whoogle
