@@ -5,7 +5,6 @@ ffmpeg-vulkan
 google-chrome-beta
 hotspot
 logseq-desktop
-noise-suppression-for-voice-git
 nvlax-git
 signal-desktop-beta
 rustc-demangle
