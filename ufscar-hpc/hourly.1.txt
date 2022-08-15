@@ -1218,6 +1218,9 @@ amdguid-glow-bin
 # Issue 1642
 amdguid-wayland-bin
 
+# Issue 1644
+burpsuite
+
 
 ## Lost & found
 anaconda
