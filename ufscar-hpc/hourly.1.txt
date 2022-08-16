@@ -1221,6 +1221,9 @@ amdguid-wayland-bin
 # Issue 1644
 burpsuite
 
+# Issue 1645
+xvkbd
+
 
 ## Lost & found
 anaconda
