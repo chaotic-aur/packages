@@ -3,10 +3,11 @@
 # Libre FPGA stuff
 capnproto-java
 icestorm-git
+prjtrellis-git
+prjtrellis-db-git
 nextpnr-git
 prjapicula
 prjoxide-git
-prjtrellis-db-git
 python-textx  # for prjxray-tools-git
 python-fasm-git  # for prjxray-tools-git
 prjxray-db-git
