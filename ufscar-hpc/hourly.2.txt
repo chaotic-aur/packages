@@ -1815,5 +1815,9 @@ libmodule # (dep clightd)
 clightd # (dep clight)
 clight
 
+# Issue 1649
+fsearch
+
+
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
