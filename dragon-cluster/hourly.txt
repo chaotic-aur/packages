@@ -445,3 +445,6 @@ wluma
 
 # Issue 1630
 la-capitaine-icon-theme
+
+# Issue 1647
+podman-desktop
