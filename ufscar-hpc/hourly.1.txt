@@ -1224,6 +1224,9 @@ burpsuite
 # Issue 1645
 xvkbd
 
+# Issue 1651
+obs-gstreamer
+
 
 ## Lost & found
 anaconda
