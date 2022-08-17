@@ -448,3 +448,11 @@ la-capitaine-icon-theme
 
 # Issue 1647
 podman-desktop
+
+# Issue 1650
+python-aigpy # (dep tidal-dl-git tidal-gui)
+python-lyricsgenius # (dep tidal-dl-git tidal-gui)
+python-pydub # (dep tidal-dl-git tidal-gui)
+python-qt-material # (dep tidal-dl-git tidal-gui)
+tidal-dl-git # (dep tidal-gui)
+tidal-gui
