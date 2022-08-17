@@ -299,7 +299,7 @@ pod2man # (dep auracle-git)
 xfce4-panel-compiz
 
 # Issue 326
-dotnet-core-bin # (dep)
+dotnet-core-bin # (dep powershell ryujinx-git)
 powershell
 
 # Issue 347
