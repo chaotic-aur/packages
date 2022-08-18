@@ -114,6 +114,9 @@ swift-language-git:https://github.com/chaotic-aur/pkgbuild-swift-language-git
 # Issue 1632
 kodi-git
 
+# Issue 1652
+linux-lqx
+
 --
 
 llvm-git:https://github.com/chaotic-aur/pkgbuild-llvm-git
