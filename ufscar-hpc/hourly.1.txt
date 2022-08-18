@@ -1227,6 +1227,9 @@ xvkbd
 # Issue 1651
 obs-gstreamer
 
+# Issue 1654
+hardcode-tray
+
 
 ## Lost & found
 anaconda
