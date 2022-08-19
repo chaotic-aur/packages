@@ -1238,6 +1238,12 @@ dracula-icons-git
 dracula-grub-theme-git
 konsole-dracula-git
 
+# Issue 1658
+lens-bin
+
+# Issue 1659
+sidequest-bin
+
 
 ## Lost & found
 anaconda
