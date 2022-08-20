@@ -1218,6 +1218,9 @@ amdguid-glow-bin
 # Issue 1642
 amdguid-wayland-bin
 
+# Issue 1643
+glibc-eac:https://github.com/Frogging-Family/glibc-eac
+
 # Issue 1644
 burpsuite
 
