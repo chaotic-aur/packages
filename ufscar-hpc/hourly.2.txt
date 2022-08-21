@@ -831,19 +831,10 @@ onedriver
 gnome-shell-performance
 mutter-performance
 
-# Issue 762
-odr-dabmux-git
-
-# Issue 761
-odr-dabmod-git
-
 # Issue 766
 gdcm # (dep itk-snap)
 insight-toolkit4 # (dep itk-snap)
 itk-snap
-
-# Issue 767
-caprice32-git
 
 # Issue 769
 sublime-text-3
@@ -1200,7 +1191,6 @@ python-springcase # (dep anki)
 osh 
 
 # Issue 964
-pcsx2-git
 rapidyaml-git # (dep pcsx2-git, also creates python-rapidyaml-git)
 zstd-cmake # (build dep pcsx2-git)
 
@@ -1471,7 +1461,6 @@ pamac-nosnap
 
 # Issue 1110
 dosbox-x
-dosbox-x-git
 
 # Issue 1112
 iota-firefly-wallet
@@ -1820,7 +1809,3 @@ fsearch
 
 # Issue 1657
 battop
-
-
-# FroggingFamily
-mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git

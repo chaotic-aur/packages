@@ -2,9 +2,27 @@
 # Issue 655
 linux-xanmod-lts
 
+# Issue 761
+odr-dabmod-git
+
+# Issue 762
+odr-dabmux-git
+
+# Issue 767
+caprice32-git
+
 # Issue 873
 linux-vfio-lts
 
 # Issue 944
 linux-mainline-anbox
 linux-mainline-anbox-git
+
+# Issue 964
+pcsx2-git
+
+# Issue 1110
+dosbox-x-git
+
+# FroggingFamily
+mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
