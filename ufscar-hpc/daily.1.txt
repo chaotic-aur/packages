@@ -44,6 +44,9 @@ icecat
 # Issue 640
 rpcs3-git
 
+# Issue 686
+electron13 # (dep ytmdesktop)
+
 # Issue 708
 emacs-ng
 emacs-ng-git
