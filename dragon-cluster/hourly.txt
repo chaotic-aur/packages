@@ -49,6 +49,7 @@ guayadeque-git
 guiscrcpy-git
 harmonoid-bin
 huniq-git
+hyprland-git
 imagemagick-git
 inxi-git
 ipman
