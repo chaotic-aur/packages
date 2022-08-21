@@ -14,7 +14,6 @@ bear
 bluespec-git
 itcl3:https://github.com/chaotic-aur/pkgbuild-itcl3.git  # for bluespec-bdw-git
 tk-itk3  # for bluespec-bdw-git
-bluespec-bdw-git
 gtkwave-tcl  # optdepends for bluespec-bdw-git
 tk-itk   # I don't have any use for this, but since we have its old version...
 chromium-widevine
@@ -57,23 +56,18 @@ fuse-ext2-git
 otf-firamath
 wl-mirror
 texmacs
-
-# OBS Wayland (Paulo)
 wlrobs-hg
-
-# Sway (Paulo)
 sway-git
 swaybg-git
 swaylock-git
 swayidle-git
 wlroots-git
-
-# Powerpill (Paulo)
 pm2ml
 powerpill
 python3-memoizedb
 python3-xcgf
 python3-xcpf
+bluespec-bdw-git
 
 
 ## Pedro
