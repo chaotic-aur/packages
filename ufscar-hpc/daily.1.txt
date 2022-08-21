@@ -2,7 +2,7 @@
 # Firefox
 nspr-hg
 nss-hg
-#wasi-sdk-git  # pinned at dc22409 firefox upgrades in-tree wasm2c to support LLVM>=14.0.3
+#wasi-sdk-git  # pinned at dc22409 until firefox upgrades in-tree wasm2c to support LLVM>=14.0.3
 --
 firefox-wayland-hg
 
