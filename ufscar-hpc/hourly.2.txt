@@ -88,7 +88,7 @@ faudio-tkg-git:https://github.com/Frogging-Family/faudio-git.git
 gallium-nine-git
 gamescope-git:https://github.com/Frogging-Family/gamescope-git.git
 goverlay-git
-mangohud:https://aur.archlinux.org/mangohud.git
+mangohud:https://aur.archlinux.org/mangohud.git # (dep lutris-wine-git)
 mangohud-git
 mangohud-wayland
 material-kwin-decoration-git
@@ -298,7 +298,7 @@ input-remapper-git
 itch
 keyboard-visualizer-git
 legendary
-lib32-vkbasalt
+lib32-vkbasalt # (dep lutris-wine-git)
 libliftoff-git # (dep gamescope-git)
 libretro-stella2014-git
 luxtorpeda-git
@@ -326,7 +326,7 @@ sc-controller
 stacer
 steamtinkerlaunch
 stremio
-vkbasalt
+vkbasalt # (dep lutris-wine-git)
 vr-video-player-git
 xbox-generic-controller
 xboxdrv
@@ -1810,3 +1810,13 @@ fsearch
 
 # Issue 1657
 battop
+
+# Issue 1664
+uutils-coreutils-git
+
+# Issue 1666
+xkb-switch
+lib32-mangohud
+libstrangle-git
+latencyflex-git
+lutris-wine-git
