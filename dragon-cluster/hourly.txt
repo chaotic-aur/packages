@@ -460,3 +460,9 @@ tidal-gui
 
 # Issue 1660
 resp-app
+
+# Issue 1668
+waybar-experimental-git
+
+# Issue 1669
+joshuto-git
