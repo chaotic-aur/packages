@@ -241,6 +241,7 @@ fiddler
 gtkglarea # (dep fsv2)
 fsv2
 gamerworld-bin
+googerteller-git
 grype-bin
 jmencode
 metadata-cleaner
