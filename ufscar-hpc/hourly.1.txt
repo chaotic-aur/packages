@@ -670,6 +670,7 @@ imhex
 libhandy-git # (dep epiphany-git)
 
 # Issue 468
+electron16-bin # (dep freetube)
 freetube
 
 # Issue 469
