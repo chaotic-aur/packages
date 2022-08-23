@@ -274,6 +274,8 @@ wahay-bin
 wavebox-beta
 webtorrent-desktop-bin
 whalebird
+xpra-git
+xpra-html5-git
 
 
 ## Users requests
