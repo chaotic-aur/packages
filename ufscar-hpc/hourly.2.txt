@@ -1820,3 +1820,6 @@ lib32-mangohud
 libstrangle-git
 latencyflex-git
 lutris-wine-git
+
+# Issue 1667
+wl-clipboard-rs
