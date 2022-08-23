@@ -47,6 +47,9 @@ linux-tt
 # Issue 1522
 linux-nitrous
 
+# Issue 1662
+linux-xanmod
+
 
 ## Garuda
 # Setup-assistant
