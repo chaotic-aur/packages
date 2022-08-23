@@ -1241,6 +1241,9 @@ lens-bin
 # Issue 1659
 sidequest-bin
 
+# Issue 1663
+asix-ax88179-dkms
+
 
 ## Lost & found
 anaconda
