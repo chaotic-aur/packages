@@ -50,6 +50,9 @@ linux-nitrous
 # Issue 1662
 linux-xanmod
 
+# Issue 1672
+gcc-git
+
 
 ## Garuda
 # Setup-assistant
