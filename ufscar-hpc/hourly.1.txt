@@ -1248,6 +1248,11 @@ sidequest-bin
 # Issue 1663
 asix-ax88179-dkms
 
+# Issue 1679
+dcamprof
+
+# Issue 1680
+jdupes
 
 ## Lost & found
 anaconda
