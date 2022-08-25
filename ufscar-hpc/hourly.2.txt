@@ -1823,3 +1823,6 @@ lutris-wine-git
 
 # Issue 1667
 wl-clipboard-rs
+
+# Issue 1674
+klassy-git
