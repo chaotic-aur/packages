@@ -466,3 +466,6 @@ waybar-experimental-git
 
 # Issue 1669
 joshuto-git
+
+# Issue 1673
+lens
