@@ -1248,6 +1248,12 @@ sidequest-bin
 # Issue 1663
 asix-ax88179-dkms
 
+# Issue 1677
+nerd-fonts-hack
+
+# Issue 1678
+broadcom-bt-firmware
+
 # Issue 1679
 dcamprof
 
