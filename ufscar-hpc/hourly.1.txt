@@ -1260,6 +1260,11 @@ dcamprof
 # Issue 1680
 jdupes
 
+# Issue 1865
+anime4k-git
+anime4k
+
+
 ## Lost & found
 anaconda
 fluent-reader
