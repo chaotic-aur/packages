@@ -1267,6 +1267,12 @@ anime4k
 # Issue 1687
 pngnq-s9
 
+# Issue 1689
+pdfbox
+
+# Issue 1690
+sejda-console
+
 
 ## Lost & found
 anaconda
