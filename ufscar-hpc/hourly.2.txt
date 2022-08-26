@@ -1831,3 +1831,7 @@ klassy-git
 xml-security-c # (dep libdigidocpp)
 libdigidocpp # (dep qdigidoc4)
 qdigidoc4
+
+# Issue 1683
+webcord
+webcord-git
