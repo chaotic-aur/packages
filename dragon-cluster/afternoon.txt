@@ -53,6 +53,9 @@ linux-xanmod
 # Issue 1672
 gcc-git
 
+# Issue 1684
+linux-git
+
 
 ## Garuda
 # Setup-assistant
