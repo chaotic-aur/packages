@@ -1826,3 +1826,8 @@ wl-clipboard-rs
 
 # Issue 1674
 klassy-git
+
+# Issue 1681
+xml-security-c # (dep libdigidocpp)
+libdigidocpp # (dep qdigidoc4)
+qdigidoc4
