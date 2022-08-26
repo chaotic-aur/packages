@@ -1260,9 +1260,12 @@ dcamprof
 # Issue 1680
 jdupes
 
-# Issue 1865
+# Issue 1685
 anime4k-git
 anime4k
+
+# Issue 1687
+pngnq-s9
 
 
 ## Lost & found
