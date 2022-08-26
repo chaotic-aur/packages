@@ -472,3 +472,7 @@ lens
 
 # Issue 1676
 art-rawconverter
+
+# Issue 1686
+libeb # (dep goldendict-git)
+goldendict-git
