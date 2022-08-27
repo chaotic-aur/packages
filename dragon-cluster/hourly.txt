@@ -476,3 +476,7 @@ art-rawconverter
 # Issue 1686
 libeb # (dep goldendict-git)
 goldendict-git
+
+# Issue 1691
+glaxnimate
+glaxnimate-git
