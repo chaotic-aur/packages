@@ -92,7 +92,7 @@ python-codegen
 python-coloredlogs # (dep guiscrcpy-git)
 python-gbinder
 python-magic-ahupp # (dep guiscrcpy-git)
-python-nototools # (dep noto-fonts-emoji-git)
+python-nototools # (dep noto-fonts-emoji-git noto-fonts-emoji-flag-git)
 python-pyclip
 python-setuptools-lint # (dep guiscrcpy-git)
 python-simplediff
