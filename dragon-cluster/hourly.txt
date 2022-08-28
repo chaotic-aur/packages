@@ -480,3 +480,6 @@ goldendict-git
 # Issue 1691
 glaxnimate
 glaxnimate-git
+
+# Issue 1692
+noto-fonts-emoji-flag-git
