@@ -365,14 +365,14 @@ xavs2
 afdko
 lib32-gsm
 psautohint
-python-booleanoperations
-python-defcon
+python-booleanoperations # (dep python-nototools)
+python-defcon # (dep python-nototools)
 python-fontmath
 python-fontparts
 python-fontpens
 python-fonttools-git
 python-mutatormath
-python-pyclipper
+python-pyclipper # (dep python-booleanoperations python-nototools
 python-ufonormalizer
 python-ufoprocessor
 
