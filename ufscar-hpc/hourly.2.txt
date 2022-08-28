@@ -1835,3 +1835,6 @@ qdigidoc4
 # Issue 1683
 webcord
 webcord-git
+
+# Issue 1694
+qt-jdenticon
