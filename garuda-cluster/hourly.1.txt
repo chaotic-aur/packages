@@ -141,7 +141,7 @@ ofono
 phonesim
 qomui
 qomui-git
-qt-installer-framework
+qt-installer-framework # (dep riseup-vpn-git)
 soundwire
 tlpui
 webapp-manager-git
