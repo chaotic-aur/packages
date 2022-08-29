@@ -121,7 +121,7 @@ zfs-dkms
 zfs-utils
 
 # Raytracing (Pedro)
-imgui
+imgui # (dep cemu-git)
 tinyobjloader
 
 # lib32-gst-plugins-ugly (Pedro)
