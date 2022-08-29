@@ -1273,6 +1273,8 @@ pdfbox
 # Issue 1690
 sejda-console
 
+# Issue 1702
+mate-hud
 
 ## Lost & found
 anaconda
