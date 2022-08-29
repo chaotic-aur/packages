@@ -1838,3 +1838,6 @@ webcord-git
 
 # Issue 1694
 qt-jdenticon
+
+# Issue 1703
+riseup-vpn-git
