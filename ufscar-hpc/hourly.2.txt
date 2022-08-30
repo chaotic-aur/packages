@@ -1847,3 +1847,6 @@ zeit-git
 
 # Issue 1714
 gnome-2048-git
+
+# Issue 1727
+audio-recorder
