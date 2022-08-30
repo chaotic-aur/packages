@@ -487,5 +487,8 @@ noto-fonts-emoji-flag-git
 # Issue 1699
 czkawka:https://aur.archlinux.org/czkawka.git
 
+# Issue 1700
+easystroke
+
 # Issue 1701
 libadwaita-without-adwaita-git
