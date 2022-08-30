@@ -496,6 +496,9 @@ libadwaita-without-adwaita-git
 # Issue 1704
 skeuos-gtk
 
+# Issue 1707
+warp
+
 # Issue 1715
 abricotine
 abricotine-git
