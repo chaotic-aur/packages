@@ -1289,6 +1289,9 @@ micropad
 agenda
 agenda-git
 
+# Issue 1718
+photocollage
+
 # Issue 1721
 pixelserv-tls
 
