@@ -1842,6 +1842,9 @@ qt-jdenticon
 # Issue 1703
 riseup-vpn-git
 
+# Issue 1708
+xfce4-windowck-plugin-xfwm4-theme-support
+
 # Issue 1710
 zeit-git
 
