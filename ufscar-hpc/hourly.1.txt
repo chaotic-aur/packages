@@ -1295,6 +1295,9 @@ photocollage
 # Issue 1721
 pixelserv-tls
 
+# Issue 1725
+xcursor-arch-cursor-complete
+
 # Issue 1729
 azpainter
 
