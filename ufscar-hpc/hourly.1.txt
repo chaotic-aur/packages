@@ -1282,6 +1282,9 @@ vdhcoapp
 # Issue 1709
 zafiro-icon-theme
 
+# Issue 1711
+micropad
+
 
 ## Lost & found
 anaconda
