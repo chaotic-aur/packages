@@ -1276,6 +1276,10 @@ sejda-console
 # Issue 1702
 mate-hud
 
+# Issue 1709
+zafiro-icon-theme
+
+
 ## Lost & found
 anaconda
 fluent-reader
