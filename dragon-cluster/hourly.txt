@@ -519,3 +519,7 @@ astrofox
 
 # Issue 1728
 authenticator
+
+# Issue 1734
+basket
+basket-git
