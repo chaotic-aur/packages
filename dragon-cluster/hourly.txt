@@ -493,6 +493,10 @@ easystroke
 # Issue 1701
 libadwaita-without-adwaita-git
 
+# Issue 1715
+abricotine
+abricotine-git
+
 # Issue 1726
 astrofox
 
