@@ -500,6 +500,10 @@ skeuos-gtk
 abricotine
 abricotine-git
 
+# Issue 1719
+akira
+akira-git
+
 # Issue 1726
 astrofox
 
