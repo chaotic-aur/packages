@@ -1288,6 +1288,9 @@ micropad
 # Issue 1721
 pixelserv-tls
 
+# Issue 1730
+orage
+
 
 ## Lost & found
 anaconda
