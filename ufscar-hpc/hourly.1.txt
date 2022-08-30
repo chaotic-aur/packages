@@ -1292,6 +1292,9 @@ agenda-git
 # Issue 1721
 pixelserv-tls
 
+# Issue 1729
+azpainter
+
 # Issue 1730
 orage
 
