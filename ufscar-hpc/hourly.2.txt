@@ -1841,3 +1841,6 @@ qt-jdenticon
 
 # Issue 1703
 riseup-vpn-git
+
+# Issue 1710
+zeit-git
