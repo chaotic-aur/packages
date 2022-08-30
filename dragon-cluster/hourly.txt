@@ -493,5 +493,8 @@ easystroke
 # Issue 1701
 libadwaita-without-adwaita-git
 
+# Issue 1726
+astrofox
+
 # Issue 1728
 authenticator
