@@ -1848,5 +1848,9 @@ zeit-git
 # Issue 1714
 gnome-2048-git
 
+# Issue 1724
+xfce4-appfinder-git
+xfce4-appfinder-devel
+
 # Issue 1727
 audio-recorder
