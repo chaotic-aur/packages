@@ -270,6 +270,7 @@ tartube
 todoist-electron
 todoist-nativefier
 tuc
+upscayl-bin
 viddy
 wahay-bin
 wavebox-beta
