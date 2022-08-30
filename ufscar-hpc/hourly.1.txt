@@ -1276,6 +1276,9 @@ sejda-console
 # Issue 1702
 mate-hud
 
+# Issue 1706
+vdhcoapp
+
 # Issue 1709
 zafiro-icon-theme
 
