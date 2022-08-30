@@ -504,6 +504,10 @@ abricotine-git
 akira
 akira-git
 
+# Issue 1723
+app-icon-preview
+app-icon-preview-git
+
 # Issue 1726
 astrofox
 
