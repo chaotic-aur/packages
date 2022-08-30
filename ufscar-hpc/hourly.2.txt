@@ -1854,3 +1854,6 @@ xfce4-appfinder-devel
 
 # Issue 1727
 audio-recorder
+
+# Issue 1731
+notion-app-enhanced
