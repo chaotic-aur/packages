@@ -100,7 +100,7 @@ seqan # (dep clasp-cl-git)
 chromium-wayland-vaapi
 
 # Issue 1247
-pyqt4:https://aur.archlinux.org/pyqt4.git
+pyqt4:https://aur.archlinux.org/pyqt4.git # (dep pybitmessage pybitmessage-git)
 
 # Issue 1347
 texlive-full
