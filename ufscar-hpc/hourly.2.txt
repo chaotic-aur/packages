@@ -1854,6 +1854,9 @@ python2-msgpack # (dep pybitmessage pybitmessage-git)
 pybitmessage
 pybitmessage-git
 
+# Issue 1713
+gnome-multi-writer-git
+
 # Issue 1714
 gnome-2048-git
 
