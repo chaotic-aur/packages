@@ -1305,6 +1305,17 @@ azpainter
 # Issue 1730
 orage
 
+# Issue 1732
+ttf-aller
+audiowide-font
+ttf-bangers
+ttf-djb-zora-prints-fonts
+xorg-font-utils # (dep ttf-geosans-light ttf-iskpota)
+ttf-geosans-light
+ttf-iskpota
+fonts-kalam
+ttf-pacifico
+
 
 ## Lost & found
 anaconda
