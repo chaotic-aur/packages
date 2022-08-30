@@ -1425,8 +1425,8 @@ soci # (dep rstudio-desktop)
 # Issue 1084
 python2-config # (dep natron-compositor)
 openfx-gmic # (dep natron-compositor)
-qt4 # (dep phonon-qt4)
-phonon-qt4 # (dep python-pyside natron-compositor)
+qt4 # (dep phonon-qt4 pybitmessage pybitmessage-git)
+phonon-qt4 # (dep python-pyside natron-compositor pybitmessage pybitmessage-git)
 python-pyside # (dep natron-compositor)
 shiboken # (dep natron-compositor, also python-shiboken, python2-shiboken)
 natron-compositor
@@ -1599,9 +1599,9 @@ python-poetry-git
 video-trimmer
 
 # Issue 1247
-python-sip-pyqt4 # (dep pyqt4)
-python2-dbus # (dep pyqt4)
-python2-opengl # (dep pyqt4)
+python-sip-pyqt4 # (dep pyqt4 pybitmessage pybitmessage-git)
+python2-dbus # (dep pyqt4 pybitmessage pybitmessage-git)
+python2-opengl # (dep pyqt4 pybitmessage pybitmessage-git)
 python2-sip-pyqt4 # (dep pyqt4)
 
 # Issue 1249
@@ -1844,6 +1844,12 @@ riseup-vpn-git
 
 # Issue 1710
 zeit-git
+
+# Issue 1712
+cython2 # (dep pybitmessage pybitmessage-git)
+python2-msgpack # (dep pybitmessage pybitmessage-git)
+pybitmessage
+pybitmessage-git
 
 # Issue 1714
 gnome-2048-git
