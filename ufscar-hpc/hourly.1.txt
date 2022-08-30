@@ -1285,6 +1285,10 @@ zafiro-icon-theme
 # Issue 1711
 micropad
 
+# Issue 1716
+agenda
+agenda-git
+
 # Issue 1721
 pixelserv-tls
 
