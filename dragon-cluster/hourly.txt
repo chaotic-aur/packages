@@ -526,3 +526,9 @@ basket-git
 
 # Issue 1737
 buttercup-desktop
+
+# Issue 1738
+briar-desktop
+
+# Issue 1739
+bookworm-git
