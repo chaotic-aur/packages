@@ -1325,6 +1325,9 @@ blockout2
 # Issue 1740
 csound-blue
 
+# Issue 1745
+copypastegrab-git
+
 
 ## Lost & found
 anaconda
