@@ -532,3 +532,6 @@ briar-desktop
 
 # Issue 1739
 bookworm-git
+
+# Issue 1742
+carla-git
