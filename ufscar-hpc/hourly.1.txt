@@ -1322,6 +1322,9 @@ blanket-git
 # Issue 1736
 blockout2
 
+# Issue 1740
+csound-blue
+
 
 ## Lost & found
 anaconda
