@@ -1869,3 +1869,6 @@ audio-recorder
 
 # Issue 1731
 notion-app-enhanced
+
+# Issue 1744
+contrast
