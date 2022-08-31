@@ -523,3 +523,6 @@ authenticator
 # Issue 1734
 basket
 basket-git
+
+# Issue 1737
+buttercup-desktop
