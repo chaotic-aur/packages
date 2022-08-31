@@ -1316,6 +1316,9 @@ ttf-iskpota
 fonts-kalam
 ttf-pacifico
 
+# Issue 1735
+blanket-git
+
 
 ## Lost & found
 anaconda
