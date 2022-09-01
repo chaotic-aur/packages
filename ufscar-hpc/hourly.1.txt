@@ -1328,8 +1328,14 @@ csound-blue
 # Issue 1745
 copypastegrab-git
 
+# Issue 1751
+densify
+
 # Issue 1756
 dupeguru
+
+# Issue 1767
+fontfinder
 
 # Issue 1768
 python-asyncio-dgram # (dep mcstatus)
