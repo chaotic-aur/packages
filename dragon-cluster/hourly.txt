@@ -536,3 +536,6 @@ bookworm-git
 
 # Issue 1742
 carla-git
+
+# Issue 1752
+deskreen
