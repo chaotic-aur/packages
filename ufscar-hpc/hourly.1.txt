@@ -871,7 +871,7 @@ dockbarx # (dep xfce4-dockbarx-plugin)
 gromit-mpx
 kazam
 macfanctld
-python-polib # (dep xfce4-dockbarx-plugin)
+python-polib # (dep xfce4-dockbarx-plugin dupeguru)
 wordnet:https://aur.archlinux.org/wordnet.git # (dep artha)
 xfce4-dockbarx-plugin
 
@@ -1327,6 +1327,9 @@ csound-blue
 
 # Issue 1745
 copypastegrab-git
+
+# Issue 1756
+dupeguru
 
 # Issue 1768
 python-asyncio-dgram # (dep mcstatus)
