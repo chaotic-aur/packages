@@ -1878,3 +1878,6 @@ drawpile
 
 # Issue 1759
 evopop-gtk-theme-git
+
+# Issue 1769
+everforest-gtk-theme-git
