@@ -117,6 +117,7 @@ traitor-git
 visual-studio-code-insiders-bin
 vscodium-git-marketplace
 wavemon-git
+waybar-hyprland-git
 waydroid-git
 whoogle
 whoogle-git
