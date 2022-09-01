@@ -1328,6 +1328,10 @@ csound-blue
 # Issue 1745
 copypastegrab-git
 
+# Issue 1768
+python-asyncio-dgram # (dep mcstatus)
+mcstatus
+
 
 ## Lost & found
 anaconda
