@@ -1337,6 +1337,9 @@ dotfonts-git
 # Issue 1756
 dupeguru
 
+# Issue 1764
+friendiqa
+
 # Issue 1767
 fontfinder
 
