@@ -1875,3 +1875,6 @@ contrast
 
 # Issue 1755
 drawpile
+
+# Issue 1759
+evopop-gtk-theme-git
