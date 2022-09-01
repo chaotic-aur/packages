@@ -1872,3 +1872,6 @@ notion-app-enhanced
 
 # Issue 1744
 contrast
+
+# Issue 1755
+drawpile
