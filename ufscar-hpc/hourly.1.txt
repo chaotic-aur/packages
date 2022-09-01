@@ -1331,6 +1331,9 @@ copypastegrab-git
 # Issue 1751
 densify
 
+# Issue 1754
+dotfonts-git
+
 # Issue 1756
 dupeguru
 
@@ -1340,6 +1343,12 @@ fontfinder
 # Issue 1768
 python-asyncio-dgram # (dep mcstatus)
 mcstatus
+
+# Issue 1770
+gaiasky
+
+# Issue 1771
+gifcurry
 
 
 ## Lost & found
