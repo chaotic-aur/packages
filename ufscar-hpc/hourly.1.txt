@@ -1350,6 +1350,9 @@ gaiasky
 # Issue 1771
 gifcurry
 
+# Issue 1772
+gmusicbrowser
+
 
 ## Lost & found
 anaconda
