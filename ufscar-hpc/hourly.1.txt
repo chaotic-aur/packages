@@ -23,6 +23,7 @@ fprintd-libfprint2:https://aur.archlinux.org/fprintd-libfprint2.git
 fujprog
 fxload
 xschem
+digital
 tzsp2pcap-git
 # gr-limesdr-git # (needs a too low version cmake)
 hal-git
