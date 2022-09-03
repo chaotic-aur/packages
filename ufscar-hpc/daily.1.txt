@@ -44,9 +44,6 @@ icecat
 # Issue 640
 rpcs3-git
 
-# Issue 686
-electron13 # (dep ytmdesktop)
-
 # Issue 708
 emacs-ng
 emacs-ng-git
@@ -126,3 +123,8 @@ llvm-git:https://github.com/chaotic-aur/pkgbuild-llvm-git
 lib32-llvm-git:thttps://github.com/chaotic-aur/pkgbuild-lib32-llvm-git
 mesa-git:https://github.com/chaotic-aur/mesa-git.git
 lib32-mesa-git:https://github.com/chaotic-aur/lib32-mesa-git.git
+
+--
+
+# Issue 686
+electron13 # (dep ytmdesktop)
