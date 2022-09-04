@@ -1358,6 +1358,9 @@ gifcurry
 # Issue 1772
 gmusicbrowser
 
+# Issue 1847
+wike
+
 
 ## Lost & found
 anaconda
