@@ -1873,6 +1873,9 @@ notion-app-enhanced
 # Issue 1744
 contrast
 
+# Issue 1750
+wireproxy
+
 # Issue 1755
 drawpile
 
