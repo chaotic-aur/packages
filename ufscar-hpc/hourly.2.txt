@@ -1884,3 +1884,6 @@ evopop-gtk-theme-git
 
 # Issue 1769
 everforest-gtk-theme-git
+
+# Issue 1792
+autokey:https://aur.archlinux.org/autokey.git
