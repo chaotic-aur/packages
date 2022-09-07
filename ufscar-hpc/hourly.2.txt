@@ -238,7 +238,6 @@ vim-coc-zsh-git
 
 
 # Nico
-mullvad-vpn-beta
 signal-desktop-beta
 virt-manager-git
 vscodium
