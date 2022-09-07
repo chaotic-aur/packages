@@ -67,6 +67,7 @@ lutris-git
 memavaild-git
 micro-git
 mkinitcpio-git
+mullvad-vpn-beta
 networkmanager-iwd
 nextcloud-client-git
 nohang-git
