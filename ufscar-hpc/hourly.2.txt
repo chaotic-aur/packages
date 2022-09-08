@@ -1889,3 +1889,6 @@ autokey:https://aur.archlinux.org/autokey.git
 
 # Issue 1912
 stellarium
+
+# Issue 1917
+ibus-bamboo-git
