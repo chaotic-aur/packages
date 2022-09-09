@@ -122,6 +122,7 @@ waybar-hyprland-git
 waydroid-git
 whoogle
 whoogle-git
+wlr-randr-git
 wlroots-eglstreams-git
 woeusb-ng
 xdg-ninja-git
