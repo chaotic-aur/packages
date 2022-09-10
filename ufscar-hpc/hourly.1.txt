@@ -1368,6 +1368,10 @@ hyperspace-bin
 python-pypdf2 # (dep bookletimposer caja-pdf-tools-git)
 bookletimposer
 
+# Issue 1920
+audiorelay
+
+
 ## Lost & found
 anaconda
 fluent-reader
@@ -1376,4 +1380,3 @@ java-openjdk-ea-bin
 kite
 telegram-desktop-bin-dev
 ytfzf-git
-
