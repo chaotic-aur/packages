@@ -541,3 +541,6 @@ carla-git
 
 # Issue 1752
 deskreen
+
+# Issue 1922
+syncterm
