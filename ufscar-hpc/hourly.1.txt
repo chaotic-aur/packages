@@ -1371,6 +1371,9 @@ bookletimposer
 # Issue 1920
 audiorelay
 
+# Issue 1924
+thorium-bin
+
 
 ## Lost & found
 anaconda
