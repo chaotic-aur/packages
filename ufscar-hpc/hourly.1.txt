@@ -1364,6 +1364,9 @@ wike
 # Issue 1890
 hyperspace-bin
 
+# Issue 1910
+notable-bin
+
 # Issue 1914
 python-pypdf2 # (dep bookletimposer caja-pdf-tools-git)
 bookletimposer
