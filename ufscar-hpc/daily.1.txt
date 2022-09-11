@@ -117,6 +117,10 @@ kodi-git
 # Issue 1652
 linux-lqx
 
+# Issue 1784
+luckybackup
+
+
 --
 
 llvm-git:https://github.com/chaotic-aur/pkgbuild-llvm-git
