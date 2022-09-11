@@ -476,6 +476,19 @@ lens
 # Issue 1676
 art-rawconverter
 
+# Issue 1682
+fancontrol-gui # (dep fancontrol-kcm)
+fancontrol-kcm
+fancontrol-gui-git # (dep fancontrol-kcm-git)
+fancontrol-kcm-git
+kcm-colorful-git
+kcm-polkit-kde-git
+kcm-uefi
+nx-firewall-git
+plymouth-kcm
+systemd-kcm
+telepathy-kde-accounts-kcm-git
+
 # Issue 1686
 libeb # (dep goldendict-git)
 goldendict-git
