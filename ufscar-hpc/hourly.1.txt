@@ -1377,6 +1377,9 @@ audiorelay
 # Issue 1924
 thorium-bin
 
+# Issue 1928
+icaclient
+
 
 ## Lost & found
 anaconda
