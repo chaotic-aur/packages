@@ -1892,3 +1892,6 @@ stellarium
 
 # Issue 1917
 ibus-bamboo-git
+
+# Issue 1927
+mozillavpn
