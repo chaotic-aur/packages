@@ -542,5 +542,9 @@ carla-git
 # Issue 1752
 deskreen
 
+# Issue 1765
+flare-engine # (dep flare-game)
+flare-game
+
 # Issue 1922
 syncterm
