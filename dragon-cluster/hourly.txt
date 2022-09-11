@@ -542,6 +542,14 @@ carla-git
 # Issue 1752
 deskreen
 
+# Issue 1763
+python-multipledispatch # (dep friture{-git})
+python-pa-ringbuffer # (dep friture{-git})
+python-pyrr # (dep friture{-git})
+python-rtmixer # (dep friture{-git})
+friture
+friture-git
+
 # Issue 1765
 flare-engine # (dep flare-game)
 flare-game
