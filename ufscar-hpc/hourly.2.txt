@@ -1434,6 +1434,8 @@ phonon-qt4 # (dep python-pyside natron-compositor pybitmessage pybitmessage-git)
 python-pyside # (dep natron-compositor)
 shiboken # (dep natron-compositor, also python-shiboken, python2-shiboken)
 natron-compositor
+natron-plugins-git
+natron
 
 # Issue 1085
 gtksourceview-gitls
