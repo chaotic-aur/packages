@@ -1358,6 +1358,12 @@ gmusicbrowser
 # Issue 1776
 ice-ssb
 
+# Issue 1780
+imeditor
+
+# Issue 1781
+juno-theme-git
+
 # Issue 1831
 synkron
 
