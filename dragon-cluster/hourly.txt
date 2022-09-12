@@ -588,5 +588,8 @@ xcursor-mayaserie-green
 xcursor-mayaserie-blue
 xcursor-mayaserie-black
 
+# Issue 1789
+mpc-qt
+
 # Issue 1922
 syncterm
