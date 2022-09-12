@@ -594,5 +594,8 @@ mpc-qt
 # Issue 1791
 gruvbox-material-theme-git:https://aur.archlinux.org/gruvbox-material-theme-git.git
 
+# Issue 1793
+nasc
+
 # Issue 1922
 syncterm
