@@ -385,7 +385,7 @@ pamac-classic
 trizen-git
 
 # Issue 348
-python2-gobject2
+python2-gobject2 # (dep flowblade-git)
 
 # Issue 327
 ananicy
