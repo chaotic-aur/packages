@@ -580,5 +580,13 @@ leocad-git
 makehuman
 makehuman-git
 
+# Issue 1788
+xcursor-mayaserie-white
+xcursor-mayaserie-red
+xcursor-mayaserie-orange
+xcursor-mayaserie-green
+xcursor-mayaserie-blue
+xcursor-mayaserie-black
+
 # Issue 1922
 syncterm
