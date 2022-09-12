@@ -18,10 +18,10 @@ mendeleydesktop-bundled
 ms-office-online
 onlyoffice-bin
 openh264
-pygtk # (dep wacom-utility)
+pygtk # (dep wacom-utility flowblade-git)
 python-pypresence # (dep rare)
-python2-cairo # (dep pygtk)
-python2-numpy # (dep pygtk)
+python2-cairo # (dep pygtk flowblade-git)
+python2-numpy # (dep pygtk flowblade-git)
 rare
 spotify
 ttf-wps-fonts # (dep wps-office wps-office-cn)
