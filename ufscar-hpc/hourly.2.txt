@@ -762,7 +762,7 @@ python-gtts
 git-fixup-git
 
 # Issue 731
-libglade
+libglade # (dep flowblade-git)
 
 # Issue 733
 popcorntime
@@ -1855,7 +1855,7 @@ xfce4-windowck-plugin-xfwm4-theme-support
 zeit-git
 
 # Issue 1712
-cython2 # (dep pybitmessage pybitmessage-git)
+cython2 # (dep pybitmessage pybitmessage-git flowblade-git)
 python2-msgpack # (dep pybitmessage pybitmessage-git)
 pybitmessage
 pybitmessage-git
@@ -1906,6 +1906,9 @@ drawpile
 
 # Issue 1759
 evopop-gtk-theme-git
+
+# Issue 1766
+flowblade-git
 
 # Issue 1769
 everforest-gtk-theme-git
