@@ -567,5 +567,8 @@ friture-git
 flare-engine # (dep flare-game)
 flare-game
 
+# Issue 1775
+heimer
+
 # Issue 1922
 syncterm
