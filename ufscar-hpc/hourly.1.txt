@@ -1355,6 +1355,9 @@ gifcurry
 # Issue 1772
 gmusicbrowser
 
+# Issue 1776
+ice-ssb
+
 # Issue 1831
 synkron
 
