@@ -573,5 +573,8 @@ heimer
 # Issue 1779
 imagine-git
 
+# Issue 1783
+leocad-git
+
 # Issue 1922
 syncterm
