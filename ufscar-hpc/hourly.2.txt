@@ -1879,6 +1879,25 @@ notion-app-enhanced
 # Issue 1744
 contrast
 
+# Issue 1749
+python-dephell-specifier # (dep python-dephell curlew)
+python-dephell-pythons # (dep python-dephell curlew)
+python-dephell-archive # (dep python-dephell curlew)
+python-dephell-argparse # (dep python-dephell curlew)
+python-dephell-changelogs # (dep python-dephell curlew)
+python-dephell-discover # (dep python-dephell curlew)
+python-dephell-licenses # (dep python-dephell curlew)
+python-dephell-links # (dep python-dephell curlew)
+python-dephell-markers # (dep python-dephell curlew)
+python-dephell-setuptools # (dep python-dephell curlew)
+python-dephell-shells # (dep python-dephell curlew)
+python-dephell-venvs # (dep python-dephell curlew)
+python-dephell-versioning # (dep python-dephell curlew)
+python-m2r # (dep python-dephell curlew)
+python-dephell # (dep python-xdg curlew)
+python-xdg # (dep curlew)
+curlew
+
 # Issue 1750
 wireproxy
 
