@@ -1364,6 +1364,9 @@ imeditor
 # Issue 1781
 juno-theme-git
 
+# Issue 1782
+krop
+
 # Issue 1831
 synkron
 
@@ -1383,7 +1386,7 @@ notable-bin
 youtubedl-gui
 
 # Issue 1914
-python-pypdf2 # (dep bookletimposer caja-pdf-tools-git)
+python-pypdf2 # (dep bookletimposer caja-pdf-tools-git krop)
 bookletimposer
 
 # Issue 1920
