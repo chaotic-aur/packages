@@ -599,3 +599,6 @@ nasc
 
 # Issue 1922
 syncterm
+
+# Issue 1930
+nchat-git
