@@ -1404,6 +1404,9 @@ thorium-bin
 # Issue 1928
 icaclient
 
+# Issue 1931
+r8152-dkms
+
 
 ## Lost & found
 anaconda
