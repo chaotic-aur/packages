@@ -1384,6 +1384,9 @@ pdf2png
 # Issue 1805
 pop-gtk-theme-git
 
+# Issue 1807
+publii
+
 # Issue 1831
 synkron
 
