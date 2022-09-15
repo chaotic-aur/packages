@@ -1419,6 +1419,9 @@ trimage-git
 # Issue 1840
 usbimager
 
+# Issue 1842
+video-downloader
+
 # Issue 1847
 wike
 
