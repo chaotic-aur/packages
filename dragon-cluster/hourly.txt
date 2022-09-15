@@ -512,6 +512,14 @@ libadwaita-without-adwaita-git
 # Issue 1704
 skeuos-gtk
 
+# Issue 1705
+vala-panel
+vala-panel-applets-gpl-git:aur.archlinux.org/vala-panel-applets-gpl-git.git
+vala-panel-appmenu:aur.archlinux.org/vala-panel-appmenu.git
+vala-panel-appmenu-jayatana-git
+generic-monitor-plugin-git:aur.archlinux.org/generic-monitor-plugin-git.git
+vala-panel-sntray-git
+
 # Issue 1707
 warp
 
