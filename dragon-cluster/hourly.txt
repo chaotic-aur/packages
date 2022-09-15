@@ -616,6 +616,10 @@ pspp
 quaternion
 quaternion-git
 
+# Issue 1823
+siril
+siril-git
+
 # Issue 1922
 syncterm
 
