@@ -626,6 +626,13 @@ sleek
 # Issue 1826
 sonobus
 
+# Issue 1829
+googlemaps # (dep subsurface-git subsurface)
+subsurface-libdc # (dep subsurface)
+subsurface-libdc-git # (dep subsurface-git)
+subsurface
+subsurface-git
+
 # Issue 1922
 syncterm
 
