@@ -275,7 +275,7 @@ properties-cpp # (dep anbox-git)
 python-node-semver # (dep conan)
 python-patch-ng # (dep conan)
 python-pluginbase # (dep conan)
-python-pysdl2 # (dep m64py)
+python-pysdl2 # (dep m64py tauon-music-box)
 sameboy
 sdbus-cpp # (dep anbox-git)
 xemu-git
@@ -1958,6 +1958,10 @@ safeeyes-git
 # Issue 1830
 subtitlecomposer
 subtitlecomposer-git
+
+# Issue 1833
+python-isounidecode # (dep tauon-music-box)
+tauon-music-box
 
 # Issue 1908
 flat-remix-git
