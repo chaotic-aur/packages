@@ -1935,6 +1935,10 @@ notorious-git
 parlatype # (dep parlatype-libreoffice-extension)
 parlatype-libreoffice-extension
 
+# Issue 1800
+passbook
+passbook-git
+
 # Issue 1912
 stellarium
 
