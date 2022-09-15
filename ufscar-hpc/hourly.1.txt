@@ -1425,6 +1425,9 @@ video-downloader
 # Issue 1847
 wike
 
+# Issue 1883
+cabbage-bin
+
 # Issue 1890
 hyperspace-bin
 
