@@ -633,6 +633,9 @@ subsurface-libdc-git # (dep subsurface-git)
 subsurface
 subsurface-git
 
+# Issue 1836
+trilium
+
 # Issue 1922
 syncterm
 
