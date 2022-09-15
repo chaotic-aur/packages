@@ -1948,6 +1948,9 @@ photoqt
 # Issue 1809
 qnapi-git
 
+# Issue 1810
+qoob-git
+
 # Issue 1912
 stellarium
 
