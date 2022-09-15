@@ -620,6 +620,9 @@ quaternion-git
 siril
 siril-git
 
+# Issue 1825
+sleek
+
 # Issue 1922
 syncterm
 
