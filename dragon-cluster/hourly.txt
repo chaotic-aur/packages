@@ -636,6 +636,9 @@ subsurface-git
 # Issue 1836
 trilium
 
+# Issue 1843
+vnote
+
 # Issue 1922
 syncterm
 
