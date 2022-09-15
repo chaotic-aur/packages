@@ -1412,6 +1412,10 @@ tiddlydesktop
 # Issue 1835
 tixati
 
+# Issue 1837
+advancecomp # (dep trimage-git)
+trimage-git
+
 # Issue 1847
 wike
 
