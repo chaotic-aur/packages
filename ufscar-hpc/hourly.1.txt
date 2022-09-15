@@ -1428,6 +1428,9 @@ wike
 # Issue 1890
 hyperspace-bin
 
+# Issue 1898
+geometrize-bin
+
 # Issue 1903
 xcursor-chameleon-anthracite
 xcursor-chameleon-darkskyblue
