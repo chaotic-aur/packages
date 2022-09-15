@@ -1399,6 +1399,9 @@ quick-lookup
 # Issue 1821
 riftshare
 
+# Issue 1828
+stilo-themes-git
+
 # Issue 1831
 synkron
 
