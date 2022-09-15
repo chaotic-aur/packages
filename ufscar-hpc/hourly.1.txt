@@ -1378,6 +1378,9 @@ notejot
 # Issue 1798
 oxygen-cursors
 
+# Issue 1801
+pdf2png
+
 # Issue 1831
 synkron
 
