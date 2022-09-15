@@ -1390,6 +1390,9 @@ publii
 # Issue 1811
 qpdftools
 
+# Issue 1812
+qrab
+
 # Issue 1831
 synkron
 
