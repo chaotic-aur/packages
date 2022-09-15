@@ -1409,6 +1409,9 @@ synkron
 tiddlywiki # (dep tiddlydesktop)
 tiddlydesktop
 
+# Issue 1835
+tixati
+
 # Issue 1847
 wike
 
