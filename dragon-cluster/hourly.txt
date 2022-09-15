@@ -608,6 +608,10 @@ nasc
 # Issue 1803
 pencil
 
+# Issue 1806
+spread-sheet-widget # (dep pspp)
+pspp
+
 # Issue 1922
 syncterm
 
