@@ -267,3 +267,6 @@ media-downloader:https://github.com/chaotic-aur/pkgbuild-media-downloader # Stab
 
 # Issue 1758
 enve-git
+
+# Issue 1816
+qwertone-git
