@@ -1375,6 +1375,9 @@ krop
 # Issue 1795
 notejot
 
+# Issue 1798
+oxygen-cursors
+
 # Issue 1831
 synkron
 
