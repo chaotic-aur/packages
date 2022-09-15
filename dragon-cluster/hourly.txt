@@ -623,6 +623,9 @@ siril-git
 # Issue 1825
 sleek
 
+# Issue 1826
+sonobus
+
 # Issue 1922
 syncterm
 
