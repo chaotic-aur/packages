@@ -75,6 +75,7 @@ nwg-menu
 nwg-panel
 nwg-wrapper
 python-dasbus # (dep nwg-panel)
+swaync
 tela-circle-icon-theme-git
 wlsunset
 wob

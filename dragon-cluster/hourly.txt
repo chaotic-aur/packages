@@ -113,6 +113,7 @@ snapper-tools-git
 spotify-adblock-git
 starship-git
 sudo-git
+swaync-git
 sysbox-ce
 traitor-git
 visual-studio-code-insiders-bin
