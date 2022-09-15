@@ -1416,6 +1416,9 @@ tixati
 advancecomp # (dep trimage-git)
 trimage-git
 
+# Issue 1840
+usbimager
+
 # Issue 1847
 wike
 
