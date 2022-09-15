@@ -340,7 +340,7 @@ xpadneo-dkms
 
 ## DEPENDENCIES
 # Dependencies of ffmpeg-full
-celt
+celt # (dep subtitlecomposer subtitlecomposer-git)
 chromaprint-fftw
 davs2
 decklink-sdk
@@ -351,10 +351,10 @@ lensfun-git
 libjxl-git
 libklvanc-git
 libopenmpt-svn
-pocketsphinx
+pocketsphinx # (dep subtitlecomposer subtitlecomposer-git)
 rockchip-mpp
 shine
-sphinxbase # (dep pocketsphinx)
+sphinxbase # (dep pocketsphinx subtitlecomposer subtitlecomposer-git)
 uavs3d-git
 vo-amrwbenc
 xavs
@@ -1954,6 +1954,10 @@ qoob-git
 # Issue 1822
 safeeyes
 safeeyes-git
+
+# Issue 1830
+subtitlecomposer
+subtitlecomposer-git
 
 # Issue 1908
 flat-remix-git
