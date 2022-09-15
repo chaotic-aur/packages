@@ -1387,6 +1387,9 @@ pop-gtk-theme-git
 # Issue 1807
 publii
 
+# Issue 1811
+qpdftools
+
 # Issue 1831
 synkron
 
