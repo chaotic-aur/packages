@@ -642,8 +642,8 @@ nnn-icons
 clifm-git
 
 # Issue 656
-python-casttube
-python-pychromecast
+python-casttube # (dep photoqt)
+python-pychromecast # (dep photoqt)
 
 # Issue 666
 bluemail
@@ -1941,6 +1941,9 @@ passbook-git
 
 # Issue 1802
 pebbles-git
+
+# Issue 1804
+photoqt
 
 # Issue 1912
 stellarium
