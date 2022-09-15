@@ -1939,6 +1939,9 @@ parlatype-libreoffice-extension
 passbook
 passbook-git
 
+# Issue 1802
+pebbles-git
+
 # Issue 1912
 stellarium
 
