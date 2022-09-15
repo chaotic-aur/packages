@@ -612,6 +612,10 @@ pencil
 spread-sheet-widget # (dep pspp)
 pspp
 
+# Issue 1813
+quaternion
+quaternion-git
+
 # Issue 1922
 syncterm
 
