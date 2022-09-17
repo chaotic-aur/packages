@@ -939,11 +939,11 @@ maui-shell-git
 mauikit-git
 
 # Issue 1339
-dee # dep libunity
-icu69-bin # dep libunity
-libunity
-vala0.44 # dep libunity
-vala0.52 # dep libunity
+dee # (dep libunity webwatcher-git)
+icu69-bin # (dep libunity)
+libunity # (dep webwatcher-git)
+vala0.44 # (dep libunity)
+vala0.52 # (dep libunity)
 
 # Issue 1340
 river
@@ -1421,6 +1421,9 @@ usbimager
 
 # Issue 1842
 video-downloader
+
+# Issue 1846
+webwatcher-git
 
 # Issue 1847
 wike
