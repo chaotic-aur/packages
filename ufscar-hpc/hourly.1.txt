@@ -1437,6 +1437,9 @@ write_stylus
 # Issue 1853
 youplay
 
+# Issue 1857
+gaphor-bin
+
 # Issue 1860
 blockbench-bin
 
