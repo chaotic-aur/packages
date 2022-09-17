@@ -645,3 +645,6 @@ syncterm
 
 # Issue 1930
 nchat-git
+
+# Issue 1935
+lightspark-git
