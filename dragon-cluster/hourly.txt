@@ -640,6 +640,9 @@ trilium
 # Issue 1843
 vnote
 
+# Issue 1859
+share-preview
+
 # Issue 1922
 syncterm
 
