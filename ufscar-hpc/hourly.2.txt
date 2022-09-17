@@ -1964,6 +1964,9 @@ subtitlecomposer-git
 python-isounidecode # (dep tauon-music-box)
 tauon-music-box
 
+# Issue 1845
+warpinator-git
+
 # Issue 1908
 flat-remix-git
 
