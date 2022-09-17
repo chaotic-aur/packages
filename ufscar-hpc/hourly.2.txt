@@ -1100,7 +1100,7 @@ keepassxc-git
 # Issue 911
 ferdi
 ferdi-git
-pnpm # (dep ferdi)
+pnpm # (dep ferdi cider cider-git)
 
 # Issue 912
 git-bug
@@ -1981,3 +1981,7 @@ ibus-bamboo-git
 
 # Issue 1927
 mozillavpn
+
+# Issue 1936
+cider
+cider-git
