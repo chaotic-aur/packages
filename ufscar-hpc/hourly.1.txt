@@ -481,7 +481,7 @@ quixel-bridge
 
 # Issue 378
 kawaii-player
-python-mpv
+python-mpv # (dep youplay)
 
 # Issue 379
 ckb-next
@@ -1433,6 +1433,9 @@ gtk-theme-windows10-dark-git
 
 # Issue 1850
 write_stylus
+
+# Issue 1853
+youplay
 
 # Issue 1883
 cabbage-bin
