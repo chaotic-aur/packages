@@ -643,6 +643,9 @@ vnote
 # Issue 1859
 share-preview
 
+# Issue 1862
+popsicle-git
+
 # Issue 1922
 syncterm
 
