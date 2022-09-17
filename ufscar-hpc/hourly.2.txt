@@ -806,6 +806,7 @@ hakuneko-desktop
 jackett
 
 # Issue 750
+gtuber-git # (dep clapper)
 clapper
 
 # Issue 751
