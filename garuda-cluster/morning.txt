@@ -1,3 +1,2 @@
-# Metapkg
-asian-fonts:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/asian-fonts.git
-zdummy-vlkdrv:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/zdummy-vlkdrv.git
+# Lets put this here for now (due to signature upload failure)
+firefox-esr

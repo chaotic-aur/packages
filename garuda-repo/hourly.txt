@@ -16,6 +16,7 @@ snapper-support:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/snappe
 # Metapkg
 alsa-support:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/alsa-support.git
 anbox-support:https://gitlab.com/garuda-linux/themes-and-settings/settings/anbox-support.git
+asian-fonts:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/asian-fonts.git
 bluetooth-support:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/bluetooth-support.git
 connman-support:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/connman-support.git
 garuda-firefox:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/garuda-firefox.git
@@ -33,6 +34,7 @@ scanner-support:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/scanne
 virt-manager-meta:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/virt-manager-meta.git
 virtualbox-meta:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/virtualbox-meta.git
 wine-meta:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/wine-meta.git
+zdummy-vlkdrv:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/zdummy-vlkdrv.git
 
 # Fixed version settings
 garuda-bash-config:https://gitlab.com/garuda-linux/themes-and-settings/settings/garuda-bash-config.git
