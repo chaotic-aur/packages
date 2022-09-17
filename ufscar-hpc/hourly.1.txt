@@ -1465,6 +1465,9 @@ icaclient
 # Issue 1931
 r8152-dkms
 
+# Issue 1933
+syncthing-gtk-python3
+
 
 ## Lost & found
 anaconda
