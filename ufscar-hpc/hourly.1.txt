@@ -1431,6 +1431,9 @@ wike
 # Issue 1848
 gtk-theme-windows10-dark-git
 
+# Issue 1850
+write_stylus
+
 # Issue 1883
 cabbage-bin
 
