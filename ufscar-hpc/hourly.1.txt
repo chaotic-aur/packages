@@ -1452,6 +1452,9 @@ imaginary-teleprompter-bin
 # Issue 1883
 cabbage-bin
 
+# Issue 1885
+simplenote-electron-bin
+
 # Issue 1890
 hyperspace-bin
 
