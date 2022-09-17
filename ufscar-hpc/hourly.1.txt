@@ -1437,6 +1437,9 @@ write_stylus
 # Issue 1853
 youplay
 
+# Issue 1861
+authpass-bin
+
 # Issue 1883
 cabbage-bin
 
