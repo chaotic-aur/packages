@@ -1157,7 +1157,7 @@ kotatogram-desktop-bin
 path-of-building-community-git
 
 # Issue 1586
-gconf # (dep lbry-desktop-git)
+gconf # (dep lbry-desktop-git imaginary-teleprompter-bin)
 lbry-desktop-git
 
 # Issue 1600
@@ -1437,8 +1437,17 @@ write_stylus
 # Issue 1853
 youplay
 
+# Issue 1860
+blockbench-bin
+
 # Issue 1861
 authpass-bin
+
+# Issue 1863
+manyverse-bin
+
+# Issue 1867
+imaginary-teleprompter-bin
 
 # Issue 1883
 cabbage-bin
