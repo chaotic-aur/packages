@@ -1428,6 +1428,9 @@ webwatcher-git
 # Issue 1847
 wike
 
+# Issue 1848
+gtk-theme-windows10-dark-git
+
 # Issue 1883
 cabbage-bin
 
