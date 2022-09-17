@@ -1970,6 +1970,9 @@ warpinator-git
 # Issue 1852
 yagf
 
+# Issue 1858
+commit
+
 # Issue 1908
 flat-remix-git
 
