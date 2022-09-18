@@ -1464,6 +1464,9 @@ hyperspace-bin
 # Issue 1898
 geometrize-bin
 
+# Issue 1899
+sengi-appimage
+
 # Issue 1903
 xcursor-chameleon-anthracite
 xcursor-chameleon-darkskyblue
