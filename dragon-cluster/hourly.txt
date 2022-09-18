@@ -70,6 +70,7 @@ mkinitcpio-git
 mullvad-vpn-beta
 networkmanager-iwd
 nextcloud-client-git
+nextdns-unprivileged
 nohang-git
 notepadnext
 noto-fonts-emoji-git
