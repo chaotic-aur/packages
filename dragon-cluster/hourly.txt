@@ -651,6 +651,10 @@ popsicle-git
 pixelorama
 pixelorama-git
 
+# Issue 1889
+icu60 # (dep cloaker-bin)
+cloaker-bin
+
 # Issue 1922
 syncterm
 
