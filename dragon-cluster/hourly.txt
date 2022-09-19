@@ -521,6 +521,7 @@ vala-panel-appmenu:aur.archlinux.org/vala-panel-appmenu.git
 vala-panel-appmenu-jayatana-git
 generic-monitor-plugin-git:aur.archlinux.org/generic-monitor-plugin-git.git
 vala-panel-sntray-git
+vala-panel-appmenu-registrar
 
 # Issue 1707
 warp
