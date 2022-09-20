@@ -25,7 +25,7 @@ fxload
 xschem
 digital
 tzsp2pcap-git
-gr-limesdr-3.9-git
+gr-limesdr-git:https://github.com/chaotic-aur/pkgbuild-gr-limesdr-git.git
 gr-foo-git
 gr-ieee802-11-git
 hal-git
