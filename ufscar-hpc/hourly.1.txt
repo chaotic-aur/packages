@@ -25,7 +25,9 @@ fxload
 xschem
 digital
 tzsp2pcap-git
-# gr-limesdr-git # (needs a too low version cmake)
+gr-limesdr-3.9-git
+gr-foo-git
+gr-ieee802-11-git
 hal-git
 hashcash
 ht-editor
