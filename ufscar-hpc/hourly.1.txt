@@ -1501,6 +1501,9 @@ r8152-dkms
 # Issue 1933
 syncthing-gtk-python3
 
+# Issue 1947
+arch-update
+
 
 ## Lost & found
 anaconda
