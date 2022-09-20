@@ -664,3 +664,7 @@ nchat-git
 
 # Issue 1935
 lightspark-git
+
+# Issue 1943
+endeavour
+endeavour-git
