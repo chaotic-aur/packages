@@ -668,3 +668,6 @@ lightspark-git
 # Issue 1943
 endeavour
 endeavour-git
+
+# Issue 1945
+thunar-shares-plugin
