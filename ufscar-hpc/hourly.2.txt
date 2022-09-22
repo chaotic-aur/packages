@@ -1973,6 +1973,9 @@ yagf
 # Issue 1858
 commit
 
+# Issue 1869
+chemtool
+
 # Issue 1888
 coulr
 
