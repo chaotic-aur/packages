@@ -1451,6 +1451,9 @@ authpass-bin
 # Issue 1863
 manyverse-bin
 
+# Issue 1866
+museeks-bin
+
 # Issue 1867
 imaginary-teleprompter-bin
 
