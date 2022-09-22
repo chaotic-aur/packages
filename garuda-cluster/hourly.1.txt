@@ -23,6 +23,7 @@ python-pypresence # (dep rare)
 python2-cairo # (dep pygtk flowblade-git)
 python2-numpy # (dep pygtk flowblade-git)
 rare
+safesync:https://gitlab.com/petsam/safesync.git
 spotify
 ttf-wps-fonts # (dep wps-office wps-office-cn)
 virtualbox-ext-oracle
