@@ -1457,6 +1457,9 @@ museeks-bin
 # Issue 1867
 imaginary-teleprompter-bin
 
+# Issue 1868
+gmsh-bin
+
 # Issue 1883
 cabbage-bin
 
