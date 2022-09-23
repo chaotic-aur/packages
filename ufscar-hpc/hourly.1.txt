@@ -1460,6 +1460,9 @@ imaginary-teleprompter-bin
 # Issue 1868
 gmsh-bin
 
+# Issue 1870
+processing
+
 # Issue 1883
 cabbage-bin
 
