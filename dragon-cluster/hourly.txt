@@ -668,5 +668,8 @@ lightspark-git
 endeavour
 endeavour-git
 
+# Issue 1944
+vala-panel-appmenu-xfce-git
+
 # Issue 1945
 thunar-shares-plugin
