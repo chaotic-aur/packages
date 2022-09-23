@@ -1469,6 +1469,9 @@ simplenote-electron-bin
 # Issue 1890
 hyperspace-bin
 
+# Issue 1894
+poddr-bin
+
 # Issue 1898
 geometrize-bin
 
