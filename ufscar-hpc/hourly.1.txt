@@ -1469,6 +1469,9 @@ cabbage-bin
 # Issue 1885
 simplenote-electron-bin
 
+# Issue 1887
+prestopalette
+
 # Issue 1890
 hyperspace-bin
 
