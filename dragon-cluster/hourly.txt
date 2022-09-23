@@ -651,6 +651,9 @@ popsicle-git
 pixelorama
 pixelorama-git
 
+# Issue 1871
+gdevelop-bin
+
 # Issue 1889
 icu60 # (dep cloaker-bin)
 cloaker-bin
