@@ -1982,6 +1982,9 @@ coulr
 # Issue 1896
 sylpheed
 
+# Issue 1905
+amber-theme-git
+
 # Issue 1908
 flat-remix-git
 
