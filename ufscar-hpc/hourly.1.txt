@@ -1465,6 +1465,7 @@ processing
 
 # Issue 1873
 sweet-gtk-theme
+sweet-gtk-theme-dark
 
 # Issue 1883
 cabbage-bin
