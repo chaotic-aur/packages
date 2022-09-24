@@ -1463,6 +1463,9 @@ gmsh-bin
 # Issue 1870
 processing
 
+# Issue 1873
+sweet-gtk-theme
+
 # Issue 1883
 cabbage-bin
 
