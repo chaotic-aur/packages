@@ -657,6 +657,10 @@ pixelorama-git
 # Issue 1871
 gdevelop-bin
 
+# Issue 1874
+nordic-theme
+nordic-theme-git
+
 # Issue 1879
 fmit
 
