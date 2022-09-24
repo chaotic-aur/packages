@@ -1976,6 +1976,10 @@ commit
 # Issue 1869
 chemtool
 
+# Issue 1875
+mcomix
+mcomix-git
+
 # Issue 1888
 coulr
 
