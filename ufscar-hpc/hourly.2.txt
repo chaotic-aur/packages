@@ -2016,3 +2016,6 @@ gradience-git
 
 # Issue 1946
 appmenu-gtk-module-git
+
+# Issue 1950
+linux-steam-integration
