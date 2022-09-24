@@ -657,6 +657,9 @@ pixelorama-git
 # Issue 1871
 gdevelop-bin
 
+# Issue 1879
+fmit
+
 # Issue 1889
 icu60 # (dep cloaker-bin)
 cloaker-bin
