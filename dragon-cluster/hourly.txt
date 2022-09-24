@@ -660,6 +660,11 @@ gdevelop-bin
 # Issue 1879
 fmit
 
+# Issue 1882
+python-pyo # (dep cecilia cecilia-git)
+cecilia
+cecilia-git
+
 # Issue 1884
 giada
 
