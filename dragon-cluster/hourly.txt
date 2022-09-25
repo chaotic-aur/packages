@@ -694,3 +694,6 @@ vala-panel-appmenu-xfce-git
 
 # Issue 1945
 thunar-shares-plugin
+
+# Issue 1955
+bisq
