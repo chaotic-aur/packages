@@ -71,6 +71,7 @@ mullvad-vpn-beta
 networkmanager-iwd
 nextcloud-client-git
 nextdns-unprivileged
+nixfmt
 nohang-git
 notepadnext
 noto-fonts-emoji-git
