@@ -71,6 +71,7 @@ powerpill
 python3-memoizedb
 python3-xcgf
 python3-xcpf
+guestfs-tools
 bluespec-bdw-git
 
 
