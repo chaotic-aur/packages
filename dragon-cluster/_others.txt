@@ -7,3 +7,25 @@ media-downloader:https://github.com/chaotic-aur/pkgbuild-media-downloader # Stab
 
 # Issue 1758
 enve-git
+
+# Issue 1816
+qwertone-git
+
+# Issue 1308
+console-bridge # (dep gazebo)
+urdfdom-headers # (dep gazebo)
+ignition-cmake # (dep gazebo)
+libccd # (dep gazebo)
+ogre-1.9 # (dep gazebo)
+--
+ignition-tools # (dep gazebo)
+urdfdom # (dep gazebo)
+ignition-msgs-5 # (dep gazebo)
+ignition-common-3 # (dep gazebo)
+sdformat-9 # (dep gazebo)
+ignition-math # (dep gazebo)
+--
+ignition-transport-8 # (dep gazebo)
+ignition-fuel_tools-4 # (dep gazebo)
+--
+gazebo
