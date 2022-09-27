@@ -3,3 +3,7 @@ bcg729-git # (dep mediastreamer-git)
 bcmatroska2-git # (dep mediastreamer-git)
 media-downloader-git:https://github.com/chaotic-aur/pkgbuild-media-downloader-git # Issue Request #1592
 media-downloader:https://github.com/chaotic-aur/pkgbuild-media-downloader # Stable version of Issue Request #1592
+
+
+# Issue 1758
+enve-git
