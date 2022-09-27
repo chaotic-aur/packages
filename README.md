@@ -29,6 +29,8 @@ This is a list of packages that we will reject for good reasons:
 
 - **unreal-engine (and -git)**: Some mirrors don't have sufficient storage space.
 
+- **python2**: Has been end of life for a couple years, and was [removed from Arch repositories](https://archlinux.org/news/removing-python2-from-the-repositories/). Requests for packages that depend on `python2` will be rejected.
+
 
 
 #### Banned due to licensing issues 🛑
