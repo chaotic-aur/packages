@@ -2026,3 +2026,6 @@ linux-steam-integration
 
 # Issue 1953
 hardinfo
+
+# Issue 1959
+obs-vaapi
