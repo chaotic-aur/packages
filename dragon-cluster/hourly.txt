@@ -702,3 +702,9 @@ wxwidgets-light:https://aur.archlinux.org/wxwidgets-light.git
 
 # Issue 1955
 bisq
+
+# Issue 1962
+cinny-desktop
+
+# Issue 1964
+across
