@@ -1769,11 +1769,6 @@ gtk2-patched-filechooser-icon-view
 gtk3-patched-filechooser-icon-view
 glib2-patched-thumbnailer
 
-# Issue 1577
-discord-game-sdk # (dep m64p)
-vosk-api # (dep m64p)
-m64p
-
 # Issue 1582
 bazelisk-bin
 
@@ -2029,3 +2024,9 @@ hardinfo
 
 # Issue 1959
 obs-vaapi
+
+# Issue 1961
+python-srt # (dep simple64)
+discord-game-sdk # (dep simple64)
+vosk-api # (dep simple64)
+simple64
