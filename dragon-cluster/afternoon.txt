@@ -11,6 +11,9 @@ forkgram
 # Unclear
 blender-git
 
+# Austin on forum
+linux-amd
+
 # Issue 698
 yuzu-git:https://gitlab.com/tallero/yuzu-git-aur.git
 
