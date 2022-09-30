@@ -711,3 +711,6 @@ across
 
 # Issue 1969
 network-manager-applet-nolibappindicator
+
+# Issue 1970
+nodejs-intelephense
