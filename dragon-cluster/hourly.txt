@@ -705,6 +705,9 @@ cinny-desktop
 # Issue 1964
 across
 
+# Issue 1967
+volantes-cursors
+
 # Issue 1969
 network-manager-applet-nolibappindicator
 
