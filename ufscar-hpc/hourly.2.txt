@@ -1687,7 +1687,7 @@ phoenicis-playonlinux
 playonlinux
 
 # Issue 1505
-qt6gtk2
+qt6gtk2:https://aur.archlinux.org/qt6gtk2.git
 
 # Issue 1507
 nsnake-git

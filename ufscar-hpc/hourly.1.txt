@@ -1031,7 +1031,7 @@ ngrok
 mullvad-vpn-cli
 
 # Issue 1466
-qt5-styleplugins
+qt5-styleplugins:https://aur.archlinux.org/qt5-styleplugins.git
 ttf-meslo-nerd-font-powerlevel10k
 
 # Issue 1467
