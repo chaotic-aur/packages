@@ -692,6 +692,9 @@ vala-panel-appmenu-xfce-git
 # Issue 1945
 thunar-shares-plugin
 
+# Issue 1948
+minetest-git
+
 # Issue 1954
 wxwidgets3.0
 wxwidgets-light:https://aur.archlinux.org/wxwidgets-light.git
