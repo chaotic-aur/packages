@@ -101,7 +101,6 @@ python-simplediff
 python-validity
 qbittorrent-enhanced-git
 qemu-git
-qemu-user-static
 qtwebflix-git
 quickemu
 quickemu-git
@@ -138,13 +137,9 @@ zstd-git
 # Spotdl
 cpp-taskflow # (dep python-rapidfuzz)
 jarowinkler-cpp # (dep python-rapidfuzz)
-python-jarowinkler # (dep python-rapidfuzz)
 python-pynput # (dep guiscrcpy-git)
 python-pytube # (dep python-spotdl)
-python-rapidfuzz # (dep python-spotdl)
-python-rapidfuzz-capi  # (dep python-rapidfuzz)
 python-spotdl
-rapidfuzz-cpp # (dep python-rapidfuzz)
 
 
 ## Pedro

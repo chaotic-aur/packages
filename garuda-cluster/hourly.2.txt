@@ -176,7 +176,6 @@ systemd-guest-user
 systemd-oomd-defaults
 timeshift
 timeshift-autosnap
-uasm # (dep 7-zip)
 update-grub
 uresourced
 zsync2-git
