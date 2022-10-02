@@ -716,3 +716,6 @@ network-manager-applet-nolibappindicator
 
 # Issue 1970
 nodejs-intelephense
+
+# Issue 1974
+sigil-git
