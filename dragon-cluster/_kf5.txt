@@ -24,8 +24,7 @@ frameworkintegration-git
 kactivities-git
 kactivities-stats-git
 kauth-git
-kcalendarcore-git
-kcalendarcore-git:https://github.com/chaotic-aur/pkgbuild-kcalendarcore-git.git
+kcalendarcore-git #kcalendarcore-git:https://github.com/chaotic-aur/pkgbuild-kcalendarcore-git.git
 kcmutils-git
 kcodecs-git
 kcompletion-git
