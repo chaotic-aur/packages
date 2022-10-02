@@ -1190,7 +1190,6 @@ osh
 
 # Issue 964
 rapidyaml-git # (dep pcsx2-git, also creates python-rapidyaml-git)
-zstd-cmake # (build dep pcsx2-git)
 
 # Issue 966
 qimgv-git
