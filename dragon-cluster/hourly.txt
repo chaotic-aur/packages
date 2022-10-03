@@ -74,6 +74,8 @@ sudo-git
 sysbox-ce
 traitor-git
 visual-studio-code-insiders-bin
+vscodium-insiders
+vscodium-insiders-marketplace
 waybar-hyprland-git
 waydroid-git
 whoogle
