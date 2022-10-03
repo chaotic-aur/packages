@@ -676,3 +676,6 @@ nodejs-intelephense
 
 # Issue 1974
 sigil-git
+
+# Issue 1975
+goxlr-utility
