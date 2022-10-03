@@ -2028,3 +2028,8 @@ timetrack
 
 # Issue 1986
 tokodon-git
+
+# Issue 1988
+micro-git
+evdi-git # (dep displaylink)
+displaylink
