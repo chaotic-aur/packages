@@ -259,6 +259,7 @@ parsec-bin
 pdf-xchange
 pdfquirk
 pdfsam
+python-coloredlogs # (dep ocrmypdf)
 remoteplaywhatever-bin
 replay-sorcery-git
 revolt-desktop-git
