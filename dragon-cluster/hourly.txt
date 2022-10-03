@@ -164,6 +164,9 @@ wxwidgets-dev-light # (dep tenacity-git)
 rustdesk
 rustdesk-git
 
+# Issue 1014
+spotify-adblock-git
+
 # Issue 1034
 aura-fetch-git
 bitfetch-git
