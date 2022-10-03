@@ -682,3 +682,14 @@ sigil-git
 
 # Issue 1975
 goxlr-utility
+
+# Issue 1977
+audio-sharing
+
+# Issue 1978
+python-kiss-headers # (dep cobang)
+python-single-version # (dep cobang)
+cobang
+
+# Issue 1979
+decoder
