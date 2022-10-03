@@ -2021,3 +2021,10 @@ simple64
 # Issue 1981
 pyzbar # (dep frog-ocr)
 frog-ocr
+
+# Issue 1985
+python-timeago # (dep timetrack)
+timetrack
+
+# Issue 1986
+tokodon-git
