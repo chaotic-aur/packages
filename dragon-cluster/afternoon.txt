@@ -14,6 +14,9 @@ blender-git
 # Austin on forum
 linux-amd
 
+# FGD on forum
+linux-amd-znver2
+
 # Issue 698
 yuzu-git:https://gitlab.com/tallero/yuzu-git-aur.git
 
