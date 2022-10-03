@@ -1432,6 +1432,13 @@ write_stylus
 # Issue 1853
 youplay
 
+# Issue 1856
+catppuccin-grub-theme-git:https://aur.archlinux.org/catppuccin-grub-theme-git.git
+catppuccin-gtk-theme-frappe
+catppuccin-gtk-theme-mocha
+catppuccin-gtk-theme-macchiato
+catppuccin-gtk-theme-latte
+
 # Issue 1857
 gaphor-bin
 
