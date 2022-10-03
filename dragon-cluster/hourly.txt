@@ -121,11 +121,16 @@ xiaomitool-v2
 acidrip
 android-messages-desktop
 betterdiscordctl-git
+bpytop-git
+cmake-git
 croc-git
 das-keyboard-q
+drawio-desktop
 duc-git
 easytether-bin
 jellyfin-media-player-git
+lutris-git
+mullvad-vpn-beta
 pacvis-git
 paho-mqtt-c # (dep powerpanel)
 powerpanel
