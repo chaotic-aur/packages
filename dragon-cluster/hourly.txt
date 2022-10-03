@@ -1,58 +1,39 @@
 ## Try to get some more hourly builds in
-aconfmgr-git
 alacritty-git
 alpm_octopi_utils-git
 ananicy-cpp-git
 anbox-image-houdini-rooted
-aqemu
-arch-audit-git
 arch-deployer-git
-asp-git
 babl-git # (dep gimp-git)
 binfmt-qemu-static
-bmap-tools
-bpytop-git
 brave-nightly-bin
-btop-git
 cachyos-ananicy-rules
 cargo-make
 cfs-zen-tweaks
 chkrootkit
 clamav-unofficial-sigs
-cmake-git
 coreutils-hybrid-git
 crowdsec
 czkawka-git
-debianutils
 distrobox
-drawio-desktop
 electronmail-bin
 epiphany-git
 esbuild # (dep kwin-bismuth)
-exa-git
 fastfetch-git
 ffmpeg-compat-57
 ffmpeg-compat-58
 firejail-git
-firejail-noapparmor-git
 firejail-pacman-hook
 firetools-git
 fish-git
 flutter # (dep fluffychat)
-fprintd-clients
 gegl-git # (dep gimp-git)
 gimp-git
 git-git
-glib2-static # (dep qemu-user-static)
-gnome-boxes-git
-gstreamer-git
 guayadeque-git
-guiscrcpy-git
 harmonoid-bin
 huniq-git
 hyprland-git
-imagemagick-git
-inxi-git
 ipman
 jamesdsp-git
 kotatogram-dev-git
@@ -61,84 +42,51 @@ kwin-bismuth
 libart-lgpl # (dep gimp-git)
 libgbinder
 libglibutil
-libpamac-git
 libretro-mame-git
 libscrypt
-lutris-git
-memavaild-git
-micro-git
-mkinitcpio-git
-mullvad-vpn-beta
-networkmanager-iwd
 nextcloud-client-git
 nextdns-unprivileged
 nixfmt
-nohang-git
-notepadnext
-noto-fonts-emoji-git
 nspawn-git
 ntfs3-dkms
 obs-studio-git
 octopi-git
-open-fprintd
 openjpeg # (dep ffmpeg-compat-57)
-opensnitch-git
 pacman-git
-pamac-aur-git
 paru-git
-pcre-static # (dep qemu-user-static)
 plasma5-wallpapers-wallpaper-engine
-plasma5-wallpapers-wallpaper-engine-without-mpv-git
-prelockd-git
 protobuf-go # (dep sysbox-ce)
 python-codegen
-python-coloredlogs # (dep guiscrcpy-git)
 python-gbinder
-python-magic-ahupp # (dep guiscrcpy-git)
-python-nototools # (dep noto-fonts-emoji-git noto-fonts-emoji-flag-git)
 python-pyclip
-python-setuptools-lint # (dep guiscrcpy-git)
 python-simplediff
-python-validity
 qbittorrent-enhanced-git
 qemu-git
 qtwebflix-git
 quickemu
 quickemu-git
-ripgrep-git
 riseup-vpn
 rufetch
 rusnapshot-git
 searx
 snapper-tools-git
-spotify-adblock-git
-starship-git
 sudo-git
-swaync-git
 sysbox-ce
 traitor-git
 visual-studio-code-insiders-bin
-vscodium-git-marketplace
-wavemon-git
 waybar-hyprland-git
 waydroid-git
 whoogle
 whoogle-git
-wlr-randr-git
 wlroots-eglstreams-git
 woeusb-ng
 xdg-ninja-git
 xorg-server-git
-zellij-git
-zenmonitor-git
 zenmonitor3-git
-zram-generator-git
-zstd-git
 
 # Spotdl
 cpp-taskflow # (dep python-rapidfuzz)
 jarowinkler-cpp # (dep python-rapidfuzz)
-python-pynput # (dep guiscrcpy-git)
 python-pytube # (dep python-spotdl)
 python-spotdl
 
@@ -192,6 +140,7 @@ sshs
 tabby
 
 # Via mail (9th June)
+notepadnext
 schildichat-desktop
 
 # Issue 377
@@ -497,6 +446,7 @@ glaxnimate-git
 
 # Issue 1692
 noto-fonts-emoji-flag-git
+python-nototools # (dep noto-fonts-emoji-flag-git)
 
 # Issue 1699
 czkawka:https://aur.archlinux.org/czkawka.git
