@@ -2017,3 +2017,7 @@ python-srt # (dep simple64)
 discord-game-sdk # (dep simple64)
 vosk-api # (dep simple64)
 simple64
+
+# Issue 1981
+pyzbar # (dep frog-ocr)
+frog-ocr
