@@ -1521,6 +1521,9 @@ syncthing-gtk-python3
 # Issue 1947
 arch-update
 
+# Issue 1987
+btrbk
+
 
 ## Lost & found
 anaconda
