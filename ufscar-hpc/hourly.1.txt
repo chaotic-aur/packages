@@ -286,6 +286,10 @@ xpra-html5-git
 
 
 ## Users requests
+# Issue 285
+nghttp2 # (dep wget2)
+wget2
+
 # Issue 322
 hlsdl
 identity
@@ -651,10 +655,6 @@ jlink-systemview-target-src # (dep cryptomator)
 libjffi # (dep cryptomator)
 ozone # (dep cryptomator)
 
-# Issue 285
-nghttp2 # (dep wget2)
-wget2
-
 # Issue 461
 surf-git
 
@@ -760,7 +760,7 @@ newaita-icons-git
 davinci-resolve-studio
 
 # Issue 490
-libsearpc
+libsearpc # (dep seadrive-daemon)
 seafile
 seafile-client
 
