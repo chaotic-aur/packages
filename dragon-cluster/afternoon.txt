@@ -62,6 +62,10 @@ gcc-git
 # Issue 1684
 linux-git
 
+# Issue 1921
+linux-drm-tip-git
+linux-drm-next-git
+
 
 ## Garuda
 # Setup-assistant
