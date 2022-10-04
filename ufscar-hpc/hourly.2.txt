@@ -1083,7 +1083,7 @@ obs-nvfbc
 shim-signed
 
 # Issue 906
-openrazer
+openrazer:https://aur.archlinux.org/openrazer.git
 
 # Issue 907
 pamac-tray-icon-plasma
