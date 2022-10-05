@@ -458,6 +458,21 @@ glaxnimate-git
 noto-fonts-emoji-flag-git
 python-nototools # (dep noto-fonts-emoji-flag-git)
 
+# Issue 1693
+libcprime # (dep corepdf corekeyboard coreimage corepad corepaint)
+corekeyboard
+corepdf
+metronome
+lua-event # (dep metronome-git)
+metronome-git
+health
+image-roll-bin
+g4music
+g4music-git
+revelation
+gis-weather
+gis-weather-git
+
 # Issue 1699
 czkawka:https://aur.archlinux.org/czkawka.git
 
@@ -518,6 +533,15 @@ bookworm-git
 
 # Issue 1742
 carla-git
+
+# Issue 1746
+coreimage
+
+# Issue 1747
+corepad
+
+# Issue 1748
+corepaint
 
 # Issue 1752
 deskreen
