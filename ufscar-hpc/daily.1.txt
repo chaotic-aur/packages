@@ -93,9 +93,6 @@ telegram-tdlib-git
 clasp-cl-git
 seqan # (dep clasp-cl-git)
 
-# Issue 1243
-chromium-wayland-vaapi
-
 # Issue 1247
 pyqt4:https://aur.archlinux.org/pyqt4.git # (dep pybitmessage pybitmessage-git)
 
@@ -120,6 +117,10 @@ linux-lqx
 # Issue 1784
 luckybackup
 
+--
+
+# Issue 1243
+chromium-wayland-vaapi
 
 --
 
