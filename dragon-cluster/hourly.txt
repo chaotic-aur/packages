@@ -728,3 +728,6 @@ pikasso-git
 # Issue 1990
 mold-git
 systemd-git
+
+# Issue 1996
+physx
