@@ -60,7 +60,7 @@ body:
   - type: checkboxes
     attributes:
       label: "Have you read the README to ensure this package is not banned?"
-      description: "https://github.com/chaotic-aur/packages#banished-and-rejected-packages"
+      description: "https://github.com/chaotic-aur/packages#banished-and-rejected-packages-"
       options:
         - label: "YES!"
           required: true
