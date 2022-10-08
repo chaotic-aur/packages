@@ -731,3 +731,6 @@ systemd-git
 
 # Issue 1996
 physx
+
+# Issue 2003
+rustup-git
