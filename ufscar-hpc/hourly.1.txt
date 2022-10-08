@@ -979,10 +979,6 @@ notparadoxlauncher-bin
 # Issue 1366
 switcheroo-control
 
-# Issue 1367
-electron8-bin # (dep sendanywhere)
-sendanywhere
-
 # Issue 1370
 akvcam-dkms
 
