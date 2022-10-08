@@ -907,8 +907,10 @@ discord-development-electron-bin
 
 # Issue 620
 bottles
-icoextract # (dep bottles)
+fsv # (dep bottles)
+icoextract # (dep bottles & wine-meta)
 patool
+python-steamgriddb # (dep bottles)
 
 # Issue 621
 komorebi
