@@ -734,3 +734,7 @@ physx
 
 # Issue 2003
 rustup-git
+
+# Issue 2005
+electron-nightly-npm
+pacman-auto-update
