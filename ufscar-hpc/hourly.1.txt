@@ -1538,6 +1538,9 @@ syphon-bin
 mbuffer # (dep btrbk)
 btrbk
 
+# Issue 2008
+angrysearch
+
 
 ## Lost & found
 anaconda
