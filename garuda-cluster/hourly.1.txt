@@ -78,7 +78,6 @@ bauh
 birdtray
 cozy-audiobooks
 davinci-resolve
-deezer
 dropbox
 etcher-bin # (name changed to balena-etcher as balena-etcher doesnt build)
 fonts-tlwg
