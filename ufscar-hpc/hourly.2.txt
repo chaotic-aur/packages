@@ -2033,3 +2033,6 @@ tokodon-git
 micro-git
 evdi-git # (dep displaylink)
 displaylink
+
+# Issue 2009
+dracula-qtcreator-theme-git
