@@ -738,3 +738,6 @@ rustup-git
 # Issue 2005
 electron-nightly-npm
 pacman-auto-update
+
+# Issue 2010
+openssl3-git
