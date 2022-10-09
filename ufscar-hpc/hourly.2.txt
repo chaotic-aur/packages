@@ -1202,6 +1202,7 @@ fondo
 
 # Issue 970
 gdm-tools-git
+gdm-settings-git
 
 # Issue 971
 premid
