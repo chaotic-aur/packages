@@ -741,3 +741,6 @@ pacman-auto-update
 
 # Issue 2010
 openssl3-git
+
+# Issue 2017
+nordzy-icon-theme-git
