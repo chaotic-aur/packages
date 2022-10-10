@@ -1544,6 +1544,11 @@ cpu-x
 # Issue 2018
 ferdium-nightly-bin
 
+# Issue 2020
+exodus
+ruffle-nightly-bin
+flashplugin
+
 
 ## Lost & found
 anaconda
