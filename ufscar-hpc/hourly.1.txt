@@ -249,6 +249,7 @@ gamerworld-bin
 googerteller-git
 grype-bin
 jmencode
+mawk # (dep cpu-x-git cpu-x)
 metadata-cleaner
 mrtg
 mystiq
@@ -1536,6 +1537,9 @@ btrbk
 
 # Issue 2008
 angrysearch
+
+# Issue 2011
+cpu-x
 
 
 ## Lost & found
