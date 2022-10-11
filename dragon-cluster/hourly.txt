@@ -747,3 +747,6 @@ grub-themes-git:https://aur.archlinux.org/grub-themes-git.git
 
 # Issue 2017
 nordzy-icon-theme-git
+
+# Issue 2019
+python-git
