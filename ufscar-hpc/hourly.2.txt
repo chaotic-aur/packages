@@ -2037,3 +2037,6 @@ displaylink
 
 # Issue 2009
 dracula-qtcreator-theme-git
+
+# Issue 2021
+lunar-client
