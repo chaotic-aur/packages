@@ -1,7 +1,6 @@
 ## Maintainer
 # Nico
 coreutils-git
-firedragon-beta-znver2:https://gitlab.com/dr460nf1r3/firedragon-beta.git
 
 # A friend
 forkgram
@@ -16,6 +15,9 @@ linux-amd
 
 # FGD on forum
 linux-amd-znver2
+
+# Issue 318
+linux-next-git
 
 # Issue 698
 yuzu-git:https://gitlab.com/tallero/yuzu-git-aur.git

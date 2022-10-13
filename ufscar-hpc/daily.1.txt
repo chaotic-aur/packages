@@ -32,9 +32,6 @@ waterfox-classic-kpe
 # Issue 316
 scummvm-git
 
-# Issue 318
-linux-next-git
-
 # Issue 331
 linux-mainline
 
