@@ -2040,3 +2040,6 @@ dracula-qtcreator-theme-git
 
 # Issue 2021
 lunar-client
+
+# Issue 2028
+libnvidia-container
