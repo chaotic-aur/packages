@@ -1244,7 +1244,7 @@ asix-ax88179-dkms
 nerd-fonts-hack
 
 # Issue 1678
-broadcom-bt-firmware
+broadcom-bt-firmware-git
 
 # Issue 1679
 dcamprof
