@@ -753,3 +753,10 @@ python-git
 
 # Issue 2022
 make-git
+
+# Issue 2023
+dmalloc # (dep imagemagick-full-git)
+flif # (dep imagemagick-full-git)
+libfpx # (dep imagemagick-full-git)
+libumem-git # (dep imagemagick-full-git)
+imagemagick-full-git
