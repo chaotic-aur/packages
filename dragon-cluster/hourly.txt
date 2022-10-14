@@ -750,3 +750,6 @@ nordzy-icon-theme-git
 
 # Issue 2019
 python-git
+
+# Issue 2022
+make-git
