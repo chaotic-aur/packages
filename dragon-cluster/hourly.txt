@@ -760,3 +760,10 @@ flif # (dep imagemagick-full-git)
 libfpx # (dep imagemagick-full-git)
 libumem-git # (dep imagemagick-full-git)
 imagemagick-full-git
+
+# Issue 2029
+openttd-git
+simutrans-extended-git
+mindustry-git
+libopenglrecorder # (dep supertuxkart-git)
+supertuxkart-git
