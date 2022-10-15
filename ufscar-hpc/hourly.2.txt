@@ -2038,6 +2038,18 @@ dracula-qtcreator-theme-git
 # Issue 2021
 lunar-client
 
+# Issue 2026
+webstorm-eap
+rubymine-eap
+rubymine
+rider-eap
+phpstorm
+goland-eap
+goland
+dataspell-eap
+dataspell
+datagrip-eap
+
 # Issue 2028
 libnvidia-container-tools # (dep libnvidia-container)
 libnvidia-container
