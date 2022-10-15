@@ -2039,4 +2039,5 @@ dracula-qtcreator-theme-git
 lunar-client
 
 # Issue 2028
+libnvidia-container-tools # (dep libnvidia-container)
 libnvidia-container
