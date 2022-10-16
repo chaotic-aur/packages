@@ -1413,22 +1413,6 @@ papirus-icon-theme-git
 rstudio-desktop
 soci # (dep rstudio-desktop)
 
-# Issue 1084
-python2-config # (dep natron-compositor)
-opencolorio1 # (dep openfx-arena openfx-io natron-compositor)
-openfx-arena # (dep natron-compositor)
-libseexpr2 # (dep openfx-io natron-compositor)
-openfx-io # (dep natron-compositor)
-openfx-misc # (dep natron-compositor)
-openfx-gmic # (dep natron-compositor)
-qt4 # (dep phonon-qt4 pybitmessage pybitmessage-git)
-phonon-qt4 # (dep python-pyside natron-compositor pybitmessage pybitmessage-git)
-python-pyside # (dep natron-compositor)
-shiboken # (dep natron-compositor, also python-shiboken, python2-shiboken)
-natron-compositor
-natron-plugins-git
-natron
-
 # Issue 1085
 gtksourceview-gitls
 
@@ -1834,12 +1818,6 @@ xfce4-windowck-plugin-xfwm4-theme-support
 
 # Issue 1710
 zeit-git
-
-# Issue 1712
-cython2 # (dep pybitmessage pybitmessage-git flowblade-git)
-python2-msgpack # (dep pybitmessage pybitmessage-git)
-pybitmessage
-pybitmessage-git
 
 # Issue 1713
 gnome-multi-writer-git
