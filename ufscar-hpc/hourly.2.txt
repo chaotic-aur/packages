@@ -645,9 +645,6 @@ python-pychromecast # (dep photoqt)
 # Issue 666
 bluemail
 
-# Issue 667
-yandex-browser-beta
-
 # Issue 668
 haguichi
 ledger-live
