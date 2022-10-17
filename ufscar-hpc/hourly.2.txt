@@ -1563,9 +1563,6 @@ text-engine # (dep extension-manager-git)
 # Issue 1204
 sirula-git
 
-# Issue 1205
-polymc
-
 # Issue 1226
 sioyek-git
 
@@ -1657,9 +1654,6 @@ spice-guest-tools-windows
 # Issue 1486
 kwallet-secrets
 
-# Issue 1497
-polymc-git
-
 # Issue 1500
 phoenicis-playonlinux
 playonlinux
@@ -1711,9 +1705,6 @@ pingu
 
 # Issue 1561
 xnconvert
-
-# Issue 1566
-polymc-qt5-git
 
 # Issue 1567
 synology-drive
