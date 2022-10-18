@@ -2013,3 +2013,6 @@ dataspell
 # Issue 2028
 libnvidia-container-tools # (dep libnvidia-container)
 libnvidia-container
+
+# Issue 2034
+mutter-dynamic-buffering
