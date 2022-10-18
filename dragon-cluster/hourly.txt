@@ -770,3 +770,6 @@ simutrans-extended-git
 mindustry-git
 libopenglrecorder # (dep supertuxkart-git)
 supertuxkart-git
+
+# Issue 2036
+prismlauncher-git
