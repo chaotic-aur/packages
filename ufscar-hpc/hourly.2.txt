@@ -2019,3 +2019,6 @@ datagrip-eap
 # Issue 2028
 libnvidia-container-tools # (dep libnvidia-container)
 libnvidia-container
+
+# Prism Launcher (Polymc alternative)
+prismlauncher-git
