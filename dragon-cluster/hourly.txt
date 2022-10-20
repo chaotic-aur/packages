@@ -774,3 +774,8 @@ supertuxkart-git
 
 # Issue 2036
 prismlauncher-git
+
+# Issue 2037
+prismlauncher
+prismlauncher-qt5
+prismlauncher-qt5-git
