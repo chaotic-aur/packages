@@ -1,5 +1,7 @@
 ## Try to get some more hourly builds in
 alacritty-git
+alhp-keyring
+alhp-mirrorlist
 alpm_octopi_utils-git
 ananicy-cpp-git
 anbox-image-houdini-rooted
@@ -16,7 +18,6 @@ coreutils-hybrid-git
 crowdsec
 czkawka-git
 distrobox
-electronmail-bin
 epiphany-git
 esbuild # (dep kwin-bismuth)
 fastfetch-git
@@ -44,9 +45,9 @@ libgbinder
 libglibutil
 libretro-mame-git
 libscrypt
+networkmanager-iwd
 nextcloud-client-git
 nextdns-unprivileged
-nixfmt
 nspawn-git
 ntfs3-dkms
 obs-studio-git
