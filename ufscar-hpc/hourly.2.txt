@@ -1370,11 +1370,6 @@ standardnotes-bin
 # Issue 1062
 spicetify-cli-git
 
-# Issue 1063
-libbfio-git # (dep liblnk-git)
-liblnk-git # (also builds python2-liblnk-git,python-liblnk-git)
-liblnk-tools-git
-
 # Issue 1064
 aptpac
 
