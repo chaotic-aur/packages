@@ -1406,7 +1406,7 @@ rstudio-desktop
 soci # (dep rstudio-desktop)
 
 # Issue 1085
-gtksourceview-gitls
+gtksourceview-git
 
 # Issue 1087
 graphite-cursor-theme-git
