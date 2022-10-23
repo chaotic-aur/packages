@@ -141,6 +141,7 @@ snkrx-drmfree-git
 soundcloud-dl-git
 speedtest++
 sshs
+youtube-music-git
 
 
 ## Chaotic
