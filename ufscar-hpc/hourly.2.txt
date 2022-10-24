@@ -1786,6 +1786,9 @@ webcord-git
 # Issue 1694
 qt-jdenticon
 
+# Issue 1698
+fluent-kde-theme-git
+
 # Issue 1703
 riseup-vpn-git
 
