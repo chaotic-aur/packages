@@ -478,6 +478,9 @@ revelation
 gis-weather
 gis-weather-git
 
+# Issue 1697
+ruffle-git
+
 # Issue 1699
 czkawka:https://aur.archlinux.org/czkawka.git
 
