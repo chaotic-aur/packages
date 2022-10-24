@@ -671,7 +671,6 @@ openboard-git
 
 # Issue 686
 youtube-music-bin
-ytmdesktop
 
 # Issue 688
 linuxtv-dvb-apps
