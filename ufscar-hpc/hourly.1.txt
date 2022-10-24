@@ -896,11 +896,11 @@ element-desktop-nightly-bin
 discord-development-electron-bin
 
 # Issue 620
-bottles
-fsv # (dep bottles)
+fvs # (dep bottles)
 icoextract # (dep bottles & wine-meta)
-patool
+patool # (dep bottles)
 python-steamgriddb # (dep bottles)
+bottles
 
 # Issue 621
 komorebi
