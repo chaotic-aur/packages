@@ -650,6 +650,9 @@ nordic-theme-git
 # Issue 1879
 fmit
 
+# Issue 1880
+sayonara-player
+
 # Issue 1882
 python-pyo # (dep cecilia cecilia-git)
 cecilia
