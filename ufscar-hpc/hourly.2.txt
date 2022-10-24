@@ -752,9 +752,6 @@ python-gtts
 # Issue 730
 git-fixup-git
 
-# Issue 731
-libglade # (dep flowblade-git)
-
 # Issue 733
 popcorntime
 
@@ -1853,9 +1850,6 @@ drawpile
 
 # Issue 1759
 evopop-gtk-theme-git
-
-# Issue 1766
-flowblade-git
 
 # Issue 1769
 everforest-gtk-theme-git
