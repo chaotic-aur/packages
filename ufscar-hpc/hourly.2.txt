@@ -1234,9 +1234,6 @@ libdispatch
 gzdoom
 zmusic # (dep gzdoom)
 
-# Issue 993
-ytmdesktop-git
-
 # Issue 994
 protonup-git
 
