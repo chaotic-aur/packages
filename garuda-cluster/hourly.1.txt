@@ -6,28 +6,21 @@ exe-thumbnailer
 firefox-extension-xdm-browser-monitor
 freedownloadmanager
 freeoffice
-gconf # (dep wacom-utility)
 gitkraken
-gksu # (dep wacom-utility)
 google-chrome
 jdownloader2
 jitsi-meet-desktop
 joplin:https://github.com/chaotic-aur/pkgbuild-joplin
-libgksu # (dep wacom-utility)
 mendeleydesktop-bundled
 ms-office-online
 onlyoffice-bin
 openh264
-pygtk # (dep wacom-utility flowblade-git)
 python-pypresence # (dep rare)
-python2-cairo # (dep pygtk flowblade-git)
-python2-numpy # (dep pygtk flowblade-git)
 rare
 safesync:https://gitlab.com/petsam/safesync.git
 spotify
 ttf-wps-fonts # (dep wps-office wps-office-cn)
 virtualbox-ext-oracle
-wacom-utility
 wine-installer
 wineasio
 wps-office
@@ -191,11 +184,6 @@ whitesur-gtk-theme-git
 whitesur-kde-theme-git
 whitesur-kvantum-theme-git
 yaru:https://aur.archlinux.org/yaru.git # (creates other yaru-* packages as well)
-
-# P2P
-acestream-engine
-python2-apsw # (dep acestream-engine)
-python2-xlib # (dep acestream-engine)
 
 
 ## Misc
