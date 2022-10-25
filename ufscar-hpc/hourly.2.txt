@@ -589,7 +589,6 @@ gtk3-nocsd-git
 freeplane
 
 # Issue 627
-gconf # (dep github-desktop)
 github-desktop
 
 # Issue 628
