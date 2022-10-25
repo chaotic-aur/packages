@@ -1843,6 +1843,9 @@ curlew
 # Issue 1750
 wireproxy
 
+# Issue 1753
+detwinner
+
 # Issue 1755
 drawpile
 
