@@ -1514,6 +1514,9 @@ syncthing-gtk-python3
 # Issue 1947
 arch-update
 
+# Issue 1949
+hplip-lite
+
 # Issue 1980
 raider-file-shredder
 
