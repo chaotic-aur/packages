@@ -288,6 +288,9 @@ xpra-html5-git
 
 
 ## Users requests
+# Dustin on forum
+rtl88x2bu-cilynx-dkms-git
+
 # Issue 285
 nghttp2 # (dep wget2)
 wget2
