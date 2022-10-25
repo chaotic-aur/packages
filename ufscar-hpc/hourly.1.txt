@@ -1141,7 +1141,7 @@ kotatogram-desktop-bin
 path-of-building-community-git
 
 # Issue 1586
-gconf # (dep lbry-desktop-git imaginary-teleprompter-bin)
+gconf # (dep lbry-desktop-git imaginary-teleprompter-bin github-desktop)
 lbry-desktop-git
 
 # Issue 1600
