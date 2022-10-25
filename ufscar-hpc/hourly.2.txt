@@ -614,7 +614,7 @@ kmozillahelper
 mozilla-common
 
 # Issue 641
-fractal-next:https://aur.archlinux.org/fractal-next.git
+fractal-git
 
 # Issue 642
 picom-git
