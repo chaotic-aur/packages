@@ -1511,6 +1511,9 @@ syncthing-gtk-python3
 # Issue 1947
 arch-update
 
+# Issue 1980
+raider-file-shredder
+
 # Issue 1984
 syphon-bin
 
