@@ -1769,9 +1769,6 @@ lutris-wine-git
 # Issue 1667
 wl-clipboard-rs
 
-# Issue 1672
-xylib # (dep fityk)
-fityk
 
 # Issue 1674
 klassy-git
@@ -1851,6 +1848,10 @@ drawpile
 
 # Issue 1759
 evopop-gtk-theme-git
+
+# Issue 1762
+xylib # (dep fityk)
+fityk
 
 # Issue 1769
 everforest-gtk-theme-git
