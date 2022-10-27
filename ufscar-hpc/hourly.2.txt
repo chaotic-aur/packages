@@ -1735,9 +1735,6 @@ rocketlauncher2-git
 # Issue 1618
 flatseal
 
-# Issue 1619
-gnome-text-editor
-
 # Issue 1624
 datagrip
 
