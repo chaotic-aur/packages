@@ -789,3 +789,6 @@ prismlauncher-qt5-git
 
 # Issue 2045
 ipfs-desktop
+
+# Issue 2046
+python311
