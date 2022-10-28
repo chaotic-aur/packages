@@ -1547,6 +1547,9 @@ exodus
 ruffle-nightly-bin
 flashplugin
 
+# Issue 2044
+eclipse-mat
+
 
 ## Lost & found
 anaconda
