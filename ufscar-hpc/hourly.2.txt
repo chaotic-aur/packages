@@ -2010,3 +2010,6 @@ mutter-dynamic-buffering
 
 # Issue 2041
 persepolis-git
+
+# Issue 2049
+7-zip-full
