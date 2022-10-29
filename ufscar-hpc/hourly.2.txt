@@ -2013,3 +2013,6 @@ persepolis-git
 
 # Issue 2049
 7-zip-full
+
+# Issue 2050
+bluez-utils-compat
