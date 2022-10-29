@@ -1550,6 +1550,9 @@ flashplugin
 # Issue 2044
 eclipse-mat
 
+# Issue 2052
+libretro-mesen-git
+
 
 ## Lost & found
 anaconda
