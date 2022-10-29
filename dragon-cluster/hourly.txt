@@ -792,3 +792,6 @@ ipfs-desktop
 
 # Issue 2046
 python311
+
+# Issue 2053
+libretro-mupen64plus-next-git
