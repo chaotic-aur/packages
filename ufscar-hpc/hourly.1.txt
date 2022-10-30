@@ -1471,6 +1471,9 @@ prestopalette
 # Issue 1890
 hyperspace-bin
 
+# Issue 1893
+nuclear-player-bin
+
 # Issue 1894
 poddr-bin
 
