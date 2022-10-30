@@ -148,6 +148,11 @@ youtube-music-git
 # Sorcerer (IRC)
 tabby
 
+# gaelic on forum
+python-attrdict # (dep python-wxpython-dev)
+python-wxpython-dev # (dep grass)
+grass
+
 # Via mail (9th June)
 notepadnext
 schildichat-desktop
