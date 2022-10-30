@@ -928,6 +928,9 @@ gsettings-desktop-schemas-git # (dep gnome-shell-git)
 mutter-git # (dep gnome-shell-git)
 gnome-shell-git
 
+# Issue 1179
+gnome-shell-extension-dash-to-panel-git
+
 # Issue 1336
 maui-shell-git
 mauikit-git
