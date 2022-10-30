@@ -2016,3 +2016,6 @@ persepolis-git
 
 # Issue 2050
 bluez-utils-compat
+
+# Issue 2058
+boringtun
