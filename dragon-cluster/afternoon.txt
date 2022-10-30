@@ -40,9 +40,6 @@ linux-xanmod-rt
 # Issue 1193
 stylepak-git
 
-# Issue 1245
-linux-xanmod-edge
-
 # Issue 1307
 linux-bore
 
