@@ -1561,6 +1561,9 @@ eclipse-mat
 # Issue 2052
 libretro-mesen-git
 
+# Issue 2059
+pokemon-colorscripts-git
+
 
 ## Lost & found
 anaconda
