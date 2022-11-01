@@ -460,12 +460,6 @@ oh-my-zsh-git
 python-pyasn #(dep opensnitch opensnitch-git)
 opensnitch
 
-# Issue 366
-lib32-gstreamer0.10
-lib32-gstreamer0.10-base
-lib32-nss-mdns
-make-3.81 # (dep lib32-gstreamer0.10-base)
-
 # Issue 360
 amdgpu-pro-installer
 
