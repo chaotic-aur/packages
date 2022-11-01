@@ -10,7 +10,6 @@ gitkraken
 google-chrome
 jdownloader2
 jitsi-meet-desktop
-joplin:https://github.com/chaotic-aur/pkgbuild-joplin
 mendeleydesktop-bundled
 ms-office-online
 onlyoffice-bin
