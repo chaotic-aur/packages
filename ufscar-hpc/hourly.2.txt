@@ -1544,6 +1544,7 @@ dynamic-wallpaper-editor
 
 # Issue 1200
 extension-manager-git
+libbacktrace-git # (dep extension-manager-git)
 text-engine # (dep extension-manager-git)
 
 # Issue 1204
