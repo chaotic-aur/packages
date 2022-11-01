@@ -108,6 +108,7 @@ dosbox-staging
 elm-bin
 elm-language-server
 firefox-nightly
+iir1 # (dep dosbox-staging)
 j9-git
 jdk16-graalvm-bin
 jdk8-graalvm-bin
