@@ -454,7 +454,7 @@ bibata-cursor-theme
 bibata-cursor-translucent
 bibata-extra-cursor-theme
 bibata-rainbow-cursor-theme
-python-clickgen # (dep bibata-cursors)
+python-clickgen1 # (dep bibata-cursors)
 
 # Issue 551
 tracktion-waveform
