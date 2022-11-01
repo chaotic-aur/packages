@@ -1564,6 +1564,9 @@ libretro-mesen-git
 # Issue 2059
 pokemon-colorscripts-git
 
+# Issue 2060
+plex-media-server-plexpass
+
 
 ## Lost & found
 anaconda
