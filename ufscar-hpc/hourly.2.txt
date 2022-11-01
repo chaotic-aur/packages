@@ -267,6 +267,7 @@ emulationstation
 epsxe
 genymotion
 kega-fusion
+lib32-nss-mdns # (dep crossover)
 m64py
 mednaffe
 pcsxr
