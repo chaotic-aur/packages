@@ -803,3 +803,6 @@ libretro-mupen64plus-next-git
 
 # Issue 2054
 mesen-x-git
+
+# Issue 2064
+qbittorrent-git
