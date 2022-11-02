@@ -1564,6 +1564,9 @@ plex-media-server-plexpass
 # Issue 2063
 hd
 
+# Issue 2065
+megasync-bin
+
 
 ## Lost & found
 anaconda
