@@ -54,7 +54,7 @@ obs-studio-git
 octopi-git
 openjpeg # (dep ffmpeg-compat-57)
 pacman-git
-paru-git
+paru-git:https://github.com/chaotic-aur/pkgbuild-paru-git.git
 plasma5-wallpapers-wallpaper-engine
 protobuf-go # (dep sysbox-ce)
 python-codegen
