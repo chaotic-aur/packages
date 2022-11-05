@@ -170,7 +170,6 @@ preload
 prelockd
 python-apprise
 python-py3nvml # (dep optimus-manager-git)
-qwikaccess-git
 rate-mirrors
 systemd-guest-user
 systemd-oomd-defaults
