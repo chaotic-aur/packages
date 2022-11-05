@@ -557,14 +557,8 @@ ardour-git
 cwiid # (dep ardour)
 
 # Issue 415
-antlr3 # (dep scylla-git)
-antlr3-cpp-headers-git # (dep scylla-git)
 cassandra
-gcc7
-scylla
-scylla-git
-systemtap # (dep scylla-git)
-thrift-0.10.0 # (dep scylla-git)
+scylla-bin
 
 # Issue 417
 paper-icon-theme-git
