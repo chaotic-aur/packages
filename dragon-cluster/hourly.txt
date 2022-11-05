@@ -135,6 +135,9 @@ mullvad-vpn-beta
 pacvis-git
 paho-mqtt-c # (dep powerpanel)
 powerpanel
+python-dacite # (dep soundcloud-dl-git)
+python-pathvalidate # (dep soundcloud-dl-git)
+python-soundcloud-v2 # (dep soundcloud-dl-git)
 q-dns-git
 qrcp-git
 snkrx-drmfree-git
