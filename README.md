@@ -29,7 +29,7 @@ This is a list of packages that we will reject for good reasons:
 
 - **unreal-engine (and -git)**: Some mirrors don't have sufficient storage space.
 
-- **python2**: Has been end of life for a couple years, and was [removed from Arch repositories](https://archlinux.org/news/removing-python2-from-the-repositories/). Requests for packages that depend on `python2` will be rejected.
+- **python2**: Has been end of life for a couple years, and was [removed from Arch repositories](https://archlinux.org/news/removing-python2-from-the-repositories/). Requests for packages that depend on it in any way will be rejected (see [#1958](https://github.com/chaotic-aur/packages/issues/1958)).
 
 
 
