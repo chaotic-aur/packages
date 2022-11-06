@@ -97,7 +97,7 @@ spirv-tools-tkg-git:https://github.com/Frogging-Family/spirv-tools-git.git
 vkd3d-proton-tkg-git:https://github.com/Frogging-Family/vkd3d-git.git
 vkd3d-tkg-git:https://github.com/Frogging-Family/vkd3d-git.git
 vulkan-headers-tkg-git:https://github.com/Frogging-Family/vulkan-headers-git.git
-vulkan-icd-loader-tkg-git:https://github.com/Frogging-Family/vulkan-icd-loader-git.git
+vulkan-icd-loader-git:https://github.com/Frogging-Family/vulkan-icd-loader-git.git
 
 # RustemB
 aarch64-linux-musl
