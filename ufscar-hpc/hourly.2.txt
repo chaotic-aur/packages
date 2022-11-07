@@ -1935,6 +1935,7 @@ amber-theme-git
 flat-remix-git
 
 # Issue 1912
+calcmysky # (dep stellarium)
 stellarium
 
 # Issue 1917
