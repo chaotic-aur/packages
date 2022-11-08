@@ -187,10 +187,6 @@ ufetch-git
 # Issue 1108
 kdenlive-stabledeps-git:https://github.com/chaotic-aur/pkgbuild-kdenlive-stabledeps-git.git
 
-# Issue 1310
-rum
-rum-git
-
 # Issue 1320
 86box
 
