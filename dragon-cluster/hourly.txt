@@ -43,7 +43,6 @@ kwin-bismuth
 libart-lgpl # (dep gimp-git)
 libgbinder
 libglibutil
-libretro-mame-git
 libscrypt
 networkmanager-iwd
 nextcloud-client-git
