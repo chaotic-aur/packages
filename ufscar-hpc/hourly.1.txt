@@ -1553,6 +1553,9 @@ brother-mfc-l2710dw
 # Issue 2091
 pleroma-bin
 
+# Issue 2093
+notesnook-bin
+
 
 ## Lost & found
 anaconda
