@@ -966,7 +966,7 @@ goodvibes
 goodvibes-git
 
 # Issue 822
-libshumate-git # (dep shortwave-git)
+libshumate-git # (dep shortwave shortwave-git)
 shortwave-git
 
 # Issue 825
