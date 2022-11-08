@@ -1450,9 +1450,6 @@ mint-themes-legacy
 mcpelauncher-linux-git
 mcpelauncher-ui-git
 
-# Issue 1121
-rum
-
 # Issue 1123
 tectonic
 
