@@ -296,7 +296,6 @@ heroic-games-launcher-bin
 hypnotix
 ialauncher-git
 input-remapper-git
-itch
 keyboard-visualizer-git
 legendary
 lib32-vkbasalt # (dep lutris-wine-git)
