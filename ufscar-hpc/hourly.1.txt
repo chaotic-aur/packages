@@ -1550,6 +1550,9 @@ megasync-bin
 # Issue 2089
 brother-mfc-l2710dw
 
+# Issue 2091
+pleroma-bin
+
 
 ## Lost & found
 anaconda
