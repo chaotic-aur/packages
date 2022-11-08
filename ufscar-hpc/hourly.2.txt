@@ -644,7 +644,7 @@ nnn-icons
 clifm-git
 
 # Issue 656
-python-casttube # (dep photoqt)
+python-casttube # (dep python-pychromecast)
 python-pychromecast # (dep photoqt)
 
 # Issue 666
