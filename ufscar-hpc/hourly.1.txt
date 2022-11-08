@@ -260,9 +260,7 @@ parsec-bin
 pdf-xchange
 pdfquirk
 pdfsam
-protondb-tags-git
 python-coloredlogs # (dep ocrmypdf)
-python-vdf # (dep protondb-tags-git)
 remoteplaywhatever-bin
 replay-sorcery-git
 revolt-desktop-git
