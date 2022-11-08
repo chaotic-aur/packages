@@ -809,3 +809,6 @@ mesen-x-git
 
 # Issue 2064
 qbittorrent-git
+
+# Issue 2088
+qt4
