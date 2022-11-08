@@ -638,13 +638,8 @@ emote
 python-manimpango # (dep emote)
 
 # Issue 460
-cryptomator
-jlink # (dep cryptomator)
-jlink-software-and-documentation # (dep cryptomator)
-jlink-systemview # (dep cryptomator)
-jlink-systemview-target-src # (dep cryptomator)
 libjffi # (dep cryptomator)
-ozone # (dep cryptomator)
+cryptomator
 
 # Issue 461
 surf-git
