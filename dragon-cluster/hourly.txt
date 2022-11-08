@@ -807,3 +807,6 @@ qbittorrent-git
 
 # Issue 2088
 qt4
+
+# Issue 2090
+discord-screenaudio
