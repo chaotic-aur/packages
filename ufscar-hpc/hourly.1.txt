@@ -105,9 +105,7 @@ r8125-dkms
 repoctl
 slack-electron
 spirv-cross # (mpv-full-git dependency)
-spotify-edge-snap
 spotify-qt
-spotifyd-full-git
 swayfire-git
 steinberg-asio-sdk # (wineasio-git dependency)
 tor-browser
