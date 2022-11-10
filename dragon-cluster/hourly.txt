@@ -753,9 +753,6 @@ rustup-git
 electron-nightly-npm
 pacman-auto-update
 
-# Issue 2010
-openssl3-git
-
 # Issue 2013
 grub-themes-git:https://aur.archlinux.org/grub-themes-git.git
 
