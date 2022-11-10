@@ -810,3 +810,7 @@ discord-screenaudio
 
 # Issue 2099
 miktex
+
+# Issue 2103
+opencolorio1 # (dep openfx-arena-git)
+libseexpr2 # (dep openfx-io-git)
