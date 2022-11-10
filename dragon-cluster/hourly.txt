@@ -810,3 +810,6 @@ qt4
 
 # Issue 2090
 discord-screenaudio
+
+# Issue 2099
+miktex
