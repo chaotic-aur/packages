@@ -110,6 +110,7 @@ latte-dock:https://gitlab.com/garuda-linux/packages/other/latte-dock.git
 # Base theming & applications
 calamares-tools:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/calamares-tools.git
 calamares:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/calamares.git
+calamares-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/calamares-git
 garuda-wallpapers-2021:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/garuda-wallpapers-2021.git
 garuda-wallpapers-2022:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/garuda-wallpapers-2022.git
 garuda-wallpapers-extra:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/garuda-wallpapers-extra.git
