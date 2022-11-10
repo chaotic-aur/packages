@@ -1555,6 +1555,9 @@ pleroma-bin
 # Issue 2093
 notesnook-bin
 
+# Issue 2102
+xkcdpass
+
 
 ## Lost & found
 anaconda
