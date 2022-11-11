@@ -49,11 +49,9 @@ hplip-plugin
 hunspell-pt-br
 intelbacklight-git
 lib32-imath
-lib32-lzo # (proton-ge-custom makedep)
 lib32-primus-vk-git
 lib32-sdl2_compat12-git
 logstalgia
-mingw-w64-tools # (proton-ge-custom makedep)
 msitools
 neovim-drop-in
 neovim-plug
@@ -62,7 +60,6 @@ nm-eduroam-ufscar
 openal-git
 openssh-hpn
 primus-vk-git
-proton-ge-custom
 python-telegram-bot # (dep python-telegram-send)
 python-telegram-send
 quartus-130
@@ -364,6 +361,8 @@ xavs2
 # Dependencies of proton-ge-custom
 afdko
 lib32-gsm
+lib32-lzo # (proton-ge-custom makedep)
+mingw-w64-tools # (proton-ge-custom makedep)
 psautohint
 python-booleanoperations # (dep python-nototools)
 python-defcon # (dep python-nototools)
@@ -375,6 +374,7 @@ python-mutatormath
 python-pyclipper # (dep python-booleanoperations python-nototools
 python-ufonormalizer
 python-ufoprocessor
+proton-ge-custom
 
 # Dependenies of darling-git
 libavresample
