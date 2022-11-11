@@ -2023,6 +2023,9 @@ bluez-utils-compat
 # Issue 2058
 boringtun
 
+# Issue 2067
+opencl-amd
+
 # Issue 2068
 arkenfox-user.js-git
 
