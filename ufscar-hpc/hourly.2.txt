@@ -2025,3 +2025,6 @@ boringtun
 
 # Issue 2068
 arkenfox-user.js-git
+
+# Issue 2077
+cura-bin
