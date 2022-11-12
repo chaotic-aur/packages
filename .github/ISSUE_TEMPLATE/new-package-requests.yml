@@ -5,8 +5,8 @@ title: "[Request] "
 body:
   - type: textarea
     attributes:
-      label: "Link to the package(s) in the AUR"
-      placeholder: "[insert the link here](https://example.com)"
+      label: "Link to the package base(s) in the AUR"
+      placeholder: "[PackageNameHere](https://aur.archlinux.org/pkgbase/packagenamehere)"
     validations:
       required: true
   - type: textarea
