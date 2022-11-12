@@ -18,6 +18,7 @@ coreutils-hybrid-git
 crowdsec
 czkawka-git
 distrobox
+electronmail-bin
 epiphany-git
 esbuild # (dep kwin-bismuth)
 fastfetch-git
