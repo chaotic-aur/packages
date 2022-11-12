@@ -96,7 +96,7 @@ shortwave
 skypeforlinux-stable-bin
 slack-desktop
 snapper-tools
-streamlink-twitch-gui
+streamlink-twitch-gui-bin
 teams
 teamviewer
 timeshift-bin
