@@ -610,7 +610,6 @@ xorgproto-git
 
 # Issue 635
 olive-git
-opentimelineio-git # (dep olive-git)
 
 # Issue 636
 pikaur-git
