@@ -379,7 +379,10 @@ proton-ge-custom
 # Dependenies of darling-git
 libavresample
 
-# Users requests
+## Users requests
+# FGD on forum
+plasma5-applets-weather-widget-2
+
 # puspamadak
 foobillard++
 
