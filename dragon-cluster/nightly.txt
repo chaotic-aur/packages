@@ -274,6 +274,9 @@ enve-git
 # Issue 1816
 qwertone-git
 
+# Issue 2076
+openssl-git
+
 # Issue 1308
 console-bridge # (dep gazebo)
 urdfdom-headers # (dep gazebo)
