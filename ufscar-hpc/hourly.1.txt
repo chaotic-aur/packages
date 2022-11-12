@@ -670,7 +670,7 @@ electron16-bin # (dep freetube)
 freetube
 
 # Issue 469
-lbry-app-bin
+lbry-desktop-bin
 gajim-git
 python-nbxmpp-git
 spotify-tray-git

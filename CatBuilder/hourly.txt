@@ -12,4 +12,3 @@ insomnia
 libreswan
 openswan
 tidal-hifi-bin
-lbry-desktop-bin
