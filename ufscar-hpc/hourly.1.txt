@@ -293,6 +293,9 @@ binder_linux-dkms
 # Dustin on forum
 rtl88x2bu-cilynx-dkms-git
 
+# mrvictory on forum
+nvidia-utils-beta
+
 # Issue 285
 nghttp2 # (dep wget2)
 wget2
