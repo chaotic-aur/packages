@@ -16,7 +16,6 @@ onlyoffice-bin
 openh264
 python-pypresence # (dep rare)
 rare
-safesync:https://gitlab.com/petsam/safesync.git
 spotify
 ttf-wps-fonts # (dep wps-office wps-office-cn)
 virtualbox-ext-oracle
