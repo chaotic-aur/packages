@@ -293,6 +293,13 @@ binder_linux-dkms
 # Dustin on forum
 rtl88x2bu-cilynx-dkms-git
 
+# FGD on forum
+amdgpu-fan
+dolphin-megasync-bin
+fish-systemd-git
+it87-dkms-git
+zenpower-dkms
+
 # mrvictory on forum
 nvidia-utils-beta
 
@@ -1547,7 +1554,7 @@ plex-media-server-plexpass
 hd
 
 # Issue 2065
-megasync-bin
+megasync-bin # (dep dolphin-megasync-bin)
 
 # Issue 2089
 brother-mfc-l2710dw
