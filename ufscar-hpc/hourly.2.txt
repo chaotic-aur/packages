@@ -1553,7 +1553,7 @@ text-engine # (dep extension-manager-git extension-manager)
 sirula-git
 
 # Issue 1226
-sioyek-git
+sioyek
 
 # Issue 1227
 python-cleo-git # (dep python-peotry-git)
