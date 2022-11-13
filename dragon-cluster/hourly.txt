@@ -171,8 +171,8 @@ tenacity-git
 wxwidgets-dev-light # (dep tenacity-git)
 
 # Issue 928
-rustdesk
-rustdesk-git
+python-pynput # dep rustdesk-nightly
+rustdesk-nightly
 
 # Issue 1014
 spotify-adblock-git
