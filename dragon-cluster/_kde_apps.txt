@@ -111,6 +111,7 @@ okular-git
 oxygen-icons-git:https://github.com/chaotic-aur/pkgbuild-oxygen-icons-git.git
 partitionmanager-git:https://github.com/chaotic-aur/pkgbuild-partitionmanager-git.git
 phonon-qt5-git:https://github.com/chaotic-aur/pkgbuild-phonon-git.git
+plasma5-applets-latte-separator
 plasma5-applets-latte-sidebar-button
 plasma5-applets-latte-spacer
 plasma5-applets-window-appmenu-git

@@ -159,6 +159,7 @@ kmbox-git
 kpeoplevcard-git:https://github.com/chaotic-aur/pkgbuild-kpeoplevcard-git.git
 kpimtextedit-git
 ktnef-git
+kaddressbook-git:https://github.com/chaotic-aur/pkgbuild-kaddressbook-git
 akonadi-import-wizard-git
 akonadi-calendar-git
 akonadi-calendar-tools-git
@@ -237,7 +238,7 @@ non-euclidean-git
 okular-git
 oxygen-icons-git:https://github.com/chaotic-aur/pkgbuild-oxygen-icons-git.git
 partitionmanager-git:https://github.com/chaotic-aur/pkgbuild-partitionmanager-git.git
-phonon-git:https://github.com/chaotic-aur/pkgbuild-phonon-git.git
+phonon-qt5-git:https://github.com/chaotic-aur/pkgbuild-phonon-git.git
 plasma5-applets-latte-separator
 plasma5-applets-latte-sidebar-button
 plasma5-applets-latte-spacer

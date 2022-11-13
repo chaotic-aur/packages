@@ -5,9 +5,17 @@ media-downloader-git:https://github.com/chaotic-aur/pkgbuild-media-downloader-gi
 media-downloader:https://github.com/chaotic-aur/pkgbuild-media-downloader # Stable version of Issue Request #1592
 kwin-bismuth-git
 
+# Issue 1536
+thunderbird-beta
+
+# Issue 1758
+enve-git
 
 # Issue 1816
 qwertone-git
+
+# Issue 2076
+openssl-git
 
 # Issue 1308
 console-bridge # (dep gazebo)
