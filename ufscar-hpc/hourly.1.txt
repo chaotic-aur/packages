@@ -248,6 +248,7 @@ gamerworld-bin
 googerteller-git
 grype-bin
 jmencode
+kubetail
 mawk # (dep cpu-x-git cpu-x)
 metadata-cleaner
 mrtg
