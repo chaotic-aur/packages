@@ -51,7 +51,6 @@ lightdm-settings
 skippy-xd-git
 
 # LXQT-Kwin
-lxqt-kcm-integration-extra-git
 lxqt-kwin-desktop-git
 nm-tray
 
