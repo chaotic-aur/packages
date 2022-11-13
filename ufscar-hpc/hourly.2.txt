@@ -2033,3 +2033,10 @@ arkenfox-user.js-git
 
 # Issue 2077
 cura-bin
+
+# Issue 2106
+clash-geoip # (dep clash-verge clash-meta)
+quickjs # (dep clash-verge clash-meta)
+clash-meta # (dep clash-verge)
+clash-premium-bin # (dep clash-verge)
+clash-verge
