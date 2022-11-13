@@ -31,6 +31,7 @@ kmbox-git
 kpeoplevcard-git:https://github.com/chaotic-aur/pkgbuild-kpeoplevcard-git.git
 kpimtextedit-git
 ktnef-git
+kaddressbook-git:https://github.com/chaotic-aur/pkgbuild-kaddressbook-git
 akonadi-import-wizard-git
 akonadi-calendar-git
 akonadi-calendar-tools-git
