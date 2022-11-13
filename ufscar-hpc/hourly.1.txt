@@ -1568,6 +1568,9 @@ notesnook-bin
 # Issue 2102
 xkcdpass
 
+# Issue 2105
+nekoray
+
 
 ## Lost & found
 anaconda
