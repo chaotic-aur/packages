@@ -817,3 +817,6 @@ libseexpr2 # (dep openfx-io-git)
 
 # Issue 2107
 icon-library
+
+# Issue 2113
+dendrite
