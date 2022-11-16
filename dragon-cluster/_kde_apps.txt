@@ -106,7 +106,6 @@ libktorrent-git
 libqaccessibilityclient-git
 libqalculate-git
 marble-git
-non-euclidean-git
 okular-git
 oxygen-icons-git:https://github.com/chaotic-aur/pkgbuild-oxygen-icons-git.git
 partitionmanager-git:https://github.com/chaotic-aur/pkgbuild-partitionmanager-git.git
@@ -128,5 +127,5 @@ sddm-git
 sddm-theme-astronaut  # Issue 1168
 spectacle-git
 wrapland-git
-## Non git packages
-kdeplasma-applets-fokus
+kwin-bismuth-git
+kwin-decoration-sierra-breeze-enhanced-git

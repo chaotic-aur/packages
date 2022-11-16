@@ -234,7 +234,6 @@ libktorrent-git
 libqaccessibilityclient-git
 libqalculate-git
 marble-git
-non-euclidean-git
 okular-git
 oxygen-icons-git:https://github.com/chaotic-aur/pkgbuild-oxygen-icons-git.git
 partitionmanager-git:https://github.com/chaotic-aur/pkgbuild-partitionmanager-git.git
@@ -256,16 +255,17 @@ sddm-git
 sddm-theme-astronaut  # Issue 1168
 spectacle-git
 wrapland-git
-## Non git packages
-kdeplasma-applets-fokus
+kwin-bismuth-git
+kwin-decoration-sierra-breeze-enhanced-git
 ## OTHERS
 goneovim-bin # neovim gui editor in go using go qt bindings
 bcg729-git # (dep mediastreamer-git)
 bcmatroska2-git # (dep mediastreamer-git)
 media-downloader-git:https://github.com/chaotic-aur/pkgbuild-media-downloader-git # Issue Request #1592
 media-downloader:https://github.com/chaotic-aur/pkgbuild-media-downloader # Stable version of Issue Request #1592
-kwin-bismuth-git
-kwin-decoration-sierra-breeze-enhanced-git
+non-euclidean-git
+
+kdeplasma-applets-fokus # moved here because its not git version
 
 # Issue 1536
 thunderbird-beta
