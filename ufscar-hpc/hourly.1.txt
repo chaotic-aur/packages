@@ -1572,6 +1572,9 @@ xkcdpass
 # Issue 2105
 nekoray
 
+# Issue 2115
+xsudo-git
+
 
 ## Lost & found
 anaconda
