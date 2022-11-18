@@ -240,6 +240,8 @@ cpupower-gui
 dangerzone
 discord-chat-exporter-cli
 extundelete
+f3
+f3-qt-git
 fast
 fiddler
 gtkglarea # (dep fsv2)
