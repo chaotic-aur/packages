@@ -553,26 +553,14 @@ freerdp-git
 remmina-git
 
 # Issue 581
-libcint # (dep python-qiskit)
-libxc # (dep python-qiskit)
-muparserx # (dep python-qiskit)
-pyhon-quandl # (dep python-qiskit)
-python-constraint # (dep python-qiskit)
-python-dlx # (dep python-qiskit)
-python-docplex # (dep python-qiskit)
-python-fastdtw # (dep python-qiskit)
-python-multitasking  # (dep python-qiskit)
-python-pyscf # (dep python-qiskit-aqua)
+python-retworkx # (python-qiskit)
+python-tweedledum # (python-qiskit)
+python-qiskit-terra # (python-qiskit)
+muparserx # (python-qiskit)
+openblas-lapack # (python-qiskit)
+python-qiskit-ibmq-provider # (python-qiskit)
+python-qiskit-aer # (python-qiskit)
 python-qiskit
-python-qiskit-aer # (dep python-qiskit)
-python-qiskit-aqua # (dep python-qiskit)
-python-qiskit-ibmq-provider # (dep python-qiskit)
-python-qiskit-ignis # (dep python-qiskit)
-python-qiskit-terra # (dep python-qiskit)
-python-retworkx # (dep python-qiskit)
-python-tweedledum # (dep python-qiskit-terra)
-python-yfinance # (dep python-qiskit)
-xcfun-git # (dep python-qiskit)
 
 # Issue 584
 geekbench
