@@ -69,6 +69,9 @@ linux-drm-next-git
 gcc9
 gcc10
 
+# Issue 2119
+trayscale
+
 
 ## Garuda
 # Setup-assistant
