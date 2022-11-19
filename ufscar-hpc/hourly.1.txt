@@ -503,7 +503,7 @@ python-mpv # (dep youplay)
 ckb-next
 osu-lazer
 tuxedo-control-center
-tuxedo-keyboard
+tuxedo-keyboard-dkms
 
 # Issue 380
 acestream-launcher
