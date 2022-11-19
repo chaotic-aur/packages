@@ -4,6 +4,7 @@ alhp-keyring
 alhp-mirrorlist
 alpm_octopi_utils-git
 ananicy-cpp-git
+ananicy-rules # (dep ananicy-cpp-git)
 anbox-image-houdini-rooted
 arch-deployer-git
 babl-git # (dep gimp-git)
