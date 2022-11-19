@@ -802,6 +802,10 @@ mesen-x-git
 # Issue 2064
 qbittorrent-git
 
+# Issue 2079
+zfs-utils-git
+zfs-dkms-git
+
 # Issue 2088
 qt4
 
