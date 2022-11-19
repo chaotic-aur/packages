@@ -2028,3 +2028,6 @@ clash-verge
 gnome-shell-extension-arch-update
 gnome-shell-extension-tiling-assistant-git
 extension-manager
+
+# Issue 2124
+swayfx
