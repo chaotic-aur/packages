@@ -23,6 +23,7 @@ electronmail-bin
 epiphany-git
 esbuild # (dep kwin-bismuth)
 fastfetch-git
+fastgame-git
 ffmpeg-compat-57
 ffmpeg-compat-58
 firejail-git
