@@ -893,6 +893,7 @@ fvs # (dep bottles)
 icoextract # (dep bottles & wine-meta)
 patool # (dep bottles)
 python-steamgriddb # (dep bottles)
+vkbasalt-cli # (dep bottles)
 bottles
 
 # Issue 621
