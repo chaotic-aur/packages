@@ -657,6 +657,7 @@ gnome-shell-extension-material-shell-git
 
 # Issue 464
 ttf-google-fonts-git
+ttf-merriweather # (dep ttf-google-fonts-git)
 ttf-merriweather-sans # (dep ttf-google-fonts-git)
 ttf-oswald # (dep ttf-google-fonts-git)
 ttf-quintessential # (dep ttf-google-fonts-git)
