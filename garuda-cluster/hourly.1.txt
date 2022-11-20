@@ -185,6 +185,7 @@ yaru:https://aur.archlinux.org/yaru.git # (creates other yaru-* packages as well
 
 ## Misc
 btrfs-assistant-git
+btrfsmaintenance # (dep btrfs-assistant-git btrfs-assistant)
 snapper-tools-git
 otter-browser-git
 
