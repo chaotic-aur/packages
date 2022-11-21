@@ -90,9 +90,6 @@ telegram-tdlib-git
 clasp-cl-git
 seqan # (dep clasp-cl-git)
 
-# Issue 1347
-texlive-full
-
 # Issue 1398
 lyx
 
