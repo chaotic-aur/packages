@@ -746,9 +746,11 @@ popcorntime
 solanum
 
 # Issue 735
-gtg
+python-x-wr-timezone # (dep python-caldav)
+python-recurring-ical-events # (dep python-caldav)
 python-caldav # (dep gtg)
 python-liblarch # (dep gtg)
+gtg
 
 # Issue 736
 basilisk-bin
