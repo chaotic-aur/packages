@@ -10,6 +10,7 @@ arch-deployer-git
 babl-git # (dep gimp-git)
 binfmt-qemu-static
 brave-nightly-bin
+btop-git
 cachyos-ananicy-rules
 cargo-make
 cfs-zen-tweaks
