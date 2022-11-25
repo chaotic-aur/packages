@@ -830,3 +830,6 @@ dendrite
 
 # Issue 2118
 rsync-reflink
+
+# Issue 2129
+edopro-bin
