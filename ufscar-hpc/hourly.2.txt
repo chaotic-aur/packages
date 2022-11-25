@@ -1276,6 +1276,7 @@ flacon
 
 # Issue 1020
 protonup-qt
+python-vdf # (dep protonup-qt)
 python-gevent-eventemitter # (dep python-steam)
 python-inputs # (dep protonup-qt)
 python-steam # (dep protonup-qt)
