@@ -2032,3 +2032,6 @@ extension-manager
 
 # Issue 2124
 swayfx
+
+# Issue 2128
+cassowary
