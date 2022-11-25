@@ -52,7 +52,6 @@ lib32-imath
 lib32-primus-vk-git
 lib32-sdl2_compat12-git
 logstalgia
-msitools
 neovim-drop-in
 neovim-plug
 nm-eduroam-ufscar
@@ -1823,9 +1822,6 @@ python-m2r # (dep python-dephell curlew)
 python-dephell # (dep python-xdg curlew)
 python-xdg # (dep curlew)
 curlew
-
-# Issue 1750
-wireproxy
 
 # Issue 1753
 detwinner
