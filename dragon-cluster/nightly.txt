@@ -279,6 +279,9 @@ qwertone-git
 # Issue 2076
 openssl-git
 
+# Issue 2132
+tahoma2d
+
 # Issue 1308
 console-bridge # (dep gazebo)
 urdfdom-headers # (dep gazebo)
