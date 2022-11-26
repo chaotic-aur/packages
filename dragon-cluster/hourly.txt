@@ -13,6 +13,7 @@ brave-nightly-bin
 btop-git
 cachyos-ananicy-rules
 cargo-make
+catch2-git # (dep waybar-hyprland-git)
 cfs-zen-tweaks
 chkrootkit
 clamav-unofficial-sigs
