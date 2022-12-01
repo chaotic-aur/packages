@@ -2031,3 +2031,6 @@ swayfx
 
 # Issue 2128
 cassowary
+
+# Issue 2135
+sol-client
