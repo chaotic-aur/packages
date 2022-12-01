@@ -25,6 +25,9 @@ yuzu-git:https://gitlab.com/tallero/yuzu-git-aur.git
 # Issue 816 / 1361
 firefox-appmenu
 
+# Issue 957
+mysql
+
 # Issue 1094
 webkit2gtk-unstable
 
