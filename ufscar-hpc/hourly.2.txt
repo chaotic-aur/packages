@@ -1079,7 +1079,6 @@ ferdi-git
 pnpm # (dep ferdi cider cider-git)
 
 # Issue 912
-git-bug
 git-bug-git
 
 # Issue 913
