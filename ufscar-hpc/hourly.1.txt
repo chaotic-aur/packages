@@ -1578,6 +1578,9 @@ nekoray
 # Issue 2115
 xsudo-git
 
+# Issue 2138
+profile-sync-daemon-brave
+
 
 ## Lost & found
 anaconda
