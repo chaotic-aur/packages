@@ -292,6 +292,7 @@ xpra-html5-git
 
 ## Users requests
 # Austin on forum
+autojump
 binder_linux-dkms
 
 # Dustin on forum
