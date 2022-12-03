@@ -282,6 +282,9 @@ openssl-git
 # Issue 2132
 tahoma2d
 
+# Issue 2140
+myman
+
 # Issue 1308
 console-bridge # (dep gazebo)
 urdfdom-headers # (dep gazebo)
