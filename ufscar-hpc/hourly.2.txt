@@ -2034,3 +2034,6 @@ cassowary
 
 # Issue 2135
 sol-client
+
+# Issue 2142
+superbfetch-git
