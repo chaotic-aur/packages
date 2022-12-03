@@ -844,3 +844,12 @@ xcp
 # Issue 2141
 toilet # (dep toilet-fonts)
 toilet-fonts
+
+# Issue 2143
+gnome-shell-extension-appindicator-git
+
+# Issue 2144
+gnome-shell-extension-desktop-icons-ng
+
+# Issue 2145
+gnome-shell-extension-fly-pie-git
