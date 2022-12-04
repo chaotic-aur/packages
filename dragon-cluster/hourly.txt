@@ -856,3 +856,6 @@ gnome-shell-extension-fly-pie-git
 
 # Issue 2147
 gnome-shell-extension-ubuntu-dock-git
+
+# Issue 2148
+supergfxctl
