@@ -40,6 +40,7 @@ guayadeque-git
 harmonoid-bin
 huniq-git
 hyprland-git
+input-leap-git
 ipman
 jamesdsp-git
 kotatogram-dev-git
