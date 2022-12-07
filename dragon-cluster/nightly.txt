@@ -264,6 +264,8 @@ bcmatroska2-git # (dep mediastreamer-git)
 media-downloader-git:https://github.com/chaotic-aur/pkgbuild-media-downloader-git # Issue Request #1592
 media-downloader:https://github.com/chaotic-aur/pkgbuild-media-downloader # Stable version of Issue Request #1592
 non-euclidean-git
+kopia-bin
+kopia-ui-bin
 
 kdeplasma-applets-fokus # moved here because its not git version
 
