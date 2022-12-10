@@ -157,7 +157,6 @@ youtube-music-git
 tabby
 
 # gaelic on forum
-python-attrdict # (dep python-wxpython-dev)
 python-wxpython-dev # (dep grass)
 grass
 
