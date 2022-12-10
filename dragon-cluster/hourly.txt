@@ -465,6 +465,7 @@ fancontrol-kcm
 fancontrol-gui-git # (dep fancontrol-kcm-git)
 fancontrol-kcm-git
 kcm-colorful-git
+kcm-grub2-git
 kcm-polkit-kde-git
 kcm-uefi
 nx-firewall-git
