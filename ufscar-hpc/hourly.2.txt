@@ -829,7 +829,7 @@ java-qdox # (dep scilab)
 java-resolver # (dep scilab)
 java-skinlf # (dep scilab)
 java-testng # (dep scilab) test failing
-javahelp2 # (dep scilab)
+javahelp2 # (dep scilab lightzone)
 jeuclid-core # (dep scilab)
 jgoodies-looks # (dep scilab)
 jgraphx-jre8 # (dep scilab)
@@ -2037,3 +2037,6 @@ sol-client
 
 # Issue 2142
 superbfetch-git
+
+# Issue 2157
+lightzone
