@@ -1301,9 +1301,7 @@ blockout2
 csound-blue
 
 # Issue 1743
-chromeos-kde-git
 chromeos-kde-theme-git
-chromeos-gtk-theme-git
 
 # Issue 1745
 copypastegrab-git
