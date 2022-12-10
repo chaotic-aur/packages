@@ -1,4 +1,5 @@
-kdepim-addons-git
-kmail-git
-knotes-git
-korganizer-git
+kidletime-git
+libkscreen-git
+kscreen-git
+kscreenlocker-git
+powerdevil-git
