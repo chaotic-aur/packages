@@ -388,6 +388,18 @@ blackbox-terminal-git
 # Issue 1606
 whatsie-git
 
+# Issue 1615
+deutex # (dep freedoom odamex-git)
+freedoom # (dep zandronum q-zandronum chocolate-doom)
+chocolate-doom # (dep doomseeker)
+wxgtk-dev:https://aur.archlinux.org/wxgtk-dev.git # (dep doomseeker)
+odamex-git # (dep doomseeker)
+srb2-data # (dep srb2 doomseeker)
+srb2 # (dep doomseeker)
+doomseeker # (dep zandronum q-zandronum)
+q-zandronum
+zandronum
+
 # Issue 1621
 tela-circle-icon-theme-git # (dep orchis-theme-git)
 kvantum-theme-orchis-git # (dep orchis-theme-git)
@@ -812,7 +824,7 @@ zfs-utils-git
 zfs-dkms-git
 
 # Issue 2088
-qt4
+qt4 # (dep doomseeker)
 
 # Issue 2090
 discord-screenaudio
