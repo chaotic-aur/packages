@@ -665,7 +665,6 @@ linuxtv-dvb-apps
 
 # Issue 691
 discover-overlay
-python-pidfile # (dep discover-overlay) (also adds python2-pidfile)
 
 # Issue 692
 htop-git
@@ -1545,12 +1544,6 @@ python-poetry-git
 
 # Issue 1244
 video-trimmer
-
-# Issue 1247
-python-sip-pyqt4 # (dep pyqt4 pybitmessage pybitmessage-git)
-python2-dbus # (dep pyqt4 pybitmessage pybitmessage-git)
-python2-opengl # (dep pyqt4 pybitmessage pybitmessage-git)
-python2-sip-pyqt4 # (dep pyqt4)
 
 # Issue 1249
 xmrig-donateless
