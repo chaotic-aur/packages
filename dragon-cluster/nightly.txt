@@ -287,6 +287,9 @@ tahoma2d
 # Issue 2140
 myman
 
+# Issue 2156
+cinelerra-gg-git
+
 # Issue 1308
 console-bridge # (dep gazebo)
 urdfdom-headers # (dep gazebo)
