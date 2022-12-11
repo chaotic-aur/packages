@@ -873,5 +873,9 @@ gnome-shell-extension-ubuntu-dock-git
 # Issue 2148
 supergfxctl
 
+# Issue 2158
+libelectron # (dep disneyplus)
+disneyplus
+
 # Issue 2159
 nvim-nightly
