@@ -824,7 +824,7 @@ zfs-utils-git
 zfs-dkms-git
 
 # Issue 2088
-qt4 # (dep doomseeker)
+qt4 # (dep doomseeker natron-compositor)
 
 # Issue 2090
 discord-screenaudio
@@ -834,7 +834,7 @@ miktex
 
 # Issue 2103
 opencolorio1 # (dep openfx-arena-git)
-libseexpr2 # (dep openfx-io-git)
+libseexpr2 # (dep openfx-io-git openfx-io)
 
 # Issue 2107
 icon-library
@@ -872,6 +872,12 @@ gnome-shell-extension-ubuntu-dock-git
 
 # Issue 2148
 supergfxctl
+
+# Issue 2153
+openfx-arena # (dep natron-compositor)
+openfx-gmic # (dep natron-compositor)
+openfx-io # (dep natron-compositor)
+openfx-misc # (dep natron-compositor)
 
 # Issue 2158
 libelectron # (dep disneyplus)
