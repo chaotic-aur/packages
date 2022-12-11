@@ -1579,6 +1579,9 @@ xsudo-git
 # Issue 2138
 profile-sync-daemon-brave
 
+# Issue 2160
+joplin-beta-appimage
+
 
 ## Lost & found
 anaconda
