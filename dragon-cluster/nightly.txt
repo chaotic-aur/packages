@@ -272,6 +272,9 @@ kdeplasma-applets-fokus # moved here because its not git version
 # Issue 1536
 thunderbird-beta
 
+# Issue 1722
+amule-git
+
 # Issue 1758
 enve-git
 
