@@ -566,7 +566,7 @@ briar-desktop
 bookworm-git
 
 # Issue 1742
-carla-git
+carla-git # (dep zrythm-git)
 
 # Issue 1746
 coreimage
@@ -658,6 +658,16 @@ vnote
 
 # Issue 1844
 vpaint-git
+
+# Issue 1854
+libaudec # (dep zrythm zrythm-git)
+libcyaml # (dep zrythm zrythm-git)
+reproc # (dep zrythm zrythm-git)
+lsp-dsp-lib # (dep zrythm zrythm-git)
+zrythm
+python-sphinxcontrib-svg2pdfconverter # (dep zrythm-git)
+python-sphinx-intl # (dep zrythm-git)
+zrythm-git
 
 # Issue 1859
 share-preview
