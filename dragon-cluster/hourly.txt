@@ -891,3 +891,8 @@ disneyplus
 
 # Issue 2159
 nvim-nightly
+
+# Issue 2161
+etl-dev # (dep synfig-dev synfigstudio-dev)
+synfig-dev # (dep synfigstudio-dev)
+synfigstudio-dev
