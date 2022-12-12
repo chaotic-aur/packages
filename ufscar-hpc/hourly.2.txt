@@ -2007,6 +2007,9 @@ arkenfox-user.js-git
 # Issue 2077
 cura-bin
 
+# Issue 2083
+asus-fan-dkms-git
+
 # Issue 2106
 clash-geoip # (dep clash-verge clash-meta)
 quickjs # (dep clash-verge clash-meta)
