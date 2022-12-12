@@ -2004,6 +2004,10 @@ opencl-amd
 # Issue 2068
 arkenfox-user.js-git
 
+# Issue 2072
+xstow++
+rustow-git
+
 # Issue 2077
 cura-bin
 
