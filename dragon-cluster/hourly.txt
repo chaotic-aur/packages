@@ -839,6 +839,10 @@ qbittorrent-git
 zfs-utils-git
 zfs-dkms-git
 
+# Issue 2085
+prboom-plus
+prboom-plus-um-git
+
 # Issue 2088
 qt4 # (dep doomseeker natron-compositor)
 
