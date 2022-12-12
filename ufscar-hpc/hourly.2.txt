@@ -2007,6 +2007,9 @@ arkenfox-user.js-git
 # Issue 2077
 cura-bin
 
+# Issue 2078
+thunderbird-beta-i18n:https://aur.archlinux.org/thunderbird-beta-i18n.git
+
 # Issue 2083
 asus-fan-dkms-git
 
