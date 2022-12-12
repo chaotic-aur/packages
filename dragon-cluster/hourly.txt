@@ -580,6 +580,9 @@ corepaint
 # Issue 1752
 deskreen
 
+# Issue 1760
+f3d
+
 # Issue 1763
 python-multipledispatch # (dep friture{-git})
 python-pa-ringbuffer # (dep friture{-git})
