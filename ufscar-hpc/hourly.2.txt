@@ -1222,7 +1222,7 @@ libdispatch
 
 # Issue 992
 gzdoom
-zmusic # (dep gzdoom)
+zmusic # (dep gzdoom raze)
 
 # Issue 994
 protonup-git
