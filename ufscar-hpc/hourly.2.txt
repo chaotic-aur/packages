@@ -382,6 +382,9 @@ libavresample
 # FGD on forum
 plasma5-applets-weather-widget-2
 
+# SGS on forum
+breitbandmessung
+
 # puspamadak
 foobillard++
 
