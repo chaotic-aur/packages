@@ -2008,7 +2008,6 @@ opencl-amd
 arkenfox-user.js-git
 
 # Issue 2072
-xstow++
 rustow-git
 
 # Issue 2077
