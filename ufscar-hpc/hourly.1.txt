@@ -251,6 +251,7 @@ gamerworld-bin
 googerteller-git
 grype-bin
 jmencode
+ksuperkey
 kubetail
 mawk # (dep cpu-x-git cpu-x)
 metadata-cleaner
