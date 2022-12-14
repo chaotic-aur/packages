@@ -913,3 +913,6 @@ nvim-nightly
 etl-dev # (dep synfig-dev synfigstudio-dev)
 synfig-dev # (dep synfigstudio-dev)
 synfigstudio-dev
+
+# Issue 2166
+raze
