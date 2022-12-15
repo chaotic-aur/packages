@@ -916,3 +916,9 @@ synfigstudio-dev
 
 # Issue 2166
 raze
+
+# Issue 2169
+tcllib # (dep tkimg)
+snack # (dep scid)
+tkimg # (dep scid)
+scid
