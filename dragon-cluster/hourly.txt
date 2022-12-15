@@ -930,3 +930,6 @@ dragon-drop-git
 woof-doom
 dsda-doom
 woof-git
+
+# Issue 2174
+shattered-pixel-dungeon-git
