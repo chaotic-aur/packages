@@ -1583,6 +1583,9 @@ profile-sync-daemon-brave
 # Issue 2160
 joplin-beta-appimage
 
+# Issue 2173
+quarto-cli-bin
+
 
 ## Lost & found
 anaconda
