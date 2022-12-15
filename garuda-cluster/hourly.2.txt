@@ -128,7 +128,6 @@ garuda-downloader-git
 hblock
 hw-probe
 imagewriter
-inxi
 lib32-nvidia-390xx-utils
 lib32-nvidia-470xx-utils
 lib32-opencl-nvidia-390xx
