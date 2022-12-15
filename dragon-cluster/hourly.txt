@@ -922,3 +922,6 @@ tcllib # (dep tkimg)
 snack # (dep scid)
 tkimg # (dep scid)
 scid
+
+# Issue 2170
+dragon-drop-git
