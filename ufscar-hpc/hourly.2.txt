@@ -1595,9 +1595,6 @@ ausweisapp2
 # Issue 1321
 smartgit
 
-# Issue 1322
-atom-editor-beta-bin
-
 # Issue 1327
 vcpkg
 
