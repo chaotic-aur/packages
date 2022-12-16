@@ -933,3 +933,6 @@ woof-git
 
 # Issue 2174
 shattered-pixel-dungeon-git
+
+# Issue 2176
+fancytasks
