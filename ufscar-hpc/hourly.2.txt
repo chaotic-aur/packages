@@ -1640,7 +1640,7 @@ pika-backup
 lightlyshaders-git
 
 # Issue 1528
-java-service-wrapper # (dep freenet)
+java-service-wrapper # (dep freenet i2p)
 freenet
 
 # Issue 1533
@@ -2042,3 +2042,6 @@ superbfetch-git
 
 # Issue 2157
 lightzone
+
+# Issue 2177
+i2p
