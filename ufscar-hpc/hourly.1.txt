@@ -3,6 +3,11 @@ veloren-git  # really slow to build, not parallelizable
 
 ## Maintainers
 ## Paulo
+bluespec-git
+itcl3:https://github.com/chaotic-aur/pkgbuild-itcl3.git  # for bluespec-bdw-git
+tk-itk3  # for bluespec-bdw-git
+gtkwave-tcl  # optdepends for bluespec-bdw-git
+tk-itk   # I don't have any use for this, but since we have its old version...
 airspy-git
 airspyhf-git
 soapysdr-git
@@ -11,11 +16,6 @@ android-emulator
 android-sdk
 android-studio
 bear
-bluespec-git
-itcl3:https://github.com/chaotic-aur/pkgbuild-itcl3.git  # for bluespec-bdw-git
-tk-itk3  # for bluespec-bdw-git
-gtkwave-tcl  # optdepends for bluespec-bdw-git
-tk-itk   # I don't have any use for this, but since we have its old version...
 chromium-widevine
 digilent.adept.runtime
 digilent.adept.utilities
@@ -73,6 +73,7 @@ python3-xcgf
 python3-xcpf
 guestfs-tools
 dumpasn1
+bluespec-contrib-git
 bluespec-bdw-git
 
 
