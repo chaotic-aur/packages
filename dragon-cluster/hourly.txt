@@ -944,3 +944,6 @@ fancytasks
 
 # Issue 2181
 wings3d
+
+# Issue 2188
+meowsql
