@@ -75,6 +75,9 @@ gcc10
 # Issue 2119
 trayscale
 
+# Issue 2189
+linux-nitrous-fire
+
 
 ## Garuda
 # Setup-assistant
