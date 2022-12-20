@@ -48,6 +48,7 @@ sway-launcher-desktop
 systemd-boot-pacman-hook
 vkcube-git
 voacapl
+eureqa-bin
 wdisplays-git
 wl-clipboard-x11
 xdg-desktop-portal-wlr-git
