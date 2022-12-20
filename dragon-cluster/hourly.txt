@@ -940,3 +940,6 @@ shattered-pixel-dungeon-git
 
 # Issue 2176
 fancytasks
+
+# Issue 2181
+wings3d
