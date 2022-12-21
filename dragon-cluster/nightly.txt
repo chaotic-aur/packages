@@ -266,7 +266,7 @@ media-downloader:https://github.com/chaotic-aur/pkgbuild-media-downloader # Stab
 non-euclidean-git
 kopia-bin
 kopia-ui-bin
-
+pyinfra:https://github.com/chaotic-aur/pkgbuild-pyinfra
 kdeplasma-applets-fokus # moved here because its not git version
 
 # Issue 1536
