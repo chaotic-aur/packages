@@ -74,6 +74,7 @@ python3-xcgf
 python3-xcpf
 guestfs-tools
 dumpasn1
+dieharder
 bluespec-contrib-git
 bluespec-bdw-git
 
