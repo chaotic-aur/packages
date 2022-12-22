@@ -2045,3 +2045,7 @@ lightzone
 
 # Issue 2177
 i2p
+
+# Issue 2193
+python-humblewx # (dep timelineproject-hg)
+timelineproject-hg
