@@ -284,6 +284,7 @@ athenaeum-git
 boxtron
 fancontrol-gui
 fancontrol-gui-git
+flycast
 flycast-git
 game-devices-udev
 gamehub
