@@ -44,7 +44,7 @@ linux-xanmod-rt
 stylepak-git
 
 # Issue 1307
-linux-bore
+linux-cachyos-bore # (pkgname is set to linux-bore via interfere, got dropped from AUR due to same PKGBUILD)
 
 # Issue 1325
 linux-clear
