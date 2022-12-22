@@ -284,6 +284,7 @@ athenaeum-git
 boxtron
 fancontrol-gui
 fancontrol-gui-git
+flycast-git
 game-devices-udev
 gamehub
 gamerworld
@@ -312,7 +313,6 @@ protontricks-git
 python-injector # (dep gwe)
 q4wine-git
 rare-git
-reicast
 replay-sorcery
 reshade-shaders-git
 retroarch-autoconfig-udev-git
