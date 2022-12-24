@@ -260,7 +260,6 @@ decaf-emu-git
 duckstation-git
 eka2l1-git
 emulationstation
-epsxe
 genymotion
 kega-fusion
 lib32-nss-mdns # (dep crossover)
@@ -282,6 +281,7 @@ yuzu-mainline-git
 # Gaming
 athenaeum-git
 boxtron
+epsxe
 fancontrol-gui
 fancontrol-gui-git
 flycast
@@ -307,6 +307,7 @@ nestopia
 nyrna
 openrgb
 openrgb-git
+openssl-1.0 # (dep epsxe)
 oversteer
 play.it
 proton-caller
