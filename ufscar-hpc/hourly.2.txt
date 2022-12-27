@@ -1253,9 +1253,6 @@ realmd
 # Issue 1002
 gnome-shell-extension-dash-to-dock
 
-# Issue 1003
-kid3-cli
-
 # Issue 1005
 libffi7
 
