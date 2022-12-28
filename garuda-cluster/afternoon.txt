@@ -23,6 +23,3 @@ pcsx2-git
 
 # Issue 1110
 dosbox-x-git
-
-# FroggingFamily
-mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
