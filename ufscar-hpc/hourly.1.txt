@@ -1589,6 +1589,12 @@ joplin-beta-appimage
 # Issue 2173
 quarto-cli-bin
 
+# Issue 2195
+looking-glass-git # (also creates looking-glass-{host,module-dkms}-git, obs-plugin-looking-glass-git)
+
+# Issue 2199
+jpeg2png-ipep-git
+
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
 
