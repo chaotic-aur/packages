@@ -1598,8 +1598,14 @@ jpeg2png-ipep-git
 # Issue 2200
 nvidia-exec
 
+# Issue 2202
+godot-export-templates-git
+
 # Issue 2207
 pacman-static
+
+# Issue 2209
+libreoffice-dev-bin
 
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
