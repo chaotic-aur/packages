@@ -199,6 +199,9 @@ ufetch-git
 # Issue 1108
 kdenlive-stabledeps-git:https://github.com/chaotic-aur/pkgbuild-kdenlive-stabledeps-git.git
 
+# Issue 1304
+aqemu
+
 # Issue 1320
 86box
 
