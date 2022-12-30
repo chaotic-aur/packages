@@ -191,7 +191,7 @@ snapper-tools-git
 otter-browser-git
 
 ## Garuda Gamer
-itch-bin
+itch-setup-bin
 
 
 ## User requests
