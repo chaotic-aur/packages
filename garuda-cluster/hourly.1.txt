@@ -190,6 +190,9 @@ btrfsmaintenance # (dep btrfs-assistant-git btrfs-assistant)
 snapper-tools-git
 otter-browser-git
 
+## Garuda Gamer
+itch-bin
+
 
 ## User requests
 # Zoeruda
