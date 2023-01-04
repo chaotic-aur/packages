@@ -1610,6 +1610,9 @@ libreoffice-dev-bin
 # Issue 2214
 lantern-bin
 
+# Issue 2217
+wavesurfer
+
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
 
