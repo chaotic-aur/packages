@@ -90,7 +90,7 @@ olivia
 plex-media-player
 popsicle
 pulseeffects-legacy
-qt5-webkit # (dep olivia)
+qt5-webkit # (dep olivia remarkable)
 qtscrcpy
 shortwave
 skypeforlinux-stable-bin
