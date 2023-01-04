@@ -1607,6 +1607,9 @@ pacman-static
 # Issue 2209
 libreoffice-dev-bin
 
+# Issue 2214
+lantern-bin
+
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
 
