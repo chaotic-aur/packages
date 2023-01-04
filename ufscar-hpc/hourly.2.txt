@@ -2054,3 +2054,6 @@ aconfmgr-git
 
 # Issue 2208
 avvie
+
+# Issue 2219
+python-pywhat
