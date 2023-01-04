@@ -2048,3 +2048,6 @@ i2p
 # Issue 2193
 python-humblewx # (dep timelineproject-hg)
 timelineproject-hg
+
+# Issue 2204
+aconfmgr-git
