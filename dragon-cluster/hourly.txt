@@ -470,14 +470,20 @@ art-rawconverter
 
 # Issue 1682
 fancontrol-gui # (dep fancontrol-kcm)
-fancontrol-kcm
 fancontrol-gui-git # (dep fancontrol-kcm-git)
+fancontrol-kcm
 fancontrol-kcm-git
 kcm-colorful-git
 kcm-grub2-git
+kcm-grub2-git
+kcm-imchooser-frameworks
+kcm-lookandfeel-standalone-git
 kcm-polkit-kde-git
+kcm-tablet-git
 kcm-uefi
+kcmutils-git
 nx-firewall-git
+plymouth-kcm
 systemd-kcm
 telepathy-kde-accounts-kcm-git
 
