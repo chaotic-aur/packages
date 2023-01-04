@@ -950,3 +950,6 @@ wings3d
 
 # Issue 2188
 meowsql
+
+# Issue 2212
+vopono
