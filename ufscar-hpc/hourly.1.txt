@@ -1598,6 +1598,9 @@ nvidia-exec
 # Issue 2202
 godot-export-templates-git
 
+# Issue 2206
+neovim-symlinks
+
 # Issue 2207
 pacman-static
 
