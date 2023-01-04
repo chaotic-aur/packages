@@ -557,6 +557,7 @@ astrofox
 authenticator
 
 # Issue 1733
+backintime
 backintime-git
 
 # Issue 1734
