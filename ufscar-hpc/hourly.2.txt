@@ -2057,3 +2057,6 @@ avvie
 
 # Issue 2219
 python-pywhat
+
+# Issue 2220
+orbada
