@@ -721,6 +721,30 @@ giada
 icu60 # (dep cloaker-bin)
 cloaker-bin
 
+# Issue 1913
+celestia-addon-2009_exoplanets
+celestia-addon-2010_exoplanets
+celestia-addon-2010_exoplanets_ii
+celestia-addon-apollo_soyuz
+celestia-addon-atlantis_2
+celestia-addon-deep_impact
+celestia-addon-deep_impact_spacecraft
+celestia-addon-earth_without_water_2
+celestia-addon-global_water_volume
+celestia-addon-hubble_space_telescope
+celestia-addon-international_space_station
+celestia-addon-millenium_falcon
+celestia-addon-spaceman_spiff
+celestia-addon-spitzer_space_telescope
+celestia-addon-star_destroyer
+celestia-addon-sun
+celestia-addon-tatooine_endor_deathstar
+celestia-addon-ulysses
+celestia-addon-vaders_tie_fighter
+celestia-addon-voyagers
+celestia-addon-xwing
+celestia
+
 # Issue 1922
 syncterm
 
