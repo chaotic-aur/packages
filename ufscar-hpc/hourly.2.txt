@@ -2051,3 +2051,6 @@ timelineproject-hg
 
 # Issue 2204
 aconfmgr-git
+
+# Issue 2208
+avvie
