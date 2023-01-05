@@ -483,7 +483,6 @@ kcm-tablet-git
 kcm-uefi
 kcmutils-git
 nx-firewall-git
-plymouth-kcm
 systemd-kcm
 telepathy-kde-accounts-kcm-git
 
