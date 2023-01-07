@@ -981,6 +981,11 @@ wings3d
 # Issue 2188
 meowsql
 
+# Issue 2198
+libiqa-git # (dep jpeg-recompress-git)
+libsmallfry-git # (dep jpeg-recompress-git)
+jpeg-recompress-git
+
 # Issue 2212
 vopono
 
