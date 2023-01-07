@@ -18,6 +18,7 @@ python-pypresence # (dep rare)
 rare
 spotify
 ttf-wps-fonts # (dep wps-office wps-office-cn)
+libtiff5 # (dep wps-office wps-office-cn)
 virtualbox-ext-oracle
 wine-installer
 wineasio
