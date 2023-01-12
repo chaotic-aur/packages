@@ -25,6 +25,7 @@ fxload
 xschem
 digital
 tzsp2pcap-git
+guile1.8 # (dep texmacs)
 gr-limesdr-git:https://github.com/chaotic-aur/pkgbuild-gr-limesdr-git.git
 gr-foo-git
 gr-ieee802-11-git
@@ -603,9 +604,6 @@ pop-shell-shortcuts-git # (dep gnome-shell-extension-pop-shell)
 # Issue 433
 ddcui-git
 ddcutil-git
-
-# Issue 434
-webkitgtk
 
 # Issue 436
 keymapper-git

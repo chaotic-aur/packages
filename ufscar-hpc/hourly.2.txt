@@ -390,6 +390,13 @@ breitbandmessung
 # puspamadak
 foobillard++
 
+lib32-gd # (dep wine-stable)
+lib32-libgphoto2 # (dep wine-stable)
+lib32-libheif # (dep wine-stable)
+lib32-libraqm # (dep wine-stable)
+lib32-libxpm # (dep wine-stable)
+lib32-libde265 # (dep wine-stable)
+lib32-x265 # (dep wine-stable)
 lib32-wxgtk3 # Issue 309
 python38 # Issue 320 (dep)
 python39 # Issue 320 (dep)
@@ -497,7 +504,6 @@ streamdeck-ui-git
 python-openrgb-git
 
 # Issue 519
-unity-editor-lts
 unityhub
 
 # Issue 529
@@ -850,6 +856,7 @@ dnf
 libdnf # (dep dnf)
 
 # Issue 773
+libpdfium-nojs # (dep yacreader)
 libunarr # (dep yacreader)
 yacreader
 

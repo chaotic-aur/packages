@@ -61,7 +61,6 @@ openjpeg # (dep ffmpeg-compat-57)
 pacman-git
 paru-git:https://github.com/chaotic-aur/pkgbuild-paru-git.git
 plasma5-wallpapers-wallpaper-engine
-protobuf-go # (dep sysbox-ce)
 python-codegen
 python-gbinder
 python-pyclip
@@ -77,7 +76,6 @@ rusnapshot-git
 searx
 snapper-tools-git
 sudo-git
-sysbox-ce
 telegram-desktop-userfonts-bin:https://aur.archlinux.org/telegram-desktop-userfonts-bin.git # this pkgname could for some reason not be found by repoctl
 traitor-git
 visual-studio-code-insiders-bin
