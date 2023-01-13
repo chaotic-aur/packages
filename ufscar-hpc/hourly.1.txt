@@ -778,7 +778,7 @@ lightcord-bin
 # Issue 504
 blueprint-compiler-git # (dep gfeeds-git)
 gfeeds-git
-python-symdom-git # (dep gfeeds-git)
+python-syndom-git # (dep gfeeds-git)
 
 # Issue 508
 llvm-proton-bin
