@@ -953,6 +953,7 @@ airshipper
 
 # Issue 818
 google-webdesigner
+libstdc++5 # (dep google-webdesigner)
 
 # Issue 819
 goodvibes
