@@ -358,7 +358,6 @@ esy # (dep)
 clion
 expressvpn
 glslang-git # (dep waifu2x-ncnn-vulkan-git)
-gnome-doc-utils # (dep system-config-samba)
 graphite-mozilla
 intellij-idea-ultimate-edition
 lib32-fltk # (dep)
@@ -366,12 +365,9 @@ lib32-libwmf
 lib32-numactl
 lib32-openexr
 lib32-zbar
-libuser # (dep system-config-samba)
 ncnn-git # (dep waifu2x-ncnn-vulkan-git)
 nodejs-nativefier
 pycharm-professional
-rarian # (dep system-config-samba)
-system-config-samba
 trackma-git
 waifu2x-ncnn-vulkan-git
 winetricks-git
