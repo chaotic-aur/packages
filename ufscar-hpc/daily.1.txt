@@ -117,6 +117,3 @@ mesa-git:https://github.com/chaotic-aur/mesa-git.git
 lib32-mesa-git:https://github.com/chaotic-aur/lib32-mesa-git.git
 
 --
-
-# Issue 686
-electron13 # (dep ytmdesktop)
