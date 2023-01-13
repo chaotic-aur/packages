@@ -295,6 +295,7 @@ hypnotix
 ialauncher-git
 input-remapper-git
 keyboard-visualizer-git
+latencyflex # (dep lutris-wine-git)
 legendary
 lib32-vkbasalt # (dep lutris-wine-git)
 libliftoff-git # (dep gamescope-git)
