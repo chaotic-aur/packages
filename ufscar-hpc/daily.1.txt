@@ -73,9 +73,6 @@ musikcube
 # Issue 949
 kicad-git
 
-# Issue 956
-cling
-
 # Issue 985
 wine-ge-custom
 
