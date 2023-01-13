@@ -117,3 +117,7 @@ mesa-git:https://github.com/chaotic-aur/mesa-git.git
 lib32-mesa-git:https://github.com/chaotic-aur/lib32-mesa-git.git
 
 --
+
+# Issue 1672
+gcc-git
+glibc-git # (dep of gcc-git)
