@@ -45,13 +45,6 @@ mycroft-core
 mycroft-gui-git
 plasma5-applets-mycroft-git
 
-# Howdy
-howdy
-pam-python
-python-dlib
-python-face_recognition
-python-face_recognition_models
-
 # Librewolf
 librewolf-extension-bitwarden
 librewolf-extension-dark-reader
