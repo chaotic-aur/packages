@@ -4,6 +4,7 @@ epson-inkjet-printer-escpr2
 ffmpeg-vulkan
 google-chrome-beta
 hotspot
+kddockwidgets # (dep hotspot)
 logseq-desktop
 nvlax-git
 signal-desktop-beta
