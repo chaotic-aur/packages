@@ -200,6 +200,7 @@ lib32-zvbi
 ## Solomon
 # Weather (Solomon)
 meteo-qt-git
+sip4:https://aur.archlinux.org/sip4.git # (dep meteo-qt-git)
 
 # Theming (Solomon)
 delft-icon-theme-git
