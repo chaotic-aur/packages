@@ -167,6 +167,7 @@ plymouth-git
 preload
 prelockd
 python-apprise
+python-dataclasses # (dep python-apprise)
 python-py3nvml # (dep optimus-manager-git)
 rate-mirrors
 systemd-guest-user
