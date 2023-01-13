@@ -383,9 +383,6 @@ python-freetype-py # (dep plots)
 python-pyglm # (dep plots)
 plots
 
-# Issue 1598
-spidermonkey-git
-
 # Issue 1599
 libadwaita-git # (dep blackbox-terminal-git)
 vte4-copy-patch-git # (dep blackbox-terminal-git)

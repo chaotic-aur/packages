@@ -64,10 +64,6 @@ lean4-git
 aura
 aura-git
 
-# Issue 923
-amdvlk-2021q2.5
-lib32-amdvlk-2021q2.5
-
 # Issue 927
 openblas-lapack
 
