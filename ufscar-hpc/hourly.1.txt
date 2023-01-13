@@ -1609,6 +1609,9 @@ lantern-bin
 # Issue 2217
 wavesurfer
 
+# Issue 2229
+juliaup
+
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
 
