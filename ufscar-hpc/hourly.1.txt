@@ -566,7 +566,6 @@ pm-utils
 
 # Issue 408
 ardour-git
-cwiid # (dep ardour)
 
 # Issue 415
 cassandra
