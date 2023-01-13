@@ -717,6 +717,8 @@ matrix-mirage
 python-blist # (dep matrix-mirage-git)
 python-ezyme # (dep subliminal-git)
 python-html-sanitizer # (dep matrix-mirage)
+python-mistune1 # (dep matrix-mirage)
+python-plyer # (dep matrix-mirage)
 python-rarfile # (dep subliminal-git)
 python-simpleaudio # (dep matrix-mirage)
 subliminal-git
