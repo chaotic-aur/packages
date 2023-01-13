@@ -288,6 +288,7 @@ flycast-git
 game-devices-udev
 gamehub
 gamerworld
+godot-headless-bin # (dep luxtorpeda-git)
 gwe
 heroic-games-launcher-bin
 hypnotix
