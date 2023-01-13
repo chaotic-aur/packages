@@ -832,6 +832,7 @@ chrome-gnome-shell
 plex-media-server
 
 # Issue 596
+ast-firmware # (dep mkinitcpio-firmware)
 mkinitcpio-firmware
 
 # Issue 597
