@@ -1612,6 +1612,9 @@ wavesurfer
 # Issue 2229
 juliaup
 
+# Issue 2232
+gimp-extras
+
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
 
