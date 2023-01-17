@@ -994,3 +994,6 @@ remarkable
 
 # Issue 2224
 agg-2.6-git
+
+# Issue 2238
+glrnvim
