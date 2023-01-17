@@ -1618,6 +1618,9 @@ gimp-elsamuko-git
 # Issue 2232
 gimp-extras
 
+# Issue 2234
+chatgpt-desktop-bin
+
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
 
