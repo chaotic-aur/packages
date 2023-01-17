@@ -2069,3 +2069,12 @@ python-pywhat
 
 # Issue 2220
 orbada
+
+# Issue 2237
+ttf-unifont # (dep ttf-unifont-csur)
+ttf-unifont-csur
+mkbold-mkitalic # (dep bdf-unifont-extra pcf-unifont-extra)
+bdf-unifont-extra
+unifont:https://aur.archlinux.org/unifont.git
+pcf-unifont-extra
+otb-unifont
