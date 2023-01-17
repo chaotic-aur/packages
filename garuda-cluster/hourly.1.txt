@@ -202,7 +202,9 @@ roccat-tools:https://aur.archlinux.org/roccat-tools.git # (Also includes roccat-
 
 ### Chaotic-AUR
 # Issue 369
+c-client # (dep php82)
 php80
+php82
 
 # Issue 946
 graphite-gtk-theme-git
