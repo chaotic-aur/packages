@@ -998,5 +998,8 @@ agg-2.6-git
 # Issue 2238
 glrnvim
 
+# Issue 2239
+lib32-mangohud-git
+
 # Issue 2240
 snapper-support:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/snapper-support.git
