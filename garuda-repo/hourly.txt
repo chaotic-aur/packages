@@ -11,7 +11,6 @@ garuda-reduce-verbosity:https://gitlab.com/garuda-linux/packages/stable-pkgbuild
 garuda-system-maintenance:https://gitlab.com/garuda-linux/applications/garuda-system-maintenance.git
 grub-garuda:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/grub-garuda.git
 timeshift-support:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/timeshift-support.git
-snapper-support:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/snapper-support.git
 
 # Metapkg
 alsa-support:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/alsa-support.git
