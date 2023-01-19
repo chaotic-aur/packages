@@ -1621,6 +1621,9 @@ gimp-extras
 # Issue 2234
 chatgpt-desktop-bin
 
+# Issue 2236
+floorp
+
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
 
