@@ -347,10 +347,6 @@ masterpdfeditor
 # Issue 342
 renamemytvseries-bin
 
-# Issue 341
-filebot47
-java8-openjfx # (dep filebot47)
-
 # Issue 339
 esy # (dep)
 
