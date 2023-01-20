@@ -261,7 +261,13 @@ android-ndk
 cockroachdb-bin
 
 # Issue 1381
+cpp-httplib # (dep yuzu-early-access)
+cpp-jwt # (dep yuzu-early-access)
+dynarmic # (dep yuzu-early-access)
+xbyak # (dep yuzu-early-access)
 yuzu-early-access
+zycore-c # (dep zydis)
+zydis # (dep dynarmic)
 
 # Issue 1384
 heimdall-grimler-git
