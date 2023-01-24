@@ -1009,3 +1009,8 @@ lib32-mangohud-git
 
 # Issue 2240
 snapper-support:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/snapper-support.git
+
+# Issue 2243
+libgksu # (dep gksu)
+gksu # (dep zenmap-python3-git)
+zenmap-python3-git
