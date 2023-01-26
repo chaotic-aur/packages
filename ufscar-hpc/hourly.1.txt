@@ -1620,6 +1620,10 @@ chatgpt-desktop-bin
 # Issue 2236
 floorp
 
+# Issue 2251
+micromamba
+termcolor # (dep micromamba)
+
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
 
