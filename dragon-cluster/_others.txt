@@ -8,6 +8,7 @@ kopia-ui-bin
 pyinfra:https://github.com/chaotic-aur/pkgbuild-pyinfra
 gittyup
 kdeplasma-applets-fokus # moved here because its not git version
+lightlyshaders-git
 
 # Issue 1536
 thunderbird-beta

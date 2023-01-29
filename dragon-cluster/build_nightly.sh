@@ -7,12 +7,12 @@ if (test -e $FILE); then
     rm $FILE
 fi
 echo "## KF5" >> $FILE
-cat _kf5.txt >> $FILE
+sort _kf5.txt >> $FILE
 echo "--" >> $FILE
 echo "## PLASMA" >> $FILE
-cat _plasma.txt >> $FILE
+sort _plasma.txt >> $FILE
 echo "## KDE APPS" >> $FILE
-cat _kde_apps.txt >> $FILE
+sort _kde_apps.txt >> $FILE
 echo "## OTHERS" >> $FILE
 cat _others.txt >> $FILE
 

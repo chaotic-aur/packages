@@ -4,7 +4,6 @@ libkscreen-git
 kscreen-git:https://github.com/chaotic-aur/pkgbuild-kscreen-git.git
 bluedevil-git
 kross-git
-breeze-icons-git:https://github.com/chaotic-aur/pkgbuild-breeze-icons-git.git
 breeze-git:https://github.com/chaotic-aur/pkgbuild-breeze-git.git
 discover-git:https://github.com/chaotic-aur/pkgbuild-discover-git.git
 drkonqi-git:https://github.com/chaotic-aur/pkgbuild-drkonqi-git.git

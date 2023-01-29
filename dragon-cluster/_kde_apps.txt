@@ -1,3 +1,4 @@
+signon-kwallet-extension-git
 extra-cmake-modules-git:https://github.com/chaotic-aur/pkgbuild-extra-cmake-modules-git.git
 calendarsupport-git
 messagelib-git

@@ -1,4 +1,5 @@
 attica-git:https://github.com/chaotic-aur/pkgbuild-attica-git.git
+breeze-icons-git:https://github.com/chaotic-aur/pkgbuild-breeze-icons-git.git
 kfilemetadata-git
 ki18n-git
 kjobwidgets-git
@@ -62,7 +63,6 @@ kwindowsystem-git
 modemmanager-qt-git:https://github.com/chaotic-aur/pkgbuild-modemmanager-qt-git.git
 networkmanager-qt-git:https://github.com/chaotic-aur/pkgbuild-networkmanager-qt-git.git
 prison-git:https://github.com/chaotic-aur/pkgbuild-prison-git.git
-signon-kwallet-extension-git
 kaccounts-integration-git:https://github.com/chaotic-aur/pkgbuild-kaccounts-integration-git.git
 purpose-git:https://github.com/chaotic-aur/pkgbuild-purpose-git.git
 qqc2-desktop-style-git:https://github.com/chaotic-aur/pkgbuild-qqc2-desktop-style-git.git
