@@ -65,6 +65,7 @@ kwindowsystem-git
 kxmlgui-git
 modemmanager-qt-git:https://github.com/chaotic-aur/pkgbuild-modemmanager-qt-git.git
 networkmanager-qt-git:https://github.com/chaotic-aur/pkgbuild-networkmanager-qt-git.git
+oxygen-icons-git:https://github.com/chaotic-aur/pkgbuild-oxygen-icons-git.git
 plasma-framework-git:https://github.com/chaotic-aur/pkgbuild-plasma-framework-git.git
 prison-git:https://github.com/chaotic-aur/pkgbuild-prison-git.git
 purpose-git:https://github.com/chaotic-aur/pkgbuild-purpose-git.git
@@ -233,7 +234,6 @@ marble-git
 mbox-importer-git
 messagelib-git
 okular-git
-oxygen-icons-git:https://github.com/chaotic-aur/pkgbuild-oxygen-icons-git.git
 partitionmanager-git:https://github.com/chaotic-aur/pkgbuild-partitionmanager-git.git
 phonon-qt5-git:https://github.com/chaotic-aur/pkgbuild-phonon-git.git
 pimcommon-git

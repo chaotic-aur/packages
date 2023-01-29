@@ -108,7 +108,6 @@ libqaccessibilityclient-git
 libqalculate-git
 marble-git
 okular-git
-oxygen-icons-git:https://github.com/chaotic-aur/pkgbuild-oxygen-icons-git.git
 partitionmanager-git:https://github.com/chaotic-aur/pkgbuild-partitionmanager-git.git
 phonon-qt5-git:https://github.com/chaotic-aur/pkgbuild-phonon-git.git
 plasma5-applets-latte-separator

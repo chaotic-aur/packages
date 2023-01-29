@@ -1,4 +1,5 @@
 attica-git:https://github.com/chaotic-aur/pkgbuild-attica-git.git
+oxygen-icons-git:https://github.com/chaotic-aur/pkgbuild-oxygen-icons-git.git
 breeze-icons-git:https://github.com/chaotic-aur/pkgbuild-breeze-icons-git.git
 kfilemetadata-git
 ki18n-git
