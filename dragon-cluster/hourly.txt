@@ -1015,5 +1015,8 @@ libgksu # (dep gksu)
 gksu # (dep zenmap-python3-git)
 zenmap-python3-git
 
+# Issue 2259
+hyprland-nvidia
+
 # Issue 2260
 normcap
