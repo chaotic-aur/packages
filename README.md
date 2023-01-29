@@ -42,3 +42,5 @@ This is a list of packages that we will reject for good reasons:
 - **polymc-cracked-git**: Even though the apps own license is GPL, it allows playing Minecraft without license. Therefore we are not adding it.
 
 - **tlauncher**: Same as above, it allows playing Minecraft without license.
+
+- **feishu**: Unauthorized redistribution of their applications are explicitly prohibited per [ToS](https://www.feishu.cn/en/terms).
