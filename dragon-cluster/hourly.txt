@@ -1014,3 +1014,6 @@ snapper-support:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/snappe
 libgksu # (dep gksu)
 gksu # (dep zenmap-python3-git)
 zenmap-python3-git
+
+# Issue 2260
+normcap
