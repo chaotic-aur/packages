@@ -17,9 +17,9 @@ This is the right place to submit package requests, bug reports or outdated pack
 
 This is a list of packages that we will reject for good reasons:
 
-- **snapd**: I didn't know how to help my users with it since it breaks *A LOT*. I recommend using native packages or [FlatPak](https://wiki.archlinux.org/title/Flatpak) instead. Also, [there are a lot of other reasons to not use Snaps](https://old.reddit.com/r/linuxmemes/comments/ppyz0g/damn_you_ubuntu/hd7jg1p/).
+- **snapd**: We didn't know how to help our users with it since it breaks *A LOT*. We recommend using native packages or [FlatPak](https://wiki.archlinux.org/title/Flatpak) instead. Also, [there are a lot of other reasons to not use Snaps](https://old.reddit.com/r/linuxmemes/comments/ppyz0g/damn_you_ubuntu/hd7jg1p/).
 
-- **lib32-x265**:	There is absolutely no use case in which a 32-bit application (Linux or Windows) would want to ENCODE HEVC. I recommend disabling x265 for the packages depending on it (usually `FFmpeg` or `GStreamer`).
+- **lib32-x265**:	There is absolutely no use case in which a 32-bit application (Linux or Windows) would want to ENCODE HEVC. We recommend disabling x265 for the packages depending on it (usually `FFmpeg` or `GStreamer`).
 
 - **gst-plugins-{ugly,bad} (and lib32)**: These need too frequent rebuilds which can't be dealt with as we don't control the packages pkgrel. Ultimately this would result in a bad user experience - dependency requests however are welcome!
 
@@ -38,8 +38,6 @@ This is a list of packages that we will reject for good reasons:
 - **aseprite{-git}**: Redistribution is explicitly prohibited in its [FAQ](https://www.aseprite.org/faq/#can-i-redistribute-aseprite).
 
 - **multimc-git**: This application is licensed under the Apache 2 license, which prohibits distributing [custom binaries](https://multimc.org/#Branding) like the one built by us.
-
-- **polymc-cracked-git**: Even though the apps own license is GPL, it allows playing Minecraft without license. Therefore we are not adding it.
 
 - **tlauncher**: Same as above, it allows playing Minecraft without license.
 
