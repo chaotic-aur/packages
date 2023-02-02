@@ -57,6 +57,7 @@ nspawn-git
 ntfs3-dkms
 obs-studio-git
 octopi-git
+onedrivegui-git
 openjpeg # (dep ffmpeg-compat-57)
 pacman-git
 paru-git:https://github.com/chaotic-aur/pkgbuild-paru-git.git
