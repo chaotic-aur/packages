@@ -882,6 +882,9 @@ qbittorrent-git
 zfs-utils-git
 zfs-dkms-git
 
+# Issue 2080
+mesen-sx-git
+
 # Issue 2085
 prboom-plus
 prboom-plus-um-git
