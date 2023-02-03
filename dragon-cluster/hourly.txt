@@ -182,7 +182,7 @@ goodvibes-git
 
 # Issue 928
 python-pynput # dep rustdesk-nightly
-rustdesk-nightly
+rustdesk-nightly # (dep remmina-plugin-rustdesk)
 
 # Issue 1014
 spotify-adblock-git
@@ -1021,6 +1021,18 @@ hyprland-nvidia
 
 # Issue 2260
 normcap
+
+# Issue 2261
+remmina-plugin-rustdesk
+
+# Issue 2262
+remmina-plugin-anydesk-git
+
+# Issue 2263
+remmina-plugin-folder
+
+# Issue 2264
+remmina-plugin-teamviewer
 
 # Issue 2268
 restic-git
