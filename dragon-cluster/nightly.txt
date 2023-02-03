@@ -301,6 +301,9 @@ urdfdom-headers # (dep gazebo)
 ignition-cmake # (dep gazebo)
 libccd # (dep gazebo)
 ogre-1.9 # (dep gazebo)
+
+# Issue 2273
+vita3k-git
 --
 ignition-tools # (dep gazebo)
 urdfdom # (dep gazebo)
