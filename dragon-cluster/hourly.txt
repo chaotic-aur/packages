@@ -1002,6 +1002,11 @@ remarkable
 # Issue 2224
 agg-2.6-git
 
+# Issue 2233
+discord-rpc-git # (dep srb2kart)
+srb2kart-data # (dep srb2kart)
+srb2kart
+
 # Issue 2238
 glrnvim
 
