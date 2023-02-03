@@ -92,7 +92,7 @@ slack-desktop
 snapper-tools
 streamlink-twitch-gui-bin
 teams
-teamviewer
+teamviewer # (dep remmina-plugin-teamviewer)
 timeshift-bin
 topgrade
 ventoy-bin
