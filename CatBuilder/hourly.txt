@@ -13,3 +13,4 @@ insomnia
 libreswan
 openswan
 tidal-hifi-bin
+nvidia-vaapi-driver-git
