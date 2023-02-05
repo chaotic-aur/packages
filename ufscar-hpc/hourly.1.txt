@@ -222,6 +222,8 @@ themix-plugin-base16-git
 themix-theme-arc-git
 themix-theme-materia-git
 themix-theme-oomox-git
+oomox-qt5-styleplugin-git
+oomox-qt6-styleplugin-git
 
 # Programming (Solomon)
 clion-eap
