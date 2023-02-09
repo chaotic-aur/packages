@@ -2078,3 +2078,7 @@ bdf-unifont-extra
 unifont:https://aur.archlinux.org/unifont.git
 pcf-unifont-extra
 otb-unifont
+
+# Issue 2276
+agent-transfer # (dep monkeysphere)
+monkeysphere
