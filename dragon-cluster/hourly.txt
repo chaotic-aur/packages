@@ -1044,3 +1044,6 @@ remmina-plugin-teamviewer
 
 # Issue 2268
 restic-git
+
+# Issue 2277
+teams-for-linux
