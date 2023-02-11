@@ -2082,3 +2082,6 @@ otb-unifont
 # Issue 2276
 agent-transfer # (dep monkeysphere)
 monkeysphere
+
+# Issue 2280
+epson-inkjet-printer-escpr
