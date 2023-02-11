@@ -267,8 +267,6 @@ cpp-jwt # (dep yuzu-early-access)
 dynarmic # (dep yuzu-early-access)
 xbyak # (dep yuzu-early-access)
 yuzu-early-access
-zycore-c # (dep zydis)
-zydis # (dep dynarmic)
 
 # Issue 1384
 heimdall-grimler-git
@@ -448,7 +446,6 @@ podman-desktop
 python-aigpy # (dep tidal-dl-git tidal-gui)
 python-lyricsgenius # (dep tidal-dl-git tidal-gui)
 python-pydub # (dep tidal-dl-git tidal-gui)
-python-qt-material # (dep tidal-dl-git tidal-gui)
 tidal-dl-git # (dep tidal-gui)
 tidal-gui
 

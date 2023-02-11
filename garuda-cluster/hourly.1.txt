@@ -94,7 +94,6 @@ snapper-tools
 streamlink-twitch-gui-bin
 teams
 teamviewer # (dep remmina-plugin-teamviewer)
-timeshift-bin
 topgrade
 ventoy-bin
 visual-studio-code-bin

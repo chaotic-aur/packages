@@ -445,9 +445,6 @@ pulseaudio-control
 # Issue 355
 deadd-notification-center-git
 
-# Issue 358
-ncspot
-
 # Issue 356
 java-p7zip-binding
 mullvad-vpn
@@ -467,10 +464,6 @@ gst-rtsp-server
 
 # Issue 368
 oh-my-zsh-git
-
-# Issue 367
-python-pyasn #(dep opensnitch opensnitch-git)
-opensnitch
 
 # Issue 360
 amdgpu-pro-installer
@@ -929,9 +922,6 @@ libunity # (dep webwatcher-git)
 vala0.44 # (dep libunity)
 vala0.52 # (dep libunity)
 
-# Issue 1340
-river
-
 # Issue 1341
 rofi-lbonn-wayland
 
@@ -955,9 +945,6 @@ libplacebo-git
 
 # Issue 1365
 notparadoxlauncher-bin
-
-# Issue 1366
-switcheroo-control
 
 # Issue 1370
 akvcam-dkms
@@ -1514,10 +1501,6 @@ raider-file-shredder
 
 # Issue 1984
 syphon-bin
-
-# Issue 1987
-mbuffer # (dep btrbk)
-btrbk
 
 # Issue 2008
 angrysearch
