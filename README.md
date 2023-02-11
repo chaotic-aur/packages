@@ -1,16 +1,16 @@
 ### Chaotic-AUR package list
 
-This is the right place to submit package requests, bug reports or outdated packages of [Chaotic-AUR](https://aur.chaotic.cx). Please feel free to use issues! 📜
+This is the right place to submit package requests, bug reports, or outdated packages of [Chaotic-AUR](https://aur.chaotic.cx). Please feel free to use issues! 📜
 
 ![Chaotic-AUR](https://avatars.githubusercontent.com/u/66071775?s=400&u=99bc0536e7e77fe3e58839996600848f2d930ed5&v=4)
 
 #### Examples of packages we have already built:
 
-- [Linux-tkg kernels](https://github.com/Frogging-Family/linux-tkg)
-- Other popular kernel variations such as [Mainline](https://aur.archlinux.org/packages/linux-mainline)/-[anbox](https://aur.archlinux.org/packages/linux-mainline-anbox), [Xanmod-{tt,anbox,rt,lts,edge}](https://aur.archlinux.org/packages?O=0&SeB=nd&K=xanmod), [Vfio](https://aur.archlinux.org/packages/linux-vfio)/-[lts](https://aur.archlinux.org/packages/linux-vfio-lts), [Next-git](https://aur.archlinux.org/packages/linux-next-git), [BORE](https://aur.archlinux.org/packages/linux-bore) or [TT](https://aur.archlinux.org/packages/linux-tt)
-- A quite complete [KDE stack build from master branch](https://invent.kde.org/explore/groups?sort=name_asc) 
+- [Linux-tkg kernels](https://github.com/Frogging-Family/linux-tkg) (BMQ, CFS,LTO, PDS, TT + their generic_v3 variations)
+- Other popular kernel variations such as [Mainline](https://aur.archlinux.org/packages/linux-mainline)/-[anbox](https://aur.archlinux.org/packages/linux-mainline-anbox), [Xanmod-{tt,anbox,rt,lts}](https://aur.archlinux.org/packages?O=0&SeB=nd&K=xanmod), [Vfio](https://aur.archlinux.org/packages/linux-vfio)/-[lts](https://aur.archlinux.org/packages/linux-vfio-lts), [Next-git](https://aur.archlinux.org/packages/linux-next-git), [Cachyos-BORE](https://aur.archlinux.org/packages/linux-cachyos-bore) or [TT](https://aur.archlinux.org/packages/linux-tt)
+- A quite complete [KDE stack build from master branch](https://invent.kde.org/explore/groups?sort=name_asc)
 - Most of the existing emulators & gaming utilities like [Yuzu](https://yuzu-emu.org/), [RPCS3](https://github.com/RPCS3/rpcs3) or {[Proton](https://github.com/GloriousEggroll/proton-ge-custom),[Wine](https://github.com/GloriousEggroll/wine-ge-custom)}-GE-Custom
-- A lot of browsers like [Ungoogled Chromium](https://github.com/Eloston/ungoogled-chromium), [Firefox-wayland-hg](https://aur.archlinux.org/packages/firefox-wayland-hg), [Icecat](http://www.gnu.org/software/gnuzilla/) or the [Tor Browser](https://www.torproject.org/projects/torbrowser.html)
+- A lot of browsers like [Firedragon](https://github.com/dr460nf1r3/firedragon-browser), [Ungoogled Chromium](https://github.com/Eloston/ungoogled-chromium), [Firefox-wayland-hg](https://aur.archlinux.org/packages/firefox-wayland-hg), [Icecat](http://www.gnu.org/software/gnuzilla/) or the [Tor Browser](https://www.torproject.org/projects/torbrowser.html)
 - .. a lot more. Check out the [package lists](https://github.com/chaotic-aur/packages/find/main) to find out what exactly gets built and when! 🕵️‍♀️
 
 #### Banished and rejected packages 📑
@@ -29,7 +29,7 @@ This is a list of packages that we will reject for good reasons:
 
 - **unreal-engine (and -git)**: Some mirrors don't have sufficient storage space.
 
-- **python2**: Has been end of life for a couple years, and was [removed from Arch repositories](https://archlinux.org/news/removing-python2-from-the-repositories/). Requests for packages that depend on it in any way will be rejected (see [#1958](https://github.com/chaotic-aur/packages/issues/1958)).
+- **python2**: Has been EOL for a couple of years, and was [removed from Arch repositories](https://archlinux.org/news/removing-python2-from-the-repositories/). Requests for packages that depend on it in any way will be rejected (see [#1958](https://github.com/chaotic-aur/packages/issues/1958)).
 
 
 
@@ -41,4 +41,4 @@ This is a list of packages that we will reject for good reasons:
 
 - **tlauncher**: Same as above, it allows playing Minecraft without license.
 
-- **feishu**: Unauthorized redistribution of their applications are explicitly prohibited per [ToS](https://www.feishu.cn/en/terms).
+- **feishu**: Unauthorized redistribution of their applications is explicitly prohibited per [ToS](https://www.feishu.cn/en/terms).
