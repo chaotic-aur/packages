@@ -127,6 +127,7 @@ powder-toy-git
 pup
 python-blis # (dep python-spacy)
 python-catalogue # (dep python-spacy)
+python-langcodes # (dep python-spacy)
 python-mainimpango # (dep manim)
 python-moderngl-window # (dep manim)
 python-multipledispatch # (dep python-pyrr)
@@ -175,6 +176,7 @@ glib2-selinux
 granite-git
 gtk-theme-elementary-git
 kitty-git
+libayatana-common # (dep ayatana-*)
 
 libclc-git # (dep mesa-git)
 libselinux # (dep glib2-selinux)
@@ -315,6 +317,7 @@ proton-caller
 protontricks-git
 python-injector # (dep gwe)
 q4wine-git
+qt-solutions-git # (dep q4wine-git)
 rare-git
 replay-sorcery
 reshade-shaders-git
@@ -439,9 +442,6 @@ mindustry
 
 # Issue 547
 protonmail-bridge-bin # (switched to bin as non-bin doesn't build)
-
-# Issue 552
-nautilus-folder-icons
 
 # Issue 536
 android-platform
@@ -764,10 +764,6 @@ gtg
 
 # Issue 736
 basilisk-bin
-
-# Issue 739
-discord-rpc-api # (openrct2-git)
-openrct2-git
 
 # Issue 740
 rider

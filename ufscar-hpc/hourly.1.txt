@@ -525,11 +525,9 @@ vte-ng
 # Issue 385
 linux-firmware-git
 
-# Issue 386
-furiusisomount
-
 # Issue 388
 disman-kwinft # (dep)
+kdecoration-kwinft # (dep)
 kdisplay-kwinft # (dep)
 kwinft
 wrapland-kwinft # (dep)
@@ -680,10 +678,6 @@ python-nbxmpp-git
 spotify-tray-git
 vala-panel-appmenu-registrar-git
 
-# Issue 470
-#distrho-ports-lv2-git # dependency missing from AUR
-distrho-ports-vst-git
-
 # Issue 471
 filebot
 masterpdfeditor-libs-included
@@ -714,7 +708,7 @@ hopper
 # Issue 478
 matrix-mirage
 python-blist # (dep matrix-mirage-git)
-python-ezyme # (dep subliminal-git)
+python-enzyme # (dep subliminal-git)
 python-html-sanitizer # (dep matrix-mirage)
 python-mistune1 # (dep matrix-mirage)
 python-plyer # (dep matrix-mirage)
@@ -1421,6 +1415,7 @@ gaphor-bin
 
 # Issue 1860
 blockbench-bin
+giblib # (dep blockbench-bin)
 
 # Issue 1861
 authpass-bin
