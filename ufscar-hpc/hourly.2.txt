@@ -385,6 +385,9 @@ proton-ge-custom
 libavresample
 
 ## Users requests
+# DCSekhara on forum
+appflowy-bin
+
 # FGD on forum
 plasma5-applets-weather-widget-2
 
