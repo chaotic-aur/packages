@@ -241,6 +241,7 @@ qutebrowser-git
 arp-scan-git
 agregore-browser-bin
 bootiso
+brother-hl2280dw
 c-lolcat
 catia-git
 cpu-x-git
