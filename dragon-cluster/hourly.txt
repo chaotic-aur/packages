@@ -1045,3 +1045,6 @@ restic-git
 
 # Issue 2277
 teams-for-linux
+
+# Issue 2282
+jellyfin-media-player
