@@ -1115,17 +1115,6 @@ act
 # Issue 930
 surfn-icons-git
 
-# Issue 931
-comgr # (dep rocm-opencl-runtime)
-hsa-rocr # (dep rocm-opencl-runtime)
-hsakmt-roct # (dep rocm-opencl-runtime)
-llvm-amdgpu # (dep rocm-opencl-runtime)
-rocclr # (dep rocm-opencl-runtime)
-rocm-cmake # (dep rocm-opencl-runtime)
-rocm-device-libs # (dep rocm-opencl-runtime)
-rocm-llvm # (dep comgr)
-rocm-opencl-runtime
-
 # Issue 932
 lariza
 
