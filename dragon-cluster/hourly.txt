@@ -153,6 +153,13 @@ sshs
 torrent-file-editor-qt5-git
 youtube-music-git
 
+# sparrow-wifi-git (Technetium1)
+python-gps3 # (dep sparrow-wifi-git)
+python-manuf # (dep sparrow-wifi-git)
+libbtbb # (dep ubertooth)
+ubertooth # (dep sparrow-wifi-git)
+sparrow-wifi-git
+
 
 ## Chaotic
 # Sorcerer (IRC)
