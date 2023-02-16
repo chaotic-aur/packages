@@ -297,6 +297,7 @@ wahay-bin
 wavebox-beta
 webtorrent-desktop-bin
 whalebird
+xbindkeys_config-gtk2
 xpra-git
 xpra-html5-git
 
