@@ -150,6 +150,7 @@ snkrx-drmfree-git
 soundcloud-dl-git
 speedtest++
 sshs
+torrent-file-editor-qt5-git
 youtube-music-git
 
 
