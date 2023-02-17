@@ -1608,6 +1608,9 @@ floorp
 micromamba
 termcolor # (dep micromamba)
 
+# Issue 2283
+binance
+
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
 
