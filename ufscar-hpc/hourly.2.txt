@@ -413,7 +413,7 @@ wine-x64 # Issue 330
 winbox64 # Issue 330
 wine-stable # Issue 311
 gdm-plymouth # Issue 401
-plymouth # Issue 401
+plymouth # Issue 401 (dep gdm-plymouth-prime)
 
 ## Not building on ufscar
 # Issue 322
@@ -2069,3 +2069,6 @@ monkeysphere
 
 # Issue 2280
 epson-inkjet-printer-escpr
+
+# Issue 2286
+gdm-plymouth-prime
