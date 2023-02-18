@@ -78,7 +78,7 @@ searx
 snapper-tools-git
 sudo-git
 teams-for-linux-git
-telegram-desktop-userfonts-bin:https://aur.archlinux.org/telegram-desktop-userfonts-bin.git # this pkgname could for some reason not be found by repoctl
+telegram-desktop-userfonts
 traitor-git
 visual-studio-code-insiders-bin
 vscodium-insiders
