@@ -104,6 +104,9 @@ linux-lqx
 # Issue 1784
 luckybackup
 
+# Issue 2278
+lapce-git
+
 --
 
 # Issue 1243
