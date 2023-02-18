@@ -163,7 +163,7 @@ sparrow-wifi-git
 
 ## Chaotic
 # Sorcerer (IRC)
-tabby
+tabby-bin
 
 # gaelic on forum
 python-wxpython-dev # (dep grass)
