@@ -1611,6 +1611,9 @@ termcolor # (dep micromamba)
 # Issue 2283
 binance
 
+# Issue 2288
+xcursor-breeze
+
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
 
