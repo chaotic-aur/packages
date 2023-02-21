@@ -1059,3 +1059,9 @@ armcord-git
 
 # Issue 2282
 jellyfin-media-player
+
+# Issue 2295
+xorgxrdp
+
+# Issue 2296
+xrdp # (dep xorgxrdp)
