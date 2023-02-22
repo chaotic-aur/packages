@@ -1617,6 +1617,9 @@ binance
 # Issue 2288
 xcursor-breeze
 
+# Issue 2299
+asus-kbd-backlight
+
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
 
