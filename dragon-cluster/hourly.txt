@@ -1065,3 +1065,6 @@ xorgxrdp
 
 # Issue 2296
 xrdp # (dep xorgxrdp)
+
+# Iusse 2294
+dolphin-tabopts
