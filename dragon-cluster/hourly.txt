@@ -1066,5 +1066,10 @@ xorgxrdp
 # Issue 2296
 xrdp # (dep xorgxrdp)
 
+# Issue 2293
+python-casttube # (dep python-pychromecast)
+python-pychromecast # (dep catt)
+catt
+
 # Iusse 2294
 dolphin-tabopts
