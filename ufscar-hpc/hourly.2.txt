@@ -2073,5 +2073,8 @@ epson-inkjet-printer-escpr
 # Issue 2286
 gdm-plymouth-prime
 
+# Issue 2292
+ucon64
+
 # Issue 2298
 asus-n551-hda-fix
