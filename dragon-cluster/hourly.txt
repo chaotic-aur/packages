@@ -165,6 +165,9 @@ sparrow-wifi-git
 # Sorcerer (IRC)
 tabby-bin
 
+# UltraBlack on forum
+valent-git
+
 # gaelic on forum
 python-wxpython-dev # (dep grass)
 grass
