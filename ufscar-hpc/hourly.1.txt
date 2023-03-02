@@ -913,6 +913,9 @@ gsettings-desktop-schemas-git # (dep gnome-shell-git)
 mutter-git # (dep gnome-shell-git)
 gnome-shell-git
 
+# Issue 11176
+dbus-x11
+
 # Issue 1179
 gnome-shell-extension-dash-to-panel-git
 
