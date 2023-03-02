@@ -400,6 +400,18 @@ python-freetype-py # (dep plots)
 python-pyglm # (dep plots)
 plots
 
+# Issue 1595
+downloader-cli # (dep ytmdl)
+python-itunespy # (dep ytmdl)
+python-ffmpeg # (dep ytmdl)
+python-xdg # (dep ytmdl)
+python-pydes # (dep ytmdl)
+python-ytmusicapi # (dep ytmdl)
+python-spotipy # (dep ytmdl)
+youtube-search-python # (dep ytmdl)
+python-simber # (dep ytmdl)
+ytmdl
+
 # Issue 1599
 blackbox-terminal-git
 libadwaita-git # (dep blackbox-terminal-git)
