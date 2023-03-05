@@ -1091,3 +1091,7 @@ dolphin-tabopts
 
 # Issue 2305
 cage-git
+
+# Issue 2309
+polkit-consolekit # (dep consolekit)
+consolekit
