@@ -972,7 +972,7 @@ libelectron # (dep disneyplus)
 disneyplus
 
 # Issue 2159
-nvim-nightly-bin
+neovim-nightly-bin
 
 # Issue 2161
 etl-dev # (dep synfig-dev synfigstudio-dev)
