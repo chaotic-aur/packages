@@ -1624,6 +1624,9 @@ xcursor-breeze
 # Issue 2299
 asus-kbd-backlight
 
+# Issue 2306
+rmg
+
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
 
