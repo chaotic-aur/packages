@@ -1089,6 +1089,9 @@ catt
 # Iusse 2294
 dolphin-tabopts
 
+# Issue 2303
+joshuto
+
 # Issue 2305
 cage-git
 
