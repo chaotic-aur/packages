@@ -1627,6 +1627,9 @@ asus-kbd-backlight
 # Issue 2306
 rmg
 
+# Issue 2311
+clash-for-windows-bin
+
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
 
