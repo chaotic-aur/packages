@@ -5,6 +5,7 @@ ffmpeg-vulkan
 google-chrome-beta
 hotspot
 kddockwidgets # (dep hotspot)
+linux-hdr-git
 logseq-desktop
 nvlax-git
 signal-desktop-beta
