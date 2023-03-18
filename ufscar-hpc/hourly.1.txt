@@ -411,6 +411,7 @@ crow-translate-git
 cubeb # (dep dolphin-emu-git)
 dolphin-emu-git
 fsearch-git
+libspng # (dep dolphin-emu-git)
 megasync-git
 pa-applet-git
 pacmanlogviewer-git
