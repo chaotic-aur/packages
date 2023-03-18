@@ -48,7 +48,6 @@ rqlite
 sdrpp-git
 sway-launcher-desktop
 systemd-boot-pacman-hook
-vkcube-git
 voacapl
 eureqa-bin
 wdisplays-git
