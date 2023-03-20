@@ -11,8 +11,6 @@ firedragon-extension-plasma-integration
 jamesdsp
 kwin-scripts-forceblur
 kwin-scripts-window-colors
-nerd-fonts-fantasque-sans-mono # (old font)
-nerd-fonts-fira-code
 plasma5-applets-eventcalendar
 plasma5-applets-netspeed
 plasma5-applets-window-appmenu
