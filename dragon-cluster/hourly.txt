@@ -1098,3 +1098,6 @@ cage-git
 # Issue 2309
 polkit-consolekit # (dep consolekit)
 consolekit
+
+# Issue 2329
+clementine-git
