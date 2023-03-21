@@ -1099,5 +1099,8 @@ cage-git
 polkit-consolekit # (dep consolekit)
 consolekit
 
+# Issue 2327
+mastodon
+
 # Issue 2329
 clementine-git
