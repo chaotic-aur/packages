@@ -368,16 +368,8 @@ lib32-gsm
 lib32-lzo # (proton-ge-custom makedep)
 mingw-w64-tools # (proton-ge-custom makedep)
 psautohint
-python-booleanoperations # (dep python-nototools)
-python-defcon # (dep python-nototools)
-python-fontmath
-python-fontparts
-python-fontpens
 python-fonttools-git
-python-mutatormath
-python-pyclipper # (dep python-booleanoperations python-nototools
 python-ufonormalizer
-python-ufoprocessor
 proton-ge-custom
 
 # Dependenies of darling-git
@@ -532,7 +524,6 @@ thonny-git
 
 # Issue 563
 audiotube-git
-python-ytmusicapi # (dep audiotube-git)
 
 # Issue 564
 neovide-git

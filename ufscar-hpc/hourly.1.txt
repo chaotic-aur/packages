@@ -499,7 +499,6 @@ quixel-bridge
 
 # Issue 378
 kawaii-player
-python-mpv # (dep youplay)
 
 # Issue 379
 ckb-next

@@ -19,7 +19,6 @@ ungoogled-chromium:https://github.com/ungoogled-software/ungoogled-chromium-arch
 ayatana-indicator-datetime
 calligra-git
 kwaterfoxhelper
-lmdbxx
 nvm
 python-grpcio-tools
 python-pympv

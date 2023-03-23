@@ -12,7 +12,6 @@ binfmt-qemu-static
 brave-nightly-bin
 btop-git
 cachyos-ananicy-rules
-cargo-make
 catch2-git # (dep waybar-hyprland-git)
 cfs-zen-tweaks
 chkrootkit
@@ -20,10 +19,8 @@ clamav-unofficial-sigs
 coreutils-hybrid-git
 crowdsec
 czkawka-git
-distrobox
 electronmail-bin
 epiphany-git
-esbuild # (dep kwin-bismuth)
 fastfetch-git
 fastgame-git
 ffmpeg-compat-57
@@ -406,7 +403,6 @@ python-itunespy # (dep ytmdl)
 python-ffmpeg # (dep ytmdl)
 python-xdg # (dep ytmdl)
 python-pydes # (dep ytmdl)
-python-ytmusicapi # (dep ytmdl)
 python-spotipy # (dep ytmdl)
 youtube-search-python # (dep ytmdl)
 python-simber # (dep ytmdl)
