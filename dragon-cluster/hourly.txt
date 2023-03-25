@@ -163,11 +163,15 @@ sparrow-wifi-git
 tabby-bin
 
 # UltraBlack on forum
+fritzing
 valent-git
 
 # gaelic on forum
 python-wxpython-dev # (dep grass)
 grass
+
+# waeking on forum
+opensnitch-ebpf-module
 
 # Via mail (9th June)
 notepadnext
