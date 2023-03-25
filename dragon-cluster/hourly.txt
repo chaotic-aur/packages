@@ -23,7 +23,6 @@ electronmail-bin
 epiphany-git
 fastfetch-git
 fastgame-git
-ffmpeg-compat-57
 ffmpeg-compat-58
 firejail-git
 firejail-pacman-hook
@@ -55,7 +54,6 @@ ntfs3-dkms
 obs-studio-git
 octopi-git
 onedrivegui-git
-openjpeg # (dep ffmpeg-compat-57)
 pacman-git
 paru-git:https://github.com/chaotic-aur/pkgbuild-paru-git.git
 plasma5-wallpapers-wallpaper-engine
