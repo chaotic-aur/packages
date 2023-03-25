@@ -376,6 +376,9 @@ proton-ge-custom
 libavresample
 
 ## Users requests
+# Catra on forum
+radeon-profile-daemon-git
+
 # DCSekhara on forum
 appflowy-bin
 
