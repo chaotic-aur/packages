@@ -245,6 +245,9 @@ wayland-protocols-git
 wireplumber-git
 xf86-input-libinput-git
 
+# Technetium1
+python39
+
 
 ## NEEDED FOR GARUDA
 # Emulators
@@ -399,8 +402,6 @@ lib32-libxpm # (dep wine-stable)
 lib32-libde265 # (dep wine-stable)
 lib32-x265 # (dep wine-stable)
 lib32-wxgtk3 # Issue 309
-python38 # Issue 320 (dep)
-python39 # Issue 320 (dep)
 bombsquad # Issue 320
 ttf-freebanglafont # Issue 321 (dep)
 openbangla-keyboard # Issue 321
