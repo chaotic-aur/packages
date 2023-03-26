@@ -143,15 +143,11 @@ mkinitcpio-openswap
 neofetch-git
 nohang
 noto-color-emoji-fontconfig
-nvidia-390xx-dkms
 nvidia-390xx-settings
 nvidia-390xx-utils
-nvidia-470xx-dkms
 nvidia-470xx-settings
 nvidia-470xx-utils
 nvidia-zen:https://gitlab.com/garuda-linux/packages/pkgbuilds/nvidia-zen
-opencl-nvidia-390xx
-opencl-nvidia-470xx
 optimus-manager
 optimus-manager-git
 optimus-manager-qt
