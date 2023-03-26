@@ -557,7 +557,7 @@ freerdp-git
 remmina-git
 
 # Issue 581
-python-retworkx # (python-qiskit)
+python-rustworkx # (python-qiskit)
 python-tweedledum # (python-qiskit)
 python-qiskit-terra # (python-qiskit)
 muparserx # (python-qiskit)
