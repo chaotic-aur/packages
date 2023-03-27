@@ -46,6 +46,9 @@ ogre-1.9 # (dep gazebo)
 
 # Issue 2273
 vita3k-git
+
+# Issue 2335
+emacs-git-noway-widgets
 --
 ignition-tools # (dep gazebo)
 urdfdom # (dep gazebo)
