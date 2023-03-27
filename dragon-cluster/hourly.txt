@@ -1096,6 +1096,13 @@ cage-git
 polkit-consolekit # (dep consolekit)
 consolekit
 
+# Issue 2315
+ares-emu
+ares-emu-git
+
+# Issue 2318
+etcd
+
 # Issue 2327
 mastodon
 
