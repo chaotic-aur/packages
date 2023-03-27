@@ -1635,6 +1635,9 @@ clash-for-windows-bin
 # Issue 2321
 flux-bin
 
+# Issue 2323
+jdanimatedimageeditor
+
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
 
