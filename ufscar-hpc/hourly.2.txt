@@ -2074,5 +2074,10 @@ ucon64
 # Issue 2298
 asus-n551-hda-fix
 
+# Issue 2307
+polyglot-winboard-git # (dep fairy-stockfish{-git})
+fairy-stockfish
+fairy-stockfish-git
+
 # Issue 2341
 epdfview-gtk3
