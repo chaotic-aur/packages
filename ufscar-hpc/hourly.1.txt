@@ -1623,6 +1623,9 @@ xcursor-breeze
 # Issue 2299
 asus-kbd-backlight
 
+# Issue 2302
+runescape-launcher
+
 # Issue 2306
 rmg
 
