@@ -2073,3 +2073,6 @@ ucon64
 
 # Issue 2298
 asus-n551-hda-fix
+
+# Issue 2341
+epdfview-gtk3
