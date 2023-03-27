@@ -23,7 +23,6 @@ electronmail-bin
 epiphany-git
 fastfetch-git
 fastgame-git
-ffmpeg-compat-58
 firejail-git
 firejail-pacman-hook
 firetools-git
