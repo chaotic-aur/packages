@@ -1641,6 +1641,9 @@ jdanimatedimageeditor
 # Issue 2348
 powershell-bin
 
+# Issue 2349
+vazirmatn-fonts
+
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
 
