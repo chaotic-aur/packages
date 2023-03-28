@@ -1638,6 +1638,9 @@ flux-bin
 # Issue 2323
 jdanimatedimageeditor
 
+# Issue 2348
+powershell-bin
+
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
 
