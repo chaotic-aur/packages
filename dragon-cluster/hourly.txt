@@ -969,7 +969,7 @@ libelectron # (dep disneyplus)
 disneyplus
 
 # Issue 2159
-neovim-nightly-bin
+neovim-nightly-bin:https://aur.archlinux.org/neovim-nightly-bin.git
 
 # Issue 2161
 etl-dev # (dep synfig-dev synfigstudio-dev)
