@@ -161,7 +161,6 @@ mcmojave-circle-icon-theme-git
 mojave-gtk-theme-git
 mutter-x11-scaling
 nordic-kde-git
-plymouth
 qogir-gtk-theme-git
 qogir-icon-theme-git
 qogir-kde-theme-git
