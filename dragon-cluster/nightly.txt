@@ -47,8 +47,9 @@ ogre-1.9 # (dep gazebo)
 # Issue 2273
 vita3k-git
 
-# Issue 2335
-emacs-git-noway-widgets
+# Issue 2335 - no -git suffix but it's a git package
+emacs-git-noway-widgets:https://aur.archlinux.org/emacs-git-noway-widgets.git
+
 --
 ignition-tools # (dep gazebo)
 urdfdom # (dep gazebo)
