@@ -12,7 +12,6 @@ python-textx  # for prjxray-tools-git
 python-fasm-git  # for prjxray-tools-git
 prjxray-db-git
 prjxray-tools-git
-python-crcmod
 yosys-git
 
 # Ham radio stuff
@@ -26,7 +25,6 @@ gpredict
 # Pedro
 android-sdk-platform-tools
 android-studio-launcher
-android-udev
 bytecode-viewer
 ca-certificates-icp_br
 chaotic-keyring
@@ -62,9 +60,6 @@ python-telegram-bot # (dep python-telegram-send)
 python-telegram-send
 quartus-130
 ripcord-arch-libs
-ruby-coderay # (dep logstalgia)
-ruby-method_source # (dep logstalgia)
-ruby-pry # (dep logstalgia)
 sdl2_compat12-git
 shntool # (dep split2flac)
 spectral-matrix-git
@@ -517,7 +512,6 @@ zlib-ng-git
 # Issue 497
 mu-editor
 pigpio # (dep mu-editor)
-python-asttokens # (dep thonny)
 python-colorzero # (dep mu-editor)
 python-gpiozero # (dep mu-editor)
 python-guizero # (dep mu-editor)
@@ -584,9 +578,6 @@ gnome-network-displays
 
 # Issue 625
 gtk3-nocsd-git
-
-# Issue 626
-freeplane
 
 # Issue 627
 github-desktop
@@ -711,9 +702,6 @@ greetd-tuigreet
 
 # Issue 716
 find-the-command
-
-# Issue 717
-kooha
 
 # Issue 718
 qview
@@ -841,10 +829,6 @@ saxon-he # (dep scilab)
 #scilab
 xalan-java # (dep scilab)
 xerces2-java # (dep scilab)
-
-# Issue 772
-dnf
-libdnf # (dep dnf)
 
 # Issue 773
 libpdfium-nojs # (dep yacreader)
@@ -1208,7 +1192,6 @@ libspectrum # (dep fuse-emulator)
 # Issue 991
 deadbeef
 deadbeef-git
-libdispatch
 
 # Issue 992
 gzdoom
@@ -1382,9 +1365,6 @@ graphite-cursor-theme-git
 # Issue 1098
 rpi-imager
 
-# Issue 1099
-wgcf
-
 # Issue 1100
 papirus-folders-gui
 
@@ -1393,10 +1373,6 @@ sayonara-player-git
 
 # Issue 1104
 pcloudcc-git
-
-# Issue 1105
-python-av
-python-torchvision
 
 # Issue 1107
 libpamac-nosnap
@@ -1407,9 +1383,6 @@ dosbox-x
 
 # Issue 1112
 iota-firefly-wallet
-
-# Issue 1113
-stern
 
 # Issue 1114
 bulky
@@ -1423,9 +1396,6 @@ mint-themes-legacy
 # Issue 1118
 mcpelauncher-linux-git
 mcpelauncher-ui-git
-
-# Issue 1123
-tectonic
 
 # Issue 1125
 sonarr
