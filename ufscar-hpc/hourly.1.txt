@@ -610,9 +610,6 @@ sourcetrail
 # Issue 447
 spot-client
 
-# Issue 448
-ytfzf
-
 # Issue 449
 gdm-prime
 
