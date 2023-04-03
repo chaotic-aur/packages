@@ -1187,7 +1187,7 @@ google-chrome-dev
 xbanish
 
 # Issue 976
-śimple-mtpfs
+simple-mtpfs
 
 # Issue 978
 termv-git
