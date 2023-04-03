@@ -772,7 +772,6 @@ nchat-git
 lightspark-git
 
 # Issue 1943
-endeavour
 endeavour-git
 
 # Issue 1944
