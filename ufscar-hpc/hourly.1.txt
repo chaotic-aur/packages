@@ -363,7 +363,6 @@ graphite-mozilla
 intellij-idea-ultimate-edition
 lib32-fltk # (dep)
 lib32-libwmf
-lib32-numactl
 lib32-openexr
 lib32-zbar
 ncnn-git # (dep waifu2x-ncnn-vulkan-git)
@@ -510,10 +509,6 @@ dwm
 dwm-git
 st # (dep dwm)
 
-# Issue 383
-#vte3-notification broken now, using below instead
-vte-ng
-
 # Issue 385
 linux-firmware-git
 
@@ -619,7 +614,6 @@ mozc-ut-common
 
 # Isse 454
 woeusb
-woeusb-gui
 
 # Issue 457
 webkit2gtk-unstable
@@ -669,16 +663,11 @@ vala-panel-appmenu-registrar-git
 
 # Issue 471
 filebot
-masterpdfeditor-libs-included
 feem
-
-# Issue 472
-chromium-ublock-origin
 
 # Issue 473
 apostrophe
 aic94xx-firmware
-dmenu-height
 makemkv
 farbfeld
 
@@ -752,9 +741,6 @@ bluej
 libvterm-0.1 # (dep neovim-git)
 neovim-git
 
-# Issue 503
-lightcord-bin
-
 # Issue 504
 blueprint-compiler-git # (dep gfeeds-git)
 gfeeds-git
@@ -764,7 +750,6 @@ python-syndom-git # (dep gfeeds-git)
 llvm-proton-bin
 
 # Issue 538
-godot-beta-bin
 godot-git:https://github.com/chaotic-aur/pkgbuild-godot-git.git
 
 # Issue 558
@@ -804,9 +789,6 @@ ttf-symbola
 xfce4-docklike-plugin
 xplayer
 xplayer-plparser # (xplayer)
-
-# Issue 594
-chrome-gnome-shell
 
 # Issue 595
 plex-media-server
@@ -1203,9 +1185,6 @@ sidequest-bin
 
 # Issue 1663
 asix-ax88179-dkms
-
-# Issue 1677
-nerd-fonts-hack
 
 # Issue 1678
 broadcom-bt-firmware-git

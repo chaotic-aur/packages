@@ -8,7 +8,6 @@ ananicy-rules # (dep ananicy-cpp-git)
 anbox-image-houdini-rooted
 arch-deployer-git
 babl-git # (dep gimp-git)
-binfmt-qemu-static
 brave-nightly-bin
 btop-git
 cachyos-ananicy-rules
@@ -198,7 +197,6 @@ rustdesk-nightly # (dep remmina-plugin-rustdesk)
 spotify-adblock-git
 
 # Issue 1034
-aura-fetch-git
 bitfetch-git
 freshfetch-git
 novafetch-git

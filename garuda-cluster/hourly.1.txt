@@ -2,7 +2,6 @@
 bitwig-studio
 brave-bin
 dissenter-browser-bin
-exe-thumbnailer
 firefox-extension-xdm-browser-monitor
 freedownloadmanager
 freeoffice
@@ -144,7 +143,6 @@ flat-remix
 flat-remix-gtk
 fluent-gtk-theme-git
 fluent-icon-theme-git
-gnome-control-center-x11-scaling
 gnome-shell-extension-gnome-ui-tune-git
 gnome-shell-extension-pop-shell-git
 kali-themes
@@ -190,7 +188,6 @@ itch-setup-bin
 # Zoeruda
 cmst-git
 connman-git
-connman-gtk-git
 
 # Alexjp
 bcache-tools

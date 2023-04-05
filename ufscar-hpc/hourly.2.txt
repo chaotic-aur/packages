@@ -80,7 +80,6 @@ gamescope-git:https://github.com/Frogging-Family/gamescope-git.git
 goverlay-git
 mangohud:https://aur.archlinux.org/mangohud.git # (dep lutris-wine-git)
 mangohud-git
-mangohud-wayland
 material-kwin-decoration-git
 neofrog-git:https://github.com/Frogging-Family/neofrog-git.git
 spirv-tools-tkg-git:https://github.com/Frogging-Family/spirv-tools-git.git
@@ -113,9 +112,6 @@ munt # (dep dosbox-staging)
 noti
 nqp
 nteract-bin
-opencolorio-qfix # (dep blender-git)
-openimageio-qfix # (dep blender-git)
-openshadinglanguage-qfix # (dep blender-git)
 openxray
 popura-git
 powder-toy-git
@@ -286,7 +282,6 @@ fancontrol-gui-git
 flycast
 game-devices-udev
 gamehub
-gamerworld
 godot-headless-bin # (dep luxtorpeda-git)
 gwe
 heroic-games-launcher-bin
@@ -294,7 +289,6 @@ hypnotix
 ialauncher-git
 input-remapper-git
 keyboard-visualizer-git
-latencyflex # (dep lutris-wine-git)
 legendary
 lib32-vkbasalt # (dep lutris-wine-git)
 libliftoff-git # (dep gamescope-git)
@@ -320,7 +314,6 @@ replay-sorcery
 reshade-shaders-git
 retroarch-autoconfig-udev-git
 retrolink-git
-rpcs3
 sc-controller
 stacer
 steamtinkerlaunch
@@ -332,7 +325,6 @@ xboxdrv
 xone-dongle-firmware # (dep xone-dkms-git)
 xone-dkms-git
 xone-dkms
-xow
 xow-git
 xpadneo-dkms-git
 xpadneo-dkms
@@ -345,7 +337,6 @@ chromaprint-fftw
 davs2
 decklink-sdk
 flite1
-flite1-patched
 highway-git # (dep libjxl-git)
 lensfun-git
 libjxl-git
@@ -696,9 +687,6 @@ peazip-gtk2-bin
 peazip-qt5
 zpaq # (dep peazip-gtk2-bin)
 
-# Issue 714
-greetd-tuigreet
-
 # Issue 716
 find-the-command
 
@@ -752,9 +740,6 @@ rider
 # Issue 741
 apparmor-git
 celluloid-git
-
-# Issue 742
-sneedacity-git
 
 # Issue 743
 qtile-git
@@ -861,9 +846,6 @@ proftpd
 # Issue 786
 tuner
 
-# Issue 798
-libxft-bgra
-
 # Issue 789
 htim
 
@@ -872,9 +854,6 @@ vim-slime-git
 
 # Issue 791
 vim-vimwiki
-
-# Issue 795
-netflix-git
 
 # Issue 798
 silos
@@ -1038,9 +1017,6 @@ grub2-signing-extension
 # Issue 901
 losslesscut-bin
 
-# Issue 903
-musixmatch-bin
-
 # Issue 904
 obs-nvfbc
 
@@ -1079,9 +1055,6 @@ dasel
 
 # Issue 917
 polychromatic
-
-# Issue 918
-nvidia-utils-keylase
 
 # Issue 922
 chromium-snapshot-bin
@@ -1137,9 +1110,6 @@ autokey-qt
 anki
 python-mypy-protobuf # (dep anki)
 python-springcase # (dep anki)
-
-# Issue 962
-osh 
 
 # Issue 964
 rapidyaml-git # (dep pcsx2-git, also creates python-rapidyaml-git)
@@ -1409,7 +1379,6 @@ qbittorrent-enhanced
 leagueoflegends-git
 lib32-unixodbc # (dep leagueoflegends-git)
 wine-lol
-wine-lol-glibc
 
 # Issue 1141
 jamesdsp-pulse
@@ -1571,9 +1540,6 @@ stockfish-git
 
 # Issue 1481
 spice-guest-tools-windows
-
-# Issue 1486
-kwallet-secrets
 
 # Issue 1500
 phoenicis-playonlinux
