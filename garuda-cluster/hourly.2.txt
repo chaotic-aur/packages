@@ -17,7 +17,6 @@ plasma5-applets-netspeed
 plasma5-applets-window-appmenu
 plasma5-applets-window-title
 resvg
-rootactions-servicemenu
 sweet-folders-icons-git # (dep sweet-theme-full-git)
 sweet-kde-theme-git # (dep sweet-theme-full-git)
 sweet-theme-full-git
@@ -79,8 +78,6 @@ wlsunset
 wob
 
 # Wayfire
-greetd
-greetd-qtgreet
 wayfire-desktop-git
 wayfire-plugins-extra
 wayfire
@@ -180,7 +177,6 @@ zsync2-git
 r8168-dkms
 realtek-firmware
 rtl8192cu-fixes-git
-rtl8814au-aircrack-dkms-git
 rtl88x2bu-dkms-git
 rtl88x2ce-dkms
 rtl88xxau-aircrack-dkms-git
