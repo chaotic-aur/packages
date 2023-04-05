@@ -259,9 +259,6 @@ davfs2
 # Issue 1363
 asusctl-git
 
-# Issue 1364
-gnome-console
-
 # Issue 1372
 duplicacy
 
@@ -775,7 +772,6 @@ nchat-git
 lightspark-git
 
 # Issue 1943
-endeavour
 endeavour-git
 
 # Issue 1944

@@ -124,7 +124,6 @@ firefox-extension-plasma-integration
 fish-autopair
 flameshot-git
 garuda-downloader-git
-hblock
 hw-probe
 imagewriter
 lib32-nvidia-390xx-utils

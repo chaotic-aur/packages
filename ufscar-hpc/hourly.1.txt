@@ -15,7 +15,6 @@ soapysdrplay-git
 android-emulator
 android-sdk
 android-studio
-bear
 chromium-widevine
 digilent.adept.runtime
 digilent.adept.utilities
@@ -73,7 +72,6 @@ powerpill
 python3-memoizedb
 python3-xcgf
 python3-xcpf
-guestfs-tools
 dumpasn1
 dieharder
 bluespec-contrib-git
@@ -464,9 +462,6 @@ jre8
 # Issue 363
 zsh-theme-powerlevel10k-git
 
-# Issue 364
-gst-rtsp-server
-
 # Issue 368
 oh-my-zsh-git
 
@@ -615,9 +610,6 @@ sourcetrail
 # Issue 447
 spot-client
 
-# Issue 448
-ytfzf
-
 # Issue 449
 gdm-prime
 
@@ -688,7 +680,6 @@ apostrophe
 aic94xx-firmware
 dmenu-height
 makemkv
-j4-dmenu-desktop
 farbfeld
 
 # Issue 474

@@ -20,7 +20,6 @@ ayatana-indicator-datetime
 calligra-git
 kwaterfoxhelper
 nvm
-python-grpcio-tools
 python-pympv
 python-sphinx-automodapi
 tweeny
