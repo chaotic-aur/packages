@@ -338,7 +338,6 @@ pod2man # (dep auracle-git)
 xfce4-panel-compiz
 
 # Issue 326
-dotnet-core-bin # (dep powershell ryujinx-git)
 powershell
 
 # Issue 347
@@ -464,9 +463,6 @@ zsh-theme-powerlevel10k-git
 # Issue 368
 oh-my-zsh-git
 
-# Issue 360
-amdgpu-pro-installer
-
 # Issue 306
 omnisharp-roslyn
 
@@ -497,7 +493,7 @@ kawaii-player
 # Issue 379
 ckb-next
 osu-lazer
-tuxedo-control-center
+tuxedo-control-center-bin
 tuxedo-keyboard-dkms
 
 # Issue 380
@@ -570,7 +566,6 @@ arm-linux-gnueabi-binutils
 arm-linux-gnueabi-gcc
 
 # Issue 423
-aws-cli-v2-bin
 aws2-wrap
 tflint
 
@@ -609,8 +604,8 @@ spot-client
 gdm-prime
 
 # Issue 452
-ibus-mozc-ut
-mozc-ut-common
+ibus-mozc
+mozc-ut
 
 # Isse 454
 woeusb
@@ -1241,9 +1236,8 @@ ttf-aller
 audiowide-font
 ttf-bangers
 ttf-djb-zora-prints-fonts
-xorg-font-utils # (dep ttf-geosans-light ttf-iskpota)
+xorg-font-utils # (dep ttf-geosans-light)
 ttf-geosans-light
-ttf-iskpota
 fonts-kalam
 ttf-pacifico
 
@@ -1449,7 +1443,7 @@ notable-bin
 youtubedl-gui
 
 # Issue 1914
-python-pypdf2 # (dep bookletimposer caja-pdf-tools-git krop)
+python-pypdf2 # (dep bookletimposer nautilus-pdf-tools-git krop)
 bookletimposer
 
 # Issue 1920
@@ -1623,6 +1617,5 @@ anaconda
 fluent-reader
 fnott
 java-openjdk-ea-bin
-kite
 telegram-desktop-bin-dev
 ytfzf-git

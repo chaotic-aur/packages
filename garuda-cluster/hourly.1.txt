@@ -38,7 +38,7 @@ webapp-manager
 
 # Mycroft
 fann
-mimic
+mimic1
 mycroft-core
 mycroft-gui-git
 plasma5-applets-mycroft-git
@@ -105,7 +105,7 @@ bass-fish
 bindfs
 buttermanager
 caffeine
-caja-pdf-tools-git
+nautilus-pdf-tools-git:https://aur.archlinux.org/nautilus-pdf-tools-git.git # {nautilus,nemo,caja}-pdf-tools-git
 ckbcomp
 debtap
 droidcam
