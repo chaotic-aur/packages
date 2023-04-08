@@ -71,3 +71,4 @@ gleam # Gleam is a friendly language for building type-safe systems that scale! 
 rbenv # Seamlessly manage your app’s Ruby environment with rbenv. ; https://github.com/rbenv/rbenv
 ruby-build # ruby-build is a command-line tool that simplifies installation of any Ruby version from source on Unix-like systems. ; https://github.com/rbenv/ruby-build
 tradingview # The best trades require research, then commitment. ; https://www.tradingview.com/
+motivewave # A Trading Platform to Fit Any Trader or Market Analyst ; https://www.motivewave.com/
