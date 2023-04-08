@@ -181,7 +181,6 @@ mkosi-git
 
 # Issue 759
 tenacity-git
-wxwidgets-dev-light # (dep tenacity-git)
 
 # Issue 819
 goodvibes

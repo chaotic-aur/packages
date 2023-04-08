@@ -8,14 +8,13 @@ prjtrellis-db-git
 nextpnr-git
 prjapicula
 prjoxide-git
-python-textx  # for prjxray-tools-git
-python-fasm-git  # for prjxray-tools-git
+python-textx  # for prjxray-git
+python-fasm-git  # for prjxray-git
 prjxray-db-git
-prjxray-tools-git
+prjxray-git:https://aur.archlinux.org/prjxray-git.git # prjxray-tools-git python-prjxray-git
 yosys-git
 
 # Ham radio stuff
-wxgtk2.8  # for trustedqsl
 hamradio-menus  # for trustedqsl, gpredict
 trustedqsl
 qlog-git
@@ -106,7 +105,6 @@ jupyter-metakernel
 koka-bin
 languageclient-neovim
 lua-format
-manim
 moarvm
 munt # (dep dosbox-staging)
 noti
@@ -119,15 +117,11 @@ pup
 python-blis # (dep python-spacy)
 python-catalogue # (dep python-spacy)
 python-langcodes # (dep python-spacy)
-python-mainimpango # (dep manim)
-python-moderngl-window # (dep manim)
 python-multipledispatch # (dep python-pyrr)
 python-murmurhash # (dep python-spacy)
 python-pathlib # (dep python-spacy)
 python-plac # (dep python-spacy)
 python-preshed # (dep python-spacy)
-python-pydub # (dep manim)
-python-pyrr # (dep manim)
 python-spacy
 python-srsly # (dep python-spacy)
 python-thinc # (dep python-spacy)
@@ -164,7 +158,6 @@ contractor-git
 elementary-icon-theme-git
 gala-git
 glib2-selinux
-granite-git
 gtk-theme-elementary-git
 kitty-git
 libayatana-common # (dep ayatana-*)
@@ -192,37 +185,33 @@ wezterm-git
 # vim-extension
 nvim-yarp-git
 vim-coc-git
-vim-coc-rust-analyzer-git
-vim-coc-flutter-git 
 vim-coc-clangd-git 
 vim-coc-css-git
-vim-coc-html-git 
-vim-coc-json-git
-vim-coc-pairs-git
-vim-coc-pyright-git
-vim-coc-sh-git 
-vim-coc-tsserver-git
-vim-coc-vimlsp-git
-vim-coc-yaml-git
 vim-coc-deno-git
-vim-coc-java-git
-vim-coc-go-git
-vim-coc-syntax-git 
-vim-coc-tag-git
-vim-coc-dictionary-git
-vim-coc-word-git 
-vim-coc-emoji-git
-vim-coc-explorer-git
-vim-coc-git-git
-vim-coc-highlight-git
-vim-coc-lists-git
-vim-coc-marketplace-git
-vim-coc-tabnine-git
-vim-coc-snippets-git
-vim-coc-htmlhint-git
 vim-coc-diagnostic-git
 vim-coc-eslint-git
+vim-coc-explorer-git
+vim-coc-flutter-git
+vim-coc-git-git
+vim-coc-go-git
+vim-coc-highlight-git
+vim-coc-html-git
+vim-coc-htmlhint-git
+vim-coc-java-git
+vim-coc-json-git
+vim-coc-lists-git
+vim-coc-marketplace-git
+vim-coc-pairs-git
+vim-coc-pyright-git
+vim-coc-rust-analyzer-git
+vim-coc-sh-git
+vim-coc-snippets-git
+vim-coc-sources-git # vim-coc-{dictionary,emoji,syntax,tag,word}-git
+vim-coc-tabnine-git
+vim-coc-tsserver-git
 vim-coc-vetur-git 
+vim-coc-vimlsp-git
+vim-coc-yaml-git
 vim-coc-zsh-git
 
 
@@ -444,9 +433,6 @@ nginx-mainline-mod-headers-more
 nginx-mainline-mod-lua
 nginx-mainline-mod-ndk
 nginx-mainline-mod-njs
-
-# Issue 513
-protonvpn-cli-ng
 
 # Issue 511
 swaylock-effects
@@ -782,9 +768,7 @@ gnome-shell-performance
 mutter-performance
 
 # Issue 766
-gdcm # (dep itk-snap)
-insight-toolkit4 # (dep itk-snap)
-itk-snap
+itk-snap-bin
 
 # Issue 769
 sublime-text-3
@@ -867,7 +851,7 @@ gtk-gnutella-git
 gtk-gnutella
 
 # Issue 802
-quassel-git
+quassel:https://aur.archlinux.org/quassel.git # quassel-git, etc
 
 # Issue 803
 fzf-tab-git
@@ -1034,11 +1018,6 @@ superslicer-profiles-git
 
 # Issue 910
 keepassxc-git
-
-# Issue 911
-ferdi
-ferdi-git
-pnpm # (dep ferdi cider cider-git)
 
 # Issue 912
 git-bug-git
