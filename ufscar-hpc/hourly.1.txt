@@ -23,6 +23,7 @@ fujprog
 fxload
 xschem
 digital
+netlistsvg-git
 tzsp2pcap-git
 guile1.8 # (dep texmacs)
 gr-limesdr-git:https://github.com/chaotic-aur/pkgbuild-gr-limesdr-git.git

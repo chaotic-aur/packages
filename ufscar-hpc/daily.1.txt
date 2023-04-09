@@ -1,5 +1,6 @@
 ## Maintainers
 # Firefox
+git-cinnabar
 nspr-hg
 nss-hg
 wasi-sdk-git
