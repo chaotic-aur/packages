@@ -178,7 +178,7 @@ xcb-proto-git # (dep libxcb-git)
 
 numix-circle-icon-theme-git
 numix-icon-theme-git
-tilix-git:https://github.com/chaotic-aur/tilix-git-aur
+tilix-git
 vlc-git
 wezterm-git
 
@@ -240,7 +240,6 @@ citra-canary-git
 citra-qt-git
 conan # (dep yuzu-mainline-git)
 crossover
-decaf-emu-git
 duckstation-git
 eka2l1-git
 emulationstation
