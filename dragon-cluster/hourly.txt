@@ -900,9 +900,6 @@ mesen-sx-git
 prboom-plus
 prboom-plus-um-git
 
-# Issue 2088
-qt4 # (dep doomseeker natron-compositor)
-
 # Issue 2090
 discord-screenaudio
 
