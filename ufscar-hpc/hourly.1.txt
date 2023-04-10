@@ -1100,9 +1100,6 @@ path-of-building-community-git
 gconf # (dep lbry-desktop-git imaginary-teleprompter-bin github-desktop keeweb-desktop-bin libgksu)
 lbry-desktop-git
 
-# Issue 1600
-bat-cat-git
-
 # Issue 1601
 koodo-reader-bin
 

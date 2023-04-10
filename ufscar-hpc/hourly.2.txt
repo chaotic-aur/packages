@@ -817,9 +817,6 @@ k3s-bin
 # Issue 780
 rtl-sdr-git
 
-# Issue 782
-openvpn3
-
 # Issue 784
 inspircd
 
@@ -901,9 +898,6 @@ goodvibes-git
 # Issue 822
 libshumate-git # (dep shortwave shortwave-git)
 shortwave-git
-
-# Issue 825
-mysql57
 
 # Issue 826
 anope
