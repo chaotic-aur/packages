@@ -161,6 +161,7 @@ tabby-bin
 # UltraBlack on forum
 fritzing
 valent-git
+gtkcord4
 
 # gaelic on forum
 python-wxpython-dev # (dep grass)
