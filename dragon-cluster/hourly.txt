@@ -1113,6 +1113,9 @@ python-pympress
 # Issue 2368
 doomrunner
 
+# Issue 2369
+pcem
+
 # Issue 2374
 uuidperl-crypt-rijndael
 perl-net-arp
