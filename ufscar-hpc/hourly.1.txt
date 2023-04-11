@@ -1606,6 +1606,9 @@ powershell-bin
 # Issue 2349
 vazirmatn-fonts
 
+# Issue 2357
+edex-ui-bin
+
 # Issue 2375
 ripcord
 
