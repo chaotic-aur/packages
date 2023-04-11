@@ -1106,5 +1106,9 @@ jameica
 # Issue 2363
 loupe
 
+# Issue 2366
+python-vlc
+python-pympress
+
 # Issue 2368
 doomrunner
