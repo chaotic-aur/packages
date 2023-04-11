@@ -1102,3 +1102,6 @@ clementine-git
 # Issue 2339
 java-jce_ustrength # (dep jameica)
 jameica
+
+# Issue 2368
+doomrunner
