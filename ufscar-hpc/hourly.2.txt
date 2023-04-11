@@ -1990,3 +1990,6 @@ epdfview-gtk3
 
 # Issue 2347
 wmenu
+
+# Issue 2365
+waterfox-g-bin
