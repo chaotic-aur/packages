@@ -1606,6 +1606,9 @@ powershell-bin
 # Issue 2349
 vazirmatn-fonts
 
+# Issue 2375
+ripcord
+
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
 
