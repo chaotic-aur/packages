@@ -41,7 +41,6 @@ foo2zjs-nightly
 glew-egl-glx
 google-cloud-sdk
 heroku-cli-bin
-hplip-plugin
 hunspell-pt-br
 intelbacklight-git
 lib32-imath
