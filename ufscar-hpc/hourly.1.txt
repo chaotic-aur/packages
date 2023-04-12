@@ -1,9 +1,7 @@
-## Lost & found
-veloren-git  # really slow to build, not parallelizable
-
 ## Maintainers
 ## Paulo
 bluespec-git
+--       # need this barrier for other bluespec packages below
 itcl3    # for bluespec-bdw-git
 tk-itk3  # for bluespec-bdw-git
 gtkwave-tcl  # optdepends for bluespec-bdw-git
@@ -302,6 +300,9 @@ xpra-html5-git
 
 
 ## Users requests
+
+veloren-git
+
 # Austin on forum
 autojump
 binder_linux-dkms
