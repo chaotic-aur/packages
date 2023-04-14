@@ -536,6 +536,7 @@ python-qiskit-aer # (python-qiskit)
 python-qiskit
 
 # Issue 584
+flashrom-git  # (dep vboot-utils)
 geekbench
 hfsprogs
 megatools
@@ -585,7 +586,7 @@ tfsec
 minecraft-technic-launcher
 
 # Issue 649
-gitify
+gitify-bin
 
 # Issue 651
 redshift-minimal
@@ -1035,9 +1036,6 @@ act
 
 # Issue 930
 surfn-icons-git
-
-# Issue 932
-lariza
 
 # Issue 934
 gnome-obfuscate
