@@ -1128,6 +1128,9 @@ asbru-cm-git
 # Issue 2378
 rescrobbled-git
 
+# Issue 2382
+smtube
+
 # Issue 2388
 lemurs-git
 
