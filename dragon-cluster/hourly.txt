@@ -1124,3 +1124,6 @@ perl-io-stty
 perl-x11-guitest
 perl-expect
 asbru-cm-git
+
+# Issue 2378
+rescrobbled-git
