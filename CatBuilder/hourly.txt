@@ -12,5 +12,6 @@ insomnia
 libreswan
 openswan
 tidal-hifi-bin
+tor-router
 nvidia-vaapi-driver-git
 wowup-cf-bin
