@@ -1130,3 +1130,7 @@ rescrobbled-git
 
 # Issue 2388
 lemurs-git
+
+# Issue 2390
+gnome-shell-extension-gsconnect
+gnome-shell-extension-gsconnect-git
