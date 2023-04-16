@@ -1992,6 +1992,9 @@ wmenu
 # Issue 2365
 waterfox-g-bin
 
+# Issue 2379
+python-fangfrisch
+
 # Issue 2380
 python-jaconv
 python-pykakasi
