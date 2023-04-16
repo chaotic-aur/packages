@@ -1991,3 +1991,10 @@ wmenu
 
 # Issue 2365
 waterfox-g-bin
+
+# Issue 2380
+python-jaconv
+python-pykakasi
+
+# Issue 2381
+python-syncedlyrics
