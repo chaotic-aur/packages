@@ -147,11 +147,10 @@ gnome-shell-extension-gnome-ui-tune-git
 gnome-shell-extension-pop-shell-git
 kali-themes
 ksmoothdock
-kvantum-theme-layan-git
 kvantum-theme-matcha-git
 kvantum-theme-vimix-git
 layan-gtk-theme-git
-layan-kde-git
+layan-kde-git:https://aur.archlinux.org/layan-kde-git.git # layan-kde-git kvantum-theme-layan-git
 loginized
 matcha-gtk-theme-git
 mcmojave-circle-icon-theme-git

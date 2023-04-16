@@ -10,7 +10,7 @@ arch-deployer-git
 babl-git # (dep gimp-git)
 brave-nightly-bin
 btop-git
-cachyos-ananicy-rules
+cachyos-ananicy-rules # ananicy-rules
 catch2-git # (dep waybar-hyprland-git)
 cfs-zen-tweaks
 chkrootkit
