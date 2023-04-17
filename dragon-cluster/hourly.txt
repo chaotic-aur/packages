@@ -1134,6 +1134,9 @@ smtube
 # Issue 2388
 lemurs-git
 
+# Issue 2389
+gnome-shell-extension-blur-my-shell
+
 # Issue 2390
 gnome-shell-extension-gsconnect
 gnome-shell-extension-gsconnect-git
