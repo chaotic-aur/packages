@@ -900,7 +900,7 @@ vala0.44 # (dep libunity)
 vala0.52 # (dep libunity)
 
 # Issue 1341
-rofi-lbonn-wayland
+rofi-lbonn-wayland-git
 
 # Issue 1342
 otf-manjari
