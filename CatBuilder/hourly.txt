@@ -1,6 +1,7 @@
 alvr
 android-studio-canary
 epson-inkjet-printer-escpr2
+gajim-git
 google-chrome-beta
 hotspot
 kddockwidgets # (dep hotspot)
@@ -11,6 +12,8 @@ rustc-demangle
 insomnia
 libreswan
 openswan
+python-nbxmpp-git
+python-omemo-dr-git
 tidal-hifi-bin
 tor-router
 nvidia-vaapi-driver-git
