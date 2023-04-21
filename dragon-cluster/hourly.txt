@@ -1140,3 +1140,6 @@ gnome-shell-extension-blur-my-shell
 # Issue 2390
 gnome-shell-extension-gsconnect
 gnome-shell-extension-gsconnect-git
+
+# Issue 2396
+systemd-manager-git
