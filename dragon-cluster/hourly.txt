@@ -553,6 +553,9 @@ generic-monitor-plugin-git:https://aur.archlinux.org/generic-monitor-plugin-git.
 vala-panel-sntray-git
 vala-panel-appmenu-registrar
 
+# Issue 1706
+vdhcoapp-git
+
 # Issue 1707
 warp
 
