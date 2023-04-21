@@ -1592,7 +1592,10 @@ zotero-bin
 yt-dlp-git
 
 # Issue 1585
-system76-power
+system76-acpi-dkms # (dep system76-power)
+system76-dkms # (dep system76-power)
+system76-io-dkms # (dep system76-power)
+system76-power # (dep pop-launcher)
 
 # Issue 1596
 dxvk-async-git
