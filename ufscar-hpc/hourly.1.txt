@@ -1607,6 +1607,9 @@ powershell-bin
 # Issue 2349
 vazirmatn-fonts
 
+# Issue 2351
+adw-gtk3
+
 # Issue 2357
 edex-ui-bin
 
