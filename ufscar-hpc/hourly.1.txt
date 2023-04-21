@@ -1516,6 +1516,14 @@ notesnook-bin
 # Issue 2102
 xkcdpass
 
+# Issue 2104
+ttf-courier-prime # (dep fonts-meta-base)
+ttf-heuristica # (dep fonts-meta-base)
+fonts-meta-base # (dep fonts-meta-extended-lt)
+ttf-gelasio-ib # (dep fonts-meta-extended-lt)
+ttf-impallari-cantora # (dep fonts-meta-extended-lt)
+fonts-meta-extended-lt
+
 # Issue 2115
 xsudo-git
 
