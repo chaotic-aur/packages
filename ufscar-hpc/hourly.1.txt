@@ -634,11 +634,11 @@ gnome-shell-extension-material-shell-git
 
 # Issue 464
 ttf-google-fonts-git
-ttf-merriweather # (dep ttf-google-fonts-git)
-ttf-merriweather-sans # (dep ttf-google-fonts-git)
-ttf-oswald # (dep ttf-google-fonts-git)
-ttf-quintessential # (dep ttf-google-fonts-git)
-ttf-signika # (dep ttf-google-fonts-git)
+ttf-merriweather # (dep ttf-google-fonts-git fonts-meta-extended-lt)
+ttf-merriweather-sans # (dep ttf-google-fonts-git fonts-meta-extended-lt)
+ttf-oswald # (dep ttf-google-fonts-git fonts-meta-extended-lt)
+ttf-quintessential # (dep ttf-google-fonts-git fonts-meta-extended-lt)
+ttf-signika # (dep ttf-google-fonts-git fonts-meta-extended-lt)
 
 # Issue 465
 imhex
