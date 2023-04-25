@@ -21,6 +21,8 @@ qlog-git
 goocanvas2  # for gpredict
 gpredict
 
+browsh
+
 # Pedro
 android-sdk-platform-tools
 android-studio-launcher
