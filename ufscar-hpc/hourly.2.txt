@@ -233,8 +233,6 @@ python39
 ## NEEDED FOR GARUDA
 # Emulators
 #regen broken deps (lib32-libffi5)
-anbox-git
-anbox-image-gapps-magisk # (dep anbox-git)
 antimicrox
 cemu
 citra-canary-git
@@ -252,13 +250,11 @@ mednaffe
 pcsxr
 pegasus-frontend-git
 play-emu-git
-properties-cpp # (dep anbox-git)
 python-node-semver # (dep conan)
 python-patch-ng # (dep conan)
 python-pluginbase # (dep conan)
 python-pysdl2 # (dep m64py tauon-music-box)
 sameboy
-sdbus-cpp # (dep anbox-git)
 xemu-git
 yuzu-mainline-git
 

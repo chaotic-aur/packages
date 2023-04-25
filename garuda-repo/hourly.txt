@@ -14,7 +14,6 @@ timeshift-support:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/time
 
 # Metapkg
 alsa-support:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/alsa-support.git
-anbox-support:https://gitlab.com/garuda-linux/themes-and-settings/settings/anbox-support.git
 asian-fonts:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/asian-fonts.git
 bluetooth-support:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/bluetooth-support.git
 connman-support:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/connman-support.git

@@ -127,12 +127,10 @@ lib32-nvidia-390xx-utils
 lib32-nvidia-470xx-utils
 lib32-opencl-nvidia-390xx
 lib32-opencl-nvidia-470xx
-libcpufeatures-git # (dep anbox-git)
 libinput-gestures
 libinput_gestures_qt
 libpamac-aur
 libxnvctrl-390xx
-lxc-git # (dep anbox-git)
 memavaild
 menulibre
 mkinitcpio-openswap
