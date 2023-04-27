@@ -166,6 +166,9 @@ gtkcord4
 python-wxpython-dev # (dep grass)
 grass
 
+# oldrocker99 on forum
+aqualung
+
 # waeking on forum
 opensnitch-ebpf-module
 
