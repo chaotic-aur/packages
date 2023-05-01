@@ -37,7 +37,6 @@ kwin-effects-sliding-notifications
 kwin-effects-yet-another-magic-lamp
 kwin-scripts-krohnkite-git
 
-
 # GNOME
 # Nothing as of now
 

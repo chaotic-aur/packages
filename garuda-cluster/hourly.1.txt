@@ -9,6 +9,7 @@ gitkraken
 google-chrome
 jdownloader2
 jitsi-meet-desktop
+katawa-shoujo-bin
 mendeleydesktop-bundled
 ms-office-online
 onlyoffice-bin
