@@ -203,3 +203,6 @@ php82
 
 # Issue 946
 graphite-gtk-theme-git
+
+# Issue 2078
+thunderbird-beta-i18n:https://aur.archlinux.org/thunderbird-beta-i18n.git
