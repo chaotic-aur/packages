@@ -77,7 +77,6 @@ wlsunset
 wob
 
 # Wayfire
-wayfire-desktop-git
 wayfire-plugins-extra
 wayfire
 wcm

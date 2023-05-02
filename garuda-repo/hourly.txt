@@ -33,6 +33,7 @@ virt-manager-meta:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/virt
 virtualbox-meta:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/virtualbox-meta.git
 wine-meta:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/wine-meta.git
 zdummy-vlkdrv:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/zdummy-vlkdrv.git
+wayfire-desktop:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/wayfire-desktop.git
 
 # Fixed version settings
 garuda-bash-config:https://gitlab.com/garuda-linux/themes-and-settings/settings/garuda-bash-config.git
