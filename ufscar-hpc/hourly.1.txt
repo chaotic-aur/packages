@@ -1627,6 +1627,9 @@ ripcord
 # Issue 2413
 mullvad-browser-bin
 
+# Issue 2242
+soundcloud-nativefier
+
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
 
