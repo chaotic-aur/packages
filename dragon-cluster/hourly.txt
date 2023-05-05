@@ -403,12 +403,6 @@ youtube-search-python # (dep ytmdl)
 python-simber # (dep ytmdl)
 ytmdl
 
-# Issue 1599
-blackbox-terminal-git
-libadwaita-git # (dep blackbox-terminal-git)
-libmarble-git # (dep blackbox-terminal-git)
-vte4-git
-
 # Issue 1606
 whatsie-git
 
@@ -822,9 +816,6 @@ cobang
 # Issue 1979
 decoder
 
-# Issue 1982
-kasts
-
 # Issue 1983
 corrosion-git # (dep pikasso-git)
 pikasso-git
@@ -915,6 +906,9 @@ icon-library
 
 # Issue 2113
 dendrite
+
+# Issue 2116
+blackbox-terminal
 
 # Issue 2118
 rsync-reflink

@@ -945,9 +945,6 @@ libva-intel-driver-g45-h264
 libcmrt # (dep intel-hybrid-codec-driver)
 intel-hybrid-codec-driver
 
-# Issue 1423
-limine
-
 # Issue 1435
 apple-fonts
 
@@ -1075,9 +1072,6 @@ session-desktop-bin
 
 # Issue 1556
 lazydocker
-
-# Issue 1557
-navi
 
 # Issue 1558
 crazydiskinfo
@@ -1637,7 +1631,6 @@ mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
 ## Lost & found
 anaconda
 fluent-reader
-fnott
 java-openjdk-ea-bin
 telegram-desktop-bin-dev
 ytfzf-git
