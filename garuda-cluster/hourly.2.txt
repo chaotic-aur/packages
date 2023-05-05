@@ -90,7 +90,6 @@ wlogout
 gestures
 gtkhash
 mugshot
-python-pyparted # (dep mugshot)
 
 
 ## Further needed applications
