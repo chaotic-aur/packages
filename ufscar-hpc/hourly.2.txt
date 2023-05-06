@@ -121,7 +121,6 @@ python-catalogue # (dep python-spacy)
 python-langcodes # (dep python-spacy)
 python-multipledispatch # (dep python-pyrr)
 python-murmurhash # (dep python-spacy)
-python-pathlib # (dep python-spacy)
 python-plac # (dep python-spacy)
 python-preshed # (dep python-spacy)
 python-spacy
@@ -648,7 +647,6 @@ tutanota-desktop-bin
 
 # Issue 704
 python-httpx-socks
-python-python_socks
 searx-git
 
 # Issue 707
@@ -1066,15 +1064,10 @@ thunarx-python # (dep insync-thunar)
 qps
 
 # Issue 953
-autokey
-autokey-common
-autokey-gtk
-autokey-qt
+autokey:https://aur.archlinux.org/autokey.git # autokey-{common,gtk,qt}
 
 # Issue 960
 anki
-python-mypy-protobuf # (dep anki)
-python-springcase # (dep anki)
 
 # Issue 964
 rapidyaml-git # (dep pcsx2-git, also creates python-rapidyaml-git)
@@ -1367,7 +1360,7 @@ papirus-libreoffice-theme
 sunshine
 
 # Issue 1151
-kde-rounded-corners
+kwin-effect-rounded-corners-git
 mutter-rounded
 
 # Issue 1152
@@ -1429,11 +1422,6 @@ sirula-git
 
 # Issue 1226
 sioyek
-
-# Issue 1227
-python-cleo-git # (dep python-peotry-git)
-python-poetry-core-git # (dep python-peotry-git)
-python-poetry-git
 
 # Issue 1244
 video-trimmer

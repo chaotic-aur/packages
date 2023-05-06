@@ -1111,7 +1111,8 @@ doomrunner
 pcem
 
 # Issue 2374
-uuidperl-crypt-rijndael
+uuid
+perl-crypt-rijndael
 perl-net-arp
 perl-io-stty
 perl-x11-guitest
