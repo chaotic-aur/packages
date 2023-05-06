@@ -206,3 +206,6 @@ graphite-gtk-theme-git
 
 # Issue 2078
 thunderbird-beta-i18n:https://aur.archlinux.org/thunderbird-beta-i18n.git
+
+# Issue 2400
+php73:https://aur.archlinux.org/php73.git
