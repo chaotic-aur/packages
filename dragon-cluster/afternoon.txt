@@ -15,6 +15,7 @@ linux-amd
 
 # FGD on forum
 linux-amd-znver2
+linux-amd-znver3
 
 # Issue 318
 linux-next-git
