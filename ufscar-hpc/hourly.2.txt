@@ -601,6 +601,7 @@ python-pychromecast # (dep photoqt)
 bluemail
 
 # Issue 668
+pnpm # (dep ledger-live ledger-udev)
 haguichi
 ledger-live
 ledger-udev # (dep ledger-live)
