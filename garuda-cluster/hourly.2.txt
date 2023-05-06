@@ -97,6 +97,7 @@ mugshot
 7-zip
 ananicy-cpp
 ananicy-rules-git # (dep ananicy-cpp)
+apprise
 archlinux-appstream-data-pamac
 auto-cpufreq
 bluetooth-autoconnect
@@ -151,8 +152,6 @@ paru
 plymouth-git
 preload
 prelockd
-python-apprise
-python-dataclasses # (dep python-apprise)
 python-py3nvml # (dep optimus-manager-git)
 rate-mirrors
 systemd-guest-user

@@ -331,7 +331,6 @@ libopenmpt-svn
 pocketsphinx # (dep subtitlecomposer subtitlecomposer-git)
 rockchip-mpp
 shine
-sphinxbase # (dep pocketsphinx subtitlecomposer subtitlecomposer-git)
 uavs3d-git
 vo-amrwbenc
 xavs
