@@ -103,9 +103,6 @@ mhwd-nvidia
 mhwd-nvidia-390xx
 mhwd-nvidia-470xx
 
-# Other things
-latte-dock:https://gitlab.com/garuda-linux/packages/other/latte-dock.git
-
 ## Garuda GitLab PKGBUILDS
 # Base theming & applications
 calamares-tools:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/calamares-tools.git
