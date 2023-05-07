@@ -114,7 +114,6 @@ nqp
 nteract-bin
 openxray
 popura-git
-powder-toy-git
 pup
 python-blis # (dep python-spacy)
 python-catalogue # (dep python-spacy)
@@ -943,11 +942,6 @@ targetcli-fb
 # Issue 878
 tblock
 
-# Issue 879
-cef-minimal # (dep obs-hevc-vaapi-git)
-obs-hevc-vaapi-git
-vlc-luajit # (dep obs-hevc-vaapi-git)
-
 # Issue 880
 wired
 
@@ -972,9 +966,6 @@ sardi-icons
 # Issue 894
 brisk-menu
 
-# Issue 895
-quassel-core-lighter-git
-
 # Issue 896
 libreddit-git
 
@@ -986,9 +977,6 @@ grub2-signing-extension
 
 # Issue 901
 losslesscut-bin
-
-# Issue 904
-obs-nvfbc
 
 # Issue 905
 shim-signed
