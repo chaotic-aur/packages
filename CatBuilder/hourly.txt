@@ -1,7 +1,6 @@
 alvr
 android-studio-canary
 epson-inkjet-printer-escpr2
-gajim-git
 google-chrome-beta
 hotspot
 kddockwidgets # (dep hotspot)

@@ -108,7 +108,6 @@ slack-electron
 spirv-cross # (mpv-full-git dependency)
 spotify-qt
 swayfire-git
-steinberg-asio-sdk # (wineasio-git dependency)
 subtitleedit
 tor-browser
 ttf-borg-sans-mono
