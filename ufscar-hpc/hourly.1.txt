@@ -1575,9 +1575,6 @@ chatgpt-desktop-bin
 # Issue 2236
 floorp
 
-# Issue 2242
-soundcloud-nativefier
-
 # Issue 2251
 micromamba
 termcolor # (dep micromamba)
@@ -1623,6 +1620,10 @@ ripcord
 
 # Issue 2413
 mullvad-browser-bin
+
+# Issue 2422
+soundcloud-nativefier
+
 
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
