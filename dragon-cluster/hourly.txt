@@ -1135,6 +1135,9 @@ gnome-shell-extension-gsconnect-git
 # Issue 2396
 systemd-manager-git
 
+# Issue 2403
+cargo-sweep
+
 # Issue 2407
 simplescreenrecorder
 
