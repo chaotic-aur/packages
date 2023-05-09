@@ -1624,6 +1624,9 @@ mullvad-browser-bin
 # Issue 2422
 soundcloud-nativefier
 
+# Issue 2437
+blesh
+
 
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
