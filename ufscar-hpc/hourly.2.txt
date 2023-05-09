@@ -1982,5 +1982,10 @@ plymouth-themes-adi1090x-pack2-git:https://aur.archlinux.org/plymouth-themes-adi
 plymouth-themes-adi1090x-pack3-git:https://aur.archlinux.org/plymouth-themes-adi1090x-pack3-git.git
 plymouth-themes-adi1090x-pack4-git:https://aur.archlinux.org/plymouth-themes-adi1090x-pack4-git.git
 
+# Issue 2421
+perl-encode-detect # (dep webmin)
+perl-authen-pam # (dep webmin)
+webmin
+
 # Issue 2450
 rtl8821cu-morrownr-dkms-git
