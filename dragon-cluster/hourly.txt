@@ -1053,6 +1053,9 @@ armcord-git
 # Issue 2282
 jellyfin-media-player
 
+# Issue 2291
+rome
+
 # Issue 2295
 xorgxrdp
 
@@ -1134,6 +1137,9 @@ gnome-shell-extension-gsconnect-git
 
 # Issue 2396
 systemd-manager-git
+
+# Issue 2401
+2bwm-git
 
 # Issue 2403
 cargo-sweep
