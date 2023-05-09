@@ -1135,6 +1135,9 @@ gnome-shell-extension-gsconnect-git
 # Issue 2396
 systemd-manager-git
 
+# Issue 2407
+simplescreenrecorder
+
 # Issue 2410
 gnome-x11-gesture-daemon # (dep gnome-gesture-improvements)
 gnome-gesture-improvements
