@@ -5,6 +5,19 @@ title: "[Bug] "
 body:
   - type: textarea
     attributes:
+      label: "Affected Package"
+      description: "Link to the package base in the AUR."
+      placeholder: "[PackageNameHere](https://aur.archlinux.org/pkgbase/packagenamehere)"
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: "Latest chaotic version"
+      placeholder: "`v0.0.0.r0.gc0ffec0ffe`"
+    validations:
+      required: true
+  - type: textarea
+    attributes:
       label: "What happens?"
       description: "This is the place to describe what's happening.
       </br> If applicable, include steps to replicate."
