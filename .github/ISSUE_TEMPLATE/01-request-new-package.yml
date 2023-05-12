@@ -1,0 +1,86 @@
+name: "👶 Request to add new package"
+description: "Request to add new package"
+labels: ["request:new-pkg"]
+title: "[Request] "
+body:
+  - type: textarea
+    attributes:
+      label: "Requested Package:"
+      description: "Link to the package base in the AUR.  Include any known AUR dependencies."
+      placeholder: "[PackageNameHere](https://aur.archlinux.org/pkgbase/packagenamehere)"
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: "Purpose and Use?"
+      description: "What does the package do?  How is it used?  How is it useful?"
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: "Benefits?"
+      description: "What specific benefits does this package have over other packages?"
+      placeholder: "This is important for cvs/git packages."
+  - type: textarea
+    attributes:
+      label: "Builds in clean chroot?"
+      description: "https://wiki.archlinux.org/title/DeveloperWiki:Building_in_a_clean_chroot"
+      placeholder: "What commands did you use to build the package?
+
+        Describe special procedures, if any."
+  - type: input
+    attributes:
+      label: "Copyright License?"
+      description: "Link to the EULA if there is one."
+    validations:
+      required: true
+  - type: dropdown
+    attributes:
+      label: "Expected interest"
+      description: "How many others do you expect would be interested in this package?
+      </br> Try to be accurate.  Packages may be dropped if they don't meet expectations."
+      options:
+        - "Only me."
+        - "Some."
+        - "Many."
+        - "Less than half."
+        - "More than half."
+        - "Everyone."
+    validations:
+      required: true
+  - type: dropdown
+    attributes:
+      label: "Prior availability?"
+      description: "Is this package already available in Arch or Chaotic AUR?
+      </br> Check with: `pacman -Ss <pkgname>`"
+      options:
+        - "I don't know"
+        - "Yes"
+        - "No"
+    validations:
+      required: true
+  - type: dropdown
+    attributes:
+      label: "Is this request unique?"
+      description: "https://github.com/chaotic-aur/packages/issues
+      </br> Do not answer without searching first."
+      options:
+        - "I don't know"
+        - "No"
+        - "Yes"
+    validations:
+      required: true
+  - type: dropdown
+    attributes:
+      label: "Is the package banned?"
+      description: "https://github.com/chaotic-aur/packages#banished-and-rejected-packages-
+      </br> Do not answer without checking first."
+      options:
+        - "I don't know"
+        - "No"
+        - "Yes"
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: "More information"

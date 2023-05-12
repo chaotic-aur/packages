@@ -1,0 +1,46 @@
+name: "🏗️ Request to rebuild package"
+description: "Request to rebuild package"
+labels: ["request:rebuild-pkg"]
+title: "[Rebuild] "
+body:
+  - type: textarea
+    attributes:
+      label: "Packages to rebuild"
+      description: "Link to the package bases in the AUR."
+      placeholder: "[PackageNameHere](https://aur.archlinux.org/pkgbase/packagenamehere)
+
+        Please ensure that PKGBUILD has been updated before requesting rebuild."
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: "Latest chaotic version"
+      placeholder: "`v0.0.0.r0.gc0ffec0ffe`"
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: "Reason for rebuild"
+      description: "Why does this package need to be rebuilt?"
+      placeholder: "Broken?  Missing?  Outdated?  Etc.
+
+        Include details to aid troubleshooting.
+
+        Include latest upstream version for outdated packages."
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: "Logs for the latest build, if available"
+      description: "Find it here: https://builds.garudalinux.org/repos/chaotic-aur/logs/"
+      placeholder: "[some-package.log](https://builds.garudalinux.org/repos/chaotic-aur/logs/some-package.log)"
+  - type: textarea
+    attributes:
+      label: "Builds in clean chroot?"
+      description: "https://wiki.archlinux.org/title/DeveloperWiki:Building_in_a_clean_chroot"
+      placeholder: "What commands did you use to build the package?
+
+        Describe special procedures, if any."
+  - type: textarea
+    attributes:
+      label: "More information"
