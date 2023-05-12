@@ -40,6 +40,10 @@ kwin-scripts-krohnkite-git
 # GNOME
 # Nothing as of now
 
+# Hyprland
+wlr-randr-git
+wpaperd
+
 # i3
 azote
 flashfocus-git
