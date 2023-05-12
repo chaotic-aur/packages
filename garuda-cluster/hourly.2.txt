@@ -43,6 +43,7 @@ kwin-scripts-krohnkite-git
 # Hyprland
 wlr-randr-git
 wpaperd
+xdg-desktop-portal-hyprland-git
 
 # i3
 azote
