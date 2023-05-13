@@ -1,4 +1,4 @@
-## Chaotic 
+## Chaotic
 # Lets put this here for now (due to signature upload failure)
 firefox-esr
 

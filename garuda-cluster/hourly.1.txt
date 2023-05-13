@@ -28,7 +28,7 @@ wps-office-fonts
 wps-office-mime
 wps-office-mime-cn
 xdman
-yozo-office
+yozo-office:https://aur.archlinux.org/yozo-office.git # (yozo-office-templates)
 yozo-office-fonts
 yuzu-mainline-bin
 zoom
@@ -109,7 +109,7 @@ caffeine
 nautilus-pdf-tools-git:https://aur.archlinux.org/nautilus-pdf-tools-git.git # {nautilus,nemo,caja}-pdf-tools-git
 ckbcomp
 debtap
-droidcam
+droidcam:https://aur.archlinux.org/droidcam.git # (v4l2loopback-dc-dkms)
 fotokilof
 ircd-hybrid
 isoimagewriter
@@ -151,7 +151,7 @@ ksmoothdock
 kvantum-theme-matcha-git
 kvantum-theme-vimix-git
 layan-gtk-theme-git
-layan-kde-git:https://aur.archlinux.org/layan-kde-git.git # layan-kde-git kvantum-theme-layan-git
+layan-kde-git:https://aur.archlinux.org/layan-kde-git.git # (layan-kde-git kvantum-theme-layan-git)
 loginized
 matcha-gtk-theme-git
 mcmojave-circle-icon-theme-git

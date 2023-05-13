@@ -109,7 +109,7 @@ libqalculate-git
 marble-git
 okular-git
 partitionmanager-git:https://github.com/chaotic-aur/pkgbuild-partitionmanager-git.git
-phonon-qt5-git:https://github.com/chaotic-aur/pkgbuild-phonon-git.git
+phonon-git:https://github.com/chaotic-aur/pkgbuild-phonon-git.git # phonon-qt5-git
 plasma5-applets-latte-separator
 plasma5-applets-latte-sidebar-button
 plasma5-applets-latte-spacer
