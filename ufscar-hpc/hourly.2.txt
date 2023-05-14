@@ -1778,6 +1778,7 @@ gradience # (dep gradience-plugins)
 
 # Issue 1942
 python-cssutils # (dep gradience-git)
+python-libsass # (dep gradience-git)
 gradience-git
 
 # Issue 1946
