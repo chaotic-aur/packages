@@ -56,7 +56,6 @@ paru-git:https://github.com/chaotic-aur/pkgbuild-paru-git.git
 plasma5-wallpapers-wallpaper-engine
 python-codegen
 python-gbinder
-python-pyclip
 python-simplediff
 qbittorrent-enhanced-git
 qemu-git
@@ -490,6 +489,7 @@ glaxnimate-git
 # Issue 1692
 noto-fonts-emoji-flag-git
 python-nototools # (dep noto-fonts-emoji-flag-git)
+python-pyclip # (dep python-nototools)
 
 # Issue 1693
 libcprime # (dep corepdf corekeyboard coreimage corepad corepaint)
