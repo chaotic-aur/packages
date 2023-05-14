@@ -1616,6 +1616,9 @@ ripcord
 # Issue 2413
 mullvad-browser-bin
 
+# Issue 2418
+openutau
+
 # Issue 2422
 soundcloud-nativefier
 
