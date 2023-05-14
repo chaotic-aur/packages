@@ -9,7 +9,7 @@ arch-deployer-git
 babl-git # (dep gimp-git)
 brave-nightly-bin
 btop-git
-cachyos-ananicy-rules # ananicy-rules
+cachyos-ananicy-rules # (ananicy-rules)
 catch2-git # (dep waybar-hyprland-git)
 cfs-zen-tweaks
 chkrootkit
@@ -82,7 +82,7 @@ whoogle-git
 wlroots-eglstreams-git
 woeusb-ng
 xdg-ninja-git
-xorg-server-git
+xorg-server-git:https://aur.archlinux.org/xorg-server-git.git
 zenmonitor3-git
 
 # Spotdl
@@ -192,7 +192,7 @@ goodvibes
 goodvibes-git
 
 # Issue 928
-python-pynput # dep rustdesk-nightly
+python-pynput # (dep rustdesk-nightly)
 rustdesk-nightly # (dep remmina-plugin-rustdesk)
 
 # Issue 1014
@@ -523,12 +523,13 @@ skeuos-gtk
 
 # Issue 1705
 vala-panel
+vala-panel-git
 vala-panel-applets-gpl-git:https://aur.archlinux.org/vala-panel-applets-gpl-git.git
-vala-panel-appmenu:https://aur.archlinux.org/vala-panel-appmenu.git
 vala-panel-appmenu-jayatana-git
-generic-monitor-plugin-git:https://aur.archlinux.org/generic-monitor-plugin-git.git
-vala-panel-sntray-git
 vala-panel-appmenu-registrar
+vala-panel-appmenu:https://aur.archlinux.org/vala-panel-appmenu.git
+vala-panel-sntray-git:https://aur.archlinux.org/vala-panel-sntray-git.git # (sntray-plugin-common-git mate-panel-sntray-git xfce4-panel-sntray-git vala-panel-sntray-git budgie-sntray-git)
+generic-monitor-plugin-git:https://aur.archlinux.org/generic-monitor-plugin-git.git # (mate-panel-genmon-git xfce4-panel-genmon-ng-git vala-panel-genmon-git budgie-genmon-git)
 
 # Issue 1706
 vdhcoapp-git
@@ -753,7 +754,7 @@ lightspark-git
 endeavour-git
 
 # Issue 1944
-vala-panel-appmenu-xfce-git
+vala-panel-appmenu-xfce-git:https://aur.archlinux.org/vala-panel-appmenu-xfce-git.git # (vala-panel-appmenu-common-git) vala-panel-appmenu-mate-git vala-panel-appmenu-xfce-git vala-panel-appmenu-valapanel-git vala-panel-appmenu-budgie-git
 
 # Issue 1945
 thunar-shares-plugin

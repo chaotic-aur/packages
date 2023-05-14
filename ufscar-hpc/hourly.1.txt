@@ -2,9 +2,9 @@
 ## Paulo
 bluespec-git
 --       # need this barrier for other bluespec packages below
-itcl3    # for bluespec-bdw-git
-tk-itk3  # for bluespec-bdw-git
-gtkwave-tcl  # optdepends for bluespec-bdw-git
+itcl3    # (dep bluespec-bdw-git)
+tk-itk3  # (dep bluespec-bdw-git)
+gtkwave-tcl  # (optdep bluespec-bdw-git)
 tk-itk   # I don't have any use for this, but since we have its old version...
 airspy-git
 airspyhf-git
@@ -99,7 +99,7 @@ obs-rtspserver
 obs-streamfx
 obs-vkcapture-git
 oneko
-pipewire-common-git
+pipewire-common-git:https://aur.archlinux.org/pipewire-common-git.git # (gst-plugin-pipewire-common-git pipewire-common-*-git)
 podman-compose-git
 pw-viz
 r8125-dkms
@@ -217,7 +217,7 @@ themix-plugin-base16-git
 themix-theme-arc-git
 themix-theme-materia-git
 themix-theme-oomox-git
-oomox-qt-styleplugin-git:https://aur.archlinux.org/oomox-qt-styleplugin-git.git # oomox-qt{5,6}-styleplugin-git
+oomox-qt-styleplugin-git:https://aur.archlinux.org/oomox-qt-styleplugin-git.git # (oomox-qt{5,6}-styleplugin-git)
 
 # Programming (Solomon)
 clion-eap
@@ -478,10 +478,6 @@ zestginx
 # Issue 345
 systemd-cron-next-git
 
-# Issue 376
-vala-panel-sntray-git
-vala-panel-git # (dep vala-panel-sntray-git)
-
 # Issue 374
 quixel-bridge
 
@@ -504,7 +500,7 @@ dwm-git
 st # (dep dwm)
 
 # Issue 385
-linux-firmware-git
+linux-firmware-git:https://aur.archlinux.org/linux-firmware-git.git # (amd-ucode-git linux-firmware-*-git)
 
 # Issue 388
 disman-kwinft # (dep)
@@ -709,7 +705,7 @@ newaita-icons-git
 davinci-resolve-studio
 
 # Issue 490
-libsearpc # (dep seadrive-daemon)
+libsearpc # (dep seafile)
 seafile
 seafile-client
 
@@ -926,7 +922,7 @@ akvcam-dkms
 iriunwebcam-bin
 
 # Issue 1382
-webstorm
+webstorm:https://aur.archlinux.org/webstorm.git # (webstorm-jre)
 
 # Issue 1387
 qmplay2-git

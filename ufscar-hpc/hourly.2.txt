@@ -8,17 +8,17 @@ prjtrellis-db-git
 nextpnr-git
 prjapicula
 prjoxide-git
-python-textx  # for prjxray-git
-python-fasm-git  # for prjxray-git
+python-textx  # (dep prjxray-git)
+python-fasm-git  # (dep prjxray-git)
 prjxray-db-git
-prjxray-git:https://aur.archlinux.org/prjxray-git.git # prjxray-tools-git python-prjxray-git
+prjxray-git:https://aur.archlinux.org/prjxray-git.git # (prjxray-tools-git python-prjxray-git)
 yosys-git
 
 # Ham radio stuff
-hamradio-menus  # for trustedqsl, gpredict
+hamradio-menus  # (dep trustedqsl, gpredict)
 trustedqsl
 qlog-git
-goocanvas2  # for gpredict
+goocanvas2  # (dep gpredict)
 gpredict
 
 browsh
@@ -185,7 +185,7 @@ wezterm-git
 # vim-extension
 nvim-yarp-git
 vim-coc-git
-vim-coc-clangd-git 
+vim-coc-clangd-git
 vim-coc-css-git
 vim-coc-deno-git
 vim-coc-diagnostic-git
@@ -206,10 +206,10 @@ vim-coc-pyright-git
 vim-coc-rust-analyzer-git
 vim-coc-sh-git
 vim-coc-snippets-git
-vim-coc-sources-git # vim-coc-{dictionary,emoji,syntax,tag,word}-git
+vim-coc-sources-git # (vim-coc-{dictionary,emoji,syntax,tag,word}-git)
 vim-coc-tabnine-git
 vim-coc-tsserver-git
-vim-coc-vetur-git 
+vim-coc-vetur-git
 vim-coc-vimlsp-git
 vim-coc-yaml-git
 vim-coc-zsh-git
@@ -235,7 +235,7 @@ python39
 antimicrox
 cemu
 citra-canary-git
-citra-git:https://aur.archlinux.org/citra-git.git # citra-git citra-qt-git
+citra-git:https://aur.archlinux.org/citra-git.git # (citra-git citra-qt-git)
 conan # (dep yuzu-mainline-git)
 crossover
 duckstation-git
@@ -605,7 +605,7 @@ ledger-udev # (dep ledger-live)
 logmein-hamachi # (dep haguichi)
 
 # Issue 675
-lmms-git 
+lmms-git
 
 # Issue 678
 mpv-vapoursynth-git
@@ -674,7 +674,7 @@ qview
 opera-beta-ffmpeg-codecs
 
 # Issue 720
-adwaita-icon-theme-git
+adwaita-icon-theme-git:https://aur.archlinux.org/adwaita-icon-theme-git.git # (adwaita-icon-theme-git adwaita-cursors-git)
 
 # Issue 721
 kotatogram-desktop
@@ -690,7 +690,7 @@ qogir-gtk-theme
 # Issue 725
 dialect
 python-googletrans-git
-python-gtts 
+python-gtts
 
 # Issue 730
 git-fixup-git
@@ -792,7 +792,7 @@ xerces2-java # (dep scilab)
 # Issue 773
 libpdfium-nojs # (dep yacreader)
 libunarr # (dep yacreader)
-yacreader
+yacreader:https://aur.archlinux.org/yacreader.git # (yacreaderlibraryserver)
 
 # Issue 775
 pakka
@@ -839,7 +839,7 @@ gtk-gnutella-git
 gtk-gnutella
 
 # Issue 802
-quassel:https://aur.archlinux.org/quassel.git # quassel-git, etc
+quassel:https://aur.archlinux.org/quassel.git # (quassel-git, etc)
 
 # Issue 803
 fzf-tab-git
@@ -1050,7 +1050,7 @@ thunarx-python # (dep insync-thunar)
 qps
 
 # Issue 953
-autokey:https://aur.archlinux.org/autokey.git # autokey-{common,gtk,qt}
+autokey:https://aur.archlinux.org/autokey.git # (autokey-common autokey-gtk autokey-qt)
 
 # Issue 960
 anki
@@ -1130,8 +1130,7 @@ autofs # (dep freeipa-client freeipa)
 certmonger # (dep freeipa-client freeipa)
 yp-tools # (dep freeipa-client freeipa)
 python-yubico # (dep python-ipalib freeipa)
-freeipa:https://aur.archlinux.org/freeipa.git
-freeipa-client # (-client-common,common,ipaclient,ipalib)
+freeipa:https://aur.archlinux.org/freeipa.git # (freeipa-client, freeipa-client-common, freeipa-common, python-ipaclient, python-ipalib)
 realmd
 
 # Issue 1002
@@ -1796,7 +1795,7 @@ obs-vaapi
 # Issue 1961
 python-srt # (dep simple64)
 discord-game-sdk # (dep simple64)
-vosk-api # (dep simple64)
+vosk-api:https://aur.archlinux.org/vosk-api.git # (dep simple64)
 simple64
 
 # Issue 1981
@@ -1823,7 +1822,7 @@ lunar-client
 
 # Issue 2026
 rubymine
-phpstorm
+phpstorm:https://aur.archlinux.org/phpstorm.git # (phpstorm-jre)
 goland
 dataspell
 
@@ -1913,7 +1912,7 @@ ttf-unifont # (dep ttf-unifont-csur)
 ttf-unifont-csur
 mkbold-mkitalic # (dep bdf-unifont-extra pcf-unifont-extra)
 bdf-unifont-extra
-unifont:https://aur.archlinux.org/unifont.git
+unifont:https://aur.archlinux.org/unifont.git # (pcf-unifont psf-unifont hex-unifont unifont-utils)
 pcf-unifont-extra
 otb-unifont
 
