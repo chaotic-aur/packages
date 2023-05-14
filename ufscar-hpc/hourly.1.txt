@@ -1622,6 +1622,8 @@ soundcloud-nativefier
 # Issue 2437
 blesh
 
+# Issue 2472
+an-anime-game-launcher-bin
 
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
