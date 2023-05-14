@@ -76,6 +76,9 @@ trayscale
 # Issue 2189
 linux-nitrous-fire
 
+# Issue 2397
+cosmic-epoch-git
+
 
 ## Garuda
 # Setup-assistant
