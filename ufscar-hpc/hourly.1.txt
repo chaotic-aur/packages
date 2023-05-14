@@ -1622,6 +1622,12 @@ openutau
 # Issue 2422
 soundcloud-nativefier
 
+# Issue 2428
+morewaita
+
+# Issue 2429
+morewaita-git
+
 # Issue 2437
 blesh
 
