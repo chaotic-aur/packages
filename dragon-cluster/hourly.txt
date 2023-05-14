@@ -1144,3 +1144,6 @@ protonplus
 
 # Issue 2455
 nomacs
+
+# Issue 2476
+migrate
