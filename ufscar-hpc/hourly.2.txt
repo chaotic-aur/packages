@@ -1969,6 +1969,9 @@ plymouth-themes-adi1090x-pack4-git:https://aur.archlinux.org/plymouth-themes-adi
 # Issue 2411
 wrk
 
+# Issue 2420
+wlr-randr
+
 # Issue 2421
 perl-encode-detect # (dep webmin)
 perl-authen-pam # (dep webmin)
