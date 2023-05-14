@@ -1622,6 +1622,9 @@ soundcloud-nativefier
 # Issue 2437
 blesh
 
+# Issue 2441
+decent-sampler-bin
+
 # Issue 2472
 an-anime-game-launcher-bin
 
