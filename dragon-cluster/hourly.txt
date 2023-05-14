@@ -1138,3 +1138,6 @@ simplescreenrecorder
 # Issue 2410
 gnome-x11-gesture-daemon # (dep gnome-gesture-improvements)
 gnome-gesture-improvements
+
+# Issue 2419
+protonplus
