@@ -1980,3 +1980,6 @@ webmin
 
 # Issue 2450
 rtl8821cu-morrownr-dkms-git
+
+# Issue 2483
+uksmd
