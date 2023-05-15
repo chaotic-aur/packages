@@ -672,14 +672,9 @@ phpstorm-eap-jre
 hopper
 
 # Issue 478
-matrix-mirage
-python-blist # (dep matrix-mirage-git)
+matrix-mirage-git
 python-enzyme # (dep subliminal-git)
-python-html-sanitizer # (dep matrix-mirage)
-python-mistune1 # (dep matrix-mirage)
-python-plyer # (dep matrix-mirage)
 python-rarfile # (dep subliminal-git)
-python-simpleaudio # (dep matrix-mirage)
 subliminal-git
 
 # Issue 480
