@@ -1983,3 +1983,6 @@ rtl8821cu-morrownr-dkms-git
 
 # Issue 2483
 uksmd
+
+# Issue 2486
+uksmd-git
