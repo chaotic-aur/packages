@@ -24,7 +24,7 @@ digital
 netlistsvg-git
 tzsp2pcap-git
 guile1.8 # (dep texmacs)
-gr-limesdr-git:https://github.com/chaotic-aur/pkgbuild-gr-limesdr-git.git
+gr-limesdr-git
 gr-foo-git
 gr-ieee802-11-git
 hal-git
@@ -372,9 +372,6 @@ xxd-standalone
 
 # Issue 337
 eclipse-java
-
-# Issue 336
-giara
 
 # Issue 335
 compiz
@@ -726,11 +723,6 @@ bluej
 libvterm-0.1 # (dep neovim-git)
 neovim-git
 
-# Issue 504
-blueprint-compiler-git # (dep gfeeds-git)
-gfeeds-git
-python-syndom-git # (dep gfeeds-git)
-
 # Issue 508
 llvm-proton-bin
 
@@ -759,9 +751,6 @@ spot-client-git
 mint-themes
 mint-x-icons
 mint-y-icons
-
-# Issue 591
-sushi-git
 
 # Issue 592
 biglybt

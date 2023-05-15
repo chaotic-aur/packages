@@ -21,7 +21,7 @@ linux-amd-znver3
 linux-next-git
 
 # Issue 698
-yuzu-git:https://gitlab.com/tallero/yuzu-git-aur.git
+yuzu-git
 
 # Issue 816 / 1361
 firefox-appmenu
