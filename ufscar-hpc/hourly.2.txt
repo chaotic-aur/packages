@@ -117,6 +117,7 @@ popura-git
 pup
 python-blis # (dep python-spacy)
 python-catalogue # (dep python-spacy)
+python-confection # (dep python-thinc)
 python-langcodes # (dep python-spacy)
 python-multipledispatch # (dep python-pyrr)
 python-murmurhash # (dep python-spacy)
@@ -1796,7 +1797,7 @@ obs-vaapi
 # Issue 1961
 python-srt # (dep simple64)
 discord-game-sdk # (dep simple64)
-vosk-api:https://aur.archlinux.org/vosk-api.git # (dep simple64)
+vosk-api:https://aur.archlinux.org/vosk-api.git # (optdep simple64)
 simple64
 
 # Issue 1981
