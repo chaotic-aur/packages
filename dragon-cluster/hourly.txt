@@ -496,8 +496,6 @@ libcprime # (dep corepdf corekeyboard coreimage corepad corepaint)
 corekeyboard
 corepdf
 metronome
-lua-event # (dep metronome-git)
-metronome-git
 health
 image-roll-bin
 g4music
