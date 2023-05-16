@@ -1144,3 +1144,7 @@ nomacs
 
 # Issue 2476
 migrate
+
+# Issue 2490
+systemtap-git # (dep tuned)
+tuned
