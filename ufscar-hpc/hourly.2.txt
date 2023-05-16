@@ -608,9 +608,6 @@ logmein-hamachi # (dep haguichi)
 # Issue 675
 lmms-git
 
-# Issue 678
-mpv-vapoursynth-git
-
 # Issue 680
 mips64-elf-binutils
 
@@ -716,8 +713,8 @@ basilisk-bin
 rider
 
 # Issue 741
-apparmor-git
 celluloid-git
+mpv-vapoursynth-git
 
 # Issue 743
 qtile-git

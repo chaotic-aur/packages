@@ -91,7 +91,7 @@ swiftshader-git
 swift-language-git:https://github.com/chaotic-aur/pkgbuild-swift-language-git
 
 # Issue 1632
-kodi-git
+kodi-git:https://aur.archlinux.org/kodi-git.git
 
 # Issue 2175
 kodi-nexus-git
