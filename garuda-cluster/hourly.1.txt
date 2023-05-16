@@ -38,6 +38,8 @@ linux-wifi-hotspot
 webapp-manager
 
 # Mycroft
+fann # (dep mycroft-core)
+mimic1 # (dep mycroft-core)
 mycroft-core
 mycroft-gui-git
 plasma5-applets-mycroft-git
