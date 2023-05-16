@@ -107,7 +107,6 @@ repoctl
 slack-electron
 spirv-cross # (mpv-full-git dependency)
 spotify-qt
-swayfire-git
 subtitleedit
 tor-browser
 ttf-borg-sans-mono
