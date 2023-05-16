@@ -207,7 +207,7 @@ vim-coc-pyright-git
 vim-coc-rust-analyzer-git
 vim-coc-sh-git
 vim-coc-snippets-git
-vim-coc-sources-git # (vim-coc-{dictionary,emoji,syntax,tag,word}-git)
+vim-coc-sources-git:https://aur.archlinux.org/vim-coc-sources-git.git # (vim-coc-{dictionary,emoji,syntax,tag,word}-git)
 vim-coc-tabnine-git
 vim-coc-tsserver-git
 vim-coc-vetur-git
@@ -992,9 +992,6 @@ superslicer-profiles-git
 
 # Issue 910
 keepassxc-git
-
-# Issue 912
-git-bug-git
 
 # Issue 913
 vimiv-qt

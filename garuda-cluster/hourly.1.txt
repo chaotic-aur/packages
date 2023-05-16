@@ -38,12 +38,9 @@ linux-wifi-hotspot
 webapp-manager
 
 # Mycroft
-fann
-mimic1
 mycroft-core
 mycroft-gui-git
 plasma5-applets-mycroft-git
-python-xdgenvpy
 
 # Librewolf
 librewolf-extension-bitwarden
