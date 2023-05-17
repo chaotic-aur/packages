@@ -166,7 +166,6 @@ libayatana-common # (dep ayatana-*)
 libclc-git # (dep mesa-git)
 libselinux # (dep glib2-selinux)
 libsepol # (dep glib2-selinux)
-lightdm-pantheon-greeter-git
 
 egl-wayland-git
 lib32-libdrm-git
@@ -295,7 +294,6 @@ python-injector # (dep gwe)
 q4wine-git
 qt-solutions-git # (dep q4wine-git)
 rare-git
-replay-sorcery
 reshade-shaders-git
 retroarch-autoconfig-udev-git
 retrolink-git
@@ -500,9 +498,6 @@ neovide-git
 # Issue 566
 mediainfo-gui-qt
 
-# Issue 567
-telephant-git
-
 # Issue 571
 authy
 f2c # (dep meshlab)
@@ -618,7 +613,6 @@ python-protonvpn-nm-lib # (dep protonvpn-gui)
 
 # Issue 684
 openboard
-openboard-git
 
 # Issue 686
 youtube-music-bin
