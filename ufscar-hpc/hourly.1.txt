@@ -468,9 +468,6 @@ ttf-mac-fonts
 ttf-ms-fonts
 rocketchat-desktop
 
-# Issue 372
-zestginx
-
 # Issue 345
 systemd-cron-next-git
 
@@ -858,8 +855,12 @@ dbus-x11
 gnome-shell-extension-dash-to-panel-git
 
 # Issue 1336
+cask-server-git # (dep maui-shell-git)
+maui-core-git # (dep maui-shell-git)
 maui-shell-git
+mauikit-calendar-git # (dep maui-shell-git)
 mauikit-git
+mauiman-git # (dep maui-shell-git)
 
 # Issue 1339
 dee # (dep libunity webwatcher-git)

@@ -836,10 +836,10 @@ libumem-git # (dep imagemagick-full-git)
 imagemagick-full-git
 
 # Issue 2029
+libopenglrecorder # (dep supertuxkart-git)
+mindustry-git
 openttd-git
 simutrans-extended-git
-mindustry-git
-libopenglrecorder # (dep supertuxkart-git)
 supertuxkart-git
 
 # Issue 2036
