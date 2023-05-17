@@ -1,4 +1,4 @@
-alvr
+# alvr
 android-studio-canary
 epson-inkjet-printer-escpr2
 google-chrome-beta
