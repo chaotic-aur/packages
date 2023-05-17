@@ -1397,6 +1397,10 @@ sirula-git
 # Issue 1226
 sioyek
 
+# Issue 1227
+python-poetry-core-git # (dep python-peotry-git)
+python-poetry-git
+
 # Issue 1244
 video-trimmer
 
