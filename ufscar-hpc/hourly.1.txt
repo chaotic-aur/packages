@@ -1615,6 +1615,10 @@ decent-sampler-bin
 # Issue 2472
 an-anime-game-launcher-bin
 
+# Issue 2485
+nouveau-fw
+
+
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
 
