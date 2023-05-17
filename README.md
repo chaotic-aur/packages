@@ -31,7 +31,7 @@ This is a list of packages that we will reject for good reasons:
 
 - **python2**: Has been EOL for a couple of years, and was [removed from Arch repositories](https://archlinux.org/news/removing-python2-from-the-repositories/). Requests for packages that depend on it in any way will be rejected (see [#1958](https://github.com/chaotic-aur/packages/issues/1958)).
 
-
+- **linux-ck**: Two reasons, first our `linux-tkg-*` already includes those bits of optimizations, second there is [repo-ck](https://wiki.archlinux.org/title/Unofficial_user_repositories#repo-ck) with official pre-built binaries for it.
 
 #### Banned due to licensing issues 🛑
 
