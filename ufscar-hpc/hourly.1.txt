@@ -461,7 +461,6 @@ oh-my-zsh-git
 omnisharp-roslyn
 
 # Issue 371
-ly
 multimc5
 spotify-tui
 ttf-mac-fonts

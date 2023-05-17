@@ -1044,9 +1044,6 @@ autokey:https://aur.archlinux.org/autokey.git # (autokey-common autokey-gtk auto
 # Issue 960
 anki
 
-# Issue 964
-rapidyaml-git # (dep pcsx2-git, also creates python-rapidyaml-git)
-
 # Issue 966
 qimgv-git
 
