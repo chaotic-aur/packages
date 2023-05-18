@@ -138,7 +138,6 @@ autotiling
 candy-icons-git
 catppuccin-gtk-theme-mocha
 catppuccin-mocha-grub-theme-git
-catppuccin-wallpapers-git
 flat-remix
 flat-remix-gtk
 fluent-gtk-theme-git
