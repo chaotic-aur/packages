@@ -681,7 +681,7 @@ python-bibtexparser # (dep setzer-git)
 setzer-git
 
 # Issue 484
-multimc-curseforge
+launcher-curseforge-bin
 
 # Issue 485
 pipe-viewer-git
@@ -728,7 +728,7 @@ godot-git:https://github.com/chaotic-aur/pkgbuild-godot-git.git
 ryujinx-git
 
 # Issue 579
-youtube-bin
+youtube
 
 # Issue 585
 exifcleaner-bin

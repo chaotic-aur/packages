@@ -42,7 +42,7 @@ ffmpeg-full
 figma-linux
 foo2zjs-nightly
 glew-egl-glx
-google-cloud-sdk
+google-cloud-cli
 heroku-cli-bin
 hunspell-pt-br
 intelbacklight-git
@@ -1461,9 +1461,6 @@ velox-git
 
 # Issue 1456
 python-chess-git # (dep stockfish-git)
-mongosh-bin # (dep mongodb-bin)
-mongodb-bin # (dep polyglot)
-polyglot # (dep stockfish-git)
 stockfish-git
 
 # Issue 1481
@@ -1924,7 +1921,7 @@ ucon64
 asus-n551-hda-fix
 
 # Issue 2307
-polyglot-winboard-git # (dep fairy-stockfish{-git})
+polyglot-winboard-git # (optdep fairy-stockfish fairy-stockfish-git stockfish-git)
 fairy-stockfish
 fairy-stockfish-git
 
