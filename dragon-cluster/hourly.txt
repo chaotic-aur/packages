@@ -855,8 +855,8 @@ ipfs-desktop
 # Issue 2053
 libretro-mupen64plus-next-git
 
-# Issue 2054
-mesen-x-git
+# Issue 2054, 2080
+mesen2-git
 
 # Issue 2064
 qbittorrent-git
@@ -864,9 +864,6 @@ qbittorrent-git
 # Issue 2079
 zfs-utils-git
 zfs-dkms-git
-
-# Issue 2080
-mesen-sx-git
 
 # Issue 2085
 prboom-plus
@@ -954,9 +951,9 @@ scid
 dragon-drop-git
 
 # Issue 2172
-woof-doom
 dsda-doom
-woof-git
+woof-doom
+woof-doom-git
 
 # Issue 2174
 shattered-pixel-dungeon-git

@@ -120,7 +120,7 @@ find-the-command-git
 firefox-extension-bitwarden
 firefox-extension-flagfox
 firefox-extension-localcdn
-firefox-extension-plasma-integration
+firefox-extension-plasma-integration-bin
 fish-autopair
 flameshot-git
 garuda-downloader-git
@@ -171,12 +171,12 @@ zsync2-git
 8188eu-aircrack-dkms-git
 8188fu-dkms-git
 8188fu-kelebek333-dkms-git
-8192eu-dkms
+8192eu-dkms-git
 r8168-dkms
 realtek-firmware
 rtl8192cu-fixes-git
 rtl88x2bu-dkms-git
-rtl88x2ce-dkms
+rtl88x2ce-dkms-git
 rtl88xxau-aircrack-dkms-git
 rtw88-dkms-git
 rtw89-dkms-git
