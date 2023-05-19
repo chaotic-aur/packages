@@ -301,9 +301,6 @@ adguardhome
 amberol
 amberol-git
 
-# Issue 1414
-openlitespeed
-
 # Issue 1415
 portainer-bin
 
