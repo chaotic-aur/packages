@@ -376,7 +376,6 @@ openbangla-keyboard # Issue 321
 wine-x64 # Issue 330
 winbox64 # Issue 330
 wine-stable # Issue 311
-gdm-plymouth # Issue 401
 
 ## Not building on ufscar
 # Issue 322
@@ -1134,9 +1133,6 @@ firefly-iii
 # Issue 1013
 stacer-git
 
-# Issue 1015
-opendoas-sudo
-
 # Issue 1017
 armorpaint-git
 
@@ -1263,9 +1259,6 @@ graphite-cursor-theme-git
 # Issue 1098
 rpi-imager
 
-# Issue 1100
-papirus-folders-gui
-
 # Issue 1101
 sayonara-player-git
 
@@ -1314,9 +1307,6 @@ jamesdsp-pulse
 
 # Issue 1143
 biglybt-extreme-mod
-
-# Issue 1144
-adwmod-theme-git
 
 # Issue 1146
 emulsion
@@ -1527,9 +1517,6 @@ plasma5-applets-virtual-desktop-bar-git
 # Issue 1571
 zramswap
 
-# Issue 1572
-nsxiv
-
 # Issue 1573
 ff2mpv-native-messaging-host-git
 
@@ -1567,9 +1554,6 @@ flatseal
 
 # Issue 1624
 datagrip
-
-# Issue 1629
-powerdevil-ddcutil
 
 # Issue 1639
 libmodule # (dep clightd)

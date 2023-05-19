@@ -114,7 +114,6 @@ plasma5-applets-latte-separator
 plasma5-applets-latte-sidebar-button
 plasma5-applets-latte-spacer
 plasma5-applets-window-appmenu-git
-plasma5-applets-window-buttons-git
 plasma5-applets-window-title-git
 polkit-qt5-git
 poppler-git

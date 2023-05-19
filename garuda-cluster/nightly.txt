@@ -1,7 +1,6 @@
 # Dr460nized
 firedragon
 thunderbird-appmenu
-kfiredragonhelper
 
 
 ## Chaotic
@@ -16,9 +15,6 @@ emacs-git
 
 # Issue 726
 godot-mono  # non parallelizable
-
-# Issue 1042
-linux-xanmod-tt
 
 
 ## Not building for whatever reason, lets try it here

@@ -103,7 +103,6 @@ mugshot
 ananicy-cpp
 ananicy-rules-git # (dep ananicy-cpp)
 apprise
-archlinux-appstream-data-pamac
 auto-cpufreq
 bluetooth-autoconnect
 btrfs-assistant

@@ -213,7 +213,6 @@ themix-icons-suru-plus-aspromauros-git
 themix-icons-suru-plus-git
 themix-import-images-git
 themix-plugin-base16-git
-themix-theme-arc-git
 themix-theme-materia-git
 themix-theme-oomox-git
 oomox-qt-styleplugin-git:https://aur.archlinux.org/oomox-qt-styleplugin-git.git # (oomox-qt{5,6}-styleplugin-git)

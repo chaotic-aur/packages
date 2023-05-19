@@ -78,7 +78,6 @@ waybar-hyprland-git
 waydroid-git
 whoogle
 whoogle-git
-wlroots-eglstreams-git
 woeusb-ng
 xdg-ninja-git
 xorg-server-git:https://aur.archlinux.org/xorg-server-git.git
@@ -322,9 +321,6 @@ mypy-git
 
 # Issue 1421
 wxformbuilder
-
-# Issue 1424
-nerd-fonts-jetbrains-mono
 
 # Issue 1428
 nvidia-open-beta
