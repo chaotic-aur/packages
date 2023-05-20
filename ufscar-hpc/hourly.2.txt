@@ -1953,3 +1953,6 @@ uksmd
 
 # Issue 2486
 uksmd-git
+
+# Issue 2501
+playwright
