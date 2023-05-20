@@ -42,3 +42,5 @@ This is a list of packages that we will reject for good reasons:
 - **tlauncher**: Legal gray area, as it potentially allows playing Minecraft in a reduced capacity without license.
 
 - **feishu**: Unauthorized redistribution of their applications is explicitly prohibited per [ToS](https://www.feishu.cn/en/terms).
+
+- **rider**: Redistribution disallowed per [ToS](https://www.jetbrains.com/legal/docs/toolbox/user).
