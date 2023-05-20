@@ -41,6 +41,7 @@ kwin-scripts-krohnkite-git
 # Nothing as of now
 
 # Hyprland
+greetd-qtgreet
 wlr-randr-git
 wpaperd
 xdg-desktop-portal-hyprland-git
