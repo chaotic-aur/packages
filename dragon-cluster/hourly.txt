@@ -71,7 +71,7 @@ sudo-git
 teams-for-linux-git
 telegram-desktop-userfonts
 traitor-git
-visual-studio-code-insiders-bin:https://aur.archlinux.org/packages/visual-studio-code-insiders-bin
+visual-studio-code-insiders-bin:https://aur.archlinux.org/packages/visual-studio-code-insiders-bin.git
 vscodium-insiders
 vscodium-insiders-marketplace
 waybar-hyprland-git
