@@ -1137,3 +1137,6 @@ migrate
 # Issue 2490
 systemtap-git # (dep tuned)
 tuned
+
+# Issue 2504
+heroic-games-launcher-git
