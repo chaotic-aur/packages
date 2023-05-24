@@ -1128,6 +1128,9 @@ gnome-gesture-improvements
 # Issue 2419
 protonplus
 
+# Issue 2452
+nerdfix
+
 # Issue 2455
 nomacs
 
