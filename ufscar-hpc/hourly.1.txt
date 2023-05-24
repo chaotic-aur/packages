@@ -73,6 +73,7 @@ python3-xcgf
 python3-xcpf
 dumpasn1
 dieharder
+jbig2enc-git
 bluespec-contrib-git
 bluespec-bdw-git
 
