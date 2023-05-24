@@ -1968,3 +1968,6 @@ gnome-shell-extension-space-bar-git
 
 # Issue 2510
 gnome-shell-extension-hide-activities-git
+
+# Issue 2512
+gnome-shell-extension-top-bar-organizer
