@@ -1959,3 +1959,6 @@ playwright
 
 # Issue 2506
 gnome-shell-extension-desktop-icons-ng-git
+
+# Issue 2508
+gnome-shell-extension-compiz-windows-effect-git
