@@ -1962,3 +1962,9 @@ gnome-shell-extension-desktop-icons-ng-git
 
 # Issue 2508
 gnome-shell-extension-compiz-windows-effect-git
+
+# Issue 2509
+gnome-shell-extension-space-bar-git
+
+# Issue 2510
+gnome-shell-extension-hide-activities-git
