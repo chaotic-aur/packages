@@ -97,8 +97,8 @@ osdlyrics-git
 
 ## SGS
 gimp-plugin-normalmap
-gnome-icon-theme
-gnome-icon-theme-symbolic # (dep gnome-icon-theme la-capitaine-icon-theme)
+gnome-icon-theme # (dep gnome-shell-extension-vitals-git)
+gnome-icon-theme-symbolic # (dep gnome-icon-theme la-capitaine-icon-theme gnome-shell-extension-vitals-git)
 libcgroup
 lockdown-ms
 pacseek
@@ -1140,3 +1140,6 @@ tuned
 
 # Issue 2504
 heroic-games-launcher-git
+
+# Issue 2511
+gnome-shell-extension-vitals-git
