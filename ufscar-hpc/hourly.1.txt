@@ -495,11 +495,10 @@ st # (dep dwm)
 linux-firmware-git:https://aur.archlinux.org/linux-firmware-git.git # (amd-ucode-git linux-firmware-*-git)
 
 # Issue 388
-disman-kwinft # (dep)
-kdecoration-kwinft # (dep)
-kdisplay-kwinft # (dep)
+disman-kwinft # (dep kwinft)
+kdisplay-kwinft # (dep kwinft)
 kwinft
-wrapland-kwinft # (dep)
+wrapland-kwinft # (dep kwinft)
 
 # Issue 389
 gtk3-classic
