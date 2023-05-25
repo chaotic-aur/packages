@@ -52,6 +52,9 @@ freecad-git
 # Issue 793
 dogecoin-qt
 
+# Issue 799
+swift-language-git
+
 # Issue 808
 codelite-unstable
 
@@ -87,20 +90,17 @@ lyx
 # Issue 1404
 swiftshader-git
 
-# Issue 779
-swift-language-git:https://github.com/chaotic-aur/pkgbuild-swift-language-git
-
 # Issue 1632
 kodi-git:https://aur.archlinux.org/kodi-git.git
-
-# Issue 2175
-kodi-nexus-git
 
 # Issue 1652
 linux-lqx
 
 # Issue 1784
 luckybackup
+
+# Issue 2175
+kodi-nexus-git
 
 # Issue 2278
 lapce-git
