@@ -36,6 +36,7 @@ kwin-effects-burn-my-windows-git
 kwin-effects-sliding-notifications
 kwin-effects-yet-another-magic-lamp
 kwin-scripts-krohnkite-git
+plasma5-wallpapers-blurredwallpaper
 
 # GNOME
 # Nothing as of now
