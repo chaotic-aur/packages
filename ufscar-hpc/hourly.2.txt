@@ -290,6 +290,7 @@ oversteer
 play.it
 proton-caller
 protontricks-git
+python-cinemagoer # (dep hypnotix)
 python-injector # (dep gwe)
 q4wine-git
 qt-solutions-git # (dep q4wine-git)
