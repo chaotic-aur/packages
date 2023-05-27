@@ -1972,3 +1972,6 @@ gnome-shell-extension-hide-activities-git
 
 # Issue 2512
 gnome-shell-extension-top-bar-organizer
+
+# Issue 2517
+archiso-git
