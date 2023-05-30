@@ -467,11 +467,6 @@ nx-firewall-git
 systemd-kcm
 telepathy-kde-accounts-kcm-git
 
-# Issue 1686
-libeb # (dep goldendict-git goldendict-webengine-pr-git)
-goldendict-git
-goldendict-webengine-pr-git
-
 # Issue 1691
 glaxnimate
 glaxnimate-git

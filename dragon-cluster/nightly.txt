@@ -19,6 +19,11 @@ lightlyshaders-kdegit-git:https://github.com/chaotic-aur/pkgbuild-lightlyshaders
 # Issue 1536
 thunderbird-beta
 
+# Issue 1686
+libeb # (dep goldendict-git goldendict-webengine-pr-git)
+goldendict-git
+goldendict-webengine-pr-git
+
 # Issue 1722
 amule-git
 
