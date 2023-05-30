@@ -1630,7 +1630,6 @@ canta-kde-git
 contrast
 
 # Issue 1749
-python-xdg # (dep curlew)
 curlew
 
 # Issue 1753
