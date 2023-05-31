@@ -1619,6 +1619,13 @@ nouveau-fw
 # Issue 2514
 gpt4all-chat-git
 
+# Issue 2522
+epy-ereader-git
+baca-ereader-git
+python-markdownify # (dep baca-ereader-git)
+python-textual # (dep baca-ereader-git)
+python-thefuzz # (optdep baca-ereader-git) (provides python-fuzzywuzzy)
+
 
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
