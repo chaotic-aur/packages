@@ -1632,6 +1632,7 @@ python-museval # (dep spleeter-git)
 python-norbert # (dep spleeter-git)
 python-soundfile # (dep python-musdb python-museval python-stempeg)
 python-stempeg # (dep python-musdb python-museval)
+spleeter-data # (optdep spleeter-git)
 spleeter-git
 
 
