@@ -838,9 +838,6 @@ nvim-ghost-git
 # Issue 805
 dino-git
 
-# Issue 806
-gajim-plugin-omemo
-
 # Issue 807
 libtd
 
