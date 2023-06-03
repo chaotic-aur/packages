@@ -1,3 +1,12 @@
-node_modules
-package.json
-package-lock.json
+*
+
+!.github
+!.gitignore
+!README.md
+
+!CatBuilder/*.txt
+!dragon-cluster/*.txt
+!garuda-cluster/*.txt
+!garuda-repo/*.txt
+!kde-git/*.txt
+!ufscar-hpc/*.txt
