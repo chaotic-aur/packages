@@ -16,7 +16,6 @@ android-studio
 chromium-widevine
 digilent.adept.runtime
 digilent.adept.utilities
-fprintd-libfprint2:https://aur.archlinux.org/fprintd-libfprint2.git
 fujprog
 fxload
 xschem
