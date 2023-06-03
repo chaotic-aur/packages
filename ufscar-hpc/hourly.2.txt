@@ -895,7 +895,7 @@ aravis
 cryptobridge-bin
 
 # Issue 836
-nats-server
+nats-server-bin
 
 # Issue 866
 dte
