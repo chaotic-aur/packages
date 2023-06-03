@@ -585,6 +585,9 @@ sourcetrail
 # Issue 447
 spot-client
 
+# Issue 448
+ytfzf-git
+
 # Issue 449
 gdm-prime
 
@@ -1645,4 +1648,3 @@ anaconda
 fluent-reader
 java-openjdk-ea-bin
 telegram-desktop-bin-dev
-ytfzf-git
