@@ -408,7 +408,6 @@ orchis-theme-git
 
 # Issue 1623
 python-readchar # (dep moodle-dl-git)
-python-sentry_sdk # (dep moodle-dl-git)
 python-xmpppy-git # (dep moodle-dl-git)
 moodle-dl-git
 
