@@ -1655,9 +1655,6 @@ green-recorder-git
 # Issue 1786
 manuskript-git
 
-# Issue 1792
-autokey:https://aur.archlinux.org/autokey.git
-
 # Issue 1796
 notorious-git
 
