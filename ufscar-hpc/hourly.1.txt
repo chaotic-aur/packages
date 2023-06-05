@@ -1638,6 +1638,9 @@ python-stempeg # (dep python-musdb python-museval)
 spleeter-data:https://aur.archlinux.org/spleeter-data.git # (optdep spleeter-git)
 spleeter-git
 
+# Issue 2536
+sora-font:https://aur.archlinux.org/sora-font.git # (ttf-sora otf-sora ttf-sora-variable)
+
 
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
