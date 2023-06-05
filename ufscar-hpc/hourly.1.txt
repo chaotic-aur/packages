@@ -842,6 +842,9 @@ river-git
 # Issue 987
 transset-df
 
+# Issue 1027
+zenmap
+
 # Issue 1093
 libgweather-git # (dep gnome-shell-git)
 gjs-git # (dep gnome-shell-git)
