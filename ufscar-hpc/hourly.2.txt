@@ -79,7 +79,6 @@ faudio-tkg-git:https://github.com/Frogging-Family/faudio-git.git
 gallium-nine-git
 gamescope-git:https://github.com/Frogging-Family/gamescope-git.git
 goverlay-git
-mangohud:https://aur.archlinux.org/mangohud.git # (dep lutris-wine-git)
 mangohud-git
 material-kwin-decoration-git:https://aur.archlinux.org/material-kwin-decoration-git.git
 neofrog-git:https://github.com/Frogging-Family/neofrog-git.git
@@ -839,9 +838,6 @@ nvim-ghost-git
 # Issue 805
 dino-git
 
-# Issue 806
-gajim-plugin-omemo
-
 # Issue 807
 libtd
 
@@ -1569,7 +1565,6 @@ uutils-coreutils-git
 
 # Issue 1666
 xkb-switch
-lib32-mangohud
 libstrangle-git
 latencyflex-git
 lutris-wine-git
