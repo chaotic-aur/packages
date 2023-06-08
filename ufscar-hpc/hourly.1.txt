@@ -1643,6 +1643,9 @@ spleeter-git
 # Issue 2536
 sora-font:https://aur.archlinux.org/sora-font.git # (ttf-sora otf-sora ttf-sora-variable)
 
+# Issue 2543
+gojq
+
 
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
