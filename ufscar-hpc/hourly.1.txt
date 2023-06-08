@@ -1626,8 +1626,10 @@ nouveau-fw
 gpt4all-chat-git
 
 # Issue 2522
-epy-ereader-git
 baca-ereader-git
+epy-ereader-git
+python-climage # (dep baca-ereader-git)
+python-kdtree # (dep python-climage)
 python-markdownify # (dep baca-ereader-git)
 python-textual # (dep baca-ereader-git)
 python-thefuzz # (optdep baca-ereader-git) (provides python-fuzzywuzzy)
