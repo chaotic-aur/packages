@@ -593,7 +593,6 @@ python-pychromecast # (dep photoqt)
 bluemail
 
 # Issue 668
-pnpm # (dep ledger-live ledger-udev)
 haguichi
 ledger-live
 ledger-udev # (dep ledger-live)
@@ -1274,9 +1273,6 @@ bulky
 pix
 sticky-git
 thingy
-
-# Issue 1116
-mint-themes-legacy
 
 # Issue 1118
 mcpelauncher-linux-git

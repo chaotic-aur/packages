@@ -1099,9 +1099,6 @@ gnome-shell-pomodoro
 # Issue 1627
 libva-intel-driver-hybrid
 
-# Issue 1633
-gnome-browser-connector
-
 # Issue 1635
 tone-bin
 m4b-tool-bin
