@@ -1475,7 +1475,6 @@ java-service-wrapper # (dep freenet i2p)
 freenet
 
 # Issue 1533
-wxgtk-3.1.5:https://aur.archlinux.org/wxgtk-3.1.5.git # (dep tenacity-git)
 tenacity-git
 
 # Issue 1537
