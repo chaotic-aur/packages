@@ -89,10 +89,7 @@ garuda-common-settings-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/ga
 garuda-dr460nized-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/garuda-dr460nized-git.git
 
 # Input method support
-fcitx-input-support
-fcitx5-input-support
-ibus-input-support
-manjaro-asian-input-support
+manjaro-asian-input-support:https://aur.archlinux.org/manjaro-asian-input-support.git # (fcitx-input-support fcitx5-input-support ibus-input-support)
 
 # MHWD
 mhwd-amdgpu
