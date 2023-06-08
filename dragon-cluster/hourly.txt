@@ -986,8 +986,8 @@ snapper-support:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/snappe
 
 # Issue 2243
 libgksu # (dep gksu)
-gksu # (dep zenmap-python3-git)
-zenmap-python3-git
+gksu # (optdep zenmap-git)
+zenmap-git
 
 # Issue 2259
 hyprland-nvidia
