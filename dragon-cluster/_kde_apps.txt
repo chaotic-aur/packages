@@ -109,7 +109,8 @@ libqalculate-git
 marble-git
 okular-git
 partitionmanager-git:https://github.com/chaotic-aur/pkgbuild-partitionmanager-git.git
-phonon-git:https://github.com/chaotic-aur/pkgbuild-phonon-git.git # phonon-qt5-git
+phonon-qt5-git
+phonon-qt6-git
 plasma5-applets-latte-separator
 plasma5-applets-latte-sidebar-button
 plasma5-applets-latte-spacer
@@ -128,3 +129,4 @@ spectacle-git
 wrapland-git
 kwin-bismuth-git
 kwin-decoration-sierra-breeze-enhanced-git
+kamera-git
