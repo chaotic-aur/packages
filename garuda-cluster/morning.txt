@@ -1,6 +1,6 @@
 ## Chaotic
 # Lets put this here for now (due to signature upload failure)
-firefox-esr
+firefox-esr:https://aur.archlinux.org/firefox-esr.git
 
 # Issue 2006
 linux-xanmod
