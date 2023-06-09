@@ -15,5 +15,5 @@ python-nbxmpp-git
 python-omemo-dr-git
 tidal-hifi-bin
 tor-router
-nvidia-vaapi-driver-git
+libva-nvidia-driver-git
 wowup-cf-bin
