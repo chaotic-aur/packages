@@ -1,13 +1,13 @@
 name: "🐛 Report bugs"
 description: "Report bugs"
 labels: ["bug:misc"]
-title: "[Bug] "
+title: "[Bug] description"
 body:
   - type: textarea
     attributes:
-      label: "Affected Package"
-      description: "Link to the package base in the AUR."
-      placeholder: "[PackageNameHere](https://aur.archlinux.org/pkgbase/packagenamehere)"
+      label: "Packages:"
+      description: "Link to the packages base in the AUR."
+      placeholder: "[packagenamehere](https://aur.archlinux.org/pkgbase/packagenamehere)"
     validations:
       required: true
   - type: input
@@ -20,7 +20,7 @@ body:
     attributes:
       label: "What happens?"
       description: "This is the place to describe what's happening.
-      </br> If applicable, include steps to replicate."
+        <br/> If applicable, include steps to replicate."
     validations:
       required: true
   - type: textarea
@@ -31,7 +31,9 @@ body:
       required: true
   - type: textarea
     attributes:
-      label: "If possible, please attach logs"
+      label: "Logs"
+      description: "If available.  Find them here: https://builds.garudalinux.org/repos/chaotic-aur/logs/"
+      placeholder: "https://builds.garudalinux.org/repos/chaotic-aur/logs/some-package.log"
   - type: textarea
     attributes:
       label: "More information"
