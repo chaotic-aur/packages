@@ -32,7 +32,7 @@ kmbox-git
 kpeoplevcard-git:https://github.com/chaotic-aur/pkgbuild-kpeoplevcard-git.git
 kpimtextedit-git
 ktnef-git
-kaddressbook-git:https://github.com/chaotic-aur/pkgbuild-kaddressbook-git
+kaddressbook-git
 akonadi-import-wizard-git
 akonadi-calendar-git
 akonadi-calendar-tools-git
@@ -53,8 +53,8 @@ dragon-git:https://github.com/chaotic-aur/pkgbuild-dragon-git.git
 elisa-git
 ffmpegthumbs-git:https://github.com/chaotic-aur/pkgbuild-ffmpegthumbs-git.git
 filelight-git
-gwenview-git:https://github.com/chaotic-aur/pkgbuild-gwenview-git.git
-kalarm-git:https://github.com/chaotic-aur/pkgbuild-kalarm-git.git
+gwenview-git
+kalarm-git
 kalendar-git
 kapidox-git
 kate-git:https://github.com/chaotic-aur/pkgbuild-kate-git.git
