@@ -1646,6 +1646,9 @@ sora-font:https://aur.archlinux.org/sora-font.git # (ttf-sora otf-sora ttf-sora-
 # Issue 2543
 gojq
 
+# Issue 2565
+penguins-eggs
+
 
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
