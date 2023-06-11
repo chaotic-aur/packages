@@ -1658,6 +1658,9 @@ gojq
 # Issue 2560
 hyprshot
 
+# Issue 2565
+penguins-eggs
+
 
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
