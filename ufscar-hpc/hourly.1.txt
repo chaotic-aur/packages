@@ -1655,6 +1655,9 @@ catppuccin-cursors-mocha
 # Issue 2543
 gojq
 
+# Issue 2560
+hyprshot
+
 
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
