@@ -1157,5 +1157,11 @@ gtklock-powerbar-module
 # Issue 2547
 gtklock-userinfo-module
 
+# Issue 2558
+eww-wayland
+
+# Issue 2559
+eww
+
 # Issue 2563
 nerd-fonts-inter
