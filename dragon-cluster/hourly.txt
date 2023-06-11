@@ -1156,3 +1156,6 @@ gtklock-powerbar-module
 
 # Issue 2547
 gtklock-userinfo-module
+
+# Issue 2563
+nerd-fonts-inter
