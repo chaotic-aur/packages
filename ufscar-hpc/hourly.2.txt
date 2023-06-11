@@ -923,7 +923,7 @@ python-rtslib-fb # (dep targetcli-fb)
 targetcli-fb
 
 # Issue 878
-tblock
+tblock # (dep tblock-gui)
 
 # Issue 880
 wired
@@ -1961,3 +1961,18 @@ gnome-shell-extension-top-bar-organizer
 
 # Issue 2517
 archiso-git
+
+# Issue 2529
+tblock-gui
+
+# Issue 2533
+grimblast-git
+
+# Issue 2535
+nwg-look-bin
+
+# Issue 2541
+cava
+
+# Issue 2556
+envycontrol

@@ -64,11 +64,11 @@ kwindowsystem-git
 modemmanager-qt-git:https://github.com/chaotic-aur/pkgbuild-modemmanager-qt-git.git
 networkmanager-qt-git:https://github.com/chaotic-aur/pkgbuild-networkmanager-qt-git.git
 prison-git:https://github.com/chaotic-aur/pkgbuild-prison-git.git
-kaccounts-integration-git:https://github.com/chaotic-aur/pkgbuild-kaccounts-integration-git.git
+kaccounts-integration-git
 purpose-git:https://github.com/chaotic-aur/pkgbuild-purpose-git.git
 qqc2-desktop-style-git:https://github.com/chaotic-aur/pkgbuild-qqc2-desktop-style-git.git
 solid-git:https://github.com/chaotic-aur/pkgbuild-solid-git.git
-sonnet-git:https://github.com/chaotic-aur/pkgbuild-sonnet-git.git
+sonnet-git
 syndication-git
 syntax-highlighting-git
 threadweaver-git:https://github.com/chaotic-aur/pkgbuild-threadweaver-git.git

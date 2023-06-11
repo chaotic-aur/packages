@@ -1138,3 +1138,33 @@ heroic-games-launcher-git
 
 # Issue 2511
 gnome-shell-extension-vitals-git
+
+# Issue 2531
+sing-geoip # (dep nekoray)
+sing-geosite # (dep nekoray)
+nekoray
+
+# Issue 2539
+hyprpaper-git
+
+# Issue 2545
+gtklock # (dep gtklock-playerctl-module gtklock-powerbar-module gtklock-userinfo-module)
+gtklock-playerctl-module
+
+# Issue 2546
+gtklock-powerbar-module
+
+# Issue 2547
+gtklock-userinfo-module
+
+# Issue 2558
+eww-wayland
+
+# Issue 2559
+eww
+
+# Issue 2562
+mpvpaper
+
+# Issue 2563
+nerd-fonts-inter

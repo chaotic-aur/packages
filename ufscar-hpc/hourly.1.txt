@@ -1640,11 +1640,23 @@ python-stempeg # (dep python-musdb python-museval)
 spleeter-data:https://aur.archlinux.org/spleeter-data.git # (optdep spleeter-git)
 spleeter-git
 
+# Issue 2528
+ttf-material-design-icons-extended
+
 # Issue 2536
 sora-font:https://aur.archlinux.org/sora-font.git # (ttf-sora otf-sora ttf-sora-variable)
 
+# Issue 2537
+ttf-icomoon-feather
+
+# Issue 2540
+catppuccin-cursors-mocha
+
 # Issue 2543
 gojq
+
+# Issue 2560
+hyprshot
 
 # Issue 2565
 penguins-eggs
