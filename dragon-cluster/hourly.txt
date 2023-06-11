@@ -1147,6 +1147,9 @@ nekoray
 # Issue 2539
 hyprpaper-git
 
+# Issue 2544
+geticons-git
+
 # Issue 2545
 gtklock # (dep gtklock-playerctl-module gtklock-powerbar-module gtklock-userinfo-module)
 gtklock-playerctl-module
