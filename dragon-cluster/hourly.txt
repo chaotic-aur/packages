@@ -1163,5 +1163,8 @@ eww-wayland
 # Issue 2559
 eww
 
+# Issue 2562
+mpvpaper
+
 # Issue 2563
 nerd-fonts-inter
