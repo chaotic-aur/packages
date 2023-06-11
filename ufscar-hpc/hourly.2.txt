@@ -1973,3 +1973,6 @@ nwg-look-bin
 
 # Issue 2541
 cava
+
+# Issue 2556
+envycontrol
