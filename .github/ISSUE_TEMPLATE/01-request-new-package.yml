@@ -7,7 +7,8 @@ body:
     attributes:
       label: "Package:"
       description: "Link to the package base in the AUR.  Include any known AUR dependencies."
-      placeholder: "[packagenamehere](https://aur.archlinux.org/pkgbase/packagenamehere)"    validations:
+      placeholder: "[packagenamehere](https://aur.archlinux.org/pkgbase/packagenamehere)"
+    validations:
       required: true
   - type: textarea
     attributes:
