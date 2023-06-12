@@ -780,9 +780,6 @@ vital-synth
 # Issue 600
 informant
 
-# Issue 601
-#pantheon-mail broken right now
-
 # Issue 602
 overdue
 
