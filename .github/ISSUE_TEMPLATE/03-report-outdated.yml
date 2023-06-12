@@ -1,15 +1,14 @@
 name: "👴 Report outdated package"
 description: "Report outdated package"
 labels: ["request:rebuild-pkg"]
-title: "[Outdated] "
+title: "[Outdated] packagename"
 body:
   - type: textarea
     attributes:
-      label: "Outdated Package"
-      description: "Link to the package base in the AUR."
-      placeholder: "[PackageNameHere](https://aur.archlinux.org/pkgbase/packagenamehere)
-
-        Please ensure that PKGBUILD has been updated before requesting rebuild."
+      label: "Packages:"
+      description: "Link to the package bases in the AUR.
+        <br/> Please ensure that the AUR has been updated before reporting."
+      placeholder: "[packagenamehere](https://aur.archlinux.org/pkgbase/packagenamehere)"
     validations:
       required: true
   - type: input
@@ -26,16 +25,16 @@ body:
       required: true
   - type: textarea
     attributes:
-      label: "Logs for the latest build, if available"
-      description: "Find it here: https://builds.garudalinux.org/repos/chaotic-aur/logs/"
-      placeholder: "[some-package.log](https://builds.garudalinux.org/repos/chaotic-aur/logs/some-package.log)"
+      label: "Logs"
+      description: "If available.  Find them here: https://builds.garudalinux.org/repos/chaotic-aur/logs/"
+      placeholder: "https://builds.garudalinux.org/repos/chaotic-aur/logs/some-package.log"
   - type: textarea
     attributes:
       label: "Builds in clean chroot?"
       description: "https://wiki.archlinux.org/title/DeveloperWiki:Building_in_a_clean_chroot"
-      placeholder: "What commands did you use to build the package?
+      placeholder: "If you have built this package, type the commands you used.
 
-        Describe special procedures, if any."
+        If any special procedures were needed, please describe them."
   - type: textarea
     attributes:
       label: "More information"
