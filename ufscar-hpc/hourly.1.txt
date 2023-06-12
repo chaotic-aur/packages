@@ -262,7 +262,6 @@ ocenaudio-bin
 ocrmypdf
 orjail
 parsec-bin
-pdf-decrypt
 pdf-xchange
 pdfquirk
 pdfsam
