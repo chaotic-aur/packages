@@ -13,7 +13,11 @@ libreswan
 openswan
 python-nbxmpp-git
 python-omemo-dr-git
+ryzen_smu-dkms-git
+ryzenadj-git
+ryzen-controller-bin
 tidal-hifi-bin
 tor-router
 libva-nvidia-driver-git
 wowup-cf-bin
+zenstates
