@@ -1657,6 +1657,9 @@ hyprshot
 # Issue 2565
 penguins-eggs
 
+# Issue 2575
+chatbox-bin
+
 
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
