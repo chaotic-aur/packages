@@ -1660,6 +1660,9 @@ penguins-eggs
 # Issue 2575
 chatbox-bin
 
+# Issue 2582
+btdu
+
 
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
