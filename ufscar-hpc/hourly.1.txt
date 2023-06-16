@@ -1648,6 +1648,9 @@ ttf-icomoon-feather
 # Issue 2540
 catppuccin-cursors-mocha
 
+# Issue 2542
+python-desktop-entry-lib
+
 # Issue 2543
 gojq
 
