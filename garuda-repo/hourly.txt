@@ -47,6 +47,7 @@ garuda-common-settings:https://gitlab.com/garuda-linux/themes-and-settings/setti
 garuda-dr460nized:https://gitlab.com/garuda-linux/themes-and-settings/settings/garuda-dr460nized.git
 garuda-fish-config:https://gitlab.com/garuda-linux/themes-and-settings/settings/garuda-fish-config.git
 garuda-gnome-settings:https://gitlab.com/garuda-linux/themes-and-settings/settings/garuda-gnome-settings.git
+garuda-hyprland-settings:https://gitlab.com/garuda-linux/themes-and-settings/settings/garuda-hyprland-settings.git
 garuda-i3-settings:https://gitlab.com/garuda-linux/themes-and-settings/settings/garuda-i3-settings.git
 garuda-lxqt-kwin-settings:https://gitlab.com/garuda-linux/themes-and-settings/settings/garuda-lxqt-kwin-settings.git
 garuda-mate-settings:https://gitlab.com/garuda-linux/themes-and-settings/settings/garuda-mate-settings.git
