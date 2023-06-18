@@ -806,7 +806,6 @@ papirus-folders
 silo-trello
 trello
 trello-cli
-trello-git
 
 # Issue 617
 element-desktop-nightly-bin
