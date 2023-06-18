@@ -378,7 +378,7 @@ plots
 
 # Issue 1595
 downloader-cli # (dep ytmdl)
-python-ffmpeg # (dep ytmdl spleeter-git)
+python-ffmpeg-python # (dep ytmdl spleeter-git)
 python-itunespy # (dep ytmdl)
 python-pydes # (dep ytmdl)
 python-simber # (dep ytmdl)
