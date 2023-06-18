@@ -713,7 +713,7 @@ spacefm-git
 psst-git
 
 # Issue 745
-hakuneko-desktop
+hakuneko-desktop-bin
 
 # Issue 748
 jackett
