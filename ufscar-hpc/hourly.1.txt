@@ -1653,6 +1653,10 @@ python-desktop-entry-lib
 # Issue 2543
 gojq
 
+# Issue 2549
+bubblejail
+bubblejail-git
+
 # Issue 2560
 hyprshot
 
