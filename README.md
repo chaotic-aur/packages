@@ -33,6 +33,8 @@ This is a list of packages that we will reject for good reasons:
 
 - **linux-ck**: Two reasons, first our `linux-tkg-*` already includes those bits of optimizations, second there is [repo-ck](https://wiki.archlinux.org/title/Unofficial_user_repositories#repo-ck) with official pre-built binaries for it.
 
+- Packages that are specific to non-Arch distributions, like deb or rpm package managers.  Use `distrobox` with `podman` or `docker`.
+
 #### Banned due to licensing issues 🛑
 
 - **aseprite{-git}**: Redistribution is explicitly prohibited in its [FAQ](https://www.aseprite.org/faq/#can-i-redistribute-aseprite).
