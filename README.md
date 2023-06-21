@@ -37,10 +37,10 @@ This is a list of packages that we will reject for good reasons:
 
 - **aseprite{-git}**: Redistribution is explicitly prohibited in its [FAQ](https://www.aseprite.org/faq/#can-i-redistribute-aseprite).
 
-- **multimc-git**: Redistribution of custom binaries that include their API keys and trademarked assets is [explicitly prohibited](https://multimc.org/#Branding).
-
-- **tlauncher**: Legal gray area, as it potentially allows playing Minecraft in a reduced capacity without license.
-
 - **feishu**: Unauthorized redistribution of their applications is explicitly prohibited per [ToS](https://www.feishu.cn/en/terms).
 
+- **multimc-git**: Redistribution of custom binaries that include their API keys and trademarked assets is [explicitly prohibited](https://multimc.org/#Branding).
+
 - **rider**: Redistribution disallowed per [ToS](https://www.jetbrains.com/legal/docs/toolbox/user).
+
+- **tlauncher**: Legal gray area, as it potentially allows playing Minecraft in a reduced capacity without license.
