@@ -76,3 +76,4 @@ kdesignerplugin-git
 kpipewire-git:https://github.com/chaotic-aur/pkgbuild-kpipewire-git.git
 ktextaddons-git
 plasma5support-git
+kcolorscheme-git
