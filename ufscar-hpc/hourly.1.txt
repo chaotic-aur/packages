@@ -87,7 +87,6 @@ autoconf-git
 b43-firmware # not really needed
 chaotic-neofetch-git:https://github.com/chaotic-aur/chaotic-neofetch-git.git
 depot-tools-git # servo-git dep
-electron15-bin # (dep discord-canary-electron-bin)
 discord-canary-electron-bin
 gotop
 hsphfpd-git
@@ -633,7 +632,6 @@ imhex
 libhandy-git # (dep epiphany-git)
 
 # Issue 468
-electron16-bin # (dep freetube)
 freetube
 
 # Issue 469
@@ -1670,9 +1668,15 @@ chatbox-bin
 btdu
 
 
+# Electron
+electron16-bin
+electron17-bin
+electron19-bin
+electron20-bin
+electron21-bin
+
 # FroggingFamily
 mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
-
 
 ## Lost & found
 anaconda
