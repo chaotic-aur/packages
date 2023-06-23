@@ -402,7 +402,7 @@ telegrand-git
 flat-remix-gnome
 
 # Issue 546
-mindustry
+mindustry:https://aur.archlinux.org/mindustry.git # (mindustry, mindustry-server)
 
 # Issue 547
 protonmail-bridge-bin # (switched to bin as non-bin doesn't build)
