@@ -273,7 +273,6 @@ ialauncher-git
 input-remapper-git
 keyboard-visualizer-git
 legendary
-lib32-vkbasalt # (dep lutris-wine-git)
 libliftoff-git # (dep gamescope-git)
 libretro-stella2014-git
 luxtorpeda-git
@@ -301,7 +300,7 @@ sc-controller
 stacer
 steamtinkerlaunch
 stremio
-vkbasalt # (dep lutris-wine-git)
+vkbasalt # (opt goverlay-git steamtinkerlaunch)
 vr-video-player-git
 xbox-generic-controller
 xboxdrv
@@ -1558,15 +1557,8 @@ battop
 # Issue 1664
 uutils-coreutils-git
 
-# Issue 1666
-xkb-switch
-libstrangle-git
-latencyflex-git
-lutris-wine-git
-
 # Issue 1667
 wl-clipboard-rs
-
 
 # Issue 1674
 klassy-git
