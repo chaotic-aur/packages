@@ -1680,6 +1680,5 @@ mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
 
 ## Lost & found
 anaconda
-fluent-reader
 java-openjdk-ea-bin
 telegram-desktop-bin-dev
