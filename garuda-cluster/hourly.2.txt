@@ -42,6 +42,7 @@ plasma5-wallpapers-blurredwallpaper
 # Nothing as of now
 
 # Hyprland
+greetd-gtkgreet-git 
 greetd-qtgreet
 wlr-randr-git
 wpaperd
