@@ -1667,6 +1667,9 @@ chatbox-bin
 # Issue 2582
 btdu
 
+# Issue 2602
+jumpapp
+
 
 # Electron
 electron16-bin
