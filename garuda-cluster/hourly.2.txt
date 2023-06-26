@@ -140,6 +140,7 @@ memavaild
 menulibre
 mkinitcpio-openswap
 neofetch-git
+nix-user-chroot
 nohang
 noto-color-emoji-fontconfig
 nvidia-390xx-settings
