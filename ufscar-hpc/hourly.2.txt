@@ -1295,9 +1295,6 @@ emulsion
 # Issue 1147
 moonlight-qt
 
-# Issue 1148
-papirus-libreoffice-theme
-
 # Issue 1149
 sunshine
 
