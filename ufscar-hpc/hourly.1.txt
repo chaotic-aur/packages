@@ -795,7 +795,6 @@ albert
 
 # Issue 612
 touche
-touchegg
 
 # Issue 613
 papirus-folders
