@@ -919,7 +919,7 @@ apple-fonts
 joystickwake
 
 # Issue 1440
-php-humbug-box-bin # (dep php-cs-fixer)
+php-box-bin # (dep php-cs-fixer)
 php-cs-fixer
 
 # Issue 1451
