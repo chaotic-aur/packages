@@ -392,11 +392,6 @@ ion-git
 # Issue 562
 lollypop-next-git
 
-# Issue 557
-libtd-dev # (dep telegrand-git)
-gtk4-telegrand # (dep telegrand-git)
-telegrand-git
-
 # Issue 545
 flat-remix-gnome
 
