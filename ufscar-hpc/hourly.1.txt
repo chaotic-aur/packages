@@ -909,8 +909,8 @@ subnetcalc
 libva-intel-driver-g45-h264
 
 # Issue 1403
-libcmrt # (dep intel-hybrid-codec-driver)
-intel-hybrid-codec-driver
+libcmrt # (dep intel-hybrid-codec-driver-git)
+intel-hybrid-codec-driver-git
 
 # Issue 1435
 apple-fonts
