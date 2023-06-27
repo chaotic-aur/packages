@@ -278,7 +278,6 @@ python-moviepy # (dep tartube)
 python-playsound # (dep tartube)
 python-pgi # (dep tartube)
 tartube
-todoist-electron
 todoist-nativefier
 tuc
 upscayl-bin
