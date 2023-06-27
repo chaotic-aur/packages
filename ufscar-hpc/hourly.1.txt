@@ -1611,6 +1611,9 @@ an-anime-game-launcher-bin
 # Issue 2485
 nouveau-fw
 
+# Issue 2497
+openvino-git
+
 # Issue 2514
 gpt4all-chat-git
 
