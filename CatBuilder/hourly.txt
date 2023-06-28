@@ -11,6 +11,7 @@ signal-desktop-beta
 rustc-demangle
 insomnia
 libreswan
+oh-my-posh-bin
 openswan
 python-nbxmpp-git
 python-omemo-dr-git
