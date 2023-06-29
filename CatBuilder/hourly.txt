@@ -21,5 +21,6 @@ ryzen-controller-bin
 tidal-hifi-bin
 tor-router
 libva-nvidia-driver-git
+visual-studio-code-insiders-bin:https://aur.archlinux.org/visual-studio-code-insiders-bin.git
 wowup-cf-bin
 zenstates
