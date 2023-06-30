@@ -15,6 +15,7 @@ ms-office-online
 onlyoffice-bin
 python-pypresence # (dep rare)
 rare
+reflector-simple
 spotify
 ttf-wps-fonts # (dep wps-office wps-office-cn)
 libtiff5 # (dep wps-office wps-office-cn)
