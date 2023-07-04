@@ -628,9 +628,6 @@ tutanota-desktop-bin
 python-httpx-socks
 searx-git
 
-# Issue 707
-archinstall-git
-
 # Issue 711
 gedit-plugin-markdown_preview
 
