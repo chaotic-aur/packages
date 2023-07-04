@@ -1667,6 +1667,10 @@ chatbox-bin
 # Issue 2582
 btdu
 
+# Issue 2585
+python-tiktoken # (dep whisper-git)
+whisper-git
+
 # Issue 2602
 jumpapp
 
