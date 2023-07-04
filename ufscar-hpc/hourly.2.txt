@@ -1757,10 +1757,10 @@ dracula-qtcreator-theme-git
 lunar-client
 
 # Issue 2026
-rubymine
-phpstorm:https://aur.archlinux.org/phpstorm.git # (phpstorm-jre)
-goland
 dataspell
+goland
+phpstorm:https://aur.archlinux.org/phpstorm.git # (phpstorm phpstorm-jre)
+rubymine
 
 # Issue 2028
 libnvidia-container-tools # (dep libnvidia-container)

@@ -657,8 +657,7 @@ twinkle
 ucommon # (dep twinkle)
 
 # Issue 477
-phpstorm-eap
-phpstorm-eap-jre
+phpstorm-eap:https://aur.archlinux.org/phpstorm-eap.git # (phpstorm-eap phpstorm-eap-jre)
 hopper
 
 # Issue 478
