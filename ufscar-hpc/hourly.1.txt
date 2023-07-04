@@ -1667,6 +1667,9 @@ chatbox-bin
 # Issue 2582
 btdu
 
+# Issue 2584
+kobodeluxe
+
 # Issue 2585
 python-tiktoken # (dep whisper-git)
 whisper-git
