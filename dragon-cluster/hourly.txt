@@ -1180,3 +1180,6 @@ nerd-fonts-inter
 
 # Issue 2567
 nerd-fonts-noto-sans-mono-extended
+
+# Issue 2596
+deltachat-desktop-git
