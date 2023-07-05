@@ -1142,6 +1142,9 @@ heroic-games-launcher-git
 # Issue 2511
 gnome-shell-extension-vitals-git
 
+# Issue 2520
+flightcore
+
 # Issue 2531
 sing-geoip # (dep nekoray)
 sing-geosite # (dep nekoray)
