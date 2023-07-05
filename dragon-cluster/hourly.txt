@@ -1104,6 +1104,9 @@ gnome-shell-extension-gsconnect-git
 # Issue 2396
 systemd-manager-git
 
+# Issue 2398
+cyberchef-electron
+
 # Issue 2401
 2bwm-git
 
