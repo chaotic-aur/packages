@@ -1677,6 +1677,9 @@ jumpapp
 # Issue 2619
 ranger-git
 
+# Issue 2623
+trash-cli-git
+
 
 # Electron
 electron16-bin
