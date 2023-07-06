@@ -1674,6 +1674,9 @@ whisper-git
 # Issue 2602
 jumpapp
 
+# Issue 2619
+ranger-git
+
 
 # Electron
 electron16-bin
