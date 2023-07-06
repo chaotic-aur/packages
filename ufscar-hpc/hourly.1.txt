@@ -1680,6 +1680,9 @@ ranger-git
 # Issue 2623
 trash-cli-git
 
+# Issue 2628
+xmap-git
+
 
 # Electron
 electron16-bin
