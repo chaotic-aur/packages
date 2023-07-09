@@ -55,6 +55,14 @@ librewolf-extension-plasma-integration
 librewolf-extension-xdm-browser-monitor
 librewolf-ublock-origin
 
+# Waydroid
+python-inquirerpy # (dep waydroid-script-git)
+python-pfzy # (dep waydroid-script-git)
+waydroid
+waydroid-image
+waydroid-image-gapps
+waydroid-script-git
+
 # Other, general use applications
 alpm_octopi_utils # (dep octopi)
 anydesk-bin
@@ -96,9 +104,6 @@ teamviewer # (dep remmina-plugin-teamviewer)
 topgrade
 ventoy-bin
 visual-studio-code-bin
-waydroid
-waydroid-image
-waydroid-image-gapps
 yay
 
 # Networking & Tools
