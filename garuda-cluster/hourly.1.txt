@@ -46,14 +46,8 @@ mycroft-gui-git
 plasma5-applets-mycroft-git
 
 # Librewolf
-librewolf-extension-bitwarden
-librewolf-extension-dark-reader
 librewolf-extension-gnome-shell-integration
-librewolf-extension-localcdn
-librewolf-extension-noscript
 librewolf-extension-plasma-integration
-librewolf-extension-xdm-browser-monitor
-librewolf-ublock-origin
 
 # Waydroid
 python-inquirerpy # (dep waydroid-script-git)

@@ -18,7 +18,6 @@ asian-fonts:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/asian-font
 bluetooth-support:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/bluetooth-support.git
 connman-support:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/connman-support.git
 garuda-firefox:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/garuda-firefox.git
-garuda-librewolf:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/garuda-librewolf.git
 gstreamer-meta:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/gstreamer-meta.git
 input-devices-support:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/input-devices-support.git
 jack-support:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/jack-support.git
