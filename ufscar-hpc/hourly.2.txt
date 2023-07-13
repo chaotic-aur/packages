@@ -793,9 +793,6 @@ proftpd
 # Issue 786
 tuner
 
-# Issue 789
-htim
-
 # Issue 790
 vim-slime-git
 

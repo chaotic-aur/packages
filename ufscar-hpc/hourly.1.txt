@@ -1677,6 +1677,9 @@ jumpapp
 # Issue 2607
 zapret-git:https://aur.archlinux.org/zapret-git.git
 
+# Issue 2610
+htop-vim
+
 # Issue 2619
 ranger-git
 
