@@ -1674,6 +1674,9 @@ whisper-git
 # Issue 2602
 jumpapp
 
+# Issue 2607
+zapret-git:https://aur.archlinux.org/zapret-git.git
+
 # Issue 2619
 ranger-git
 
