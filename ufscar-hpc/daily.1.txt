@@ -122,3 +122,8 @@ lib32-mesa-git:https://github.com/chaotic-aur/lib32-mesa-git.git
 # Issue 1672
 gcc-git
 glibc-git # (dep of gcc-git)
+
+-- 
+
+# Requested by Garuda members
+gcc11 # Also builds gcc11-{fortran,libs}
