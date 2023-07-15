@@ -1,6 +1,27 @@
 ## Chaotic
-# Lets put this here for now (due to signature upload failure)
 firefox-esr:https://aur.archlinux.org/firefox-esr.git
 
 # Issue 2006
 linux-xanmod
+
+# Unclear
+blender-git
+
+# Austin on forum
+linux-amd
+
+# FGD on forum
+linux-amd-znver2
+linux-amd-znver3
+
+# Issue 318
+linux-next-git
+
+# Issue 698
+yuzu-git
+
+# Issue 816 / 1361
+firefox-appmenu
+
+# Issue 957
+mysql

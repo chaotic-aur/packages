@@ -1,5 +1,7 @@
-# Dr460nized
+## Garuda
+decaf-emu-git
 firedragon
+librewolf:https://aur.archlinux.org/librewolf.git
 thunderbird-appmenu
 
 
@@ -20,5 +22,93 @@ godot-mono  # non parallelizable
 ## Not building for whatever reason, lets try it here
 nicotine-plus-git
 
+## OTHERS
+bcg729-git # (dep mediastreamer-git)
+bcmatroska2-git # (dep mediastreamer-git)
+media-downloader-git:https://github.com/chaotic-aur/pkgbuild-media-downloader-git # Issue Request #1592
+media-downloader:https://github.com/chaotic-aur/pkgbuild-media-downloader # Stable version of Issue Request #1592
+non-euclidean-git
+kopia-bin
+kopia-ui-bin
+pyinfra:https://github.com/chaotic-aur/pkgbuild-pyinfra
+gittyup
+kdeplasma-applets-fokus # moved here because its not git version
+lightlyshaders-git
+#lightlyshaders-kdegit-git:https://github.com/chaotic-aur/pkgbuild-lightlyshaders-kdegit-git
+
+# Issue 1536
+thunderbird-beta
+
+# Issue 1686
+libeb # (dep goldendict-git goldendict-webengine-pr-git)
+goldendict-git
+goldendict-webengine-pr-git
+
+# Issue 1722
+amule-git
+
+# Issue 1758
+enve-git
+
+# Issue 1816
+qwertone-git
+
+# Issue 2076
+openssl-git
+
+# Issue 2132
+tahoma2d
+
+# Issue 2140
+myman
+
+# Issue 2156
+cinelerra-gg-git
+
+# Issue 1308
+console-bridge # (dep gazebo)
+urdfdom-headers # (dep gazebo)
+ignition-cmake # (dep gazebo)
+libccd # (dep gazebo)
+ogre-1.9 # (dep gazebo)
+
+# Issue 2273
+vita3k-git
+
+# Issue 2335 - no -git suffix but it's a git package
+emacs-git-noway-widgets:https://aur.archlinux.org/emacs-git-noway-widgets.git
+
+# Issue 2350
+celeste
+
+# Issue 2392
+ola # (dep qlcplus)
+qlcplus
+--
+ignition-tools # (dep gazebo)
+urdfdom # (dep gazebo)
+ignition-msgs-5 # (dep gazebo)
+ignition-common-3 # (dep gazebo)
+sdformat-9 # (dep gazebo)
+ignition-math # (dep gazebo)
+--
+ignition-transport-8 # (dep gazebo)
+ignition-fuel_tools-4 # (dep gazebo)
+--
+gazebo
+
+discord-ptb
+
+babashka-bin # Fast native Clojure scripting runtime ; https://babashka.org/
+codon-bin # Codon is a high-performance Python compiler that compiles Python code to native machine code without any runtime overhead. ; https://docs.exaloop.io/codon
+gleam # Gleam is a friendly language for building type-safe systems that scale! ; https://gleam.run/
+rbenv # Seamlessly manage your app’s Ruby environment with rbenv. ; https://github.com/rbenv/rbenv
+ruby-build # ruby-build is a command-line tool that simplifies installation of any Ruby version from source on Unix-like systems. ; https://github.com/rbenv/ruby-build
+tradingview # The best trades require research, then commitment. ; https://www.tradingview.com/
+motivewave # A Trading Platform to Fit Any Trader or Market Analyst ; https://www.motivewave.com/
+rebar3 # A sophisticated build-tool for Erlang projects that follows OTP principles. ; https://github.com/erlang/rebar3
+elixir-ls # A frontend-independent Language Server Protocol for Elixir ; https://github.com/elixir-lsp/elixir-ls
+qutebrowser-qt6-git # A keyboard-driven, vim-like browser based on Python and Qt. ; https://github.com/qutebrowser/qutebrowser
+roundedsbe-git:https://github.com/chaotic-aur/pkgbuild-roundedsbe-git.git # A fork of SierraBreezeEnhanced with integrated corner rounding effect CornersShader (reworked version of what used to be called LightlyShaders) and shared configuration ; https://github.com/a-parhom/RoundedSBE
 
 

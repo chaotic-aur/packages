@@ -187,6 +187,27 @@ itch-setup-bin
 cmst-git
 connman-git
 
+# Sorcerer (IRC)
+tabby-bin
+
+# UltraBlack on forum
+fritzing
+valent-git
+gtkcord4
+
+# gaelic on forum
+grass
+
+# oldrocker99 on forum
+aqualung
+
+# waeking on forum
+opensnitch-ebpf-module
+
+# Via mail (9th June)
+notepadnext
+schildichat-desktop
+
 # Alexjp
 bcache-tools
 libgaminggear # (dep roccat-tools)
@@ -194,6 +215,156 @@ roccat-tools:https://aur.archlinux.org/roccat-tools.git # (Also includes roccat-
 
 
 ### Chaotic-AUR
+## Try to get some more hourly builds in
+alacritty-git
+alhp-keyring
+alhp-mirrorlist
+alpm_octopi_utils-git
+ananicy-cpp-git
+ananicy-rules-git # (optdep ananicy-cpp-git)
+arch-deployer-git
+babl-git # (dep gimp-git)
+brave-nightly-bin
+btop-git
+catch2-git # (dep waybar-hyprland-git)
+cfs-zen-tweaks
+chkrootkit
+clamav-unofficial-sigs
+coreutils-hybrid-git
+crowdsec
+czkawka-git
+electronmail-bin
+epiphany-git
+fastfetch-git
+fastgame-git
+firejail-git
+firejail-pacman-hook
+firetools-git
+fish-git
+flutter # (dep fluffychat)
+gegl-git # (dep gimp-git)
+gimp-git
+git-git
+guayadeque-git
+harmonoid-bin
+huniq-git
+hyprland-git
+input-leap-git
+ipman
+jamesdsp-git
+kotatogram-dev-git
+kvantum-git
+kwin-bismuth
+libart-lgpl # (dep gimp-git)
+libgbinder
+libglibutil
+libscrypt
+networkmanager-iwd
+nextcloud-client-git
+nextdns-unprivileged
+nspawn-git
+ntfs3-dkms
+obs-studio-git
+octopi-git
+onedrivegui-git
+pacman-git
+paru-git:https://github.com/chaotic-aur/pkgbuild-paru-git.git
+plasma5-wallpapers-wallpaper-engine
+python-codegen
+python-gbinder
+python-simplediff
+qbittorrent-enhanced-git
+qemu-git
+qtwebflix-git
+quickemu
+quickemu-git
+riseup-vpn
+rufetch
+rusnapshot-git
+searx
+snapper-tools-git
+sudo-git
+teams-for-linux-git
+telegram-desktop-userfonts
+traitor-git
+vscodium-insiders
+vscodium-insiders-marketplace
+waybar-hyprland-git
+waydroid-git
+whoogle
+whoogle-git
+woeusb-ng
+xdg-ninja-git
+xorg-server-git:https://aur.archlinux.org/xorg-server-git.git
+zenmonitor3-git
+
+# Spotdl
+cpp-taskflow # (dep python-rapidfuzz)
+jarowinkler-cpp # (dep python-rapidfuzz)
+python-pytube # (dep python-spotdl)
+python-spotdl
+
+
+## Pedro
+grim-git
+osdlyrics-git
+
+
+## SGS
+gimp-plugin-normalmap
+gnome-icon-theme # (dep gnome-shell-extension-vitals-git)
+gnome-icon-theme-symbolic # (dep gnome-icon-theme la-capitaine-icon-theme gnome-shell-extension-vitals-git)
+libcgroup
+lockdown-ms
+pacseek
+plasma5-applets-audio-device-switcher
+plasma5-applets-plasma-pstate
+python-pid # (dep refind-btrfs)
+python-transitions # (dep refind-btrfs)
+qpdfview
+qytdl
+refind-btrfs
+sound-theme-smooth
+usbaudio-git
+xiaomitool-v2
+
+
+## Technetium1
+acidrip
+android-messages-desktop
+betterdiscordctl-git
+bpytop-git
+cmake-git
+croc-git
+das-keyboard-q
+drawio-desktop
+duc-git
+easytether-bin
+jellyfin-media-player-git
+lutris-git
+mullvad-vpn-beta
+pacvis-git
+paho-mqtt-c # (dep powerpanel)
+powerpanel
+python-dacite # (dep soundcloud-dl-git)
+python-pathvalidate # (dep soundcloud-dl-git)
+python-soundcloud-v2 # (dep soundcloud-dl-git)
+q-dns-git
+qrcp-git
+snkrx-drmfree-git
+soundcloud-dl-git
+speedtest++
+sshs
+torrent-file-editor-qt5-git
+youtube-music-git
+
+# sparrow-wifi-git (Technetium1)
+python-gps3 # (dep sparrow-wifi-git)
+python-manuf # (dep sparrow-wifi-git)
+libbtbb # (dep ubertooth)
+ubertooth # (dep sparrow-wifi-git)
+sparrow-wifi-git
+
 # Issue 946
 graphite-gtk-theme-git
 

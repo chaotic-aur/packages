@@ -185,3 +185,557 @@ rtl88xxau-aircrack-dkms-git
 rtw88-dkms-git
 rtw89-dkms-git
 wd719x-firmware
+
+
+## Chaotic
+# Issue 377
+edid-decode-git
+
+# Issue 486
+mkosi-git
+
+# Issue 759
+tenacity-git
+
+# Issue 819
+goodvibes
+
+# Issue 820
+goodvibes-git
+
+# Issue 928
+python-pynput # (dep rustdesk-nightly)
+rustdesk-nightly # (dep remmina-plugin-rustdesk)
+
+# Issue 1014
+spotify-adblock-git
+
+# Issue 1034
+bitfetch-git
+freshfetch-git
+novafetch-git
+pfetch-git
+ufetch-git
+
+# Issue 1108
+kdenlive-stabledeps-git:https://github.com/chaotic-aur/pkgbuild-kdenlive-stabledeps-git.git
+
+# Issue 1304
+aqemu
+
+# Issue 1320
+86box
+
+# Issue 1323
+nushell-git
+
+# Issue 1324
+qt-virt-manager
+scrub # (dep qt-virt-manager)
+
+# Issue 1328
+ankama-launcher
+
+# Issue 1331
+spicetify-cli
+
+# Issue 1334
+steam-boilr-gui
+
+# Issue 1349
+marktext-bin
+
+# Issue 1350
+hardinfo-git
+
+# Issue 1351
+realvnc-vnc-server
+
+# Issue 1352
+adw-gtk3-git
+
+# Issue 1353
+snowflake-pt-client-git
+
+# Issue 1356
+ffsend-bin
+
+# Issue 1358
+nx:https://aur.archlinux.org/nx.git # (dep x2goclient x2goserver)
+x2goclient
+x2goserver
+
+# Issue 1360
+davfs2
+
+# Issue 1363
+asusctl-git
+
+# Issue 1372
+duplicacy
+
+# Issue 1379
+android-ndk
+
+# Issue 1380
+cockroachdb-bin
+
+# Issue 1381
+cpp-httplib # (dep yuzu-early-access)
+cpp-jwt # (dep yuzu-early-access)
+dynarmic # (dep yuzu-early-access)
+xbyak # (dep yuzu-early-access)
+yuzu-early-access
+
+# Issue 1384
+heimdall-grimler-git
+
+# Issue 1386
+whatsapp-for-linux
+
+# Issue 1390
+swayr
+
+# Issue 1393
+libxcvt-git
+
+# Issue 1397
+bdf-unifont # (dep grub-improved-luks2-git)
+grub-improved-luks2-git
+
+# Issue 1399
+jdk:https://aur.archlinux.org/jdk.git
+
+# Issue 1407
+jellyfin-git # (also builds jellyfin-{server,web}-git
+
+# Issue 1408
+adguardhome
+
+# Issue 1409
+amberol
+amberol-git
+
+# Issue 1415
+portainer-bin
+
+# Issue 1416
+system-monitoring-center
+
+# Issue 1418
+appimagepool-appimage
+
+# Issue 1419
+app-outlet-bin
+
+# Issue 1420
+mypy-git
+
+# Issue 1421
+wxformbuilder
+
+# Issue 1428
+nvidia-open-beta
+nvidia-open-git
+
+# Issue 1438
+deluge-git
+
+# Issue 1425
+responsively
+
+# Issue 1427
+colorway
+
+# Issue 1433
+vkd3d-proton-mingw-git
+
+# Issue 1439
+ta-lib
+
+# Issue 1441
+strawberry-qt5
+
+# Issue 1452
+vlang-git
+
+# Issue 1480
+imd-git
+
+# Issue 1482
+conserve-git
+
+# Issue 1491
+gyroflow-git
+
+# Issue 1516
+zecwallet-lite
+
+# Issue 1532
+shadowsocks-gtk-rs
+
+# Issue 1549
+dwarfs-git
+dwarfs
+
+# Issue 1590
+ipscan
+
+# Issue 1591
+flyctl-bin
+
+# Issue 1593
+mousai
+
+# Issue 1594
+python-freetype-py # (dep plots)
+python-pyglm # (dep plots)
+plots
+
+# Issue 1595
+downloader-cli # (dep ytmdl)
+python-ffmpeg-python # (dep ytmdl spleeter-git)
+python-itunespy # (dep ytmdl)
+python-pydes # (dep ytmdl)
+python-simber # (dep ytmdl)
+python-spotipy # (dep ytmdl)
+youtube-search-python # (dep ytmdl)
+ytmdl
+
+# Issue 1606
+whatsie-git
+
+# Issue 1615
+deutex # (dep freedoom odamex-git)
+freedoom # (dep zandronum q-zandronum chocolate-doom)
+chocolate-doom # (dep doomseeker)
+wxgtk-dev:https://aur.archlinux.org/wxgtk-dev.git # (dep doomseeker)
+odamex-git # (dep doomseeker)
+srb2-data # (dep srb2 doomseeker)
+srb2 # (dep doomseeker)
+doomseeker # (dep zandronum q-zandronum)
+q-zandronum
+zandronum
+
+# Issue 1621
+tela-circle-icon-theme-git # (dep orchis-theme-git)
+kvantum-theme-orchis-git # (dep orchis-theme-git)
+orchis-theme-git
+
+# Issue 1623
+python-readchar # (dep moodle-dl-git)
+python-xmpppy-git # (dep moodle-dl-git)
+moodle-dl-git
+
+# Issue 1625
+jdk-temurin
+
+# Issue 1626
+wluma
+
+# Issue 1630
+la-capitaine-icon-theme
+
+# Issue 1647
+podman-desktop
+
+# Issue 1650
+python-aigpy # (dep tidal-dl-git tidal-gui)
+python-lyricsgenius # (dep tidal-dl-git tidal-gui)
+python-pydub # (dep tidal-dl-git tidal-gui)
+tidal-dl-git # (dep tidal-gui)
+tidal-gui
+
+# Issue 1656
+yacy-git
+
+# Issue 1660
+resp-app
+
+# Issue 1668
+waybar-experimental-git
+
+# Issue 1669
+joshuto-git
+
+# Issue 1673
+lens
+
+# Issue 1676
+art-rawconverter
+
+# Issue 1682
+fancontrol-gui # (dep fancontrol-kcm)
+fancontrol-gui-git # (dep fancontrol-kcm-git)
+fancontrol-kcm
+fancontrol-kcm-git
+kcm-colorful-git
+kcm-grub2-git
+kcm-grub2-git
+kcm-imchooser-frameworks
+kcm-lookandfeel-standalone-git
+kcm-polkit-kde-git
+kcm-tablet-git
+kcm-uefi
+kcmutils-git
+nx-firewall-git
+systemd-kcm
+telepathy-kde-accounts-kcm-git
+
+# Issue 1691
+glaxnimate
+glaxnimate-git
+
+# Issue 1692
+noto-fonts-emoji-flag-git
+python-nototools # (dep noto-fonts-emoji-flag-git)
+python-pyclip # (dep python-nototools)
+
+# Issue 1693
+libcprime # (dep corepdf corekeyboard coreimage corepad corepaint)
+corekeyboard
+corepdf
+metronome
+health
+image-roll-bin
+g4music
+g4music-git
+revelation
+gis-weather
+gis-weather-git
+
+# Issue 1697
+ruffle-git
+
+# Issue 1699
+czkawka:https://aur.archlinux.org/czkawka.git
+
+# Issue 1700
+easystroke
+
+# Issue 1701
+libadwaita-without-adwaita-git
+
+# Issue 1704
+skeuos-gtk
+
+# Issue 1705
+vala-panel
+vala-panel-git
+vala-panel-applets-gpl-git:https://aur.archlinux.org/vala-panel-applets-gpl-git.git
+vala-panel-appmenu-jayatana-git
+vala-panel-appmenu-registrar
+vala-panel-appmenu:https://aur.archlinux.org/vala-panel-appmenu.git
+vala-panel-sntray-git:https://aur.archlinux.org/vala-panel-sntray-git.git # (sntray-plugin-common-git mate-panel-sntray-git xfce4-panel-sntray-git vala-panel-sntray-git budgie-sntray-git)
+generic-monitor-plugin-git:https://aur.archlinux.org/generic-monitor-plugin-git.git # (mate-panel-genmon-git xfce4-panel-genmon-ng-git vala-panel-genmon-git budgie-genmon-git)
+
+# Issue 1706
+vdhcoapp-git
+
+# Issue 1707
+warp
+
+# Issue 1715
+abricotine
+abricotine-git
+
+# Issue 1717
+popcorntime-git
+
+# Issue 1719
+akira
+akira-git
+
+# Issue 1723
+app-icon-preview
+app-icon-preview-git
+
+# Issue 1726
+astrofox
+
+# Issue 1728
+authenticator
+
+# Issue 1733
+backintime
+backintime-git
+
+# Issue 1734
+basket
+basket-git
+
+# Issue 1737
+buttercup-desktop
+
+# Issue 1738
+briar-desktop
+
+# Issue 1739
+bookworm-git
+
+# Issue 1742
+carla-git # (dep zrythm-git)
+
+# Issue 1746
+coreimage
+
+# Issue 1747
+corepad
+
+# Issue 1748
+corepaint
+
+# Issue 1752
+deskreen
+
+# Issue 1760
+f3d-git
+
+# Issue 1763
+python-multipledispatch # (dep friture{-git})
+python-pa-ringbuffer # (dep friture{-git})
+python-pyrr # (dep friture{-git})
+python-rtmixer # (dep friture{-git})
+friture
+friture-git
+
+# Issue 1765
+flare-engine # (dep flare-game)
+flare-game
+
+# Issue 1775
+heimer
+
+# Issue 1779
+imagine-git
+
+# Issue 1783
+leocad-git
+
+# Issue 1785
+makehuman
+makehuman-git
+
+# Issue 1788
+xcursor-mayaserie-white
+xcursor-mayaserie-red
+xcursor-mayaserie-orange
+xcursor-mayaserie-green
+xcursor-mayaserie-blue
+xcursor-mayaserie-black
+
+# Issue 1789
+mpc-qt
+
+# Issue 1791
+gruvbox-material-theme-git:https://aur.archlinux.org/gruvbox-material-theme-git.git
+
+# Issue 1793
+nasc
+
+# Issue 1803
+pencil
+
+# Issue 1806
+spread-sheet-widget # (dep pspp)
+pspp
+
+# Issue 1813
+quaternion
+quaternion-git
+
+# Issue 1823
+criterion # (chkdep siril-git)
+siril
+siril-git
+
+# Issue 1825
+sleek
+
+# Issue 1826
+sonobus
+
+# Issue 1829
+googlemaps # (dep subsurface-git subsurface)
+subsurface-libdc # (dep subsurface)
+subsurface-libdc-git # (dep subsurface-git)
+subsurface
+subsurface-git
+
+# Issue 1836
+trilium
+
+# Issue 1843
+vnote
+
+# Issue 1844
+vpaint-git
+
+# Issue 1854
+libaudec # (dep zrythm zrythm-git)
+libcyaml # (dep zrythm zrythm-git)
+reproc # (dep zrythm zrythm-git)
+lsp-dsp-lib # (dep zrythm zrythm-git)
+zrythm
+python-sphinxcontrib-svg2pdfconverter # (dep zrythm-git)
+python-sphinx-intl # (dep zrythm-git)
+zrythm-git
+
+# Issue 1859
+share-preview
+
+# Issue 1862
+popsicle-git
+
+# Issue 1864
+pixelorama
+pixelorama-git
+
+# Issue 1871
+gdevelop-bin
+
+# Issue 1874
+nordic-theme
+nordic-theme-git
+
+# Issue 1879
+fmit
+
+# Issue 1880
+sayonara-player
+
+# Issue 1882
+python-pyo # (dep cecilia cecilia-git)
+cecilia
+cecilia-git
+
+# Issue 1884
+giada
+
+# Issue 1889
+icu60 # (dep cloaker-bin)
+cloaker-bin
+
+# Issue 1913
+celestia-addon-2009_exoplanets
+celestia-addon-2010_exoplanets
+celestia-addon-2010_exoplanets_ii
+celestia-addon-apollo_soyuz
+celestia-addon-atlantis_2
+celestia-addon-deep_impact
+celestia-addon-deep_impact_spacecraft
+celestia-addon-earth_without_water_2
+celestia-addon-global_water_volume
+celestia-addon-hubble_space_telescope
+celestia-addon-international_space_station
+celestia-addon-millenium_falcon
+celestia-addon-spaceman_spiff
+celestia-addon-spitzer_space_telescope
+celestia-addon-star_destroyer
+celestia-addon-sun
+celestia-addon-tatooine_endor_deathstar
+celestia-addon-ulysses
+celestia-addon-vaders_tie_fighter
+celestia-addon-voyagers
+celestia-addon-xwing
+celestia
