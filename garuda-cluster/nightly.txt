@@ -19,8 +19,6 @@ emacs-git
 godot-mono  # non parallelizable
 
 
-## Not building for whatever reason, lets try it here
-nicotine-plus-git
 
 ## OTHERS
 bcg729-git # (dep mediastreamer-git)

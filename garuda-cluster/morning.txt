@@ -1,18 +1,15 @@
-## Chaotic
-firefox-esr:https://aur.archlinux.org/firefox-esr.git
-
-# Issue 2006
-linux-xanmod
-
-# Unclear
-blender-git
-
+## Garuda
 # Austin on forum
 linux-amd
 
 # FGD on forum
 linux-amd-znver2
 linux-amd-znver3
+
+
+## Chaotic
+nicotine-plus-git
+firefox-esr:https://aur.archlinux.org/firefox-esr.git
 
 # Issue 318
 linux-next-git
@@ -25,3 +22,6 @@ firefox-appmenu
 
 # Issue 957
 mysql
+
+# Issue 2006
+linux-xanmod

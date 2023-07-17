@@ -1,5 +1,0 @@
-kidletime-git
-libkscreen-git
-kscreen-git
-kscreenlocker-git
-powerdevil-git

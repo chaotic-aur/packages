@@ -17,20 +17,11 @@ linux-vfio-lts
 # Issue 964
 pcsx2-git
 
-# Issue 1110
-dosbox-x-git
-
-## Maintainer
-# Nico
-coreutils-git
-
-# A friend
-forkgram
-
-
-## Chaotic-AUR
 # Issue 1094
 webkit2gtk-unstable
+
+# Issue 1110
+dosbox-x-git
 
 # Issue 1185
 awesome-git
@@ -78,8 +69,3 @@ linux-nitrous-fire
 
 # Issue 2397
 cosmic-epoch-git
-
-
-## Garuda
-# Setup-assistant
-

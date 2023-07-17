@@ -38,6 +38,9 @@ zoom
 linux-wifi-hotspot
 webapp-manager
 
+## Garuda Gamer
+itch-setup-bin
+
 # Mycroft
 fann # (dep mycroft-core)
 mimic1 # (dep mycroft-core)
@@ -178,10 +181,6 @@ btrfsmaintenance # (dep btrfs-assistant-git btrfs-assistant)
 snapper-tools-git
 otter-browser-git
 
-## Garuda Gamer
-itch-setup-bin
-
-
 ## User requests
 # Zoeruda
 cmst-git
@@ -215,7 +214,7 @@ roccat-tools:https://aur.archlinux.org/roccat-tools.git # (Also includes roccat-
 
 
 ### Chaotic-AUR
-## Try to get some more hourly builds in
+## Nico
 alacritty-git
 alhp-keyring
 alhp-mirrorlist
@@ -230,6 +229,7 @@ catch2-git # (dep waybar-hyprland-git)
 cfs-zen-tweaks
 chkrootkit
 clamav-unofficial-sigs
+coreutils-git
 coreutils-hybrid-git
 crowdsec
 czkawka-git
@@ -242,6 +242,7 @@ firejail-pacman-hook
 firetools-git
 fish-git
 flutter # (dep fluffychat)
+forkgram
 gegl-git # (dep gimp-git)
 gimp-git
 git-git
@@ -365,12 +366,472 @@ libbtbb # (dep ubertooth)
 ubertooth # (dep sparrow-wifi-git)
 sparrow-wifi-git
 
-# Issue 946
-graphite-gtk-theme-git
+
+## Issues
+# Issue 1922
+syncterm
+
+# Issue 1930
+nchat-git
+
+# Issue 1935
+lightspark-git
+
+# Issue 1943
+endeavour-git
+
+# Issue 1944
+vala-panel-appmenu-xfce-git:https://aur.archlinux.org/vala-panel-appmenu-xfce-git.git # (vala-panel-appmenu-common-git) vala-panel-appmenu-mate-git vala-panel-appmenu-xfce-git vala-panel-appmenu-valapanel-git vala-panel-appmenu-budgie-git
+
+# Issue 1945
+thunar-shares-plugin
+
+# Issue 1948
+minetest-git
+
+# Issue 1954
+wxwidgets3.0
+wxwidgets-light:https://aur.archlinux.org/wxwidgets-light.git
+
+# Issue 1955
+bisq
+
+# Issue 1962
+cinny-desktop
+
+# Issue 1964
+across
+
+# Issue 1967
+volantes-cursors
+
+# Issue 1969
+network-manager-applet-nolibappindicator
+
+# Issue 1970
+nodejs-intelephense
+
+# Issue 1974
+sigil-git
+
+# Issue 1975
+goxlr-utility
+
+# Issue 1977
+audio-sharing
+
+# Issue 1978
+python-kiss-headers # (dep cobang)
+python-single-version # (dep cobang)
+cobang
+
+# Issue 1979
+decoder
+
+# Issue 1983
+corrosion-git # (dep pikasso-git)
+pikasso-git
+
+# Issue 1990
+mold-git
+systemd-git
+
+# Issue 1996
+physx
+
+# Issue 2003
+rustup-git
+
+# Issue 2005
+electron-nightly-npm
+
+# Issue 2013
+grub-themes-git:https://aur.archlinux.org/grub-themes-git.git
+
+# Issue 2017
+nordzy-icon-theme-git
+
+# Issue 2019
+python-git
+
+# Issue 2022
+make-git
+
+# Issue 2023
+dmalloc # (dep imagemagick-full-git)
+flif # (dep imagemagick-full-git)
+libfpx # (dep imagemagick-full-git)
+libumem-git # (dep imagemagick-full-git)
+imagemagick-full-git
+
+# Issue 2029
+libopenglrecorder # (dep supertuxkart-git)
+mindustry-git
+openttd-git
+simutrans-extended-git
+supertuxkart-git
+
+# Issue 2036
+prismlauncher-git
+
+# Issue 2037
+prismlauncher
+prismlauncher-qt5
+prismlauncher-qt5-git
+
+# Issue 2045
+ipfs-desktop
+
+# Issue 2053
+libretro-mupen64plus-next-git
+
+# Issue 2054, 2080
+mesen2-git
+
+# Issue 2064
+qbittorrent-git
 
 # Issue 2078
 thunderbird-beta-i18n:https://aur.archlinux.org/thunderbird-beta-i18n.git
 
+# Issue 2079
+zfs-utils-git
+zfs-dkms-git
+
+# Issue 2085
+prboom-plus
+prboom-plus-um-git
+
+# Issue 2090
+discord-screenaudio
+
+# Issue 2099
+miktex
+
+# Issue 2103
+opencolorio1 # (dep openfx-arena-git)
+libseexpr2 # (dep openfx-io-git openfx-io)
+
+# Issue 2107
+icon-library
+
+# Issue 2113
+dendrite
+
+# Issue 2116
+blackbox-terminal
+
+# Issue 2118
+rsync-reflink
+
+# Issue 2129
+edopro-bin
+
+# Issue 2133
+brlaser
+
+# Issue 2139
+xcp
+
+# Issue 2141
+toilet # (dep toilet-fonts)
+toilet-fonts
+
+# Issue 2143
+gnome-shell-extension-appindicator-git
+
+# Issue 2144
+gnome-shell-extension-desktop-icons-ng
+
+# Issue 2145
+gnome-shell-extension-fly-pie-git
+
+# Issue 2147
+gnome-shell-extension-ubuntu-dock-git
+
+# Issue 2148
+supergfxctl
+
+# Issue 2153
+openfx-arena # (dep natron-compositor)
+openfx-gmic # (dep natron-compositor)
+openfx-io # (dep natron-compositor)
+openfx-misc # (dep natron-compositor)
+natron-compositor
+
+# Issue 2158
+libelectron # (dep disneyplus)
+disneyplus
+
+# Issue 2159
+neovim-nightly-bin:https://aur.archlinux.org/neovim-nightly-bin.git
+
+# Issue 2161
+etl-dev # (dep synfig-dev synfigstudio-dev)
+synfig-dev # (dep synfigstudio-dev)
+synfigstudio-dev
+
+# Issue 2166
+raze
+
+# Issue 2169
+tcllib # (dep tkimg)
+snack # (dep scid wavesurfer)
+tkimg # (dep scid)
+scid
+
+# Issue 2170
+dragon-drop-git
+
+# Issue 2172
+dsda-doom
+woof-doom
+woof-doom-git
+
+# Issue 2174
+shattered-pixel-dungeon-git
+
+# Issue 2176
+fancytasks
+
+# Issue 2181
+wings3d
+
+# Issue 2188
+meowsql
+
+# Issue 2198
+libiqa-git # (dep jpeg-recompress-git)
+libsmallfry-git # (dep jpeg-recompress-git)
+jpeg-recompress-git
+
+# Issue 2212
+vopono
+
+# Issue 2213
+geph4-client
+
+# Issue 2221
+wkhtmltopdf
+remarkable
+
+# Issue 2224
+agg-2.6-git
+
+# Issue 2233
+discord-rpc-git # (dep srb2kart)
+srb2kart-data # (dep srb2kart)
+srb2kart
+
+ Issue 2238
+glrnvim
+
+# Issue 2239
+lib32-mangohud-git
+
+# Issue 2240
+snapper-support:https://gitlab.com/garuda-linux/packages/stable-pkgbuilds/snapper-support.git
+
+# Issue 2243
+libgksu # (dep gksu)
+gksu # (optdep zenmap-git)
+zenmap-git
+
+# Issue 2259
+hyprland-nvidia
+
+# Issue 2260
+normcap
+
+# Issue 2261
+remmina-plugin-rustdesk
+
+# Issue 2262
+remmina-plugin-anydesk-git
+
+# Issue 2263
+remmina-plugin-folder
+
+# Issue 2264
+remmina-plugin-teamviewer
+
+# Issue 2268
+restic-git
+
+# Issue 2277
+teams-for-linux
+
+# Issue 2281
+armcord-git
+
+# Issue 2282
+jellyfin-media-player
+
+# Issue 2291
+rome
+
+# Issue 2295
+xorgxrdp
+
+# Issue 2296
+xrdp # (dep xorgxrdp)
+
+# Issue 2293
+python-casttube # (dep python-pychromecast)
+python-pychromecast # (dep catt)
+catt
+
+# Iusse 2294
+dolphin-tabopts
+
+# Issue 2303
+joshuto
+
+# Issue 2305
+cage-git
+
+# Issue 2309
+polkit-consolekit # (dep consolekit)
+consolekit
+
+# Issue 2315
+ares-emu
+ares-emu-git
+
+# Issue 2318
+etcd
+
+# Issue 2327
+mastodon
+
+# Issue 2329
+clementine-git
+
+# Issue 2339
+java-jce_ustrength # (dep jameica)
+jameica
+
+# Issue 2363
+loupe
+
+# Issue 2366
+python-vlc
+python-pympress
+
+# Issue 2368
+doomrunner
+
+# Issue 2369
+pcem
+
+# Issue 2374
+uuid
+perl-crypt-rijndael
+perl-net-arp
+perl-io-stty
+perl-x11-guitest
+perl-expect
+asbru-cm-git
+
+# Issue 2378
+rescrobbled-git
+
+# Issue 2382
+smtube
+
+# Issue 2388
+lemurs-git
+
+# Issue 2389
+gnome-shell-extension-blur-my-shell
+
+# Issue 2390
+gnome-shell-extension-gsconnect
+gnome-shell-extension-gsconnect-git
+
+# Issue 2396
+systemd-manager-git
+
+# Issue 2398
+cyberchef-electron
+
 # Issue 2400
 c-client # (dep php73)
 php73:https://aur.archlinux.org/php73.git
+
+# Issue 2401
+2bwm-git
+
+# Issue 2403
+cargo-sweep
+
+# Issue 2407
+simplescreenrecorder
+
+# Issue 2410
+gnome-x11-gesture-daemon # (dep gnome-gesture-improvements)
+gnome-gesture-improvements
+
+# Issue 2419
+protonplus
+
+# Issue 2452
+nerdfix
+
+# Issue 2455
+nomacs
+
+# Issue 2476
+migrate
+
+# Issue 2490
+systemtap-git # (dep tuned)
+tuned
+
+# Issue 2504
+heroic-games-launcher-git
+
+# Issue 2511
+gnome-shell-extension-vitals-git
+
+# Issue 2520
+flightcore
+
+# Issue 2531
+sing-geoip # (dep nekoray)
+sing-geosite # (dep nekoray)
+nekoray
+
+# Issue 2539
+hyprpaper-git
+
+# Issue 2544
+geticons-git
+
+# Issue 2545
+gtklock # (dep gtklock-playerctl-module gtklock-powerbar-module gtklock-userinfo-module)
+gtklock-playerctl-module
+
+# Issue 2546
+gtklock-powerbar-module
+
+# Issue 2547
+gtklock-userinfo-module
+
+# Issue 2558
+eww-wayland
+
+# Issue 2559
+eww
+
+# Issue 2562
+mpvpaper
+
+# Issue 2563
+nerd-fonts-inter
+
+# Issue 2567
+nerd-fonts-noto-sans-mono-extended
+
+# Issue 2596
+deltachat-desktop-git

@@ -12,17 +12,17 @@ jamesdsp
 kwin-scripts-forceblur
 kwin-scripts-window-colors
 plasma5-applets-betterinlineclock-git
-plasma5-applets-eventcalendar
+plasma5-applets-eventcalenda
 plasma5-applets-netspeed
 plasma5-applets-window-appmenu
 plasma5-applets-window-title
+plasma5-wallpapers-blurredwallpaper
 resvg
 sweet-folders-icons-git # (dep sweet-theme-full-git)
 sweet-kde-theme-git # (dep sweet-theme-full-git)
 sweet-theme-full-git
 
 # Dr460nized-gaming
-firedragon-extension-xdm-browser-monitor
 kde-service-menu-reimage
 kde-servicemenus-encfs
 kde-servicemenus-komparemenu
@@ -36,7 +36,6 @@ kwin-effects-burn-my-windows-git
 kwin-effects-sliding-notifications
 kwin-effects-yet-another-magic-lamp
 kwin-scripts-krohnkite-git
-plasma5-wallpapers-blurredwallpaper
 
 # GNOME
 # Nothing as of now
@@ -206,6 +205,9 @@ goodvibes-git
 # Issue 928
 python-pynput # (dep rustdesk-nightly)
 rustdesk-nightly # (dep remmina-plugin-rustdesk)
+
+# Issue 946
+graphite-gtk-theme-git
 
 # Issue 1014
 spotify-adblock-git
@@ -492,17 +494,17 @@ python-nototools # (dep noto-fonts-emoji-flag-git)
 python-pyclip # (dep python-nototools)
 
 # Issue 1693
-libcprime # (dep corepdf corekeyboard coreimage corepad corepaint)
 corekeyboard
 corepdf
-metronome
-health
-image-roll-bin
 g4music
 g4music-git
-revelation
 gis-weather
 gis-weather-git
+health
+image-roll-bin
+libcprime # (dep corepdf corekeyboard coreimage corepad corepaint)
+metronome
+revelation
 
 # Issue 1697
 ruffle-git
