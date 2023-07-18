@@ -302,9 +302,10 @@ zenmonitor3-git
 # Spotdl
 cpp-taskflow # (dep python-rapidfuzz)
 jarowinkler-cpp # (dep python-rapidfuzz)
+python-bandcamp-api # (dep python-spotdl)
+python-demjson3 # (dep python-spotdl)
 python-pytube # (dep python-spotdl)
-python-spotdl
-
+python-spotdl 
 
 ## Pedro
 grim-git
