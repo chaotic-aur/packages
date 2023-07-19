@@ -1310,7 +1310,7 @@ gtk-theme-windows10-dark-git
 write_stylus
 
 # Issue 1853
-youplay
+youplay:https://aur.archlinux.org/youplay.git # (youplay-*)
 
 # Issue 1856
 catppuccin-grub-theme-git:https://aur.archlinux.org/catppuccin-grub-theme-git.git
