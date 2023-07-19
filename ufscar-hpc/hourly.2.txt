@@ -48,7 +48,7 @@ hunspell-pt-br
 intelbacklight-git
 lib32-imath
 lib32-primus-vk-git
-lib32-sdl2_compat12-git
+lib32-sdl12-compat-git
 logstalgia
 neovim-drop-in
 neovim-plug
@@ -61,7 +61,7 @@ python-telegram-bot # (dep python-telegram-send)
 python-telegram-send
 quartus-130
 ripcord-arch-libs
-sdl2_compat12-git
+sdl12-compat-git
 shntool # (dep split2flac)
 spectral-matrix-git
 split2flac
