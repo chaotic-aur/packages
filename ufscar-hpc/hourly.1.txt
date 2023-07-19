@@ -1703,4 +1703,6 @@ mesa-tkg-git:https://github.com/Frogging-Family/mesa-git.git
 ## Lost & found
 anaconda
 java-openjdk-ea-bin
+srb2
+srb2-data # (dep srb2)
 telegram-desktop-bin-dev

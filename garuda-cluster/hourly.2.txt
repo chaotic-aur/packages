@@ -63,9 +63,6 @@ nm-tray
 mate-menu
 mate-tweak
 
-# Qtile
-picom-ibhagwan-git
-
 # Sway
 nordic-darker-theme
 nwg-bar
@@ -408,14 +405,11 @@ ytmdl
 whatsie-git
 
 # Issue 1615
+chocolate-doom # (optdep doomseeker)
 deutex # (dep freedoom odamex-git)
-freedoom # (dep zandronum q-zandronum chocolate-doom)
-chocolate-doom # (dep doomseeker)
-wxgtk-dev:https://aur.archlinux.org/wxgtk-dev.git # (dep doomseeker)
-odamex-git # (dep doomseeker)
-srb2-data # (dep srb2 doomseeker)
-srb2 # (dep doomseeker)
 doomseeker # (dep zandronum q-zandronum)
+freedoom # (optdep zandronum q-zandronum chocolate-doom)
+odamex-git # (optdep doomseeker)
 q-zandronum
 zandronum
 
