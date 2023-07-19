@@ -624,7 +624,7 @@ discord-rpc-git # (dep srb2kart)
 srb2kart-data # (dep srb2kart)
 srb2kart
 
- Issue 2238
+# Issue 2238
 glrnvim
 
 # Issue 2239
