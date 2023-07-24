@@ -1692,6 +1692,9 @@ xmap-git
 # Issue 2667
 tty-clock
 
+# Issue 2671
+fcitx5-mozc-ut
+
 
 # Electron
 electron16-bin
