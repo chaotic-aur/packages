@@ -1689,6 +1689,9 @@ trash-cli-git
 # Issue 2628
 xmap-git
 
+# Issue 2635
+wine-wow64
+
 # Issue 2667
 tty-clock
 
