@@ -605,6 +605,7 @@ openboard
 youtube-music-bin
 
 # Issue 688
+dtv-scan-tables-git # (optdep linuxtv-dvb-apps)
 linuxtv-dvb-apps
 
 # Issue 691
