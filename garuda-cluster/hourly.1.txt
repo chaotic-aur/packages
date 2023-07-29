@@ -875,6 +875,15 @@ swww
 bootstrap
 
 # Issue 2601
-nvidia-525xx-utils:https://aur.archlinux.org/nvidia-525xx-utils.git # (nvidia-525xx-utils, opencl-nvidia-525xx, nvidia-525xx-dkms)
 lib32-nvidia-525xx-utils:https://aur.archlinux.org/lib32-nvidia-525xx-utils.git # (lib32-nvidia-525xx-utils, lib32-opencl-nvidia-525xx)
 nvidia-525xx-settings:https://aur.archlinux.org/nvidia-525xx-settings.git # (nvidia-525xx-settings, libxnvctrl-525xx)
+nvidia-525xx-utils:https://aur.archlinux.org/nvidia-525xx-utils.git # (nvidia-525xx-utils, opencl-nvidia-525xx, nvidia-525xx-dkms)
+
+# Issue 2606
+gst-plugin-gtk4
+
+# Issue 2608
+clipboard-sync
+
+# Issue 2613
+aurutils
