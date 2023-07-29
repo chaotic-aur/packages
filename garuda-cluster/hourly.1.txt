@@ -858,3 +858,15 @@ whisper.cpp
 
 # Issue 2587
 kwin-polonium
+
+# Issue 2591
+schedtoold
+
+# Issue 2594
+keystore-explorer
+
+# Issue 2597
+figlet-fonts
+
+# Issue 2598
+swww
