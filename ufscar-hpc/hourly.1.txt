@@ -623,10 +623,6 @@ ttf-signika # (dep ttf-google-fonts-git fonts-meta-extended-lt)
 # Issue 465
 imhex
 
-# Issue 467
-# epiphany-git # (dep webkit2gtk-unstable doesn't build as of now)
-libhandy-git # (dep epiphany-git)
-
 # Issue 468
 freetube
 

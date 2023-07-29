@@ -234,7 +234,6 @@ coreutils-hybrid-git
 crowdsec
 czkawka-git
 electronmail-bin
-epiphany-git
 fastfetch-git
 fastgame-git
 firejail-git
