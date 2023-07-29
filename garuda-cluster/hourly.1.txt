@@ -832,3 +832,12 @@ nerd-fonts-noto-sans-mono-extended
 
 # Issue 2596
 deltachat-desktop-git
+
+# Issue 2564
+virtualbox-unattended-templates
+
+# Issue 2570
+rofi-greenclip
+
+# Issue 2572
+warpgui-bin
