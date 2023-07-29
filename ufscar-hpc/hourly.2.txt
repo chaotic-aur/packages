@@ -880,9 +880,6 @@ dte
 # Issue 841
 wine-wl-git
 
-# Issue 842
-gnome-text-editor-git
-
 # Issue 868
 callaudiod # (dep phosh-git)
 feedbackd # (dep phosh)
