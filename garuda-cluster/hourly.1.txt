@@ -711,9 +711,6 @@ clementine-git
 java-jce_ustrength # (dep jameica)
 jameica
 
-# Issue 2363
-loupe-git
-
 # Issue 2366
 python-vlc
 python-pympress
