@@ -767,6 +767,9 @@ nvidia-340xx-settings:https://aur.archlinux.org/nvidia-340xx-settings.git # (nvi
 # Issue 2655
 telegraf
 
+# Issue 2663
+eww-wayland-git
+
 # Issue 2664
 mint-l-icons
 mint-l-theme
@@ -774,3 +777,8 @@ mint-l-theme
 # Issue 2674
 polkit-dumb-agent-git
 
+# Issue 2675
+notes
+
+# Issue 2680
+tpmmanager
