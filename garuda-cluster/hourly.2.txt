@@ -764,3 +764,13 @@ nvidia-340xx-utils:https://aur.archlinux.org/nvidia-340xx-utils.git # (nvidia-34
 # Issue 2648
 nvidia-340xx-settings:https://aur.archlinux.org/nvidia-340xx-settings.git # (nvidia-340xx-settings libxnvctrl-340xx)
 
+# Issue 2655
+telegraf
+
+# Issue 2664
+mint-l-icons
+mint-l-theme
+
+# Issue 2674
+polkit-dumb-agent-git
+
