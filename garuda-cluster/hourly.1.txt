@@ -841,3 +841,15 @@ rofi-greenclip
 
 # Issue 2572
 warpgui-bin
+
+# Issue 2573
+openasar-git
+
+# Issue 2578
+beeper
+
+# Issue 2579
+swayhide
+
+# Issue
+whisper.cpp 
