@@ -460,9 +460,6 @@ python-openrgb-git
 # Issue 519
 unityhub
 
-# Issue 529
-libadwaita-git
-
 # Issue 514
 soundux
 
