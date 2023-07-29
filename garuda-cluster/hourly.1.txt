@@ -870,3 +870,11 @@ figlet-fonts
 
 # Issue 2598
 swww
+
+# Issue 2600
+bootstrap
+
+# Issue 2601
+nvidia-525xx-utils:https://aur.archlinux.org/nvidia-525xx-utils.git # (nvidia-525xx-utils, opencl-nvidia-525xx, nvidia-525xx-dkms)
+lib32-nvidia-525xx-utils:https://aur.archlinux.org/lib32-nvidia-525xx-utils.git # (lib32-nvidia-525xx-utils, lib32-opencl-nvidia-525xx)
+nvidia-525xx-settings:https://aur.archlinux.org/nvidia-525xx-settings.git # (nvidia-525xx-settings, libxnvctrl-525xx)
