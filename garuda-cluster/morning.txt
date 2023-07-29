@@ -25,3 +25,6 @@ mysql
 
 # Issue 2006
 linux-xanmod
+
+# Issue 2679
+linux-binder
