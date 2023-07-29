@@ -731,3 +731,26 @@ celestia-addon-vaders_tie_fighter
 celestia-addon-voyagers
 celestia-addon-xwing
 celestia
+
+# Issue 2624
+latencyflex-git
+
+# Issue 2629
+protonmail-bridge-nogui
+
+# Issue 2637
+keyd
+
+# Issue 2638
+artemis3
+pyinstaller # (dep artemis3)
+pyinstaller-hooks-contrib # (dep pyinstaller)
+python-altgraph # (dep pyinstaller)
+python-pytest-drop-dup-tests # (dep pyinstaller)
+python-tinyaes # (dep pyinstaller)
+
+# Issue 2643
+kernel-install-mkinitcpio
+
+# Issue 2645
+rkvm
