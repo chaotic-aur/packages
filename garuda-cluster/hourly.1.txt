@@ -801,6 +801,9 @@ sing-geoip # (dep nekoray)
 sing-geosite # (dep nekoray)
 nekoray
 
+# Issue 2538
+hyprpicker-git
+
 # Issue 2539
 hyprpaper-git
 
