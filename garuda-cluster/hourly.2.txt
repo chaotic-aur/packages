@@ -125,14 +125,12 @@ flameshot-git
 garuda-downloader-git
 hw-probe
 imagewriter
-lib32-nvidia-390xx-utils
-lib32-nvidia-470xx-utils
+lib32-nvidia-390xx-utils:https://aur.archlinux.org/lib32-nvidia-390xx-utils.git # (lib32-nvidia-390xx-utils, lib32-opencl-nvidia-390xx)
+lib32-nvidia-470xx-utils:https://aur.archlinux.org/lib32-nvidia-470xx-utils.git # (lib32-nvidia-470xx-utils, lib32-opencl-nvidia-470xx)
 lib32-opencl-nvidia-390xx
-lib32-opencl-nvidia-470xx
 libinput-gestures
 libinput_gestures_qt
 libpamac-aur
-libxnvctrl-390xx
 memavaild
 menulibre
 mkinitcpio-openswap
@@ -140,10 +138,10 @@ neofetch-git
 nix-user-chroot
 nohang
 noto-color-emoji-fontconfig
-nvidia-390xx-settings
-nvidia-390xx-utils
-nvidia-470xx-settings
-nvidia-470xx-utils
+nvidia-390xx-settings:https://aur.archlinux.org/nvidia-390xx-settings.git # (nvidia-390xx-settings, libxnvctrl-390xx)
+nvidia-390xx-utils:https://aur.archlinux.org/nvidia-390xx-utils.git # (nvidia-390xx-utils opencl-nvidia-390xx nvidia-390xx-dkms)
+nvidia-470xx-settings:https://aur.archlinux.org/nvidia-470xx-settings.git # (nvidia-470xx-settings, libxnvctrl-470xx)
+nvidia-470xx-utils:https://aur.archlinux.org/nvidia-470xx-utils.git # (nvidia-470xx-utils, opencl-nvidia-470xx, nvidia-470xx-dkms)
 nvidia-zen:https://gitlab.com/garuda-linux/packages/pkgbuilds/nvidia-zen
 optimus-manager
 optimus-manager-git
