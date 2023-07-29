@@ -857,3 +857,4 @@ go-mtpfs-git
 whisper.cpp 
 
 # Issue 2587
+kwin-polonium
