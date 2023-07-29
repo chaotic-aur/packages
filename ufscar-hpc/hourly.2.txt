@@ -580,6 +580,7 @@ python-pychromecast # (dep photoqt)
 bluemail
 
 # Issue 668
+fnm # (dep ledger-live)
 haguichi
 ledger-live
 ledger-udev # (dep ledger-live)
@@ -1141,6 +1142,7 @@ librist # (dep ffmpeg-obs)
 obs-studio-rc
 obs-studio-tytan652
 svt-av1-git # (dep ffmpeg-obs)
+vlc-luajit # (dep obs-studio-tytan652)
 
 # Issue 1041
 qtile-extras-git

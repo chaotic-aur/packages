@@ -282,7 +282,9 @@ cockroachdb-bin
 # Issue 1381
 cpp-httplib # (dep yuzu-early-access)
 cpp-jwt # (dep yuzu-early-access)
+cubeb # (dep yuzu-early-access)
 dynarmic # (dep yuzu-early-access)
+vulkan-memory-allocator # (dep yuzu-early-access)
 xbyak # (dep yuzu-early-access)
 yuzu-early-access
 
