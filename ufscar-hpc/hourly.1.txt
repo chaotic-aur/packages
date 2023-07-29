@@ -1185,9 +1185,6 @@ ttf-geosans-light
 fonts-kalam
 ttf-pacifico
 
-# Issue 1735
-blanket-git
-
 # Issue 1736
 blockout2
 
