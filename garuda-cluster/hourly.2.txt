@@ -754,3 +754,13 @@ kernel-install-mkinitcpio
 
 # Issue 2645
 rkvm
+
+# Issue 2646
+nvidia-340xx:https://aur.archlinux.org/nvidia-340xx.git # (nvidia-340xx nvidia-340xx-dkms)
+
+# Issue 2647
+nvidia-340xx-utils:https://aur.archlinux.org/nvidia-340xx-utils.git # (nvidia-340xx-utils opencl-nvidia-340xx)
+
+# Issue 2648
+nvidia-340xx-settings:https://aur.archlinux.org/nvidia-340xx-settings.git # (nvidia-340xx-settings libxnvctrl-340xx)
+
