@@ -1839,7 +1839,7 @@ ttf-unifont # (dep ttf-unifont-csur)
 ttf-unifont-csur
 mkbold-mkitalic # (dep bdf-unifont-extra pcf-unifont-extra)
 bdf-unifont-extra
-unifont:https://aur.archlinux.org/unifont.git # (pcf-unifont psf-unifont hex-unifont unifont-utils)
+unifont:https://aur.archlinux.org/unifont.git # (pcf-unifont psf-unifont)
 pcf-unifont-extra
 otb-unifont
 

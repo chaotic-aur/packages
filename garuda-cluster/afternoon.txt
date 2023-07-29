@@ -17,9 +17,6 @@ linux-vfio-lts
 # Issue 964
 pcsx2-git
 
-# Issue 1094
-webkit2gtk-unstable
-
 # Issue 1110
 dosbox-x-git
 
