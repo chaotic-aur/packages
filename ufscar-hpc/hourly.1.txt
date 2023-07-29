@@ -1650,6 +1650,10 @@ chatbox-bin
 # Issue 2582
 btdu
 
+# Issue 2583
+turbo-base64 # (dep ueberzugpp)
+ueberzugpp
+
 # Issue 2584
 kobodeluxe
 
