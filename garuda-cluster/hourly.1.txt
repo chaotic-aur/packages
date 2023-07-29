@@ -254,7 +254,6 @@ ipman
 jamesdsp-git
 kotatogram-dev-git
 kvantum-git
-kwin-bismuth
 libart-lgpl # (dep gimp-git)
 libgbinder
 libglibutil
@@ -856,3 +855,5 @@ go-mtpfs-git
 
 # Issue 2586
 whisper.cpp 
+
+# Issue 2587

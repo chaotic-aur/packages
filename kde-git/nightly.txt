@@ -215,7 +215,6 @@ ktorrent-git
 kuserfeedback-git:https://github.com/chaotic-aur/pkgbuild-kuserfeedback-git.git
 kwalletmanager-git
 kwayland-server-git:https://github.com/chaotic-aur/pkgbuild-kwayland-server-git.git
-kwin-bismuth-git
 kwin-decoration-sierra-breeze-enhanced-git
 kwinft-git:https://github.com/chaotic-aur/pkgbuild-kwinft-git.git
 kxmlrpcclient-git
