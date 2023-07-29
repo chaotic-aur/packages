@@ -821,10 +821,6 @@ dino-git
 # Issue 807
 libtd
 
-# Issue 811
-gnome-calendar-git
-gnome-contacts-git
-
 # Issue 812
 mobydroid
 
