@@ -851,5 +851,8 @@ beeper
 # Issue 2579
 swayhide
 
-# Issue
+# Issue 2581
+go-mtpfs-git
+
+# Issue 2586
 whisper.cpp 
