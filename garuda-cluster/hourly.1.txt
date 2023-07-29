@@ -887,3 +887,9 @@ clipboard-sync
 
 # Issue 2613
 aurutils
+
+# Issue 2614
+ani-cli
+
+# Issue 2620
+wp-desktop
