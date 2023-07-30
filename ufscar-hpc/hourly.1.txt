@@ -1689,6 +1689,9 @@ tty-clock
 # Issue 2671
 fcitx5-mozc-ut
 
+# Issue 2684
+gamejolt-client-bin
+
 
 # Electron
 electron16-bin
