@@ -105,7 +105,7 @@ pw-viz
 r8125-dkms
 repoctl
 slack-electron
-spirv-cross # (mpv-full-git dependency)
+spirv-cross # (dep mpv-full-git)
 spotify-qt
 subtitleedit
 tor-browser
@@ -113,7 +113,7 @@ ttf-borg-sans-mono
 ttf-font-awesome-4
 tuxclocker
 ums
-vapoursynth-git # (mpv-full-git dependency)
+vapoursynth-git # (dep mpv-full-git)
 wayfire-git
 waynergy-git
 waypipe-git
@@ -868,7 +868,8 @@ ttf-malayalam-fonts-meta
 kotatogram-desktop-beta-dynamic-bin
 
 # Issue 1362
-libplacebo-git
+libdovi # (dep libplacebo-git)
+libplacebo-git # (dep mpv-full-git)
 
 # Issue 1365
 notparadoxlauncher-bin
