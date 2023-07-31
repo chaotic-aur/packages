@@ -730,6 +730,9 @@ celestia-addon-voyagers
 celestia-addon-xwing
 celestia
 
+# Issue 2325
+dolphin-emu-nolto:https://gitlab.archlinux.org/archlinux/packaging/packages/dolphin-emu.git
+
 # Issue 2624
 latencyflex-git
 
