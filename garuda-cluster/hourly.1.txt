@@ -203,6 +203,9 @@ aqualung
 # waeking on forum
 opensnitch-ebpf-module
 
+# Catra on forum
+yt-dlp-git
+
 # Via mail (9th June)
 notepadnext
 schildichat-desktop
