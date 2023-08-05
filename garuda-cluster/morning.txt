@@ -17,9 +17,6 @@ linux-next-git
 # Issue 698
 yuzu-git
 
-# Issue 816 / 1361
-firefox-appmenu
-
 # Issue 957
 mysql
 
