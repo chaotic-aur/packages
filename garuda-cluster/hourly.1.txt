@@ -262,6 +262,7 @@ libart-lgpl # (dep gimp-git)
 libdatachannel # (dep obs-studio-git)
 libgbinder
 libglibutil
+libjuice # (dep libdatachannel)
 libscrypt
 networkmanager-iwd
 nextcloud-client-git
