@@ -108,7 +108,6 @@ bass-fish
 bindfs
 buttermanager
 caffeine
-nautilus-pdf-tools-git:https://aur.archlinux.org/nautilus-pdf-tools-git.git # {nautilus,nemo,caja}-pdf-tools-git
 ckbcomp
 debtap
 droidcam:https://aur.archlinux.org/droidcam.git # (v4l2loopback-dc-dkms)
@@ -122,10 +121,12 @@ mediawriter
 mmsd-git
 modprobed-db
 multibootusb
+nautilus-pdf-tools-git:https://aur.archlinux.org/nautilus-pdf-tools-git.git # {nautilus,nemo,caja}-pdf-tools-git
 neard
 networkmanager-dmenu-git
 ofono
 phonesim
+python-ttkbootstrap # (dep fotokilof)
 qomui
 qomui-git
 qt-installer-framework # (dep riseup-vpn-git)
@@ -258,6 +259,7 @@ jamesdsp-git
 kotatogram-dev-git
 kvantum-git
 libart-lgpl # (dep gimp-git)
+libdatachannel # (dep obs-studio-git)
 libgbinder
 libglibutil
 libscrypt
@@ -587,6 +589,7 @@ dragon-drop-git
 
 # Issue 2172
 dsda-doom
+libxmp # (dep woof-doom)
 woof-doom
 woof-doom-git
 

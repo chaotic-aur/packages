@@ -208,7 +208,6 @@ graphite-gtk-theme-git
 spotify-adblock-git
 
 # Issue 1034
-bitfetch-git
 freshfetch-git
 novafetch-git
 pfetch-git
