@@ -57,7 +57,6 @@ srecord
 pip-tools
 fuse-ext2-git
 otf-firamath
-wl-mirror
 texmacs
 wlrobs-hg
 sway-git
