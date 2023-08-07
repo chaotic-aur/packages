@@ -1150,9 +1150,6 @@ qtile-extras-git
 # Issue 1044
 pop-bin
 
-# Issue 1045
-waterfox-g4-bin
-
 # Issue 1046
 snapper-gui-git
 
