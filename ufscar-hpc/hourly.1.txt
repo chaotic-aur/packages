@@ -827,9 +827,6 @@ transset-df
 # Issue 1027
 zenmap
 
-# Issue 11176
-dbus-x11
-
 # Issue 1179
 gnome-shell-extension-dash-to-panel-git
 
