@@ -730,6 +730,7 @@ celestia-addon-xwing
 celestia
 
 # Issue 2325
+dolphin-emu-git:https://aur.archlinux.org/dolphin-emu-git.git
 dolphin-emu-nolto:https://gitlab.archlinux.org/archlinux/packaging/packages/dolphin-emu.git
 
 # Issue 2624
