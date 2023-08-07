@@ -506,6 +506,9 @@ freerdp-git
 # Issue 577
 remmina-git
 
+# Issue 578
+telegram-desktop-dev-bin
+
 # Issue 581
 python-rustworkx # (python-qiskit)
 python-tweedledum # (python-qiskit)
