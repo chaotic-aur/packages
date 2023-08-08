@@ -215,6 +215,7 @@ vim-coc-zsh-git
 
 
 # Nico
+cpptoml # (dep wireplumber-git)
 signal-desktop-beta
 virt-manager-git
 vscodium
@@ -546,6 +547,7 @@ xorgproto-git
 
 # Issue 635
 olive-git
+opentimelineio0.14 # (dep olive-git)
 
 # Issue 636
 pikaur-git

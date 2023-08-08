@@ -525,6 +525,7 @@ ardour-git
 
 # Issue 415
 cassandra
+python-traceback-with-variables # (dep scylla-bin)
 scylla-bin
 
 # Issue 417
