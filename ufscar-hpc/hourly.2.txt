@@ -3,15 +3,16 @@
 # Libre FPGA stuff
 capnproto-java
 icestorm-git
-prjtrellis-git
-prjtrellis-db-git
 nextpnr-git
 prjapicula
 prjoxide-git
-python-textx  # (dep prjxray-git)
-python-fasm-git  # (dep prjxray-git)
+prjtrellis-db-git
+prjtrellis-git
 prjxray-db-git
 prjxray-git:https://aur.archlinux.org/prjxray-git.git # (prjxray-tools-git python-prjxray-git)
+python-fasm-git  # (dep prjxray-git)
+python-pyjson5 # (dep prjxray-git)
+python-textx  # (dep prjxray-git)
 yosys-git
 
 # Ham radio stuff
@@ -1433,6 +1434,7 @@ noisetorch-git
 
 # Issue 1514
 pika-backup
+python-pyfuse3 # (dep pika-backup)
 
 # Issue 1521
 lightlyshaders-git
@@ -1681,6 +1683,8 @@ ibus-bamboo-git
 
 # Issue 1927
 mozillavpn
+python-diskcache # (dep python-glean_parser)
+python-glean_parser # (dep mozillavpn)
 
 # Issue 1936
 cider
