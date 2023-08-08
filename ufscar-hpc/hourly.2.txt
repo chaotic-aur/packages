@@ -256,6 +256,7 @@ python-patch-ng # (dep conan)
 python-pluginbase # (dep conan)
 python-pysdl2 # (dep m64py tauon-music-box)
 sameboy
+ucl # (dep kega-fusion)
 xemu-git
 yuzu-mainline-git
 
@@ -364,17 +365,19 @@ breitbandmessung
 # puspamadak
 foobillard++
 
+bombsquad # Issue 320
 lib32-gd # (dep wine-stable)
+lib32-libde265 # (dep wine-stable)
 lib32-libgphoto2 # (dep wine-stable)
 lib32-libheif # (dep wine-stable)
 lib32-libraqm # (dep wine-stable)
 lib32-libxpm # (dep wine-stable)
-lib32-libde265 # (dep wine-stable)
-lib32-x265 # (dep wine-stable)
+lib32-rav1e # (dep lib32-libheif)
+lib32-svt-av1 # (dep lib32-libheif)
 lib32-wxgtk3 # Issue 309
-bombsquad # Issue 320
-ttf-freebanglafont # Issue 321 (dep)
+lib32-x265 # (dep wine-stable)
 openbangla-keyboard # Issue 321
+ttf-freebanglafont # Issue 321 (dep)
 wine-stable # Issue 311
 
 ## Not building on ufscar
@@ -482,6 +485,7 @@ thonny-git
 
 # Issue 563
 audiotube-git
+futuresql-git # (dep audiotube-git)
 
 # Issue 564
 neovide-git

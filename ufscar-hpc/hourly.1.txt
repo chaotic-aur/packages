@@ -1129,6 +1129,7 @@ dcamprof
 
 # Issue 1680
 jdupes
+libjodycode # (dep jdupes)
 
 # Issue 1685
 anime4k-git
