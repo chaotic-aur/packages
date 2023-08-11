@@ -159,7 +159,6 @@ python-py3nvml # (dep optimus-manager-git)
 rate-mirrors
 systemd-guest-user
 systemd-oomd-defaults
-timeshift
 timeshift-autosnap
 update-grub
 uresourced
