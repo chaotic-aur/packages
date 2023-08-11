@@ -1497,9 +1497,6 @@ bazelisk-bin
 # Issue 1583
 zotero-bin
 
-# Issue 1584
-yt-dlp-git
-
 # Issue 1585
 system76-acpi-dkms # (dep system76-power)
 system76-dkms # (dep system76-power)

@@ -204,9 +204,6 @@ aqualung
 # waeking on forum
 opensnitch-ebpf-module
 
-# Catra on forum
-yt-dlp-git
-
 # Via mail (9th June)
 notepadnext
 schildichat-desktop
@@ -373,6 +370,9 @@ sparrow-wifi-git
 
 
 ## Issues
+# Issue 1584
+yt-dlp-git
+
 # Issue 1922
 syncterm
 
