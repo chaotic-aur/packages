@@ -906,3 +906,6 @@ wp-desktop
 
 # Issue 2701
 pulseaudio-module-xrdp
+
+# Issue 2707
+xdg-terminal-exec-git
