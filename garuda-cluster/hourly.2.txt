@@ -801,3 +801,6 @@ qt6pas # (dep lazarus-beta)
 
 # Issue 2712
 nudelta
+
+# Issue 2714
+rtx
