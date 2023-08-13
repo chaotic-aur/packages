@@ -909,3 +909,6 @@ pulseaudio-module-xrdp
 
 # Issue 2707
 xdg-terminal-exec-git
+
+# Issue 2710
+hardened_malloc
