@@ -1698,6 +1698,9 @@ units
 # Issue 2688
 kanagawa-gtk-theme-git
 
+# Issue 2695
+portmaster-stub-bin
+
 
 # Electron
 electron16-bin
