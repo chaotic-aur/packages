@@ -1692,6 +1692,9 @@ shell-color-scripts
 # Issue 2684
 gamejolt-client-bin
 
+# Issue 2687
+units
+
 
 # Electron
 electron16-bin
