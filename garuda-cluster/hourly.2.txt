@@ -795,3 +795,6 @@ python-telegram-text # (dep python-telegram)
 python-telegram # (dep telegram-tg-git)
 urlview # (dep telegram-tg-git)
 telegram-tg-git
+
+# Issue 2712
+nudelta
