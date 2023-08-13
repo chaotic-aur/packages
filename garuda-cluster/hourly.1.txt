@@ -135,9 +135,6 @@ tlpui
 webapp-manager-git
 
 # Theming & Customization
-ant-dracula-kde-theme-git
-ant-dracula-kvantum-theme-git
-ant-dracula-theme-git
 autotiling
 candy-icons-git
 catppuccin-gtk-theme-mocha

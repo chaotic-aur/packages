@@ -1108,11 +1108,11 @@ obs-gstreamer
 hardcode-tray
 
 # Issue 1655
-dracula-gtk-theme-git
-dracula-xresources-git
-dracula-cursors-git
-dracula-icons-git
 dracula-grub-theme-git
+dracula-gtk-theme-git
+dracula-icons-git
+dracula-kde-theme-git
+dracula-xresources-git
 konsole-dracula-git
 
 # Issue 1659
