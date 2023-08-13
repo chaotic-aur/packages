@@ -1957,3 +1957,7 @@ material-gtk-theme-git
 # Issue 2691
 colloid-icon-theme-git # (dep colloid-gtk-theme-git)
 colloid-gtk-theme-git
+
+# Issue 2696
+joycond-git
+xwiimote
