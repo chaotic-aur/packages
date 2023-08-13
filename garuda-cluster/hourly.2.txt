@@ -796,5 +796,8 @@ python-telegram # (dep telegram-tg-git)
 urlview # (dep telegram-tg-git)
 telegram-tg-git
 
+# Issue 2711
+qt6pas # (dep lazarus-beta)
+
 # Issue 2712
 nudelta
