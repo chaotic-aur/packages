@@ -1950,3 +1950,6 @@ minq-ananicy-git
 
 # Issue 2626
 a2ln
+
+# Issue 2689
+material-gtk-theme-git
