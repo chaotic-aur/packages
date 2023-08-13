@@ -1695,6 +1695,9 @@ gamejolt-client-bin
 # Issue 2687
 units
 
+# Issue 2688
+kanagawa-gtk-theme-git
+
 
 # Electron
 electron16-bin
