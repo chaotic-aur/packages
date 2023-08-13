@@ -1686,6 +1686,9 @@ tty-clock
 # Issue 2671
 fcitx5-mozc-ut
 
+# Issue 2683
+shell-color-scripts
+
 # Issue 2684
 gamejolt-client-bin
 
