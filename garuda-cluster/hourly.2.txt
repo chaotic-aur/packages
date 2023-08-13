@@ -786,3 +786,6 @@ notes
 
 # Issue 2680
 tpmmanager
+
+# Issue 2700
+lightly-boehs-git
