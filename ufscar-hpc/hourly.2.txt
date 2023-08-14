@@ -394,7 +394,7 @@ grimshot
 ion-git
 
 # Issue 562
-lollypop-next-git
+lollypop-git
 
 # Issue 545
 flat-remix-gnome
