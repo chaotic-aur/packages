@@ -854,9 +854,6 @@ warpgui-bin
 # Issue 2573
 openasar-git
 
-# Issue 2578
-beeper-latest-bin
-
 # Issue 2579
 swayhide
 

@@ -23,5 +23,8 @@ mysql
 # Issue 2006
 linux-xanmod
 
+# Issue 2578
+beeper-latest-bin:https://aur.archlinux.org/beeper-latest-bin.git
+
 # Issue 2679
 linux-binder
