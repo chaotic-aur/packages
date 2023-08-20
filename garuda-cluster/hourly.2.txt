@@ -311,7 +311,6 @@ adguardhome
 
 # Issue 1409
 amberol
-amberol-git
 
 # Issue 1415
 portainer-bin
