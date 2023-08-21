@@ -303,7 +303,7 @@ jarowinkler-cpp # (dep python-rapidfuzz)
 python-bandcamp-api # (dep python-spotdl)
 python-demjson3 # (dep python-spotdl)
 python-pytube # (dep python-spotdl)
-python-spotdl 
+python-spotdl
 
 ## Pedro
 grim-git
@@ -861,7 +861,7 @@ swayhide
 go-mtpfs-git
 
 # Issue 2586
-whisper.cpp 
+whisper.cpp
 
 # Issue 2587
 kwin-polonium
@@ -909,6 +909,9 @@ xdg-terminal-exec-git
 
 # Issue 2710
 hardened_malloc
+
+# Issue 2735
+xfs_undelete-git
 
 # Issue 2736
 mtkclient-git
