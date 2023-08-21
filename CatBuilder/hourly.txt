@@ -5,7 +5,7 @@ epson-inkjet-printer-escpr2
 google-chrome-beta
 hotspot
 kddockwidgets # (dep hotspot)
-logseq-desktop
+logseq-desktop-bin
 nvlax-git
 signal-desktop-beta
 rustc-demangle
