@@ -909,3 +909,6 @@ xdg-terminal-exec-git
 
 # Issue 2710
 hardened_malloc
+
+# Issue 2736
+mtkclient-git
