@@ -11,7 +11,7 @@ This is the right place to submit package requests, bug reports, or outdated pac
 - A quite complete [KDE stack build from master branch](https://invent.kde.org/explore/groups?sort=name_asc)
 - Most of the existing emulators & gaming utilities like [Yuzu](https://yuzu-emu.org/), [RPCS3](https://github.com/RPCS3/rpcs3) or {[Proton](https://github.com/GloriousEggroll/proton-ge-custom),[Wine](https://github.com/GloriousEggroll/wine-ge-custom)}-GE-Custom
 - A lot of browsers like [Firedragon](https://github.com/dr460nf1r3/firedragon-browser), [Ungoogled Chromium](https://github.com/Eloston/ungoogled-chromium), [Firefox-wayland-hg](https://aur.archlinux.org/packages/firefox-wayland-hg), [Icecat](http://www.gnu.org/software/gnuzilla/) or the [Tor Browser](https://www.torproject.org/projects/torbrowser.html)
-- .. a lot more. Check out the [package lists](https://github.com/chaotic-aur/packages/find/main) to find out what exactly gets built and when! 🕵️‍♀️
+- ... a lot more. Check out the [package lists](https://github.com/chaotic-aur/packages/find/main) to find out what exactly gets built and when! 🕵️‍♀️
 
 #### Banished and rejected packages 📑
 
@@ -19,11 +19,13 @@ This is a list of packages that we will reject for good reasons:
 
 - **snapd**: We didn't know how to help our users with it since it breaks *A LOT*. We recommend using native packages or [FlatPak](https://wiki.archlinux.org/title/Flatpak) instead. Also, [there are a lot of other reasons to not use Snaps](https://old.reddit.com/r/linuxmemes/comments/ppyz0g/damn_you_ubuntu/hd7jg1p/).
 
+- **lib32-\***: The difficulty of maintaining 32-bit packages is increasing as their usefulness decreases.  They may be considered to keep existing packages working, like `wine-*`.  Otherwise, use 64-bit packages when available.
+
 - **lib32-x265**:	There is absolutely no use case in which a 32-bit application (Linux or Windows) would want to ENCODE HEVC. We recommend disabling x265 for the packages depending on it (usually `FFmpeg` or `GStreamer`).
 
-- **gst-plugins-{ugly,bad} (and lib32)**: These need too frequent rebuilds which can't be dealt with as we don't control the packages pkgrel. Ultimately this would result in a bad user experience - dependency requests however are welcome!
+- **gst-plugins-{ugly,bad}**: These need too frequent rebuilds which can't be dealt with as we don't control the packages pkgrel. Ultimately this would result in a bad user experience - dependency requests however are welcome!
 
-- **ffmpeg-{full,headless} (and lib32)**:  These need too frequent rebuilds which can't be dealt with as we don't control the packages pkgrel. Ultimately this would result in a bad user experience - dependency requests however are welcome!
+- **ffmpeg-{full,headless}**:  These need too frequent rebuilds which can't be dealt with as we don't control the packages pkgrel. Ultimately this would result in a bad user experience - dependency requests however are welcome!
 
 - **mpv-amd, ffmpeg-amd**: This is just MPV/FFMPEG without CUDA and NVENC to achieve shorter build times without actual end-user benefit.
 
@@ -32,6 +34,8 @@ This is a list of packages that we will reject for good reasons:
 - **python2**: Has been EOL for a couple of years, and was [removed from Arch repositories](https://archlinux.org/news/removing-python2-from-the-repositories/). Requests for packages that depend on it in any way will be rejected (see [#1958](https://github.com/chaotic-aur/packages/issues/1958)).
 
 - **linux-ck**: Two reasons, first our `linux-tkg-*` already includes those bits of optimizations, second there is [repo-ck](https://wiki.archlinux.org/title/Unofficial_user_repositories#repo-ck) with official pre-built binaries for it.
+
+- Dependencies without any dependents: Such packages are useless by themselves.  Maintaining them wastes effort that is better spent elsewhere.
 
 #### Banned due to licensing issues 🛑
 
