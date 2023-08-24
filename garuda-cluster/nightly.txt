@@ -18,22 +18,6 @@ emacs-git
 # Issue 726
 godot-mono  # non parallelizable
 
-
-
-## OTHERS
-bcg729-git # (dep mediastreamer-git)
-bcmatroska2-git # (dep mediastreamer-git)
-media-downloader-git:https://github.com/chaotic-aur/pkgbuild-media-downloader-git # Issue Request #1592
-media-downloader:https://github.com/chaotic-aur/pkgbuild-media-downloader # Stable version of Issue Request #1592
-non-euclidean-git
-kopia-bin
-kopia-ui-bin
-pyinfra:https://github.com/chaotic-aur/pkgbuild-pyinfra
-gittyup
-kdeplasma-applets-fokus # moved here because its not git version
-lightlyshaders-git
-#lightlyshaders-kdegit-git:https://github.com/chaotic-aur/pkgbuild-lightlyshaders-kdegit-git
-
 # Issue 1536
 thunderbird-beta
 
@@ -82,7 +66,26 @@ celeste
 # Issue 2392
 ola # (dep qlcplus)
 qlcplus
---
+
+# Issue 2748
+motivewave-latest-bin:https://aur.archlinux.org/motivewave-latest-bin.git
+
+
+## OTHERS
+bcg729-git # (dep mediastreamer-git)
+bcmatroska2-git # (dep mediastreamer-git)
+media-downloader-git:https://github.com/chaotic-aur/pkgbuild-media-downloader-git # Issue Request #1592
+media-downloader:https://github.com/chaotic-aur/pkgbuild-media-downloader # Stable version of Issue Request #1592
+non-euclidean-git
+kopia-bin
+kopia-ui-bin
+pyinfra:https://github.com/chaotic-aur/pkgbuild-pyinfra
+gittyup
+kdeplasma-applets-fokus # moved here because its not git version
+lightlyshaders-git
+#lightlyshaders-kdegit-git:https://github.com/chaotic-aur/pkgbuild-lightlyshaders-kdegit-git
+
+# gazebo
 ignition-tools # (dep gazebo)
 urdfdom # (dep gazebo)
 ignition-msgs-5 # (dep gazebo)
@@ -103,7 +106,6 @@ gleam # Gleam is a friendly language for building type-safe systems that scale! 
 rbenv # Seamlessly manage your app’s Ruby environment with rbenv. ; https://github.com/rbenv/rbenv
 ruby-build # ruby-build is a command-line tool that simplifies installation of any Ruby version from source on Unix-like systems. ; https://github.com/rbenv/ruby-build
 tradingview # The best trades require research, then commitment. ; https://www.tradingview.com/
-motivewave # A Trading Platform to Fit Any Trader or Market Analyst ; https://www.motivewave.com/
 rebar3 # A sophisticated build-tool for Erlang projects that follows OTP principles. ; https://github.com/erlang/rebar3
 elixir-ls # A frontend-independent Language Server Protocol for Elixir ; https://github.com/elixir-lsp/elixir-ls
 roundedsbe-git:https://github.com/chaotic-aur/pkgbuild-roundedsbe-git.git # A fork of SierraBreezeEnhanced with integrated corner rounding effect CornersShader (reworked version of what used to be called LightlyShaders) and shared configuration ; https://github.com/a-parhom/RoundedSBE
