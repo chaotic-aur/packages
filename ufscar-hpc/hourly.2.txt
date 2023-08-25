@@ -237,7 +237,6 @@ antimicrox
 cemu
 citra-canary-git
 citra-git:https://aur.archlinux.org/citra-git.git # (citra-git citra-qt-git)
-conan # (dep yuzu-mainline-git)
 cpp-httplib-compiled # (dep xemu-git)
 crossover
 duckstation-git
@@ -251,14 +250,10 @@ mednaffe
 pcsxr
 pegasus-frontend-git
 play-emu-git
-python-node-semver # (dep conan)
-python-patch-ng # (dep conan)
-python-pluginbase # (dep conan)
 python-pysdl2 # (dep m64py tauon-music-box)
 sameboy
 ucl # (dep kega-fusion)
 xemu-git
-yuzu-mainline-git
 
 # Gaming
 athenaeum-git
