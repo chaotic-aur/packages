@@ -921,3 +921,6 @@ xfs_undelete-git
 
 # Issue 2736
 mtkclient-git
+
+# Issue 2747
+thorium-browser-bin
