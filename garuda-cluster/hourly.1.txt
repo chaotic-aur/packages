@@ -640,6 +640,9 @@ libgksu # (dep gksu)
 gksu # (optdep zenmap-git)
 zenmap-git
 
+# Issue 2246
+balena-etcher
+
 # Issue 2259
 hyprland-nvidia
 
