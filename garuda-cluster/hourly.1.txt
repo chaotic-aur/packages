@@ -208,6 +208,7 @@ schildichat-desktop
 # Alexjp
 bcache-tools
 libgaminggear # (dep roccat-tools)
+qutebrowser-git
 roccat-tools:https://aur.archlinux.org/roccat-tools.git # (Also includes roccat-tools-common,roccat-tools-{isku,iskufx,kiro,kone,koneplus,konepure,konepuremilitary,konepureoptical,konextd,konextdoptical,kova2016,kovaplus,pyra,ryostkl,savu,skeltr,sova,suora}
 
 
