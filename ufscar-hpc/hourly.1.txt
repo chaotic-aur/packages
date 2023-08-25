@@ -228,9 +228,6 @@ helix-git
 ttf-iosevka-git
 ttfautohint
 
-# Web browsers (Solomon)
-qutebrowser-git
-
 
 ## Technetium1
 arp-scan-git
