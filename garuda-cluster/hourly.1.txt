@@ -913,6 +913,9 @@ hardened_malloc
 # Issue 2716
 radarr
 
+# Issue 2731
+bazarr
+
 # Issue 2735
 xfs_undelete-git
 
