@@ -324,7 +324,7 @@ nheko-git
 # Issue 324
 alsi
 auracle-git
-compiz-core
+compiz-core:https://aur.archlinux.org/compiz-core.git # (compize-core compiz-gtk)
 emerald-gtk3
 meteo-gtk
 palemoon-gtk3-bin
