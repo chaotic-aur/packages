@@ -181,6 +181,13 @@ wd719x-firmware
 
 
 ## Chaotic
+# Issue 340
+conan # (dep yuzu-mainline-git)
+python-node-semver # (dep conan)
+python-patch-ng # (dep conan)
+python-pluginbase # (dep conan)
+yuzu-mainline-git
+
 # Issue 377
 edid-decode-git
 
