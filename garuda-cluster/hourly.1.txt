@@ -201,6 +201,9 @@ aqualung
 # waeking on forum
 opensnitch-ebpf-module
 
+# Khnome on forum
+vinegar
+
 # Via mail (9th June)
 notepadnext
 schildichat-desktop

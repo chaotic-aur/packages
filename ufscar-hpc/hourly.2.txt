@@ -92,28 +92,20 @@ vulkan-icd-loader-git:https://github.com/Frogging-Family/vulkan-icd-loader-git.g
 # RustemB
 aarch64-linux-musl
 bit
-cpufetch-git
 discord-canary
 dosbox-staging
 elm-bin
 elm-language-server
 firefox-nightly
 iir1 # (dep dosbox-staging)
-j9-git
-jdk16-graalvm-bin
-jdk8-graalvm-bin
 jetbrains-toolbox
-jupyter-metakernel
 koka-bin
-languageclient-neovim
 lua-format
 moarvm
 munt # (dep dosbox-staging)
 noti
 nqp
-nteract-bin
 openxray
-popura-git
 pup
 python-blis # (dep python-spacy)
 python-catalogue # (dep python-spacy)
@@ -127,21 +119,14 @@ python-spacy
 python-srsly # (dep python-spacy)
 python-thinc # (dep python-spacy)
 python-wasabi # (dep python-spacy)
-qbe-git
 rakudo
-re3-git
 shadowsocks-rust-git
-siji-ttf
 smenu
 telegram-tdlib
 tetrio-desktop
-ttf-juliamono
-tuxi-git
 vim-language-server
-vimv-git
 vivaldi-snapshot
 vivaldi-snapshot-ffmpeg-codecs
-xash3d-fwgs-git
 zef
 zlib-ng
 
