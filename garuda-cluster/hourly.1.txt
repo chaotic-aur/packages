@@ -902,6 +902,9 @@ ani-cli
 # Issue 2620
 wp-desktop
 
+# Issue 2634
+lib32-vkbasalt
+
 # Issue 2701
 pulseaudio-module-xrdp
 
