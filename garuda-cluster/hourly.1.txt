@@ -380,9 +380,6 @@ nchat-git
 # Issue 1935
 lightspark-git
 
-# Issue 1943
-endeavour-git
-
 # Issue 1944
 vala-panel-appmenu-xfce-git:https://aur.archlinux.org/vala-panel-appmenu-xfce-git.git # (vala-panel-appmenu-common-git) vala-panel-appmenu-mate-git vala-panel-appmenu-xfce-git vala-panel-appmenu-valapanel-git vala-panel-appmenu-budgie-git
 
