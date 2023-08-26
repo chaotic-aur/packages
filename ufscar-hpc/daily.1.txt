@@ -16,6 +16,7 @@ servo-git
 ungoogled-chromium:https://github.com/ungoogled-software/ungoogled-chromium-archlinux.git
 
 # Solomon
+properties-cpp # (dep ayatana-indicator-datetime)
 ayatana-indicator-datetime
 calligra-git
 kwaterfoxhelper
