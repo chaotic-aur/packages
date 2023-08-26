@@ -103,6 +103,7 @@ gazebo
 
 discord-ptb
 
+# Programming Hubmaking package section
 babashka-bin # Fast native Clojure scripting runtime ; https://babashka.org/
 codon-bin # Codon is a high-performance Python compiler that compiles Python code to native machine code without any runtime overhead. ; https://docs.exaloop.io/codon
 gleam # Gleam is a friendly language for building type-safe systems that scale! ; https://gleam.run/
@@ -112,5 +113,4 @@ tradingview # The best trades require research, then commitment. ; https://www.t
 rebar3 # A sophisticated build-tool for Erlang projects that follows OTP principles. ; https://github.com/erlang/rebar3
 elixir-ls # A frontend-independent Language Server Protocol for Elixir ; https://github.com/elixir-lsp/elixir-ls
 roundedsbe-git:https://github.com/chaotic-aur/pkgbuild-roundedsbe-git.git # A fork of SierraBreezeEnhanced with integrated corner rounding effect CornersShader (reworked version of what used to be called LightlyShaders) and shared configuration ; https://github.com/a-parhom/RoundedSBE
-
-
+elixir-latest:https://github.com/chaotic-aur/pkgbuild-elixir-latest.git # Because it seems arch never updates minor versions
