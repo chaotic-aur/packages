@@ -742,6 +742,7 @@ celestia
 
 # Issue 2325
 cubeb # (dep dolphin-emu-git yuzu-*)
+fmt9 # (dep dolphin-emu-git)
 libspng # (dep dolphin-emu-git xpra-git)
 dolphin-emu-git:https://aur.archlinux.org/dolphin-emu-git.git
 
