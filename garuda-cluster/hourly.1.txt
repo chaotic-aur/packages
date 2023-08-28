@@ -41,13 +41,6 @@ webapp-manager
 ## Garuda Gamer
 itch-setup-bin
 
-# Mycroft
-fann # (dep mycroft-core)
-mimic1 # (dep mycroft-core)
-mycroft-core
-mycroft-gui-git
-plasma5-applets-mycroft-git
-
 # Librewolf
 librewolf-extension-gnome-shell-integration
 librewolf-extension-plasma-integration
