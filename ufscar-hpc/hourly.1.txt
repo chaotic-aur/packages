@@ -892,10 +892,6 @@ apple-fonts
 # Issue 1437
 joystickwake
 
-# Issue 1440
-php-box-bin # (dep php-cs-fixer)
-php-cs-fixer
-
 # Issue 1451
 tomb-git
 
