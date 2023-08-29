@@ -291,7 +291,6 @@ xboxdrv
 xone-dongle-firmware # (dep xone-dkms-git)
 xone-dkms-git
 xone-dkms
-xow-git
 xpadneo-dkms-git
 xpadneo-dkms
 
