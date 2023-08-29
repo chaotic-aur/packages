@@ -640,9 +640,6 @@ opera-beta-ffmpeg-codecs
 # Issue 720
 adwaita-icon-theme-git:https://aur.archlinux.org/adwaita-icon-theme-git.git # (adwaita-icon-theme-git adwaita-cursors-git)
 
-# Issue 721
-kotatogram-desktop
-
 # Issue 723
 cloudflare-warp-bin
 
