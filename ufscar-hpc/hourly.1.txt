@@ -835,8 +835,6 @@ mauiman-git # (dep maui-shell-git)
 dee # (dep libunity webwatcher-git)
 icu69-bin # (dep libunity)
 libunity # (dep webwatcher-git)
-vala0.44 # (dep libunity)
-vala0.52 # (dep libunity)
 
 # Issue 1341
 rofi-lbonn-wayland
