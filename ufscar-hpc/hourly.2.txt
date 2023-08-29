@@ -497,7 +497,6 @@ telegram-desktop-dev-bin
 # Issue 581
 python-rustworkx # (python-qiskit)
 python-tweedledum # (python-qiskit)
-python-qiskit-terra # (python-qiskit)
 muparserx # (python-qiskit)
 openblas-lapack # (python-qiskit)
 python-qiskit-ibmq-provider # (python-qiskit)
