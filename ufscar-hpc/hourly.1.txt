@@ -136,7 +136,6 @@ lib32-libcdio
 lib32-libdvdcss
 lib32-libdvdread
 lib32-libmpeg2
-lib32-libsidplay
 lib32-x264
 
 # lib32-gst-plugins-bad (Pedro)
