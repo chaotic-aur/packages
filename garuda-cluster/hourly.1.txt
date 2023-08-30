@@ -279,6 +279,7 @@ rufetch
 rusnapshot-git
 searx
 snapper-tools-git
+spdlog-git # (dep waybar-hyprland-git)
 sudo-git
 teams-for-linux-git
 telegram-desktop-userfonts
