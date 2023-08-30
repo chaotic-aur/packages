@@ -387,7 +387,7 @@ minetest-git
 
 # Issue 1954
 wxwidgets3.0
-wxwidgets-common-light:https://aur.archlinux.org/wxwidgets-light.git
+wxwidgets-light:https://aur.archlinux.org/wxwidgets-light.git
 
 # Issue 1955
 bisq
@@ -822,7 +822,7 @@ gtklock-userinfo-module
 eww-wayland
 
 # Issue 2559
-eww-x11:https://aur.archlinux.org/eww.git
+eww:https://aur.archlinux.org/eww.git
 
 # Issue 2562
 mpvpaper

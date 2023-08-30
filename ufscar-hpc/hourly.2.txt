@@ -35,7 +35,7 @@ chaotic-mirrorlist
 checkmake
 cozette-otb
 discord_arch_electron
-dxvk-mingw-git:https://aur.archlinux.org/dxvk-git.git
+dxvk-git:https://aur.archlinux.org/dxvk-git.git
 elfx86exts
 elm-format-bin
 elm-platform-bin
