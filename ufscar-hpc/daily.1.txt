@@ -113,6 +113,8 @@ chromium-wayland-vaapi
 
 --
 
+spirv-headers-git # (dep llvm-git) # Issue 2698
+
 llvm-git:https://github.com/chaotic-aur/pkgbuild-llvm-git
 lib32-llvm-git:thttps://github.com/chaotic-aur/pkgbuild-lib32-llvm-git
 mesa-git:https://github.com/chaotic-aur/mesa-git.git
