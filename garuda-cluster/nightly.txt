@@ -70,8 +70,6 @@ qlcplus
 # Issue 2748
 motivewave-latest-bin:https://aur.archlinux.org/motivewave-latest-bin.git
 
-# Issue 2750
-motivewave
 
 
 ## OTHERS
