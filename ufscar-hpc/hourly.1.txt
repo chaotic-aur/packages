@@ -1691,7 +1691,6 @@ portmaster-stub-bin
 electron16-bin
 electron17-bin
 electron19-bin
-electron20-bin
 electron21-bin
 
 # FroggingFamily
