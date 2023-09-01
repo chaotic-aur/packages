@@ -50,9 +50,6 @@ linux-vfio
 # Issue 774
 freecad-git
 
-# Issue 793
-dogecoin-qt
-
 # Issue 799
 swift-language-git
 
