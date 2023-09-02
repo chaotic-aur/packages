@@ -675,10 +675,12 @@ vnote
 vpaint-git
 
 # Issue 1854
+#carla-git # (dep zrythm)
+gtk4-git # (dep zrythm)
 libaudec # (dep zrythm)
 libcyaml # (dep zrythm)
-reproc # (dep zrythm)
 lsp-dsp-lib # (dep zrythm)
+reproc # (dep zrythm)
 zrythm
 
 # Issue 1859
