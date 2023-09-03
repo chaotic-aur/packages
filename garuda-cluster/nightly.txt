@@ -61,7 +61,7 @@ ola # (dep qlcplus)
 qlcplus
 
 # Issue 2748
-motivewave-latest-bin:https://aur.archlinux.org/motivewave-latest-bin.git
+motivewave:https://github.com/chaotic-aur/pkgbuild-motivewave.git
 
 
 
