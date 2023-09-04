@@ -315,14 +315,14 @@ vo-amrwbenc
 xavs
 xavs2
 
-# Dependencies of proton-ge-custom
-afdko
-lib32-gsm
-lib32-lzo # (proton-ge-custom makedep)
-mingw-w64-tools # (proton-ge-custom makedep)
-psautohint
-python-fonttools-git
-python-ufonormalizer
+# proton-ge-custom
+psautohint # (dep afdko)
+python-fonttools-git # (dep afdko)
+python-ufonormalizer # (dep afdko)
+afdko # (makedep proton-ge-custom)
+lib32-lzo # (dep proton-ge-custom)
+lib32-lapack:https://aur.archlinux.org/lib32-lapack.git # (makedep proton-ge-custom)
+mingw-w64-tools # (makedep proton-ge-custom)
 proton-ge-custom
 
 # Dependenies of darling-git

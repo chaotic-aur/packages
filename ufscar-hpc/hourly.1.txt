@@ -147,6 +147,7 @@ lib32-faac
 lib32-faad2
 lib32-libass
 lib32-vmaf:https://aur.archlinux.org/lib32-vmaf.git # (dep lib32-ffmpeg)
+lib32-gsm # (dep lib32-ffmpeg)
 lib32-srt # (dep lib32-ffmpeg)
 lib32-jbigkit # (dep lib32-ffmpeg lib32-openjpeg2)
 lib32-openjpeg2 # (dep lib32-ffmpeg)
