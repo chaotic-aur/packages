@@ -941,3 +941,5 @@ ps7b_libps5000a # (dep picoscope7beta)
 ps7b_libps6000 # (dep picoscope7beta)
 ps7b_libps6000a # (dep picoscope7beta)
 
+# Issue 2771
+captive-browser-git
