@@ -825,5 +825,8 @@ nudelta
 # Issue 2714
 rtx
 
+# Issue 2729
+ame
+
 # Issue 2774
 neovim-gtk
