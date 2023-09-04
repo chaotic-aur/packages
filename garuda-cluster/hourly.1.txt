@@ -923,6 +923,9 @@ poppler-qt-lcd
 # Issue 2747
 thorium-browser-bin
 
+# Issue 2749
+mpdscribble
+
 # Issue 2766
 picoscope7beta
 ps7b_libpicocv # (dep picoscope7beta)
