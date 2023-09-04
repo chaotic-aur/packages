@@ -60,6 +60,9 @@ celeste
 ola # (dep qlcplus)
 qlcplus
 
+# Issue 2636
+element-desktop-git
+
 # Issue 2748
 motivewave:https://github.com/chaotic-aur/pkgbuild-motivewave.git
 
