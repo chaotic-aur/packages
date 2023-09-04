@@ -831,6 +831,10 @@ signal-cli # (dep scli-git)
 python-urwid_readline # (dep scli-git)
 scli-git
 
+# Issue 2724
+ferium-gui
+ferium
+
 # Issue 2729
 ame
 
