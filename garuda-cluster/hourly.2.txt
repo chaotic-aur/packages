@@ -825,6 +825,12 @@ nudelta
 # Issue 2714
 rtx
 
+# Issue 2721
+libsignal-client # (dep signal-cli)
+signal-cli # (dep scli-git)
+python-urwid_readline # (dep scli-git)
+scli-git
+
 # Issue 2729
 ame
 
