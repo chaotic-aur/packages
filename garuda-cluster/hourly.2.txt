@@ -824,3 +824,6 @@ nudelta
 
 # Issue 2714
 rtx
+
+# Issue 2774
+neovim-gtk
