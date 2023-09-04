@@ -1936,3 +1936,6 @@ colloid-gtk-theme-git
 # Issue 2696
 joycond-git
 xwiimote
+
+# Issue 2769
+asciinema-agg
