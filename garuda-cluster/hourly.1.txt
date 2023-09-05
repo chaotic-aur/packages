@@ -304,6 +304,7 @@ python-pytube # (dep python-spotdl)
 python-spotdl
 
 ## Pedro
+dxvk-git:https://aur.archlinux.org/dxvk-git.git
 grim-git
 osdlyrics-git
 
