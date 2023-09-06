@@ -642,7 +642,7 @@ cloudflare-warp-bin
 
 # Issue 724
 materia-theme-git
-plata-theme
+plata-theme # (dep gnome-shell-extension-material-shell)
 qogir-gtk-theme
 
 # Issue 725
