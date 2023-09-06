@@ -537,7 +537,7 @@ vala-panel-sntray-git:https://aur.archlinux.org/vala-panel-sntray-git.git # (snt
 generic-monitor-plugin-git:https://aur.archlinux.org/generic-monitor-plugin-git.git # (mate-panel-genmon-git xfce4-panel-genmon-ng-git vala-panel-genmon-git budgie-genmon-git)
 
 # Issue 1706
-vdhcoapp-git
+#vdhcoapp-git
 
 # Issue 1707
 warp
