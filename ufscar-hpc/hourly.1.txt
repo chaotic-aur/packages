@@ -30,6 +30,7 @@ cty # (dep fldigi)
 flxmlrpc # (dep fldigi)
 fldigi
 fldigi-git
+wsjtx
 hal-git
 hashcash
 ht-editor
