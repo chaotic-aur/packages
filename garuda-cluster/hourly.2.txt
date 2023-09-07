@@ -752,6 +752,9 @@ dolphin-emu-git:https://aur.archlinux.org/dolphin-emu-git.git
 dolphin-emu-clang:https://gitlab.archlinux.org/archlinux/packaging/packages/dolphin-emu.git
 dolphin-emu-nolto:https://gitlab.archlinux.org/archlinux/packaging/packages/dolphin-emu.git
 
+# Issue 2444
+rustdesk-bin
+
 # Issue 2624
 latencyflex-git
 
