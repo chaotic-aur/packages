@@ -1942,6 +1942,10 @@ qadwaitadecorations-git:https://aur.archlinux.org/qadwaitadecorations-git.git
 # Issue 2769
 asciinema-agg
 
+# Issue 2778
+python-minecraft-launcher-lib # (dep jdminecraftlauncher)
+jdminecraftlauncher
+
 # Issue 2779
 xrectsel # (dep ffcast)
 ffcast
