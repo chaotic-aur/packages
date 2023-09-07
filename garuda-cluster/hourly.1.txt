@@ -821,7 +821,7 @@ gtklock-userinfo-module
 eww-wayland
 
 # Issue 2559
-eww:https://aur.archlinux.org/eww.git
+eww:https://aur.archlinux.org/eww.git # (eww-x11)
 
 # Issue 2562
 mpvpaper
