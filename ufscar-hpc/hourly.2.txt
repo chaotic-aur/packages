@@ -110,7 +110,6 @@ python-blis # (dep python-spacy)
 python-catalogue # (dep python-spacy)
 python-confection # (dep python-thinc)
 python-langcodes # (dep python-spacy)
-python-multipledispatch # (dep python-pyrr)
 python-murmurhash # (dep python-spacy)
 python-plac # (dep python-spacy)
 python-preshed # (dep python-spacy)
@@ -243,8 +242,6 @@ xemu-git
 athenaeum-git
 boxtron
 epsxe
-fancontrol-gui
-fancontrol-gui-git
 flycast
 game-devices-udev
 gamehub
@@ -261,7 +258,6 @@ libretro-stella2014-git
 luxtorpeda-git
 minecraft-launcher
 minigalaxy
-moonlight-qt
 nestopia
 nyrna
 openrgb
@@ -497,7 +493,6 @@ telegram-desktop-dev-bin
 python-rustworkx # (python-qiskit)
 python-tweedledum # (python-qiskit)
 muparserx # (python-qiskit)
-openblas-lapack # (python-qiskit)
 python-qiskit-ibmq-provider # (python-qiskit)
 python-qiskit-aer # (python-qiskit)
 python-qiskit
@@ -558,10 +553,6 @@ nnn-icons
 
 # Issue 654
 clifm-git
-
-# Issue 656
-python-casttube # (dep python-pychromecast)
-python-pychromecast # (dep photoqt)
 
 # Issue 666
 bluemail
@@ -822,12 +813,6 @@ airshipper
 # Issue 818
 google-webdesigner
 libstdc++5 # (dep google-webdesigner)
-
-# Issue 819
-goodvibes
-
-# Issue 820
-goodvibes-git
 
 # Issue 822
 shortwave-git
@@ -1414,15 +1399,9 @@ noisetorch-git
 pika-backup
 python-pyfuse3 # (dep pika-backup)
 
-# Issue 1521
-lightlyshaders-git
-
 # Issue 1528
 java-service-wrapper # (dep freenet i2p)
 freenet
-
-# Issue 1533
-tenacity-git
 
 # Issue 1537
 btrfs-snapshots-git

@@ -130,8 +130,6 @@ webapp-manager-git
 # Theming & Customization
 autotiling
 candy-icons-git
-catppuccin-gtk-theme-mocha
-catppuccin-mocha-grub-theme-git
 flat-remix
 flat-remix-gtk
 fluent-gtk-theme-git
@@ -214,8 +212,9 @@ alacritty-git
 alhp-keyring
 alhp-mirrorlist
 alpm_octopi_utils-git
+ananicy-cpp
 ananicy-cpp-git
-ananicy-rules-git # (optdep ananicy-cpp-git)
+ananicy-rules-git # (optdep ananicy-cpp-git) (dep ananicy-cpp)
 arch-deployer-git
 babl-git # (dep gimp-git)
 brave-nightly-bin
@@ -278,7 +277,6 @@ riseup-vpn
 rufetch
 rusnapshot-git
 searx
-snapper-tools-git
 spdlog-git # (dep waybar-hyprland-git)
 sudo-git
 teams-for-linux-git
@@ -485,9 +483,6 @@ mesen2-git
 
 # Issue 2064
 qbittorrent-git
-
-# Issue 2078
-thunderbird-beta-i18n:https://aur.archlinux.org/thunderbird-beta-i18n.git
 
 # Issue 2079
 zfs-utils-git

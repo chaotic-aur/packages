@@ -77,7 +77,6 @@ nwg-panel
 nwg-wrapper
 python-dasbus # (dep nwg-panel)
 swaync
-tela-circle-icon-theme-git
 wlsunset
 wob
 
@@ -100,8 +99,6 @@ mugshot
 ## Further needed applications
 # Garuda base (AUR)
 7-zip
-ananicy-cpp
-ananicy-rules-git # (dep ananicy-cpp)
 apprise
 auto-cpufreq
 bluetooth-autoconnect
@@ -201,9 +198,6 @@ patool # (dep bottles)
 python-steamgriddb # (dep bottles)
 vkbasalt-cli # (dep bottles)
 bottles
-
-# Issue 759
-tenacity-git
 
 # Issue 819
 goodvibes
@@ -384,6 +378,9 @@ zecwallet-lite
 # Issue 1532
 shadowsocks-gtk-rs
 
+# Issue 1533
+tenacity-git
+
 # Issue 1549
 dwarfs-git
 dwarfs
@@ -393,6 +390,10 @@ ipscan
 
 # Issue 1591
 flyctl-bin
+
+# Issue 1592
+media-downloader-git:https://github.com/chaotic-aur/pkgbuild-media-downloader-git
+media-downloader:https://github.com/chaotic-aur/pkgbuild-media-downloader
 
 # Issue 1593
 mousai
@@ -477,7 +478,6 @@ fancontrol-gui-git # (dep fancontrol-kcm-git)
 fancontrol-kcm
 fancontrol-kcm-git
 kcm-colorful-git
-kcm-grub2-git
 kcm-grub2-git
 kcm-imchooser-frameworks
 kcm-lookandfeel-standalone-git
@@ -595,7 +595,7 @@ deskreen
 f3d-git
 
 # Issue 1763
-python-multipledispatch # (dep friture{-git})
+python-multipledispatch # (dep friture{-git} python-pyrr)
 python-pa-ringbuffer # (dep friture{-git})
 python-pyrr # (dep friture{-git})
 python-rtmixer # (dep friture{-git})
