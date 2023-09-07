@@ -1691,6 +1691,9 @@ portmaster-stub-bin
 # Issue 2745
 tela-circle-icon-theme:https://aur.archlinux.org/tela-circle-icon-theme.git
 
+# Issue 2781
+boo-sddm-git
+
 # Issue 2782
 vundle
 
