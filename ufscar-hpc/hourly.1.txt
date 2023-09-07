@@ -710,9 +710,6 @@ bluej
 libvterm-0.1 # (dep neovim-git)
 neovim-git
 
-# Issue 508
-llvm-proton-bin
-
 # Issue 538
 godot-git:https://github.com/chaotic-aur/pkgbuild-godot-git.git
 
