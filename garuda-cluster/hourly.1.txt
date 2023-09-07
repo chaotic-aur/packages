@@ -930,6 +930,9 @@ mpdscribble
 # Issue 2757
 doas-sudo-shim
 
+#Issue 2765
+libresprite
+
 # Issue 2766
 picoscope7beta
 ps7b_libpicocv # (dep picoscope7beta)
