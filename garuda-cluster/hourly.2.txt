@@ -840,3 +840,8 @@ ame
 
 # Issue 2774
 neovim-gtk
+
+# Issue 2784
+gmdb2 # (dep mdbtools)
+mdbtools # (dep gmdb2 openboardview-git)
+openboardview-git
