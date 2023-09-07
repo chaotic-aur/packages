@@ -1941,3 +1941,7 @@ qadwaitadecorations-git:https://aur.archlinux.org/qadwaitadecorations-git.git
 
 # Issue 2769
 asciinema-agg
+
+# Issue 2779
+xrectsel # (dep ffcast)
+ffcast
