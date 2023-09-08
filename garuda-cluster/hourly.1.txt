@@ -949,3 +949,6 @@ gpu-screen-recorder-gtk-git
 
 # Issue 2771
 captive-browser-git
+
+# Issue 2787
+eww-git
