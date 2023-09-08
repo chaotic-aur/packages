@@ -629,9 +629,9 @@ imhex
 freetube
 
 # Issue 469
-lbry-desktop-bin
 gajim-git
-python-nbxmpp-git
+lbry-desktop-bin
+python-nbxmpp-git # (dep gajim-git)
 spotify-tray-git
 vala-panel-appmenu-registrar-git
 
@@ -694,7 +694,6 @@ xfce4-panel-profiles
 
 # Issue 494
 python-deezer-py
-python-spotipy
 
 # Issue 496
 xen:https://aur.archlinux.org/xen.git # (xen xen-docs)
@@ -1281,11 +1280,13 @@ write_stylus
 youplay:https://aur.archlinux.org/youplay.git # (youplay-*)
 
 # Issue 1856
-catppuccin-grub-theme-git:https://aur.archlinux.org/catppuccin-grub-theme-git.git
+catppuccin-grub-theme-git:https://aur.archlinux.org/catppuccin-grub-theme-git.git # catppuccin-frappe-grub-theme-git catppuccin-latte-grub-theme-git catppuccin-macchiato-grub-theme-git catppuccin-mocha-grub-theme-git
+
 catppuccin-gtk-theme-frappe
 catppuccin-gtk-theme-mocha
 catppuccin-gtk-theme-macchiato
 catppuccin-gtk-theme-latte
+catppuccin-gtk-theme-mocha
 
 # Issue 1857
 gaphor-bin

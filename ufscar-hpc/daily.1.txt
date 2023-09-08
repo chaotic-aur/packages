@@ -64,7 +64,7 @@ aura
 aura-git
 
 # Issue 927
-openblas-lapack
+openblas-lapack # (python-qiskit)
 
 # Issue 936
 musikcube
