@@ -1698,6 +1698,9 @@ boo-sddm-git
 # Issue 2782
 vundle
 
+# Issue 2786
+activitywatch-bin
+
 
 # Electron
 electron16-bin
