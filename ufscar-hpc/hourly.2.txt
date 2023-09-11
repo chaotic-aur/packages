@@ -1251,9 +1251,6 @@ exaile
 # Issue 1154
 polybar-git
 
-# Issue 1155
-headscale
-
 # Issue 1157
 signalbackup-tools-git
 
