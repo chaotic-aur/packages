@@ -926,7 +926,7 @@ mpdscribble
 doas-sudo-shim
 
 #Issue 2765
-libresprite
+libresprite-git
 
 # Issue 2766
 picoscope7beta
