@@ -842,8 +842,6 @@ dte
 wine-wl-git
 
 # Issue 868
-callaudiod # (dep phosh-git)
-feedbackd # (dep phosh)
 phoc-embedded-wlroots # (dep phosh)
 phosh
 phosh-git
