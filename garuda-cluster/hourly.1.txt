@@ -524,7 +524,6 @@ brlaser
 xcp
 
 # Issue 2141
-toilet # (dep toilet-fonts)
 toilet-fonts
 
 # Issue 2143
