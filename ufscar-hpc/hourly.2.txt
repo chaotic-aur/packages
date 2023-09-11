@@ -904,9 +904,6 @@ losslesscut-bin
 # Issue 905
 shim-signed
 
-# Issue 906
-openrazer:https://aur.archlinux.org/openrazer.git
-
 # Issue 907
 pamac-tray-icon-plasma
 
