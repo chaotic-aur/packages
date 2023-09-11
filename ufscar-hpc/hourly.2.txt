@@ -126,7 +126,6 @@ vim-language-server
 vivaldi-snapshot
 vivaldi-snapshot-ffmpeg-codecs
 zef
-zlib-ng
 
 # SolarAquarion
 ayatana-indicator-application
