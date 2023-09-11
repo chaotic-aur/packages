@@ -842,8 +842,7 @@ dte
 wine-wl-git
 
 # Issue 868
-phoc-embedded-wlroots # (dep phosh)
-phosh
+phoc-embedded-wlroots # (dep phosh-git)
 phosh-git
 
 # Issue 870
