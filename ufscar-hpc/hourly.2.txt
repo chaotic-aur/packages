@@ -106,17 +106,6 @@ noti
 nqp
 openxray
 pup
-python-blis # (dep python-spacy)
-python-catalogue # (dep python-spacy)
-python-confection # (dep python-thinc)
-python-langcodes # (dep python-spacy)
-python-murmurhash # (dep python-spacy)
-python-plac # (dep python-spacy)
-python-preshed # (dep python-spacy)
-python-spacy
-python-srsly # (dep python-spacy)
-python-thinc # (dep python-spacy)
-python-wasabi # (dep python-spacy)
 rakudo
 shadowsocks-rust-git
 smenu
