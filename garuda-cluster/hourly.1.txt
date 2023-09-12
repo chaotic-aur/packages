@@ -1,3 +1,79 @@
+## NEEDED FOR GARUDA
+# Emulators
+#regen broken deps (lib32-libffi5)
+antimicrox
+cemu
+citra-canary-git
+citra-git:https://aur.archlinux.org/citra-git.git # (citra-git citra-qt-git)
+cpp-httplib-compiled # (dep xemu-git)
+crossover
+duckstation-git
+eka2l1-git
+emulationstation
+genymotion
+kega-fusion
+lib32-nss-mdns # (dep crossover)
+m64py
+mednaffe
+pcsxr
+pegasus-frontend-git
+play-emu-git
+python-pysdl2 # (dep m64py tauon-music-box)
+sameboy
+ucl # (dep kega-fusion)
+xemu-git
+
+# Gaming
+athenaeum-git
+boxtron
+epsxe
+flycast
+game-devices-udev
+gamehub
+godot-headless-bin # (dep luxtorpeda-git)
+gwe
+heroic-games-launcher-bin
+hypnotix
+ialauncher-git
+input-remapper-git
+keyboard-visualizer-git
+legendary
+libliftoff-git # (dep gamescope-git)
+libretro-stella2014-git
+luxtorpeda-git
+minecraft-launcher
+minigalaxy
+nestopia
+nyrna
+openrgb
+openrgb-git
+openssl-1.0 # (dep epsxe)
+oversteer
+play.it
+proton-caller
+protontricks-git
+python-cinemagoer # (dep hypnotix)
+python-injector # (dep gwe)
+q4wine-git
+qt-solutions-git # (dep q4wine-git)
+rare-git
+reshade-shaders-git
+retroarch-autoconfig-udev-git
+retrolink-git
+sc-controller
+stacer
+steamtinkerlaunch
+stremio
+vkbasalt # (opt goverlay-git steamtinkerlaunch)
+vr-video-player-git
+xbox-generic-controller
+xboxdrv
+xone-dongle-firmware # (dep xone-dkms-git)
+xone-dkms-git
+xone-dkms
+xpadneo-dkms-git
+xpadneo-dkms
+
 # Setup assistant
 bitwig-studio
 brave-bin
@@ -169,6 +245,41 @@ btrfs-assistant-git
 btrfsmaintenance # (dep btrfs-assistant-git btrfs-assistant)
 snapper-tools-git
 otter-browser-git
+
+
+## DEPENDENCIES
+# Dependencies of ffmpeg-full
+celt # (dep subtitlecomposer subtitlecomposer-git)
+chromaprint-fftw
+davs2
+decklink-sdk
+flite1
+highway-git # (dep libjxl-git)
+lensfun-git
+libjxl-git
+libklvanc-git
+libopenmpt-svn
+pocketsphinx # (dep subtitlecomposer subtitlecomposer-git)
+rockchip-mpp
+shine
+uavs3d-git
+vo-amrwbenc
+xavs
+xavs2
+
+# proton-ge-custom
+psautohint # (dep afdko)
+python-fonttools-git # (dep afdko)
+python-ufonormalizer # (dep afdko)
+afdko # (makedep proton-ge-custom)
+lib32-lzo # (dep proton-ge-custom)
+lib32-lapack:https://aur.archlinux.org/lib32-lapack.git # (makedep proton-ge-custom)
+mingw-w64-tools # (makedep proton-ge-custom)
+proton-ge-custom
+
+# Dependenies of darling-git
+libavresample
+
 
 ## User requests
 # Zoeruda
