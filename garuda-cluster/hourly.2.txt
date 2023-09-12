@@ -649,7 +649,6 @@ quaternion-git
 
 # Issue 1823
 criterion # (chkdep siril-git)
-siril
 siril-git
 
 # Issue 1825
