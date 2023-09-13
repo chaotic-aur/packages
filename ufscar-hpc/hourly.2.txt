@@ -1785,7 +1785,9 @@ joycond-git
 xwiimote
 
 # Issue 2761
-qadwaitadecorations-git:https://aur.archlinux.org/qadwaitadecorations-git.git
+qadwaitadecorations-git:https://aur.archlinux.org/qadwaitadecorations-git.git # (qadwaitadecorations-qt6-git)
+qadwaitadecorations:https://aur.archlinux.org/qadwaitadecorations.git # (qadwaitadecorations-qt5 qadwaitadecorations-qt6)
+qt5-wayland-decorations # (dep qadwaitadecorations)
 
 # Issue 2769
 asciinema-agg
