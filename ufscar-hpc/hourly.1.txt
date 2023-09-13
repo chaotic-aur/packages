@@ -269,7 +269,7 @@ python-coloredlogs # (dep ocrmypdf)
 remoteplaywhatever-bin
 replay-sorcery-git
 revolt-desktop-git
-shutter-encoder
+shutter-encoder-bin
 solvespace
 # Tartube
 python-imageio# # (dep python-moviepy)
