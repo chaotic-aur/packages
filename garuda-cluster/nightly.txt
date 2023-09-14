@@ -23,7 +23,6 @@ thunderbird-beta
 
 # Issue 1521
 lightlyshaders-git
-#lightlyshaders-kdegit-git:https://github.com/chaotic-aur/pkgbuild-lightlyshaders-kdegit-git
 
 # Issue 1686
 libeb # (dep goldendict-git goldendict-webengine-pr-git)
