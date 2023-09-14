@@ -610,8 +610,15 @@ discord-screenaudio
 miktex
 
 # Issue 2103
-opencolorio1 # (dep openfx-arena-git)
 libseexpr2 # (dep openfx-io-git openfx-io)
+opencolorio1 # (dep openfx-arena-git)
+openfx-arena-git # (dep natron-git)
+openfx-gmic-git # (dep natron-git)
+openfx-io-git # (dep natron-git)
+openfx-misc-git # (dep natron-git)
+natron-plugins-git # (dep natron-git)
+natron-compositor-git # (dep natron-git)
+natron-git
 
 # Issue 2107
 icon-library
