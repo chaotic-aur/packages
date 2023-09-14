@@ -833,6 +833,9 @@ scli-git
 ferium-gui
 ferium
 
+# Issue 2728
+gnome-shell-extension-material-shell
+
 # Issue 2729
 ame
 
