@@ -846,3 +846,6 @@ neovim-gtk
 gmdb2 # (dep mdbtools)
 mdbtools # (dep gmdb2 openboardview-git)
 openboardview-git
+
+# Issue 2785
+qflipper
