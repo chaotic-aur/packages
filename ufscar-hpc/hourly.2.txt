@@ -347,13 +347,7 @@ mediainfo-gui-qt
 
 # Issue 571
 authy
-f2c # (dep meshlab)
 fiji-bin
-levmar # (dep meshlab)
-lib3ds # (dep meshlab)
-meshlab
-meshlab-git
-mpir # (dep meshlab)
 openctm-tools
 zeal
 zeal-git
