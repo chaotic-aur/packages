@@ -31,6 +31,7 @@ flxmlrpc # (dep fldigi)
 fldigi
 fldigi-git
 wsjtx
+js8call
 hal-git
 hashcash
 ht-editor
