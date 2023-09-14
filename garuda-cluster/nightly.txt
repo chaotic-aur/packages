@@ -45,9 +45,6 @@ openssl-git
 # Issue 2078
 thunderbird-beta-i18n:https://aur.archlinux.org/thunderbird-beta-i18n.git
 
-# Issue 2132
-tahoma2d
-
 # Issue 2140
 myman
 
