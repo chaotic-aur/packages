@@ -1,13 +1,15 @@
 name: "👶 Request to add new package"
 description: "Request to add new package"
 labels: ["request:new-pkg"]
-title: "[Request] packagename"
+title: "[Request] "
 body:
   - type: textarea
     attributes:
       label: "Package:"
-      description: "Link to the package base in the AUR.  Include any known AUR dependencies."
-      placeholder: "[packagenamehere](https://aur.archlinux.org/pkgbase/packagenamehere)"
+      description: |
+        Link to the package base in the AUR.  Include any known AUR dependencies.
+        If a relevant issue already exists, please comment instead of opening a new one.
+      placeholder: "https://aur.archlinux.org/pkgbase/packagenamehere"
     validations:
       required: true
   - type: textarea
@@ -19,32 +21,36 @@ body:
   - type: textarea
     attributes:
       label: "Benefits:"
-      description: "What specific benefits does this package have over other packages?
-        <br/>Why would a user use this package instead of another?
-        <br/>What are some use cases for this package?"
+      description: |
+        What specific benefits does this package have over other packages?
+        Why would a user use this package instead of another?
+        What are some use cases for this package?
       placeholder: "This is important for cvs/git packages."
   - type: textarea
     attributes:
       label: "Building:"
-      description: "Read: https://wiki.archlinux.org/title/DeveloperWiki:Building_in_a_clean_chroot
-        <br/>If you have built this package, type the commands you used.
-        <br/>If any special procedures were needed, please describe them."
+      description: |
+        Read: https://wiki.archlinux.org/title/DeveloperWiki:Building_in_a_clean_chroot
+        If you have built this package, type the commands you used.
+        If any special procedures were needed, please describe them.
       placeholder: "makepkg 🙃"
-  - type: input
+  - type: textarea
     attributes:
       label: "Copyright:"
-      description: "What is the name of the copyright license?
-        <br/>Only the name is needed for standard licenses, like GPL2.
-        <br/>Include both the name and link to non-standard or custom licenses.
-        <br/>Include a link to the EULA if there is one."
+      description: |
+        What is the name of the copyright license?
+        Only the name is needed for standard licenses, like GPL2.
+        Include both the name and link to non-standard or custom licenses.
+        Include a link to the EULA if there is one.
       placeholder: "GPL3"
     validations:
       required: true
   - type: dropdown
     attributes:
       label: "Expected Interest:"
-      description: "How many others do you expect would be interested in this package?
-        <br/> Try to be accurate.  Packages may be dropped if they don't meet expectations."
+      description: |
+        How many others do you expect would be interested in this package?
+        Try to be accurate.  Packages may be dropped if they don't meet expectations.
       options:
         - "Only me"
         - "Few"
@@ -58,9 +64,10 @@ body:
   - type: dropdown
     attributes:
       label: "Already available?"
-      description: "Is this package already available in Arch or Chaotic AUR?
-        <br/> Do not answer without searching first.
-        <br/> `pacman -Ss <pkgname>`"
+      description: |
+        Is this package already available in Arch or Chaotic AUR?
+        Do not answer without searching first.
+        `pacman -Ss <pkgname>`
       options:
         - "Yes"
         - "No"
@@ -69,9 +76,10 @@ body:
   - type: dropdown
     attributes:
       label: "Unique request?"
-      description: "Is this request unique?
-        <br/> Do not answer without searching first.
-        <br/> https://github.com/chaotic-aur/packages/issues"
+      description: |
+        Is this request unique?
+        Do not answer without searching first.
+        https://github.com/chaotic-aur/packages/issues
       options:
         - "No"
         - "Yes"
@@ -80,9 +88,10 @@ body:
   - type: dropdown
     attributes:
       label: "Banned package?"
-      description: "Is this package banned?
-        <br/> Do not answer without checking first.
-        <br/> https://github.com/chaotic-aur/packages#banished-and-rejected-packages-"
+      description: |
+        Is this package banned?
+        Do not answer without checking first.
+        https://github.com/chaotic-aur/packages#banished-and-rejected-packages-
       options:
         - "Yes"
         - "No"

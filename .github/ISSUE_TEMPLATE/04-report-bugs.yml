@@ -1,38 +1,43 @@
 name: "🐛 Report bugs"
-description: "Report bugs"
+description: "Report bugs."
 labels: ["bug:misc"]
-title: "[Bug] description"
+title: "[Bug] "
 body:
   - type: textarea
     attributes:
       label: "Packages:"
-      description: "Link to the packages base in the AUR."
-      placeholder: "[packagenamehere](https://aur.archlinux.org/pkgbase/packagenamehere)"
+      description: |
+        Link to relevant package bases in the AUR.
+        If a relevant issue already exists, please comment instead of opening a new one.
+      placeholder: "https://aur.archlinux.org/pkgbase/packagenamehere"
     validations:
       required: true
   - type: input
     attributes:
       label: "Latest chaotic version"
-      placeholder: "`v0.0.0.r0.gc0ffec0ffe`"
+      placeholder: "`0.0.0.r0.gc0ffec0ffe`"
     validations:
       required: true
   - type: textarea
     attributes:
       label: "What happens?"
-      description: "This is the place to describe what's happening.
-        <br/> If applicable, include steps to replicate."
+      description: |
+        This is the place to describe what's happening.
+        If applicable, include steps to replicate.
     validations:
       required: true
   - type: textarea
     attributes:
       label: "What is expected to happen?"
-      description: "This is the place to describe what's expected."
+      description: |
+        This is the place to describe what's expected.
     validations:
       required: true
   - type: textarea
     attributes:
       label: "Logs"
-      description: "If available.  Find them here: https://builds.garudalinux.org/repos/chaotic-aur/logs/"
+      description: |
+        If available.  Find them here: https://builds.garudalinux.org/repos/chaotic-aur/logs/
       placeholder: "https://builds.garudalinux.org/repos/chaotic-aur/logs/some-package.log"
   - type: textarea
     attributes:
