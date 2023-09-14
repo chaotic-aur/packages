@@ -674,7 +674,7 @@ vnote
 vpaint-git
 
 # Issue 1854
-#carla-git # (dep zrythm)
+carla-git # (dep zrythm)
 gtk4-git # (dep zrythm)
 libaudec # (dep zrythm)
 libcyaml # (dep zrythm)
