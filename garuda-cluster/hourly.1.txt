@@ -652,13 +652,6 @@ gnome-shell-extension-ubuntu-dock-git
 # Issue 2148
 supergfxctl
 
-# Issue 2153
-openfx-arena # (dep natron-compositor)
-openfx-gmic # (dep natron-compositor)
-openfx-io # (dep natron-compositor)
-openfx-misc # (dep natron-compositor)
-natron-compositor
-
 # Issue 2158
 libelectron # (dep disneyplus)
 disneyplus
