@@ -1789,6 +1789,9 @@ qadwaitadecorations-git:https://aur.archlinux.org/qadwaitadecorations-git.git # 
 qadwaitadecorations:https://aur.archlinux.org/qadwaitadecorations.git # (qadwaitadecorations-qt5 qadwaitadecorations-qt6)
 qt5-wayland-decorations # (dep qadwaitadecorations)
 
+# Issue 2767
+lib32-gperftools
+
 # Issue 2769
 asciinema-agg
 
