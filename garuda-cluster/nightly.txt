@@ -5,6 +5,16 @@ librewolf:https://aur.archlinux.org/librewolf.git
 thunderbird-appmenu
 
 
+## Maintainers
+# Alexjp
+bcache-tools
+sddm-git
+qutebrowser-git
+
+libgaminggear # (dep roccat-tools)
+roccat-tools:https://aur.archlinux.org/roccat-tools.git # (Also includes roccat-tools-common,roccat-tools-{isku,iskufx,kiro,kone,koneplus,konepure,konepuremilitary,konepureoptical,konextd,konextdoptical,kova2016,kovaplus,pyra,ryostkl,savu,skeltr,sova,suora}
+
+
 ## Chaotic
 # Issue 339
 #onivim2-git # non paralellizable, package is currently broken
@@ -17,6 +27,9 @@ emacs-git
 
 # Issue 726
 godot-mono  # non parallelizable
+
+# Issue 1168
+sddm-theme-astronaut
 
 # Issue 1536
 thunderbird-beta
