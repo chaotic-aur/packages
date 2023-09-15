@@ -595,7 +595,6 @@ zfs-dkms-git
 
 # Issue 2085
 prboom-plus
-prboom-plus-um-git
 
 # Issue 2090
 discord-screenaudio
