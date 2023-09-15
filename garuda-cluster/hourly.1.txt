@@ -678,6 +678,7 @@ dragon-drop-git
 
 # Issue 2172
 dsda-doom
+dsda-doom-git
 libxmp # (dep woof-doom)
 woof-doom
 woof-doom-git
