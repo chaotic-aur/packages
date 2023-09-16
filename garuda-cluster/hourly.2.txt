@@ -849,3 +849,6 @@ openboardview-git
 
 # Issue 2785
 qflipper
+
+# Issue 2798
+fuse3-p7zip-git
