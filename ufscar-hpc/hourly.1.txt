@@ -657,7 +657,6 @@ phpstorm-eap:https://aur.archlinux.org/phpstorm-eap.git # (phpstorm-eap phpstorm
 hopper
 
 # Issue 478
-matrix-mirage-git
 python-enzyme # (dep subliminal-git)
 python-rarfile # (dep subliminal-git)
 subliminal-git
