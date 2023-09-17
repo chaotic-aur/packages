@@ -16,6 +16,21 @@ roccat-tools:https://aur.archlinux.org/roccat-tools.git # (Also includes roccat-
 
 
 ## Chaotic
+# Issue 311
+lib32-gd # (dep wine-stable)
+lib32-http-parser # (dep lib32-libgit2)
+lib32-libde265 # (dep wine-stable)
+lib32-libgit2 # (dep lib32-rav1e)
+lib32-libgphoto2 # (dep wine-stable)
+lib32-libheif # (dep wine-stable)
+lib32-libnuma # (dep lib32-gd)
+lib32-libraqm # (dep wine-stable)
+lib32-libxpm # (dep wine-stable)
+lib32-rav1e # (dep lib32-libheif)
+lib32-svt-av1 # (dep lib32-libheif)
+lib32-x265 # (dep wine-stable)
+wine-stable
+
 # Issue 339
 #onivim2-git # non paralellizable, package is currently broken
 
@@ -27,6 +42,17 @@ emacs-git
 
 # Issue 726
 godot-mono  # non parallelizable
+
+# Issue 841
+wine-wl-git
+
+# Issue 985
+wine-ge-custom
+
+# Issue 1133
+leagueoflegends-git
+lib32-unixodbc # (dep leagueoflegends-git)
+wine-lol
 
 # Issue 1168
 sddm-theme-astronaut
@@ -75,6 +101,9 @@ celeste
 # Issue 2392
 ola # (dep qlcplus)
 qlcplus
+
+# Issue 2635
+wine-wow64
 
 # Issue 2636
 element-desktop-git

@@ -73,9 +73,6 @@ musikcube
 # Issue 949
 kicad-git
 
-# Issue 985
-wine-ge-custom
-
 # Issue 1103
 telegram-tdlib-git
 
