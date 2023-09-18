@@ -60,6 +60,9 @@ thunderbird-beta
 # Issue 1521
 lightlyshaders-git
 
+# Issue 1559
+avaloniailspy-git
+
 # Issue 1686
 libeb # (dep goldendict-git goldendict-webengine-pr-git)
 goldendict-git
