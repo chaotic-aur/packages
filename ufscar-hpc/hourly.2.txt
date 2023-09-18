@@ -1506,6 +1506,9 @@ appmenu-gtk-module-git
 # Issue 1950
 linux-steam-integration
 
+# Issue 1952
+ultimate-doom-builder-git
+
 # Issue 1953
 hardinfo
 
