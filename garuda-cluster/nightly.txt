@@ -31,9 +31,6 @@ lib32-svt-av1 # (dep lib32-libheif)
 lib32-x265 # (dep wine-stable)
 wine-stable
 
-# Issue 339
-#onivim2-git # non paralellizable, package is currently broken
-
 # Issue 395
 emacs-pgtk-native-comp-git
 
