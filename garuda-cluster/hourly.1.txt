@@ -490,10 +490,6 @@ thunar-shares-plugin
 # Issue 1948
 minetest-git
 
-# Issue 1954
-wxwidgets3.0
-wxwidgets-light:https://aur.archlinux.org/wxwidgets-light.git
-
 # Issue 1955
 bisq
 
