@@ -111,6 +111,9 @@ motivewave:https://github.com/chaotic-aur/pkgbuild-motivewave.git
 # Issue 2773
 tradingview:https://github.com/chaotic-aur/pkgbuild-tradingview.git
 
+# Issue 2797
+sddm-slice-git
+
 
 ## OTHERS
 non-euclidean-git
