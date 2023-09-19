@@ -852,7 +852,6 @@ ttf-malayalam-fonts-meta
 kotatogram-desktop-beta-dynamic-bin
 
 # Issue 1362
-libdovi # (dep libplacebo-git)
 libplacebo-git # (dep mpv-full-git)
 
 # Issue 1365
