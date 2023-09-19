@@ -168,6 +168,7 @@ vim-coc-go-git
 vim-coc-highlight-git
 vim-coc-html-git
 vim-coc-htmlhint-git
+vim-coc-java-git
 vim-coc-json-git
 vim-coc-lists-git
 vim-coc-marketplace-git
@@ -180,6 +181,7 @@ vim-coc-sources-git:https://aur.archlinux.org/vim-coc-sources-git.git # (vim-coc
 vim-coc-tabnine-git
 vim-coc-tsserver-git
 vim-coc-vetur-git
+vim-coc-vimlsp-git
 vim-coc-yaml-git
 vim-coc-zsh-git
 
