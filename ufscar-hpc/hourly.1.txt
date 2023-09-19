@@ -1514,6 +1514,9 @@ termcolor # (dep micromamba)
 # Issue 2283
 binance
 
+# Issue 2285
+beekeeper-studio
+
 # Issue 2288
 xcursor-breeze
 
@@ -1707,6 +1710,7 @@ activitywatch-bin
 # Electron
 electron16-bin
 electron17-bin
+electron18-bin
 electron19-bin
 electron21-bin
 
