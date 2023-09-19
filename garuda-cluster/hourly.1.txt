@@ -530,6 +530,9 @@ pikasso-git
 mold-git
 systemd-git
 
+# Issue 1992
+oblige-obsidian-stable-git
+
 # Issue 1996
 physx
 
