@@ -1515,7 +1515,7 @@ termcolor # (dep micromamba)
 binance
 
 # Issue 2285
-beekeeper-studio
+#beekeeper-studio
 
 # Issue 2288
 xcursor-breeze
