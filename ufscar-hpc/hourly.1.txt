@@ -880,6 +880,9 @@ libva-intel-driver-g45-h264
 libcmrt # (dep intel-hybrid-codec-driver-git)
 intel-hybrid-codec-driver-git
 
+# Issue 1432
+planify
+
 # Issue 1435
 apple-fonts
 
