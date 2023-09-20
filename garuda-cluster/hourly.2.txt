@@ -435,9 +435,6 @@ python-readchar # (dep moodle-dl-git)
 python-xmpppy-git # (dep moodle-dl-git)
 moodle-dl-git
 
-# Issue 1625
-jdk-temurin
-
 # Issue 1626
 wluma
 
