@@ -16,6 +16,9 @@ roccat-tools:https://aur.archlinux.org/roccat-tools.git # (Also includes roccat-
 
 
 ## Chaotic
+# Issue 286
+authy:https://github.com/chaotic-aur/pkgbuild-authy.git
+
 # Issue 311
 lib32-gd # (dep wine-stable)
 lib32-http-parser # (dep lib32-libgit2)

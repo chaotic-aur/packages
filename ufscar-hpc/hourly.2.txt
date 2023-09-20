@@ -339,7 +339,6 @@ neovide-git
 mediainfo-gui-qt
 
 # Issue 571
-authy
 fiji-bin
 openctm-tools
 zeal
