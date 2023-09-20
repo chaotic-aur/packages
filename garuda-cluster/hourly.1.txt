@@ -539,9 +539,6 @@ physx
 # Issue 2003
 rustup-git
 
-# Issue 2005
-electron-nightly-npm
-
 # Issue 2013
 grub-themes-git:https://aur.archlinux.org/grub-themes-git.git
 
