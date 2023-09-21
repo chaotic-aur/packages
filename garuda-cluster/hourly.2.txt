@@ -484,7 +484,9 @@ kcm-uefi
 kcmutils-git
 nx-firewall-git
 systemd-kcm
+telepathy-farstream # (dep telepathy-qt-git)
 telepathy-kde-accounts-kcm-git
+telepathy-qt # (dep telepathy-kde-accounts-kcm-git)
 
 # Issue 1691
 glaxnimate-git
