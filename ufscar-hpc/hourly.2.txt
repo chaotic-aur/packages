@@ -1210,9 +1210,6 @@ smartgit
 # Issue 1327
 vcpkg
 
-# Issue 1391
-termius
-
 # Issue 1396
 wld-git # (dep swc-git velox-git)
 swc-git # (dep velox-git)
