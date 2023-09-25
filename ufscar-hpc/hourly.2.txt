@@ -150,7 +150,7 @@ xcb-proto-git # (dep libxcb-git)
 numix-circle-icon-theme-git
 numix-icon-theme-git
 tilix-git
-vlc-git
+vlc-wayland-git
 wezterm-git
 
 # vim-extension
