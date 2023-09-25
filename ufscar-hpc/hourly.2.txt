@@ -341,7 +341,6 @@ mediainfo-gui-qt
 # Issue 571
 fiji-bin
 openctm-tools
-zeal
 zeal-git
 
 # Issue 576
