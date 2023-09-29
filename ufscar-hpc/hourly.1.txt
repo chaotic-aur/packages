@@ -314,6 +314,9 @@ zenpower-dkms
 # mrvictory on forum
 nvidia-utils-beta
 
+# Nils on forum
+yubico-authenticator-bin
+
 # Issue 285
 nghttp2 # (dep wget2)
 wget2
