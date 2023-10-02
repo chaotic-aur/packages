@@ -173,7 +173,6 @@ lib32-libfdk-aac
 lib32-libgme
 lib32-libkate
 lib32-liblrdf
-lib32-libmms
 lib32-libmpcdec
 lib32-libnice
 lib32-libofa
