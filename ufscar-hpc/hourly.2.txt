@@ -1664,7 +1664,7 @@ epdfview-gtk3
 wmenu
 
 # Issue 2365
-waterfox-g-bin
+waterfox-bin
 
 # Issue 2379
 python-fangfrisch
