@@ -140,10 +140,8 @@ libsepol # (dep glib2-selinux)
 
 egl-wayland-git
 lib32-libdrm-git
-lib32-libglvnd-git
 lib32-libxcb-git
 libdrm-git
-libglvnd-git
 libxcb-git
 xcb-proto-git # (dep libxcb-git)
 
