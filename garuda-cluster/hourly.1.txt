@@ -1056,3 +1056,9 @@ eww-git
 
 # Issue 2807
 64gram-desktop
+
+# Issue 2809
+toybox
+
+# Issue 2829
+nody-greeter
