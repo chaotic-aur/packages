@@ -1656,7 +1656,7 @@ fairy-stockfish
 fairy-stockfish-git
 
 # Issue 2341
-epdfview-gtk3
+epdfview-git
 
 # Issue 2347
 wmenu
