@@ -855,3 +855,6 @@ qflipper
 
 # Issue 2798
 fuse3-p7zip-git
+
+# Issue 2805
+rofi-lbonn-wayland-git
