@@ -1053,3 +1053,6 @@ captive-browser-git
 
 # Issue 2787
 eww-git
+
+# Issue 2807
+64gram-desktop
