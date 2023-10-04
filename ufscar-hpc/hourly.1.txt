@@ -1702,7 +1702,7 @@ tdrop
 boo-sddm-git
 
 # Issue 2782
-vundle
+vundle-git
 
 # Issue 2786
 activitywatch-bin
