@@ -1062,3 +1062,7 @@ toybox
 
 # Issue 2829
 nody-greeter
+
+# Issue 2833
+ppsspp-git:https://aur.archlinux.org/pkgbase/ppsspp-git # (ppsspp-git ppsspp-assets-git)
+
