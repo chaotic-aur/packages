@@ -113,7 +113,6 @@ slack-electron
 spirv-cross # (dep mpv-full-git)
 spotify-qt
 subtitleedit
-tor-browser-bin
 ttf-borg-sans-mono
 ttf-font-awesome-4
 tuxclocker
