@@ -136,7 +136,6 @@ appimagelauncher
 bauh
 birdtray
 cozy-audiobooks
-davinci-resolve
 dropbox
 fonts-tlwg
 foxitreader

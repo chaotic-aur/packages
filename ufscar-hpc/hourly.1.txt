@@ -681,9 +681,6 @@ pipe-viewer-git
 # Issue 487
 newaita-icons-git
 
-# Issue 488
-davinci-resolve-studio
-
 # Issue 490
 libsearpc # (dep seafile)
 seafile
