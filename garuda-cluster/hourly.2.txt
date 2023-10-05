@@ -741,12 +741,8 @@ celestia
 
 # Issue 2325
 cubeb # (dep dolphin-emu-git yuzu-*)
-fmt9 # (dep dolphin-emu-git)
 libspng # (dep dolphin-emu-git xpra-git)
 dolphin-emu-git:https://aur.archlinux.org/dolphin-emu-git.git
-
-## rebuilds of extra/dolphin-emu
-dolphin-emu-clang:https://gitlab.archlinux.org/archlinux/packaging/packages/dolphin-emu.git
 
 # Issue 2444
 rustdesk-bin

@@ -339,6 +339,7 @@ firejail-pacman-hook
 firetools-git
 fish-git
 flutter # (dep fluffychat)
+fmt9 # (dep waybar-hyprland-git)
 forkgram
 gegl-git # (dep gimp-git)
 gimp-git
