@@ -40,9 +40,6 @@ emacs-pgtk-native-comp-git
 # Issue 462
 emacs-git
 
-# Issue 726
-godot-mono  # non parallelizable
-
 # Issue 841
 wine-wl-git
 
