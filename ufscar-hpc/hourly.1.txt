@@ -1703,9 +1703,11 @@ vundle-git
 # Issue 2786
 activitywatch-bin
 
+# Issue 2830
+lightdm-theme-neon
+
 # Issue 2834
 godot-mono-enhanced
-
 
 # Electron
 electron16-bin
