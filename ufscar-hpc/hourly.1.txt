@@ -384,7 +384,6 @@ azure-cli
 badwolf
 getmail6
 onedrive-abraunegg
-postman-bin
 pycharm-community-eap
 slack-term
 typora
