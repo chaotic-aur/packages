@@ -1702,6 +1702,9 @@ vundle-git
 # Issue 2786
 activitywatch-bin
 
+# Issue 2825
+telegraph
+
 # Issue 2830
 lightdm-theme-neon
 
