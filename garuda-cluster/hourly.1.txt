@@ -1060,9 +1060,11 @@ eww-git
 # Issue 2809
 toybox
 
+# Issue 2815
+rclone-git
+
 # Issue 2829
 nody-greeter
 
 # Issue 2833
 ppsspp-git:https://aur.archlinux.org/pkgbase/ppsspp-git # (ppsspp-git ppsspp-assets-git)
-
