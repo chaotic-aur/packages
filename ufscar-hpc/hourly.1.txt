@@ -1705,6 +1705,9 @@ activitywatch-bin
 # Issue 2819
 xp-pen-tablet
 
+# Issue 2820
+material-maker-bin
+
 # Issue 2825
 telegraph
 
