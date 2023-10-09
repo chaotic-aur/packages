@@ -1774,3 +1774,6 @@ jdminecraftlauncher
 # Issue 2779
 xrectsel # (dep ffcast)
 ffcast
+
+# Issue 2823
+magicavoxel
