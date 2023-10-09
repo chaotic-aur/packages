@@ -1702,6 +1702,9 @@ vundle-git
 # Issue 2786
 activitywatch-bin
 
+# Issue 2817
+man-pages-ja
+
 # Issue 2819
 xp-pen-tablet
 
