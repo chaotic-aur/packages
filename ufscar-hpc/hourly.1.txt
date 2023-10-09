@@ -39,7 +39,7 @@ i3status-rust-git
 libfprint-git
 swaylock-fprintd-git
 libsdrplay
-ncurses5-compat-libs
+ncurses5-compat-libs # (dep scilab-bin)
 adms-git # (dep qucsator qucs-qt5-git qucs)
 qucsator-git # (dep qucs-qt5-git)
 qucs
@@ -1707,6 +1707,9 @@ xp-pen-tablet
 
 # Issue 2820
 material-maker-bin
+
+# Issue 2821
+scilab-bin
 
 # Issue 2825
 telegraph
