@@ -965,7 +965,7 @@ keystore-explorer
 figlet-fonts
 
 # Issue 2598
-swww
+swww # (dep waypaper-git)
 
 # Issue 2600
 bootstrap
@@ -1053,6 +1053,9 @@ captive-browser-git
 
 # Issue 2787
 eww-git
+
+# Issue 2801
+waypaper-git
 
 # Issue 2807
 64gram-desktop
