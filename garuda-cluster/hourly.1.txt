@@ -1017,9 +1017,6 @@ mtkclient-git
 # Issue 2746
 poppler-qt-lcd
 
-# Issue 2747
-thorium-browser-bin
-
 # Issue 2749
 mpdscribble
 

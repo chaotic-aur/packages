@@ -111,6 +111,9 @@ wine-wow64
 # Issue 2636
 element-desktop-git
 
+# Issue 2747
+thorium-browser-bin:https://aur.archlinux.org/thorium-browser-bin.git
+
 # Issue 2748
 motivewave:https://github.com/chaotic-aur/pkgbuild-motivewave.git
 
