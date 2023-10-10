@@ -54,10 +54,6 @@ linux-git
 linux-drm-tip-git
 linux-drm-next-git
 
-# Issue 2016
-gcc9
-gcc10
-
 # Issue 2119
 trayscale
 

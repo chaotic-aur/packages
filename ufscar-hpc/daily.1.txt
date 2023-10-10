@@ -117,5 +117,6 @@ lib32-mesa-git:https://github.com/chaotic-aur/lib32-mesa-git.git
 
 --
 
-# Requested by Garuda members
-gcc11 # Also builds gcc11-{fortran,libs}
+# gcc (Issue 2016)
+gcc10:https://aur.archlinux.org/gcc10.git # gcc11-{fortran,libs}
+gcc11:https://aur.archlinux.org/gcc11.git # gcc11-{fortran,libs}
