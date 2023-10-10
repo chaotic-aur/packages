@@ -1068,3 +1068,6 @@ nody-greeter
 
 # Issue 2833
 ppsspp-git:https://aur.archlinux.org/pkgbase/ppsspp-git # (ppsspp-git ppsspp-assets-git)
+
+# Issue 2841
+gnome-shell-extension-arc-menu-git
