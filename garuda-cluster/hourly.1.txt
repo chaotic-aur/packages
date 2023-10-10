@@ -1071,3 +1071,6 @@ ppsspp-git:https://aur.archlinux.org/pkgbase/ppsspp-git # (ppsspp-git ppsspp-ass
 
 # Issue 2841
 gnome-shell-extension-arc-menu-git
+
+# Issue 2842
+impression
