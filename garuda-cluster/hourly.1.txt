@@ -1051,6 +1051,9 @@ captive-browser-git
 # Issue 2787
 eww-git
 
+# Issue 2796
+goldwarden
+
 # Issue 2801
 waypaper-git
 
