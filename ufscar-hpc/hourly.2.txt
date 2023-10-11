@@ -1775,5 +1775,8 @@ jdminecraftlauncher
 xrectsel # (dep ffcast)
 ffcast
 
+# Issue 2803
+eartag
+
 # Issue 2823
 magicavoxel
