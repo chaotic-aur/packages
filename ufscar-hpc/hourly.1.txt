@@ -799,11 +799,13 @@ discord-development-electron-bin
 komorebi
 
 # Issue 623
-ffmpeg-git
 intel-gmmlib-git # (dep intel-media-driver-git)
-intel-media-driver-git
 libva-git # (dep intel-media-driver-git
+intel-media-driver-git
+# --
+ffnvcodec-headers-git # (dep ffmpeg-git)
 vmaf-git # (dep ffmpeg-git)
+ffmpeg-git
 
 # Issue 937
 river-git
