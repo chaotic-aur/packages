@@ -1221,7 +1221,7 @@ krop
 notejot
 
 # Issue 1798
-oxygen-cursors
+oxygen-cursors-extra
 
 # Issue 1801
 pdf2png
