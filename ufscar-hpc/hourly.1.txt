@@ -1587,15 +1587,6 @@ openvino-git
 # Issue 2514
 gpt4all-chat-git
 
-# Issue 2522
-baca-ereader-git
-epy-ereader-git
-python-climage # (dep baca-ereader-git)
-python-kdtree # (dep python-climage)
-python-markdownify # (dep baca-ereader-git)
-python-textual # (dep baca-ereader-git)
-python-thefuzz # (optdep baca-ereader-git) (provides python-fuzzywuzzy)
-
 # Issue 2519
 python-musdb # (dep spleeter-git python-museval)
 python-museval # (dep spleeter-git)
@@ -1604,6 +1595,15 @@ python-soundfile # (dep python-musdb python-museval python-stempeg)
 python-stempeg # (dep python-musdb python-museval)
 spleeter-data:https://aur.archlinux.org/spleeter-data.git # (optdep spleeter-git)
 spleeter-git
+
+# Issue 2522
+baca-ereader-git
+epy-ereader-git
+python-climage # (dep baca-ereader-git)
+python-kdtree # (dep python-climage)
+python-markdownify # (dep baca-ereader-git)
+python-textual # (dep baca-ereader-git)
+python-thefuzz # (optdep baca-ereader-git) (provides python-fuzzywuzzy)
 
 # Issue 2528
 ttf-material-design-icons-extended
@@ -1629,6 +1629,9 @@ bubblejail-git
 
 # Issue 2560
 hyprshot
+
+# Issue 2561
+wl-gammactl
 
 # Issue 2565
 penguins-eggs
