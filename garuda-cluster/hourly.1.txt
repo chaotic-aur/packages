@@ -557,6 +557,7 @@ dmalloc # (dep imagemagick-full-git)
 flif # (dep imagemagick-full-git)
 libfpx # (dep imagemagick-full-git)
 libumem-git # (dep imagemagick-full-git)
+magickcache-git # (dep imagemagick-full-git)
 imagemagick-full-git
 
 # Issue 2029
