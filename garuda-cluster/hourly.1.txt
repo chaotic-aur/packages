@@ -617,6 +617,7 @@ icon-library
 dendrite
 
 # Issue 2116
+libpqmarble # (dep blackbox-terminal)
 blackbox-terminal
 
 # Issue 2118
