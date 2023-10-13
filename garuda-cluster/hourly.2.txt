@@ -418,9 +418,9 @@ whatsie-git
 
 # Issue 1615
 chocolate-doom # (optdep doomseeker)
-deutex # (dep freedoom odamex-git)
+deutex # (dep freedoom-git odamex-git)
 doomseeker # (dep zandronum q-zandronum)
-freedoom # (optdep zandronum q-zandronum chocolate-doom)
+freedoom-git # (optdep zandronum q-zandronum chocolate-doom)
 odamex-git # (optdep doomseeker)
 q-zandronum
 zandronum
