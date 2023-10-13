@@ -1387,6 +1387,10 @@ arch-update
 # Issue 1949
 hplip-lite
 
+# Issue 1960
+seadrive-daemon # (dep seadrive-gui)
+seadrive-gui
+
 # Issue 1980
 raider-file-shredder
 
