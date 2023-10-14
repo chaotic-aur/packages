@@ -1359,9 +1359,6 @@ raven-reader-bin
 # Issue 1910
 notable-bin
 
-# Issue 1911
-youtubedl-gui
-
 # Issue 1914
 python-pypdf2 # (dep bookletimposer nautilus-pdf-tools-git krop)
 bookletimposer
