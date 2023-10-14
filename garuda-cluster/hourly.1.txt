@@ -270,10 +270,10 @@ xavs2
 psautohint # (dep afdko)
 python-fonttools-git # (dep afdko)
 python-ufonormalizer # (dep afdko)
-afdko # (makedep proton-ge-custom)
+afdko # (make proton-ge-custom)
 lib32-lzo # (dep proton-ge-custom)
-lib32-lapack:https://aur.archlinux.org/lib32-lapack.git # (makedep proton-ge-custom)
-mingw-w64-tools # (makedep proton-ge-custom)
+lib32-lapack:https://aur.archlinux.org/lib32-lapack.git # (make proton-ge-custom)
+mingw-w64-tools # (make proton-ge-custom)
 proton-ge-custom
 
 # Dependenies of darling-git

@@ -272,11 +272,12 @@ nginx-mainline-mod-njs
 swaylock-effects
 
 # Issue 524
+python-clickgen # (make bibata-cursor-theme)
+python-clickgen1 # (make bibata-extra-cursor-theme bibata-rainbow-cursor-theme)
 bibata-cursor-theme
 bibata-cursor-translucent
 bibata-extra-cursor-theme
 bibata-rainbow-cursor-theme
-python-clickgen # (dep bibata-cursors)
 
 # Issue 551
 tracktion-waveform
