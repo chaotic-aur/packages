@@ -197,7 +197,6 @@ phonesim
 python-ttkbootstrap # (dep fotokilof)
 qomui
 qomui-git
-qt-installer-framework # (dep riseup-vpn-git)
 soundwire
 tlpui
 webapp-manager-git

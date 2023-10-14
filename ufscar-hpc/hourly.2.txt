@@ -1343,9 +1343,6 @@ qt-jdenticon
 # Issue 1698
 fluent-kde-theme-git
 
-# Issue 1703
-riseup-vpn-git
-
 # Issue 1708
 xfce4-windowck-plugin-xfwm4-theme-support
 
