@@ -374,7 +374,7 @@ python-gbinder
 python-simplediff
 qbittorrent-enhanced-git
 qemu-git
-qrcodegen-cmake:ssh://aur@aur.archlinux.org/qrcodegen-cmake.git # (dep obs-studio-git)
+qrcodegen-cmake:https://aur.archlinux.org/qrcodegen-cmake.git # (dep obs-studio-git)
 qtwebflix-git
 quickemu
 quickemu-git
