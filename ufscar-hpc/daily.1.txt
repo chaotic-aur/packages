@@ -18,7 +18,6 @@ ungoogled-chromium:https://github.com/ungoogled-software/ungoogled-chromium-arch
 # Solomon
 properties-cpp # (dep ayatana-indicator-datetime)
 ayatana-indicator-datetime
-calligra-git
 kwaterfoxhelper
 nvm
 python-pympv
