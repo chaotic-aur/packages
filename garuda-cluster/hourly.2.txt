@@ -41,7 +41,7 @@ kwin-scripts-krohnkite-git
 # Nothing as of now
 
 # Hyprland
-greetd-gtkgreet-git 
+greetd-gtkgreet-git
 greetd-qtgreet
 hyprland-nvidia-git
 wlr-randr-git
@@ -206,7 +206,6 @@ goodvibes
 goodvibes-git
 
 # Issue 928
-python-pynput # (dep rustdesk-nightly)
 rustdesk-nightly # (dep remmina-plugin-rustdesk)
 
 # Issue 946

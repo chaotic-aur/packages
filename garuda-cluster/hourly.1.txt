@@ -144,7 +144,7 @@ google-meet-nativefier
 gstreamer0.10 # (dep foxitreader)
 gstreamer0.10-base # (dep foxitreader)
 guiscrcpy
-python-pynput (dep guiscrcpy)
+python-pynput # (dep guiscrcpy streamdeck-ui-git)
 mailspring
 mellowplayer
 mendeleydesktop
