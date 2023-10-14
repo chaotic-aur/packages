@@ -1696,6 +1696,9 @@ kanagawa-gtk-theme-git
 # Issue 2695
 portmaster-stub-bin
 
+# Issue 2706
+zsh-vi-mode
+
 # Issue 2745
 tela-circle-icon-theme:https://aur.archlinux.org/tela-circle-icon-theme.git
 
