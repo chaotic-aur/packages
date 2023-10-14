@@ -1129,9 +1129,6 @@ fontdownloader
 # Issue 1181
 miredo
 
-# Issue 1187
-headset-bin
-
 # Issue 1192
 prospect-mail-bin
 
