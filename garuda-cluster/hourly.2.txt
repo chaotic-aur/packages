@@ -859,5 +859,8 @@ scala:https://aur.archlinux.org/scala.git
 # Issue 2826
 obs-streamfx-unstable
 
+# Issue 2848
+crab-hole
+
 # Issue 2849
 findex-git
