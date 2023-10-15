@@ -1738,6 +1738,9 @@ astronvim-git
 # Issue 2838
 web-greeter
 
+# Issue 2851
+softmaker-office-2024-bin
+
 # Electron
 electron16-bin
 electron17-bin
