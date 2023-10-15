@@ -1078,3 +1078,6 @@ gnome-shell-extension-arc-menu-git
 
 # Issue 2842
 impression
+
+# Issue 2850
+aylurs-gtk-shell-git
