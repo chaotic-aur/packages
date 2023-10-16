@@ -477,7 +477,6 @@ kcm-lookandfeel-standalone-git
 kcm-polkit-kde-git
 kcm-tablet-git
 kcm-uefi
-kcmutils-git
 nx-firewall-git
 systemd-kcm
 telepathy-farstream # (dep telepathy-qt-git)
