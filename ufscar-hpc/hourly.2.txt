@@ -955,9 +955,12 @@ snap-pac-grub
 cef-minimal-obs-bin # (dep obs-studio-tytan652)
 ffmpeg-obs # (dep obs-studio-tytan652)
 ftl-sdk # (dep obs-studio-tytan652)
+libdatachannel-nice # (dep obs-studio-rc)
 librist # (dep ffmpeg-obs)
+libusrsctp # (dep libdatachannel-nice)
 obs-studio-rc
 obs-studio-tytan652
+plog # (dep libdatachannel-nice)
 svt-av1-git # (dep ffmpeg-obs)
 vlc-luajit # (dep obs-studio-tytan652)
 
