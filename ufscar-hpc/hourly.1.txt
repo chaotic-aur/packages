@@ -597,9 +597,6 @@ woeusb
 # Issue 457
 webkit2gtk-unstable
 
-# Issue 458
-xembed-sni-proxy-git
-
 # Issue 459
 emote
 python-manimpango # (dep emote)
