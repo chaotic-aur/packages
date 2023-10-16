@@ -172,6 +172,7 @@ visual-studio-code-bin
 yay
 
 # Networking & Tools
+adwaita-qt-git:https://aur.archlinux.org/adwaita-qt-git.git # (dep mediawriter)
 bass-fish
 bindfs
 buttermanager
