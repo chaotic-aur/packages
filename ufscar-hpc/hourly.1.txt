@@ -1729,6 +1729,9 @@ telegraph
 # Issue 2830
 lightdm-theme-neon
 
+# Issue 2831
+xdman-beta-bin
+
 # Issue 2834
 godot-mono-enhanced
 
