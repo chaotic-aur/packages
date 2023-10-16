@@ -529,7 +529,6 @@ pikasso-git
 
 # Issue 1990
 mold-git
-systemd-git
 
 # Issue 1992
 oblige-obsidian-stable-git
