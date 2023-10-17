@@ -590,6 +590,10 @@ qbittorrent-git
 zfs-utils-git
 zfs-dkms-git
 
+# Issue 2084
+crispy-doom
+crispy-doom-git
+
 # Issue 2085
 prboom-plus
 
