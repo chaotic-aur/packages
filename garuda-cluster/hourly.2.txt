@@ -126,7 +126,7 @@ lib32-nvidia-390xx-utils:https://aur.archlinux.org/lib32-nvidia-390xx-utils.git 
 lib32-nvidia-470xx-utils:https://aur.archlinux.org/lib32-nvidia-470xx-utils.git # (lib32-nvidia-470xx-utils, lib32-opencl-nvidia-470xx)
 lib32-opencl-nvidia-390xx
 libinput-gestures
-libinput_gestures_qt
+libinput-gestures-qt
 libpamac-aur
 memavaild
 menulibre
