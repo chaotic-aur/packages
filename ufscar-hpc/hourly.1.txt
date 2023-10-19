@@ -789,9 +789,6 @@ trello-cli
 # Issue 617
 element-desktop-nightly-bin
 
-# Issue 619
-discord-development-electron-bin
-
 # Issue 621
 komorebi
 
