@@ -697,6 +697,9 @@ wings3d
 # Issue 2188
 meowsql
 
+# Issue 2190
+flycast-git
+
 # Issue 2198
 libiqa-git # (dep jpeg-recompress-git)
 libsmallfry-git # (dep jpeg-recompress-git)
