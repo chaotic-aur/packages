@@ -15,8 +15,10 @@ libgaminggear # (dep roccat-tools)
 roccat-tools:https://aur.archlinux.org/roccat-tools.git # (Also includes roccat-tools-common,roccat-tools-{isku,iskufx,kiro,kone,koneplus,konepure,konepuremilitary,konepureoptical,konextd,konextdoptical,kova2016,kovaplus,pyra,ryostkl,savu,skeltr,sova,suora}
 
 # xiota
+geany-git
+geany-plugin-preview-git
+geeqie-git
 xdvdfs
-
 
 
 ## Chaotic
