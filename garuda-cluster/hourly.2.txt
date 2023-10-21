@@ -111,7 +111,6 @@ downgrade
 dracut-hook-uefi
 dracut-hook # Issue 1453 but also adopted by Garuda
 evdev-right-click-emulation
-fastfetch
 find-the-command-git
 firefox-extension-bitwarden
 firefox-extension-flagfox
