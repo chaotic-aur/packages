@@ -49,10 +49,6 @@ linux-vfio
 # Issue 774
 freecad-git
 
-# Issue 799
-swift-language
-#swift-language-git
-
 # Issue 808
 codelite-unstable
 
