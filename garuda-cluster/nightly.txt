@@ -137,6 +137,8 @@ tradingview:https://github.com/chaotic-aur/pkgbuild-tradingview.git
 # Issue 2797
 sddm-slice-git
 
+# [Request] kwin-scripts-truely-maximized #2860
+kwin-scripts-truely-maximized
 
 ## OTHERS
 non-euclidean-git
