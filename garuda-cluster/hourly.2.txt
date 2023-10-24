@@ -811,6 +811,11 @@ nudelta
 # Issue 2714
 rtx
 
+# Issue 2718
+python-sabyenc3 # (dep sabnzbd)
+python-sabctools # (dep sabnzbd)
+sabnzbd
+
 # Issue 2721
 libsignal-client # (dep signal-cli)
 signal-cli # (dep scli-git)
