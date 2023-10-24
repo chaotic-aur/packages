@@ -1738,6 +1738,9 @@ web-greeter
 # Issue 2851
 softmaker-office-2024-bin
 
+# Issue 2869
+macsonoma-kde-theme-git
+
 # Electron
 electron16-bin
 electron17-bin
