@@ -156,5 +156,5 @@ rbenv # Seamlessly manage your app’s Ruby environment with rbenv. ; https://gi
 ruby-build # ruby-build is a command-line tool that simplifies installation of any Ruby version from source on Unix-like systems. ; https://github.com/rbenv/ruby-build
 rebar3 # A sophisticated build-tool for Erlang projects that follows OTP principles. ; https://github.com/erlang/rebar3
 elixir-ls # A frontend-independent Language Server Protocol for Elixir ; https://github.com/elixir-lsp/elixir-ls
-roundedsbe-git:https://github.com/chaotic-aur/pkgbuild-roundedsbe-git.git # A fork of SierraBreezeEnhanced with integrated corner rounding effect CornersShader (reworked version of what used to be called LightlyShaders) and shared configuration ; https://github.com/a-parhom/RoundedSBE
+roundedsbe-git
 elixir-latest:https://github.com/chaotic-aur/pkgbuild-elixir-latest.git # Because it seems arch never updates minor versions
