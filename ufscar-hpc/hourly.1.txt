@@ -1743,6 +1743,9 @@ plasma5-applets-latte-separator
 # Issue 2864
 plasma5-applets-plasma-drawer
 
+# Issue 2866
+plasma5-applets-control-centre
+
 # Issue 2869
 macsonoma-kde-theme-git
 
