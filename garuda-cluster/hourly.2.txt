@@ -867,3 +867,6 @@ crab-hole
 
 # Issue 2849
 findex-git
+
+# Issue 2865
+aylurs-gtk-shell
