@@ -1,4 +1,4 @@
-# alvr
+alvr
 amdctl
 android-studio-canary
 epson-inkjet-printer-escpr2
