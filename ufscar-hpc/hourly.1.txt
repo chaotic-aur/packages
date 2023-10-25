@@ -1740,6 +1740,9 @@ softmaker-office-2024-bin
 # Issue 2862
 plasma5-applets-latte-separator
 
+# Issue 2864
+plasma5-applets-plasma-drawer
+
 # Issue 2869
 macsonoma-kde-theme-git
 
