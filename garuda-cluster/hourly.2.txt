@@ -691,6 +691,9 @@ gdevelop-bin
 nordic-theme
 nordic-theme-git
 
+# Issue 1876
+gdmap-gtk3
+
 # Issue 1879
 fmit
 
