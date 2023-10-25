@@ -1147,13 +1147,12 @@ azpainter
 orage
 
 # Issue 1732
-ttf-aller
 audiowide-font
-ttf-bangers
-ttf-djb-zora-prints-fonts
-xorg-font-utils # (dep ttf-geosans-light)
-ttf-geosans-light
 fonts-kalam
+ttf-aller
+ttf-bangers
+ttf-djb-zora-prints
+ttf-geosans-light
 ttf-pacifico
 
 # Issue 1736
