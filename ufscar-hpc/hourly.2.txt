@@ -54,7 +54,7 @@ neovim-drop-in
 neovim-plug
 nm-eduroam-ufscar
 #noisetorch
-openal-git
+openal-git:https://aur.archlinux.org/openal-git.git
 openssh-hpn
 primus-vk-git
 python-telegram-bot # (dep python-telegram-send)
