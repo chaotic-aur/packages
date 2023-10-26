@@ -458,7 +458,7 @@ plasmatube-git
 melonds-git
 
 # Issue 702
-tutanota-desktop-bin
+tutanota-desktop
 
 # Issue 704
 python-httpx-socks
