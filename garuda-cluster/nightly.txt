@@ -17,6 +17,7 @@ roccat-tools:https://aur.archlinux.org/roccat-tools.git # (Also includes roccat-
 # xiota
 annotator-git
 ccd2cue
+commissioner-font:https://aur.archlinux.org/commissioner-font.git
 discimagecreator
 geany-plugin-preview-git
 geeqie-git
