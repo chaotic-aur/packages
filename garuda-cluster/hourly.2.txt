@@ -99,7 +99,6 @@ mugshot
 ## Further needed applications
 # Garuda base (AUR)
 7-zip
-apprise
 auto-cpufreq
 bluetooth-autoconnect
 btrfs-assistant

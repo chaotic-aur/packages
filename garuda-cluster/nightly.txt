@@ -154,7 +154,7 @@ discord-ptb
 babashka-bin # Fast native Clojure scripting runtime ; https://babashka.org/
 codon-bin # Codon is a high-performance Python compiler that compiles Python code to native machine code without any runtime overhead. ; https://docs.exaloop.io/codon
 gleam # Gleam is a friendly language for building type-safe systems that scale! ; https://gleam.run/
-rbenv # Seamlessly manage your app’s Ruby environment with rbenv. ; https://github.com/rbenv/rbenv
+rbenv # Seamlessly manage your app's Ruby environment with rbenv. ; https://github.com/rbenv/rbenv
 ruby-build # ruby-build is a command-line tool that simplifies installation of any Ruby version from source on Unix-like systems. ; https://github.com/rbenv/ruby-build
 rebar3 # A sophisticated build-tool for Erlang projects that follows OTP principles. ; https://github.com/erlang/rebar3
 elixir-ls # A frontend-independent Language Server Protocol for Elixir ; https://github.com/elixir-lsp/elixir-ls
