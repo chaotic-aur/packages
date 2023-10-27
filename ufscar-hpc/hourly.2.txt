@@ -1754,6 +1754,9 @@ colloid-gtk-theme-git
 joycond-git
 xwiimote
 
+# Issue 2717
+jellyseerr
+
 # Issue 2761
 qadwaitadecorations-git:https://aur.archlinux.org/qadwaitadecorations-git.git # (qadwaitadecorations-qt6-git)
 qadwaitadecorations:https://aur.archlinux.org/qadwaitadecorations.git # (qadwaitadecorations-qt5 qadwaitadecorations-qt6)
