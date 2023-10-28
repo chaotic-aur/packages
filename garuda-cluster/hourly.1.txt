@@ -26,6 +26,7 @@ xemu-git
 # Gaming
 athenaeum-git
 boxtron
+cachyos-ananicy-rules-git
 circle-flags # (dep hypnotix)
 epsxe
 eruption
