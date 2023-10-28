@@ -27,11 +27,11 @@ kde-service-menu-reimage
 kde-servicemenus-encfs
 kde-servicemenus-komparemenu
 kde-servicemenus-officeconverter
-kde-servicemenus-pdf
 kde-servicemenus-pdf-encrypt-decrypt
 kde-servicemenus-rootactions
 kde-servicemenus-sendtodesktop
 kde-servicemenus-setaswallpaper
+kf5-servicemenus-pdf
 kwin-effects-burn-my-windows-git
 kwin-effects-sliding-notifications
 kwin-effects-yet-another-magic-lamp
