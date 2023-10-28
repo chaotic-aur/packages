@@ -28,6 +28,7 @@ athenaeum-git
 boxtron
 circle-flags # (dep hypnotix)
 epsxe
+eruption
 flycast
 game-devices-udev
 gamehub
