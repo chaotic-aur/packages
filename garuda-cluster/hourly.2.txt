@@ -53,6 +53,7 @@ azote
 flashfocus-git
 kvantum-theme-qogir-git
 lightdm-settings
+python-xpybutil # (dep flashfocus-git)
 skippy-xd-git
 
 # LXQT-Kwin
