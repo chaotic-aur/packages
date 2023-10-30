@@ -217,6 +217,7 @@ kali-themes
 ksmoothdock
 kvantum-theme-matcha-git
 kvantum-theme-vimix-git
+kvantum-theme-whitesur-git
 layan-gtk-theme-git
 layan-kde-git
 loginized
@@ -226,6 +227,7 @@ mojave-gtk-theme-git
 mutter-x11-scaling
 nordic-kde-git
 plasma5-theme-qogir-git
+plasma5-themes-whitesur-git
 qogir-gtk-theme-git
 qogir-icon-theme-git
 tela-icon-theme-git
@@ -236,8 +238,6 @@ vimix-icon-theme
 vimix-icon-theme-git
 whitesur-cursor-theme-git
 whitesur-gtk-theme-git
-whitesur-kde-theme-git
-whitesur-kvantum-theme-git
 yaru:https://aur.archlinux.org/yaru.git # (creates other yaru-* packages as well)
 
 
