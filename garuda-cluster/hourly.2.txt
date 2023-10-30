@@ -16,11 +16,12 @@ plasma5-applets-eventcalendar
 plasma5-applets-netspeed
 plasma5-applets-window-appmenu
 plasma5-applets-window-title
+plasma5-themes-sweet-kde-git # (dep plasma5-themes-sweet-full-git)
+plasma5-themes-sweet-full-git
 plasma5-wallpapers-blurredwallpaper
 resvg
-sweet-folders-icons-git # (dep sweet-theme-full-git)
-sweet-kde-theme-git # (dep sweet-theme-full-git)
-sweet-theme-full-git
+sweet-folders-icons-git # (plasma5-themes-sweet-full-git)
+
 
 # Dr460nized-gaming
 kde-service-menu-reimage
