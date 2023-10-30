@@ -692,10 +692,6 @@ share-preview
 # Issue 1862
 popsicle-git
 
-# Issue 1864
-pixelorama
-pixelorama-git
-
 # Issue 1871
 gdevelop-bin
 
