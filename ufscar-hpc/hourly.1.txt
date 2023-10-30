@@ -1756,7 +1756,7 @@ plasma5-applets-bigsur-inlinebattery
 plasma5-applets-corner-menu
 
 # Issue 2869
-macsonoma-kde-theme-git
+plasma5-themes-macsonoma-git
 
 # Electron
 electron16-bin
