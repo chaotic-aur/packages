@@ -225,9 +225,9 @@ mcmojave-circle-icon-theme-git
 mojave-gtk-theme-git
 mutter-x11-scaling
 nordic-kde-git
+plasma5-theme-qogir-git
 qogir-gtk-theme-git
 qogir-icon-theme-git
-qogir-kde-theme-git
 tela-icon-theme-git
 vimix-cursors
 vimix-gtk-themes
