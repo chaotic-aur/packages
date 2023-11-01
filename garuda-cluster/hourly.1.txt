@@ -353,7 +353,7 @@ hyprland-git
 input-leap-git
 ipman
 jamesdsp-git
-kotatogram-dev-git
+kotatogram-desktop-git
 kvantum-git
 libart-lgpl # (dep gimp-git)
 libdatachannel # (dep obs-studio-git)
