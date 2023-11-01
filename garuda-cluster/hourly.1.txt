@@ -155,11 +155,11 @@ nordvpn-bin
 octopi
 octopi-notifier-frameworks
 octopi-notifier-qt5
-olivia
+olivia-git
 plex-media-player
 popsicle
 pulseeffects-legacy
-qt5-webkit # (dep olivia remarkable smtube)
+qt5-webkit # (dep olivia-git remarkable smtube)
 qtscrcpy
 shortwave
 skypeforlinux-stable-bin
