@@ -840,9 +840,6 @@ ttf-malayalam-font-raghumalayalamsans
 ttf-malayalam-font-suruma
 ttf-malayalam-fonts-meta
 
-# Issue 1345
-kotatogram-desktop-beta-dynamic-bin
-
 # Issue 1362
 libplacebo-git # (dep mpv-full-git)
 
