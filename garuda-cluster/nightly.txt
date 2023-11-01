@@ -8,8 +8,9 @@ thunderbird-appmenu
 ## Maintainers
 # Alexjp
 bcache-tools
-sddm-git
 qutebrowser-git
+roundedsbe-git
+sddm-git
 
 libgaminggear # (dep roccat-tools)
 roccat-tools:https://aur.archlinux.org/roccat-tools.git # (Also includes roccat-tools-common,roccat-tools-{isku,iskufx,kiro,kone,koneplus,konepure,konepuremilitary,konepureoptical,konextd,konextdoptical,kova2016,kovaplus,pyra,ryostkl,savu,skeltr,sova,suora}
@@ -159,5 +160,4 @@ rbenv # Seamlessly manage your app's Ruby environment with rbenv. ; https://gith
 ruby-build # ruby-build is a command-line tool that simplifies installation of any Ruby version from source on Unix-like systems. ; https://github.com/rbenv/ruby-build
 rebar3 # A sophisticated build-tool for Erlang projects that follows OTP principles. ; https://github.com/erlang/rebar3
 elixir-ls # A frontend-independent Language Server Protocol for Elixir ; https://github.com/elixir-lsp/elixir-ls
-roundedsbe-git
 elixir-latest:https://github.com/chaotic-aur/pkgbuild-elixir-latest.git # Because it seems arch never updates minor versions

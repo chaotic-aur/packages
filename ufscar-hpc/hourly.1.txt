@@ -583,6 +583,9 @@ spot-client
 # Issue 448
 ytfzf-git
 
+# Issue 451
+kotatogram-desktop
+
 # Issue 449
 gdm-prime
 
