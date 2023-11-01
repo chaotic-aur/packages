@@ -13,7 +13,6 @@ insomnia
 libreswan
 oh-my-posh-bin
 openswan
-packettracer
 python-ite8291r3-ctl-git
 python-nbxmpp-git
 python-omemo-dr-git
