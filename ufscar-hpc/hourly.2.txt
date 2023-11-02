@@ -1094,8 +1094,8 @@ moonlight-qt
 sunshine
 
 # Issue 1151
+gnome-shell-extension-rounded-window-corners
 kwin-effect-rounded-corners-git
-mutter-rounded
 
 # Issue 1152
 amarok
