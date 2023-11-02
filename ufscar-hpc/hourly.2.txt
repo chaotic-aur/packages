@@ -68,7 +68,6 @@ split2flac
 startgame:https://github.com/chaotic-aur/startgame.git
 unflac
 unionfs-fuse # (dep android-studio-launcher)
-wev
 wineasio-git
 yambar-git
 zenpower-dkms-git
