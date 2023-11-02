@@ -1757,6 +1757,9 @@ plasma5-applets-corner-menu
 # Issue 2869
 plasma5-themes-macsonoma-git
 
+# Issue 2883
+winbox
+
 # Electron
 electron16-bin
 electron17-bin
