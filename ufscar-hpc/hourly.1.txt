@@ -472,7 +472,6 @@ kawaii-player
 # Issue 379
 ckb-next
 osu-lazer
-dotnet-core-6.0-bin:https://aur.archlinux.org/dotnet-core-6.0-bin.git # (dep osu-lazer; consists of aspnet-runtime-6.0-bin, dotnet-runtime-6.0-bin, dotnet-sdk-6.0-bin, dotnet-targeting-pack-6.0-bin, aspnet-targeting-pack-6.0-bin)
 tuxedo-control-center-bin
 tuxedo-keyboard-dkms
 
