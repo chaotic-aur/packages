@@ -46,7 +46,6 @@ google-cloud-cli
 heroku-cli-bin
 hunspell-pt-br
 intelbacklight-git
-lib32-imath
 lib32-primus-vk-git
 lib32-sdl12-compat-git
 logstalgia

@@ -174,7 +174,6 @@ lib32-libkate
 lib32-liblrdf
 lib32-libmpcdec
 lib32-libnice
-lib32-libofa
 lib32-libreplaygain
 lib32-libsrtp
 lib32-lilv
@@ -187,7 +186,6 @@ lib32-sbc
 lib32-serd
 lib32-shaderc
 lib32-sord
-lib32-spandsp
 lib32-sratom
 lib32-webrtc-audio-processing
 lib32-wildmidi
@@ -356,7 +354,6 @@ expressvpn
 glslang-git # (dep waifu2x-ncnn-vulkan-git)
 intellij-idea-ultimate-edition
 lib32-fltk # (dep)
-lib32-openexr
 lib32-zbar
 ncnn-git # (dep waifu2x-ncnn-vulkan-git)
 nodejs-nativefier
