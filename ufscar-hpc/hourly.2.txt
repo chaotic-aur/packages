@@ -1341,7 +1341,7 @@ webcord-git
 qt-jdenticon
 
 # Issue 1698
-fluent-kde-theme-git
+plasma5-themes-fluent-git
 
 # Issue 1708
 xfce4-windowck-plugin-xfwm4-theme-support
