@@ -721,9 +721,6 @@ motrix-bin
 # Issue 587
 humanity-icon-theme
 
-# IcarNS
-spot-client-git
-
 # Issue 590
 mint-themes
 mint-x-icons
