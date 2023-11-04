@@ -1159,9 +1159,6 @@ csound-blue
 # Issue 1743
 chromeos-kde-theme-git
 
-# Issue 1745
-copypastegrab-git
-
 # Issue 1751
 densify
 
