@@ -639,9 +639,6 @@ gtk-gnutella-git
 # Issue 801
 gtk-gnutella
 
-# Issue 802
-quassel:https://aur.archlinux.org/quassel.git # (quassel-git, etc)
-
 # Issue 803
 fzf-tab-git
 
