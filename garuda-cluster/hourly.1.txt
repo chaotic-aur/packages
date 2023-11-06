@@ -219,7 +219,6 @@ kvantum-theme-matcha-git
 kvantum-theme-vimix-git
 kvantum-theme-whitesur-git
 layan-gtk-theme-git
-layan-kde-git
 loginized
 matcha-gtk-theme-git
 mcmojave-circle-icon-theme-git
@@ -227,6 +226,7 @@ mojave-gtk-theme-git
 mutter-x11-scaling
 nordic-kde-git
 plasma5-theme-qogir-git
+plasma5-themes-layan-git
 plasma5-themes-whitesur-git
 qogir-gtk-theme-git
 qogir-icon-theme-git
