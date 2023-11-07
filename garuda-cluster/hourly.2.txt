@@ -462,20 +462,6 @@ waybar-experimental-git
 # Issue 1669
 joshuto-git
 
-# Issue 1676
-art-rawconverter
-art-rawconverter-git
-art-rawconverter-imageio # (optdep art-rawconverter)
-brunsli # (dep python-imagecodecs)
-charls # (dep python-imagecodecs)
-lcms2-ff # (optdep art-rawconverter)
-lerc # (dep python-imagecodecs)
-lzfse # (dep python-imagecodecs)
-python-imagecodecs # (optdep python-tifffile)
-python-imread # (dep python-imagecodecs)
-python-openexr # (art-rawconverter-imageio)
-python-tifffile # (dep art-rawconverter-imageio)
-
 # Issue 1682
 fancontrol-gui # (dep fancontrol-kcm)
 fancontrol-gui-git # (dep fancontrol-kcm-git)
@@ -743,11 +729,6 @@ celestia-addon-vaders_tie_fighter
 celestia-addon-voyagers
 celestia-addon-xwing
 celestia
-
-# Issue 2325
-cubeb # (dep dolphin-emu-git yuzu-*)
-libspng # (dep dolphin-emu-git xpra-git)
-dolphin-emu-git:https://aur.archlinux.org/dolphin-emu-git.git
 
 # Issue 2444
 rustdesk-bin
