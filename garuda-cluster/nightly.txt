@@ -83,7 +83,7 @@ lightlyshaders-git
 avaloniailspy-git
 
 # Issue 1676
-art-rawconverter:https://github.com/chaotic-aur/pkgbuild-empty-project.git
+art-rawconverter
 art-rawconverter-git:https://github.com/chaotic-aur/pkgbuild-empty-project.git
 art-rawconverter-imageio # (optdep art-rawconverter)
 brunsli # (dep python-imagecodecs)
