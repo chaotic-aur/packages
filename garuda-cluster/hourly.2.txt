@@ -781,9 +781,6 @@ notes
 # Issue 2680
 tpmmanager
 
-# Issue 2700
-lightly-boehs-git
-
 # Issue 2704
 python-telegram-text # (dep python-telegram)
 python-telegram # (dep telegram-tg-git)
