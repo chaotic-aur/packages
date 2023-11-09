@@ -110,9 +110,6 @@ enve-git
 # Issue 1816
 qwertone-git
 
-# Issue 2076
-openssl-git
-
 # Issue 2078
 thunderbird-beta-i18n:https://aur.archlinux.org/thunderbird-beta-i18n.git
 
