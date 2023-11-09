@@ -1774,5 +1774,3 @@ eartag
 # Issue 2823
 magicavoxel
 
-# Issue 2859
-mercury-browser-bin
