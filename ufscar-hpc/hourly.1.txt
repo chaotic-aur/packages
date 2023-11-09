@@ -1747,6 +1747,10 @@ plasma5-applets-corner-menu
 # Issue 2869
 plasma5-themes-macsonoma-git
 
+# Issue 2874
+youtube-dl-git
+ytdl-shim
+
 # Issue 2883
 winbox
 
