@@ -56,6 +56,9 @@ emacs-pgtk-native-comp-git
 # Issue 462
 emacs-git
 
+# Issue 666
+bluemail:https://github.com/chaotic-aur/pkgbuild-empty-project.git
+
 # Issue 841
 wine-wl-git
 
@@ -71,7 +74,7 @@ wine-lol
 sddm-theme-astronaut
 
 # Issue 1391
-termius:https://github.com/chaotic-aur/pkgbuild-termius.git
+termius:https://github.com/chaotic-aur/pkgbuild-empty-project.git
 
 # Issue 1536
 thunderbird-beta
@@ -148,10 +151,10 @@ thorium-browser-bin
 thorium-browser-sse3-bin
 
 # Issue 2748
-motivewave:https://github.com/chaotic-aur/pkgbuild-motivewave.git
+motivewave:https://github.com/chaotic-aur/pkgbuild-empty-project.git
 
 # Issue 2773
-tradingview:https://github.com/chaotic-aur/pkgbuild-tradingview.git
+tradingview:https://github.com/chaotic-aur/pkgbuild-empty-project.git
 
 # Issue 2797
 sddm-slice-git
@@ -175,5 +178,7 @@ gleam # Gleam is a friendly language for building type-safe systems that scale! 
 rbenv # Seamlessly manage your app's Ruby environment with rbenv. ; https://github.com/rbenv/rbenv
 ruby-build # ruby-build is a command-line tool that simplifies installation of any Ruby version from source on Unix-like systems. ; https://github.com/rbenv/ruby-build
 rebar3 # A sophisticated build-tool for Erlang projects that follows OTP principles. ; https://github.com/erlang/rebar3
-elixir-ls # A frontend-independent Language Server Protocol for Elixir ; https://github.com/elixir-lsp/elixir-ls
-elixir-latest:https://github.com/chaotic-aur/pkgbuild-elixir-latest.git # Because it seems arch never updates minor versions
+
+# Arch doesn't upgrade to minor versions
+elixir-latest:https://github.com/chaotic-aur/pkgbuild-empty-project.git
+elixir-ls

@@ -412,9 +412,6 @@ nnn-icons
 # Issue 654
 clifm-git
 
-# Issue 666
-bluemail
-
 # Issue 668
 fnm # (dep ledger-live)
 haguichi
