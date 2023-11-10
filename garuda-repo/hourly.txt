@@ -8,7 +8,6 @@ manjaro-asian-input-support:https://aur.archlinux.org/manjaro-asian-input-suppor
 # MHWD
 mhwd-amdgpu
 mhwd-ati
-mhwd-db-garuda-git:https://gitlab.com/garuda-linux/packages/pkgbuilds/mhwd-db-garuda-git.git
 mhwd-garuda-git
 mhwd-nvidia
 mhwd-nvidia-390xx
