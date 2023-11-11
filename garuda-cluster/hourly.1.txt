@@ -4,7 +4,6 @@
 antimicrox
 cemu
 citra-canary-git
-citra-git:https://aur.archlinux.org/citra-git.git # (citra-git citra-qt-git)
 cpp-httplib-compiled # (dep xemu-git)
 crossover
 duckstation-git
