@@ -80,7 +80,6 @@ xpadneo-dkms
 bitwig-studio
 brave-bin
 dissenter-browser-bin
-firefox-extension-xdm-browser-monitor
 freedownloadmanager
 freeoffice
 gitkraken
