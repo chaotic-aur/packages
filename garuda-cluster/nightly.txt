@@ -5,7 +5,6 @@ firedragon
 librewolf:https://aur.archlinux.org/librewolf.git
 thunderbird-appmenu
 
-
 ## Maintainers
 # Alexjp
 bcache-tools
@@ -65,6 +64,14 @@ wine-wl-git
 
 # Issue 985
 wine-ge-custom
+
+# Issue 1038
+svt-av1-git # (dep ffmpeg-obs)
+cef-minimal-obs-bin # (dep obs-studio-tytan652)
+ffmpeg-obs # (dep obs-studio-tytan652)
+ftl-sdk # (dep obs-studio-tytan652)
+vlc-luajit # (dep obs-studio-tytan652)
+obs-studio-tytan652
 
 # Issue 1133
 leagueoflegends-git

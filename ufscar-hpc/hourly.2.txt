@@ -936,18 +936,6 @@ atomicwallet
 # Issue 1036
 snap-pac-grub
 
-# Issue 1038
-cef-minimal-obs-bin # (dep obs-studio-tytan652)
-ffmpeg-obs # (dep obs-studio-tytan652)
-ftl-sdk # (dep obs-studio-tytan652)
-libdatachannel-nice # (dep obs-studio-rc)
-libusrsctp # (dep libdatachannel-nice)
-obs-studio-rc
-obs-studio-tytan652
-plog # (dep libdatachannel-nice)
-svt-av1-git # (dep ffmpeg-obs)
-vlc-luajit # (dep obs-studio-tytan652)
-
 # Issue 1041
 qtile-extras-git
 
