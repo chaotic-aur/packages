@@ -108,7 +108,6 @@ pup
 rakudo
 shadowsocks-rust-git
 smenu
-telegram-tdlib
 tetrio-desktop
 vim-language-server
 vivaldi-snapshot
