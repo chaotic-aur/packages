@@ -1444,11 +1444,6 @@ stellarium
 # Issue 1917
 ibus-bamboo-git
 
-# Issue 1927
-python-diskcache # (dep python-glean_parser)
-python-glean-parser # (make mozillavpn)
-#mozillavpn
-
 # Issue 1936
 cider
 cider-git
