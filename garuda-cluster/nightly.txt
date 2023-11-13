@@ -124,8 +124,7 @@ qwertone-git
 # Issue 1927
 python-diskcache # (dep python-glean_parser)
 python-glean-parser # (make mozillavpn)
-mozillavpn:https://github.com/chaotic-aur/pkgbuild-empty-project.git
-mozillavpn-git
+mozillavpn-git # (mozillavpn mozillavpn-git)
 
 # Issue 2078
 thunderbird-beta-i18n:https://aur.archlinux.org/thunderbird-beta-i18n.git
