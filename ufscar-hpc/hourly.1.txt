@@ -1510,9 +1510,6 @@ runescape-launcher
 # Issue 2306
 rmg
 
-# Issue 2311
-clash-for-windows-bin
-
 # Issue 2321
 flux-bin
 

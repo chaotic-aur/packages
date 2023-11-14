@@ -1542,13 +1542,6 @@ cura-bin
 # Issue 2083
 asus-fan-dkms-git
 
-# Issue 2106
-clash-geoip # (dep clash-verge clash-meta)
-quickjs # (dep clash-verge clash-meta)
-clash-meta # (dep clash-verge)
-clash-premium-bin # (dep clash-verge)
-clash-verge
-
 # Issue 2109
 gnome-shell-extension-arch-update
 gnome-shell-extension-tiling-assistant-git
