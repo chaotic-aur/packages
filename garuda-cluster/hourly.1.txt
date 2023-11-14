@@ -353,7 +353,6 @@ jamesdsp-git
 kotatogram-desktop-git
 kvantum-git
 libart-lgpl # (dep gimp-git)
-libdatachannel # (dep obs-studio-git)
 libgbinder
 libglibutil
 libjuice # (dep libdatachannel)
@@ -363,7 +362,6 @@ nextcloud-client-git
 nextdns-unprivileged
 nspawn-git
 ntfs3-dkms
-obs-studio-git
 octopi-git
 onedrivegui-git
 pacman-git
@@ -374,7 +372,6 @@ python-gbinder
 python-simplediff
 qbittorrent-enhanced-git
 qemu-git
-qrcodegen-cmake:https://aur.archlinux.org/qrcodegen-cmake.git # (makedep obs-studio-git)
 qtwebflix-git
 quickemu
 quickemu-git

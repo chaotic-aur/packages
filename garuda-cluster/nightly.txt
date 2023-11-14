@@ -5,6 +5,12 @@ firedragon
 librewolf:https://aur.archlinux.org/librewolf.git
 thunderbird-appmenu
 
+# obs-studio with cef browser
+obs-studio-git:https://github.com/chaotic-aur/pkgbuild-empty-project.git # (obs-studio-git obs-studio-stable)
+libdatachannel # (dep obs-studio-git)
+qrcodegen-cmake:https://aur.archlinux.org/qrcodegen-cmake.git # (makedep obs-studio-git)
+
+
 ## Maintainers
 # Alexjp
 bcache-tools
