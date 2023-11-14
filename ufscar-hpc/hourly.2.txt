@@ -231,9 +231,6 @@ chatterino2-git
 # Issue 521
 grimshot
 
-# Issue 560
-ion-git
-
 # Issue 562
 lollypop-git
 
