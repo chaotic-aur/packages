@@ -486,8 +486,6 @@ python-pyclip # (dep python-nototools)
 # Issue 1693
 corekeyboard
 corepdf
-g4music
-g4music-git
 gis-weather
 gis-weather-git
 health
@@ -724,6 +722,10 @@ celestia-addon-vaders_tie_fighter
 celestia-addon-voyagers
 celestia-addon-xwing
 celestia
+
+# Issue 2150
+g4music
+g4music-git
 
 # Issue 2444
 rustdesk-bin
