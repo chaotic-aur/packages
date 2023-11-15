@@ -491,7 +491,7 @@ g4music-git
 gis-weather
 gis-weather-git
 health
-image-roll-bin
+image-roll-git
 libcprime # (dep corepdf corekeyboard coreimage corepad corepaint)
 metronome
 revelation
