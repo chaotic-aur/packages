@@ -723,10 +723,6 @@ celestia-addon-voyagers
 celestia-addon-xwing
 celestia
 
-# Issue 2150
-g4music
-g4music-git
-
 # Issue 2444
 rustdesk-bin
 

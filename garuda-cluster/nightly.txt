@@ -138,6 +138,9 @@ thunderbird-beta-i18n:https://aur.archlinux.org/thunderbird-beta-i18n.git
 # Issue 2140
 myman
 
+# Issue 2150
+g4music-git # (g4music g4music-git)
+
 # Issue 2156
 cinelerra-gg-git
 
