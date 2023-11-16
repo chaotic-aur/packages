@@ -853,5 +853,8 @@ findex-git
 # Issue 2865
 aylurs-gtk-shell
 
+# Issue 2902
+easy-installer
+
 # Issue 2908
 mission-center
