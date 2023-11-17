@@ -30,4 +30,4 @@ beeper-latest-bin:https://aur.archlinux.org/beeper-latest-bin.git
 linux-binder
 
 # Issue 2859
-mercury-browser-avx-bin:https://github.com/chaotic-aur/pkgbuild-empty-project.git
+mercury-browser-bin # (mercury-browser-avx-bin)
