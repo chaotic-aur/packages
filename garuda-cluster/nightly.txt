@@ -33,6 +33,7 @@ lossywav-git
 mp3guessenc-beta
 otf-cooper-hewitt
 otf-stix
+ttf-literata-git:https://aur.archlinux.org/ttf-literata-git.git # (ttf-literata-git ttf-literata-opticals-git ttf-literata-variable-git)
 ttf-luxi
 xdvdfs
 
