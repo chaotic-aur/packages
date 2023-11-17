@@ -1,9 +1,12 @@
 ## Garuda
-decaf-emu-git
-citra-git:https://github.com/chaotic-aur/pkgbuild-empty-project.git # (citra-git citra-avx-git)
 firedragon
 librewolf:https://aur.archlinux.org/librewolf.git
 thunderbird-appmenu
+
+# emulators
+citra-git:https://github.com/chaotic-aur/pkgbuild-empty-project.git # (citra-git citra-avx-git)
+decaf-emu-git
+nestopia-git:https://github.com/chaotic-aur/pkgbuild-empty-project.git
 
 # obs-studio with cef browser
 obs-studio-git:https://github.com/chaotic-aur/pkgbuild-empty-project.git # (obs-studio-git obs-studio-stable)

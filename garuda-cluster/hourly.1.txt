@@ -45,7 +45,6 @@ libretro-stella2014-git
 luxtorpeda-git
 minecraft-launcher
 minigalaxy
-nestopia
 nyrna
 openrgb
 openrgb-git
