@@ -469,7 +469,6 @@ fancontrol-kcm
 fancontrol-kcm-git
 kcm-colorful-git
 kcm-grub2-git
-kcm-imchooser-frameworks
 kcm-polkit-kde-git
 kcm-tablet-git
 kcm-uefi
