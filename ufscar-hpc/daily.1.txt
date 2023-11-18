@@ -40,8 +40,8 @@ icecat
 rpcs3-git
 
 # Issue 708
-emacs-ng
-emacs-ng-git
+#emacs-ng
+#emacs-ng-git
 
 # Issue 729
 linux-vfio
