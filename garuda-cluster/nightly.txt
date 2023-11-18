@@ -28,7 +28,7 @@ roccat-tools:https://aur.archlinux.org/roccat-tools.git # (Also includes roccat-
 annotator-git
 ccd2cue
 commissioner-font:https://aur.archlinux.org/commissioner-font.git
-discimagecreator
+discimagecreator-git
 geany-plugin-preview-git
 geeqie-git
 iat
