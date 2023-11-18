@@ -470,7 +470,6 @@ fancontrol-kcm-git
 kcm-colorful-git
 kcm-grub2-git
 kcm-polkit-kde-git
-kcm-tablet-git
 kcm-uefi
 systemd-kcm
 
