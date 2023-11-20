@@ -1098,3 +1098,6 @@ impression
 
 # Issue 2850
 aylurs-gtk-shell-git
+
+# Issue 2893
+material-symbols-git:https://aur.archlinux.org/material-symbols-git.git
