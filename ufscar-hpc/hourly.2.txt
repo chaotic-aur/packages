@@ -682,10 +682,6 @@ nats-server-bin
 # Issue 866
 dte
 
-# Issue 868
-phoc-embedded-wlroots # (dep phosh-git)
-phosh-git
-
 # Issue 870
 cpod-appimage
 
