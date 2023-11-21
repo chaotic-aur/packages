@@ -185,8 +185,12 @@ tradingview:https://github.com/chaotic-aur/pkgbuild-empty-project.git
 # Issue 2797
 sddm-slice-git
 
-# [Request] kwin-scripts-truely-maximized #2860
+# Issue 2860
 kwin-scripts-truely-maximized
+
+# Issue 2893
+material-symbols-git:https://aur.archlinux.org/material-symbols-git.git
+
 
 ## OTHERS
 non-euclidean-git
