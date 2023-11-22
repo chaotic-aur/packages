@@ -307,9 +307,6 @@ unityhub
 # Issue 514
 soundux
 
-# Issue 509
-zlib-ng-git
-
 # Issue 497
 mu-editor
 pigpio # (dep mu-editor)
