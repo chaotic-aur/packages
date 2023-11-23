@@ -153,7 +153,6 @@ vita3k-git
 
 # Issue 2325
 cubeb # (dep dolphin-emu-git yuzu-*)
-libspng # (dep dolphin-emu-git xpra-git)
 dolphin-emu-git:https://github.com/chaotic-aur/pkgbuild-empty-project.git # (dolphin-emu-git dolphin-emu-avx-git)
 
 # Issue 2335 - no -git suffix but it's a git package
