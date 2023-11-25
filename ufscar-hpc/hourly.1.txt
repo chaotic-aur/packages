@@ -1751,7 +1751,6 @@ ytdl-shim
 winbox
 
 # Electron
-electron16-bin
 electron17-bin
 electron18-bin
 electron19-bin
