@@ -1102,5 +1102,8 @@ aylurs-gtk-shell-git
 # Issue 2918
 converternow-bin
 
+# Issue 2929
+gftp
+
 # Issue 2931
 pooi
