@@ -1105,5 +1105,8 @@ converternow-bin
 # Issue 2929
 gftp
 
+# Issue 2930
+rats-search-git
+
 # Issue 2931
 pooi
