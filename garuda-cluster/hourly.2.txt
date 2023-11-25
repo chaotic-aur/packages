@@ -859,3 +859,6 @@ easy-installer
 
 # Issue 2908
 mission-center
+
+# Issue 2919
+godot-mono-git
