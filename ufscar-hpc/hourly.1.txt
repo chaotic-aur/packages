@@ -1349,7 +1349,7 @@ bookletimposer
 audiorelay
 
 # Issue 1924
-thorium-reader-git
+#thorium-reader-git
 
 # Issue 1928
 icaclient
