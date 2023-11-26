@@ -209,5 +209,5 @@ ruby-build # ruby-build is a command-line tool that simplifies installation of a
 rebar3 # A sophisticated build-tool for Erlang projects that follows OTP principles. ; https://github.com/erlang/rebar3
 
 # Arch doesn't upgrade to minor versions
-elixir-latest:https://github.com/chaotic-aur/pkgbuild-empty-project.git
+elixir-stable:https://github.com/chaotic-aur/pkgbuild-empty-project.git
 elixir-ls
