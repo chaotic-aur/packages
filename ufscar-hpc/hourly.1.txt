@@ -1001,9 +1001,6 @@ pfetch
 # Issue 1563
 neo-matrix-git
 
-# Issue 1565
-kotatogram-desktop-bin
-
 # Issue 1568
 path-of-building-community-git
 
