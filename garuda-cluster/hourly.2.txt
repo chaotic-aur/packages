@@ -402,16 +402,6 @@ python-freetype-py # (dep plots)
 python-pyglm # (dep plots)
 plots
 
-# Issue 1595
-downloader-cli # (dep ytmdl)
-python-ffmpeg-python # (dep ytmdl spleeter-git)
-python-itunespy # (dep ytmdl)
-python-pydes # (dep ytmdl)
-python-simber # (dep ytmdl)
-python-spotipy # (dep ytmdl)
-youtube-search-python # (dep ytmdl)
-ytmdl
-
 # Issue 1606
 whatsie-git
 

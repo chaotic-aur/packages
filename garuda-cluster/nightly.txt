@@ -103,6 +103,16 @@ lightlyshaders-git
 # Issue 1559
 avaloniailspy-git
 
+# Issue 1595
+downloader-cli # (dep ytmdl)
+python-ffmpeg-python # (dep ytmdl spleeter-git)
+python-itunespy # (dep ytmdl)
+python-pydes # (dep ytmdl)
+python-simber # (dep ytmdl)
+python-spotipy # (dep ytmdl)
+youtube-search-python # (dep ytmdl)
+ytmdl:https://github.com/chaotic-aur/pkgbuild-empty-project.git
+
 # Issue 1676
 art-rawconverter
 art-rawconverter-git:https://github.com/chaotic-aur/pkgbuild-empty-project.git # (art-rawconverter-git art-rawconverter-avx-git)
