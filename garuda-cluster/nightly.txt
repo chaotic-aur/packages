@@ -11,7 +11,7 @@ nestopia-git:https://github.com/chaotic-aur/pkgbuild-empty-project.git
 # obs-studio with cef browser
 obs-studio-git:https://github.com/chaotic-aur/pkgbuild-empty-project.git # (obs-studio-git obs-studio-stable)
 libdatachannel # (dep obs-studio-git)
-qrcodegen-cmake:https://aur.archlinux.org/qrcodegen-cmake.git # (makedep obs-studio-git)
+qrcodegen-cmake:https://aur.archlinux.org/qrcodegen-cmake.git # (make obs-studio-git)
 
 
 ## Maintainers
@@ -143,6 +143,9 @@ enve-git
 
 # Issue 1816
 qwertone-git
+
+# Issue 1900
+knowte # (knowte-git)
 
 # Issue 1927
 python-diskcache # (dep python-glean_parser)
