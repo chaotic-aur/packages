@@ -145,7 +145,7 @@ enve-git
 qwertone-git
 
 # Issue 1900
-knowte # (knowte-git)
+knowte-git
 
 # Issue 1927
 python-diskcache # (dep python-glean_parser)
