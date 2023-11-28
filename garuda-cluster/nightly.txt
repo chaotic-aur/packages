@@ -132,6 +132,9 @@ libeb # (dep goldendict-git goldendict-webengine-pr-git)
 goldendict-git
 goldendict-webengine-pr-git
 
+# Issue 1720
+alphaplot # (alphaplot-git)
+
 # Issue 1722
 amule-git
 
