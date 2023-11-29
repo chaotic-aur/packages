@@ -1342,7 +1342,8 @@ bookletimposer
 audiorelay
 
 # Issue 1924
-#thorium-reader-git
+thorium-reader
+thorium-reader-git:https://aur.archlinux.org/thorium-reader.git # (interfere)
 
 # Issue 1928
 icaclient
