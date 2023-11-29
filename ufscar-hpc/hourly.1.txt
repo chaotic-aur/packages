@@ -537,10 +537,6 @@ choosenim
 # Issue 420
 wpspin
 
-# Issue 422
-arm-linux-gnueabi-binutils
-arm-linux-gnueabi-gcc
-
 # Issue 423
 aws2-wrap
 tflint
