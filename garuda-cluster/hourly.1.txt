@@ -303,6 +303,12 @@ opensnitch-ebpf-module
 # Khnome on forum
 vinegar
 
+# Twilight on forum
+xfce4-hotcorner-plugin-git
+xfce4-places-plugin
+sakura # (dep adbmanager)
+adbmanager
+
 # Via mail (9th June)
 notepadnext
 schildichat-desktop
