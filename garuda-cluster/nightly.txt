@@ -164,6 +164,9 @@ g4music-git # (g4music g4music-git)
 # Issue 2156
 cinelerra-gg-git
 
+# Issue 2159
+neovim-nightly-bin:https://aur.archlinux.org/neovim-nightly-bin.git
+
 # Issue 2273
 vita3k-git
 
