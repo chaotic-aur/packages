@@ -824,12 +824,12 @@ doomrunner
 pcem
 
 # Issue 2374
-uuid
-perl-crypt-rijndael
-perl-net-arp
-perl-io-stty
-perl-x11-guitest
-perl-expect
+perl-crypt-rijndael # (dep asbru-cm-git)
+perl-expect # (dep asbru-cm-git)
+perl-io-stty # (dep asbru-cm-git)
+perl-net-arp # (dep asbru-cm-git)
+perl-x11-guitest # (dep asbru-cm-git)
+uuid # (dep asbru-cm-git)
 asbru-cm-git
 
 # Issue 2378
