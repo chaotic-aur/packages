@@ -480,6 +480,7 @@ health
 image-roll-git
 libcprime # (dep corepdf corekeyboard coreimage corepad corepaint)
 metronome
+relevation
 revelation
 
 # Issue 1697
