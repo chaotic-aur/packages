@@ -518,9 +518,6 @@ warp
 abricotine
 abricotine-git
 
-# Issue 1717
-popcorntime-git
-
 # Issue 1719
 akira
 akira-git
