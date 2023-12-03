@@ -1105,6 +1105,9 @@ aylurs-gtk-shell-git
 # Issue 2918
 converternow-bin
 
+# Issue 2926
+tropy-bin
+
 # Issue 2929
 gftp
 
