@@ -240,6 +240,7 @@ yaru:https://aur.archlinux.org/yaru.git # (creates other yaru-* packages as well
 ## Misc
 btrfs-assistant-git
 btrfsmaintenance # (dep btrfs-assistant-git btrfs-assistant)
+firedragon-next # pre-release floorp-based version of Firedragon
 snapper-tools-git
 otter-browser-git
 
