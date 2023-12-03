@@ -30,7 +30,7 @@ ccd2cue
 commissioner-font:https://aur.archlinux.org/commissioner-font.git
 discimagecreator-git
 geany-plugin-preview-git
-geeqie-git
+geeqie-git:https://github.com/chaotic-aur/pkgbuild-empty-project.git
 iat
 lossywav-git
 mp3guessenc-beta
