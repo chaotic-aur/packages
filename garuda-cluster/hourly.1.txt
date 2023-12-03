@@ -310,6 +310,9 @@ xfce4-places-plugin
 sakura # (dep adbmanager)
 adbmanager
 
+# jpierce.coder on forum
+brave-beta-bin
+
 # Via mail (9th June)
 notepadnext
 schildichat-desktop
