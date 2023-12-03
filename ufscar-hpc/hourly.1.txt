@@ -462,9 +462,6 @@ systemd-cron-next-git
 # Issue 374
 quixel-bridge
 
-# Issue 378
-kawaii-player
-
 # Issue 379
 ckb-next
 osu-lazer
