@@ -15,24 +15,25 @@ This is the right place to submit package requests, bug reports, or outdated pac
 
 #### Modified packages
 
-While we would prefer to build AUR packages without modification, this is often not practical or possible.
+While we would prefer to build AUR packages without modification, doing so is often not practical or possible.
 
-- Common errors and poor packaging practices are automatically corrected.
-    + Missing commands, or other adjustments, are added to allow the package to build successfully.
-    + Erroneous commands that could result in disruptive behaviors are removed.
-    + Automatic corrections are not marked because they usually do not alter package functionality.
-- Some packages are manually adjusted (interfere).
-    + Issues that the automatic corrections don't cover are corrected.
-    + Interfered packages are marked by an optional depends on `chaotic-interfere`.
-        -  `chaotic-interfere` is a dummy package that is *not* intended to be installed.  Installing it does no good or harm.
-- Some packages have been replaced by custom packages, usually a fork of the original.
-    + The original usually had some issue that was difficult to solve by other means.
-    + Fork vs interfere is decided case-by-case.
-        - Interfere capability may have been limited at the time of the fork.
-        - Some custom packages may be moved to the interfere system, or vice versa.
-    + Custom packages are *not* currently marked.
+- Depends, options, or commands may be missing.
+- Erroneous options or commands may be present.
+- Packages may not build or function without changes.
+- Packages may not meet packaging standards.
 
-Chaotic-AUR contains a metapackage, `chaotic-kf5-dummy`.  This is a *temporary* workaround to allow some packages to continue functioning while upstream renames the KF5 packages.  Eventually the dummy package, and any related packages that are not updated, will be dropped.  This is planned for when KF6 becomes the upstream default.
+To address such issues:
+
+- [Toolbox](https://github.com/chaotic-aur/toolbox) automatically corrects some common errors.
+- Manual corrections may be applied with [Interfere](https://github.com/chaotic-aur/interfere).
+- The original package may be forked as a custom package.
+
+#### Special packages
+
+- `chaotic-keyring`: Public keys to verify the Chaotic-AUR package signatures.
+- `chaotic-mirrorlist`: List of servers mirroring Chaotic-AUR packages.
+- `chaotic-interfere`: Marker indicating manually applied interferes.  This package is *not* intended to be installed.
+- `chaotic-kf5-dummy`: Workaround to allow packages with outdated KF5-related depends to continue to function.  Eventually this, and related packages that haven't been updated, will be dropped.  Planned for when KF6 becomes the upstream default.
 
 #### Banished and rejected packages 📑
 
@@ -60,7 +61,7 @@ This is a list of packages that we will reject for good reasons:
 
 - **aseprite{-git}**: Redistribution is explicitly prohibited in its [FAQ](https://www.aseprite.org/faq/#can-i-redistribute-aseprite).
 
-- **multimc-git**: Redistribution of custom binaries that include their API keys and trademarked assets is [explicitly prohibited](https://multimc.org/#Branding).
+- **multimc\***: Redistribution of custom binaries that include their API keys and trademarked assets is [explicitly prohibited](https://multimc.org/#Branding).
 
 - **tlauncher**: Legal gray area, as it potentially allows playing Minecraft in a reduced capacity without license.
 
