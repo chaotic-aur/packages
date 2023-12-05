@@ -703,7 +703,8 @@ wired
 bcachefs-tools-git
 
 # Issue 885
-ttf-twemoji
+svgo # (make ttf-twemoji-color-git)
+ttf-twemoji-git
 
 # Issue 887
 ocs-url
