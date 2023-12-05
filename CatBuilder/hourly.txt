@@ -1,6 +1,7 @@
 alvr
 amdctl
 android-studio-canary
+darling-bin
 epson-inkjet-printer-escpr2
 google-chrome-beta
 hotspot
