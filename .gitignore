@@ -5,8 +5,6 @@
 !README.md
 
 !CatBuilder/*.txt
-!dragon-cluster/*.txt
 !garuda-cluster/*.txt
 !garuda-repo/*.txt
-!kde-git/*.txt
 !ufscar-hpc/*.txt
