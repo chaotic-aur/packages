@@ -848,5 +848,19 @@ easy-installer
 # Issue 2908
 mission-center
 
+# Issue 2915
+# gdcm # (dep insight-toolkit)
+insight-toolkit # (dep simpleitk)
+simpleitk:https://aur.archlinux.org/simpleitk.git # (simpleitk python-simpleitk)
+python-lazy-loader # (dep python-scikit-image)
+python-pyamg # (opt python-scikit-image)
+python-pywavelets # (check/opt python-scikit-image)
+python-scikit-image # (dep mathics)
+mathics-scanner # (dep mathics)
+python-palettable # (dep mathics)
+python-recordclass # (dep mathics)
+python-wordcloud # (opt mathics)
+mathics
+
 # Issue 2919
 godot-mono-git
