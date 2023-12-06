@@ -1721,3 +1721,5 @@ eartag
 # Issue 2823
 magicavoxel
 
+# Issue 2942
+swapspace
