@@ -434,6 +434,7 @@ qytdl
 refind-btrfs
 sound-theme-smooth
 usbaudio-git
+waybar-module-pacman-updates-git
 xiaomitool-v2
 
 
