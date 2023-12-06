@@ -864,3 +864,6 @@ mathics
 
 # Issue 2919
 godot-mono-git
+
+# Issue 2941
+ddnet
