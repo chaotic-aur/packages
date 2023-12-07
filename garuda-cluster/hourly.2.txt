@@ -479,7 +479,6 @@ gis-weather-git
 health
 image-roll:https://aur.archlinux.org/image-roll-git.git
 libcprime # (dep corepdf corekeyboard coreimage corepad corepaint)
-metronome
 relevation
 revelation
 
