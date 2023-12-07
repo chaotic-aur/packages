@@ -20,7 +20,6 @@ properties-cpp # (dep ayatana-indicator-datetime)
 ayatana-indicator-datetime
 kwaterfoxhelper
 nvm
-python-pympv
 python-sphinx-automodapi
 tweeny
 vim-colorschemes
