@@ -405,7 +405,6 @@ boston-icon-theme
 # Issue 332
 cantata-git
 eqonomize-git
-ksnip-git
 libquotient-git # (dep neochat-git)
 lightly-git
 lightly-qt
