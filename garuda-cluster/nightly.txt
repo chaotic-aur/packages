@@ -94,11 +94,11 @@ sddm-theme-astronaut
 # Issue 1391
 termius:https://github.com/chaotic-aur/pkgbuild-empty-project.git
 
-# Issue 1536
-thunderbird-beta
-
 # Issue 1521
 lightlyshaders-git
+
+# Issue 1536
+thunderbird-beta
 
 # Issue 1559
 avaloniailspy-git

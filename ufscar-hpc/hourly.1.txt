@@ -317,36 +317,73 @@ yubico-authenticator-bin
 nghttp2 # (dep wget2)
 wget2
 
+# Issue 303
+# budgie-desktop-git # PKGBUILDs needs some fixes
+
+# Issue 306
+omnisharp-roslyn
+
 # Issue 322
+cantata-git
+eqonomize-git
 hlsdl
 identity
+libquotient-git # (dep neochat-git)
+lightly-git
+lightly-qt
 nheko-git
+pyradio-git
+strawberry-full-git
+strawberry-git
+systray-x-git
+taglib-extras # (dep cantata-git)
 
 # Issue 324
 alsi
 auracle-git
 compiz-core:https://aur.archlinux.org/compiz-core.git # (compize-core compiz-gtk)
+compiz-git
+crow-translate-git
 emerald-gtk3
+fsearch-git
+megasync-git
 meteo-gtk
+pa-applet-git
+pacmanlogviewer-git
 palemoon-gtk3-bin
+pamac-classic
 pod2man # (dep auracle-git)
+trizen-git
 xfce4-panel-compiz
+
+# Issue 325
+azure-cli
 
 # Issue 326
 powershell
 
-# Issue 347
-rclone-browser
+# Issue 327
+ananicy
+boston-icon-theme
 
-# Issue 346
-masterpdfeditor-free
-masterpdfeditor
+# Issue 330
+1password
+badwolf
+getmail6
+onedrive-abraunegg
+pycharm-community-eap
+slack-term
+typora
+waterfox-g3-bin
 
-# Issue 342
-renamemytvseries-bin
+# Issue 335
+compiz
+crow-translate
+#megasync
+trizen
 
-# Issue 339
-esy # (dep)
+# Issue 337
+eclipse-java
 
 # Issue 338
 clion
@@ -363,59 +400,24 @@ waifu2x-ncnn-vulkan-git
 winetricks-git
 xxd-standalone
 
-# Issue 337
-eclipse-java
+# Issue 339
+esy # (dep)
 
-# Issue 335
-compiz
-crow-translate
-#megasync
-trizen
-
-# Issue 325
-azure-cli
-
-# Issue 330
-1password
-badwolf
-getmail6
-onedrive-abraunegg
-pycharm-community-eap
-slack-term
-typora
-waterfox-g3-bin
-
-# Issue 303
-# budgie-desktop-git # PKGBUILDs needs some fixes
-
-# Issue 322
-cantata-git
-eqonomize-git
-libquotient-git # (dep neochat-git)
-lightly-git
-lightly-qt
-pyradio-git
-strawberry-full-git
-strawberry-git
-systray-x-git
-taglib-extras # (dep cantata-git)
-
-# Issue 324
-compiz-git
-crow-translate-git
-fsearch-git
-megasync-git
-pa-applet-git
-pacmanlogviewer-git
-pamac-classic
-trizen-git
-
-# Issue 327
-ananicy
-boston-icon-theme
+# Issue 342
+renamemytvseries-bin
 
 # Issue 343
 wps-office-mui-zh-cn
+
+# Issue 345
+systemd-cron-next-git
+
+# Issue 346
+masterpdfeditor-free
+masterpdfeditor
+
+# Issue 347
+rclone-browser
 
 # Issue 350
 softmaker-office-2021-bin
@@ -446,17 +448,11 @@ zsh-theme-powerlevel10k-git
 # Issue 368
 oh-my-zsh-git
 
-# Issue 306
-omnisharp-roslyn
-
 # Issue 371
 spotify-tui
 ttf-mac-fonts
 ttf-ms-fonts
 rocketchat-desktop
-
-# Issue 345
-systemd-cron-next-git
 
 # Issue 374
 quixel-bridge
@@ -570,11 +566,11 @@ spot-client
 # Issue 448
 ytfzf-git
 
-# Issue 451
-kotatogram-desktop
-
 # Issue 449
 gdm-prime
+
+# Issue 451
+kotatogram-desktop
 
 # Issue 452
 ibus-mozc

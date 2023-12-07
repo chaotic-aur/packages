@@ -227,26 +227,56 @@ qownnotes
 # Issue 323
 chatterino2-git
 
+# Issue 497
+mu-editor
+pigpio # (dep mu-editor)
+python-colorzero # (dep mu-editor)
+python-gpiozero # (dep mu-editor)
+python-guizero # (dep mu-editor)
+python-nudatus # (dep mu-editor)
+python-pgzero # (dep mu-editor)
+thonny
+thonny-git
+
+# Issue 510
+vorta
+
+# Issue 511
+swaylock-effects
+
+# Issue 514
+soundux
+
+# Issue 519
+unityhub
+
 # Issue 521
 grimshot
 
-# Issue 562
-lollypop-git
+# Issue 524
+python-clickgen # (make bibata-cursor-theme)
+python-clickgen1 # (make bibata-extra-cursor-theme bibata-rainbow-cursor-theme)
+bibata-cursor-theme
+bibata-cursor-translucent
+bibata-extra-cursor-theme
+bibata-rainbow-cursor-theme
 
-# Issue 545
-flat-remix-gnome
+# Issue 525
+booster-git
 
-# Issue 546
-mindustry:https://aur.archlinux.org/mindustry.git # (mindustry, mindustry-server)
+# Issue 527
+bash-complete-alias
 
-# Issue 547
-protonmail-bridge-bin # (switched to bin as non-bin doesn't build)
+# Issue 532
+libbaseencode
+libcotp
+otpclient
 
 # Issue 536
 android-platform
 
-# Issue 527
-bash-complete-alias
+# Issue 539
+python-openrgb-git
 
 # Issue 541
 lua-resty-core # (dep nginx-mainline-mod-lua)
@@ -261,35 +291,17 @@ nginx-mainline-mod-lua
 nginx-mainline-mod-ndk
 nginx-mainline-mod-njs
 
-# Issue 511
-swaylock-effects
+# Issue 545
+flat-remix-gnome
 
-# Issue 524
-python-clickgen # (make bibata-cursor-theme)
-python-clickgen1 # (make bibata-extra-cursor-theme bibata-rainbow-cursor-theme)
-bibata-cursor-theme
-bibata-cursor-translucent
-bibata-extra-cursor-theme
-bibata-rainbow-cursor-theme
+# Issue 546
+mindustry:https://aur.archlinux.org/mindustry.git # (mindustry, mindustry-server)
+
+# Issue 547
+protonmail-bridge-bin # (switched to bin as non-bin doesn't build)
 
 # Issue 551
 tracktion-waveform
-
-# Issue 532
-libbaseencode
-libcotp
-otpclient
-
-# Issue 525
-booster-git
-
-# Issue 510
-vorta
-
-# Issue 555
-leftwm
-leftwm-git
-leftwm-theme-git
 
 # Issue 553
 diodon
@@ -298,25 +310,13 @@ diodon
 python-elgato-streamdeck # (dep streamdeck-ui-git)
 streamdeck-ui-git
 
-# Issue 539
-python-openrgb-git
+# Issue 555
+leftwm
+leftwm-git
+leftwm-theme-git
 
-# Issue 519
-unityhub
-
-# Issue 514
-soundux
-
-# Issue 497
-mu-editor
-pigpio # (dep mu-editor)
-python-colorzero # (dep mu-editor)
-python-gpiozero # (dep mu-editor)
-python-guizero # (dep mu-editor)
-python-nudatus # (dep mu-editor)
-python-pgzero # (dep mu-editor)
-thonny
-thonny-git
+# Issue 562
+lollypop-git
 
 # Issue 563
 audiotube-git
@@ -950,9 +950,6 @@ firefox-pwa
 # Issue 1054
 mpd-mpris
 
-# Issue 1067
-google-messages
-
 # Issue 1059
 darktable-git
 
@@ -967,6 +964,9 @@ aptpac
 
 # Issue 1065
 motivate
+
+# Issue 1067
+google-messages
 
 # Issue 1070
 atlauncher-bin
@@ -1070,17 +1070,14 @@ polybar-git
 # Issue 1157
 signalbackup-tools-git
 
-# Issue 1164
-qbittorrent-enhanced-qt5
-
-# Issue 1178
-qbittorrent-qt5
-
 # Issue 1162
 jitsi
 
 # Issue 1163
 pokerth
+
+# Issue 1164
+qbittorrent-enhanced-qt5
 
 # Issue 1167
 desmume-git
@@ -1090,6 +1087,9 @@ gnome-shell-extension-x11gestures
 
 # Issue 1173
 fontdownloader
+
+# Issue 1178
+qbittorrent-qt5
 
 # Issue 1181
 miredo
@@ -1180,6 +1180,10 @@ velox-git
 python-chess-git # (dep stockfish-git)
 stockfish-git
 
+# Issue 1464
+noisetorch
+noisetorch-git
+
 # Issue 1481
 spice-guest-tools-windows
 
@@ -1192,10 +1196,6 @@ qt6gtk2:https://aur.archlinux.org/qt6gtk2.git
 
 # Issue 1507
 nsnake-git
-
-# Issue 1464
-noisetorch
-noisetorch-git
 
 # Issue 1514
 pika-backup

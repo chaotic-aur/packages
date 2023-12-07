@@ -776,13 +776,6 @@ jellyfin-media-player
 # Issue 2291
 rome
 
-# Issue 2295
-xorgxrdp
-xorgxrdp-glamor
-
-# Issue 2296
-xrdp # (dep xorgxrdp pulseaudio-module-xrdp)
-
 # Issue 2293
 python-casttube # (dep python-pychromecast)
 python-pychromecast # (dep catt)
@@ -790,6 +783,13 @@ catt
 
 # Iusse 2294
 dolphin-tabopts
+
+# Issue 2295
+xorgxrdp
+xorgxrdp-glamor
+
+# Issue 2296
+xrdp # (dep xorgxrdp pulseaudio-module-xrdp)
 
 # Issue 2303
 joshuto
@@ -937,14 +937,11 @@ mpvpaper
 # Issue 2563
 nerd-fonts-inter
 
-# Issue 2567
-nerd-fonts-noto-sans-mono-extended
-
-# Issue 2596
-deltachat-desktop-git
-
 # Issue 2564
 virtualbox-unattended-templates
+
+# Issue 2567
+nerd-fonts-noto-sans-mono-extended
 
 # Issue 2570
 rofi-greenclip
@@ -972,6 +969,9 @@ schedtoold
 
 # Issue 2594
 keystore-explorer
+
+# Issue 2596
+deltachat-desktop-git
 
 # Issue 2597
 figlet-fonts

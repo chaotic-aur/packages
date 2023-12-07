@@ -337,21 +337,21 @@ mypy-git
 # Issue 1421
 wxformbuilder
 
-# Issue 1428
-nvidia-open-beta
-nvidia-open-git
-
-# Issue 1438
-deluge-git
-
 # Issue 1425
 responsively
 
 # Issue 1427
 colorway
 
+# Issue 1428
+nvidia-open-beta
+nvidia-open-git
+
 # Issue 1433
 vkd3d-proton-mingw-git
+
+# Issue 1438
+deluge-git
 
 # Issue 1439
 ta-lib
