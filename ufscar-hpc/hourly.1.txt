@@ -328,7 +328,6 @@ cantata-git
 eqonomize-git
 hlsdl
 identity
-libquotient-git # (dep neochat-git)
 lightly-git
 lightly-qt
 nheko-git
