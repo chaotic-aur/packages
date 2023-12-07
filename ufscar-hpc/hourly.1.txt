@@ -388,6 +388,18 @@ waterfox-g3-bin
 # Issue 303
 # budgie-desktop-git # PKGBUILDs needs some fixes
 
+# Issue 322
+cantata-git
+eqonomize-git
+libquotient-git # (dep neochat-git)
+lightly-git
+lightly-qt
+pyradio-git
+strawberry-full-git
+strawberry-git
+systray-x-git
+taglib-extras # (dep cantata-git)
+
 # Issue 324
 compiz-git
 crow-translate-git
@@ -401,18 +413,6 @@ trizen-git
 # Issue 327
 ananicy
 boston-icon-theme
-
-# Issue 332
-cantata-git
-eqonomize-git
-libquotient-git # (dep neochat-git)
-lightly-git
-lightly-qt
-pyradio-git
-strawberry-full-git
-strawberry-git
-systray-x-git
-taglib-extras # (dep cantata-git)
 
 # Issue 343
 wps-office-mui-zh-cn
