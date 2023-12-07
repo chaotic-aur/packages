@@ -332,6 +332,7 @@ lightly-git
 lightly-qt
 nheko-git
 pyradio-git
+qownnotes
 strawberry-full-git
 strawberry-git
 systray-x-git

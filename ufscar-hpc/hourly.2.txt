@@ -221,9 +221,6 @@ bombsquad
 openbangla-keyboard
 ttf-freebanglafont # (dep openbangla-keyboard)
 
-# Issue 322
-qownnotes
-
 # Issue 323
 chatterino2-git
 
