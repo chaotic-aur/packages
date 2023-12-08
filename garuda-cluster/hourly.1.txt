@@ -1121,3 +1121,6 @@ rats-search-git
 
 # Issue 2931
 pooi
+
+# Issue 2939
+gnome-shell-extension-logo-menu
