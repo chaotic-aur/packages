@@ -1138,7 +1138,7 @@ blockout2
 csound-blue
 
 # Issue 1743
-chromeos-kde-theme-git
+plasma5-themes-chromeos-git
 
 # Issue 1751
 densify
