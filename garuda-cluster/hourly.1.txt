@@ -247,7 +247,7 @@ otter-browser-git
 
 ## DEPENDENCIES
 # Dependencies of ffmpeg-full
-celt # (dep subtitlecomposer subtitlecomposer-git)
+celt
 chromaprint-fftw
 davs2
 decklink-sdk
@@ -257,7 +257,6 @@ lensfun-git
 libjxl-git
 libklvanc-git
 libopenmpt-svn
-pocketsphinx # (dep subtitlecomposer subtitlecomposer-git)
 rockchip-mpp
 shine
 uavs3d-git
