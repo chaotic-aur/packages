@@ -404,7 +404,6 @@ xorg-server-git:https://aur.archlinux.org/xorg-server-git.git
 zenmonitor3-git
 
 # Spotdl
-cpp-taskflow # (dep python-rapidfuzz)
 jarowinkler-cpp # (dep python-rapidfuzz)
 python-bandcamp-api # (dep python-spotdl)
 python-demjson3 # (dep python-spotdl)
