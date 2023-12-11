@@ -1698,9 +1698,6 @@ xdman-beta-bin
 # Issue 2834
 godot-mono-enhanced
 
-# Issue 2836
-astronvim-git
-
 # Issue 2838
 web-greeter
 
