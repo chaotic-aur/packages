@@ -464,6 +464,7 @@ kcm-uefi
 systemd-kcm
 
 # Issue 1691
+glaxnimate
 glaxnimate-git
 
 # Issue 1692
