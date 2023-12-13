@@ -1719,3 +1719,6 @@ lact
 
 # Issue 2942
 swapspace
+
+# Issue 2944
+gnome-encfs-manager-bin
