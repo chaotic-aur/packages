@@ -33,6 +33,7 @@ geany-plugin-preview-git
 geeqie-git
 iat
 lossywav-git
+maxcso-git
 mp3guessenc-beta
 otf-cooper-hewitt
 otf-stix
