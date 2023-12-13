@@ -15,7 +15,7 @@ caprice32-git
 linux-vfio-lts
 
 # Issue 964
-pcsx2-git
+pcsx2-avx-git # (pcsx2-git, pcsx2-avx-git)
 
 # Issue 1110
 dosbox-x-git
