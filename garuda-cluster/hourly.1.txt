@@ -1121,3 +1121,6 @@ pooi
 
 # Issue 2939
 gnome-shell-extension-logo-menu
+
+# Issue 2951
+nvchad-git
