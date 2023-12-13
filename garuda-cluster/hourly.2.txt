@@ -866,3 +866,7 @@ godot-mono-git
 
 # Issue 2941
 ddnet
+
+# Issue 2947
+vencord-desktop
+vencord-desktop-git
