@@ -92,6 +92,9 @@ kodi-nexus-git
 # Issue 2278
 lapce-git
 
+# Issue 2955
+hunspell-uk
+
 --
 
 # Issue 1243
