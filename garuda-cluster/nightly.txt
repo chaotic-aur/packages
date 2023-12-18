@@ -186,7 +186,7 @@ ola # (dep qlcplus)
 qlcplus
 
 # Issue 2635
-wine-wow64
+wine-wow64:https://aur.archlinux.org/wine-wow64-git.git
 
 # Issue 2636
 element-desktop-git
