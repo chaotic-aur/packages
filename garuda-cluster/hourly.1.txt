@@ -657,10 +657,6 @@ gnome-shell-extension-ubuntu-dock-git
 # Issue 2148
 supergfxctl
 
-# Issue 2158
-libelectron # (dep disneyplus)
-disneyplus
-
 # Issue 2161
 etl-dev # (dep synfig-dev synfigstudio-dev)
 synfig-dev # (dep synfigstudio-dev)

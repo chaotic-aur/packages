@@ -694,9 +694,6 @@ godot-git:https://github.com/chaotic-aur/pkgbuild-godot-git.git
 # Issue 558
 ryujinx-git
 
-# Issue 579
-youtube
-
 # Issue 585
 exifcleaner-bin
 
