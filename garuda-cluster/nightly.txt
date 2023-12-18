@@ -204,6 +204,9 @@ tradingview:https://github.com/chaotic-aur/pkgbuild-empty-project.git
 # Issue 2797
 sddm-slice-git
 
+# Issue 2833
+ppsspp-git:https://github.com/chaotic-aur/pkgbuild-empty-project.git # (ppsspp-git, ppsspp-avx-git)
+
 # Issue 2860
 kwin-scripts-truely-maximized
 
