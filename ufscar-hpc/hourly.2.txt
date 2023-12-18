@@ -786,9 +786,6 @@ insync-nemo
 insync-thunar
 thunarx-python # (dep insync-thunar)
 
-# Issue 948
-qps
-
 # Issue 953
 autokey:https://aur.archlinux.org/autokey.git # (autokey-common autokey-gtk autokey-qt)
 
