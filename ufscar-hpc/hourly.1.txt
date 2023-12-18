@@ -809,7 +809,6 @@ mauiman-git # (dep maui-shell-git)
 
 # Issue 1339
 dee # (dep libunity webwatcher-git)
-icu69-bin # (dep libunity)
 libunity # (dep webwatcher-git)
 
 # Issue 1341
