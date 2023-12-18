@@ -210,6 +210,8 @@ kwin-scripts-truely-maximized
 # Issue 2893
 material-symbols-git:https://aur.archlinux.org/material-symbols-git.git
 
+# Issue 2948
+wine-staging-wow64:https://aur.archlinux.org/wine-staging-wow64-git.git
 
 ## OTHERS
 non-euclidean-git
