@@ -102,7 +102,6 @@ mpv-full
 mpv-full-git
 obs-backgroundremoval
 obs-rtspserver
-obs-streamfx
 obs-vkcapture-git
 oneko
 pipewire-common-git:https://aur.archlinux.org/pipewire-common-git.git # (gst-plugin-pipewire-common-git pipewire-common-*-git)
