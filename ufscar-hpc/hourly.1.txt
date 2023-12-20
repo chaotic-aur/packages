@@ -1200,6 +1200,9 @@ qpdftools
 # Issue 1812
 qrab
 
+# Issue 1814
+quick-lookup
+
 # Issue 1821
 riftshare
 
