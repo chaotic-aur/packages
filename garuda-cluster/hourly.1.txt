@@ -254,9 +254,11 @@ decklink-sdk
 flite1
 highway-git # (dep libjxl-git)
 lensfun-git
+libaribcaption
 libjxl-git
 libklvanc-git
 libopenmpt-svn
+opencv2
 rockchip-mpp
 shine
 uavs3d-git
