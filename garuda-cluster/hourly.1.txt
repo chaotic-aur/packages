@@ -766,7 +766,7 @@ armcord-git
 jellyfin-media-player
 
 # Issue 2291
-rome
+biome
 
 # Issue 2293
 python-casttube # (dep python-pychromecast)
