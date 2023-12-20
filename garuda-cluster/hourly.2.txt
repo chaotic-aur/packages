@@ -654,6 +654,7 @@ libaudec # (dep zrythm)
 libcyaml # (dep zrythm)
 lsp-dsp-lib # (dep zrythm)
 reproc # (dep zrythm)
+yyjson-git # (dep zrythm)
 zrythm
 
 # Issue 1859
