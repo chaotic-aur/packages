@@ -159,8 +159,6 @@ lib32-ffmpeg
 lib32-fftw
 lib32-glslang
 lib32-gssdp
-lib32-gupnp
-lib32-gupnp-igd
 lib32-lame
 lib32-libbs2b
 lib32-libcue
@@ -173,7 +171,6 @@ lib32-libgme
 lib32-libkate
 lib32-liblrdf
 lib32-libmpcdec
-lib32-libnice
 lib32-libreplaygain
 lib32-libsrtp
 lib32-lilv
