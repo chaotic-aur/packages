@@ -71,7 +71,6 @@ mate-menu
 mate-tweak
 
 # Sway
-nordic-darker-theme
 nwg-bar
 nwg-displays
 nwg-dock
