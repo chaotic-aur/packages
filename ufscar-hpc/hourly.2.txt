@@ -114,6 +114,16 @@ vivaldi-snapshot-ffmpeg-codecs
 zef
 
 # SolarAquarion
+cmake-extras-git
+contractor-git
+elementary-icon-theme-git
+gala-git
+glib2-selinux
+gtk-theme-elementary-git
+kitty-git
+
+libayatana-common # (dep ayatana-*)
+librda # (dep ayatana-indicator-power ayatana-indicator-session)
 ayatana-indicator-application
 ayatana-indicator-bluetooth
 ayatana-indicator-keyboard
@@ -122,14 +132,6 @@ ayatana-indicator-notifications
 ayatana-indicator-power
 ayatana-indicator-session
 ayatana-indicator-sound
-cmake-extras-git
-contractor-git
-elementary-icon-theme-git
-gala-git
-glib2-selinux
-gtk-theme-elementary-git
-kitty-git
-libayatana-common # (dep ayatana-*)
 
 libclc-git # (dep mesa-git)
 libselinux # (dep glib2-selinux)
