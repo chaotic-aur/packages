@@ -1392,6 +1392,7 @@ python-isounidecode # (dep tauon-music-box)
 tauon-music-box
 
 # Issue 1845
+python-landlock # (dep warpinator-git)
 warpinator-git
 
 # Issue 1852
