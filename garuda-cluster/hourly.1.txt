@@ -403,6 +403,7 @@ whoogle-git
 woeusb-ng
 xdg-ninja-git
 xorg-server-git:https://aur.archlinux.org/xorg-server-git.git
+xorgproto-git # (make xorg-server-git)
 zenmonitor3-git
 
 # Spotdl
