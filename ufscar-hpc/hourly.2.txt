@@ -93,7 +93,6 @@ discord-canary
 dosbox-staging
 elm-bin
 elm-language-server
-firefox-nightly
 iir1 # (dep dosbox-staging)
 jetbrains-toolbox
 koka-bin

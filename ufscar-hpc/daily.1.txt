@@ -1,12 +1,4 @@
 ## Maintainers
-# Firefox
-git-cinnabar
-nspr-hg
-nss-hg
-wasi-sdk-git
---
-firefox-wayland-hg
-
 # Pedro
 #darling-git (broken)
 llvm-tkg-git:https://github.com/Frogging-Family/llvm-git.git
