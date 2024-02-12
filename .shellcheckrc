@@ -1,0 +1,2 @@
+# Disable common PKGBUILD issues, which are expected (eg. $pkgdir not assigned)
+disable=SC2034,SC2148,2154

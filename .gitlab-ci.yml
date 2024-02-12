@@ -1,0 +1,51 @@
+---
+stages: [process, schedule]
+
+variables:
+  REPO_URL: https://oauth2:$ACCESS_TOKEN@$CI_SERVER_HOST/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME
+
+default:
+  before_script:
+    - apk add --no-cache --upgrade git bash findutils grep curl jq shfmt rsync diffutils gawk
+    - git remote set-url origin $REPO_URL
+    - git fetch --tags --all --depth 20
+
+on-commit:
+  stage: process
+  image: alpine:latest
+  script:
+    - .ci/on-commit.sh
+  artifacts:
+    paths:
+      - .ci/schedule-params.txt
+    expire_in: 1 hour
+  resource_group: chaotic
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $SCHEDULED != "1"
+
+on-schedule:
+  stage: process
+  image: alpine:latest
+  script:
+    - .ci/on-schedule.sh
+  artifacts:
+    paths:
+      - .ci/schedule-params.txt
+    expire_in: 1 hour
+  resource_group: chaotic
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $SCHEDULED == "1"
+
+do-schedule:
+  stage: schedule
+  image:
+    name: registry.gitlab.com/garuda-linux/tools/chaotic-manager/manager
+    entrypoint: [""] # override entrypoint as we don't have the needed key during first execution yet
+  before_script:
+    - '[[ -z ${DEPLOY_KEY+x} ]] && echo "No deploy key available, backing off!" && exit 1'
+    - echo "$DEPLOY_KEY" >/app/sshkey
+    - chmod 400 /app/sshkey
+  script:
+    - if [ -f .ci/schedule-params.txt ]; then set -x; source ".ci/schedule-params.txt"; if [[ -v PARAMS_SCHEDULE ]]; then /entry_point.sh "${PARAMS_SCHEDULE[@]}"; fi; if [[ -v PARAMS_AUTOREPOREMOVE ]]; then /entry_point.sh "${PARAMS_AUTOREPOREMOVE[@]}"; fi; fi
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH

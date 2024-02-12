@@ -1,0 +1,26 @@
+pkgbase = paru-git
+	pkgdesc = Feature packed AUR helper
+	pkgver = 2.0.1.r1.g584fb75
+	pkgrel = 1
+	url = https://github.com/morganamilo/paru
+	arch = i686
+	arch = pentium4
+	arch = x86_64
+	arch = arm
+	arch = armv7h
+	arch = armv6h
+	arch = aarch64
+	license = GPL3
+	makedepends = cargo
+	depends = glibc
+	depends = git
+	depends = pacman
+	optdepends = bat: colored pkgbuild printing
+	optdepends = devtools: build in chroot and downloading pkgbuilds
+	provides = paru
+	conflicts = paru
+	backup = etc/paru.conf
+	source = git+https://github.com/morganamilo/paru
+	sha256sums = SKIP
+
+pkgname = paru-git
