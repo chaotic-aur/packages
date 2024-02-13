@@ -43,13 +43,36 @@ elif [ -v GITHUB_ACTIONS ]; then
     echo "Warning: Pipeline updates are not supported on GitHub Actions yet."
 fi
 
+function generate_deptree() {
+    declare -a ALL_PACKAGES
+    UTIL_GET_PACKAGES ALL_PACKAGES
+    local deptree=""
+
+    for i in "${ALL_PACKAGES[@]}"; do
+        local PKGNAMES DEPS
+        if [ -f "$i/.SRCINFO" ]; then
+            local AWK_OUTPUT
+            if ! AWK_OUTPUT=$(awk -f .ci/awk/get-deps.awk "$i/.SRCINFO"); then
+                continue
+            fi
+            read -r PKGNAMES DEPS <<<"$AWK_OUTPUT"
+        fi
+        if [ -n "$deptree" ]; then
+            deptree+=";"
+        fi
+        deptree+="$i:$PKGNAMES:$DEPS"
+    done
+    echo "$deptree"
+}
+
 if [ "$COMMAND" == "schedule" ]; then
+    PARAMS+=("--deptree")
+    PARAMS+=("$(generate_deptree)")
     # Prepend the source repo name to each package name and push to PARAMS
     for i in "${!PACKAGES[@]}"; do
         PARAMS+=("${BUILD_REPO}:${PACKAGES[$i]}")
     done
 elif [ "$COMMAND" == "auto-repo-remove" ]; then
-    # Prepend the source repo name to each package name and push to PARAMS
     PARAMS+=("${PACKAGES[@]}")
 fi
 

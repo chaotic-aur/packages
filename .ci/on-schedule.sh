@@ -268,7 +268,8 @@ for package in "${PACKAGES[@]}"; do
                 git add .
                 if [ "$COMMIT" == "false" ]; then
                     COMMIT=true
-                    git commit -m "chore(packages): update packages [skip ci]"
+                    [ -v GITLAB_CI ] && git commit -m "chore(packages): update packages"
+                    [ -v GITHUB_ACTIONS ] && git commit -m "chore(packages): update packages [skip ci]"
                 else
                     git commit --amend --no-edit
                 fi
@@ -291,5 +292,6 @@ if [ "$COMMIT" = true ]; then
     for branch in "${DELETE_BRANCHES[@]}"; do
         git_push_args+=(":$branch")
     done
+    [ -v GITLAB_CI ] && git_push_args+=("-o" "ci.skip")
     git push --atomic origin HEAD:main +refs/tags/scheduled "${git_push_args[@]}"
 fi
