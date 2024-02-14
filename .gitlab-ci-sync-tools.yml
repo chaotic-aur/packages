@@ -1,0 +1,10 @@
+---
+update-tools:
+  stage: process
+  image: alpine:latest
+  script:
+    - .tools/update-tools.sh
+  resource_group: chaotic
+  needs: ["on-schedule"]
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $SCHEDULED == "1"

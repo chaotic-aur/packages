@@ -1,7 +1,7 @@
 BUILD_REPO=chaotic-aur
 CI_HUMAN_REVIEW=true
 GIT_AUTHOR_EMAIL=ci@chaotic.cx
-GIT_AUTHOR_NAME=Chaotic CI
+GIT_AUTHOR_NAME="Chaotic CI"
 REDIS_SSH_HOST=builds.garudalinux.org
 REDIS_SSH_PORT=400
 REDIS_SSH_USER=package-deployer
