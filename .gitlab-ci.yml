@@ -49,7 +49,7 @@ manual-schedule:
     expire_in: 1 hour
   resource_group: chaotic
   rules:
-    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_JOB_MANUAL == "true" && $PACKAGES != null
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_PIPELINE_SOURCE == "web" && $PACKAGES != null
 
 do-schedule:
   stage: schedule
