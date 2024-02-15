@@ -23,7 +23,7 @@ on-commit:
     expire_in: 1 hour
   resource_group: chaotic
   rules:
-    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $SCHEDULED != "1"
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_PIPELINE_SOURCE == "push"
 
 on-schedule:
   stage: process
@@ -36,7 +36,20 @@ on-schedule:
     expire_in: 1 hour
   resource_group: chaotic
   rules:
-    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $SCHEDULED == "1"
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && ($SCHEDULED == "1" || TRIGGER != null)
+
+manual-schedule:
+  stage: process
+  image: alpine:latest
+  script:
+    - .ci/manual-schedule.sh
+  artifacts:
+    paths:
+      - .ci/schedule-params.txt
+    expire_in: 1 hour
+  resource_group: chaotic
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_JOB_MANUAL == "true" && $PACKAGES != null
 
 do-schedule:
   stage: schedule

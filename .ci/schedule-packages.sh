@@ -49,7 +49,7 @@ function generate_deptree() {
     local deptree=""
 
     for i in "${ALL_PACKAGES[@]}"; do
-        local PKGNAMES DEPS
+        local PKGNAMES="" DEPS=""
         if [ -f "$i/.SRCINFO" ]; then
             local AWK_OUTPUT
             if ! AWK_OUTPUT=$(awk -f .ci/awk/get-deps.awk "$i/.SRCINFO"); then

@@ -11,6 +11,28 @@ UTIL_READ_CONFIG_FILE
 
 export TMPDIR="${TMPDIR:-/tmp}"
 
+# Special case: We are told to trigger a specific trigger
+if [ -v TRIGGER ]; then
+    PACKAGES=()
+    TO_BUILD=()
+    UTIL_GET_PACKAGES PACKAGES
+    for package in "${PACKAGES[@]}"; do
+        unset VARIABLES
+        declare -A VARIABLES
+        if UTIL_READ_MANAGED_PACAKGE "$package" VARIABLES; then
+            if [ -v "VARIABLES[CI_ON_TRIGGER]" ]; then
+                if [ "${VARIABLES[CI_ON_TRIGGER]}" == "$TRIGGER" ]; then
+                    TO_BUILD+=("$package")
+                fi
+            fi
+        fi
+    done
+    if [ ${#TO_BUILD[@]} -ne 0 ]; then
+        .ci/schedule-packages.sh schedule "${TO_BUILD[@]}"
+    fi
+    exit 0
+fi
+
 git config --global user.name "$GIT_AUTHOR_NAME"
 git config --global user.email "$GIT_AUTHOR_EMAIL"
 
