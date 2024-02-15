@@ -36,7 +36,7 @@ on-schedule:
     expire_in: 1 hour
   resource_group: chaotic
   rules:
-    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && ($SCHEDULED == "1" || TRIGGER != null)
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && ($SCHEDULED == "1" || $TRIGGER != null)
 
 manual-schedule:
   stage: process
