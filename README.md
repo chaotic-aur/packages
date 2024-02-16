@@ -39,27 +39,39 @@ Compared to Infra 3.0, this means we have the following key differences:
 
 ### Adding packages
 
-Adding packages is as easy as creating a new folder named after the `pkgname` of the package. Put the PKGBUILD and all other required files in here.
-Finally, add a `.CI` folder containing the basic config (`CI_PKGBUILD_SOURCE` is required), commit any changes, and push the changes back to the main branch.
-Please follow the [conventional commit convention](https://www.conventionalcommits.org/en/v1.0.0/) while doing so ([cz-cli](https://github.com/commitizen/cz-cli) can help with that!).
+Adding packages is as easy as creating a new folder named after the `$pkgbase` of the package. Put the PKGBUILD and all other required files in here.
+Adding AUR packages is therefore as simple as cloning its repo and removing the `.git` folder.
+CI relies on `.SRCINFO` files to parse most information, therefore it is important to have them in place and up-to-date in case of self-managed packages.
+Finally, add a `.CI` folder containing the basic config (`CI_PKGBUILD_SOURCE` is required in case its an external package, self-managed PKBUILDs don't need it), commit any changes, and push the changes back to the main branch.
+Please follow the [conventional commit convention](https://www.conventionalcommits.org/en/v1.0.0/) while doing so ([cz-cli](https://github.com/commitizen/cz-cli) can help with that!). This means commits like:
+
+- `feat($pkgname): init`
+- `fix($pkgname): fix xyz`
+- `chore($pkgname): update PKGBUILD`
+- `ci(config): update`
+
+This not only helps with having a uniform commit history, it also allows automatic changelog generation.
 
 ### Removing packages
 
-This can be done by removing the folder containing a package's PKGBUILD. A cleanup job will then automatically remove any obsolete package via the `on-commit` pipeline run.
+This can be done by removing the folder containing a package's PKGBUILD. A cleanup job will then automatically remove any obsolete package via the `on-commit` pipeline run. This will also consider any split packages that a package might produce.
+Renaming folders does also count as removing packages.
 
 ### On-commit pipeline
 
 Whenever pushing a new commit, the following actions will be carried out by the CI pipeline:
 
 - Checking when the last `scheduled` tag was created. This is used to determine which packages need to be scheduled.
-- It parses each commit for a `[deploy $pkgname]` string, only accepting valid values derived from the existing PKGBUILD folders. `[deploy all]` is a valid parameter as well. Misspelling `$pkgname` is a fatal error here. Any issues must be fixed and force-pushed.
+- It parses each commit for a `[deploy $foldername]` string, only accepting valid values derived from the existing PKGBUILD folders. `[deploy all]` is a valid parameter as well. Misspelling `$pkgname` is a fatal error here. Any issues must be fixed and force-pushed.
 - Then, the changed files are parsed. This also includes removed packages. Any changed relevant field will cause a package deployment of the corresponding package.
 - The final action is to build the schedule parameters (handing it over to the scheduled job via artifacts) and remove all obsolete packages in case an earlier step is detected.
 - In case all of these actions succeed, the `scheduled` tag gets updated so we can refer to it on a later pipeline run.
 
 ### On-schedule pipeline
 
-Every half an hour (or whatever the scheduled time is set to), the on-schedule pipeline will carry out a few tasks:
+#### Half-hourly
+
+Every half an hour, the on-schedule pipeline will carry out a few tasks:
 
 - Updating the CI template from the template repository (in case this is enabled via `.ci/config`)
 - Check if the scheduled tag does not exist or scheduled does not point to HEAD (in this case abort mission!)
@@ -67,9 +79,26 @@ Every half an hour (or whatever the scheduled time is set to), the on-schedule p
 - Check whether a package change is determined by a few options
 - Writing needed variables back to `.CI/config` (eg. Git hash)
 - Either update the PKGBUILD silently in case of minor changes, create a PR for review in case of major updates (and only if `CI_HUMAN_REVIEW` is true)
+  - Updates are only considered if diff actually reports changes between current PKGBUILD folder and AUR PKGBUILD repo
+  - Any change made to the source files is detected, this however does _not_ detect malicious changes in the upstream project source that the package builds
 - Schedule parameters are getting built and handed over to the scheduled job via artifact
 - Obsolete branches (eg. merged review PRs) are getting pruned
 - The scheduled tag gets updated again
+
+#### Daily
+
+A daily pipeline schedule has been added for specific packages which generate their `pkgver` dynamically.
+
+### Manual scheduling
+
+#### Scheduling packages without git commits
+
+Packages can be added to the schedule manually by going to the [pipeline runs](https://gitlab.com/chaotic-aur/pkgbuilds/-/pipelines) page, selecting "Run pipeline" and adding `PACKAGES` as a variable with the package names as its value. The pipeline will then pick up the packages and schedule them.
+`PACKAGES` can also be set to `all` to schedule all packages. In case one or many packages are getting scheduled, it needs to follow the format `pkgname1,pkgname2,pkgname3`.
+
+#### Running scheduled pipelines on-demand
+
+This can be done by going to the [pipeline runs](https://gitlab.com/chaotic-aur/pkgbuilds/-/pipeline_schedules) page, selecting "Run pipeline" (the play symbol). A link to the pipeline page will be provided, where the pipeline logs can be obtained.
 
 ### Adding interfere
 
@@ -87,17 +116,23 @@ Put the required interfere file in the `.CI` folder of a PKGBUILD folder:
 
 This is now carried out by adding the required variable `CI_PKGREL` to `.CI/config`. See below for more information.
 
+### Dependency trees
+
+Dependency trees are built automatically by the CI. They are appended to the schedule parameters and passed to the Chaotic manager this way. No manual intervention is needed.
+
 ### .CI/config
 
 The `.CI/config` file inside each package directory contains additional flags to control the pipelines and build processes with.
 
-- `CI_GIT_COMMIT`: Used by CI to determine whether the latest commit changed. Used by `fetch-gitsrc` to schedule new builds.
-- `CI_IS_GIT_SOURCE`: By setting this to `1`, the `fetch-gitsrc` job will check out the latest git commit of the source and compare it with the value recorded in `CI_GIT_COMMIT`.
+- `CI_GIT_COMMIT`: Used by CI to determine whether the latest commit changed. Used by `fetch-gitsrc` to schedule new builds. Needs to be provided in case the package should be treated as a git package. CI will automatically update the latest available commit of the git URL set in the `source` section of the PKGBUILD.
   If it differs, schedule a build.
   This is useful for packages that use `pkgver()` to set their version without having `-git` or another VCS package suffix.
 - `CI_MANAGE_AUR`: By setting this variable to `1`, the CI will update the corresponding AUR repository at the end of a pipeline run if changes occur (omitting CI-related files)
+- `CI_PKGBUILD_TIMESTAMP`: The last modified date of the PKGBUILD on AUR. This is used to determine whether the PKGBUILD has changed. If it differs, schedule a build. Will be maintained automatically.
 - `CI_PKGREL`: Controls package bumps for all packages which don't have `CI_MANAGE_AUR` set to `1`. It increases `pkgrel` by `0.1` for every `+1` increase of this variable.
 - `CI_PKGBUILD_SOURCE`: Sets the source for all PKGBUILD-related files, used for pulling updated files from remote repositories
+- `CI_ON_TRIGGER`: can be provided in case a special schedule trigger should schedule the corresponding package. This can be used to schedule packages on a daily basis, by setting the value to `daily`.
+  Since this checks whether "$TRIGGER == $CI_ON_TRIGGER", any custom schedule can be created using pipeline schedules and setting `TRIGGER` to `midnight`, adding a fitting schedule and setting `CI_ON_TRIGGER` for any affected package to `midnight`.
 
 ### Managing AUR packages (WIP)
 
@@ -107,7 +142,18 @@ AUR packages can also be managed via this repository in an automated way using `
 
 This is done automatically via the CI pipeline. Once changes have been detected on the template repository, all files will be updated to the current version.
 
-### Resetting the build queue
+### Issues and pipeline failures
+
+#### Last on-commit pipeline failed
+
+This can happen in case of a few reasons, for example having provided an invalid package name. This causes the `scheduled` tag to not be updated.
+In this case, the on-schedule pipeline will not be able to run.
+The last on-commit pipeline needs to be fixed before the on-schedule pipeline can run again.
+Build failures however are not accounted as the `scheduled` tag would be updated already as soon as the scheduling parameters were generated.
+Force pushing a fixed up commit is actively encouraged in such a case, as pushing another commit will cause the CI to evaluate the previous commits it missed, leading to noticing the same issue again and bailing out instead of silently continuing.
+This has been a design decision to prevent failures from being overlooked.
+
+#### Resetting the build queue
 
 There might be rare cases in which a reset of the build queue is needed. This can be done by shutting down the central Redis instance, removing its dump, and restarting its service.
 
@@ -143,7 +189,7 @@ An example of a valid config can be found in the [Garuda Linux infrastructure re
 - `PACKAGE_TARGET_REPOS`: the repository a package is getting deployed to (including its URL and extra keyrings/repos needed)
 - `REDIS_PASSWORD`: password for accessing the Redis instance
 - `REDIS_SSH_HOST`: where to access the Redis instance
-- `REDIS_SSH_USER: the user who can access the Redis instance
+- `REDIS_SSH_USER`: the user who can access the Redis instance
 - `REPO_PATH`: the path where the final package deployment happens
 
 ## Development setup
