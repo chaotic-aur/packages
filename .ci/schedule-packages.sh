@@ -21,9 +21,9 @@ fi
 declare -a PARAMS
 if [ "$COMMAND" == "auto-repo-remove" ]; then
     UTIL_GET_PACKAGES PACKAGES
-    PARAMS+=("auto-repo-remove" "--repo=$REPO_NAME")
+    PARAMS+=("auto-repo-remove" "--target-repo=$REPO_NAME")
 elif [ "$COMMAND" == "schedule" ]; then
-    PARAMS+=("schedule" "--repo=$REPO_NAME")
+    PARAMS+=("schedule" "--target-repo=$REPO_NAME" "--source-repo=$BUILD_REPO")
 else
     echo "Unknown command: $COMMAND"
     exit 1
@@ -68,10 +68,7 @@ function generate_deptree() {
 if [ "$COMMAND" == "schedule" ]; then
     PARAMS+=("--deptree")
     PARAMS+=("$(generate_deptree)")
-    # Prepend the source repo name to each package name and push to PARAMS
-    for i in "${!PACKAGES[@]}"; do
-        PARAMS+=("${BUILD_REPO}:${PACKAGES[$i]}")
-    done
+    PARAMS+=("${PACKAGES[@]}")
 elif [ "$COMMAND" == "auto-repo-remove" ]; then
     PARAMS+=("${PACKAGES[@]}")
 fi
