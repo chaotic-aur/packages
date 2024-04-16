@@ -274,6 +274,9 @@ function update_vcs() {
 collect_aur_timestamps AUR_TIMESTAMPS
 
 mkdir "$TMPDIR/aur-pulls"
+if [ -f "./.editorconfig" ]; then
+    cp "./.editorconfig" "$TMPDIR/aur-pulls/.editorconfig"
+fi
 
 # Loop through all packages to check if they need to be updated
 for package in "${PACKAGES[@]}"; do
