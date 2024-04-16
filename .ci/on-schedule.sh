@@ -183,6 +183,7 @@ function update_from_gitlab_tag() {
     fi
 
     # Extract project URL and commit hash from commit URL
+    # shellcheck disable=2034
     local DOWNLOAD_URL BASE_URL COMMIT PROJECT_NAME
     if [[ "$COMMIT_URL" =~ ^(.*)/([^/]+)/-/commit/([^/]+)$ ]]; then
         PROJECT_NAME="${BASH_REMATCH[2]}"
@@ -281,6 +282,7 @@ for package in "${PACKAGES[@]}"; do
     if UTIL_READ_MANAGED_PACAKGE "$package" VARIABLES; then
         update_pkgbuild VARIABLES
         update_vcs VARIABLES
+        UTIL_LOAD_CUSTOM_HOOK "./${package}" "./${package}/.CI/update.sh"
         UTIL_WRITE_KNOWN_VARIABLES_TO_FILE "./${package}/.CI/config" VARIABLES
 
         if ! git diff --exit-code --quiet; then
@@ -306,6 +308,7 @@ done
 
 if [ ${#MODIFIED_PACKAGES[@]} -ne 0 ]; then
     .ci/schedule-packages.sh schedule "${MODIFIED_PACKAGES[@]}"
+    .ci/manage-aur.sh "${MODIFIED_PACKAGES[@]}"
 fi
 
 if [ "$COMMIT" = true ]; then

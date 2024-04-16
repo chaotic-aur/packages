@@ -11,6 +11,7 @@ shift
 
 PACKAGES=("$@")
 
+# shellcheck source=/dev/null
 source .ci/util.shlib
 
 if [ -v "PACKAGES[0]" ] && [ "${PACKAGES[0]}" == "all" ] && [ "$COMMAND" == "schedule" ]; then
