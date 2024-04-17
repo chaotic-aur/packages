@@ -87,7 +87,7 @@ for package in "${PACKAGES[@]}"; do
             if [ -v _CI_REPOSITORY_URL ]; then
                 git commit -m "chore: update $package" \
                     -m "This commit was automatically generated to reflect changes to this package in another repository." \
-                    -m "The changelog for this package can be found at ${_CI_REPOSITORY_URL}." \
+                    -m "The changelog for this package can be found at ${_CI_REPOSITORY_URL}/$package." \
                     -m "Logs of the corresponding pipeline run can be found here: $_CI_PIPELINE_URL."
             else
                 git commit -m "chore: update $package" \
