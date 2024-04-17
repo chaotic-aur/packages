@@ -2,8 +2,12 @@
 # shellcheck disable=2153
 set -euo pipefail
 
+# Set up required environment
 [[ -v "TMPDIR" ]] || TMPDIR="/tmp"
 mkdir -p "$TMPDIR/aur-push"
+
+git config --global user.name "$GIT_AUTHOR_NAME"
+git config --global user.email "$GIT_AUTHOR_EMAIL"
 
 # This script is used to manage a packages corresponding AUR repo
 # No point in running this script if we don't have keys available
@@ -67,19 +71,23 @@ for package in "${PACKAGES[@]}"; do
         fi
 
         # We always run shfmt on the PKGBUILD. Two runs of shfmt on the same file should not change anything
+        if [ -f "$TMPDIR/aur-push/$package/.editorconfig" ]; then
+            cp "./.editorconfig" "$TMPDIR/aur-push/$package/.editorconfig"
+        fi
         shfmt -w "$TMPDIR/aur-push/$package/PKGBUILD"
 
-        # Rsync: delete files in the destination that are not in the source. Exclude copying .CI and .git            
+        # Rsync: delete files in the destination that are not in the source. Exclude copying .CI and .git
         # shellcheck disable=SC2046
         rsync -av --delete $(UTIL_GET_EXCLUDE_LIST "--exclude") "$package/" "$TMPDIR/aur-push/$package/"
 
         # Only push if there are changes
+        pushd "$TMPDIR/aur-push/$package"
         if [[ -n $(git status -uno --porcelain) ]]; then
             git add .
-            if [ -v _CI_COMMITS_URL ]; then
+            if [ -v _CI_REPOSITORY_URL ]; then
                 git commit -m "chore: update $package" \
                     -m "This commit was automatically generated to reflect changes to this package in another repository." \
-                    -m "The changelog for this package can be found at ${_CI_COMMITS_URL}." \
+                    -m "The changelog for this package can be found at ${_CI_REPOSITORY_URL}." \
                     -m "Logs of the corresponding pipeline run can be found here: $_CI_PIPELINE_URL."
             else
                 git commit -m "chore: update $package" \
@@ -91,6 +99,7 @@ for package in "${PACKAGES[@]}"; do
             echo "No changes detected, skipping!"
             continue
         fi
+        popd
     else
         continue
     fi
