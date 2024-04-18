@@ -1,0 +1,7 @@
+
+for key in ${!optdepends[@]} ; do
+  if [[ "${optdepends[${key}]}" =~ ^texlive-most:.*$ ]] ; then
+    unset optdepends[${key}]
+    break
+  fi
+done

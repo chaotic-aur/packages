@@ -1,0 +1,438 @@
+# 24.04.1-1
+ * Fix crashing on first sync.
+ * Image occlusion fixes, thanks to @krmanik and @abdnh.
+ * Fix dark mode not being detected on Intel Macs.
+ * Another attempt at fixing a rounding issue with optimal retention.
+ * Rename optimal retention and clarify wording, thanks to @AntoineQ1.
+ * Fix an error that can occur when using Linux distro packages, thanks to @escape0707.
+
+PKGBUILD:
+ * remove python-pip-system-certs and patch anki accordingly
+ * remove disable-git-checks.patch as it is no longer needed
+
+# 24.04-2
+PKGBUILD:
+ * add forgotten update to disable git checks
+# 24.04-1
+ * Update Qt to 6.6.2. On macOS, this should fix issues with Japanese input.
+ * Update FSRS & export benchmark API by @L-M-Sherlock in #3056
+ * Keep previous FSRS parameters if they get worse when optimizing by @abdnh in #2996
+ * The I/O editor better preserves images quality when zooming in, and supports two-finger pinch/drag on mobile platforms. By @krmanik in #3052
+ * Improved pan/zoom in image occlusions: middle mouse button, space, or ctrl/shift/alt with two fingers by @krmanik in #3080 and #3066
+ * Improvements/simplifications to FSRS optimal retention feature by @L-M-Sherlock in #3065 and #3072
+ * When updating all FSRS parameters at once, exclude suspended cards.
+ * Move most FSRS options into their own section of the deck options.
+ * Don't hide FSRS optimization section.
+ * Show a warning in the optimization section if all presets haven't been optimized for 30 days or longer.
+ * Show preset and original deck in card info by @abdnh in #3055
+ * Use system certificate store by @abdnh in #3050
+ * Ignore some extra chars in no-combining search by @abdnh in #2929
+ * Add "select all" shapes tool by @krmanik in #2981
+ * Maintain original IO cloze order in editing mode by @abdnh in #2987
+ * Fix occasional 'failed to fetch' message popping up.
+ * Fix pasted images failing to download from some sites.
+ * Add by creation date review sort order by @abdnh in #2957
+ * Add log-in button to preferences screen by @lucasscharenbroch in #2994
+ * Add support for offline builds by @knobix in #2963
+ * Add support for python logging by @cav71 in #2969
+ * Add View Files button to Check Media screen by @abdnh in #3006
+ * Allow > inside HTML attributes by @vaxr in #2918
+ * Americanize "synchronisation" by @hnvy in #2935
+ * Change default font in code editors by @abdnh in #2985
+ * Check required review count for FSRS after filtering by @abdnh in #3019
+ * clamp interval before fuzz_bounds by @L-M-Sherlock in #3024
+ * Clear out old FSRS progress as new operation starts
+ * Default to 'Bury Card' action consistently by @abdnh in #2950
+ * Do not reset original_due when card stays in filtered deck by @abdnh in #2988
+ * Don't urllib.unquote when using requests by @vaxr in #2943
+ * Fix 'ignore this update' not working.
+ * Fix processEvents() reentrancy bug in progress manager window handling by @kieranlblack in #3030
+ * Fix a 'protocol wrong type' message sometimes popping up.
+ * Fix circular import in legacy importer by @abdnh in #3007
+ * Fix code completion in Qt forms by @abdnh in #2993
+ * Fix corner rounding of alignment buttons in editor by @lucasscharenbroch in #2989
+ * Fix crash in Reviewer by @mjuhanne in #2945
+ * Fix deck names differing in case being duplicated in CSV import by @abdnh in #3008
+ * Fix error after notetype merge + downgrade.
+ * Fix flicker when hovering over deck list by @abdnh in #2958
+ * Fix Image field not hidden until user selects an image by @abdnh in #2960
+ * Fix importing of Mnemosyne due dates by @dae in #2936
+ * Fix inconsistent count in optimize/evaluate.
+ * Fix MathJax editor not opening when navigating into blocks by @abdnh in #2953
+ * Fix maybe_coalesce_note_undo_entry() by @abdnh in #2992
+ * Fix misaligned image occlusions in RTL languages by @abdnh in #3018
+ * Fix note id mix-up when resolving notetype conflicts by @RumovZ in #2940
+ * Fix notetype conflict resolution by @RumovZ in #2967
+ * Fix preset: search ignoring cards in filtered decks by @abdnh in #2997
+ * Fix progress manager window race condition by @kieranlblack in #3029
+ * Fix regex skipping over all src except the last by @vaxr in #3021
+ * Fix text input custom style wiping out base user style by @kieranlblack in #3031
+ * Fix title of Auto Advance section by @abdnh in #2949
+ * Fix toolbar button shifting on hover by @BlueGreenMagick in #2928
+ * Fix undo handling of group and some other IO tools by @abdnh in #2931
+ * Fix visual behavior of modal buttons in editor by @lucasscharenbroch in #3009
+ * Fix windows build issue by @qxo in #2947
+ * Fix/ignore revlogs before Forget entry by @L-M-Sherlock in #3002
+ * Flip indent/outdent buttons for RTL by @abdnh in #2930
+ * FSRS - Ignore revlogs before date while optimizing by @Luc-Mcgrady in #2922
+ * Honor NINJA_STATUS if already set by @knobix in #2984
+ * Improve appearance of resize handles in I/O by @krmanik in #2919
+ * Improve typing deck_due_tree() by @nix6839 in #3003
+ * Include details on what's missing when a NotFound error is triggered.
+ * Increase parent limits in custom study when 'limits start from top' is enabled by @RumovZ in #2971
+ * Initialize Browser.aspect_ratio earlier to fix AttributeError by @abdnh in #2924
+ * Make a deep copy in addcards/set_note by @lucasscharenbroch in #3013
+ * Make image occlusion's option buttons tabbable by @PLameiras in #2966
+ * Make sure editor note is saved before triggering buttons by @abdnh in #2995
+ * Make tags and tag suggestions able to be styled by add-ons by @glutanimate in #2941
+ * More precise percent of days studied by @user1823 in #2889
+ * Refactor text attribute button components by @lucasscharenbroch in #3012
+ * Shift the default network timeout back to 60 seconds.
+ * Show message if current FSRS parameters are optimal by @abdnh in #3014
+ * Show total review count when optimizing FSRS parameters by @abdnh in #3027
+ * Tweak type-in-answer filter hack by @lucasscharenbroch in #3010
+ * update FSRS to v0.2.0 by @L-M-Sherlock in #2977
+ * Use card.reps - 1 when calculating fuzz by @dae in #2933
+ * Use our translation of 'Discard' by @abdnh in #2920
+ * Containerize anki-sync-server by @jeankhawand in #3036
+ * Fix alert not appearing when FSRS parameters input is focused by @abdnh in #3053
+ * Adjust HTML editor / add-on config editor font by @abdnh in #3054
+ * Fix/set pretrain_only by fsrs_items by @L-M-Sherlock in #3051
+ * Use Card %d for IO template names by @BrayanDSO in #3049
+ * alert when the resp.weights is empty by @L-M-Sherlock in #3061
+ * When cards become due on the congrats screen, switch to overview, not back into study.
+ * Adding a note to the import options to indicate that leech and marked tags will be removed if disabled by @arbyste in #3067
+ * Fix full sync dialog failing to appear.
+ * Fix consolas not being used in editor.
+ * qt/aqt/init.py: Skip GL library workaround for FreeBSD by @knobix in #3071
+ * fix: cloze_numbers_in_string treating {{c0::}} as valid by @BrayanDSO in #3059
+ * Display deck names when deleting by @escribapetrus in #3058
+ * Rename "Forget" to "Reset" (#3078) by @vasll in #3088
+ * Reset original id when cloning notetypes by @RumovZ in #3089
+ * Use rmse in comparing parameters by @L-M-Sherlock in #3087
+ * Fix summary string for notes that failed to be imported by @RumovZ in #3092
+ * Disable ligatures in type-in highlighting by @abdnh in #3093
+ * Sync-server: add option to store hashed passwords by @laalsaas in #3083
+ * Refactor offline build process and add offline generation of Sphinx docs by @antecrescent in #3082
+ * Replace deprecated method chrono::NaiveDateTime::timestamp_millis by @ijqq in #3097
+ * Update optimal retention tooltip, and add a few extra translations.
+ * Possible workaround for sporadic toolbar height warning.
+ * "Full sync" -> "One-way sync".
+ * rename sm2 retention to historical retention by @L-M-Sherlock in #3101
+ * Use "importing-added" string in importing detail table by @snowtimeglass in #3104
+ * Fix mpv loadfile syntax change by @kelciour in #3105
+ * Improve timer interval display (#3096) by @AntoineQ1 in #3100
+ * Fix incorrect search results after preset used.
+# 23.12.1-3
+PKGBUILD:
+ * reintroduce mold as linker, appears to be more memory efficient on some machines. Otherwise does not compile on memory constrained machines (<= 8GB)
+# 23.12.1-2
+PKGBUILD:
+ * attempt to move away from mold as linker
+
+# 23.12-1
+FSRS:
+
+  * Minor improvements to the algorithm (FSRS 4.5). While not essential, we recommend you re-optimize your FSRS parameters
+  after updating. By @L-M-Sherlock and @asukaminato0721 in open-spaced-repetition/fsrs-rs#111 and
+  open-spaced-repetition/fsrs-rs#119 and #2901.
+  * The deck options Save dropdown now lets you optimize all presets at once.
+  * Rewrite the optimal retention code. The new code will give different results. By @L-M-Sherlock and @asukaminato0721
+  in open-spaced-repetition/fsrs-rs#122 and open-spaced-repetition/fsrs-rs#124
+  * The search used for optimizing presets is now remembered. By @abdnh in #2827
+  * Exclude suspended cards from optimization by default.
+  * When using 'deck:*' in the search, reviews from deleted cards are included.
+  * The reschedule-on-parameters-change option is now shared between all presets, and will default to off each time.
+  * When cards are rescheduled multiple times without reviews, extra entries will not be added to the review log.
+  * Fix some bugs in sorting by FSRS retrievability.
+  * Clarify learning steps recommendation by @user1823 in #2832
+  * Ignore filtered revlog in time of last review by @L-M-Sherlock in #2845
+  * Fix FSRS scheduling when add-ons manually convert cards to learning by @L-M-Sherlock in #2849
+  * Better approximate average retention/ease/difficulty.
+  * Don't use SM2 memory state when cards are manually introduced.
+  * Fix incorrect search being used when evaluating parameters.
+  * Recompute FSRS memory state when cards moved into different deck.
+  * Correct the description of FSRS Difficulty in Stats by @user1823 in #2888
+  * FSRS ignores revlog entries with time = 0 when calculating time taken. By @L-M-Sherlock in #2870
+  * Keep two decimals for stability by @L-M-Sherlock in #2873
+  * Improve calculated difficulty for cards that skipped initial learning.
+  * Catch NaNs in FSRS parameters.
+
+Deck options screen:
+
+  * Added a new v3 option to limit child decks by their parent, when clicking on the child. By @RumovZ in #2824
+  * Added an auto-advance feature. Activate from More menu; configure via deck options. By @abdnh in #2765
+  * The deck options screen now opens faster.
+  * Change link to manual in help screen from icon to text by @Gustaf-C in #2886
+  * Make help button more obvious, and remove hover animations.
+  * Add a globe icon to global settings in the deck options.
+  * Fix some RTL issues in help modals by @abdnh in #2857
+  * Do not close web pages when Esc is pressed and a modal is open by @abdnh in #2894
+
+Other scheduling/review-related changes:
+
+  * When rescheduling is disabled in a filtered deck, you can now choose different delays for again, hard and good. Set to 0 to
+  have that button immediately remove the card.
+  * The 'preview new cards' option in custom study now uses note-added order.
+  * Don't restrict answer key shortcuts to alphanumeric characters and a few symbols.
+  * Include elapsed_secs in learning card state by @Gustaf-C in #2862
+  * Fix cards showing up due in the past in a filtered deck.
+  * Fix filtered deck ordering of intraday learning cards and reviews by @abdnh in #2828
+  * Support all MathJax modules in review screen by @abdnh in #2836
+  * Add hint for zero minutes in filtered deck by @Gustaf-C in #2887
+  * Fix relative overdueness order error in filtered deck.
+Image occlusion:
+
+  * Add keyboard shortcuts to Image Occlusion, and fix a number of issues. By @krmanik in #2809
+    and #2847
+  * Fix image occlusion not showing up in Qt5 by @hikaru-y in #2829
+  * Don't show an error when opening add screen when the existing I/O notetype is invalid.
+  * Fix overlapping I/O icons in some languages
+  * Fix changes to groups of I/O masks not saving by @abdnh in #2878
+  * Fix switching of add & history buttons when selecting IO notetype by @akashreddy03 in #2833
+  * Fix IO card count by @abdnh in #2884
+
+Import/export:
+
+  * Allow importing/exporting with/without deck configs by @RumovZ in #2804
+  * Fix CSV importer dropdowns not updating after changes by @RumovZ in #2885
+  * Fix inability to search for existing notes in CSV import screen by @RumovZ in #2898
+  * Fix broken HTML in CSV import screen.
+
+Editor:
+
+  * Fix image overlay not closing when clicking outside on Qt6.6 by @hikaru-y in #2861
+  * Clear editor's internal copied text on cut/copy by @abdnh in #2866
+  * Fix Mathjax can only be pasted once by @akashreddy03 in #2869
+  * Improve confirmation message in Add screen by @abdnh in #2903
+  * Fix macOS clipboard issues by @msisovic in #2900
+  * Improve visibility of clicked buttons in editor by @Gustaf-C in #2841
+
+Card info:
+
+  * Show due date of buried/suspended cards in card info by @abdnh in #2820
+  * Hide "position" in card info when card not new.
+  * Show actual due date of learning cards in Card Info screen by @abdnh in #2865
+  * Bring card info window to top if card info action used again by @akashreddy03 in #2896
+
+Browser:
+
+  * Ensure cloze numbers sort in order when sorting by card template.
+  * Fix sorting by due column in notes mode.
+  * When sorting by due, intraday and interday intervals are no longer separated. By @abdnh in #2840
+  * Calculate elapsed days for intraday learning cards in browse screen and relative overdueness sorting.
+
+Platform changes:
+
+  * Update to PyQt 6.6.1 on all platforms.
+  * Platform CSS has been reimplemented. Standard selectors like .win and .mobile should continue to work; more obscure ones
+  that weren't documented will not. By @abdnh in #2854
+  * Automatically disable sandbox on Qt5 PyPi/packaged builds on Linux, as is required on modern glibc versions.
+  * The Qt6 Apple Silicon build now correctly declares it requires macOS 12+ to run, instead of crashing on startup.
+  * Update licensing info of a few third-party modules by @antecrescent in #2850
+  * Mention environment variable YARN_BINARY in documentation by @antecrescent in #2851
+
+Other:
+
+  * Improve keyboard handling and accessibility of dropdown boxes by @grepgrok in #2811
+  * Resolve some accessibility issues for tag options buttons by @grepgrok in #2787
+  * Ensure deck browser fetches collection data in the background.
+  * Fix sync status check blocking collection access when network offline.
+  * Ensure correct endpoint is used when syncing from Rust. By @sartak in #2864
+  * Ignore rescheduled cards in old stats page by @user1823 in #2863
+  * Do not add a fallback field reference if front side contains conditionals by @abdnh in #2859
+  * Ensure progress windows get cleaned up.
+  * Fix mpv idle notification not using main thread.
+  * Fix mpv not working out of the box in win32 source build.
+  * Handle invalid install timestamps in add-ons.
+  * Offer to save changes when card layout screen is closed by @abdnh in #2899
+  * Make the error dialog shown when an error occurs more friendly.
+  * Refresh model list when legacy addon adds notetype by @kieranlblack in #2825
+
+# 23.10.1-1
+General:
+  * Update all platforms to Qt 6.6. This change fixes Japanese input on macOS.
+  * Fix Anki failing to run on older macOS versions.
+  * The Linux Qt6 build requires a newer glibc, so older distros like Debian 11 won't work with it.
+  * Fix syncserver failing to run in macOS packaged build.
+  * Fix some potential security issues.
+  * Fix 'creating backup' showing for longer than necessary.
+  * Add tooltip to mask editor button.
+  * Allow creation of empty filtered decks by @Gustaf-C in #2788
+  * Add confirmation for upload when AnkiWeb collection determined empty.
+  * Fix add-ons screen showing 'requires Anki >= 2.1.231000'.
+  * Fix overflowing filenames displacing import button by @RumovZ in #2806
+  * Fix Anki closing before 'your clock is wrong' message appears.
+  * Hide "toggle masks" in "Hide One, Guess One" mode by @abdnh in #2817
+  * Change tooltip strings for image occlusion center alignments by @snowtimeglass in #2815
+  * Check video tags in media check.
+
+FSRS:
+  * Prompt user to save preset changes before they compute FSRS weights.
+  * Fix panic when enabling FSRS with add-on-rescheduled cards.
+  * Add an info box so the non-linear nature of desired retention can be seen
+  * Improve presentation of log loss and RMSE by @user1823 in #2805
+  * Rename FSRS weights to parameters
+  * Handle stability < 0.5 in stability graph
+
+# 23.10-1
+Notable changes:
+   * Anki's version numbering scheme has changed to year.month(.patch).
+   * Quite a few add-ons will need updates to support the Qt 6 version of this release. Some porting notes are available.
+   * Support for FSRS (which improves upon the scheduling provided by SM-2) is now integrated into Anki. You can compute the model weights directly inside Anki, and no longer need to use custom scheduling. If you have previously used FSRS, please delete the text in the custom scheduling section before enabling FSRS, and ensure the helper add-on has been updated to the 23.10 version if you are using it. By @L-M-Sherlock with help from @dae and @asukaminato0721 in #2633, #2654 and https://github.com/open-spaced-repetition/fsrs-rs.
+   * Anki now has built-in support for creating image occlusions. Select the automatically-added "Image Occlusion" notetype in the add screen to use it. Glutanimate intends to update his add-on soon to work with the new system. By @krmanik, with help from @glutanimate, @hikaru-y, @abdnh and @dae in #2367, #2485, #2600, #2602, #2649, #2689, #2705 and more.
+   * .apkg imports are able to merge changed notetypes, and can exclude scheduling data. By @RumovZ in #2612
+   * Performance improvements to things like browser loading in the official builds.
+   * You can now customize the video driver in Qt6 in the preferences, which can help to work around graphical issues. @abdnh in #2643
+   * Add an option to stop the timer on answer by @abdnh in #2673
+   * Allow searching for missing custom data properties by @abdnh in #2626
+   * Support searching for custom data strings by @abdnh in #2634
+   * Support for the v2 scheduler has been dropped.
+   * .apkg exports now default to the new format.
+   * New cards can now be gathered by deck then random note.
+
+ Smaller tweaks/fixes:
+   * Add a backend method to add notes in bulk by @abdnh in #2659
+   * Add ability to tab to DuplicateLink by @SteelColossus in #2646
+   * Add profile name in profile deletion confirmation message by @chandraiyengar in #2722
+   * Add Sphinx documentation generation functionality by @gsingh93 in #2720
+   * added Translator by @platynowy in #2653
+   * Allow full screen mode on new Qt6 drivers by @abdnh in #2660
+   * Allow saving window position when window fullscreen on Qt 6
+   * Better error messages when csv file is in the wrong format
+   * Change “Delete Note” shortcut to cmd+backspace by @montyevans in #2614
+   * Check DB now fixes invalid UTF-8 in tags.
+   * Close import log page on error by @abdnh in #2639
+   * Display a more friendly message when one or more add-ons fail at startup
+   * Do not show [object Object] in import log by @abdnh in #2636
+   * Don't rely on the presence of revlogs to decide whether deck configs should be imported.
+   * Fix a11y issues with Badge component by @adeleke5140 in #2721
+   * Fix an error when repositioning tags (thanks to @abdnh)
+   * Fix an issue caused by adding a colon to the start or end of a deck name by @swektr in #2748
+   * Fix answer button tooltips not reflecting configured shortcuts by @abdnh in #2657
+   * Fix error when closing Find Duplicates screen early by @abdnh in #2669
+   * Fix intermittent browser error triggered by an early resize event by @abdnh in #2671
+   * Fix misleading warning when changing notetype from/to cloze by @abdnh in #2744
+   * Fix ModuleNotFoundError: No module named 'distutils' by @virinci in #2723
+   * Fix pasting from external programs not working after copying text inside the editor.
+   * Fix reversed float left/right icons
+   * Fix some issues with undo/redo in mask editor by @hikaru-y in #2649
+   * Fix typo: notetypeId → noteId by @glutanimate in #2615
+   * Fix unable to save field dialog if certain fields are deleted by @swektr in #2663
+   * Fix unescaped HTML in type-in-the-answer by @abdnh in #2658
+   * Implemented support to audio_did_seek_relative by @evandrocoan in #2632
+   * Reduce shaking of bottom bar by @abdnh in #2734
+   * Rework media syncing to make it a little faster, and avoid duplicate errors when your password has changed. #2647
+   * Skip template checks in Fields screen by @abdnh in #2670
+   * Support AVIF by @nihil-admirari in #2630
+   * Support Qt.TextFormat.MarkdownText in aqt.utils by @abdnh in #2675
+   * The "edit current card" window is now a main window, which fixes some shortcut keys on macOS. By @abdnh in #2732
+   * Tooltips for CSV import and import page refactoring by @RumovZ in #2655
+   * Tweak browser column labels to card type, note type by @Gustaf-C in #2751
+   * Change export notes' parent window in card browser by @kelciour in #2761
+   * Fix Linux install script CWD check by @virinci in #2775
+   * Make it possible to silent uninstall with WinGet by @kelciour in #2757
+   * Refresh reviewer as the day rolls over by @abdnh in #2756
+   * Update to Qt 6.5.3 on Windows/Mac
+   * Fix error on 'Previous Card Info' when deleting a note by @abdnh in #2790
+   * Fix HTML editor not displaying properly when expanding field by @hikaru-y in #2792
+
+# 2.1.66-2
+PKGBUILD:
+   * pin nodejs>=18
+   * use RELEASE=2 env var for better optimization. This significantly increase compile time, especially at the 'runner run' step
+# 2.1.66-1
+   * Windows and Mac builds have been updated to the latest toolkit version, which will hopefully fix some crashes/bugs.
+   * The v3 scheduler is now the default for new users.
+   * When imports complete, a summary window is now shown (thanks to Abdo).
+   * Use a different approach for detecting copy+paste from Anki fields, which may fix some crashes.
+   * The minimalist/reduce motion toggles should no longer affect card content.
+   * Media check now automatically extracts images that have been embedded in fields.
+   * Handle importing of legacy AnkiDroid backups.
+   * The built-in sync server can now be built without Python if you prefer.
+   * Add keyboard shortcut for legacy stats (thanks to Luc).
+   * Accessibility improvements (thanks to Derek and Kenny).
+   * Fix addon update dialog showing twice (thanks to Rumo).
+   * Fix bold toggle not working in certain circumstances (thanks to mmjang).
+   * Align code blocks to left (thanks to shunlog).
+   * Make weekday font smaller for Chinese locale (thanks to mmjang).
+   * Improve performance of invalid ID fix in DB check.
+   * Fix main window geometry/state not being restored in some cases (thanks to Abdo).
+   * Handle invalid float mtimes in DB check.
+   * Fix total note count not being logged in apkg import.
+   * Report actual error when DbError occurs.
+   * Fix two issues with MathJax editor (thanks to Hikaru).
+   * Don't fail silently when an empty csv is imported.
+   * Fix two issues that can cause editor fields to behave incorrectly (thanks to Hikaru).
+   * When cards are in intraday learning queue, don't use original due.
+   * Fix "Add-ons possibly involved" message never appearing on Windows (thanks to Abdo).
+   * Add partial support for Hangul keyboard shortcuts during review (thanks to Christopher).
+   * Disable add-on buttons when no field is focused by default (thanks to Abdo).
+   * Fix toggleable editor button styles (thanks to Abdo).
+   * Fixed a sporadic error in the review screen (thanks to mjuhanne).
+   * Fixed an error that could occur when syncing between newer and older clients.
+   * Fixed tab order in find&replace screen (thanks to Gabriel).
+   * Various other minor fixes and behind-the-scenes changes.
+
+Dev related:
+
+   * Fix incorrect handling of locals in debug console (thanks to Rumo).
+   * Add did-add-field-hook analogous to did-delete-field (thanks to 3ter).
+   * Fix run-qt5.15.bat (thanks to Hikaru).
+   * Support more mime types for add_extension_based_on_mime (thanks to BenYip).
+   * Make set_config_help_action work with submodules (thanks to Abdo).
+   * Exclude Fabric's large canvas dependency (thanks to Kavel).
+
+PKGBUILD:
+   * fix patch for changed file
+   * yarn run postinstall now runs in prepare()
+
+# 2.1.65-1
+  * Default to current deck in csv import if settings allow it.
+  * Disable Toggle Bury when nothing is selected (thanks to Abdo).
+  * Fix broken window styling when installation path includes certain Latin1 chars on Windows.
+  * Fix illegible tooltips when system in dark mode on some Linux installs.
+  * Fix incorrect font sizes on X11 when fractional scaling in use.
+  * If the old Anki uninstaller fails, allow installation to proceed.
+  * Improve phrasing in dialog that asks which deck's options should be shown (thanks to
+  chrissy0).
+  * Fix some add-on installation errors not being reported (thanks to Abdo)
+  * Add add-on installation hooks (thanks to Abdo).
+
+PKGBUILD:
+  * When using rustup as the system cargo provider, force an update before compilation to use most recent stable branch. This way, builds using rust or rustup should be more easily recreatable
+
+# 2.1.64-1
+Functional changes:
+
+  * The Windows installer no longer requires admin access (thanks to Martin). The first time you update, you'll need to run the installer again after uninstall completes.
+  * Allow the user to configure answer keys in the preferences, fixing conflicts (thanks to Ren).
+  * Preload embedded fonts to prevent flicker, and tweak wait time for image preloading (thanks to Hikaru).
+  * Add the ability to search for FSRS scheduling properties, eg. prop:cdn:d>0.5 to search for the difficulty > 0.5.
+  * Window positions, state and browser headers are now reset each time the Qt version changes, which should fix a number of crashes that users were reporting.
+  * Add-on shortcuts will now override Anki defaults (thanks to Ren).
+
+Fixes:
+
+  * Fix media files being imported incorrectly when importing an .apkg file exported without support for older Anki versions.
+  * Increase the number of supported fields in the editor (thanks to Hikaru).
+  * Attempt to work around intermittent color setting failures in Qt6.5 on macOS.
+  * Fix ugly text rendering on Wayland when using fractional scaling.
+  * Fix inability to import csv when path contains single quote.
+  * Show an error pop-up when csv import screen fails to load.
+  * Don't disable animations on card templates when reduce motion is on.
+  * Fix an error in the console when resizing windows (thanks to Austin)
+  * Fix a panic when user sets a huge learning step.
+  * Fix page scrolling when input box loses focus (thanks to Hikaru).
+  * Fix failure to start on Windows when path contains non-Latin text.
+  * Fix due/ivl prop queries not working in filtered decks.
+  * Make some collection methods public in the Rust API (thanks to Joel).
+
+PKGBUILD changes:
+  * major overhaul. All fetching is now done in prepare() the latest. build() can be run offline
+  * moved back to tarballs, patching .git folder manually
+  * all typecheck/formatting dependencies are stripped out as this is only required for development
+  * pip-sync is masked during build as we provide dependencies ourselves
+  * we use the most recent stable rust toolchain in the build
+  * yarn and cargo store their cache in $srcdir, a `yay/paru -Sc` will now more reliably reset the build environment
+  * added this changelog
