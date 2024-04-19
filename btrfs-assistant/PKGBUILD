@@ -15,11 +15,11 @@ source=("$pkgname-$pkgver.tar.gz::$url/-/archive/$pkgver/$pkgname-$pkgver.tar.gz
 sha256sums=('2e82c5fca35e29452fc74a9ba17b987b03862dc2e8b3da02b351d9c763bf5cf5')
 
 build() {
-	cd "$srcdir"
-	cmake -B build -S "$pkgname-$pkgver" -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE='Release'
-	make -C build
+  cd "$srcdir"
+  cmake -B build -S "$pkgname-$pkgver" -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE='Release'
+  make -C build
 }
 
 package() {
-	make -C build DESTDIR="$pkgdir" install
+  make -C build DESTDIR="$pkgdir" install
 }

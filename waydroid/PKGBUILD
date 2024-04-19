@@ -15,12 +15,12 @@ _commit="209c90d47330ddb357b5209309c80c4257f05fe3" # tags/1.4.2
 source=("waydroid::git+https://github.com/waydroid/waydroid.git#commit=$_commit")
 
 pkgver() {
-	cd "$pkgname"
-	git describe --tags | sed 's/^v//;s/-/+/g'
+  cd "$pkgname"
+  git describe --tags | sed 's/^v//;s/-/+/g'
 }
 
 package() {
-	make -C waydroid install DESTDIR="$pkgdir" USE_NFTABLES=1
+  make -C waydroid install DESTDIR="$pkgdir" USE_NFTABLES=1
 }
 
 sha256sums=('SKIP')

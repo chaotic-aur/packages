@@ -17,37 +17,37 @@ license=('GPL3')
 depends=('java-runtime=17' 'libgl' 'qt6-base' 'qt6-5compat' 'qt6-svg' 'qt6-imageformats' 'zlib' 'hicolor-icon-theme' 'quazip-qt6' 'tomlplusplus' 'cmark')
 makedepends=('cmake' 'extra-cmake-modules' 'git' 'jdk17-openjdk' 'scdoc' 'ghc-filesystem' 'gamemode')
 optdepends=('glfw: to use system GLFW libraries'
-	'openal: to use system OpenAL libraries'
-	'visualvm: Profiling support'
-	'xorg-xrandr: for older minecraft versions'
-	'java-runtime=8: for older minecraft versions')
+  'openal: to use system OpenAL libraries'
+  'visualvm: Profiling support'
+  'xorg-xrandr: for older minecraft versions'
+  'java-runtime=8: for older minecraft versions')
 source=("https://github.com/PrismLauncher/PrismLauncher/releases/download/${pkgver}/PrismLauncher-${pkgver}.tar.gz")
 sha256sums=('80bc2f7657d9432c11039799fe85a31c284affa84a41cafb758ac32a96bd10fe')
 
 prepare() {
-	cd "PrismLauncher-${pkgver}"
+  cd "PrismLauncher-${pkgver}"
 
 }
 
 build() {
-	cd "PrismLauncher-${pkgver}"
+  cd "PrismLauncher-${pkgver}"
 
-	export PATH="/usr/lib/jvm/java-17-openjdk/bin:$PATH"
+  export PATH="/usr/lib/jvm/java-17-openjdk/bin:$PATH"
 
-	cmake -DCMAKE_BUILD_TYPE= \
-		-DCMAKE_INSTALL_PREFIX="/usr" \
-		-DLauncher_BUILD_PLATFORM="archlinux" \
-		-DLauncher_QT_VERSION_MAJOR="6" \
-		-Bbuild -S.
-	cmake --build build
+  cmake -DCMAKE_BUILD_TYPE= \
+    -DCMAKE_INSTALL_PREFIX="/usr" \
+    -DLauncher_BUILD_PLATFORM="archlinux" \
+    -DLauncher_QT_VERSION_MAJOR="6" \
+    -Bbuild -S.
+  cmake --build build
 }
 
 check() {
-	cd "PrismLauncher-${pkgver}/build"
-	ctest .
+  cd "PrismLauncher-${pkgver}/build"
+  ctest .
 }
 
 package() {
-	cd "PrismLauncher-${pkgver}/build"
-	DESTDIR="${pkgdir}" cmake --install .
+  cd "PrismLauncher-${pkgver}/build"
+  DESTDIR="${pkgdir}" cmake --install .
 }

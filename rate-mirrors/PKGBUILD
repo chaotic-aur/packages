@@ -13,18 +13,18 @@ depends=('gcc-libs')
 makedepends=('cargo')
 
 build() {
-	cd "$pkgname-$pkgver"
+  cd "$pkgname-$pkgver"
 
-	export RUSTUP_TOOLCHAIN=stable
-	export CARGO_TARGET_DIR=target
-	cargo build --release --locked
+  export RUSTUP_TOOLCHAIN=stable
+  export CARGO_TARGET_DIR=target
+  cargo build --release --locked
 }
 
 package() {
-	cd "$pkgname-$pkgver"
+  cd "$pkgname-$pkgver"
 
-	install -Dm755 "target/release/rate_mirrors" "$pkgdir/usr/bin/${pkgname}"
-	install -Dm644 "LICENSE" "$pkgdir/usr/share/licenses/${pkgname}/LICENSE"
+  install -Dm755 "target/release/rate_mirrors" "$pkgdir/usr/bin/${pkgname}"
+  install -Dm644 "LICENSE" "$pkgdir/usr/share/licenses/${pkgname}/LICENSE"
 }
 
 #vim: syntax=sh
