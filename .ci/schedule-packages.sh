@@ -63,6 +63,7 @@ function generate_deptree() {
         fi
         deptree+="$i:$PKGNAMES:$DEPS"
     done
+    echo "$deptree"
 }
 
 if [ "$COMMAND" == "schedule" ]; then
