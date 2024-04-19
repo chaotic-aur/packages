@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 set -euo pipefail
-set -x
 
 # This script parses the parameters passed to this script and outputs a list of package names to a file
 
@@ -15,7 +14,7 @@ PACKAGES=("$@")
 source .ci/util.shlib
 
 if [ -v "PACKAGES[0]" ] && [ "${PACKAGES[0]}" == "all" ] && [ "$COMMAND" == "schedule" ]; then
-    echo "Rebuild of all packages requested."
+    UTIL_PRINT_INFO "Rebuild of all packages requested."
     UTIL_GET_PACKAGES PACKAGES
 fi
 
@@ -26,13 +25,13 @@ if [ "$COMMAND" == "auto-repo-remove" ]; then
 elif [ "$COMMAND" == "schedule" ]; then
     PARAMS+=("schedule" "--target-repo=$REPO_NAME" "--source-repo=$BUILD_REPO")
 else
-    echo "Unknown command: $COMMAND"
+    UTIL_PRINT_ERROR "Unknown command: $COMMAND"
     exit 1
 fi
 
 # Check if the array of packages is empty
 if [ ${#PACKAGES[@]} -eq 0 ]; then
-    echo "No packages selected."
+    UTIL_PRINT_WARNING "No packages selected."
     exit 0
 fi
 
@@ -41,10 +40,11 @@ if [ -v GITLAB_CI ]; then
     PARAMS+=("--commit")
     PARAMS+=("${CI_COMMIT_SHA}:${CI_PIPELINE_ID}")
 elif [ -v GITHUB_ACTIONS ]; then
-    echo "Warning: Pipeline updates are not supported on GitHub Actions yet."
+    UTIL_PRINT_WARNING "Pipeline updates are not supported on GitHub Actions yet."
 fi
 
 function generate_deptree() {
+    set -euo pipefail
     declare -a ALL_PACKAGES
     UTIL_GET_PACKAGES ALL_PACKAGES
     local deptree=""
@@ -63,7 +63,6 @@ function generate_deptree() {
         fi
         deptree+="$i:$PKGNAMES:$DEPS"
     done
-    echo "$deptree"
 }
 
 if [ "$COMMAND" == "schedule" ]; then

@@ -8,11 +8,13 @@ EXCLUDE_FILES=(.CI .git .gitignore)
 
 # Get a list of all the packages in the repo
 function UTIL_GET_PACKAGES() {
+    set -euo pipefail
     local -n GET_PACKAGES_ARRAY=${1:-PACKAGES}
     mapfile -t GET_PACKAGES_ARRAY < <(find . -mindepth 1 -maxdepth 1 -type d -not -path '*/.*' -printf '%P\n')
 }
 
 function UTIL_PRUNE_UNKNOWN_VARIABLES() {
+    set -euo pipefail
     local -n PRUNE_VARIABLES=${1:-VARIABLES}
     local -n PRUNE_VARIABLES_KNOWN=${2:-KNOWN_VARIABLE_LIST}
     for key in "${!PRUNE_VARIABLES[@]}"; do
@@ -23,6 +25,7 @@ function UTIL_PRUNE_UNKNOWN_VARIABLES() {
 }
 
 function UTIL_READ_VARIABLES_FROM_FILE() {
+    set -euo pipefail
     local file=$1
     local -n READ_ASSOC_ARRAY=${2:-VARIABLES}
     while IFS= read -r line || [ -n "$line" ]; do
@@ -33,6 +36,7 @@ function UTIL_READ_VARIABLES_FROM_FILE() {
 }
 
 function UTIL_WRITE_VARIABLES_TO_FILE() {
+    set -euo pipefail
     local file=$1
     local -n WRITE_ASSOC_ARRAY=${2:-VARIABLES}
 
@@ -47,6 +51,7 @@ function UTIL_WRITE_VARIABLES_TO_FILE() {
 # The reason this function doesn't use UTIL_PRUNE_UNKNOWN_VARIABLES is because we want to
 # keep the unknown variables in the array, but not write them to the file
 function UTIL_WRITE_KNOWN_VARIABLES_TO_FILE() {
+    set -euo pipefail
     local file=$1
     local -n WRITE_ASSOC_ARRAY=${2:-VARIABLES}
     local -n WRITE_ASSOC_ARRAY_KNOWN=${3:-KNOWN_VARIABLE_LIST}
@@ -63,24 +68,27 @@ function UTIL_WRITE_KNOWN_VARIABLES_TO_FILE() {
 }
 
 function UTIL_READ_MANAGED_PACAKGE() {
+    set -euo pipefail
     local target_file="./${1}/.CI/config"
+    local ret=1
+    local -n READ_MANAGED_ASSOC_ARRAY=${2:-VARIABLES}
     if [ -f "$target_file" ]; then
-        local -n READ_MANAGED_ASSOC_ARRAY=${2:-VARIABLES}
         UTIL_READ_VARIABLES_FROM_FILE "$target_file" READ_MANAGED_ASSOC_ARRAY
-
         # Check if any variable at all was read
         if [ ${#READ_MANAGED_ASSOC_ARRAY[@]} -ne 0 ]; then
             UTIL_PRUNE_UNKNOWN_VARIABLES READ_MANAGED_ASSOC_ARRAY
-            # shellcheck disable=2153
-            READ_MANAGED_ASSOC_ARRAY[PKGBASE]="$1"
-            return 0
+            ret=0
         fi
     fi
-    return 1
+
+    # shellcheck disable=2153
+    READ_MANAGED_ASSOC_ARRAY[PKGBASE]="$1"
+    return $ret
 }
 
 # Extract both the normal url and the fragment
 function UTIL_GET_URI_PARTS() {
+    set -euo pipefail
 	local netfile=$1
 
 	local fragment=${netfile#*#}
@@ -97,6 +105,7 @@ function UTIL_GET_URI_PARTS() {
 
 # $1: VARIABLES
 function UTIL_FETCH_VCS_COMMIT() {
+    set -euo pipefail
     local -n VARIABLES_FETCH_VCS_COMMIT=${1:-VARIABLES}
     local pkgbase="${VARIABLES_FETCH_VCS_COMMIT[PKGBASE]}"
 
@@ -147,6 +156,7 @@ function UTIL_FETCH_VCS_COMMIT() {
 # $1: VARIABLES
 # $2: new commit
 function UTIL_UPDATE_VCS_COMMIT() {
+    set -euo pipefail
     local -n VARIABLES_UPDATE_VCS_COMMIT=${1:-VARIABLES}
     local new_commit="$2"
 
@@ -158,6 +168,7 @@ function UTIL_UPDATE_VCS_COMMIT() {
 # $1: Output associative array
 # $2: array of pkgbases on AUR
 function UTIL_FETCH_AUR_TIMESTAMPS() {
+    set -euo pipefail
     local -n OUTPUT_ASSOC_ARRAY=$1
     local pkgbases=()
 
@@ -183,7 +194,7 @@ function UTIL_FETCH_AUR_TIMESTAMPS() {
         # Every 150 packages or at the end of the array, fetch the timestamps
         if [ $((i % 150)) -eq 149 ] || [ "$i" -eq "$((${#pkgbases[@]} - 1))" ]; then
             local response
-            echo "Info: Fetching AUR timestamps for $((i + 1))/${#pkgbases[@]} packages..."
+            UTIL_PRINT_INFO "Fetching AUR timestamps for $((i + 1))/${#pkgbases[@]} packages..."
             if response="$(curl -s "$API_URL")"; then
                 local -a res_timestamps
                 mapfile -t res_timestamps <<< "$(jq -r '.results[].LastModified' <<<"$response")"
@@ -204,6 +215,7 @@ function UTIL_FETCH_AUR_TIMESTAMPS() {
 # $1: VARIABLES
 # $2: new timestamp
 function UTIL_UPDATE_AUR_TIMESTAMP() {
+    set -euo pipefail
     local -n VARIABLES_AUR_TIMESTAMP=${1:-VARIABLES}
     local new_timestamp="$2"
 
@@ -216,6 +228,7 @@ function UTIL_UPDATE_AUR_TIMESTAMP() {
 # $1: prefix
 # $2: Extra ignores
 function UTIL_GET_EXCLUDE_LIST() {
+    set -euo pipefail
     local prefix="$1"
     local -a extra_ignores=()
     read -ra extra_ignores <<< "${2:-}"
@@ -232,6 +245,7 @@ function UTIL_GET_EXCLUDE_LIST() {
 }
 
 function UTIL_READ_CONFIG_FILE() {
+    set -euo pipefail
     local -a UTIL_READ_CONFIG_FILE_KNOWN_VARIABLES=("${!KNOWN_CONFIG_LIST[@]}")
     declare -A UTIL_READ_CONFIG_FILE_ARRAY
     UTIL_READ_VARIABLES_FROM_FILE ".ci/config" UTIL_READ_CONFIG_FILE_ARRAY
@@ -255,13 +269,32 @@ function UTIL_READ_CONFIG_FILE() {
 # $1: Run directory
 # $2: Custom hook executable path
 function UTIL_LOAD_CUSTOM_HOOK() {
+    set -euo pipefail
 	if [[ -f "$2" && -x "$2" ]] && [ -d "$1" ]; then
         pushd "$1" > /dev/null || return 1
 		"$2" || { 
-            echo "Error: Custom hook failed: $2" >&2
+            UTIL_PRINT_ERROR "Custom hook failed: $2"
             popd > /dev/null || return 1
             return
         }
         popd > /dev/null || return 1
 	fi
+}
+
+# $1: Message
+function UTIL_PRINT_WARNING() {
+    set -euo pipefail
+    printf '\e[1;33mWarning:\e[0m %s\n' "$1" >&2
+}
+
+# $1: Message
+function UTIL_PRINT_ERROR() {
+    set -euo pipefail
+    printf '\e[1;31mError:\e[0m %s\n' "$1" >&2
+}
+
+# $1: Message
+function UTIL_PRINT_INFO() {
+    set -euo pipefail
+    printf '\e[1;34mInfo:\e[0m %s\n' "$1"
 }

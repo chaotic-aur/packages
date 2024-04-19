@@ -2,6 +2,9 @@
 # shellcheck disable=2153
 set -euo pipefail
 
+# shellcheck source=/dev/null
+source .ci/util.shlib
+
 # Set up required environment
 [[ -v "TMPDIR" ]] || TMPDIR="/tmp"
 mkdir -p "$TMPDIR/aur-push"
@@ -15,8 +18,8 @@ git config --global user.email "$GIT_AUTHOR_EMAIL"
 AUR_KEY_FILE="$TMPDIR/AUR_KEY"
 set +x
 if [[ -z ${AUR_KEY+x} ]]; then
-    echo "No AUR SSH key available, backing off!"
-    exit 1
+    UTIL_PRINT_ERROR "No AUR SSH key available, backing off!"
+    exit 0
 else
     touch "$AUR_KEY_FILE"
 
@@ -25,8 +28,6 @@ else
     chmod 600 "$AUR_KEY_FILE"
     echo "$AUR_KEY" >"$AUR_KEY_FILE"
 fi
-
-set -x
 
 declare -a PACKAGES
 PACKAGES=("$@")
@@ -39,21 +40,19 @@ elif [ -v GITHUB_ACTIONS ]; then
     _CI_PIPELINE_URL="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
     _CI_REPOSITORY_URL="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/commits/${GITHUB_REF}"
 else
-    echo "Warning: supplying pipeline/project details in commit messages is only supported on GitLab CI/GitHub Actions."
+    UTIL_PRINT_WARNING "Supplying pipeline/project details in commit messages is only supported on GitLab CI/GitHub Actions."
 fi
 
-# shellcheck source=/dev/null
-source .ci/util.shlib
 export GIT_SSH_COMMAND="ssh -i $AUR_KEY_FILE -o StrictHostKeyChecking=accept-new"
 
 if [ -v "PACKAGES[0]" ] && [ "${PACKAGES[0]}" == "all" ]; then
-    echo "AUR push of all managed packages requested."
+    UTIL_PRINT_INFO "AUR push of all managed packages requested."
     UTIL_GET_PACKAGES PACKAGES
 fi
 
 # Check if the array of packages is empty
 if [ ${#PACKAGES[@]} -eq 0 ]; then
-    echo "No packages to push."
+    UTIL_PRINT_INFO "No packages to push."
     exit 0
 fi
 
@@ -67,7 +66,7 @@ for package in "${PACKAGES[@]}"; do
 
         # Clone via SSH to allow pushing
         if ! test -d "$TMPDIR/aur-push/$package"; then
-            git clone "ssh://aur@aur.archlinux.org/$package.git" "$TMPDIR/aur-push/$package"
+            git clone -q "ssh://aur@aur.archlinux.org/$package.git" "$TMPDIR/aur-push/$package"
         fi
 
         # We always run shfmt on the PKGBUILD. Two runs of shfmt on the same file should not change anything
@@ -85,18 +84,18 @@ for package in "${PACKAGES[@]}"; do
         if [[ -n $(git status -uno --porcelain) ]]; then
             git add .
             if [ -v _CI_REPOSITORY_URL ]; then
-                git commit -m "chore: update $package" \
+                git commit -q -m "chore: update $package" \
                     -m "This commit was automatically generated to reflect changes to this package in another repository." \
                     -m "The changelog for this package can be found at ${_CI_REPOSITORY_URL}/$package." \
                     -m "Logs of the corresponding pipeline run can be found here: $_CI_PIPELINE_URL."
             else
-                git commit -m "chore: update $package" \
+                git commit -q -m "chore: update $package" \
                     -m "This commit was automatically generated to reflect changes to this package in another repository." \
                     -m "Unfortunately, due to a misconfiguration, the URL of the source repository is not available."
             fi
             git push
         else
-            echo "No changes detected, skipping!"
+            UTIL_PRINT_INFO "No changes detected, skipping!"
             continue
         fi
         popd

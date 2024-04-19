@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 set -euo pipefail
-set -x
 
 # This script is triggered by a scheduled pipeline
 
@@ -37,12 +36,12 @@ git config --global user.name "$GIT_AUTHOR_NAME"
 git config --global user.email "$GIT_AUTHOR_EMAIL"
 
 if [ -v TEMPLATE_ENABLE_UPDATES ] && [ "$TEMPLATE_ENABLE_UPDATES" == "true" ]; then
-    .ci/update-template.sh && echo "Info: Updated CI template." && exit 0 || true
+    .ci/update-template.sh && UTIL_PRINT_INFO "Updated CI template." && exit 0 || true
 fi
 
 # Check if the scheduled tag does not exist or scheduled does not point to HEAD
 if ! [ "$(git tag -l "scheduled")" ] || [ "$(git rev-parse HEAD)" != "$(git rev-parse scheduled)" ]; then
-    echo "Previous on-commit pipeline did not seem to run successfully. Aborting." >&2
+    UTIL_PRINT_ERROR "Previous on-commit pipeline did not seem to run successfully. Aborting."
     exit 1
 fi
 
@@ -56,6 +55,7 @@ COMMIT="${COMMIT:-false}"
 # Loop through all packages to do optimized aur RPC calls
 # $1 = Output associative array
 function collect_aur_timestamps() {
+    set -euo pipefail
     # shellcheck disable=SC2034
     local -n collect_aur_timestamps_output=$1
     local AUR_PACKAGES=()
@@ -80,6 +80,7 @@ function collect_aur_timestamps() {
 # $1: dir1
 # $2: dir2
 function package_changed() {
+    set -euo pipefail
     # Check if the package has changed
     # NOTE: We don't care if anything but the PKGBUILD or .SRCINFO has changed.
     # Any properly built PKGBUILD will use hashes, which will change
@@ -100,13 +101,14 @@ function package_changed() {
 # $1: dir1
 # $2: dir2
 function package_major_change() {
+    set -euo pipefail
     local sdiff_output
     if sdiff_output="$(sdiff -ds <(gawk -f .ci/awk/remove-checksum.awk "$1/PKGBUILD") <(gawk -f .ci/awk/remove-checksum.awk "$2/PKGBUILD"))"; then
         return 1
     fi
 
     if [ $? -eq 2 ]; then
-        echo "Warning: sdiff failed" >&2
+        UTIL_PRINT_ERROR "$2: sdiff failed"
         return 2
     fi
 
@@ -124,17 +126,18 @@ function package_major_change() {
 # $1: VARIABLES
 # $2: git URL
 function update_via_git() {
+    set -euo pipefail
     local -n VARIABLES_VIA_GIT=${1:-VARIABLES}
     local pkgbase="${VARIABLES_VIA_GIT[PKGBASE]}"
 
-    git clone --depth=1 "$2" "$TMPDIR/aur-pulls/$pkgbase"
+    git clone -q --depth=1 "$2" "$TMPDIR/aur-pulls/$pkgbase"
 
     # We always run shfmt on the PKGBUILD. Two runs of shfmt on the same file should not change anything
     shfmt -w "$TMPDIR/aur-pulls/$pkgbase/PKGBUILD"
 
     if package_changed "$TMPDIR/aur-pulls/$pkgbase" "$pkgbase"; then
         if [ -v CI_HUMAN_REVIEW ] && [ "$CI_HUMAN_REVIEW" == "true" ] && package_major_change "$TMPDIR/aur-pulls/$pkgbase" "$pkgbase"; then
-            echo "Warning: Major change detected in $pkgbase."
+            UTIL_PRINT_INFO "$pkgbase: Major change detected."
             VARIABLES_VIA_GIT[CI_REQUIRES_REVIEW]=true
         fi
         # Rsync: delete files in the destination that are not in the source. Exclude deleting .CI, exclude copying .git
@@ -146,18 +149,19 @@ function update_via_git() {
 # $1: VARIABLES
 # $2: source
 function update_from_gitlab_tag() {
+    set -euo pipefail
     local -n VARIABLES_UPDATE_FROM_GITLAB_TAG=${1:-VARIABLES}
     local pkgbase="${VARIABLES_UPDATE_FROM_GITLAB_TAG[PKGBASE]}"
     local project_id="${2:-}"
 
     if [ ! -f "$pkgbase/.SRCINFO" ]; then
-        echo "ERROR: $pkgbase: .SRCINFO does not exist." >&2
+        UTIL_PRINT_ERROR "$pkgbase: .SRCINFO does not exist."
         return
     fi
 
     local TAG_OUTPUT
     if ! TAG_OUTPUT="$(curl --fail-with-body --silent "https://gitlab.com/api/v4/projects/${project_id}/repository/tags?order_by=version&per_page=1")" || [ -z "$TAG_OUTPUT" ]; then
-        echo "ERROR: $pkgbase: Failed to get list of tags." >&2
+        UTIL_PRINT_ERROR "$pkgbase: Failed to get list of tags."
         return
     fi
 
@@ -166,14 +170,14 @@ function update_from_gitlab_tag() {
     VERSION="$(jq -r '.[0].name' <<<"$TAG_OUTPUT")"
 
     if [ -z "$COMMIT_URL" ] || [ -z "$VERSION" ]; then
-        echo "ERROR: $pkgbase: Failed to get latest tag." >&2
+        UTIL_PRINT_ERROR "$pkgbase: Failed to get latest tag."
         return
     fi
 
     # Parse .SRCINFO file for PKGVER
     local SRCINFO_PKGVER
     if ! SRCINFO_PKGVER="$(grep -m 1 -oP '\tpkgver\s=\s\K.*$' "$pkgbase/.SRCINFO")"; then
-        echo "ERROR: $pkgbase: Failed to parse PKGVER from .SRCINFO." >&2
+        UTIL_PRINT_ERROR "$pkgbase: Failed to parse PKGVER from .SRCINFO."
         return
     fi
 
@@ -190,7 +194,7 @@ function update_from_gitlab_tag() {
         COMMIT="${BASH_REMATCH[3]}"
         BASE_URL="${BASH_REMATCH[1]}/${PROJECT_NAME}/-/archive"
     else
-        echo "ERROR: $pkgbase: Failed to parse commit URL." >&2
+        UTIL_PRINT_ERROR "$pkgbase: Failed to parse commit URL."
         return
     fi
 
@@ -201,16 +205,22 @@ function update_from_gitlab_tag() {
 }
 
 function update_pkgbuild() {
+    set -euo pipefail
     local -n VARIABLES_UPDATE_PKGBUILD=${1:-VARIABLES}
     local pkgbase="${VARIABLES_UPDATE_PKGBUILD[PKGBASE]}"
-    if ! [ -v "VARIABLES_UPDATE_PKGBUILD[CI_PKGBUILD_SOURCE]" ]; then
+
+    if ! [ -v "VARIABLES_UPDATE_PKGBUILD[CI_PKGBUILD_SOURCE]" ] || [ -z "${VARIABLES_UPDATE_PKGBUILD[CI_PKGBUILD_SOURCE]}" ]; then
+        UTIL_PRINT_WARNING "$pkgbase: CI_PKGBUILD_SOURCE is not set. If this is on purpose, please set it to 'custom'." 
         return 0
     fi
 
     local PKGBUILD_SOURCE="${VARIABLES_UPDATE_PKGBUILD[CI_PKGBUILD_SOURCE]}"
 
+
+    if [[ "$PKGBUILD_SOURCE" == "custom" ]]; then
+        return 0
     # Check if the source starts with gitlab:
-    if [[ "$PKGBUILD_SOURCE" =~ ^gitlab:(.*) ]]; then
+    elif [[ "$PKGBUILD_SOURCE" =~ ^gitlab:(.*) ]]; then
         update_from_gitlab_tag VARIABLES_UPDATE_PKGBUILD "${BASH_REMATCH[1]}"
     # Check if the package is from the AUR
     elif [[ "$PKGBUILD_SOURCE" != aur ]]; then
@@ -220,7 +230,7 @@ function update_pkgbuild() {
 
         # Fetch from optimized AUR RPC call
         if ! [ -v "AUR_TIMESTAMPS[$pkgbase]" ]; then
-            echo "Warning: Could not find $pkgbase in cached AUR timestamps." >&2
+            UTIL_PRINT_WARNING "Could not find $pkgbase in cached AUR timestamps."
             return 0
         fi
         local NEW_TIMESTAMP="${AUR_TIMESTAMPS[$pkgbase]}"
@@ -240,6 +250,7 @@ function update_pkgbuild() {
 }
 
 function update_vcs() {
+    set -euo pipefail
     local -n VARIABLES_UPDATE_VCS=${1:-VARIABLES}
     local pkgbase="${VARIABLES_UPDATE_VCS[PKGBASE]}"
 
@@ -250,7 +261,7 @@ function update_vcs() {
 
     local _NEWEST_COMMIT
     if ! _NEWEST_COMMIT="$(UTIL_FETCH_VCS_COMMIT VARIABLES_UPDATE_VCS)"; then
-        echo "Warning: Could not fetch latest commit for $pkgbase via heuristic." >&2
+        UTIL_PRINT_WARNING "Could not fetch latest commit for $pkgbase via heuristic."
         return 0
     fi
 
@@ -282,28 +293,29 @@ fi
 for package in "${PACKAGES[@]}"; do
     unset VARIABLES
     declare -A VARIABLES
-    if UTIL_READ_MANAGED_PACAKGE "$package" VARIABLES; then
-        update_pkgbuild VARIABLES
-        update_vcs VARIABLES
-        UTIL_LOAD_CUSTOM_HOOK "./${package}" "./${package}/.CI/update.sh"
+    UTIL_READ_MANAGED_PACAKGE "$package" VARIABLES || VARIABLES[CI_NO_CONFIG]=true
+    update_pkgbuild VARIABLES
+    update_vcs VARIABLES
+    UTIL_LOAD_CUSTOM_HOOK "./${package}" "./${package}/.CI/update.sh"
+    if [ ! -v VARIABLES[CI_NO_CONFIG] ]; then
         UTIL_WRITE_KNOWN_VARIABLES_TO_FILE "./${package}/.CI/config" VARIABLES
+    fi
 
-        if ! git diff --exit-code --quiet; then
-            if [[ -v VARIABLES[CI_REQUIRES_REVIEW] ]] && [ "${VARIABLES[CI_REQUIRES_REVIEW]}" == "true" ]; then
-                .ci/create-pr.sh "$package"
+    if ! git diff --exit-code --quiet; then
+        if [[ -v VARIABLES[CI_REQUIRES_REVIEW] ]] && [ "${VARIABLES[CI_REQUIRES_REVIEW]}" == "true" ]; then
+            .ci/create-pr.sh "$package"
+        else
+            git add .
+            if [ "$COMMIT" == "false" ]; then
+                COMMIT=true
+                [ -v GITLAB_CI ] && git commit -q -m "chore(packages): update packages"
+                [ -v GITHUB_ACTIONS ] && git commit -q -m "chore(packages): update packages [skip ci]"
             else
-                git add .
-                if [ "$COMMIT" == "false" ]; then
-                    COMMIT=true
-                    [ -v GITLAB_CI ] && git commit -m "chore(packages): update packages"
-                    [ -v GITHUB_ACTIONS ] && git commit -m "chore(packages): update packages [skip ci]"
-                else
-                    git commit --amend --no-edit
-                fi
-                MODIFIED_PACKAGES+=("$package")
-                if [ -v CI_HUMAN_REVIEW ] && [ "$CI_HUMAN_REVIEW" == "true" ] && git show-ref --quiet "origin/update-$package"; then
-                    DELETE_BRANCHES+=("update-$package")
-                fi
+                git commit -q --amend --no-edit
+            fi
+            MODIFIED_PACKAGES+=("$package")
+            if [ -v CI_HUMAN_REVIEW ] && [ "$CI_HUMAN_REVIEW" == "true" ] && git show-ref --quiet "origin/update-$package"; then
+                DELETE_BRANCHES+=("update-$package")
             fi
         fi
     fi

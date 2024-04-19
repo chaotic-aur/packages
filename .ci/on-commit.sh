@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 set -euo pipefail
-set -x
 
 source .ci/util.shlib
 
@@ -11,6 +10,7 @@ UTIL_READ_CONFIG_FILE
 declare -A PACKAGES=()
 
 function populate_commit_info() {
+    set -euo pipefail
     COMMITS=()
     COMMIT_MESSAGES=()
 
@@ -29,7 +29,7 @@ function populate_commit_info() {
 
     # Check if the array of commits is empty
     if [ ${#COMMITS[@]} -eq 0 ]; then
-        echo "No commits detected since last CI run."
+        UTIL_PRINT_INFO "No commits detected since last CI run."
     fi
 
     # Get commit messages for each commit
@@ -39,6 +39,7 @@ function populate_commit_info() {
 }
 
 function parse_commit_messages() {
+    set -euo pipefail
     for i in "${!COMMIT_MESSAGES[@]}"; do
         local message="${COMMIT_MESSAGES[$i]}"
         local commit="${COMMITS[$i]}"
@@ -50,15 +51,15 @@ function parse_commit_messages() {
                 case "$package" in
                 all)
                     PACKAGES["all"]=1
-                    echo "Rebuild of all packages requested via commit message (${commit:0:7})."
+                    UTIL_PRINT_INFO "Rebuild of all packages requested via commit message (${commit:0:7})."
                     return
                     ;;
                 *)
                     if [ -d "$package" ]; then
                         PACKAGES["$package"]=1
-                        echo "Rebuild of $package requested via commit message (${commit:0:7})."
+                        UTIL_PRINT_INFO "Rebuild of $package requested via commit message (${commit:0:7})."
                     else
-                        echo "FATAL: Package $package requested but does not exist! Remove the package from the commit message (${commit:0:7}) and force push." >&2
+                        UTIL_PRINT_ERROR "FATAL: Package $package requested but does not exist! Remove the package from the commit message (${commit:0:7}) and force push."
                         exit 1
                     fi
                     ;;
@@ -69,6 +70,7 @@ function parse_commit_messages() {
 }
 
 function parse_changed_files() {
+    set -euo pipefail
     declare -A CHANGED_ROOT_FOLDERS
 
     for file in "${CHANGED_FILES[@]}"; do
@@ -90,7 +92,7 @@ function parse_changed_files() {
 
     for folder in "${!CHANGED_ROOT_FOLDERS[@]}"; do
         PACKAGES["$folder"]=1
-        echo "Executing rebuild of $folder due to changes in the folder."
+        UTIL_PRINT_INFO "Executing rebuild of $folder due to changes in the folder."
     done
 }
 
@@ -107,7 +109,7 @@ parse_changed_files
 
 # Check if we have any packages to build
 if [ ${#PACKAGES[@]} -eq 0 ] && [ "$PACKAGE_REMOVED" = false ]; then
-    echo "No packages to build, exiting gracefully."
+    UTIL_PRINT_INFO "No packages to build, exiting gracefully."
 else
     if [ ${#PACKAGES[@]} -ne 0 ]; then
         # Check if we have to build all packages

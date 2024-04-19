@@ -27,7 +27,7 @@ function update_source(source) {
         r = o[2]
     }
     r = gensub(/\x27([^\x27]+)\x27/, "\\1", "g", r)
-    r = gensub(/"([^\"]+)"/, "\\1", "g", r)
+    r = gensub(/\x22([^\x22]+)\x22/, "\\1", "g", r)
 
     # name-ver.tar.gz::https://gitlab.com/-/archive/name/name-version.tar.gz
     if (match(r, /^(.*)$/, o)) {
