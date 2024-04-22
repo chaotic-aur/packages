@@ -1,6 +1,6 @@
 pkgbase = prismlauncher
 	pkgdesc = Minecraft launcher with ability to manage multiple instances.
-	pkgver = 8.2
+	pkgver = 8.3
 	pkgrel = 1
 	url = https://prismlauncher.org
 	arch = i686
@@ -30,7 +30,7 @@ pkgbase = prismlauncher
 	optdepends = visualvm: Profiling support
 	optdepends = xorg-xrandr: for older minecraft versions
 	optdepends = java-runtime=8: for older minecraft versions
-	source = https://github.com/PrismLauncher/PrismLauncher/releases/download/8.2/PrismLauncher-8.2.tar.gz
-	sha256sums = 80bc2f7657d9432c11039799fe85a31c284affa84a41cafb758ac32a96bd10fe
+	source = https://github.com/PrismLauncher/PrismLauncher/releases/download/8.3/PrismLauncher-8.3.tar.gz
+	sha256sums = 4d587122f673ee4daea5aa098bd3da0f51989dbb600560146dd8a0375491cea0
 
 pkgname = prismlauncher
