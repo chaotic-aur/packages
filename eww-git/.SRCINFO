@@ -1,0 +1,19 @@
+pkgbase = eww-git
+	pkgdesc = ElKowar's wacky widgets
+	pkgver = 0.5.0.r9.g149727c
+	pkgrel = 1
+	url = https://github.com/elkowar/eww
+	arch = x86_64
+	license = MIT
+	makedepends = cargo
+	makedepends = git
+	depends = gtk3
+	depends = gtk-layer-shell
+	depends = libdbusmenu-glib
+	depends = libdbusmenu-gtk3
+	provides = eww
+	conflicts = eww
+	source = git+https://github.com/elkowar/eww.git
+	b2sums = SKIP
+
+pkgname = eww-git

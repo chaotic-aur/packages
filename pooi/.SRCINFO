@@ -1,0 +1,13 @@
+pkgbase = pooi
+	pkgdesc = trivia on the commandline
+	pkgver = 1.0.0
+	pkgrel = 1
+	url = https://gitlab.com/tellmeY/pooi
+	arch = x86_64
+	license = GPL3
+	depends = rust
+	depends = cargo
+	source = https://gitlab.com/tellmeY/$pkgname/-/archive/v$pkgver/pooi-v$pkgver.tar.gz 
+	sha256sums = 57ae830d1d7b3a59fb1f421736b17027b374b6758e21d69979a9cb7b3519a3a0 
+
+pkgname = pooi
