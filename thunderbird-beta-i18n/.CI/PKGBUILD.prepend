@@ -1,0 +1,15 @@
+
+pkgver=1
+pkgrel=1
+
+_update_version() {
+  _pkgver=$(
+    curl -I --no-progress-meter "https://download.mozilla.org/?product=thunderbird-beta-latest&os=linux64&lang=en-US" \
+      | strings | grep -E '^Location: (.*)$' | sed -E 's&^.*/releases/([0-9][^/]+)/.*$&\1&'
+  )
+}
+_update_version
+
+pkgver() {
+  echo "${_pkgver:?}"
+}

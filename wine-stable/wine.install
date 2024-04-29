@@ -1,0 +1,7 @@
+post_install() {
+  cat <<EOF
+To enable binfmt support, run:
+# ln -s /usr/share/wine/binfmt/wine.conf /etc/binfmt.d/wine.conf
+# systemctl restart systemd-binfmt
+EOF
+}

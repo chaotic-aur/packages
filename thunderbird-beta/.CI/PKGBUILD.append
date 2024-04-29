@@ -1,0 +1,7 @@
+
+unset b2sums
+unset sha256sums
+
+for i in "${source[@]}" ; do
+  sha256sums+=('SKIP')
+done
