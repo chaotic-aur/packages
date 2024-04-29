@@ -37,3 +37,4 @@ pkgbase = kega-fusion
 	optdepends_x86_64 = lib32-alsa-plugins: for PulseAudio users
 
 pkgname = kega-fusion
+
