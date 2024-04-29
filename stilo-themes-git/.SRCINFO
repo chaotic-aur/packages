@@ -1,0 +1,20 @@
+pkgbase = stilo-themes-git
+	pkgdesc = Minimalistic GTK themes
+	pkgver = 3.38.1.r3.g40308b0
+	pkgrel = 1
+	url = https://github.com/lassekongo83/stilo-themes
+	arch = any
+	license = GPL3
+	makedepends = git
+	makedepends = meson
+	makedepends = sassc
+	optdepends = ttf-roboto: The recommended font
+	optdepends = gtk-engines: for the GTK2 theme
+	optdepends = gtk-engine-murrine: for the GTK2 theme
+	provides = stilo-themes
+	conflicts = stilo-themes
+	options = !strip
+	source = git+https://github.com/lassekongo83/stilo-themes.git
+	sha256sums = SKIP
+
+pkgname = stilo-themes-git

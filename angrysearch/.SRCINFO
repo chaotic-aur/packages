@@ -1,0 +1,17 @@
+pkgbase = angrysearch
+	pkgdesc = Linux file search, instant results as you type
+	pkgver = 1.0.4
+	pkgrel = 1
+	url = https://github.com/DoTheEvo/ANGRYsearch
+	arch = any
+	license = GPL2
+	makedepends = git
+	depends = python-pyqt5
+	depends = libxkbcommon-x11
+	depends = xdg-utils
+	optdepends = python-gobject: desktop notifications support
+	optdepends = xdotool: Thunar & PCmanFM to select file on path open
+	source = git+https://github.com/DoTheEvo/ANGRYsearch.git#commit=ad438249267fca36e5b88a778de54a10802a0afd
+	sha256sums = SKIP
+
+pkgname = angrysearch

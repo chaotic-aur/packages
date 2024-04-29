@@ -1,0 +1,13 @@
+pkgbase = gimp-extras
+	pkgdesc = The extra brushes and patterns from ubuntu
+	pkgver = 2.0.4
+	pkgrel = 1
+	url = http://packages.ubuntu.com/search?searchon=names&keywords=gimp-data-extras
+	arch = any
+	license = GPL2
+	depends = gimp
+	source = https://download.gimp.org/mirror/pub/gimp/extras/gimp-data-extras-2.0.4.tar.bz2
+	sha512sums = d80de250335b502d0187b0184b51d8e0192bbe4d376f64601ae0e0c0350a50e99bc431272bddfdb94ff18ea52ecdd6d29ff28d61d39c1e009d026e1cde772672
+
+pkgname = gimp-extras
+

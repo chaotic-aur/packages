@@ -1,0 +1,14 @@
+pkgbase = neovim-symlinks
+	pkgdesc = Runs neovim if vi or vim is called
+	pkgver = 5
+	pkgrel = 1
+	arch = any
+	depends = neovim
+	depends = sh
+	provides = vim
+	provides = vi
+	conflicts = vim
+	conflicts = vi
+	conflicts = vi-vim-symlink
+
+pkgname = neovim-symlinks

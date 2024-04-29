@@ -1,0 +1,63 @@
+# Maintainer: David P. <megver83@openmailbox.org>
+# Contributor: artoo <artoo@manjaro.org>
+# Contributor: Jan de Groot <jgc@archlinux.org>
+# Contributor: Thayer Williams <thayer@archlinux.org>
+# Contributor: Giovanni Scafora <giovanni@archlinux.org>
+
+_date=20100619
+_extra=pm-quirks
+
+pkgname=pm-utils
+pkgver=1.4.1
+pkgrel=8
+pkgdesc="Utilities and scripts for suspend and hibernate power management"
+arch=('any')
+url="https://pm-utils.freedesktop.org"
+license=('GPL')
+depends=('bash' 'procps')
+conflicts=('pm-quirks')
+replaces=('pm-quirks')
+makedepends=('xmlto' 'docbook-xml' 'docbook-xsl')
+source=("https://pm-utils.freedesktop.org/releases/${pkgname}-${pkgver}.tar.gz"
+  '02-logging-append.patch'
+  '12-fix-intel-audio-powersave-hook.patch'
+  '13-49bluetooth-sync.patch'
+  '14-disable-sata-alpm.patch'
+  "https://pm-utils.freedesktop.org/releases/${_extra}-${_date}.tar.gz")
+sha512sums=('5bc9479fe75f120aee136befeb24c8d7d85f61410b551177ed61fd1b4ea9cce7989796b067e357ea93b44b4ae9f66311687066f188236c5efdfd3750695a8017'
+  '608a98f8603748c97d05593f4a107d15656dffed46d3ecd9d1d8bd03c94309ad4419f4335c91dbdab15074d6b9120195a4d21903d5233116bc1d9f61158b2e57'
+  '5c5cc0e810c9a189de5d3b603cac1c5adb69058f2033daad3558463d1a0f65c039e19132da54da373929fe8e652ae06e28edad2ea9ce17a2f73527e494eecaff'
+  '35e02607280b4cd166fbbb1dfc44ef33d20debe1e564db9d532af74a773cc4f8cc3ee3be149318cbbc0f9cc451b5001a499609dd962ff42c0a7c3305215ef831'
+  '9359943f3909985995dd68197ab25cf2560bcc458ba17b3b60f5503fe805e40c31856ac909604fbf419d69e833f2cd722e89e7ef029523e87e17c8fe25586f54'
+  'e20244fb72475945e08010d7ec19db2c017c1a04fa01d3d08c03d704d7f07f9c087bac6a5a44242cc8ed6cec5db47bc06a8862dd0f74088a565d37b6d7b95afc')
+
+prepare() {
+  cd "${srcdir}/${pkgname}-${pkgver}"
+  patch -Np1 -i "${srcdir}/02-logging-append.patch"
+  patch -Np1 -i "${srcdir}/12-fix-intel-audio-powersave-hook.patch"
+  patch -Np1 -i "${srcdir}/13-49bluetooth-sync.patch"
+  patch -Np1 -i "${srcdir}/14-disable-sata-alpm.patch"
+}
+
+build() {
+  cd "${srcdir}/${pkgname}-${pkgver}"
+  ./configure --prefix=/usr \
+    --sysconfdir=/etc \
+    --sbindir=/usr/bin \
+    --localstatedir=/var
+  make
+}
+
+package() {
+  cd "${srcdir}/${pkgname}-${pkgver}"
+  make DESTDIR="${pkgdir}" install
+
+  # nm >=0.8.2 has native udev suspend/resume support
+  rm -f "${pkgdir}/usr/lib/pm-utils/sleep.d/55NetworkManager"
+
+  # Remove hooks that cause hardware failure or don't make sense at all
+  rm -f "${pkgdir}/usr/lib/pm-utils/power.d/"{harddrive,disable_wol}
+
+  install -m755 -d "${pkgdir}/usr/lib/pm-utils/video-quirks"
+  install -m644 ${srcdir}/video-quirks/*.quirkdb "${pkgdir}/usr/lib/pm-utils/video-quirks/"
+}

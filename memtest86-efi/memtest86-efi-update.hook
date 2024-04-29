@@ -1,0 +1,9 @@
+[Trigger]
+Operation = Upgrade
+Type = Path
+Target = usr/share/memtest86-efi/*.efi
+
+[Action]
+Description = Updating MemTest86 EFI into ESP
+When = PostTransaction
+Exec = /usr/bin/memtest86-efi --update

@@ -1,0 +1,15 @@
+pkgbase = subnetcalc
+	pkgdesc = Subnet Calculator for IPv4/IPv6
+	pkgver = 2.5.1
+	pkgrel = 1
+	url = https://github.com/dreibh/subnetcalc
+	arch = i686
+	arch = x86_64
+	license = GPL
+	makedepends = cmake
+	depends = geoip
+	source = https://github.com/dreibh/subnetcalc/archive/refs/tags/subnetcalc-2.5.1.tar.gz
+	md5sums = cb7b7169f42ee352ab9a3a96230743a9
+	sha512sums = b78eb6686865f6337fb736a965f4eba0d7edeb2a8905a52a5d70caee8936b768010b36a65bad1e26ac3cf73af95210d006fd1037a0fe4b2d578b2eaf4c7251a4
+
+pkgname = subnetcalc

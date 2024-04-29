@@ -1,0 +1,21 @@
+pkgbase = jdanimatedimageeditor
+	pkgdesc = A simple program for creating animated Images
+	pkgver = 1.4
+	pkgrel = 1
+	url = https://codeberg.org/JakobDev/jdAnimatedImageEditor
+	arch = any
+	license = GPL3
+	makedepends = qt5-tools
+	makedepends = python-setuptools
+	makedepends = python-build
+	makedepends = python-installer
+	makedepends = python-wheel
+	depends = python
+	depends = python-pyqt6
+	depends = python-pillow
+	depends = python-requests
+	depends = ffmpeg
+	source = jdanimatedimageeditor-1.4.tar.gz::https://codeberg.org/JakobDev/jdAnimatedImageEditor/archive/1.4.tar.gz
+	sha256sums = 5ec1b348555f06ff3f0a47055b5c56fb204d42fcbbc161c33e526fe38266e33c
+
+pkgname = jdanimatedimageeditor

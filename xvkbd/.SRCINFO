@@ -1,0 +1,20 @@
+pkgbase = xvkbd
+	pkgdesc = virtual (graphical) keyboard program for X Window System
+	pkgver = 4.1
+	pkgrel = 1
+	url = http://t-sato.in.coocan.jp/xvkbd/
+	arch = x86_64
+	license = GPL
+	makedepends = imake
+	depends = libxmu
+	depends = xaw3d
+	depends = glibc
+	depends = libxt
+	depends = libxtst
+	depends = libxp
+	depends = libxpm
+	source = http://t-sato.in.coocan.jp/xvkbd/xvkbd-4.1.tar.gz
+	sha256sums = 952d07df0fe1e45286520b7c98b4fd00fd60dbf3e3e8ff61e12c259f76a3bef4
+
+pkgname = xvkbd
+

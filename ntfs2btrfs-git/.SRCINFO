@@ -1,0 +1,20 @@
+pkgbase = ntfs2btrfs-git
+	pkgdesc = In-place conversion of Microsoft's NTFS filesystem to the open-source filesystem Btrfs
+	pkgver = 20240115.r0.g1d55788
+	pkgrel = 1
+	url = https://github.com/maharmstone/ntfs2btrfs
+	arch = x86_64
+	license = GPL2
+	makedepends = git
+	makedepends = cmake
+	makedepends = pkgconf
+	depends = fmt
+	depends = zlib
+	depends = lzo
+	depends = zstd
+	provides = ntfs2btrfs
+	conflicts = ntfs2btrfs
+	source = git+https://github.com/maharmstone/ntfs2btrfs.git
+	sha512sums = SKIP
+
+pkgname = ntfs2btrfs-git

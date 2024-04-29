@@ -1,0 +1,9 @@
+
+url="https://gitlab.gnome.org/GNOME/cheese"
+
+pkgver() {
+  cd "${_pkgbase}"
+
+  git describe --long --tags --abbrev=7 --exclude='*[a-zA-Z][a-zA-Z]*' \
+    | sed -E 's/^v//;s/([^-]*-g)/r\1/;s/-/./g'
+}

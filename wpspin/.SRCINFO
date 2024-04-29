@@ -1,0 +1,22 @@
+pkgbase = wpspin
+	pkgdesc = WPS PIN generator
+	pkgver = 0.5.1
+	pkgrel = 2
+	url = https://github.com/drygdryg/wpspin-nim
+	arch = x86_64
+	arch = i686
+	arch = pentium4
+	arch = arm
+	arch = armv6h
+	arch = armv7h
+	arch = aarch64
+	license = MIT
+	makedepends = nim>=0.20.0
+	makedepends = nimble
+	makedepends = git
+	provides = wpspin
+	source = wpspin-0.5.1.tar.gz::https://github.com/drygdryg/wpspin-nim/archive/0.5.1.tar.gz
+	md5sums = f6a763e0c71d583a822103f2f7aa1058
+
+pkgname = wpspin
+

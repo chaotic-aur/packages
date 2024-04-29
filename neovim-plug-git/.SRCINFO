@@ -1,0 +1,16 @@
+pkgbase = neovim-plug-git
+	pkgdesc = A minimalist Vim plugin manager
+	pkgver = 0.10.0.r38.c319036
+	pkgrel = 1
+	url = https://github.com/junegunn/vim-plug
+	arch = any
+	license = MIT
+	makedepends = git
+	depends = neovim
+	provides = neovim-plug
+	conflicts = neovim-plug
+	source = neovim-plug-git::git+https://github.com/junegunn/vim-plug.git
+	md5sums = SKIP
+
+pkgname = neovim-plug-git
+

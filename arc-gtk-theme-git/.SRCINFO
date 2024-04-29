@@ -1,0 +1,22 @@
+pkgbase = arc-gtk-theme-git
+	pkgdesc = A flat theme suite with transparent elements.
+	pkgver = 20220405.r43.ga76102bb
+	pkgrel = 1
+	url = https://github.com/jnsh/arc-theme
+	arch = any
+	license = GPL3
+	makedepends = meson
+	makedepends = sassc
+	makedepends = inkscape
+	makedepends = git
+	optdepends = gtk-engine-murrine: GTK2 support
+	optdepends = gnome-themes-extra: GTK2 support
+	source = arc-theme::git+https://github.com/jnsh/arc-theme.git
+	md5sums = SKIP
+
+pkgname = arc-gtk-theme-git
+	conflicts = arc-gtk-theme
+
+pkgname = arc-solid-gtk-theme-git
+	pkgdesc = A flat theme suite without transparent elements.
+	conflicts = arc-solid-gtk-theme

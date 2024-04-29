@@ -1,0 +1,19 @@
+post_install() {
+	printf ">>> WARNING\n"
+	printf ">>> As of version 15.09, upstream is considering 7zFM broken.\n"
+	printf ">>> Use it only for viewing archives. Every manipulation of archives\n"
+	printf ">>> using this tool can produce unpredictable results.\n"
+	[[ -x usr/bin/kbuildsycoca5 ]] && kbuildsycoca5 &> /dev/null || true
+	[[ -x usr/bin/kbuildsycoca6 ]] && kbuildsycoca6 &> /dev/null || true
+}
+
+post_upgrade() {
+	[[ -x usr/bin/kbuildsycoca5 ]] && kbuildsycoca5 &> /dev/null || true
+	[[ -x usr/bin/kbuildsycoca6 ]] && kbuildsycoca6 &> /dev/null || true
+}
+
+
+post_remove() {
+	[[ -x usr/bin/kbuildsycoca5 ]] && kbuildsycoca5 &> /dev/null || true
+	[[ -x usr/bin/kbuildsycoca6 ]] && kbuildsycoca6 &> /dev/null || true
+}

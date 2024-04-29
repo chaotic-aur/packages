@@ -1,0 +1,2 @@
+#!/usr/bin/env sh
+sed -e 's&--enable-nvenc&--enable-nvenc --enable-qsv&' -i PKGBUILD

@@ -1,0 +1,26 @@
+pkgbase = blockout2
+	pkgdesc = 3D tetris, free adaptation of the original BlockOut DOS game edited by California Dreams in 1989. Pre-compiled.
+	pkgver = 2.5
+	pkgrel = 2
+	url = http://www.blockout.net/blockout2/
+	arch = any
+	license = GPL
+	depends = libgl
+	depends = glu
+	depends = libxext
+	depends = sdl
+	depends = sdl_mixer
+	depends = alsa-lib
+	conflicts = blockout2-bin
+	source = http://downloads.sourceforge.net/project/blockout/blockout/BlockOut%202.5/bl25-src.tar.gz
+	source = http://downloads.sourceforge.net/project/blockout/blockout/BlockOut%202.5/bl25-linux-x64.tar.gz
+	source = blockout2
+	source = blockout2.desktop
+	source = blockout2.png
+	md5sums = c68a6d6f1f42aa61dbce84b100f19351
+	md5sums = 6155d0596d762852e3fbd1718d3d6455
+	md5sums = 130e2c10b68b41bf12e67a764a2ea4fb
+	md5sums = c3d7d196e4af7fabd287376988376fe4
+	md5sums = 166642ab949cd145f6126857a5ac7e4f
+
+pkgname = blockout2

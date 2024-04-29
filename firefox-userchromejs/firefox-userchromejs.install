@@ -1,0 +1,34 @@
+post_install() {
+    cat << EOF
+
+To complete the installation of userchromeJS, you need to copy the directory:
+
+  /usr/share/firefox-userchromejs/base/chrome
+
+into your firefox profile directory, which should be located at:
+
+  ~/.mozilla/firefox/<some-chars>.<profile-name>
+
+(including the 'chrome' directory itself), and then open about:support and
+click "Clear startup cache..." and restart firefox.
+Then you can copy additional .uc.js and .as.css files to be loaded into the
+'chrome' folder, and install legacy extensions via the Add-ons Manager inside
+firefox. Some additional scripts and addons are available in
+
+  /usr/share/firefox-userchromejs/misc
+
+For more detailed instructions, see:
+
+  https://github.com/xiaoxiaoflood/firefox-scripts/
+
+Some other scripts can be found in (archived):
+
+  https://github.com/Izheil/Quantum-Nox-Firefox-Dark-Full-Theme/
+
+EOF
+}
+
+post_upgrade() {
+    set 1=$2
+    post_install
+}

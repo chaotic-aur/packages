@@ -1,0 +1,4 @@
+# Gaia Sky 3.6.0-3
+
+## Bug Fixes
+- back-buffer scale initialization when config file is resetted.

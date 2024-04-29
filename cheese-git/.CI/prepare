@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+# mangle groups directive
+sed -E -e 's&^(\s*)(groups\+?=)&\1 _ignore_\2&g' -i PKGBUILD

@@ -1,0 +1,13 @@
+pkgbase = soundcloud-nativefier
+	pkgdesc = SoundCloud desktop app built with nativefier (electron)
+	pkgver = 20230310
+	pkgrel = 1
+	url = https://soundcloud.com
+	arch = x86_64
+	license = MIT
+	makedepends = curl
+	makedepends = gendesk
+	makedepends = yarn
+	depends = electron22
+
+pkgname = soundcloud-nativefier

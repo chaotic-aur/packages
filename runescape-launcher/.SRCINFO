@@ -1,0 +1,46 @@
+pkgbase = runescape-launcher
+	pkgdesc = RuneScape Game Client (NXT)
+	pkgver = 2.2.11
+	pkgrel = 1
+	url = https://www.runescape.com/
+	install = install.sh
+	arch = x86_64
+	license = custom
+	depends = cairo
+	depends = libcairo.so=2
+	depends = gcc-libs
+	depends = gdk-pixbuf2
+	depends = libgdk_pixbuf-2.0.so=0
+	depends = glib2
+	depends = libglib-2.0.so=0
+	depends = libgobject-2.0.so=0
+	depends = glibc
+	depends = gtk2
+	depends = libgdk-x11-2.0.so=0
+	depends = libgtk-x11-2.0.so=0
+	depends = libcap
+	depends = libglvnd
+	depends = libOpenGL.so=0
+	depends = libEGL.so=1
+	depends = libsm
+	depends = libx11
+	depends = libxxf86vm
+	depends = openssl-1.1
+	depends = libcrypto.so=1.1
+	depends = libssl.so=1.1
+	depends = pango
+	depends = libpango-1.0.so=0
+	depends = libpangocairo-1.0.so=0
+	depends = sdl2
+	depends = zlib
+	source = runescape-launcher_2.2.11_Release::https://content.runescape.com/downloads/ubuntu/dists/trusty/Release
+	source = runescape-launcher_2.2.11_Release.gpg::https://content.runescape.com/downloads/ubuntu/dists/trusty/Release.gpg
+	validpgpkeys = AAC9264309E4D717441DB9527373B12CE03BEB4B
+	sha256sums = SKIP
+	sha256sums = SKIP
+	source_x86_64 = runescape-launcher_2.2.11_Packages::https://content.runescape.com/downloads/ubuntu/dists/trusty/non-free/binary-amd64/Packages
+	source_x86_64 = runescape-launcher_2.2.11_amd64.deb::https://content.runescape.com/downloads/ubuntu/pool/non-free/r/runescape-launcher/runescape-launcher_2.2.11_amd64.deb
+	sha256sums_x86_64 = SKIP
+	sha256sums_x86_64 = SKIP
+
+pkgname = runescape-launcher

@@ -1,0 +1,20 @@
+pkgbase = tdrop
+	pkgdesc = Glorified WM-independent dropdown creator
+	pkgver = 0.5.0
+	pkgrel = 1
+	url = https://github.com/noctuid/tdrop
+	arch = any
+	license = BSD
+	depends = coreutils
+	depends = gawk
+	depends = grep
+	depends = procps-ng
+	depends = xdotool
+	depends = xorg-xprop
+	depends = xorg-xwininfo
+	optdepends = tmux: session starting support
+	optdepends = xorg-xrandr: multiple monitor resizing support
+	source = tdrop-0.5.0.tar.gz::https://github.com/noctuid/tdrop/archive/0.5.0.tar.gz
+	sha256sums = ac37c76cb936d8e4c1c0aba5874999e09b8acbe07a2e23e8181114bd4a2a0a5d
+
+pkgname = tdrop

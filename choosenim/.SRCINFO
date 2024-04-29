@@ -1,0 +1,23 @@
+pkgbase = choosenim
+	pkgdesc = choosenim installs the Nim programming language from official downloads and sources, enabling you to easily switch between stable and development compilers.
+	pkgver = 0.8.4
+	pkgrel = 1
+	url = https://github.com/dom96/choosenim
+	arch = x86_64
+	license = BSD
+	provides = nim
+	provides = nimble
+	provides = nimgrep
+	provides = nimpretty
+	provides = nimsuggest
+	conflicts = nim
+	conflicts = nimble
+	conflicts = nimgrep
+	conflicts = nimpretty
+	conflicts = nimsuggest
+	source = choosenim::https://github.com/dom96/choosenim/releases/download/v0.8.4/choosenim-0.8.4_linux_amd64
+	source = https://raw.githubusercontent.com/dom96/choosenim/v0.8.4/LICENSE
+	md5sums = c9b5caaed180c0ed816194f78d2fb0fc
+	md5sums = 78123baa634a7ebc9f65c1429e18dbb6
+
+pkgname = choosenim

@@ -1,0 +1,14 @@
+pkgbase = dcamprof
+	pkgdesc = A digital camera profiling tool
+	pkgver = 1.0.6
+	pkgrel = 1
+	url = http://www.ludd.ltu.se/~torger/dcamprof.html
+	arch = i686
+	arch = x86_64
+	license = GPL3
+	depends = lcms2
+	source = https://torger.se/anders/files/dcamprof-1.0.6.tar.bz2
+	sha256sums = e7540939193b3eb70c1863c1c817b1c4d0495239972e8085597d6793037bab6b
+
+pkgname = dcamprof
+

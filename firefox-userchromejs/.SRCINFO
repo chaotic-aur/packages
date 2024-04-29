@@ -1,0 +1,16 @@
+pkgbase = firefox-userchromejs
+	pkgdesc = Patching Firefox to enable JS injection (userchrome-js)
+	pkgver = 117
+	pkgrel = 2
+	url = https://github.com/xiaoxiaoflood/firefox-scripts
+	install = firefox-userchromejs.install
+	arch = any
+	license = MPL2
+	makedepends = dos2unix
+	depends = firefox
+	source = https://codeload.github.com/xiaoxiaoflood/firefox-scripts/tar.gz/b013243f1916576166a02d816651c2cc6416f63e
+	source = fix117.patch
+	sha512sums = 5ce25bc5a239b6bdd60578caddcf97f1af05db06309fee91165ea10be4dafbb43ee26515eaeff398947926c74e0253b0a02e8106941c55e593667e7c1dd7542d
+	sha512sums = SKIP
+
+pkgname = firefox-userchromejs

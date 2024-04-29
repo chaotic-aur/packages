@@ -1,0 +1,13 @@
+post_install() {
+    set -x
+    which makewhatis >/dev/null 2>&1 && makewhatis -v
+    mandb
+}
+
+post_upgrade() {
+  post_install
+}
+
+post_remove() {
+  post_install
+}

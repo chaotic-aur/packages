@@ -1,0 +1,46 @@
+#!/bin/bash
+
+pkgver="$1"
+
+if [ -z $1 ]; then
+  echo 'Version is empty! For example: ./release x.x.x'
+  exit 1;
+fi
+
+if [[ ${pkgver:0:1} == 'v' ]]; then
+  pkgver=${pkgver:1}
+fi
+
+filename="v$pkgver.tar.gz"
+
+echo 'Downlading archive file...'
+
+wget "https://github.com/jeffreytse/zsh-vi-mode/archive/$filename" -q -O \
+  ./$filename
+
+sha256sum=($(sha256sum $filename))
+
+echo 'Updating PKGBUILD...'
+echo "$(sed -e "s/pkgver=.*/pkgver=$pkgver/" ./PKGBUILD)" > ./PKGBUILD
+echo "$(sed -e "s/sha256sums=.*/sha256sums=('$sha256sum')/" ./PKGBUILD)" > ./PKGBUILD
+
+echo 'Generating .SRCINFO...'
+makepkg --printsrcinfo > .SRCINFO
+
+echo 'Cleanup archive file...'
+rm -f $filename
+
+read -p "Do you want to release it immediately? [y/N]" \
+  -n 1 -r
+
+echo
+
+case "$REPLY" in
+  y|Y)
+    git add PKGBUILD .SRCINFO
+    git commit -m "release: v$pkgver"
+    echo 'Release AUR package successfully!'
+    ;;
+esac
+
+echo 'Finished!'

@@ -1,0 +1,37 @@
+pkgbase = pop-gtk-theme-git
+	pkgdesc = A GTK+ theme for Pop!_OS
+	pkgver = 5.3.1.r3.g5ab6f1e4
+	pkgrel = 1
+	url = https://github.com/pop-os/gtk-theme
+	arch = any
+	license = GPL2
+	license = CCPL
+	makedepends = meson
+	makedepends = libsass>=3.3.6
+	makedepends = sassc>=3.3.2
+	makedepends = git
+	makedepends = parallel
+	depends = gtk3>=3.18.9
+	depends = gtk2>=2.24.30
+	depends = gdk-pixbuf2>=2.24.30
+	depends = gtk-engine-murrine>=0.98.1
+	depends = glib2
+	optdepends = inkscape
+	optdepends = optipng
+	optdepends = gnome-shell
+	optdepends = gnome-flashback
+	optdepends = budgie-desktop
+	optdepends = xfce4-session
+	optdepends = mate-desktop
+	optdepends = lxde-common
+	optdepends = pop-icon-theme-git: Recommended icon theme
+	optdepends = ttf-fira-sans: Recommended font for window titles and interface
+	optdepends = ttf-fira-mono: Recommended monospace font
+	optdepends = ttf-roboto-slab: Recommended font for documents
+	provides = pop-gtk-theme
+	conflicts = pop-gtk-theme
+	source = git+https://github.com/pop-os/gtk-theme.git
+	sha256sums = SKIP
+
+pkgname = pop-gtk-theme-git
+
