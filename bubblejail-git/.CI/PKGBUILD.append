@@ -1,0 +1,23 @@
+
+source+=("0096-expandvars-0.patch"::"https://github.com/igo95862/bubblejail/pull/96.diff")
+md5sums+=('SKIP')
+
+license=('GPL-3.0-or-later')
+provides=("bubblejail=${pkgver%%.r*}")
+
+pkgver() {
+  cd "$pkgname"
+
+  git describe --long --tags --abbrev=8 --exclude='*[a-zA-Z][a-zA-Z]*' \
+    | sed -E 's/^[^0-9]+//;s/([^-]*-g)/r\1/;s/-/./g'
+}
+
+prepare() {
+  patch -d "$pkgname" -Np1 -F100 -i "$srcdir/0096-expandvars-0.patch"
+
+  sed -E -e '/--urgency.*critical/d' \
+    -i "$pkgname/src/bubblejail/bubblejail_cli.py"
+
+  sed -E -e 's@^(\s+display_in_gui) = False$@\1 = True@' \
+    -i "$pkgname/src/bubblejail/services.py"
+}
