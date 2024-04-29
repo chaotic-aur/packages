@@ -1,24 +1,24 @@
-# Maintainer: erdii <me at erdii dot engineering>
-# Maintainer: Alexander Bruegmann <mail at abruegmann dot eu>
-pkgname=aws2-wrap
-pkgver=1.4.0
-pkgrel=1
-pkgdesc="Simple script to export current AWS SSO credentials or run a sub-process with them"
-arch=('any')
-url="https://github.com/linaro-its/aws2-wrap"
-license=('GPL3')
-depends=('aws-cli' 'python-psutil')
-makedepends=('python-setuptools')
+# Maintainer: Gabriel M. Dutra <nulldutra@proton.me>
 
-source=("https://files.pythonhosted.org/packages/source/${pkgname::1}/$pkgname/$pkgname-$pkgver.tar.gz")
-sha256sums=('77613ae13423a6407e79760bdd35843ddd128612672a0ad3a934ecade76aa7fc')
+pkgname=tflint
+pkgver=0.48.0
+pkgrel=1
+pkgdesc="A linter for Terraform code"
+arch=('any')
+_vendor="github.com/terraform-linters/${pkgname}"
+url="https://${_vendor}"
+license=('MIT')
+depends=('glibc')
+makedepends=('go')
+source=("$pkgname-$pkgver-source.tar.gz::https://${_vendor}/archive/v${pkgver}.tar.gz")
+sha256sums=('9643ea803796a01c9dcbd63b7f624a1d5499b258d79639c311738ab1ce67e1c2')
+_vendorpath="gopath/src/$_vendor"
 
 build() {
-  cd "${srcdir}/${pkgname}-${pkgver}"
-  python setup.py build
+  cd $srcdir/tflint-${pkgver}
+  go build -o tflint-bin
 }
 
 package() {
-  cd "${srcdir}/${pkgname}-${pkgver}"
-  python setup.py install --root="$pkgdir" --optimize=1 --skip-build
+  install -Dm755 $srcdir/tflint-${pkgver}/tflint-bin $pkgdir/usr/bin/$pkgname
 }

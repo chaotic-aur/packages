@@ -1,14 +1,13 @@
-pkgbase = aws2-wrap
-	pkgdesc = Simple script to export current AWS SSO credentials or run a sub-process with them
-	pkgver = 1.4.0
+pkgbase = tflint
+	pkgdesc = A linter for Terraform code
+	pkgver = 0.48.0
 	pkgrel = 1
-	url = https://github.com/linaro-its/aws2-wrap
+	url = https://github.com/terraform-linters/tflint
 	arch = any
-	license = GPL3
-	makedepends = python-setuptools
-	depends = aws-cli
-	depends = python-psutil
-	source = https://files.pythonhosted.org/packages/source/a/aws2-wrap/aws2-wrap-1.4.0.tar.gz
-	sha256sums = 77613ae13423a6407e79760bdd35843ddd128612672a0ad3a934ecade76aa7fc
+	license = MIT
+	makedepends = go
+	depends = glibc
+	source = tflint-0.48.0-source.tar.gz::https://github.com/terraform-linters/tflint/archive/v0.48.0.tar.gz
+	sha256sums = 9643ea803796a01c9dcbd63b7f624a1d5499b258d79639c311738ab1ce67e1c2
 
-pkgname = aws2-wrap
+pkgname = tflint

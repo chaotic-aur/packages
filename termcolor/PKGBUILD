@@ -1,48 +1,39 @@
-# Maintainer: Guillaume Dolle  <dev at gdolle.com>
-pkgname=micromamba
-_pkgname=${pkgname/micro/}
-pkgver=1.5.8
-_pkgver=2024.03.25
+# Maintainer: Otreblan <otreblain@gmail.com>
+
+pkgname=termcolor
+pkgver=2.1.0
 pkgrel=1
-pkgdesc="C++ tiny version of mamba, the fast conda package installer"
-arch=('i686' 'x86_64')
-url="https://github.com/mamba-org/mamba"
-license=('MIT')
-depends=('libarchive' 'cmake' 'curl' 'libsolv' 'cli11' 'pybind11' 'fmt' 'spdlog' 'nlohmann-json' 'python-pip' 'yaml-cpp' 'reproc' 'ghc-filesystem' 'termcolor' 'tl-expected')
-makedepends=('gtest')
-source=(${pkgname}-${pkgver}.tar.gz::https://github.com/mamba-org/mamba/archive/refs/tags/${_pkgver}.tar.gz)
-md5sums=('fe28d77d0cae57dde82a2f4fea360e9e')
-provides=('micromamba')
-conflict=('micromamba-bin')
+epoch=
+pkgdesc="A header-only C++ library for printing colored messages to the terminal"
+arch=('x86_64')
+url="https://github.com/ikalnytskyi/termcolor"
+license=('BSD')
+groups=()
+depends=()
+makedepends=('cmake')
+checkdepends=()
+optdepends=()
+provides=()
+conflicts=()
+source=("$pkgname-$pkgver.tar.gz::$url/archive/v$pkgver.tar.gz")
+sha256sums=('435994c32557674469404cb1527c283fdcf45746f7df75fd2996bb200d6a759f')
 
 prepare() {
-  cd ${_pkgname}-${_pkgver}
-  #patch --forward --strip=1 --input="${srcdir}/${_pkgname}-${_pkgver}.patch"
-
-  cmake -DCMAKE_BUILD_TYPE=Release \
-    -DCMAKE_INSTALL_PREFIX=${pkgdir}/usr \
-    -DCMAKE_POSITION_INDEPENDENT_CODE=ON \
-    -DBUILD_LIBMAMBA=ON \
-    -DBUILD_LIBMAMBAPY=ON \
-    -DBUILD_LIBMAMBA_TESTS=OFF \
-    -DBUILD_MAMBA_PACKAGE=OFF \
-    -DBUILD_MICROMAMBA=ON \
-    -DBUILD_SHARED=ON \
-    -DBUILD_STATIC=OFF \
-    -B build
+  mkdir -p "$pkgname-$pkgver/build"
 }
 
 build() {
-  cd ${_pkgname/micro/}-${_pkgver}
-  cmake --build build
-}
+  cd "$pkgname-$pkgver/build"
 
-check() {
-  cd ${_pkgname}-${_pkgver}/build
-  ctest
+  cmake \
+    -DCMAKE_INSTALL_PREFIX=/usr \
+    ..
+  cmake --build .
 }
 
 package() {
-  cd ${_pkgname}-${_pkgver}
-  cmake --install build
+  cd "$pkgname-$pkgver"
+
+  DESTDIR="$pkgdir/" cmake --install build
+  install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
 }
