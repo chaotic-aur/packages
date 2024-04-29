@@ -15,11 +15,11 @@ source=("git+${url}.git")
 sha256sums=('SKIP')
 
 pkgver() {
-    cd ArcMenu
-    git describe --long --tags | sed 's/^v//;s/\([^-]*-g\)/r\1/;s/-/./g'
+  cd ArcMenu
+  git describe --long --tags | sed 's/^v//;s/\([^-]*-g\)/r\1/;s/-/./g'
 }
 
 package() {
-    cd ArcMenu
-    make DESTDIR="$pkgdir" INSTALL="system" install
+  cd ArcMenu
+  make DESTDIR="$pkgdir" INSTALL="system" install
 }

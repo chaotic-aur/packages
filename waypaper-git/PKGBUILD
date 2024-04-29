@@ -11,9 +11,9 @@ license=('GPL3')
 depends=('gtk3' 'gdk-pixbuf2' 'python-gobject' 'python-importlib-metadata' 'python-platformdirs' 'python-pillow')
 makedepends=('git' 'python-build' 'python-installer' 'python-wheel' 'python-setuptools')
 optdepends=('swaybg: the wayland backend that supports only static images'
-            'swww: the wayland backend that supports animated GIFs'
-            'feh: the x11 backend that supports static images'
-            'wallutils: another x11 backend')
+  'swww: the wayland backend that supports animated GIFs'
+  'feh: the x11 backend that supports static images'
+  'wallutils: another x11 backend')
 provides=("${pkgname%-*}")
 conflicts=("${pkgname%-*}")
 source=("${pkgname%-*}::git+${url}.git")

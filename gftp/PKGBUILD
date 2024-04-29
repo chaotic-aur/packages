@@ -14,21 +14,20 @@ source=("gftp-$pkgver.tgz::https://github.com/masneyb/gftp/archive/refs/tags/$pk
 sha256sums=('fb134d5479a6b81251b9d37be7264fb8be6edb07bce98569e0e0ba9570587fd6')
 
 prepare() {
-   cd "$pkgname-$pkgver"
-   # openssl 1.1 compatibility
-   #sed -e 's|SSL_library_init|SSL_CTX_new|g' -i configure
+  cd "$pkgname-$pkgver"
+  # openssl 1.1 compatibility
+  #sed -e 's|SSL_library_init|SSL_CTX_new|g' -i configure
 }
 
 build() {
-   cd "$srcdir/$pkgname-$pkgver"
-   ./autogen.sh
-   ./configure --prefix=/usr --mandir=/usr/share/man #--enable-gtk3
-   make
+  cd "$srcdir/$pkgname-$pkgver"
+  ./autogen.sh
+  ./configure --prefix=/usr --mandir=/usr/share/man #--enable-gtk3
+  make
 }
 
 package() {
-   cd "$srcdir/$pkgname-$pkgver"
-   make DESTDIR="$pkgdir" install
-   install -vDm 644 "LICENSE" -t "${pkgdir}/usr/share/licenses/${pkgname}/"
+  cd "$srcdir/$pkgname-$pkgver"
+  make DESTDIR="$pkgdir" install
+  install -vDm 644 "LICENSE" -t "${pkgdir}/usr/share/licenses/${pkgname}/"
 }
-

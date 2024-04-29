@@ -18,24 +18,24 @@ source=("$pkgname"::'git+https://github.com/linux-on-mac/mbpfan.git')
 md5sums=('SKIP')
 backup=('etc/mbpfan.conf')
 
-prepare(){
-    cd "$srcdir/$pkgname"
-    sed -i 's|\$(DESTDIR)/usr/sbin|$(DESTDIR)/usr/bin|g' Makefile
-    sed -i 's|\$(DESTDIR)/lib/|$(DESTDIR)/usr/lib/|g' Makefile
+prepare() {
+  cd "$srcdir/$pkgname"
+  sed -i 's|\$(DESTDIR)/usr/sbin|$(DESTDIR)/usr/bin|g' Makefile
+  sed -i 's|\$(DESTDIR)/lib/|$(DESTDIR)/usr/lib/|g' Makefile
 }
 
-pkgver(){
-    cd "$srcdir/$pkgname"
-    git describe --tags --long --abbrev=8 | sed 's/^v//;s/\([^-]*-g\)/r\1/;s/-/./g'
+pkgver() {
+  cd "$srcdir/$pkgname"
+  git describe --tags --long --abbrev=8 | sed 's/^v//;s/\([^-]*-g\)/r\1/;s/-/./g'
 }
 
 build() {
-    cd "$srcdir/$pkgname"
-    make
+  cd "$srcdir/$pkgname"
+  make
 }
 
 package() {
-    cd "$srcdir/$pkgname"
-    DESTDIR="$pkgdir" make install
-    install -Dm644 "mbpfan.service" "$pkgdir/usr/lib/systemd/system/mbpfan.service"
+  cd "$srcdir/$pkgname"
+  DESTDIR="$pkgdir" make install
+  install -Dm644 "mbpfan.service" "$pkgdir/usr/lib/systemd/system/mbpfan.service"
 }

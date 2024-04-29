@@ -10,7 +10,7 @@ makedepends=('go' 'gcc' 'base-devel')
 source=("$url/archive/refs/tags/v$pkgver.tar.gz")
 sha256sums=('a68f73fd1c64400ac212334baf2b92c376bd05063b2b8054cc5a299cd3c1a0ab')
 
-prepare(){
+prepare() {
   cd "$pkgname-$pkgver"
   mkdir -p build/
 }

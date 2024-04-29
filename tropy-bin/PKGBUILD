@@ -26,7 +26,7 @@ source=(
   "https://github.com/tropy/tropy/releases/download/v${pkgver}/tropy-${pkgver}-x64.tar.bz2")
 
 sha256sums=('33a0ee41a99156cf8986b3771ba8fea38b0d23d75fc09bef0f1254fe4fb47952'
-            '351af6990ca00c8648c92bdb330d7d3a20018a125c934a8440c29e11a79fd1a1')
+  '351af6990ca00c8648c92bdb330d7d3a20018a125c934a8440c29e11a79fd1a1')
 
 package() {
   install -dm755 "${pkgdir}/usr/lib/tropy"
@@ -47,18 +47,18 @@ package() {
   install -m644 -t "${pkgdir}/usr/lib/tropy/" app.asar
   cp -r app.asar.unpacked "${pkgdir}/usr/lib/tropy"
 
-  find "${pkgdir}/usr/lib/tropy" -type d -print0 | \
-    xargs -I {} -0 chmod 755 "{}"
-  find "${pkgdir}/usr/lib/tropy" -type f -print0 | \
-    xargs -I {} -0 chmod 644 "{}"
+  find "${pkgdir}/usr/lib/tropy" -type d -print0 \
+    | xargs -I {} -0 chmod 755 "{}"
+  find "${pkgdir}/usr/lib/tropy" -type f -print0 \
+    | xargs -I {} -0 chmod 644 "{}"
 
-  cp -r mime "${pkgdir}/usr/share/" 
-  cp -r icons "${pkgdir}/usr/share/" 
+  cp -r mime "${pkgdir}/usr/share/"
+  cp -r icons "${pkgdir}/usr/share/"
 
-  find "${pkgdir}/usr/share" -type d -print0 | \
-    xargs -I {} -0 chmod 755 "{}"
-  find "${pkgdir}/usr/share" -type f -print0 | \
-    xargs -I {} -0 chmod 644 "{}"
+  find "${pkgdir}/usr/share" -type d -print0 \
+    | xargs -I {} -0 chmod 755 "{}"
+  find "${pkgdir}/usr/share" -type f -print0 \
+    | xargs -I {} -0 chmod 644 "{}"
 
   cd app.asar.unpacked
   install -m644 -t "${pkgdir}/usr/share/licenses/${pkgname}/" \

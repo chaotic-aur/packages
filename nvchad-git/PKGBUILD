@@ -15,21 +15,21 @@ conflicts=("${_pkgname}")
 provides=("${_pkgname}")
 
 pkgver() {
-	cd ${pkgname}
-	printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+  cd ${pkgname}
+  printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
 }
 
 package() {
-	cd "${srcdir}"
-	install_dir="/usr/share/nvchad"
-	root_nvim_dir="/usr/share/nvim/runtime/"
-	mkdir -p "${pkgdir}/usr/share/nvim/" && touch "${pkgdir}/usr/share/nvim/archlinux.vim"
-	echo -e "$(cat nvchad.vim.template)" >> "${pkgdir}/usr/share/nvim/archlinux.vim"
-	rm "${pkgdir}/usr/share/nvim/runtime/plugin/nvchad.vim" || true
-	cd "${pkgname}"
-	install -Dm 644 LICENSE "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
-	mkdir -p "${pkgdir}${install_dir}"
-	mkdir -p "${pkgdir}${root_nvim_dir}"
-	cp -r {init.lua,lua,.stylua.toml} "${pkgdir}${install_dir}"
-	cp -rf {init.lua,lua,.stylua.toml} "${pkgdir}${root_nvim_dir}"
+  cd "${srcdir}"
+  install_dir="/usr/share/nvchad"
+  root_nvim_dir="/usr/share/nvim/runtime/"
+  mkdir -p "${pkgdir}/usr/share/nvim/" && touch "${pkgdir}/usr/share/nvim/archlinux.vim"
+  echo -e "$(cat nvchad.vim.template)" >> "${pkgdir}/usr/share/nvim/archlinux.vim"
+  rm "${pkgdir}/usr/share/nvim/runtime/plugin/nvchad.vim" || true
+  cd "${pkgname}"
+  install -Dm 644 LICENSE "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
+  mkdir -p "${pkgdir}${install_dir}"
+  mkdir -p "${pkgdir}${root_nvim_dir}"
+  cp -r {init.lua,lua,.stylua.toml} "${pkgdir}${install_dir}"
+  cp -rf {init.lua,lua,.stylua.toml} "${pkgdir}${root_nvim_dir}"
 }

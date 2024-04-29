@@ -10,21 +10,21 @@ license=('GPL3')
 makedepends=('git' 'gobject-introspection' 'meson' 'npm' 'typescript')
 depends=('gjs' 'glib2' 'glibc' 'gtk3' 'gtk-layer-shell' 'libpulse' 'pam')
 optdepends=('gnome-bluetooth-3.0: required for bluetooth service'
-            'greetd: required for greetd service'
-            'libdbusmenu-gtk3: required for systemtray service'
-            'libsoup3: required for the Utils.fetch feature'
-            'libnotify: required for sending notifications'
-            'networkmanager: required for network service'
-            'power-profiles-daemon: required for powerprofiles service'
-            'upower: required for battery service')
+  'greetd: required for greetd service'
+  'libdbusmenu-gtk3: required for systemtray service'
+  'libsoup3: required for the Utils.fetch feature'
+  'libnotify: required for sending notifications'
+  'networkmanager: required for network service'
+  'power-profiles-daemon: required for powerprofiles service'
+  'upower: required for battery service')
 conflicts=('aylurs-gtk-shell')
 backup=('etc/pam.d/ags')
 source=("git+${url}"
-        "git+https://gitlab.gnome.org/GNOME/libgnome-volume-control")
+  "git+https://gitlab.gnome.org/GNOME/libgnome-volume-control")
 sha256sums=('SKIP'
-            'SKIP')
+  'SKIP')
 
-pkgver(){
+pkgver() {
   cd $srcdir/$_pkgname
   git describe --long --tags --abbrev=7 | sed 's/^v//;s/\([^-]*-g\)/r\1/;s/-/./g'
 }
