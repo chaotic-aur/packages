@@ -1,0 +1,14 @@
+pkgbase = intelxed
+	pkgdesc = Intel x86 encoder decoder
+	pkgver = 2023.08.21
+	pkgrel = 1
+	url = https://intelxed.github.io
+	arch = x86_64
+	license = Apache
+	makedepends = mbuild
+	makedepends = doxygen
+	conflicts = xed
+	source = https://github.com/intelxed/xed/archive/refs/tags/v2023.08.21.tar.gz
+	sha256sums = e4a79d3091cf106060f884ef0baeebde3e79ba90218daf36ebe9be93c955ebf0
+
+pkgname = intelxed

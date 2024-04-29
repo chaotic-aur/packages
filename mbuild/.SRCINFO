@@ -1,0 +1,13 @@
+pkgbase = mbuild
+	pkgdesc = Python-based build system used for building XED
+	pkgver = 2022.07.28
+	pkgrel = 1
+	url = https://intelxed.github.io/
+	arch = any
+	license = Apache
+	makedepends = python-setuptools
+	depends = python
+	source = https://github.com/intelxed/mbuild/archive/refs/tags/v2022.07.28.tar.gz
+	sha256sums = d3a2a514cec936036fd203a3ecdb8b60e07fc6ee20670edeb0bc14b1f9a9a51d
+
+pkgname = mbuild

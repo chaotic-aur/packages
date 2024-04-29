@@ -1,0 +1,17 @@
+pkgbase = otf-stix
+	pkgdesc = OpenType Unicode fonts for Scientific, Technical, and Mathematical texts
+	pkgver = 2.13.b171
+	pkgrel = 1
+	url = https://github.com/stipub/stixfonts
+	arch = any
+	license = OFL-1.1-RFN
+	source = stix-otf-static-2.13.b171.zip::https://github.com/stipub/stixfonts/raw/v2.13b171/zipfiles/static_otf.zip
+	source = stix-ttf-variable-2.13.b171.zip::https://github.com/stipub/stixfonts/raw/v2.13b171/zipfiles/variable_ttf.zip
+	source = stix-license-2.13.b171.txt::https://github.com/stipub/stixfonts/raw/v2.13b171/OFL.txt
+	sha256sums = b5ec34636e117ec97e71e6b89ad2718618184329bbb3d3be5d1e3b0f8ed52789
+	sha256sums = d567c6c9a899665744e08391daeee1adbf039e109b10309855321b6c1a8f8acd
+	sha256sums = 0c8825913b60d858aacdb33c4ca6660a7d64b0d6464702efbb19313f5765861a
+
+pkgname = otf-stix
+
+pkgname = ttf-stix-variable
