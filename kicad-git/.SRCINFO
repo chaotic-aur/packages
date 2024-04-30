@@ -1,0 +1,36 @@
+pkgbase = kicad-git
+	pkgdesc = Electronic schematic and printed circuit board (PCB) design tools
+	pkgver = 8.99.0.r896.gb12043a612
+	pkgrel = 1
+	url = https://kicad.org/
+	install = kicad.install
+	arch = i686
+	arch = x86_64
+	license = GPL
+	makedepends = cmake
+	makedepends = git
+	makedepends = zlib
+	makedepends = mesa
+	makedepends = boost
+	depends = glew
+	depends = wxwidgets-gtk3
+	depends = desktop-file-utils
+	depends = boost-libs
+	depends = python
+	depends = glm
+	depends = curl
+	depends = swig
+	depends = python-wxpython
+	depends = opencascade
+	depends = ngspice>=27
+	depends = unixodbc
+	depends = libgit2
+	depends = protobuf
+	optdepends = kicad-library: for footprints
+	provides = kicad
+	conflicts = kicad
+	conflicts = kicad-bzr
+	source = kicad-git::git+https://gitlab.com/kicad/code/kicad.git
+	md5sums = SKIP
+
+pkgname = kicad-git

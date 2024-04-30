@@ -1,0 +1,3 @@
+
+# don't make extraneous packages
+pkgname=(wayland-chromium)

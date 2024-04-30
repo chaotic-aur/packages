@@ -1,0 +1,126 @@
+# Maintainer: Zion Nimchuk <zionnimchuk@gmail.com>
+# Submitter: Maxime Gauduin <alucryd@archlinux.org>
+
+pkgname=rpcs3-git
+pkgver=0.0.31.r16375.90b6912daa
+pkgrel=1
+pkgdesc='A Sony PlayStation 3 emulator'
+arch=(x86_64)
+url=https://github.com/RPCS3/rpcs3
+license=(GPL2)
+depends=(
+  alsa-lib
+  glew
+  glu
+  libavcodec.so
+  libavutil.so
+  libevdev
+  libgl
+  libice
+  libncursesw.so
+  libpng
+  libpulse
+  libsm
+  libswscale.so
+  libx11
+  libxext
+  openal
+  qt6-base
+  qt6-declarative
+  qt6-multimedia
+  qt6-svg
+  sdl2
+  vulkan-icd-loader
+  zlib
+  curl
+  pugixml
+  # newer system flatbuffers is incompatible with the version RPCS3 depends on
+  # flatbuffers
+)
+makedepends=(
+  cmake
+  git
+  libglvnd
+  python
+  vulkan-validation-layers
+  # clang is required because audio is broken with latest gcc
+  clang
+)
+provides=(rpcs3)
+conflicts=(rpcs3)
+options=(!emptydirs !lto)
+source=(
+  git+https://github.com/RPCS3/rpcs3.git
+  llvm::git+https://github.com/llvm/llvm-project.git
+  git+https://github.com/KhronosGroup/glslang.git
+)
+sha256sums=(
+  SKIP
+  SKIP
+  SKIP
+)
+
+pkgver() {
+  cd rpcs3
+
+  COMM_TAG="$(grep 'version{.*}' rpcs3/rpcs3_version.cpp | awk -F[{,] '{printf "%d.%d.%d", $2, $3, $4}')"
+  COMM_COUNT="$(git rev-list --count HEAD)"
+  COMM_HASH="$(git rev-parse --short HEAD)"
+  echo "${COMM_TAG}.r${COMM_COUNT}.${COMM_HASH}"
+}
+
+prepare() {
+  cd rpcs3
+
+  git submodule init 3rdparty/glslang/glslang 3rdparty/llvm/llvm
+  git config submodule.3rdparty/glslang.url ../glslang
+  git config submodule.3rdparty/llvm/llvm.url ../llvm
+
+  SUBMODULES=($(git config --file .gitmodules --get-regexp path \
+    | awk '!/ffmpeg/ && !/libpng/ && !/zlib/ && !/curl/ && !/llvm/ && !/glslang/ && !/pugixml/ '))
+
+  # We need to convert from a relative folder path to a https://github.com path
+  for ((i = 0; i < ${#SUBMODULES[@]}; i += 2)); do
+    pathid=${SUBMODULES[$i]}
+    path=${SUBMODULES[$i + 1]}
+
+    git submodule init $path
+    urlid=${pathid/%.path/.url}
+
+    # This gets the last two paths in the url, ie RPCS3/rpcs3.git
+    url=$(git config $urlid | awk -F/ '{print $(NF-1)"/"$(NF-0)}')
+
+    git config $urlid https://github.com/$url
+    git -c protocol.file.allow=always submodule update --init --filter=tree:0 $path
+  done
+
+  git -c protocol.file.allow=always submodule update 3rdparty/glslang/glslang 3rdparty/llvm/llvm
+}
+
+build() {
+  # GLIBCXX_ASSERTIONS is know to cause unwanted assertions and crash rpcs3
+  BAD_FLAG="-Wp,-D_GLIBCXX_ASSERTIONS"
+  CXXFLAGS="${CXXFLAGS//$BAD_FLAG/}"
+
+  CC=clang CXX=clang++ cmake -S rpcs3 -B build \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_INSTALL_PREFIX=/usr \
+    -DCMAKE_SKIP_RPATH=ON \
+    -DUSE_NATIVE_INSTRUCTIONS=OFF \
+    -DUSE_SYSTEM_FFMPEG=ON \
+    -DUSE_SYSTEM_LIBPNG=ON \
+    -DUSE_SYSTEM_ZLIB=ON \
+    -DUSE_SYSTEM_CURL=ON \
+    -DUSE_SYSTEM_FLATBUFFERS=OFF \
+    -DUSE_SYSTEM_PUGIXML=ON \
+    -DBUILD_LLVM=ON \
+    -DUSE_SYSTEM_WOLFSSL=OFF
+
+  make -C build
+}
+
+package() {
+  make DESTDIR="${pkgdir}" -C build install
+}
+
+# vim: ts=2 sw=2 et:
