@@ -6,18 +6,22 @@ insert_final_newline = true
 trim_trailing_whitespace = true
 charset = utf-8
 indent_style = space
-indent_size = 4
+indent_size = 2
 
 [PKGBUILD*]
 indent_style = space
 indent_size = 2
-shell_variant      = bash
-binary_next_line   = true
+shell_variant = bash
+binary_next_line = true
 switch_case_indent = true
-space_redirects    = true
-keep_padding       = false
+space_redirects = true
+keep_padding = false
 function_next_line = false
 
 [*.md]
 # Don't trim trailing whitespace in Markdown
 trim_trailing_whitespace = false
+
+[*.lock]
+# These are auto-generated, so lets not touch them
+indent_size = unset
