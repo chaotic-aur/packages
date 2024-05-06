@@ -2,20 +2,39 @@
   description = "Chaotic 4.0 flake ❄️";
 
   inputs = {
+    # Chaotic Nyx (binary cache)
+    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+
+    # Local debug builds using infra 4.0 code
+    chaotic-portable-builder = {
+      owner = "garuda-linux";
+      repo = "tools%2Fchaotic-portable-builder";
+      type = "gitlab";
+      flake = false;
+    };
+
     # Devshell to set up a development environment
-    devshell.url = "github:numtide/devshell";
-    devshell.flake = false;
+    devshell = {
+      url = "github:numtide/devshell";
+      flake = false;
+    };
 
     # Common used input of our flake inputs
-    flake-utils.url = "github:numtide/flake-utils";
+    flake-utils.follows = "chaotic/flake-utils";
 
     # The single source of truth
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.follows = "chaotic/nixpkgs";
 
-    # Easy linting of the flake and all kind of other stuff
-    pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
-    pre-commit-hooks.inputs.flake-utils.follows = "flake-utils";
-    pre-commit-hooks.inputs.nixpkgs.follows = "nixpkgs";
+    # Easy linting for PKGBUILDs and other things inside the devshell
+    pre-commit-hooks = {
+      url = "github:cachix/pre-commit-hooks.nix";
+      inputs = {
+        flake-utils.follows = "chaotic/flake-utils";
+        nixpkgs.follows = "chaotic/nixpkgs";
+        nixpkgs-stable.follows = "chaotic/nixpkgs";
+        flake-compat.follows = "chaotic/flake-compat";
+      };
+    };
   };
   outputs =
     { devshell
@@ -66,6 +85,7 @@
 
           devShells =
             let
+              cpb = pkgs.callPackage "${inp.chaotic-portable-builder}/nix/default.nix" { };
               makeDevshell = import "${inp.devshell}/modules" pkgs;
               mkShell = config:
                 (makeDevshell {
@@ -78,8 +98,41 @@
             rec {
               default = chaotic-shell;
               chaotic-shell = mkShell {
-                devshell.name = "chaotic";
+                devshell = {
+                  motd = ''
+                    Welcome to Chaotic-AUR's maintenance devshell! 🎉
+                  '';
+                  name = "chaotic";
+                  packages = [
+                    cpb
+                    pkgs.fuse-overlayfs
+                    pkgs.podman
+                    pkgs.skopeo
+                  ];
+                  startup = {
+                    preCommitHooks.text = self.checks.${system}.pre-commit-check.shellHook;
+                    chaoticEnv.text = ''
+                      export LC_ALL="C.UTF-8"
+                      export NIX_PATH=nixpkgs=${nixpkgs}
+
+                      if [ ! -f /etc/containers/policy.json ] && [ ! -f ~/.config/containers/policy.json ]; then
+                        echo "No podman policy.json found. Installing default to home folder."
+                        install -Dm755 ${pkgs.skopeo.src}/default-policy.json ~/.config/containers/policy.json
+                      fi
+
+                      if [ ! -d ./pkgbuilds ]; then
+                        echo "No pkgbuilds folder found. Symlinking this directory to ./pkgbuilds."
+                        ln -s ./ ./pkgbuilds
+                      fi
+                    '';
+                  };
+                };
                 commands = [
+                  {
+                    help = "Chaotic Portable Builder for local builds";
+                    name = "cpb";
+                    package = cpb;
+                  }
                   { package = "actionlint"; }
                   { package = "commitizen"; }
                   { package = "editorconfig-checker"; }
@@ -91,13 +144,6 @@
                   { package = "shfmt"; }
                   { package = "yamllint"; }
                 ];
-                devshell.startup = {
-                  preCommitHooks.text = self.checks.${system}.pre-commit-check.shellHook;
-                  chaoticEnv.text = ''
-                    export LC_ALL="C.UTF-8"
-                    export NIX_PATH=nixpkgs=${nixpkgs}
-                  '';
-                };
               };
             };
 
