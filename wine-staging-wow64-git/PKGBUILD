@@ -17,12 +17,12 @@ unset _pkgtype
 # basic info
 _pkgname="wine"
 pkgname="$_pkgname${_pkgtype:-}"
-pkgver=9.3.r194.gc1b8db0c
+pkgver=9.8.r57.gae9bdbda
 pkgrel=1
 pkgdesc="A compatibility layer for running Windows programs"
 url="https://gitlab.winehq.org/wine/wine"
 license=('LGPL-2.1-or-later')
-arch=(x86_64)
+arch=('x86_64')
 
 # main package
 _main_package() {
@@ -49,12 +49,7 @@ _main_package() {
     libxkbcommon
     wayland
   )
-  local _spacehogs=(
-    samba
-    sane
-  )
   makedepends=(
-    libcups           #lib32-libcups
     libxxf86vm        #lib32-libxxf86vm
     mesa              #lib32-mesa
     mesa-libgl        #lib32-mesa-libgl
@@ -67,19 +62,20 @@ _main_package() {
     opencl-headers
     perl
     vulkan-headers
-
-    "${_spacehogs[@]}"
   )
-  optdepends=(
-    alsa-plugins #lib32-alsa-plugins
-    cups
-    dosbox
-
-    "${_spacehogs[@]}"
+  local _makeoptdeps=(
+    ::alsa-plugins #lib32-alsa-plugins
+    ::dosbox
+    libcups::cups #lib32-libcups
+    samba::samba
+    sane::sane
   )
+  for i in "${_makeoptdeps[@]}"; do
+    [ -n "${i%%::*}" ] && makedepends+=("${i%%::*}")
+    [ -n "${i##*::}" ] && optdepends+=("${i##*::}")
+  done
 
   options=(staticlibs !lto)
-
   backup=("usr/lib/binfmt.d/wine.conf")
 
   # provides/depends
@@ -195,6 +191,11 @@ prepare() {
 }
 
 build() {
+  # Apply flags for cross-compilation
+  export CROSSCFLAGS="${CFLAGS/-Werror=format-security/}"
+  export CROSSCXXFLAGS="${CXXFLAGS/-Werror=format-security/}"
+  export CROSSLDFLAGS="${LDFLAGS//-Wl,-z*([^[:space:]])/}"
+
   local _configure_options=(
     --disable-tests
     --prefix=/usr
