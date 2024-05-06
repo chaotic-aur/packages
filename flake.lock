@@ -240,9 +240,10 @@
       "locked": {
         "lastModified": 1714641030,
         "narHash": "sha256-yzcRNDoyVP7+SCNX0wmuDju1NUCt8Dz9+lyUXEI0dbI=",
-        "path": "/nix/store/br885sqy62q1bblwi2bslcfg2193ly75-source",
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
         "rev": "e5d10a24b66c3ea8f150e47dfdb0416ab7c3390e",
-        "type": "path"
+        "type": "github"
       },
       "original": {
         "id": "flake-parts",
