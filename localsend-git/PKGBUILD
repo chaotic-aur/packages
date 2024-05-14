@@ -7,7 +7,7 @@
 # basic info
 _pkgname="localsend"
 pkgname="$_pkgname-git"
-pkgver=1.14.0.r29.g4f040e6
+pkgver=1.14.0.r42.gc04684a
 pkgrel=1
 pkgdesc='An open source cross-platform alternative to AirDrop'
 url="https://github.com/localsend/localsend"
@@ -20,7 +20,7 @@ depends=(
 makedepends=(
   'clang'
   'cmake'
-  'flutter-bin'
+  'fvm'
   'git'
   'lld'
   'llvm'
@@ -43,12 +43,10 @@ pkgver() {
 build() {
   cd "$_pkgsrc/app"
 
-  flutter pub add path:^1.9.0
-  flutter pub add wechat_assets_picker:^9.0.3
-  # flutter upgrade
-  flutter pub run build_runner build --delete-conflicting-outputs
-  flutter pub get
-  flutter build linux
+  fvm install
+  #fvm flutter pub upgrade --major-versions
+  fvm flutter pub get
+  fvm flutter build linux
 }
 
 package() {
