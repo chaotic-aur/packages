@@ -1,7 +1,7 @@
 pkgbase = 7-zip-full
 	pkgdesc = File archiver with a high compression ratio (full package to replace p7zip)
 	pkgver = 24.05
-	pkgrel = 1
+	pkgrel = 2
 	url = https://7-zip.org/
 	arch = x86_64
 	arch = i686
@@ -21,9 +21,11 @@ pkgbase = 7-zip-full
 	source = https://github.com/ip7z/7zip/releases/download/24.05/7z2405-linux-x64.tar.xz
 	source = 01-make.patch
 	source = 02-lib-load-path.patch
+	source = 03-avx512-fix.patch
 	sha256sums = 182d6e12ff8af0beafe46c9cd8e82b4271efb61c334c1068f8772777b535a03c
 	sha256sums = 7294f7478d90d2dc122137ff64607d354c66bd45b10911359658b85ca8892118
 	sha256sums = f54dfe73ad045f200d5512dfd4387ef626068662a5af6e17d81052996544af54
 	sha256sums = 338b732445d3cfa416e40384bd9f0596506aa4b464b3f86aa971af4cfa6084c7
+	sha256sums = ba77276422af8d818a10a252005de2d7694002e059c5557dd6cfe1e7b1761d96
 
 pkgname = 7-zip-full
