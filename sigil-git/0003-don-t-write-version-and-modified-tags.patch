@@ -1,0 +1,82 @@
+From 30cbca3f832e75fe559c003069f4be63f72878c0 Mon Sep 17 00:00:00 2001
+From: xiota <xiota>
+Date: Sun, 29 Oct 2023 03:53:13 -0700
+Subject: [PATCH 3/3] don't write version and modified tags
+
+Don't write version and modification tags to the opf.
+Results in a somewhat cleaner opf.
+---
+ src/ResourceObjects/OPFResource.cpp | 30 +++--------------------------
+ 1 file changed, 3 insertions(+), 27 deletions(-)
+
+diff --git a/src/ResourceObjects/OPFResource.cpp b/src/ResourceObjects/OPFResource.cpp
+index 7f7020b..5f79772 100644
+--- a/src/ResourceObjects/OPFResource.cpp
++++ b/src/ResourceObjects/OPFResource.cpp
+@@ -464,18 +464,11 @@ void OPFResource::AddSigilVersionMeta()
+             QString name = me.m_atts[QString("name")];
+             if (name == SIGIL_VERSION_META_NAME) {
+                 me.m_atts["content"] = QString(SIGIL_VERSION);
+-                p.m_metadata.replace(i, me);
+-                UpdateText(p);
++                p.m_metadata.removeAt(i);
+                 return;
+             }
+         }
+     }
+-    MetaEntry me;
+-    me.m_name = "meta";
+-    me.m_atts[QString("name")] = QString("Sigil version");
+-    me.m_atts[QString("content")] = QString(SIGIL_VERSION);
+-    p.m_metadata.append(me);
+-    UpdateText(p);
+ }
+ 
+ 
+@@ -1382,19 +1375,11 @@ QString OPFResource::AddModificationDateMeta()
+                 QString property = me.m_atts.value(QString("property"), QString(""));
+                 if (property == QString("dcterms:modified")) {
+                     me.m_content = datetime;
+-                    p.m_metadata.replace(i, me);
+-                    UpdateText(p);
++                    p.m_metadata.removeAt(i);
+                     return datetime;
+                 }
+             }
+         }
+-        // otherwize create a new entry
+-        MetaEntry me;
+-        me.m_name = QString("meta");
+-        me.m_content = datetime;
+-        me.m_atts["property"]="dcterms:modified";
+-        p.m_metadata.append(me);
+-        UpdateText(p);
+         return datetime;
+     }   
+     // epub 2 version 
+@@ -1411,21 +1396,12 @@ QString OPFResource::AddModificationDateMeta()
+             QString etype = me.m_atts.value(QString("opf:event"), QString(""));
+             if (etype == QString("modification")) {
+                 me.m_content = date;
+-                p.m_metadata.replace(i, me);
+-                UpdateText(p);
++                p.m_metadata.removeAt(i);
+                 return datetime;
+             }
+             
+         }
+     }
+-    // otherwize create a new entry
+-    MetaEntry me;
+-    me.m_name = QString("dc:date");
+-    me.m_content = date;
+-    me.m_atts["xmlns:opf"]="http://www.idpf.org/2007/opf";
+-    me.m_atts[QString("opf:event")] = QString("modification");
+-    p.m_metadata.append(me);
+-    UpdateText(p);
+     return datetime;
+ }
+ 
+-- 
+2.42.0
+

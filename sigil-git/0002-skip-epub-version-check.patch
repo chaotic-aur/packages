@@ -1,0 +1,40 @@
+From c2caad976c99f08c0aff1dfbc34c82cf7e7797d5 Mon Sep 17 00:00:00 2001
+From: xiota <xiota>
+Date: Sun, 29 Oct 2023 03:51:25 -0700
+Subject: [PATCH 2/3] skip epub version check
+
+Allows changing from epub2 to epub3 by directly editing
+the opf.  Some data is lost and needs to be recreated
+(eg, table of contents).
+---
+ src/ResourceObjects/OPFResource.cpp | 14 --------------
+ 1 file changed, 14 deletions(-)
+
+diff --git a/src/ResourceObjects/OPFResource.cpp b/src/ResourceObjects/OPFResource.cpp
+index 4b7668d..7f7020b 100644
+--- a/src/ResourceObjects/OPFResource.cpp
++++ b/src/ResourceObjects/OPFResource.cpp
+@@ -1493,20 +1493,6 @@ void OPFResource::UpdateText(const OPFParser &p)
+ QString OPFResource::ValidatePackageVersion(const QString& source)
+ {
+     QString newsource = source;
+-    QString orig_version = GetEpubVersion();
+-    QRegularExpression pkgversion_search(PKG_VERSION, QRegularExpression::CaseInsensitiveOption);
+-    QRegularExpressionMatch mo = pkgversion_search.match(newsource);
+-    if (mo.hasMatch()) {
+-        QString version = mo.captured(1);
+-        if (version != orig_version) {
+-            newsource.replace(mo.capturedStart(1), mo.capturedLength(1), orig_version);
+-            if (!m_WarnedAboutVersion && !version.startsWith('1')) {
+-                Utility::DisplayStdWarningDialog("Changing package version inside Sigil is not supported", 
+-                                                 "Use an appropriate output plugin to make the initial conversion");
+-                m_WarnedAboutVersion = true;
+-            }
+-        }
+-    }
+     return newsource;
+ }
+ 
+-- 
+2.42.0
+

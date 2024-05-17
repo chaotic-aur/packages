@@ -1,0 +1,8 @@
+post_install() {
+cat <<EOF
+You must be administrator/root to run this program, in addition
+libata.allow_tpm must be set to 1. Either via adding libata.allow_tpm=1
+to the kernel flags at boot time or by setting the module option in the
+initramfs via a modprobe.conf file.
+EOF
+}

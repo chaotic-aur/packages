@@ -1,0 +1,52 @@
+# Maintainer: Manuel Groß <mgr@irimi.one>
+
+_pkgname=rescrobbled
+pkgname="${_pkgname}-git"
+pkgver=0.6.2.r0.gec0fc3d
+pkgrel=1
+pkgdesc="Music scrobbler daemon using the MPRIS D-Bus interface."
+arch=('x86_64')
+url="https://github.com/InputUsername/rescrobbled"
+license=('GPL3')
+depends=('dbus')
+makedepends=('rust' 'cargo' 'git')
+provides=("${_pkgname}")
+conflicts=("${_pkgname}")
+source=('git+https://github.com/InputUsername/rescrobbled.git'
+  'rescrobbled.service')
+sha256sums=('SKIP'
+  'a5a9735c34c1851bfbcceddbbc3d5116fe12324281916dbb29dc7d68b89f6b74')
+
+pkgver() {
+  cd "${srcdir}/${_pkgname}"
+  git describe --long --tags | sed 's/^v//;s/\([^-]*-g\)/r\1/;s/-/./g'
+}
+
+prepare() {
+  cd "${srcdir}/${_pkgname}"
+  cargo fetch --locked --target "$CARCH-unknown-linux-gnu"
+}
+
+build() {
+  cd "${srcdir}/${_pkgname}"
+  export RUSTUP_TOOLCHAIN=stable
+  export CARGO_TARGET_DIR=target
+  # Workaround https://github.com/rust-lang/cargo/issues/4350
+  export TMPDIR=$XDG_RUNTIME_DIR
+  cargo build --frozen --release --all-features
+}
+
+check() {
+  cd "${srcdir}/${_pkgname}"
+  export RUSTUP_TOOLCHAIN=stable
+  cargo test --frozen --all-features
+}
+
+package() {
+  cd "${srcdir}/${_pkgname}"
+  install -Dm755 -t "$pkgdir/usr/bin/" "target/release/${_pkgname}"
+  install -Dm644 -t "$pkgdir/usr/share/licenses/${_pkgname}/" LICENSE
+
+  # Note: Use our own service file, not the upstream's.
+  install -Dm644 -t "${pkgdir}/usr/lib/systemd/user/" "${srcdir}/rescrobbled.service"
+}

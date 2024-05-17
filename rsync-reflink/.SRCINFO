@@ -1,0 +1,31 @@
+pkgbase = rsync-reflink
+	pkgdesc = A fast and versatile file copying tool for remote and local files - with reflink support
+	pkgver = 3.3.0
+	pkgrel = 1
+	url = https://github.com/RsyncProject/rsync
+	arch = x86_64
+	license = GPL-3.0-or-later
+	makedepends = git
+	makedepends = python-commonmark
+	depends = libacl.so
+	depends = libxxhash.so
+	depends = openssl
+	depends = popt
+	depends = zstd
+	optdepends = python-braceexpand: for rrsync
+	provides = rsync=3.3.0
+	conflicts = rsync
+	backup = etc/rsyncd.conf
+	backup = etc/xinetd.d/rsync
+	source = rsyncproject.rsync::git+https://github.com/RsyncProject/rsync.git#tag=v3.3.0
+	source = reflink-3.3.0-clone-dest.patch::https://github.com/RsyncProject/rsync-patches/raw/v3.3.0/clone-dest.diff
+	source = reflink-3.3.0-detect-renamed.patch::https://github.com/RsyncProject/rsync-patches/raw/v3.3.0/detect-renamed.diff
+	source = reflink-3.3.0-detect-renamed-lax.patch::https://github.com/RsyncProject/rsync-patches/raw/v3.3.0/detect-renamed-lax.diff
+	source = rsyncd.conf
+	sha256sums = SKIP
+	sha256sums = SKIP
+	sha256sums = SKIP
+	sha256sums = SKIP
+	sha256sums = 733ccb571721433c3a6262c58b658253ca6553bec79c2bdd0011810bb4f2156b
+
+pkgname = rsync-reflink

@@ -1,0 +1,22 @@
+pkgbase = sioyek-git
+	pkgdesc = PDF viewer for research papers and technical books.
+	pkgver = 2.0.0.r890.gb312fe0
+	pkgrel = 1
+	url = https://github.com/ahrm/sioyek
+	arch = x86_64
+	license = GPL3
+	makedepends = git
+	makedepends = qt6-3d
+	depends = libmupdf
+	depends = qt6-speech
+	depends = qt6-declarative
+	depends = qt6-svg
+	optdepends = qt6-wayland
+	provides = sioyek
+	conflicts = sioyek
+	source = git+https://github.com/ahrm/sioyek.git#branch=development
+	source = standard-path-mupdf-build.patch
+	sha256sums = SKIP
+	sha256sums = 3f781450b34cf06bb3d9f5499c197f8be1fb6b9d25a77f98b03a226149a096c1
+
+pkgname = sioyek-git

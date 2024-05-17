@@ -1,0 +1,14 @@
+pkgbase = superbfetch-git
+	pkgdesc = Dynamic fetch displayer that SuperB
+	pkgver = r85.91c138e
+	pkgrel = 1
+	url = https://github.com/NNBnh/bfetch
+	arch = any
+	license = custom
+	makedepends = git
+	provides = bfetch
+	conflicts = bfetch-git
+	source = git+https://github.com/NNBnh/bfetch
+	md5sums = SKIP
+
+pkgname = superbfetch-git

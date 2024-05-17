@@ -1,0 +1,16 @@
+pkgbase = surfn-icons-git
+	pkgdesc = Surfn, a colourful icon theme
+	pkgver = 9.7.1.r31.gb45e8c22
+	pkgrel = 1
+	epoch = 1
+	url = https://github.com/erikdubois/Surfn
+	arch = any
+	license = custom:CC BY-NC-SA 4.0
+	makedepends = git
+	options = !strip
+	options = !emptydirs
+	source = Surfn::git+https://github.com/erikdubois/Surfn.git
+	sha256sums = SKIP
+
+pkgname = surfn-icons-git
+

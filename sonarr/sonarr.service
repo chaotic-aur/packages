@@ -1,0 +1,23 @@
+# Be sure to use `systemctl edit sonarr` to modify this service with an override.conf because
+# direct changes will be overwritten by package updates.
+#
+# A user per service w/ shared group setup would have an override like:
+# [Service]
+# Group=sharedgroupname
+# UMask=002
+
+[Unit]
+Description=Sonarr Service
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+User=sonarr
+Group=sonarr
+SyslogIdentifier=sonarr
+ExecStart=/usr/lib/sonarr/bin/Sonarr -nobrowser -data=/var/lib/sonarr
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

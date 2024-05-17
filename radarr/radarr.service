@@ -1,0 +1,22 @@
+# Be sure to use `systemctl edit radarr` to modify this service with an override.conf because
+# direct changes will be overwritten by package updates.
+#
+# A user per service w/ shared group setup would have an override like:
+# [Service]
+# Group=sharedgroupname
+# UMask=002
+
+[Unit]
+Description=Radarr Service
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+User=radarr
+Group=radarr
+SyslogIdentifier=radarr
+ExecStart=/usr/lib/radarr/bin/Radarr -nobrowser -data=/var/lib/radarr
+Type=simple
+
+[Install]
+WantedBy=multi-user.target

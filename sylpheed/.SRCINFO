@@ -1,0 +1,19 @@
+pkgbase = sylpheed
+	pkgdesc = Lightweight and user-friendly e-mail client
+	pkgver = 3.8.0
+	pkgrel = 1
+	url = https://sylpheed.sraoss.jp
+	arch = x86_64
+	license = GPL
+	makedepends = openssl
+	depends = compface
+	depends = gpgme
+	depends = gtkspell
+	depends = libnsl
+	source = https://sylpheed.sraoss.jp/sylpheed/v3.8beta/sylpheed-3.8.0beta1.tar.bz2
+	source = https://sylpheed.sraoss.jp/sylpheed/v3.8beta/sylpheed-3.8.0beta1.tar.bz2.asc
+	validpgpkeys = 8CF3A5AC417ADE72B0AA4A835024337CC00C2E26
+	sha512sums = e84032324aec491e3f41ed39486f87df533ca659202361aec728c99f517bb01506750f826711e4d4cf05f3755987ac40272e97ef22df63c7b8b55b17b47c0c6e
+	sha512sums = SKIP
+
+pkgname = sylpheed

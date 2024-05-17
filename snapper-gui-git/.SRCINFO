@@ -1,0 +1,27 @@
+pkgbase = snapper-gui-git
+	pkgdesc = Gui for snapper, a tool of managing snapshots of Btrfs subvolumes and LVM volumes
+	pkgver = 0.1+8.r132.20220626.1915750
+	pkgrel = 1
+	url = https://github.com/ricardomv/snapper-gui
+	install = snapper-gui.install
+	arch = any
+	license = GPL2
+	makedepends = git
+	depends = python3
+	depends = gtk3
+	depends = python-dbus
+	depends = python-gobject
+	depends = python-setuptools
+	depends = gtksourceview3
+	depends = snapper
+	optdepends = gksu: Access snapper-gui from application menu under GTK-base DE
+	optdepends = kdesu: Access snapper-gui from application menu under KDE
+	provides = snapper-gui
+	conflicts = snapper-gui
+	source = snapper-gui-git::git+https://github.com/ricardomv/snapper-gui.git
+	source = python3.11-diff-fix.patch::https://patch-diff.githubusercontent.com/raw/ricardomv/snapper-gui/pull/59.patch
+	sha256sums = SKIP
+	sha256sums = 2770d1ef054c1e089af72d3779e65fcaa33b7fab54eab57e31cfd3ebab6b96e9
+
+pkgname = snapper-gui-git
+

@@ -1,0 +1,17 @@
+pkgbase = stumpwm-contrib-git
+	pkgdesc = Collection of StumpWM modules
+	pkgver = r280.0eeeca2
+	pkgrel = 1
+	url = https://github.com/stumpwm/stumpwm-contrib.git
+	arch = any
+	license = GPL2
+	makedepends = git
+	depends = bash
+	depends = stumpwm
+	provides = stumpwm-contrib
+	conflicts = stumpwm-contrib
+	source = git+https://github.com/stumpwm/stumpwm-contrib.git
+	md5sums = SKIP
+
+pkgname = stumpwm-contrib-git
+

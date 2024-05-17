@@ -1,0 +1,35 @@
+build () {
+
+    # subshell to avoid namespace pollution
+    (
+        . /etc/linuxpba/linuxpba.conf
+        if [[ "$USE_SEDUTIL_PBA" = 1 ]]
+        then
+            add_binary "linuxpba"
+            add_file "/usr/share/terminfo/l/linux"
+        else
+            add_binary "/usr/bin/linuxpba-arch" "/usr/bin/linuxpba"
+            add_binary "getpasswd"
+            add_binary "sedutil-cli"
+            if [[ -e "/etc/linuxpba/keyring.luks" ]]
+            then
+                add_file "/etc/linuxpba/linuxpba.conf"
+                [[ -e "/usr/bin/ykchalresp" ]] && add_binary "ykchalresp"
+                [[ -e "/usr/bin/ykinfo" ]] && add_binary "ykinfo"
+                add_binary "cryptsetup"
+                add_binary "dmsetup"
+                add_file "/etc/linuxpba/keyring.luks"
+                add_file "/usr/lib/udev/rules.d/10-dm.rules"
+                add_file "/usr/lib/udev/rules.d/13-dm-disk.rules"
+                add_file "/usr/lib/udev/rules.d/95-dm-notify.rules"
+                add_file "/usr/lib/initcpio/udev/11-dm-initramfs.rules" "/usr/lib/udev/rules.d/11-dm-initramfs.rules"
+            fi
+        fi
+    ) && add_runscript
+}
+
+help () {
+cat <<HELPEOF
+Linux TCG Opal 2.0 PBA.
+HELPEOF
+}

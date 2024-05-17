@@ -1,0 +1,16 @@
+[Unit]
+Description=dynamic swap manager
+Documentation=man:swapspace(8)
+After=local-fs.target
+Requires=local-fs.target
+After=swap.target
+Requires=swap.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/swapspace
+Restart=always
+RestartSec=30
+
+[Install]
+WantedBy=multi-user.target

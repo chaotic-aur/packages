@@ -1,0 +1,19 @@
+pkgbase = shim-signed
+	pkgdesc = Initial UEFI bootloader that handles chaining to a trusted full bootloader under secure boot environments (prebuilt x64 and AA64 binaries from Ubuntu)
+	pkgver = 15.8+ubuntu+1.58
+	pkgrel = 1
+	url = https://packages.ubuntu.com/noble/shim-signed
+	install = shim-signed.install
+	arch = any
+	license = BSD-2-Clause
+	noextract = shim-signed_1.58+15.8-0ubuntu1_arm64.deb
+	options = !strip
+	options = !debug
+	source = http://archive.ubuntu.com/ubuntu/pool/main/s/shim-signed/shim-signed_1.58+15.8-0ubuntu1_amd64.deb
+	source = http://ports.ubuntu.com/pool/main/s/shim-signed/shim-signed_1.58+15.8-0ubuntu1_arm64.deb
+	sha256sums = ba9b5d80e5d886c30664f2bebfb5c2fcce3b9b40f16fc46cba49c19a91c8059c
+	sha256sums = 58b0f8a0f43bdff2122af8f52b05a5eb73b1964079e36e3eed8d06b4d5164917
+	sha512sums = b14146826a0b754934ae2b71e1975faa5929654542399015c3c32e9d9d74c678294d481a7946471bfe38b6c6e6f303f50bae72fc30de8494933083da626ac4de
+	sha512sums = 5aef2178a0d2446179be64b22619e230a2322b7122f2733a2577ca622e28670f8c39651a09c6408064c64b45eca32c04822fcbac9905b03ba617ce6913182728
+
+pkgname = shim-signed

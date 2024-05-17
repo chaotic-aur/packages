@@ -1,0 +1,25 @@
+pkgbase = shortwave-git
+	pkgdesc = Find and listen to internet radio stations
+	pkgver = 3.2.0.r111.g0513ea6
+	pkgrel = 1
+	url = https://apps.gnome.org/Shortwave
+	arch = x86_64
+	arch = aarch64
+	license = GPL3
+	checkdepends = appstream-glib
+	makedepends = cargo
+	makedepends = git
+	makedepends = meson
+	makedepends = wayland-protocols
+	depends = gst-plugins-bad
+	depends = gst-plugins-base
+	depends = gstreamer
+	depends = libadwaita
+	depends = libshumate
+	provides = shortwave
+	conflicts = shortwave
+	options = !lto
+	source = git+https://gitlab.gnome.org/World/Shortwave.git
+	sha256sums = SKIP
+
+pkgname = shortwave-git
