@@ -1,0 +1,19 @@
+pkgbase = gedit-plugin-markdown_preview
+	pkgdesc = A gedit plugin previewing markdown (.md) documents
+	pkgver = 3.0
+	pkgrel = 1
+	url = https://github.com/maoschanz/gedit-plugin-markdown_preview
+	arch = any
+	license = GPL-3.0-or-later
+	depends = gedit
+	depends = python-markdown
+	depends = webkit2gtk
+	optdepends = pymdown-extensions: extra Python Markdown extensions
+	optdepends = python-pygments: for CodeHilite extension
+	optdepends = pandoc: export and stylesheet support
+	optdepends = texlive-bin: export to PDF with pandoc (pdflatex)
+	optdepends = texlive-fontsextra: export to PDF with pandoc (lmodern)
+	source = gedit-plugin-markdown_preview-3.0.tar.gz::https://github.com/maoschanz/gedit-plugin-markdown_preview/archive/refs/tags/3.0.tar.gz
+	sha256sums = fcdb6e0624d6b2e92df2c65f357c17931ad65f8d883b8a668bb52fae95c70728
+
+pkgname = gedit-plugin-markdown_preview

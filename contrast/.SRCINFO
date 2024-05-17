@@ -1,0 +1,16 @@
+pkgbase = contrast
+	pkgdesc = Checks whether the contrast between two colors meet the WCAG requirements
+	pkgver = 0.0.10
+	pkgrel = 1
+	url = https://gitlab.gnome.org/World/design/contrast
+	arch = x86_64
+	arch = aarch64
+	license = GPL3
+	checkdepends = appstream-glib
+	makedepends = meson
+	makedepends = cargo
+	depends = libadwaita
+	source = https://gitlab.gnome.org/World/design/contrast/-/archive/0.0.10/contrast-0.0.10.tar.gz
+	b2sums = 2425e0111157e893c80d2177949c071ed906f3b215bc64a3c6b26cfd27aa93c14f0a4cf62bb6867dd0a4f3bb87c03a22f5b88f82da88aed32d5cd50867b4da82
+
+pkgname = contrast

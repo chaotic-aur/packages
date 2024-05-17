@@ -1,0 +1,36 @@
+# Maintainer: Elias Werberich <elias at werberich dot de>
+# Contributor: Struan Robertson <struanrobertson@protonmail.com>
+
+pkgname=grimblast-git
+pkgver=r89.fe26a90
+pkgrel=1
+pkgdesc="A helper for screenshots within Hyprland."
+arch=("any")
+url="https://github.com/hyprwm/contrib"
+licence=('MIT')
+provides=('grimblast')
+conflicts=('grimblast')
+depends=("hyprland" "grim" "slurp" "jq")
+optdepends=('libnotify: Notify users when a screenshot is taken'
+  'hyprpicker: Freeze the screen in area mode'
+  'wl-clipboard: Copy screenshots')
+makedepends=("scdoc" "git")
+source=("git+https://github.com/hyprwm/contrib.git")
+md5sums=('SKIP')
+
+pkgver() {
+  cd "$srcdir/contrib"
+  printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+build() {
+  cd "$srcdir/contrib/grimblast"
+  scdoc < grimblast.1.scd > grimblast.1
+}
+
+package() {
+  cd "$srcdir/contrib/grimblast"
+
+  install -Dm 644 grimblast.1 "$pkgdir/usr/share/man/man1/grimblast.1"
+  install -Dm 755 grimblast "$pkgdir/usr/bin/grimblast"
+}

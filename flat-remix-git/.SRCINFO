@@ -1,0 +1,17 @@
+pkgbase = flat-remix-git
+	pkgdesc = An icon theme inspired by material design.
+	pkgver = 20211214.r0.g5711425af
+	pkgrel = 1
+	url = https://drasite.com/flat-remix
+	install = flat-remix-git.install
+	arch = any
+	license = GPL3
+	makedepends = git
+	makedepends = gtk-update-icon-cache
+	provides = flat-remix
+	conflicts = flat-remix
+	options = !strip
+	source = flat-remix-git::git+https://github.com/daniruiz/flat-remix.git
+	sha256sums = SKIP
+
+pkgname = flat-remix-git

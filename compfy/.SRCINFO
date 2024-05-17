@@ -1,0 +1,30 @@
+pkgbase = compfy
+	pkgdesc = A Linux Compositor for X11. Based on Picom. Providing Animations and More
+	pkgver = 1.7.2
+	pkgrel = 1
+	url = https://github.com/allusive-dev/compfy
+	arch = i686
+	arch = x86_64
+	license = MIT
+	license = MPL2
+	makedepends = git
+	makedepends = meson
+	makedepends = ninja
+	makedepends = gcc
+	makedepends = uthash
+	depends = libconfig
+	depends = libev
+	depends = libxdg-basedir
+	depends = pcre2
+	depends = pixman
+	depends = xcb-util-image
+	depends = xcb-util-renderutil
+	depends = libglvnd
+	depends = libx11
+	depends = libxcb
+	depends = libdbus
+	optdepends = dbus: To control Compfy via D-Bus
+	source = git+https://github.com/allusive-dev/compfy.git#tag=2963dc4c0b77b20f422fbb67c7fae5138059f601
+	md5sums = SKIP
+
+pkgname = compfy

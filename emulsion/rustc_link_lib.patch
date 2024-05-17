@@ -1,0 +1,13 @@
+diff --git a/build.rs b/build.rs
+index 9145fa6..f42c53e 100644
+--- a/build.rs
++++ b/build.rs
+@@ -19,6 +19,8 @@ fn platform_specific() {}
+ fn main() {
+ 	platform_specific();
+ 
++	println!("cargo:rustc-link-lib=static=info");
++
+ 	let dir_name = "resource";
+ 	let profile = env::var("PROFILE").unwrap();
+ 

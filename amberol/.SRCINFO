@@ -1,0 +1,25 @@
+pkgbase = amberol
+	pkgdesc = Plays music, and nothing else
+	pkgver = 0.10.3
+	pkgrel = 1
+	url = https://apps.gnome.org/app/io.bassi.Amberol
+	install = xdg-mime.install
+	arch = x86_64
+	arch = aarch64
+	license = GPL3
+	checkdepends = appstream-glib
+	checkdepends = reuse
+	makedepends = git
+	makedepends = meson
+	makedepends = cargo
+	depends = libadwaita
+	depends = libportal-gtk4
+	depends = gstreamer
+	depends = gst-plugins-base
+	depends = gst-plugins-bad
+	depends = gst-plugins-good
+	options = !lto
+	source = git+https://gitlab.gnome.org/World/amberol.git#tag=0.10.3
+	b2sums = SKIP
+
+pkgname = amberol

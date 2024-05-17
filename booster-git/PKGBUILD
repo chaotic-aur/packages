@@ -1,0 +1,68 @@
+# Maintainer: Anatol Pomozov
+
+pkgname=booster-git
+pkgver=0.7.r106.gc7e328f
+pkgrel=1
+pkgdesc='Fast and secure initramfs generator'
+arch=(x86_64)
+url='https://github.com/anatol/booster'
+license=(MIT)
+depends=(bash)
+makedepends=(git go ruby-ronn-ng)
+#checkdepends=(qemu-headless linux tang)
+optdepends=(
+  'busybox: to enable emergency shell at the boot time'
+  'yubikey-personalization: for clevis Yubikey challenge-response support'
+  'libfido2: for systemd-enroll with FIDO2'
+)
+backup=(etc/booster.yaml)
+provides=(booster initramfs)
+conflicts=(booster)
+replaces=(booster)
+source=(git+https://github.com/anatol/booster)
+sha512sums=('SKIP')
+
+pkgver() {
+  cd booster
+  git describe --long --tags | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
+}
+
+build() {
+  cd booster
+
+  cd generator
+  CGO_CPPFLAGS="${CPPFLAGS}" CGO_CFLAGS="${CFLAGS}" CGO_CXXFLAGS="${CXXFLAGS}" CGO_LDFLAGS="${LDFLAGS}" \
+    go build -trimpath \
+    -buildmode=pie \
+    -mod=readonly \
+    -modcacherw \
+    -ldflags "-linkmode external -extldflags \"${LDFLAGS}\""
+
+  cd ../init
+  CGO_ENABLED=0 go build -trimpath -mod=readonly -modcacherw
+
+  cd ..
+  ronn docs/manpage.md
+}
+
+check() {
+  cd booster/tests
+  # arch chroot does not allow access to KVM
+  # TEST_DISABLE_KVM=1 go test -v # integration tests require a lot of time and space to build 10G images
+}
+
+package() {
+  cd booster
+  mkdir "$pkgdir/etc/"
+  touch "$pkgdir/etc/booster.yaml"
+  install -Dp -m755 generator/generator "$pkgdir/usr/bin/booster"
+  install -Dp -m644 docs/manpage.1 "$pkgdir/usr/share/man/man1/booster.1"
+  install -Dp -m755 init/init "$pkgdir/usr/lib/booster/init"
+  install -Dp -m755 packaging/arch/regenerate_images "$pkgdir/usr/lib/booster/regenerate_images"
+
+  install -Dp -m644 packaging/arch/90-booster-install.hook "$pkgdir/usr/share/libalpm/hooks/90-booster-install.hook"
+  install -Dp -m755 packaging/arch/booster-install "$pkgdir/usr/share/libalpm/scripts/booster-install"
+  install -Dp -m644 packaging/arch/60-booster-remove.hook "$pkgdir/usr/share/libalpm/hooks/60-booster-remove.hook"
+  install -Dp -m755 packaging/arch/booster-remove "$pkgdir/usr/share/libalpm/scripts/booster-remove"
+  install -Dp -m755 contrib/completion/bash "$pkgdir/usr/share/bash-completion/completions/booster"
+}

@@ -1,0 +1,136 @@
+#!/bin/bash
+
+# arg 1:  the new package version
+post_install() {
+	if [[ ! -e /etc/synapse/homeserver.yaml ]]; then
+		cat <<-EOF
+		==> A synapse configuration file needs to be generated before you can
+		    start synapse, and you should make sure that it's readable by the
+		    synapse user.
+
+		    cd /var/lib/synapse
+		    sudo -u synapse python -m synapse.app.homeserver \\
+		      --server-name my.domain.name \\
+		      --config-path /etc/synapse/homeserver.yaml \\
+		      --generate-config \\
+		      --report-stats=yes
+
+		    N.B.: The default synapse config enables the webclient feature.
+		          You need to either disable it, install the syweb python package
+		          from matrix-angular-sdk, or set 'web_client_location' to a path
+		          to make synapse not try to serve it using syweb.
+		EOF
+	fi
+}
+
+# arg 1:  the new package version
+# arg 2:  the old package version
+post_upgrade() {
+	if [[ "$(vercmp "$2" 1.4.0-2)" -lt 0 ]]; then
+		cat <<-EOF
+		==> Upstream email templates are no longer available in /var/lib/synapse/res/templates.
+
+		    If you want to customize the templates, you can copy the default ones from
+		    /usr/lib/python3.x/site-packages/synapse/res/templates/
+		EOF
+	fi
+
+	if [[ "$(vercmp "$2" 1.26.0-1)" -lt 0 ]]; then
+		cat <<-EOF
+		==> Synapse 1.26.0 includes a new database schema version.
+
+		    If you need to downgrade, see the following document:
+		    https://github.com/matrix-org/synapse/blob/v1.26.0/UPGRADE.rst#upgrading-to-v1260
+		EOF
+	fi
+
+	if [[ "$(vercmp "$2" 1.38.0)" -lt 0 ]]; then
+		cat <<-EOF
+		==> Synapse 1.38.0 includes a database migration that re-indexes the events table.
+
+		    > This could result in increased disk I/O for several hours or days
+		    > after upgrading while the migration completes. Furthermore,
+		    > because we have to keep the old indexes until the new indexes are
+		    > ready, it could result in a significant, temporary, increase in
+		    > disk space.
+
+		    See https://matrix-org.github.io/synapse/develop/upgrade#upgrading-to-v1380
+		EOF
+	fi
+
+	if [[ "$(vercmp "$2" 1.41.0)" -lt 0 ]]; then
+		cat <<-EOF
+		==> Synapse 1.41.0 changes how template directories are handled,
+		    and adds a new path for media workers.
+
+		    See https://matrix-org.github.io/synapse/v1.41/upgrade.html#upgrading-to-v1410
+		EOF
+	fi
+
+	if [[ "$(vercmp "$2" 1.45.1)" -lt 0 ]]; then
+		cat <<-EOF
+		==> Changes required to media storage provider modules
+		    Media storage provider modules that read from the Synapse configuration
+		    object (i.e. that read the value of hs.config.[...])
+		    now need to specify the configuration section they're reading from.
+
+		    see https://matrix-org.github.io/synapse/develop/upgrade#upgrading-to-v1450
+		EOF
+	fi
+
+	if [[ "$(vercmp "$2" 1.51.0)" -lt 0 ]]; then
+		cat <<-EOF
+		==> Deprecation of webclient listeners and non-HTTP(S) web_client_location
+		    Listeners of type webclient are deprecated and scheduled to be removed in
+		    Synapse v1.53.0.
+		    Similarly, a non-HTTP(S) web_client_location configuration is deprecated
+		    and will become a configuration error in Synapse v1.53.0.
+		EOF
+	fi
+	if [[ "$(vercmp "$2" 1.53.0)" -lt 0 ]]; then
+		cat <<-EOF
+		==> Dropping support for webclient listeners and non-HTTP(S) web_client_location
+		    Per the deprecation notice in Synapse v1.51.0, listeners of type
+		    webclient are no longer supported and configuring them is a now
+		    a configuration error.
+		    Configuring a non-HTTP(S) web_client_location configuration is now
+		    a configuration error.
+		EOF
+	fi
+	if [[ "$(vercmp "$2" 1.56.0)" -lt 0 ]]; then
+		cat <<-EOF
+		==> Open registration without verification is now disabled by default
+		    Synapse will refuse to start if registration is enabled without email,
+		    captcha, or token-based verification unless the new config flag
+		    enable_registration_without_verification is set to "true".
+		EOF
+	fi
+	if [[ "$(vercmp "$2" 1.60.0)" -lt 0 ]]; then
+		cat <<-EOF
+		==> Adding a new unique index to state_group_edges could fail if your database is corrupted
+		    see: https://github.com/matrix-org/synapse/blob/develop/docs/upgrade.md#adding-a-new-unique-index-to-state_group_edges-could-fail-if-your-database-is-corrupted
+		    for mor information.
+		EOF
+	fi
+	if [[ "$(vercmp "$2" 1.66.0)" -lt 0 ]]; then
+		cat <<-EOF
+		==> Delegation of email validation no longer supported
+		    see: https://matrix-org.github.io/synapse/v1.66/upgrade.html#delegation-of-email-validation-no-longer-supported
+		    for mor information.
+		EOF
+	fi
+	if [[ "$(vercmp "$2" 1.76.0)" -lt 0 ]]; then
+		cat <<-EOF
+		==> The upgrade from 1.75 to 1.76 changes the account data replication streams in a backwards-incompatible manner
+		    see: https://github.com/matrix-org/synapse/blob/release-v1.76/docs/upgrade.md#changes-to-the-account-data-replication-streams
+		    for mor information.
+		EOF
+	fi
+	if [[ "$(vercmp "$2" 1.88.0)" -lt 0 ]]; then
+		cat <<-EOF
+		==> The 'worker_replication_*' settings that have been deprecated since v1.84.0 were removed in v1.88.0.
+		    see: https://github.com/matrix-org/synapse/blob/release-v1.88/docs/upgrade.md#upgrading-to-v1880
+		    for mor information.
+		EOF
+	fi
+}

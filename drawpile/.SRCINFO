@@ -1,0 +1,45 @@
+pkgbase = drawpile
+	pkgdesc = Collaborative drawing program specially made for use with pen tablets
+	pkgver = 2.2.1
+	pkgrel = 1
+	url = https://drawpile.net/
+	arch = i686
+	arch = x86_64
+	license = GPL3
+	makedepends = cmake
+	makedepends = extra-cmake-modules
+	makedepends = karchive5
+	makedepends = qt5-multimedia
+	makedepends = qt5-svg
+	makedepends = qt5-tools
+	makedepends = qt5-x11extras
+	makedepends = cargo
+	source = https://github.com/drawpile/Drawpile/archive/refs/tags/2.2.1.tar.gz
+	sha256sums = 7b158e26f346da767e29abf3a347344a11a05ef6308236100b437518aaa2a07f
+
+pkgname = drawpile
+	pkgdesc = Collaborative drawing program specially made for use with pen tablets (meta package)
+	arch = any
+	depends = drawpile-client
+	depends = drawpile-server
+	depends = drawpile-tools
+
+pkgname = drawpile-client
+	pkgdesc = Collaborative drawing program specially made for use with pen tablets (client)
+	install = drawpile.install
+	depends = desktop-file-utils
+	depends = karchive5
+	depends = qt5-multimedia
+	depends = qt5-x11extras
+	optdepends = qt5-color-widgets: alternative color wheel
+	optdepends = qtkeychain-qt5: Password storage
+
+pkgname = drawpile-server
+	pkgdesc = Collaborative drawing program specially made for use with pen tablets (server)
+	depends = karchive5
+	optdepends = libmicrohttpd: web-admin feature
+	optdepends = libsodium: ext-auth support
+	optdepends = libsystemd: systemd and logging support
+
+pkgname = drawpile-tools
+	pkgdesc = Collaborative drawing program specially made for use with pen tablets (tools)

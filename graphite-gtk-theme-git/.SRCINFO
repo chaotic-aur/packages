@@ -1,0 +1,71 @@
+pkgbase = graphite-gtk-theme-git
+	pkgdesc = Graphite gtk theme
+	pkgver = 2023.05.17.r8.gb2e9ce2
+	pkgrel = 1
+	url = https://github.com/vinceliuice/Graphite-gtk-theme
+	arch = any
+	license = GPL2
+	makedepends = git
+	makedepends = sassc
+	depends = gnome-themes-extra
+	optdepends = gtk-engine-murrine
+	provides = graphite-gtk-theme
+	conflicts = graphite-gtk-theme
+	options = !strip
+	source = git+https://github.com/vinceliuice/Graphite-gtk-theme.git
+	source = Graphite-backgrounds.xml
+	sha256sums = SKIP
+	sha256sums = SKIP
+
+pkgname = graphite-gtk-theme-git
+
+pkgname = graphite-gtk-theme-wallpaper-git
+	optdepends = 
+	provides = graphite-theme-wallpaper
+	conflicts = graphite-theme-wallpaper
+
+pkgname = graphite-gtk-theme-nord-git
+
+pkgname = graphite-gtk-theme-black-git
+
+pkgname = graphite-gtk-theme-rimless-git
+
+pkgname = graphite-gtk-theme-normal-git
+
+pkgname = graphite-gtk-theme-nord-rimless-git
+
+pkgname = graphite-gtk-theme-nord-normal-git
+
+pkgname = graphite-gtk-theme-black-rimless-git
+
+pkgname = graphite-gtk-theme-black-normal-git
+
+pkgname = graphite-gtk-theme-rimless-normal-git
+
+pkgname = graphite-gtk-theme-nord-rimless-normal-git
+
+pkgname = graphite-gtk-theme-black-rimless-normal-git
+
+pkgname = graphite-gtk-theme-compact-git
+
+pkgname = graphite-gtk-theme-nord-compact-git
+
+pkgname = graphite-gtk-theme-black-compact-git
+
+pkgname = graphite-gtk-theme-rimless-compact-git
+
+pkgname = graphite-gtk-theme-normal-compact-git
+
+pkgname = graphite-gtk-theme-nord-rimless-compact-git
+
+pkgname = graphite-gtk-theme-nord-normal-compact-git
+
+pkgname = graphite-gtk-theme-black-rimless-compact-git
+
+pkgname = graphite-gtk-theme-black-normal-compact-git
+
+pkgname = graphite-gtk-theme-rimless-normal-compact-git
+
+pkgname = graphite-gtk-theme-nord-rimless-normal-compact-git
+
+pkgname = graphite-gtk-theme-black-rimless-normal-compact-git

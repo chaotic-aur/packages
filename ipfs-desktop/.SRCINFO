@@ -1,0 +1,30 @@
+pkgbase = ipfs-desktop
+	pkgdesc = Desktop client for the InterPlanetary File System
+	pkgver = 0.30.2
+	pkgrel = 1
+	url = https://github.com/ipfs/ipfs-desktop
+	install = ipfs-desktop.install
+	arch = x86_64
+	license = MIT
+	makedepends = nodejs>=16
+	makedepends = npm
+	makedepends = node-gyp
+	makedepends = libxcrypt-compat
+	makedepends = libnotify
+	makedepends = snappy
+	makedepends = libappindicator-gtk3
+	makedepends = re2
+	makedepends = nss
+	makedepends = minizip
+	makedepends = libxss
+	makedepends = libxslt
+	makedepends = libvpx
+	makedepends = http-parser
+	makedepends = c-ares
+	makedepends = libevent
+	depends = gtk3
+	depends = alsa-lib
+	source = ipfs-desktop-0.30.2.tar.gz::https://github.com/ipfs/ipfs-desktop/archive/refs/tags/v0.30.2.tar.gz
+	b2sums = d5f8532dac5c07d5c99f82432d271e66286afb755dfcccc05b9a32ec5f3e46e81510037fcc2b25664a771951a784ab82e77f659d4274c995a1d08401aefa2808
+
+pkgname = ipfs-desktop

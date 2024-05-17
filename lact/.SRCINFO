@@ -1,0 +1,28 @@
+pkgbase = lact
+	pkgdesc = AMDGPU Controller application
+	pkgver = 0.5.4
+	pkgrel = 2
+	url = https://github.com/ilya-zlobintsev/LACT
+	install = lact.install
+	arch = x86_64
+	arch = aarch64
+	license = MIT
+	makedepends = blueprint-compiler
+	makedepends = cargo
+	makedepends = clang
+	makedepends = libadwaita
+	makedepends = git
+	depends = hwdata
+	depends = gtk4
+	source = git+https://github.com/ilya-zlobintsev/LACT.git#tag=v0.5.4
+	sha256sums = SKIP
+
+pkgname = lact
+
+pkgname = lact-libadwaita
+	pkgdesc = AMDGPU Controller application (libadwaita edition)
+	depends = hwdata
+	depends = gtk4
+	depends = libadwaita
+	provides = lact
+	conflicts = lact

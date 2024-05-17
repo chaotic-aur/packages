@@ -1,0 +1,18 @@
+pkgbase = dte
+	pkgdesc = A small, configurable console text editor
+	pkgver = 1.11.1
+	pkgrel = 1
+	url = https://craigbarnes.gitlab.io/dte/
+	arch = x86_64
+	arch = i686
+	arch = armv7h
+	arch = aarch64
+	license = GPL2
+	depends = glibc
+	optdepends = ctags: for generating "tags" files for the tag command
+	optdepends = git: for the builtin git-grep and git-open aliases
+	optdepends = fzf: for the builtin git-open alias
+	source = https://craigbarnes.gitlab.io/dist/dte/dte-1.11.1.tar.gz
+	sha256sums = 3d7d0d375fd31906ed436de20161dddc42d97f969a93d22b02aecfc3451e6c39
+
+pkgname = dte

@@ -1,0 +1,20 @@
+pkgbase = emulsion
+	pkgdesc = A fast and minimalistic image viewer
+	pkgver = 11.0.0
+	pkgrel = 1
+	url = https://github.com/ArturKovacs/emulsion
+	arch = i686
+	arch = x86_64
+	license = MIT
+	makedepends = cargo
+	depends = gcc-libs
+	depends = hicolor-icon-theme
+	depends = libavif
+	source = emulsion-11.0.0.tar.gz::https://github.com/ArturKovacs/emulsion/archive/v11.0.tar.gz
+	source = emulsion.desktop
+	source = rustc_link_lib.patch
+	sha256sums = 25c7f8808b17a138901a549c97791f70f6ead0b7f7ad89a8460c2099326e3d1e
+	sha256sums = 0ddafdb9abec4887cab3e211f216e5c7e0f69bb15cd5426a6b85e469aeafd0aa
+	sha256sums = 09a8d447d97d97426812e5815147704e3999ef993b7b89258107f1f3dcb3b8f2
+
+pkgname = emulsion

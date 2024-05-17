@@ -1,0 +1,37 @@
+pkgbase = i2p
+	pkgdesc = A distributed anonymous network
+	pkgver = 2.5.0
+	pkgrel = 1
+	url = https://geti2p.net
+	install = i2p.install
+	arch = any
+	license = GPL2
+	makedepends = java-environment>=17
+	makedepends = ant
+	depends = java-runtime>=17
+	depends = java-service-wrapper
+	conflicts = i2p-bin
+	conflicts = i2p-dev
+	options = !strip
+	backup = opt/i2p/wrapper.config
+	source = https://files.i2p-projekt.de/2.5.0/i2psource_2.5.0.tar.bz2
+	source = https://files.i2p-projekt.de/2.5.0/i2psource_2.5.0.tar.bz2.sig
+	source = i2prouter.service
+	source = i2p.tmpfiles
+	source = wrapper.config
+	source = router.config
+	source = i2prouter.bash
+	source = i2prouter.sh
+	source = chromium-i2p.sh
+	validpgpkeys = 70D2060738BEF80523ACAFF7D75C03B39B5E14E1
+	sha256sums = 6bda9aff7daa468cbf6ddf141c670140de4d1db145329645a90c22c1e5c7bc01
+	sha256sums = SKIP
+	sha256sums = 644b771ec7f5db3efab3206bf1f896566cdb00d410a54608fda85bdb4c2ad876
+	sha256sums = fc30dd32f48fe1c93bf36c8297ca48203a1479e4e221ebe62c57cf3c3c0347d3
+	sha256sums = e3a85d8992a09e8f57498b1eba0aef758ceffdb944d296528e8c5cec970becd9
+	sha256sums = 90f202e5b66d5a5b425522b409e71fb892d34c534e32ce2d6fe5284015cacf94
+	sha256sums = 7a19b9f90c8792460fd58e8b8aa435a065e34d29a942479850472510e9d3078a
+	sha256sums = 8d39f080c7a2e49226db3a785f3e18583159ef2f95e1ab467fd9984c4e38c9f5
+	sha256sums = a7076156703e2b949331e450455813432caeb4e5712f1c7b668974eb06a69fb9
+
+pkgname = i2p

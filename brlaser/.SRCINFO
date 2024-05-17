@@ -1,0 +1,15 @@
+pkgbase = brlaser
+	pkgdesc = Brother laser printer driver
+	pkgver = 6
+	pkgrel = 3
+	url = https://github.com/pdewacht/brlaser
+	arch = x86_64
+	arch = armv7h
+	arch = aarch64
+	license = GPL2
+	makedepends = cmake
+	depends = cups
+	source = https://github.com/pdewacht/brlaser/archive/v6.tar.gz
+	sha512sums = d7e0e63b64be9ae7633381622c13ba0589e5fe58d277212bce4f5bb712a291ed0b0f2ac3d450dce61c7f9052c1ce7323fec66b5005c5cb3da1314b284d20f06f
+
+pkgname = brlaser

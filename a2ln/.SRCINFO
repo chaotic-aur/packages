@@ -1,0 +1,20 @@
+pkgbase = a2ln
+	pkgdesc = Android 2 Linux Notifications Server
+	pkgver = 1.1.14
+	pkgrel = 4
+	url = https://github.com/patri9ck/a2ln-server
+	arch = any
+	license = GPL3
+	makedepends = python-build
+	makedepends = python-installer
+	makedepends = python-wheel
+	makedepends = python-setuptools
+	depends = python
+	depends = python-pyzmq
+	depends = python-gobject
+	depends = python-pillow
+	depends = python-qrcode
+	source = a2ln-1.1.14.tar.gz::https://github.com/patri9ck/a2ln-server/archive/1.1.14.tar.gz
+	sha256sums = 09f9a2dbfb75ea742f259e5212243b5ddef76a09b5fb0a7fb21b6b0c96eeb21b
+
+pkgname = a2ln

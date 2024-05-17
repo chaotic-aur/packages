@@ -1,0 +1,9 @@
+
+provides=('mold')
+conflicts=('mold')
+
+pkgver() {
+  cd mold
+  git describe --long --tags --abbrev=7 \
+    | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
+}

@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=DeltaChat
+Comment=A privacy oriented chat application built on e-mail
+Exec=/opt/DeltaChat/deltachat %u
+Terminal=false
+Type=Application
+Icon=deltachat
+StartupWMClass="DeltaChat"
+Categories=Network;InstantMessaging;Chat;IRCClient
+MimeType=application/x-webxdc;x-scheme-handler/openpgp4fpr;x-scheme-handler/mailto;x-scheme-handler/dcaccount;x-scheme-handler/dclogin;

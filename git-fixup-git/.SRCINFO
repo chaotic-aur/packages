@@ -1,0 +1,15 @@
+pkgbase = git-fixup-git
+	pkgdesc = Provide a likely candidate for git commit --fixup
+	pkgver = 1.5.0.r12.gf964653
+	pkgrel = 1
+	url = https://github.com/keis/git-fixup
+	arch = any
+	license = ISC
+	depends = git
+	optdepends = zsh: to use git fixup tab completion
+	provides = git-fixup
+	conflicts = git-fixup
+	source = git-fixup::git+https://github.com/keis/git-fixup
+	sha256sums = SKIP
+
+pkgname = git-fixup-git

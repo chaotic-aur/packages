@@ -1,0 +1,27 @@
+pkgbase = aconfmgr-git
+	pkgdesc = A configuration manager for Arch Linux
+	pkgver = r634.ca09eea
+	pkgrel = 1
+	url = https://github.com/CyberShadow/aconfmgr
+	arch = any
+	license = MIT
+	makedepends = git
+	depends = bash
+	depends = pacman
+	depends = grep
+	depends = gawk
+	depends = diffutils
+	depends = pacutils
+	depends = expect
+	optdepends = aurman: aurman integration
+	optdepends = pacaur: pacaur integration
+	optdepends = paru: paru integration
+	optdepends = yay: yay integration
+	optdepends = git: for fetching AUR packages
+	optdepends = augeas: configuration file editing
+	source = git+https://github.com/CyberShadow/aconfmgr
+	source = license.txt
+	md5sums = SKIP
+	md5sums = 2c153a787e3a0974a4d4c5a005c53d99
+
+pkgname = aconfmgr-git

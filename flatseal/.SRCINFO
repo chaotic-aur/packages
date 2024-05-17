@@ -1,0 +1,22 @@
+pkgbase = flatseal
+	pkgdesc = A permissions manager for Flatpak.
+	pkgver = 2.2.0
+	pkgrel = 1
+	url = https://github.com/tchx84/Flatseal/
+	arch = any
+	license = GPL-3.0-only
+	makedepends = meson
+	makedepends = flatpak-builder
+	makedepends = ninja
+	depends = flatpak
+	depends = gjs
+	depends = webkitgtk-6.0
+	depends = libhandy
+	depends = appstream-glib
+	depends = libadwaita
+	source = flatseal-2.2.0::https://github.com/tchx84/Flatseal/archive/v2.2.0.tar.gz
+	source = appstream.patch
+	sha256sums = e95a61b4a6031a364a135aaae9d93404890a338c4e6b225944d640058e03923c
+	sha256sums = df3d2c827cd6d64aed9511764d8367695ab96c4c156c259d42ff4981c8f50e0b
+
+pkgname = flatseal

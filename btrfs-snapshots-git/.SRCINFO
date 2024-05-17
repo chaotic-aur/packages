@@ -1,0 +1,18 @@
+pkgbase = btrfs-snapshots-git
+	pkgdesc = Manage timestamped collections of btrfs snapshots
+	pkgver = 0.8.3.r0.2b0d420
+	pkgrel = 1
+	url = https://git.sr.ht/~jmcantrell/btrfs-snapshots
+	arch = any
+	license = MIT
+	checkdepends = parallel
+	checkdepends = diffutils
+	makedepends = git
+	makedepends = scdoc
+	depends = btrfs-progs
+	provides = btrfs-snapshots
+	conflicts = btrfs-snapshots
+	source = git+https://git.sr.ht/~jmcantrell/btrfs-snapshots
+	md5sums = SKIP
+
+pkgname = btrfs-snapshots-git

@@ -1,0 +1,13 @@
+pkgbase = asciinema-agg
+	pkgdesc = asciinema gif generator
+	pkgver = 1.4.3
+	pkgrel = 1
+	url = https://github.com/asciinema/agg
+	arch = x86_64
+	license = Apache
+	makedepends = cargo
+	depends = gcc-libs
+	source = https://github.com/asciinema/agg/archive/v1.4.3/agg-1.4.3.tar.gz
+	sha256sums = 1089e47a8e6ca7f147f74b2347e6b29d94311530a8b817c2f30f19744e4549c1
+
+pkgname = asciinema-agg

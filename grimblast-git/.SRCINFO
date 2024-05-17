@@ -1,0 +1,21 @@
+pkgbase = grimblast-git
+	pkgdesc = A helper for screenshots within Hyprland.
+	pkgver = r89.fe26a90
+	pkgrel = 1
+	url = https://github.com/hyprwm/contrib
+	arch = any
+	makedepends = scdoc
+	makedepends = git
+	depends = hyprland
+	depends = grim
+	depends = slurp
+	depends = jq
+	optdepends = libnotify: Notify users when a screenshot is taken
+	optdepends = hyprpicker: Freeze the screen in area mode
+	optdepends = wl-clipboard: Copy screenshots
+	provides = grimblast
+	conflicts = grimblast
+	source = git+https://github.com/hyprwm/contrib.git
+	md5sums = SKIP
+
+pkgname = grimblast-git

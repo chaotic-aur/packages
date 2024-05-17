@@ -1,0 +1,18 @@
+pkgbase = coulr
+	pkgdesc = Color box to help developers and designers
+	pkgver = 2.1.0
+	pkgrel = 1
+	url = https://github.com/Huluti/Coulr
+	arch = x86_64
+	arch = aarch64
+	license = MIT
+	checkdepends = appstream-glib
+	makedepends = git
+	makedepends = meson
+	depends = python-gobject
+	depends = libadwaita
+	depends = libportal-gtk4
+	source = git+https://github.com/Huluti/Coulr.git#tag=2.1.0
+	sha256sums = SKIP
+
+pkgname = coulr

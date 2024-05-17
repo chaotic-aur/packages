@@ -1,0 +1,23 @@
+# Be sure to use `systemctl edit bazarr` to modify this service with an override.conf because
+# direct changes will be overwritten by package updates.
+#
+# A user per service w/ shared group setup would have an override like:
+# [Service]
+# Group=sharedgroupname
+# UMask=002
+
+[Unit]
+Description=Bazarr Service
+After=network.target
+
+[Service]
+User=bazarr
+Group=bazarr
+Type=simple
+KillSignal=SIGINT
+ExecStart=/usr/bin/python /usr/lib/bazarr/bazarr.py --no-update --config /var/lib/bazarr
+Restart=on-failure
+SyslogIdentifier=bazarr
+
+[Install]
+WantedBy=multi-user.target

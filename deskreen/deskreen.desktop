@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Deskreen
+Exec=/usr/bin/deskreen %U
+Terminal=false
+Type=Application
+Icon=deskreen
+StartupWMClass=Deskreen
+Comment=Turn any device into a secondary screen for your computer
+Categories=Development;Utility;
+Keywords=display;screen;share;

@@ -1,0 +1,17 @@
+pkgbase = colorway
+	pkgdesc = Generate color pairings
+	pkgver = 1.2.0
+	pkgrel = 2
+	url = https://github.com/lainsce/colorway
+	arch = x86_64
+	license = GPL3
+	makedepends = git
+	makedepends = meson
+	makedepends = vala
+	depends = libadwaita
+	depends = json-glib
+	depends = libgee
+	source = colorway::git+https://github.com/lainsce/colorway.git#commit=b7ff8cf47032251b62e55798c6808f226bd21392
+	md5sums = SKIP
+
+pkgname = colorway

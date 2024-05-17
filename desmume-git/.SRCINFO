@@ -1,0 +1,27 @@
+pkgbase = desmume-git
+	pkgdesc = Nintendo DS emulator
+	pkgver = 0.9.11.r1463.eab1fb95
+	pkgrel = 1
+	url = https://desmume.org/
+	arch = x86_64
+	license = GPL2
+	makedepends = meson
+	makedepends = pkg-config
+	makedepends = desktop-file-utils
+	makedepends = git
+	depends = glib2
+	depends = sdl2
+	depends = zlib
+	depends = libgl
+	depends = openal
+	depends = gtk3
+	depends = libpcap
+	depends = libpng
+	optdepends = agg: to enable the HUD, requires --enable-hud at build time
+	provides = desmume
+	conflicts = desmume
+	source = desmume::git+https://github.com/TASVideos/desmume.git
+	sha512sums = SKIP
+
+pkgname = desmume-git
+

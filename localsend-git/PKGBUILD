@@ -65,7 +65,7 @@ package() {
   install -Dm644 "$srcdir/$_pkgname/app/build/flutter_assets/assets/img/logo-512.png" "$pkgdir/usr/share/pixmaps/localsend.png"
 
   # .desktop file
-  install -Dm644 /dev/stdin "$pkgdir/usr/share/applications/$_pkgname.desktop" <<END
+  install -Dm644 /dev/stdin "$pkgdir/usr/share/applications/$_pkgname.desktop" << END
 [Desktop Entry]
 Type=Application
 Comment=An open source cross-platform alternative to AirDrop 

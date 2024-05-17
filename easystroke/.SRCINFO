@@ -1,0 +1,22 @@
+pkgbase = easystroke
+	pkgdesc = Use mouse gestures to initiate commands and hotkeys
+	pkgver = 0.6.0
+	pkgrel = 24
+	url = https://github.com/mrsteve0924/easystroke
+	arch = x86_64
+	license = custom:ISC
+	makedepends = boost
+	makedepends = xorgproto
+	makedepends = intltool
+	makedepends = gettext
+	makedepends = xorg-server-devel
+	makedepends = help2man
+	depends = gtkmm3
+	depends = boost-libs
+	depends = libxtst
+	depends = dbus-glib
+	depends = xorg-server
+	source = easystroke-0.6.0.tar.gz::https://github.com/mrsteve0924/easystroke/archive/v0.6.0.tar.gz
+	sha256sums = c5851abd8b1b77d494eff108b2c0e2cc8cf689800bcfb2eead9f5e68274b37f9
+
+pkgname = easystroke

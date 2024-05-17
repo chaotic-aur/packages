@@ -1,0 +1,23 @@
+post_install() {
+  echo "To setup Mastodon, enable and start PostgreSQL and Redis:
+# systemctl enable --now postgresql redis
+Create the Mastodon PostgreSQL user and grant it the ability to create databases with:
+# sudo -u postgres createuser -d mastodon
+Then, run:
+# cd /var/lib/mastodon
+# sudo chown mastodon:mastodon -R .
+# sudo -u mastodon RAILS_ENV=production NODE_OPTIONS=--openssl-legacy-provider bundle exec rails mastodon:setup
+Finally, enable and start all the required services:
+# systemctl enable --now mastodon.target"
+}
+
+post_upgrade() {
+  cd /var/lib/mastodon
+
+  echo "Setting ownership of mastodon files"
+  find -path ./public/system -prune -o -exec chown -h mastodon:mastodon {} +
+  echo "Upgrading database schema"
+  sudo -u mastodon RAILS_ENV=production bundle exec rails db:migrate
+  echo "Precompiling assets"
+  sudo -u mastodon RAILS_ENV=production NODE_OPTIONS=--openssl-legacy-provider bundle exec rails assets:precompile
+}
