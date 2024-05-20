@@ -283,7 +283,7 @@ function update_pkgbuild() {
         if [ -v "VARIABLES_UPDATE_PKGBUILD[CI_PKGBUILD_TIMESTAMP]" ]; then
             local PKGBUILD_TIMESTAMP="${VARIABLES_UPDATE_PKGBUILD[CI_PKGBUILD_TIMESTAMP]}"
             if [ "$PKGBUILD_TIMESTAMP" == "$NEW_TIMESTAMP" ]; then
-                break
+                return 0
             fi
         fi
         http_proxy="$CI_AUR_PROXY" https_proxy="$CI_AUR_PROXY" update_via_git VARIABLES_UPDATE_PKGBUILD "$git_url"
