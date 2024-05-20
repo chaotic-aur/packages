@@ -17,7 +17,7 @@ if [ -v TRIGGER ]; then
     UTIL_GET_PACKAGES PACKAGES
     for package in "${PACKAGES[@]}"; do
         unset VARIABLES
-        declare -A VARIABLES
+        declare -A VARIABLES=()
         if UTIL_READ_MANAGED_PACAKGE "$package" VARIABLES; then
             if [ -v "VARIABLES[CI_ON_TRIGGER]" ]; then
                 if [ "${VARIABLES[CI_ON_TRIGGER]}" == "$TRIGGER" ]; then
@@ -51,6 +51,36 @@ MODIFIED_PACKAGES=()
 DELETE_BRANCHES=()
 UTIL_GET_PACKAGES PACKAGES
 COMMIT="${COMMIT:-false}"
+PUSH=false
+
+# Manage the .state worktree to confine the state of packages to a separate branch
+# The goal is to keep the commit history clean
+function manage_state() {
+    if git show-ref --quiet "origin/state"; then
+        git worktree add .state origin/state --detach -q
+        # We have to make sure that the commit is still in the history of the state branch
+        # Otherwise, this implies a force push happened. We need to re-create the state from scratch.
+        if [ ! -f .state/.commit ] || ! git branch --contains "$(cat .state/.commit)"; then
+            git worktree remove .state -q
+        fi
+    fi
+    git worktree add .newstate -B state --orphan -q
+}
+
+# Check if the current commit is already an automatic commit
+# If it is, check if we should overwrite it
+function manage_commit() {
+    if [ -v CI_OVERWRITE_COMMITS ] && [ "$CI_OVERWRITE_COMMITS" == "true" ]; then
+        local COMMIT_MSG=""
+        local REGEX="^chore\(packages\): update packages( \[skip ci\])?$"
+        if COMMIT_MSG="$(git log -1 --pretty=%s)"; then
+            if [[ "$COMMIT_MSG" =~ $REGEX ]]; then
+                # Signal that we should not only append to the commit, but also force push the branch
+                COMMIT=force
+            fi
+        fi
+    fi
+}
 
 # Loop through all packages to do optimized aur RPC calls
 # $1 = Output associative array
@@ -62,7 +92,7 @@ function collect_aur_timestamps() {
 
     for package in "${PACKAGES[@]}"; do
         unset VARIABLES
-        declare -gA VARIABLES
+        declare -A VARIABLES=()
         if UTIL_READ_MANAGED_PACAKGE "$package" VARIABLES; then
             if [ -v "VARIABLES[CI_PKGBUILD_SOURCE]" ]; then
                 local PKGBUILD_SOURCE="${VARIABLES[CI_PKGBUILD_SOURCE]}"
@@ -74,7 +104,7 @@ function collect_aur_timestamps() {
     done
 
     # Get all timestamps from AUR
-    UTIL_FETCH_AUR_TIMESTAMPS collect_aur_timestamps_output "${AUR_PACKAGES[*]}"
+    http_proxy="$CI_AUR_PROXY" https_proxy="$CI_AUR_PROXY" UTIL_FETCH_AUR_TIMESTAMPS collect_aur_timestamps_output "${AUR_PACKAGES[*]}"
 }
 
 # $1: dir1
@@ -130,7 +160,21 @@ function update_via_git() {
     local -n VARIABLES_VIA_GIT=${1:-VARIABLES}
     local pkgbase="${VARIABLES_VIA_GIT[PKGBASE]}"
 
-    git clone -q --depth=1 "$2" "$TMPDIR/aur-pulls/$pkgbase"
+    for i in {1..2}; do
+        if git clone -q --depth=1 "$2" "$TMPDIR/aur-pulls/$pkgbase"; then
+            break
+        fi
+        if [ "$i" -ne 2 ]; then
+            echo "$pkgbase: Failed to clone $2. Retrying in 30 seconds."
+            sleep 30
+        else
+            # Give up
+            false
+        fi
+    done
+
+    # Ratelimits
+    sleep "$CI_CLONE_DELAY"
 
     # We always run shfmt on the PKGBUILD. Two runs of shfmt on the same file should not change anything
     shfmt -w "$TMPDIR/aur-pulls/$pkgbase/PKGBUILD"
@@ -238,14 +282,12 @@ function update_pkgbuild() {
         # Check if CI_PKGBUILD_TIMESTAMP is set
         if [ -v "VARIABLES_UPDATE_PKGBUILD[CI_PKGBUILD_TIMESTAMP]" ]; then
             local PKGBUILD_TIMESTAMP="${VARIABLES_UPDATE_PKGBUILD[CI_PKGBUILD_TIMESTAMP]}"
-            if [ "$PKGBUILD_TIMESTAMP" != "$NEW_TIMESTAMP" ]; then
-                update_via_git VARIABLES_UPDATE_PKGBUILD "$git_url"
-                UTIL_UPDATE_AUR_TIMESTAMP VARIABLES_UPDATE_PKGBUILD "$NEW_TIMESTAMP"
+            if [ "$PKGBUILD_TIMESTAMP" == "$NEW_TIMESTAMP" ]; then
+                break
             fi
-        else
-            update_via_git VARIABLES_UPDATE_PKGBUILD "$git_url"
-            UTIL_UPDATE_AUR_TIMESTAMP VARIABLES_UPDATE_PKGBUILD "$NEW_TIMESTAMP"
         fi
+        http_proxy="$CI_AUR_PROXY" https_proxy="$CI_AUR_PROXY" update_via_git VARIABLES_UPDATE_PKGBUILD "$git_url"
+        UTIL_UPDATE_AUR_TIMESTAMP VARIABLES_UPDATE_PKGBUILD "$NEW_TIMESTAMP"
     fi
 }
 
@@ -281,6 +323,12 @@ function update_vcs() {
     fi
 }
 
+# Create .state and .newstate worktrees
+manage_state
+
+# Reduce history pollution from automatic commits
+manage_commit
+
 # Collect last modified timestamps from AUR in an efficient way
 collect_aur_timestamps AUR_TIMESTAMPS
 
@@ -292,27 +340,35 @@ fi
 # Loop through all packages to check if they need to be updated
 for package in "${PACKAGES[@]}"; do
     unset VARIABLES
-    declare -A VARIABLES
-    UTIL_READ_MANAGED_PACAKGE "$package" VARIABLES || VARIABLES[CI_NO_CONFIG]=true
+    declare -A VARIABLES=()
+    UTIL_READ_MANAGED_PACAKGE "$package" VARIABLES || true
     update_pkgbuild VARIABLES
     update_vcs VARIABLES
     UTIL_LOAD_CUSTOM_HOOK "./${package}" "./${package}/.CI/update.sh"
-    if [ ! -v VARIABLES[CI_NO_CONFIG] ]; then
-        UTIL_WRITE_KNOWN_VARIABLES_TO_FILE "./${package}/.CI/config" VARIABLES
-    fi
+    UTIL_WRITE_MANAGED_PACKAGE "$package" VARIABLES
 
-    if ! git diff --exit-code --quiet; then
+    if ! git diff --exit-code --quiet -- "$package"; then
         if [[ -v VARIABLES[CI_REQUIRES_REVIEW] ]] && [ "${VARIABLES[CI_REQUIRES_REVIEW]}" == "true" ]; then
-            .ci/create-pr.sh "$package"
+            # The updated state of the package will still be written to the state branch, even if the main content goes onto the PR branch
+            # This is okay, because merging the PR branch will trigger a build, so that behavior is expected and prevents a double execution
+            if [ "$COMMIT" == "false" ]; then
+                .ci/create-pr.sh "$package" false
+            else
+                # If we already made a commit, we should go one commit further back to avoid merge conflicts
+                # This is because there is a very high chance this current commit will be amended
+                .ci/create-pr.sh "$package" true
+            fi
+            PUSH=true
         else
-            git add .
+            git add "$package"
             if [ "$COMMIT" == "false" ]; then
                 COMMIT=true
                 [ -v GITLAB_CI ] && git commit -q -m "chore(packages): update packages"
                 [ -v GITHUB_ACTIONS ] && git commit -q -m "chore(packages): update packages [skip ci]"
             else
-                git commit -q --amend --no-edit
+                git commit -q --amend --no-edit --date=now
             fi
+            PUSH=true
             MODIFIED_PACKAGES+=("$package")
             if [ -v CI_HUMAN_REVIEW ] && [ "$CI_HUMAN_REVIEW" == "true" ] && git show-ref --quiet "origin/update-$package"; then
                 DELETE_BRANCHES+=("update-$package")
@@ -321,17 +377,22 @@ for package in "${PACKAGES[@]}"; do
     fi
 done
 
+git rev-parse HEAD > .newstate/.commit
+git -C .newstate add -A
+git -C .newstate commit -q -m "chore(state): update state" --allow-empty
+
 if [ ${#MODIFIED_PACKAGES[@]} -ne 0 ]; then
     .ci/schedule-packages.sh schedule "${MODIFIED_PACKAGES[@]}"
     .ci/manage-aur.sh "${MODIFIED_PACKAGES[@]}"
 fi
 
-if [ "$COMMIT" = true ]; then
+if [ "$PUSH" = true ]; then
     git tag -f scheduled
     git_push_args=()
     for branch in "${DELETE_BRANCHES[@]}"; do
         git_push_args+=(":$branch")
     done
     [ -v GITLAB_CI ] && git_push_args+=("-o" "ci.skip")
-    git push --atomic origin HEAD:main +refs/tags/scheduled "${git_push_args[@]}"
+    [ "$COMMIT" == "force" ] && git_push_args+=("--force-with-lease=main")
+    git push --atomic origin HEAD:main +state +refs/tags/scheduled "${git_push_args[@]}"
 fi

@@ -18,7 +18,7 @@ elif [ -v GITHUB_ACTIONS ]; then
     CI_COMMIT_MSG=("-m" "chore(ci): update CI from template [skip ci]")
 fi
 
-git clone --depth=1 "$TEMPLATE_REPO" "$TMPDIR/template" -b "main"
+git clone --depth=1 "$TEMPLATE_REPO" "$TMPDIR/template" -b "main" -q
 
 trap "git reset --hard $CURRENT_REV" ERR
 

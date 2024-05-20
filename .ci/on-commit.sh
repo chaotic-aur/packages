@@ -107,11 +107,28 @@ parse_commit_messages
 # Parse changed files
 parse_changed_files
 
+git_push_args=()
+
 # Check if we have any packages to build
 if [ ${#PACKAGES[@]} -eq 0 ] && [ "$PACKAGE_REMOVED" = false ]; then
     UTIL_PRINT_INFO "No packages to build, exiting gracefully."
 else
     if [ ${#PACKAGES[@]} -ne 0 ]; then
+        # Maintain the state
+        if git show-ref --quiet "origin/state"; then
+            git config --global user.name "$GIT_AUTHOR_NAME"
+            git config --global user.email "$GIT_AUTHOR_EMAIL"
+
+            git worktree add .state state
+            pushd .state >/dev/null
+            rm "${!PACKAGES[@]}"
+            popd >/dev/null
+            git -C .state add -A
+            git -C .state commit -q --amend --no-edit
+
+            git_push_args+=("state")
+        fi
+
         # Check if we have to build all packages
         if [[ -v "PACKAGES[all]" ]]; then
             .ci/schedule-packages.sh schedule all
@@ -131,4 +148,4 @@ else
 fi
 
 git tag -f scheduled
-git push --atomic -f origin refs/tags/scheduled
+git push --atomic -f origin refs/tags/scheduled "${git_push_args[@]}"

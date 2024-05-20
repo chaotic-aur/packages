@@ -58,7 +58,7 @@ fi
 
 for package in "${PACKAGES[@]}"; do
     unset VARIABLES
-    declare -A VARIABLES
+    declare -A VARIABLES=()
     if UTIL_READ_MANAGED_PACAKGE "$package" VARIABLES; then
         if [[ ! -v "VARIABLES[CI_MANAGE_AUR]" ]] || [[ "${VARIABLES[CI_MANAGE_AUR]}" != "true" ]]; then
             continue

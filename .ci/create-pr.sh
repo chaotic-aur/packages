@@ -2,6 +2,7 @@
 set -euo pipefail
 
 # $1: pkgbase
+# $2: Go one commit further back
 
 source .ci/util.shlib
 
@@ -157,6 +158,11 @@ fi
 
 ORIGINAL_REF="$(git rev-parse HEAD)"
 CHANGE_BRANCH="update-$PKGBASE"
+
+if [ "$2" == "true" ]; then
+    # Go one commit further back
+    git -c advice.detachedHead=false checkout -q HEAD^
+fi
 
 manage_branch "$CHANGE_BRANCH" "$TARGET_BRANCH" "$PKGBASE"
 
