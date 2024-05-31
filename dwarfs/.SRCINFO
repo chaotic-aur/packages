@@ -1,7 +1,7 @@
 pkgbase = dwarfs
 	pkgdesc = A fast high compression read-only file system
-	pkgver = 0.9.9
-	pkgrel = 2
+	pkgver = 0.9.10
+	pkgrel = 1
 	url = https://github.com/mhx/dwarfs
 	arch = x86_64
 	arch = aarch64
@@ -34,11 +34,11 @@ pkgbase = dwarfs
 	depends = fmt
 	depends = gflags
 	depends = double-conversion
-	source = dwarfs-0.9.9.tar.xz::https://github.com/mhx/dwarfs/releases/download/v0.9.9/dwarfs-0.9.9.tar.xz
+	source = dwarfs-0.9.10.tar.xz::https://github.com/mhx/dwarfs/releases/download/v0.9.10/dwarfs-0.9.10.tar.xz
 	source = 0001-makepkg-Disable-faulty-test.patch
-	sha256sums = f4638e589d5ae7038ca9461470a938d7bb755b1eae6533502a4f87f97c59c7f4
+	sha256sums = b67703497643a53e956e46e6de081b96e9ed9adc4cd78246d00e73fe238ae2be
 	sha256sums = 4288b9e93c32d4645ac585d2b30ceb4b79d45f9f33348009c7b3c5af3147442c
-	b2sums = c8f98b737d86444a6a074f7de2704edb94c86bd80e4024d021d4887240f9e1a5b52187ca2e82257427b2392d4afc7c7081985d5b5cc5d8b593f7221c4bc12126
+	b2sums = be992c645b76c277e08c5ccaa80665c7303a8a218ead430b2f382b1f537d42debd095c94697dfff24246985d70efb70aeae8d4f4e68f3461bc0dca3f6135a184
 	b2sums = 9a9f8b111480b16072737b37aa344595c5f595dbc2d602028d22d153721f94ee7d261b8a00d9b92aff35bb1664cf0e291e6291f6e64cefdee0d51f6618896a7e
 
 pkgname = dwarfs

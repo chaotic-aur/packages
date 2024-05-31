@@ -5,7 +5,7 @@
 _nodeversion=20
 pkgname=balena-etcher
 _pkgname=etcher
-pkgver=1.19.16
+pkgver=1.19.17
 pkgrel=1
 epoch=2
 pkgdesc='Flash OS images to SD cards & USB drives, safely and easily'
@@ -24,7 +24,7 @@ options=('!strip')
 source=("etcher::git+https://github.com/balena-io/${_pkgname}.git#tag=v${pkgver}"
   "${pkgname}.desktop"
 )
-sha256sums=('51022d670029b8bfd06d17b3db518375e5c480fd928315c90c72044ed9f77db7'
+sha256sums=('a5c083015beffb1f749d2300db56a9d6ee0f20bef27822c7b0a5f6004e39dd65'
   '6c5fb48aeb636272689c86d7cf9beea4515214636bc617a61c3e8387628b3415')
 
 _ensure_local_nvm() {
@@ -52,7 +52,6 @@ build() {
   cd "${_pkgname}"
   export npm_config_build_from_source=true
   export npm_config_cache="${srcdir}/.npm_cache"
-  export npm_config_disturl=https://electronjs.org/headers
   npm install
   npm run package
 }

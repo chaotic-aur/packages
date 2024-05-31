@@ -8,10 +8,10 @@
 _pkgname="kotatogram-desktop"
 pkgname="$_pkgname"
 pkgver=1.4.9
-pkgrel=1
+pkgrel=2
 pkgdesc='Experimental fork of Telegram Desktop'
 url="https://github.com/kotatogram/kotatogram-desktop"
-license=('GPL3')
+license=('GPL-3.0-or-later')
 arch=('x86_64')
 
 depends=(
@@ -21,9 +21,7 @@ depends=(
   # 'qt6-wayland'
   'abseil-cpp'
   'ffmpeg4.4'
-  'gcc-libs'
   'glib2'
-  'glibc'
   'glibmm'
   'hicolor-icon-theme'
   'hunspell'
@@ -123,14 +121,12 @@ source=(
   'desktop-app.lib_webrtc'::'git+https://github.com/desktop-app/lib_webrtc.git'
   'desktop-app.lib_webview'::'git+https://github.com/desktop-app/lib_webview.git'
   'desktop-app.rlottie'::'git+https://github.com/desktop-app/rlottie.git'
-  'ericniebler.range-v3'::'git+https://github.com/ericniebler/range-v3.git'
   'fcitx.fcitx-qt5'::'git+https://github.com/fcitx/fcitx-qt5.git'
   'fcitx.fcitx5-qt'::'git+https://github.com/fcitx/fcitx5-qt.git'
   'gitlab-freedesktop-mirrors.wayland-protocols'::'git+https://github.com/gitlab-freedesktop-mirrors/wayland-protocols.git'
   'hamonikr.nimf'::'git+https://github.com/hamonikr/nimf.git'
   'hime-ime.hime'::'git+https://github.com/hime-ime/hime.git'
   'hunspell'::'git+https://github.com/hunspell/hunspell.git'
-  'jemalloc'::'git+https://github.com/jemalloc/jemalloc.git'
   'kde.extra-cmake-modules'::'git+https://github.com/KDE/extra-cmake-modules.git'
   'kde.kwayland'::'git+https://github.com/KDE/kwayland.git'
   'kde.plasma-wayland-protocols'::'git+https://github.com/KDE/plasma-wayland-protocols.git'
@@ -145,9 +141,6 @@ source=(
 
   # submodules for telegramdesktop.libtgvoip
   'desktop-app.cmake_helpers'::'git+https://github.com/desktop-app/cmake_helpers.git'
-
-  # submodules for ericniebler.range-v3
-  #'ericniebler.range-v3'::'git+https://github.com/ericniebler/range-v3.git'
 
   # submodules for kotatogram-tg_owt
   'chromiumsrc.libyuv'::'git+https://gitlab.com/chromiumsrc/libyuv.git'
@@ -204,123 +197,98 @@ sha256sums=(
   'SKIP'
   'SKIP'
   'SKIP'
-  'SKIP'
-  'SKIP'
 
   'SKIP'
-
-  #'SKIP'
 
   'SKIP'
   'SKIP'
 )
 
-_pkgver() {
-  cd "$_pkgsrc"
-  git describe --long --tags | sed 's/^k//;s/\([^-]*-g\)/r\1/;s/-/./g'
-}
-
 _prepare_kotatogram() (
-  cd "${srcdir:?}/$_pkgsrc"
-  local -A _submodules=(
-    ['apple.swift-corelibs-libdispatch']='Telegram/ThirdParty/dispatch'
-    ['cyan4973.xxhash']='Telegram/ThirdParty/xxHash'
-    ['desktop-app.codegen']='Telegram/codegen'
-    ['desktop-app.lib_base']='Telegram/lib_base'
-    ['desktop-app.lib_crl']='Telegram/lib_crl'
-    ['desktop-app.lib_lottie']='Telegram/lib_lottie'
-    ['desktop-app.lib_qr']='Telegram/lib_qr'
-    ['desktop-app.lib_rpl']='Telegram/lib_rpl'
-    ['desktop-app.lib_spellcheck']='Telegram/lib_spellcheck'
-    ['desktop-app.lib_storage']='Telegram/lib_storage'
-    ['desktop-app.lib_tl']='Telegram/lib_tl'
-    ['desktop-app.lib_waylandshells']='Telegram/lib_waylandshells'
-    ['desktop-app.lib_webrtc']='Telegram/lib_webrtc'
-    ['desktop-app.lib_webview']='Telegram/lib_webview'
-    ['desktop-app.rlottie']='Telegram/ThirdParty/rlottie'
-    ['ericniebler.range-v3']='Telegram/ThirdParty/range-v3'
-    ['fcitx.fcitx-qt5']='Telegram/ThirdParty/fcitx-qt5'
-    ['fcitx.fcitx5-qt']='Telegram/ThirdParty/fcitx5-qt'
-    ['gitlab-freedesktop-mirrors.wayland-protocols']='Telegram/ThirdParty/wayland-protocols'
-    ['hamonikr.nimf']='Telegram/ThirdParty/nimf'
-    ['hime-ime.hime']='Telegram/ThirdParty/hime'
-    ['hunspell']='Telegram/ThirdParty/hunspell'
-    ['jemalloc']='Telegram/ThirdParty/jemalloc'
-    ['kde.extra-cmake-modules']='Telegram/ThirdParty/extra-cmake-modules'
-    ['kde.kwayland']='Telegram/ThirdParty/kwayland'
-    ['kde.plasma-wayland-protocols']='Telegram/ThirdParty/plasma-wayland-protocols'
-    ['kotatogram.cmake_helpers']='cmake'
-    ['kotatogram.lib_ui']='Telegram/lib_ui'
-    ['lz4']='Telegram/ThirdParty/lz4'
-    ['microsoft.gsl']='Telegram/ThirdParty/GSL'
-    ['nayuki.qr-code-generator']='Telegram/ThirdParty/QR'
-    ['tartanllama.expected']='Telegram/ThirdParty/expected'
-    ['telegramdesktop.libtgvoip']='Telegram/ThirdParty/libtgvoip'
-    ['telegrammessenger.tgcalls']='Telegram/ThirdParty/tgcalls'
+  cd "$srcdir/$_pkgsrc"
+  local _submodules=(
+    'apple.swift-corelibs-libdispatch'::'Telegram/ThirdParty/dispatch'
+    'cyan4973.xxhash'::'Telegram/ThirdParty/xxHash'
+    'desktop-app.codegen'::'Telegram/codegen'
+    'desktop-app.lib_base'::'Telegram/lib_base'
+    'desktop-app.lib_crl'::'Telegram/lib_crl'
+    'desktop-app.lib_lottie'::'Telegram/lib_lottie'
+    'desktop-app.lib_qr'::'Telegram/lib_qr'
+    'desktop-app.lib_rpl'::'Telegram/lib_rpl'
+    'desktop-app.lib_spellcheck'::'Telegram/lib_spellcheck'
+    'desktop-app.lib_storage'::'Telegram/lib_storage'
+    'desktop-app.lib_tl'::'Telegram/lib_tl'
+    'desktop-app.lib_waylandshells'::'Telegram/lib_waylandshells'
+    'desktop-app.lib_webrtc'::'Telegram/lib_webrtc'
+    'desktop-app.lib_webview'::'Telegram/lib_webview'
+    'desktop-app.rlottie'::'Telegram/ThirdParty/rlottie'
+    'fcitx.fcitx-qt5'::'Telegram/ThirdParty/fcitx-qt5'
+    'fcitx.fcitx5-qt'::'Telegram/ThirdParty/fcitx5-qt'
+    'gitlab-freedesktop-mirrors.wayland-protocols'::'Telegram/ThirdParty/wayland-protocols'
+    'hamonikr.nimf'::'Telegram/ThirdParty/nimf'
+    'hime-ime.hime'::'Telegram/ThirdParty/hime'
+    'hunspell'::'Telegram/ThirdParty/hunspell'
+    'kde.extra-cmake-modules'::'Telegram/ThirdParty/extra-cmake-modules'
+    'kde.kwayland'::'Telegram/ThirdParty/kwayland'
+    'kde.plasma-wayland-protocols'::'Telegram/ThirdParty/plasma-wayland-protocols'
+    'kotatogram.cmake_helpers'::'cmake'
+    'kotatogram.lib_ui'::'Telegram/lib_ui'
+    'lz4'::'Telegram/ThirdParty/lz4'
+    'microsoft.gsl'::'Telegram/ThirdParty/GSL'
+    'nayuki.qr-code-generator'::'Telegram/ThirdParty/QR'
+    'tartanllama.expected'::'Telegram/ThirdParty/expected'
+    'telegramdesktop.libtgvoip'::'Telegram/ThirdParty/libtgvoip'
+    'telegrammessenger.tgcalls'::'Telegram/ThirdParty/tgcalls'
   )
-  for key in ${!_submodules[@]}; do
-    git submodule init "${_submodules[${key}]}"
-    git submodule set-url "${_submodules[${key}]}" "${srcdir}/${key}"
-    git -c protocol.file.allow=always submodule update "${_submodules[${key}]}"
-  done
+  _submodule_update
 
   (
     # submodules for telegramdesktop.libtgvoip
     cd "Telegram/ThirdParty/libtgvoip"
-    local -A _submodules=(
-      ['desktop-app.cmake_helpers']='cmake'
+    local _submodules=(
+      'desktop-app.cmake_helpers'::'cmake'
     )
-    for key in ${!_submodules[@]}; do
-      git submodule init "${_submodules[${key}]}"
-      git submodule set-url "${_submodules[${key}]}" "${srcdir}/${key}"
-      git -c protocol.file.allow=always submodule update "${_submodules[${key}]}"
-    done
-  )
-  (
-    # submodules for ericniebler.range-v3
-    cd "Telegram/ThirdParty/range-v3"
-    local -A _submodules=(
-      ['ericniebler.range-v3']='doc/gh-pages'
-    )
-    for key in ${!_submodules[@]}; do
-      git submodule init "${_submodules[${key}]}"
-      git submodule set-url "${_submodules[${key}]}" "${srcdir}/${key}"
-      git -c protocol.file.allow=always submodule update "${_submodules[${key}]}"
-    done
+    _submodule_update
   )
 
-  cd "${srcdir:?}/$_pkgsrc"
-  apply-patch "${srcdir:?}/kf594.patch"
-  apply-patch "${srcdir:?}/326.patch"
-  apply-patch "${srcdir:?}/333.patch"
-  apply-patch "${srcdir:?}/334.patch"
-  apply-patch "${srcdir:?}/335.patch"
-  apply-patch "${srcdir:?}/337.patch"
+  cd "$srcdir/$_pkgsrc"
+  apply-patch "$srcdir/kf594.patch"
+  apply-patch "$srcdir/326.patch"
+  apply-patch "$srcdir/333.patch"
+  apply-patch "$srcdir/334.patch"
+  apply-patch "$srcdir/335.patch"
+  apply-patch "$srcdir/337.patch"
 
-  apply-patch "${srcdir:?}/0001-Add-an-option-to-hide-messages-from-blocked-users-in.patch"
-  apply-patch "${srcdir:?}/0002-Block-sponsored_messages.patch"
-  apply-patch "${srcdir:?}/0003-Allow-downloading-and-copying-from-restricted-channels.patch"
+  apply-patch "$srcdir/0001-Add-an-option-to-hide-messages-from-blocked-users-in.patch"
+  apply-patch "$srcdir/0002-Block-sponsored_messages.patch"
+  apply-patch "$srcdir/0003-Allow-downloading-and-copying-from-restricted-channels.patch"
 )
 
 _prepare_tg_owt() (
-  cd "${srcdir:?}/kotatogram-tg_owt"
-  local -A _submodules=(
-    ['chromiumsrc.libyuv']='src/third_party/libyuv'
-    ['pipewire']='src/third_party/pipewire'
+  cd "$srcdir/kotatogram-tg_owt"
+  local _submodules=(
+    'chromiumsrc.libyuv'::'src/third_party/libyuv'
+    'pipewire'::'src/third_party/pipewire'
   )
-  for key in ${!_submodules[@]}; do
-    git submodule init "${_submodules[${key}]}"
-    git submodule set-url "${_submodules[${key}]}" "${srcdir}/${key}"
-  done
+  _submodule_update
 
   git -c protocol.file.allow=always submodule update --recursive
 
-  apply-patch "${srcdir:?}/101.patch"
-  ## apply-patch "${srcdir:?}/include.patch"
-  apply-patch "${srcdir:?}/tg_owt-fix.patch"
+  apply-patch "$srcdir/101.patch"
+  ## apply-patch "$srcdir/include.patch"
+  apply-patch "$srcdir/tg_owt-fix.patch"
 )
 
 prepare() {
+  _submodule_update() {
+    local _module
+    for _module in "${_submodules[@]}"; do
+      git submodule init "${_module##*::}"
+      git submodule set-url "${_module##*::}" "$srcdir/${_module%::*}"
+      git -c protocol.file.allow=always submodule update "${_module##*::}"
+    done
+  }
+
   apply-patch() {
     printf '\nApplying patch %s\n' "$1"
     patch -Np1 -F100 -i "$1"
@@ -356,7 +324,7 @@ _build_kotatogram() (
     -DCMAKE_BUILD_TYPE=Release
     -DCMAKE_INSTALL_PREFIX="/usr"
     -DTDESKTOP_API_TEST=ON
-    -Dtg_owt_DIR="${srcdir:?}/build-tg_owt"
+    -Dtg_owt_DIR="$srcdir/build-tg_owt"
     -DDESKTOP_APP_QT6=OFF
   )
 
@@ -365,6 +333,9 @@ _build_kotatogram() (
 )
 
 build() {
+  export CFLAGS="${CFLAGS/_FORTIFY_SOURCE=3/_FORTIFY_SOURCE=2}"
+  export CXXFLAGS="${CXXFLAGS/_FORTIFY_SOURCE=3/_FORTIFY_SOURCE=2}"
+
   export CXXFLAGS+=" -Wp,-U_GLIBCXX_ASSERTIONS"
   export PKG_CONFIG_PATH='/usr/lib/ffmpeg4.4/pkgconfig' # force build with ffmpeg4.4
 
@@ -373,5 +344,5 @@ build() {
 }
 
 package() {
-  DESTDIR="${pkgdir:?}" cmake --install build
+  DESTDIR="$pkgdir" cmake --install build
 }

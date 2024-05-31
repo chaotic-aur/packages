@@ -9,7 +9,7 @@ pkgname=wine-ge-custom
 _srctag=GE-Proton8-26
 _commit=21f5f463cb761b94bcd00553f924f55516389f5b
 pkgver=${_srctag//-/.}
-pkgrel=2
+pkgrel=3
 epoch=1
 
 _pkgbasever=${pkgver/rc/-rc}
@@ -17,15 +17,19 @@ _winever=$_pkgbasever
 #_winever=${_pkgbasever%.*}
 
 source=(wine-ge-custom::git+https://github.com/GloriousEggroll/wine-ge-custom.git#commit=${_commit}
-  wine-wmclass.patch
-  wine-isolate_home.patch
   30-win32-aliases.conf
   wine-binfmt.conf)
-sha512sums=('SKIP'
-  '30437d8ee92c5741fa50a7fe346ccfc48ba809dad0d740903a05a67781d23ea38a5094038a070a253e3fdd8046783b46a5420df6361bdd30cb229d3d88107569'
-  '3dcdbd523fcbe79b9e9e9b026b9d0a5edf296514c7b48bd465d2dc05a8ca08e23ba8817e2de08edfe52286a2a2f81db42b65f71254cabe496752b9d45131d282'
+source+=(
+  wine-wmclass.patch
+  wine-isolate_home.patch
+)
+sha512sums=('f136761fc72ce7abcda5ed195c6757db6a3fe0b028c657a588f95aa503bb4528504342b61d93aa3b56c9d3b282c400cdb63b09bbc57e811494de87f7a8695558'
   '6e54ece7ec7022b3c9d94ad64bdf1017338da16c618966e8baf398e6f18f80f7b0576edf1d1da47ed77b96d577e4cbb2bb0156b0b11c183a0accf22654b0a2bb'
   'bdde7ae015d8a98ba55e84b86dc05aca1d4f8de85be7e4bd6187054bfe4ac83b5a20538945b63fb073caab78022141e9545685e4e3698c97ff173cf30859e285')
+sha512sums+=(
+  '30437d8ee92c5741fa50a7fe346ccfc48ba809dad0d740903a05a67781d23ea38a5094038a070a253e3fdd8046783b46a5420df6361bdd30cb229d3d88107569'
+  '3dcdbd523fcbe79b9e9e9b026b9d0a5edf296514c7b48bd465d2dc05a8ca08e23ba8817e2de08edfe52286a2a2f81db42b65f71254cabe496752b9d45131d282'
+)
 validpgpkeys=(5AC1A08B03BD7A313E0A955AF5E6E9EEB9461DD7
   DA23579A74D4AD9AF9D3F945CEFAC8EAAF17519D)
 
@@ -33,7 +37,7 @@ pkgdesc="A compatibility layer for running Windows programs - GloriousEggroll br
 url="https://github.com/GloriousEggroll/wine-ge-custom"
 arch=(x86_64 x86_64_v3)
 options=(!staticlibs !lto !debug)
-license=(LGPL)
+license=(LGPL-2.1-or-later)
 
 depends=(
   attr lib32-attr
@@ -69,8 +73,11 @@ makedepends=(autoconf bison perl flex mingw-w64-gcc
   gst-plugins-good lib32-gst-plugins-good
   vulkan-icd-loader lib32-vulkan-icd-loader
   sdl2 lib32-sdl2
+  libcups lib32-libcups
+  sane
   libgphoto2
   ffmpeg
+  samba
   opencl-headers
 )
 
@@ -90,9 +97,11 @@ optdepends=(
   gst-plugins-good lib32-gst-plugins-good
   vulkan-icd-loader lib32-vulkan-icd-loader
   sdl2 lib32-sdl2
+  sane
   libgphoto2
   ffmpeg
-  dosbox
+  cups
+  samba dosbox
 )
 
 provides=("wine=8.0")
@@ -113,26 +122,17 @@ prepare() {
   git config user.email "makepkg@aur.not"
   git config user.name "makepkg aur"
   git tag wine-ge-8.0 --annotate -m "$pkgver"
-  dlls/winevulkan/make_vulkan
-  tools/make_requests
+  ./tools/make_specfiles
+  ./tools/make_requests
+  ./dlls/winevulkan/make_vulkan
   autoreconf -f
   popd
   popd
-
-  # Doesn't compile without remove these flags as of 4.10
-  export CFLAGS="${CFLAGS/-fno-plt/}"
-  export LDFLAGS="${LDFLAGS/,-z,now/}"
 }
 
 build() {
-  cd "$srcdir"
-
   # Doesn't compile without remove these flags as of 4.10
-  export CFLAGS="${CFLAGS/-fno-plt/}"
-  export CXXFLAGS="${CXXFLAGS/-fno-plt/}"
-  export LDFLAGS="${LDFLAGS/,-z,now/}"
-  # MingW Wine builds fail with relro
-  export LDFLAGS="${LDFLAGS/,-z,relro/}"
+  export CFLAGS="$CFLAGS -ffat-lto-objects"
 
   local -a split=($CFLAGS)
   local -A flags
@@ -143,10 +143,13 @@ build() {
   # From Proton
   OPTIMIZE_FLAGS="-O3 -march=$march -mtune=$mtune -mfpmath=sse -pipe -fno-semantic-interposition"
   SANITY_FLAGS="-fwrapv -fno-strict-aliasing"
-  COMMON_FLAGS="$OPTIMIZE_FLAGS $SANITY_FLAGS -s"
+  WARNING_FLAGS="-Wno-incompatible-pointer-types"
+  COMMON_FLAGS="$OPTIMIZE_FLAGS $SANITY_FLAGS $WARNING_FLAGS -s"
 
   export LDFLAGS="-Wl,-O1,--sort-common,--as-needed"
   export CROSSLDFLAGS="$LDFLAGS -Wl,--file-alignment,4096"
+
+  cd "$srcdir"
 
   msg2 "Building Wine-64..."
 
