@@ -121,7 +121,7 @@ else
 
             git worktree add .state state
             pushd .state >/dev/null
-            rm "${!PACKAGES[@]}"
+            rm  -f "${!PACKAGES[@]}"
             popd >/dev/null
             git -C .state add -A
             git -C .state commit -q --amend --no-edit
