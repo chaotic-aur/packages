@@ -1,7 +1,7 @@
 pkgbase = lyx
 	pkgdesc = An advanced WYSIWYM document processor & LaTeX front-end
-	pkgver = 2.3.8
-	pkgrel = 1
+	pkgver = 2.4.0
+	pkgrel = 2
 	url = https://www.lyx.org
 	arch = x86_64
 	license = GPL-2.0-or-later
@@ -23,11 +23,11 @@ pkgbase = lyx
 	options = emptydirs
 	options = !lto
 	backup = etc/lyx/lyxrc.dist
-	source = https://ftp.lip6.fr/pub/lyx/stable/2.3.x/lyx-2.3.8.tar.gz
-	source = https://ftp.lip6.fr/pub/lyx/stable/2.3.x/lyx-2.3.8.tar.gz.sig
+	source = https://ftp.lip6.fr/pub/lyx/stable/2.4.x/lyx-2.4.0.tar.gz
+	source = https://ftp.lip6.fr/pub/lyx/stable/2.4.x/lyx-2.4.0.tar.gz.sig
 	source = lyxrc.dist
 	validpgpkeys = FE66471B43559707AFDAD955DE7A44FAC7FB382D
-	sha512sums = 69a07213856a69de8eb71d1cd60f4816ab902313c2e095d6502117ecf000a66465ec0df4a986b3035f2ffd473c253f7c701118c09b54e8c893519754d9982fca
+	sha512sums = a51b290397cf7b8eaae0d0da46012f28320febe81143b196ec52e3b8aedc614d4f836c3d2249b566986967ce52a0edcf6b9cbbcd8601f0ac7380ecdd6f589a2f
 	sha512sums = SKIP
 	sha512sums = eef777cf6033a7b1e04700f33068b07309f8d5c6931c16927305dafb3a00fd46d4b536149349ab56b7455e7dea195c8889da2b6fbf9caa9e76bc0557f9358bc3
 
