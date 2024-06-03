@@ -1,0 +1,21 @@
+pkgbase = qtile-extras-git
+	pkgdesc = Unofficial mods for qtile that are unlikely to be maintained in the main repo.
+	pkgver = r262.c997a9d
+	pkgrel = 1
+	url = https://github.com/elparaguayo/qtile-extras.git
+	arch = any
+	license = MIT
+	makedepends = git
+	makedepends = python-setuptools
+	makedepends = python-setuptools-scm
+	makedepends = python-wheel
+	makedepends = python-installer
+	makedepends = python-build
+	depends = python
+	depends = qtile
+	provides = qtile-extras
+	conflicts = qtile-extras
+	source = git+https://github.com/elparaguayo/qtile-extras.git
+	md5sums = SKIP
+
+pkgname = qtile-extras-git

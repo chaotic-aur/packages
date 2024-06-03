@@ -1,0 +1,20 @@
+pkgbase = protonup-git
+	pkgdesc = Install and Update Proton-GE
+	pkgver = 0.1.5.r0.g54bcad9
+	pkgrel = 1
+	url = https://github.com/AUNaseef/protonup
+	arch = any
+	license = GPL-3.0-or-later
+	makedepends = git
+	makedepends = python-build
+	makedepends = python-installer
+	makedepends = python-setuptools
+	makedepends = python-wheel
+	depends = python
+	depends = python-requests
+	provides = protonup
+	conflicts = protonup
+	source = git+https://github.com/AUNaseef/protonup.git
+	sha256sums = SKIP
+
+pkgname = protonup-git

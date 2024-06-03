@@ -1,0 +1,24 @@
+pkgbase = qimgv-git
+	pkgdesc = Qt image viewer with video playback
+	pkgver = 1.0.2.r135.gb515dcd
+	pkgrel = 1
+	url = https://github.com/easymodo/qimgv
+	arch = i686
+	arch = x86_64
+	license = GPL-3.0-or-later
+	makedepends = cmake
+	makedepends = git
+	makedepends = ninja
+	makedepends = qt6-tools
+	depends = exiv2
+	depends = mpv
+	depends = opencv
+	depends = qt6-base
+	depends = qt6-svg
+	optdepends = kimageformats: support for more image formats
+	provides = qimgv
+	conflicts = qimgv
+	source = qimgv::git+https://github.com/easymodo/qimgv.git
+	sha256sums = SKIP
+
+pkgname = qimgv-git

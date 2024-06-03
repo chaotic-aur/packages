@@ -1,0 +1,8 @@
+#!/bin/bash
+while read -r variant; do
+	asar_path="/opt/${variant}/resources/app.asar"
+	if [ -f "${asar_path}.backup" ]; then
+		echo "Removing openasar for $variant"
+		mv -f "${asar_path}.backup" "${asar_path}"
+	fi
+done

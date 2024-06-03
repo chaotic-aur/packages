@@ -1,0 +1,42 @@
+_pkgname='openasar'
+pkgname="${_pkgname}-git"
+variants=(
+	"discord"
+	"discord-ptb"
+	"discord-canary"
+	"discord-development"
+)
+
+post_install() {
+	for variant in "${variants[@]}"; do
+		asar_path="/opt/${variant}/resources/app.asar"
+		if [ -f "${asar_path}" ]; then
+			mv "${asar_path}" "${asar_path}.backup"
+			cp -f "/opt/${pkgname}/app.asar" "${asar_path}"
+		fi
+	done
+}
+
+pre_upgrade() {
+	for variant in "${variants[@]}"; do
+		rm -rf "/opt/${variant}/resources/app.asar"
+	done
+}
+
+post_upgrade() {
+	for variant in "${variants[@]}"; do
+		asar_dir="/opt/${variant}/resources"
+		if [ -d "${asar_dir}" ]; then
+			cp -f "/opt/${pkgname}/app.asar" "/opt/${variant}/resources/app.asar"
+		fi
+	done
+}
+
+post_remove() {
+	for variant in "${variants[@]}"; do
+		asar_path="/opt/${variant}/resources/app.asar"
+		if [ -f "${asar_path}.backup" ]; then
+			mv "${asar_path}.backup" "${asar_path}"
+		fi
+	done
+}

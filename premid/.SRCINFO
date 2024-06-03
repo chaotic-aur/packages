@@ -1,0 +1,13 @@
+pkgbase = premid
+	pkgdesc = Discord Rich Presence for web services
+	pkgver = 2.3.4
+	pkgrel = 1
+	url = https://premid.app
+	arch = x86_64
+	license = MPL2
+	optdepends = discord: Proper Rich Presence support
+	conflicts = premid-git
+	source = premid-2.3.4.tar.gz::https://github.com/premid/Linux/releases/download/v2.3.4/PreMiD.tar.gz
+	sha512sums = 45302be27235d4ec7e6047957d2880d8c7227dd0e384a9666dff17ee4f2c18afc1806317209be5b60d13f317c4648e005f8916f4aa00812d9c09133cffb5491d
+
+pkgname = premid

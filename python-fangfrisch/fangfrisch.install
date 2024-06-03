@@ -1,0 +1,11 @@
+post_install() {
+	cat <<EOT
+
+NOTE: Create database structure by running:
+  sudo -u clamav /usr/bin/fangfrisch --conf /etc/fangfrisch/fangfrisch.conf initdb
+
+NOTE: After creating the database, enable fangfrisch.timer for regular automatic updates:
+  sudo systemctl enable fangfrisch.timer
+
+EOT
+}

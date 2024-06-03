@@ -1,0 +1,13 @@
+[Trigger]
+Type = Package
+Operation = Remove
+Target = discord
+Target = discord-ptb
+Target = discord-canary
+Target = discord-development
+
+[Action]
+NeedsTargets
+Description = Reverting to the official asar...
+When = PreTransaction
+Exec = /usr/share/libalpm/scripts/pre-remove-discord
