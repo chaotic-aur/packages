@@ -16,12 +16,12 @@ sha256sums=('SKIP')
 options=('!strip')
 
 pkgver() {
-        cd "$_gitname"
-        printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)" 
+  cd "$_gitname"
+  printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
 }
 
 package() {
-        cd "${srcdir}/${_gitname}"
-        install -dm755 "${pkgdir}/usr/share/icons"
-        ./install.sh -d "${pkgdir}/usr/share/icons" --total
+  cd "${srcdir}/${_gitname}"
+  install -dm755 "${pkgdir}/usr/share/icons"
+  ./install.sh -d "${pkgdir}/usr/share/icons" --total
 }

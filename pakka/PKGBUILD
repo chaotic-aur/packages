@@ -22,8 +22,7 @@ source=(https://github.com/SidharthArya/$pkgname/archive/refs/tags/$pkgver.tar.g
 noextract=()
 sha256sums=('39ef5fc5070bcf1abe3ec732131b73c2d2cf8d5c13a9e5e9fffec3a4912c06df')
 
-
 package() {
-    cd "$pkgname-$pkgver"
-    make DESTDIR="$pkgdir/" install
+  cd "$pkgname-$pkgver"
+  make DESTDIR="$pkgdir/" install
 }

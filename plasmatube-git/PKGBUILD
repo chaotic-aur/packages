@@ -23,7 +23,7 @@ makedepends=(
   'extra-cmake-modules'
 )
 
-if [ x"$pkgname" == x"$_pkgname" ] ; then
+if [ x"$pkgname" == x"$_pkgname" ]; then
   # normal package
   :
 else

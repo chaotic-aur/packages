@@ -9,11 +9,11 @@ arch=("i686" "x86_64" "aarch64")
 url="https://github.com/polybar/polybar"
 license=("MIT")
 depends=("libuv" "cairo" "xcb-util-image" "xcb-util-wm" "xcb-util-xrm"
-         "xcb-util-cursor" "alsa-lib" "libpulse" "libmpdclient" "libnl"
-         "jsoncpp" "curl")
+  "xcb-util-cursor" "alsa-lib" "libpulse" "libmpdclient" "libnl"
+  "jsoncpp" "curl")
 optdepends=("i3-wm: i3 module support")
 makedepends=("cmake" "git" "python" "pkg-config" "python-sphinx"
-             "python-packaging" "i3-wm")
+  "python-packaging" "i3-wm")
 backup=("etc/polybar/config.ini")
 provides=("polybar")
 conflicts=("polybar")

@@ -18,7 +18,7 @@ source=(
 sha512sums=('1f8b5280f562776b37c91714c709e4d0941bb5c3b2a3677266585911bd8a4a5ea1f65382c66a9920af5847f7d5dc25ff29f8d0acc0678ed1fd14d80480f9c9ef')
 
 #prepare() {
-  #cd "$srcdir/chromium-$pkgver"
+#cd "$srcdir/chromium-$pkgver"
 #}
 
 _build_flags=(

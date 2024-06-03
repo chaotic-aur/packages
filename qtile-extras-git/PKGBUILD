@@ -21,19 +21,17 @@ makedepends=(
 source=("git+https://github.com/elparaguayo/$_pkgname.git")
 md5sums=("SKIP")
 
-pkgver()
-{
+pkgver() {
   cd "$_pkgname"
   printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
 }
 
 build() {
-    cd "$_pkgname"
-    python -m build --wheel --no-isolation
+  cd "$_pkgname"
+  python -m build --wheel --no-isolation
 }
 
-package()
-{
+package() {
   cd "$_pkgname"
   python -m installer --destdir="$pkgdir" dist/*.whl
 }

@@ -29,17 +29,17 @@ noextract=()
 sha256sums=('096c081ae018c5a2c70762647f63ca6ddb31946a8428bc718ac3e5f390245bf1')
 
 build() {
-	cd qBittorrent-Enhanced-Edition-release-$pkgver
+  cd qBittorrent-Enhanced-Edition-release-$pkgver
 
-	cmake -B build -S . \
-		-DCMAKE_INSTALL_PREFIX=/usr \
-		-DQT6=ON
-	cmake --build build
+  cmake -B build -S . \
+    -DCMAKE_INSTALL_PREFIX=/usr \
+    -DQT6=ON
+  cmake --build build
 }
 
 package() {
-	cd qBittorrent-Enhanced-Edition-release-$pkgver
+  cd qBittorrent-Enhanced-Edition-release-$pkgver
 
-	DESTDIR="$pkgdir" cmake --install build
-	install -Dm644 COPYING "$pkgdir"/usr/share/licenses/$pkgname/COPYING
+  DESTDIR="$pkgdir" cmake --install build
+  install -Dm644 COPYING "$pkgdir"/usr/share/licenses/$pkgname/COPYING
 }

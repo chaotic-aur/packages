@@ -18,8 +18,8 @@ source=("${_pkgname}::git+${url}")
 sha256sums=('SKIP')
 
 pkgver() {
-    cd "$_pkgname"
-    printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+  cd "$_pkgname"
+  printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
 }
 
 build() {
@@ -40,4 +40,3 @@ package() {
   install -Dm775 "$srcdir/pcloudcc/pCloudCC/pcloudcc" "$pkgdir/usr/bin/pcloudcc"
   install -Dm664 "$srcdir/pcloudcc/pCloudCC/libpcloudcc_lib.so" "$pkgdir/usr/lib/libpcloudcc_lib.so"
 }
-

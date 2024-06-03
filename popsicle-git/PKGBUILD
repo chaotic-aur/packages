@@ -25,9 +25,8 @@ build() {
   make
 }
 
-package() { 
+package() {
   cd "${pkgname%-git}"
   make DESTDIR="${pkgdir}/" prefix=/usr install
   install -D LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
 }
-

@@ -15,32 +15,32 @@ _pulseaudio_ver="$(pulseaudio --version | awk '{print $NF}')"
 : "${_pulseaudio_ver:=17.0}"
 
 source=(
-    "${url}/archive/refs/tags/v${pkgver}.tar.gz"
-    "https://freedesktop.org/software/pulseaudio/releases/pulseaudio-${_pulseaudio_ver}.tar.xz"
+  "${url}/archive/refs/tags/v${pkgver}.tar.gz"
+  "https://freedesktop.org/software/pulseaudio/releases/pulseaudio-${_pulseaudio_ver}.tar.xz"
 )
 sha256sums=(
-    'be101538ebe891bd4ae9d533559b99cf07abf0bbce399f50f2d248f35c160a9d'
-    "$(curl -fs "${source[1]}.sha256sum" | awk '{print $1}')"
+  'be101538ebe891bd4ae9d533559b99cf07abf0bbce399f50f2d248f35c160a9d'
+  "$(curl -fs "${source[1]}.sha256sum" | awk '{print $1}')"
 )
 
 prepare() {
-    cd "${srcdir}/pulseaudio-${_pulseaudio_ver}"
+  cd "${srcdir}/pulseaudio-${_pulseaudio_ver}"
 
-    meson build
+  meson build
 }
 
 build() {
-    cd "${srcdir}/${pkgname}-${pkgver}"
+  cd "${srcdir}/${pkgname}-${pkgver}"
 
-    sed -i '\#-I $(PULSE_DIR)/src#a -I $(PULSE_DIR)/build \\' src/Makefile.am
+  sed -i '\#-I $(PULSE_DIR)/src#a -I $(PULSE_DIR)/build \\' src/Makefile.am
 
-    ./bootstrap
-    ./configure "PULSE_DIR=${srcdir}/pulseaudio-${_pulseaudio_ver}"
-    make
+  ./bootstrap
+  ./configure "PULSE_DIR=${srcdir}/pulseaudio-${_pulseaudio_ver}"
+  make
 }
 
 package() {
-    cd "${srcdir}/${pkgname}-${pkgver}"
+  cd "${srcdir}/${pkgname}-${pkgver}"
 
-    make DESTDIR="$pkgdir" install
+  make DESTDIR="$pkgdir" install
 }

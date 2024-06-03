@@ -19,11 +19,11 @@ makedepends=('git')
 conflicts=('ntfsprogs' 'ntfs-3g')
 provides=('ntfsprogs' 'ntfs-3g')
 source=("ntfs-3g_${pkgver}.tar.gz::${url}/archive/refs/tags/${pkgver}.tar.gz"
-        'mount.ntfs')
+  'mount.ntfs')
 sha256sums=('8bd7749ea9d8534c9f0664d48b576e90b96d45ec8803c9427f6ffaa2f0dde299'
-            'c468ffe0d9baac40aff77acaf2ef71baf9cd4a05355de639ad832839156eadf6')
+  'c468ffe0d9baac40aff77acaf2ef71baf9cd4a05355de639ad832839156eadf6')
 b2sums=('1083d5549af9fd4ddd90e85d27b9221ab6d766813bab383c5f66cb0ee4c3cfb565ca2fe017642130d8051b63b034f2fddd8f87ee9fca59d30018eb55a55294cf'
-        'aaa83ac2cf00e36c3c4f20ec3ea74f12a299d6decd66898124265ed552f0b35c7611cc45147147bf508cd81e0d5be0ded2ba13a5ba422e728e83e442c37abd84')
+  'aaa83ac2cf00e36c3c4f20ec3ea74f12a299d6decd66898124265ed552f0b35c7611cc45147147bf508cd81e0d5be0ded2ba13a5ba422e728e83e442c37abd84')
 
 build() {
   cd ntfs-3g-${pkgver}

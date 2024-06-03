@@ -20,4 +20,3 @@ package() {
   cd "$srcdir/$pkgname-$pkgver"
   make INSTALL_ROOT="$pkgdir/" install
 }
-

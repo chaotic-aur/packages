@@ -1,5 +1,5 @@
 # Maintainer: ZhangHua <zhanghuadedn at gmail dot com>
-# Contributor: Juliette Cordor 
+# Contributor: Juliette Cordor
 
 pkgname=("podman-desktop")
 pkgver=1.10.3
@@ -10,66 +10,66 @@ url=https://github.com/containers/podman-desktop
 license=('Apache-2.0')
 depends=()
 makedepends=(
-    'yarn' 'node-gyp' 'npm' 'nodejs-lts-iron' 'libvips' 'lcms2'
-    'openjpeg2' 'glib2' 'python-setuptools'
+  'yarn' 'node-gyp' 'npm' 'nodejs-lts-iron' 'libvips' 'lcms2'
+  'openjpeg2' 'glib2' 'python-setuptools'
 )
 optdepends=(
-    "podman: podman plugin"
-    "crc: crc plugin"
-    "lima: lima plugin"
-    "docker: docker plugin"
+  "podman: podman plugin"
+  "crc: crc plugin"
+  "lima: lima plugin"
+  "docker: docker plugin"
 )
 source=("${url}/archive/refs/tags/v${pkgver}.tar.gz")
 sha256sums=('140bfb07b1ac2a39ea5f4ea6b36947fc0261c7cffa29daff759f6067a95fca2e')
 
-build(){
-    cd "${srcdir}/podman-desktop-$pkgver"
-    # husky install will be failed when there is no .git folder but has command git
-    command -v git > /dev/null && sed -i 's/"husky install"/""/' package.json
-    yarn --frozen-lockfile --network-timeout 180000
-    yarn run compile
+build() {
+  cd "${srcdir}/podman-desktop-$pkgver"
+  # husky install will be failed when there is no .git folder but has command git
+  command -v git > /dev/null && sed -i 's/"husky install"/""/' package.json
+  yarn --frozen-lockfile --network-timeout 180000
+  yarn run compile
 }
-package_podman-desktop(){
-    depends+=(
-        # Electron depends
-        "c-ares" "gcc-libs" "glibc" "gtk3" "libevent" "libffi" "libpulse" "nss" "zlib" 
-        "fontconfig" "brotli" "libjpeg" "icu" "dav1d" "flac" "libdrm" "libxml2" "minizip"
-        "opus" "harfbuzz" "libxslt" "libpng" "freetype2"
-    )
-    optdepends+=(
-        # Electron optdepends
-        "kde-cli-tools: file deletion support (kioclient5)"
-        "libappindicator-gtk3: StatusNotifierItem support"
-        "pipewire: WebRTC desktop sharing under Wayland"
-        "qt5-base: enable Qt5 with --enable-features=AllowQt"
-        "trash-cli: file deletion support (trash-put)"
-        "xdg-utils: open URLs with desktop’s default (xdg-email, xdg-open)"
-    )
-    case ${CARCH} in
-        x86_64)
-            _arch=-
-            ;;
-        aarch64)
-            _arch=-arm64-
-            ;;
-        *)
-            _arch=-${CARCH}-
-            ;;
-    esac
-    cd "${srcdir}/podman-desktop-$pkgver"
-    mkdir -p "${pkgdir}/opt" "${pkgdir}/usr/bin"
-    cp -r "dist/linux${_arch}unpacked" "${pkgdir}/opt/podman-desktop"
-    install -Dm644 ./.flatpak-appdata.xml \
-        "${pkgdir}/usr/share/metainfo/io.podman_desktop.PodmanDesktop.xml"
-    install -Dm644 ./.flatpak.desktop \
-        "${pkgdir}/usr/share/applications/io.podman_desktop.PodmanDesktop.desktop"
-    sed -i 's/run.sh/podman-desktop/' \
-        "${pkgdir}/usr/share/applications/io.podman_desktop.PodmanDesktop.desktop"
-    install -Dm644 ./buildResources/icon.svg \
-        "${pkgdir}/usr/share/icons/hicolor/scalable/apps/io.podman_desktop.PodmanDesktop.svg"
-    install -Dm644 ./buildResources/icon-512x512.png \
-        "${pkgdir}/usr/share/icons/hicolor/512x512/apps/io.podman_desktop.PodmanDesktop.png"
-    install -Dm644 ./buildResources/icon.png \
-        "${pkgdir}/usr/share/icons/hicolor/1024x1024/apps/io.podman_desktop.PodmanDesktop.png"
-    ln -s /opt/podman-desktop/podman-desktop "${pkgdir}/usr/bin/podman-desktop"
+package_podman-desktop() {
+  depends+=(
+    # Electron depends
+    "c-ares" "gcc-libs" "glibc" "gtk3" "libevent" "libffi" "libpulse" "nss" "zlib"
+    "fontconfig" "brotli" "libjpeg" "icu" "dav1d" "flac" "libdrm" "libxml2" "minizip"
+    "opus" "harfbuzz" "libxslt" "libpng" "freetype2"
+  )
+  optdepends+=(
+    # Electron optdepends
+    "kde-cli-tools: file deletion support (kioclient5)"
+    "libappindicator-gtk3: StatusNotifierItem support"
+    "pipewire: WebRTC desktop sharing under Wayland"
+    "qt5-base: enable Qt5 with --enable-features=AllowQt"
+    "trash-cli: file deletion support (trash-put)"
+    "xdg-utils: open URLs with desktop’s default (xdg-email, xdg-open)"
+  )
+  case ${CARCH} in
+    x86_64)
+      _arch=-
+      ;;
+    aarch64)
+      _arch=-arm64-
+      ;;
+    *)
+      _arch=-${CARCH}-
+      ;;
+  esac
+  cd "${srcdir}/podman-desktop-$pkgver"
+  mkdir -p "${pkgdir}/opt" "${pkgdir}/usr/bin"
+  cp -r "dist/linux${_arch}unpacked" "${pkgdir}/opt/podman-desktop"
+  install -Dm644 ./.flatpak-appdata.xml \
+    "${pkgdir}/usr/share/metainfo/io.podman_desktop.PodmanDesktop.xml"
+  install -Dm644 ./.flatpak.desktop \
+    "${pkgdir}/usr/share/applications/io.podman_desktop.PodmanDesktop.desktop"
+  sed -i 's/run.sh/podman-desktop/' \
+    "${pkgdir}/usr/share/applications/io.podman_desktop.PodmanDesktop.desktop"
+  install -Dm644 ./buildResources/icon.svg \
+    "${pkgdir}/usr/share/icons/hicolor/scalable/apps/io.podman_desktop.PodmanDesktop.svg"
+  install -Dm644 ./buildResources/icon-512x512.png \
+    "${pkgdir}/usr/share/icons/hicolor/512x512/apps/io.podman_desktop.PodmanDesktop.png"
+  install -Dm644 ./buildResources/icon.png \
+    "${pkgdir}/usr/share/icons/hicolor/1024x1024/apps/io.podman_desktop.PodmanDesktop.png"
+  ln -s /opt/podman-desktop/podman-desktop "${pkgdir}/usr/bin/podman-desktop"
 }

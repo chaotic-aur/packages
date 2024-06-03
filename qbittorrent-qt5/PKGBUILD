@@ -15,16 +15,16 @@ conflicts=('qbittorrent')
 provides=('qbittorrent')
 source=(https://downloads.sourceforge.net/sourceforge/qbittorrent/${_pkgname}-${pkgver}.tar.xz{,.asc})
 sha256sums=('89cd79f58af4db346a9744e4bf61181c4bd40cce201b79a9f54ac31a8676e921'
-            'SKIP')
+  'SKIP')
 validpgpkeys=('D8F3DA77AAC6741053599C136E4A2D025B7CC9A2')
 
 build() {
   cd ${_pkgname}-${pkgver}
 
-	cmake -B build -S . \
-		-DCMAKE_INSTALL_PREFIX=/usr \
-		-DQT6=OFF
-	cmake --build build
+  cmake -B build -S . \
+    -DCMAKE_INSTALL_PREFIX=/usr \
+    -DQT6=OFF
+  cmake --build build
 }
 
 package() {

@@ -13,9 +13,9 @@ source=("git+https://github.com/fzwoch/obs-vaapi#tag=$pkgver")
 sha256sums=('SKIP')
 
 build() {
-	meson setup "$srcdir/$pkgname" build --prefix=/usr/lib/obs-plugins --buildtype=release
-	ninja -C build
+  meson setup "$srcdir/$pkgname" build --prefix=/usr/lib/obs-plugins --buildtype=release
+  ninja -C build
 }
 package() {
-	DESTDIR="$pkgdir" ninja -C build install
+  DESTDIR="$pkgdir" ninja -C build install
 }

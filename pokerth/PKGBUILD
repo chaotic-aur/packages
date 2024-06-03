@@ -11,22 +11,22 @@ arch=('i686' 'x86_64')
 url="http://www.pokerth.net/"
 license=('GPL' 'custom')
 depends=('curl' 'boost-libs' 'gsasl' 'protobuf'
-         'qt5-base' 'sdl_mixer' 'tinyxml')
+  'qt5-base' 'sdl_mixer' 'tinyxml')
 
 makedepends=('boost')
 
 source=(https://sourceforge.net/projects/$pkgname/files/$pkgname/$pkgver/$pkgname-$pkgver.tar.gz
-        ${pkgname}-${pkgver}.patch
-        ${pkgname}-${pkgver}.patch.2019
-        ${pkgname}-${pkgver}.patch.2020
-        ${pkgname}-${pkgver}.patch.2023
-        ${pkgname}-${pkgver}.patch.xdg.2023)
+  ${pkgname}-${pkgver}.patch
+  ${pkgname}-${pkgver}.patch.2019
+  ${pkgname}-${pkgver}.patch.2020
+  ${pkgname}-${pkgver}.patch.2023
+  ${pkgname}-${pkgver}.patch.xdg.2023)
 md5sums=('8fd7d7fc7ece17315e58aa3240dd4586'
-         '0ef5541fc6008dfb2521dcab47afb659'
-         '50d427bd8afc57fb61e186de6c4e5601'
-         '5bdcc1f2240c20f4b766b183d93836b3'
-         '64e1b4b08353c11370ea32dfc381ca97'
-         'e61eae14e6394f4745245e2ef42d812c')
+  '0ef5541fc6008dfb2521dcab47afb659'
+  '50d427bd8afc57fb61e186de6c4e5601'
+  '5bdcc1f2240c20f4b766b183d93836b3'
+  '64e1b4b08353c11370ea32dfc381ca97'
+  'e61eae14e6394f4745245e2ef42d812c')
 
 prepare() {
   cd "$srcdir/$pkgname-$pkgver-rc"
@@ -75,4 +75,3 @@ package() {
   install -D -m644 data/data-copyright.txt "$pkgdir/usr/share/licenses/pokerth/data-copyright.txt"
   rm -f "$pkgdir/usr/share/pokerth/data/data-copyright.txt"
 }
-

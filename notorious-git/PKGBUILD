@@ -9,12 +9,12 @@ arch=('any')
 url='https://gitlab.gnome.org/gabmus/notorious'
 license=('GPL3')
 depends=(
-    'gtk3'
-    'python'
-    'libhandy>=0.83'
-    'python-gobject'
-    'gobject-introspection'
-    'gtksourceview4'
+  'gtk3'
+  'python'
+  'libhandy>=0.83'
+  'python-gobject'
+  'gobject-introspection'
+  'gtksourceview4'
 )
 makedepends=('git' 'meson')
 provides=('notorious')

@@ -16,23 +16,23 @@ makedepends=('boost' 'systemd' 'meson' 'ninja')
 install="${pkgname}".install
 source=(
   "https://www.musicpd.org/download/${pkgname}/${pkgver}/${pkgname}-${pkgver}.tar.xz"{,.sig}
-  )
+)
 validpgpkeys=('0392335A78083894A4301C43236E8A58C6DB4512') # Max Kellermann <max@musicpd.org>
 sha256sums=('20f89d945bf517c4d68bf77a77a359fdb13842ab1295e8d21eda79be2b5b35ce'
-            'SKIP')
+  'SKIP')
 
 prepare() {
   cd "${pkgname}"-"${pkgver}"
   DESTDIR="${pkgdir}" meson build \
-     --prefix=/usr \
-     --sysconfdir=/etc
+    --prefix=/usr \
+    --sysconfdir=/etc
 }
 
 build() {
   cd "${pkgname}"-"${pkgver}"
   DESTDIR="${pkgdir}" meson build \
-  --prefix=/usr \
-  --buildtype=plain
+    --prefix=/usr \
+    --buildtype=plain
   meson compile -C build
 }
 
@@ -51,7 +51,7 @@ package() {
   rm -r "${pkgdir}"/etc
 
   install -d "${pkgdir}"/var/cache/"${pkgname}"
-    touch "${pkgdir}"/var/cache/"${pkgname}"/"${pkgname}".cache
+  touch "${pkgdir}"/var/cache/"${pkgname}"/"${pkgname}".cache
 }
 
 # vim:set ts=2 sw=2 et:

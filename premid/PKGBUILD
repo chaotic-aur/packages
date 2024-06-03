@@ -28,7 +28,7 @@ package() {
   # Desktop Entry
   install -Dm644 "${pkgdir}/opt/${pkgname}/assets/${pkgname}.desktop" -t "${pkgdir}/usr/share/applications"
   mkdir -p ${pkgdir}/usr/bin/
-  ln -sf /opt/premid/premid  "${pkgdir}/usr/bin/premid"
+  ln -sf /opt/premid/premid "${pkgdir}/usr/bin/premid"
 
   # Libraries
   ln -sf /usr/lib/libEGL.so "$pkgdir"/opt/$pkgname/libEGL.so

@@ -15,22 +15,22 @@ makedepends=('git')
 conflicts=('xdgurl')
 provides=('xdgurl')
 source=("git+$url.git#tag=release-$pkgver"
-	"git+https://github.com/akiraohgaki/qtil.git#tag=v0.4.0")
+  "git+https://github.com/akiraohgaki/qtil.git#tag=v0.4.0")
 sha256sums=('SKIP'
-	    'SKIP')
+  'SKIP')
 
 prepare() {
-    cd $pkgname
-    ln -s "$srcdir/qtil" lib/qtil
+  cd $pkgname
+  ln -s "$srcdir/qtil" lib/qtil
 }
 
 build() {
-    cd $pkgname
-    qmake PREFIX="/usr"
-    make
+  cd $pkgname
+  qmake PREFIX="/usr"
+  make
 }
 
 package() {
-    cd $pkgname
-    make INSTALL_ROOT=$pkgdir install
+  cd $pkgname
+  make INSTALL_ROOT=$pkgdir install
 }

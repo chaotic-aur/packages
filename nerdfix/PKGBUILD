@@ -10,31 +10,27 @@ makedepends=("cargo")
 source=("$url/archive/refs/tags/v$pkgver.tar.gz")
 sha256sums=('72e835aeb349495be87e92f74f405b43dac982ec137cfd7e180e72146b6f6fb7')
 
-prepare()
-{
-    cd "$srcdir/$pkgname-$pkgver"
+prepare() {
+  cd "$srcdir/$pkgname-$pkgver"
 
-    cargo fetch --locked --target "$CARCH-unknown-linux-gnu"
+  cargo fetch --locked --target "$CARCH-unknown-linux-gnu"
 }
 
-build()
-{
-    cd "$srcdir/$pkgname-$pkgver"
+build() {
+  cd "$srcdir/$pkgname-$pkgver"
 
-    cargo build --frozen --release
+  cargo build --frozen --release
 }
 
-check()
-{
-    cd "$srcdir/$pkgname-$pkgver"
+check() {
+  cd "$srcdir/$pkgname-$pkgver"
 
-    cargo test --frozen
+  cargo test --frozen
 }
 
-package()
-{
-    cd "$srcdir/$pkgname-$pkgver"
+package() {
+  cd "$srcdir/$pkgname-$pkgver"
 
-    install -Dm 755 "target/release/$pkgname" "$pkgdir/usr/bin/$pkgname"
-    install -Dm 644 LICENSE-MIT "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+  install -Dm 755 "target/release/$pkgname" "$pkgdir/usr/bin/$pkgname"
+  install -Dm 644 LICENSE-MIT "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
 }

@@ -28,8 +28,8 @@ pkgver() {
 
 package_papirus-icon-theme-git() {
   optdepends=('hardcode-fixer-git: To deal with hardcoded application icons'
-              'hardcode-tray-git: To fix hardcoded tray icons'
-              'sif-git: To fix icons of running Steam games')
+    'hardcode-tray-git: To fix hardcoded tray icons'
+    'sif-git: To fix icons of running Steam games')
   provides=("${pkgname%-git}")
   conflicts=("${pkgname%-git}")
   install='alt-icons.install'

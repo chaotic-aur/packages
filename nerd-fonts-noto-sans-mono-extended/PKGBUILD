@@ -10,10 +10,10 @@ makedepends=('git' 'python' 'fontforge' 'subversion' 'parallel')
 conflicts=('nerd-fonts-noto' 'nerd-fonts-noto-sans-mono')
 provides=('nerd-fonts-noto-sans-mono-extended')
 source=("svn+https://github.com/googlefonts/noto-fonts/trunk/hinted/ttf/NotoSansMono"
-        "font-patcher-$pkgver::https://github.com/ryanoasis/nerd-fonts/releases/download/v$pkgver/FontPatcher.zip" "svn+https://github.com/ryanoasis/nerd-fonts/tags/v$pkgver/src/glyphs")
+  "font-patcher-$pkgver::https://github.com/ryanoasis/nerd-fonts/releases/download/v$pkgver/FontPatcher.zip" "svn+https://github.com/ryanoasis/nerd-fonts/tags/v$pkgver/src/glyphs")
 sha256sums=('SKIP'
-            '73cbf6cd548a69d64a5db5910a22b7eddfdee8ae1ae187616ae748e4c7f16ea4'
-            'SKIP')
+  '73cbf6cd548a69d64a5db5910a22b7eddfdee8ae1ae187616ae748e4c7f16ea4'
+  'SKIP')
 
 build() {
   # patch fonts

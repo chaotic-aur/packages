@@ -27,7 +27,7 @@ sha256sums=(
   'SKIP'
 )
 
-if [ x"$_pkgname" == x"$pkgname" ] ; then
+if [ x"$_pkgname" == x"$pkgname" ]; then
   # normal package
   url="https://flipperzero.one/update"
 

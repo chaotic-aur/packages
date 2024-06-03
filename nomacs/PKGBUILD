@@ -15,12 +15,12 @@ depends=(exiv2 gcc-libs glibc libraw libtiff opencv qt6-base qt6-svg)
 #depends+=(libopencv_imgproc.so)
 makedepends=(cmake git git-lfs qt6-tools python)
 optdepends=('qt6-imageformats: support additional image formats'
-            'kimageformats5: support QOI (Quite OK Image Format)')
+  'kimageformats5: support QOI (Quite OK Image Format)')
 source=("git+https://github.com/nomacs/nomacs.git#tag=${pkgver}"
-        #"nomacs-plugins-qt6_01.patch::https://github.com/nomacs/nomacs-plugins/pull/40/commits/1b87f615ce0e7125ec739bc3e40d8ff7f6783587.patch"
-        #"nomacs-plugins-qt6_02.patch::https://github.com/nomacs/nomacs-plugins/pull/40/commits/a869962f051504dd2c1dedeb3bc3d266c17070c1.patch"
-        #"nomacs-plugins-${_plugins_ver}.tar.gz::https://github.com/nomacs/nomacs-plugins/archive/${_plugins_ver}.tar.gz"
-        )
+  #"nomacs-plugins-qt6_01.patch::https://github.com/nomacs/nomacs-plugins/pull/40/commits/1b87f615ce0e7125ec739bc3e40d8ff7f6783587.patch"
+  #"nomacs-plugins-qt6_02.patch::https://github.com/nomacs/nomacs-plugins/pull/40/commits/a869962f051504dd2c1dedeb3bc3d266c17070c1.patch"
+  #"nomacs-plugins-${_plugins_ver}.tar.gz::https://github.com/nomacs/nomacs-plugins/archive/${_plugins_ver}.tar.gz"
+)
 b2sums=('SKIP')
 
 export GIT_LFS_SKIP_SMUDGE=1

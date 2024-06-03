@@ -19,15 +19,15 @@ license=('GPL3')
 # qt6-5compat qt6-base qt6-declarative              qt6-multimedia qt6-positioning qt6-svg qt6-webchannel qt6-webengine
 depends+=(${qt}-{base,declarative,multimedia,svg,webchannel,webengine})
 depends+=('openssl' 'ffmpeg')
-depends+=(quazip-${qt})  #drop internal quazip and use system one.
-depends+=(poppler) #replace internal xpdf with poppler and drop freetype/xpdf from deps
+depends+=(quazip-${qt}) #drop internal quazip and use system one.
+depends+=(poppler)      #replace internal xpdf with poppler and drop freetype/xpdf from deps
 makedepends=('cmake' ${qt}-tools)
 source=("https://github.com/OpenBoard-org/OpenBoard/archive/v${pkgver}.tar.gz"
-        "openboard-c++20-support.patch::https://github.com/OpenBoard-org/OpenBoard/commit/6a0be1b4607da3c3eb9b7d8b547e7b489bc2d219.patch"
-        "openboard-use-c++20.patch::https://github.com/OpenBoard-org/OpenBoard/commit/ffeea1b662b012bd25a025f2130fa2c2044919f9.patch")
+  "openboard-c++20-support.patch::https://github.com/OpenBoard-org/OpenBoard/commit/6a0be1b4607da3c3eb9b7d8b547e7b489bc2d219.patch"
+  "openboard-use-c++20.patch::https://github.com/OpenBoard-org/OpenBoard/commit/ffeea1b662b012bd25a025f2130fa2c2044919f9.patch")
 sha256sums=('5c9fcb54bc1598b4b7026e6ecca07137660dd3d45bda472a5710acf600a2a22f'
-            'ac8b4a37192454781216cf38b2fa702d3548a61b5e1c5ce419aa98bcdea77312'
-            '8a0765cbc45f3e0e1c78f82d6c627afbb85bf17fbe1e256fec6e1c9ea2fd9313')
+  'ac8b4a37192454781216cf38b2fa702d3548a61b5e1c5ce419aa98bcdea77312'
+  '8a0765cbc45f3e0e1c78f82d6c627afbb85bf17fbe1e256fec6e1c9ea2fd9313')
 
 prepare() {
   cd "$srcdir"/$_src_folder

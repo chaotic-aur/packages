@@ -85,7 +85,7 @@ source=(
   'mr1441.patch'
 )
 b2sums=('4b474f4bbb5ed15db053cba509c3f4b0d112a74359597dc1ab9af118b0e1360a20ccc6af89af3b248895e5dd95193c039cd3396b0fd2c71a0deadc3ff4e15920'
-        '1730136643b4158d6e0a0f642aa5976854017104cade4b8b64f6b94f7c9e1d20dbe8d5daee0178a9af8880d05e724c40d8615b67d265079d443777bff224724c')
+  '1730136643b4158d6e0a0f642aa5976854017104cade4b8b64f6b94f7c9e1d20dbe8d5daee0178a9af8880d05e724c40d8615b67d265079d443777bff224724c')
 
 prepare() {
   cd "$srcdir/$pkgname"
@@ -110,7 +110,8 @@ build() {
 }
 
 _pick() {
-  local p="$1" f d; shift
+  local p="$1" f d
+  shift
   for f; do
     d="$srcdir/$p/${f#$pkgdir/}"
     mkdir -p "$(dirname "$d")"
