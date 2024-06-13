@@ -2,10 +2,9 @@
 # Contributor: Håvard Pettersson <mail@haavard.me>
 # Contributor: Andrew Stubbs <andrew.stubbs@gmail.com>
 
-_nodeversion=20
 pkgname=balena-etcher
 _pkgname=etcher
-pkgver=1.19.17
+pkgver=1.19.21
 pkgrel=1
 epoch=2
 pkgdesc='Flash OS images to SD cards & USB drives, safely and easily'
@@ -13,59 +12,60 @@ arch=('x86_64' 'i686' 'armv7h' 'aarch64')
 _github_url='https://github.com/balena-io/etcher'
 url='https://balena.io/etcher'
 license=(Apache)
-depends=()
-makedepends=("git" "python" "nvm")
+_electron=electron30
+depends=("${_electron}" "nodejs-lts-iron")
+makedepends=("npm" "python" 'jq' 'moreutils' 'python-setuptools' 'git')
 optdepends=("libnotify: for notifications")
 conflicts=("${_pkgname}"
   "${_pkgname}-git"
   "${_pkgname}-bin"
 )
-options=('!strip')
-source=("etcher::git+https://github.com/balena-io/${_pkgname}.git#tag=v${pkgver}"
+options=('!debug' '!strip')
+source=("https://github.com/balena-io/etcher/archive/refs/tags/v${pkgver}.tar.gz"
   "${pkgname}.desktop"
+  "${pkgname}"
+  "etcher-util"
 )
-sha256sums=('a5c083015beffb1f749d2300db56a9d6ee0f20bef27822c7b0a5f6004e39dd65'
-  '6c5fb48aeb636272689c86d7cf9beea4515214636bc617a61c3e8387628b3415')
-
-_ensure_local_nvm() {
-  # let's be sure we are starting clean
-  which nvm > /dev/null 2>&1 && nvm deactivate && nvm unload
-  export NVM_DIR="${srcdir}/.nvm"
-
-  # The init script returns 3 if version specified
-  # in ./.nvrc is not (yet) installed in $NVM_DIR
-  # but nvm itself still gets loaded ok
-  source /usr/share/nvm/init-nvm.sh || [[ $? != 1 ]]
-  nvm install ${_nodeversion}
-  nvm use "${_nodeversion}"
-}
-
+sha256sums=('467640c104271f7846381b3a00fb6cbca3c5b3fcca0724605c0924129d941bfd'
+  '6c5fb48aeb636272689c86d7cf9beea4515214636bc617a61c3e8387628b3415'
+  '7482eb18af030eb6d2b44850f23ecb99cd9198f642ac3b22b2f9f2ef0c8944d4'
+  'f27e34eaec0d2cb74fee259ff32c2cbd1dae36d2046d2b3e97394b91f47adace')
 prepare() {
-  cd "${_pkgname}"
-  git submodule init
-  git submodule update || cd "${srcdir}/${_pkgname}/scripts/resin" && git checkout --
-  _ensure_local_nvm
+  cd "${_pkgname}-${pkgver}"
+  local electronDist="/usr/lib/${_electron}"
+  local electronVersion="$(< $electronDist/version)"
+  jq ".devDependencies.electron = \"$electronVersion\"" package.json | sponge package.json
+  jq ".build.electronDist = \"$electronDist\"" package.json | sponge package.json
+  jq ".build.electronVersion = \"$electronVersion\"" package.json | sponge package.json
+  sed -i lib/gui/etcher.ts -e "s|process.resourcesPath|'/usr/lib/${pkgname}'|"
+  sed -i ${srcdir}/${pkgname} -e "s|__ELECTRON__|${_electron}|"
 }
 
 build() {
-  _ensure_local_nvm
-  cd "${_pkgname}"
-  export npm_config_build_from_source=true
-  export npm_config_cache="${srcdir}/.npm_cache"
+  export ELECTRON_SKIP_BINARY_DOWNLOAD=1
+  export HOME="${srcdir}"
+  cd "${_pkgname}-${pkgver}"
+  unset MAKEFLAGS
+
   npm install
   npm run package
+
+  # node_modules for our etcher-util wrapper
+  cd "out/sidecar/src"
+  npm install --prefix . etcher-sdk ws lodash
 }
 
 package() {
-  cd "${_pkgname}"
+  cd "${_pkgname}-${pkgver}"
 
-  _appdir="${pkgdir}/opt/${pkgname}"
+  _appdir="${pkgdir}/usr/lib/${pkgname}"
   install -d "${_appdir}"
 
-  cp -a out/balenaEtcher-linux-*/* "${_appdir}"
+  cp -a out/balenaEtcher-linux-*/resources/* "${_appdir}"
+  cp -a out/sidecar/src "${_appdir}/utils"
 
-  install -d "${pkgdir}/usr/bin"
-  ln -s /opt/${pkgname}/${pkgname} "${pkgdir}/usr/bin/${pkgname}"
+  install -Dm755 ${srcdir}/${pkgname} "${pkgdir}/usr/bin/${pkgname}"
+  install -Dm755 ${srcdir}/etcher-util "${_appdir}"
   install -Dm644 "${srcdir}/${pkgname}.desktop" \
     "${pkgdir}/usr/share/applications/${pkgname}.desktop"
 
@@ -73,5 +73,4 @@ package() {
     install -Dm644 "assets/iconset/${size}.png" \
       "${pkgdir}/usr/share/icons/hicolor/${size}/apps/${pkgname}.png"
   done
-
 }
