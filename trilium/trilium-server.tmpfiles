@@ -1,0 +1,2 @@
+d /var/lib/trilium-server 0750 triliumserver triliumserver
+d /var/log/trilium-server 0750 triliumserver triliumserver

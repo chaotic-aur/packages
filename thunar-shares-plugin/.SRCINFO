@@ -1,0 +1,18 @@
+pkgbase = thunar-shares-plugin
+	pkgdesc = Thunar plugin to quickly share a folder using Samba without requiring root access
+	pkgver = 0.3.2
+	pkgrel = 1
+	epoch = 1
+	url = http://goodies.xfce.org/projects/thunar-plugins/thunar-shares-plugin
+	install = thunar-shares-plugin.install
+	arch = i686
+	arch = x86_64
+	license = GPL2
+	license = LGPL
+	makedepends = xfce4-dev-tools
+	depends = thunar>=1.7.0
+	depends = samba
+	source = https://archive.xfce.org/src/thunar-plugins/thunar-shares-plugin/0.3/thunar-shares-plugin-0.3.2.tar.bz2
+	sha1sums = fb41eae712bdf91ba52b7d10f6513444dd88569e
+
+pkgname = thunar-shares-plugin

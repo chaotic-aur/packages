@@ -1,0 +1,17 @@
+pkgbase = yacy-git
+	pkgdesc = Peer to peer search engine
+	pkgver = 1.92.r1497.g3d3bdb0f5
+	pkgrel = 2
+	url = https://www.yacy.net/
+	install = yacy.install
+	arch = any
+	license = GPL2
+	makedepends = apache-ant
+	depends = java-environment
+	options = !emptydirs
+	source = git+https://github.com/yacy/yacy_search_server
+	source = yacy.service
+	b2sums = SKIP
+	b2sums = e704efd6d4ea583df6851c12d41e7fd7c7d5acc40c1b22b48fb827c6ec7d996b7ecbb8c945354be649278b9e6e23763014606960f62b1193aa6c1495b1e5aa6f
+
+pkgname = yacy-git

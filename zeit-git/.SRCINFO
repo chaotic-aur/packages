@@ -1,0 +1,20 @@
+pkgbase = zeit-git
+	pkgdesc = Qt frontend to crontab
+	pkgver = 0.6.0.r9.g33085ca
+	pkgrel = 1
+	url = https://github.com/loimu/zeit
+	arch = x86_64
+	license = GPL3
+	makedepends = extra-cmake-modules
+	makedepends = imagemagick
+	makedepends = git
+	makedepends = qt5-tools
+	depends = cron
+	depends = hicolor-icon-theme
+	depends = kauth5
+	provides = zeit
+	conflicts = zeit
+	source = git+https://github.com/loimu/zeit.git
+	sha256sums = SKIP
+
+pkgname = zeit-git

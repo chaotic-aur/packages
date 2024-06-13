@@ -1,0 +1,12 @@
+pkgbase = virtualbox-unattended-templates
+	pkgdesc = Unattended Templates for Virtualbox
+	pkgver = 7.0.12
+	pkgrel = 1
+	url = https://www.virtualbox.org/
+	arch = x86_64
+	license = GPL3
+	optdepends = virtualbox
+	source = https://download.virtualbox.org/virtualbox/7.0.12/VirtualBox-7.0.12.tar.bz2
+	sha256sums = d76634c6ccf62503726a5aeae6c78a3462474c51a0ebe4942591ccc2d939890a
+
+pkgname = virtualbox-unattended-templates
