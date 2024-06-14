@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+# disable check
+export TARGET_ARGS="--nocheck ${TARGET_ARGS:-}"

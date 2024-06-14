@@ -1,0 +1,22 @@
+pkgbase = budgie-network-applet
+	pkgdesc = Network applet for Budgie Desktop
+	pkgver = 2.2
+	pkgrel = 1
+	url = https://github.com/danielpinto8zz6/budgie-network-applet
+	arch = i686
+	arch = x86_64
+	license = GPL2
+	makedepends = gobject-introspection
+	makedepends = meson
+	makedepends = ninja
+	makedepends = vala
+	depends = libpeas
+	depends = budgie-desktop
+	depends = libnm
+	depends = libnma
+	depends = libgee
+	source = https://github.com/danielpinto8zz6/budgie-network-applet/archive/2.2.tar.gz
+	sha256sums = 96439cf43cc22240307235e7b61403d8225eb57a519aa2e9d916da08162cca12
+
+pkgname = budgie-network-applet
+

@@ -1,0 +1,29 @@
+pkgbase = gallery-dl
+	pkgdesc = Command-line program to download image-galleries and collections from several image hosting sites
+	pkgver = 1.27.0
+	pkgrel = 1
+	url = https://github.com/mikf/gallery-dl
+	arch = any
+	license = GPL-2.0-or-later
+	checkdepends = yt-dlp
+	makedepends = python-build
+	makedepends = python-installer
+	makedepends = python-setuptools
+	makedepends = python-wheel
+	makedepends = git
+	depends = python
+	depends = python-requests
+	optdepends = ffmpeg: Pixiv Ugoira conversion
+	optdepends = yt-dlp: Video downloads
+	optdepends = youtube-dl: Video downloads
+	optdepends = python-pysocks: SOCKS proxy support
+	optdepends = python-brotli: Brotli compression support
+	optdepends = python-brotlicffi: Brotli compression support
+	optdepends = python-yaml: YAML configuration file support
+	optdepends = python-toml: TOML configuration file support for Python<3.11
+	optdepends = python-secretstorage: GNOME keyring passwords for --cookies-from-browser
+	source = git+https://github.com/mikf/gallery-dl.git#tag=v1.27.0?signed
+	validpgpkeys = 3E09F5908333DD83DBDCE7375680CA389D365A88
+	sha512sums = da790185e8bf22aed4256cfff4f30ff9bc514442598b927d6f4bdd8a93ffbc6ec39677b51b2805340aef05533f3362de6568c45ecc51995f3488c1819f1589d9
+
+pkgname = gallery-dl

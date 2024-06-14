@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+
+# get default file manager
+_xdg_mime_default=$(xdg-mime query default inode/directory)
+
+pre_install() {
+  if [ -d "/usr/share/filebot/openjfx" ]; then
+    if [ -L "/usr/share/filebot/openjfx" ]; then
+      echo "Installing"
+    else
+      echo "Removing /usr/share/filebot/openjfx directory leftover"
+      rm -r /usr/share/filebot/openjfx
+    fi
+  fi
+}
+
+post_install() {
+  echo ""
+  echo -e "\e[1;33m==>\e[0m \e[1;31m filebot --license license.file \e[0m will activate your license.file"
+  echo ""
+
+  echo -e "\e[1;33m==>\e[0m To enable system extractor for archives please run"
+  echo ""
+  echo -e "\e[1;33m==>\e[0m \e[1;31m filebot -script fn:properties --def net.filebot.archive.extractor=ShellExecutables \e[0m"
+  echo ""
+  echo "Set default file manager to pre-install file manager" 
+  echo $_xdg_mime_default
+  xdg-mime default $_xdg_mime_default inode/directory
+  echo ""
+}
+
+pre_upgrade() {
+  pre_install "${1}"
+}
+
+post_upgrade() {
+  post_install "${1}"
+}
+
+pre_remove() {
+  # no filebot/openjfx workaround
+  echo -e "\e[1;33m==>\e[0m Removing OpenJFX symlinks leftover"
+  rm /usr/share/filebot/openjfx 2>/dev/null
+}

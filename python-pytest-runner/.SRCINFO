@@ -1,0 +1,18 @@
+pkgbase = python-pytest-runner
+	pkgdesc = Invoke py.test as distutils command with dependency resolution
+	pkgver = 6.0.1
+	pkgrel = 2
+	url = https://github.com/pytest-dev/pytest-runner
+	arch = any
+	license = MIT
+	makedepends = git
+	makedepends = python-build
+	makedepends = python-installer
+	makedepends = python-setuptools-scm
+	makedepends = python-wheel
+	depends = python-pytest
+	depends = python-setuptools
+	source = git+https://github.com/pytest-dev/pytest-runner.git#commit=9d13da8bd36ecd9634629b492315cb28eff44183
+	sha512sums = SKIP
+
+pkgname = python-pytest-runner

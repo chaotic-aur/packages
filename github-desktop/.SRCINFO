@@ -1,0 +1,33 @@
+pkgbase = github-desktop
+	pkgdesc = GUI for managing Git and GitHub
+	pkgver = 3.3.18
+	pkgrel = 1
+	url = https://desktop.github.com
+	arch = x86_64
+	license = MIT
+	makedepends = nodejs-lts-iron
+	makedepends = npm
+	makedepends = xorg-server-xvfb
+	makedepends = yarn
+	depends = curl
+	depends = git
+	depends = libsecret
+	depends = libxss
+	depends = nspr
+	depends = nss
+	depends = org.freedesktop.secrets
+	depends = unzip
+	optdepends = github-cli: CLI interface for GitHub
+	optdepends = hub: CLI interface for GitHub
+	source = github-desktop::git+https://github.com/shiftkey/desktop.git#tag=release-3.3.18-linux1
+	source = git+https://github.com/github/gemoji.git
+	source = git+https://github.com/github/gitignore.git
+	source = git+https://github.com/github/choosealicense.com.git
+	source = github-desktop.desktop
+	sha256sums = a9812d93959fdf4264ddbd8b4ba93ecc4b1140eba0181820d8e737a0287bde0e
+	sha256sums = SKIP
+	sha256sums = SKIP
+	sha256sums = SKIP
+	sha256sums = 932e4c456e8c6db03d27172cf0daa37806bf025bb560d8b3d758c0997d1a618c
+
+pkgname = github-desktop

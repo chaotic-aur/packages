@@ -1,0 +1,28 @@
+pkgbase = monkeysphere
+	pkgdesc = Leverage the OpenPGP web of trust for OpenSSH and Web authentication
+	pkgver = 0.44
+	pkgrel = 1
+	url = http://web.monkeysphere.info/
+	install = monkeysphere.install
+	arch = any
+	license = GPL3
+	checkdepends = socat
+	checkdepends = openssh
+	checkdepends = cpio
+	checkdepends = gnupg>=2.1.22
+	checkdepends = perl-crypt-openssl-bignum
+	depends = agent-transfer
+	depends = lockfile-progs
+	depends = perl-crypt-openssl-rsa
+	depends = perl-digest-sha1
+	depends = perl-crypt-openssl-bignum
+	depends = gnupg>=2.1.22
+	source = http://deb.debian.org/debian/pool/main/m/monkeysphere/monkeysphere_0.44.orig.tar.gz
+	source = binmerge.patch
+	source = exclude-agent.patch
+	sha256sums = 6ac6979fa1a4a0332cbea39e408b9f981452d092ff2b14ed3549be94918707aa
+	sha256sums = e0cdadd4f01deab281cb66543eef19216bd762cb41774d3b498bd2e7c17816e4
+	sha256sums = 90c3fcc64cbd2329489225af39afa52dc8ebeb6ad0877532c2842ccf616df4ea
+
+pkgname = monkeysphere
+

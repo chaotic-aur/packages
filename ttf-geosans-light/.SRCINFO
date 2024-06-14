@@ -1,0 +1,11 @@
+pkgbase = ttf-geosans-light
+	pkgdesc = Asian style font, clean and beautiful
+	pkgver = 1.0
+	pkgrel = 4
+	url = https://www.dafont.com/geo-sans-light.font
+	arch = any
+	license = unknown
+	source = ttf-geosans-light.zip::https://dl.dafont.com/dl/?f=geo_sans_light
+	sha256sums = 0602c30b44b9c6682c3708e9ff49706a66d1d665613343d5f7744bb63fa943aa
+
+pkgname = ttf-geosans-light

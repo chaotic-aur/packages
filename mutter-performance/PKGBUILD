@@ -1,0 +1,316 @@
+# Patched package:
+# Maintainer: Térence Clastres <t.clastres@gmail.com>
+# Co-maintainer: Saren Arterius <saren@wtako.net>
+# Co-maintainer: Mingi Sung <sungmg@saltyming.net>
+
+# Official package:
+# Maintainer: Jan Alexander Steffens (heftig) <heftig@archlinux.org>
+# Contributor: Ionut Biru <ibiru@archlinux.org>
+# Contributor: Michael Kanis <mkanis_at_gmx_dot_de>
+
+### PACKAGE OPTIONS
+## MERGE REQUESTS SELECTION
+# Merge Requests List: ('579' '1441' '3373' '3751' '3729')
+_merge_requests_to_use=('1441' '3373' '3751' '3729')
+
+## Disable building the DOCS package (Enabled if not set)
+# Remember to unset this variable when producing .SRCINFO
+: "${_disable_docs:=""}"
+
+## Enable the `check()` operation (Disabled if not set)
+: "${_enable_check:=""}"
+
+### IMPORTANT: Do no edit below this line unless you know what you're doing!
+
+_pkgname=mutter
+pkgbase=mutter-performance
+if [ -n "$_disable_docs" ]; then
+  pkgname=mutter-performance
+else
+  pkgname=(mutter-performance mutter-performance-docs)
+fi
+epoch=1
+pkgver=46.2+r6+g62e559d75
+pkgrel=3
+pkgdesc="A window manager for GNOME | Attempts to improve performances with non-upstreamed merge-requests and frequent stable branch resync"
+url="https://gitlab.gnome.org/GNOME/mutter"
+arch=(x86_64 aarch64)
+license=(GPL)
+depends=(
+  at-spi2-core
+  cairo
+  colord
+  dconf
+  fontconfig
+  fribidi
+  gcc-libs
+  gdk-pixbuf2
+  glib2
+  glibc
+  gnome-desktop-4
+  gnome-settings-daemon
+  graphene
+  gsettings-desktop-schemas
+  gtk4
+  harfbuzz
+  iio-sensor-proxy
+  lcms2
+  libcanberra
+  libcolord
+  libdisplay-info
+  libdrm
+  libei
+  libglvnd
+  libgudev
+  libice
+  libinput
+  libpipewire
+  libsm
+  libsysprof-capture
+  libwacom
+  libx11
+  libxau
+  libxcb
+  libxcomposite
+  libxcursor
+  libxdamage
+  libxext
+  libxfixes
+  libxi
+  libxinerama
+  libxkbcommon
+  libxkbcommon-x11
+  libxkbfile
+  libxrandr
+  libxtst
+  mesa
+  pango
+  pipewire
+  pixman
+  python
+  startup-notification
+  systemd-libs
+  wayland
+  xorg-xwayland
+
+)
+makedepends=(
+  egl-wayland
+  gi-docgen
+  git
+  glib2-devel
+  gobject-introspection
+  gtk3
+  meson
+  sysprof
+  wayland-protocols
+  xorg-server
+  xorg-server-xvfb
+)
+if [ -n "$_enable_check" ]; then
+  checkdepends=(gnome-session xorg-server-xvfb pipewire-session-manager python-dbusmock zenity)
+fi
+_commit=62e559d752c74b86d40ffd4bea6d2532c67675e2 # tags/46.2^6
+source=("git+$url.git#commit=$_commit"
+  'mr1441.patch'
+  'mr3373.patch'
+  'mr3751.patch'
+  'mr3729.patch')
+sha256sums=('2721ebc05ce318a040e611e5ad93d1281f11750cf9d5fefbf139ec3bc439e32e'
+  '7d5c90e3f18b2c0645e6224759e571acef723d53495cff2ceaac3c44168226b3'
+  '3e1f07b696ad37b1c639a524c092cd9259444bc6156542901ccaec936bea240f'
+  '7eec91f857cf1d8183c32199f33cc86a1a8a95017282e602738a90fe219c8b33'
+  '9d2ca68355dd4f07bae433ce91fda09fdb8d7fccf1462340e8295cee3cacb932')
+b2sums=('15deba95ef7693bda55bebbcb4fd9f43b44d2c176e63984b98aa81375bfc78da7996ad05a73fea278c44667d726486283a2809a23aebcdf6e77d654f5be0ff95'
+  '135b9a24273328c8010d08c3688b527741b0d678814ed52fb983be649b7d40ce6f2d6151d1087a8fed311f35cb3033d8b9d1c7b04cdd2bbef7dff43ee80ea530'
+  '71f10db4ebe04a787940c7048131eac67cffd3ec8e415cfc961b8041b881f272650581e9df273e2a8da23a50ec9151c790dc2d5ecc0309ab2847a22f8c922c9c'
+  'a79155ce4f11d8ccc674b08baccb18ac3bf254a0e41d9830a0ca964027633317bbd157f33b1f12f21bb378bfeedd4ebd111d993cdfd39b98ff3ce0f34850f6b1'
+  '4a950db6a8225cc364082ea65f545a86ce6eee21b622656397d9fa515eabc471137e4bfd754510927f59963ccbdad84cdcdb5875d8a371042111263bf8ccc935')
+
+pkgver() {
+  cd $_pkgname
+  git describe --tags | sed 's/[^-]*-g/r&/;s/-/+/g'
+}
+
+pick_mr() {
+  for mr in "${_merge_requests_to_use[@]}"; do
+    if [ "$1" = "$mr" ]; then
+      if [ "$2" = "merge" ] || [ -z "$2" ]; then
+        msg2 "Downloading then Merging $1..."
+        curl -O "https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/$mr.diff"
+        git apply "$mr.diff"
+      elif [ "$3" = "revert" ]; then
+        msg2 "Reverting $1..."
+        git revert "$2" --no-commit
+      elif [ "$3" = "patch" ]; then
+        if [ -e ../"$2" ]; then
+          msg2 "Patching with $2..."
+          patch -Np1 -i ../"$2"
+        else
+          msg2 "Downloading $mr as $2 then patching..."
+          curl -O "https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/$mr.diff" -o "$2"
+          patch -Np1 -i "$2"
+        fi
+      else
+        msg2 "ERROR: wrong argument given: $2"
+      fi
+      break
+    fi
+  done
+}
+
+prepare() {
+  cd $_pkgname
+
+  git reset --hard
+  git cherry-pick --abort || true
+  git clean -fd
+
+  #git remote add vanvugt https://gitlab.gnome.org/vanvugt/mutter.git || true
+  #git remote add verdre https://gitlab.gnome.org/verdre/mutter.git || true
+  #git remote add 3v1no https://gitlab.gnome.org/3v1n0/mutter.git || true
+
+  #git fetch vanvugt
+  #git fetch verdre
+  #git fetch 3v1no
+
+  ### Merge Requests
+
+  # Merge Request Prototype
+  # Title:
+  # Author:
+  # URL:
+  # Type:
+  # Status:
+  # Comment:
+  # git cherry-pick -n first_commit^..last_commit
+  #
+  # Possible Type:
+  #   1. Improvement: Makes an already existing feature behave better, more efficiently/reliably.
+  #   2. Feature: Adds a new functionality.
+  #   3. Fix: Regression/bug fix only available in master (not backported).
+  #   4. Cleanup: Code styling improvement, function deprecation, rearrangement...
+  #
+  # Possible Status:
+  #   1. Needs rebase: Conflicts with master branch.
+  #   2. Needs review: Mutter maintainers needs to review the new/updated MR and provide feedback.
+  #   3. Needs changes: MR needs to be adjusted based on maintainers feedback.
+  #   4. Merged: MR approved and it changes commited to master.
+  #
+  # Generally, a MR status oscillate between 2 and 3 and then becomes 4.
+
+  # Title: backends: Do not reload keymap on new keyboard notifications
+  # Author: Carlos Garnacho <carlosg@gnome.org>
+  # URL:  https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/579
+  # Type: 1
+  # Status: 4
+  # Comment: Was reverted: https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/833
+  #          If you use stenography software or play hardcore rhythm games like Lunatic Rave 2/osumania, use it.
+  pick_mr '579' ce86f90efbaa51522ba14c5b4cad933c2106de42 'revert'
+
+  # Title: kms/crtc: Increase default deadline evasion to 1000 microseconds
+  # Author: Daniel van Vugt <daniel.van.vugt@canonical.com>
+  # URL:  https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/3373
+  # Type: 3
+  # Status: 2
+  # Comment: This fix cursor stutter.
+  pick_mr '3373' 'mr3373.patch' 'patch'
+
+  # Title: wayland/text-input-v1: Implement basic text-input-v1 support
+  # Author: Alynx Zhou <alynx.zhou@gmail.com>
+  # URL:  https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/3751
+  # Type: 1
+  # Status: Not gonna be merged considering the maintainers' feedbacks.
+  # Comment: This commit makes input methods work in text-input-v1 only clients.
+  #          (mostly Chromium/Electron based apps with Ozone Wayland.)
+  pick_mr '3751' 'mr3751.patch' 'patch'
+
+  # Title: Draft: Dynamic triple/double buffering (v4)
+  # Author: Daniel van Vugt <daniel.van.vugt@canonical.com>
+  # URL:  https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/1441
+  # Type: 1
+  # Status: 2 & 3
+  # Comment: Help GPU frequencies to scale up but not currently working on Wayland.
+  pick_mr '1441' 'mr1441.patch' 'patch'
+
+  # Title: Enforce non-reactiveness of unsuitable surface actors harder
+  # Author: Carlos Garnacho <carlosg@gnome.org>
+  # URL:  https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/3729
+  # Type: 3
+  # Status: 4
+  # Comment: This closes https://gitlab.gnome.org/GNOME/mutter/-/issues/3393
+  pick_mr '3729' 'mr3729.patch' 'patch'
+
+}
+
+build() {
+  local meson_options=(
+    -D egl_device=true
+    -D wayland_eglstream=true
+    -D installed_tests=false
+    -D libdisplay_info=enabled
+    -D docs=$(if ! [ -n "$_disable_docs" ]; then echo "true"; else echo "false"; fi)
+    -D tests=$(if [ -n "$_enable_check" ]; then echo "true"; else echo "false"; fi)
+  )
+
+  CFLAGS="${CFLAGS/-O2/-O3} -fno-semantic-interposition"
+  LDFLAGS+=" -Wl,-Bsymbolic-functions"
+
+  arch-meson $_pkgname build "${meson_options[@]}"
+  meson compile -C build
+}
+
+if [ -n "$_enable_check" ]; then
+  check() {
+    mkdir -p -m 700 "${XDG_RUNTIME_DIR:=$PWD/runtime-dir}"
+    glib-compile-schemas "${GSETTINGS_SCHEMA_DIR:=$PWD/build/data}"
+    export XDG_RUNTIME_DIR GSETTINGS_SCHEMA_DIR
+    export NO_AT_BRIDGE=1 GTK_A11Y=none
+    export MUTTER_DEBUG_DUMMY_MODE_SPECS="800x600@10.0"
+    local _pipewire_session_manager=$(pacman -Qq pipewire-session-manager)
+
+    msg2 "It is possible to fail some tests. Use with caution!"
+    # Tests fail:
+    # mutter:cogl+cogl/conform / cogl-test-offscreen-texture-formats-gles2
+    # mutter:core+mutter/stacking / fullscreen-maximize
+    ## https://gitlab.gnome.org/GNOME/mutter/-/issues/3343
+    xvfb-run -s '-nolisten local +iglx -noreset' \
+      ${_pkgname}/src/tests/meta-dbus-runner.py --launch=pipewire --launch=${_pipewire_session_manager} \
+      meson test -C build --no-suite 'mutter/kvm' --no-rebuild \
+      --print-errorlogs --setup plain || :
+  }
+fi
+
+_pick() {
+  local p="$1" f d
+  shift
+  for f; do
+    d="$srcdir/$p/${f#$pkgdir/}"
+    mkdir -p "$(dirname "$d")"
+    mv "$f" "$d"
+    rmdir -p --ignore-fail-on-non-empty "$(dirname "$f")"
+  done
+}
+
+package_mutter-performance() {
+  provides=(mutter libmutter-14.so)
+  conflicts=(mutter)
+  groups=(gnome)
+
+  meson install -C build --destdir "$pkgdir"
+
+  if ! [ -n "$_disable_docs" ]; then
+    _pick docs "$pkgdir"/usr/share/mutter-*/doc
+  fi
+}
+
+if ! [ -n "$_disable_docs" ]; then
+  package_mutter-performance-docs() {
+    provides=(mutter-docs)
+    conflicts=(mutter-docs)
+    pkgdesc+=" (documentation)"
+    depends=()
+
+    mv docs/* "$pkgdir"
+  }
+fi

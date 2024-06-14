@@ -1,0 +1,45 @@
+pkgbase = gtk2-patched-filechooser-icon-view
+	pkgdesc = GTK2 patched with ahodesuka's filechooser-icon-view patch
+	pkgver = 2.24.33
+	pkgrel = 3
+	url = https://github.com/Dudemanguy/gtk/tree/gtk2-filechooser-icon-view
+	install = gtk2.install
+	arch = x86_64
+	license = LGPL
+	makedepends = git
+	makedepends = gobject-introspection
+	makedepends = gtk-doc
+	depends = atk
+	depends = cairo
+	depends = desktop-file-utils
+	depends = gtk-update-icon-cache
+	depends = libcups
+	depends = librsvg
+	depends = libxcomposite
+	depends = libxcursor
+	depends = libxdamage
+	depends = libxi
+	depends = libxinerama
+	depends = libxrandr
+	depends = pango
+	depends = shared-mime-info
+	optdepends = adwaita-icon-theme: Default icon theme
+	optdepends = gnome-themes-standard: Default widget theme
+	optdepends = python: gtk-builder-convert
+	provides = gtk2=2.24.33
+	provides = libgailutil.so
+	provides = libgdk-x11-2.0.so
+	provides = libgtk-x11-2.0.so
+	conflicts = gtk2
+	source = git+https://gitlab.gnome.org/GNOME/gtk.git#commit=68631945733158f164427db84f01301d7e875763
+	source = gtkrc
+	source = gtk-query-immodules-2.0.hook
+	source = xid-collision-debug.patch
+	source = gtk2-filechooser-icon-view.patch
+	b2sums = SKIP
+	b2sums = 0583436972edcebb09ce6c3f445f6ea4d7f92132da0ef317ee93665b646061ba261281b0186ed6655e63bbb668c58e37f6987919d4c054ccda19ca034aa718dc
+	b2sums = 9c531f9f605e1739e13c39c1cac22daddd9574f3082f18bcf0b9dfaa4c41f2485d55be03a9ed12fb4504d509f0d5ac63980a9d9349e3f80a06595c6430c78096
+	b2sums = c35b2f16ea3402f41a7a5ac83a93b423e46f9355e11186742402887ba94fc58e9a5c1d7fc55141fab72f230a973c5ac6346090b225a5eff9e416e397bd1b1ec4
+	b2sums = 3bfc017cdb94f604b6d211747641cc6564955c0f4108654cea11dc19a574854ee0d56019f34faa577f3b92708a2c7b57b4a1a2146c9d7772bf0a567288be60a6
+
+pkgname = gtk2-patched-filechooser-icon-view

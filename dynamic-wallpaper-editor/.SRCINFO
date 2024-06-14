@@ -1,0 +1,16 @@
+pkgbase = dynamic-wallpaper-editor
+	pkgdesc = Create or edit XML dynamic wallpapers ("background slideshows") for the GNOME desktop
+	pkgver = 2.7
+	pkgrel = 2
+	url = https://github.com/maoschanz/dynamic-wallpaper-editor
+	arch = any
+	license = GPL3
+	makedepends = itstool
+	makedepends = meson
+	depends = python
+	depends = hicolor-icon-theme
+	depends = dconf
+	source = dynamic-wallpaper-editor-2.7.tar.gz::https://github.com/maoschanz/dynamic-wallpaper-editor/archive/2.7.tar.gz
+	b2sums = 00d318eca5950e3ad01c1d52a6bf2488d9bbc2f775f4ec3daa413ede8ec71e346b413e853be5756bb8a632c681860e76d2475408984ed157871bec9ee8e18bbc
+
+pkgname = dynamic-wallpaper-editor
