@@ -1,0 +1,26 @@
+pkgbase = 2bwm-git
+	pkgdesc = A fast floating window manager
+	pkgver = 0.3.r0.g11cd945
+	pkgrel = 1
+	url = https://github.com/venam/2bwm
+	arch = i686
+	arch = x86_64
+	license = ISC
+	makedepends = git
+	makedepends = xcb-util
+	depends = xcb-util-wm
+	depends = xcb-util-keysyms
+	depends = xcb-util-xrm
+	provides = 2bwm
+	conflicts = 2bwm
+	conflicts = mcwm
+	conflicts = mcwm-git
+	source = 2bwm-git::git+https://github.com/venam/2bwm.git
+	source = 2bwm.desktop
+	source = 2bwm.copying
+	md5sums = SKIP
+	md5sums = 4342d9210effbe4bfb58722f4275aa5c
+	md5sums = adaee5c7e455ba15e0ca9a2692464253
+
+pkgname = 2bwm-git
+

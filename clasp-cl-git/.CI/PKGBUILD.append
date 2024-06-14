@@ -1,0 +1,21 @@
+
+pkgver() {
+  cd clasp
+  git describe --long --tags --exclude='*[a-zA-Z][a-zA-Z]*' \
+    | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
+}
+
+eval _orig_"$(declare -f prepare)"
+eval _orig_"$(declare -f build)"
+
+prepare() {
+  # prepare is run before pkgver
+  # avoid unnecessary work in prepare
+  # to detect duplicate version earlier
+  :
+}
+
+build() {
+  ( _orig_prepare )
+  ( _orig_build )
+}

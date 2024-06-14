@@ -1,0 +1,21 @@
+pkgbase = makehuman-git
+	pkgdesc = Parametrical modeling program for creating human bodies (git latest)
+	pkgver = r2602.b3e9b869
+	pkgrel = 1
+	url = http://www.makehumancommunity.org/
+	arch = any
+	license = AGPL3
+	makedepends = git
+	makedepends = git-lfs
+	depends = python
+	depends = python-numpy
+	depends = python-pyqt5
+	depends = python-opengl
+	depends = qt5-svg
+	provides = makehuman
+	conflicts = makehuman
+	source = git+https://github.com/makehumancommunity/makehuman.git
+	sha256sums = SKIP
+
+pkgname = makehuman-git
+

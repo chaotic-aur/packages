@@ -1,0 +1,22 @@
+pkgbase = trimage-git
+	pkgdesc = Tool for optimizing PNG and JPG files
+	pkgver = 1.0.6.r12.gc21089f
+	pkgrel = 2
+	url = https://trimage.org
+	arch = any
+	license = MIT
+	makedepends = git
+	makedepends = python-setuptools
+	depends = advancecomp
+	depends = hicolor-icon-theme
+	depends = jpegoptim
+	depends = optipng
+	depends = pngcrush
+	depends = python-pyqt5
+	provides = trimage
+	conflicts = trimage
+	source = trimage::git+https://github.com/Kilian/Trimage.git
+	sha256sums = SKIP
+
+pkgname = trimage-git
+

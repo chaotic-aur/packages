@@ -1,0 +1,27 @@
+pkgbase = green-recorder-git
+	pkgdesc = Simple screen recorder for Linux desktop, supports Wayland & Xorg
+	pkgver = 3.2.8.r0.g6d4d44e
+	pkgrel = 1
+	url = https://github.com/dvershinin/green-recorder
+	arch = any
+	license = GPL3
+	makedepends = git
+	makedepends = python-setuptools
+	depends = python-pydbus
+	depends = python-gobject
+	depends = python-urllib3
+	depends = ffmpeg
+	depends = imagemagick
+	depends = xorg-xdpyinfo
+	depends = xorg-xwininfo
+	depends = libappindicator-gtk3
+	depends = gawk
+	optdepends = gnome-shell: Gnome on Wayland desktop recording
+	provides = green-recorder
+	conflicts = green-recorder
+	options = !emptydirs
+	source = git+https://github.com/dvershinin/green-recorder
+	sha256sums = SKIP
+
+pkgname = green-recorder-git
+

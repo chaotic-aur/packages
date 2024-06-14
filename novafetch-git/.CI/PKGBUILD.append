@@ -1,0 +1,18 @@
+
+pkgver() {
+  cd "novafetch"
+  local _regex='^version = ["'\'']([0-9\.]+)["'\''].*$'
+  local _file='Cargo.toml'
+
+  local _line=$(grep -Esm1 "$_regex" "$_file")
+  local _line_num=$(grep -Ensm1 "$_regex" "$_file" | cut -d':' -f1)
+
+  local _version=$(sed -E "s@$_regex@\1@" <<< "$_line")
+
+  local _commit=$(git blame -L $_line_num,$_line_num -- "$_file" | awk '{print $1;}')
+
+  local _revision=$(git rev-list --count ${_commit#^}..HEAD)
+  local _hash=$(git rev-parse --short HEAD)
+
+  printf "%s.r%s.g%s" "$_version" "$_revision" "$_hash"
+}

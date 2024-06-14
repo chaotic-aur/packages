@@ -1,0 +1,16 @@
+pkgbase = giblib
+	pkgdesc = A library that feh uses as a wrapper to imlib2
+	pkgver = 1.2.4
+	pkgrel = 9
+	url = http://freshmeat.net/projects/giblib/
+	arch = x86_64
+	license = MIT
+	depends = imlib2
+	depends = libxext
+	depends = freetype2
+	source = https://downloads.sourceforge.net/project/slackbuildsdirectlinks/giblib/giblib-1.2.4.tar.gz
+	source = fix-configure_ac-imlib2.patch
+	sha256sums = 176611c4d88d742ea4013991ad54c2f9d2feefbc97a28434c0f48922ebaa8bac
+	sha256sums = 982df1853b6c47bfdb73b27293e629a06e8b3b431084f20725d700eb8edbaf3c
+
+pkgname = giblib

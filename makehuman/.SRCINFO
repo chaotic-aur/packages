@@ -1,0 +1,20 @@
+pkgbase = makehuman
+	pkgdesc = Parametrical modeling program for creating human bodies
+	pkgver = 1.3.0
+	pkgrel = 1
+	url = http://www.makehumancommunity.org/
+	arch = any
+	license = AGPL-3.0-or-later AND CC0-1.0
+	depends = python-numpy
+	depends = python-pyqt5
+	depends = python-opengl
+	depends = qt5-svg
+	depends = hicolor-icon-theme
+	optdepends = python-pygments: IPython Qt Console plugin
+	optdepends = python-distro: distro detection for debug output
+	source = makehuman-1.3.0.tar.gz::https://github.com/makehumancommunity/makehuman/archive/v1.3.0.tar.gz
+	source = makehuman-assets-8cf9645b975a98eea056b140df11a1d278da0d10.tar.gz::https://github.com/makehumancommunity/makehuman-assets/archive/8cf9645b975a98eea056b140df11a1d278da0d10.tar.gz
+	b2sums = e2cc3d19d22ae510ea3ecd70860dce4b28dc88f0a98226e193ace056a4282b0418def345cf922439fc5b018025db578e6de56868712f04788f631151efb88f30
+	b2sums = 252bacf8ca8e32848fcf9c9e8c2257070519f3c2109a6e8efee43229875e8cd93027504cfd22b9b729d4e94c04b80478851e32fb0aa22be78baf1a1d8e8ac0cd
+
+pkgname = makehuman

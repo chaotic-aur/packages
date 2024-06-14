@@ -1,0 +1,23 @@
+pkgbase = gdm-tools-git
+	pkgdesc = Tools(set-gdm-theme,gnomeconf2gdm) for theming/personlizing Gnome Login Manager (GDM)
+	pkgver = 1.1+3+g8428fac
+	pkgrel = 1
+	epoch = 1
+	url = https://github.com/realmazharhussain/gdm-tools
+	arch = any
+	license = GPL3
+	makedepends = git
+	depends = bash
+	depends = dconf
+	depends = glib2
+	depends = gdm
+	provides = gdm-tools
+	provides = set-gdm-theme
+	provides = gnomeconf2gdm
+	conflicts = gdm-tools
+	backup = etc/gdm-tools/set-gdm-theme.conf
+	backup = etc/gdm-tools/custom.css
+	source = gdm-tools-git::git+https://github.com/realmazharhussain/gdm-tools.git
+	md5sums = SKIP
+
+pkgname = gdm-tools-git

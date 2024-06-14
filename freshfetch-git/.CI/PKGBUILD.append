@@ -1,0 +1,7 @@
+
+conflicts=(${conflicts[@]/freshfetch-git*})
+
+pkgver() {
+  cd freshfetch
+  git describe --tags --long | sed 's/^v//;s/\([^-]*-g\)/r\1/;s/-/./g'
+}
