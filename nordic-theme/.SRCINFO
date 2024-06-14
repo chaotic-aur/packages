@@ -1,0 +1,35 @@
+pkgbase = nordic-theme
+	pkgdesc = Nord-derived themes for GTK and other platforms
+	pkgver = 2.2.0
+	pkgrel = 1
+	url = https://github.com/EliverLara/Nordic
+	arch = any
+	license = GPL3
+	source = nordic-theme-2.2.0.tar.xz::https://github.com/EliverLara/Nordic/releases/download/v2.2.0/Nordic.tar.xz
+	source = nordic-standard-buttons-theme-2.2.0.tar.xz::https://github.com/EliverLara/Nordic/releases/download/v2.2.0/Nordic-standard-buttons.tar.xz
+	source = nordic-polar-standard-buttons-theme-2.2.0.tar.xz::https://github.com/EliverLara/Nordic/releases/download/v2.2.0/Nordic-Polar-standard-buttons.tar.xz
+	source = nordic-darker-theme-2.2.0.tar.xz::https://github.com/EliverLara/Nordic/releases/download/v2.2.0/Nordic-darker.tar.xz
+	source = nordic-darker-standard-buttons-theme-2.2.0.tar.xz::https://github.com/EliverLara/Nordic/releases/download/v2.2.0/Nordic-darker-standard-buttons.tar.xz
+	source = nordic-bluish-accent-theme-2.2.0.tar.xz::https://github.com/EliverLara/Nordic/releases/download/v2.2.0/Nordic-bluish-accent.tar.xz
+	source = nordic-bluish-accent-standard-buttons-theme-2.2.0.tar.xz::https://github.com/EliverLara/Nordic/releases/download/v2.2.0/nordic-bluish-accent-standard-buttons.tar.xz
+	sha256sums = d162d694e13bec518636b193fbe84ccea44da9a81a89015c6713f6b258ee36d5
+	sha256sums = b49a731043d7a27ad1f447cf955a681be0e5a8bb41448fd9a470049b004bbf4e
+	sha256sums = bcc7feec4627963d92b4ee61d4c7b600a5d2b1252db42f0e50d18c9be385951f
+	sha256sums = 49115292bfa15aaa9aea661c7468b48918708a6940e4b8058ac46f3dbb81c626
+	sha256sums = 44a196d5ff98ae1c434805a01ec4222fc926e3d0e39c593762250dd098c85231
+	sha256sums = 61d86268e6d20f349357262484fa3f4637764d2839d5ba096f2c5a1442c4f926
+	sha256sums = 6f5e504e4f11e222547bc1f6b355d169436822588ce440d263dad319016e80cb
+
+pkgname = nordic-theme
+
+pkgname = nordic-standard-buttons-theme
+
+pkgname = nordic-polar-standard-buttons-theme
+
+pkgname = nordic-darker-theme
+
+pkgname = nordic-darker-standard-buttons-theme
+
+pkgname = nordic-bluish-accent-theme
+
+pkgname = nordic-bluish-accent-standard-buttons-theme

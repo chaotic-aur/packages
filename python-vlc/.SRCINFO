@@ -1,0 +1,14 @@
+pkgbase = python-vlc
+	pkgdesc = VLC bindings for python
+	pkgver = 3.0.20123
+	pkgrel = 2
+	url = https://wiki.videolan.org/PythonBinding
+	arch = any
+	license = GPL2
+	makedepends = python-setuptools
+	depends = python
+	depends = vlc
+	source = https://files.pythonhosted.org/packages/source/p/python-vlc/python-vlc-3.0.20123.tar.gz
+	sha256sums = 244fbb9e392a0326841fca926d6d12a2a36c546982191f493f148fa19e66b1d4
+
+pkgname = python-vlc

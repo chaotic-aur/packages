@@ -1,0 +1,11 @@
+[Desktop Entry]
+Encoding=UTF-8
+Version=1.0
+Name=XAMPP Control Panel
+Comment=XAMPP control panel
+Exec=pkexec xampp-control-panel
+StartupWMClass=XAMPP
+Icon=xampp
+Terminal=false
+Type=Application
+Categories=Database;Network;RemoteAccess;WebDevelopment;

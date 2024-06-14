@@ -1,0 +1,27 @@
+pkgbase = safeeyes-git
+	pkgdesc = A Free and Open Source tool for Linux users to reduce and prevent repetitive strain injury (RSI). Latest version from the git repository
+	pkgver = 2.1.6.r3.ge6112a8
+	pkgrel = 1
+	url = https://github.com/slgobinath/SafeEyes
+	arch = any
+	license = GPL3
+	makedepends = python-setuptools
+	makedepends = git
+	depends = alsa-utils
+	depends = hicolor-icon-theme
+	depends = libappindicator-gtk3
+	depends = python
+	depends = python-babel
+	depends = python-dbus
+	depends = python-gobject
+	depends = python-psutil
+	depends = python-xlib
+	depends = xorg-xprop
+	optdepends = xprintidle: better idle timer
+	optdepends = python-croniter: health stats plugin
+	optdepends = swayidle: for smart pause
+	conflicts = safeeyes
+	source = git+https://github.com/slgobinath/SafeEyes.git
+	sha1sums = SKIP
+
+pkgname = safeeyes-git

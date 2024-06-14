@@ -1,0 +1,228 @@
+Index: qt5ct/CMakeLists.txt
+===================================================================
+--- qt5ct/CMakeLists.txt	(revision 690)
++++ qt5ct/CMakeLists.txt	(working copy)
+@@ -27,8 +27,11 @@
+ 
+ ADD_DEFINITIONS(-DQT_DISABLE_DEPRECATED_BEFORE=0x050C00 -DUSE_WIDGETS)
+ 
+-find_package(Qt5 ${QT_MINIMUM_VERSION} COMPONENTS Widgets Concurrent LinguistTools REQUIRED)
++find_package(Qt5 ${QT_MINIMUM_VERSION} COMPONENTS Widgets Concurrent LinguistTools QuickControls2 REQUIRED)
+ find_package(Qt5Gui ${QT_MINIMUM_VERSION} CONFIG REQUIRED Private)
++find_package(KF5Config REQUIRED)
++find_package(KF5ConfigWidgets REQUIRED)
++find_package(KF5IconThemes REQUIRED)
+ 
+ if(NOT DISABLE_DBUS)
+     find_package(Qt5 ${QT_MINIMUM_VERSION} COMPONENTS DBus ThemeSupport REQUIRED)
+@@ -54,7 +57,9 @@
+     message(FATAL_ERROR "Could NOT find qtpaths executable")
+ endif()
+ 
+-execute_process(COMMAND ${QT_QTPATHS_EXECUTABLE} --plugin-dir OUTPUT_VARIABLE PLUGINDIR OUTPUT_STRIP_TRAILING_WHITESPACE)
++if(NOT PLUGINDIR)
++    execute_process(COMMAND ${QT_QTPATHS_EXECUTABLE} --plugin-dir OUTPUT_VARIABLE PLUGINDIR OUTPUT_STRIP_TRAILING_WHITESPACE)
++endif()
+ message(STATUS "Plugin path: " ${PLUGINDIR})
+ 
+ message(STATUS "Generating translations ...")
+Index: qt5ct/src/qt5ct/CMakeLists.txt
+===================================================================
+--- qt5ct/src/qt5ct/CMakeLists.txt	(revision 690)
++++ qt5ct/src/qt5ct/CMakeLists.txt	(working copy)
+@@ -28,6 +28,6 @@
+ )
+ 
+ add_executable(qt5ct ${app_SRCS})
+-target_link_libraries(qt5ct PRIVATE Qt5::Widgets Qt5::Concurrent Qt5::WidgetsPrivate qt5ct-common)
++target_link_libraries(qt5ct PRIVATE Qt5::Widgets Qt5::Concurrent Qt5::WidgetsPrivate KF5::ConfigCore qt5ct-common)
+ install(TARGETS qt5ct DESTINATION ${CMAKE_INSTALL_BINDIR})
+ install(FILES qt5ct.desktop DESTINATION ${CMAKE_INSTALL_DATADIR}/applications)
+Index: qt5ct/src/qt5ct/appearancepage.cpp
+===================================================================
+--- qt5ct/src/qt5ct/appearancepage.cpp	(revision 690)
++++ qt5ct/src/qt5ct/appearancepage.cpp	(working copy)
+@@ -35,6 +35,8 @@
+ #include <QMenu>
+ #include <QIcon>
+ #include <QStringList>
++#include <KSharedConfig>
++#include <KConfigGroup>
+ #include <qpa/qplatformthemefactory_p.h>
+ #include "qt5ct.h"
+ #include "appearancepage.h"
+@@ -378,11 +380,22 @@
+ {
+     QDir dir(path);
+     dir.setFilter(QDir::Files);
+-    dir.setNameFilters(QStringList() << "*.conf");
++    dir.setNameFilters(QStringList() << "*.conf" << "*.colors");
+ 
+     for(const QFileInfo &info : dir.entryInfoList())
+     {
+-        m_ui->colorSchemeComboBox->addItem(info.baseName(), info.filePath());
++        QString name;
++        QString path = info.filePath();
++        if(info.suffix() == "colors") {
++            KSharedConfigPtr config = KSharedConfig::openConfig(path, KConfig::SimpleConfig);
++            KConfigGroup group(config, "General");
++            name = group.readEntry("Name", info.baseName()) + " (KColorScheme)";
++        }
++        else
++        {
++            name = info.baseName();
++        }
++        m_ui->colorSchemeComboBox->addItem(name, path);
+     }
+ }
+ 
+Index: qt5ct/src/qt5ct-common/qt5ct.cpp
+===================================================================
+--- qt5ct/src/qt5ct-common/qt5ct.cpp	(revision 690)
++++ qt5ct/src/qt5ct-common/qt5ct.cpp	(working copy)
+@@ -113,6 +113,7 @@
+     for(const QString &p : QStandardPaths::standardLocations(QStandardPaths::GenericDataLocation))
+     {
+         paths << (p + QLatin1String("/qt5ct/colors"));
++        paths << (p + QLatin1String("/color-schemes"));
+     }
+     paths << QLatin1String(QT5CT_DATADIR"/qt5ct/colors");
+     paths.removeDuplicates();
+Index: qt5ct/src/qt5ct-qtplugin/CMakeLists.txt
+===================================================================
+--- qt5ct/src/qt5ct-qtplugin/CMakeLists.txt	(revision 690)
++++ qt5ct/src/qt5ct-qtplugin/CMakeLists.txt	(working copy)
+@@ -9,7 +9,7 @@
+ 
+ add_library(qt5ct-qtplugin MODULE ${app_SRCS})
+ set_target_properties(qt5ct-qtplugin PROPERTIES OUTPUT_NAME qt5ct)
+-target_link_libraries(qt5ct-qtplugin PRIVATE Qt5::Widgets Qt5::GuiPrivate qt5ct-common)
++target_link_libraries(qt5ct-qtplugin PRIVATE Qt5::Widgets Qt5::GuiPrivate Qt5::QuickControls2 KF5::ConfigCore KF5::ConfigWidgets KF5::IconThemes qt5ct-common)
+ if(NOT DISABLE_DBUS)
+     target_link_libraries(qt5ct-qtplugin PRIVATE Qt5::DBus Qt5::ThemeSupportPrivate)
+ endif()
+Index: qt5ct/src/qt5ct-qtplugin/qt5ctplatformtheme.cpp
+===================================================================
+--- qt5ct/src/qt5ct-qtplugin/qt5ctplatformtheme.cpp	(revision 690)
++++ qt5ct/src/qt5ct-qtplugin/qt5ctplatformtheme.cpp	(working copy)
+@@ -45,6 +45,7 @@
+ #endif
+ #include <QFile>
+ #include <QFileSystemWatcher>
++#include <QQuickStyle>
+ 
+ #include "qt5ct.h"
+ #include "qt5ctplatformtheme.h"
+@@ -58,6 +59,11 @@
+ #include <QStringList>
+ #include <qpa/qplatformthemefactory_p.h>
+ 
++#include <KSharedConfig>
++#include <KColorScheme>
++#include <KIconEngine>
++#include <KIconLoader>
++
+ Q_LOGGING_CATEGORY(lqt5ct, "qt5ct", QtWarningMsg)
+ 
+ //QT_QPA_PLATFORMTHEME=qt5ct
+@@ -73,6 +79,10 @@
+         QMetaObject::invokeMethod(this, "createFSWatcher", Qt::QueuedConnection);
+ #endif
+         QGuiApplication::setFont(m_generalFont);
++        //don't override the value explicitly set by the user
++        if (QQuickStyle::name().isEmpty() || QQuickStyle::name() == QLatin1String("Fusion")) {
++            QQuickStyle::setStyle(QLatin1String("org.kde.desktop"));
++        }
+     }
+     qCDebug(lqt5ct) << "using qt5ct plugin";
+ #ifdef QT_WIDGETS_LIB
+@@ -79,6 +89,7 @@
+     if(!QStyleFactory::keys().contains("qt5ct-style"))
+         qCCritical(lqt5ct) << "unable to find qt5ct proxy style";
+ #endif
++	QCoreApplication::instance()->installEventFilter(this);
+ }
+ 
+ Qt5CTPlatformTheme::~Qt5CTPlatformTheme()
+@@ -185,6 +196,11 @@
+ }
+ #endif
+ 
++QIconEngine *Qt5CTPlatformTheme::createIconEngine(const QString &iconName) const
++{
++    return new KIconEngine(iconName, KIconLoader::global());
++}
++
+ void Qt5CTPlatformTheme::applySettings()
+ {
+     if(!QGuiApplication::desktopSettingsAware() || m_isIgnored)
+@@ -299,7 +315,15 @@
+     if(!schemePath.isEmpty() && settings.value("custom_palette", false).toBool())
+     {
+         schemePath = Qt5CT::resolvePath(schemePath); //replace environment variables
+-        m_palette = new QPalette(Qt5CT::loadColorScheme(schemePath, *QPlatformTheme::palette(SystemPalette)));
++        if(schemePath.endsWith(".colors"))
++        {
++            m_palette = new QPalette(KColorScheme::createApplicationPalette(KSharedConfig::openConfig(schemePath)));
++            qApp->setProperty("KDE_COLOR_SCHEME_PATH", schemePath);
++        }
++        else
++        {
++            m_palette = new QPalette(Qt5CT::loadColorScheme(schemePath, *QPlatformTheme::palette(SystemPalette)));
++        }
+     }
+     m_iconTheme = settings.value("icon_theme").toString();
+     //load dialogs
+@@ -414,3 +438,33 @@
+     content.replace(regExp, "\n");
+     return content;
+ }
++
++//There's such a thing as KColorSchemeManager that lets the user to change the color scheme
++//application-wide and we should re-apply the color scheme if KCSM resets it to the default
++//which leads KColorScheme to get the color scheme from kdeglobals which won't help us.
++bool Qt5CTPlatformTheme::eventFilter(QObject *obj, QEvent *e)
++{
++    if(obj == qApp && e->type() == QEvent::DynamicPropertyChange)
++    {
++        QDynamicPropertyChangeEvent *ee = static_cast<QDynamicPropertyChangeEvent*>(e);
++        if(ee->propertyName() == "KDE_COLOR_SCHEME_PATH")
++        {
++            if(qApp->property("KDE_COLOR_SCHEME_PATH").toString().isEmpty())
++            {
++                QSettings settings(Qt5CT::configFile(), QSettings::IniFormat);
++                settings.beginGroup("Appearance");
++                QString schemePath = settings.value("color_scheme_path").toString();
++                if(!schemePath.isEmpty() && settings.value("custom_palette", false).toBool())
++                {
++                    schemePath = Qt5CT::resolvePath(schemePath); //replace environment variables
++                    if(schemePath.endsWith(".colors"))
++                    {
++                        qApp->setProperty("KDE_COLOR_SCHEME_PATH", schemePath);
++                        applySettings();
++                    }
++                }
++            }
++        }
++    }
++    return QObject::eventFilter(obj, e);
++}
+Index: qt5ct/src/qt5ct-qtplugin/qt5ctplatformtheme.h
+===================================================================
+--- qt5ct/src/qt5ct-qtplugin/qt5ctplatformtheme.h	(revision 690)
++++ qt5ct/src/qt5ct-qtplugin/qt5ctplatformtheme.h	(working copy)
+@@ -87,10 +87,13 @@
+     //virtual QPixmap fileIconPixmap(const QFileInfo &fileInfo, const QSizeF &size,
+     //                               QPlatformTheme::IconOptions iconOptions = 0) const;
+ 
+-    //virtual QIconEngine *createIconEngine(const QString &iconName) const;
++    virtual QIconEngine *createIconEngine(const QString &iconName) const;
+     //virtual QList<QKeySequence> keyBindings(QKeySequence::StandardKey key) const;
+     //virtual QString standardButtonText(int button) const;
+ 
++protected:
++	bool eventFilter(QObject *obj, QEvent *e) override;
++
+ private slots:
+     void applySettings();
+ #ifdef QT_WIDGETS_LIB

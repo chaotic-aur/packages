@@ -1,0 +1,120 @@
+# Like `backup` in `PKGBUILD`, but supports folders – no leading and trailing slash here!
+_BACKUP=('opt/lampp/etc' 'opt/lampp/htdocs' 'opt/lampp/var')
+
+post_install() {
+
+	echo
+	echo 'XAMPP is now installed below the /opt/lampp directory.'
+	echo
+	echo 'To start, stop or restart XAMPP simply call the command'
+	echo
+	echo '    sudo xampp {start, stop, restart}'
+	echo
+	echo 'Alternatively you can use the `xampp` systemd service.'
+	echo
+	echo 'To check that everything really works just enter the following URL in your web'
+	echo 'browser:'
+	echo
+	echo '    http://localhost'
+	echo
+	echo 'Have fun!'
+	echo
+
+}
+
+pre_upgrade() {
+
+	local _STDERR
+	local _COIN
+
+	echo -n 'Stopping lampp services...'
+	_STDERR="$(/opt/lampp/lampp stop 2>&1 >/dev/null)" && echo ' OK' || {
+		echo ' FAILED'
+		test "x${_STDERR}" != 'x' && echo "${_STDERR}" 1>&2
+	}
+
+	for _COIN in "${_BACKUP[@]}"; do
+		! test -d "/${_COIN}" || (rm -rf "/${_COIN}.keep" && mv "/${_COIN}" "/${_COIN}.keep")
+	done
+
+}
+
+post_upgrade() {
+
+	local _COIN
+	local _HAVE_PACNEW=no
+
+	for _COIN in "${_BACKUP[@]}"; do
+		if test -d "/${_COIN}.keep"; then
+			_HAVE_PACNEW=yes
+			rm -rf "/${_COIN}.pacnew"
+			mv "/${_COIN}" "/${_COIN}.pacnew"
+			mv "/${_COIN}.keep" "/${_COIN}"
+			echo "/${_COIN} has been installed as /${_COIN}.pacnew"
+		fi
+	done
+
+	if test "x${_HAVE_PACNEW}" = 'xyes'; then
+		echo
+		echo 'One or more files have been saved as `.pacnew` files to preserve a current'
+		echo 'version. To replace the preserved old version with the new version, launch:'
+		echo
+		echo '    sudo find -L '\''/opt/lampp/'\'' -name '\''*.pacnew'\'' | while read _fnew_; do \'
+		echo '      _fold_="`echo "${_fnew_}" | sed '\''s/\.pacnew$//'\''`"; \'
+		echo '      sudo rm -R "${_fold_}"; \'
+		echo '      sudo mv "${_fnew_}" "${_fold_}"; \'
+		echo '    done'
+		echo
+		echo 'If instead you want to discard the new files, launch:'
+		echo
+		echo '    sudo rm -r `sudo find -L '\''/opt/lampp/'\'' -name '\''*.pacnew'\''`'
+		echo
+	fi
+
+}
+
+pre_remove() {
+
+	local _STDERR
+	local _COIN
+	local _DATESTAMP="$(date '+%Y-%m-%d-%H-%M-%S')"
+
+	echo -n 'Stopping lampp services...'
+	_STDERR="$(/opt/lampp/lampp stop 2>&1 >/dev/null)" && echo ' OK' || {
+		echo ' FAILED'
+		test "x${_STDERR}" != 'x' && echo "${_STDERR}" 1>&2
+	}
+
+	for _COIN in "${_BACKUP[@]}"; do
+		rm -rf "/${_COIN}.pacnew"
+	done
+
+	if test "${#_BACKUP[@]}" -gt 0; then
+		rm -rf "/opt/xampp-backups/${_DATESTAMP}"
+		install -dm755 "/opt/xampp-backups/${_DATESTAMP}"
+		for _COIN in "${_BACKUP[@]}"; do
+			if test -d "/${_COIN}"; then
+				mv "/${_COIN}" "/opt/xampp-backups/${_DATESTAMP}/" || \
+					echo "ERROR: Could not create a backup of /${_COIN}" 1>&2
+			fi
+		done
+	fi
+
+	rm -rf '/opt/lampp/'
+
+}
+
+post_remove() {
+
+	echo
+	echo 'REMEMBER: Your `htdocs` folder was backed up to `/opt/xampp-backups`.'
+	echo
+	echo 'If you don'\''t need them, launch'
+	echo
+	echo '    sudo rm -r /opt/xampp-backups'
+	echo
+	echo 'to erase all backups.'
+	echo
+
+}
+

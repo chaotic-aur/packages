@@ -1,0 +1,2 @@
+#!/bin/sh
+'@XAMPP_ROOT@/manager-@XAMPP_PLATFORM@.run' "${@}"

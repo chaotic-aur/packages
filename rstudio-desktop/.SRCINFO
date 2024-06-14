@@ -1,0 +1,52 @@
+pkgbase = rstudio-desktop
+	pkgdesc = A powerful and productive integrated development environment (IDE) for R programming language
+	pkgver = 2024.04.2.764
+	pkgrel = 1
+	url = https://github.com/rstudio/rstudio
+	arch = x86_64
+	license = AGPL-3.0-only
+	makedepends = git
+	makedepends = cmake>=3.29
+	makedepends = boost
+	makedepends = ninja
+	makedepends = desktop-file-utils
+	makedepends = jdk8-openjdk
+	makedepends = apache-ant
+	makedepends = unzip
+	makedepends = openssl
+	makedepends = libcups
+	makedepends = pam
+	makedepends = patchelf
+	makedepends = wget
+	makedepends = yarn
+	depends = r>=3.3.0
+	depends = boost-libs
+	depends = qt5-sensors
+	depends = qt5-svg
+	depends = qt5-webengine
+	depends = qt5-xmlpatterns
+	depends = postgresql-libs
+	depends = sqlite3
+	depends = clang
+	depends = hunspell-en_US
+	depends = mathjax2
+	depends = pandoc
+	depends = yaml-cpp
+	optdepends = git: for git support
+	optdepends = subversion: for subversion support
+	optdepends = openssh-askpass: for a git ssh access
+	optdepends = quarto: for Quarto projects support
+	options = !emptydirs
+	options = !debug
+	source = rstudio-2024.04.2.764.tar.gz::https://github.com/rstudio/rstudio/archive/refs/tags/v2024.04.2+764.tar.gz
+	source = git+https://github.com/quarto-dev/quarto.git#branch=release/rstudio-cherry-blossom
+	source = https://github.com/SOCI/soci/archive/refs/tags/v4.0.3.tar.gz
+	source = qt.conf
+	source = 0002-allow_system_node.patch
+	sha256sums = 89b0d6741b6bd4dac52fd8bd9372d4f1919c97dd41056a03c975d0570eaf439e
+	sha256sums = SKIP
+	sha256sums = 4b1ff9c8545c5d802fbe06ee6cd2886630e5c03bf740e269bb625b45cf934928
+	sha256sums = 723626bfe05dafa545e135e8e61a482df111f488583fef155301acc5ecbbf921
+	sha256sums = ad4bd3076ff2bff7d075e3928a7e55c618fa744e3bf5d3d387bf70e01ff96c2f
+
+pkgname = rstudio-desktop

@@ -1,0 +1,21 @@
+pkgbase = python-steam
+	pkgdesc = Python package for interacting with Steam
+	pkgver = 1.4.4
+	pkgrel = 2
+	url = https://github.com/ValvePython/steam
+	arch = any
+	license = MIT
+	makedepends = python-build
+	makedepends = python-installer
+	makedepends = python-setuptools
+	makedepends = python-wheel
+	depends = python
+	depends = python-cachetools
+	depends = python-pycryptodomex
+	depends = python-requests
+	depends = python-six
+	depends = python-vdf
+	source = steam-1.4.4.tar.gz::https://github.com/ValvePython/steam/archive/refs/tags/v1.4.4.tar.gz
+	sha256sums = 8c7ff6dcfe90b8b40f631d9048fb608201ae356421f440674cc00dde95c1d8b5
+
+pkgname = python-steam

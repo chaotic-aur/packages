@@ -1,0 +1,2 @@
+#!/bin/sh
+python2 '@XAMPP_ROOT@/share/xampp-control-panel/xampp-control-panel.py'
