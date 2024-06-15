@@ -1,0 +1,3 @@
+# dep for some games in wine
+REQ_ORIGIN=github/2976
+REQ_REASON=request

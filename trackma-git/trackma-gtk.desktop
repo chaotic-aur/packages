@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Trackma (GTK)
+Exec=trackma-gtk %u
+NotShowIn=KDE;LXQt;Razor;
+Type=Application
+Categories=Network;
+Icon=trackma
+Comment=Trackma Updater (Gtk-frontend)
+StartupWMClass=trackma-gtk

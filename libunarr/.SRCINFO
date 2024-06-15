@@ -1,0 +1,19 @@
+pkgbase = libunarr
+	pkgdesc = A lightweight decompression library with support for rar, tar and zip archives.
+	pkgver = 1.1.1
+	pkgrel = 1
+	url = https://github.com/selmf/unarr
+	arch = i686
+	arch = x86_64
+	license = LGPL3
+	makedepends = cmake
+	makedepends = git
+	makedepends = ninja
+	depends = zlib
+	depends = bzip2
+	depends = xz
+	conflicts = libunarr-git
+	source = https://github.com/selmf/unarr/releases/download/v1.1.1/unarr-1.1.1.tar.xz
+	md5sums = e3848dba8c655230c105b574a533a825
+
+pkgname = libunarr

@@ -1,0 +1,20 @@
+pkgbase = media-downloader-git
+	pkgdesc = GUI front-end for downloading media files (yt-dlp, youtube-dl, ...)
+	pkgver = 4.4.0.r0.gcef0edc
+	pkgrel = 1
+	url = https://github.com/mhogomchungu/media-downloader
+	arch = x86_64
+	license = GPL
+	makedepends = cmake
+	makedepends = git
+	depends = qt6-base
+	optdepends = aria2: download files
+	optdepends = wget: download files
+	optdepends = youtube-dl: download files
+	optdepends = yt-dlp: download files
+	provides = media-downloader
+	conflicts = media-downloader
+	source = media-downloader-git::git+https://github.com/mhogomchungu/media-downloader.git
+	sha256sums = SKIP
+
+pkgname = media-downloader-git

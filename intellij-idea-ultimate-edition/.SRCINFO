@@ -1,0 +1,30 @@
+pkgbase = intellij-idea-ultimate-edition
+	pkgdesc = An intelligent IDE for Java, Groovy and other programming languages with advanced refactoring features intensely focused on developer productivity.
+	pkgver = 2024.1.3
+	pkgrel = 1
+	url = https://www.jetbrains.com/idea/
+	arch = x86_64
+	arch = aarch64
+	license = custom:commercial
+	options = !strip
+	source = https://download-cf.jetbrains.com/idea/ideaIU-2024.1.3.tar.gz
+	source = jetbrains-idea.desktop
+	sha256sums = 358ddba5a187cb900efff7df06b1ffdda5a16d1e12cdf49328db486a066f6352
+	sha256sums = 83af2ba8f9f14275a6684e79d6d4bd9b48cd852c047dacfc81324588fa2ff92b
+	source_aarch64 = https://cache-redirector.jetbrains.com/intellij-jbr/jbr-21.0.2-linux-aarch64-b346.3.tar.gz
+	source_aarch64 = https://github.com/JetBrains/intellij-community/raw/master/bin/linux/aarch64/fsnotifier
+	sha256sums_aarch64 = 1bb237ede4123b425bb3270b2ac7a5a94375ebb4cf6f53dde8084d5637c87c4e
+	sha256sums_aarch64 = eb3c61973d34f051dcd3a9ae628a6ee37cd2b24a1394673bb28421a6f39dae29
+
+pkgname = intellij-idea-ultimate-edition
+	depends = giflib
+	depends = libxtst
+	depends = libxrender
+	optdepends = intellij-idea-ultimate-edition-jre: JetBrains custom JRE (Recommended)
+	optdepends = java-environment: Required if intellij-idea-ultimate-edition-jre is not installed
+	optdepends = libdbusmenu-glib: For global menu support
+	backup = opt/intellij-idea-ultimate-edition/bin/idea64.vmoptions
+	backup = opt/intellij-idea-ultimate-edition/bin/idea.properties
+
+pkgname = intellij-idea-ultimate-edition-jre
+	url = https://github.com/JetBrains/JetBrainsRuntime

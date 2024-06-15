@@ -1,0 +1,12 @@
+
+unset epoch
+
+pkgver() {
+  cd qbittorrent-git
+
+  local _version=$(git tag | sed -E 's@^release-@@;s@^.*[A-Za-z][A-Za-z].*$@@' | sort -rV | head -1)
+  local _revision=$(git rev-list --count --cherry-pick release-$_version...HEAD)
+  local _commit=$(git rev-parse --short=8 HEAD)
+
+  printf '%s.r%s.g%s' "$_version" "$_revision" "$_commit"
+}

@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Trackma (Qt)
+Exec=trackma-qt %u
+NotShowIn=GNOME;MATE;X-Cinnamon;XFCE;Unity;
+Type=Application
+Categories=Network;
+Icon=trackma
+Comment=Trackma Updater (Qt-frontend)
+StartupWMClass=trackma-qt

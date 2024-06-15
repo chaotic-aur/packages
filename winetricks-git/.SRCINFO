@@ -1,0 +1,21 @@
+pkgbase = winetricks-git
+	pkgdesc = Script to install various redistributable runtime libraries in Wine.
+	pkgver = 20230212.r16.ga1d5f915
+	pkgrel = 1
+	url = http://wiki.winehq.org/winetricks
+	arch = any
+	license = LGPL
+	makedepends = git
+	depends = wine
+	depends = cabextract
+	depends = unzip
+	depends = xorg-xmessage
+	optdepends = zenity: For the GTK3 GUI.
+	optdepends = kdialog: For the KDE GUI (less capable).
+	provides = winetricks
+	conflicts = winetricks
+	conflicts = bin32-winetricks
+	source = winetricks-git::git+https://github.com/Winetricks/winetricks.git
+	sha256sums = SKIP
+
+pkgname = winetricks-git
