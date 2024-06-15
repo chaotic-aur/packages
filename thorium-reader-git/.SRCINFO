@@ -1,22 +1,14 @@
-pkgbase = thorium-reader-git
+pkgbase = thorium-reader
 	pkgdesc = Cross-platform desktop reading app based on the Readium Desktop toolkit
-	pkgver = 2.4.1.r88.g0141f2fef
+	pkgver = 2.4.2
 	pkgrel = 1
 	url = https://github.com/edrlab/thorium-reader
 	arch = any
-	license = BSD-3-Clause
-	makedepends = gendesk
+	license = MIT
 	makedepends = git
 	makedepends = nvm
-	makedepends = npm
-	makedepends = python>=3.8.10
-	makedepends = python-setuptools
-	depends = electron30
-	provides = thorium-reader=2.4.1
-	conflicts = thorium-reader
-	source = thorium-reader.git::git+https://github.com/edrlab/thorium-reader.git
-	source = thorium-reader.sh
+	depends = electron
+	source = thorium-reader::git+https://github.com/edrlab/thorium-reader.git#tag=v2.4.2
 	sha256sums = SKIP
-	sha256sums = 2b2e8aeed33fd71c521e49fd54fb2fa81218d16aef8bccb88d77909055ab8051
 
-pkgname = thorium-reader-git
+pkgname = thorium-reader
