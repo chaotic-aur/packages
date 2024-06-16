@@ -1,0 +1,16 @@
+pkgbase = python-single-version
+	pkgdesc = Small utility to define version string for Poetry-style Python project
+	pkgver = 1.6.0
+	pkgrel = 1
+	url = https://github.com/hongquan/single-version
+	arch = any
+	license = MIT
+	makedepends = python-build
+	makedepends = python-installer
+	makedepends = python-poetry-core
+	makedepends = python-wheel
+	depends = python
+	source = single-version-1.6.0.tar.gz::https://github.com/hongquan/single-version/archive/refs/tags/v1.6.0.tar.gz
+	sha256sums = c7a07e5480a99086706f7c3b7ae9c06bf5df4bdbe3487a9c4de186f2ff154e0a
+
+pkgname = python-single-version

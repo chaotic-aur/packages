@@ -1,0 +1,22 @@
+pkgbase = woof-doom
+	pkgdesc = Woof! is a continuation of Lee Killough's Doom source port MBF targeted at modern systems
+	pkgver = 14.5.0
+	pkgrel = 1
+	url = https://github.com/fabiangreffrath/woof
+	install = install.sh
+	arch = x86_64
+	license = GPL2
+	makedepends = cmake
+	makedepends = python3
+	depends = sdl2
+	depends = sdl2_net
+	depends = openal
+	depends = libsndfile
+	depends = fluidsynth
+	depends = libxmp
+	optdepends = soundfont-fluid: soundfont for MIDI playback
+	conflicts = woof-doom-git
+	source = https://github.com/fabiangreffrath/woof/archive/refs/tags/woof_14.5.0.tar.gz
+	sha256sums = 1ad9e27ffeb70a60344e98f08bf17650856ffb51aa32cffd94468dacd9f1d42a
+
+pkgname = woof-doom

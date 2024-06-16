@@ -1,0 +1,19 @@
+pkgbase = python-chess-git
+	pkgdesc = Chess library with move generation/validation and common format support
+	pkgver = 1.9.2.r17.g9d68cef4
+	pkgrel = 1
+	url = https://github.com/niklasf/python-chess
+	arch = any
+	license = GPL3
+	makedepends = git
+	makedepends = python-build
+	makedepends = python-installer
+	makedepends = python-setuptools
+	makedepends = python-wheel
+	depends = python
+	provides = python-chess
+	conflicts = python-chess
+	source = python-chess::git+https://github.com/niklasf/python-chess
+	sha256sums = SKIP
+
+pkgname = python-chess-git

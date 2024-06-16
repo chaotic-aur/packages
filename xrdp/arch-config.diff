@@ -1,0 +1,32 @@
+diff -up src/xrdp-0.9.16/sesman/startwm.sh.orig src/xrdp-0.9.16/sesman/startwm.sh
+--- src/xrdp-0.9.16/sesman/startwm.sh.orig	2020-12-28 07:03:43.000000000 -0700
++++ src/xrdp-0.9.16/sesman/startwm.sh	2021-05-12 17:06:31.690000000 -0600
+@@ -58,11 +58,26 @@ post_start()
+ #start the window manager
+ wm_start()
+ {
+-  if [ -r /etc/default/locale ]; then
+-    . /etc/default/locale
++  if [ -r /etc/locale.conf ]; then
++    . /etc/locale.conf
+     export LANG LANGUAGE
+   fi
+ 
++  # arch user
++  if [ -r ~/.xinitrc ]; then
++    pre_start
++    . ~/.xinitrc
++    post_start
++    exit 0
++  fi
++  # arch
++  if [ -r /etc/X11/xinit/xinitrc ]; then
++    pre_start
++    . /etc/X11/xinit/xinitrc
++    post_start
++    exit 0
++  fi
++
+   # debian
+   if [ -r /etc/X11/Xsession ]; then
+     pre_start

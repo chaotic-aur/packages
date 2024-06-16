@@ -1,0 +1,26 @@
+pkgbase = openttd-git
+	pkgdesc = An engine for running Transport Tycoon Deluxe (latest GIT build)
+	pkgver = 26406.c482f05616
+	pkgrel = 1
+	url = http://openttd.org
+	arch = i686
+	arch = x86_64
+	license = GPL
+	makedepends = git
+	makedepends = cmake
+	makedepends = ninja
+	depends = libpng
+	depends = sdl2
+	depends = icu
+	depends = fontconfig
+	depends = lzo
+	depends = hicolor-icon-theme
+	depends = desktop-file-utils
+	depends = xz
+	depends = fluidsynth
+	optdepends = openttd-opengfx: free graphics
+	optdepends = openttd-opensfx: free soundset
+	source = openttd-git::git+https://github.com/OpenTTD/OpenTTD.git
+	sha256sums = SKIP
+
+pkgname = openttd-git

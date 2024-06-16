@@ -1,0 +1,20 @@
+pkgbase = betterlockscreen
+	pkgdesc = A simple, minimal lockscreen
+	pkgver = 4.2.0
+	pkgrel = 1
+	url = https://github.com/betterlockscreen/betterlockscreen
+	arch = any
+	license = MIT
+	depends = bc
+	depends = feh
+	depends = i3lock-color
+	depends = imagemagick
+	depends = xorg-xdpyinfo
+	depends = xorg-xrandr
+	conflicts = betterlockscreen-git
+	source = betterlockscreen-4.2.0.tar.gz::https://github.com/betterlockscreen/betterlockscreen/archive/v4.2.0.tar.gz
+	source = betterlockscreen@.service
+	sha256sums = f55ae57c25da8d3e2a0d4ff0043c3876f257b98c1a393e94401330d888b7d22d
+	sha256sums = 342c92fcbc685349d843811ea336983307205f680f43362bef7dc3cfaed31d4d
+
+pkgname = betterlockscreen

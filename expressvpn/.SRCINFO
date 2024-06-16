@@ -1,0 +1,27 @@
+pkgbase = expressvpn
+	pkgdesc = Proprietary VPN client for Linux
+	pkgver = 3.71.0.4_1
+	pkgrel = 1
+	url = https://expressvpn.com
+	install = expressvpn.install
+	arch = x86_64
+	arch = i686
+	arch = armv7h
+	license = LicenseRef-custom
+	depends = glibc
+	options = !strip
+	validpgpkeys = 1D0B09AD6C93FEE93FDDBD9DAFF2A1415F6A3A38
+	source_x86_64 = https://www.expressvpn.works/clients/linux/expressvpn_3.71.0.4-1_amd64.deb
+	source_x86_64 = https://www.expressvpn.works/clients/linux/expressvpn_3.71.0.4-1_amd64.deb.asc
+	sha512sums_x86_64 = baff60168ae18c069df2c667fe6b76c15cfedeaabde9b9cf56ca55d30b5eec0b0397cdeb5f693f51a1917c205b33f7df37ffa34a9973a9b7bd6d27b73c6b5f6c
+	sha512sums_x86_64 = SKIP
+	source_i686 = https://www.expressvpn.works/clients/linux/expressvpn_3.71.0.4-1_i386.deb
+	source_i686 = https://www.expressvpn.works/clients/linux/expressvpn_3.71.0.4-1_i386.deb.asc
+	sha512sums_i686 = e7dd713fec97938e75c1739bee16301c7eee36f4e9df014356bb285554763a608ae7e190719dce14f6d21ab1c1e081d2db0a72519801c294d23db23de03addaa
+	sha512sums_i686 = SKIP
+	source_armv7h = https://www.expressvpn.works/clients/linux/expressvpn_3.71.0.4-1_armhf.deb
+	source_armv7h = https://www.expressvpn.works/clients/linux/expressvpn_3.71.0.4-1_armhf.deb.asc
+	sha512sums_armv7h = 1085067ae0d2b521fdafeeb05be6581d477deffcee3af040da05a2ea51dcc3f4810eb5e1ed64945b567229a4f31b3e0aa4ad1c5c3bb5e9192e6e235a1be0e92c
+	sha512sums_armv7h = SKIP
+
+pkgname = expressvpn

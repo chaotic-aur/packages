@@ -1,0 +1,18 @@
+pkgbase = python-pywavelets
+	pkgdesc = Wavelet transform module
+	pkgver = 1.6.0
+	pkgrel = 1
+	url = https://github.com/pywavelets/pywt
+	arch = x86_64
+	license = MIT
+	makedepends = python-build
+	makedepends = python-installer
+	makedepends = meson-python
+	makedepends = python-setuptools
+	makedepends = python-wheel
+	makedepends = cython
+	depends = python-numpy
+	source = pywt-1.6.0.tar.gz::https://github.com/pywavelets/pywt/archive/v1.6.0.tar.gz
+	sha512sums = 48a1b498a1698c740b6d4805e32ea4692044790ad9f86e62e63719582b1b896aceb05f57020c1662837cf4dcc36a569160d16b3bd4e92a1400cedbaae46c0873
+
+pkgname = python-pywavelets

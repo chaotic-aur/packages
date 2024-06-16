@@ -1,0 +1,28 @@
+pkgbase = systemtap-git
+	pkgdesc = provides infrastructure to simplify the gathering of information about the running Linux system.
+	pkgver = 4.0.102.g1832b8f51
+	pkgrel = 1
+	url = https://sourceware.org/systemtap/
+	install = systemtap.install
+	arch = i686
+	arch = x86_64
+	license = GPL
+	makedepends = git
+	makedepends = python-setuptools
+	makedepends = xmlto
+	makedepends = cpio
+	depends = elfutils
+	depends = nss
+	depends = python
+	depends = json-c
+	depends = avahi
+	depends = readline
+	depends = nspr
+	optdepends = sqlite
+	provides = systemtap=4.0
+	conflicts = systemtap
+	source = git+https://sourceware.org/git/systemtap.git
+	md5sums = SKIP
+
+pkgname = systemtap-git
+

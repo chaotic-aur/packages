@@ -1,0 +1,20 @@
+pkgbase = velox-git
+	pkgdesc = Simple xcb window manager inspired by awesome, xmonad, and dwm
+	pkgver = 0.0.3.r255.gfcc0412
+	pkgrel = 1
+	url = https://github.com/michaelforney/velox
+	arch = i686
+	arch = x86_64
+	license = MIT
+	makedepends = git
+	depends = swc
+	depends = wld
+	depends = libxkbcommon
+	depends = wayland
+	depends = libinput
+	provides = velox
+	conflicts = velox
+	source = velox::git+https://github.com/michaelforney/velox.git
+	sha256sums = SKIP
+
+pkgname = velox-git

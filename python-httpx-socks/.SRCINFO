@@ -1,0 +1,19 @@
+pkgbase = python-httpx-socks
+	pkgdesc = HTTP/SOCKS-proxy transports for httpx
+	pkgver = 0.9.1
+	pkgrel = 2
+	epoch = 1
+	url = https://github.com/romis2012/httpx-socks
+	arch = any
+	license = Apache
+	makedepends = python-setuptools
+	depends = python-python-socks
+	depends = python-httpcore
+	depends = python-httpx
+	optdepends = python-async-timeout
+	optdepends = python-trio
+	optdepends = python-curio
+	source = httpx-socks-0.9.1.tgz::https://github.com/romis2012/httpx-socks/archive/refs/tags/v0.9.1.tar.gz
+	sha256sums = 20a915f54ea77866498e4bed2fd260cfda4e6c444bd163ec6756d5fb2c58807f
+
+pkgname = python-httpx-socks

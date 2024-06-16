@@ -1,0 +1,42 @@
+pkgbase = simple64
+	pkgdesc = Nintendo64 emulator based on Mupen64Plus
+	pkgver = 2024.06.1
+	pkgrel = 1
+	url = https://simple64.github.io/
+	arch = x86_64
+	license = GPL-3.0-only
+	makedepends = git
+	makedepends = cmake
+	makedepends = ninja
+	makedepends = discord-game-sdk
+	makedepends = icoutils
+	makedepends = zip
+	makedepends = vosk-api
+	depends = hidapi
+	depends = libpng
+	depends = qt6-base
+	depends = qt6-websockets
+	depends = sdl2
+	depends = sdl2_net
+	depends = vulkan-icd-loader
+	depends = zlib
+	depends = hicolor-icon-theme
+	optdepends = discord-game-sdk: for Discord support
+	optdepends = p7zip: for 7z/zip and VRU support
+	optdepends = vosk-api: for VRU support (voice recognition unit)
+	provides = m64p
+	conflicts = m64p
+	conflicts = mupen64plus
+	replaces = m64p
+	source = git+https://github.com/simple64/simple64.git#tag=v2024.06.1
+	source = simple64-cheat-parser::git+https://github.com/simple64/cheat-parser.git#commit=92c86fcae60b3160f32dea69c674899fd83e1fc1
+	source = 010-simple64-remove-bundled-discord-and-vosk.patch
+	source = 020-simple64-fix-paths.patch
+	source = simple64.desktop
+	sha256sums = 21df968276906209f4495a11126ffe1a0132bc4daf95e9dc6503231eb0c11824
+	sha256sums = 53f2c211dfabddbe7fc11c8f161882973495c2921ad1d47553b5b45b1687b3a4
+	sha256sums = 6bc5bc2123ea4a69acebe18d2d33676f35b850d2011fc3f9e83078567ef2d9c9
+	sha256sums = 8bab53ec62f144cc9c93fa7a30c7ac37e410ce562c72ade6afa9ba1afe406694
+	sha256sums = d7fa60ef8bfa7c8aff996a6a984c4d9fd5d8779681b6fb462e55919877558c98
+
+pkgname = simple64

@@ -1,0 +1,9 @@
+[Desktop Entry]
+Exec=/usr/bin/jameica
+Type=Application
+Terminal=false
+Icon=/opt/jameica/jameica-icon.png
+Categories=Java;Office;Finance;
+
+Name=Jameica
+GenericName=HBCI Banking

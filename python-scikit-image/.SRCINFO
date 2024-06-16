@@ -1,0 +1,52 @@
+pkgbase = python-scikit-image
+	pkgdesc = Image processing routines for SciPy
+	pkgver = 0.23.2
+	pkgrel = 1
+	url = http://scikit-image.org
+	arch = i686
+	arch = x86_64
+	license = BSD-3-Clause
+	checkdepends = python-pytest>=5.2.0
+	checkdepends = python-astropy>=5.0
+	checkdepends = python-pytest-cov>=2.11.0
+	checkdepends = python-dask
+	checkdepends = python-imread
+	checkdepends = python-matplotlib>=3.6
+	checkdepends = python-numpydoc>=1.6
+	checkdepends = python-pytest-localserver
+	checkdepends = python-pywavelets>=1.1.1
+	checkdepends = python-scikit-learn
+	checkdepends = python-simpleitk
+	checkdepends = python-pooch>=1.6.0
+	makedepends = cython>=3.0.4
+	makedepends = python-setuptools>=67
+	makedepends = python-numpy
+	makedepends = meson-python>=0.15
+	makedepends = python-wheel
+	makedepends = python-build
+	makedepends = python-installer
+	makedepends = python-pythran
+	makedepends = python-packaging>=21
+	depends = python-numpy>=1.23
+	depends = python-scipy>=1.9
+	depends = python-networkx>=2.8
+	depends = python-pillow>=9.1
+	depends = python-imageio>=2.33
+	depends = python-tifffile>=2022.8.12
+	depends = python-packaging>=21
+	depends = python-lazy-loader>=0.4
+	optdepends = python-matplotlib>=3.6
+	optdepends = freeimage: for reading various types of image file formats
+	optdepends = python-pyamg: fast cg_mg mode of random walker segmentation
+	optdepends = python-astropy>=5.0: Provides FITS I/O capability
+	optdepends = python-simpleitk: Optional I/O plugin providing a wide variety of formats. including specialized formats using in medical imaging
+	optdepends = python-dask>2021.1.0: used to speed up certain functions
+	optdepends = python-cloudpickle>=0.2.1: necessary to provide the processes scheduler for dask
+	optdepends = python-pooch>=1.6.0
+	optdepends = python-scikit-learn>=1.1
+	optdepends = python-pywavelets>=1.1.1
+	options = !emptydirs
+	source = https://files.pythonhosted.org/packages/source/s/scikit_image/scikit_image-0.23.2.tar.gz
+	sha256sums = c9da4b2c3117e3e30364a3d14496ee5c72b09eb1a4ab1292b302416faa360590
+
+pkgname = python-scikit-image

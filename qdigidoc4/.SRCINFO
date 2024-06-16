@@ -1,0 +1,36 @@
+pkgbase = qdigidoc4
+	pkgdesc = DigiDoc4 Client is an application for digitally signing and encrypting documents; the software includes functionality to manage Estonian ID-card - change pin codes, update certificates etc.
+	pkgver = 4.5.1.4455
+	pkgrel = 1
+	url = https://www.id.ee/
+	arch = x86_64
+	arch = i686
+	license = LGPL-2.1-or-later
+	makedepends = cmake
+	makedepends = qt6-tools
+	makedepends = qt6-translations
+	makedepends = flatbuffers
+	makedepends = git
+	depends = qt6-base
+	depends = qt6-svg
+	depends = qt6-5compat
+	depends = libdigidocpp>=3.17.0
+	depends = openssl
+	depends = zlib
+	depends = libldap
+	depends = pcsclite
+	depends = hicolor-icon-theme
+	optdepends = opensc: smart card support
+	optdepends = ccid: smart card support
+	optdepends = python-gobject: nautilus extension
+	source = qdigidoc4-4.5.1.4455::git+https://github.com/open-eid/DigiDoc4-Client.git?signed#tag=v4.5.1
+	source = open-eid-cmake::git+https://github.com/open-eid/cmake.git
+	source = open-eid-common::git+https://github.com/open-eid/qt-common.git
+	source = open-eid-extensions::git+https://github.com/open-eid/digidoc-extensions.git
+	validpgpkeys = D1EBC666EFCBFBD3CFC2EBAA90C0B5E75C3B195D
+	sha256sums = SKIP
+	sha256sums = SKIP
+	sha256sums = SKIP
+	sha256sums = SKIP
+
+pkgname = qdigidoc4

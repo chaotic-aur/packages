@@ -1,0 +1,35 @@
+pkgbase = odamex-git
+	pkgdesc = A free client/server multiplayer engine for the classic FPS Doom.
+	pkgver = 10.4.0.r39.g0880dd097
+	pkgrel = 1
+	url = http://odamex.net/
+	arch = i686
+	arch = x86_64
+	arch = aarch64
+	license = GPL
+	makedepends = git
+	makedepends = cmake
+	makedepends = deutex
+	depends = sdl2_mixer
+	depends = sdl2
+	depends = portmidi
+	depends = miniupnpc
+	depends = curl
+	depends = zlib
+	depends = libpng
+	optdepends = timidity++: Required for the SDL2 MIDI music backend
+	optdepends = doomseeker: Online Doom multiplayer server launcher
+	provides = odamex
+	conflicts = odamex
+	source = odamex-git::git+https://github.com/odamex/odamex.git#branch=stable
+	source = git+https://github.com/fltk/fltk
+	source = git+https://github.com/protocolbuffers/protobuf.git
+	source = git+https://github.com/miniupnp/miniupnp.git
+	source = git+https://github.com/open-source-parsers/jsoncpp.git
+	sha256sums = SKIP
+	sha256sums = SKIP
+	sha256sums = SKIP
+	sha256sums = SKIP
+	sha256sums = SKIP
+
+pkgname = odamex-git

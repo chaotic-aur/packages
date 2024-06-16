@@ -1,0 +1,14 @@
+pkgbase = celestia-addon-2010_exoplanets
+	pkgdesc = Celestia addon: Extrasolar: Stars: 2010 Exoplanets
+	pkgver = 1.0
+	pkgrel = 2
+	url = https://www.celestiamotherlode.net/addon/addon_1450.html
+	arch = any
+	license = Public Domain
+	makedepends = unzip
+	depends = celestia
+	source = https://www.celestiamotherlode.net/creators/Brad/2010_Exoplanets.zip
+	md5sums = d4e64e1f73dc14caceb78e34f06af919
+
+pkgname = celestia-addon-2010_exoplanets
+

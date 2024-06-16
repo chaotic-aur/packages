@@ -1,0 +1,21 @@
+pkgbase = gdcm
+	pkgdesc = C++ library for DICOM medical files
+	pkgver = 3.0.24
+	pkgrel = 1
+	url = https://github.com/malaterre/GDCM
+	arch = x86_64
+	license = BSD
+	makedepends = cmake
+	makedepends = python
+	makedepends = swig
+	depends = glibc
+	depends = gcc-libs
+	depends = openjpeg2
+	optdepends = python: python bindings
+	provides = libgdcmMEXD.so
+	provides = libgdcmDSED.so
+	provides = libgdcmMSFF.so
+	source = gdcm-3.0.24.tar.gz::https://github.com/malaterre/GDCM/archive/v3.0.24.tar.gz
+	sha512sums = 2fe28444cee171a536d63f26c1ad7308a03b946e79dc8b7d648b5c7e6f4a8f52c0c32ec9cf463d95b876db31becc81541638b97fc7f15b79ae04de5988d6941e
+
+pkgname = gdcm

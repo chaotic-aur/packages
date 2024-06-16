@@ -1,0 +1,21 @@
+pkgbase = openfx-misc-git
+	pkgdesc = Miscellaneous OpenFX plugins
+	pkgver = 2.5.0.r2.g5524c1ba
+	pkgrel = 1
+	url = https://github.com/NatronGitHub/openfx-misc
+	arch = x86_64
+	license = GPL-2.0-or-later
+	makedepends = git
+	makedepends = openmp
+	depends = libgl
+	depends = python
+	optdepends = natron-plugins-git: More presets for the Shadertoy plugin
+	conflicts = openfx-misc
+	source = openfx-misc::git+https://github.com/NatronGitHub/openfx-misc
+	source = openfx::git+https://github.com/NatronGitHub/openfx
+	source = openfx-supportext::git+https://github.com/NatronGitHub/openfx-supportext
+	sha512sums = SKIP
+	sha512sums = SKIP
+	sha512sums = SKIP
+
+pkgname = openfx-misc-git

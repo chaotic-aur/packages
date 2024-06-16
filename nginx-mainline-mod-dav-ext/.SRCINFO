@@ -1,0 +1,16 @@
+pkgbase = nginx-mainline-mod-dav-ext
+	pkgdesc = Nginx mainline module with support for missing PROPFIND and OPTIONS WebDAV methods
+	pkgver = 3.0.0
+	pkgrel = 21
+	url = https://github.com/arut/nginx-dav-ext-module
+	arch = i686
+	arch = x86_64
+	license = CUSTOM
+	makedepends = nginx-mainline-src
+	depends = nginx-mainline
+	depends = libxslt
+	source = https://github.com/arut/nginx-dav-ext-module/archive/v3.0.0/nginx-dav-ext-module-3.0.0.tar.gz
+	sha256sums = d2499d94d82d4e4eac8425d799e52883131ae86a956524040ff2fd230ef9f859
+
+pkgname = nginx-mainline-mod-dav-ext
+

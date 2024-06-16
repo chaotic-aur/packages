@@ -1,0 +1,15 @@
+pkgbase = celestia-addon-hubble_space_telescope
+	pkgdesc = Celestia addon: Spacecraft: Earth Orbit: Hubble Space Telescope
+	pkgver = 1
+	pkgrel = 2
+	url = https://www.celestiamotherlode.net/addon/addon_287.html
+	arch = any
+	license = unknown
+	makedepends = unzip
+	depends = celestia
+	conflicts = celestia-addon-hubble-space-telescope
+	source = https://celestiamotherlode.net/creators/jestr/BigHubbleCMOD_V3.zip
+	md5sums = 70978b99cb929b5472d8b9ea7f2faedc
+
+pkgname = celestia-addon-hubble_space_telescope
+

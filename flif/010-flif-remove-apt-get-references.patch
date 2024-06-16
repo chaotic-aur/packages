@@ -1,0 +1,20 @@
+--- a/tools/apng2flif
++++ b/tools/apng2flif
+@@ -13,7 +13,6 @@ fi
+ if ! $APNGDIS 2>/dev/null |grep -q APNG
+ then
+    echo "APNG Disassembler not found, please install it first!"
+-   echo "sudo apt-get install apngdis"
+    exit 1
+ fi
+ 
+--- a/tools/gif2flif
++++ b/tools/gif2flif
+@@ -13,7 +13,6 @@ fi
+ if ! $CONVERT -version 2>/dev/null >/dev/null
+ then
+    echo "ImageMagick not found, please install it first!"
+-   echo "sudo apt-get install imagemagick"
+    exit 1
+ fi
+ 

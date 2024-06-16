@@ -1,0 +1,23 @@
+pkgbase = uuid
+	pkgdesc = OSSP Universally Unique Identifier
+	pkgver = 1.6.2
+	pkgrel = 20
+	url = http://www.ossp.org/pkg/lib/uuid
+	arch = i686
+	arch = x86_64
+	arch = armv6h
+	arch = armv7h
+	arch = aarch64
+	license = MIT
+	makedepends = git
+	depends = sh
+	options = !libtool
+	source = git+https://github.com/sean-/ossp-uuid.git
+	source = https://src.fedoraproject.org/rpms/uuid/raw/rawhide/f/uuid-aarch64.patch
+	source = ossp.patch
+	sha512sums = SKIP
+	sha512sums = 534ade47bf17531108d96c46bfc489b9fd4b1e7a66fcd903c8036210bdc6e631d591d04184e37b56c64ee74c05af799971d47d4cf30b25b45e05413319ae2f34
+	sha512sums = 36d0ea6088c12a5e382c3098f11214b202e96f91e4efd5cac567d5a81e836f78eeb654f051c576a211ec2dd5337b1f0a20d4246e84a0842fce22ae5fa96e5be9
+
+pkgname = uuid
+

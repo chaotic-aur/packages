@@ -1,0 +1,118 @@
+pkgbase = obs-studio-tytan652
+	pkgdesc = Free and open source software for video recording and live streaming. With everything except service integrations. Plus my bind interface PR, and sometimes backported fixes
+	pkgver = 30.1.2
+	pkgrel = 4
+	url = https://github.com/obsproject/obs-studio
+	arch = x86_64
+	arch = aarch64
+	license = GPL-2.0-or-later
+	makedepends = asio
+	makedepends = cmake
+	makedepends = jack
+	makedepends = git
+	makedepends = uthash
+	makedepends = libajantv2>=17.0.1
+	makedepends = libdatachannel>=0.21
+	makedepends = libfdk-aac
+	makedepends = luajit
+	makedepends = nlohmann-json
+	makedepends = libvpl
+	makedepends = python>=3.12
+	makedepends = sndio
+	makedepends = swig
+	makedepends = systemd-libs
+	makedepends = v4l-utils
+	makedepends = websocketpp
+	makedepends = cef-minimal-obs=103.0.0_5060_shared_textures_2594+g17f8588+chromium_103.0.5060.134_1
+	depends = alsa-lib
+	depends = curl
+	depends = ffmpeg-obs>=6
+	depends = fontconfig
+	depends = freetype2
+	depends = ftl-sdk
+	depends = gcc-libs
+	depends = glib2
+	depends = glibc
+	depends = jansson
+	depends = libgl
+	depends = libpipewire
+	depends = libpulse
+	depends = librist
+	depends = libva
+	depends = libx11
+	depends = libxcb
+	depends = libxcomposite
+	depends = libxkbcommon
+	depends = mbedtls>=3.5.1
+	depends = pciutils
+	depends = qrcodegencpp-cmake
+	depends = qt6-base>=6.6.2
+	depends = qt6-svg>=6.6.2
+	depends = qt6-wayland>=6.6.2
+	depends = rnnoise
+	depends = speexdsp
+	depends = srt
+	depends = util-linux-libs
+	depends = vlc-luajit
+	depends = wayland
+	depends = x264
+	depends = zlib
+	depends = at-spi2-core
+	depends = dbus
+	depends = expat
+	depends = libcups
+	depends = libdrm
+	depends = libxdamage
+	depends = libxext
+	depends = libxfixes
+	depends = libxrandr
+	depends = mesa
+	depends = nspr
+	depends = nss
+	optdepends = jack: JACK support
+	optdepends = libfdk-aac: FDK AAC codec support
+	optdepends = libvpl: QSV encoder support
+	optdepends = intel-media-sdk: QSV encoder support(<= Rocket Lake & >= Broadwell)
+	optdepends = vpl-gpu-rt: QSV encoder support (>= Alder Lake)
+	optdepends = intel-media-driver: VAAPI encoder support (>= Broadwell)
+	optdepends = libva-intel-driver: VAAPI encoder support (<= Haswell)
+	optdepends = libva-mesa-driver: VAAPI encoder support
+	optdepends = swig: Scripting
+	optdepends = luajit: Lua scripting
+	optdepends = python>=3.12: Python scripting
+	optdepends = sndio: Sndio input client
+	optdepends = v4l-utils: V4L2 support
+	optdepends = systemd-libs: V4L2 support
+	optdepends = v4l2loopback-dkms: V4L2 virtual camera output
+	optdepends = libdatachannel>=0.21: WHIP Support
+	optdepends = libajantv2>=17.0.1: AJA support
+	optdepends = decklink: Blackmagic Design DeckLink support
+	provides = obs-studio=30.1.2
+	provides = obs-vst
+	provides = obs-websocket
+	provides = obs-browser
+	conflicts = obs-studio
+	conflicts = obs-vst
+	conflicts = obs-websocket
+	conflicts = obs-browser
+	conflicts = obs-linuxbrowser
+	conflicts = libva-vdpau-driver
+	options = debug
+	source = obs-studio::git+https://github.com/obsproject/obs-studio.git#tag=30.1.2
+	source = obs-browser::git+https://github.com/obsproject/obs-browser.git
+	source = obs-websocket::git+https://github.com/obsproject/obs-websocket.git
+	source = bind_iface_eyeballed.patch
+	source = v4l2_by-path.patch
+	source = 0001-Add_finder_for_uthash.patch
+	source = 0002-Use_system_uthash.patch
+	source = 0003-Update_to_libajantv2_17_legacy_path_only.patch
+	sha256sums = SKIP
+	sha256sums = SKIP
+	sha256sums = SKIP
+	sha256sums = 91ec5b6bec66c6d85c1f88f7f5fbdbe4bdbb820be5c2e7828f328f570bfdc845
+	sha256sums = ee54b9c6f7e17fcc62c6afc094e65f18b2e97963c2fe92289b2b91972ac206e5
+	sha256sums = f4a56021a7f1c564f95b588d7c09b60a89efa2c1954c8a418cf6320b5a818542
+	sha256sums = 82b14439697b5c5947117afa1b973bad7ddd9ee2f09e5d1ac56a96d10e01c6b1
+	sha256sums = a7149e1d9a07270132cf8085d52225ed3200a78ea943cbf52d64b1b8f293e117
+
+pkgname = obs-studio-tytan652

@@ -1,0 +1,31 @@
+pkgbase = ttf-merriweather
+	pkgdesc = A typeface that is pleasant to read on screens by Sorkin Type Co
+	pkgver = 2.100
+	pkgrel = 1
+	epoch = 1
+	url = http://sorkintype.com/
+	arch = any
+	license = custom:SIL Open Font License v1.1
+	conflicts = ttf-google-fonts-opinionated-git
+	conflicts = ttf-merriweather-ib
+	source = Merriweather-Black-2.100.ttf::https://github.com/SorkinType/Merriweather/raw/06e56b5a24d80a4a1ac94a71a0a05a98b5d02ef5/fonts/ttfs/Merriweather-Black.ttf
+	source = Merriweather-BlackItalic-2.100.ttf::https://github.com/SorkinType/Merriweather/raw/06e56b5a24d80a4a1ac94a71a0a05a98b5d02ef5/fonts/ttfs/Merriweather-BlackItalic.ttf
+	source = Merriweather-Bold-2.100.ttf::https://github.com/SorkinType/Merriweather/raw/06e56b5a24d80a4a1ac94a71a0a05a98b5d02ef5/fonts/ttfs/Merriweather-Bold.ttf
+	source = Merriweather-BoldItalic-2.100.ttf::https://github.com/SorkinType/Merriweather/raw/06e56b5a24d80a4a1ac94a71a0a05a98b5d02ef5/fonts/ttfs/Merriweather-BoldItalic.ttf
+	source = Merriweather-Italic-2.100.ttf::https://github.com/SorkinType/Merriweather/raw/06e56b5a24d80a4a1ac94a71a0a05a98b5d02ef5/fonts/ttfs/Merriweather-Italic.ttf
+	source = Merriweather-Light-2.100.ttf::https://github.com/SorkinType/Merriweather/raw/06e56b5a24d80a4a1ac94a71a0a05a98b5d02ef5/fonts/ttfs/Merriweather-Light.ttf
+	source = Merriweather-LightItalic-2.100.ttf::https://github.com/SorkinType/Merriweather/raw/06e56b5a24d80a4a1ac94a71a0a05a98b5d02ef5/fonts/ttfs/Merriweather-LightItalic.ttf
+	source = Merriweather-Regular-2.100.ttf::https://github.com/SorkinType/Merriweather/raw/06e56b5a24d80a4a1ac94a71a0a05a98b5d02ef5/fonts/ttfs/Merriweather-Regular.ttf
+	source = ttf-merriweather-2.100-OFL.txt::https://github.com/SorkinType/Merriweather/raw/06e56b5a24d80a4a1ac94a71a0a05a98b5d02ef5/OFL.txt
+	sha256sums = e4b178ebd76474428e59020635fafa11076f6a3b5e14cf41fac408bba75e75ae
+	sha256sums = e302d95920cb4a161d4c81db6a24249fdc9ff30235b840780c4db49522149ad7
+	sha256sums = 8d2dcbd3041b5eab1739cb00cb58fadfea5c2c2977f410148d8432c471022879
+	sha256sums = 1d9bb02a953dc478f05bcc1ad8776809a8e7ce43f34ed53fb8224000a5163b08
+	sha256sums = 8969d6b6123e0b3b9e150c4411ac697ab941be075df38680229e2bd685b5691b
+	sha256sums = 32221799ab71877aeef75fa1615364408088e4d2fbd29e65caa97bfd92ff9594
+	sha256sums = 4780495ff32c2b547677e1e5946bdc62d44554137197af9fc196aa42584566cd
+	sha256sums = a74a8658a74b5da43ddf32e211f4ad96bc0efc7d5cb921f78d3376aa2b8be5fe
+	sha256sums = a7ba785ad99b6eae0444ab89910e512d4af9865937fddbcb5c72c4f59f55d6ad
+
+pkgname = ttf-merriweather
+

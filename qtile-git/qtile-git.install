@@ -1,0 +1,11 @@
+post_install() {
+  echo ">>> Qtile Example Config at"
+  echo ">>> /usr/share/doc/qtile-git/default_config.py"
+}
+
+post_upgrade() {
+  echo ">>> Qtile Changelog at"
+  echo ">>> /usr/share/doc/qtile-git/CHANGELOG"
+  echo ">>> Qtile Example Config at"
+  echo ">>> /usr/share/doc/qtile-git/default_config.py"
+}

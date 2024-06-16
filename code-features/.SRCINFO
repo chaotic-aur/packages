@@ -1,0 +1,22 @@
+pkgbase = code-features
+	pkgdesc = Unblock some features in Code OSS
+	pkgver = 1.90.0
+	pkgrel = 1
+	url = https://github.com/microsoft/vscode
+	install = code-features.install
+	arch = any
+	license = unknown
+	depends = code
+	depends = python
+	depends = org.freedesktop.secrets
+	optdepends = icu69: for MS-vsliveshare.vsliveshare extension to work
+	provides = code-features
+	conflicts = code-features
+	source = code-features.hook
+	source = patch.py
+	source = patch.json
+	md5sums = 1d4002cba0560dd6da192ddd756f52e5
+	md5sums = 9ed6f3972479ab6d3d053e7c47ead55a
+	md5sums = fcf4d1276e0fcfdb111ef17fcba5965c
+
+pkgname = code-features

@@ -1,0 +1,24 @@
+pkgbase = jdminecraftlauncher
+	pkgdesc = An classic styled Minecraft Launcher
+	pkgver = 6.0
+	pkgrel = 1
+	url = https://codeberg.org/JakobDev/jdMinecraftLauncher
+	arch = any
+	license = GPL3
+	makedepends = qt5-tools
+	makedepends = python-build
+	makedepends = python-setuptools
+	makedepends = python-installer
+	makedepends = python-wheel
+	depends = python
+	depends = python-pyqt6
+	depends = python-pyqt6-webengine
+	depends = python-minecraft-launcher-lib
+	depends = python-requests
+	optdepends = gamemode: Run Minecraft in gamemode
+	source = jdminecraftlauncher-6.0.tar.gz::https://codeberg.org/JakobDev/jdMinecraftLauncher/archive/6.0.tar.gz
+	source = Distribution.toml
+	sha256sums = bea2d6ccdc1e46a24b1724e4c9ea403d8a712a7a2aa942335396c71424b635bd
+	sha256sums = 54a1d52ed414e33ce0a8ef7b6b2abb5fe9dfbd45bfdeea59d6b7f93366d3ad4e
+
+pkgname = jdminecraftlauncher

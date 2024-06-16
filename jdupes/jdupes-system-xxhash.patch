@@ -1,0 +1,27 @@
+diff --git a/Makefile b/Makefile
+index 36ba443..cbdf37a 100644
+--- a/Makefile
++++ b/Makefile
+@@ -135,7 +135,8 @@ ifdef USE_JODY_HASH
+  OBJS_CLEAN += xxhash.o
+  else
+  ifndef EXTERNAL_HASH_LIB
+-  OBJS += xxhash.o
++  CFLAGS += `pkg-config --cflags libxxhash`
++  LDFLAGS += `pkg-config --libs libxxhash`
+  endif
+ endif  # USE_JODY_HASH
+ 
+diff --git a/filehash.c b/filehash.c
+index 39edf6b..d00fa71 100644
+--- a/filehash.c
++++ b/filehash.c
+@@ -21,7 +21,7 @@
+ #include "interrupt.h"
+ #include "progress.h"
+ #include "jdupes.h"
+-#include "xxhash.h"
++#include <xxhash.h>
+ 
+ const char *hash_algo_list[2] = {
+   "xxHash64 v2",

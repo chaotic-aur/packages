@@ -1,0 +1,18 @@
+pkgbase = fonts-meta-base
+	pkgdesc = Base font collection meta package, ported from Infinality.
+	pkgver = 1
+	pkgrel = 3
+	url = https://web.archive.org/web/20160703182257/http://bohoomil.com:80/doc/05-fonts/
+	arch = any
+	license = GPL
+	depends = ttf-dejavu
+	depends = ttf-courier-prime
+	depends = ttf-heuristica
+	depends = ttf-liberation
+	depends = noto-fonts
+	depends = font-symbola
+	provides = ibfonts-meta-base
+	conflicts = ibfonts-meta-base
+
+pkgname = fonts-meta-base
+

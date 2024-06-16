@@ -1,0 +1,25 @@
+pkgbase = pspp
+	pkgdesc = Statistical analysis program. Free replacement for SPSS.
+	pkgver = 2.0.1
+	pkgrel = 1
+	url = http://www.gnu.org/software/pspp/
+	arch = i686
+	arch = x86_64
+	license = GPL3
+	makedepends = python
+	depends = gsl
+	depends = gtksourceview4
+	depends = postgresql-libs
+	depends = desktop-file-utils
+	depends = spread-sheet-widget
+	depends = cairo
+	depends = pango
+	depends = gettext
+	optdepends = zlib: GNUmeric support
+	optdepends = libxml2: GNUmeric support
+	options = !libtool
+	options = !emptydirs
+	source = https://ftp.gnu.org/gnu/pspp/pspp-2.0.1.tar.gz
+	sha1sums = 58c1c949b51a6a5555a945380c8228f37814a833
+
+pkgname = pspp

@@ -1,0 +1,25 @@
+pkgbase = emote
+	pkgdesc = Emoji Picker for Linux written in GTK3
+	pkgver = 4.1.0
+	pkgrel = 1
+	url = https://github.com/tom-james-watson/Emote
+	arch = any
+	license = GPL3
+	makedepends = python-setuptools
+	makedepends = python-pipenv
+	depends = python
+	depends = gtk3
+	depends = python-gobject
+	depends = python-manimpango
+	depends = libkeybinder3
+	depends = python-setproctitle
+	depends = dbus-python
+	depends = hicolor-icon-theme
+	depends = emoji-font
+	depends = xdotool
+	source = https://github.com/tom-james-watson/Emote/archive/refs/tags/v4.1.0.tar.gz
+	source = setup.py
+	sha256sums = 171ddf7e216f12a9e0ed63cd0a97796fd63967df3b3aa5e452877b74aabd48c9
+	sha256sums = fd547230882ef6ad500579afab912b0567e7ba061f36283c84b8504a78356d59
+
+pkgname = emote

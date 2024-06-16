@@ -1,0 +1,18 @@
+pkgbase = ttf-courier-prime
+	pkgdesc = Monospace Courier font alternative. It’s Courier, just better
+	pkgver = 1.203
+	pkgrel = 5
+	url = https://quoteunquoteapps.com/courierprime/
+	arch = any
+	license = OFL
+	source = https://quoteunquoteapps.com/courierprime/downloads/courier-prime.zip
+	source = https://quoteunquoteapps.com/courierprime/downloads/courier-prime-sans.zip
+	source = https://quoteunquoteapps.com/courierprime/downloads/courier-prime-code.zip
+	source = https://quoteunquoteapps.com/courierprime/downloads/courier-prime-medium-semi-bold.zip
+	sha256sums = d5d4faf1bee0d1f52bab1103cbfdfb354976331c86f999c110c22a098cb12d73
+	sha256sums = 754b3937340f5522ccf96be7832efbd809ef93f373d51b12919adbd9c0a468d7
+	sha256sums = c400b6addeddef7c26a9943f847a8584c83d8bb775cd35da2dcd41c6ad98d827
+	sha256sums = b1ec844f4fcdff58cf532e942ec74766bcf38e9c75fc06e1a99a24afedd41ecb
+
+pkgname = ttf-courier-prime
+

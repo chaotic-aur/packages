@@ -1,0 +1,16 @@
+pkgbase = spotify-tray-git
+	pkgdesc = Tray icon for the Spotify Linux client application
+	pkgver = 1.3.2.r0.g99d1fc5
+	pkgrel = 3
+	url = https://github.com/tsmetana/spotify-tray
+	arch = x86_64
+	license = GPL3
+	makedepends = git
+	depends = spotify
+	depends = gtk3
+	provides = spotify-tray
+	conflicts = spotify-tray
+	source = spotify-tray::git+https://github.com/tsmetana/spotify-tray.git
+	md5sums = SKIP
+
+pkgname = spotify-tray-git

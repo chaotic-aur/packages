@@ -1,0 +1,16 @@
+pkgbase = gnome-x11-gesture-daemon
+	pkgdesc = GNOME gesture improvements daemon
+	pkgver = 0.2.1
+	pkgrel = 1
+	url = https://github.com/harshadgavali/gnome-x11-gesture-daemon
+	install = gnome-x11-gesture-daemon.install
+	arch = x86_64
+	license = MIT
+	makedepends = cargo
+	makedepends = git
+	makedepends = setconf
+	depends = libinput
+	source = git+https://github.com/harshadgavali/gnome-x11-gesture-daemon.git#commit=38529d479ef086d7cd9005529061e96114bca4a9
+	sha256sums = SKIP
+
+pkgname = gnome-x11-gesture-daemon

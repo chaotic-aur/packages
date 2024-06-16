@@ -1,0 +1,46 @@
+pkgbase = netbird
+	pkgver = 0.27.10
+	pkgrel = 1
+	url = https://netbird.io
+	arch = i686
+	arch = pentium4
+	arch = x86_64
+	arch = arm
+	arch = armv7h
+	arch = armv6h
+	arch = aarch64
+	arch = riscv64
+	license = BSD
+	makedepends = go
+	source = netbird-0.27.10.tar.gz::https://github.com/netbirdio/netbird/archive/refs/tags/v0.27.10.tar.gz
+	source = netbird.env
+	source = netbird@.service
+	source = netbird-signal.env
+	source = netbird-signal.service
+	source = netbird-management.env
+	source = netbird-management.service
+	sha256sums = d5a0f2af7e340a8df334906850401caf2d5498df832dc82a3153b2031f2ed897
+	sha256sums = 128e36e1f814a12886f3122a1809a404be17f81481275b6624e66937941f5269
+	sha256sums = 3bd6d2692dc6d08cfabce1ba2514c02f4463294ebbdb63828baca5d9e4c9daa9
+	sha256sums = 80cd7b6a22087a83c1332c15693d8a18b780ef5ecf3fbc562af28d1a623eef3b
+	sha256sums = e7b6be420614a4ed1ec6097f2466b6fbf8d0b01a9eb8140ead9b2048ce5be4a8
+	sha256sums = 7d31d7847f5a25bca81def470f7fc5a277c3064e5a0ad71a3f19a29202537315
+	sha256sums = 6f62fd0d631c1375e6f7f7d0843a46519f39e3cd952cf24100dcd8743d876d26
+
+pkgname = netbird
+	pkgdesc = WireGuard-based mesh network: client
+	depends = glibc
+	optdepends = resolvconf: Private DNS
+	replaces = wiretrustee
+	backup = etc/default/netbird
+
+pkgname = netbird-management
+	pkgdesc = WireGuard-based mesh network: management service
+	depends = glibc
+	depends = ca-certificates
+	backup = etc/default/netbird-management
+
+pkgname = netbird-signal
+	pkgdesc = WireGuard-based mesh network: signal service
+	depends = glibc
+	backup = etc/default/netbird-signal

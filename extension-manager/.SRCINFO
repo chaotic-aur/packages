@@ -1,0 +1,21 @@
+pkgbase = extension-manager
+	pkgdesc = A native tool for browsing, installing, and managing GNOME Shell Extensions
+	pkgver = 0.5.1
+	pkgrel = 3
+	url = https://github.com/mjakeman/extension-manager
+	arch = x86_64
+	arch = aarch64
+	license = GPL3
+	checkdepends = appstream-glib
+	makedepends = meson
+	makedepends = blueprint-compiler
+	makedepends = gobject-introspection
+	depends = libadwaita
+	depends = libsoup3
+	depends = json-glib
+	depends = text-engine
+	optdepends = libbacktrace-git
+	source = extension-manager-0.5.1.tar.gz::https://github.com/mjakeman/extension-manager/archive/v0.5.1.tar.gz
+	sha256sums = b4cd95cbf45a3d046858fb44e78f3e3147a24279e77bfbbe8a422920f20a7b3b
+
+pkgname = extension-manager

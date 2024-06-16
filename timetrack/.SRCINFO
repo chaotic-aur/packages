@@ -1,0 +1,18 @@
+pkgbase = timetrack
+	pkgdesc = Simple time-tracking app for GNOME
+	pkgver = 2.2.0
+	pkgrel = 1
+	url = https://gitlab.gnome.org/danigm/timetrack
+	arch = any
+	license = GPL-3.0-or-later
+	checkdepends = appstream-glib
+	makedepends = gobject-introspection
+	makedepends = meson
+	depends = gtk4
+	depends = libadwaita
+	depends = python-gobject
+	depends = python-timeago
+	source = https://gitlab.gnome.org/danigm/timetrack/-/archive/2.2.0/timetrack-2.2.0.tar.gz
+	sha256sums = 47e00b49c80393e4df3f889bfbb1a9e68997b94a721f630a09b121d7906bbd42
+
+pkgname = timetrack

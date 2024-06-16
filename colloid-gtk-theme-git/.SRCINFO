@@ -1,0 +1,45 @@
+pkgbase = colloid-gtk-theme-git
+	pkgdesc = Gtk theme for Linux
+	pkgver = 2024.06.18.r1.ga21570fd
+	pkgrel = 1
+	url = https://github.com/vinceliuice/Colloid-gtk-theme
+	install = colloid-gtk-theme.install
+	arch = any
+	license = GPL-3.0-or-later
+	makedepends = git
+	makedepends = sassc
+	optdepends = gtk-engine-murrine: GTK2 theme support
+	optdepends = colloid-icon-theme: Matching icon theme
+	optdepends = colloid-cursors: Matching cursor theme
+	options = !strip
+	source = git+https://github.com/vinceliuice/Colloid-gtk-theme.git
+	sha256sums = SKIP
+
+pkgname = colloid-gtk-theme-git
+	provides = colloid-gtk-theme
+	conflicts = colloid-gtk-theme
+
+pkgname = colloid-catppuccin-gtk-theme-git
+	pkgdesc = Gtk Catppuccin theme for Linux
+	provides = colloid-catppuccin-gtk-theme
+	conflicts = colloid-catppuccin-gtk-theme
+
+pkgname = colloid-dracula-gtk-theme-git
+	pkgdesc = Gtk Dracula theme for Linux
+	provides = colloid-dracula-gtk-theme
+	conflicts = colloid-dracula-gtk-theme
+
+pkgname = colloid-everforest-gtk-theme-git
+	pkgdesc = Gtk Everforest theme for Linux
+	provides = colloid-everforest-gtk-theme
+	conflicts = colloid-everforest-gtk-theme
+
+pkgname = colloid-gruvbox-gtk-theme-git
+	pkgdesc = Gtk Gruvbox theme for Linux
+	provides = colloid-gruvbox-gtk-theme
+	conflicts = colloid-gruvbox-gtk-theme
+
+pkgname = colloid-nord-gtk-theme-git
+	pkgdesc = Gtk Nord theme for Linux
+	provides = colloid-nord-gtk-theme
+	conflicts = colloid-nord-gtk-theme

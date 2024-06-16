@@ -1,0 +1,16 @@
+pkgbase = logmein-hamachi
+	pkgdesc = A zero-configuration VPN service
+	pkgver = 2.1.0.203
+	pkgrel = 1
+	url = https://www.vpn.net/linux
+	arch = x86_64
+	license = custom
+	conflicts = hamachi
+	replaces = hamachi
+	options = !strip
+	source = https://vpn.net/installers/logmein-hamachi-2.1.0.203-x64.tgz
+	source = logmein-hamachi.service
+	sha256sums = 67d4e845a28b118112ed3bc1d0ae8f84898c640e988a2ac8d38e31dcf697c07f
+	sha256sums = b32e32f2c98519b469a660f7459eeb12f454767bcec0f5edf8ae6bd89eef3dba
+
+pkgname = logmein-hamachi

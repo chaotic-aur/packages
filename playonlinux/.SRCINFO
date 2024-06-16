@@ -1,0 +1,34 @@
+pkgbase = playonlinux
+	pkgdesc = GUI for managing Windows programs under linux
+	pkgver = 4.4+29+gd0ae9ce6
+	pkgrel = 3
+	url = https://www.playonlinux.com/
+	arch = x86_64
+	license = GPL
+	makedepends = git
+	depends = wine
+	depends = imagemagick
+	depends = xterm
+	depends = python-wxpython
+	depends = cabextract
+	depends = unzip
+	depends = mesa-utils
+	depends = gnupg
+	depends = icoutils
+	depends = xdg-user-dirs
+	depends = libxmu
+	depends = netcat
+	depends = wget
+	depends = p7zip
+	depends = jq
+	depends = perl
+	depends = python-pyasyncore
+	depends = python-natsort
+	depends = which
+	options = !strip
+	source = playonlinux4::git+https://github.com/PlayOnLinux/POL-POM-4.git#commit=d0ae9ce61668861dacd5c4981e7f3b020e3cc327
+	source = PlayOnLinuxUrlHandler.desktop
+	sha256sums = SKIP
+	sha256sums = 304d8e998d271383c44acdf386c4664cd65463d5f7f5e3c1c7563fbd8f71a6a8
+
+pkgname = playonlinux

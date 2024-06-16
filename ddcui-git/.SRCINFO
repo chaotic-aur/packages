@@ -1,0 +1,19 @@
+pkgbase = ddcui-git
+	pkgdesc = Graphical user interface for ddcutil - control monitor settings
+	pkgver = 0.5.2.r1.gee89c31
+	pkgrel = 1
+	url = https://github.com/rockowitz/ddcui
+	arch = x86_64
+	license = GPL-2.0-or-later
+	makedepends = git
+	makedepends = cmake
+	makedepends = qt5-tools
+	depends = ddcutil>=2.1.3
+	depends = hicolor-icon-theme
+	depends = qt5-base
+	provides = ddcui
+	conflicts = ddcui
+	source = git+https://github.com/rockowitz/ddcui.git
+	sha256sums = SKIP
+
+pkgname = ddcui-git

@@ -1,0 +1,15 @@
+diff --git a/jameicaserver.sh b/jameicaserver.sh
+index aa1c347..7ce3492 100755
+--- a/jameicaserver.sh
++++ b/jameicaserver.sh
+@@ -3,9 +3,7 @@
+ # Linux Start-Script fuer Server-Betrieb.
+ # Jameica wird hierbei OHNE GUI gestartet.
+ 
+-link=$(readlink -f "$0")
+-dir=$(dirname "$link")
+-cd "$dir" 
++cd /opt/jameica
+ 
+ #_JCONSOLE="-Dcom.sun.management.jmxremote"
+ 

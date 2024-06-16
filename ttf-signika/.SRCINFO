@@ -1,0 +1,13 @@
+pkgbase = ttf-signika
+	pkgdesc = Sans-serif typeface from Google by Anna Giedryś
+	pkgver = 2.000
+	pkgrel = 1
+	url = https://github.com/Ancymonic/Signika
+	arch = any
+	license = OFL
+	conflicts = ttf-google-fonts-opinionated-git
+	conflicts = ttf-signika-family-ib
+	source = Signika-2.0.tar.gz::https://github.com/Ancymonic/Signika/archive/refs/tags/Signika-2.0.tar.gz
+	sha256sums = 717d8e8525080e5f6df71aa2a423481adb2c634ff4756e2788717e96796b9051
+
+pkgname = ttf-signika

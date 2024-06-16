@@ -1,0 +1,8 @@
+/var/log/webmin/miniserv.error /var/log/webmin/*.log {
+   missingok
+   notifempty
+   sharedscripts
+   postrotate
+      /usr/bin/systemctl -q try-reload-or-restart webmin.service 2>/dev/null || true
+   endscript
+}

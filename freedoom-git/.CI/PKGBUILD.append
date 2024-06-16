@@ -1,0 +1,10 @@
+
+unset epoch
+
+url="https://github.com/freedoom/freedoom"
+license=('BSD-3-Clause')
+
+pkgver() {
+  cd "freedoom"
+  git describe --long --tags --abbrev=8 --exclude='*[A-Za-z][A-Za-z]*' | sed -r 's/^v//;s/([^-]*-g)/r\1/;s/-/./g'
+}
