@@ -67,8 +67,9 @@ function generate_deptree() {
 }
 
 if [ "$COMMAND" == "schedule" ]; then
-    PARAMS+=("--deptree")
-    PARAMS+=("$(generate_deptree)")
+    # Write dep tree to file so it can be transferred as file.
+    # This is necessary because the output of the function turned out too large for the command line.
+    generate_deptree >>.ci/deptree.txt
     PARAMS+=("${PACKAGES[@]}")
 elif [ "$COMMAND" == "auto-repo-remove" ]; then
     PARAMS+=("${PACKAGES[@]}")

@@ -19,6 +19,7 @@ on-commit:
     - .ci/on-commit.sh
   artifacts:
     paths:
+      - .ci/deptree.txt
       - .ci/schedule-params.txt
     expire_in: 1 hour
   resource_group: chaotic
@@ -32,6 +33,7 @@ on-schedule:
     - .ci/on-schedule.sh
   artifacts:
     paths:
+      - .ci/deptree.txt
       - .ci/schedule-params.txt
     expire_in: 1 hour
   resource_group: chaotic
@@ -45,6 +47,7 @@ manual-schedule:
     - .ci/manual-schedule.sh
   artifacts:
     paths:
+      - .ci/deptree.txt
       - .ci/schedule-params.txt
     expire_in: 1 hour
   resource_group: chaotic
@@ -61,6 +64,10 @@ do-schedule:
     - echo "$DEPLOY_KEY" >/app/sshkey
     - chmod 400 /app/sshkey
   script:
-    - if [ -f .ci/schedule-params.txt ]; then set -x; source ".ci/schedule-params.txt"; if [[ -v PARAMS_SCHEDULE ]]; then /entry_point.sh "${PARAMS_SCHEDULE[@]}"; fi; if [[ -v PARAMS_AUTOREPOREMOVE ]]; then /entry_point.sh "${PARAMS_AUTOREPOREMOVE[@]}"; fi; fi
+    - |
+      if [ -f .ci/schedule-params.txt ]; then set -x; source ".ci/schedule-params.txt";
+        if [[ -v PARAMS_SCHEDULE ]]; then /entry_point.sh "${PARAMS_SCHEDULE[@]}"; fi;
+        if [[ -v PARAMS_AUTOREPOREMOVE ]]; then /entry_point.sh "${PARAMS_AUTOREPOREMOVE[@]}"; fi;
+      fi
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
