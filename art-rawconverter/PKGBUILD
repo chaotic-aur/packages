@@ -17,7 +17,7 @@ unset _pkgtype
 # basic info
 _pkgname="art-rawconverter"
 pkgname="$_pkgname${_pkgtype:-}"
-pkgver=1.21.3
+pkgver=1.22
 pkgrel=1
 pkgdesc="Raw image converter forked from RawTherapee with ease of use in mind"
 url="https://bitbucket.org/agriggio/art"
