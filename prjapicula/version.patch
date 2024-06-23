@@ -1,0 +1,17 @@
+--- a/setup.py
++++ b/setup.py
+@@ -5,6 +5,7 @@
+ 
+ setuptools.setup(
+     name="Apycula",
++    version="@@VERSION@@",
+     author="Pepijn de Vos",
+     author_email="pepijndevos@gmail.com",
+     description="Open Source tools for Gowin FPGAs",
+@@ -35,6 +36,4 @@
+             'gowin_bba=apycula.gowin_bba:main',
+         ],
+     },
+-    use_scm_version=True,
+-    setup_requires=['setuptools_scm'],
+ )

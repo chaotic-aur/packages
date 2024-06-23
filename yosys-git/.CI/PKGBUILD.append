@@ -1,0 +1,26 @@
+check() {
+  true
+}
+
+#eval "$(echo "orig_prepare()"; declare -f prepare | tail -n +2)"
+prepare() {
+  cd "${srcdir}/yosys"
+
+  git submodule init
+  git config submodule.abc.url "$srcdir/abc"
+  git -c protocol.file.allow=always submodule update
+
+  curl https://patch-diff.githubusercontent.com/raw/YosysHQ/yosys/pull/3339.patch | patch -p1 -i -
+  #orig_prepare
+}
+
+build() {
+  cd "${srcdir}/yosys"
+
+  make config-gcc
+  echo "ENABLE_LIBYOSYS=1" >> Makefile.conf
+  echo "ENABLE_PYOSYS=1" >> Makefile.conf
+  echo "ABCPULL=0" >> Makefile.conf
+
+  make PREFIX="/usr"
+}

@@ -1,0 +1,24 @@
+pkgbase = appcsxcad-git
+	pkgdesc = Minimal GUI Application using the QCSXCAD library. Built from git.
+	pkgver = 20200104
+	pkgrel = 1
+	url = https://github.com/thliebig/AppCSXCAD
+	arch = x86_64
+	license = GPL
+	makedepends = git
+	makedepends = cmake
+	depends = csxcad-git
+	depends = openems-git
+	depends = qcsxcad
+	depends = hdf5
+	depends = vtk
+	depends = qt5-base
+	depends = qt5-x11extras
+	depends = libxcursor
+	provides = appcsxcad
+	conflicts = appcsxcad
+	source = git+https://github.com/thliebig/AppCSXCAD
+	md5sums = SKIP
+
+pkgname = appcsxcad-git
+
