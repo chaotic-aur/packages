@@ -1,0 +1,57 @@
+pkgbase = wps-office-cn
+	pkgdesc = Kingsoft Office (WPS Office) CN version - an office productivity suite
+	pkgver = 11.1.0.11719
+	pkgrel = 1
+	url = https://linux.wps.cn
+	arch = x86_64
+	arch = aarch64
+	license = LicenseRef-WPS-EULA
+	options = !emptydirs
+	source = fix-wps-python-parse.patch
+	sha1sums = f3713481edf04ffb08be8d24dce66554dd5a4f13
+	source_x86_64 = wps-office_11.1.0.11719_amd64.deb::https://wps-linux-personal.wpscdn.cn/wps/download/ep/Linux2019/11719/wps-office_11.1.0.11719_amd64.deb?t=1708571846&k=14391b2b5c4b1af79d05ece2ad3889b8
+	sha1sums_x86_64 = 31651fdf617b55d22aef19783182e969f8f1e222
+	source_aarch64 = wps-office_11.1.0.11719_arm64.deb::https://wps-linux-personal.wpscdn.cn/wps/download/ep/Linux2019/11719/wps-office_11.1.0.11719_arm64.deb?t=1708571846&k=84039bf78f846f5fd77ef1177f89291a
+	sha1sums_aarch64 = 990c3dcc276118d31907e6d17ac3c1d3f304b6c1
+
+pkgname = wps-office-cn
+	install = wps-office-cn.install
+	depends = fontconfig
+	depends = xorg-mkfontdir
+	depends = libxrender
+	depends = desktop-file-utils
+	depends = shared-mime-info
+	depends = xdg-utils
+	depends = glu
+	depends = sdl2
+	depends = libpulse
+	depends = hicolor-icon-theme
+	depends = libxss
+	depends = sqlite
+	depends = libtool
+	depends = libxslt
+	depends = libjpeg-turbo
+	optdepends = libtiff5: Provide libtiff.so.5 for wpspdf working
+	optdepends = cups: for printing support
+	optdepends = libjpeg-turbo: JPEG image codec support
+	optdepends = pango: for complex (right-to-left) text support
+	optdepends = curl: An URL retrieval utility and library
+	optdepends = ttf-wps-fonts: Symbol fonts required by wps-office
+	optdepends = ttf-ms-fonts: Microsft Fonts recommended for wps-office
+	optdepends = wps-office-fonts: FZ TTF fonts provided by wps community
+	optdepends = wps-office-mime-cn: Use mime files provided by Kingsoft
+	optdepends = wps-office-mui-zh-cn: zh_CN support for WPS Office
+	provides = wps-office
+	conflicts = kingsoft-office
+	conflicts = wps-office
+
+pkgname = wps-office-mime-cn
+	pkgdesc = Mime files provided by Kingsoft Office (WPS Office) cn version
+	arch = any
+	depends = shared-mime-info
+	provides = wps-office-mime
+	conflicts = wps-office-mime
+
+pkgname = wps-office-mui-zh-cn
+	pkgdesc = Chinese (Simplified) mui package for WPS Office
+	arch = any
