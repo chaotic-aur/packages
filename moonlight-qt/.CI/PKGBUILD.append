@@ -1,0 +1,10 @@
+
+pkgdesc="GameStream client"
+url="https://github.com/moonlight-stream/moonlight-qt"
+
+depends=(
+  ${depends[@]/ffmpeg}
+  libavcodec.so
+)
+
+unset optdepends
