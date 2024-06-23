@@ -221,7 +221,8 @@ Each package will have their own file named after the package name. The followin
 
 - `CI_GIT_COMMIT`: Used by CI to determine whether the latest commit changed. Used by `fetch-gitsrc` to schedule new
   builds. Needs to be provided in case the package should be treated as a git package. CI will automatically update the
-  latest available commit of the git URL set in the `source` section of the PKGBUILD. If it differs, schedule a build. -`CI_PKGBUILD_TIMESTAMP`: The last modified date of the PKGBUILD on AUR. This is used to determine whether the
+  latest available commit of the git URL set in the `source` section of the PKGBUILD. If it differs, schedule a
+  build. -`CI_PKGBUILD_TIMESTAMP`: The last modified date of the PKGBUILD on AUR. This is used to determine whether the
   PKGBUILD has changed. If it differs, schedule a build. Will be maintained automatically.
 
 ### CI pipeline variables
@@ -288,20 +289,22 @@ while scheduling packages. See below for more information.
 This tool is distributed as Docker containers and consists of a pair of manager and builder instances.
 
 - Manager: `registry.gitlab.com/garuda-linux/tools/chaotic-manager/manager`
-  - Manages builds by adding them to the schedule
+  - Manages builds by adding them to the schedule, used e.g. in the schedule step of CI pipelines
   - Provides log management and the live-updating logs
+  - Manages any existing builds by spinning up build containers, picking from the available BullMQ builder / database
+    queues
+  - Picks up already built package archives from the landing zone (builder containers push finished build archives here)
+    to add them to the database of the target repository
 - Builder: `registry.gitlab.com/garuda-linux/tools/chaotic-manager/builder`
   - This one contains the actual logic behind package builds (
     seen [here](https://gitlab.com/garuda-linux/tools/chaotic-manager/-/tree/main/builder-container?ref_type=heads))
     known from infra 3.0 like `interfere.sh`, `database.sh` etc.
-  - Picks packages to build from the Redis instance managed by the manager instance
-
-The manager is used by GitLab CI in the `schedule-package` job, scheduling packages by adding them to the build queue.
-The builder can be used by any machine capable of running the container. It will pick available jobs from our central
-Redis instance.
+  - This one is used by an executing manager instance to run the build processes with. It runs jobs present in the
+    builder BullMQ queue.
 
 An example of a valid config can be found in
 the [Garuda Linux infrastructure repository](https://gitlab.com/garuda-linux/infra-nix/-/blob/main/docker-compose/chaotic-v4/docker-compose.yml?ref_type=heads#L38).
+The following variables can be set in Docker environment:
 
 - `DATABASE_HOST`: database address published to the outside world
 - `DATABASE_PORT`: the port behind packages can be deployed to
@@ -326,6 +329,247 @@ The following variables are only relevant for builder instances:
 - `BUILDER_HOSTNAME`: the hostname of the builder will be displayed in package logs to determine which builder built a
   package
 - `BUILDER_TIMEOUT`: the timeout for a package build, 3600 seconds by default. Should be increased on slow builders
+
+### Setting up
+
+#### Requirements
+
+The base requirements for running this kind of setup are as follows:
+
+- Docker/Podman must be installed in the target system, docker-/podman-compose are good to have as well. We will use it
+  in our following examples.
+- A Redis instance must be available, e.g. installed on the host system or added to ´docker-compose.yml`:
+
+  ```yml
+  chaotic-redis:
+    image: redis:alpine
+    container_name: chaotic-redis
+    restart: always
+    ports:
+      - "6379:6379"
+    command: redis-server --save 60 1 --loglevel warning --requirepass verysecurepassword
+    volumes:
+      - ./redis-data:/data
+  ```
+
+  The following examples assume Redis to be installed on the host system. In case it is added to `docker-compose.yml`,
+  replace any occurances of `host.docker.internal` with `chaotic-redis`.
+
+- A reverse proxy like Nginx to expose the Chaotic Manager's logs to the public in a secure way should be available.
+  E.g., using Nginx it is sufficient to `proxy_pass` the specified `--web-port` value to the Manager instance container.
+  Additionally, the following settings might be usedful:
+
+  ```ǹginx
+  proxy_buffering off;
+  proxy_read_timeout 330s;
+  ```
+
+#### Exemplary Manager instance setup
+
+```yaml
+chaotic-manager:
+  image: registry.gitlab.com/garuda-linux/tools/chaotic-manager/manager:latest
+  container_name: chaotic-manager
+  command: database --web-port 8080
+  environment:
+    DATABASE_HOST: sub.domain.tld
+    DATABASE_PORT: 22
+    DATABASE_USER: package-deployer
+    GPG_PATH: /var/awesome-repo/gnupg
+    LANDING_ZONE_PATH: /var/awesome-repo/landing-zone
+    LOGS_URL: https://sub.domain.tld/logs/logs.html
+    REDIS_PASSWORD: verysecurepassword
+    REDIS_SSH_HOST: host.docker.internal
+    REDIS_SSH_USER: package-deployer
+    REPO_PATH: /srv/http/repos
+    TELEGRAM_BOT_TOKEN: 1234567890
+    TELEGRAM_CHAT_ID: 0987654321
+    PACKAGE_REPOS: >-
+      {
+          "awesome-repo": {
+              "url": "https://gitlab.com/awesome-repo/pkgbuilds"
+          }
+      }
+    PACKAGE_TARGET_REPOS: >-
+      {
+          "awesome-repo": {
+              "extra_repos": [
+                  {
+                      "name": "awesome-repo",
+                      "servers": [
+                          "https://sub.domain.tld/awesome-repo/x86_64"
+                      ]
+                  }
+              ],
+              "extra_keyrings": [
+                  "https://sub.domain.tld/awesome-repo/awesome-keyring.pkg.tar.zst"
+              ]
+          }
+      }
+    PACKAGE_REPOS_NOTIFIERS: >-
+      {
+          "awesome-repo": {
+              "id": "123456",
+              "token": "GITLABAPITOKENWITHAPIACCESS",
+              "check_name": "awesome-repo: %pkgbase%"
+          }
+      }
+  volumes:
+    - ./sshkey:/app/sshkey
+    - /var/run/docker.sock:/var/run/docker.sock
+    - /srv/http/repos:/repo_root
+  extra_hosts:
+    - "host.docker.internal:host-gateway"
+  ports: [8080:8080]
+```
+
+The following things are to note:
+
+- `PACKAGE_REPOS`, `PACKAGE_TARGET_REPOS` and `PACKAGE_REPOS_NOTIFIERS` are JSON values and need to be valid JSON in
+  order to be processed.
+- The above setup assumes the docker-compose.yml to be present in `var/awesome-repo`.
+- `LOGS_URL` needs to match the address which the reverse proxy publishes `--web-port 8080` to the outside world.
+- `REPO_PATH` is the path of the repository _on the Docker host_. The same path must be mapped to `/repo_root` inside
+  the container via volumes.
+- `/app/sshkey` is assumed to be the private SSH key
+- Ports don't have to explicitly exposed if using an Nginx Docker container, in this setup however, our Nginx and Redis
+  instance are present on the host system.
+- `PACKAGE_REPOS_NOTIFIERS` and `TELEGRAM_*` variables are optional but provide additional functionality of they are
+  set.
+- `DATABASE_HOST` refers to the address published to the outside world, e.g. for additional builders an other servers.
+
+#### Examplary Builder instance setup
+
+```yaml
+---
+services:
+  chaotic-builder:
+    image: registry.gitlab.com/garuda-linux/tools/chaotic-manager/manager:latest
+    container_name: chaotic-builder
+    command: builder
+    environment:
+      BUILDER_TIMEOUT: 7200
+      BUILDER_HOSTNAME: awesome-builder
+      REDIS_PASSWORD: verysecurepassword
+      REDIS_SSH_HOST: host.docker.internal
+      REDIS_SSH_USER: package-deployer
+      SHARED_PATH: /var/chaotic/shared
+      DATABASE_HOST: host.docker.internal
+      DATABASE_PORT: 22
+    volumes:
+      - ./shared:/shared
+      - ./sshkey:/app/sshkey
+      - /var/run/docker.sock:/var/run/docker.sock
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+```
+
+The following things are to note:
+
+- The above setup assumes the docker-compose.yml to be present in `var/awesome-repo`.
+- The `SHARED_PATH` variable needs to match the directory mapped to `/shared` inside the container.
+- `DATABASE_HOST` can in theory be any other host, but can be set to `host.docker.internal` in case the Redis instance
+  runs on the Docker host.
+- The Docker socket needs to be mounted as the builder instance will use it to spin up build container instances.
+- `/app/sshkey` is assumed to be the private SSH key used for pushing finished package builds to the manager instance's
+  landing zone.
+- `BUILDER_TIMEOUT` only needs to be set in case it is a slower build machine which does not finish heaver tasks in one
+  hour.
+- As many instances of this container can be added the setup as wanted. Each of them will allow processing another build
+  at the same time in total.
+
+### Features
+
+#### Chaotic-Manager container commands
+
+- `schedule`: Schedules a new package build by adding it to the Redis instance. It takes the following arguments:
+  - `arch`: The architecture to build the package for
+  - `target-repo`: The target repository to deploy the package to, referring to the `PACKAGE_TARGET_REPOS` variable set
+    in the Docker environment variables.
+  - `source-repo`: The source repository to pull the package from, referring to the `PACKAGE_REPOS` variable set in the
+    Docker environment variables.
+  - `commit`: The commit hash which the schedule call originates from
+  - `deptree`: the dependency tree built by the CI pipeline. This parameter is omitted in CI pipelines and instead
+    passed as file, reading from `/.ci/deptree.txt`. The reason is that the parameter will be to huge to be processed by
+    the shell if 100+ packages are
+    scheduled at the same time.
+    It contains information about the build order of packages and their dependencies.
+- `builder`: Starts the build job, which then grabs any available build jobs from the build queue.
+- `auto-repo-remove`: Removes obsolete packages from the target repository. Further parameters must include the pkgbases
+  to be removed.
+- `database`: Starts the manager instance, which is responsible for managing queues, logs and database jobs. It
+  additionally spins up a web server to serve logs from if `--web-port` is passed as argument.
+- `web`: Starts the web server to serve logs from. This is only needed in case the manager instance does not run the web
+  server.
+
+#### Web server
+
+Available routes on the port set up be the `--web-port` parameter are as follows:
+
+- `/api/logs/:id/:timestamp`: Returns the log file of a package build. The `id` is the package's ID, the `timestamp` is
+  the timestamp of the build.
+- `/api/logs/:id`: Returns the latest log file of a package build. The `id` is the package's ID.
+- `/api/queue/stats`: Returns a JSON object containing the current queue stats.
+- `/api/queue/packages`: Returns a JSON object containing information the currently scheduled packages.
+- `/metrics`: Returns collected Prometheus metrics.
+
+#### Notifications
+
+Notifications about relevant events can be sent to a Telegram channel or chat via a Bot.
+This requires a valid Bot token and the Chat ID to be set.
+The following events are currently supported:
+
+- Build failures: additionally contains links to full build logs and the originating commit.
+
+  ```text
+  🚨 Failed deploying to awesome-repo:
+  > freecad-git - logs- commit
+  ```
+
+- Build success:
+
+  ```text
+  📣 New deployment to awesome-repo:
+  > freecad-git
+  ```
+
+- Timed out build: Contains links to full build logs and the originating commit.
+
+  ```text
+  ⏳ Build for awesome-repo failed due to a timeout:
+  > freecad-git - logs - commit
+  ```
+
+- Successful repo-remove jobs:
+
+  ```text
+  ✅ Repo-remove job for awesome-repo finished successfully
+  ```
+
+- Failed repo-remove jobs:
+
+  ```text
+  🚫 Repo-remove job for awesome-repo failed
+  ```
+
+#### Build order
+
+The build order is determined by the dependency tree built by the CI pipeline.
+This tree is passed to the manager and is then used to determine the correct build order automatically.
+No further intervention is needed to achieve this.
+
+#### Live-updating logs
+
+Logs are live-updating and can be viewed in real-time via the web server.
+In case GitLab is used and `PACKAGE_REPOS_NOTIFIERS` is set,
+an external CI stage will be created for every package scheduled during the CI run, linking to the log.
+
+#### Prometheus metrics
+
+Prometheus metrics are available at the `/metrics` endpoint of the web server.
+Currently, we collect default `prom-client` metrics as well as statistics about total event count of each build status
+(failed, successful, already-built, timed out) as well as metrics about overall build times.
+These can be collected via a Prometheus instance and then be visualized using Grafana.
 
 ## Development setup
 
