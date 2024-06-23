@@ -35,6 +35,10 @@ fi
 git config --global user.name "$GIT_AUTHOR_NAME"
 git config --global user.email "$GIT_AUTHOR_EMAIL"
 
+# Silence some very insane log spam. Master is set by default and the silenced
+# message is declared as hint.
+git config --global init.defaultBranch "master"
+
 if [ -v TEMPLATE_ENABLE_UPDATES ] && [ "$TEMPLATE_ENABLE_UPDATES" == "true" ]; then
     .ci/update-template.sh && UTIL_PRINT_INFO "Updated CI template." && exit 0 || true
 fi
