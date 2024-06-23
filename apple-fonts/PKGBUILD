@@ -1,9 +1,9 @@
 # Maintainer:  Alessandro Marchioro <marciozgaming@gmail.com>
 # Co-Maintainer: Cp Dong <cp-dong at outlook dot com>
 pkgname=apple-fonts
-pkgver=1.1
+pkgver=6
 pkgrel=1
-pkgdesc='Apple San Francisco, New York fonts, directly from Apple official source'
+pkgdesc='Fonts for Apple platforms, including San Francisco and New York typefaces'
 arch=(any)
 url='https://developer.apple.com/fonts/'
 license=('custom')
@@ -35,7 +35,7 @@ prepare() {
     7z e "$archive" -y -osrc/
     cd src/
     7z x *.pkg -y
-    7z x 'Payload~'
+    7z x 'Payload~' -y
     mv Library/Fonts/* "$srcdir/fonts/"
     cd "$srcdir"
     rm -rf src/{*,.*}

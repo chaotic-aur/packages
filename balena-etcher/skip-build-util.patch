@@ -1,0 +1,29 @@
+diff --git a/forge.sidecar.ts b/forge.sidecar.ts
+index fc34809..00d644f 100644
+--- a/forge.sidecar.ts
++++ b/forge.sidecar.ts
+@@ -77,23 +77,8 @@ function build(
+ 		commands.push(['npm', ['rebuild', 'mountutils', `--arch=${arch}`]]);
+
+ 		commands.push([
+-			'pkg',
+-			[
+-				path.join(sourcesDir, 'util', 'api.js'),
+-				'-c',
+-				'pkg-sidecar.json',
+-				// `--no-bytecode` so that we can cross-compile for arm64 on x64
+-				'--no-bytecode',
+-				'--public',
+-				'--public-packages',
+-				'"*"',
+-				// always build for host platform and node version
+-				// https://github.com/vercel/pkg-fetch/releases
+-				'--target',
+-				`node20-${arch}`,
+-				'--output',
+-				binPath,
+-			],
++			"install",
++			['-Dm644', '/dev/null', binPath,]
+ 		]);
+ 	});

@@ -1,7 +1,7 @@
 # Maintainer: Daniel Bermond <dbermond@archlinux.org>
 
 pkgname=libultrahdr-git
-pkgver=1.0.0.r103.g74993de
+pkgver=1.0.0.r167.ge9932b3
 pkgrel=1
 pkgdesc='Codec for the Ultra HDR format (git version)'
 arch=('x86_64')

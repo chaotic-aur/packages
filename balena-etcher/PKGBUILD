@@ -5,7 +5,7 @@
 pkgname=balena-etcher
 _pkgname=etcher
 pkgver=1.19.21
-pkgrel=1
+pkgrel=2
 epoch=2
 pkgdesc='Flash OS images to SD cards & USB drives, safely and easily'
 arch=('x86_64' 'i686' 'armv7h' 'aarch64')
@@ -25,13 +25,16 @@ source=("https://github.com/balena-io/etcher/archive/refs/tags/v${pkgver}.tar.gz
   "${pkgname}.desktop"
   "${pkgname}"
   "etcher-util"
+  'skip-build-util.patch'
 )
 sha256sums=('467640c104271f7846381b3a00fb6cbca3c5b3fcca0724605c0924129d941bfd'
   '6c5fb48aeb636272689c86d7cf9beea4515214636bc617a61c3e8387628b3415'
   '7482eb18af030eb6d2b44850f23ecb99cd9198f642ac3b22b2f9f2ef0c8944d4'
-  'f27e34eaec0d2cb74fee259ff32c2cbd1dae36d2046d2b3e97394b91f47adace')
+  'f27e34eaec0d2cb74fee259ff32c2cbd1dae36d2046d2b3e97394b91f47adace'
+  'a64369d70d41a3e9bed9d2260dedcaf76fceb8c654dbf8b6eee947785de2ae45')
 prepare() {
   cd "${_pkgname}-${pkgver}"
+  patch --strip=1 < ${srcdir}/skip-build-util.patch
   local electronDist="/usr/lib/${_electron}"
   local electronVersion="$(< $electronDist/version)"
   jq ".devDependencies.electron = \"$electronVersion\"" package.json | sponge package.json
