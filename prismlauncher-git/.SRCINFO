@@ -1,12 +1,12 @@
 pkgbase = prismlauncher-git
 	pkgdesc = Minecraft launcher with ability to manage multiple instances.
-	pkgver = 6.0.r238.gdeed4957
-	pkgrel = 4
+	pkgver = 8.0.r757.g98d68bafe
+	pkgrel = 1
 	url = https://prismlauncher.org
 	arch = i686
 	arch = x86_64
 	arch = aarch64
-	license = GPL3
+	license = GPL-3.0-only AND LGPL-3.0-or-later AND LGPL-2.0-or-later AND Apache-2.0 AND MIT AND BSD-2-Clause AND BSD-3-Clause AND LicenseRef-Batch AND OFL-1.1
 	makedepends = cmake
 	makedepends = extra-cmake-modules
 	makedepends = git
@@ -31,6 +31,7 @@ pkgbase = prismlauncher-git
 	optdepends = visualvm: Profiling support
 	optdepends = xorg-xrandr: for older minecraft versions
 	optdepends = java-runtime=8: for older minecraft versions
+	optdepends = flite: minecraft voice narration
 	provides = prismlauncher
 	conflicts = prismlauncher
 	options = debug

@@ -2,7 +2,7 @@
 pkgname=86box
 _pkgname=86Box
 pkgver=4.1.1
-pkgrel=1
+pkgrel=2
 pkgdesc='An emulator for classic IBM PC clones'
 arch=('pentium4' 'x86_64' 'armv7h' 'aarch64')
 url='https://86box.net/'
@@ -40,7 +40,7 @@ build() {
       _TOOLCHAIN=cmake/flags-gcc-aarch64.cmake
       ;;
   esac
-  LDFLAGS='-z now' cmake -S"$_pkgname-$pkgver" -Bbuild --preset regular --toolchain "$_TOOLCHAIN" -DCMAKE_INSTALL_PREFIX=/usr -DUSE_QT6=on -DNEW_DYNAREC="$_NDR"
+  LDFLAGS='-z now -z shstk' cmake -S"$_pkgname-$pkgver" -Bbuild --preset regular --toolchain "$_TOOLCHAIN" -DCMAKE_INSTALL_PREFIX=/usr -DUSE_QT6=on -DNEW_DYNAREC="$_NDR"
   cmake --build build
 }
 
