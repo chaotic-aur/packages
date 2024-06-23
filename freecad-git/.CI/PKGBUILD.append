@@ -1,0 +1,12 @@
+
+unset -f check
+
+pkgver() {
+  cd FreeCAD
+
+  local _tag=$(git tag | grep -Ev '[A-Za-z]{2}' | sort -rV | head -1)
+  local _version="${_tag:?}"
+  local _revision=$(git rev-list --count --cherry-pick "$_tag"...HEAD)
+  local _hash=$(git rev-parse --short=7 HEAD)
+  printf '%s.r%s.g%s' "${_version:?}" "${_revision:?}" "${_hash:?}"
+}
