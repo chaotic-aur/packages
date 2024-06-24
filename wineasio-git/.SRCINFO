@@ -1,0 +1,27 @@
+pkgbase = wineasio-git
+	pkgdesc = ASIO driver implementation for Wine
+	pkgver = 1.2.0.r8.g6529641
+	pkgrel = 1
+	url = https://github.com/wineasio/wineasio
+	install = wineasio.install
+	arch = i686
+	arch = x86_64
+	arch = x86_64_v3
+	license = LGPL
+	makedepends = git
+	depends = wine
+	depends = jack
+	depends = realtime-privileges
+	depends = python-pyqt5
+	provides = wineasio
+	conflicts = wineasio
+	options = !lto
+	options = !debug
+	source = wineasio::git+https://github.com/wineasio/wineasio.git
+	source = rtaudio::git+https://github.com/falkTX/rtaudio.git
+	sha256sums = SKIP
+	sha256sums = SKIP
+	depends_x86_64 = lib32-jack
+	makedepends_x86_64 = gcc-multilib
+
+pkgname = wineasio-git

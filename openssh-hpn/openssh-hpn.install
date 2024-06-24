@@ -1,0 +1,61 @@
+pre_upgrade() {
+  # Remove socket activation. See: https://bugs.archlinux.org/task/62248
+  if (( "$(vercmp $2 8.0p1-3)" < 0 )); then
+    if systemctl is-enabled -q "hpnsshd.socket"; then
+      cat <<EOF
+==> This package no longer provides sshd.socket and sshd@.service;
+==> copies of those files will be placed under /etc/systemd/system
+==> but please migrate to sshd.service whenever possible.
+EOF
+      for i in "hpnsshd.socket" "hpnsshd@.service"; do
+        if [[ ! -e "/etc/systemd/system/${i}" ]]; then
+          cp -v "/usr/lib/systemd/system/${i}" "/etc/systemd/system/${i}"
+        fi
+      done
+      systemctl reenable "hpnsshd.socket"
+    fi
+  fi
+}
+
+post_install() {
+  cat <<EOF
+
+IMPORTANT SECURITY NOTE:
+This PKGBUILD does NOT (!!!) follow the upstream
+OpenSSH-Portable distribution (at
+https://github.com/openssh/openssh-portable ) but rather a
+fork which is maintained by rapier (primarily for Gentoo
+Linux I believe). The fork includes the HPN patches and can be
+found at https://github.com/rapier1/openssh-portable
+
+Since I do NOT maintain this fork in any way, but merely
+package it for Arch Linux, there is absolutely no warranty for
+this code. It is very possible that the current version of the
+fork still contains open security bugs which have already been
+fixed in upstream OpenSSH.
+
+USE THIS PKGBUILD AT YOUR OWN RISK AND ONLY IF YOU FULLY
+UNDERSTAND THE SECURITY IMPLICATIONS OF NOT USING THE MOST
+RECENT OFFICIAL OPENSSH !
+
+Consider yourself warned.
+
+If security is paramount for you or in case of any doubt,
+please use the official OpenSSH distribution instead.
+
+EOF
+}
+
+post_upgrade() {
+  post_install
+
+  if (( $(vercmp $2 8.2p1-3) < 0 )); then
+    if systemctl is-active "hpnsshd.service" >/dev/null; then
+      cat <<EOF
+==> After this upgrade, your existing SSH daemon may be unable to accept
+==> new connections. To fix this, your SSH daemon will now be restarted.
+EOF
+      systemctl restart "hpnsshd.service"
+    fi
+  fi
+}

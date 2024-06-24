@@ -1,0 +1,30 @@
+restart_cups() {
+	echo "> Now restarting CUPS..."
+	systemctl try-restart cups.service
+}
+
+reload_udev() {
+	echo "> Now reloading udev rules database..."
+	udevadm control --reload
+}
+
+post_install() {
+	reload_udev
+	restart_cups
+
+	echo ""
+	echo "> You need to add your user to the lp group."
+	echo ""
+	echo "> Please refer to the table at http://foo2zjs.rkkda.com"
+	echo "> to choose the appropriate driver for your printer."
+}
+
+post_upgrade() {
+	reload_udev
+	restart_cups
+}
+
+post_remove() {
+	reload_udev
+	restart_cups
+}

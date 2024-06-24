@@ -1,0 +1,4 @@
+[ripcord-arch-libs]
+source = "regex"
+url = "https://cancel.fm/dl/"
+regex = "Ripcord-(\\d+\\.\\d+\\.\\d+)-x86_64\\.AppImage"
