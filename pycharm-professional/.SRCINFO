@@ -1,6 +1,6 @@
 pkgbase = pycharm-professional
 	pkgdesc = Python IDE for Professional Developers. Professional Edition
-	pkgver = 2024.1.3
+	pkgver = 2024.1.4
 	pkgrel = 1
 	url = https://www.jetbrains.com/pycharm/
 	install = pycharm-professional_x86_64.install
@@ -34,11 +34,11 @@ pkgbase = pycharm-professional
 	source = ltedit-professional.desktop
 	sha256sums = 6ff245b42b475a5b97c359d97bc48d573c2988170fc195073c9187d5abe1c576
 	sha256sums = 21e9d192712fb537d9e5abccc54970becb347b32ad2be469a35b2585f45a9116
-	source_x86_64 = https://download-cf.jetbrains.com/python/pycharm-professional-2024.1.3.tar.gz
-	sha256sums_x86_64 = be3be94349ec55726fe9180d8a46097e7110a9e1cb7fd2cca85b961814a6e415
-	source_x86_64_v3 = https://download-cf.jetbrains.com/python/pycharm-professional-2024.1.3.tar.gz
-	sha256sums_x86_64_v3 = be3be94349ec55726fe9180d8a46097e7110a9e1cb7fd2cca85b961814a6e415
-	source_aarch64 = https://download-cf.jetbrains.com/python/pycharm-professional-2024.1.3-aarch64.tar.gz
-	sha256sums_aarch64 = 44f6134f352d0d3754a29d6ca6a6c2a084a2918d302946b45141714f3b8ceaaf
+	source_x86_64 = https://download-cf.jetbrains.com/python/pycharm-professional-2024.1.4.tar.gz
+	sha256sums_x86_64 = 3a12ada098a839ba3c32820071ecc04cb71e8e1066d0753397399c2e52941de9
+	source_x86_64_v3 = https://download-cf.jetbrains.com/python/pycharm-professional-2024.1.4.tar.gz
+	sha256sums_x86_64_v3 = 3a12ada098a839ba3c32820071ecc04cb71e8e1066d0753397399c2e52941de9
+	source_aarch64 = https://download-cf.jetbrains.com/python/pycharm-professional-2024.1.4-aarch64.tar.gz
+	sha256sums_aarch64 = a90c657a333e1825c934d524cb426115c85d19d7aebfa4a149fda5062be29fab
 
 pkgname = pycharm-professional
