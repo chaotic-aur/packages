@@ -1,0 +1,11 @@
+
+depends=(${depends[@]/hyprlang*})
+
+_sodeps=(
+  # makedep::sodep
+  'hyprlang-git'::'libhyprlang.so'
+)
+for i in "${_sodeps[@]}" ; do
+  depends+=("${i#*::}")
+  makedepends+=("${i%::*}")
+done
