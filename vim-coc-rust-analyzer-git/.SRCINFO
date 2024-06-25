@@ -1,0 +1,21 @@
+pkgbase = vim-coc-rust-analyzer-git
+	pkgdesc = rust-analyzer extension for coc.nvim
+	pkgver = r1222.dc17ad2
+	pkgrel = 1
+	url = https://github.com/fannheyward/coc-rust-analyzer
+	arch = any
+	license = MIT
+	makedepends = yarn
+	makedepends = npm
+	makedepends = git
+	makedepends = python
+	depends = vim-coc
+	depends = rust-analyzer
+	provides = vim-coc-rust-analyzer
+	conflicts = vim-coc-rust-analyzer
+	source = coc-rust-analyzer::git+https://github.com/fannheyward/coc-rust-analyzer.git
+	source = patch.py
+	sha256sums = SKIP
+	sha256sums = 5b734b06d80a148fc3b0f5df841c669bc8d82b465e59b222dca9519b0bfc423c
+
+pkgname = vim-coc-rust-analyzer-git

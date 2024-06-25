@@ -1,0 +1,21 @@
+pkgbase = vim-coc-go-git
+	pkgdesc = Go language server extension using gopls for coc.nvim
+	pkgver = 0.13.3.r6.ga0e68ff
+	pkgrel = 1
+	url = https://github.com/josa42/coc-go
+	arch = any
+	license = MIT
+	makedepends = yarn
+	makedepends = npm
+	makedepends = git
+	makedepends = python
+	depends = vim-coc
+	depends = gopls
+	provides = vim-coc-go
+	conflicts = vim-coc-go
+	source = coc-go::git+https://github.com/josa42/coc-go.git
+	source = patch.py
+	sha256sums = SKIP
+	sha256sums = 64ec60c5df767e4fc0a005c72077a2954183837381efcec2a223abfc3790b0a2
+
+pkgname = vim-coc-go-git

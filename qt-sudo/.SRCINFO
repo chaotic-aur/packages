@@ -1,0 +1,17 @@
+pkgbase = qt-sudo
+	pkgdesc = A clone of LXQt sudo tool, without LXQt libs
+	pkgver = 2.0.1
+	pkgrel = 1
+	url = https://github.com/aarnt/qt-sudo.git
+	arch = x86_64
+	license = LGPL2.1
+	makedepends = git
+	makedepends = qt6-tools
+	depends = gcc-libs
+	depends = glibc
+	depends = qt6-base
+	depends = sudo
+	source = git+https://github.com/aarnt/qt-sudo.git#tag=v2.0.1
+	sha256sums = SKIP
+
+pkgname = qt-sudo

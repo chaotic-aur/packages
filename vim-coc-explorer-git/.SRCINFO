@@ -1,0 +1,18 @@
+pkgbase = vim-coc-explorer-git
+	pkgdesc = Explorer for coc.nvim
+	pkgver = 0.7.23.r0.gbb631b5
+	pkgrel = 1
+	url = https://github.com/weirongxu/coc-explorer
+	arch = any
+	groups = vim-coc-extras-git
+	license = MIT
+	makedepends = yarn
+	makedepends = npm
+	makedepends = git
+	depends = vim-coc
+	provides = vim-coc-explorer
+	conflicts = vim-coc-explorer
+	source = coc-explorer::git+https://github.com/weirongxu/coc-explorer.git
+	sha256sums = SKIP
+
+pkgname = vim-coc-explorer-git
