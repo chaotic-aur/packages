@@ -3,7 +3,7 @@
 
 _pkgname=thunderbird
 pkgname=thunderbird-beta
-pkgver=128.0b2
+pkgver=128.0b3
 pkgrel=1
 pkgdesc='Beta version of standalone mail and news reader from mozilla.org'
 url="https://www.thunderbird.net/"
@@ -60,7 +60,7 @@ source=(
   metainfo.patch
 )
 sha256sums=(
-  '7764d614b6b9ddc8676c908b281358af80be228244999e01e99d03a423d15a74'
+  '4a39d9c68d56b8fcc181fc9659483c3e14ebcc624f9033102951391d43c20039' ###
   'SKIP'
   'c620a080414b15e822073e22685c781a8b1789b93d5474aedcadbd8801945d97'
   'c959c9f2b60a42dc937f744c018196906727d468d8f1d7402fb4f743484c414b'
@@ -155,6 +155,10 @@ build() {
   # malloc_usable_size is used in various parts of the codebase
   CFLAGS="${CFLAGS/_FORTIFY_SOURCE=3/_FORTIFY_SOURCE=2}"
   CXXFLAGS="${CXXFLAGS/_FORTIFY_SOURCE=3/_FORTIFY_SOURCE=2}"
+
+  # Breaks compilation since https://bugzilla.mozilla.org/show_bug.cgi?id=1896066
+  CFLAGS="${CFLAGS/-fexceptions/}"
+  CXXFLAGS="${CXXFLAGS/-fexceptions/}"
 
   echo "Building thunderbird..."
   ./mach build
