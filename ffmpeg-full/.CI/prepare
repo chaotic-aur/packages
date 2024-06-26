@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-$CAUR_PUSH 'source /etc/profile'
-$CAUR_PUSH 'export PATH=/opt/cuda/bin:$PATH'
+# source /etc/profile
+# export PATH=/opt/cuda/bin:$PATH
 
 sed -E -e 's@--enable-nvenc\b@--disable-nvenc@' -i PKGBUILD
