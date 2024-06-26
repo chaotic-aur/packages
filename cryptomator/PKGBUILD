@@ -4,8 +4,8 @@
 # Contributor: Sebastian Stenzel <sebastian.stenzel@gmail.com>
 
 pkgname=cryptomator
-pkgver=1.12.3
-pkgrel=2
+pkgver=1.13.0
+pkgrel=1
 pkgdesc="Multiplatform transparent client-side encryption of your files in the cloud."
 arch=('any')
 url="https://cryptomator.org/"
@@ -13,19 +13,19 @@ license=('GPL3')
 depends=('fuse3' 'alsa-lib' 'hicolor-icon-theme' 'libxtst' 'libnet' 'libxrender')
 makedepends=('maven' 'unzip')
 optdepends=('keepassxc-cryptomator: Use KeePassXC to store vault passwords' 'ttf-hanazono: Install this font when using Japanese system language')
-source=("cryptomator-${pkgver}.tar.gz::https://github.com/cryptomator/cryptomator/archive/refs/tags/${pkgver}.tar.gz"
-  "cryptomator-${pkgver}.tar.gz.asc::https://github.com/cryptomator/cryptomator/releases/download/${pkgver}/cryptomator-${pkgver}.tar.gz.asc")
-source_x86_64=("jdk.tar.gz::https://github.com/adoptium/temurin21-binaries/releases/download/jdk-21.0.2%2B13/OpenJDK21U-jdk_x64_linux_hotspot_21.0.2_13.tar.gz"
-  "openjfx.zip::https://download2.gluonhq.com/openjfx/21.0.1/openjfx-21.0.1_linux-x64_bin-jmods.zip")
-source_aarch64=("jdk.tar.gz::https://github.com/adoptium/temurin21-binaries/releases/download/jdk-21.0.2%2B13/OpenJDK21U-jdk_aarch64_linux_hotspot_21.0.2_13.tar.gz"
-  "openjfx.zip::https://download2.gluonhq.com/openjfx/21.0.1/openjfx-21.0.1_linux-aarch64_bin-jmods.zip")
+source=("cryptomator-${pkgver//_/-}.tar.gz::https://github.com/cryptomator/cryptomator/archive/refs/tags/${pkgver//_/-}.tar.gz"
+  "cryptomator-${pkgver//_/-}.tar.gz.asc::https://github.com/cryptomator/cryptomator/releases/download/${pkgver//_/-}/cryptomator-${pkgver//_/-}.tar.gz.asc")
+source_x86_64=("jdk.tar.gz::https://github.com/adoptium/temurin22-binaries/releases/download/jdk-22.0.1%2B8/OpenJDK22U-jdk_x64_linux_hotspot_22.0.1_8.tar.gz"
+  "openjfx.zip::https://download2.gluonhq.com/openjfx/22.0.1/openjfx-22.0.1_linux-x64_bin-jmods.zip")
+source_aarch64=("jdk.tar.gz::https://github.com/adoptium/temurin22-binaries/releases/download/jdk-22.0.1%2B8/OpenJDK22U-jdk_aarch64_linux_hotspot_22.0.1_8.tar.gz"
+  "openjfx.zip::https://download2.gluonhq.com/openjfx/22.0.1/openjfx-22.0.1_linux-aarch64_bin-jmods.zip")
 noextract=('jdk.tar.gz' 'openjfx.zip')
-sha256sums=('bb38c45ac91c4bc521af0b08dd72cf965aba80cbf71b27afdc21fcef7dbbf567'
+sha256sums=('d7d0389c3b8632d5fec08a38973c305ee48bcdd2208861f74f0fe570bf11ce30'
   'SKIP')
-sha256sums_x86_64=('454bebb2c9fe48d981341461ffb6bf1017c7b7c6e15c6b0c29b959194ba3aaa5'
-  '7baed11ca56d5fee85995fa6612d4299f1e8b7337287228f7f12fd50407c56f8')
-sha256sums_aarch64=('3ce6a2b357e2ef45fd6b53d6587aa05bfec7771e7fb982f2c964f6b771b7526a'
-  '871e7b9d7af16aef2e55c1b7830d0e0b2503b13dd8641374ba7e55ecb81d2ef9')
+sha256sums_x86_64=('e59c6bf801cc023a1ea78eceb5e6756277f1564cd0a421ea984efe6cb96cfcf8'
+  'fbb22f35951c2e049cc2554dd03c2c56b4f5adc4b2ae9248872f46175ac103d8')
+sha256sums_aarch64=('d8488fa1e4e8c1e318cef4c0fc3842a7f15a4cf52b27054663bb94471f54b3fa'
+  '1982ad168a5e8d7cf4a9458a7d088b4f0552d0ac3f24f23fb88f8bc7e8d69a13')
 options=('!strip')
 
 validpgpkeys=('58117AFA1F85B3EEC154677D615D449FE6E6A235')
@@ -39,7 +39,7 @@ build() {
   mkdir jmods
   unzip -j openjfx.zip \*/javafx.base.jmod \*/javafx.controls.jmod \*/javafx.fxml.jmod \*/javafx.graphics.jmod -d jmods
 
-  cd "${srcdir}/cryptomator-${pkgver}"
+  cd "${srcdir}/cryptomator-${pkgver//_/-}"
 
   mvn -B clean package -Djavafx.platform=linux -DskipTests -Plinux
 
@@ -58,6 +58,7 @@ build() {
     --strip-debug \
     --compress=zip-0
 
+  ##Note: jpackage does not allow -beta suffixes, have to strip those
   "$JAVA_HOME/bin/jpackage" \
     --type app-image \
     --runtime-image runtime \
@@ -83,25 +84,25 @@ build() {
     --java-options "-Dcryptomator.showTrayIcon=true" \
     --java-options "-Dcryptomator.disableUpdateCheck=true" \
     --java-options "-Dcryptomator.buildNumber=\"aur-${pkgrel}\"" \
-    --java-options "-Dcryptomator.appVersion=\"${pkgver}\"" \
-    --app-version "${pkgver}" \
+    --java-options "-Dcryptomator.appVersion=\"${pkgver//_/-}\"" \
+    --app-version "${pkgver//_*/}" \
     --verbose
 }
 
 package() {
-  install -Dm644 "${srcdir}/cryptomator-${pkgver}/dist/linux/common/application-vnd.cryptomator.vault.xml" "${pkgdir}/usr/share/mime/packages/cryptomator-vault.xml"
-  install -Dm644 "${srcdir}/cryptomator-${pkgver}/dist/linux/common/org.cryptomator.Cryptomator.desktop" "${pkgdir}/usr/share/applications/org.cryptomator.Cryptomator.desktop"
-  install -Dm644 "${srcdir}/cryptomator-${pkgver}/dist/linux/common/org.cryptomator.Cryptomator256.png" "${pkgdir}/usr/share/icons/hicolor/256x256/apps/org.cryptomator.Cryptomator.png"
-  install -Dm644 "${srcdir}/cryptomator-${pkgver}/dist/linux/common/org.cryptomator.Cryptomator512.png" "${pkgdir}/usr/share/icons/hicolor/512x512/apps/org.cryptomator.Cryptomator.png"
-  install -Dm644 "${srcdir}/cryptomator-${pkgver}/dist/linux/common/org.cryptomator.Cryptomator.svg" "${pkgdir}/usr/share/icons/hicolor/scalable/apps/org.cryptomator.Cryptomator.svg"
-  install -Dm644 "${srcdir}/cryptomator-${pkgver}/dist/linux/common/org.cryptomator.Cryptomator.tray.svg" "${pkgdir}/usr/share/icons/hicolor/scalable/apps/org.cryptomator.Cryptomator.tray.svg"
-  install -Dm644 "${srcdir}/cryptomator-${pkgver}/dist/linux/common/org.cryptomator.Cryptomator.tray-unlocked.svg" "${pkgdir}/usr/share/icons/hicolor/scalable/apps/org.cryptomator.Cryptomator.tray-unlocked.svg"
-  install -Dm644 "${srcdir}/cryptomator-${pkgver}/dist/linux/common/org.cryptomator.Cryptomator.tray.svg" "${pkgdir}/usr/share/icons/hicolor/symbolic/apps/org.cryptomator.Cryptomator.tray-symbolic.svg"
-  install -Dm644 "${srcdir}/cryptomator-${pkgver}/dist/linux/common/org.cryptomator.Cryptomator.tray-unlocked.svg" "${pkgdir}/usr/share/icons/hicolor/symbolic/apps/org.cryptomator.Cryptomator.tray-unlocked-symbolic.svg"
+  install -Dm644 "${srcdir}/cryptomator-${pkgver//_/-}/dist/linux/common/application-vnd.cryptomator.vault.xml" "${pkgdir}/usr/share/mime/packages/cryptomator-vault.xml"
+  install -Dm644 "${srcdir}/cryptomator-${pkgver//_/-}/dist/linux/common/org.cryptomator.Cryptomator.desktop" "${pkgdir}/usr/share/applications/org.cryptomator.Cryptomator.desktop"
+  install -Dm644 "${srcdir}/cryptomator-${pkgver//_/-}/dist/linux/common/org.cryptomator.Cryptomator256.png" "${pkgdir}/usr/share/icons/hicolor/256x256/apps/org.cryptomator.Cryptomator.png"
+  install -Dm644 "${srcdir}/cryptomator-${pkgver//_/-}/dist/linux/common/org.cryptomator.Cryptomator512.png" "${pkgdir}/usr/share/icons/hicolor/512x512/apps/org.cryptomator.Cryptomator.png"
+  install -Dm644 "${srcdir}/cryptomator-${pkgver//_/-}/dist/linux/common/org.cryptomator.Cryptomator.svg" "${pkgdir}/usr/share/icons/hicolor/scalable/apps/org.cryptomator.Cryptomator.svg"
+  install -Dm644 "${srcdir}/cryptomator-${pkgver//_/-}/dist/linux/common/org.cryptomator.Cryptomator.tray.svg" "${pkgdir}/usr/share/icons/hicolor/scalable/apps/org.cryptomator.Cryptomator.tray.svg"
+  install -Dm644 "${srcdir}/cryptomator-${pkgver//_/-}/dist/linux/common/org.cryptomator.Cryptomator.tray-unlocked.svg" "${pkgdir}/usr/share/icons/hicolor/scalable/apps/org.cryptomator.Cryptomator.tray-unlocked.svg"
+  install -Dm644 "${srcdir}/cryptomator-${pkgver//_/-}/dist/linux/common/org.cryptomator.Cryptomator.tray.svg" "${pkgdir}/usr/share/icons/hicolor/symbolic/apps/org.cryptomator.Cryptomator.tray-symbolic.svg"
+  install -Dm644 "${srcdir}/cryptomator-${pkgver//_/-}/dist/linux/common/org.cryptomator.Cryptomator.tray-unlocked.svg" "${pkgdir}/usr/share/icons/hicolor/symbolic/apps/org.cryptomator.Cryptomator.tray-unlocked-symbolic.svg"
 
   mkdir -p "${pkgdir}/opt/cryptomator/"
-  cp -R "${srcdir}/cryptomator-${pkgver}/target/cryptomator" "${pkgdir}/opt/"
-  install -Dm644 "${srcdir}/cryptomator-${pkgver}/target/LICENSE.txt" -t "${pkgdir}/usr/share/licenses/${pkgname}"
+  cp -R "${srcdir}/cryptomator-${pkgver//_/-}/target/cryptomator" "${pkgdir}/opt/"
+  install -Dm644 "${srcdir}/cryptomator-${pkgver//_/-}/target/LICENSE.txt" -t "${pkgdir}/usr/share/licenses/${pkgname}"
 
   mkdir -p "${pkgdir}/usr/bin"
   ln -s "/opt/cryptomator/bin/cryptomator" "${pkgdir}/usr/bin/cryptomator"
