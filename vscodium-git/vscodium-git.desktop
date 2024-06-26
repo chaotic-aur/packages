@@ -1,0 +1,19 @@
+[Desktop Entry]
+Name=VSCodium
+Comment=Code Editing. Redefined.
+GenericName=Text Editor
+Exec=/usr/share/vscodium-git/bin/codium --no-sandbox %F
+Icon=vscodium-git
+Type=Application
+StartupNotify=true
+StartupWMClass=VSCodium
+Categories=Utility;Development;IDE;
+MimeType=text/plain;inode/directory;
+Actions=new-empty-window;
+Keywords=vscode;
+
+[Desktop Action new-empty-window]
+Name=New Empty Window
+Exec=/usr/share/vscodium-git/bin/codium --no-sandbox --new-window %F
+Icon=vscodium-git
+

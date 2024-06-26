@@ -1,0 +1,17 @@
+pkgbase = wayland-protocols-git
+	pkgdesc = Wayland protocols that add functionalities not available in the core protocol
+	pkgver = 1.23.r7.ge5d63e9
+	pkgrel = 1
+	url = https://wayland.freedesktop.org/
+	arch = any
+	license = MIT
+	makedepends = git
+	makedepends = wayland
+	makedepends = meson
+	makedepends = ninja
+	provides = wayland-protocols
+	conflicts = wayland-protocols
+	source = git+https://gitlab.freedesktop.org/wayland/wayland-protocols.git
+	sha1sums = SKIP
+
+pkgname = wayland-protocols-git
