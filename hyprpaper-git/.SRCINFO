@@ -1,7 +1,7 @@
 pkgbase = hyprpaper-git
 	pkgdesc = a blazing fast wayland wallpaper utility with IPC controls
-	pkgver = 0.6.0.r12.g518adca
-	pkgrel = 1
+	pkgver = 0.7.0.r8.gf4abf59
+	pkgrel = 2
 	url = https://github.com/hyprwm/hyprpaper
 	arch = x86_64
 	license = BSD-3-Clause
@@ -13,12 +13,13 @@ pkgbase = hyprpaper-git
 	makedepends = hyprlang-git
 	depends = libglvnd
 	depends = libjpeg.so
+	depends = libmagic.so
 	depends = libwebp.so
 	depends = pango
 	depends = wayland
 	depends = wlroots
 	depends = libhyprlang.so
-	provides = hyprpaper=0.6.0
+	provides = hyprpaper=0.7.0
 	conflicts = hyprpaper
 	source = hyprpaper::git+https://github.com/hyprwm/hyprpaper.git
 	sha256sums = SKIP

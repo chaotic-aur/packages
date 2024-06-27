@@ -2,22 +2,26 @@
 # Contributor: David Runge <dvzrv@archlinux.org>
 # Contributor: Jan Alexander Steffens (heftig) <heftig@archlinux.org>
 
+## links
+# https://pipewire.pages.freedesktop.org/wireplumber
+# https://gitlab.freedesktop.org/pipewire/wireplumber
+
 _pkgbase=wireplumber
 pkgbase=wireplumber-git
 pkgname=(
   wireplumber-git
   libwireplumber-git
 )
-pkgver=0.4.81.r22.g6f3eb329
+pkgver=0.5.4.r0.gdc6694f
 pkgrel=1
 pkgdesc="Session / policy manager implementation for PipeWire"
-url="https://pipewire.pages.freedesktop.org/wireplumber/"
+url="https://gitlab.freedesktop.org/pipewire/wireplumber"
 arch=(x86_64)
 license=(MIT)
 makedepends=(
   doxygen
   git
-  glib2
+  glib2-devel
   gobject-introspection
   graphviz
   lua
@@ -27,12 +31,12 @@ makedepends=(
   systemd
 )
 checkdepends=(pipewire-audio)
-source=("git+https://gitlab.freedesktop.org/pipewire/$_pkgbase.git")
+source=("git+https://gitlab.freedesktop.org/pipewire/wireplumber.git")
 b2sums=('SKIP')
 
 pkgver() {
   cd $_pkgbase
-  git describe --tags | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
+  git describe --tags --long --abbrev=7 | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
 }
 
 prepare() {

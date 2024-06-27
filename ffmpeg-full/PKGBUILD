@@ -3,7 +3,7 @@
 
 pkgname=ffmpeg-full
 pkgver=7.0.1
-pkgrel=1
+pkgrel=2
 _svt_hevc_ver='ed80959ebb5586aa7763c91a397d44be1798587c'
 _svt_vp9_ver='3b9a3fa43da4cc5fe60c7d22afe2be15341392ea'
 pkgdesc='Complete solution to record, convert and stream audio and video (all possible features including libfdk-aac)'
@@ -46,6 +46,8 @@ depends=(
   'libcdio-paranoia'
   'libdc1394'
   'libdrm'
+  'libdvdnav'
+  'libdvdread'
   'libfdk-aac'
   'libgcrypt'
   'libgl'
@@ -108,7 +110,6 @@ depends=(
   'vapoursynth'
   'vid.stab'
   'vmaf'
-  'vpl-runtime'
   'vulkan-icd-loader'
   'x264'
   'x265'
@@ -226,6 +227,8 @@ build() {
     --enable-libdav1d \
     --enable-libdavs2 \
     --enable-libdc1394 \
+    --enable-libdvdnav \
+    --enable-libdvdread \
     --enable-libfdk-aac \
     --enable-libflite \
     --enable-libfontconfig \
