@@ -1,14 +1,14 @@
 pkgbase = wireplumber-git
 	pkgdesc = Session / policy manager implementation for PipeWire
-	pkgver = 0.4.81.r22.g6f3eb329
+	pkgver = 0.5.4.r0.gdc6694f
 	pkgrel = 1
-	url = https://pipewire.pages.freedesktop.org/wireplumber/
+	url = https://gitlab.freedesktop.org/pipewire/wireplumber
 	arch = x86_64
 	license = MIT
 	checkdepends = pipewire-audio
 	makedepends = doxygen
 	makedepends = git
-	makedepends = glib2
+	makedepends = glib2-devel
 	makedepends = gobject-introspection
 	makedepends = graphviz
 	makedepends = lua
@@ -21,12 +21,12 @@ pkgbase = wireplumber-git
 
 pkgname = wireplumber-git
 	install = wireplumber.install
-	depends = libwireplumber-git=0.4.81.r22.g6f3eb329-1
+	depends = libwireplumber-git=0.5.4.r0.gdc6694f-1
 	depends = libsystemd.so
 	depends = lua
 	depends = pipewire
 	provides = pipewire-session-manager
-	provides = wireplumber=0.4.81.r22.g6f3eb329
+	provides = wireplumber=0.5.4.r0.gdc6694f
 	conflicts = pipewire-media-session
 	conflicts = wireplumber
 
@@ -38,5 +38,5 @@ pkgname = libwireplumber-git
 	depends = libgio-2.0.so
 	depends = libpipewire-0.3.so
 	provides = libwireplumber-0.5.so
-	provides = libwireplumber=0.4.81.r22.g6f3eb329
+	provides = libwireplumber=0.5.4.r0.gdc6694f
 	conflicts = libwireplumber
