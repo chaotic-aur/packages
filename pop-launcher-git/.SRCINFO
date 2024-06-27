@@ -1,0 +1,35 @@
+pkgbase = pop-launcher-git
+	pkgver = 1.2.1.r56.ga7fc5bc
+	pkgrel = 1
+	url = https://github.com/pop-os/launcher
+	arch = x86_64
+	arch = aarch64
+	license = MPL-2.0
+	makedepends = cargo
+	makedepends = git
+	makedepends = just
+	makedepends = libegl
+	makedepends = libxkbcommon
+	depends = dbus
+	depends = fd
+	depends = libqalculate
+	depends = pop-icon-theme-git
+	depends = sh
+	depends = xdg-utils
+	source = git+https://github.com/pop-os/launcher.git
+	sha256sums = SKIP
+
+pkgname = pop-launcher-git
+	pkgdesc = Modular IPC-based desktop launcher service
+	optdepends = pop-shell-plugin-system76-power
+	provides = pop-launcher
+	conflicts = pop-launcher
+
+pkgname = pop-shell-plugin-system76-power-git
+	pkgdesc = System76 Power scripts for the launcher
+	depends = gnome-terminal
+	depends = pop-launcher-git
+	depends = system76-power
+	provides = pop-shell-plugin-system76-power
+	conflicts = pop-shell-plugin-system76-power
+	conflicts = pop-launcher-system76-power
