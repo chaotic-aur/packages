@@ -1,0 +1,6 @@
+# Issue 2647
+nvidia-340xx-utils:https://aur.archlinux.org/nvidia-340xx-utils.git # (nvidia-340xx-utils opencl-nvidia-340xx)
+
+
+REQ_ORIGIN=github/2647
+REQ_REASON=request
