@@ -1,0 +1,290 @@
+## useful links
+# https://obsproject.com
+# https://github.com/obsproject/obs-studio
+# https://github.com/obsproject/cef
+
+## options
+: ${_build_cef:=false}
+
+: ${_plugin_aja:=false}
+: ${_plugin_webrtc:=false}
+
+## basic info
+_pkgname="obs-studio"
+pkgname="$_pkgname-git"
+pkgver=30.1.2.r365.g9d67bf2
+pkgrel=1
+pkgdesc="Free, open source software for live streaming and recording - Browser enabled"
+url="https://github.com/obsproject/obs-studio"
+license=("GPL-2.0-or-later")
+arch=("x86_64")
+
+# main package
+_main_package() {
+  depends=(
+    curl
+    ffmpeg
+    jack
+    jansson
+    libxcomposite
+    mbedtls
+    pciutils
+    qt6-svg
+    rnnoise
+
+    librist
+    libvpl
+    speexdsp
+
+    ## namcap: not needed?
+    #libxinerama
+    #libxkbcommon-x11
+    #pipewire
+
+    # AUR
+    qrcodegencpp-cmake
+  )
+  makedepends=(
+    asio
+    cmake
+    ffnvcodec-headers-12-1 # ffnvcodec-headers
+    git
+    libfdk-aac
+    luajit
+    nlohmann-json
+    python
+    qt6-wayland
+    sndio
+    swig
+    uthash
+    vlc
+    wayland
+    websocketpp
+    x264
+    xdg-desktop-portal
+  )
+  optdepends=(
+    'chaotic-interfere: chaotic-aur interference tracking'
+
+    'libfdk-aac: FDK AAC codec support'
+    'libva-intel-driver: hardware encoding'
+    'libva-mesa-driver: hardware encoding'
+    'luajit: scripting support'
+    'python: scripting support'
+    'sndio: sndio input client'
+    'v4l2loopback-dkms: virtual camera support'
+
+    'vlc: VLC Media Source'
+  )
+
+  provides=("$_pkgname=${pkgver%%.r*}")
+  conflicts=("$_pkgname")
+
+  options=(!debug)
+
+  _pkgsrc="$_pkgname"
+  source+=("$_pkgsrc"::"git+$url.git")
+  sha256sums+=('SKIP')
+
+  # cef
+  if [ "${_build_cef::1}" == "t" ]; then
+    _source_cef
+  else
+    makedepends+=('cef-minimal-obs-bin') # AUR
+  fi
+
+  if [ "${_plugin_aja::1}" == "t" ]; then
+    makedepends+=('libajantv2') # AUR
+    _plugin_aja='ON'
+  else
+    _plugin_aja='OFF'
+  fi
+
+  if [ "${_plugin_webrtc::1}" == "t" ]; then
+    makedepends+=('libdatachannel') # AUR
+    _plugin_webrtc='ON'
+  else
+    _plugin_webrtc='OFF'
+  fi
+
+  _source_obs_studio
+  _source_mixer_ftl_sdk
+}
+
+# submodules
+_source_obs_studio() {
+  source+=(
+    'mixer.ftl-sdk'::'git+https://github.com/Mixer/ftl-sdk.git'
+    'obsproject.obs-browser'::'git+https://github.com/obsproject/obs-browser.git'
+    'obsproject.obs-websocket'::'git+https://github.com/obsproject/obs-websocket.git'
+  )
+
+  sha256sums+=(
+    'SKIP'
+    'SKIP'
+    'SKIP'
+  )
+
+  _prepare_obs_studio() (
+    cd "${srcdir:?}/$_pkgsrc"
+    local -A _submodules=(
+      ['mixer.ftl-sdk']='plugins/obs-outputs/ftl-sdk'
+      ['obsproject.obs-browser']='plugins/obs-browser'
+      ['obsproject.obs-websocket']='plugins/obs-websocket'
+    )
+    _submodule_update
+  )
+}
+
+_source_mixer_ftl_sdk() {
+  source+=(
+    'akheron.jansson'::'git+https://github.com/akheron/jansson.git'
+    'curl'::'git+https://github.com/curl/curl.git'
+  )
+  sha256sums+=(
+    'SKIP'
+    'SKIP'
+  )
+
+  _prepare_mixer_ftl_sdk() (
+    cd "${srcdir:?}/$_pkgsrc"
+    cd 'plugins/obs-outputs/ftl-sdk'
+    local -A _submodules=(
+      ['akheron.jansson']='libjansson'
+      ['curl']='libcurl'
+    )
+    _submodule_update
+  )
+}
+
+# cef
+_source_cef() {
+  depends+=(
+    at-spi2-core
+    libxrandr
+    nspr
+    nss
+  )
+
+  makedepends+=(
+    alsa-lib
+    dbus
+    expat
+    gcc-libs
+    glib2
+    glibc
+    libcups
+    libdrm
+    libx11
+    libxcb
+    libxcomposite
+    libxdamage
+    libxext
+    libxfixes
+    libxkbcommon
+    mesa
+    wayland
+  )
+
+  # build-aux/modules/99-cef.json
+  _cef_branch=5060
+  _cef_src="cef_binary_${_cef_branch}_linux_${CARCH}"
+  _cef_ver="_v3"
+  _cef_ext="tar.xz"
+  _cef_filename="$_cef_src$_cef_ver.$_cef_ext"
+  _cef_dl_url="https://cdn-fastly.obsproject.com/downloads/"
+
+  source+=("$_cef_filename"::"$_cef_dl_url/$_cef_filename")
+  sha256sums+=('1253a6a36c3b8ac5b5ece9bfdb6eae6ab75e49516375fc475e2e871795ad9bea')
+
+  _build_cef() {
+    local _cmake_options=(
+      -S "$_cef_src"
+      -B "$_cef_src"
+      -DCMAKE_BUILD_TYPE=Release
+      -DPROJECT_ARCH=$CARCH
+      -Wno-dev
+    )
+
+    cmake "${_cmake_options[@]}"
+    cmake --build "$_cef_src"
+  }
+}
+
+# common functions
+pkgver() {
+  cd "$_pkgsrc"
+  local _version=$(git tag | grep -Ev '.*[a-z]{2}.*' | sort -rV | head -1)
+  local _revision=$(git rev-list --count --cherry-pick "$_version"...HEAD)
+  local _hash=$(git rev-parse --short=7 HEAD)
+  printf '%s.r%s.g%s' "${_version:?}" "${_revision:?}" "${_hash:?}"
+}
+
+prepare() {
+  _submodule_update() {
+    local key
+    for key in ${!_submodules[@]}; do
+      git submodule init "${_submodules[${key}]}"
+      git submodule set-url "${_submodules[${key}]}" "${srcdir}/${key}"
+      git -c protocol.file.allow=always submodule update "${_submodules[${key}]}"
+    done
+  }
+
+  _prepare_obs_studio
+  _prepare_mixer_ftl_sdk
+
+  sed -E \
+    -e 's&(\s*find_package\(FFnvcodec)\b.*\b(REQUIRED\))&\1 12 \2&' \
+    -i "$_pkgsrc/plugins/obs-ffmpeg/cmake/dependencies.cmake" \
+    -i "$_pkgsrc/plugins/obs-ffmpeg/cmake/legacy.cmake"
+}
+
+_build_obs_studio() {
+  local _cmake_options=(
+    -B build
+    -S "$_pkgsrc"
+    -DCMAKE_BUILD_TYPE=None
+    -DCMAKE_INSTALL_PREFIX='/usr'
+    -DCMAKE_INSTALL_LIBDIR='lib'
+    -DCEF_ROOT_DIR="$_cef_src"
+    -DOBS_VERSION_OVERRIDE="${pkgver%%.r*}"
+    -DBUILD_FOR_DISTRIBUTION=ON
+    -DBUILD_BROWSER=ON # qrcodegencpp-cmake
+    -DENABLE_LIBFDK=ON
+    # -DENABLE_NATIVE_NVENC=OFF # ffnvcodec-headers-12-1
+    -DBUILD_TESTS=OFF
+    -DENABLE_UNIT_TESTS=OFF
+    -Wno-dev
+
+    -DENABLE_AJA="${_plugin_aja:?}"
+    -DENABLE_JACK=ON
+    -DENABLE_NEW_MPEGTS_OUTPUT=ON
+    -DENABLE_VLC=OFF
+    -DENABLE_VST=ON
+    -DENABLE_WEBRTC="${_plugin_webrtc:?}"
+  )
+
+  cmake "${_cmake_options[@]}"
+  cmake --build build
+}
+
+build() {
+  if [ "${_build_cef::1}" == "t" ]; then
+    _build_cef
+    _cef_src="$srcdir/$_cef_src"
+  else
+    _cef_src="/opt/cef-obs"
+  fi
+
+  _build_obs_studio
+}
+
+package() {
+  DESTDIR="$pkgdir" cmake --install build
+
+  # fix permissions
+  chmod -R u=rwX,go=rX "$pkgdir"
+}
+
+# execute
+_main_package
