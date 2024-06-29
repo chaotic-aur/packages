@@ -1,0 +1,31 @@
+pkgbase = scala
+	pkgdesc = A Java-interoperable language with object-oriented and functional features
+	pkgver = 2.13.14
+	pkgrel = 1
+	url = https://www.scala-lang.org
+	arch = any
+	license = Apache-2.0
+	makedepends = git
+	makedepends = sbt
+	makedepends = jdk8-openjdk
+	source = scala-2.13.14.tar.gz::https://github.com/scala/scala/archive/v2.13.14.tar.gz
+	source = scala-docs-2.13.14.tar.xz::https://www.scala-lang.org/files/archive/scala-docs-2.13.14.txz
+	sha512sums = 23a81fc19b9eb337ad2030c85ff2e51917f68a8dc05d0669219a7025bc0145efc55bf1414f5179352b8e63331d491662decdfd0d9bcfc22cf9c27e1c4c476b5f
+	sha512sums = 78fb6e8efb925b3be1fd7393d6a36573776eadec64d179bb1def0d2758db4e8322cd42873bbeedf2d62b7c8d9997da3e62ab16f36e471ef75b30dd139c7bdf70
+
+pkgname = scala
+	depends = java-environment
+	optdepends = scala-docs
+	optdepends = scala-sources
+	optdepends = graphviz: generate diagrams
+
+pkgname = scala-docs
+	pkgdesc = Scala documentation
+	depends = 
+	replaces = scala-doc
+	replaces = scala-devel-docs
+
+pkgname = scala-sources
+	pkgdesc = Scala sources
+	depends = 
+	replaces = scala-src
