@@ -1,0 +1,37 @@
+pkgbase = nvidia-340xx-settings
+	pkgdesc = Tool for configuring the NVIDIA graphics driver, 340xx legacy branch
+	pkgver = 340.108
+	pkgrel = 2
+	url = https://github.com/NVIDIA/nvidia-settings
+	arch = x86_64
+	license = GPL2
+	makedepends = git
+	makedepends = inetutils
+	makedepends = gtk2
+	makedepends = jansson
+	makedepends = gtk3
+	makedepends = libxv
+	makedepends = libvdpau
+	makedepends = nvidia-340xx-utils
+	makedepends = libxext
+	options = staticlibs
+	source = nvidia-settings-340.108.tar.gz::https://github.com/NVIDIA/nvidia-settings/archive/340.108.tar.gz
+	source = libxnvctrl_so.patch
+	sha512sums = 9b940382eeea6658bb9adcf8cc9abc7cfe73a69644092cd2c48e1443e2ab95ec65b53623bf7baf09a1193edd50ec25dc7ccdc5e74f0bb4b1beb4ab49ed936cb1
+	sha512sums = 606346c3f24affb0a0b115999b4187e4149c19b249527d20cc76bd5db82048e357e996495a5f38683cc90e6f8058452980ff378d5fa0b3d1b5546101240df57c
+
+pkgname = nvidia-340xx-settings
+	depends = jansson
+	depends = gtk3
+	depends = libxv
+	depends = libvdpau
+	depends = nvidia-340xx-utils
+	depends = libxnvctrl-340xx
+	provides = nvidia-settings
+	conflicts = nvidia-settings
+
+pkgname = libxnvctrl-340xx
+	pkgdesc = NVIDIA NV-CONTROL X extension, 340xx legacy branch
+	depends = libxext
+	provides = libxnvctrl
+	conflicts = libxnvctrl

@@ -1,0 +1,17 @@
+pkgbase = python-sphinx-paramlinks
+	pkgdesc = Allows :param: directives within Python documentation to be linkable.
+	pkgver = 0.6.0
+	pkgrel = 1
+	url = https://github.com/sqlalchemyorg/sphinx-paramlinks
+	arch = any
+	license = MIT
+	makedepends = python-build
+	makedepends = python-installer
+	makedepends = python-setuptools
+	makedepends = python-wheel
+	depends = python
+	depends = python-sphinx
+	source = python-sphinx-paramlinks-0.6.0.tar.gz::https://github.com/sqlalchemyorg/sphinx-paramlinks/archive/0.6.0.tar.gz
+	sha256sums = 272d457093185ff20699455375db01db7013f617d90035a5b0ed2dd2b86899a6
+
+pkgname = python-sphinx-paramlinks

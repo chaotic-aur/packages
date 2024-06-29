@@ -1,0 +1,24 @@
+pkgbase = mindustry
+	pkgdesc = A sandbox tower defense game
+	pkgver = 7.0.146
+	pkgrel = 3
+	url = https://github.com/Anuken/Mindustry
+	arch = any
+	license = GPL-3.0-only
+	makedepends = alsa-lib
+	makedepends = archlinux-java-run
+	makedepends = java-environment=17
+	makedepends = libicns
+	source = mindustry-146.tar.gz::https://github.com/Anuken/Mindustry/archive/v146.tar.gz
+	source = mindustry-arc-146.tar.gz::https://github.com/Anuken/Arc/archive/refs/tags/v146.tar.gz
+	sha256sums = aa1684d87d9f3e1d1a2da415b5e055ea6493fe31398748447927bd903019adbd
+	sha256sums = 30cc1b00968aaec8dbb76a2dad6439c7d7418970fafe24c350b2be4e68c3e5d6
+
+pkgname = mindustry
+	depends = hicolor-icon-theme
+	depends = java-runtime
+
+pkgname = mindustry-server
+	pkgdesc = A sandbox tower defense game - server
+	depends = hicolor-icon-theme
+	depends = java-runtime
