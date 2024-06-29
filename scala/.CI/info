@@ -1,0 +1,6 @@
+# Issue 2824
+scala:https://aur.archlinux.org/scala.git
+
+
+REQ_ORIGIN=github/2824
+REQ_REASON=request
