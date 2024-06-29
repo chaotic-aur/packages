@@ -1,0 +1,61 @@
+install_msg() {
+	cat << __EOF__
+   Bunch of Xen Notes: https://wiki.archlinux.org/index.php/Xen
+
+   If booting via efi, copy the example /etc/xen/efi-xen.cfg to /boot/xen.cfg
+   and edit the contents to match the settings you need.
+
+   To make dom0 go: 
+
+    systemctl enable xen-qemu-dom0-disk-backend.service
+    systemctl enable xen-init-dom0.service
+    systemctl enable xenconsoled.service
+
+   Optional services are:
+    systemctl enable xen-watchdog.service
+
+   To start domains on boot:
+    systemctl enable xendomains.service
+
+
+__EOF__
+
+
+}
+
+
+post_install() {
+	install_msg
+	systemd-tmpfiles --create
+	/usr/share/libalpm/scripts/xen-ucode-extract.sh
+}
+
+post_upgrade() {
+	systemd-tmpfiles --create
+	/usr/share/libalpm/scripts/xen-ucode-extract.sh
+}
+
+pre_remove() {
+	systemctl stop xendomains.service
+	systemctl stop xen-watchdog.service
+	systemctl stop xenconsoled.service
+	systemctl stop xen-init-dom0.service
+	systemctl stop xen-qemu-dom0-disk-backend.service
+
+	systemctl disable xendomains.service
+	systemctl disable xen-watchdog.service
+	systemctl disable xenconsoled.service
+	systemctl disable xen-init-dom0.service
+	systemctl disable xen-qemu-dom0-disk-backend.service
+
+	echo "Be sure to check boot for auto-generated microcode files."
+}
+
+post_remove() {
+	cat << __EOF__
+
+In order to finish removing Xen, you will need to modify
+your bootloader configuration files to load your Linux
+kernel instead of Xen kernel.
+__EOF__
+}

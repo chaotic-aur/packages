@@ -1,0 +1,24 @@
+pkgbase = python-desktop-notifier
+	pkgdesc = Python library for cross-platform desktop notifications
+	pkgver = 5.0.0
+	pkgrel = 1
+	url = https://github.com/SamSchott/desktop-notifier
+	arch = any
+	license = MIT
+	makedepends = python-build
+	makedepends = python-installer
+	makedepends = python-setuptools
+	makedepends = python-sphinx
+	makedepends = python-sphinx-autoapi
+	makedepends = python-sphinx-furo
+	makedepends = python-sphinx_mdinclude
+	makedepends = python-wheel
+	depends = python
+	depends = python-certifi
+	depends = python-charset-normalizer
+	depends = python-packaging
+	depends = python-dbus-next
+	source = python-desktop-notifier-5.0.0.tar.gz::https://github.com/SamSchott/desktop-notifier/archive/v5.0.0.tar.gz
+	sha256sums = 9bc39143e0bfc0745a06abb920046baafaba3f9c94ea0a0ecedca2912516ad51
+
+pkgname = python-desktop-notifier
