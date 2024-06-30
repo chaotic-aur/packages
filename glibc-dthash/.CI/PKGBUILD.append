@@ -1,0 +1,33 @@
+
+_suffix="-dthash"
+pkgbase="glibc${_suffix:-}"
+
+for i in "${pkgname[@]}" ; do
+  _old_pkgname+=("$i")
+done
+
+unset pkgname
+
+for i in "${_old_pkgname[@]}" ; do
+  if grep -q 'locale' <<< "${i:?}" ; then
+    unset -f "package_${i}"
+    continue
+  fi
+
+  j=$(sed -E "s&glibc&glibc${_suffix:-}&" <<< "${i:?}")
+  pkgname+=("${j:?}")
+
+  eval "package_${j} () {
+    $(declare -f package_${i})
+    package_${i}
+
+    pkgdesc+=' with DT_HASH enabled'
+
+    provides=(${i}=${pkgver})
+    conflicts=(${i})
+
+    rm -f \"\$pkgdir/etc/locale.gen\"
+  }"
+
+  unset -f "package_${i}"
+done
