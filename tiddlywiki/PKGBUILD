@@ -2,7 +2,7 @@
 # Contributor: Alexander F Rødseth <xyproto@archlinux.org>
 
 pkgname=tiddlywiki
-pkgver=5.3.3
+pkgver=5.3.4
 pkgrel=1
 pkgdesc='Personal wiki where everything is in one html-file'
 arch=('i686' 'x86_64')
@@ -11,7 +11,7 @@ license=('BSD')
 depends=('xdg-utils')
 source=('http://www.tiddlywiki.com/empty.html'
   'tiddlywiki.py')
-md5sums=('c0c5b054a2b86aabe486b4c22ef3efcf'
+md5sums=('0822a64a539d8e5def3801dccc6d0cce'
   '219c3db3c4be8d359d3c18e96b171ee3')
 
 build() {
