@@ -1,0 +1,14 @@
+
+unset epoch
+
+provides=("fractal=${pkgver%%.r*}")
+conflicts=("fractal")
+
+pkgver() {
+  cd fractal
+  local _version=$(git tag --list | grep -E '^[0-9]+\.[0-9]+\.[0-9]+$' | sort -rV | head -1)
+  local _revision=$(git rev-list --count --cherry-pick $_version...HEAD)
+  local _hash=$(git rev-parse --short=7 HEAD)
+
+  printf '%s.r%s.g%s' "$_version" "$_revision" "$_hash"
+}

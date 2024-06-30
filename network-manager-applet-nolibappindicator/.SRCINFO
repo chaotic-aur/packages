@@ -1,0 +1,26 @@
+pkgbase = network-manager-applet-nolibappindicator
+	pkgdesc = Applet for managing network connections
+	pkgver = 1.36.0
+	pkgrel = 1
+	url = https://gitlab.gnome.org/GNOME/network-manager-applet
+	arch = x86_64
+	license = GPL-2.0-or-later
+	makedepends = git
+	makedepends = gobject-introspection
+	makedepends = gtk-doc
+	makedepends = meson
+	depends = libmm-glib
+	depends = libnma
+	depends = libsecret
+	depends = networkmanager
+	provides = network-manager-applet
+	conflicts = network-manager-applet
+	source = network-manager-applet::git+https://gitlab.gnome.org/GNOME/network-manager-applet.git#tag=1.36.0
+	sha256sums = SKIP
+
+pkgname = network-manager-applet-nolibappindicator
+	depends = libmm-glib
+	depends = libnma
+	depends = libsecret
+	depends = networkmanager
+	depends = nm-connection-editor
