@@ -1,6 +1,6 @@
 pkgbase = patool
 	pkgdesc = portable command line archive file manager
-	pkgver = 2.2.0
+	pkgver = 2.3.0
 	pkgrel = 1
 	url = https://wummel.github.io/patool/
 	arch = any
@@ -16,7 +16,7 @@ pkgbase = patool
 	optdepends = unarchiver: extracting various formats
 	optdepends = unrar: extracting RAR files
 	optdepends = zstd: extracting ZSTANDARD files
-	source = patool-2.2.0.tar.gz::https://github.com/wummel/patool/archive/upstream/2.2.0.tar.gz
-	sha256sums = cbbb6e6803fb2828a2dbc40c6cd94a30c02c5a3a6b0ae2b04f316840a5593217
+	source = patool-2.3.0.tar.gz::https://github.com/wummel/patool/archive/upstream/2.3.0.tar.gz
+	sha256sums = 18ac4b3271c15f6a6435594f930c4e806fa1bf7007471daf55e5ac1ab67e8e47
 
 pkgname = patool
