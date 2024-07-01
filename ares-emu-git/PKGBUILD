@@ -1,38 +1,115 @@
-# Maintainer: Snowstorm64
+# Maintainer:
 
-pkgname=ares-emu-git
-pkgver=136.r6.g71302c093
+## useful links
+# https://ares-emu.net/
+# https://github.com/ares-emulator/ares
+
+## options
+: ${_build_avx:=true}
+: ${_build_git:=true}
+
+unset _pkgtype
+[[ "${_build_avx::1}" == "t" ]] && _pkgtype+="-avx"
+[[ "${_build_git::1}" == "t" ]] && _pkgtype+="-git"
+
+# basic info
+_pkgname="ares-emu"
+pkgname="$_pkgname${_pkgtype:-}"
+pkgver=138.r54.gfc7cdb5
 pkgrel=1
-pkgdesc="Cross-platform, open source, multi-system emulator by Near and Ares team, focusing on accuracy and preservation. (git version)"
-arch=(x86_64 i686)
-url="https://ares-emu.net/"
+pkgdesc="Multi-system emulator focused on accuracy and preservation"
+url="https://github.com/ares-emulator/ares"
 license=("ISC")
-depends=(gtk3 libao libgl libpulse libudev.so=1-64 librashader libxv openal sdl2 vulkan-driver vulkan-icd-loader)
-makedepends=(mesa git clang lld)
-provides=(ares-emu)
-conflicts=(ares-emu)
-install=ares.install
-source=("git+https://github.com/ares-emulator/ares.git")
-sha256sums=("SKIP")
+arch=('x86_64')
 
-pkgver() {
-  cd "${srcdir}/ares"
-  git describe --long --tags | sed 's/^v//;s/\([^-]*-g\)/r\1/;s/-/./g'
-}
+depends=(
+  'gtk3'
+  'libao'
+  'libgl'
+  'libpulse'
+  'libudev.so' # systemd-libs
+  'openal'
+  'sdl2'
+)
+makedepends=(
+  'clang'
+  'git'
+  'lld'
+  'mesa'
+)
+
+if [ "${_build_git::1}" != "t" ]; then
+  _pkgsrc="$_pkgname"
+  source=("$_pkgsrc"::"git+$url.git")
+  sha256sums=("SKIP")
+
+  prepare() {
+    cd "$_pkgsrc"
+    _tag=$(git tag | grep -Ev '[A-Za-z]{2}' | sort -rV | head -1)
+    git checkout -f "$_tag"
+  }
+
+  pkgver() {
+    cd "$_pkgsrc"
+    git describe --tag | sed -E 's/^[^0-9]+//'
+  }
+else
+  provides=("$_pkgname=${pkgver%%.r*}")
+  conflicts=("$_pkgname")
+
+  _pkgsrc="$_pkgname"
+  source=("$_pkgsrc"::"git+$url.git")
+  sha256sums=("SKIP")
+
+  pkgver() {
+    cd "$_pkgsrc"
+    git describe --long --tags --abbrev=7 --exclude='*[a-zA-Z][a-zA-Z]*' \
+      | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
+  }
+fi
 
 build() {
-  # If you want to build with gcc, edit to use g++ instead of clang++
-  make -C "${srcdir}/ares/desktop-ui" hiro=gtk3 compiler=clang++
+  export CC CXX CFLAGS CXXFLAGS LDFLAGS
+  CC=clang
+  CXX=clang++
+  LDFLAGS+=" -fuse-ld=lld"
+
+  if [[ "${_build_avx::1}" == "t" ]]; then
+    CFLAGS="$(echo "$CFLAGS" | sed -E 's@(\s*-(march|mtune)=\S+\s*)@ @g;s@\s*-O[0-9]\s*@ @g;s@\s+@ @g') -march=x86-64-v3 -mtune=generic -O3"
+    CXXFLAGS="$(echo "$CXXFLAGS" | sed -E 's@(\s*-(march|mtune)=\S+\s*)@ @g;s@\s*-O[0-9]\s*@ @g;s@\s+@ @g') -march=x86-64-v3 -mtune=generic -O3"
+  fi
+
+  # respect compiler flags
+  find "$_pkgsrc" -name "GNUmakefile" -exec sed -E -e 's@^(\s*)\b(flags \+=) -march=.*$@\1\2 -Qunused-arguments '"${CXXFLAGS}"'@' -i {} \;
+
+  # respect linker flags
+  find "$_pkgsrc" -name "GNUmakefile" -exec sed -E -e 's&(\+@\$\(compiler\))&\1 -Qunused-arguments '"${LDFLAGS}"' &' -i {} \;
+
+  make -C "$_pkgsrc/desktop-ui" hiro=gtk3 compiler=clang++ build=optimized
 }
 
 package() {
-  install -Dm 644 "${srcdir}/ares/LICENSE" "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
-  install -Dm 755 "${srcdir}/ares/desktop-ui/out/ares" -t "${pkgdir}/usr/bin/"
-  install -Dm 644 "${srcdir}/ares/desktop-ui/resource/ares.png" -t "${pkgdir}/usr/share/icons/hicolor/256x256/apps/"
-  install -Dm 644 "${srcdir}/ares/desktop-ui/resource/ares.desktop" -t "${pkgdir}/usr/share/applications/"
+  depends+=(
+    'librashader'
+    'vulkan-driver'
+    'vulkan-icd-loader'
+  )
 
-  # Also install shaders and databases in Ares' shared data directory
-  install -dm 755 "${pkgdir}/usr/share/ares"
-  cp -dr --no-preserve=ownership "${srcdir}/ares/thirdparty/slang-shaders/" "${pkgdir}/usr/share/ares/Shaders/"
-  cp -dr --no-preserve=ownership "${srcdir}/ares/mia/Database/" "${pkgdir}/usr/share/ares/Database/"
+  # exec
+  install -Dm755 "$_pkgsrc/desktop-ui/out/ares" -t "$pkgdir/usr/bin/"
+
+  # icon, launcher
+  install -Dm644 "$_pkgsrc/desktop-ui/resource/ares.png" -t "$pkgdir/usr/share/pixmaps/"
+  install -Dm644 "$_pkgsrc/desktop-ui/resource/ares.desktop" -t "$pkgdir/usr/share/applications/"
+
+  # shaders and databases
+  install -dm755 "$pkgdir/usr/share/ares"
+  cp --reflink=auto -a "$_pkgsrc/thirdparty/slang-shaders/" "$pkgdir/usr/share/ares/Shaders/"
+  cp --reflink=auto -a "$_pkgsrc/mia/Database/" "$pkgdir/usr/share/ares/Database/"
+
+  # license
+  install -Dm644 "$_pkgsrc/LICENSE" "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+
+  # permissions
+  chmod -R u+rwX,go+rX,go-w "$pkgdir/"
 }
