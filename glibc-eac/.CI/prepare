@@ -1,7 +1,0 @@
-#!/usr/bin/env sh
-
-# enable DT_HASH
-export LDFLAGS+=" -Wl,--hash-style=both"
-
-# disable check
-export TARGET_ARGS="--nocheck ${TARGET_ARGS:-}"

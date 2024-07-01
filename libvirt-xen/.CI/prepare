@@ -1,5 +1,0 @@
-#!/usr/bin/env sh
-
-# disable check
-# runs tests that are unsupported by toolbox
-export TARGET_ARGS="--nocheck ${TARGET_ARGS:-}"
