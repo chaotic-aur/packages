@@ -1,0 +1,209 @@
+# Maintainer:
+
+## useful links
+# https://stockfishchess.org/
+# https://github.com/official-stockfish/Stockfish
+
+## options
+if [ -n "$_srcinfo" ] || [ -n "$_pkgver" ]; then
+  : ${_autoupdate:=false}
+else
+  : ${_autoupdate:=true}
+fi
+
+: ${_build_clang:=true}
+
+: ${_build_pgo:=true}
+
+: ${_build_avx:=false}
+: ${_build_git:=true}
+
+unset _pkgtype
+[[ "${_build_avx::1}" == "t" ]] && _pkgtype+="-avx"
+[[ "${_build_git::1}" == "t" ]] && _pkgtype+="-git"
+
+## basic info
+_pkgname=stockfish
+pkgname="$_pkgname${_pkgtype:-}"
+pkgver=16.1.r225.gcc992e5
+pkgrel=1
+pkgdesc="A strong UCI chess engine"
+url="https://github.com/official-stockfish/Stockfish"
+license=('GPL-3.0-only')
+arch=('x86_64')
+
+# main package
+_main_package() {
+  makedepends=(
+    'git'
+  )
+  optdepends=(
+    'polyglot-winboard: xboard support'
+  )
+
+  if [[ "${_build_git::1}" == "t" ]] || [[ "${_build_avx::1}" == "t" ]]; then
+    provides+=(stockfish="${pkgver%%.r*}")
+    conflicts+=(stockfish)
+  fi
+
+  if [[ "${_build_clang::1}" == "t" ]]; then
+    makedepends+=(
+      'clang'
+      'lld'
+      'llvm'
+    )
+  fi
+
+  if [ "${_build_git::1}" != "t" ]; then
+    _main_stable
+
+    _nnue_big="nn-b1a57edbea57.nnue"   # 63MB
+    _nnue_small="nn-baff1ede1f90.nnue" # 3.3MB
+  else
+    _main_git
+
+    _nnue_big="nn-ddcfb9224cdb.nnue"   # 71MB
+    _nnue_small="nn-37f18f62d772.nnue" # 3.3MB
+  fi
+
+  # check EvalFileDefaultName{Big,Small} in src/evaluate.h
+  source+=(
+    "https://tests.stockfishchess.org/api/nn/${_nnue_big}"
+    "https://tests.stockfishchess.org/api/nn/${_nnue_small}"
+  )
+  sha256sums+=(
+    'SKIP'
+    'SKIP'
+  )
+}
+
+# stable package
+_main_stable() {
+  _update_version
+
+  _pkgsrc="Stockfish-sf_$_pkgver"
+  source+=("$_pkgname-$_pkgver.zip"::"$url/archive/sf_$_pkgver.zip")
+  sha256sums+=('SKIP')
+
+  pkgver() {
+    echo "${_pkgver:?}"
+  }
+}
+
+# git package
+_main_git() {
+  _pkgsrc="$_pkgname"
+  source+=("$_pkgsrc"::"git+$url.git")
+  sha256sums+=('SKIP')
+
+  pkgver() {
+    cd "$_pkgsrc"
+
+    git describe --long --tags --abbrev=7 --match="sf_[0-9]*" \
+      | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
+  }
+}
+
+## common functions
+prepare() {
+  ln -sf "$srcdir/$_nnue_big" "$_pkgsrc/src/"
+  ln -sf "$srcdir/$_nnue_small" "$_pkgsrc/src/"
+}
+
+build() {
+  if [ "${_build_avx::1}" == "t" ]; then
+    export CFLAGS="$(echo "$CFLAGS" | sed -E 's@(\s*-(march|mtune)=\S+\s*)@ @g;s@\s*-O[0-9]\s*@ @g;s@\s+@ @g') -march=x86-64-v3 -mtune=generic -O3"
+    export CXXFLAGS="$(echo "$CXXFLAGS" | sed -E 's@(\s*-(march|mtune)=\S+\s*)@ @g;s@\s*-O[0-9]\s*@ @g;s@\s+@ @g') -march=x86-64-v3 -mtune=generic -O3"
+  fi
+
+  # aur/stockfish, aur/stockfish-git, and upstream stockfish build scripts
+  # detect and force-enable cpu features, ignoring user CFLAGS and CXXFLAGS,
+  # producing binaries that are unusable on some computers.
+  #
+  # The following replicates `make profile-build` without cpu-detection.
+  cd "$_pkgsrc/src"
+
+  if [[ "${_build_clang::1}" == "t" ]]; then
+    local _make=(make COMP=clang 'ARCH=" "')
+  else
+    local _make=(make COMP=gcc 'ARCH=" "')
+  fi
+
+  # prepare nnue
+  "${_make[@]}" net
+
+  if [[ "${_build_pgo::1}" == "t" ]]; then
+    if [[ "${_build_clang::1}" == "t" ]]; then
+      local _pgo_gen_options=(
+        EXTRACXXFLAGS="-fprofile-generate"
+        EXTRALDFLAGS=""
+      )
+      local _pgo_use_options=(
+        EXTRACXXFLAGS="-fprofile-use=$pkgname.prof"
+        EXTRALDFLAGS=""
+      )
+    else
+      local _pgo_gen_options=(
+        EXTRACXXFLAGS="-fprofile-generate=profdir"
+        EXTRALDFLAGS="-lgcov"
+      )
+      local _pgo_use_options=(
+        EXTRACXXFLAGS="-fprofile-use=profdir -fno-peel-loops -fno-tracer"
+        EXTRALDFLAGS="-lgcov"
+      )
+    fi
+
+    printf "\nStep 1. Building instrumented executable ...\n"
+    mkdir -p profdir
+    "${_make[@]}" "${_pgo_gen_options[@]}" all
+
+    printf "\nStep 2. Running benchmark for pgo-build ...\n"
+    ./stockfish bench > PGOBENCH.out
+
+    if [[ "${_build_clang::1}" == "t" ]]; then
+      llvm-profdata merge -output=$pkgname.prof *.profraw
+    fi
+
+    printf "\nStep 3. Building optimized executable ...\n"
+
+    "${_make[@]}" objclean
+    "${_make[@]}" "${_pgo_use_options[@]}" all
+
+    #printf "\nStep 4. Deleting profile data ...\n"
+    #"${_make[@]}" profileclean
+  else
+    printf "\nStep 1. Building standard executable ...\n"
+    "${_make[@]}" all
+  fi
+}
+
+package() {
+  cd "$_pkgsrc/src"
+  make PREFIX="$pkgdir/usr" install
+}
+
+# update version
+_update_version() {
+  : ${_pkgver:=${pkgver%%.r*}}
+
+  if [[ "${_autoupdate::1}" != "t" ]]; then
+    return
+  fi
+
+  local _response=$(curl -Ssf "$url/releases.atom")
+  local _tag=$(
+    printf '%s' "$_response" \
+      | grep '/releases/tag/sf_[0-9]' \
+      | sed -E 's@^.*/releases/tag/(.*)".*$@\1@' \
+      | sort -rV | head -1
+  )
+  local _pkgver_new="${_tag#sf_}"
+
+  # update _pkgver
+  if [ "$_pkgver" != "${_pkgver_new:?}" ]; then
+    _pkgver="${_pkgver_new:?}"
+  fi
+}
+
+# execute
+_main_package
