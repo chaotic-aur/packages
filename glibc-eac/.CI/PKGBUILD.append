@@ -1,4 +1,12 @@
 
+# enable DT_HASH
+export LDFLAGS+=" -Wl,--hash-style=both"
+
+# disable check
+unset checkdepends
+unset -f check
+
+# modify package
 _rogue_company_reverts_patch="rogue_company_reverts-$pkgver.patch"
 source+=("$_rogue_company_reverts_patch"::"https://github.com/Frogging-Family/glibc-eac/raw/main/rogue_company_reverts.patch")
 b2sums+=('SKIP')

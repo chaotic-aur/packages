@@ -1,4 +1,12 @@
 
+# enable DT_HASH
+export LDFLAGS+=" -Wl,--hash-style=both"
+
+# disable check
+unset checkdepends
+unset -f check
+
+# modify package
 _suffix="-dthash"
 pkgbase="glibc${_suffix:-}"
 

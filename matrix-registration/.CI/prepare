@@ -1,5 +1,0 @@
-#!/usr/bin/env sh
-
-# disable check
-# ImportError: cannot import name 'get_ipaddr' from 'flask_limiter.util'
-export TARGET_ARGS="--nocheck ${TARGET_ARGS:-}"
