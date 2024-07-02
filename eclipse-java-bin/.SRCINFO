@@ -1,4 +1,4 @@
-pkgbase = eclipse-java
+pkgbase = eclipse-java-bin
 	pkgdesc = Highly extensible IDE (Java version)
 	pkgver = 4.32
 	pkgrel = 1
@@ -20,4 +20,4 @@ pkgbase = eclipse-java
 	source_aarch64 = eclipse-java-2024-06-R-linux-gtk-aarch64.tar.gz::https://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/2024-06/R/eclipse-java-2024-06-R-linux-gtk-aarch64.tar.gz&r=1
 	sha512sums_aarch64 = 8544055a3b806798e435038e7f63588782512a70d73f278453e839e0f47aef442f7112741bc26c801870e09f578f23c5a64633a8866578668a33fb7bac158926
 
-pkgname = eclipse-java
+pkgname = eclipse-java-bin
