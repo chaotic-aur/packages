@@ -1,0 +1,34 @@
+pkgbase = ksysguard6-git
+	pkgdesc = Track and control the processes running in your system. KF6 version
+	pkgver = r3602.5794f61
+	pkgrel = 1
+	url = https://github.com/zvova7890/ksysguard6
+	arch = x86_64
+	license = LGPL
+	makedepends = extra-cmake-modules
+	makedepends = kdoctools
+	makedepends = git
+	depends = gcc-libs
+	depends = glibc
+	depends = kcompletion
+	depends = kconfig
+	depends = kconfigwidgets
+	depends = kcoreaddons
+	depends = kdbusaddons
+	depends = ki18n
+	depends = kiconthemes
+	depends = kio
+	depends = knewstuff
+	depends = knotifications
+	depends = ksystemstats
+	depends = kwidgetsaddons
+	depends = kwindowsystem
+	depends = kxmlgui
+	depends = libksysguard
+	depends = lm_sensors
+	depends = qt6-base
+	depends = zlib
+	source = git+https://github.com/zvova7890/ksysguard6.git#branch=kf6
+	sha256sums = SKIP
+
+pkgname = ksysguard6-git
