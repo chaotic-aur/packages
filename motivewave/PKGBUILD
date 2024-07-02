@@ -1,0 +1,134 @@
+# options
+if [ -n "$_srcinfo" ] || [ -n "$_pkgver" ]; then
+  : ${_autoupdate:=false}
+else
+  : ${_autoupdate:=true}
+fi
+
+# basic info
+_pkgname="motivewave"
+pkgname="$_pkgname"
+pkgver=6.8.8
+pkgrel=1
+pkgdesc="Advanced trading and charting application"
+url="https://www.motivewave.com"
+license=('LicenseRef-motivewave')
+arch=('x86_64')
+
+# main package
+_main_package() {
+  source=("$_filename"::"$_dl_url")
+  md5sums=("$_etag")
+
+  pkgver() {
+    printf '%s' "${_pkgver:?}"
+  }
+}
+
+# common functions
+package() {
+  depends=(
+    'bc'
+    'ffmpeg4.4'
+    'gtk2'
+    'gtk3'
+    'java-runtime'
+  )
+
+  _ext='zst'
+
+  if [ -f "data.tar.xz" ]; then
+    _ext='xz'
+  fi
+
+  bsdtar --no-same-owner -xf "data.tar.$_ext" -C "$pkgdir/"
+
+  # symlink script
+  mkdir -pv "$pkgdir/usr/bin"
+  ln -sv "/usr/share/motivewave/run.sh" "$pkgdir/usr/bin/motivewave"
+
+  # install license
+  install -Dm644 -t "$pkgdir/usr/share/licenses/$pkgname" "$pkgdir/usr/share/motivewave/license.html"
+
+  # update .desktop
+  sed -E -e 's@^(Version|Comment)=.*$@@' \
+    -i "$pkgdir/usr/share/applications/motivewave.desktop"
+  printf '%s\n' 'Categories=Office;Finance;' \
+    >> "$pkgdir/usr/share/applications/motivewave.desktop"
+  sed -E -e '1h;2,$H;$!d;g' -e "s@\n\n@\n@g" \
+    -i "$pkgdir/usr/share/applications/motivewave.desktop"
+
+  # fix permissions
+  chmod -R u=rwX,go=rX "$pkgdir"
+}
+
+# update version
+_update_version() {
+  : ${_pkgver:=${pkgver%%.r*}}
+
+  _unsupported_version() {
+    echo "Unsupported version: $_pkgver"
+    ! true
+  }
+
+  case "${_autoupdate::1}" in
+    't' | 'y' | '1')
+      _dl_url=$(
+        curl -v --no-progress-meter -r 0-1 "https://www.motivewave.com/update/download.do?file_type=LINUX" 2>&1 > /dev/null \
+          | grep location \
+          | sed -E 's@^.*\blocation:.*\b(https:.*\.deb).*$@\1@'
+      )
+
+      local _regex='motivewave_([0-9]+\.[0-9]+\.[0-9]+)_amd64\.deb'
+
+      _filename=$(
+        printf '%s' "$_dl_url" \
+          | sed -E 's@^.*/('"$_regex"')$@\1@'
+      )
+
+      local _pkgver_new=$(
+        printf '%s' "$_filename" \
+          | sed -E 's@^'"$_regex"'$@\1@'
+      )
+
+      # update _pkgver
+      if [ "$_pkgver" != "${_pkgver_new:?}" ]; then
+        _pkgver="${_pkgver_new:?}"
+      fi
+      ;;
+    *)
+      # try to build a specific version
+      local _ver_maj=$(cut -d'.' -f1 <<< "${_pkgver:?}")
+      local _ver_min=$(cut -d'.' -f2 <<< "${_pkgver:?}")
+      local _ver_pat=$(cut -d'.' -f3 <<< "${_pkgver:?}")
+
+      local -A _ver_base=(
+        ['6.6']=474
+        ['6.7']=490
+        ['6.8']=503
+      )
+
+      local _build=$((${_ver_base["$_ver_maj.$_ver_min"]} + $_ver_pat))
+
+      if [ "$_build" -lt 481 ]; then
+        # has to be 6.6.7 or higher
+        _unsupported_version
+        return 1
+      fi
+
+      _filename="motivewave_${_ver_maj}.${_ver_min}.${_ver_pat}_amd64.deb"
+      _dl_url="https://downloads.motivewave.com/builds/$_build/$_filename"
+      ;;
+  esac
+
+  # upstream md5sum
+  _etag=$(
+    curl -v --no-progress-meter -r 0-1 "$_dl_url" 2>&1 > /dev/null \
+      | grep 'etag:' \
+      | sed -E 's@^.*\betag:.*"([^"]+)".*$@\1@'
+  )
+}
+
+# execute
+_update_version
+_main_package
