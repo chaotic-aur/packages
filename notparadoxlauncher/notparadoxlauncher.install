@@ -1,0 +1,16 @@
+post_install() {
+  cat >&2 << EOF
+
+  => ATTENTION: Run "notparadoxlauncher" once as regular user to set up.
+
+EOF
+}
+
+post_remove() {
+  cat >&2 << EOF
+
+  => ATTENTION: To fully uninstall, remove:
+  =>               ~/.local/share/Paradox\ Interactive/launcherpath
+
+EOF
+}
