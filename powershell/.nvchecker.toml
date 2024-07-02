@@ -1,5 +1,0 @@
-[powershell]
-source = "github"
-github = "PowerShell/PowerShell"
-prefix = "v"
-use_latest_release = true
