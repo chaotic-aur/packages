@@ -1,8 +1,0 @@
-pkgbase = shell-color-scripts
-	pkgdesc = metapackage - migrate to shell-color-scripts-git
-	pkgver = 2
-	pkgrel = 1
-	arch = any
-
-pkgname = shell-color-scripts
-	depends = shell-color-scripts-git
