@@ -65,20 +65,20 @@ package() {
   ln -sfr "$pkgdir/$_install_path/$_pkgname/$_pkgname" "$pkgdir/usr/bin/${_pkgname}"
 
   # icon
-  install -Dm644 "$srcdir/$_pkgname/app/build/flutter_assets/assets/img/logo-512.png" "$pkgdir/usr/share/pixmaps/localsend.png"
+  install -Dm644 "$srcdir/$_pkgname/app/build/flutter_assets/assets/img/logo-512.png" "$pkgdir/usr/share/pixmaps/$_pkgname.png"
 
   # .desktop file
   install -Dm644 /dev/stdin "$pkgdir/usr/share/applications/$_pkgname.desktop" << END
 [Desktop Entry]
 Type=Application
-Comment=An open source cross-platform alternative to AirDrop 
-Name=localsend
-Exec=localsend
-Icon=localsend
+Name=$_pkgname
+Comment=$pkgdesc
+Exec=$_pkgname
+Icon=$_pkgname
 Terminal=false
 Hidden=false
 END
 
   #license
-  install -Dm644 "$srcdir/$_pkgsrc/LICENSE" -t "$pkgdir/usr/share/licenses/"
+  install -Dm644 "$srcdir/$_pkgsrc/LICENSE" -t "$pkgdir/usr/share/licenses/$pkgname/"
 }
