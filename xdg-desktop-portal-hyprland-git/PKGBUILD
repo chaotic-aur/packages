@@ -1,0 +1,106 @@
+_pkgname="xdg-desktop-portal-hyprland"
+pkgname="${_pkgname}-git"
+pkgver=1.3.1.r9.gc06fd88b
+pkgrel=1
+pkgdesc="xdg-desktop-portal backend for hyprland"
+url="https://github.com/hyprwm/xdg-desktop-portal-hyprland"
+license=('BSD-3-Clause')
+arch=(x86_64)
+
+depends=(
+  libpipewire
+  qt6-base
+  sdbus-cpp
+
+  ## implicit
+  #libdrm
+  #mesa
+  #wayland
+)
+makedepends=(
+  cmake
+  git
+  ninja
+  wayland
+  wayland-protocols
+)
+optdepends=(
+  'grim: required for the screenshot portal to function'
+  'slurp: support for interactive mode for the screenshot portal'
+)
+
+_sodeps=(
+  # makedep::sodep
+  'hyprlang-git'::'libhyprlang.so'
+)
+for i in "${_sodeps[@]}"; do
+  depends+=("${i#*::}")
+  makedepends+=("${i%::*}")
+done
+
+provides=(
+  "$_pkgname=${pkgver%%.r*}"
+  "xdg-desktop-portal-impl"
+)
+conflicts=("$_pkgname")
+
+_pkgsrc="$_pkgname"
+source=(
+  "$_pkgsrc"::"git+$url.git"
+  'hyprwm.hyprland-protocols'::'git+https://github.com/hyprwm/hyprland-protocols.git'
+  'kistler-group.sdbus-cpp'::'git+https://github.com/Kistler-Group/sdbus-cpp.git'
+)
+sha256sums=(
+  'SKIP'
+  'SKIP'
+  'SKIP'
+)
+
+pkgver() {
+  cd "$_pkgsrc"
+  git describe --long --tags --abbrev=8 | sed -E 's/^v//;s/([^-]*-g)/r\1/;s/-/./g'
+}
+
+prepare() {
+  _submodule_update() {
+    local key
+    for key in ${!_submodules[@]}; do
+      git submodule init "${_submodules[${key}]}"
+      git submodule set-url "${_submodules[${key}]}" "${srcdir}/${key}"
+      git -c protocol.file.allow=always submodule update "${_submodules[${key}]}"
+    done
+  }
+
+  cd "$_pkgsrc"
+  local -A _submodules=(
+    ['hyprwm.hyprland-protocols']='subprojects/hyprland-protocols'
+    ['kistler-group.sdbus-cpp']='subprojects/sdbus-cpp'
+  )
+  _submodule_update
+}
+
+build() {
+  local _cmake_options=(
+    -B build
+    -S "$_pkgsrc"
+    -G Ninja
+    -DCMAKE_BUILD_TYPE=Release
+    -DCMAKE_INSTALL_PREFIX=/usr
+    -DCMAKE_INSTALL_LIBEXECDIR=/usr/lib
+
+    -Wno-dev
+  )
+
+  cmake "${_cmake_options[@]}"
+  cmake --build build
+}
+
+package() {
+  DESTDIR="$pkgdir" cmake --install build
+  install -Dm644 "$_pkgsrc/LICENSE" -t "$pkgdir/usr/share/licenses/$pkgname/"
+
+  install -Dm644 /dev/stdin "$pkgdir/usr/share/xdg-desktop-portal/hyprland-portals.conf" << END
+[preferred]
+default=gtk;hyprland
+END
+}

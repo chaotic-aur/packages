@@ -1,0 +1,30 @@
+pkgbase = xdg-desktop-portal-hyprland-git
+	pkgdesc = xdg-desktop-portal backend for hyprland
+	pkgver = 1.3.1.r9.gc06fd88b
+	pkgrel = 1
+	url = https://github.com/hyprwm/xdg-desktop-portal-hyprland
+	arch = x86_64
+	license = BSD-3-Clause
+	makedepends = cmake
+	makedepends = git
+	makedepends = ninja
+	makedepends = wayland
+	makedepends = wayland-protocols
+	makedepends = hyprlang-git
+	depends = libpipewire
+	depends = qt6-base
+	depends = sdbus-cpp
+	depends = libhyprlang.so
+	optdepends = grim: required for the screenshot portal to function
+	optdepends = slurp: support for interactive mode for the screenshot portal
+	provides = xdg-desktop-portal-hyprland=1.3.1
+	provides = xdg-desktop-portal-impl
+	conflicts = xdg-desktop-portal-hyprland
+	source = xdg-desktop-portal-hyprland::git+https://github.com/hyprwm/xdg-desktop-portal-hyprland.git
+	source = hyprwm.hyprland-protocols::git+https://github.com/hyprwm/hyprland-protocols.git
+	source = kistler-group.sdbus-cpp::git+https://github.com/Kistler-Group/sdbus-cpp.git
+	sha256sums = SKIP
+	sha256sums = SKIP
+	sha256sums = SKIP
+
+pkgname = xdg-desktop-portal-hyprland-git
