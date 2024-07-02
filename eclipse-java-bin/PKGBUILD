@@ -1,7 +1,8 @@
 # Maintainer: Mattia Moffa <mattia [at] moffa [dot] xyz>
 # Maintainer: Morgenstern <charles [at] charlesbwise [dot] com>
 
-pkgname=eclipse-java
+pkgname=eclipse-java-bin
+_pkgname=${pkgname%-bin}
 epoch=2
 pkgver=4.32
 pkgrel=1
@@ -17,8 +18,8 @@ provides=(eclipse=$pkgver-$pkgrel)
 conflicts=(eclipse)
 options=(!strip)
 
-_srcfilename_x86_64="$pkgname-${_release//\//-}-linux-gtk-x86_64.tar.gz"
-_srcfilename_aarch64="$pkgname-${_release//\//-}-linux-gtk-aarch64.tar.gz"
+_srcfilename_x86_64="$_pkgname-${_release//\//-}-linux-gtk-x86_64.tar.gz"
+_srcfilename_aarch64="$_pkgname-${_release//\//-}-linux-gtk-aarch64.tar.gz"
 
 source_x86_64=("$_srcfilename_x86_64::https://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/$_release/$_srcfilename_x86_64&r=1")
 source_aarch64=("$_srcfilename_aarch64::https://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/$_release/$_srcfilename_aarch64&r=1")
