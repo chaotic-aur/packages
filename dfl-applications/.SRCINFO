@@ -1,0 +1,24 @@
+pkgbase = dfl-applications
+	pkgdesc = A class that extends QApplications
+	pkgver = 0.2.0
+	pkgrel = 1
+	url = https://gitlab.com/desktop-frameworks/applications
+	arch = x86_64
+	arch = aarch64
+	license = GPL3
+	makedepends = meson
+	makedepends = ninja
+	makedepends = qt5-base
+	makedepends = qt6-base
+	makedepends = dfl-ipc
+	makedepends = dfl-ipc-qt6
+	source = https://gitlab.com/desktop-frameworks/applications/-/archive/v0.2.0/applications-v0.2.0.tar.gz
+	md5sums = f987f17f5cea3696e1d91171974295de
+
+pkgname = dfl-applications
+	depends = qt5-base
+	depends = dfl-ipc
+
+pkgname = dfl-applications-qt6
+	depends = qt6-base
+	depends = dfl-ipc-qt6
