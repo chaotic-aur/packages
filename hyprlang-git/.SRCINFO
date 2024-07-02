@@ -1,0 +1,20 @@
+pkgbase = hyprlang-git
+	pkgdesc = hyprlang - the hypr configuration language
+	pkgver = 0.5.2.r2.ec6938c
+	pkgrel = 2
+	url = https://github.com/hyprwm/hyprlang
+	arch = x86_64
+	license = GPL
+	makedepends = git
+	makedepends = cmake
+	makedepends = hyprutils-git
+	makedepends = pixman
+	depends = gcc-libs
+	depends = glibc
+	provides = hyprlang=0.5.2
+	provides = libhyprlang.so
+	conflicts = hyprlang
+	source = hyprlang::git+https://github.com/hyprwm/hyprlang.git
+	sha256sums = SKIP
+
+pkgname = hyprlang-git
