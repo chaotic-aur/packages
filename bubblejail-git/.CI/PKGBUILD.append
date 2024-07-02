@@ -8,9 +8,11 @@ provides=("bubblejail=${pkgver%%.r*}")
 pkgver() {
   cd "$pkgname"
 
-  git describe --long --tags --abbrev=8 --exclude='*[a-zA-Z][a-zA-Z]*' \
+  git describe --long --tags --abbrev=7 --exclude='*[a-zA-Z][a-zA-Z]*' \
     | sed -E 's/^[^0-9]+//;s/([^-]*-g)/r\1/;s/-/./g'
 }
+
+eval _orig_"$(declare -f prepare)"
 
 prepare() {
   patch -d "$pkgname" -Np1 -F100 -i "$srcdir/0096-expandvars-0.patch"
@@ -20,4 +22,6 @@ prepare() {
 
   sed -E -e 's@^(\s+display_in_gui) = False$@\1 = True@' \
     -i "$pkgname/src/bubblejail/services.py"
+
+  _orig_prepare
 }

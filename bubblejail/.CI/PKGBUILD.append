@@ -1,4 +1,6 @@
 
+makedepends+=('git')
+
 license=('GPL-3.0-or-later')
 
 source=(
