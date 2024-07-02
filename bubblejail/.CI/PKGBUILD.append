@@ -1,12 +1,32 @@
 
-source+=("0096-expandvars-0.patch"::"https://github.com/igo95862/bubblejail/pull/96.diff")
-md5sums+=('SKIP')
-
 license=('GPL-3.0-or-later')
 
+source=(
+  "$pkgname"::"git+https://github.com/igo95862/bubblejail#tag=$pkgver"
+  "0096-expandvars-0.patch"::"https://github.com/igo95862/bubblejail/pull/96.diff"
+)
+sha512sums=(
+  'SKIP'
+  'SKIP'
+)
+
 prepare() {
-  patch -d "$pkgname" -Np1 -F100 -i "$srcdir/0096-expandvars-0.patch"
+  cd "$pkgname"
+  patch -Np1 -F100 -i "$srcdir/0096-expandvars-0.patch"
 
   sed -E -e '/--urgency.*critical/d' \
-    -i "$pkgname/src/bubblejail/bubblejail_cli.py"
+    -i "src/bubblejail/bubblejail_cli.py"
+}
+
+build() {
+  local opts=(
+    -Dversion_display="'AUR-git $pkgver'"
+  )
+
+  arch-meson "${opts[@]}" "$pkgname" build
+  meson compile -C build
+}
+
+package() {
+  DESTDIR="$pkgdir" meson install -C build
 }
