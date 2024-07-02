@@ -1,0 +1,20 @@
+pkgbase = skypeforlinux-bin
+	pkgdesc = Skype for Linux
+	pkgver = 8.115.0.215
+	pkgrel = 1
+	url = https://snapcraft.io/skype
+	arch = x86_64
+	license = LicenseRef-Skype
+	makedepends = html-xml-utils
+	makedepends = pandoc
+	makedepends = sha3sum
+	makedepends = squashfs-tools
+	optdepends = chaotic-interfere: chaotic-aur interference tracker
+	source = skypeforlinux-8.119.0.201.snap::https://api.snapcraft.io/api/v1/snaps/download/QRDEfjn4WJYnm0FzDKwqqRZZI77awQEV_348.snap
+	sha256sums = SKIP
+
+pkgname = skypeforlinux-bin
+	depends = alsa-lib
+	depends = gtk3
+	depends = libsecret
+	depends = nss
