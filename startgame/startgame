@@ -1,0 +1,379 @@
+#!/usr/bin/env bash
+
+# Help
+if [[ $# -eq 0 ]] || [[ "${1:-}" == '--help' ]]; then
+  cat <<EOF
+  Usage: startgame \${options} -- %command%
+
+  Options
+    --ao=alsa         Forces SDL_AUDIODRIVER to use ALSA
+    --ao=pulse        Forces SDL_AUDIODRIVER to use PulseAudio
+    --ao=pw           Forces SDL_AUDIODRIVER to use PipeWire
+    --dxr             Enable DXR in VKD3D
+    --fsr=[0-5]       Foces AMD's FidelityFX
+    --gamescope       Enable Gamescope
+    --gl=zink         Force Mesa's OpenGL/Gallium to Vulkan
+    --llvm            Disables ACO (for AMD GPU's only)
+    --log             Enable Proton, Wine and DXVK's logs
+    --log-mfplat      Enable Wine's mfplat logs
+    --log-all         Enable Wine's "+all" logs
+    --nocapture       Don't force VkCapture
+    --nodcc           RADV's nodcc (for AMD GPU's only)
+    --nomango         Disables MangoHud
+    --nox             Remove X11 and XWayland access (forces Wayland-only)
+    --nsdl{,=32,=64}  Force system's SDL libraries
+    --singlecore      Simulate singlecore CPU topology
+    --soldier         Enable Steam Soldier (see #notes)
+    --term            Opens a terminal instead of the game (exposes game command in "\$GAME_CMD")
+    --vk=amdpro       Forces VK ICD to amdpro (for AMD GPU's only)
+    --vk=amdvlk       Forces VK ICD to amdvlk (for AMD GPU's only)
+    --vk=radeon       Forces VK ICD to radeon (for AMD GPU's only)
+    --wayland         Don't force XWayland
+
+  Requirements:
+    * ArchLinux
+    * gamemode, lib32-gamemode
+    * mangohud, lib32-mangohud
+    * obs-vkcapture
+    * vulkan-amdgpu-pro, lib32-vulkan-amdgpu-pro (optional)
+    * amdvlk, lib32-amdvlk (optional)
+    * gamescope (optional)
+    * sdl2, lib32-sdl2 (optional)
+    * Wine with FSR pattches (optional)
+
+  This script by default:
+    * Enables mangohud;
+    * Disables logs from Proton, Wine and DXVK;
+    * On Wayland, forces games to use XWayland (with SDL_VIDEODRIVER and XDG_SESSION_TYPE);
+    * If available, enables VkCapture;
+    * Skips Steam Soldier (needs manual action, see #notes);
+    * Logs stdout and stderr to "/tmp/game-user-timestamp.log".
+
+  Notes:
+    * Set \$GUITERM to use '--term';
+    * Gamescope parameters can be configured in "~/.config/gamescope-flags.conf";
+    * For enabling/skipping Steam Solider with '--soldier', you'll need this line prepended (after shebang) in "~/.steam/steam/steamapps/common/SteamLinuxRuntime_soldier/_v2-entry-point":
+    if [[ -z "\${STEAM_ENABLE_SOLDIER:-}" ]]; then shift 4; exec "\${@}"; fi
+EOF
+  exit 1
+fi
+
+# ** Local
+_GAME_CMD=()
+_RUN_TERMINAL=0
+
+# ** Config
+if [[ -z "$XDG_CONFIG_HOME" ]]; then
+	if [[ -z "$HOME" ]]; then
+		XDG_CONFIG_HOME='/tmp'
+	else
+		XDG_CONFIG_HOME="$HOME/.config"
+	fi
+fi
+
+# ** Prepare the GAMEMODERUNEXEC and _GAME_CMD
+function prepare() {
+  # * Don't export
+  local _ARG _ICD_PATH _RADV_DEBUG _WINEDEBUG _DXVK_HUD _DRIVER \
+    _AO _DXR _GAMESCOPE _LLVM _LOG _LOG_MFPLAT _MANGOHUD _NATIVESDL \
+    _NODCC _NOX _NOXWAYLAND _SOLDIER _VKCAPTURE _ZINK _SINGLECORE _VKD3D_CONFIG
+
+  # * System
+  _ICD_PATH='/usr/share/vulkan/icd.d'
+
+  # * Features
+  _AO=0
+  _DRIVER=0
+  _DXR=0
+  _DXVK_HUD=('compiler')
+  _FSR_STRENGTH=''
+  _FESYNC=1
+  _GAMESCOPE=0
+  _LLVM=0
+  _LOG=0
+  _LOG_MFPLAT=0
+  _LOG_ALL=0
+  _MANGOHUD=1
+  _NATIVESDL=0
+  _NODCC=0
+  _NOX=0
+  _NOXWAYLAND=0
+  _RADV_DEBUG=('nggc')
+  _SINGLECORE=0
+  _SOLDIER=0
+  _VKCAPTURE=1
+  _VKD3D_CONFIG=()
+  _ZINK=0
+  _WINEDEBUG=()
+
+  # * User settings
+  if [[ -f '/etc/gamerc' ]]; then
+    # shellcheck source=/dev/null
+    source '/etc/gamerc' || true
+  fi
+  if [[ -f "${XDG_CONFIG_HOME}/gamerc" ]]; then
+    # shellcheck source=gamerc.example
+    source "${XDG_CONFIG_HOME}/gamerc" || true
+  fi
+
+  # * CLI parameters
+  while true; do
+    _ARG="${1:-}"
+    case "${_ARG}" in
+    '--ao=pw')
+      _AO='pipewire'
+      shift 1
+      ;;
+    '--ao=pulse')
+      _AO='pulseaudio'
+      shift 1
+      ;;
+    '--ao=alsa')
+      _AO='alsa'
+      shift 1
+      ;;
+    '--vk=amdpro')
+      _DRIVER='amdpro'
+      shift 1
+      ;;
+    '--vk=amdvlk')
+      _DRIVER='amdvlk'
+      shift 1
+      ;;
+    '--vk=radeon' | '--vk=radv')
+      _DRIVER='radeon'
+      shift 1
+      ;;
+    '--dxr')
+      _DXR=1
+      shift 1
+      ;;
+    '--fsr='[0-5])
+      _FSR_STRENGTH="${_ARG:6}"
+      shift 1
+      ;;
+    '--gamescope')
+      _GAMESCOPE=1
+      shift 1
+      ;;
+    '--llvm')
+      _LLVM=1
+      shift 1
+      ;;
+    '--log')
+      _LOG=1
+      shift 1
+      ;;
+    '--log-mfplat')
+      _LOG=1
+      _LOG_MFPLAT=1
+      shift 1
+      ;;
+    '--log-all')
+      _LOG=1
+      _LOG_ALL=1
+      shift 1
+      ;;
+    '--nomango')
+      _MANGOHUD=0
+      shift 1
+      ;;
+    '--nsdl=32')
+      _NATIVESDL='32'
+      shift 1
+      ;;
+    '--nsdl' | '--nsdl=64')
+      _NATIVESDL='64'
+      shift 1
+      ;;
+    '--nodcc')
+      _NODCC=1
+      shift 1
+      ;;
+    '--nox')
+      _NOX=1
+      _NOXWAYLAND=1
+      shift 1
+      ;;
+    '--singlecore')
+      _SINGLECORE=1
+      shift 1
+      ;;
+    '--soldier')
+      _SOLDIER=1
+      shift 1
+      ;;
+    '--nocapture')
+      _VKCAPTURE=0
+      shift 1
+      ;;
+    '-w' | '--wayland')
+      _NOXWAYLAND=1
+      shift 1
+      ;;
+    '--gl=zink')
+      _ZINK=1
+      shift 1
+      ;;
+    '--term')
+      _RUN_TERMINAL=1
+      shift 1
+      ;;
+    '--')
+      shift 1
+      break
+      ;;
+    *)
+      break
+      ;;
+    esac
+  done
+
+  # * Initial options
+  GAMEMODERUNEXEC='env'
+
+  # * Apply features
+  if [[ "$_AO" == 'pipewire' ]]; then
+    GAMEMODERUNEXEC+=' SDL_AUDIODRIVER=pipewire'
+  elif [[ "$_AO" == 'pulseaudio' ]]; then
+    GAMEMODERUNEXEC+=' SDL_AUDIODRIVER=pulseaudio'
+  elif [[ "$_AO" == 'alsa' ]]; then
+    GAMEMODERUNEXEC+=' SDL_AUDIODRIVER=alsa'
+  fi
+
+  if [[ "$_DRIVER" == 'radeon' ]]; then
+    GAMEMODERUNEXEC+=" VK_ICD_FILENAMES=${_ICD_PATH}/radeon_icd.i686.json:${_ICD_PATH}/radeon_icd.x86_64.json"
+  elif [[ "$_DRIVER" == 'amdvlk' ]]; then
+    GAMEMODERUNEXEC+=" VK_ICD_FILENAMES=${_ICD_PATH}/amd_icd32.json:${_ICD_PATH}/amd_icd64.json"
+  elif [[ "$_DRIVER" == 'amdpro' ]]; then
+    GAMEMODERUNEXEC+=" VK_ICD_FILENAMES=${_ICD_PATH}/amd_pro_icd32.json:${_ICD_PATH}/amd_pro_icd64.json"
+  fi
+
+  if [[ "$_DXR" == '1' ]]; then
+    _VKD3D_CONFIG+=('dxr')
+    GAMEMODERUNEXEC+=' RADV_PERFTEST=rt'
+    _RADV_DEBUG+=('nocache')
+  fi
+
+  if [[ -n "${_FSR_STRENGTH}" ]]; then
+    GAMEMODERUNEXEC+=" WINE_FULLSCREEN_FSR=1 WINE_FULLSCREEN_FSR_STRENGTH=${_FSR_STRENGTH}"
+  fi
+
+  if [[ "$_LLVM" == '1' ]]; then
+    _RADV_DEBUG+=('llvm')
+  fi
+
+  if [[ "$_LOG" == '1' ]]; then
+    GAMEMODERUNEXEC+=' PROTON_LOG=1'
+    if [[ "$_LOG_ALL" == '1' ]]; then
+      _WINEDEBUG+=('+all')
+    elif [[ "$_LOG_MFPLAT" == '1' ]]; then
+      _WINEDEBUG+=('+mfplat')
+    fi
+  else
+    GAMEMODERUNEXEC+=' DXVK_LOG_PATH=none'
+    GAMEMODERUNEXEC+=' PROTON_WINEDBG_DISABLE=1'
+  fi
+
+  if [[ "$_NATIVESDL" == '32' ]]; then
+    GAMEMODERUNEXEC+=' SDL_DYNAMIC_API=/usr/lib32/libSDL2-2.0.so.0'
+  elif [[ "$_NATIVESDL" == '64' ]]; then
+    GAMEMODERUNEXEC+=' SDL_DYNAMIC_API=/usr/lib/libSDL2-2.0.so.0'
+  fi
+
+  if [[ "$_NODCC" == '1' ]]; then
+    _RADV_DEBUG+=('nodcc')
+  fi
+
+  if [[ "$_NOX" == '1' ]]; then
+    GAMEMODERUNEXEC+=' --unset=DISPLAY'
+  fi
+  
+  if [[ "$_SINGLECORE" == '1' ]]; then
+    GAMEMODERUNEXEC+=' WINE_CPU_TOPOLOGY=1:0'
+  fi
+
+  if [[ "$_SOLDIER" == '1' ]]; then
+    GAMEMODERUNEXEC+=' STEAM_ENABLE_SOLDIER=1'
+  fi
+
+  if [[ "$_VKCAPTURE" == '1' ]]; then
+    GAMEMODERUNEXEC+=' OBS_VKCAPTURE=1'
+  fi
+
+  if [[ "$_ZINK" == '1' ]]; then
+    GAMEMODERUNEXEC+=' MESA_LOADER_DRIVER_OVERRIDE=zink'
+  fi
+
+  if [[ "$_FESYNC" == '1' ]]; then
+    GAMEMODERUNEXEC+=' WINEESYNC=1 WINEFSYNC=1'
+  elif [[ "$_FESYNC" == '0' ]]; then
+    GAMEMODERUNEXEC+=' PROTON_NO_FSYNC=1 PROTON_NO_ESYNC=1'
+  elif [[ "$_FESYNC" == 'E' ]] || [[ "$_FESYNC" == 'e' ]]; then
+    GAMEMODERUNEXEC+=' PROTON_NO_FSYNC=1 WINEESYNC=1'
+  elif [[ "$_FESYNC" == 'F' ]] || [[ "$_FESYNC" == 'f' ]]; then
+    GAMEMODERUNEXEC+=' PROTON_NO_ESYNC=1 WINEFSYNC=1'
+  fi
+
+  # * Composable variables
+  if [[ "${_DXVK_HUD:-}" == '1' ]] || [[ "${_DXVK_HUD:-}" == 'full' ]]; then
+    GAMEMODERUNEXEC+=" DXVK_HUD=${_DXVK_HUD:-}"
+  elif [[ -n "${_DXVK_HUD:-}" ]]; then
+    GAMEMODERUNEXEC+=" DXVK_HUD=$(IFS=',';echo "${_DXVK_HUD[*]}")"
+  fi
+
+  if [[ -n "${_RADV_DEBUG:-}" ]]; then
+    GAMEMODERUNEXEC+=" RADV_DEBUG=$(IFS=',';echo "${_RADV_DEBUG[*]}")"
+  fi
+
+  if [[ -n "${_WINEDEBUG:-}" ]]; then
+    GAMEMODERUNEXEC+=" WINEDEBUG=$(IFS=',';echo "${_WINEDEBUG[*]}")"
+  fi
+  
+  if [[ -n "${_VKD3D_CONFIG:-}" ]]; then
+    GAMEMODERUNEXEC+=" VKD3D_CONFIG=$(IFS=',';echo "${_VKD3D_CONFIG[*]}")"
+  fi
+
+  # * Prepend
+  [[ -n "${WAYLAND_DISPLAY:-}" ]] && [[ "$_NOXWAYLAND" != '1' ]] && \
+    GAMEMODERUNEXEC+=' SDL_VIDEODRIVER=x11 XDG_SESSION_TYPE=x11'
+  [[ "$_MANGOHUD" == '1' ]] && \
+    GAMEMODERUNEXEC="mangohud $GAMEMODERUNEXEC"
+  
+  if [[ "$_GAMESCOPE" == '1' ]]; then
+    if [[ -f "${XDG_CONFIG_HOME}/gamescope-flags.conf" ]]; then
+      GAMEMODERUNEXEC="gamescope $(cat "${XDG_CONFIG_HOME}/gamescope-flags.conf") -- $GAMEMODERUNEXEC"
+    else
+      GAMEMODERUNEXEC="gamescope -- $GAMEMODERUNEXEC"
+    fi
+  fi
+
+  # * Export
+  export GAMEMODERUNEXEC
+  _GAME_CMD=(gamemoderun "$@")
+}
+
+# * Go game!
+prepare "$@"
+
+if [[ "$_RUN_TERMINAL" != '1' ]]; then
+  _GAME_LOG="/tmp/game-${USER}-$(date +%s).log"
+  {
+    echo "[ Chaotic's Start Game ]"
+    echo "- at: $PWD"
+    echo "- with: GAMEMODERUNEXEC=${GAMEMODERUNEXEC}"
+    echo "- running: ${_GAME_CMD[*]@Q}"
+    echo "- logs: ${_GAME_LOG}"
+    exec "${_GAME_CMD[@]}" 2>&1
+  } | tee "$_GAME_LOG"
+else
+  if [ -n "${SteamGameId:-}" ]; then
+    WINEPREFIX="$HOME/.local/share/Steam/steamapps/compatdata/$SteamGameId/pfx"
+    export WINEPREFIX
+  fi
+  GAME_CMD="${_GAME_CMD[*]@Q}"
+  export GAME_CMD
+  exec "${GUITERM:-alacritty}"
+fi
+
+# vim: set ts=2 sw=2 et:
