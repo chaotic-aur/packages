@@ -1,0 +1,432 @@
+## useful links:
+# https://www.ppsspp.org/
+# https://github.com/hrydgard/ppsspp
+
+# options
+: ${_build_qt:=false}
+: ${_build_sdl:=true}
+
+: ${_build_ffmpeg:=false}
+
+: ${_build_avx:=true}
+: ${_build_git:=true}
+
+unset _pkgtype
+if [[ ${CARCH::1} == "a" ]]; then
+  _build_avx=false
+fi
+
+[[ "${_build_avx::1}" == "t" ]] && _pkgtype+='-avx'
+[[ "${_build_git::1}" == "t" ]] && _pkgtype+='-git'
+
+# basic info
+_pkgname="ppsspp"
+pkgname="${_pkgname}${_pkgtype:-}"
+pkgver=1.17.1.r785.gcbdb2a3
+pkgrel=1
+pkgdesc='PSP emulator written in C++'
+url="https://github.com/hrydgard/ppsspp"
+arch=(x86_64 aarch64)
+license=('GPL-2.0-or-later')
+
+# main package
+_main_package() {
+  depends=(
+    glew
+    libzip
+    sdl2
+    snappy
+
+    ## implicit
+    #libglvnd
+    #libpng
+    #zlib
+    #zstd
+  )
+  makedepends=(
+    clang
+    cmake
+    gendesk
+    git
+    lld
+    ninja
+    python
+  )
+
+  if [[ "${_build_qt::1}" == "t" ]]; then
+    makedepends+=(
+      qt5-tools
+      qt5-base
+      qt5-multimedia
+    )
+  fi
+  if [[ "${_build_sdl::1}" == "t" ]]; then
+    makedepends+=(
+      sdl2_ttf
+    )
+  fi
+
+  provides=(
+    "ppsspp=${pkgver%%.r*}"
+    "ppsspp-assets=${pkgver%%.r*}"
+  )
+  conflicts=(
+    "ppsspp"
+    "ppsspp-assets"
+  )
+
+  options=(!lto)
+
+  _pkgsrc="ppsspp"
+  source=(
+    "git+https://github.com/hrydgard/ppsspp.git"
+  )
+  sha256sums=(
+    'SKIP'
+  )
+
+  _source_ppsspp
+
+  _source_bylaws_libadrenotools
+  _source_hrydgard_ppsspp_ffmpeg
+  _source_kingcom_armips
+  _source_tencent_rapidjson
+}
+
+# submodules
+_source_ppsspp() {
+  source+=(
+    'bylaws.libadrenotools'::'git+https://github.com/bylaws/libadrenotools.git'
+    'discordapp.discord-rpc'::'git+https://github.com/discordapp/discord-rpc.git'
+    'erkkah.naett'::'git+https://github.com/erkkah/naett.git'
+    'facebook.zstd'::'git+https://github.com/facebook/zstd.git'
+    'google.cpu_features'::'git+https://github.com/google/cpu_features.git'
+    'hrydgard.minidx9'::'git+https://github.com/hrydgard/minidx9.git'
+    'hrydgard.ppsspp-freetype'::'git+https://github.com/hrydgard/ppsspp-freetype.git'
+    'hrydgard.ppsspp-mac-sdl'::'git+https://github.com/hrydgard/ppsspp-mac-sdl.git'
+    'hrydgard.ppsspp-moltenvk'::'git+https://github.com/hrydgard/ppsspp-moltenvk.git'
+    'hrydgard.pspautotests'::'git+https://github.com/hrydgard/pspautotests.git'
+    'khronosgroup.glslang'::'git+https://github.com/KhronosGroup/glslang.git'
+    'khronosgroup.openxr-sdk'::'git+https://github.com/KhronosGroup/OpenXR-SDK.git'
+    'khronosgroup.spirv-cross'::'git+https://github.com/KhronosGroup/SPIRV-Cross.git'
+    'kingcom.armips'::'git+https://github.com/Kingcom/armips.git'
+    'libretro.libretro-common'::'git+https://github.com/libretro/libretro-common.git'
+    'miniupnp'::'git+https://github.com/miniupnp/miniupnp.git'
+    'retroachievements.rcheevos'::'git+https://github.com/RetroAchievements/rcheevos.git'
+    'rtissera.libchdr'::'git+https://github.com/rtissera/libchdr.git'
+    'tencent.rapidjson'::'git+https://github.com/Tencent/rapidjson.git'
+    'unknownbrackets.ppsspp-debugger'::'git+https://github.com/unknownbrackets/ppsspp-debugger.git'
+  )
+  sha256sums+=(
+    'SKIP'
+    'SKIP'
+    'SKIP'
+    'SKIP'
+    'SKIP'
+    'SKIP'
+    'SKIP'
+    'SKIP'
+    'SKIP'
+    'SKIP'
+    'SKIP'
+    'SKIP'
+    'SKIP'
+    'SKIP'
+    'SKIP'
+    'SKIP'
+    'SKIP'
+    'SKIP'
+    'SKIP'
+    'SKIP'
+  )
+
+  if [[ "${_build_ffmpeg::1}" == "t" ]]; then
+    source+=(
+      'hrydgard.ppsspp-ffmpeg'::'git+https://github.com/hrydgard/ppsspp-ffmpeg.git'
+    )
+    sha256sums+=(
+      'SKIP'
+    )
+  fi
+
+  _prepare_ppsspp() (
+    cd "$srcdir/$_pkgsrc"
+    local _submodules=(
+      'bylaws.libadrenotools'::'ext/libadrenotools'
+      'discordapp.discord-rpc'::'ext/discord-rpc'
+      'erkkah.naett'::'ext/naett'
+      'facebook.zstd'::'ext/zstd'
+      'google.cpu_features'::'ext/cpu_features'
+      'hrydgard.minidx9'::'dx9sdk'
+      'hrydgard.ppsspp-freetype'::'ext/native/tools/prebuilt'
+      'hrydgard.ppsspp-mac-sdl'::'SDL/macOS'
+      'hrydgard.ppsspp-moltenvk'::'ios/MoltenVK'
+      'hrydgard.pspautotests'::'pspautotests'
+      'khronosgroup.glslang'::'ext/glslang'
+      'khronosgroup.openxr-sdk'::'ext/OpenXR-SDK'
+      'khronosgroup.spirv-cross'::'ext/SPIRV-Cross'
+      'kingcom.armips'::'ext/armips'
+      'libretro.libretro-common'::'libretro/libretro-common'
+      'miniupnp'::'ext/miniupnp'
+      'retroachievements.rcheevos'::'ext/rcheevos'
+      'rtissera.libchdr'::'ext/libchdr'
+      'tencent.rapidjson'::'ext/rapidjson'
+      'unknownbrackets.ppsspp-debugger'::'assets/debugger'
+    )
+
+    if [[ "${_build_ffmpeg::1}" == "t" ]]; then
+      _submodules+=(
+        'hrydgard.ppsspp-ffmpeg'::'ffmpeg'
+      )
+    fi
+
+    _submodule_update
+  )
+}
+
+_source_bylaws_libadrenotools() {
+  source+=(
+    'bylaws.liblinkernsbypass'::'git+https://github.com/bylaws/liblinkernsbypass.git'
+  )
+  sha256sums+=(
+    'SKIP'
+  )
+
+  _prepare_bylaws_libadrenotools() (
+    cd "$srcdir/$_pkgsrc"
+    cd 'ext/libadrenotools'
+    local _submodules=(
+      'bylaws.liblinkernsbypass'::'lib/linkernsbypass'
+    )
+    _submodule_update
+  )
+}
+
+_source_hrydgard_ppsspp_ffmpeg() {
+  if [ "${_build_ffmpeg::1}" != "t" ]; then
+    depends+=(ffmpeg)
+
+    _prepare_hrydgard_ppsspp_ffmpeg() {
+      :
+    }
+
+    return
+  fi
+
+  source+=(
+    'ffmpeg.gas-preprocessor'::'git+https://github.com/FFmpeg/gas-preprocessor.git'
+  )
+  sha256sums+=(
+    'SKIP'
+  )
+
+  _prepare_hrydgard_ppsspp_ffmpeg() (
+    cd "$srcdir/$_pkgsrc"
+    cd 'ffmpeg'
+    local _submodules=(
+      'ffmpeg.gas-preprocessor'::'gas-preprocessor'
+    )
+    _submodule_update
+  )
+}
+
+_source_kingcom_armips() {
+  source+=(
+    'kingcom.filesystem'::'git+https://github.com/Kingcom/filesystem.git'
+  )
+  sha256sums+=(
+    'SKIP'
+  )
+
+  _prepare_kingcom_armips() (
+    cd "$srcdir/$_pkgsrc"
+    cd 'ext/armips'
+    local _submodules=(
+      'kingcom.filesystem'::'ext/filesystem'
+    )
+    _submodule_update
+  )
+}
+
+_source_tencent_rapidjson() {
+  source+=(
+    'google.googletest'::'git+https://github.com/google/googletest.git'
+  )
+  sha256sums+=(
+    'SKIP'
+  )
+
+  _prepare_tencent_rapidjson() (
+    cd "$srcdir/$_pkgsrc"
+    cd 'ext/rapidjson'
+    local _submodules=(
+      'google.googletest'::'thirdparty/gtest'
+    )
+    _submodule_update
+  )
+}
+
+# common functions
+pkgver() {
+  cd ppsspp
+  git describe --long --tags --abbrev=7 --exclude='*[a-zA-Z][a-zA-Z]*' \
+    | sed -E 's/^v//;s/([^-]*-g)/r\1/;s/-/./g'
+}
+
+prepare() {
+  _submodule_update() {
+    local _module
+    for _module in "${_submodules[@]}"; do
+      git submodule init "${_module##*::}"
+      git submodule set-url "${_module##*::}" "$srcdir/${_module%::*}"
+      git -c protocol.file.allow=always submodule update "${_module##*::}"
+    done
+  }
+
+  # desktop files
+  local _gendesk_options=(
+    -q -f -n
+    --pkgname="ppsspp-qt"
+    --pkgdesc="$pkgdesc"
+    --name="PPSSPP (Qt)"
+    --exec="PPSSPPQt %f"
+    --icon="ppsspp"
+    --terminal=false
+    --categories="Game"
+    --startupnotify=true
+  )
+
+  gendesk "${_gendesk_options[@]}"
+
+  local _gendesk_options=(
+    -q -f -n
+    --pkgname="ppsspp-sdl"
+    --pkgdesc="$pkgdesc"
+    --name="PPSSPP (SDL)"
+    --exec="PPSSPPSDL %f"
+    --icon="ppsspp"
+    --terminal=false
+    --categories="Game"
+    --startupnotify=true
+  )
+
+  gendesk "${_gendesk_options[@]}"
+
+  # submodules
+  _prepare_ppsspp
+
+  _prepare_bylaws_libadrenotools
+  _prepare_hrydgard_ppsspp_ffmpeg
+  _prepare_kingcom_armips
+  _prepare_tencent_rapidjson
+}
+
+build() {
+  if [[ "${_build_avx::1}" == "t" ]]; then
+    export CFLAGS="$(echo "$CFLAGS" | sed -E 's@(\s*-(march|mtune)=\S+\s*)@ @g;s@\s*-O[0-9]\s*@ @g;s@\s+@ @g') -march=x86-64-v3 -mtune=generic -O3"
+    export CXXFLAGS="$(echo "$CXXFLAGS" | sed -E 's@(\s*-(march|mtune)=\S+\s*)@ @g;s@\s*-O[0-9]\s*@ @g;s@\s+@ @g') -march=x86-64-v3 -mtune=generic -O3"
+  fi
+
+  export CC=clang
+  export CXX=clang++
+  export LDFLAGS+=" -Wl,-fuse-ld=lld"
+
+  local _cmake_options=(
+    -S "$_pkgsrc"
+    -DCMAKE_BUILD_TYPE=Release
+    -DCMAKE_SKIP_RPATH=ON
+    -DOpenGL_GL_PREFERENCE=GLVND
+    -DUSE_SYSTEM_MINIUPNPC=OFF
+    -DUSE_SYSTEM_LIBZIP=ON
+    -DUSE_SYSTEM_SNAPPY=ON
+    -DUSE_SYSTEM_ZSTD=ON
+
+    -DBUILD_TESTING=OFF
+    -Wno-dev
+  )
+
+  if [[ "${_build_ffmpeg::1}" == "t" ]]; then
+    _cmake_options+=(-DUSE_SYSTEM_FFMPEG=OFF)
+
+    # Rebuild ffmpeg locally
+    (
+      cd ppsspp/ffmpeg
+      case "$CARCH" in
+        x86_64)
+          ./linux_x86-64.sh
+          ;;
+        aarch64)
+          ./linux_arm64_native.sh
+          ;;
+      esac
+    )
+  else
+    _cmake_options+=(-DUSE_SYSTEM_FFMPEG=ON)
+  fi
+
+  if [[ "${_build_sdl::1}" == "t" ]]; then
+    local _cmake_sdl=(
+      -B build-sdl
+      -DHEADLESS=ON
+      -DUSING_QT_UI=OFF
+    )
+
+    cmake "${_cmake_options[@]}" "${_cmake_sdl[@]}"
+    cmake --build build-sdl
+  fi
+
+  if [[ "${_build_qt::1}" == "t" ]]; then
+    local _cmake_qt=(
+      -B build-qt
+      -DHEADLESS=OFF
+      -DUSING_QT_UI=ON
+    )
+
+    cmake "${_cmake_options[@]}" "${_cmake_qt[@]}"
+    cmake --build build-qt
+  fi
+}
+
+package() {
+  depends+=(
+    hicolor-icon-theme
+  )
+
+  local _assets
+
+  if [[ "${_build_sdl::1}" == "t" ]]; then
+    depends+=(
+      fontconfig
+      sdl2_ttf
+    )
+
+    _assets="build-sdl"
+    install -Dm755 "$_assets/PPSSPPSDL" -t "$pkgdir/usr/bin/"
+    install -Dm755 "$_assets/PPSSPPHeadless" -t "$pkgdir/usr/bin/"
+    install -Dm644 ppsspp-sdl.desktop -t "$pkgdir/usr/share/applications/"
+    ln -sf PPSSPPSDL "$pkgdir/usr/bin/ppsspp-sdl"
+    ln -sf PPSSPPHeadless "$pkgdir/usr/bin/ppsspp-headless"
+  fi
+
+  if [[ "${_build_qt::1}" == "t" ]]; then
+    depends+=(
+      qt5-base
+      qt5-multimedia
+    )
+
+    _assets="build-qt"
+    install -Dm755 "$_assets/PPSSPPQt" -t "${pkgdir}"/usr/bin/
+    install -Dm644 ppsspp-qt.desktop -t "${pkgdir}"/usr/share/applications/
+  fi
+
+  install -dm755 "$pkgdir/usr/share/ppsspp"
+  cp -dr --reflink=auto --no-preserve=ownership "$_assets/assets" "$pkgdir/usr/share/ppsspp/"
+
+  install -dm755 "$pkgdir/usr/share/icons"
+  cp -dr --reflink=auto --no-preserve=ownership "ppsspp/icons/hicolor" "$pkgdir/usr/share/icons/"
+
+  install -Dm644 ppsspp/icons/icon-512.svg "$pkgdir/usr/share/pixmaps/ppsspp.svg"
+}
+
+# execute
+_main_package
