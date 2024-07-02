@@ -6,7 +6,7 @@
 : ${_build_qt:=false}
 : ${_build_sdl:=true}
 
-: ${_build_ffmpeg:=false}
+: ${_build_ffmpeg:=true}
 
 : ${_build_avx:=true}
 : ${_build_git:=true}
@@ -22,7 +22,7 @@ fi
 # basic info
 _pkgname="ppsspp"
 pkgname="${_pkgname}${_pkgtype:-}"
-pkgver=1.17.1.r785.gcbdb2a3
+pkgver=1.17.1.r823.g0b76d44
 pkgrel=1
 pkgdesc='PSP emulator written in C++'
 url="https://github.com/hrydgard/ppsspp"

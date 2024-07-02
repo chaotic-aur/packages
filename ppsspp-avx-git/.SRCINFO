@@ -1,6 +1,6 @@
 pkgbase = ppsspp-avx-git
 	pkgdesc = PSP emulator written in C++
-	pkgver = 1.17.1.r785.gcbdb2a3
+	pkgver = 1.17.1.r823.g0b76d44
 	pkgrel = 1
 	url = https://github.com/hrydgard/ppsspp
 	arch = x86_64
@@ -18,7 +18,6 @@ pkgbase = ppsspp-avx-git
 	depends = libzip
 	depends = sdl2
 	depends = snappy
-	depends = ffmpeg
 	provides = ppsspp=1.17.1
 	provides = ppsspp-assets=1.17.1
 	conflicts = ppsspp
@@ -45,9 +44,13 @@ pkgbase = ppsspp-avx-git
 	source = rtissera.libchdr::git+https://github.com/rtissera/libchdr.git
 	source = tencent.rapidjson::git+https://github.com/Tencent/rapidjson.git
 	source = unknownbrackets.ppsspp-debugger::git+https://github.com/unknownbrackets/ppsspp-debugger.git
+	source = hrydgard.ppsspp-ffmpeg::git+https://github.com/hrydgard/ppsspp-ffmpeg.git
 	source = bylaws.liblinkernsbypass::git+https://github.com/bylaws/liblinkernsbypass.git
+	source = ffmpeg.gas-preprocessor::git+https://github.com/FFmpeg/gas-preprocessor.git
 	source = kingcom.filesystem::git+https://github.com/Kingcom/filesystem.git
 	source = google.googletest::git+https://github.com/google/googletest.git
+	sha256sums = SKIP
+	sha256sums = SKIP
 	sha256sums = SKIP
 	sha256sums = SKIP
 	sha256sums = SKIP
@@ -78,7 +81,6 @@ pkgname = ppsspp-avx-git
 	depends = libzip
 	depends = sdl2
 	depends = snappy
-	depends = ffmpeg
 	depends = hicolor-icon-theme
 	depends = fontconfig
 	depends = sdl2_ttf
