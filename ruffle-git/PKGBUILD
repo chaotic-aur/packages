@@ -1,61 +1,71 @@
-# Maintainer: Fabio 'Lolix' Loli <fabio.loli@disroot.org> -> https://github.com/FabioLolix
-# Contributor: quininer
+# Maintainer:
 
-pkgname=ruffle-git
-pkgver=r10589.673aa78f9
-pkgrel=2
-epoch=1
+_pkgname="ruffle"
+pkgname="$_pkgname-git"
+pkgver=2024.07.02.r4.g0c40803
+pkgrel=1
 pkgdesc="A Flash Player emulator written in Rust"
-arch=(x86_64 aarch64)
-url="https://ruffle.rs/"
-license=(Apache MIT)
-depends=(alsa-lib gtk3
+url="https://github.com/ruffle-rs/ruffle"
+license=('Apache-2.0' 'MIT')
+arch=('x86_64')
 
-  # namcap implicit depends
-  glibc gcc-libs glib2 zlib openssl hicolor-icon-theme)
-makedepends=(git cargo clang python jdk-openjdk at-spi2-core)
-provides=(ruffle)
-conflicts=(ruffle)
-options=(!lto)
-source=("git+https://github.com/ruffle-rs/ruffle.git")
+depends=(
+  alsa-lib
+  gtk3
+)
+makedepends=(
+  at-spi2-core
+  cargo
+  clang
+  git
+  jdk-openjdk
+  python
+)
+
+provides=("$_pkgname")
+conflicts=("$_pkgname")
+
+options=('!lto')
+
+_pkgsrc="$_pkgname"
+source=("$_pkgsrc"::"git+$url.git")
 sha256sums=('SKIP')
 
 pkgver() {
-  cd "ruffle/desktop"
-  printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+  cd "$_pkgsrc"
+  git describe --long --tags --abbrev=7 \
+    | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
 }
 
 prepare() {
-  cd "ruffle/desktop"
+  cd "$_pkgsrc/desktop"
   cargo fetch --locked --target "$CARCH-unknown-linux-gnu"
 }
 
 build() {
-  cd "ruffle/desktop"
+  cd "$_pkgsrc/desktop"
   cargo build --frozen --release
 }
 
 package() {
-  cd ruffle
-  install -D -m755 "target/release/ruffle_desktop" "$pkgdir/usr/bin/ruffle"
+  cd "$_pkgsrc"
+  install -Dm755 "target/release/ruffle_desktop" "$pkgdir/usr/bin/$_pkgname"
   install -Dm 644 LICENSE.md -t "$pkgdir/usr/share/licenses/$pkgname/"
 
   for s in 16x16 32x32 128x128 256x256 512x512; do
-    install -Dm0644 "desktop/assets/Assets.xcassets/RuffleMacIcon.iconset/icon_$s.png" "${pkgdir}/usr/share/icons/hicolor/$s/apps/ruffle.png"
+    install -Dm644 "desktop/assets/Assets.xcassets/RuffleMacIcon.iconset/icon_$s.png" "$pkgdir/usr/share/icons/hicolor/$s/apps/$_pkgname.png"
   done
 
-  install -d "${pkgdir}/usr/share/applications/"
-  cat > "${pkgdir}/usr/share/applications/ruffle.desktop" << _EOD
+  install -Dm644 /dev/stdin "$pkgdir/usr/share/applications/$_pkgname.desktop" << END
 [Desktop Entry]
 Type=Application
-Name=Ruffle
-GenericName=Ruffle
-Comment=Player for using content created on the Adobe Flash platform
-Exec=ruffle
-Icon=ruffle
+Name=${_pkgname^}
+Comment=$pkgdesc
+Exec=$_pkgname
+Icon=$_pkgname
 Terminal=false
 StartupNotify=false
 Categories=Audio;AudioVideo;Graphics;GTK;Player;Video;Viewer;
 MimeType=application/x-shockwave-flash;
-_EOD
+END
 }
