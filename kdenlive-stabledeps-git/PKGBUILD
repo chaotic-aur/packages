@@ -1,0 +1,93 @@
+_pkgname="kdenlive"
+pkgname="$_pkgname-stabledeps-git"
+pkgver=24.04.80.r45.g7a9a151
+pkgrel=1
+pkgdesc='A non-linear video editor for Linux using the MLT video framework'
+url='https://invent.kde.org/multimedia/kdenlive'
+license=('GPL-2.0-or-later')
+arch=('x86_64')
+
+depends=(
+  karchive
+  kbookmarks
+  kcodecs
+  kcolorscheme
+  kcompletion
+  kconfig
+  kconfigwidgets
+  kcoreaddons
+  kcrash
+  kdbusaddons
+  kfilemetadata
+  kguiaddons
+  ki18n
+  kiconthemes
+  kio
+  kitemviews
+  knewstuff
+  knotifications
+  knotifyconfig
+  ktextwidgets
+  kwidgetsaddons
+  kxmlgui
+  mlt
+  purpose
+  qt6-base
+  qt6-declarative
+  qt6-multimedia
+  qt6-networkauth
+  qt6-svg
+  solid
+)
+makedepends=(
+  doxygen
+  extra-cmake-modules
+  git
+  kdoctools
+  ninja
+  qt6-tools
+)
+optdepends=(
+  'bigsh0t: VR360 effects'
+  'dvgrab: for firewire capture'
+  'ffmpeg: for FFmpeg plugin'
+  'kimageformats: support for dds, xcf, exr, psd, and more image formats'
+  'mediainfo: for technical clip information'
+  'noise-suppression-for-voice: noise suppression effect'
+  'opencv: for motion tracking'
+  'opentimelineio: timeline export/import'
+  'plasma-desktop: theme configuration'
+  'python: for scripts'
+  'qt6-imageformats: support for tiff, webp, and more image formats'
+  'recordmydesktop: for screen capture'
+)
+
+_pkgsrc="$_pkgname"
+source=("$_pkgsrc"::"git+https://invent.kde.org/multimedia/kdenlive.git")
+sha256sums=('SKIP')
+
+pkgver() {
+  cd "$_pkgsrc"
+  git describe --long --tags --abbrev=7 \
+    | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
+}
+
+build() {
+  local _cmake_options=(
+    -B build
+    -S "$_pkgsrc"
+    -G Ninja
+    -DCMAKE_BUILD_TYPE=None
+    -DCMAKE_INSTALL_PREFIX='/usr'
+    -DBUILD_QCH=ON
+    -DBUILD_TESTING=OFF
+    -Wno-dev
+  )
+
+  cmake "${_cmake_options[@]}"
+  cmake --build build
+}
+
+package() {
+  DESTDIR="$pkgdir" cmake --install build
+}
