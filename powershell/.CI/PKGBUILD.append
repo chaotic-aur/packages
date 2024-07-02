@@ -1,3 +1,0 @@
-
-unset checkdepends
-unset -f check
