@@ -1,0 +1,6 @@
+# Issue 2813
+xdg-desktop-portal-hyprland-git:https://github.com/chaotic-aur/pkgbuild-empty-project.git
+
+
+REQ_ORIGIN=github/2813
+REQ_REASON=request
