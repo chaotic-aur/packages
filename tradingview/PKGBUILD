@@ -1,0 +1,163 @@
+# options
+if [ -n "$_srcinfo" ] || [ -n "$_pkgver" ]; then
+  : ${_autoupdate:=false}
+else
+  : ${_autoupdate:=true}
+fi
+
+# basic info
+_pkgname="tradingview"
+_snapname="tradingview"
+pkgname="$_pkgname"
+pkgver=2.7.1
+pkgrel=1
+pkgdesc='Charting platform for traders and investors'
+arch=('x86_64')
+url="https://snapcraft.io/$_snapname"
+# url='https://www.tradingview.com/desktop/'
+license=('custom')
+
+# main package
+_main_package() {
+  _update_version
+
+  makedepends=(
+    'html-xml-utils'
+    'pandoc'
+    'sha3sum'
+    'squashfs-tools'
+  )
+
+  source=("$_filename"::"$_dl_url")
+  sha256sums=('SKIP')
+}
+
+# common functions
+_eula_basename="$_pkgname-eula"
+
+prepare() {
+  # check upstream sha3-384sum
+  printf '%s  %s' "$_cksum" "$_filename" | sha3-384sum -c
+
+  # download tradingview policies/eula
+  curl --no-progress-meter \
+    -o "$_eula_basename-1.html" \
+    "https://www.tradingview.com/policies/"
+
+  hxextract .tv-policies "$_eula_basename-1.html" \
+    1> "$_eula_basename-2.html" \
+    2> /dev/null
+
+  pandoc --quiet -t plain -o "$_eula_basename.txt" "$_eula_basename-2.html"
+
+  # unpack
+  mkdir -p "$_pkgname-$_pkgver"
+  unsquashfs -q -n -f -d "$_pkgname-$_pkgver/" "$_filename"
+
+  mv "$_pkgname-$_pkgver/meta/gui/$_snapname.desktop" "$srcdir/$_pkgname.desktop"
+  sed \
+    -e 's@${SNAP}/meta/gui/icon.png@'"${_pkgname}"'@g' \
+    -e 's@^Comment=.*$@@g' \
+    -e 's@^Categories=Finance;$@Categories=Office;Finance;@g' \
+    -i "$srcdir/$_pkgname.desktop"
+
+  mv "$_pkgname-$_pkgver/meta/gui/icon.png" "$srcdir"
+  rm -r "$_pkgname-$_pkgver/"{data-dir/,gnome-platform/,lib/,meta/,scripts/,usr/,*.sh}
+}
+
+package() {
+  depends+=(
+    'alsa-lib'
+    'at-spi2-core'
+    'bash'
+    'cairo'
+    'dbus'
+    'expat'
+    'gcc-libs'
+    'glib2'
+    'glibc'
+    'gtk3'
+    'hicolor-icon-theme'
+    'libcups'
+    'libdrm'
+    'libsecret'
+    'libx11'
+    'libxcb'
+    'libxcomposite'
+    'libxdamage'
+    'libxext'
+    'libxfixes'
+    'libxkbcommon'
+    'libxrandr'
+    'mesa'
+    'nspr'
+    'nss'
+    'pango'
+    'wayland'
+  )
+
+  # opt
+  install -d "$pkgdir/opt/$_pkgname"
+  cp -r "$srcdir/$_pkgname-$pkgver/"* "$pkgdir/opt/$_pkgname"
+
+  # symlink binary
+  install -d "$pkgdir/usr/bin"
+  ln -s "/opt/$_pkgname/$_pkgname" "$pkgdir/usr/bin/$_pkgname"
+
+  # icons
+  install -Dm644 "$srcdir/icon.png" "$pkgdir/usr/share/pixmaps/$_pkgname.png"
+  install -Dm644 "$srcdir/$_pkgname.desktop" "$pkgdir/usr/share/applications/$_pkgname.desktop"
+
+  # license/eula
+  install -Dm644 "$_eula_basename.txt" -t "$pkgdir/usr/share/licenses/$pkgname"
+}
+
+# update version
+_update_version() {
+  : ${_pkgver:=${pkgver%%.r*}}
+
+  if [[ "${_autoupdate::1}" != "t" ]]; then
+    return
+  fi
+
+  _response=$(
+    curl -H 'Snap-Device-Series: 16' --no-progress-meter "http://api.snapcraft.io/v2/snaps/info/$_snapname" \
+      | sed 's@,@,\n@g'
+  )
+
+  _dl_url=$(
+    printf '%s' "$_response" \
+      | grep '"url"' \
+      | sed -E 's@^"url":"(https:.*\.snap)".*$@\1@' \
+      | head -1
+  )
+
+  _pkgver_new=$(
+    printf '%s' "$_response" \
+      | grep '"version"' \
+      | sed -E 's@^"version":"([0-9]+\.[0-9]+\.[0-9]+)".*$@\1@' \
+      | head -1
+  )
+
+  # sha3-384 checksum
+  _cksum=$(
+    printf '%s' "$_response" \
+      | grep '"sha3-384"' \
+      | sed -E 's@^"sha3-384":"([a-f0-9]+)".*$@\1@' \
+      | head -1
+  )
+
+  _filename="$_pkgname-${_pkgver_new:?}.snap"
+
+  # update _pkgver
+  if [ "$_pkgver" != "${_pkgver_new:?}" ]; then
+    _pkgver="${_pkgver_new:?}"
+  fi
+
+  pkgver() {
+    printf '%s' "${_pkgver:?}"
+  }
+}
+
+# execute
+_main_package
