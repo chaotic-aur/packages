@@ -1,0 +1,20 @@
+pkgbase = duc-git
+	pkgdesc = collection of tools for inspecting and visualizing disk usage (git version)
+	pkgver = 1.4.4.r9.g1d46285
+	pkgrel = 1
+	url = http://duc.zevv.nl/
+	arch = i686
+	arch = x86_64
+	license = GPL2
+	makedepends = git
+	depends = cairo
+	depends = pango
+	depends = sqlite
+	depends = ncurses
+	provides = duc
+	conflicts = duc
+	source = git+https://github.com/zevv/duc.git
+	md5sums = SKIP
+
+pkgname = duc-git
+

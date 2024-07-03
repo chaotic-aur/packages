@@ -1,0 +1,21 @@
+pkgbase = appmenu-glib-translator-git
+	pkgdesc = GLib-based library for translating DBusMenu-exported menus into GMenuModels. Used for vala-panel's system tray and all variants of vala-panel-appmenu. Can be used with GTK3 or GTK4.
+	pkgver = 24.05.r2.g7631683
+	pkgrel = 1
+	url = https://gitlab.com/vala-panel-project/vala-panel-appmenu
+	arch = i686
+	arch = x86_64
+	license = LGPL3
+	makedepends = meson
+	makedepends = gobject-introspection
+	makedepends = vala
+	makedepends = glib2
+	makedepends = git
+	makedepends = glib2-devel
+	depends = glib2
+	provides = appmenu-glib-translator
+	conflicts = appmenu-glib-translator
+	source = git+https://gitlab.com/vala-panel-project/vala-panel-appmenu.git
+	sha256sums = SKIP
+
+pkgname = appmenu-glib-translator-git

@@ -1,0 +1,18 @@
+pkgbase = python-demjson3
+	pkgdesc = encoder, decoder, and lint/validator for JSON (JavaScript Object Notation) compliant with RFC 7159
+	pkgver = 3.0.6
+	pkgrel = 2
+	url = https://github.com/nielstron/demjson3
+	arch = any
+	license = LGPL3
+	makedepends = python-setuptools
+	depends = python
+	provides = demjson
+	provides = python-demjson
+	conflicts = demjson
+	conflicts = python-demjson
+	conflicts = nodejs-jsonlint
+	source = https://files.pythonhosted.org/packages/source/d/demjson3/demjson3-3.0.6.tar.gz
+	sha256sums = 37c83b0c6eb08d25defc88df0a2a4875d58a7809a9650bd6eee7afd8053cdbac
+
+pkgname = python-demjson3

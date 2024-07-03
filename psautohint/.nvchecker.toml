@@ -1,0 +1,3 @@
+[psautohint]
+source = "pypi"
+pypi = "psautohint"

@@ -1,0 +1,24 @@
+pkgbase = flashfocus-git
+	pkgdesc = Simple focus animations for tiling window managers
+	pkgver = 2.4.0
+	pkgrel = 1
+	url = https://www.github.com/fennerm/flashfocus
+	arch = any
+	license = MIT
+	makedepends = git
+	makedepends = python-build
+	makedepends = python-installer
+	makedepends = python-setuptools
+	makedepends = python-wheel
+	depends = python-xcffib
+	depends = python-click
+	depends = python-xpybutil
+	depends = python-marshmallow
+	depends = python-yaml
+	depends = python-i3ipc
+	provides = flashfocus
+	conflicts = flashfocus
+	source = flashfocus::git+https://www.github.com/fennerm/flashfocus.git
+	md5sums = SKIP
+
+pkgname = flashfocus-git

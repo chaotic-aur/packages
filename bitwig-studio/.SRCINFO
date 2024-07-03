@@ -1,0 +1,24 @@
+pkgbase = bitwig-studio
+	pkgdesc = Digital audio workstation for music production, remixing and live performance
+	pkgver = 5.1.9
+	pkgrel = 1
+	url = https://www.bitwig.com/
+	arch = x86_64
+	license = custom
+	depends = xdg-utils
+	depends = xcb-util-wm
+	depends = libbsd
+	optdepends = jack
+	optdepends = alsa-lib
+	optdepends = oss
+	optdepends = ffmpeg: MP3 support
+	provides = clap-host
+	provides = vst-host
+	provides = vst3-host
+	conflicts = bitwig-studio-legacy
+	conflicts = bitwig-8-track
+	options = !strip
+	source = bitwig-studio-5.1.9.deb::https://www.bitwig.com/dl/Bitwig%20Studio/5.1.9/installer_linux/
+	sha256sums = 27990ba9708c9c66f464c8444ba3d020f8cde75a6d9411a3e05cbca92cc9e908
+
+pkgname = bitwig-studio

@@ -1,0 +1,13 @@
+--- a/Makefile
++++ b/Makefile
+@@ -1321,8 +1321,8 @@
+ .PHONY: install-doc
+ install-doc: bin/$(FLAVOUR_DIR)made.docs
+ ifeq ($(MPT_WITH_DOXYGEN),1)
+-	$(INSTALL_MAKE_DIR) $(DESTDIR)$(PREFIX)/share/doc/libopenmpt/html/
+-	$(INSTALL_DATA_DIR) bin/$(FLAVOUR_DIR)docs/html $(DESTDIR)$(PREFIX)/share/doc/libopenmpt/html
++	$(INSTALL_MAKE_DIR) $(DESTDIR)$(PREFIX)/share/doc/libopenmpt/
++	$(INSTALL_DATA_DIR) bin/$(FLAVOUR_DIR)docs/html $(DESTDIR)$(PREFIX)/share/doc/libopenmpt
+ endif
+ 
+ .PHONY: dist
