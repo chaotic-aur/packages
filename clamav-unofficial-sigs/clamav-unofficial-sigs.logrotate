@@ -1,0 +1,6 @@
+/var/log/clamav-unofficial-sigs/clamav-unofficial-sigs.log {
+    missingok
+    notifempty
+    compress
+    create 0600 clamav clamav
+}

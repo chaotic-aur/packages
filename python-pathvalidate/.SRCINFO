@@ -1,0 +1,14 @@
+pkgbase = python-pathvalidate
+	pkgdesc = Sanitize/validate strings in filenames/file-paths/etc
+	pkgver = 3.2.0
+	pkgrel = 1
+	url = https://github.com/thombashi/pathvalidate
+	arch = any
+	license = MIT
+	makedepends = python-setuptools
+	depends = python
+	depends = python-click
+	source = python-pathvalidate-3.2.0.tar.gz::https://github.com/thombashi/pathvalidate/archive/v3.2.0.tar.gz
+	sha256sums = b99879d7ba4aea8bcdce2bdf68ae8e52da7c50dbe1e264ff42114056a103b95e
+
+pkgname = python-pathvalidate

@@ -1,0 +1,13 @@
+pkgbase = python-simplediff
+	pkgdesc = A Python module to annotate two versions of a list with the values that have been changed between the versions, similar to unix's diff but with a dead-simple Python interface.
+	pkgver = 1.1
+	pkgrel = 1
+	url = https://pypi.org/project/simplediff
+	arch = any
+	license = custom
+	makedepends = python-setuptools
+	depends = python
+	source = https://pypi.io/packages/source/s/simplediff/simplediff-1.1.tar.gz
+	sha256sums = db29e82c64ecc083e36308b584fc48985225421f85cb64d899329334ade32bda
+
+pkgname = python-simplediff

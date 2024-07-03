@@ -1,0 +1,22 @@
+
+build() {
+  cd "$srcdir/$_pkgname"
+
+  ./configure \
+    --prefix=/usr \
+    --sbindir=/usr/bin \
+    --libexecdir=/usr/lib \
+    --with-rundir=/run/sudo \
+    --with-vardir=/var/db/sudo \
+    --with-logfac=auth \
+    --enable-gcrypt \
+    --enable-tmpfiles.d \
+    --with-pam \
+    --with-sssd \
+    --with-ldap \
+    --with-ldap-conf-file=/etc/openldap/ldap.conf \
+    --with-env-editor \
+    --with-passprompt="[dragon] empower %p: " \
+    --with-all-insults
+  make
+}

@@ -1,0 +1,26 @@
+From 3ee8322ecf9d2b38389820bab8f4bac106662b33 Mon Sep 17 00:00:00 2001
+From: Stelios Tsampas <loathingkernel@gmail.com>
+Date: Sat, 11 May 2024 21:58:52 +0300
+Subject: [PATCH 7/7] AUR: Disable incompatible-pointer-types in Wine (GCC 14)
+
+---
+ Makefile.in | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/Makefile.in b/Makefile.in
+index 3fc787a5..cfd3b89e 100644
+--- a/Makefile.in
++++ b/Makefile.in
+@@ -640,6 +640,9 @@ WINE_CONFIGURE_ARGS64 = --enable-win64 \
+   VKD3D_PE_CFLAGS="-I$(VULKAN_HEADERS_DST64)/include -I$(VKD3D_DST64)/include/vkd3d" \
+   VKD3D_PE_LIBS="-L$(VKD3D_DST64)/bin -l:libvkd3d-1.dll -l:libvkd3d-shader-1.dll"
+ 
++WINE_CFLAGS = \
++  -Wno-incompatible-pointer-types \
++
+ WINE_DEPENDS = gst_orc gstreamer gst_base vkd3d
+ 
+ $(eval $(call rules-source,wine,$(SRCDIR)/wine))
+-- 
+2.45.2
+

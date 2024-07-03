@@ -1,0 +1,6 @@
+[python-syncedlyrics]
+source = "github"
+github = "moehmeni/syncedlyrics"
+prefix = "v"
+include_regex = "v\\d+\\.\\d+\\.\\d+"
+use_max_tag = true

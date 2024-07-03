@@ -1,0 +1,22 @@
+pkgbase = firejail-git
+	pkgdesc = Linux namespaces sandbox program (GIT version)
+	pkgver = 0.9.72.r721.g37e40e020
+	pkgrel = 1
+	url = https://github.com/netblue30/firejail
+	install = firejail.install
+	arch = i686
+	arch = x86_64
+	license = GPL2
+	makedepends = git
+	depends = apparmor
+	optdepends = xdg-dbus-proxy
+	provides = firejail
+	conflicts = firejail
+	backup = etc/firejail/login.users
+	backup = etc/apparmor.d/local/firejail-default
+	backup = etc/firejail/firejail.config
+	backup = etc/firejail/firecfg.config
+	source = firejail-git::git+https://github.com/netblue30/firejail.git
+	sha512sums = SKIP
+
+pkgname = firejail-git

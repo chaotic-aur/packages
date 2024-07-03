@@ -1,0 +1,11 @@
+#!/bin/sh
+
+post_install() {
+  if ! grep -qe '^/usr/bin/git-shell$' etc/shells; then
+    echo '/usr/bin/git-shell' >> etc/shells
+  fi
+}
+
+post_remove() {
+  sed -i -r '/^\/usr\/bin\/git-shell$/d' etc/shells
+}

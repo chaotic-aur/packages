@@ -1,0 +1,20 @@
+pkgbase = python-pykakasi
+	pkgdesc = Lightweight converter from Japanese Kana-kanji sentences into Kana-Roman
+	pkgver = 2.3.0
+	pkgrel = 2
+	url = https://codeberg.org/miurahr/pykakasi
+	arch = any
+	license = GPL-3.0-or-later
+	makedepends = git
+	makedepends = python-build
+	makedepends = python-installer
+	makedepends = python-setuptools
+	makedepends = python-setuptools-scm
+	makedepends = python-sphinx
+	makedepends = python-wheel
+	depends = python-deprecated
+	depends = python-jaconv
+	source = git+https://codeberg.org/miurahr/pykakasi.git#tag=v2.3.0
+	b2sums = 81cc3b366c61a552e7de5a2a900a258ad0847d6a0f60dff0ebd20c77ed6fce3604e72634901dc11041f46dbe437c83f25db617f7d74df732f4ade7e4983c10cd
+
+pkgname = python-pykakasi

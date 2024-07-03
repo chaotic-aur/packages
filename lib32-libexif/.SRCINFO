@@ -1,0 +1,16 @@
+pkgbase = lib32-libexif
+	pkgdesc = A library to parse an EXIF file and read the data from those tags (32-bit)
+	pkgver = 0.6.24
+	pkgrel = 1
+	url = https://github.com/libexif/libexif
+	arch = x86_64
+	license = LGPL
+	makedepends = gcc-multilib
+	depends = libexif
+	depends = lib32-glibc
+	options = !libtool
+	source = https://github.com/libexif/libexif/archive/libexif-0_6_24-release.tar.gz
+	sha512sums = 0b15a157c1030490bf1c4239487dffda90daad467ac6281db2a1b34a8419fca32b4b5265452e75cbcd2c9dc9a829643231cd3749e88251ed1b596756d1c5a9f4
+
+pkgname = lib32-libexif
+
