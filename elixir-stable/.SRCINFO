@@ -1,0 +1,15 @@
+pkgbase = elixir-stable
+	pkgdesc = a functional meta-programming aware language built on top of the Erlang VM
+	pkgver = 1.16.2
+	pkgrel = 1
+	url = https://github.com/elixir-lang/elixir
+	arch = any
+	license = Apache-2.0
+	checkdepends = git
+	depends = erlang-nox
+	provides = elixir=1.16.2
+	conflicts = elixir
+	source = elixir-1.16.2.tar.gz::https://github.com/elixir-lang/elixir/archive/v1.16.2.tar.gz
+	sha256sums = SKIP
+
+pkgname = elixir-stable
