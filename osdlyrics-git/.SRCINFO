@@ -1,0 +1,32 @@
+pkgbase = osdlyrics-git
+	pkgdesc = Standalone lyrics fetcher/displayer (windowed and OSD mode). Supports MPRIS1/2 players, and MPD.
+	pkgver = 0.5.15
+	pkgrel = 1
+	url = https://github.com/osdlyrics/osdlyrics
+	install = osdlyrics.install
+	arch = i686
+	arch = x86_64
+	arch = arm64
+	license = GPL3
+	makedepends = intltool
+	makedepends = git
+	depends = dbus-glib
+	depends = desktop-file-utils
+	depends = gtk2
+	depends = hicolor-icon-theme
+	depends = libnotify
+	depends = python-dbus
+	depends = python-chardet
+	depends = python-gobject
+	depends = python-pycurl
+	depends = sqlite
+	depends = libappindicator-gtk2
+	optdepends = gobject-introspection-runtime: proxy detection in Gnome
+	optdepends = python-mpd2: to interface with MPD
+	provides = osdlyrics
+	conflicts = osdlyrics
+	conflicts = osdlyrics-pedrohlc
+	source = osdlyrics::git+https://github.com/osdlyrics/osdlyrics.git#branch=master
+	md5sums = SKIP
+
+pkgname = osdlyrics-git

@@ -1,0 +1,35 @@
+pkgbase = gittyup
+	pkgdesc = Graphical Git client (GitAhead fork)
+	pkgver = 1.4.0
+	pkgrel = 1
+	url = https://murmele.github.io/Gittyup
+	arch = x86_64
+	license = MIT
+	makedepends = cmake
+	makedepends = libgnome-keyring
+	makedepends = ninja
+	makedepends = qt5-tools
+	makedepends = qt5-translations
+	depends = cmark
+	depends = git
+	depends = hunspell
+	depends = libssh2
+	depends = lua
+	depends = lua-lpeg
+	depends = openssl
+	depends = qt5-base
+	optdepends = git-lfs: git-lfs support
+	optdepends = libgnome-keyring: for GNOME Keyring for auth credentials
+	optdepends = qt5-translations: translations
+	source = git+https://github.com/Murmele/Gittyup.git#tag=gittyup_v1.4.0
+	source = gittyup-libgit2::git+https://github.com/stinb/libgit2.git
+	source = gittyup-scintillua::git+https://github.com/orbitalquark/scintillua.git
+	source = gittyup-lexilla::git+https://github.com/ScintillaOrg/lexilla.git
+	source = gittyup-zip::git+https://github.com/kuba--/zip.git
+	sha256sums = 06e1d79a3a3062c2ab37ad3a0a8f67d74d0c19210a9defac2b5e9e68e70feb1f
+	sha256sums = SKIP
+	sha256sums = SKIP
+	sha256sums = SKIP
+	sha256sums = SKIP
+
+pkgname = gittyup

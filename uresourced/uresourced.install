@@ -1,0 +1,17 @@
+post_install() {
+	echo "Enable the service:"
+	echo ""
+	echo "systemctl enable --now uresourced"
+	echo ""
+	echo "Restart the user systemd instance; i.e., user@UID.service or reboot"
+	echo ""
+}
+
+post_upgrade() {
+	echo "Restart the service:"
+	echo ""
+	echo "systemctl restart uresourced"
+	echo ""
+	echo "Restart the user systemd instance; i.e., user@UID.service or reboot"
+	echo ""
+}

@@ -1,0 +1,26 @@
+pkgbase = hw-probe
+	pkgdesc = Probe for hardware, check its operability and upload result to https://linux-hardware.org
+	pkgver = 1.6.5
+	pkgrel = 2
+	url = https://github.com/linuxhw/hw-probe
+	arch = any
+	license = LGPL-2.1-or-later OR BSD-4-Clause
+	depends = perl
+	depends = hwinfo
+	depends = curl
+	depends = dmidecode
+	depends = pciutils
+	depends = usbutils
+	depends = net-tools
+	depends = edid-decode
+	depends = ddcutil
+	depends = acpica
+	optdepends = hdparm
+	optdepends = smartmontools
+	optdepends = inxi
+	optdepends = pnputils
+	optdepends = efibootmgr
+	source = https://github.com/linuxhw/hw-probe/archive/1.6.5.tar.gz
+	sha256sums = 42030ba2fb3f6fb0772ab34744fbb91a89b1b6a9b0ed99e861fa05ff86968fb1
+
+pkgname = hw-probe

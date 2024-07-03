@@ -1,0 +1,36 @@
+post_install() {
+	cat <<EOF
+	>> To enable command-not-found hook for your shell
+	>> source the proper file to your shell:
+
+	>> for bash (~/.bashrc):
+	source /usr/share/doc/find-the-command/ftc.bash
+	>> for fish (~/.config/fish/config.fish):
+	source /usr/share/doc/find-the-command/ftc.fish
+	>> for zsh (~/.zshrc):
+	source /usr/share/doc/find-the-command/ftc.zsh
+
+	>> There are several options you can use when sourcing:
+	  * askfirst    ask before searching the database for a command
+	  * noprompt    disable installation prompt
+	  * noupdate    disable "out of date" checks for db and files cache
+	  * quiet       decrease verbosity
+	  * su		use su instead of sudo for root access
+	>> Example:
+	source /usr/share/doc/find-the-command/ftc.zsh noprompt quiet
+
+	>> You may also want to enable timer for regular files database updates:
+	>> When using pacman (and have package "pacman-contrib" installed):
+	# systemctl enable pacman-filesdb-refresh.timer
+	>> Or when using pkgfile
+	# systemctl enable pkgfile-update.timer
+EOF
+}
+
+post_upgrade() {
+	post_install
+}
+
+post_remove() {
+	printf "\t>> Don't forget to remove the hook from your shell rc-file\n"
+}

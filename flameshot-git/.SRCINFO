@@ -1,0 +1,23 @@
+pkgbase = flameshot-git
+	pkgdesc = Powerful yet simple to use screenshot software
+	pkgver = 12.1.0.r124.g3d21e49
+	pkgrel = 1
+	url = https://github.com/flameshot-org/flameshot
+	arch = x86_64
+	license = GPL-3.0-or-later
+	makedepends = make
+	makedepends = qt5-tools
+	makedepends = cmake
+	makedepends = git
+	depends = qt5-svg
+	depends = hicolor-icon-theme
+	depends = kguiaddons5
+	optdepends = gnome-shell-extension-appindicator: system tray icon on GNOME
+	optdepends = grim: wlroots wayland support
+	optdepends = xdg-desktop-portal: wayland support
+	provides = flameshot=12.1.0
+	conflicts = flameshot
+	source = flameshot::git+https://github.com/flameshot-org/flameshot.git
+	sha256sums = SKIP
+
+pkgname = flameshot-git

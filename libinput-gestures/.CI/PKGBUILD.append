@@ -1,0 +1,11 @@
+
+unset conflicts
+unset replaces
+
+depends=(
+  dbus-python
+  gobject-introspection-runtime
+  hicolor-icon-theme
+  libinput
+  python-gobject
+)

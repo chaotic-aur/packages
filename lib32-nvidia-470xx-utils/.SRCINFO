@@ -1,0 +1,32 @@
+pkgbase = lib32-nvidia-470xx-utils
+	pkgver = 470.256.02
+	pkgrel = 1
+	url = http://www.nvidia.com/
+	arch = x86_64
+	license = custom
+	options = !strip
+	source = https://us.download.nvidia.com/XFree86/Linux-x86_64/470.256.02/NVIDIA-Linux-x86_64-470.256.02.run
+	sha512sums = a837946dd24d7945c1962a695f1f31965f3ceb6927f52cd08fd51b8db138b7a888bbeab69243f5c8468a7bd7ccd47f5dbdb48a1ca81264866c1ebb7d88628f88
+
+pkgname = lib32-nvidia-470xx-utils
+	pkgdesc = NVIDIA drivers utilities (32-bit)
+	depends = lib32-zlib
+	depends = lib32-gcc-libs
+	depends = lib32-libglvnd
+	depends = nvidia-470xx-utils
+	optdepends = lib32-opencl-nvidia-470xx
+	provides = lib32-vulkan-driver
+	provides = lib32-opengl-driver
+	provides = lib32-nvidia-470xx-libgl
+	provides = lib32-nvidia-utils
+	conflicts = lib32-nvidia-libgl
+	conflicts = lib32-nvidia-utils
+
+pkgname = lib32-opencl-nvidia-470xx
+	pkgdesc = OpenCL implemention for NVIDIA (32-bit)
+	depends = lib32-zlib
+	depends = lib32-gcc-libs
+	optdepends = opencl-headers: headers necessary for OpenCL development
+	provides = lib32-opencl-driver
+	provides = lib32-opencl-nvidia
+	conflicts = lib32-opencl-nvidia

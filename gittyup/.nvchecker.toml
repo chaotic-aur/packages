@@ -1,0 +1,6 @@
+[gittyup]
+source = "github"
+github = "Murmele/Gittyup"
+include_regex = 'gittyup_v\d+\.\d+\.\d+'
+prefix = "gittyup_v"
+use_max_tag = true
