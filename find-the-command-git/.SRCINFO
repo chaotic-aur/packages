@@ -1,0 +1,21 @@
+pkgbase = find-the-command-git
+	pkgdesc = Advanced command-not-found hook for bash, fish and zsh using the power of pacman
+	pkgver = 2.0.r2.gfecba1a
+	pkgrel = 1
+	url = https://github.com/pkasemir/find-the-command
+	install = find-the-command.install
+	arch = any
+	license = custom:WTFPL
+	makedepends = git
+	depends = pacman
+	optdepends = fzf: highly recommended for package selection and previews
+	optdepends = pacman-contrib: for weekly pacman-filesdb-refresh.timer
+	optdepends = pkgfile: provides faster searches than pacman
+	optdepends = sudo: helpful for privilege elevation
+	provides = find-the-command
+	conflicts = find-the-command
+	options = docs
+	source = git+https://github.com/pkasemir/find-the-command.git
+	sha256sums = SKIP
+
+pkgname = find-the-command-git

@@ -1,0 +1,14 @@
+pkgbase = non-euclidean-git
+	pkgdesc = Tiny Non-Euclidean engine
+	pkgver = r34.4831ce9
+	pkgrel = 1
+	url = https://github.com/Srinivasa314/NonEuclidean
+	arch = x86_64
+	license = MIT
+	makedepends = git
+	depends = glew
+	depends = sdl2
+	source = git+https://github.com/Srinivasa314/NonEuclidean.git
+	sha256sums = SKIP
+
+pkgname = non-euclidean-git

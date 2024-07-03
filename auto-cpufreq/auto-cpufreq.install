@@ -1,0 +1,23 @@
+post_install() {
+    # This is needed on SELinux enabled systems (see also ConditionPathExists in .service)
+    touch /var/log/auto-cpufreq.log
+
+    echo -e "\nauto-cpufreq $1 installed\n"
+
+    echo -e 'Important notice: the daemon installer provided does not work, instead run the following command:\n'
+    echo -e 'systemctl enable --now auto-cpufreq\n'
+
+    echo -e 'To view live log, run:\n'
+    echo -e 'auto-cpufreq --stats\n'
+}
+
+post_upgrade() {	
+    systemctl daemon-reload
+    systemctl restart auto-cpufreq
+    echo -e 'auto-cpufreq has been restarted\n'
+}
+
+post_remove() {
+    # Remove auto-cpufreq log file
+    rm /var/log/auto-cpufreq.log
+}
