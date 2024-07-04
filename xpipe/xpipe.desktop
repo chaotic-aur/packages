@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Name=XPipe
+Comment=Your entire server infrastructure at your fingertips
+TryExec=/opt/xpipe/app/bin/xpiped
+Exec=/opt/xpipe/cli/bin/xpipe open %U
+Path=/opt/xpipe/app
+Icon=xpipe
+Terminal=false
+Categories=Utility;Development;
+StartupNotify=true
+MimeType=x-scheme-handler/xpipe;x-scheme-handler/ssh
