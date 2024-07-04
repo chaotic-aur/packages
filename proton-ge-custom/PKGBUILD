@@ -1,13 +1,13 @@
 # Maintainer: loathingkernel <loathingkernel _a_ gmail _d_ com>
 
 pkgname=proton-ge-custom
-_srctag=GE-Proton9-7
+_srctag=GE-Proton9-9
 _commit=
 pkgver=${_srctag//-/.}
 _geckover=2.47.4
 _monover=9.1.0
 _xaliaver=0.4.2
-pkgrel=4
+pkgrel=1
 epoch=2
 pkgdesc="Compatibility tool for Steam Play based on Wine and additional components, GloriousEggroll's custom build"
 url="https://github.com/GloriousEggroll/proton-ge-custom"
@@ -97,8 +97,7 @@ source=(
   0005-AUR-Strip-binaries-early.patch
   0006-AUR-Fix-hwnd-redefinition.patch
   0007-AUR-Disable-incompatible-pointer-types-in-Wine-GCC-1.patch
-  0001-AUR-run-make_requests-before-configure.patch
-  0001-AUR-Fix-calling-make-requests-where-it-shouldn-t-be-.patch
+  0008-AUR-Fix-calling-make-requests-where-it-shouldn-t-be-.patch
 )
 noextract=(
   wine-gecko-${_geckover}-{x86,x86_64}.tar.xz
@@ -175,8 +174,7 @@ prepare() {
   patch -p1 -i "$srcdir"/0005-AUR-Strip-binaries-early.patch
   patch -p1 -i "$srcdir"/0006-AUR-Fix-hwnd-redefinition.patch
   patch -p1 -i "$srcdir"/0007-AUR-Disable-incompatible-pointer-types-in-Wine-GCC-1.patch
-  patch -p1 -i "$srcdir"/0001-AUR-run-make_requests-before-configure.patch
-  patch -p1 -i "$srcdir"/0001-AUR-Fix-calling-make-requests-where-it-shouldn-t-be-.patch
+  patch -p1 -i "$srcdir"/0008-AUR-Fix-calling-make-requests-where-it-shouldn-t-be-.patch
 }
 
 build() {
@@ -264,17 +262,16 @@ package() {
     $(find "$_monodir" -iname "*x86_64.dll" -or -iname "*x86_64.exe")
 }
 
-sha256sums=('ffbd3d6c4523debb13638d484a209077caecd7ced319d9a209297b4934d3ae2a'
+sha256sums=('c5eeecd8d59c32c15ea5f2cc6be2ec7e439777bfdcda162a92eac20f4a885e1d'
   '2cfc8d5c948602e21eff8a78613e1826f2d033df9672cace87fed56e8310afb6'
   'fd88fc7e537d058d7a8abf0c1ebc90c574892a466de86706a26d254710a82814'
   '601169d0203b291fbfd946b356a9538855e01de22abd470ded73baf312c88767'
   '50ce2cc85162343e62340b0ca7994ceba94592ab395fb99711e94e108e991f0c'
-  '2a6ad2bceaa713899a5bdb5ec49fad1495c21b8221f0d983d1cc1e9869b571dd'
-  'a93f12cb249320bba66448561efdbd8c133b1682e3c4ccbd0e5d16126cbfe7dd'
-  '815a4c06f73b9cb125959d9eb817cd5d9320e5465971710ea14cbff1c275e2d7'
-  'cdd33869fab0448fb4bc0d30d7e4502cdae541f862c443155b264e4d8c1ea1ce'
-  'e055494eec0ab314d98e5806fff9f427501db822932b138a2fa3e80854614656'
-  'c6def40007f76adc9acb1ae4788f3b18e48bd11c68e58b68ea1d363bc5e0cff0'
-  '02ee1933800f87f80e123328c3b7b33f3faf96a71e52fe252ab582eb49ab57ae'
-  '10448919c5cb6990a1f4a355d06a3cb4833e382edc6dfec6b8cc0af3bbaebb49'
-  '4c3278e09c5b29d927dce1051d9a6d67b1d9ebc5425a1c31cb063e886308289d')
+  '077a9ab95836b995b06d36c361724f58aea337033029330a4aed9e93d7f3f042'
+  'dc5cfbc5af409d30c4896ce96dc00ac7b84306ac2f295422a23b0385700d7d74'
+  '2d8b4906b2377ff93947e5347e551e3f50d2c6516dccc2347e06ca49a87a6720'
+  '30a9c797cde95af6fc23de3390f9a4e4015abf1a0dbac817d1bcf44f84c321ad'
+  '105876ae492e3b3d18ba86be58a73d1e4c20819bccf2d2b1a07bd1948206f6d8'
+  '83b1ab0db74cdd4dd2e21e62525575819000d57349a1a009f445b7192dbf6997'
+  'ac6027bc9d8129e9a6da49e56c1b433db8d56c37666dd0b24cde8976902121bb'
+  '5dc265d4d85112d981319ce28c757a6106d618b4c7f07b4f862c71cf3a46dd9c')
