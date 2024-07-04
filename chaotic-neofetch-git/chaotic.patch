@@ -1,0 +1,135 @@
+diff --git a/Makefile b/Makefile
+index 2b41f34f..06a01774 100644
+--- a/Makefile
++++ b/Makefile
+@@ -7,9 +7,9 @@ all:
+ install:
+ 	@mkdir -p $(DESTDIR)$(PREFIX)/bin
+ 	@mkdir -p $(DESTDIR)$(MANDIR)/man1
+-	@cp -p neofetch $(DESTDIR)$(PREFIX)/bin/neofetch
+-	@cp -p neofetch.1 $(DESTDIR)$(MANDIR)/man1
+-	@chmod 755 $(DESTDIR)$(PREFIX)/bin/neofetch
++	@cp -p neofetch $(DESTDIR)$(PREFIX)/bin/chaotic-neofetch
++	@cp -p neofetch.1 $(DESTDIR)$(MANDIR)/man1/chaotic-neofetch.1
++	@chmod 755 $(DESTDIR)$(PREFIX)/bin/chaotic-neofetch
+ 
+ uninstall:
+ 	@rm -rf $(DESTDIR)$(PREFIX)/bin/neofetch
+diff --git a/neofetch b/neofetch
+index db47a471..3599d4ac 100755
+--- a/neofetch
++++ b/neofetch
+@@ -754,7 +754,7 @@ disk_display="off"
+ #           'viu'
+ 
+ # Flag:     --backend
+-image_backend="ascii"
++image_backend="viu"
+ 
+ # Image Source
+ #
+@@ -768,7 +768,7 @@ image_backend="ascii"
+ # NOTE: 'auto' will pick the best image source for whatever image backend is used.
+ #       In ascii mode, distro ascii art will be used and in an image mode, your
+ #       wallpaper will be used.
+-image_source="auto"
++image_source="/usr/share/chaotic-aur/logo.jpg"
+ 
+ 
+ # Ascii Options
+@@ -886,7 +886,7 @@ crop_offset="center"
+ # Values:  'auto', '00px', '00%', 'none'
+ # Flags:   --image_size
+ #          --size
+-image_size="auto"
++image_size="360px"
+ 
+ # Catimg block size.
+ # Control the resolution of catimg.
+@@ -1540,7 +1540,9 @@ get_packages() {
+             # Package Manager Programs.
+             has kiss       && tot kiss l
+             has cpt-list   && tot cpt-list
+-            has pacman-key && tot pacman -Qq --color never
++            has chaotic-aur && manager=archlinux && tot chaotic-aur --official
++            has chaotic-aur && manager=aur && tot chaotic-aur --aur
++            has chaotic-aur && tot chaotic-aur
+             has dpkg       && tot dpkg-query -f '.\n' -W
+             has xbps-query && tot xbps-query -l
+             has apk        && tot apk info
+@@ -4764,20 +4766,14 @@ get_user_config() {
+         err "Config: Sourced user config. (${config_file})"
+         return
+ 
+-    elif [[ -f "${XDG_CONFIG_HOME}/neofetch/config.conf" ]]; then
+-        source "${XDG_CONFIG_HOME}/neofetch/config.conf"
+-        err "Config: Sourced user config.    (${XDG_CONFIG_HOME}/neofetch/config.conf)"
++    elif [[ -f "${XDG_CONFIG_HOME}/chaotic-neofetch/config.conf" ]]; then
++        source "${XDG_CONFIG_HOME}/chaotic-neofetch/config.conf"
++        err "Config: Sourced user config.    (${XDG_CONFIG_HOME}/chaotic-neofetch/config.conf)"
+ 
+-    elif [[ -f "${XDG_CONFIG_HOME}/neofetch/config" ]]; then
+-        source "${XDG_CONFIG_HOME}/neofetch/config"
+-        err "Config: Sourced user config.    (${XDG_CONFIG_HOME}/neofetch/config)"
++    elif [[ -f "${XDG_CONFIG_HOME}/chaotic-neofetch/config" ]]; then
++        source "${XDG_CONFIG_HOME}/chaotic-neofetch/config"
++        err "Config: Sourced user config.    (${XDG_CONFIG_HOME}/chaotic-neofetch/config)"
+ 
+-    elif [[ -z "$no_config" ]]; then
+-        config_file="${XDG_CONFIG_HOME}/neofetch/config.conf"
+-
+-        # The config file doesn't exist, create it.
+-        mkdir -p "${XDG_CONFIG_HOME}/neofetch/"
+-        printf '%s\n' "$config" > "$config_file"
+     fi
+ }
+ 
+@@ -5385,6 +5381,17 @@ get_args() {
+                 ascii_distro="$2"
+             ;;
+ 
++            "--frog")
++                image_backend="ascii"
++                ascii_distro="Frog"
++
++            ;;
++
++            "--garuda")
++                image_backend="ascii"
++                ascii_distro="Garuda"
++            ;;
++
+             "--ascii_bold") ascii_bold="$2" ;;
+             "--logo" | "-L")
+                 image_backend="ascii"
+@@ -5511,6 +5518,30 @@ get_distro_ascii() {
+     #
+     # $ascii_distro is the same as $distro.
+     case $(trim "$ascii_distro") in
++        "Frog")
++             set_colors 6 6 7 1
++             read -rd '' ascii_data <<'EOF'
++${c1}                   
++       .---.`               `.---.       
++    `/syhhhyso-           -osyhhhys/`    
++   .syNMdhNNhss/``.---.``/sshNNhdMNys.   
++   +sdMh.`+MNsssssssssssssssNM+`.hMds+   
++   :syNNdhNNhssssssssssssssshNNhdNNys:   
++    /ssyhhhysssssssssssssssssyhhhyss/    
++    .ossssssssssssssssssssssssssssso.    
++   :sssssssssssssssssssssssssssssssss:   
++  /sssssssssssssssssssssssssssssssssss/  
++ :sssssssssssssoosssssssoosssssssssssss: 
++ osssssssssssssoosssssssoossssssssssssso 
++ osssssssssssyyyyhhhhhhhyyyyssssssssssso 
++ /yyyyyyhhdmmmmNNNNNNNNNNNmmmmdhhyyyyyy/ 
++  smmmNNNNNNNNNNNNNNNNNNNNNNNNNNNNNmmms  
++   /dNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNd/   
++    `:sdNNNNNNNNNNNNNNNNNNNNNNNNNds:`    
++       `-+shdNNNNNNNNNNNNNNNdhs+-`       
++             `.-:///////:-.`             
++EOF
++         ;;
+         "AIX"*)
+             set_colors 2 7
+             read -rd '' ascii_data <<'EOF'

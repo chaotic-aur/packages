@@ -1,0 +1,19 @@
+pkgbase = gotop
+	pkgdesc = A terminal based graphical activity monitor inspired by gtop and vtop
+	pkgver = 4.2.0
+	pkgrel = 3
+	url = https://github.com/xxxserxxx/gotop
+	changelog = Changelog
+	arch = x86_64
+	arch = i686
+	arch = arm
+	arch = armv6h
+	arch = armv7h
+	arch = aarch64
+	license = MIT
+	makedepends = go
+	depends = glibc
+	source = gotop-4.2.0.tar.gz::https://github.com/xxxserxxx/gotop/archive/v4.2.0.tar.gz
+	sha256sums = e9d9041903acb6bd3ffe94e0a02e69eea53f1128274da1bfe00fe44331ccceb1
+
+pkgname = gotop
