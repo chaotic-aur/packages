@@ -1,0 +1,20 @@
+productName: "Whalebird"
+appId: social.whalebird.app
+copyright: Copyright © 2018 Akira Fukushima
+artifactName: "${productName}-${version}-${os}-${arch}.${ext}"
+directories:
+  output: dist
+  buildResources: resources
+files:
+  - from: .
+    filter:
+      - package.json
+      - app
+linux:
+  icon: resources/icons
+  target:
+    - target: dir
+      arch:
+        - x64
+  category: Network
+

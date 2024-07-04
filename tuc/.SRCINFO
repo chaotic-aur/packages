@@ -1,0 +1,13 @@
+pkgbase = tuc
+	pkgdesc = A more powerful alternative to cut
+	pkgver = 1.0.0
+	pkgrel = 1
+	url = https://github.com/riquito/tuc
+	arch = x86_64
+	arch = aarch64
+	license = GPL3
+	makedepends = cargo
+	source = https://github.com/riquito/tuc/archive/refs/tags/v1.0.0.tar.gz
+	sha256sums = ea4d1adb1949b8f564c375cbd7e0569de5dcc1fcabd57d56174748091102eec2
+
+pkgname = tuc

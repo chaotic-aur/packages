@@ -1,0 +1,8 @@
+#!/bin/sh
+JAVA_HOME=$(archlinux-java-run --min 21 --max 21 --java-home) && \
+exec $JAVA_HOME/bin/java --enable-preview --module-path "/usr/share/java/pdfsam" --module org.pdfsam.basic/org.pdfsam.basic.App -Xmx512M \
+    -splash:/usr/share/pdfsam/splash.png \
+    -Dapp.name="pdfsam-basic" \
+    -Dapp.pid="$$" \
+    -Dprism.lcdtext=false \
+    "$@"
