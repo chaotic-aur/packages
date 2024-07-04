@@ -1,0 +1,33 @@
+pkgbase = themix-icons-gnome-colors-git
+	pkgdesc = Gnome-Colors icons plugin for Themix GUI designer
+	pkgver = 5.5.6.r0.gd2cb7eb
+	pkgrel = 2
+	url = https://github.com/themix-project/gnome-colors-icon-theme
+	arch = x86_64
+	arch = i686
+	license = GPL3
+	makedepends = git
+	makedepends = python
+	depends = librsvg
+	depends = sed
+	depends = findutils
+	depends = grep
+	depends = bc
+	depends = imagemagick
+	optdepends = themix-gui: GUI
+	optdepends = gnome-icon-theme: fallback icons
+	optdepends = gnome-icon-theme-symbolic: fallback icons
+	optdepends = adwaita-icon-theme: fallback icons
+	optdepends = breeze-icons: fallback icons
+	optdepends = oxygen-icons: fallback icons
+	provides = themix-icons-gnome-colors
+	conflicts = themix-icons-gnome-colors
+	conflicts = oomox
+	conflicts = oomox-git
+	options = !strip
+	source = git+https://github.com/themix-project/oomox.git#branch=master
+	source = gnome-colors-icon-theme::git+https://github.com/themix-project/gnome-colors-icon-theme.git#branch=master
+	md5sums = SKIP
+	md5sums = SKIP
+
+pkgname = themix-icons-gnome-colors-git
