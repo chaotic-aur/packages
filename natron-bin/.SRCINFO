@@ -1,0 +1,20 @@
+pkgbase = natron-bin
+	pkgdesc = Node-graph video compositor
+	pkgver = 2.5.0
+	pkgrel = 1
+	url = https://natrongithub.github.io
+	arch = x86_64
+	license = GPL2
+	makedepends = gendesk
+	makedepends = imagemagick
+	depends = glu
+	depends = hicolor-icon-theme
+	depends = libxcrypt-compat
+	provides = natron
+	conflicts = natron
+	noextract = natron-2.5.0.tar.xz
+	options = !strip
+	source = natron-2.5.0.tar.xz::https://github.com/NatronGitHub/Natron/releases/download/v2.5.0/Natron-2.5.0-Linux-x86_64-no-installer.tar.xz
+	sha512sums = 36901047652f3c96ed6c9266b3744a5fedfb24423cf52e3cc9860b2b26e210c50bada86f25598d8d889514b4ef25f33cfb8c947353b658eb6dda48a631f91379
+
+pkgname = natron-bin

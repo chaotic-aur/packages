@@ -1,0 +1,14 @@
+pkgbase = launcher-curseforge-bin
+	pkgdesc = Integrates the Curseforge Modpack installation button to any MultiMC based launcher
+	pkgver = 2.1.2
+	pkgrel = 1
+	url = https://github.com/ShayBox/launcher-curseforge
+	arch = x86_64
+	license = MIT
+	optdepends = multimc
+	optdepends = polymc
+	optdepends = prismlauncher
+	source = https://github.com/ShayBox/launcher-curseforge/releases/download/2.1.2/Linux-x86_64.zip
+	sha512sums = 41bfe6b46c21470fe82641bccde1d618620bd809188aa711d0a9112852caa0cbf7ba6ee4ccbde582fb1fa942e012746dce062d43efc3753d446103de1caa41d2
+
+pkgname = launcher-curseforge-bin

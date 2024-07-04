@@ -1,0 +1,16 @@
+[Unit]
+Description=RustDesk ID/Rendezvous Server
+Requires=network.target
+After=systemd-user-sessions.service
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/rustdesk-server/data
+ExecStart=/opt/rustdesk-server/hbbs
+KillMode=mixed
+TimeoutStopSec=30
+User=rustdeskserver
+LimitNOFILE=100000
+
+[Install]
+WantedBy=multi-user.target

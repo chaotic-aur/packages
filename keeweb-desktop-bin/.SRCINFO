@@ -1,0 +1,21 @@
+pkgbase = keeweb-desktop-bin
+	pkgdesc = Free cross-platform password manager compatible with KeePass
+	pkgver = 1.18.7
+	pkgrel = 1
+	url = https://github.com/keeweb/keeweb
+	arch = x86_64
+	license = MIT
+	depends = gnome-keyring
+	depends = libxss
+	depends = gconf
+	depends = libappindicator-gtk2
+	optdepends = xdotool: for Auto-type feature
+	provides = keeweb
+	conflicts = keeweb-desktop
+	conflicts = keeweb
+	conflicts = keeweb-bin
+	conflicts = keeweb-git
+	source = keeweb-desktop-bin-1.18.7.deb::https://github.com/keeweb/keeweb/releases/download/v1.18.7/KeeWeb-1.18.7.linux.x64.deb
+	sha256sums = fd4faf9f94cb214f7f27a711163b807721b39700b4e26a782f65f6113a7e6521
+
+pkgname = keeweb-desktop-bin
