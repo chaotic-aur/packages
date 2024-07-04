@@ -1,0 +1,8 @@
+
+_renderer=gl
+
+pkgver() {
+  cd "$_gitname"
+  git describe --long --tags --abbrev=7 --exclude='*[0-9][ab][0-9]*' --exclude='*rc*' \
+    | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-[A-Za-z]+(-r)/\1/;s/-/./g'
+}

@@ -1,0 +1,21 @@
+pkgbase = gallium-nine-git
+	pkgdesc = Gallium Nine Standalone
+	pkgver = 0.9.r8.g95e0da4
+	pkgrel = 1
+	url = https://github.com/iXit/wine-nine-standalone
+	arch = x86_64
+	license = LGPL-2.1-or-later
+	makedepends = git
+	makedepends = lib32-mesa
+	makedepends = meson
+	makedepends = wine
+	provides = gallium-nine=0.9
+	provides = wine-nine=0.9
+	conflicts = gallium-nine
+	conflicts = wine-nine
+	source = ixit.gallium-nine::git+https://github.com/iXit/wine-nine-standalone.git
+	sha256sums = SKIP
+
+pkgname = gallium-nine-git
+	depends = lib32-mesa
+	depends = wine

@@ -1,0 +1,77 @@
+pkgbase = lib32-llvm-git
+	pkgdesc = Low Level Virtual Machine (git version)
+	pkgver = 19.0.0_r498401.f42117c8517c
+	pkgrel = 1
+	url = https://llvm.org/
+	arch = x86_64
+	groups = chaotic-mesa-git
+	license = Apache-2.0 WITH LLVM-exception
+	makedepends = git
+	makedepends = cmake
+	makedepends = ninja
+	makedepends = python
+	makedepends = lib32-gcc-libs
+	makedepends = lib32-libffi
+	makedepends = lib32-libunwind
+	makedepends = spirv-headers-git
+	makedepends = lib32-spirv-tools-git
+	makedepends = lib32-libxml2
+	makedepends = lib32-zlib
+	makedepends = lib32-zstd
+	makedepends = gcc-multilib
+	makedepends = llvm-git
+	options = staticlibs
+	source = llvm-project::git+https://github.com/llvm/llvm-project.git
+	source = git+https://github.com/KhronosGroup/SPIRV-LLVM-Translator.git
+	md5sums = SKIP
+	md5sums = SKIP
+	sha512sums = SKIP
+	sha512sums = SKIP
+
+pkgname = lib32-spirv-llvm-translator-git
+	pkgdesc = Tool and a library for bi-directional translation between SPIR-V and LLVM IR
+	depends = lib32-llvm-git=19.0.0_r498401.f42117c8517c-1
+	depends = lib32-spirv-tools
+	depends = spirv-llvm-translator-git
+	provides = lib32-spirv-llvm-translator
+	conflicts = lib32-spirv-llvm-translator
+
+pkgname = lib32-llvm-libs-git
+	pkgdesc = Low Level Virtual Machine library (runtime library)(32-bit)(git version)
+	depends = lib32-libffi
+	depends = lib32-zlib
+	depends = lib32-libxml2
+	depends = lib32-gcc-libs
+	depends = lib32-zstd
+	depends = lib32-llvm-git
+	provides = lib32-llvm-libs=19.0.0_r498401.f42117c8517c
+	conflicts = lib32-llvm-libs-svn
+	conflicts = lib32-llvm-libs
+	replaces = lib32-llvm-libs-svn
+
+pkgname = lib32-clang-git
+	pkgdesc = C language family frontend for LLVM (32-bit)
+	depends = lib32-llvm-libs-git=19.0.0_r498401.f42117c8517c-1
+	depends = lib32-gcc-libs
+	depends = gcc-multilib
+	depends = lib32-llvm-git
+	optdepends = python: needed for hwsan_symbolize
+	provides = lib32-clang=19.0.0_r498401.f42117c8517c
+	conflicts = lib32-clang
+	conflicts = lib32-clang-svn
+	replaces = lib32-clang-svn
+
+pkgname = lib32-llvm-git
+	pkgdesc = Low Level Virtual Machine (32-bit)(git version)
+	depends = lib32-llvm-libs-git=19.0.0_r498401.f42117c8517c-1
+	depends = llvm-git
+	depends = lib32-gcc-libs
+	depends = lib32-libxml2
+	depends = lib32-libffi
+	depends = lib32-zlib
+	depends = python
+	depends = lib32-zstd
+	provides = lib32-llvm=19.0.0_r498401.f42117c8517c
+	conflicts = lib32-llvm
+	conflicts = lib32-llvm-svn
+	replaces = lib32-llvm-svn

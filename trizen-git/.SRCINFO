@@ -1,0 +1,25 @@
+pkgbase = trizen-git
+	pkgdesc = Trizen AUR Package Manager: lightweight pacman wrapper and AUR helper (-git version).
+	pkgver = 1.68.r0.gfaa849a
+	pkgrel = 1
+	url = https://github.com/trizen/trizen
+	arch = any
+	license = GPL3
+	depends = git
+	depends = pacutils
+	depends = perl>=5.20.0
+	depends = perl-libwww
+	depends = perl-term-ui
+	depends = pacman
+	depends = perl-json
+	depends = perl-data-dump
+	depends = perl-lwp-protocol-https
+	depends = perl-term-readline-gnu
+	optdepends = highlight: for syntax highlighting
+	optdepends = perl-json-xs: faster JSON deserialization
+	provides = trizen
+	conflicts = trizen
+	source = git+https://github.com/trizen/trizen.git
+	sha512sums = SKIP
+
+pkgname = trizen-git
