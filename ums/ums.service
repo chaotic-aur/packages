@@ -1,0 +1,15 @@
+[Unit]
+Description=Universal Media Server
+Wants=network.target
+After=syslog.target network-online.target rpcbind.service
+
+[Service]
+#Environment="UMS_MAX_MEMORY=1280M"
+User=%i
+Group=users
+WorkingDirectory=/opt/ums/
+Type=simple
+ExecStart=/opt/ums/UMS.sh
+
+[Install]
+WantedBy=multi-user.target

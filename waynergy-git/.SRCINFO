@@ -1,0 +1,21 @@
+pkgbase = waynergy-git
+	pkgdesc = Synergy client for wayland compositors
+	pkgver = r176.aa06553
+	pkgrel = 1
+	url = https://github.com/r-c-f/waynergy
+	arch = x86_64
+	arch = armv7h
+	license = MIT
+	makedepends = git
+	makedepends = meson
+	makedepends = ninja
+	depends = wayland
+	depends = libxkbcommon
+	depends = libretls
+	optdepends = wl-clipboard: Clipboard synchronization support
+	provides = waynergy
+	conflicts = waynergy
+	source = git+https://github.com/r-c-f/waynergy.git
+	md5sums = SKIP
+
+pkgname = waynergy-git

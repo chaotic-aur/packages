@@ -1,0 +1,4 @@
+[slack-electron]
+source = "regex"
+url = "https://slack.com/release-notes/linux"
+regex = 'Slack (\d+\.\d+\.\d+)'
