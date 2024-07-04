@@ -1,0 +1,38 @@
+# Maintainer:
+
+_pkgname="xpra-html5"
+pkgname="$_pkgname-git"
+pkgver=9.0.r137.g4202af3
+pkgrel=1
+pkgdesc="HTML5 client for Xpra"
+url='https://github.com/Xpra-org/xpra-html5'
+license=('MPL-2.0')
+arch=('x86_64')
+
+provides=("$_pkgname=${pkgver%%.r*}")
+conflicts=("$_pkgname")
+
+makedepends=(
+  'git'
+  'python'
+  'brotli'    # compression for served files (.br)
+  'gzip'      # compression for served files (.gz)
+  'uglify-js' # for compressing Javascript
+)
+
+_pkgsrc="$_pkgname"
+source=("$_pkgsrc"::"git+$url.git")
+sha256sums=('SKIP')
+
+pkgver() {
+  cd "$_pkgsrc"
+  git describe --long --tags --abbrev=7 --exclude='*[a-zA-Z][a-zA-Z]*' \
+    | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
+}
+
+package() {
+  cd "$_pkgsrc"
+
+  # custom script, *not* based on python-setuptools
+  python setup.py install "$pkgdir" # `args[2]` is `root_dir`
+}
