@@ -1,0 +1,32 @@
+pkgbase = imaginary-teleprompter-bin
+	pkgdesc = A complete and professional free software teleprompter.
+	pkgver = 2.4.0
+	pkgrel = 7
+	url = https://imaginary.tech/teleprompter
+	install = INSTALL
+	arch = x86_64
+	license = GPL3
+	depends = c-ares
+	depends = ffmpeg
+	depends = gtk3
+	depends = http-parser
+	depends = libevent
+	depends = libvpx
+	depends = libxslt
+	depends = libxss
+	depends = minizip
+	depends = nss
+	depends = re2
+	depends = snappy
+	depends = libnotify
+	depends = libappindicator-gtk2
+	depends = libappindicator-gtk3
+	depends = gconf
+	provides = imaginary-teleprompter
+	conflicts = imaginary-teleprompter
+	conflicts = imaginary-teleprompter-git
+	source = imaginary-teleprompter-2.4.0.pacman::https://github.com/ImaginarySense/Imaginary-Teleprompter-Electron/releases/download/2.4/imaginary-teleprompter-2.4.0.pacman
+	sha256sums = 6d65527657bfc6f951d83d37676897aa80eff2902ffb061264cebc499d3b82ab
+
+pkgname = imaginary-teleprompter-bin
+

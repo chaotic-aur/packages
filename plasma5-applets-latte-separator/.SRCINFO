@@ -1,0 +1,12 @@
+pkgbase = plasma5-applets-latte-separator
+	pkgdesc = Plasma applet that acts as a separator between applets
+	pkgver = 0.1.2
+	pkgrel = 1
+	url = https://github.com/psifidotos/applet-latte-separator
+	arch = any
+	license = GPL
+	depends = plasma-workspace
+	source = plasma5-applets-latte-separator-0.1.2.tar.gz::https://github.com/psifidotos/applet-latte-separator/archive/v0.1.2.tar.gz
+	sha256sums = 0f6e2b63ee1f769d586e6a59376de02d1ba8615cd9999e8853dc4df21ded4ba0
+
+pkgname = plasma5-applets-latte-separator

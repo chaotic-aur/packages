@@ -1,0 +1,18 @@
+pkgbase = authpass-bin
+	pkgdesc = Password Manager based on Flutter for all platforms. Keepass 2.x (kdbx 3.x) compatible.
+	pkgver = 1.9.11
+	pkgrel = 2
+	url = https://authpass.app/
+	arch = x86_64
+	license = GPL-3.0-only
+	depends = gtk3
+	depends = libsecret
+	depends = libkeybinder3
+	provides = authpass=1.9.11
+	conflicts = authpass
+	source = authpass-1.9.11.deb::https://github.com/authpass/authpass/releases/download/v1.9.11/authpass-linux-1.9.11_2007.deb
+	source = authpass.sh
+	sha256sums = f464b6d5610de4c9d17cbbb5906625c272e8c5ac0ebf8e45b2a3007bbc9c246b
+	sha256sums = 984792e5e81a0f8f076fdfd20bdc72c152664346b099312114ecb1e4fe2fcb83
+
+pkgname = authpass-bin

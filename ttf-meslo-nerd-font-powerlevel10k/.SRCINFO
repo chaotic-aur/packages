@@ -1,0 +1,18 @@
+pkgbase = ttf-meslo-nerd-font-powerlevel10k
+	pkgdesc = Meslo Nerd Font patched for Powerlevel10k
+	pkgver = 2.3.3
+	pkgrel = 1
+	url = https://github.com/romkatv/powerlevel10k-media
+	arch = any
+	license = Apache-2.0
+	provides = nerd-fonts-meslo-p10k
+	source = MesloLGS-NF-Bold-2.3.3.ttf::https://github.com/romkatv/powerlevel10k-media/raw/145eb9fbc2f42ee408dacd9b22d8e6e0e553f83d/MesloLGS%20NF%20Bold.ttf
+	source = MesloLGS-NF-Bold-Italic-2.3.3.ttf::https://github.com/romkatv/powerlevel10k-media/raw/145eb9fbc2f42ee408dacd9b22d8e6e0e553f83d/MesloLGS%20NF%20Bold%20Italic.ttf
+	source = MesloLGS-NF-Italic-2.3.3.ttf::https://github.com/romkatv/powerlevel10k-media/raw/145eb9fbc2f42ee408dacd9b22d8e6e0e553f83d/MesloLGS%20NF%20Italic.ttf
+	source = MesloLGS-NF-Regular-2.3.3.ttf::https://github.com/romkatv/powerlevel10k-media/raw/145eb9fbc2f42ee408dacd9b22d8e6e0e553f83d/MesloLGS%20NF%20Regular.ttf
+	sha256sums = b6c0199cf7c7483c8343ea020658925e6de0aeb318b89908152fcb4d19226003
+	sha256sums = 56b4131adecec052c4b324efb818dd326d586dbc316fc68f98f1cae2eb8d1220
+	sha256sums = 6f357bcbe2597704e157a915625928bca38364a89c22a4ac36e7a116dcd392ef
+	sha256sums = d97946186e97f8d7c0139e8983abf40a1d2d086924f2c5dbf1c29bd8f2c6e57d
+
+pkgname = ttf-meslo-nerd-font-powerlevel10k

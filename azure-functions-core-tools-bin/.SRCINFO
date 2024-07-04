@@ -1,0 +1,15 @@
+pkgbase = azure-functions-core-tools-bin
+	pkgdesc = Command line tools for Azure Functions
+	pkgver = 4.0.5907
+	pkgrel = 1
+	url = https://github.com/Azure/azure-functions-core-tools
+	arch = x86_64
+	license = MIT
+	optdepends = dotnet-runtime: to install extensions
+	provides = azure-functions-core-tools
+	conflicts = azure-functions-core-tools
+	options = staticlibs
+	source = https://github.com/Azure/azure-functions-core-tools/releases/download/4.0.5907/Azure.Functions.Cli.linux-x64.4.0.5907.zip
+	b2sums = fe86231d51ae3c6e221a2765915e085dcbad033f05b8ffba2db1a6de0983fa66fff689a9cea71af22400bcf11b624b376ab36c2c5c89c6fa567990f2180d9dfa
+
+pkgname = azure-functions-core-tools-bin

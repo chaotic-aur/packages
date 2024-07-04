@@ -1,0 +1,21 @@
+pkgbase = prospect-mail-bin
+	pkgdesc = Prospect Mail is an Outlook Electron desktop application for the new design.
+	pkgver = 0.5.2
+	pkgrel = 0
+	url = https://github.com/julian-alarcon/prospect-mail
+	install = prospect-mail-bin.install
+	arch = x86_64
+	arch = aarch64
+	license = MIT
+	provides = prospect-mail
+	conflicts = prospect-mail
+	source_x86_64 = https://github.com/julian-alarcon/prospect-mail/releases/download/v0.5.2/prospect-mail-0.5.2.pacman
+	source_x86_64 = LICENSE
+	md5sums_x86_64 = e4114043432eea6b899da817d6d425b0
+	md5sums_x86_64 = 8bc10d8d7c90786378362af8b5ce292f
+	source_aarch64 = https://github.com/julian-alarcon/prospect-mail/releases/download/v0.5.2/prospect-mail-0.5.2-aarch64.pacman
+	source_aarch64 = LICENSE
+	md5sums_aarch64 = 82ca565658c794abffc4df9d1796babb
+	md5sums_aarch64 = 8bc10d8d7c90786378362af8b5ce292f
+
+pkgname = prospect-mail-bin

@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=ATLauncher
+GenericName=ATLauncher
+Comment=A launcher for Minecraft which integrates multiple different modpacks to allow you to download and install modpacks easily and quickly.
+Exec=atlauncher
+Icon=atlauncher
+Terminal=false
+Type=Application
+Categories=Game;
+Keywords=game;Minecraft;
