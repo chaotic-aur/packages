@@ -1,0 +1,23 @@
+#!/bin/sh
+
+set -e
+
+if git branch|grep -q merge; then
+	git branch -D merge
+fi
+
+if ! git remote|grep -q arch; then
+	echo "Adding 'arch' remote"
+	git remote add arch https://gitlab.archlinux.org/archlinux/packaging/packages/linux.git
+fi
+
+git fetch arch
+git checkout -b merge --no-track arch/main
+grep ^pkgver PKGBUILD
+grep ^pkgrel PKGBUILD
+git checkout master
+
+echo "Automerging configs"
+git checkout merge -- config
+
+echo "All done, you can now do git checkout --patch merge PKGBUILD"
