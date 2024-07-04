@@ -1,0 +1,6 @@
+
+unset checkdepends
+unset -f check
+
+options=(${options[@]/debug*})
+options+=(!debug)

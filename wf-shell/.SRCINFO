@@ -1,0 +1,24 @@
+pkgbase = wf-shell
+	pkgdesc = GTK3-based panel for the Wayfire compositor
+	pkgver = 0.8.1
+	pkgrel = 6
+	url = https://wayfire.org
+	arch = x86_64
+	arch = aarch6
+	license = MIT
+	makedepends = wayland
+	makedepends = wayland-protocols
+	makedepends = meson
+	makedepends = ninja
+	makedepends = gobject-introspection
+	makedepends = glm
+	depends = gtk-layer-shell>=0.5
+	depends = wayfire>=0.8.1
+	depends = libpulse
+	depends = gtkmm3
+	depends = alsa-lib
+	depends = libdbusmenu-gtk3
+	source = https://github.com/WayfireWM/wf-shell/releases/download/v0.8.1/wf-shell-0.8.1.tar.xz
+	b2sums = d778b2ed214dbb1b072400a85021d3ef4e590bc707417cf2de486c9211fdf3d1fa1c14d786363bc7dd4daeeb39406d6aa2e2c3c0b607cb9b6c87151d330a3983
+
+pkgname = wf-shell

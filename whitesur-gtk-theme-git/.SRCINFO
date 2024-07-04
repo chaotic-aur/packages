@@ -1,0 +1,23 @@
+pkgbase = whitesur-gtk-theme-git
+	pkgdesc = MacOS Big Sur like theme for GNOME desktops
+	pkgver = 2023.06.30.r34.g0e3cc3c
+	pkgrel = 2
+	url = https://github.com/vinceliuice/WhiteSur-gtk-theme
+	arch = any
+	license = GPL
+	makedepends = git
+	makedepends = sassc
+	optdepends = gtk-engine-murrine: GTK2 theme support
+	optdepends = gtk-engines: GTK2 theme support
+	optdepends = whitesur-icon-theme-git: matching icon theme
+	optdepends = whitesur-cursor-theme-git: matching cursor theme
+	optdepends = whitesur-kvantum-theme: matching Kvantum theme
+	optdepends = gnome-shell-extension-dash-to-dock: recommended GNOME extension
+	optdepends = gnome-shell-extension-blur-my-shell: recommended GNOME extension
+	provides = whitesur-gtk-theme
+	conflicts = whitesur-gtk-theme
+	options = !strip
+	source = git+https://github.com/vinceliuice/WhiteSur-gtk-theme.git
+	b2sums = SKIP
+
+pkgname = whitesur-gtk-theme-git
