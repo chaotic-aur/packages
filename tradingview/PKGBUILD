@@ -1,3 +1,8 @@
+# Maintainer:
+
+## links
+# https://www.tradingview.com/desktop/
+
 # options
 if [ -n "$_srcinfo" ] || [ -n "$_pkgver" ]; then
   : ${_autoupdate:=false}
@@ -9,13 +14,12 @@ fi
 _pkgname="tradingview"
 _snapname="tradingview"
 pkgname="$_pkgname"
-pkgver=2.7.1
+pkgver=2.8.0
 pkgrel=1
 pkgdesc='Charting platform for traders and investors'
 arch=('x86_64')
 url="https://snapcraft.io/$_snapname"
-# url='https://www.tradingview.com/desktop/'
-license=('custom')
+license=('LicenseRef-TradingView')
 
 # main package
 _main_package() {

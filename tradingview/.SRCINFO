@@ -1,10 +1,10 @@
 pkgbase = tradingview
 	pkgdesc = Charting platform for traders and investors
-	pkgver = 2.7.1
+	pkgver = 2.8.0
 	pkgrel = 1
 	url = https://snapcraft.io/tradingview
 	arch = x86_64
-	license = custom
+	license = LicenseRef-TradingView
 	makedepends = html-xml-utils
 	makedepends = pandoc
 	makedepends = sha3sum
