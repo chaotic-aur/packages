@@ -1,0 +1,15 @@
+[Unit]
+Description=Openswan daemon
+After=network.target
+
+[Service]
+Type=forking
+RuntimeDirectory=pluto
+RuntimeDirectoryMode=0700
+ExecStart=/usr/lib/systemd/scripts/ipsec --start
+ExecStop=/usr/lib/systemd/scripts/ipsec --stop
+ExecReload=/usr/lib/systemd/scripts/ipsec --restart
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

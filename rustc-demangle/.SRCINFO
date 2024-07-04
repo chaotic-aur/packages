@@ -1,0 +1,16 @@
+pkgbase = rustc-demangle
+	pkgdesc = Demangling for Rust symbols, C API
+	pkgver = 0.1.23
+	pkgrel = 1
+	url = https://github.com/alexcrichton/rustc-demangle
+	arch = x86_64
+	arch = aarch64
+	license = Apache-2.0
+	license = MIT
+	makedepends = cargo
+	depends = gcc-libs
+	depends = glibc
+	source = rustc-demangle-0.1.23.tar.gz::https://github.com/alexcrichton/rustc-demangle/archive/0.1.23.tar.gz
+	sha512sums = f43d7db477fa40431f6495a8017d0ff33d933a2420b90c033d1620d7494b9cae241b6b0b2e1398a505d7576ed00cca0c37f6463348f08644cb1c0c58b1b28835
+
+pkgname = rustc-demangle

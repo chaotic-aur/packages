@@ -1,0 +1,50 @@
+_service='ipsec.service'
+_pkgname='libreswan'
+
+post_upgrade() {
+  if ! systemctl -q is-enabled "${_service}"; then
+    echo "  systemctl enable '${_service}'"
+  fi
+  if ! systemctl -q is-active "${_service}"; then
+    echo "  systemctl start '${_service}'"
+  else
+    echo "  systemctl restart '${_service}'"
+  fi
+  if [ "$(vercmp "${1}" '4.0')" -ge 0 ]; then
+    if [ -s '/etc/ipsec.d/cert9.db' ]; then
+      echo '>>> upgrading /var/lib/ipsec/nss'
+      set -x
+      ipsec checknss
+      set +x
+    fi
+  elif [ -d '/var/lib/ipsec/nss' ]; then
+    echo '>>> downgrading /var/lib/ipsec/nss'
+    set -x
+    mv '/var/lib/ipsec/nss'/* '/etc/ipsec.d/'
+    rmdir --ignore-fail-on-non-empty /var/lib/ipsec{/nss,}
+    set +x
+  fi
+}
+
+post_install() {
+  sysctl -p "/usr/lib/sysctl.d/${_pkgname}-icmp-redirects.conf"
+  echo '  ipsec verify'
+  post_upgrade
+}
+
+pre_remove() {
+  if systemctl -q is-active "${_service}"; then
+    echo "  systemctl stop '${_service}'"
+  fi
+  if systemctl -q is-enabled "${_service}"; then
+    echo "  systemctl disable '${_service}'"
+  fi
+  sysctl -p "/usr/lib/sysctl.d/${_pkgname}-icmp-redirects.conf.revert"
+}
+
+post_remove() {
+  if [ -d '/var/lib/ipsec/nss' ]; then
+    echo 'To complete package removal'
+    echo '  rm -r /var/lib/ipsec/nss'
+  fi
+}
