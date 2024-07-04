@@ -1,9 +1,2 @@
-# Issue 2394
-plymouth-themes-adi1090x-pack1-git:https://aur.archlinux.org/plymouth-themes-adi1090x-pack1-git.git
-plymouth-themes-adi1090x-pack2-git:https://aur.archlinux.org/plymouth-themes-adi1090x-pack2-git.git
-plymouth-themes-adi1090x-pack3-git:https://aur.archlinux.org/plymouth-themes-adi1090x-pack3-git.git
-plymouth-themes-adi1090x-pack4-git:https://aur.archlinux.org/plymouth-themes-adi1090x-pack4-git.git
-
-
 REQ_ORIGIN=github/2394
 REQ_REASON=request
