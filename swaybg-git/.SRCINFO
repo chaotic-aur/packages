@@ -1,0 +1,22 @@
+pkgbase = swaybg-git
+	pkgdesc = Wallpaper tool for Wayland compositors (git development version)
+	pkgver = 1.2.0.r4.geabc06e
+	pkgrel = 1
+	url = https://github.com/swaywm/swaybg
+	arch = x86_64
+	license = MIT
+	makedepends = meson
+	makedepends = git
+	makedepends = scdoc
+	makedepends = wayland-protocols
+	depends = cairo
+	depends = gdk-pixbuf2
+	depends = glib2
+	depends = glibc
+	depends = wayland
+	provides = swaybg
+	conflicts = swaybg
+	source = swaybg-git::git+https://github.com/swaywm/swaybg.git
+	b2sums = SKIP
+
+pkgname = swaybg-git

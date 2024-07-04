@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+
+# remove buggy portaudio backend
+sed -e 's&portaudio&&g' -i PKGBUILD
+sed -e 's&--with-external-pa&&g' -i PKGBUILD

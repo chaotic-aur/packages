@@ -1,0 +1,34 @@
+pkgbase = soapysdr-git
+	pkgdesc = Vendor and platform neutral SDR support library
+	pkgver = 0.8.1.r25.g9cbaa3c
+	pkgrel = 1
+	epoch = 3
+	url = https://github.com/pothosware/SoapySDR
+	arch = x86_64
+	arch = i686
+	arch = arm
+	arch = armv6h
+	arch = armv7h
+	arch = aarch64
+	license = Boost
+	makedepends = git
+	makedepends = cmake
+	makedepends = swig
+	makedepends = doxygen
+	makedepends = graphviz
+	depends = python
+	optdepends = soapyairspy: Airspy backend
+	optdepends = soapyaudio: Audio devices backend
+	optdepends = soapybladerf: BladeRF backend
+	optdepends = soapyhackrf: HackRF backend
+	optdepends = soapynetsdr: NetSDR backend
+	optdepends = soapyosmo: OsmoSDR backend
+	optdepends = soapyremote: SoapySDR remote support
+	optdepends = soapyrtlsdr: rtl-sdr backend
+	optdepends = soapyuhd: UHD backend
+	provides = soapysdr=0.8.1.r25.g9cbaa3c
+	conflicts = soapysdr
+	source = git+https://github.com/pothosware/SoapySDR.git
+	sha256sums = SKIP
+
+pkgname = soapysdr-git

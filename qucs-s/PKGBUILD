@@ -1,0 +1,37 @@
+# Maintainer: Zes4Null <rjw1248[at]hotmail[dot]com>
+# Contributor: Philip <philip1731 protonmail ch>
+
+pkgname=qucs-s
+pkgver=24.2.1
+pkgrel=3
+pkgdesc="A spin-off of Qucs that supports other free SPICE circuit simulators like ngspice with the same Qucs GUI"
+arch=('x86_64' 'i686')
+url="https://ra3xdh.github.io"
+license=('GPL')
+depends=('qt6-svg' 'ngspice')
+makedepends=('cmake' 'qt6-tools' 'gperf' 'dos2unix')
+optdepends=('ngspice: recommended simulation backend'
+  'qucs: for Qucsator simulation backend'
+  'xyce-serial: SPICE-compatible simulation backend'
+  'spiceopus: general purpose simulation backend for optimization loops'
+  'openvaf: compiler for Verilog-A devices support'
+  'octave: high-level language for post-simulation data processing'
+)
+source=(https://github.com/ra3xdh/qucs_s/releases/download/$pkgver/$pkgname-$pkgver.tar.gz)
+sha256sums=('bb773fca419b1a1dfcd8cdc8457791f3a412a48fad2ffd6eea484b75930347c3')
+
+build() {
+  cd $srcdir/$pkgname-$pkgver
+  mkdir -p builddir
+  cd builddir
+  cmake \
+    -DCMAKE_INSTALL_PREFIX=/usr \
+    -DWITH_QT6=ON \
+    ..
+  make -j$(nproc)
+}
+
+package() {
+  cd $srcdir/$pkgname-$pkgver/builddir
+  make DESTDIR="$pkgdir" install
+}

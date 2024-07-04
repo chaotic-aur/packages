@@ -1,0 +1,14 @@
+pkgbase = netlistsvg-git
+	pkgdesc = Draws an SVG schematic from a yosys JSON netlist
+	pkgver = 1.0.2.r10.g752549e
+	pkgrel = 1
+	url = https://github.com/nturley/netlistsvg
+	arch = any
+	license = MIT
+	makedepends = git
+	makedepends = npm
+	depends = nodejs
+	source = git+https://github.com/nturley/netlistsvg.git
+	b2sums = SKIP
+
+pkgname = netlistsvg-git

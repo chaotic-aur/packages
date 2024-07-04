@@ -1,0 +1,55 @@
+# Maintainer: xiretza <xiretza+aur@xiretza.xyz>
+# Contributor: Filipe Laíns (FFY00) <filipe.lains@gmail.com>
+# Contributor: Masoud <mpoloton@gmail.com>
+# Contributor: valvetime <valvetimepackages@gmail.com>
+# Contributor: Tom Swartz <tom@tswartz.net>
+
+_pkgname=SoapySDR
+pkgname=soapysdr-git
+pkgver=0.8.1.r25.g9cbaa3c
+pkgrel=1
+epoch=3
+pkgdesc='Vendor and platform neutral SDR support library'
+arch=('x86_64' 'i686' 'arm' 'armv6h' 'armv7h' 'aarch64')
+url='https://github.com/pothosware/SoapySDR'
+license=('Boost')
+depends=('python')
+makedepends=('git' 'cmake' 'swig' 'doxygen' 'graphviz')
+optdepends=('soapyairspy: Airspy backend'
+  'soapyaudio: Audio devices backend'
+  'soapybladerf: BladeRF backend'
+  'soapyhackrf: HackRF backend'
+  'soapynetsdr: NetSDR backend'
+  'soapyosmo: OsmoSDR backend'
+  'soapyremote: SoapySDR remote support'
+  'soapyrtlsdr: rtl-sdr backend'
+  'soapyuhd: UHD backend')
+provides=("soapysdr=$pkgver")
+conflicts=('soapysdr')
+source=("git+$url.git")
+sha256sums=('SKIP')
+
+pkgver() {
+  cd "$_pkgname"
+  git describe --long | sed 's/^soapy.sdr-//;s/\([^-]*-g\)/r\1/;s/-/./g'
+}
+
+build() {
+  cmake -B build -S "$_pkgname" \
+    -DSOAPY_SDR_EXTVER=ARCH \
+    -DCMAKE_INSTALL_PREFIX=/usr \
+    -DCMAKE_BUILD_TYPE=Release
+
+  make -C build
+}
+
+check() {
+  make -C build test
+}
+
+package() {
+  make -C build DESTDIR="$pkgdir" install
+
+  install -dm 755 "$pkgdir/usr/share/doc/$_pkgname"
+  cp -r -a --no-preserve=ownership "build/docs/html" "$pkgdir/usr/share/doc/$_pkgname"
+}

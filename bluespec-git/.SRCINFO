@@ -1,0 +1,24 @@
+pkgbase = bluespec-git
+	pkgdesc = Bluespec Compiler (BSC)
+	pkgver = r721.a6304315
+	pkgrel = 1
+	url = https://github.com/B-Lang-org/bsc
+	arch = x86_64
+	license = BSD
+	makedepends = git
+	makedepends = gperf
+	makedepends = ghc
+	makedepends = tcl
+	makedepends = texlive-latexextra
+	makedepends = texlive-fontsextra
+	depends = haskell-old-time
+	depends = haskell-syb
+	depends = haskell-regex-compat
+	depends = haskell-split
+	optdepends = tcl: bluesim and bluetcl
+	source = git+https://github.com/b-lang-org/bsc.git
+	source = git+https://github.com/SRI-CSL/yices2.git
+	sha256sums = SKIP
+	sha256sums = SKIP
+
+pkgname = bluespec-git
