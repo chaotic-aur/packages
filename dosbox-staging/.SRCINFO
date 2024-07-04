@@ -1,0 +1,34 @@
+pkgbase = dosbox-staging
+	pkgdesc = DOS/x86 emulator focusing on ease of use. Based on DOSBox
+	pkgver = 0.81.1
+	pkgrel = 1
+	epoch = 1
+	url = https://github.com/dosbox-staging/dosbox-staging
+	arch = any
+	license = GPL-2.0-or-later
+	makedepends = meson
+	makedepends = ninja
+	makedepends = gcc
+	makedepends = gzip
+	makedepends = git
+	depends = sdl2
+	depends = sdl2_net
+	depends = opusfile
+	depends = alsa-lib
+	depends = libpng
+	depends = iir1
+	depends = sdl2_image
+	depends = hicolor-icon-theme
+	depends = speexdsp
+	depends = libslirp
+	depends = fluidsynth
+	depends = munt
+	depends = zlib-ng
+	depends = libglvnd
+	optdepends = ncurses
+	provides = dosbox
+	conflicts = dosbox
+	source = git+https://github.com/dosbox-staging/dosbox-staging#tag=v0.81.1
+	sha256sums = SKIP
+
+pkgname = dosbox-staging
