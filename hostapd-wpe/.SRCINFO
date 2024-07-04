@@ -1,0 +1,20 @@
+pkgbase = hostapd-wpe
+	pkgdesc = Modified hostapd to facilitate AP impersonation attacks
+	pkgver = 2.10.0
+	pkgrel = 1
+	url = https://w1.fi/hostapd
+	install = install
+	arch = i686
+	arch = x86_64
+	license = BSD
+	makedepends = git
+	depends = openssl-1.0
+	depends = libnl
+	depends = sqlite
+	provides = hostapd-wpe
+	source = hostapd-2.10.tar.gz::https://w1.fi/releases/hostapd-2.10.tar.gz
+	source = hostapd-2.10-wpe.patch::https://raw.githubusercontent.com/aircrack-ng/aircrack-ng/master/patches/wpe/hostapd-wpe/hostapd-2.10-wpe.patch
+	md5sums = 0be43e9e09ab94a7ebf82de0d1c57761
+	md5sums = SKIP
+
+pkgname = hostapd-wpe

@@ -1,0 +1,18 @@
+pkgbase = python3-memoizedb
+	pkgdesc = Generic data retrieval memoizer that uses an sqlite database to cache data.
+	pkgver = 2021
+	pkgrel = 15
+	url = https://xyne.dev/projects/python3-memoizedb
+	arch = any
+	license = GPL
+	makedepends = python-setuptools
+	depends = python3
+	source = https://xyne.dev/projects/python3-memoizedb/src/python3-memoizedb-2021.tar.xz
+	source = https://xyne.dev/projects/python3-memoizedb/src/python3-memoizedb-2021.tar.xz.sig
+	validpgpkeys = D89FAAEB4CECAFD199A2F5E612C6F735F7A9A519
+	md5sums = 6c522e5b6aea2360a5e3cf4fe1dd05b6
+	md5sums = 23c23a0dfc1b3258815cd7431002fd2d
+	sha512sums = 33667aa062742bcc42410048b8c397031103aac144e863ad074d60e8169611d849a589e331407c26c49d9de4ebd9281978ef2d8b0ee058b4df1db8458f1c6aaf
+	sha512sums = 1ec38f2f93ff40a3c507442a0f1984025108f17c04de695c621307f29198ff6f4dd6fea846b0a721fa19e0fe787f0cb0f551f658646fe2fc32fa3c2aa108555f
+
+pkgname = python3-memoizedb

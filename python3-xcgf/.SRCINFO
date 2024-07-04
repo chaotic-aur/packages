@@ -1,0 +1,18 @@
+pkgbase = python3-xcgf
+	pkgdesc = Xyne's common generic functions, for internal use.
+	pkgver = 2021
+	pkgrel = 15
+	url = https://xyne.dev/projects/python3-xcgf
+	arch = any
+	license = GPL
+	makedepends = python-setuptools
+	depends = python3
+	source = https://xyne.dev/projects/python3-xcgf/src/python3-xcgf-2021.tar.xz
+	source = https://xyne.dev/projects/python3-xcgf/src/python3-xcgf-2021.tar.xz.sig
+	validpgpkeys = D89FAAEB4CECAFD199A2F5E612C6F735F7A9A519
+	md5sums = 61ff53d3820358dfbadb3e146024636a
+	md5sums = d610729af1a2b70a1390579c6a1c324f
+	sha512sums = a42a45cdfcb5b65a866be13c0bad06b2f6b251d5bfe9353f045e8eed87850129a949708aec6ae470117a22dbd290552f4d046ecbfa960f8f9f56fbbad38bc081
+	sha512sums = 6a9176b36fc765b79fbfb760cab377ea10b4aa6d2e0d7cd1abda45e732abfb3df107d3f984b3643003bd944bac43ae9a6c14346f4a7eae94cf86409beb0144c9
+
+pkgname = python3-xcgf
