@@ -1,0 +1,26 @@
+pkgbase = ayatana-indicator-messages
+	pkgdesc = Ayatana Indicator that collects messages that need a response
+	pkgver = 24.5.0
+	pkgrel = 1
+	url = https://github.com/AyatanaIndicators/ayatana-indicator-messages
+	arch = i686
+	arch = x86_64
+	arch = pentium4
+	license = GPL-3.0-or-later
+	makedepends = cmake-extras
+	makedepends = gobject-introspection
+	makedepends = gtk-doc
+	makedepends = intltool
+	makedepends = vala
+	makedepends = systemd
+	depends = accountsservice
+	depends = hicolor-icon-theme
+	depends = dconf
+	depends = glib2
+	depends = glibc
+	provides = indicator-messages
+	conflicts = indicator-messages
+	source = ayatana-indicator-messages-24.5.0.tar.gz::https://github.com/AyatanaIndicators/ayatana-indicator-messages/archive/24.5.0.tar.gz
+	md5sums = 9157cb99cba63e5335e35117e6651bef
+
+pkgname = ayatana-indicator-messages

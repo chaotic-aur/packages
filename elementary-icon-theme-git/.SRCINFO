@@ -1,0 +1,20 @@
+pkgbase = elementary-icon-theme-git
+	pkgdesc = Named, vector icons for elementary OS
+	pkgver = 6.0.0.r4.g9c8e5b0f
+	pkgrel = 1
+	url = https://github.com/elementary/icons
+	arch = any
+	groups = pantheon-unstable
+	license = GPL3
+	makedepends = git
+	makedepends = meson
+	makedepends = inkscape
+	makedepends = xorg-xcursorgen
+	depends = hicolor-icon-theme
+	provides = elementary-icon-theme
+	conflicts = elementary-icon-theme
+	options = !emptydirs
+	source = elementary-icon-theme::git+https://github.com/elementary/icons.git
+	sha256sums = SKIP
+
+pkgname = elementary-icon-theme-git

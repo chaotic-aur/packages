@@ -1,0 +1,17 @@
+
+build() {
+  local _cmake_options=(
+    -B build
+    -S "$pkgname-$pkgver"
+    -DCMAKE_INSTALL_PREFIX='/usr'
+    -DCMAKE_INSTALL_LIBDIR='lib'
+    -Wno-dev
+  )
+
+  cmake "${_cmake_options[@]}"
+  cmake --build build
+}
+
+package() {
+  DESTDIR="${pkgdir:?}" cmake --install build
+}
