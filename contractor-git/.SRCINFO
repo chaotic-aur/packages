@@ -1,0 +1,21 @@
+pkgbase = contractor-git
+	pkgdesc = A desktop-wide extension service
+	pkgver = 0.3.4.r230.73372b4
+	pkgrel = 1
+	url = https://github.com/elementary/contractor
+	arch = x86_64
+	groups = pantheon-unstable
+	license = GPL3
+	makedepends = git
+	makedepends = meson
+	makedepends = vala
+	depends = glib2
+	depends = libgee
+	provides = contractor
+	provides = contractor-git
+	conflicts = contractor
+	source = git+https://github.com/elementary/contractor.git
+	sha256sums = SKIP
+
+pkgname = contractor-git
+
