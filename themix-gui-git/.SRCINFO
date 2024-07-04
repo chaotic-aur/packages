@@ -1,0 +1,34 @@
+pkgbase = themix-gui-git
+	pkgdesc = Plugin-based theme designer GUI for environments (like GTK2, GTK3, Cinnamon, GNOME, MATE, Openbox, Xfwm), icons and terminal palettes.
+	pkgver = 1.15.1
+	pkgrel = 1
+	url = https://github.com/themix-project/oomox
+	arch = x86_64
+	arch = i686
+	license = GPL3
+	makedepends = git
+	depends = gtk3
+	depends = python-gobject
+	depends = python-cairo
+	optdepends = themix-import-images: Import palettes from images
+	optdepends = themix-export-spotify: Apply theme to Spotify
+	optdepends = themix-plugin-base16: Import and export from Base16 project format
+	optdepends = themix-theme-materia: Theme Style plugin
+	optdepends = themix-theme-oomox: Theme Style plugin
+	optdepends = themix-icons-archdroid: Icons Style plugin
+	optdepends = themix-icons-gnome-colors: Icons Style plugin
+	optdepends = themix-icons-numix: Icons Style plugin
+	optdepends = themix-icons-papirus: Icons Style plugin
+	optdepends = themix-icons-suru-plus: Icons Style plugin
+	optdepends = themix-icons-suru-plus-aspromauros: Icons Style plugin
+	optdepends = oomox-qt5-styleplugin-git: Qt5 style plugin
+	optdepends = oomox-qt6-styleplugin-git: Qt6 style plugin
+	optdepends = xorg-xrdb: for the `xresources` theme
+	provides = themix-gui
+	conflicts = themix-gui
+	conflicts = oomox
+	conflicts = oomox-git
+	source = git+https://github.com/themix-project/oomox.git#branch=master
+	md5sums = SKIP
+
+pkgname = themix-gui-git

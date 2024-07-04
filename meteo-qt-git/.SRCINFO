@@ -1,0 +1,20 @@
+pkgbase = meteo-qt-git
+	pkgdesc = System tray application for weather status information
+	pkgver = 3.3.3.gd21bdba
+	pkgrel = 2
+	url = https://github.com/dglent/meteo-qt
+	arch = any
+	license = GPL-3.0-only
+	makedepends = git
+	makedepends = python-setuptools
+	makedepends = qt5-tools
+	depends = python-lxml
+	depends = python-pyqt5
+	depends = python-urllib3
+	optdepends = qt5-translations: translations of some native UI components
+	provides = meteo-qt
+	conflicts = meteo-qt
+	source = git+https://github.com/dglent/meteo-qt.git
+	sha256sums = SKIP
+
+pkgname = meteo-qt-git
