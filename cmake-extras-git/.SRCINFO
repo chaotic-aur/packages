@@ -1,0 +1,18 @@
+pkgbase = cmake-extras-git
+	pkgdesc = A collection of add-ons for the CMake build tool
+	pkgver = 1.7.r4.g669add9
+	pkgrel = 1
+	url = https://gitlab.com/ubports/development/core/cmake-extras
+	arch = any
+	license = GPL-3.0-or-later
+	makedepends = git
+	depends = cmake
+	depends = python
+	depends = bash
+	provides = cmake-extras
+	conflicts = cmake-extras
+	options = !emptydirs
+	source = cmake-extras::git+https://gitlab.com/ubports/development/core/cmake-extras.git
+	md5sums = SKIP
+
+pkgname = cmake-extras-git
