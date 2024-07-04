@@ -1,0 +1,17 @@
+pkgbase = xorgproto-git
+	pkgdesc = combined X.Org X11 Protocol headers (git version)
+	pkgver = 2021.5.1.r2711.g914d8f5
+	pkgrel = 1
+	url = https://xorg.freedesktop.org/
+	arch = any
+	license = custom
+	checkdepends = python-libevdev
+	makedepends = git
+	makedepends = meson
+	makedepends = xorg-util-macros
+	provides = xorgproto
+	conflicts = xorgproto
+	source = xorgproto-git::git+https://gitlab.freedesktop.org/xorg/proto/xorgproto.git
+	sha512sums = SKIP
+
+pkgname = xorgproto-git

@@ -1,0 +1,12 @@
+pkgbase = wps-office-all-dicts-win-languages
+	pkgdesc = All Spelling Languages of Windows Version WPS Office Multilingual User Interface (MUI) for use on Linux
+	pkgver = 11.1.0.11704
+	pkgrel = 0
+	url = https://github.com/wachin/wps-office-all-mui-win-language
+	arch = any
+	license = GPL3
+	depends = wps-office
+	source = https://github.com/wachin/wps-office-all-mui-win-language/releases/download/v11.1.0.11704/dicts.7z
+	sha256sums = c459d0b37eab1c603ca3b699534f3ead705e4e943c4e37780cfd7754d5e94a17
+
+pkgname = wps-office-all-dicts-win-languages
