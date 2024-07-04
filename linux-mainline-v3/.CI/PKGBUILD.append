@@ -1,0 +1,22 @@
+
+export MAKEFLAGS="${MAKEFLAGS:-} -j $(nproc)"
+
+_prep_v3() {
+  export KCFLAGS="-march=x86-64-v3 -mtune=generic -O3"
+  #export HOSTCFLAGS="-march=x86-64-v3 -mtune=generic -O3"
+  #export HOSTCXXFLAGS="-march=x86-64-v3 -mtune=generic -O3"
+}
+
+eval _orig_"$(declare -f build)"
+
+build() {
+  _prep_v3
+  _orig_build
+}
+
+eval _orig_"$(declare -f prepare)"
+
+prepare() {
+  _prep_v3
+  _orig_prepare
+}
