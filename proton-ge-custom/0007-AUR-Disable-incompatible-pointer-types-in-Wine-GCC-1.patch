@@ -1,7 +1,7 @@
-From 3ee8322ecf9d2b38389820bab8f4bac106662b33 Mon Sep 17 00:00:00 2001
+From 24ba09ff5bed0f202cb6c37946c25ae1c4476022 Mon Sep 17 00:00:00 2001
 From: Stelios Tsampas <loathingkernel@gmail.com>
 Date: Sat, 11 May 2024 21:58:52 +0300
-Subject: [PATCH 7/7] AUR: Disable incompatible-pointer-types in Wine (GCC 14)
+Subject: [PATCH 7/8] AUR: Disable incompatible-pointer-types in Wine (GCC 14)
 
 ---
  Makefile.in | 3 +++

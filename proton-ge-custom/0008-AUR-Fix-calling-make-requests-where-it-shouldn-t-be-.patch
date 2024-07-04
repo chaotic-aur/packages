@@ -1,7 +1,8 @@
-From d8ade10090a354b0f9a7d4ea7da0a50cd074841a Mon Sep 17 00:00:00 2001
+From 975575bea4371a2cd4d61232397568dfcf378479 Mon Sep 17 00:00:00 2001
 From: Stelios Tsampas <loathingkernel@gmail.com>
 Date: Thu, 6 Jun 2024 19:47:02 +0300
-Subject: [PATCH] AUR: Fix calling make-requests where it shouldn't be called
+Subject: [PATCH 8/8] AUR: Fix calling make-requests where it shouldn't be
+ called
 
 ---
  Makefile.in | 1 -
