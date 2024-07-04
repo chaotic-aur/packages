@@ -1,0 +1,3 @@
+
+# prepare unnecessary and breaks build
+unset -f prepare

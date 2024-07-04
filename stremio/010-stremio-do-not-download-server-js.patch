@@ -1,0 +1,27 @@
+--- a/release.makefile
++++ b/release.makefile
+@@ -8,7 +8,7 @@ SERVER_JS := server.js
+ 
+ STREMIO_BIN := ${BUILD_DIR}/stremio
+ 
+-ALL: ${STREMIO_BIN} ${SERVER_JS} icons
++ALL: ${STREMIO_BIN} icons
+ 
+ install:
+ 	make -C ${BUILD_DIR} install
+@@ -28,14 +28,11 @@ icons:
+ 	mkdir -p "$@"
+ 	cd "$@" && printf 16,22,24,32,64,128 | xargs -I^ -d, sh -c 'rsvg-convert ../images/stremio.svg -w ^ -o smartcode-stremio_^.png && rsvg-convert ../images/stremio_tray_white.svg -w ^ -o smartcode-stremio-tray_^.png'
+ 
+-${SERVER_JS}: 
+-	wget "${shell cat server-url.txt}" -qO ${SERVER_JS} || rm ${SERVER_JS}
+-
+ ${STREMIO_BIN}:
+ 	mkdir -p ${BUILD_DIR}
+ 	cd ${BUILD_DIR} && cmake -G"Unix Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="${PREFIX}" ..
+ 	make -j -C ${BUILD_DIR}
+ 
+ clean:
+-	rm -rf ${BUILD_DIR} ${SERVER_JS} icons
++	rm -rf ${BUILD_DIR} icons
+ 

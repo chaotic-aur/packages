@@ -1,0 +1,16 @@
+pkgbase = kvantum-theme-matcha-git
+	pkgdesc = Matcha theme for Kvantum
+	pkgver = r11.a3b247b
+	pkgrel = 1
+	url = https://github.com/vinceliuice/Matcha-kde
+	arch = any
+	license = GPL3
+	makedepends = git
+	depends = kvantum
+	provides = kvantum-theme-matcha
+	conflicts = kvantum-theme-matcha
+	conflicts = matcha-kde
+	source = git+https://github.com/vinceliuice/Matcha-kde.git
+	sha256sums = SKIP
+
+pkgname = kvantum-theme-matcha-git

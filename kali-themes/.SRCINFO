@@ -1,0 +1,16 @@
+pkgbase = kali-themes
+	pkgdesc = GTK theme included with Kali Linux
+	pkgver = 2023.1.1
+	pkgrel = 1
+	url = https://gitlab.com/kalilinux/packages/kali-themes
+	arch = any
+	license = GPL3
+	makedepends = optipng
+	makedepends = librsvg
+	options = !strip
+	options = !buildflags
+	options = !makeflags
+	source = https://gitlab.com/kalilinux/packages/kali-themes/-/archive/kali/2023.1.1/kali-themes-kali-2023.1.1.tar.gz
+	sha512sums = b8711b1b1726dbbbca3975446d394998186f68ee58eaeee409903902f57aa26044ef247193a92908c6bbb00b03949d276bb2ff073e974d2a1977762a6a18b680
+
+pkgname = kali-themes
