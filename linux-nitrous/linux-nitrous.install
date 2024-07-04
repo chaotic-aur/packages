@@ -1,0 +1,21 @@
+# arg 1:  the new package version
+# arg 2:  the old package version
+
+KERNEL_NAME=
+KERNEL_VERSION=
+
+post_install () {
+    echo ">>> Don't forget to generate kernel initramfs, if this is not done automatically by your initramfs generator!"
+}
+
+post_upgrade() {
+  echo ">>> Don't forget to generate kernel initramfs, if this is not done automatically by your initramfs generator!"
+
+  if [ $(vercmp $2 3.13) -lt 0 ]; then
+    echo ">>> WARNING: AT keyboard support is no longer built into the kernel."
+    echo ">>>          In order to use your keyboard during early init, you MUST"
+    echo ">>>          include the 'keyboard' hook in your mkinitcpio.conf."
+  fi
+}
+
+
