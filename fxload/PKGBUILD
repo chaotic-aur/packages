@@ -1,0 +1,43 @@
+# Maintainer:
+
+_pkgver=$(LANG=C LC_ALL=C pacman -Si core/libusb | grep '^Version' | head -1 | sed -nE 's@^Version\s+: (.*)-.*$@\1@p')
+
+_pkgname="fxload"
+pkgname="$_pkgname"
+pkgver=1.0.27
+pkgrel=1
+pkgdesc='libusb firmware loader for use with udev or devfs/hotplug'
+url='http://libusb.info/'
+license=('LGPL-2.1-or-later')
+arch=('x86_64')
+
+depends=(
+  'libusb'
+)
+
+options=('!debug')
+
+_pkgsrc="libusb-$_pkgver"
+_pkgext="tar.gz"
+source=("$_pkgsrc.$_pkgext"::"https://github.com/libusb/libusb/archive/refs/tags/v$_pkgver.$_pkgext")
+sha256sums=('SKIP')
+
+pkgver() {
+  echo "${_pkgver:?}"
+}
+
+build() {
+  cd "$_pkgsrc"
+  bash autogen.sh
+
+  cd libusb
+  make
+
+  cd ../examples
+  gcc $CFLAGS $(pkg-config --libs --cflags libusb-1.0) $LDFLAGS -I ../ fxload.c ezusb.c -o fxload
+}
+
+package() {
+  cd "$_pkgsrc/examples"
+  install -Dm755 fxload "$pkgdir/usr/bin/fxload"
+}

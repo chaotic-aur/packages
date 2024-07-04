@@ -1,0 +1,13 @@
+pkgbase = fxload
+	pkgdesc = libusb firmware loader for use with udev or devfs/hotplug
+	pkgver = 1.0.27
+	pkgrel = 1
+	url = http://libusb.info/
+	arch = x86_64
+	license = LGPL-2.1-or-later
+	depends = libusb
+	options = !debug
+	source = libusb-1.0.27.tar.gz::https://github.com/libusb/libusb/archive/refs/tags/v1.0.27.tar.gz
+	sha256sums = SKIP
+
+pkgname = fxload
