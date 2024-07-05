@@ -1,3 +1,0 @@
-#!/usr/bin/env sh
-echo '_user_patches_no_confirm="true"' >> customization.cfg
-echo '_mesa_source="https://gitlab.freedesktop.org/mesa/mesa.git"' >> customization.cfg
