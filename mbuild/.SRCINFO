@@ -1,10 +1,11 @@
 pkgbase = mbuild
 	pkgdesc = Python-based build system used for building XED
 	pkgver = 2024.05.05
-	pkgrel = 1
+	pkgrel = 2
 	url = https://intelxed.github.io/
 	arch = any
 	license = Apache
+	makedepends = python-setuptools
 	makedepends = python-build
 	makedepends = python-installer
 	makedepends = python-wheel
