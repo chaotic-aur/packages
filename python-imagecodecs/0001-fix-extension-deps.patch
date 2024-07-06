@@ -1,0 +1,86 @@
+From 34d1a82f1b6d9b758c0c74d4057b60f744ef2e9a Mon Sep 17 00:00:00 2001
+From: Butui Hu <hot123tea123@gmail.com>
+Date: Mon, 3 Jun 2024 13:09:03 +0800
+Subject: [PATCH] fix extension deps
+
+---
+ setup.py | 52 ++++++++++++++++++++++++++++++++++++++++++++--------
+ 1 file changed, 44 insertions(+), 8 deletions(-)
+
+diff --git a/setup.py b/setup.py
+index 0c9da6a..37cf5d4 100644
+--- a/setup.py
++++ b/setup.py
+@@ -270,25 +270,61 @@ def customize_build_default(EXTENSIONS, OPTIONS):
+     # EXTENSIONS['jpeg8']['sources'] = []  # requires libjpeg-turbo v3
+ 
+     # these extensions are required by core dependent libraries
+-    keep = {
+-        'shared',
+-        'imcd',
++    del EXTENSIONS["apng"]
++    keep = [
++        'aec',
++        'avif',
++        'bcn',
++        'bitshuffle',
++        'blosc',
++        'blosc2',
+         'bmp',
++        'brotli',
++        'brunsli',
++        'bz2',
+         'cms',
+         'deflate',
++        'gif',
++        'h5checksum',
++        'heif',
++        'imcd',
++        # 'jetraw',
+         'jpeg2k',
+         'jpeg8',
+-        # 'jpegxl',  # requires v0.10
++        'jpegls',
++        'jpegsof3',
++        'jpegxl',
+         'jpegxr',
+-        'lerc',  # requires v4
++        'lerc',
++        'ljpeg',
+         'lz4',
++        'lz4f',
++        'lzf',
++        'lzfse',
++        # 'lzham',
+         'lzma',
++        # 'lzo',
++        # 'mozjpeg',
++        # 'pcodec',
++        'pglz',
+         'png',
+-        'tiff',  # requires v4.6
++        'qoi',
++        'quantize',
++        'rcomp',
++        'rgbe',
++        'shared',
++        'snappy',
++        # 'sperr',
++        'spng',
++        'szip',
++        'tiff',
+         'webp',
++        'zfp',
+         'zlib',
+-        'zstd',
+-    }
++        'zlibng',
++        'zopfli',
++        'zstd'
++    ]
+     for name in tuple(EXTENSIONS.keys()):
+         if name not in keep:
+             del EXTENSIONS[name]
+-- 
+2.45.2
+
