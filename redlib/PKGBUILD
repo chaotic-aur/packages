@@ -1,7 +1,7 @@
 # Maintainer: fossdd <fossdd@pwned.life>
 
 pkgname=redlib
-pkgver=0.31.0
+pkgver=0.35.1
 pkgrel=1
 pkgdesc="Private front-end for Reddit"
 url='https://github.com/redlib-org/redlib'
@@ -10,17 +10,14 @@ arch=(x86_64)
 depends=()
 makedepends=(cargo git)
 backup=("etc/$pkgname.conf")
-source=(
-  "$pkgname-$pkgver.tar.gz::$url/archive/refs/tags/v$pkgver.zip"
-)
-sha256sums=(
-  'SKIP'
-)
+options=('!lto')
+source=("$pkgname-$pkgver.tar.gz::$url/archive/refs/tags/v$pkgver.zip")
+sha256sums=('0704b696a41f4a666fb899ed447cbdd5773024a314a62cc7234c81b8d44d77d5')
 
 prepare() {
   cd $pkgname-$pkgver
   export RUSTUP_TOOLCHAIN=stable
-  cargo fetch --locked --target "$(rustc -vV | sed -n 's/host: //p')"
+  cargo fetch --target "$(rustc -vV | sed -n 's/host: //p')"
 }
 
 build() {
