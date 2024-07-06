@@ -1,1 +1,2 @@
+CI_ON_TRIGGER=daily
 CI_PKGBUILD_SOURCE=https://aur.archlinux.org/duckstation.git
