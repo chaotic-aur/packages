@@ -1,7 +1,7 @@
 pkgbase = localsend-git
 	pkgdesc = An open source cross-platform alternative to AirDrop
 	pkgver = 1.14.0.r89.g1095418
-	pkgrel = 1
+	pkgrel = 2
 	url = https://github.com/localsend/localsend
 	arch = x86_64
 	license = MIT
