@@ -3,7 +3,7 @@
 
 _pkgname=thunderbird
 pkgname=thunderbird-beta
-pkgver=128.0b3
+pkgver=128.0b6
 pkgrel=1
 pkgdesc='Beta version of standalone mail and news reader from mozilla.org'
 url="https://www.thunderbird.net/"
@@ -60,7 +60,7 @@ source=(
   metainfo.patch
 )
 sha256sums=(
-  '4a39d9c68d56b8fcc181fc9659483c3e14ebcc624f9033102951391d43c20039' ###
+  '433c43589c81869481786a5264a901ff2f3bf88993e722d4550cfc5b31684d4b' ###
   'SKIP'
   'c620a080414b15e822073e22685c781a8b1789b93d5474aedcadbd8801945d97'
   'c959c9f2b60a42dc937f744c018196906727d468d8f1d7402fb4f743484c414b'
