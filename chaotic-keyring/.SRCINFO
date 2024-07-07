@@ -1,0 +1,14 @@
+pkgbase = chaotic-keyring
+	pkgdesc = Chaotic-AUR PGP keyring
+	pkgver = 20230616
+	pkgrel = 1
+	url = https://aur.chaotic.cx
+	install = chaotic-keyring.install
+	arch = any
+	license = GPL
+	depends = archlinux-keyring
+	optdepends = pkgstats: install to submit package usage statistics
+	source = keyring-20230616-1.tar.gz::https://github.com/chaotic-aur/keyring/archive/20230616-1.tar.gz
+	sha512sums = 86452845234b63ad4cd7ee111ff839fadae6593728408f564c2b770da02d94f3cc66475747964d76643d850260839bc515476296888c6ca0a9c5186b34c0d642
+
+pkgname = chaotic-keyring
