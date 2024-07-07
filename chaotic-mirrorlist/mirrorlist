@@ -1,0 +1,75 @@
+## Special CDN mirror (delayed syncing, expect some (safe to ignore) amount of 404s)
+# Globally
+# * By: Garuda Linux donators, hosted on Cloudflare R2
+Server = https://cdn-mirror.chaotic.cx/$repo/$arch
+
+# Automatic per-country routing of the mirrors below.
+Server = https://geo-mirror.chaotic.cx/$repo/$arch
+
+## Regular Syncthing mirrors (close to instant syncing)
+# Brazil
+# * By: Universidade Federal de São Carlos (São Carlos)
+Server = https://br-mirror.chaotic.cx/$repo/$arch
+
+# Bulgaria
+# * By: Sudo Man <github.com/sakrayaami>
+Server = https://bg-mirror.chaotic.cx/$repo/$arch
+
+# Canada
+# * By freebird54 (Toronto)
+Server = https://ca-mirror.chaotic.cx/$repo/$arch
+
+# Chile
+# * By makzk (Santiago)
+Server = https://cl-mirror.chaotic.cx/$repo/$arch
+
+# Germany (de-1 ceased to exist)
+# * By: ParanoidBangL
+Server = https://de-2-mirror.chaotic.cx/$repo/$arch
+# * By: itsTyrion
+Server = https://de-3-mirror.chaotic.cx/$repo/$arch
+# * By: redgloboli
+Server = https://de-4-mirror.chaotic.cx/$repo/$arch
+
+# France
+# * By Yael (Marseille)
+Server = https://fr-mirror.chaotic.cx/$repo/$arch
+
+# Greece
+# * By: vmmaniac <github.com/vmmaniac>
+Server = https://gr-mirror.chaotic.cx/$repo/$arch
+
+# India
+# * By Naman (Kaithal)
+Server = https://in-mirror.chaotic.cx/$repo/$arch
+# * By Albony <https://albony.xyz/>
+Server = https://in-2-mirror.chaotic.cx/$repo/$arch
+# * By: BRAVO68DEV <https://www.itsmebravo.dev/>
+Server = https://in-3-mirror.chaotic.cx/$repo/$arch
+# * By Albony (Chennai)
+Server = https://in-4-mirror.chaotic.cx/$repo/$arch
+
+# Korea
+# * By: <t.me/silent_heigou> (Seoul)
+Server = https://kr-mirror.chaotic.cx/$repo/$arch
+
+# Spain
+# * By: JKANetwork
+Server = https://es-mirror.chaotic.cx/$repo/$arch
+# * By: Ícar <t.me/IcarNS>
+Server = https://es-2-mirror.chaotic.cx/$repo/$arch
+
+# United States
+# * By: Technetium1 <github.com/Technetium1>
+Server = https://us-mi-mirror.chaotic.cx/$repo/$arch
+# New York
+# * By: xstefen <t.me/xstefen>
+Server = https://us-tx-mirror.chaotic.cx/$repo/$arch
+# Utah
+# * By: ash <t.me/the_ashh>
+Server = https://us-ut-mirror.chaotic.cx/$repo/$arch
+
+
+# IPFS mirror - for instructions on how to use it consult the projects repo (https://github.com/RubenKelevra/pacman.store)
+# * By: RubenKelevra / pacman.store
+# Server = http://chaotic-aur.pkg.pacman.store.ipns.localhost:8080/$arch

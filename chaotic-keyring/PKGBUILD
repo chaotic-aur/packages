@@ -1,0 +1,21 @@
+# Maintainer: dr460nf1r3 <dr460nf1r3 at chaotic dot cx>
+# Maintainer: Pedro H. Lara Campos <root@pedrohlc.com>
+# Thanks for archlinuxcn's package that I've used as template!
+
+pkgname='chaotic-keyring'
+pkgver='20230616'
+pkgrel=1
+pkgdesc='Chaotic-AUR PGP keyring'
+arch=('any')
+url='https://aur.chaotic.cx'
+license=('GPL')
+depends=('archlinux-keyring')
+optdepends=('pkgstats: install to submit package usage statistics')
+install=$pkgname.install
+source=("keyring-$pkgver-$pkgrel.tar.gz::https://github.com/chaotic-aur/keyring/archive/$pkgver-$pkgrel.tar.gz")
+sha512sums=('86452845234b63ad4cd7ee111ff839fadae6593728408f564c2b770da02d94f3cc66475747964d76643d850260839bc515476296888c6ca0a9c5186b34c0d642')
+
+package() {
+  cd "$srcdir/keyring-$pkgver-$pkgrel"
+  make PREFIX=/usr "DESTDIR=$pkgdir" install
+}
