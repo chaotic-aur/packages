@@ -151,7 +151,7 @@ the [pipeline runs](https://gitlab.com/chaotic-aur/pkgbuilds/-/pipelines) page, 
 adding `PACKAGES` as a variable with the package names as its value. The pipeline will then pick up the packages and
 schedule them.
 `PACKAGES` can also be set to `all` to schedule all packages. In case one or many packages are getting scheduled, it
-needs to follow the format `pkgname1,pkgname2,pkgname3`.
+needs to follow the format `pkgname1:pkgname2:pkgname3`.
 
 #### Running scheduled pipelines on-demand
 
@@ -180,7 +180,7 @@ Put the required interfere file in the `.CI` folder of a PKGBUILD folder:
 
 ### Bumping pkgrel
 
-This is now carried out by adding the required variable `CI_PKGREL` to `.CI/config`. See below for more information.
+This is now carried out by adding the required variable `CI_PACKAGE_BUMP` to `.CI/config`. See below for more information.
 
 ### Dependency trees
 
