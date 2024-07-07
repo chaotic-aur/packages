@@ -2,7 +2,7 @@
 set -euo pipefail
 
 # This script is triggered by a scheduled pipeline
-
+# shellcheck source=/dev/null
 source .ci/util.shlib
 
 # Read config file into global variables
@@ -348,7 +348,7 @@ for package in "${PACKAGES[@]}"; do
     UTIL_READ_MANAGED_PACAKGE "$package" VARIABLES || true
     update_pkgbuild VARIABLES
     update_vcs VARIABLES
-    UTIL_LOAD_CUSTOM_HOOK "./${package}" "./${package}/.CI/update.sh"
+    UTIL_LOAD_CUSTOM_HOOK "./$package" "./$package/.CI/update.sh" || true
     UTIL_WRITE_MANAGED_PACKAGE "$package" VARIABLES
 
     if ! git diff --exit-code --quiet -- "$package"; then
