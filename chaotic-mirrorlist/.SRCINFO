@@ -1,6 +1,6 @@
 pkgbase = chaotic-mirrorlist
 	pkgdesc = Chaotic-AUR mirrorlist to use with Pacman
-	pkgver = 20240130
+	pkgver = 20240708
 	pkgrel = 1
 	url = https://aur.chaotic.cx
 	arch = any
