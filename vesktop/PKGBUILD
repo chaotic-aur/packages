@@ -19,7 +19,7 @@ optdepends=(
   'arrpc: Rich presence support'
 )
 conflicts=('vesktop-bin')
-source=("https://github.com/Vencord/Vesktop/archive/refs/tags/v${pkgver}.tar.gz"
+source=("${pkgname}-${pkgver}.tar.gz::https://github.com/Vencord/Vesktop/archive/refs/tags/v${pkgver}.tar.gz"
   'vesktop.desktop'
   'vesktop.sh')
 sha256sums=('615ed9275a03974a0c6486c0095cfcd0af246363a4f62ec0bdc985c763cc6334'
