@@ -1,6 +1,6 @@
 pkgbase = r-quick-share
 	pkgdesc = Rust implementation of NearbyShare/QuickShare from Android for Linux.
-	pkgver = 0.10.0
+	pkgver = 0.10.1
 	pkgrel = 1
 	url = https://github.com/Martichou/rquickshare
 	arch = x86_64
@@ -11,7 +11,7 @@ pkgbase = r-quick-share
 	depends = gtk3
 	depends = libayatana-appindicator
 	depends = webkit2gtk-4.1
-	source = rquickshare-0.10.0.tar.gz::https://github.com/Martichou/rquickshare/archive/refs/tags/v0.10.0.tar.gz
-	sha256sums = d0387aeda9dcab1e98a0161687995d48aa07fbf49eb8d24dfa23b13b55c1ceec
+	source = rquickshare-0.10.1.tar.gz::https://github.com/Martichou/rquickshare/archive/refs/tags/v0.10.1.tar.gz
+	sha256sums = 9d423726ed0469e539c73c269d7229b081d00d6cdfd5f780a8785f444483fa68
 
 pkgname = r-quick-share

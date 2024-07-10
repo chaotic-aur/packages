@@ -1,4 +1,4 @@
-From 975575bea4371a2cd4d61232397568dfcf378479 Mon Sep 17 00:00:00 2001
+From 9e915a266ce7ce3b4750ec423ce7f6ac88d33763 Mon Sep 17 00:00:00 2001
 From: Stelios Tsampas <loathingkernel@gmail.com>
 Date: Thu, 6 Jun 2024 19:47:02 +0300
 Subject: [PATCH 8/8] AUR: Fix calling make-requests where it shouldn't be
@@ -9,10 +9,10 @@ Subject: [PATCH 8/8] AUR: Fix calling make-requests where it shouldn't be
  1 file changed, 1 deletion(-)
 
 diff --git a/Makefile.in b/Makefile.in
-index cfd3b89e..f9df6ff1 100644
+index 532d6d25..cdff7a2f 100644
 --- a/Makefile.in
 +++ b/Makefile.in
-@@ -653,7 +653,6 @@ $(eval $(call rules-wine-requests,wine))
+@@ -654,7 +654,6 @@ $(eval $(call rules-wine-requests,wine))
  $(OBJ)/.wine-post-source:
  	cd $(WINE_SRC) && dlls/winevulkan/make_vulkan -x vk.xml
  	-cd $(WINE_SRC) && tools/make_specfiles
