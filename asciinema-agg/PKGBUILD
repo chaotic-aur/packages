@@ -2,13 +2,14 @@
 
 pkgname=asciinema-agg
 pkgver=1.4.3
-pkgrel=1
+pkgrel=2
 pkgdesc="asciinema gif generator"
 arch=(x86_64)
 url=https://github.com/asciinema/agg
-license=(Apache)
+license=(Apache-2.0)
 depends=(gcc-libs)
 makedepends=(cargo)
+options=(!lto)
 source=(https://github.com/asciinema/agg/archive/v$pkgver/agg-$pkgver.tar.gz)
 sha256sums=('1089e47a8e6ca7f147f74b2347e6b29d94311530a8b817c2f30f19744e4549c1')
 
