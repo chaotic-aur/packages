@@ -5,6 +5,7 @@ export LDFLAGS+=" -Wl,--hash-style=both"
 # disable check
 unset checkdepends
 unset -f check
+unset b2sums
 
 # modify package
 _suffix="-dthash"
@@ -38,4 +39,8 @@ for i in "${_old_pkgname[@]}" ; do
   }"
 
   unset -f "package_${i}"
+done
+
+for i in ${source[@]}; do
+  sha256sums+=('SKIP')
 done
