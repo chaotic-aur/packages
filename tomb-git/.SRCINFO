@@ -1,6 +1,6 @@
 pkgbase = tomb-git
 	pkgdesc = simple tool to manage encrypted storage
-	pkgver = 2.9.r26.gb7822af
+	pkgver = 2.11.r0.g2b75962
 	pkgrel = 1
 	url = https://www.dyne.org/software/tomb/
 	arch = any
@@ -25,7 +25,8 @@ pkgname = tomb-git
 	optdepends = steghide: steganography
 	optdepends = dcfldd: show nice progress during massive I/O
 	optdepends = qrencode: for paper backups of keys
-	optdepends = swish-e: file content indexer
+	optdepends = plocate: fast search file names
+	optdepends = recoll: fast search file contents
 	optdepends = argon2: support for argon2 KDF
 
 pkgname = tomb-kdf-git
