@@ -9,17 +9,17 @@
 : ${_build_avx:=false}
 
 unset _pkgtype
-[[ "${_build_avx::1}" == "t" ]] && _pkgtype+="-avx"
 _pkgtype+="-qt6"
+[[ "${_build_avx::1}" == "t" ]] && _pkgtype+="-avx"
 _pkgtype+="-git"
 
 ## basic info
 _pkgname="torzu"
 pkgname="$_pkgname${_pkgtype:-}"
-pkgver=2024.05.14.r31.g75fa664
+pkgver=2024.05.14.r37.g224ec03
 pkgrel=1
 pkgdesc="Yet another emulator fork"
-url="https://github.com/litucks/torzu"
+url="https://codeberg.org/litucks/torzu"
 license=('GPL-3.0-or-later')
 arch=('x86_64')
 
@@ -27,19 +27,16 @@ depends=(
   'boost-libs'
   'ffmpeg'
   'fmt'
-  'llvm-libs'
   'qt6-multimedia'
   'qt6-webengine'
+  'sdl2'
 )
 makedepends=(
   'boost'
   'catch2'
-  'clang'
   'cmake'
   'git'
   'glslang'
-  'lld'
-  'llvm'
   'ninja'
   'nlohmann-json'
   'qt6-tools'
@@ -48,15 +45,20 @@ makedepends=(
   'stb'
 )
 
-provides=("$_pkgname")
+provides=(
+  "$_pkgname"
+  'yuzu'
+)
 conflicts=(
-  "$pkgname"
+  "$_pkgname"
   'yuzu'
 )
 
+options=('!lto')
+
 _pkgsrc="$_pkgname"
 source=(
-  "$_pkgsrc"::"git+https://github.com/litucks/torzu"
+  "$_pkgsrc"::"git+$url.git"
 )
 sha256sums=(
   'SKIP'
@@ -77,7 +79,7 @@ _source_torzu() {
     'khronosgroup.vulkan-headers'::'git+https://github.com/KhronosGroup/Vulkan-Headers.git'
     'khronosgroup.vulkan-utility-libraries'::'git+https://github.com/KhronosGroup/Vulkan-Utility-Libraries.git'
     'lat9nq.tzdb_to_nx'::'git+https://github.com/lat9nq/tzdb_to_nx.git'
-    'libsdl-org.sdl'::'git+https://github.com/libsdl-org/SDL.git'
+    #'libsdl-org.sdl'::'git+https://github.com/libsdl-org/SDL.git'
     'libusb'::'git+https://github.com/libusb/libusb.git'
     'lsalzman.enet'::'git+https://github.com/lsalzman/enet.git'
     'merryhime.oaknut'::'git+https://github.com/merryhime/oaknut.git'
@@ -90,7 +92,7 @@ _source_torzu() {
     #'SKIP'
     #'SKIP'
     #'SKIP'
-    'SKIP'
+    #'SKIP'
     'SKIP'
     'SKIP'
     'SKIP'
@@ -124,7 +126,7 @@ _source_torzu() {
       'khronosgroup.vulkan-headers'::'externals/Vulkan-Headers'
       'khronosgroup.vulkan-utility-libraries'::'externals/Vulkan-Utility-Libraries'
       'lat9nq.tzdb_to_nx'::'externals/nx_tzdb/tzdb_to_nx'
-      'libsdl-org.sdl'::'externals/SDL'
+      #'libsdl-org.sdl'::'externals/SDL'
       'libusb'::'externals/libusb/libusb'
       'lsalzman.enet'::'externals/enet'
       'merryhime.oaknut'::'externals/oaknut'
@@ -222,11 +224,6 @@ prepare() {
 }
 
 build() {
-  export CC CXX CFLAGS CXXFLAGS LDFLAGS
-  CC=clang
-  CXX=clang++
-  LDFLAGS="$(echo "$LDFLAGS" | sed -E 's@(\s*-(fuse-ld)=\S+\s*)@ @g;s@\s+@ @g') -fuse-ld=lld"
-
   if [[ "${_build_avx::1}" == "t" ]]; then
     CFLAGS="$(echo "$CFLAGS" | sed -E 's@(\s*-(march|mtune)=\S+\s*)@ @g;s@\s*-O[0-9]\s*@ @g;s@\s+@ @g') -march=x86-64-v3 -mtune=generic -O3"
     CXXFLAGS="$(echo "$CXXFLAGS" | sed -E 's@(\s*-(march|mtune)=\S+\s*)@ @g;s@\s*-O[0-9]\s*@ @g;s@\s+@ @g') -march=x86-64-v3 -mtune=generic -O3"
@@ -248,10 +245,10 @@ build() {
     -DYUZU_CHECK_SUBMODULES=OFF
 
     -DYUZU_USE_BUNDLED_FFMPEG=OFF
-    -DYUZU_USE_BUNDLED_SDL2=ON
+    -DYUZU_USE_BUNDLED_SDL2=OFF
     -DYUZU_USE_BUNDLED_VCPKG=OFF
 
-    -DYUZU_USE_EXTERNAL_SDL2=ON
+    -DYUZU_USE_EXTERNAL_SDL2=OFF
     -DYUZU_USE_EXTERNAL_VULKAN_HEADERS=OFF
     -DYUZU_USE_EXTERNAL_VULKAN_SPIRV_TOOLS=OFF
     -DYUZU_USE_EXTERNAL_VULKAN_UTILITY_LIBRARIES=ON
@@ -264,8 +261,8 @@ build() {
     -DENABLE_COMPATIBILITY_LIST_DOWNLOAD=ON
 
     -DBUILD_REPOSITORY=litucks/torzu
-    -DTITLE_BAR_FORMAT_IDLE="torzu | ${pkgver} | {}"
-    -DTITLE_BAR_FORMAT_RUNNING="torzu | ${pkgver} | {}"
+    -DTITLE_BAR_FORMAT_IDLE="torzu | ${pkgver} {}"
+    -DTITLE_BAR_FORMAT_RUNNING="torzu | ${pkgver} {}"
 
     -DYUZU_ENABLE_COMPATIBILITY_REPORTING=OFF
     -DYUZU_ROOM=OFF
