@@ -378,6 +378,9 @@ for package in "${PACKAGES[@]}"; do
                 DELETE_BRANCHES+=("update-$package")
             fi
         fi
+    # We also need to check the worktree for changes, because we might have an updated git hash
+    elif ! UTIL_CHECK_STATE_DIFF "$package"; then
+        MODIFIED_PACKAGES+=("$package")
     fi
 done
 
