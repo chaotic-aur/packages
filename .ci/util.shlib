@@ -320,3 +320,18 @@ function UTIL_PRINT_INFO() {
     set -euo pipefail
     printf '\e[1;34mInfo:\e[0m %s\n' "$1"
 }
+
+# $1: pkgbase
+function UTIL_CHECK_STATE_DIFF() {
+    set -euo pipefail
+ 
+    if test -f "./.state/${1}" && test -f "./.newstate/${1}"; then
+        if diff -q "./.state/${1}" "./.newstate/${1}" >/dev/null; then
+            return 0
+        else 
+            return 1
+        fi
+    else 
+        return 0
+    fi
+}
