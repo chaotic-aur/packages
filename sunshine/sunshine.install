@@ -1,5 +1,6 @@
 do_setcap() {
   setcap cap_sys_admin+p $(readlink -f $(which sunshine))
+  echo "WARNING: sunshine has full root access"
 }
 
 do_udev_reload() {
