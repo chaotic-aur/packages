@@ -1,5 +1,0 @@
-[prismlauncher]
-source = "github"
-github = "PrismLauncher/PrismLauncher"
-include_regex = "\\d+\\.\\d+"
-use_latest_release = true
