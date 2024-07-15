@@ -1,7 +1,7 @@
 pkgbase = obs-studio-stable
 	pkgdesc = Free, open source software for live streaming and recording - Browser enabled
-	pkgver = 30.1.2
-	pkgrel = 2
+	pkgver = 30.2
+	pkgrel = 1
 	url = https://github.com/obsproject/obs-studio
 	arch = x86_64
 	license = GPL-2.0-or-later
@@ -45,17 +45,15 @@ pkgbase = obs-studio-stable
 	optdepends = sndio: sndio input client
 	optdepends = v4l2loopback-dkms: virtual camera support
 	optdepends = vlc: VLC Media Source
-	provides = obs-studio=30.1.2
+	provides = obs-studio=30.2
 	conflicts = obs-studio
 	options = !debug
-	source = obs-studio::git+https://github.com/obsproject/obs-studio.git#tag=30.1.2
+	source = obs-studio::git+https://github.com/obsproject/obs-studio.git#tag=30.2.0
 	source = mixer.ftl-sdk::git+https://github.com/Mixer/ftl-sdk.git
 	source = obsproject.obs-browser::git+https://github.com/obsproject/obs-browser.git
 	source = obsproject.obs-websocket::git+https://github.com/obsproject/obs-websocket.git
-	source = 0001-obs-ffmpeg-057e884.patch::https://gitlab.archlinux.org/archlinux/packaging/packages/obs-studio/-/raw/057e884f22a1367ccb6232e9c56820a91a4dfbbf/0001-obs-ffmpeg-Fix-incompatible-pointer-types-with-FFmpe.patch
 	source = akheron.jansson::git+https://github.com/akheron/jansson.git
 	source = curl::git+https://github.com/curl/curl.git
-	sha256sums = SKIP
 	sha256sums = SKIP
 	sha256sums = SKIP
 	sha256sums = SKIP
