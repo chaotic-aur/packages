@@ -8,7 +8,7 @@
 pkgbase=nvidia-390xx-utils
 pkgname=('nvidia-390xx-utils' 'opencl-nvidia-390xx' 'nvidia-390xx-dkms')
 pkgver=390.157
-pkgrel=10
+pkgrel=11
 arch=('x86_64')
 url="https://www.nvidia.com/"
 license=('custom')
@@ -246,11 +246,11 @@ package_nvidia-390xx-utils() {
   install -Dm644 "${srcdir}/nvidia-390xx.rules" "$pkgdir"/usr/lib/udev/rules.d/60-nvidia-390xx.rules
 
   # Fix for system freeze upon systemctl suspend/hibernate since systemd v256
-  install -Dm644 "${srcdir}"/systemd-homed-override.conf "${pkgdir}"/usr/lib/systemd/systemd-homed.service.d/10-nvidia-no-freeze-session.conf
-  install -Dm644 "${srcdir}"/systemd-suspend-override.conf "${pkgdir}"/usr/lib/systemd/systemd-suspend.service.d/10-nvidia-no-freeze-session.conf
-  install -Dm644 "${srcdir}"/systemd-suspend-override.conf "${pkgdir}"/usr/lib/systemd/systemd-suspend-then-hibernate.service.d/10-nvidia-no-freeze-session.conf
-  install -Dm644 "${srcdir}"/systemd-suspend-override.conf "${pkgdir}"/usr/lib/systemd/systemd-hibernate.service.d/10-nvidia-no-freeze-session.conf
-  install -Dm644 "${srcdir}"/systemd-suspend-override.conf "${pkgdir}"/usr/lib/systemd/systemd-hybrid-sleep.service.d/10-nvidia-no-freeze-session.conf
+  install -Dm644 "${srcdir}"/systemd-homed-override.conf "${pkgdir}"/usr/lib/systemd/system/systemd-homed.service.d/10-nvidia-no-freeze-session.conf
+  install -Dm644 "${srcdir}"/systemd-suspend-override.conf "${pkgdir}"/usr/lib/systemd/system/systemd-suspend.service.d/10-nvidia-no-freeze-session.conf
+  install -Dm644 "${srcdir}"/systemd-suspend-override.conf "${pkgdir}"/usr/lib/systemd/system/systemd-suspend-then-hibernate.service.d/10-nvidia-no-freeze-session.conf
+  install -Dm644 "${srcdir}"/systemd-suspend-override.conf "${pkgdir}"/usr/lib/systemd/system/systemd-hibernate.service.d/10-nvidia-no-freeze-session.conf
+  install -Dm644 "${srcdir}"/systemd-suspend-override.conf "${pkgdir}"/usr/lib/systemd/system/systemd-hybrid-sleep.service.d/10-nvidia-no-freeze-session.conf
 
   echo "blacklist nouveau" | install -Dm644 /dev/stdin "${pkgdir}/usr/lib/modprobe.d/${pkgname}.conf"
   echo "nvidia-uvm" | install -Dm644 /dev/stdin "${pkgdir}/usr/lib/modules-load.d/${pkgname}.conf"

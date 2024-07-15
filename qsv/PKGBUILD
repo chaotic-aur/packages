@@ -4,7 +4,7 @@
 BUILDENV+=(!check)
 
 pkgname=qsv
-pkgver=0.128.0
+pkgver=0.129.0
 pkgrel=1
 pkgdesc='CSV data-wrangling toolkit (fork of xsv)'
 arch=(x86_64)
@@ -18,7 +18,7 @@ makedepends=(cargo
 _archive="$pkgname-$pkgver"
 options=(!lto)
 source=("$url/archive/$pkgver/$_archive.tar.gz")
-sha256sums=('c3a6787406d5e7fcbca0f8d2a0727b198ef582d22c4aeef467b56c2384d02d3a')
+sha256sums=('5eacdaa3bb782ae2ef77e6ea91daef42316e13663ccef7c008a0ae4d04939d89')
 
 # all_features minus self_update
 _features='feature_capable,apply,fetch,foreach,geocode,luau,polars,python,to,to_parquet'
