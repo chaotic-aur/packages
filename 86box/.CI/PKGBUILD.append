@@ -1,0 +1,18 @@
+url="https://github.com/86box/86box"
+unset options
+
+build() {
+  local _cmake_options=(
+    -B build
+    -S "$_pkgname-$pkgver"
+    -G Ninja
+    -DCMAKE_BUILD_TYPE=None
+    -DCMAKE_INSTALL_PREFIX='/usr'
+    -DUSE_QT6=ON
+    -DNEW_DYNAREC=OFF
+    -Wno-dev
+  )
+
+  cmake "${_cmake_options[@]}"
+  cmake --build build
+}
