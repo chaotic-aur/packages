@@ -1,6 +1,6 @@
 pkgbase = kitty-git
 	pkgdesc = Modern, hackable, featureful, OpenGL based terminal emulator
-	pkgver = 0.32.2.r373.ge9c4e7310
+	pkgver = 0.35.2.r247.gd93e91d11
 	pkgrel = 2
 	epoch = 1
 	url = https://sw.kovidgoyal.net/kitty/
@@ -17,7 +17,7 @@ pkgbase = kitty-git
 	makedepends = wayland-protocols
 	makedepends = python-sphinx
 	makedepends = python-sphinx-copybutton
-	makedepends = ttf-roboto
+	makedepends = ttf-nerd-fonts-symbols-mono
 	makedepends = freetype2
 	makedepends = libxi
 	makedepends = libgl
