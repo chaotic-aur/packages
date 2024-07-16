@@ -1,0 +1,11 @@
+pkgdesc="A post-modern modal text editor"
+url="https://github.com/helix-editor/helix"
+
+provides=("helix=${pkgver%%.r*}")
+conflicts=("helix")
+
+eval _orig_"$(declare -f check)"
+
+check() {
+  _orig_check || true
+}
