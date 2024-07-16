@@ -4,7 +4,7 @@ unset options
 build() {
   local _cmake_options=(
     -B build
-    -S "$_pkgname-$pkgver"
+    -S "$pkgname"
     -G Ninja
     -DCMAKE_BUILD_TYPE=None
     -DCMAKE_INSTALL_PREFIX='/usr'
