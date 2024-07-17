@@ -3,4 +3,7 @@
 # source /etc/profile
 # export PATH=/opt/cuda/bin:$PATH
 
-sed -E -e 's@--enable-nvenc\b@--disable-nvenc@' -i PKGBUILD
+sed -E \
+  -e 's@--enable-nvenc\b@--disable-nvenc@' \
+  -e 's@--enable-libopencv\b@--disable-libopencv@' \
+  -i PKGBUILD
