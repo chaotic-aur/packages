@@ -1,0 +1,21 @@
+pkgbase = cosmic-edit-git
+	pkgdesc = Text editor for the COSMIC desktop
+	pkgver = r403.07115fd
+	pkgrel = 1
+	url = https://github.com/pop-os/cosmic-edit
+	arch = x86_64
+	license = GPL-3.0-or-later
+	makedepends = cargo
+	makedepends = git
+	makedepends = just
+	makedepends = mold
+	depends = cosmic-icons-git
+	depends = libxkbcommon
+	depends = wayland
+	provides = cosmic-edit
+	conflicts = cosmic-edit
+	conflicts = cosmic-text-editor
+	source = git+https://github.com/pop-os/cosmic-edit.git
+	sha256sums = SKIP
+
+pkgname = cosmic-edit-git

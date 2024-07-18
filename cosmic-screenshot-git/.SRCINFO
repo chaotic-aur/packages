@@ -1,0 +1,20 @@
+pkgbase = cosmic-screenshot-git
+	pkgdesc = Utility for capturing screenshots via XDG Desktop Portal
+	pkgver = r9.f853446
+	pkgrel = 1
+	url = https://github.com/pop-os/cosmic-screenshot
+	arch = x86_64
+	arch = aarch64
+	groups = cosmic
+	license = GPL-3.0-or-later
+	makedepends = cargo
+	makedepends = git
+	makedepends = just
+	makedepends = mold
+	depends = xdg-desktop-portal-cosmic-git
+	provides = cosmic-screenshot
+	conflicts = cosmic-screenshot
+	source = git+https://github.com/pop-os/cosmic-screenshot.git
+	sha256sums = SKIP
+
+pkgname = cosmic-screenshot-git
