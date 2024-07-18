@@ -65,7 +65,7 @@ prepare() {
 build() {
   cd "twemoji-color-font"
   sed -E 's&^(\s*VERSION :=) [0-9\.]+$&\1 '"${pkgver%%.r*}"'&' -i Makefile
-  make -j1
+  make
 }
 
 package() {
