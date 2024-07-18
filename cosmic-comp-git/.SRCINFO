@@ -1,0 +1,27 @@
+pkgbase = cosmic-comp-git
+	pkgdesc = Compositor for the COSMIC desktop environment
+	pkgver = r1128.b3b9ead
+	pkgrel = 1
+	url = https://github.com/pop-os/cosmic-comp
+	arch = x86_64
+	arch = aarch64
+	groups = cosmic
+	license = GPL-3.0-or-later
+	makedepends = cargo
+	makedepends = git
+	makedepends = mold
+	depends = fontconfig
+	depends = libseat.so
+	depends = libinput
+	depends = libxcb
+	depends = libxkbcommon
+	depends = mesa
+	depends = pixman
+	depends = systemd
+	depends = wayland
+	provides = cosmic-comp
+	conflicts = cosmic-comp
+	source = git+https://github.com/pop-os/cosmic-comp.git
+	sha256sums = SKIP
+
+pkgname = cosmic-comp-git

@@ -1,0 +1,19 @@
+pkgbase = cosmic-term-git
+	pkgdesc = WIP COSMIC Terminal Emulator
+	pkgver = r138.d6946d4
+	pkgrel = 1
+	url = https://github.com/pop-os/cosmic-term
+	arch = x86_64
+	license = GPL3
+	makedepends = cargo
+	makedepends = git
+	makedepends = just
+	depends = libxkbcommon
+	depends = wayland
+	depends = cosmic-icons-git
+	provides = cosmic-term
+	options = !lto
+	source = git+https://github.com/pop-os/cosmic-term.git
+	sha256sums = SKIP
+
+pkgname = cosmic-term-git
