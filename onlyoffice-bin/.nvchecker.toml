@@ -1,0 +1,4 @@
+[onlyoffice-bin]
+source = "git"
+git = "https://github.com/ONLYOFFICE/DesktopEditors.git"
+prefix = "v"

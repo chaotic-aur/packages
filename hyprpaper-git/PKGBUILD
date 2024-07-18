@@ -3,14 +3,16 @@
 
 _pkgname="hyprpaper"
 pkgname="$_pkgname-git"
-pkgver=0.7.0.r8.gf4abf59
-pkgrel=3
+pkgver=0.7.0.r12.gcbc16f9
+pkgrel=1
 pkgdesc="a blazing fast wayland wallpaper utility with IPC controls"
 url="https://github.com/hyprwm/hyprpaper"
 license=('BSD-3-Clause')
 arch=('x86_64')
 
 depends=(
+  hyprutils-git
+  hyprwayland-scanner-git
   libjpeg.so
   libmagic.so # file
   libwebp.so
