@@ -1,0 +1,108 @@
+# Maintainer:
+
+## options
+if [ -n "$_srcinfo" ] || [ -n "$_pkgver" ]; then
+  : ${_autoupdate:=false}
+else
+  : ${_autoupdate:=true}
+fi
+
+: ${_fvm_version:=3.22.3}
+
+## basic info
+_pkgname="nyrna"
+pkgname="$_pkgname"
+pkgver=2.21.0
+pkgrel=1
+pkgdesc='Suspend games and applications at any time and resume whenever you wish'
+url="https://github.com/Merrit/nyrna"
+license=('GPL-3.0-or-later')
+arch=('x86_64')
+
+_main_package() {
+  depends=(
+    'gtk3'
+    'libappindicator-gtk3'
+    'libkeybinder3'
+    'util-linux'
+    'wmctrl'
+    'xdotool'
+  )
+  makedepends=(
+    'clang'
+    'cmake'
+    'fvm'
+    'git'
+    'lld'
+    'llvm'
+    'ninja'
+  )
+
+  _pkgsrc="$_pkgname-$_pkgver"
+  _pkgext="tar.gz"
+  source=("$_pkgsrc.$_pkgext::https://github.com/Merrit/nyrna/archive/refs/tags/v$_pkgver.$_pkgext")
+  sha256sums=('SKIP')
+}
+
+prepare() {
+  sed -i 's/\-Werror//g' "$_pkgsrc/linux/CMakeLists.txt"
+}
+
+build() {
+  export FVM_CACHE_PATH="$SRCDEST/fvm-cache"
+
+  cd "$_pkgsrc"
+  fvm install $_fvm_version
+  fvm global $_fvm_version
+
+  fvm flutter --disable-analytics
+  #fvm flutter pub upgrade --major-versions
+  fvm flutter pub get
+
+  fvm dart run build_runner build --delete-conflicting-outputs
+  fvm flutter build linux --no-pub --release
+}
+
+package() {
+  install -dm755 "$pkgdir/opt/$pkgname"
+  cp -r "$srcdir/$pkgname-$pkgver/build/linux/x64/release/bundle/data" "$pkgdir/opt/$pkgname"
+  cp -r "$srcdir/$pkgname-$pkgver/build/linux/x64/release/bundle/lib" "$pkgdir/opt/$pkgname"
+  install -Dm755 "$srcdir/$pkgname-$pkgver/build/linux/x64/release/bundle/$pkgname" "$pkgdir/opt/$pkgname"
+
+  install -dm755 "$pkgdir/usr/bin/"
+  ln -s "/opt/$pkgname/$pkgname" "$pkgdir/usr/bin/$pkgname"
+
+  install -Dm644 "$srcdir/$pkgname-$pkgver/packaging/linux/codes.merritt.Nyrna.desktop" "$pkgdir/usr/share/applications/codes.merritt.Nyrna.desktop"
+  install -Dm644 "$srcdir/$pkgname-$pkgver/assets/icons/codes.merritt.Nyrna.png" "$pkgdir/usr/share/pixmaps/codes.merritt.Nyrna.png"
+}
+
+# update version
+_update_version() {
+  : ${_pkgver:=${pkgver%%.r*}}
+
+  if [[ "${_autoupdate::1}" != "t" ]]; then
+    return
+  fi
+
+  local _response=$(curl -Ssf "$url/releases.atom")
+  local _tag=$(
+    printf '%s' "$_response" \
+      | grep '"https://.*/releases/tag/.*"' \
+      | sed -E 's@^.*/releases/tag/(.*)".*$@\1@' \
+      | grep -Ev '[a-z]{2}' | sort -rV | head -1
+  )
+  local _pkgver_new="${_tag#v}"
+
+  # update _pkgver
+  if [ "$_pkgver" != "${_pkgver_new:?}" ]; then
+    _pkgver="${_pkgver_new:?}"
+  fi
+
+  pkgver() {
+    echo "${_pkgver:?}"
+  }
+}
+
+# execute
+_update_version
+_main_package

@@ -1,0 +1,24 @@
+pkgbase = nyrna
+	pkgdesc = Suspend games and applications at any time and resume whenever you wish
+	pkgver = 2.21.0
+	pkgrel = 1
+	url = https://github.com/Merrit/nyrna
+	arch = x86_64
+	license = GPL-3.0-or-later
+	makedepends = clang
+	makedepends = cmake
+	makedepends = fvm
+	makedepends = git
+	makedepends = lld
+	makedepends = llvm
+	makedepends = ninja
+	depends = gtk3
+	depends = libappindicator-gtk3
+	depends = libkeybinder3
+	depends = util-linux
+	depends = wmctrl
+	depends = xdotool
+	source = nyrna-2.21.0.tar.gz::https://github.com/Merrit/nyrna/archive/refs/tags/v2.21.0.tar.gz
+	sha256sums = SKIP
+
+pkgname = nyrna
