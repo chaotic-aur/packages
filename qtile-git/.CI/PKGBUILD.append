@@ -1,9 +1,0 @@
-
-depends+=('python-pywlroots')
-
-for key in ${!optdepends[@]} ; do
-  if [[ "${optdepends[${key}]}" =~ ^python-pywlroots:.*$ ]] ; then
-    unset optdepends[${key}]
-    break
-  fi
-done
