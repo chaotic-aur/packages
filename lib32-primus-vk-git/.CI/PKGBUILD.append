@@ -1,0 +1,10 @@
+license=('BSD-2-Clause')
+
+provides=("lib32-primus_vk=${pkgver%%.r*}")
+conflicts=("lib32-primus_vk")
+
+pkgver() {
+  cd "${_pkgname/-/_}"
+  git describe --long --tags --abbrev=7 --exclude='*[a-zA-Z][a-zA-Z]*' \
+    | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
+}
