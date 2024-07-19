@@ -1,7 +1,7 @@
 pkgbase = coolercontrol
 	pkgdesc = A program to monitor and control your cooling devices
 	pkgver = 1.3.0
-	pkgrel = 1
+	pkgrel = 2
 	url = https://gitlab.com/coolercontrol/coolercontrol
 	arch = x86_64
 	license = GPL3
@@ -21,6 +21,7 @@ pkgbase = coolercontrol
 	makedepends = python-setuptools
 	makedepends = python-wheel
 	makedepends = webkit2gtk
+	makedepends = libdrm
 	depends = gcc-libs
 	depends = glibc
 	depends = gtk3
