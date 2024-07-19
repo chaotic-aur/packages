@@ -11,12 +11,12 @@ else
   : ${_autoupdate:=true}
 fi
 
-: ${_fvm_version:=3.19.6}
+: ${_fvm_version:=3.22.3}
 
 ## basic info
 _pkgname="fluffychat"
 pkgname="$_pkgname"
-pkgver=1.21.0
+pkgver=1.21.2
 pkgrel=1
 pkgdesc="The cutest instant messenger in the [matrix]"
 url="https://github.com/krille-chan/fluffychat"
