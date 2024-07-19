@@ -7,13 +7,13 @@ else
   : ${_autoupdate:=true}
 fi
 
-: ${_fvm_version:=3.22.3}
+: ${_fvm_version:=3.19.6}
 
 ## basic info
 _pkgname="nyrna"
 pkgname="$_pkgname"
 pkgver=2.21.0
-pkgrel=1
+pkgrel=2
 pkgdesc='Suspend games and applications at any time and resume whenever you wish'
 url="https://github.com/Merrit/nyrna"
 license=('GPL-3.0-or-later')
