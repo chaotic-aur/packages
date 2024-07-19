@@ -1,11 +1,6 @@
 
 depends=(${depends[@]/hyprlang*})
+depends=(${depends[@]/hyprutils*})
 
-_sodeps=(
-  # makedep::sodep
-  'hyprlang-git'::'libhyprlang.so'
-)
-for i in "${_sodeps[@]}" ; do
-  depends+=("${i#*::}")
-  makedepends+=("${i%::*}")
-done
+depends+=('hyprlang-git')
+depends+=('hyprutils-git')
