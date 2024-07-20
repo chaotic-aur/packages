@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+
+sed -E 's&(python -m build)&\1 --skip-dependency-check &' -i PKGBUILD
