@@ -1,2 +1,0 @@
-KERNEL=="uinput", GROUP="roccat", MODE="0660"
-KERNEL=="uhid", GROUP="roccat", MODE="0660"
