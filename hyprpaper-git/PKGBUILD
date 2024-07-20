@@ -3,7 +3,7 @@
 
 _pkgname="hyprpaper"
 pkgname="$_pkgname-git"
-pkgver=0.7.0.r12.gcbc16f9
+pkgver=0.7.0.r15.g87791c0
 pkgrel=1
 pkgdesc="a blazing fast wayland wallpaper utility with IPC controls"
 url="https://github.com/hyprwm/hyprpaper"
@@ -11,6 +11,7 @@ license=('BSD-3-Clause')
 arch=('x86_64')
 
 depends=(
+  hyprlang-git
   hyprutils-git
   hyprwayland-scanner-git
   libjpeg.so
@@ -27,15 +28,6 @@ makedepends=(
   wayland-protocols
   xorgproto
 )
-
-_sodeps=(
-  # makedep::sodep
-  'hyprlang-git'::'libhyprlang.so'
-)
-for i in "${_sodeps[@]}"; do
-  depends+=("${i#*::}")
-  makedepends+=("${i%::*}")
-done
 
 provides=("$_pkgname=${pkgver%%.r*}")
 conflicts=("$_pkgname")
