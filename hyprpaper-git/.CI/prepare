@@ -1,3 +1,0 @@
-#!/usr/bin/env sh
-# Install hyprlang-git explicitly, since we require it for compilation and hyprlang is the default package
-pacman -S --noconfirm hyprlang-git
