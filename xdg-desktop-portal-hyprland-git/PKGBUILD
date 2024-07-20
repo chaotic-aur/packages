@@ -1,13 +1,17 @@
+# Maintainer:
+
 _pkgname="xdg-desktop-portal-hyprland"
 pkgname="${_pkgname}-git"
-pkgver=1.3.1.r9.gc06fd88b
+pkgver=1.3.2.r4.gb9b97e5
 pkgrel=1
 pkgdesc="xdg-desktop-portal backend for hyprland"
 url="https://github.com/hyprwm/xdg-desktop-portal-hyprland"
 license=('BSD-3-Clause')
-arch=(x86_64)
+arch=('x86_64')
 
 depends=(
+  hyprlang-git
+  hyprutils-git
   libpipewire
   qt6-base
   sdbus-cpp
@@ -26,17 +30,9 @@ makedepends=(
 )
 optdepends=(
   'grim: required for the screenshot portal to function'
+  'hyprland: the Hyprland compositor'
   'slurp: support for interactive mode for the screenshot portal'
 )
-
-_sodeps=(
-  # makedep::sodep
-  'hyprlang-git'::'libhyprlang.so'
-)
-for i in "${_sodeps[@]}"; do
-  depends+=("${i#*::}")
-  makedepends+=("${i%::*}")
-done
 
 provides=(
   "$_pkgname=${pkgver%%.r*}"
@@ -58,23 +54,24 @@ sha256sums=(
 
 pkgver() {
   cd "$_pkgsrc"
-  git describe --long --tags --abbrev=8 | sed -E 's/^v//;s/([^-]*-g)/r\1/;s/-/./g'
+  git describe --long --tags --abbrev=7 \
+    | sed -E 's/^v//;s/([^-]*-g)/r\1/;s/-/./g'
 }
 
 prepare() {
   _submodule_update() {
-    local key
-    for key in ${!_submodules[@]}; do
-      git submodule init "${_submodules[${key}]}"
-      git submodule set-url "${_submodules[${key}]}" "${srcdir}/${key}"
-      git -c protocol.file.allow=always submodule update "${_submodules[${key}]}"
+    local _module
+    for _module in "${_submodules[@]}" ; do
+      git submodule init "${_module##*::}"
+      git submodule set-url "${_module##*::}" "$srcdir/${_module%::*}"
+      git -c protocol.file.allow=always submodule update "${_module##*::}"
     done
   }
 
   cd "$_pkgsrc"
-  local -A _submodules=(
-    ['hyprwm.hyprland-protocols']='subprojects/hyprland-protocols'
-    ['kistler-group.sdbus-cpp']='subprojects/sdbus-cpp'
+  local _submodules=(
+    'hyprwm.hyprland-protocols'::'subprojects/hyprland-protocols'
+    'kistler-group.sdbus-cpp'::'subprojects/sdbus-cpp'
   )
   _submodule_update
 }
