@@ -2,7 +2,7 @@
 
 _pkgname="gimp"
 pkgname="$_pkgname-git"
-pkgver=2.99.18.r805.g9256a15
+pkgver=2.99.18.r996.gff9f71e
 pkgrel=1
 pkgdesc="GNU Image Manipulation Program"
 url="https://gitlab.gnome.org/GNOME/gimp"
@@ -10,59 +10,55 @@ license=('GPL-3.0-or-later')
 arch=('i686' 'x86_64')
 
 depends=(
-  appstream-glib
-  atk
-  babl
-  bzip2
-  cairo
-  fontconfig
-  freetype2
-  gdk-pixbuf2
-  gegl
-  glib-networking
-  glib2
-  gtk3
-  gvfs
-  harfbuzz
-  lcms2
-  libgexiv2
-  libjpeg
-  libmypaint
-  libpng
-  librsvg
-  libtiff
-  libxmu
-  mypaint-brushes1
-  openmp
-  pango
-  poppler-data
-  poppler-glib
-  python-gobject
-  xz
-  zlib
+  'appstream-glib'
+  'babl'
+  'cairo'
+  'dbus-glib'
+  'desktop-file-utils'
+  'enchant'
+  'gegl'
+  'gobject-introspection'
+  'gtk-doc'
+  'icu'
+  'lcms2'
+  'libart-lgpl'
+  'libexif'
+  'libgexiv2'
+  'librsvg'
+  'libwmf'
+  'mypaint-brushes1'
+  'openexr'
+  'poppler-data'
+  'poppler-glib'
 )
 makedepends=(
-  aalib
-  alsa-lib
-  appstream
-  cfitsio
-  ghostscript
-  gjs
-  glib2-devel
-  gobject-introspection
-  libheif
-  libjxl
-  libmng
-  libwebp
-  libwmf
-  libxcursor
-  libxpm
-  meson
-  openexr
-  openjpeg2
-  python-packaging
-  qoi-headers
-  vala
+  'aalib'
+  'alsa-lib'
+  'curl'
+  'ghostscript'
+  'git'
+  'gjs'
+  'glib-networking'
+  'glib2-devel'
+  'intltool'
+  'iso-codes'
+  'libheif'
+  'libmng'
+  'libwebp'
+  'libxpm'
+  'libxslt'
+  'luajit'
+  'meson'
+  'python-gobject'
+  'python-packaging'
+  'webkit2gtk'
+  'zlib'
+
+  'cfitsio'
+  'vala'
+)
+checkdepends=(
+  'xorg-server-xvfb'
 )
 optdepends=(
   'aalib: ASCII art support'
@@ -122,12 +118,16 @@ build() {
     -Dcheck-update=no
     -Dg-ir-doc=false
     -Dgi-docgen=disabled
-    -Dheadless-tests=disabled
+    -Dheadless-tests=enabled
     -Dilbm=disabled
   )
 
   arch-meson "$_pkgsrc" build "${meson_options[@]}"
   meson compile -C build
+}
+
+check() {
+  ninja -C "build" test || :
 }
 
 package() {
