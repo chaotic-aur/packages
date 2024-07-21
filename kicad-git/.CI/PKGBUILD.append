@@ -1,0 +1,36 @@
+url="https://gitlab.com/kicad/code/kicad"
+license=('GPL-3.0-or-later')
+
+makedepends+=('ninja')
+
+provides=("kicad=${pkgver%%.r*}")
+conflicts=("kicad")
+
+unset install
+
+pkgver() {
+  cd "$pkgname"
+  git describe --long --tags --abbrev=7 --exclude='*[a-zA-Z][a-zA-Z]*' \
+    | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
+}
+
+build() {
+  local _cmake_options=(
+    -B build
+    -S "$pkgname"
+    -G Ninja
+    -DCMAKE_BUILD_TYPE=None
+    -DCMAKE_INSTALL_PREFIX='/usr'
+    -DCMAKE_INSTALL_LIBDIR='lib'
+    -DKICAD_USE_EGL=ON
+    -DBUILD_TESTING=OFF
+    -Wno-dev
+  )
+
+  cmake "${_cmake_options[@]}"
+  cmake --build build
+}
+
+package() {
+  DESTDIR="$pkgdir" cmake --install build
+}
