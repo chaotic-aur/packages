@@ -2,7 +2,7 @@
 
 pkgname=tk-itk3
 pkgver=3.4.2
-pkgrel=2
+pkgrel=3
 pkgdesc="OOP extension for Tk, version 3.4"
 arch=('x86_64')
 url="http://incrtcl.sourceforge.net/"
@@ -13,6 +13,7 @@ sha256sums=('8e5746de402d4ac9920f35793a1d328cf084b0c3d6af8b057e00fd37c82ad2ec')
 
 build() {
   cd itk${pkgver%.*}
+  CFLAGS+=' -Wno-error=incompatible-pointer-types'
   ./configure \
     --prefix=/usr \
     --mandir=/usr/share/man \
