@@ -1,3 +1,0 @@
-
-depends=(${depends[@]/hyprlang*})
-depends+=('hyprlang-git')
