@@ -1,0 +1,9 @@
+if [ "$(vercmp 1.5.4 $pkgver)" -gt 0 ]; then
+  pkgver=1.5.4
+  pkgrel=1
+fi
+
+source=("https://files.pythonhosted.org/packages/source/${_name::1}/$_name/$_name-$pkgver.tar.gz")
+sha256sums=('72733bd18cfdc70dd33ea1a4f156006a0eaed672e3412da44bbc51049b45a1d5')
+
+unset sha512sums
