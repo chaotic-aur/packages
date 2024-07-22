@@ -1,0 +1,8 @@
+url='https://gitea.osmocom.org/sdr/rtl-sdr'
+license=('GPL-2.0-or-later')
+
+pkgver() {
+  cd "${pkgname%%-git}"
+  git describe --long --tags --abbrev=7 --exclude='*[a-zA-Z][a-zA-Z]*' \
+    | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
+}
