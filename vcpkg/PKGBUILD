@@ -2,7 +2,7 @@
 
 pkgname=vcpkg
 pkgver=2024.07.10
-pkgrel=1
+pkgrel=2
 pkgdesc='C++ library manager'
 depends=('curl' 'fmt' 'gcc-libs' 'glibc' 'tar' 'unzip' 'zip')
 makedepends=('cmake' 'ninja')
@@ -34,8 +34,8 @@ build() {
 
 package() {
   DESTDIR="$pkgdir" cmake --install build
-  install -Dm644 "${pkgname}-${pkgver}/README.md" "${pkgdir}/usr/share/doc/vcpkg/README.md"
-  install -Dm644 "${pkgname}-${pkgver}/LICENSE.txt" "${pkgdir}/usr/share/licenses/vcpkg/LICENSE.txt"
-  install -Dm644 "${pkgname}-${pkgver}/NOTICE.txt" "${pkgdir}/usr/share/licenses/vcpkg/NOTICE.txt"
+  install -Dm644 "${_srcname}-${_tag}/README.md" "${pkgdir}/usr/share/doc/vcpkg/README.md"
+  install -Dm644 "${_srcname}-${_tag}/LICENSE.txt" "${pkgdir}/usr/share/licenses/vcpkg/LICENSE.txt"
+  install -Dm644 "${_srcname}-${_tag}/NOTICE.txt" "${pkgdir}/usr/share/licenses/vcpkg/NOTICE.txt"
   install -Dm644 "${pkgname}-${CARCH}.sh" "${pkgdir}/etc/profile.d/vcpkg.sh"
 }
