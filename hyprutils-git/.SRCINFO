@@ -10,7 +10,8 @@ pkgbase = hyprutils-git
 	makedepends = gcc
 	makedepends = make
 	depends = pixman
-	provides = hyprutils
+	provides = hyprutils=0.1.1
+	provides = libhyprutils.so
 	conflicts = hyprutils
 	source = hyprutils::git+https://github.com/hyprwm/hyprutils.git
 	sha256sums = SKIP

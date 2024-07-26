@@ -9,12 +9,13 @@ pkgbase = hypridle-git
 	makedepends = cmake
 	makedepends = gcc
 	makedepends = gdb
-	makedepends = systemd
-	makedepends = wayland-protocols
 	makedepends = xorgproto
 	depends = wayland
-	depends = hyprlang>=0.4.0
+	depends = hyprlang-git
 	depends = sdbus-cpp
+	depends = systemd
+	depends = wayland-protocols
+	depends = hyprutils-git
 	provides = hypridle
 	conflicts = hypridle
 	source = hypridle::git+https://github.com/hyprwm/hypridle.git

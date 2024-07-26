@@ -9,12 +9,13 @@ pkgbase = hyprcursor-git
 	makedepends = cmake
 	makedepends = gcc
 	makedepends = gdb
-	depends = hyprlang>=0.4.2
+	depends = hyprlang-git
 	depends = cairo
 	depends = libzip
 	depends = librsvg
 	depends = tomlplusplus
-	provides = hyprcursor=0.1.8.r0.gcab47461
+	depends = hyprutils-git
+	provides = hyprcursor=0.1.8
 	provides = libhyprcursor.so
 	conflicts = hyprcursor
 	source = hyprcursor::git+https://github.com/hyprwm/hyprcursor.git
