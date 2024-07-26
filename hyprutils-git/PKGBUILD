@@ -11,7 +11,7 @@ license=('BSD-3-Clause')
 depends=('pixman')
 makedepends=('git' 'cmake' 'gcc' 'make')
 source=("${_pkgname}::git+https://github.com/hyprwm/hyprutils.git")
-provides=("hyprutils")
+provides=("${_pkgname}=${pkgver%%.r*}" "lib$_pkgname.so")
 conflicts=("hyprutils")
 sha256sums=('SKIP')
 

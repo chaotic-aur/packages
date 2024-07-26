@@ -1,6 +1,6 @@
 pkgbase = hyprlock-git
 	pkgdesc = Hyprland's GPU-accelerated screen locking utility
-	pkgver = 0.2.0.r20.g2448774d
+	pkgver = 0.3.0.r21.g386a1e6f
 	pkgrel = 1
 	url = https://github.com/hyprwm/hyprlock
 	arch = any
@@ -11,7 +11,7 @@ pkgbase = hyprlock-git
 	makedepends = wayland-protocols
 	makedepends = xorgproto
 	depends = wayland
-	depends = hyprlang>=0.4.0
+	depends = hyprlang-git
 	depends = cairo
 	depends = pango
 	depends = pam
@@ -21,6 +21,8 @@ pkgbase = hyprlock-git
 	depends = mesa
 	depends = libjpeg
 	depends = libwebp
+	depends = hyprutils-git
+	depends = file
 	provides = hyprlock
 	conflicts = hyprlock
 	backup = etc/pam.d/hyprlock
