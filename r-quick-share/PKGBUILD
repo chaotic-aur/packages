@@ -15,7 +15,6 @@ sha256sums=('ed3796a0e7fb108a8c0305600ddf1480579c6da686587be02b9762c979090fc4')
 prepare() {
   cd ${_pkgname}-$pkgver
   export PNPM_HOME="$srcdir/pnpm-home"
-  export CARGO_HOME="$srcdir/cargo-home"
   export RUSTUP_TOOLCHAIN=stable
 
   pushd app/main
@@ -33,7 +32,6 @@ prepare() {
 build() {
   cd ${_pkgname}-$pkgver
   export PNPM_HOME="$srcdir/pnpm-home"
-  export CARGO_HOME="$srcdir/cargo-home"
   export RUSTUP_TOOLCHAIN=stable
 
   pushd app/main
