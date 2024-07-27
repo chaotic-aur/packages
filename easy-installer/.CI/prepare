@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+# prevent install to /usr/local
+sed -E -e 's&/local&&g' -i PKGBUILD
