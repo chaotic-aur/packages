@@ -3,7 +3,7 @@
 pkgname=coolercontrol
 _app_id="org.$pkgname.CoolerControl"
 pkgver=1.4.0
-pkgrel=1
+pkgrel=2
 pkgdesc="A program to monitor and control your cooling devices"
 arch=('x86_64')
 url="https://gitlab.com/coolercontrol/coolercontrol"
@@ -21,7 +21,7 @@ depends=(
   'python-pydantic'
   'python-urllib3'
   'uvicorn'
-  'webkit2gtk'
+  'webkit2gtk-4.1'
 )
 makedepends=(
   'appmenu-gtk-module'
@@ -37,8 +37,7 @@ makedepends=(
   'python-installer'
   'python-setuptools'
   'python-wheel'
-  'webkit2gtk'
-  'libdrm'
+  'webkit2gtk-4.1'
 )
 checkdepends=(
   'appstream-glib'
