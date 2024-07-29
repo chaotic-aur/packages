@@ -1,6 +1,6 @@
 pkgbase = umu-launcher
 	pkgdesc = This is the Unified Launcher for Windows Games on Linux, to run Proton with fixes outside of Steam
-	pkgver = 0.1.RC4.r243.7e00027
+	pkgver = 0.1.RC4.r248.a505a90
 	pkgrel = 1
 	url = https://github.com/Open-Wine-Components/umu-launcher
 	arch = x86_64
@@ -34,11 +34,12 @@ pkgbase = umu-launcher
 	depends = libxcrypt-compat
 	depends = gcc-libs
 	depends = python-xlib
+	depends = python-filelock
 	provides = ulwgl-launcher
 	conflicts = ulwgl-launcher
 	replaces = ulwgl-launcher
-	source = git+https://github.com/Open-Wine-Components/umu-launcher.git#commit=7e00027c1bf9f4402318ee0530d95d34fbbc72c8
-	sha256sums = eb0ece231a70e42a4db5c308af73d985ef286b664ef9902d622598290517e782
+	source = git+https://github.com/Open-Wine-Components/umu-launcher.git#commit=a505a90eaef60182516acfd86c6e643fc0e56197
+	sha256sums = 7ce014fbf262d4c1329cbc16b93fe20a447680a0747d6e11acd2877d3a68441a
 	depends_x86_64 = lib32-glibc
 	depends_x86_64 = lib32-libxcrypt
 	depends_x86_64 = lib32-libxcrypt-compat
