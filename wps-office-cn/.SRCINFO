@@ -1,18 +1,15 @@
 pkgbase = wps-office-cn
 	pkgdesc = Kingsoft Office (WPS Office) CN version - an office productivity suite
-	pkgver = 11.1.0.11720
+	pkgver = 11.1.0.11723
 	pkgrel = 1
 	url = https://linux.wps.cn
 	arch = x86_64
-	arch = aarch64
 	license = LicenseRef-WPS-EULA
 	options = !emptydirs
 	source = fix-wps-python-parse.patch
 	sha1sums = f3713481edf04ffb08be8d24dce66554dd5a4f13
-	source_x86_64 = wps-office_11.1.0.11720_amd64.deb::https://wps-linux-personal.wpscdn.cn/wps/download/ep/Linux2019/11720/wps-office_11.1.0.11720_amd64.deb?t=1720605305&k=2d1642112fc936eca05a4dfc66c0d5b6
-	sha1sums_x86_64 = da2f25d587377c5e120a91ca3651507b759c0208
-	source_aarch64 = wps-office_11.1.0.11720_arm64.deb::https://wps-linux-personal.wpscdn.cn/wps/download/ep/Linux2019/11720/wps-office_11.1.0.11720_arm64.deb?t=1720605305&k=57a29cc4ef10eaf9aae3555e1823b52a
-	sha1sums_aarch64 = ca96c97ed2721b7329eb3a7a8c9058c8007f1ec6
+	source_x86_64 = wps-office_11.1.0.11723_amd64.deb::https://wps-linux-personal.wpscdn.cn/wps/download/ep/Linux2019/11723/wps-office_11.1.0.11723_amd64.deb?t=1722278885&k=9dec4788b4599cca62ee9894a70d6bf8
+	sha1sums_x86_64 = 7ef522d02341ad2904e6d97024c19dff6fb92d2c
 
 pkgname = wps-office-cn
 	install = wps-office-cn.install
