@@ -1,0 +1,12 @@
+license=('GPL-3.0-only')
+
+prepare() {
+  local _branch=$(git ls-remote --symref https://github.com/NvChad/NvChad.git HEAD | awk -F'[/\t]' 'NR == 1 {print $3}')
+  git -c advice.detachedHead=false -C nvchad checkout -f "$_branch"
+}
+
+pkgver() {
+  cd nvchad
+  git describe --long --tags --abbrev=7 --exclude='*[a-zA-Z][a-zA-Z]*' \
+    | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
+}
