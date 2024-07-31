@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+# prevent empty pkgrel
+sed -E -e 's&^eval pkgrel=.*$&&g' -i PKGBUILD
