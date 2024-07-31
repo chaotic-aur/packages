@@ -4,7 +4,7 @@
 BUILDENV+=(!check)
 
 pkgname=qsv
-pkgver=0.129.1
+pkgver=0.130.0
 pkgrel=1
 pkgdesc='CSV data-wrangling toolkit (fork of xsv)'
 arch=(x86_64)
@@ -18,10 +18,7 @@ makedepends=(cargo
 _archive="$pkgname-$pkgver"
 options=(!lto)
 source=("$url/archive/$pkgver/$_archive.tar.gz")
-sha256sums=('feae013bedd3e48d194088c5de1b2364461fdc295423641b88426d356ad12c39')
-
-# all_features minus self_update
-_features='feature_capable,apply,fetch,foreach,geocode,luau,polars,python,to,to_parquet'
+sha256sums=('d87d8420e79ec3482b2b9d0851938401309886ba7825e870883b9a397828c922')
 
 prepare() {
   cd "$_archive"
@@ -41,15 +38,19 @@ build() {
     CARGO_PROFILE_RELEASE_LTO=true \
     CARGO_PROFILE_RELEASE_CODEGEN_UNITS=1 \
     CARGO_PROFILE_RELEASE_DEBUG=2 \
-    cargo build --frozen --release --features "$_features"
+    cargo build --frozen --release --features distrib_features
 }
 
 check() {
   _srcenv
-  cargo test --frozen --features "$_features"
+  cargo test --frozen --features distrib_features
 }
 
 package() {
   cd "$_archive"
   install -Dm0755 -t "$pkgdir/usr/bin/" "target/release/$pkgname"
+  install -Dm644 -t "$pkgdir/usr/share/elvish/lib/" contrib/completions/examples/qsv.elv
+  install -Dm644 -t "$pkgdir/usr/share/fish/vendor_completions.d/" contrib/completions/examples/qsv.fish
+  install -Dm644 contrib/completions/examples/qsv.bash "$pkgdir/usr/share/bash-completion/completions/qsv"
+  install -Dm644 contrib/completions/examples/qsv.zsh "$pkgdir/usr/share/zsh/site-functions/_qsv"
 }
