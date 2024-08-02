@@ -1,6 +1,6 @@
 pkgbase = auracle-git
 	pkgdesc = A flexible client for the AUR
-	pkgver = r373.fc335fc
+	pkgver = r379.62fffaa
 	pkgrel = 1
 	url = https://github.com/falconindy/auracle
 	arch = x86_64
@@ -18,7 +18,7 @@ pkgbase = auracle-git
 	depends = libsystemd
 	provides = auracle
 	conflicts = auracle
-	source = git+https://github.com/inglor/auracle
+	source = git+https://github.com/falconindy/auracle
 	b2sums = SKIP
 
 pkgname = auracle-git
