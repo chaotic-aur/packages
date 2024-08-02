@@ -2,7 +2,7 @@
 
 pkgname=auracle-git
 _pkgname="${pkgname%-git}"
-pkgver=r373.fc335fc
+pkgver=r379.62fffaa
 pkgrel=1
 pkgdesc='A flexible client for the AUR'
 arch=('x86_64' 'i686')
@@ -13,7 +13,7 @@ makedepends=('meson' 'git' 'perl' 'systemd')
 checkdepends=('python' 'fakechroot' 'gtest')
 provides=("$_pkgname")
 conflicts=("$_pkgname")
-source=("git+https://github.com/inglor/auracle")
+source=("git+$url")
 b2sums=('SKIP')
 
 pkgver() {

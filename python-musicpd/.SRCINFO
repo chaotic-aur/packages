@@ -1,13 +1,15 @@
 pkgbase = python-musicpd
 	pkgdesc = An MPD (Music Player Daemon) client library written in pure Python.
-	pkgver = 0.8.0
+	pkgver = 0.9.0
 	pkgrel = 1
 	url = https://pypi.python.org/pypi/python-musicpd
 	arch = any
 	license = GPL
-	makedepends = python-setuptools
+	makedepends = make
+	makedepends = python-build
+	makedepends = python-installer
 	depends = python
-	source = https://files.pythonhosted.org/packages/6e/63/167108391d14517be2735c72cb85fa429528801e73a44e7d3ce8f435b4bd/python-musicpd-0.8.0.tar.gz
-	md5sums = 5346174c287fac8c089630ab0cf9de29
+	source = https://gitlab.com/kaliko/python-musicpd/-/archive/v0.9.0/python-musicpd-v0.9.0.tar.gz
+	md5sums = e90f0f0d9caf5b60ca9ec219c35eec94
 
 pkgname = python-musicpd
