@@ -1,9 +1,15 @@
 # Maintainer:
 # Contributor: Yurii Kolesnykov <root@yurikoles.com>
 
+## options
+if [ -z "$_srcinfo" ] && [ -z "$_pkgver" ]; then
+  : ${_autoupdate:=true}
+fi
+
+## basic info
 _pkgname=thunderbird
 pkgname=thunderbird-beta
-pkgver=129.0b5
+pkgver=129.0b6
 pkgrel=1
 pkgdesc='Beta version of standalone mail and news reader from mozilla.org'
 url="https://www.thunderbird.net/"
@@ -13,6 +19,7 @@ license=(
   'GPL-2.0-only'
   'LGPL-2.1-only'
 )
+
 depends=(
   dbus
   ffmpeg
@@ -47,25 +54,31 @@ makedepends=(
   yasm
   zip
 )
+
 options=(
   !emptydirs
   !lto
   !makeflags
 )
+
 provides=("thunderbird=$pkgver")
-source=(
-  https://archive.mozilla.org/pub/thunderbird/releases/$pkgver/source/thunderbird-$pkgver.source.tar.xz{,.asc}
-  $pkgname.desktop
-  install-dir.patch
-  metainfo.patch
-)
-sha256sums=(
-  'cea0842802edf4637b309bcbd6b94adaf0eb41fc3ecb087e9d220c19a08db121' ###
-  'SKIP'
-  'c620a080414b15e822073e22685c781a8b1789b93d5474aedcadbd8801945d97'
-  'c959c9f2b60a42dc937f744c018196906727d468d8f1d7402fb4f743484c414b'
-  '3390d127e5dd70a0ff60895bcb044ec4521dd528cd9d6efc27c4ba58df9cca5c'
-)
+
+_source_main() {
+  source=(
+    https://archive.mozilla.org/pub/thunderbird/releases/$pkgver/source/thunderbird-$pkgver.source.tar.xz{,.asc}
+    $pkgname.desktop
+    install-dir.patch
+    metainfo.patch
+  )
+  sha256sums=(
+    'SKIP'
+    'SKIP'
+    'c620a080414b15e822073e22685c781a8b1789b93d5474aedcadbd8801945d97'
+    'c959c9f2b60a42dc937f744c018196906727d468d8f1d7402fb4f743484c414b'
+    '3390d127e5dd70a0ff60895bcb044ec4521dd528cd9d6efc27c4ba58df9cca5c'
+  )
+}
+
 validpgpkeys=(
   # Mozilla Software Releases <release@mozilla.com>
   # https://blog.mozilla.org/security/2023/05/11/updated-gpg-key-for-signing-firefox-releases/
@@ -169,7 +182,7 @@ package() {
   DESTDIR="$pkgdir" ./mach install
 
   local vendorjs="$pkgdir/usr/lib/$pkgname/browser/defaults/preferences/vendor.js"
-  install -Dvm644 /dev/stdin "$vendorjs" << END
+  install -Dm644 /dev/stdin "$vendorjs" << END
 // Use LANG environment variable to choose locale
 pref("intl.locale.requested", "");
 
@@ -184,7 +197,7 @@ pref("extensions.autoDisableScopes", 11);
 END
 
   local distini="$pkgdir/usr/lib/$pkgname/distribution/distribution.ini"
-  install -Dvm644 /dev/stdin "$distini" << END
+  install -Dm644 /dev/stdin "$distini" << END
 [Global]
 id=archlinux
 version=1.0
@@ -196,25 +209,31 @@ app.distributor.channel=$pkgname
 app.partner.archlinux=archlinux
 END
 
+  # .desktop
+  install -Dm644 ../$pkgname.desktop \
+    "$pkgdir/usr/share/applications/$pkgname.desktop"
+
+  # icons
   for i in 16 22 24 32 48 64 128 256; do
-    install -Dvm644 comm/mail/branding/thunderbird/default${i}.png \
+    install -Dm644 comm/mail/branding/thunderbird/default${i}.png \
       "$pkgdir/usr/share/icons/hicolor/${i}x${i}/apps/$pkgname.png"
   done
 
-  install -Dvm644 comm/mail/branding/thunderbird/content/about-logo.svg \
+  install -Dm644 comm/mail/branding/thunderbird/content/about-logo.svg \
     "$pkgdir/usr/share/icons/hicolor/scalable/apps/$pkgname.svg"
-  install -Dvm644 comm/mail/branding/thunderbird/TB-symbolic.svg \
+
+  install -Dm644 comm/mail/branding/thunderbird/TB-symbolic.svg \
     "$pkgdir/usr/share/icons/hicolor/symbolic/apps/$pkgname-symbolic.svg"
 
-  install -Dvm644 ../$pkgname.desktop \
-    "$pkgdir/usr/share/applications/$pkgname.desktop"
+  install -Dm644 comm/mail/branding/thunderbird/TB-symbolic.svg \
+    "$pkgdir/usr/share/pixmaps/$_pkgname.svg"
 
   # Use system-provided dictionaries
   ln -Ts /usr/share/hunspell "$pkgdir/usr/lib/$pkgname/dictionaries"
   ln -Ts /usr/share/hyphen "$pkgdir/usr/lib/$pkgname/hyphenation"
 
   # Install a wrapper to avoid confusion about binary path
-  install -Dvm755 /dev/stdin "$pkgdir/usr/bin/$pkgname" << END
+  install -Dm755 /dev/stdin "$pkgdir/usr/bin/$pkgname" << END
 #!/bin/sh
 exec /usr/lib/$pkgname/$_pkgname "\$@"
 END
@@ -229,3 +248,21 @@ END
     ln -srfv "$pkgdir/usr/lib/libnssckbi.so" "$nssckbi"
   fi
 }
+
+_update_version() {
+  if [[ "${_autoupdate::1}" != "t" ]]; then
+    return
+  fi
+
+  _pkgver=$(
+    curl -I --no-progress-meter "https://download.mozilla.org/?product=thunderbird-beta-latest&os=linux64&lang=en-US" \
+      | strings | grep -E '^Location: (.*)$' | sed -E 's&^.*/releases/([0-9][^/]+)/.*$&\1&'
+  )
+
+  pkgver() {
+    echo "${_pkgver:?}"
+  }
+}
+
+_update_version
+_source_main
