@@ -1,3 +1,0 @@
-#!/usr/bin/env sh
-$CAUR_PUSH 'pacman -S multilib-devel --noconfirm'
-
