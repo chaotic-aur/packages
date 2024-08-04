@@ -19,9 +19,6 @@
       flake = false;
     };
 
-    # Common used input of our flake inputs
-    flake-utils.follows = "chaotic/flake-utils";
-
     # The single source of truth
     nixpkgs.follows = "chaotic/nixpkgs";
 
@@ -29,10 +26,8 @@
     pre-commit-hooks = {
       url = "github:cachix/pre-commit-hooks.nix";
       inputs = {
-        flake-utils.follows = "chaotic/flake-utils";
         nixpkgs.follows = "chaotic/nixpkgs";
         nixpkgs-stable.follows = "chaotic/nixpkgs";
-        flake-compat.follows = "chaotic/flake-compat";
       };
     };
   };
@@ -56,7 +51,6 @@
             hooks = {
               actionlint.enable = true;
               commitizen.enable = true;
-              editorconfig-checker.enable = true;
               markdownlint.enable = true;
               nixpkgs-fmt.enable = true;
               pkgbuilds-shellcheck = {
@@ -138,7 +132,7 @@
                   { package = "editorconfig-checker"; }
                   { package = "markdownlint-cli"; }
                   { package = "nixpkgs-fmt"; }
-                  { package = "nodePackages.prettier"; }
+                  { package = "nodePackages_latest.prettier"; }
                   { package = "pre-commit"; }
                   { package = "shellcheck"; }
                   { package = "shfmt"; }
