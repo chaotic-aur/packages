@@ -5,7 +5,7 @@
 
 _pkgname="openboardview"
 pkgname="$_pkgname-git"
-pkgver=9.95.0.r13.g0074525
+pkgver=9.95.1.r0.g502d7ff
 pkgrel=1
 pkgdesc="Linux SDL/ImGui edition software for viewing .brd files"
 url="https://github.com/OpenBoardView/OpenBoardView"
@@ -20,28 +20,18 @@ depends=(
 )
 makedepends=(
   'cmake'
-  'fontconfig'
   'git'
-  'gtk3'
-  'libpng'
   'ninja'
-  'python'
-  'sdl2'
-  'sqlite'
-  'zlib'
 )
 optdepends=('mdbtools: MDB file format support')
 
 provides=("$_pkgname=${pkgver%%.r*}")
 conflicts=("$_pkgname")
 
-_pkgsrc="$_pkgname"
-source=("$_pkgsrc"::"git+https://github.com/OpenBoardView/OpenBoardView.git")
-sha256sums=('SKIP')
-
-pkgver() {
-  cd "$_pkgsrc"
-  git describe --long --tags --always | sed 's/\([^-]*-g\)/r\1/;s/-/./g;s/^v//'
+_source_main() {
+  _pkgsrc="$_pkgname"
+  source=("$_pkgsrc"::"git+https://github.com/OpenBoardView/OpenBoardView.git")
+  sha256sums=('SKIP')
 }
 
 _source_openboardview() {
@@ -64,7 +54,6 @@ _source_openboardview() {
     'SKIP'
   )
 }
-_source_openboardview
 
 _prepare_openboardview() (
   cd "$srcdir/$_pkgsrc"
@@ -80,6 +69,9 @@ _prepare_openboardview() (
   _submodule_update
 )
 
+_source_main
+_source_openboardview
+
 prepare() {
   _submodule_update() {
     local _module
@@ -90,6 +82,11 @@ prepare() {
     done
   }
   _prepare_openboardview
+}
+
+pkgver() {
+  cd "$_pkgsrc"
+  git describe --long --tags --always | sed 's/\([^-]*-g\)/r\1/;s/-/./g;s/^v//'
 }
 
 build() {
@@ -107,9 +104,9 @@ build() {
 }
 
 package() {
-  cd "$_pkgsrc"
   DESTDIR="$pkgdir" cmake --install build
 
+  cd "$_pkgsrc"
   install -Dm755 utilities/bvconv.sh "$pkgdir/usr/bin/bvconv"
   install -Dm644 LICENSE -t "$pkgdir/usr/share/licenses/$pkgname/"
 }
