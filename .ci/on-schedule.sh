@@ -115,7 +115,6 @@ function collect_aur_timestamps() {
 
 function collect_changed_libs() {
     set -euo pipefail
-    set -x
 
     if [ -z "$CI_LIB_DB" ]; then
         return 0
@@ -140,7 +139,6 @@ function collect_changed_libs() {
         IFS=':' read -r -a pkg <<<"$line"
         CHANGED_LIBS["${pkg[0]}"]="true"
     done <"$_TEMP_LIB/lib.state.diff"
-
 }
 
 function update-lib-bump() {
@@ -393,10 +391,9 @@ manage_commit
 
 # Collect last modified timestamps from AUR in an efficient way
 collect_aur_timestamps AUR_TIMESTAMPS
-set -x
+
 # Parse database files for library version changes
 collect_changed_libs CHANGED_LIBS
-set +x
 
 mkdir "$TMPDIR/aur-pulls"
 if [ -f "./.editorconfig" ]; then
@@ -449,7 +446,7 @@ for package in "${PACKAGES[@]}"; do
 done
 
 # Update the lib versions state file
-mv "$TEMP/lib.state.new" .ci/lib.state
+mv "$_TEMP_LIB/lib.state.new" .ci/lib.state
 
 git rev-parse HEAD >.newstate/.commit
 git -C .newstate add -A

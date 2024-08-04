@@ -14,7 +14,6 @@ function UTIL_GET_PACKAGES() {
     mapfile -t GET_PACKAGES_ARRAY < <(find . -mindepth 1 -maxdepth 1 -type d -not -path '*/.*' -printf '%P\n')
 }
 
-
 # $1: File to read variables from
 # $2: Output associative array
 # $3: array of known variables
@@ -33,7 +32,7 @@ function UTIL_READ_KNOWN_VARIABLES_FROM_FILE() {
             fi
             READ_ASSOC_ARRAY["${BASH_REMATCH[1]}"]="${BASH_REMATCH[2]}"
         fi
-    done < "$file"
+    done <"$file"
 }
 function UTIL_WRITE_VARIABLES_TO_FILE() {
     set -euo pipefail
@@ -41,10 +40,10 @@ function UTIL_WRITE_VARIABLES_TO_FILE() {
     local -n WRITE_ASSOC_ARRAY=${2:-VARIABLES}
 
     # Clear the file before writing variables
-    true > "$file"
+    true >"$file"
 
     for key in "${!WRITE_ASSOC_ARRAY[@]}"; do
-        echo "$key=${WRITE_ASSOC_ARRAY[$key]}" >> "$file"
+        echo "$key=${WRITE_ASSOC_ARRAY[$key]}" >>"$file"
     done
 }
 
@@ -57,13 +56,13 @@ function UTIL_WRITE_KNOWN_VARIABLES_TO_FILE() {
     local -n WRITE_ASSOC_ARRAY_KNOWN=${3:-KNOWN_VARIABLE_LIST}
 
     # Clear the file before writing variables
-    true > "$file"
+    true >"$file"
 
     for key in "${!WRITE_ASSOC_ARRAY[@]}"; do
         if [[ ! " ${WRITE_ASSOC_ARRAY_KNOWN[*]} " == *" ${key} "* ]]; then
-            continue;
+            continue
         fi
-        echo "$key=${WRITE_ASSOC_ARRAY[$key]}" >> "$file"
+        echo "$key=${WRITE_ASSOC_ARRAY[$key]}" >>"$file"
     done
 }
 
@@ -112,18 +111,18 @@ function UTIL_WRITE_MANAGED_PACKAGE() {
 # Extract both the normal url and the fragment
 function UTIL_GET_URI_PARTS() {
     set -euo pipefail
-	local netfile=$1
+    local netfile=$1
 
-	local fragment=${netfile#*#}
-	if [[ "$fragment" = "$netfile" ]]; then
-		fragment=""
-	fi
-	fragment=${fragment%\?*}
+    local fragment=${netfile#*#}
+    if [[ "$fragment" = "$netfile" ]]; then
+        fragment=""
+    fi
+    fragment=${fragment%\?*}
 
     local url="${netfile%%#*}"
     url="${url%%\?*}"
 
-	printf "%s\n%s" "$url" "$fragment"
+    printf "%s\n%s" "$url" "$fragment"
 }
 
 # $1: VARIABLES
@@ -150,7 +149,7 @@ function UTIL_FETCH_VCS_COMMIT() {
         return 0
     fi
 
-    IFS=$'\n' read -rd '' source fragment <<< "$(UTIL_GET_URI_PARTS "$source")"
+    IFS=$'\n' read -rd '' source fragment <<<"$(UTIL_GET_URI_PARTS "$source")"
 
     if [ -n "$fragment" ]; then
         local type
@@ -195,7 +194,7 @@ function UTIL_FETCH_AUR_TIMESTAMPS() {
     local -n OUTPUT_ASSOC_ARRAY=$1
     local pkgbases=()
 
-    read -ra pkgbases <<< "$2"
+    read -ra pkgbases <<<"$2"
 
     # Check size of array
     if [ ${#pkgbases[@]} -eq 0 ]; then
@@ -220,9 +219,9 @@ function UTIL_FETCH_AUR_TIMESTAMPS() {
             UTIL_PRINT_INFO "Fetching AUR timestamps for $((i + 1))/${#pkgbases[@]} packages..."
             if response="$(curl -s "$API_URL")"; then
                 local -a res_timestamps
-                mapfile -t res_timestamps <<< "$(jq -r '.results[].LastModified' <<<"$response")"
+                mapfile -t res_timestamps <<<"$(jq -r '.results[].LastModified' <<<"$response")"
                 local -a res_pkgbases
-                mapfile -t res_pkgbases <<< "$(jq -r '.results[].PackageBase' <<<"$response")"
+                mapfile -t res_pkgbases <<<"$(jq -r '.results[].PackageBase' <<<"$response")"
 
                 # Loop through timestamps and pkgbases and add them to the associative array
                 for j in "${!res_timestamps[@]}"; do
@@ -254,7 +253,7 @@ function UTIL_GET_EXCLUDE_LIST() {
     set -euo pipefail
     local prefix="$1"
     local -a extra_ignores=()
-    read -ra extra_ignores <<< "${2:-}"
+    read -ra extra_ignores <<<"${2:-}"
 
     local -a exclude_list=("${EXCLUDE_FILES[@]}" "${extra_ignores[@]}")
 
@@ -292,15 +291,15 @@ function UTIL_READ_CONFIG_FILE() {
 # $2: Custom hook executable path
 function UTIL_LOAD_CUSTOM_HOOK() {
     set -euo pipefail
-	if [[ -f "$2" && -x "$2" ]] && [ -d "$1" ]; then
-        pushd "$1" > /dev/null || return 1
-		"$2" || { 
+    if [[ -f "$2" && -x "$2" ]] && [ -d "$1" ]; then
+        pushd "$1" >/dev/null || return 1
+        "$2" || {
             UTIL_PRINT_ERROR "Custom hook failed: $2"
-            popd > /dev/null || return 1
+            popd >/dev/null || return 1
             return
         }
-        popd > /dev/null || return 1
-	fi
+        popd >/dev/null || return 1
+    fi
 }
 
 # $1: The database URL
@@ -318,7 +317,6 @@ function UTIL_PARSE_DATABASE() {
     wget -P "${tmp_dir}/${repo}" "${db_url}"
     tar -xf "${tmp_dir}/${repo}/${repo}.db" -C "${tmp_dir}/${repo}"
 
-    set +x
     while read -r pkgbase version; do
         # Escape any dots in the package name since that breaks the code
         # because of an invalid arithmetic statement
@@ -331,7 +329,6 @@ function UTIL_PARSE_DATABASE() {
             already_parsed["$normalized_pkgbase"]="true"
         fi
     done < <(find "${tmp_dir}/${repo}" -maxdepth 2 -name 'desc' -exec awk -f .ci/awk/parse-database.awk {} +)
-    set -x
 }
 
 # $1: Message
@@ -355,14 +352,14 @@ function UTIL_PRINT_INFO() {
 # $1: pkgbase
 function UTIL_CHECK_STATE_DIFF() {
     set -euo pipefail
- 
+
     if test -f "./.state/${1}" && test -f "./.newstate/${1}"; then
         if diff -q "./.state/${1}" "./.newstate/${1}" >/dev/null; then
             return 0
-        else 
+        else
             return 1
         fi
-    else 
+    else
         return 0
     fi
 }
