@@ -6,7 +6,7 @@ variables:
 
 default:
   before_script:
-    - apk add --no-cache --upgrade git bash findutils grep curl jq shfmt rsync diffutils gawk openssh
+    - apk add --no-cache --upgrade git bash findutils grep curl jq shfmt rsync diffutils gawk openssh tar zstd
     - git remote set-url origin $REPO_URL
     - git fetch --tags --all --depth 20
 

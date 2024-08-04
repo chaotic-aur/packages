@@ -115,27 +115,37 @@ function collect_aur_timestamps() {
 
 function collect_changed_libs() {
     set -euo pipefail
-    # shellcheck disable=2086,2162
-    read -a link_array <<< $CI_LIB_DB
+    set -x
+
+    if [ -z "$CI_LIB_DB" ]; then
+        return 0
+    fi
+    if [ ! -f .ci/lib.state ]; then
+        touch .ci/lib.state
+    fi
+
+    IFS=' ' read -r -a link_array <<<"${CI_LIB_DB//\"/}"
+
+    _TEMP_LIB="$(mktemp -d)"
 
     for repo in "${link_array[@]}"; do
-        UTIL_PARSE_DATABASE "${repo}"
+        UTIL_PARSE_DATABASE "${repo}" "${_TEMP_LIB}"
     done
 
     # Sort lib.state in-place because comm requires it
-    sort -o "${TEMP}/lib.state.new"{,}
-    comm -23 .ci/lib.state "${TEMP}/lib.state.new"
+    sort -o "${_TEMP_LIB}/lib.state.new"{,}
+    comm -23 .ci/lib.state "${_TEMP_LIB}/lib.state.new" >"$_TEMP_LIB/lib.state.diff"
 
     while IFS= read -r line; do
         IFS=':' read -r -a pkg <<<"$line"
         CHANGED_LIBS["${pkg[0]}"]="true"
-    done <"$TEMP/lib.state.diff"
+    done <"$_TEMP_LIB/lib.state.diff"
+
 }
 
 function update-lib-bump() {
     local bump=0
     local -n pkg_config=${1:-VARIABLES}
-
 
     if [ ! -v pkg_config[CI_REBUILD_TRIGGERS] ]; then
         return 0
@@ -155,8 +165,7 @@ function update-lib-bump() {
         if [ ! -v pkg_config[CI_PACKAGE_BUMP] ]; then
             pkg_config[CI_PACKAGE_BUMP]=1
         else
-            # shellcheck disable=1116
-            pkg_config[CI_PACKAGE_BUMP]=((pkg_config[CI_PACKAGE_BUMP]++))
+            pkg_config[CI_PACKAGE_BUMP]=$((pkg_config[CI_PACKAGE_BUMP] + 1))
         fi
     fi
 }
@@ -308,12 +317,11 @@ function update_pkgbuild() {
     local pkgbase="${VARIABLES_UPDATE_PKGBUILD[PKGBASE]}"
 
     if ! [ -v "VARIABLES_UPDATE_PKGBUILD[CI_PKGBUILD_SOURCE]" ] || [ -z "${VARIABLES_UPDATE_PKGBUILD[CI_PKGBUILD_SOURCE]}" ]; then
-        UTIL_PRINT_WARNING "$pkgbase: CI_PKGBUILD_SOURCE is not set. If this is on purpose, please set it to 'custom'." 
+        UTIL_PRINT_WARNING "$pkgbase: CI_PKGBUILD_SOURCE is not set. If this is on purpose, please set it to 'custom'."
         return 0
     fi
 
     local PKGBUILD_SOURCE="${VARIABLES_UPDATE_PKGBUILD[CI_PKGBUILD_SOURCE]}"
-
 
     if [[ "$PKGBUILD_SOURCE" == "custom" ]]; then
         return 0
@@ -385,9 +393,10 @@ manage_commit
 
 # Collect last modified timestamps from AUR in an efficient way
 collect_aur_timestamps AUR_TIMESTAMPS
-
+set -x
 # Parse database files for library version changes
 collect_changed_libs CHANGED_LIBS
+set +x
 
 mkdir "$TMPDIR/aur-pulls"
 if [ -f "./.editorconfig" ]; then
@@ -442,7 +451,7 @@ done
 # Update the lib versions state file
 mv "$TEMP/lib.state.new" .ci/lib.state
 
-git rev-parse HEAD > .newstate/.commit
+git rev-parse HEAD >.newstate/.commit
 git -C .newstate add -A
 git -C .newstate commit -q -m "chore(state): update state" --allow-empty
 
