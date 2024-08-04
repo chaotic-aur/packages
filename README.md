@@ -205,12 +205,13 @@ processes with.
     The ID can be obtained by browsing the repository settings general section.
   - `aur`: Pulls the PKGBUILD from the AUR repository, pulling in the git repo and replacing the existing files with the
     new ones.
-- `CI_ON_TRIGGER`: can be provided in case a special schedule trigger should schedule the corresponding package. This
+- `CI_ON_TRIGGER`: Can be provided in case a special schedule trigger should schedule the corresponding package. This
   can be used to schedule packages daily, by setting the value to `daily`.
   Since this checks whether "$TRIGGER == $CI_ON_TRIGGER", any custom schedule can be created using pipeline schedules
   and setting `TRIGGER` to `midnight`, adding a fitting schedule and setting `CI_ON_TRIGGER` for any affected package
   to `midnight`.
-- `BUILDER_CACHE_SOURCES`: can be set to `true` in case the sources should be cached between builds. This can be useful
+- `CI_REBUILD_TRIGGERS`: Add packages known to be causing rebuilds to this variable. A list of repositories to track package versions for is provided via the repositories' `CI_LIB_DB` parameter. Each package version is hashed and dumped to `.ci/lib.state`. Each scheduled pipeline run compares versions by checking hash mismatches and will bump each each affected package via `CI_PACKAGE_BUMP`.
+- `BUILDER_CACHE_SOURCES`: Can be set to `true` in case the sources should be cached between builds. This can be useful
   in case of slow sources or sources that are not available all the time. Sources will be cleared automatically after 1
   month, which is important in case packages are getting removed or the source changes.
 
@@ -364,7 +365,28 @@ The base requirements for running this kind of setup are as follows:
   proxy_read_timeout 330s;
   ```
 
-#### Exemplary Manager instance setup
+#### Repository setup
+
+The repository needs to be derived from the [repository template](https://github.com/chaotic-cx/chaotic-repository-template). On GitHub, the ["Use this template"](https://github.com/new?template_name=chaotic-repository-template&template_owner=chaotic-cx) feature may be used.
+Afterward, customize the `.ci/config` file according to your needs. This file contains global configuration for pipeline runs and CI behaviour.
+The following options exist as of today:
+
+- `BUILD_REPO`: The target repository that will be the deploy target
+- `GIT_AUTHOR_EMAIL`: The email of the user that will be used to commit
+- `GIT_AUTHOR_NAME`: The name of the user that will be used to commit
+- `REDIS_SSH_HOST`: The redis host for the target repository
+- `REDIS_SSH_PORT`: The redis port for the target repository
+- `REDIS_SSH_USER`: The redis user for the target repository
+- `REDIS_PORT`: The redis port for the target repository
+- `REPO_NAME`: The name that this repository is referred to in chaotic-manager's config
+- `CI_HUMAN_REVIEW`: Whether merge/pull requests should be created for non pkgver changes (false/true)
+- `CI_MANAGE_AUR`: This should be set to true in case select AUR repositories should be managed by CI. A fitting SSH key needs to be deployed as AUR_KEY via secret CI variable.
+- `CI_OVERWRITE_COMMITS`: Whether we should overwrite existing automated commits to reduce the size of the git history (false/true)
+- `CI_CLONE_DELAY`: How long to wait between every executed git clone command for ratelimits (false/true)
+- `CI_AUR_PROXY`: Proxy to use for AUR requests
+- `CI_LIB_DB`: Archlinux / Chaotic-AUR repo mirror to use for pulling db files from, in the following format: `https://arch.mirror.constant.com/core/os/x86_64/core.db https://arch.mirror.constant.com/community/os/x86_64/community.db ...`
+
+#### Exemplary manager instance setup
 
 ```yaml
 chaotic-manager:
@@ -438,7 +460,7 @@ The following things are to note:
   set.
 - `DATABASE_HOST` refers to the address published to the outside world, e.g. for additional builders an other servers.
 
-#### Examplary Builder instance setup
+#### Examplary builder instance setup
 
 ```yaml
 ---
