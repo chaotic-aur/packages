@@ -1,26 +1,19 @@
 pkgbase = openboardview-git
 	pkgdesc = Linux SDL/ImGui edition software for viewing .brd files
-	pkgver = 9.95.0.r13.g0074525
+	pkgver = 9.95.1.r0.g502d7ff
 	pkgrel = 1
 	url = https://github.com/OpenBoardView/OpenBoardView
 	arch = x86_64
 	license = MIT
 	makedepends = cmake
-	makedepends = fontconfig
 	makedepends = git
-	makedepends = gtk3
-	makedepends = libpng
 	makedepends = ninja
-	makedepends = python
-	makedepends = sdl2
-	makedepends = sqlite
-	makedepends = zlib
 	depends = fontconfig
 	depends = gtk3
 	depends = sdl2
 	depends = sqlite
 	optdepends = mdbtools: MDB file format support
-	provides = openboardview=9.95.0
+	provides = openboardview=9.95.1
 	conflicts = openboardview
 	source = openboardview::git+https://github.com/OpenBoardView/OpenBoardView.git
 	source = dav1dde.glad::git+https://github.com/Dav1dde/glad.git
