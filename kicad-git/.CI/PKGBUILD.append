@@ -3,7 +3,7 @@ license=('GPL-3.0-or-later')
 
 makedepends+=('ninja')
 
-provides=("kicad=${pkgver%%.r*}")
+provides=("kicad=$pkgver")
 conflicts=("kicad")
 
 unset install
@@ -15,6 +15,9 @@ pkgver() {
 }
 
 build() {
+  export CXXFLAGS+=" -fno-strict-aliasing"
+  export LDFLAGS+=" -Wl,--copy-dt-needed-entries"
+
   local _cmake_options=(
     -B build
     -S "$pkgname"
