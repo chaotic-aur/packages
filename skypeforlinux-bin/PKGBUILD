@@ -1,3 +1,5 @@
+# Maintainer: chaotic-aur
+
 # options
 : ${_autoupdate:=true}
 
@@ -5,32 +7,28 @@
 _pkgname="skypeforlinux"
 _snapname="skype"
 pkgname="$_pkgname-bin"
-pkgver=8.115.0.215
+pkgver=8.125.0.201
 pkgrel=1
 pkgdesc='Skype for Linux'
 url="https://snapcraft.io/$_snapname"
 license=('LicenseRef-Skype')
 arch=('x86_64')
 
-# main package
-_main_package() {
-  _update_version
+makedepends=(
+  'html-xml-utils'
+  'pandoc'
+  'sha3sum'
+  'squashfs-tools'
+)
+optdepends=(
+  'chaotic-interfere: chaotic-aur interference tracker'
+)
 
-  makedepends=(
-    'html-xml-utils'
-    'pandoc'
-    'sha3sum'
-    'squashfs-tools'
-  )
-  optdepends=(
-    'chaotic-interfere: chaotic-aur interference tracker'
-  )
-
+_source_main() {
   source=("$_filename"::"$_dl_url")
   sha256sums=('SKIP')
 }
 
-# common functions
 _terms_of_use="terms_of_use"
 _terms_of_use_url="https://go.skype.com/tou"
 _privacy_policy="privacy_policy"
@@ -108,7 +106,6 @@ package() {
   install -Dm644 "$_privacy_policy.txt" -t "$pkgdir/usr/share/licenses/$pkgname"
 }
 
-# update version
 _update_version() {
   : ${_pkgver:=${pkgver%%.r*}}
 
@@ -155,5 +152,5 @@ _update_version() {
   }
 }
 
-# execute
-_main_package
+_update_version
+_source_main
