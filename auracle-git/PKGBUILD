@@ -2,7 +2,7 @@
 
 pkgname=auracle-git
 _pkgname="${pkgname%-git}"
-pkgver=r379.62fffaa
+pkgver=r382.6dce347
 pkgrel=1
 pkgdesc='A flexible client for the AUR'
 arch=('x86_64' 'i686')
