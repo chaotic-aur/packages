@@ -3,12 +3,13 @@
 
 pkgname=reproc
 pkgver=14.2.5
-pkgrel=1
+pkgrel=2
 pkgdesc='Cross-platform library that simplifies working with external CLI applications from C and C++'
 arch=('x86_64')
 url='https://github.com/DaanDeMeyer/reproc'
 license=('MIT')
-makedepends=('cmake' 'gcc')
+depends=('gcc-libs' 'glibc')
+makedepends=('cmake')
 source=("${url}/archive/v${pkgver}.tar.gz")
 sha256sums=('69467be0cfc80734b821c54ada263c8f1439f964314063f76b7cf256c3dc7ee8')
 
