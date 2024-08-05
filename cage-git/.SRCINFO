@@ -1,6 +1,6 @@
 pkgbase = cage-git
 	pkgdesc = Kiosk compositor for Wayland
-	pkgver = 0.1.5.r31.g8a00921
+	pkgver = 0.1.5.r37.gd3fb99d
 	pkgrel = 1
 	url = https://www.hjdskes.nl/projects/cage/
 	arch = x86_64
@@ -12,7 +12,7 @@ pkgbase = cage-git
 	makedepends = xorg-server-xwayland
 	depends = glibc
 	depends = wayland
-	depends = wlroots
+	depends = wlroots0.17
 	depends = libxkbcommon
 	optdepends = polkit: System privilege control. Required if not using seatd service
 	optdepends = xorg-server-xwayland: X11 support
