@@ -3,7 +3,7 @@
 
 pkgname=blockbench-git
 pkgver=v4.10.0.r1.gbae176fa
-pkgrel=1
+pkgrel=2
 pkgdesc="A low-poly 3D model editor (git version)"
 arch=('x86_64' 'aarch64')
 url=https://github.com/JannisX11/blockbench
@@ -19,7 +19,7 @@ makedepends=(git npm)
 source=("${_pkgname}::git+https://github.com/JannisX11/blockbench.git"
   "${_pkgname}.desktop")
 sha256sums=('SKIP'
-  '74731a9f68dbef112c93dafee1a1a8665b9de0816f94643169419ad838dbf66c')
+  '2dd94f6c807fac6e83fc2176098390100f3c227285671804a855a092c0a2a2e7')
 
 pkgver() {
   cd "${srcdir}/${_pkgname}"

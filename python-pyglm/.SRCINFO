@@ -1,7 +1,7 @@
 pkgbase = python-pyglm
 	pkgdesc = OpenGL Mathematics library for Python
 	pkgver = 2.7.1
-	pkgrel = 1
+	pkgrel = 2
 	url = https://github.com/Zuzu-Typ/PyGLM
 	arch = any
 	license = ZLIB
@@ -11,7 +11,7 @@ pkgbase = python-pyglm
 	source = python-pyglm::git+https://github.com/Zuzu-Typ/PyGLM.git#tag=2.7.1
 	source = pyglm-typing::git+https://github.com/esoma/pyglm-typing.git
 	source = glm::git+https://github.com/Zuzu-Typ/glm.git
-	sha256sums = SKIP
+	sha256sums = 2174e7d6d77a4a026a109602917b46e33c73d195166c388095a129641103acef
 	sha256sums = SKIP
 	sha256sums = SKIP
 
