@@ -8,6 +8,26 @@ conflicts=("kicad")
 
 unset install
 
+prepare() {
+  cd "$pkgname"
+
+  local _commit _url_ci _response _count _total
+  _commit=$(git rev-parse HEAD)
+  _url_ci="https://gitlab.com/kicad/code/kicad/-/commit/$_commit/pipelines"
+  _response=$(curl -Ssf "$_url_ci")
+  _count=$(grep -o status_success  <<< "$_response" | wc -l)
+  _total=$(grep -o status_  <<< "$_response" | wc -l)
+
+  if [ "$_count" != "$_total" ]; then
+    echo "Error: Commit failed check-in. ${_count}/${_total}"
+    echo "   $_url_ci"
+    return 1
+  else
+    echo "Commit passed check-in.  ${_count}/${_total}"
+    echo "   $_url_ci"
+  fi
+}
+
 pkgver() {
   cd "$pkgname"
   git describe --long --tags --abbrev=7 --exclude='*[a-zA-Z][a-zA-Z]*' \
