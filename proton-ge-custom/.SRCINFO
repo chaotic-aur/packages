@@ -1,6 +1,6 @@
 pkgbase = proton-ge-custom
 	pkgdesc = Compatibility tool for Steam Play based on Wine and additional components, GloriousEggroll's custom build
-	pkgver = GE.Proton9.10
+	pkgver = GE.Proton9.11
 	pkgrel = 1
 	epoch = 2
 	url = https://github.com/GloriousEggroll/proton-ge-custom
@@ -136,7 +136,7 @@ pkgbase = proton-ge-custom
 	options = !lto
 	options = !debug
 	options = emptydirs
-	source = proton-ge-custom::git+https://github.com/gloriouseggroll/proton-ge-custom.git#tag=GE-Proton9-10
+	source = proton-ge-custom::git+https://github.com/gloriouseggroll/proton-ge-custom.git#tag=GE-Proton9-11
 	source = https://dl.winehq.org/wine/wine-gecko/2.47.4/wine-gecko-2.47.4-x86.tar.xz
 	source = https://dl.winehq.org/wine/wine-gecko/2.47.4/wine-gecko-2.47.4-x86_64.tar.xz
 	source = https://github.com/madewokherd/wine-mono/releases/download/wine-mono-9.2.0/wine-mono-9.2.0-x86.tar.xz
@@ -149,18 +149,18 @@ pkgbase = proton-ge-custom
 	source = 0006-AUR-Fix-hwnd-redefinition.patch
 	source = 0007-AUR-Disable-incompatible-pointer-types-in-Wine-GCC-1.patch
 	source = 0008-AUR-Fix-calling-make-requests-where-it-shouldn-t-be-.patch
-	sha256sums = 649ed4051c153994a15620b111f949ca129bf49091fbfe428b57b60118a51076
+	sha256sums = 294255ecbca610724b2879fe915c0e402626a1b27d7e35c8f84779d32e3ecbe0
 	sha256sums = 2cfc8d5c948602e21eff8a78613e1826f2d033df9672cace87fed56e8310afb6
 	sha256sums = fd88fc7e537d058d7a8abf0c1ebc90c574892a466de86706a26d254710a82814
 	sha256sums = 59b35dfe525f32c581884b6c7865496e13b3cd200c5ed267c43fb4663e0cd757
 	sha256sums = 50ce2cc85162343e62340b0ca7994ceba94592ab395fb99711e94e108e991f0c
-	sha256sums = 634d1093380d0cc757baf315bb043f810719ff53db9b2e85e6f9fc74bacfa778
-	sha256sums = 91a3e2a422a9b781ca8b5e54e71d61fb4a1b1a2ac12c16aecfec1e8beff5f0f6
-	sha256sums = 600cb65a75754875c931f822631311d27f2830f1424788af26a99123545f73e1
-	sha256sums = 5f3de11fbdec0e6f2f44ba63f9a5b0c151038a4dcb9d62da3239d838a6ad40a9
-	sha256sums = c6925ee5f304bee162e4ee7aa67aac82a24e850ae69905b6f100c4dd26ef188f
-	sha256sums = e7dbbdbfb0e72db4d4e99c4e386579b53da81e0c5e19d6852694be8688f8c554
-	sha256sums = 35e333f958034ed6bbccda04d3e20b0f48d3b8828624157403049c4df79479f0
-	sha256sums = 36afddcd746ed8d44bc8bae1ede1937ae8625737a4743e779f06e702ca8d3e2f
+	sha256sums = 99f81031e3f0cc5d1ed9cddf8a2c2add73171b54f322423690c0fd7238ca3181
+	sha256sums = 34a550097a26acaaf32a6a5e25c10d41e8413be77d6b6e6c851ddc84e381c8b5
+	sha256sums = 93eb6ca09faa9226d03949c017a8d4b333c976e3db6e1e4674f1190ad1a89422
+	sha256sums = 37391cc8d608814114dd08cd57aa856d3201af369288f386d61917ff0bf1436d
+	sha256sums = e6d065db1c5a4b6e50364a1f63e0571bea1edd739fe2cba0cc43365a148da6ef
+	sha256sums = cb693d85e0509ceca04c18ca21744186daf5b552c26bc29777a32d82554072e8
+	sha256sums = 035d812e467300e990a6f6aab7dd14cb2d9b8946465401e0d3d2d441b21e1e99
+	sha256sums = 4e15c7d4eb57bdf532cf623a47f2b20f35215caa827ce7709b390706763e634b
 
 pkgname = proton-ge-custom
