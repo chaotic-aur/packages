@@ -1,0 +1,26 @@
+url="https://github.com/openvinotoolkit/openvino"
+
+eval _orig_"$(declare -f prepare)"
+prepare() {
+  pushd "openvino" > /dev/null
+
+  local _commit _url_ci _response
+  _commit=$(git rev-parse HEAD)
+  _url_ci="https://github.com/openvinotoolkit/openvino/commit/$_commit/checks"
+  _response=$(curl -Ssf "$_url_ci")
+
+  if grep -qo 'favicon-success.svg' <<< "$_response"; then
+    echo "Commit passed check."
+    echo "   $_url_ci"
+    echo
+  else
+    echo "Error: Commit failed check-in."
+    echo "   $_url_ci"
+    echo
+    return 1
+  fi
+
+  popd > /dev/null
+
+  _orig_prepare
+}
