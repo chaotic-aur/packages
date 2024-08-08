@@ -1,4 +1,4 @@
-From edeb49e940da08416204a2ea0fd283c08f5659e7 Mon Sep 17 00:00:00 2001
+From 7a29b355c25755475714f61de4f35777991043e8 Mon Sep 17 00:00:00 2001
 From: Stelios Tsampas <loathingkernel@gmail.com>
 Date: Tue, 7 Feb 2023 22:00:48 +0200
 Subject: [PATCH 1/8] AUR Pkgbuild changes
@@ -20,7 +20,7 @@ Subject: [PATCH 1/8] AUR Pkgbuild changes
  13 files changed, 85 insertions(+), 42 deletions(-)
 
 diff --git a/Makefile.in b/Makefile.in
-index cf099dfc..e719e682 100644
+index ac854cc8..e5372746 100644
 --- a/Makefile.in
 +++ b/Makefile.in
 @@ -54,11 +54,12 @@ else
@@ -151,7 +151,7 @@ index cf099dfc..e719e682 100644
  	-Dauto_features=disabled \
  	-Dgobject-cast-checks=disabled \
  	-Dglib-asserts=disabled \
-@@ -532,7 +559,7 @@ $(eval $(call rules-cmake,openxr,64))
+@@ -517,7 +544,7 @@ $(eval $(call rules-cmake,openxr,64))
  ## Note 32-bit is not supported by SteamVR, so we don't build it.
  ##
  
@@ -160,7 +160,7 @@ index cf099dfc..e719e682 100644
  WINEOPENXR_DEPENDS = wine openxr
  
  $(eval $(call rules-source,wineopenxr,$(SRCDIR)/wineopenxr))
-@@ -610,6 +637,9 @@ OPENFST_CONFIGURE_ARGS = \
+@@ -595,6 +622,9 @@ OPENFST_CONFIGURE_ARGS = \
    --with-pic \
    --disable-bin \
  
@@ -170,7 +170,7 @@ index cf099dfc..e719e682 100644
  $(eval $(call rules-source,openfst,$(SRCDIR)/openfst))
  $(eval $(call rules-autoconf,openfst,32))
  $(eval $(call rules-autoconf,openfst,64))
-@@ -677,7 +707,10 @@ WINE_SOURCE_ARGS = \
+@@ -662,7 +692,10 @@ WINE_SOURCE_ARGS = \
    --exclude server/trace.c \
  
  WINE_CONFIGURE_ARGS = \
@@ -181,7 +181,7 @@ index cf099dfc..e719e682 100644
    --disable-tests
  
  WINE_CONFIGURE_ARGS32 = \
-@@ -740,10 +773,14 @@ DXVK_SOURCE_DATE_EPOCH64 := $(shell expr $(BASE_SOURCE_DATE_EPOCH64) - 1)
+@@ -725,10 +758,14 @@ DXVK_SOURCE_DATE_EPOCH64 := $(shell expr $(BASE_SOURCE_DATE_EPOCH64) - 1)
  DXVK_SOURCE_ARGS = \
    --exclude version.h.in \
  
@@ -196,7 +196,7 @@ index cf099dfc..e719e682 100644
  $(eval $(call rules-source,dxvk,$(SRCDIR)/dxvk))
  $(eval $(call rules-meson,dxvk,32,CROSS))
  $(eval $(call rules-meson,dxvk,64,CROSS))
-@@ -771,6 +808,9 @@ $(OBJ)/.dxvk-post-build32:
+@@ -756,6 +793,9 @@ $(OBJ)/.dxvk-post-build32:
  DXVK_NVAPI_MESON_ARGS32 = --bindir=$(DXVK_NVAPI_DST32)/lib/wine/nvapi
  DXVK_NVAPI_MESON_ARGS64 = --bindir=$(DXVK_NVAPI_DST64)/lib64/wine/nvapi
  
@@ -206,7 +206,7 @@ index cf099dfc..e719e682 100644
  $(eval $(call rules-source,dxvk-nvapi,$(SRCDIR)/dxvk-nvapi))
  $(eval $(call rules-meson,dxvk-nvapi,32,CROSS))
  $(eval $(call rules-meson,dxvk-nvapi,64,CROSS))
-@@ -850,6 +890,9 @@ ifneq ($(UNSTRIPPED_BUILD),)
+@@ -835,6 +875,9 @@ ifneq ($(UNSTRIPPED_BUILD),)
  	VKD3D_PROTON_MESON_ARGS = -Denable_trace=true
  endif
  
@@ -216,7 +216,7 @@ index cf099dfc..e719e682 100644
  $(eval $(call rules-source,vkd3d-proton,$(SRCDIR)/vkd3d-proton))
  $(eval $(call rules-meson,vkd3d-proton,32,CROSS))
  $(eval $(call rules-meson,vkd3d-proton,64,CROSS))
-@@ -1120,14 +1163,14 @@ $(FONTS_OBJ)/source-han/%.ttf: $$(%.ttf_CIDFONT) $$(%.ttf_FEATURES) $$(%.ttf_SEQ
+@@ -1105,14 +1148,14 @@ $(FONTS_OBJ)/source-han/%.ttf: $$(%.ttf_CIDFONT) $$(%.ttf_FEATURES) $$(%.ttf_SEQ
  	mkdir -p $(FONTS_OBJ)/source-han
  	# Do not immediately create the target file, so that make is interrupted
  	# it will restart again
@@ -234,7 +234,7 @@ index cf099dfc..e719e682 100644
  	mv $@.tmp $@
  
  $(FONTS_OBJ)/ume-gothic/%.ttf: $$(%.ttf_FONT) $$(%.ttf_NAMETABLE_PATCH)
-@@ -1137,12 +1180,12 @@ $(FONTS_OBJ)/ume-gothic/%.ttf: $$(%.ttf_FONT) $$(%.ttf_NAMETABLE_PATCH)
+@@ -1122,12 +1165,12 @@ $(FONTS_OBJ)/ume-gothic/%.ttf: $$(%.ttf_FONT) $$(%.ttf_NAMETABLE_PATCH)
  	ttx -o $@ -m $($(notdir $@)_FONT) $(FONTS_OBJ)/ume-gothic/$(notdir $(basename $($(notdir $@)_NAMETABLE_PATCH))).ttx
  
  $(simsun.ttc): $(simsun.ttf) $(nsimsun.ttf)
@@ -250,7 +250,7 @@ index cf099dfc..e719e682 100644
  
  $(micross.ttf): $(FONTS)/scripts/merge.py $(noto_sans.ttf) $(noto_sans_arabic.ttf) $(noto_sans_armenian.ttf) $(noto_sans_bengali.ttf) $(noto_sans_coptic.ttf) \
  		$(noto_sans_georgian.ttf) $(noto_sans_gujarati.ttf) $(noto_sans_hebrew.ttf) $(noto_sans_khmer.ttf) $(noto_sans_tamil.ttf) \
-@@ -1291,8 +1334,8 @@ all-dist: $(DIST_OVR32) $(DIST_OVR64)
+@@ -1276,8 +1319,8 @@ all-dist: $(DIST_OVR32) $(DIST_OVR64)
  ##
  
  default_pfx: wine gst_good gst_libav gst_plugins_rs lsteamclient steamexe vrclient wineopenxr dxvk dxvk-nvapi vkd3d-proton
@@ -261,7 +261,7 @@ index cf099dfc..e719e682 100644
  	rm -rf $(abspath $(DIST_PREFIX))
  	python3 $(SRCDIR)/default_pfx.py $(abspath $(DIST_PREFIX)) $(abspath $(DST_DIR))
  
-@@ -1434,7 +1477,6 @@ ifeq ($(ENABLE_CCACHE),1)
+@@ -1419,7 +1462,6 @@ ifeq ($(ENABLE_CCACHE),1)
  	export CCACHE_DIR := $(if $(CCACHE_DIR),$(CCACHE_DIR),$(HOME)/.ccache)
  	override DOCKER_OPTS := -v $(CCACHE_DIR):$(CCACHE_DIR)$(CONTAINER_MOUNT_OPTS) $(CCACHE_ENV) -e CCACHE_DIR=$(CCACHE_DIR) $(DOCKER_OPTS)
  else
@@ -269,7 +269,7 @@ index cf099dfc..e719e682 100644
  	override DOCKER_OPTS := $(CCACHE_ENV) -e CCACHE_DISABLE=1 $(DOCKER_OPTS)
  endif
  
-@@ -1449,9 +1491,6 @@ ifeq ($(CONTAINER_ENGINE),)
+@@ -1434,9 +1476,6 @@ ifeq ($(CONTAINER_ENGINE),)
  	CONTAINER_ENGINE := docker
  endif
  
@@ -481,7 +481,7 @@ index 5c3b59a3..ed6589e0 100644
  	winebuild --$(lastword $(subst ., ,$(4))) --fake-module -E "$(basename $(4)).spec" -o "$(4).fake"
  	mkdir -p $$($(2)_LIBDIR$(3))/$(LIBDIR_WINE_$(3))
 diff --git a/proton b/proton
-index 5a2b2c1c..7d69d830 100755
+index 9e9408a4..25c32f64 100755
 --- a/proton
 +++ b/proton
 @@ -523,7 +523,6 @@ class Proton:
@@ -492,7 +492,7 @@ index 5a2b2c1c..7d69d830 100755
  
      def path(self, d):
          return self.base_dir + d
-@@ -1703,8 +1702,6 @@ if __name__ == "__main__":
+@@ -1698,8 +1697,6 @@ if __name__ == "__main__":
  
      g_proton = Proton(os.path.dirname(sys.argv[0]))
  
@@ -501,7 +501,7 @@ index 5a2b2c1c..7d69d830 100755
  
      g_compatdata = CompatData(os.environ["STEAM_COMPAT_DATA_PATH"])
  
-@@ -1716,7 +1713,8 @@ if __name__ == "__main__":
+@@ -1711,7 +1708,8 @@ if __name__ == "__main__":
      os.environ["PROTON_DLL_COPY"] = "*"
  
      if g_proton.missing_default_prefix():
@@ -524,5 +524,5 @@ index beddcbbb..b6f36788 100644
 -  "compatmanager_layer_name" "proton"
  }
 -- 
-2.45.2
+2.46.0
 
