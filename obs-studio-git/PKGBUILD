@@ -1,4 +1,6 @@
-## useful links
+# Maintainer:
+
+## links
 # https://obsproject.com
 # https://github.com/obsproject/obs-studio
 # https://github.com/obsproject/cef
@@ -12,81 +14,74 @@
 ## basic info
 _pkgname="obs-studio"
 pkgname="$_pkgname-git"
-pkgver=30.1.2.r365.g9d67bf2
+pkgver=30.2.2.r63.g37b4018
 pkgrel=1
 pkgdesc="Free, open source software for live streaming and recording - Browser enabled"
 url="https://github.com/obsproject/obs-studio"
 license=("GPL-2.0-or-later")
 arch=("x86_64")
 
-# main package
-_main_package() {
-  depends=(
-    curl
-    ffmpeg
-    jack
-    jansson
-    libxcomposite
-    mbedtls
-    pciutils
-    qt6-svg
-    rnnoise
+depends=(
+  curl
+  ffmpeg
+  jack
+  jansson
+  libxcomposite
+  mbedtls
+  pciutils
+  qt6-svg
+  rnnoise
 
-    librist
-    libvpl
-    speexdsp
+  librist
+  libvpl
+  speexdsp
 
-    ## namcap: not needed?
-    #libxinerama
-    #libxkbcommon-x11
-    #pipewire
+  # AUR
+  qrcodegencpp-cmake
+)
+makedepends=(
+  asio
+  cmake
+  ffnvcodec-headers-12-1 # ffnvcodec-headers
+  git
+  libfdk-aac
+  luajit
+  nlohmann-json
+  python
+  qt6-wayland
+  sndio
+  swig
+  uthash
+  vlc
+  wayland
+  websocketpp
+  x264
+  xdg-desktop-portal
+)
+optdepends=(
+  'chaotic-interfere: chaotic-aur interference tracking'
 
-    # AUR
-    qrcodegencpp-cmake
-  )
-  makedepends=(
-    asio
-    cmake
-    ffnvcodec-headers-12-1 # ffnvcodec-headers
-    git
-    libfdk-aac
-    luajit
-    nlohmann-json
-    python
-    qt6-wayland
-    sndio
-    swig
-    uthash
-    vlc
-    wayland
-    websocketpp
-    x264
-    xdg-desktop-portal
-  )
-  optdepends=(
-    'chaotic-interfere: chaotic-aur interference tracking'
+  'libfdk-aac: FDK AAC codec support'
+  'libva-intel-driver: hardware encoding'
+  'libva-mesa-driver: hardware encoding'
+  'luajit: scripting support'
+  'python: scripting support'
+  'sndio: sndio input client'
+  'v4l2loopback-dkms: virtual camera support'
 
-    'libfdk-aac: FDK AAC codec support'
-    'libva-intel-driver: hardware encoding'
-    'libva-mesa-driver: hardware encoding'
-    'luajit: scripting support'
-    'python: scripting support'
-    'sndio: sndio input client'
-    'v4l2loopback-dkms: virtual camera support'
+  'vlc: VLC Media Source'
+)
 
-    'vlc: VLC Media Source'
-  )
+provides=("$_pkgname=${pkgver%%.r*}")
+conflicts=("$_pkgname")
 
-  provides=("$_pkgname=${pkgver%%.r*}")
-  conflicts=("$_pkgname")
+options=(!debug)
 
-  options=(!debug)
-
+_source_main() {
   _pkgsrc="$_pkgname"
-  source+=("$_pkgsrc"::"git+$url.git")
-  sha256sums+=('SKIP')
+  source=("$_pkgsrc"::"git+$url.git")
+  sha256sums=('SKIP')
 
-  # cef
   if [ "${_build_cef::1}" == "t" ]; then
     _source_cef
   else
@@ -108,13 +103,11 @@ _main_package() {
   fi
 
   _source_obs_studio
-  _source_mixer_ftl_sdk
 }
 
-# submodules
 _source_obs_studio() {
   source+=(
-    'mixer.ftl-sdk'::'git+https://github.com/Mixer/ftl-sdk.git'
+    #'obsproject.libdshowcapture'::'git+https://github.com/obsproject/libdshowcapture.git'
     'obsproject.obs-browser'::'git+https://github.com/obsproject/obs-browser.git'
     'obsproject.obs-websocket'::'git+https://github.com/obsproject/obs-websocket.git'
   )
@@ -122,42 +115,19 @@ _source_obs_studio() {
   sha256sums+=(
     'SKIP'
     'SKIP'
-    'SKIP'
   )
 
   _prepare_obs_studio() (
-    cd "${srcdir:?}/$_pkgsrc"
-    local -A _submodules=(
-      ['mixer.ftl-sdk']='plugins/obs-outputs/ftl-sdk'
-      ['obsproject.obs-browser']='plugins/obs-browser'
-      ['obsproject.obs-websocket']='plugins/obs-websocket'
+    cd "$srcdir/$_pkgsrc"
+    local _submodules=(
+      #'obsproject.libdshowcapture'::'plugins/win-dshow/libdshowcapture'
+      'obsproject.obs-browser'::'plugins/obs-browser'
+      'obsproject.obs-websocket'::'plugins/obs-websocket'
     )
     _submodule_update
   )
 }
 
-_source_mixer_ftl_sdk() {
-  source+=(
-    'akheron.jansson'::'git+https://github.com/akheron/jansson.git'
-    'curl'::'git+https://github.com/curl/curl.git'
-  )
-  sha256sums+=(
-    'SKIP'
-    'SKIP'
-  )
-
-  _prepare_mixer_ftl_sdk() (
-    cd "${srcdir:?}/$_pkgsrc"
-    cd 'plugins/obs-outputs/ftl-sdk'
-    local -A _submodules=(
-      ['akheron.jansson']='libjansson'
-      ['curl']='libcurl'
-    )
-    _submodule_update
-  )
-}
-
-# cef
 _source_cef() {
   depends+=(
     at-spi2-core
@@ -211,7 +181,6 @@ _source_cef() {
   }
 }
 
-# common functions
 pkgver() {
   cd "$_pkgsrc"
   local _version=$(git tag | grep -Ev '.*[a-z]{2}.*' | sort -rV | head -1)
@@ -222,16 +191,15 @@ pkgver() {
 
 prepare() {
   _submodule_update() {
-    local key
-    for key in ${!_submodules[@]}; do
-      git submodule init "${_submodules[${key}]}"
-      git submodule set-url "${_submodules[${key}]}" "${srcdir}/${key}"
-      git -c protocol.file.allow=always submodule update "${_submodules[${key}]}"
+    local _module
+    for _module in "${_submodules[@]}"; do
+      git submodule init "${_module##*::}"
+      git submodule set-url "${_module##*::}" "$srcdir/${_module%::*}"
+      git -c protocol.file.allow=always submodule update "${_module##*::}"
     done
   }
 
   _prepare_obs_studio
-  _prepare_mixer_ftl_sdk
 
   sed -E \
     -e 's&(\s*find_package\(FFnvcodec)\b.*\b(REQUIRED\))&\1 12 \2&' \
@@ -240,6 +208,9 @@ prepare() {
 }
 
 _build_obs_studio() {
+  export CFLAGS+=" -fno-strict-aliasing -Wno-error=deprecated-declarations"
+  export CXXFLAGS+=" -fno-strict-aliasing -Wno-error=deprecated-declarations"
+
   local _cmake_options=(
     -B build
     -S "$_pkgsrc"
@@ -286,5 +257,4 @@ package() {
   chmod -R u=rwX,go=rX "$pkgdir"
 }
 
-# execute
-_main_package
+_source_main
