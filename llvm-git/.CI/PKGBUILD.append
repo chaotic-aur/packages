@@ -1,0 +1,15 @@
+url="https://github.com/llvm/llvm-project"
+
+eval _orig_"$(declare -f prepare)"
+prepare() {
+  # attempt build only once per day
+  local _hour=$(date +"%H")
+  if [ "$_hour" != "23" ]; then
+    echo "Skipping non-nightly build attempt.  Current hour: $_hour"
+    return 1
+  else
+    echo "Continuing nightly build. Current hour: $_hour"
+  fi
+
+  _orig_prepare
+}
