@@ -1,6 +1,6 @@
 pkgbase = obs-studio-stable
 	pkgdesc = Free, open source software for live streaming and recording - Browser enabled
-	pkgver = 30.2
+	pkgver = 30.2.2
 	pkgrel = 1
 	url = https://github.com/obsproject/obs-studio
 	arch = x86_64
@@ -45,10 +45,10 @@ pkgbase = obs-studio-stable
 	optdepends = sndio: sndio input client
 	optdepends = v4l2loopback-dkms: virtual camera support
 	optdepends = vlc: VLC Media Source
-	provides = obs-studio=30.2
+	provides = obs-studio=30.2.2
 	conflicts = obs-studio
 	options = !debug
-	source = obs-studio::git+https://github.com/obsproject/obs-studio.git#tag=30.2.0
+	source = obs-studio::git+https://github.com/obsproject/obs-studio.git#tag=30.2.2
 	source = mixer.ftl-sdk::git+https://github.com/Mixer/ftl-sdk.git
 	source = obsproject.obs-browser::git+https://github.com/obsproject/obs-browser.git
 	source = obsproject.obs-websocket::git+https://github.com/obsproject/obs-websocket.git
