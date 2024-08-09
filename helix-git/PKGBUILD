@@ -2,7 +2,7 @@
 # Contributor: Wojciech Kępka (wojciech@wkepka.dev)
 pkgname=helix-git
 _pkgname=helix
-pkgver=23.10.r461.g527cbe656
+pkgver=24.07.r114.g518425e05
 pkgrel=1
 pkgdesc="A text editor written in rust"
 url="https://helix-editor.com"
@@ -43,16 +43,16 @@ build() {
   cd "${_pkgname}"
   export RUSTUP_TOOLCHAIN=stable
   export CARGO_TARGET_DIR=target
-  cargo build --frozen --offline --release
+  cargo build --locked --profile opt
 }
 
 check() {
   cd "${_pkgname}"
   export RUSTUP_TOOLCHAIN=stable
   export CARGO_TARGET_DIR=target
-  cargo test --frozen --offline --workspace
+  cargo test --workspace --locked
   export RUSTFLAGS="${RUSTFLAGS} --cfg tokio_unstable"
-  cargo integration-test --frozen --offline
+  cargo integration-test --locked
 }
 
 package() {
@@ -60,7 +60,7 @@ package() {
   mkdir -p "${pkgdir}${_lib_path}"
   rm -r "runtime/grammars/sources"
   cp -r "runtime" "${pkgdir}${_lib_path}"
-  install -Dm 0755 "target/release/${_bin}" "${pkgdir}${_lib_path}/${_bin}"
+  install -Dm 0755 "target/opt/${_bin}" "${pkgdir}${_lib_path}/${_bin}"
   install -Dm 0644 "LICENSE" "${pkgdir}/usr/share/licenses/${_pkgname}/LICENSE"
   install -Dm 0777 "${srcdir}/${_bin}" "${pkgdir}/usr/bin/${_bin}"
   install -Dm 0644 "contrib/Helix.desktop" "${pkgdir}/usr/share/applications/Helix.desktop"
