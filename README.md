@@ -196,8 +196,9 @@ processes with.
 - `CI_MANAGE_AUR`: By setting this variable to `true`, the CI will update the corresponding AUR repository at the end of
   a
   pipeline run if changes occur (omitting CI-related files)
-- `CI_PACKAGE_BUMP`: Controls package bumps for all packages which don't have `CI_MANAGE_AUR` set to `true`. It
-  increases `pkgrel` by `0.1` for every `+1` increase of this variable.
+- `CI_PACKAGE_BUMP`: Controls package bumps for all packages which don't have `CI_MANAGE_AUR` set to `true`. The format this needs
+  to follow is either `1:1.2.3-1/1` (full current version and bump count after the slash) or `1.2.3` (full current package version,
+  resolves to bump count `1`).
 - `CI_PKGBUILD_SOURCE`: Sets the source for all PKGBUILD-related files, used for pulling updated files from remote
   repositories.
   Valid values as of now are:
@@ -210,6 +211,7 @@ processes with.
   Since this checks whether "$TRIGGER == $CI_ON_TRIGGER", any custom schedule can be created using pipeline schedules
   and setting `TRIGGER` to `midnight`, adding a fitting schedule and setting `CI_ON_TRIGGER` for any affected package
   to `midnight`.
+  Packages having this variable set will **not** be scheduled via the regular on-schedule pipeline, hence this one can also be used to prevent wasting builder resources, e.g. useful for huge `-git` packages with a lot of commit activity, like `llvm-git`.
 - `CI_REBUILD_TRIGGERS`: Add packages known to be causing rebuilds to this variable. A list of repositories to track package versions for is provided via the repositories' `CI_LIB_DB` parameter. Each package version is hashed and dumped to `.ci/lib.state`. Each scheduled pipeline run compares versions by checking hash mismatches and will bump each each affected package via `CI_PACKAGE_BUMP`.
 - `BUILDER_CACHE_SOURCES`: Can be set to `true` in case the sources should be cached between builds. This can be useful
   in case of slow sources or sources that are not available all the time. Sources will be cleared automatically after 1
