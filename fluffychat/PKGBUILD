@@ -5,9 +5,7 @@
 # https://github.com/krille-chan/fluffychat
 
 ## options
-if [ -n "$_srcinfo" ] || [ -n "$_pkgver" ]; then
-  : ${_autoupdate:=false}
-else
+if [ -z "$_srcinfo" ] && [ -z "$_pkgver" ]; then
   : ${_autoupdate:=true}
 fi
 
@@ -23,31 +21,28 @@ url="https://github.com/krille-chan/fluffychat"
 license=('AGPL-3.0-only')
 arch=('x86_64')
 
-_main_package() {
-  depends=(
-    'gtk3'
-    'jsoncpp'
-    'libolm'
-    'libsecret'
-    'openssl'
-    'xdg-user-dirs'
-    'zenity'
-  )
-  makedepends=(
-    'clang'
-    'cmake'
-    'fvm'
-    'git'
-    'lld'
-    'llvm'
-    'ninja'
-  )
+depends=(
+  'gtk3'
+  'jsoncpp'
+  'libolm'
+  'libsecret'
+  'openssl'
+  'xdg-user-dirs'
+  'zenity'
+)
+makedepends=(
+  'clang'
+  'cmake'
+  'fvm'
+  'git'
+  'lld'
+  'llvm'
+  'ninja'
+)
 
-  provides=("$_pkgname")
-  conflicts=("$_pkgname")
+options=('!strip' '!debug')
 
-  options=('!strip' '!debug')
-
+_source_main() {
   _pkgsrc="$_pkgname-$_pkgver"
   _pkgext="tar.gz"
   source=("$_pkgsrc.$_pkgext"::"$url/archive/refs/tags/v$_pkgver.$_pkgext")
@@ -99,7 +94,6 @@ X-Purism-FormFactor=Workstation;Mobile;
 END
 }
 
-# update version
 _update_version() {
   : ${_pkgver:=${pkgver%%.r*}}
 
@@ -126,6 +120,5 @@ _update_version() {
   }
 }
 
-# execute
 _update_version
-_main_package
+_source_main
