@@ -9,8 +9,8 @@ fi
 ## basic info
 _pkgname=thunderbird
 pkgname=thunderbird-beta
-pkgver=129.0b6
-pkgrel=1
+pkgver=130.0b1
+pkgrel=2
 pkgdesc='Beta version of standalone mail and news reader from mozilla.org'
 url="https://www.thunderbird.net/"
 arch=('x86_64')
@@ -61,11 +61,11 @@ options=(
   !makeflags
 )
 
-provides=("thunderbird=$pkgver")
-
 _source_main() {
+  provides=("thunderbird=$_pkgver")
+
   source=(
-    https://archive.mozilla.org/pub/thunderbird/releases/$pkgver/source/thunderbird-$pkgver.source.tar.xz{,.asc}
+    https://archive.mozilla.org/pub/thunderbird/releases/$_pkgver/source/thunderbird-$_pkgver.source.tar.xz{,.asc}
     $pkgname.desktop
     install-dir.patch
     metainfo.patch
@@ -250,6 +250,8 @@ END
 }
 
 _update_version() {
+  : ${_pkgver:=$pkgver}
+
   if [[ "${_autoupdate::1}" != "t" ]]; then
     return
   fi
