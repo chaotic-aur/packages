@@ -20,6 +20,7 @@ fi
 
 git clone --depth=1 "$TEMPLATE_REPO" "$TMPDIR/template" -b "main" -q
 
+# shellcheck disable=SC2064
 trap "git reset --hard $CURRENT_REV" ERR
 
 # Generic template files

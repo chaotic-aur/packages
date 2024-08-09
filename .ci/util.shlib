@@ -275,14 +275,14 @@ function UTIL_READ_CONFIG_FILE() {
     # Set all variables as global variables
     for key in "${!UTIL_READ_CONFIG_FILE_ARRAY[@]}"; do
         declare -g "$key=${UTIL_READ_CONFIG_FILE_ARRAY[$key]}"
-        export "$key"
+        export "${key?}"
     done
 
     # Set any missing variables to their default values
     for key in "${!KNOWN_CONFIG_LIST[@]}"; do
         if ! [ -v "$key" ]; then
             declare -g "$key=${KNOWN_CONFIG_LIST[$key]}"
-            export "$key"
+            export "${key?}"
         fi
     done
 }
@@ -313,15 +313,17 @@ function UTIL_PARSE_DATABASE() {
     # Extract db name from URL
     repo=$(echo "$db_url" | grep -oP '.*\/\K[^\/]*(?=.db)')
 
+    UTIL_PRINT_INFO "Retrieving new package versions from database $repo..."
+
     mkdir -p "${tmp_dir}/${repo}"
-    wget -P "${tmp_dir}/${repo}" "${db_url}"
+    wget -P "${tmp_dir}/${repo}" "${db_url}" &>/dev/null
     tar -xf "${tmp_dir}/${repo}/${repo}.db" -C "${tmp_dir}/${repo}"
 
     while read -r pkgbase version; do
         # Escape any dots in the package name since that breaks the code
         # because of an invalid arithmetic statement
         normalized_pkgbase=${pkgbase//./}
-        if [ -v already_parsed["${normalized_pkgbase}"] ]; then
+        if [[ -v already_parsed["${normalized_pkgbase}"] ]]; then
             continue
         else
             echo "$pkgbase:$version" >>"${tmp_dir}/lib.state.new"

@@ -145,7 +145,7 @@ function update-lib-bump() {
     local bump=0
     local -n pkg_config=${1:-VARIABLES}
 
-    if [ ! -v pkg_config[CI_REBUILD_TRIGGERS] ]; then
+    if [[ ! -v pkg_config[CI_REBUILD_TRIGGERS] ]]; then
         return 0
     fi
 
@@ -449,7 +449,7 @@ for package in "${PACKAGES[@]}"; do
 
             # We don't want to schedule packages that have a specific trigger to prevent 
             # large packages getting scheduled too often and wasting resources (e.g. llvm-git)
-            if [ ! -v VARIABLES[CI_ON_TRIGGER] ]; then
+            if [[ ! -v VARIABLES[CI_ON_TRIGGER] ]]; then
                 MODIFIED_PACKAGES+=("$package")
             fi
 
