@@ -326,7 +326,7 @@ function UTIL_PARSE_DATABASE() {
         if [[ -v already_parsed["${normalized_pkgbase}"] ]]; then
             continue
         else
-            echo "$pkgbase:$version" >>"${tmp_dir}/lib.state.new"
+            echo "$pkgbase:$version" >>"${tmp_dir}/versions.new"
             already_parsed["$normalized_pkgbase"]="true"
         fi
     done < <(find "${tmp_dir}/${repo}" -maxdepth 2 -name 'desc' -exec awk -f .ci/awk/parse-database.awk {} +)

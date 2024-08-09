@@ -119,8 +119,8 @@ function collect_changed_libs() {
     if [ -z "$CI_LIB_DB" ]; then
         return 0
     fi
-    if [ ! -f .ci/lib.state ]; then
-        touch .ci/lib.state
+    if [ ! -f .state/versions ]; then
+        touch .state/versions
     fi
 
     IFS=' ' read -r -a link_array <<<"${CI_LIB_DB//\"/}"
@@ -131,14 +131,14 @@ function collect_changed_libs() {
         UTIL_PARSE_DATABASE "${repo}" "${_TEMP_LIB}"
     done
 
-    # Sort lib.state in-place because comm requires it
-    sort -o "${_TEMP_LIB}/lib.state.new"{,}
-    comm -23 .ci/lib.state "${_TEMP_LIB}/lib.state.new" >"$_TEMP_LIB/lib.state.diff"
+    # Sort versions file in-place because comm requires it
+    sort -o "${_TEMP_LIB}/versions.new"{,}
+    comm -23 .state/versions "${_TEMP_LIB}/versions.new" >"$_TEMP_LIB/versions.diff"
 
     while IFS= read -r line; do
         IFS=':' read -r -a pkg <<<"$line"
         CHANGED_LIBS["${pkg[0]}"]="true"
-    done <"$_TEMP_LIB/lib.state.diff"
+    done <"$_TEMP_LIB/versions.diff"
 }
 
 function update-lib-bump() {
@@ -166,7 +166,7 @@ function update-lib-bump() {
         # Split at slash, but if it doesnt exist, set it to 1
         _PKGVER="${CONFIG[CI_PACKAGE_BUMP]%%/*}"
         _BUMPCOUNT="${CONFIG[CI_PACKAGE_BUMP]#*/}"
-        _PKGVER_IN_DB=$(grep "$package:" "${_TEMP_LIB}/lib.state.new" | cut -d ":" -f 2)
+        _PKGVER_IN_DB=$(grep "$package:" "${_TEMP_LIB}/versions.new" | cut -d ":" -f 2)
 
         if [[ "${_BUMPCOUNT}" == "${CONFIG[CI_PACKAGE_BUMP]}" ]]; then
             _BUMPCOUNT=1
@@ -465,8 +465,8 @@ done
 
 # Update the lib versions state file
 if [ $PUSH == true ]; then
-    mv "$_TEMP_LIB/lib.state.new" .ci/lib.state
-    git add .ci/lib.state
+    mv "$_TEMP_LIB/versions.new" .newstate/versions
+    git add .newstate/versions
     git commit -q --amend --no-edit --date=now
 fi
 
