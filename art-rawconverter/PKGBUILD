@@ -1,7 +1,7 @@
-# options
-if [ -n "$_srcinfo" ] || [ -n "$_pkgver" ]; then
-  : ${_autoupdate:=false}
-else
+# Maintainer:
+
+## options
+if [ -z "$_srcinfo" ] && [ -z "$_pkgver" ]; then
   : ${_autoupdate:=true}
 fi
 
@@ -14,82 +14,94 @@ unset _pkgtype
 [[ "${_build_avx::1}" == "t" ]] && _pkgtype+="-avx"
 [[ "${_build_git::1}" == "t" ]] && _pkgtype+="-git"
 
-# basic info
+## basic info
 _pkgname="art-rawconverter"
 pkgname="$_pkgname${_pkgtype:-}"
-pkgver=1.22
+pkgver=1.23
 pkgrel=1
 pkgdesc="Raw image converter forked from RawTherapee with ease of use in mind"
 url="https://bitbucket.org/agriggio/art"
 license=('GPL-3.0-or-later')
 arch=('x86_64')
 
-# main package
-_main_package() {
-  depends=(
-    'exiv2'
-    'fftw'
-    'glibmm'
-    'gtk3'
-    'gtkmm3'
-    'lcms2'
-    'lensfun'
-    'libcanberra'
-    'libiptcdata'
-    'libraw'
-    'mimalloc'
-    'opencolorio'
-    'openmp'
-  )
-  makedepends=(
-    'cmake'
-    'fakeroot'
-    'git'
-    'pkgconf'
-  )
-  optdepends=(
-    'chaotic-interfere: chaotic-aur interference tracker'
-    'art-rawconverter-imageio: add support for additional image formats'
-    'lcms2-ff: lcms2 with fast-float plugin for improved export speed'
-    'perl-image-exiftool: metadata support for CR3 images'
-  )
+depends=(
+  'exiv2'
+  'fftw'
+  'glibmm'
+  'gtk3'
+  'gtkmm3'
+  'lcms2'
+  'lensfun'
+  'libcanberra'
+  'libiptcdata'
+  'libraw'
+  'mimalloc'
+  'opencolorio'
+  'openmp'
+)
+makedepends=(
+  'cmake'
+  'fakeroot'
+  'git'
+  'pkgconf'
+)
+optdepends=(
+  'chaotic-interfere: chaotic-aur interference tracker'
+  'art-rawconverter-imageio: add support for additional image formats'
+  'lcms2-ff: lcms2 with fast-float plugin for improved export speed'
+  'perl-image-exiftool: metadata support for CR3 images'
+)
 
-  if [[ "${_build_clang::1}" == "t" ]]; then
-    makedepends+=(
-      'clang'
-      'lld'
-      'llvm'
-    )
+if [[ "${_build_clang::1}" == "t" ]]; then
+  makedepends+=(
+    'clang'
+    'lld'
+    'llvm'
+  )
+fi
+
+_update_version() {
+  : ${_pkgver:=${pkgver%%.r*}}
+
+  if [[ "${_autoupdate::1}" != "t" ]]; then
+    return
   fi
 
-  if [ "${_build_git::1}" != "t" ]; then
-    _main_stable
-  else
-    _main_git
+  local _regex='^\s*<td class="name">([0-9\.]+)</td>.*$'
+  local _response=$(curl -Ssf "https://bitbucket.org/agriggio/art/downloads/?tab=tags")
+  local _tag=$(
+    printf '%s' "$_response" \
+      | grep -E "$_regex" \
+      | sed -E 's@'"$_regex"'@\1@' \
+      | sort -rV | head -1
+  )
+  local _pkgver_new="${_tag#v}"
+
+  # update _pkgver
+  if [ "$_pkgver" != "${_pkgver_new:?}" ]; then
+    _pkgver="${_pkgver_new:?}"
   fi
 }
 
-# stable package
-_main_stable() {
+_source_stable() {
   _update_version
 
   _pkgsrc="$_pkgname"
-  source+=("$_pkgsrc"::"git+$url.git#tag=$_pkgver")
-  sha256sums+=('SKIP')
+  source=("$_pkgsrc"::"git+$url.git#tag=$_pkgver")
+  sha256sums=('SKIP')
 
   pkgver() {
     echo "${_pkgver:?}"
   }
 }
 
-# git package
-_main_git() {
+_source_git() {
   provides=("$_pkgname")
   conflicts=("$_pkgname")
 
   _pkgsrc="$_pkgname"
-  source+=("$_pkgsrc"::"git+$url.git")
-  sha256sums+=('SKIP')
+  source=("$_pkgsrc"::"git+$url.git")
+  sha256sums=('SKIP')
 
   pkgver() {
     cd "$_pkgsrc"
@@ -97,7 +109,12 @@ _main_git() {
   }
 }
 
-# common functions
+if [ "${_build_git::1}" != "t" ]; then
+  _source_stable
+else
+  _source_git
+fi
+
 prepare() {
   _pkgver=$(pkgver)
 
@@ -150,30 +167,3 @@ package() {
   ln -s "ART" "$pkgdir/usr/bin/art"
   ln -s "ART-cli" "$pkgdir/usr/bin/art-cli"
 }
-
-# update version
-_update_version() {
-  : ${_pkgver:=${pkgver%%.r*}}
-
-  if [[ "${_autoupdate::1}" != "t" ]]; then
-    return
-  fi
-
-  local _regex='^\s*<td class="name">([0-9\.]+)</td>.*$'
-  local _response=$(curl -Ssf "https://bitbucket.org/agriggio/art/downloads/?tab=tags")
-  local _tag=$(
-    printf '%s' "$_response" \
-      | grep -E "$_regex" \
-      | sed -E 's@'"$_regex"'@\1@' \
-      | sort -rV | head -1
-  )
-  local _pkgver_new="${_tag#v}"
-
-  # update _pkgver
-  if [ "$_pkgver" != "${_pkgver_new:?}" ]; then
-    _pkgver="${_pkgver_new:?}"
-  fi
-}
-
-# execute
-_main_package
