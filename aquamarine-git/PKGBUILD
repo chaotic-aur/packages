@@ -2,7 +2,7 @@
 
 _pkgname="aquamarine"
 pkgname="${_pkgname}-git"
-pkgver=0.1.0_r147.g7a84686
+pkgver=0.3.0_r170.g131ed05
 pkgrel=1
 pkgdesc="Aquamarine is a very light linux rendering backend library "
 arch=(any)

@@ -1,0 +1,32 @@
+pkgdesc="a very light linux rendering backend library"
+arch=('x86_64')
+
+makedepends+=('ninja')
+
+provides=("aquamarine=$pkgver")
+conflicts=("aquamarine")
+
+pkgver() {
+  cd "$_pkgname"
+  git describe --long --tags --abbrev=7 --exclude='*[a-zA-Z][a-zA-Z]*' \
+    | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
+}
+
+build() {
+  local _cmake_options=(
+    -B build
+    -S "$_pkgname"
+    -G Ninja
+    -DCMAKE_BUILD_TYPE=None
+    -DCMAKE_INSTALL_PREFIX='/usr'
+    -Wno-dev
+  )
+
+  cmake "${_cmake_options[@]}"
+  cmake --build build
+}
+
+package() {
+  DESTDIR="$pkgdir" cmake --install build
+  install -Dm644 "$_pkgname"/LICENSE -t "$pkgdir/usr/share/licenses/$pkgname/"
+}
