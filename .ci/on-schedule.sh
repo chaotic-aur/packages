@@ -2,7 +2,7 @@
 set -euo pipefail
 
 # This script is triggered by a scheduled pipeline
-# shellcheck source=/dev/null
+# shellcheck source=./util.shlib
 source .ci/util.shlib
 
 # Read config file into global variables
@@ -235,11 +235,11 @@ function update_via_git() {
     local pkgbase="${VARIABLES_VIA_GIT[PKGBASE]}"
 
     for i in {1..2}; do
-        if git clone -q --depth=1 "$2" "$TMPDIR/aur-pulls/$pkgbase"; then
+        if git clone -q --depth=1 "$2" "$TMPDIR/aur-pulls/$pkgbase" 2>&1; then
             break
         fi
         if [ "$i" -ne 2 ]; then
-            echo "$pkgbase: Failed to clone $2. Retrying in 30 seconds."
+            UTIL_PRINT_WARNING "$pkgbase: Failed to clone $2. Retrying in 30 seconds."
             sleep 30
         else
             # Give up
@@ -450,10 +450,10 @@ for package in "${PACKAGES[@]}"; do
 
             # We don't want to schedule packages that have a specific trigger to prevent 
             # large packages getting scheduled too often and wasting resources (e.g. llvm-git)
-            if [[ ! -v VARIABLES[CI_ON_TRIGGER] ]]; then
-                MODIFIED_PACKAGES+=("$package")
-            else 
+            if [[ ${VARIABLES[CI_ON_TRIGGER]+x} ]]; then 
                 UTIL_PRINT_INFO "Will not schedule $package because it has trigger ${VARIABLES[CI_ON_TRIGGER]} set."
+            else 
+                MODIFIED_PACKAGES+=("$package")
             fi 
 
             if [ -v CI_HUMAN_REVIEW ] && [ "$CI_HUMAN_REVIEW" == "true" ] && git show-ref --quiet "origin/update-$package"; then

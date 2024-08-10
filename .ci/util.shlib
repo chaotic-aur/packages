@@ -165,7 +165,7 @@ function UTIL_FETCH_VCS_COMMIT() {
     fi
 
     local _NEWEST_COMMIT
-    if ! _NEWEST_COMMIT="$(git ls-remote "$source" "$ref" | grep -m1 -oP '\w+(?=\t\w)')"; then
+    if ! _NEWEST_COMMIT="$(git ls-remote "$source" "$ref" 2>/dev/null | grep -m1 -oP '\w+(?=\t\w)')"; then
         return 1
     fi
     if [ -z "$_NEWEST_COMMIT" ]; then

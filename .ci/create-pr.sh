@@ -4,7 +4,7 @@ set -euo pipefail
 # $1: pkgbase
 # $2: Go one commit further back
 
-# shellcheck source=/dev/null
+# shellcheck source=./util.shlib
 source .ci/util.shlib
 
 if [ -z "${ACCESS_TOKEN:-}" ]; then

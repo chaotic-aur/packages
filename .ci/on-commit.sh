@@ -2,7 +2,7 @@
 set -euo pipefail
 
 # This script is triggered by a pipeline which runs after every commit
-# shellcheck source=/dev/null
+# shellcheck source=./util.shlib
 source .ci/util.shlib
 
 # Read config file into global variables
