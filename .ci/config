@@ -7,4 +7,4 @@ REDIS_SSH_HOST=builds.garudalinux.org
 REDIS_SSH_PORT=400
 REDIS_SSH_USER=package-deployer
 REPO_NAME=chaotic-aur
-TEMPLATE_ENABLE_UPDATES=true
+TEMPLATE_ENABLE_UPDATES=false

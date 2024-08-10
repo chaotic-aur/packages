@@ -120,6 +120,7 @@ function collect_changed_libs() {
         return 0
     fi
     if [ ! -f .state/versions ]; then
+        mkdir -p .state || true
         touch .state/versions
     fi
 
@@ -451,7 +452,9 @@ for package in "${PACKAGES[@]}"; do
             # large packages getting scheduled too often and wasting resources (e.g. llvm-git)
             if [[ ! -v VARIABLES[CI_ON_TRIGGER] ]]; then
                 MODIFIED_PACKAGES+=("$package")
-            fi
+            else 
+                UTIL_PRINT_INFO "Will not schedule $package because it has trigger ${VARIABLES[CI_ON_TRIGGER]} set."
+            fi 
 
             if [ -v CI_HUMAN_REVIEW ] && [ "$CI_HUMAN_REVIEW" == "true" ] && git show-ref --quiet "origin/update-$package"; then
                 DELETE_BRANCHES+=("update-$package")
