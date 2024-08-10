@@ -2,7 +2,7 @@
 # shellcheck disable=2153
 set -euo pipefail
 
-# shellcheck source=/dev/null
+# shellcheck source=./util.shlib
 source .ci/util.shlib
 
 # Set up required environment

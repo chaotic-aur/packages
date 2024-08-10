@@ -10,7 +10,7 @@ shift
 
 PACKAGES=("$@")
 
-# shellcheck source=/dev/null
+# shellcheck source=./util.shlib
 source .ci/util.shlib
 
 if [ -v "PACKAGES[0]" ] && [ "${PACKAGES[0]}" == "all" ] && [ "$COMMAND" == "schedule" ]; then

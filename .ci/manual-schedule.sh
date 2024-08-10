@@ -2,7 +2,7 @@
 set -euo pipefail
 
 # This script is triggered a manual pipeline run via the web interface
-# shellcheck source=/dev/null
+# shellcheck source=./util.shlib
 source .ci/util.shlib
 
 # This script is used to manually trigger a build via pipeline UI
