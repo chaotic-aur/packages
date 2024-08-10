@@ -1,1 +1,6 @@
 url="https://github.com/llvm/llvm-project"
+
+prepare() {
+  echo "Chaotic AUR: Stopping build."
+  return 1
+}
