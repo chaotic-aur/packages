@@ -216,6 +216,10 @@ function UTIL_FETCH_AUR_TIMESTAMPS() {
         # Every 150 packages or at the end of the array, fetch the timestamps
         if [ $((i % 150)) -eq 149 ] || [ "$i" -eq "$((${#pkgbases[@]} - 1))" ]; then
             local response
+
+            # Ensure also packages containing "+" can be fetched, since this is a special character in URLs
+            API_URL=${API_URL//+/%2B}
+
             UTIL_PRINT_INFO "Fetching AUR timestamps for $((i + 1))/${#pkgbases[@]} packages..."
             if response="$(curl -s "$API_URL")"; then
                 local -a res_timestamps
