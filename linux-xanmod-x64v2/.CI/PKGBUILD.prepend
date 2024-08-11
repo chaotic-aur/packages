@@ -2,8 +2,8 @@
 export MAKEFLAGS="${MAKEFLAGS:-} -j $(nproc)"
 
 # package options
-_microarchitecture=91
-_config=config_x86-64-v1
+_microarchitecture=92
+_config=config_x86-64-v2
 
 use_numa=y
 use_tracers=n
@@ -14,5 +14,5 @@ _localmodcfg=n
 _makenconfig=n
 
 # pkgbase extension
-_pkgtype=${_config#config_x86-64}
-_pkgtype=${_compiler:+-$_compiler}${_pkgtype#-v1}
+_pkgtype="-x64${_config#config_x86-64-}"
+_pkgtype=${_compiler:+-$_compiler}${_pkgtype#-x64v1}
