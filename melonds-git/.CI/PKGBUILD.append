@@ -1,5 +1,3 @@
-url="https://github.com/melonDS-emu/melonDS"
-
 pkgver() {
   cd "${_gitname}"
   git describe --long --tags --abbrev=7 --exclude='*[a-zA-Z][a-zA-Z]*' \
