@@ -1,7 +1,0 @@
-#!/usr/bin/env sh
-
-# mangle replaces directive
-sed -E -e 's&^(\s*)(replaces\+?=)&\1 _ignore_\2&g' -i PKGBUILD
-
-# rename pkgbase
-sed -E -e 's&^(pkgbase=\S+)$&\1${_pkgtype:-}&' -i PKGBUILD
