@@ -40,7 +40,7 @@ if [ "${_compiler}" = "clang" ]; then
 fi
 
 # Choose between the 4 main configs for stable branch. Default x86-64-v1 which use CONFIG_GENERIC_CPU2:
-# Possible values: config_x86-64-v1 / config_x86-64-v2 (default) / config_x86-64-v3 / config_x86-64-v4
+# Possible values: config_x86-64-v2 (default) / config_x86-64-v3 / config_x86-64-v4
 # This will be overwritten by selecting any option in microarchitecture script
 # Source files: https://github.com/xanmod/linux/tree/5.17/CONFIGS/xanmod/gcc
 if [ -z ${_config+x} ]; then
@@ -71,7 +71,7 @@ fi
 
 ### IMPORTANT: Do no edit below this line unless you know what you're doing
 
-pkgbase=linux-xanmod
+pkgbase=linux-xanmod-edge
 _major=6.10
 pkgver=${_major}.3
 _branch=6.x
@@ -79,7 +79,7 @@ xanmod=1
 _revision=
 _sf_branch=main
 pkgrel=${xanmod}
-pkgdesc='Linux Xanmod - Stable Mainline [MAIN]'
+pkgdesc='Linux Xanmod - Rolling Release [EDGE]'
 url="http://www.xanmod.org/"
 arch=(x86_64)
 license=(GPL2)

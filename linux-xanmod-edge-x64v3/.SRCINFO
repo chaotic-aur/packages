@@ -1,5 +1,5 @@
-pkgbase = linux-xanmod
-	pkgdesc = Linux Xanmod - Stable Mainline [MAIN]
+pkgbase = linux-xanmod-edge
+	pkgdesc = Linux Xanmod - Rolling Release [EDGE]
 	pkgver = 6.10.3
 	pkgrel = 1
 	url = http://www.xanmod.org/
@@ -26,7 +26,7 @@ pkgbase = linux-xanmod
 	sha256sums = e0b4fd44086886b873d0af0222a7bdb5c70a63c5d47939c375dba392b4673921
 	sha256sums = a8b38eb482eb685944757182c4886404abc12703e5e56ec39c7d61298d17d71f
 
-pkgname = linux-xanmod
+pkgname = linux-xanmod-edge
 	pkgdesc = The Linux kernel and modules with Xanmod patches
 	depends = coreutils
 	depends = initramfs
@@ -40,6 +40,6 @@ pkgname = linux-xanmod
 	replaces = virtualbox-guest-modules-arch
 	replaces = wireguard-arch
 
-pkgname = linux-xanmod-headers
-	pkgdesc = Headers and scripts for building modules for the Linux Xanmod - Stable Mainline [MAIN] kernel
+pkgname = linux-xanmod-edge-headers
+	pkgdesc = Headers and scripts for building modules for the Linux Xanmod - Rolling Release [EDGE] kernel
 	depends = pahole
