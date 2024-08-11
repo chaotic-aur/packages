@@ -3,3 +3,5 @@
 : ${_debugfast:=false}
 : ${_build_debugfast:=false}
 : ${_build_git:=true}
+
+pkgbase=dolphin-emu-avx-git
