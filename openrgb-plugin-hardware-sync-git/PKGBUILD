@@ -1,0 +1,29 @@
+# Maintainer: Adam Honse <calcprogrammer10@gmail.com>
+pkgname=openrgb-plugin-hardware-sync-git
+pkgver=0.9.r6.gcf099e1
+pkgrel=1
+pkgdesc="Hardware Sync plugin for OpenRGB"
+arch=('any')
+url="https://gitlab.com/OpenRGBDevelopers/OpenRGBHardwareSyncPlugin"
+license=('GPL-2.0-only')
+depends=('qt5-tools' 'openrgb')
+makedepends=('git')
+source=("git+https://gitlab.com/OpenRGBDevelopers/OpenRGBHardwareSyncPlugin.git")
+sha256sums=('SKIP')
+
+pkgver() {
+  cd OpenRGBHardwareSyncPlugin
+  git describe --long --tags --abbrev=7 | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
+}
+
+build() {
+  cd "$srcdir/OpenRGBHardwareSyncPlugin"
+  git submodule update --init --recursive
+  qmake OpenRGBHardwareSyncPlugin.pro PREFIX=/usr/
+  make
+}
+
+package() {
+  cd OpenRGBHardwareSyncPlugin
+  make INSTALL_ROOT="$pkgdir" install
+}
