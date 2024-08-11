@@ -11,5 +11,5 @@ sed -E \
 
 # rename pkgbase
 sed -E \
-  -e 's&^(pkgbase=\S+)(.*)$&\1-v3&' \
+  -e 's&^(pkgbase=\S+)(.*)$&\1-x64v3&' \
   -i PKGBUILD
