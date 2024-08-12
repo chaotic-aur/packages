@@ -1,0 +1,152 @@
+# Maintainer:
+
+## options
+if [ -z "$_srcinfo" ] && [ -z "$_pkgver" ]; then
+  : ${_autoupdate:=true}
+fi
+
+: ${_build_gui:=qt6}
+
+: ${_build_git:=false}
+
+unset _pkgtype
+[[ "${_build_git::1}" == "t" ]] && _pkgtype+="-git"
+
+## basic info
+_pkgname="youplay"
+pkgname="$_pkgname${_pkgtype:-}"
+pkgver=0.46
+pkgrel=1
+pkgdesc="Search, download and play music from YouTube"
+url="https://codeberg.org/ralfhersel/youplay"
+license=('GPL-3.0-only')
+arch=('any')
+
+makedepends=('git')
+
+conflicts=(
+  'youplay-base'
+  'youplay-gtk3'
+  'youplay-gtk4'
+  'youplay-pyqt6'
+  'youplay-qt6'
+)
+
+_source_stable() {
+  _pkgsrc="$_pkgname"
+  _pkgext="tar.gz"
+  source=("$_pkgname-$_pkgver.$_pkgext"::"$url/archive/v$_pkgver.$_pkgext")
+  sha256sums=('SKIP')
+}
+
+_source_git() {
+  provides+=("$_pkgname=${pkgver%%.r*}")
+  conflicts+=("$_pkgname")
+
+  _pkgsrc="$_pkgname"
+  source=("$_pkgsrc"::"git+$url.git")
+  sha256sums=('SKIP')
+
+  pkgver() {
+    cd "$_pkgsrc"
+
+    git describe --long --tags --abbrev=7 --exclude='*[a-zA-Z][a-zA-Z]*' \
+      | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
+  }
+}
+
+package() {
+  depends+=(
+    'ffmpeg'
+    'mpv'
+    'python'
+    'python-mpv'
+    'yt-dlp'
+  )
+
+  case "$_build_gui" in
+    gtk3)
+      depends+=('gtk3' 'python-gobject')
+      ;;
+    gtk4)
+      depends+=('gtk4' 'libadwaita')
+      ;;
+    pyqt6)
+      depends+=('python-pyqt6')
+      ;;
+    *)
+      depends+=('pyside6')
+      _build_gui=qt6
+      ;;
+  esac
+
+  cd "$_pkgsrc"
+
+  # main files
+  install -Dm755 youplay.py -t "$pkgdir/usr/share/$_pkgname/"
+  install -Dm644 youplay_gtk3.py -t "$pkgdir/usr/share/$_pkgname/"
+  install -Dm644 youplay_gtk4.py -t "$pkgdir/usr/share/$_pkgname/"
+  install -Dm644 youplay_pyqt6.py -t "$pkgdir/usr/share/$_pkgname/"
+  install -Dm644 youplay_qt6.py -t "$pkgdir/usr/share/$_pkgname/"
+
+  # script
+  install -Dm755 /dev/stdin "$pkgdir/usr/bin/$pkgname" << END
+#!/bin/bash
+[ -n "\$@" ] && _gui=grep -Po '(?<=--gui=)\S+' <<< "\$@"
+: \${_gui=$_build_gui}
+
+exec python /usr/share/$_pkgname/youplay.py --gui=\$_gui
+END
+
+  # icon
+  install -Dm644 youplay.svg -t "$pkgdir/usr/share/$_pkgname/"
+  install -dm755 "$pkgdir/usr/share/pixmaps"
+  ln -sf "/usr/share/$_pkgname/youplay.svg" "$pkgdir/usr/share/pixmaps/youplay.svg"
+
+  # desktop file
+  install -Dm644 /dev/stdin "$pkgdir/usr/share/applications/youplay.desktop" << END
+[Desktop Entry]
+Type=Application
+Name=YouPlay
+GenericName=Play music from Youtube
+Comment=$pkgdesc
+Exec=$_pkgname
+Icon=$_pkgname
+Terminal=false
+StartupNotify=false
+Categories=Utility;Music
+Keywords=Multimedia;Music;Youtube
+END
+}
+
+_update_version() {
+  : ${_pkgver:=${pkgver%%.r*}}
+
+  if [[ "${_autoupdate::1}" != "t" ]]; then
+    return
+  fi
+
+  local _response _tag _pkgver_new
+  _response=$(curl -Ssf "$url/releases")
+  _tag=$(
+    printf '%s' "$_response" \
+      | grep -Pom1 "(?<=/youplay/src/tag/)[v0-9\.]+(?=\")"
+  )
+  _pkgver_new="${_tag#v}"
+
+  # update _pkgver
+  if [ "$_pkgver" != "${_pkgver_new:?}" ]; then
+    _pkgver="${_pkgver_new:?}"
+  fi
+
+  pkgver() {
+    echo "${_pkgver:?}"
+  }
+}
+
+if [ "${_build_git::1}" != "t" ]; then
+  _update_version
+  _source_stable
+else
+  _source_git
+fi
