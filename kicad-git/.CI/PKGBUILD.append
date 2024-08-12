@@ -9,23 +9,7 @@ conflicts=("kicad")
 unset install
 
 prepare() {
-  cd "$pkgname"
-
-  local _commit _url_ci _response _count _total
-  _commit=$(git rev-parse HEAD)
-  _url_ci="https://gitlab.com/kicad/code/kicad/-/commit/$_commit/pipelines"
-  _response=$(curl -Ssf "$_url_ci")
-  _count=$(grep -o status_success  <<< "$_response" | wc -l)
-  _total=$(grep -o status_  <<< "$_response" | wc -l)
-
-  if [ "$_count" != "$_total" ]; then
-    echo "Error: Commit failed check-in. ${_count}/${_total}"
-    echo "   $_url_ci"
-    return 1
-  else
-    echo "Commit passed check-in.  ${_count}/${_total}"
-    echo "   $_url_ci"
-  fi
+  :
 }
 
 pkgver() {
@@ -35,6 +19,8 @@ pkgver() {
 }
 
 build() {
+  _check_status
+
   export CXXFLAGS+=" -fno-strict-aliasing"
   export LDFLAGS+=" -Wl,--copy-dt-needed-entries"
 
@@ -57,3 +43,33 @@ build() {
 package() {
   DESTDIR="$pkgdir" cmake --install build
 }
+
+_check_status() (
+  cd "$pkgname"
+
+  local _commit _url_ci _response _msg_err _success_ci
+  _commit=$(git rev-parse HEAD)
+  _url_ci="https://gitlab.com/kicad/code/kicad/-/commit/$_commit/pipelines"
+  _response=$(curl -Ssf "$_url_ci")
+
+  if grep -qo favicon_status_success <<< "$_response"; then
+    _msg_err="Check-in success."
+    _success_ci=true
+  elif grep -qo favicon_status_failed <<< "$_response"; then
+    _msg_err="Error: Check-in failed."
+    _success_ci=false
+  elif grep -qo favicon_status_running <<< "$_response"; then
+    _msg_err="Error: Check-in running."
+    _success_ci=false
+  else
+    _msg_err="Error: Check-in unknown."
+    _success_ci=false
+  fi
+
+  echo "$_msg_err"
+  echo "   $_url_ci"
+
+  if [ "${_success_ci::1}" != "t" ]; then
+    return 1
+  fi
+)
