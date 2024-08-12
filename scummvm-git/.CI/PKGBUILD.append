@@ -1,5 +1,8 @@
+pkgdesc="A 'virtual machine' for several classic graphical point-and-click adventure games"
 url="https://github.com/scummvm/scummvm"
 license=('GPL-3.0-or-later')
+
+unset install
 
 pkgver() {
   cd "${_pkgname}"
@@ -12,3 +15,38 @@ pkgver() {
   _hash=$(git rev-parse --short=7 HEAD)
   printf '%s.r%s.g%s' "${_version:?}" "${_revision:?}" "${_hash:?}"
 }
+
+eval _orig_"$(declare -f build)"
+build() {
+  _check_status
+  _orig_build
+}
+
+_check_status() (
+  cd "${_pkgname}"
+
+  local _commit _url_ci _response _msg_err _success_ci
+  _commit=$(git rev-parse HEAD)
+  _url_ci="https://github.com/scummvm/scummvm/commit/$_commit/checks"
+  _response=$(curl -Ssf "$_url_ci")
+  _success_ci=false
+
+  if grep -qo 'favicon-success.svg' <<< "$_response"; then
+    _msg_err="Check-in success."
+    _success_ci=true
+  elif grep -qo 'favicon-failure.svg' <<< "$_response"; then
+    _msg_err="Error: Check-in failure."
+    _success_ci=false
+  else
+    _msg_err="Error: Check-in incomplete."
+    _success_ci=false
+  fi
+
+  echo "$_msg_err"
+  echo "   $_url_ci"
+  echo
+
+  if [ "${_success_ci::1}" != "t" ]; then
+    return 1
+  fi
+)
