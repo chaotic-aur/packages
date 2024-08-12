@@ -1,0 +1,13 @@
+_url_source=$(grep -Eo 'https://\S+\.tar\.gz' <<< "${source[0]}")
+
+_pkgver() {
+  local _response _date _pkgver
+  _response=$(curl -Is "$_url_source")
+  _date=$(grep -Pom1 '(?<=last-modified: )\S.*\S' <<< "$_response")
+  _pkgver=$(date +%Y.%m.%d -d "$_date")
+  printf '%s' "${_pkgver:?}"
+}
+
+pkgver=$(_pkgver)
+
+source[0]="steamcmd_linux-$pkgver.tar.gz"::"https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz"
