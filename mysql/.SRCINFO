@@ -1,6 +1,6 @@
 pkgbase = mysql
 	pkgdesc = Fast SQL database server, community edition
-	pkgver = 8.4.0
+	pkgver = 9.0.1
 	pkgrel = 1
 	url = https://www.mysql.com/products/community/
 	arch = x86_64
@@ -20,8 +20,8 @@ pkgbase = mysql
 	makedepends = libfido2
 	makedepends = re2
 	makedepends = rapidjson
-	source = https://cdn.mysql.com/Downloads/MySQL-8.4/mysql-8.4.0.tar.gz
-	source = https://cdn.mysql.com/Downloads/MySQL-8.4/mysql-8.4.0.tar.gz.asc
+	source = https://cdn.mysql.com/Downloads/MySQL-9.0/mysql-9.0.1.tar.gz
+	source = https://cdn.mysql.com/Downloads/MySQL-9.0/mysql-9.0.1.tar.gz.asc
 	source = my-default.cnf
 	source = mysql-ld.so.conf
 	source = mysql.sysconfig
@@ -29,9 +29,9 @@ pkgbase = mysql
 	source = systemd-tmpfiles.patch
 	source = systemd-sysusers.conf
 	validpgpkeys = BCA43417C3B485DD128EC6D4B7B3B788A8D3785C
-	sha256sums = 47a5433fcdd639db836b99e1b5459c2b813cbdad23ff2b5dd4ad27f792ba918e
+	sha256sums = 18fa65f1ea6aea71e418fe0548552d9a28de68e2b8bc3ba9536599eb459a6606
 	sha256sums = SKIP
-	sha256sums = 6bc24ae510f6b6bbad6b3edda2d0028b29292937b482274a4c2fae335f4de328
+	sha256sums = edd5ffa5a982e47c5fcda5751b79690c38a5a57e32616df27631c51c2dfd5760
 	sha256sums = e1c23fa0971a13d998f2790379b68c475438d05b6d6f2691b99051dbf497567f
 	sha256sums = 203dcd22fea668477ac7123dbd9909fae72d3d07f8855417a669a9c94db072ae
 	sha256sums = 8fbedfc2c5fe271ed13217feeceeac00202d2cb135e4283eeee2f9a13d6251af
@@ -54,8 +54,8 @@ pkgname = mysql
 	depends = zstd
 	depends = bash
 	optdepends = perl-dbd-mysql: for mysqlhotcopy, mysql_convert_table_format, mysql_setpermission, mysqldumpslow
-	provides = mariadb=8.4.0
-	provides = mysql=8.4.0
+	provides = mariadb=9.0.1
+	provides = mysql=9.0.1
 	conflicts = mariadb
 	options = emptydirs
 	backup = etc/mysql/my.cnf
@@ -68,9 +68,9 @@ pkgname = libmysqlclient
 	depends = libsasl
 	depends = zlib
 	depends = zstd
-	provides = libmariadbclient=8.4.0
-	provides = libmysqlclient=8.4.0
-	provides = mariadb-libs=8.4.0
+	provides = libmariadbclient=9.0.1
+	provides = libmysqlclient=9.0.1
+	provides = mariadb-libs=9.0.1
 	conflicts = libmariadbclient
 	conflicts = mariadb-libs
 
@@ -84,6 +84,6 @@ pkgname = mysql-clients
 	depends = lz4
 	depends = zstd
 	depends = bash
-	provides = mariadb-clients=8.4.0
-	provides = mysql-clients=8.4.0
+	provides = mariadb-clients=9.0.1
+	provides = mysql-clients=9.0.1
 	conflicts = mariadb-clients
