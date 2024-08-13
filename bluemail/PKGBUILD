@@ -1,11 +1,8 @@
-# options
-if [ -n "$_srcinfo" ] || [ -n "$_pkgver" ]; then
-  : ${_autoupdate:=false}
-else
-  : ${_autoupdate:=true}
-fi
+# Maintainer:
 
-# basic info
+## links
+# https://www.bluemail.me
+
 _pkgname="bluemail"
 _snapname="bluemail"
 pkgname="$_pkgname"
@@ -13,27 +10,22 @@ pkgver=1.137.2
 pkgrel=3
 pkgdesc="BlueMail is a free, secure, universal email app, capable of managing an unlimited number of mail accounts"
 url="https://snapcraft.io/$_snapname"
-# url='https://www.bluemail.me'
 arch=('x86_64')
 license=('custom')
 
-# main package
-_main_package() {
-  _update_version
+makedepends=(
+  'gendesk'
+  'html-xml-utils'
+  'pandoc'
+  'sha3sum'
+  'squashfs-tools'
+)
 
-  makedepends=(
-    'gendesk'
-    'html-xml-utils'
-    'pandoc'
-    'sha3sum'
-    'squashfs-tools'
-  )
-
+_source_main() {
   source=("$_filename"::"$_dl_url")
   sha256sums=('SKIP')
 }
 
-# common functions
 _privacy_policy="privacy_policy"
 _privacy_policy_url="https://bluemail.me/privacy/"
 _terms_of_use="terms_of_use"
@@ -138,13 +130,8 @@ package() {
   install -Dm644 "$_terms_of_use.txt" -t "$pkgdir/usr/share/licenses/$pkgname"
 }
 
-# update version
 _update_version() {
   : ${_pkgver:=${pkgver%%.r*}}
-
-  if [[ "${_autoupdate::1}" != "t" ]]; then
-    return
-  fi
 
   _response=$(
     curl -H 'Snap-Device-Series: 16' --no-progress-meter "http://api.snapcraft.io/v2/snaps/info/$_snapname" \
@@ -185,5 +172,5 @@ _update_version() {
   }
 }
 
-# execute
-_main_package
+_update_version
+_source_main

@@ -10,7 +10,7 @@ pkgbase = bluemail
 	makedepends = pandoc
 	makedepends = sha3sum
 	makedepends = squashfs-tools
-	source = ::
+	source = bluemail-1.140.34.snap::https://api.snapcraft.io/api/v1/snaps/download/ZVlj0qw0GOFd5JgTfL8kk2Y5eIG1IpiH_170.snap
 	sha256sums = SKIP
 
 pkgname = bluemail
