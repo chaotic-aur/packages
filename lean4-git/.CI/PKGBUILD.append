@@ -1,6 +1,1 @@
 url="https://github.com/leanprover/lean4"
-
-prepare() {
-  echo "Chaotic AUR: Stopping build."
-  return 1
-}
