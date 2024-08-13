@@ -1,40 +1,33 @@
-# options
-if [ -n "$_srcinfo" ] || [ -n "$_pkgver" ]; then
-  : ${_autoupdate:=false}
-else
-  : ${_autoupdate:=true}
-fi
+# Maintainer:
 
-# basic info
+## linkx
+# https://www.termius.com/
+
 _pkgname="termius"
 _snapname="$_pkgname-app"
 pkgname="$_pkgname"
-pkgver=8.7.2
+pkgver=9.3.1
 pkgrel=1
 pkgdesc="Desktop SSH Client"
 url='https://snapcraft.io/termius-app'
-# url="https://www.termius.com/"
 arch=('x86_64')
 license=('custom')
 
-# main package
-_main_package() {
-  _update_version
+makedepends=(
+  'html-xml-utils'
+  'pandoc'
+  'sha3sum'
+  'squashfs-tools'
+)
 
-  makedepends=(
-    'html-xml-utils'
-    'pandoc'
-    'sha3sum'
-    'squashfs-tools'
-  )
-
+_source_main() {
   source=("$_filename"::"$_dl_url")
   sha256sums=('SKIP')
 }
 
-# common files
 _privacy_policy="privacy_policy"
 _terms_of_use="terms_of_use"
+
 prepare() {
   # check upstream sha3-384sum
   printf '%s  %s' "$_cksum" "$_filename" | sha3-384sum -c
@@ -117,13 +110,8 @@ package() {
   install -Dm644 "$_terms_of_use.txt" -t "$pkgdir/usr/share/licenses/$pkgname"
 }
 
-# update version
 _update_version() {
   : ${_pkgver:=${pkgver%%.r*}}
-
-  if [[ "${_autoupdate::1}" != "t" ]]; then
-    return
-  fi
 
   _response=$(
     curl -H 'Snap-Device-Series: 16' --no-progress-meter "http://api.snapcraft.io/v2/snaps/info/$_snapname" \
@@ -164,5 +152,5 @@ _update_version() {
   }
 }
 
-# execute
-_main_package
+_update_version
+_source_main
