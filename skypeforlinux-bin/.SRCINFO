@@ -9,7 +9,6 @@ pkgbase = skypeforlinux-bin
 	makedepends = pandoc
 	makedepends = sha3sum
 	makedepends = squashfs-tools
-	optdepends = chaotic-interfere: chaotic-aur interference tracker
 	source = skypeforlinux-8.125.0.201.snap::https://api.snapcraft.io/api/v1/snaps/download/QRDEfjn4WJYnm0FzDKwqqRZZI77awQEV_353.snap
 	sha256sums = SKIP
 
