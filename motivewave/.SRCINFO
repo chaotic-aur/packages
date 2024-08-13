@@ -1,12 +1,12 @@
 pkgbase = motivewave
 	pkgdesc = Advanced trading and charting application
-	pkgver = 6.8.8
+	pkgver = 6.9.5
 	pkgrel = 1
 	url = https://www.motivewave.com
 	arch = x86_64
 	license = LicenseRef-motivewave
-	source = motivewave_6.8.8_amd64.deb::https://downloads.motivewave.com/builds/511/motivewave_6.8.8_amd64.deb
-	md5sums = e09219734b6eda517fada8eb8c1c3f81
+	source = motivewave_6.9.5_amd64.deb::https://downloads.motivewave.com/builds/517/motivewave_6.9.5_amd64.deb
+	md5sums = 139676f2641a17fc2c87e7e7991565af
 
 pkgname = motivewave
 	depends = bc
