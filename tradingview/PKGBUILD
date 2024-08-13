@@ -3,40 +3,28 @@
 ## links
 # https://www.tradingview.com/desktop/
 
-# options
-if [ -n "$_srcinfo" ] || [ -n "$_pkgver" ]; then
-  : ${_autoupdate:=false}
-else
-  : ${_autoupdate:=true}
-fi
-
-# basic info
 _pkgname="tradingview"
 _snapname="tradingview"
 pkgname="$_pkgname"
-pkgver=2.8.0
+pkgver=2.8.1
 pkgrel=1
 pkgdesc='Charting platform for traders and investors'
 arch=('x86_64')
 url="https://snapcraft.io/$_snapname"
 license=('LicenseRef-TradingView')
 
-# main package
-_main_package() {
-  _update_version
+makedepends=(
+  'html-xml-utils'
+  'pandoc'
+  'sha3sum'
+  'squashfs-tools'
+)
 
-  makedepends=(
-    'html-xml-utils'
-    'pandoc'
-    'sha3sum'
-    'squashfs-tools'
-  )
-
+_source_main() {
   source=("$_filename"::"$_dl_url")
   sha256sums=('SKIP')
 }
 
-# common functions
 _eula_basename="$_pkgname-eula"
 
 prepare() {
@@ -116,13 +104,8 @@ package() {
   install -Dm644 "$_eula_basename.txt" -t "$pkgdir/usr/share/licenses/$pkgname"
 }
 
-# update version
 _update_version() {
   : ${_pkgver:=${pkgver%%.r*}}
-
-  if [[ "${_autoupdate::1}" != "t" ]]; then
-    return
-  fi
 
   _response=$(
     curl -H 'Snap-Device-Series: 16' --no-progress-meter "http://api.snapcraft.io/v2/snaps/info/$_snapname" \
@@ -163,5 +146,5 @@ _update_version() {
   }
 }
 
-# execute
-_main_package
+_update_version
+_source_main
