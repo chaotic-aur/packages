@@ -1,9 +1,7 @@
 # Maintainer:
 
 ## options
-if [ -n "$_srcinfo" ] || [ -n "$_pkgver" ]; then
-  : ${_autoupdate:=false}
-else
+if [ -z "$_srcinfo" ] && [ -z "$_pkgver" ]; then
   : ${_autoupdate:=true}
 fi
 
@@ -19,25 +17,25 @@ url="https://github.com/Merrit/nyrna"
 license=('GPL-3.0-or-later')
 arch=('x86_64')
 
-_main_package() {
-  depends=(
-    'gtk3'
-    'libappindicator-gtk3'
-    'libkeybinder3'
-    'util-linux'
-    'wmctrl'
-    'xdotool'
-  )
-  makedepends=(
-    'clang'
-    'cmake'
-    'fvm'
-    'git'
-    'lld'
-    'llvm'
-    'ninja'
-  )
+depends=(
+  'gtk3'
+  'libappindicator-gtk3'
+  'libkeybinder3'
+  'util-linux'
+  'wmctrl'
+  'xdotool'
+)
+makedepends=(
+  'clang'
+  'cmake'
+  'fvm'
+  'git'
+  'lld'
+  'llvm'
+  'ninja'
+)
 
+_source_main() {
   _pkgsrc="$_pkgname-$_pkgver"
   _pkgext="tar.gz"
   source=("$_pkgsrc.$_pkgext::https://github.com/Merrit/nyrna/archive/refs/tags/v$_pkgver.$_pkgext")
@@ -76,7 +74,6 @@ package() {
   install -Dm644 "$srcdir/$pkgname-$pkgver/assets/icons/codes.merritt.Nyrna.png" "$pkgdir/usr/share/pixmaps/codes.merritt.Nyrna.png"
 }
 
-# update version
 _update_version() {
   : ${_pkgver:=${pkgver%%.r*}}
 
@@ -103,6 +100,5 @@ _update_version() {
   }
 }
 
-# execute
 _update_version
-_main_package
+_source_main
