@@ -1,6 +1,6 @@
 pkgbase = tradingview
 	pkgdesc = Charting platform for traders and investors
-	pkgver = 2.8.0
+	pkgver = 2.8.1
 	pkgrel = 1
 	url = https://snapcraft.io/tradingview
 	arch = x86_64
@@ -9,7 +9,7 @@ pkgbase = tradingview
 	makedepends = pandoc
 	makedepends = sha3sum
 	makedepends = squashfs-tools
-	source = ::
+	source = tradingview-2.8.1.snap::https://api.snapcraft.io/api/v1/snaps/download/nJdITJ6ZJxdvfu8Ch7n5kH5P99ClzBYV_56.snap
 	sha256sums = SKIP
 
 pkgname = tradingview
