@@ -5,9 +5,7 @@
 # https://github.com/elixir-lang/elixir
 
 ## options
-if [ -n "$_srcinfo" ] || [ -n "$_pkgver" ]; then
-  : ${_autoupdate:=false}
-else
+if [ -z "$_srcinfo" ] && [ -z "$_pkgver" ]; then
   : ${_autoupdate:=true}
 fi
 
@@ -21,11 +19,10 @@ url="https://github.com/elixir-lang/elixir"
 license=('Apache-2.0')
 arch=('any')
 
-# main package
-_main_package() {
-  depends=('erlang-nox')
-  checkdepends=('git')
+depends=('erlang-nox')
+checkdepends=('git')
 
+_source_main() {
   provides=("$_pkgname=$_pkgver")
   conflicts=("$_pkgname")
 
@@ -34,7 +31,6 @@ _main_package() {
   sha256sums=('SKIP')
 }
 
-# common functions
 pkgver() {
   echo "${_pkgver:?}"
 }
@@ -50,7 +46,6 @@ package() {
   make DESTDIR="$pkgdir" PREFIX=/usr install
 }
 
-# update version
 _update_version() {
   : ${_pkgver:=$pkgver}
 
@@ -78,6 +73,5 @@ _update_version() {
   fi
 }
 
-# execute
 _update_version
-_main_package
+_source_main
