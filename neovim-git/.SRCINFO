@@ -16,7 +16,6 @@ pkgbase = neovim-git
 	depends = libluv
 	depends = libutf8proc
 	depends = libuv
-	depends = libvterm>0.1.4
 	depends = lua51-lpeg
 	depends = luajit
 	depends = msgpack-c

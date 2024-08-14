@@ -19,7 +19,6 @@ depends=(
   'libluv'
   'libutf8proc'
   'libuv'
-  'libvterm>0.1.4'
   'lua51-lpeg'
   'luajit'
   'msgpack-c'
