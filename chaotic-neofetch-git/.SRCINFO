@@ -1,7 +1,7 @@
 pkgbase = chaotic-neofetch-git
 	pkgdesc = A CLI system information tool written in BASH that supports displaying images.
-	pkgver = 7.1.0.r153.g4b91c943
-	pkgrel = 2
+	pkgver = 7.1.0.r166.gccd5d9f5
+	pkgrel = 1
 	url = https://github.com/dylanaraps/neofetch
 	arch = any
 	license = MIT
