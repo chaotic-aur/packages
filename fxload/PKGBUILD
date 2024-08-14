@@ -7,7 +7,7 @@ pkgname="$_pkgname"
 pkgver=1.0.27
 pkgrel=1
 pkgdesc='libusb firmware loader for use with udev or devfs/hotplug'
-url='http://libusb.info/'
+url='https://github.com/libusb/libusb'
 license=('LGPL-2.1-or-later')
 arch=('x86_64')
 
