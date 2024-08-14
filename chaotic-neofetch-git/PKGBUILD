@@ -4,15 +4,13 @@
 # Adapted for Chaotic-AUR by PedroHLC <root@pedrohlc.com>
 pkgname=chaotic-neofetch-git
 _pkgname=neofetch
-pkgver=7.1.0.r153.g4b91c943
+pkgver=7.1.0.r166.gccd5d9f5
 pkgrel=1
-eval 'pkgrel=2'
 pkgdesc="A CLI system information tool written in BASH that supports displaying images."
-arch=('any')
 url="https://github.com/dylanaraps/${_pkgname}"
 license=('MIT')
-provides=()
-conflicts=()
+arch=('any')
+
 depends=('bash' 'awk' 'viu')
 optdepends=(
   'feh: Wallpaper Display'
@@ -29,6 +27,7 @@ optdepends=(
   'xorg-xwininfo: See https://github.com/dylanaraps/neofetch/wiki/Images-in-the-terminal'
 )
 makedepends=('git')
+
 source=("$pkgname::git+https://github.com/dylanaraps/neofetch.git"
   'chaotic.patch' 'chaotic-aur.sh' 'logo.jpg')
 md5sums=('SKIP'
