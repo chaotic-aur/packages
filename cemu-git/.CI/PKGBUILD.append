@@ -1,15 +1,18 @@
 url="https://github.com/cemu-project/Cemu"
 
-depends=(${depends//hicolor-icon-theme})
+depends=(${depends[@]//hicolor-icon-theme})
 makedepends+=('ninja')
 
 build() {
+  export CFLAGS CXXFLAGS
+  CFLAGS+=' -DNDEBUG'
+  CXXFLAGS+=' -DNDEBUG'
+
   local _cmake_options=(
     -B build
     -S "$_pkgname"
     -G Ninja
     -DCMAKE_BUILD_TYPE=None
-    -DCMAKE_INSTALL_PREFIX='/usr'
     -DENABLE_VCPKG=OFF
     -Wno-dev
   )
