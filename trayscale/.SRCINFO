@@ -1,19 +1,19 @@
 pkgbase = trayscale
 	pkgdesc = An unofficial GUI wrapper for the Tailscale CLI client.
-	pkgver = 0.13.1
-	pkgrel = 1
+	pkgver = 0.13.2
+	pkgrel = 2
 	url = https://github.com/DeedleFake/trayscale
 	arch = i686
 	arch = x86_64
 	arch = aarch64
 	license = MIT
-	makedepends = go>=2:1.22.5
+	makedepends = go>=2:1.23.0
 	makedepends = gobject-introspection
 	depends = gtk4
 	depends = libadwaita>=1:1.5
 	optdepends = tailscale: provides daemon that manages connection
 	provides = trayscale
-	source = https://github.com/DeedleFake/trayscale/archive/refs/tags/v0.13.1.tar.gz
-	sha256sums = e2eeab4f6745cdf9260035a39d1eff4d3c4ae63ab18ee5e6227f360d6418389e
+	source = https://github.com/DeedleFake/trayscale/archive/refs/tags/v0.13.2.tar.gz
+	sha256sums = 860b9f513c17bcf572b9a035ce649d7f2ab289951c730ed17a3847df9ca154a6
 
 pkgname = trayscale
