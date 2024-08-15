@@ -1,9 +1,11 @@
+export LDFLAGS+=" -Wl,--copy-dt-needed-entries"
+export VERBOSE=1
 
 pkgver() {
   cd rpcs3
 
   _tag=$(git tag | sort -rV | head -1)
-  if [[ $(vercmp "$_tag" "v0.0.29") -lt "0" ]] ; then
+  if [[ $(vercmp "$_tag" "v0.0.29") -lt "0" ]]; then
     _tag="v0.0.29"
   fi
 
