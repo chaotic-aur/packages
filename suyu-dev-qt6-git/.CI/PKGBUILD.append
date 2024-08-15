@@ -1,0 +1,13 @@
+pkgdesc="Nintendo Switch emulator"
+
+_bump_pkgrel() {
+  local _pkgver_old="${1%-*}"
+  local _pkgrel_old="${1##*-}"
+  local _bump="${2}"
+
+  if [[ "$pkgver" == "$_pkgver_old" ]] && [[ "$pkgrel" == "$_pkgrel_old" ]] ; then
+    pkgrel+=".$_bump"
+  fi
+}
+
+_bump_pkgrel r27440.4eb41467f8-1 1
