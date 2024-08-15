@@ -1,6 +1,2 @@
 depends=(${depends[@]//qt5-*})
 depends+=(qt6-base)
-
-if [[ "$pkgver" == "0.66.r31.g8435915c" ]] && [[ "$pkgrel" = "1" ]] ; then
-  pkgrel+='.1'
-fi
