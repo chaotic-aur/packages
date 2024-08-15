@@ -1,29 +1,14 @@
 # Maintainer:
-# Contributor: Luis Martinez <luis dot martinez at disroot dot org>
 
-## options
-if [ -n "$_srcinfo" ] || [ -n "$_pkgver" ]; then
-  : ${_autoupdate:=false}
-else
-  : ${_autoupdate:=true}
-fi
-
-: ${_build_git:=true}
-
-[[ "${_build_git::1}" == "t" ]] && _pkgtype+="-git"
-
-## basic info
 _pkgname="image-roll"
-pkgname="$_pkgname${_pkgtype:-}"
-pkgver=2.1.0.r0.g5087079
+pkgname="$_pkgname"
+pkgver=2.1.0
 pkgrel=1
 pkgdesc="GTK image viewer with basic image manipulation tools"
 url="https://github.com/weclaw1/image-roll"
 license=('MIT')
 arch=('x86_64')
 
-# main package
-_main_package() {
   depends=(
     gtk4
   )
@@ -32,45 +17,16 @@ _main_package() {
     git
   )
 
-  if [ "${_build_git::1}" != "t" ]; then
-    _main_stable
-  else
-    _main_git
-  fi
-}
-
-# stable package
-_main_stable() {
-  _update_version
-
+_source_main() {
   _pkgsrc="$_pkgname"
   source+=("$_pkgsrc"::"git+$url.git#tag=${_pkgver:?}")
   sha256sums+=('SKIP')
-
-  pkgver() {
-    echo "${_pkgver:?}"
-  }
-}
-
-# git package
-_main_git() {
-  provides=("$_pkgname=${pkgver%%.r*}")
-  conflicts=("$_pkgname")
-
-  _pkgsrc="$_pkgname"
-  source+=("$_pkgsrc"::"git+$url.git")
-  sha256sums+=('SKIP')
-
-  pkgver() (
-    cd "$_pkgsrc"
-    git describe --long --tags --abbrev=7 \
-      | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
-  )
 }
 
 _rust_env() {
-  export CARGO_HOME="${CARGO_HOME:-${SRCDEST:-${startdir:?}}/cargo-home}"
-  export RUSTUP_TOOLCHAIN=${RUSTUP_TOOLCHAIN:-stable}
+  : ${CARGO_HOME:=$SRCDEST/cargo-home}
+  export CARGO_HOME
+  export RUSTUP_TOOLCHAIN=stable
   export CARGO_TARGET_DIR=target
 }
 
@@ -79,6 +35,10 @@ prepare() {
 
   cd "$_pkgsrc"
   cargo fetch --locked --target "$CARCH-unknown-linux-gnu"
+}
+
+pkgver() {
+  echo "${_pkgver:?}"
 }
 
 build() {
@@ -96,6 +56,8 @@ check() {
 }
 
 package() {
+  _rust_env
+
   cd "$_pkgsrc"
   install -Dm755 "$CARGO_TARGET_DIR/release/image-roll" -t "$pkgdir/usr/bin/"
 
@@ -109,7 +71,6 @@ package() {
   install -Dm644 LICENSE -t "$pkgdir/usr/share/licenses/$pkgname/"
 }
 
-# update version
 _update_version() {
   : ${_pkgver:=${pkgver%%.r*}}
 
@@ -133,5 +94,5 @@ _update_version() {
   fi
 }
 
-# execute
-_main_package
+_update_version
+_source_main
