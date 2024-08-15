@@ -1,6 +1,0 @@
-epoch=2
-
-provides=(
-  ${provides[@]//ffmpeg*}
-  "ffmpeg=$epoch:$pkgver"
-)
