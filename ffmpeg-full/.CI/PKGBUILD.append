@@ -6,7 +6,3 @@ provides=(
   ${provides[@]//ffmpeg*}
   "ffmpeg=$epoch:$pkgver"
 )
-
-if [[ "$pkgver" == "7.0.1" ]] && [[ "$pkgrel" = "3" ]] ; then
-  pkgrel+='.2'
-fi
