@@ -1,2 +1,2 @@
-depends=(${depends[@]//qt5-*})
+depends=(${depends[@]//qt5-*/})
 depends+=(qt6-base)

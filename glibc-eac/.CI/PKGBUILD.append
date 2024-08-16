@@ -1,4 +1,3 @@
-
 # enable DT_HASH
 export LDFLAGS+=" -Wl,--hash-style=both"
 
@@ -11,14 +10,14 @@ unset b2sums
 _suffix="-eac"
 pkgbase="glibc${_suffix:-}"
 
-for i in "${pkgname[@]}" ; do
+for i in "${pkgname[@]}"; do
   _old_pkgname+=("$i")
 done
 
 unset pkgname
 
-for i in "${_old_pkgname[@]}" ; do
-  if grep -q 'locale' <<< "${i:?}" ; then
+for i in "${_old_pkgname[@]}"; do
+  if grep -q 'locale' <<< "${i:?}"; then
     unset -f "package_${i}"
     continue
   fi

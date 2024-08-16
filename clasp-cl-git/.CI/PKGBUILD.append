@@ -1,4 +1,3 @@
-
 pkgver() {
   cd clasp
   git describe --long --tags --exclude='*[a-zA-Z][a-zA-Z]*' \
@@ -16,6 +15,6 @@ prepare() {
 }
 
 build() {
-  ( _orig_prepare )
-  ( _orig_build )
+  (_orig_prepare)
+  (_orig_build)
 }

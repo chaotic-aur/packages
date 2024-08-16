@@ -1,1 +1,1 @@
-pkgrel="${pkgrel/0.}"
+pkgrel="${pkgrel/0./}"

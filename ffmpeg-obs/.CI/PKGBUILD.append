@@ -1,6 +1,6 @@
 epoch=2
 
 provides=(
-  ${provides[@]//ffmpeg*}
+  ${provides[@]//ffmpeg*/}
   "ffmpeg=$epoch:$pkgver"
 )

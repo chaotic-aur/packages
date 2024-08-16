@@ -1,3 +1,2 @@
-
-options=(${options[@]/debug*})
+options=(${options[@]/debug*/})
 options+=(!debug)

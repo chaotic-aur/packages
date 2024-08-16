@@ -1,9 +1,8 @@
-
 pkgdesc="GameStream client"
 url="https://github.com/moonlight-stream/moonlight-qt"
 
 depends=(
-  ${depends[@]/ffmpeg}
+  ${depends[@]/ffmpeg/}
   libavcodec.so
 )
 
