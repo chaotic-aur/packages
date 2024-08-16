@@ -1,4 +1,3 @@
-
 build() {
   local _cmake_options=(
     -B build

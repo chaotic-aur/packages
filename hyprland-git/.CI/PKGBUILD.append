@@ -1,2 +1,2 @@
-depends=(${depends[@]//aquamarine*})
+depends=(${depends[@]//aquamarine*/})
 depends+=('aquamarine-git')

@@ -1,3 +1,2 @@
-
 # pipewire in makedepends is sufficient to enable
 makedepends+=(pipewire)

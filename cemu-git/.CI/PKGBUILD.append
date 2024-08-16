@@ -1,6 +1,6 @@
 url="https://github.com/cemu-project/Cemu"
 
-depends=(${depends[@]//hicolor-icon-theme})
+depends=(${depends[@]//hicolor-icon-theme/})
 makedepends+=('ninja')
 
 build() {

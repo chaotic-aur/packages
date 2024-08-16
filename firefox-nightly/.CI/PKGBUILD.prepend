@@ -1,16 +1,15 @@
-
 # occasionally regenerate pgo profile
 _set_pgo_reuse() {
   local _old_profdata="${DESTDIR:-$startdir}/merged.profdata"
 
-  if [[ -s "$_old_profdata" ]] ; then
+  if [[ -s "$_old_profdata" ]]; then
     local _time_now=$(\date '+%s')
     local _time_file=$(\date '+%s' -r "$_old_profdata")
-    local _time_elapsed=$(( _time_now - _time_file ))
+    local _time_elapsed=$((_time_now - _time_file))
 
-    local _threshold=$(( (5*24*60*60) + (RANDOM * 3*24*60*60)/32767 ))
+    local _threshold=$(((5 * 24 * 60 * 60) + (RANDOM * 3 * 24 * 60 * 60) / 32767))
 
-    if [ "$_time_elapsed" -gt "$_threshold" ] ; then
+    if [ "$_time_elapsed" -gt "$_threshold" ]; then
       : ${_build_pgo_reuse:=false}
     fi
   fi

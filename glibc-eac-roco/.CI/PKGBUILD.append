@@ -1,4 +1,3 @@
-
 # enable DT_HASH
 export LDFLAGS+=" -Wl,--hash-style=both"
 
@@ -14,7 +13,7 @@ source+=("$_rogue_company_reverts_patch"::"https://github.com/Frogging-Family/gl
 eval _orig_"$(declare -f prepare)"
 
 prepare() {
-  ( _orig_prepare )
+  (_orig_prepare)
 
   # fix patch
   sed -Ee 's&^(\+  tst-libc_dlvsym-static)$&\1 \\&' -i "$srcdir/$_rogue_company_reverts_patch"
@@ -33,14 +32,14 @@ prepare() {
 _suffix="-eac-roco"
 pkgbase="glibc${_suffix:-}"
 
-for i in "${pkgname[@]}" ; do
+for i in "${pkgname[@]}"; do
   _old_pkgname+=("$i")
 done
 
 unset pkgname
 
-for i in "${_old_pkgname[@]}" ; do
-  if grep -q 'locale' <<< "${i:?}" ; then
+for i in "${_old_pkgname[@]}"; do
+  if grep -q 'locale' <<< "${i:?}"; then
     unset -f "package_${i}"
     continue
   fi
