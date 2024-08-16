@@ -2,7 +2,7 @@
 
 _pkgname="gimp"
 pkgname="$_pkgname-git"
-pkgver=2.99.18.r996.gff9f71e
+pkgver=2.99.18.r1231.g706014e
 pkgrel=1
 pkgdesc="GNU Image Manipulation Program"
 url="https://gitlab.gnome.org/GNOME/gimp"
@@ -11,12 +11,12 @@ arch=('i686' 'x86_64')
 
 depends=(
   'appstream-glib'
-  'babl'
+  'babl-git'
   'cairo'
   'dbus-glib'
   'desktop-file-utils'
   'enchant'
-  'gegl'
+  'gegl-git'
   'gobject-introspection'
   'gtk-doc'
   'icu'
@@ -127,7 +127,7 @@ build() {
 }
 
 check() {
-  ninja -C "build" test || :
+  ninja -C "build" test || true
 }
 
 package() {
