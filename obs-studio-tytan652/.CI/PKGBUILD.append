@@ -1,0 +1,4 @@
+makedepends=(${makedepends[@]/ffmpeg*/})
+makedepends+=('ffmpeg')
+
+options=(${options[@]//*debug*})
