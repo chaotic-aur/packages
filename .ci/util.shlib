@@ -127,9 +127,14 @@ function UTIL_GET_URI_PARTS() {
 
 # $1: VARIABLES
 function UTIL_FETCH_VCS_COMMIT() {
+
     set -euo pipefail
     local -n VARIABLES_FETCH_VCS_COMMIT=${1:-VARIABLES}
     local pkgbase="${VARIABLES_FETCH_VCS_COMMIT[PKGBASE]}"
+
+    if [[ $pkgbase == "dolphin-emu-avx-git" ]]; then
+      set  -x
+    fi
 
     # Check if .SRCINFO exists. We can't work with a -git package without it
     if ! [ -f "$pkgbase/.SRCINFO" ]; then
@@ -170,6 +175,11 @@ function UTIL_FETCH_VCS_COMMIT() {
     fi
     if [ -z "$_NEWEST_COMMIT" ]; then
         return 1
+    fi
+
+
+    if [[ $pkgbase == "dolphin-emu-avx-git" ]]; then
+      set  +x
     fi
 
     printf "%s" "$_NEWEST_COMMIT"
