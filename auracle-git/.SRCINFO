@@ -1,6 +1,6 @@
 pkgbase = auracle-git
 	pkgdesc = A flexible client for the AUR
-	pkgver = r382.6dce347
+	pkgver = r406.f37305b
 	pkgrel = 1
 	url = https://github.com/falconindy/auracle
 	arch = x86_64

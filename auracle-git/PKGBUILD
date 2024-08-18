@@ -2,7 +2,7 @@
 
 pkgname=auracle-git
 _pkgname="${pkgname%-git}"
-pkgver=r382.6dce347
+pkgver=r406.f37305b
 pkgrel=1
 pkgdesc='A flexible client for the AUR'
 arch=('x86_64' 'i686')
@@ -32,23 +32,18 @@ prepare() {
       patch -p1 -N -i "$srcdir/${filename##*/}"
     fi
   done
-}
-
-build() {
-  cd "$_pkgname"
 
   local meson_args=(
-    --prefix=/usr
-    --buildtype=plain
     --default-library=static
   )
 
   [[ -d build ]] && meson_args+=(--wipe)
 
-  # Some tests fail with these enabled
-  CFLAGS=${CFLAGS/,-D_GLIBCXX_ASSERTIONS/}
-  CXXFLAGS="${CFLAGS}"
-  meson build "${meson_args[@]}"
+  arch-meson "${meson_args[@]}" build
+}
+
+build() {
+  cd "$_pkgname"
 
   meson compile -C build
 }
