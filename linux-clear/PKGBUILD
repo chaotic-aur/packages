@@ -121,7 +121,7 @@
 _kernel_major=6.10
 _kernel_minor=5
 # Clear Linux patches version
-_clr=4-1456
+_clr=5-1458
 # kernel_compiler_patch version
 _kernelcompilerpatch="20240221.2"
 # Source directory names
