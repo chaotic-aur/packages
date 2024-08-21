@@ -1,20 +1,23 @@
-# Maintainer: éclairevoyant
-# Contributor: Sefa Eyeoglu <contact at scrumplex dot net>
-# Contributor: Alexandros Theodotou <alex at zrythm dot org>
+# Maintainer:
+
+## links
+# https://www.zrythm.org
+# https://gitlab.zrythm.org/zrythm/zrythm
+
+: ${_pkgver:=1.0.0-rc.1}
 
 pkgname=zrythm
-_pkgver=1.0.0-rc.0
-pkgver="${_pkgver/-/.}"
+pkgver=1.0.0.rc.1
 pkgrel=1
 pkgdesc='Highly automated and intuitive digital audio workstation'
-arch=(x86_64 i686)
-url="https://www.zrythm.org"
-license=(AGPL3)
+url="https://gitlab.zrythm.org/zrythm/zrythm"
+license=('AGPL-3.0-or-later')
+arch=('x86_64')
+
 depends=(
   appstream
   boost
   breeze-icons
-  carla-git
   chromaprint
   dconf
   fftw
@@ -26,19 +29,14 @@ depends=(
   guile
   json-glib
   libadwaita
-  libaudec
-  libbacktrace
-  libcyaml
   libepoxy
   libpanel
-  lilv
   libxinerama
   libxrandr
-  lsp-dsp-lib
+  lilv
   pcre
   portaudio
   qt5-base
-  reproc
   rtaudio
   rtmidi
   rubberband
@@ -49,21 +47,49 @@ depends=(
   xxhash
   yyjson
   zix
+
+  # AUR
+  carla-git
+  libaudec
+  libbacktrace
+  libcyaml
+  lsp-dsp-lib
+  reproc
 )
-makedepends=(git meson cmake ruby-sass help2man sassc)
+makedepends=(
+  cmake
+  git
+  glib2-devel
+  help2man
+  meson
+  ruby-sass
+  sassc
+)
 optdepends=('realtime-privileges: allow memory locking')
-options=('debug')
-source=("https://www.zrythm.org/releases/$pkgname-$_pkgver.tar.xz"{,.asc}
+
+_pkgsrc="$pkgname-$_pkgver"
+_pkgext="tar.xz"
+source=(
+  "https://www.zrythm.org/releases/$_pkgsrc.$_pkgext"{,.asc}
   "git+https://github.com/drobilla/zix.git"
-  0001-gcc13-fixes.patch)
-sha256sums=('23fbfb74ed249164a58fa1afbe2dbaeae0f937197dbb719768d0479d8938fbe9'
+  0001-gcc13-fixes.patch
+)
+sha256sums=(
+  'ab22ce31530fdb947e7d72d5444710319c82ca9f59527274dc85e5fb57eb19e6'
   'SKIP'
   'SKIP'
-  'bb93eea519020e491f85c38ab3901ac530bbf747c4e7acc3aaea39f402091653')
-validpgpkeys=('48132384AD3DF7D86E254B83022EAE42313D70F3') # Alexandros Theodotou <alex@zrythm.org>
+  'bb93eea519020e491f85c38ab3901ac530bbf747c4e7acc3aaea39f402091653'
+)
+validpgpkeys=(
+  '48132384AD3DF7D86E254B83022EAE42313D70F3' # Alexandros Theodotou <alex@zrythm.org>
+)
+
+pkgver() {
+  echo "${_pkgver/-/.}"
+}
 
 prepare() {
-  cd $pkgname-$_pkgver
+  cd "$_pkgsrc"
 
   patch -Np1 -i ../0001-gcc13-fixes.patch
   # use our local clones
@@ -72,26 +98,27 @@ prepare() {
 }
 
 build() {
-  cd $pkgname-$_pkgver
+  export CFLAGS
+  CFLAGS+=" -Wno-error=incompatible-pointer-types"
 
-  meson build --prefix=/usr \
-    --wrap-mode nofallback \
-    --force-fallback-for=zix-0 \
-    -Ddebug=true \
-    -Dmanpage=true \
-    -Dcheck_updates=false \
-    -Dcarla_binaries_dir=/usr/lib/carla \
-    -Dportaudio=enabled -Drtmidi=enabled -Drtaudio=enabled -Dsdl=enabled
-  ninja -C build
+  local _meson_args=(
+    --wrap-mode=nofallback
+    --force-fallback-for=zix-0
+    -Ddebug=false
+    -Dmanpage=true
+    -Dcheck_updates=false
+    -Dcarla_binaries_dir=/usr/lib/carla
+    -Dportaudio=enabled
+    -Drtmidi=enabled
+    -Drtaudio=enabled
+    -Dsdl=enabled
+  )
+
+  arch-meson "${_meson_args[@]}" "$_pkgsrc" build
+  meson compile -C build
 }
 
 package() {
-  cd $pkgname-$_pkgver
-
-  install -vDm644 AUTHORS CONTRIBUTING.md \
-    CHANGELOG.md README.md THANKS TRANSLATORS \
-    -t "$pkgdir/usr/share/doc/$pkgname/"
   meson install -C build --destdir="$pkgdir"
-
   rm -rf "$pkgdir"{/usr/include/zix-0/,/usr/lib/pkgconfig/zix-0.pc}
 }
