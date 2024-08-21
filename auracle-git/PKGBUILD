@@ -2,7 +2,7 @@
 
 pkgname=auracle-git
 _pkgname="${pkgname%-git}"
-pkgver=r406.f37305b
+pkgver=r408.3889e6f
 pkgrel=1
 pkgdesc='A flexible client for the AUR'
 arch=('x86_64' 'i686')
@@ -34,12 +34,17 @@ prepare() {
   done
 
   local meson_args=(
+    --prefix=/usr
+    --libexecdir=lib
+    --sbindir=bin
+    --buildtype=plain
     --default-library=static
+    -Db_pie=true
   )
 
   [[ -d build ]] && meson_args+=(--wipe)
 
-  arch-meson "${meson_args[@]}" build
+  meson setup build "${meson_args[@]}"
 }
 
 build() {
