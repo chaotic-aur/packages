@@ -3,12 +3,12 @@
 
 pkgname=gtkglext
 pkgver=1.2.0
-pkgrel=17
-pkgdesc='OpenGL extension for gtk2'
+pkgrel=18
+pkgdesc='An OpenGL extension to GTK2.'
 arch=('x86_64')
 url='https://sourceforge.net/projects/gtkglext/'
 license=('LGPL-2.0-or-later')
-depends=('gtk2' 'glu' 'libxmu' 'libglvnd')
+depends=('glib2' 'pango' 'gtk2' 'glu' 'libxmu' 'libglvnd')
 makedepends=('python' 'glib2-devel')
 source=("https://sourceforge.net/projects/${pkgname}/files/${pkgname}/${pkgver}/${pkgname}-${pkgver}.tar.bz2"
   '001-kill-pangox.patch'

@@ -1,12 +1,14 @@
 pkgbase = gtkglext
-	pkgdesc = OpenGL extension for gtk2
+	pkgdesc = An OpenGL extension to GTK2.
 	pkgver = 1.2.0
-	pkgrel = 17
+	pkgrel = 18
 	url = https://sourceforge.net/projects/gtkglext/
 	arch = x86_64
 	license = LGPL-2.0-or-later
 	makedepends = python
 	makedepends = glib2-devel
+	depends = glib2
+	depends = pango
 	depends = gtk2
 	depends = glu
 	depends = libxmu
