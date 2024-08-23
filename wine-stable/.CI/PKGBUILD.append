@@ -1,0 +1,10 @@
+pkgname="wine-stable"
+
+provides=("wine=$pkgver")
+conflicts=("wine")
+
+source[0]="https://dl.winehq.org/wine/source/$pkgver/wine-$pkgver.tar.xz"
+source[1]="${source[0]}.sign"
+
+sha512sums[0]='SKIP'
+sha512sums[1]='SKIP'

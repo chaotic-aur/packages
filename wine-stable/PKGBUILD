@@ -1,30 +1,29 @@
-# Maintainer: Mike Swanson <mikeonthecomputer@gmail.com>
+# Maintainer: Sven-Hendrik Haase <sh@lutzhaase.com>
+# Contributor: Jan "heftig" Steffens <jan.steffens@gmail.com>
+# Contributor: Eduardo Romero <eduardo@archlinux.org>
+# Contributor: Giovanni Scafora <giovanni@archlinux.org>
 
-# Warning: If you are downgrading from the development branch (Wine ≥ 9.1,
-# for example), your WINEPREFIX may break and experience unusual bugs.
-# Try to make a clean WINEPREFIX, such as by doing “rm -rf ~/.wine”
+pkgname=wine
+pkgver=9.15
+pkgrel=1
 
-pkgname=wine-stable
-_pkgver=9.0
-pkgver=${_pkgver/-/} # Useful for wine-stable-next
-pkgrel=3
+_pkgbasever=${pkgver/rc/-rc}
 
-source=(https://dl.winehq.org/wine/source/9.0/wine-$_pkgver.tar.xz{,.sign}
+source=(https://dl.winehq.org/wine/source/9.x/$pkgname-$_pkgbasever.tar.xz{,.sign}
   30-win32-aliases.conf
   wine-binfmt.conf)
-b2sums=('cf53177201a2f7eeb35d0d8ce220f80808d979099a928ad60652d1dee92620c433cc105dffab4e9309f41766087ad1544ef49d2922538bb420d62f6dd64117a1'
+sha512sums=('4d19b7c0fbdf6ee5dc90c0aef800df47f5bda7e3506e5a3c065dcd29b33cc62840ae4eeb5c20c48e9400c0d1252b897d8bbc60fd5a58da1ad6e76ba677997cb3'
   'SKIP'
-  '45db34fb35a679dc191b4119603eba37b8008326bd4f7d6bd422fbbb2a74b675bdbc9f0cc6995ed0c564cf088b7ecd9fbe2d06d42ff8a4464828f3c4f188075b'
-  'e9de76a32493c601ab32bde28a2c8f8aded12978057159dd9bf35eefbf82f2389a4d5e30170218956101331cf3e7452ae82ad0db6aad623651b0cc2174a61588')
-validpgpkeys=(DA23579A74D4AD9AF9D3F945CEFAC8EAAF17519D)
+  '6e54ece7ec7022b3c9d94ad64bdf1017338da16c618966e8baf398e6f18f80f7b0576edf1d1da47ed77b96d577e4cbb2bb0156b0b11c183a0accf22654b0a2bb'
+  'bdde7ae015d8a98ba55e84b86dc05aca1d4f8de85be7e4bd6187054bfe4ac83b5a20538945b63fb073caab78022141e9545685e4e3698c97ff173cf30859e285')
+validpgpkeys=(5AC1A08B03BD7A313E0A955AF5E6E9EEB9461DD7
+  DA23579A74D4AD9AF9D3F945CEFAC8EAAF17519D)
 
 pkgdesc="A compatibility layer for running Windows programs"
-url="https://www.winehq.org/"
+url="https://www.winehq.org"
 arch=(x86_64)
 options=(staticlibs !lto)
-license=(LGPL)
-install=wine.install
-
+license=(LGPL-2.1-or-later)
 depends=(
   desktop-file-utils
   fontconfig lib32-fontconfig
@@ -34,12 +33,12 @@ depends=(
   libpcap lib32-libpcap
   libunwind lib32-libunwind
   libxcursor lib32-libxcursor
+  libxkbcommon lib32-libxkbcommon
   libxi lib32-libxi
   libxrandr lib32-libxrandr
   wayland lib32-wayland
 )
-
-makedepends=(
+makedepends=(autoconf bison perl flex mingw-w64-gcc
   alsa-lib lib32-alsa-lib
   gnutls lib32-gnutls
   gst-plugins-base-libs lib32-gst-plugins-base-libs
@@ -47,97 +46,91 @@ makedepends=(
   libgphoto2
   libpulse lib32-libpulse
   libxcomposite lib32-libxcomposite
+  libxcomposite lib32-libxcomposite
   libxinerama lib32-libxinerama
   libxxf86vm lib32-libxxf86vm
   mesa lib32-mesa
-  mingw-w64-gcc
-  ocl-icd lib32-ocl-icd
+  mesa-libgl lib32-mesa-libgl
   opencl-headers
+  opencl-icd-loader lib32-opencl-icd-loader
   pcsclite lib32-pcsclite
-  perl
   samba
   sane
   sdl2 lib32-sdl2
-  unixodbc lib32-unixodbc
+  unixodbc
   v4l-utils lib32-v4l-utils
   vulkan-headers
   vulkan-icd-loader lib32-vulkan-icd-loader
 )
-
 optdepends=(
   alsa-lib lib32-alsa-lib
   alsa-plugins lib32-alsa-plugins
-  cups
+  cups lib32-libcups
   dosbox
   gnutls lib32-gnutls
-  gst-plugins-bad lib32-gst-plugins-bad
+  gst-plugins-bad
   gst-plugins-base lib32-gst-plugins-base
   gst-plugins-base-libs lib32-gst-plugins-base-libs
   gst-plugins-good lib32-gst-plugins-good
-  gst-plugins-ugly lib32-gst-plugins-ugly
+  gst-plugins-ugly
   libgphoto2
   libpulse lib32-libpulse
   libxcomposite lib32-libxcomposite
   libxinerama lib32-libxinerama
-  ocl-icd lib32-ocl-icd
+  opencl-icd-loader lib32-opencl-icd-loader
   pcsclite lib32-pcsclite
   samba
   sane
   sdl2 lib32-sdl2
-  unixodbc lib32-unixodbc
+  unixodbc
   v4l-utils lib32-v4l-utils
-  vulkan-icd-loader lib32-vulkan-icd-loader
   wine-gecko
-  wine-stable-mono
+  wine-mono
 )
-
-provides=(wine=$pkgver)
-conflicts=(wine)
-
-prepare() {
-  # Allow ccache to work
-  mv wine-$_pkgver wine
-
-  for patch in *.patch; do
-    if [ ! -f "$patch" ]; then
-      break
-    else
-      patch -d wine -p1 -i "../$patch"
-    fi
-  done
-
-  # Get rid of old build dirs
-  rm -rf wine-{32,64}-build
-  mkdir wine-{32,64}-build
-}
+makedepends=(${makedepends[@]} ${depends[@]})
+install=wine.install
 
 build() {
-  cd "$srcdir/wine-64-build"
+  # Allow ccache to work
+  mv $pkgname-$_pkgbasever $pkgname
 
-  # https://bugs.winehq.org/show_bug.cgi?id=43530
-  export CFLAGS="${CFLAGS/-fno-plt/}"
-  export LDFLAGS="${LDFLAGS/-Wl,-z,now/}"
+  # Doesn't compile without remove these flags as of 4.10
+  export CFLAGS="$CFLAGS -ffat-lto-objects"
 
-  ../wine/configure \
+  # Apply flags for cross-compilation
+  export CROSSCFLAGS="-O2 -pipe"
+  export CROSSCXXFLAGS="-O2 -pipe"
+  export CROSSLDFLAGS="-Wl,-O1"
+
+  msg2 "Building Wine-64..."
+  mkdir "$pkgname-64-build"
+  cd "$pkgname-64-build"
+  ../$pkgname/configure \
     --prefix=/usr \
     --libdir=/usr/lib \
     --with-x \
+    --with-wayland \
     --with-gstreamer \
     --enable-win64
 
   make
 
+  cd ..
+
   _wine32opts=(
     --libdir=/usr/lib32
-    --with-wine64="$srcdir/wine-64-build"
+    --with-wine64="$srcdir/$pkgname-64-build"
   )
 
   export PKG_CONFIG_PATH="/usr/lib32/pkgconfig"
 
-  cd "$srcdir/wine-32-build"
-  ../wine/configure \
+  msg2 "Building Wine-32..."
+  mkdir "$pkgname-32-build"
+  cd "$pkgname-32-build"
+  ../$pkgname/configure \
     --prefix=/usr \
     --with-x \
+    --with-wayland \
     --with-gstreamer \
     "${_wine32opts[@]}"
 
@@ -145,22 +138,24 @@ build() {
 }
 
 package() {
-  cd "$srcdir/wine-32-build"
+  msg2 "Packaging Wine-32..."
+  cd "$srcdir/$pkgname-32-build"
 
-  make STRIP=true prefix="$pkgdir/usr" \
+  make prefix="$pkgdir/usr" \
     libdir="$pkgdir/usr/lib32" \
     dlldir="$pkgdir/usr/lib32/wine" install
 
-  cd "$srcdir/wine-64-build"
-  make STRIP=true prefix="$pkgdir/usr" \
+  msg2 "Packaging Wine-64..."
+  cd "$srcdir/$pkgname-64-build"
+  make prefix="$pkgdir/usr" \
     libdir="$pkgdir/usr/lib" \
     dlldir="$pkgdir/usr/lib/wine" install
 
   # Font aliasing settings for Win32 applications
-  install -d "$pkgdir"/etc/fonts/conf.{avail,d}
-  install -m644 "$srcdir/30-win32-aliases.conf" "$pkgdir/etc/fonts/conf.avail"
-  ln -s ../conf.avail/30-win32-aliases.conf \
-    "$pkgdir/etc/fonts/conf.d/30-win32-aliases.conf"
-  install -Dm644 "$srcdir/wine-binfmt.conf" \
-    "$pkgdir/usr/share/wine/binfmt/wine.conf"
+  install -d "$pkgdir"/usr/share/fontconfig/conf.{avail,default}
+  install -m644 "$srcdir/30-win32-aliases.conf" "$pkgdir/usr/share/fontconfig/conf.avail"
+  ln -s ../conf.avail/30-win32-aliases.conf "$pkgdir/usr/share/fontconfig/conf.default/30-win32-aliases.conf"
+  install -Dm 644 "$srcdir/wine-binfmt.conf" "$pkgdir/usr/lib/binfmt.d/wine.conf"
 }
+
+# vim:set ts=8 sts=2 sw=2 et:
