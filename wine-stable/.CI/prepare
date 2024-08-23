@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+
+sed -E -e 's&\bpkgname\b&_pkgname&g' \
+  -e 's&^pkgrel=.*$&&' \
+  -e 's&^pkgver=([0-9]+)\.([0-9]+).*$&pkgver=\1.0\npkgrel=\2&' \
+  -i PKGBUILD
