@@ -4,7 +4,6 @@ export LDFLAGS+=" -Wl,--hash-style=both"
 # disable check
 unset checkdepends
 unset -f check
-unset b2sums
 
 # modify package
 _suffix="-eac"
@@ -26,10 +25,12 @@ for i in "${_old_pkgname[@]}"; do
   pkgname+=("${j:?}")
 
   eval "package_${j} () {
-    $(declare -f package_${i})
+    $(declare -f package_${i} | sed -E 's& \(32-bit\)&&')
     package_${i}
 
     pkgdesc+=' with DT_HASH enabled'
+
+    [ '${i%%-*}' == 'lib32' ] && pkgdesc+=' (32-bit)'
 
     provides=(${i}=${pkgver})
     conflicts=(${i})
@@ -40,6 +41,14 @@ for i in "${_old_pkgname[@]}"; do
   unset -f "package_${i}"
 done
 
-for i in ${source[@]}; do
-  sha256sums+=('SKIP')
-done
+_bump_pkgrel() {
+  local _pkgver_old="${1%-*}"
+  local _pkgrel_old="${1##*-}"
+  local _bump="${2}"
+
+  if [[ "$pkgver" == "$_pkgver_old" ]] && [[ "$pkgrel" == "$_pkgrel_old" ]]; then
+    pkgrel+=".$_bump"
+  fi
+}
+
+_bump_pkgrel 2.40+r16+gaa533d58ff-2 1
