@@ -34,21 +34,18 @@ EOF
   chmod +x "$_bin"
 
   cd "${_pkgname}"
-  export RUSTUP_TOOLCHAIN=stable
   export CARGO_TARGET_DIR=target
   cargo fetch --locked --target "$(rustc -vV | sed -n 's/host: //p')"
 }
 
 build() {
   cd "${_pkgname}"
-  export RUSTUP_TOOLCHAIN=stable
   export CARGO_TARGET_DIR=target
   cargo build --locked --profile opt
 }
 
 check() {
   cd "${_pkgname}"
-  export RUSTUP_TOOLCHAIN=stable
   export CARGO_TARGET_DIR=target
   cargo test --workspace --locked
   export RUSTFLAGS="${RUSTFLAGS} --cfg tokio_unstable"

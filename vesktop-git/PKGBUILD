@@ -8,7 +8,7 @@
 _pkgname="vesktop"
 pkgname="$_pkgname-git"
 pkgdesc="Custom Discord desktop app with Vencord preinstalled"
-pkgver=1.5.3.r7.gaf9ed58
+pkgver=1.5.3.r8.g75354ad
 pkgrel=1
 url="https://github.com/Vencord/Vesktop"
 license=('GPL-3.0-only')
@@ -36,9 +36,6 @@ depends=(
 )
 makedepends=(
   'git'
-  'imagemagick'
-  'libicns'
-  'optipng'
   'pnpm'
 )
 optdepends=(
@@ -59,16 +56,6 @@ pkgver() {
     | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
 }
 
-prepare() {
-  # change icon
-  local _extracted_icon="icon_256x256x32.png"
-  icns2png -x -s 256x256 -o "$srcdir" "$_pkgsrc/build/icon.icns"
-  optipng "$_extracted_icon"
-  rm -rf "$_pkgsrc"/static/icon.*
-  cp "$_extracted_icon" "$_pkgsrc/static/icon.png"
-  magick "$_extracted_icon" "$_pkgsrc/static/icon.ico"
-}
-
 build() {
   export SYSTEM_ELECTRON_VERSION=$(< "/usr/lib/electron${_electron_version:-}/version")
   export ELECTRONVERSION=${SYSTEM_ELECTRON_VERSION%%.*}
@@ -87,7 +74,7 @@ package() {
   install -d "$pkgdir/$_install_path/$_pkgname"
   cp --reflink=auto -r "$_pkgsrc/dist/linux-unpacked/resources/app.asar" "$pkgdir/$_install_path/$_pkgname/"
 
-  install -Dm644 "icon_256x256x32.png" "$pkgdir/usr/share/pixmaps/$_pkgname.png"
+  install -Dm644 "$_pkgsrc/static/icon.png" "$pkgdir/usr/share/pixmaps/$_pkgname.png"
   install -Dm644 "$_pkgsrc/LICENSE" -t "$pkgdir/usr/share/licenses/$pkgname/"
 
   install -Dm755 /dev/stdin "$pkgdir/usr/bin/$_pkgname" << END
