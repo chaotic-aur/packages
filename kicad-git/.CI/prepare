@@ -26,9 +26,7 @@ _check_status() (
   echo
 
   if [ "${_success_ci::1}" != "t" ]; then
-    echo "Return code: $CI_CODE_SKIP"
-    # return $CI_CODE_SKIP
-    return 123
+    exit "$CI_CODE_SKIP"
   fi
 )
 
