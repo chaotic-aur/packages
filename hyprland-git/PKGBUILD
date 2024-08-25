@@ -3,14 +3,14 @@
 # Contributor: ThatOneCalculator <kainoa at t1c dot dev>
 
 pkgname=hyprland-git
-pkgver=0.42.0.r1.83a334f9
+pkgver=0.42.0.r64.82c67e61
 pkgrel=1
 pkgdesc="Hyprland is an independent, highly customizable, dynamic tiling Wayland compositor that doesn't sacrifice on its looks."
 arch=(x86_64 aarch64)
 url="https://github.com/hyprwm/Hyprland"
 license=(BSD)
 depends=(
-  aquamarine
+  aquamarine-git
   cairo
   gcc-libs
   glib2
