@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 _check_status() (
   local _url_repo _url_ci _commit _response _msg_err _success_ci
@@ -26,7 +26,7 @@ _check_status() (
   echo
 
   if [ "${_success_ci::1}" != "t" ]; then
-    exit "$CI_CODE_SKIP"
+    return "$CI_CODE_SKIP"
   fi
 )
 
