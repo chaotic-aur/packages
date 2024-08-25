@@ -20,8 +20,7 @@ _check_status() (
   fi
 
   echo "$_msg_err"
-  echo "   $_url_ci"
-  echo
+  echo "> $_url_ci"
 
   if [ "${_success_ci::1}" != "t" ]; then
     return "$CI_CODE_SKIP"
