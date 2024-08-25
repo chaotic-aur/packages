@@ -450,7 +450,7 @@ for package in "${PACKAGES[@]}"; do
 
             # We don't want to schedule packages that have a specific trigger to prevent 
             # large packages getting scheduled too often and wasting resources (e.g. llvm-git)
-            if [[ ${VARIABLES[CI_ON_TRIGGER]+x} ]]; then 
+            if [ -v "VARIABLES[CI_ON_TRIGGER]" ]; then
                 UTIL_PRINT_INFO "Will not schedule $package because it has trigger ${VARIABLES[CI_ON_TRIGGER]} set."
             else 
                 MODIFIED_PACKAGES+=("$package")
