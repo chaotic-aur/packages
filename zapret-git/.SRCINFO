@@ -1,18 +1,17 @@
 pkgbase = zapret-git
 	pkgdesc = Bypass deep packet inspection
-	pkgver = 53.r25.5fda589
+	pkgver = 61.r12.gf8a673b
 	pkgrel = 1
 	url = https://github.com/bol-van/zapret
 	arch = x86_64
 	license = MIT
-	makedepends = libnetfilter_queue
 	makedepends = git
-	depends = systemd
-	depends = ipset
+	makedepends = libnetfilter_queue
 	depends = curl
+	depends = ipset
 	depends = iptables
-	provides = zapret=53.r25.5fda589
-	provides = zapret-git=53.r25.5fda589
+	depends = systemd
+	provides = zapret=61.r12.gf8a673b
 	conflicts = zapret
 	source = zapret::git+https://github.com/bol-van/zapret.git
 	source = sysusers.conf
@@ -22,20 +21,18 @@ pkgbase = zapret-git
 pkgname = zapret-nfqws-git
 	pkgdesc = Bypass deep packet inspection - netfilter queue mode
 	depends = libnetfilter_queue
-	depends = zapret-common-git=53.r25.5fda589
-	provides = zapret=53.r25.5fda589
-	provides = zapret-git=53.r25.5fda589
-	provides = zapret-nfqws=53.r25.5fda589
+	depends = zapret-common-git=61.r12.gf8a673b
+	provides = zapret=61.r12.gf8a673b
+	provides = zapret-nfqws=61.r12.gf8a673b
 	conflicts = zapret
 	conflicts = zapret-nfqws
 	backup = opt/zapret/config.nfqws
 
 pkgname = zapret-tpws-git
 	pkgdesc = Bypass deep packet inspection - transparent proxy mode
-	depends = zapret-common-git=53.r25.5fda589
-	provides = zapret=53.r25.5fda589
-	provides = zapret-git=53.r25.5fda589
-	provides = zapret-tpws=53.r25.5fda589
+	depends = zapret-common-git=61.r12.gf8a673b
+	provides = zapret=61.r12.gf8a673b
+	provides = zapret-tpws=61.r12.gf8a673b
 	conflicts = zapret
 	conflicts = zapret-tpws
 	backup = opt/zapret/config.tpws
@@ -46,11 +43,11 @@ pkgname = zapret-common-git
 	depends = ipset
 	depends = curl
 	depends = iptables
-	depends = zapret-git=53.r25.5fda589
-	provides = zapret-common=53.r25.5fda589
+	depends = zapret-git=61.r12.gf8a673b
+	provides = zapret-common=61.r12.gf8a673b
 	conflicts = zapret-common
 
 pkgname = zapret-docs-git
 	pkgdesc = Bypass deep packet inspection - docs and manuals
-	provides = zapret-docs=53.r25.5fda589
+	provides = zapret-docs=61.r12.gf8a673b
 	conflicts = zapret-docs
