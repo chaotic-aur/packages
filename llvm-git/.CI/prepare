@@ -28,3 +28,8 @@ _check_status() (
 )
 
 _check_status || return $?
+
+if [ "$(\date +%H -u)" != "23" ]; then
+  echo "Heavy package.  Skipping build."
+  return $CI_CODE_SKIP
+fi

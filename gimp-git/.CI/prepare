@@ -2,20 +2,22 @@
 
 _check_status() (
   local _url_repo _url_ci _commit _response _msg_err _success_ci
-  _url_repo="https://github.com/scummvm/scummvm"
+  _url_repo="https://gitlab.gnome.org/GNOME/gimp"
   _commit=$(git ls-remote "$_url_repo.git" HEAD 2>/dev/null | grep -m1 -oP '\w+(?=\t\w)')
-  _url_ci="$_url_repo/commit/$_commit/checks"
+  _url_ci="$_url_repo/-/commit/$_commit/pipelines"
   _response=$(curl -Ssf "$_url_ci")
-  _success_ci=false
 
-  if grep -qo 'favicon-success.svg' <<<"$_response"; then
+  if grep -qo favicon_status_success <<< "$_response"; then
     _msg_err="Check-in success."
     _success_ci=true
-  elif grep -qo 'favicon-failure.svg' <<<"$_response"; then
+  elif grep -qo favicon_status_failed <<< "$_response"; then
     _msg_err="Error: Check-in failed."
     _success_ci=false
-  else
+  elif grep -qo favicon_status_running <<< "$_response"; then
     _msg_err="Error: Check-in incomplete."
+    _success_ci=false
+  else
+    _msg_err="Error: Check-in unknown."
     _success_ci=false
   fi
 

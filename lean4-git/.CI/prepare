@@ -2,7 +2,7 @@
 
 _check_status() (
   local _url_repo _url_ci _commit _response _msg_err _success_ci
-  _url_repo="https://github.com/scummvm/scummvm"
+  _url_repo="https://github.com/leanprover/lean4"
   _commit=$(git ls-remote "$_url_repo.git" HEAD 2>/dev/null | grep -m1 -oP '\w+(?=\t\w)')
   _url_ci="$_url_repo/commit/$_commit/checks"
   _response=$(curl -Ssf "$_url_ci")
