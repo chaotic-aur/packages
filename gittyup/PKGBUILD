@@ -8,7 +8,7 @@
 
 pkgname=gittyup
 pkgver=1.4.0
-pkgrel=1
+pkgrel=2
 pkgdesc='Graphical Git client (GitAhead fork)'
 url="https://murmele.github.io/${pkgname^}"
 _url="https://github.com/Murmele/${pkgname^}"
@@ -32,8 +32,8 @@ optdepends=('git-lfs: git-lfs support'
   'qt5-translations: translations')
 source=("git+$_url.git#tag=${pkgname}_v$pkgver"
   "$pkgname-libgit2::git+https://github.com/stinb/libgit2.git" # a fork, not the official upstream!
-  "$pkgname-scintillua::git+https://github.com/orbitalquark/scintillua.git"
   "$pkgname-lexilla::git+https://github.com/ScintillaOrg/lexilla.git"
+  "$pkgname-scintillua::git+https://github.com/orbitalquark/scintillua.git"
   "$pkgname-zip::git+https://github.com/kuba--/zip.git")
 sha256sums=('06e1d79a3a3062c2ab37ad3a0a8f67d74d0c19210a9defac2b5e9e68e70feb1f'
   'SKIP'
@@ -46,15 +46,12 @@ prepare() {
   # https://github.com/Murmele/Gittyup/issues/766
   git cherry-pick -n d36eba172a01d541945d59427b4f643aaed55da0
   git submodule init
-  git config submodule.dep/cmark/cmark.update none
-  git config submodule.dep/git/git.update none
-  git config submodule.dep/hunspell/hunspell.update none
-  git config submodule.dep/libssh2/libssh2.update none
-  git config submodule.dep/openssl/openssl.update none
-  git config submodule.dep/libgit2/libgit2.url "$srcdir/$pkgname-libgit2"
-  git config submodule.dep/scintillua/lexilla.url "$srcdir/$pkgname-lexilla"
-  git config submodule.dep/scintillua/scintillua.url "$srcdir/$pkgname-scintillua"
-  git config submodule.test/dep/zip.url "$srcdir/$pkgname-zip"
+  for submodule in cmark git hunspell libssh2 openssl; do
+    git config "submodule.dep/$submodule/$submodule.update" none
+  done
+  for submodule in libgit2 lexilla scintillua zip; do
+    git config "submodule.dep/$submodule/$submodule.url" "$srcdir/$pkgname-$submodule"
+  done
   git -c protocol.file.allow=always submodule update
 }
 
@@ -64,22 +61,27 @@ build() {
     -W no-dev
     -D CMAKE_BUILD_TYPE=None
     -D CMAKE_INSTALL_PREFIX=/usr
-    -D CMAKE_INSTALL_DATADIR=share/$pkgname
-    -D ENABLE_REPRODUCIBLE_BUILDS=ON
-    -D BUILD_SHARED_LIBS=OFF
+    -D CMAKE_INSTALL_DATADIR=share
     -D DEBUG_OUTPUT=OFF
+    -D LUA_MODULES_PATH=/usr/lib/lua/5.4
+    -D ENABLE_REPRODUCIBLE_BUILDS=OFF
+    -D ENABLE_UPDATE_OVER_GUI=OFF
+    -D GENERATE_APPDATA=OFF
+    -D BUILD_SHARED_LIBS=OFF
     -D USE_SYSTEM_CMARK=ON
     -D USE_SYSTEM_GIT=ON
     -D USE_SYSTEM_HUNSPELL=ON
+    -D USE_SYSTEM_LIBGIT2=OFF # system libgit2 too new
     -D USE_SYSTEM_LIBSSH2=ON
     -D USE_SYSTEM_LUA=ON
     -D USE_SYSTEM_OPENSSL=ON
-    -D LUA_MODULES_PATH=/usr/lib/lua/5.4
+    -D USE_SYSTEM_QT=ON
   )
   cmake "${_flags[@]}" \
     -B build \
     -S "${pkgname^}"
-  ninja -C build
+  cmake --build build
+  # ninja -C build
 }
 
 check() {
@@ -87,11 +89,11 @@ check() {
 }
 
 package() {
-  install -Dm0644 "${pkgname^}/LICENSE.md" "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+  install -Dm0644 -t "$pkgdir/usr/share/licenses/$pkgname/" "${pkgname^}/LICENSE.md"
   install -Dm0644 "${pkgname^}/rsrc/linux/com.github.Murmele.Gittyup.desktop" "$pkgdir/usr/share/applications/gittyup.desktop"
   DESTDIR="$pkgdir" ninja -C build install
   pushd "$pkgdir/usr"
   rm -f lib/libQt*.so.* lib/*.a
   rm -rf include lib/{cmake,pkgconfig,Plugins}
-  mv bin/{indexer,relauncher} "share/$pkgname"
+  mv bin/{indexer,relauncher} "share/${pkgname^}"
 }
