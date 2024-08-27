@@ -1,0 +1,25 @@
+#!/usr/bin/env sh
+
+# mangle replaces directive
+sed -E -e 's&^(\s*)(replaces\+?=)&\1 _ignore_\2&g' -i PKGBUILD
+
+# don't make -docs
+sed -E \
+  -e 's&^(\s*)(.*make htmldocs)$&\1 : # \2&' \
+  -e '/^\s*"\$.*-docs.*"$/d' \
+  -i PKGBUILD
+
+# rename pkgbase
+sed -E \
+  -e 's&^(pkgbase=\S+)(.*)$&\1-znver4&' \
+  -i PKGBUILD
+
+# fix pkgver
+sed -E \
+  -e 's&pkgver&_pkgver&g' \
+  -i PKGBUILD
+
+# update pkgdesc
+sed -E \
+  -e 's&^(\s+)(_package\$\{_p#\$pkgbase\})$&\1\2\n\1pkgdesc+=\\" - amd znver4\\"&' \
+  -i PKGBUILD
