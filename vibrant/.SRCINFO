@@ -1,0 +1,25 @@
+pkgbase = vibrant
+	pkgdesc = A simple library to adjust color saturation of X11 outputs.
+	pkgver = 1.1.1
+	pkgrel = 1
+	url = https://github.com/libvibrant/libvibrant
+	arch = x86_64
+	license = GPL3
+	license = custom:MIT
+	makedepends = git
+	makedepends = cmake
+	makedepends = libxrandr
+	makedepends = libxnvctrl
+	source = libvibrant-1.1.1.tar.gz::https://github.com/libvibrant/libvibrant/archive/refs/tags/1.1.1.tar.gz
+	b2sums = fbcb53ce431bc35c7f0a66e765708dfa5e4bac5bf1bcd20354710e0ff2a63d33f2692aa4671a9452a4a97c928ab1810e6e4a14290f252064619ab9b37294214a
+
+pkgname = libvibrant
+	depends = libxrandr
+	depends = libxnvctrl
+	provides = libvibrant.so=1-64
+	provides = libvibrant.so=1
+	conflicts = vibrant
+
+pkgname = vibrant-cli
+	depends = libvibrant.so=1-64
+	conflicts = vibrant
