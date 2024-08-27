@@ -1,4 +1,0 @@
-license=('GPL-2.0-only')
-
-unset -f pkgver
-pkgver="${gitver#v}"
