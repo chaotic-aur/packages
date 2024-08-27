@@ -1,0 +1,20 @@
+
+export MAKEFLAGS="${MAKEFLAGS:-} -j $(nproc)"
+
+pkgver=${_pkgver%.*}
+
+_prep_v3() {
+  export KCFLAGS="-march=znver2 -O3"
+}
+
+eval _orig_"$(declare -f build)"
+build() {
+  _prep_v3
+  _orig_build
+}
+
+eval _orig_"$(declare -f prepare)"
+prepare() {
+  _prep_v3
+  _orig_prepare
+}
