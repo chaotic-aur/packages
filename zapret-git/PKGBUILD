@@ -5,8 +5,8 @@
 
 _pkgname="zapret"
 pkgbase="$_pkgname${_pkgtype:-}"
-pkgver=61.r12.gf8a673b
-pkgrel=1
+pkgver=61.r22.gf8a673b
+pkgrel=2
 pkgdesc="Bypass deep packet inspection"
 url="https://github.com/bol-van/zapret"
 license=('MIT')
@@ -23,7 +23,10 @@ makedepends=(
   'libnetfilter_queue'
 )
 
-provides=("$_pkgname=$pkgver")
+provides=(
+  "$_pkgname=$pkgver"
+  "$pkgbase=$pkgver"
+)
 conflicts=("$_pkgname")
 
 _pkgsrc="$_pkgname"
@@ -71,7 +74,13 @@ _set_config() {
 }
 
 _package_zapret-common() {
-  depends=('systemd' 'ipset' 'curl' 'iptables' "zapret-git=$pkgver")
+  depends=(
+    "$pkgbase=$pkgver"
+    'curl'
+    'ipset'
+    'iptables'
+    'systemd'
+  )
   provides=("zapret-common=$pkgver")
   conflicts=('zapret-common')
   pkgdesc+=' - common files'
