@@ -1,0 +1,2 @@
+pkgrel=${pkgrel#*.}
+license=('MIT')
