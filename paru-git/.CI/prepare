@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+
+(yes | pacman -S pacman-git) || true
+mv /etc/pacman.conf.pacsave /etc/pacman.conf
+mv /etc/makepkg.conf.pacsave /etc/makepkg.conf
