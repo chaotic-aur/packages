@@ -1,6 +1,8 @@
 url="https://github.com/cemu-project/Cemu"
 
 depends=(${depends[@]//hicolor-icon-theme/})
+depends=(${depends[@]//discord-rpc/})
+
 makedepends+=('ninja')
 
 build() {
@@ -13,6 +15,7 @@ build() {
     -S "$_pkgname"
     -G Ninja
     -DCMAKE_BUILD_TYPE=None
+    -DENABLE_DISCORD_RPC=OFF
     -DENABLE_VCPKG=OFF
     -Wno-dev
   )
@@ -52,3 +55,15 @@ package() {
 
   chmod -R u+rwX,go+rX,go-w "$pkgdir/"
 }
+
+_bump_pkgrel() {
+  local _pkgver_old="${1%-*}"
+  local _pkgrel_old="${1##*-}"
+  local _bump="${2}"
+
+  if [[ "$pkgver" == "$_pkgver_old" ]] && [[ "$pkgrel" == "$_pkgrel_old" ]]; then
+    pkgrel+=".$_bump"
+  fi
+}
+
+_bump_pkgrel 2.1.r2.g9a53b194-1 1
