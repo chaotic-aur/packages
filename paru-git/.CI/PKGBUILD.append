@@ -1,0 +1,24 @@
+depends=(${depends[@]/pacman/})
+depends=(${depends[@]/libalpm*/})
+
+eval _orig_"$(declare -f prepare)"
+eval _orig_"$(declare -f build)"
+eval _orig_"$(declare -f package)"
+
+unset -f prepare
+
+pkgver() {
+  cd "$_pkgname"
+  git describe --long --tags --abbrev=7 --exclude='*[a-zA-Z][a-zA-Z]*' \
+    | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
+}
+
+build() {
+  (_orig_prepare)
+  (_orig_build)
+}
+
+package() {
+  depends+=('libalpm.so')
+  _orig_package
+}
