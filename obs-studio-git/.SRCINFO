@@ -1,6 +1,6 @@
 pkgbase = obs-studio-git
 	pkgdesc = Free, open source software for live streaming and recording - Browser enabled
-	pkgver = 30.2.2.r63.g37b4018
+	pkgver = 30.2.3.r172.g270cebe
 	pkgrel = 1
 	url = https://github.com/obsproject/obs-studio
 	arch = x86_64
@@ -36,7 +36,6 @@ pkgbase = obs-studio-git
 	depends = libvpl
 	depends = speexdsp
 	depends = qrcodegencpp-cmake
-	optdepends = chaotic-interfere: chaotic-aur interference tracking
 	optdepends = libfdk-aac: FDK AAC codec support
 	optdepends = libva-intel-driver: hardware encoding
 	optdepends = libva-mesa-driver: hardware encoding
@@ -45,7 +44,7 @@ pkgbase = obs-studio-git
 	optdepends = sndio: sndio input client
 	optdepends = v4l2loopback-dkms: virtual camera support
 	optdepends = vlc: VLC Media Source
-	provides = obs-studio=30.2.2
+	provides = obs-studio=30.2.3
 	conflicts = obs-studio
 	options = !debug
 	source = obs-studio::git+https://github.com/obsproject/obs-studio.git
