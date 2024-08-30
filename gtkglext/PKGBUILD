@@ -4,13 +4,13 @@
 pkgname=gtkglext
 pkgver=1.2.0
 _pkgvershort='1.2'
-pkgrel=19
+pkgrel=20
 pkgdesc='An OpenGL extension to GTK2.'
 arch=('x86_64')
 url='https://sourceforge.net/projects/gtkglext/'
 url='https://gitlab.gnome.org/Archive/gtkglext'
 license=('LGPL-2.0-or-later')
-depends=('glib2' 'pango' 'gtk2' 'glu' 'libxmu' 'libglvnd')
+depends=('glib2' 'pango' 'gtk2' 'glu' 'libxmu' 'libgl')
 makedepends=('glib2-devel')
 # The SourceForge source is used by some distro's. Others use gnome.
 #source=("https://sourceforge.net/projects/${pkgname}/files/${pkgname}/${pkgver}/${pkgname}-${pkgver}.tar.bz2"

@@ -1,7 +1,7 @@
 pkgbase = gtkglext
 	pkgdesc = An OpenGL extension to GTK2.
 	pkgver = 1.2.0
-	pkgrel = 19
+	pkgrel = 20
 	url = https://gitlab.gnome.org/Archive/gtkglext
 	arch = x86_64
 	license = LGPL-2.0-or-later
@@ -11,7 +11,7 @@ pkgbase = gtkglext
 	depends = gtk2
 	depends = glu
 	depends = libxmu
-	depends = libglvnd
+	depends = libgl
 	source = https://download.gnome.org/sources/gtkglext/1.2/gtkglext-1.2.0.tar.bz2
 	source = 001-no-pangox.patch
 	source = 002-fix-gtk2.20-deprecated-symbols.patch
