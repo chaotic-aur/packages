@@ -3,22 +3,19 @@ pkgname=micromamba
 _pkgname=${pkgname/micro/}
 pkgver=1.5.8
 _pkgver=2024.03.25
-pkgrel=1
+pkgrel=2
 pkgdesc="C++ tiny version of mamba, the fast conda package installer"
 arch=('i686' 'x86_64')
 url="https://github.com/mamba-org/mamba"
-license=('MIT')
-depends=('libarchive' 'cmake' 'curl' 'libsolv' 'cli11' 'pybind11' 'fmt' 'spdlog' 'nlohmann-json' 'python-pip' 'yaml-cpp' 'reproc' 'ghc-filesystem' 'termcolor' 'tl-expected')
-makedepends=('gtest')
+license=('BSD-3-Clause')
+depends=('libarchive' 'curl' 'libsolv' 'fmt' 'yaml-cpp' 'reproc')
+makedepends=('cmake' 'cli11' 'pybind11' 'spdlog' 'nlohmann-json' 'python-pip' 'tl-expected' 'gtest')
 source=(${pkgname}-${pkgver}.tar.gz::https://github.com/mamba-org/mamba/archive/refs/tags/${_pkgver}.tar.gz)
 md5sums=('fe28d77d0cae57dde82a2f4fea360e9e')
-provides=('micromamba')
-conflict=('micromamba-bin')
+provides=('libmamba')
+conflicts=('micromamba-bin')
 
 prepare() {
-  cd ${_pkgname}-${_pkgver}
-  #patch --forward --strip=1 --input="${srcdir}/${_pkgname}-${_pkgver}.patch"
-
   cmake -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_INSTALL_PREFIX=${pkgdir}/usr \
     -DCMAKE_POSITION_INDEPENDENT_CODE=ON \
@@ -29,20 +26,20 @@ prepare() {
     -DBUILD_MICROMAMBA=ON \
     -DBUILD_SHARED=ON \
     -DBUILD_STATIC=OFF \
-    -B build
+    -Wno-dev \
+    -B build \
+    -S ${_pkgname}-${_pkgver}
 }
 
 build() {
-  cd ${_pkgname/micro/}-${_pkgver}
   cmake --build build
 }
 
 check() {
-  cd ${_pkgname}-${_pkgver}/build
-  ctest
+  ctest --test-dir build
 }
 
 package() {
-  cd ${_pkgname}-${_pkgver}
   cmake --install build
+  install -Dm 644 ${_pkgname}-${_pkgver}/${pkgname}/LICENSE -t "${pkgdir}/usr/share/licenses/${pkgname}"
 }
