@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-
-if [ "$(\date +%H -u)" != "23" ]; then
-  echo "Heavy package.  Skipping build."
-  return $CI_CODE_SKIP
-fi
