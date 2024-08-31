@@ -1,9 +1,9 @@
 # Maintainer: Mark Wagie <mark dot wagie at proton dot me>
-pkgname=python-steam-solstice
-_name=steam
+pkgname=python-steam
+_name=${pkgname#python-}
 pkgver=1.6.1
 pkgrel=1
-pkgdesc="Python package for interacting with Steam (Solstice Game Studios fork)"
+pkgdesc="Python package for interacting with Steam"
 arch=('any')
 url="https://github.com/solsticegamestudios/steam"
 license=('MIT')
@@ -13,7 +13,7 @@ depends=(
   'python-pycryptodomex'
   'python-requests'
   'python-six'
-  'python-vdf-solstice'
+  'python-vdf'
 )
 makedepends=(
   'python-build'
@@ -21,8 +21,6 @@ makedepends=(
   'python-setuptools'
   'python-wheel'
 )
-provides=('python-steam')
-conflicts=('python-steam')
 source=("$_name-$pkgver.tar.gz::$url/archive/refs/tags/v$pkgver.tar.gz")
 sha256sums=('dcc305f11e1686a3557cd87afdc50ce177a5015ba3fdd51bef63c7302dd21b05')
 
