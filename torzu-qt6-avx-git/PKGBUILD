@@ -2,8 +2,6 @@
 
 ## links
 # http://vub63vv26q6v27xzv2dtcd25xumubshogm67yrpaz2rculqxs7jlfqad.onion/torzu-emu/torzu
-# https://codeberg.org/litucks/torzu
-# https://github.com/litucks/torzu
 
 ## options
 : ${_build_avx:=false}
@@ -16,10 +14,10 @@ _pkgtype+="-git"
 ## basic info
 _pkgname="torzu"
 pkgname="$_pkgname${_pkgtype:-}"
-pkgver=2024.05.14.r37.g224ec03
+pkgver=2024.08.10.r6.g6e61673
 pkgrel=1
 pkgdesc="Yet another emulator fork"
-url="https://codeberg.org/litucks/torzu"
+url="https://notabug.org/litucks/torzu"
 license=('GPL-3.0-or-later')
 arch=('x86_64')
 
@@ -56,15 +54,12 @@ conflicts=(
 
 options=('!lto')
 
-_pkgsrc="$_pkgname"
-source=(
-  "$_pkgsrc"::"git+$url.git"
-)
-sha256sums=(
-  'SKIP'
-)
+_source_main() {
+  _pkgsrc="torzu.notabug"
+  source=("$_pkgsrc"::"git+$url.git")
+  sha256sums=('SKIP')
+}
 
-# submodules
 _source_torzu() {
   source+=(
     'arun11299.cpp-jwt'::'git+https://github.com/arun11299/cpp-jwt.git'
@@ -196,16 +191,11 @@ _source_mozilla_cubeb() {
   )
 }
 
+_source_main
 _source_torzu
 _source_bylaws_libadrenotools
 _source_lat9nq_tzdb_to_nx
 _source_mozilla_cubeb
-
-pkgver() {
-  cd "$srcdir/$_pkgname"
-  git describe --long --tags --abbrev=7 --exclude='*[a-zA-Z][a-zA-Z]*' \
-    | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
-}
 
 prepare() {
   _submodule_update() {
@@ -221,6 +211,12 @@ prepare() {
   _prepare_bylaws_libadrenotools
   _prepare_lat9nq_tzdb_to_nx
   _prepare_mozilla_cubeb
+}
+
+pkgver() {
+  cd "$_pkgsrc"
+  git describe --long --tags --abbrev=7 --exclude='*[a-zA-Z][a-zA-Z]*' \
+    | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
 }
 
 build() {
