@@ -1,0 +1,15 @@
+pkgbase = kmonad-git
+	pkgdesc = An advanced keyboard manager
+	pkgver = 0.4.2.r87.g4c324f1
+	pkgrel = 1
+	url = https://github.com/kmonad/kmonad
+	arch = any
+	license = MIT
+	makedepends = git
+	makedepends = stack
+	provides = kmonad
+	conflicts = kmonad
+	source = git+https://github.com/kmonad/kmonad
+	md5sums = SKIP
+
+pkgname = kmonad-git
