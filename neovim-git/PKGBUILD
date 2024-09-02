@@ -8,7 +8,7 @@
 
 _pkgname=neovim
 pkgname="$_pkgname-git"
-pkgver=0.11.0.r164.g3a1515bfee
+pkgver=0.11.0.r686.ge1937286f0
 pkgrel=1
 pkgdesc='Fork of Vim aiming to improve user experience, plugins, and GUIs'
 arch=(i686 x86_64 armv7h armv6h aarch64)
@@ -62,6 +62,11 @@ pkgver() {
 
 build() {
   cd "$_pkgname"
+
+  # Use bundled utf8proc until upstream pins back to a stable release
+  cmake -S cmake.deps -B .deps -G Ninja -DUSE_BUNDLED=OFF -DUSE_BUNDLED_UTF8PROC=ON
+  cmake --build .deps
+
   cmake \
     -Bbuild \
     -DCMAKE_BUILD_TYPE=Release \
