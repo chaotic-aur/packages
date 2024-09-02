@@ -9,12 +9,12 @@ if [ -z "$_srcinfo" ] && [ -z "$_pkgver" ]; then
   : ${_autoupdate:=true}
 fi
 
-: ${_fvm_version:=3.22.3}
+: ${_fvm_version:=3.24.1}
 
 ## basic info
 _pkgname="fluffychat"
 pkgname="$_pkgname"
-pkgver=1.21.2
+pkgver=1.22.1
 pkgrel=1
 pkgdesc="The cutest instant messenger in the [matrix]"
 url="https://github.com/krille-chan/fluffychat"
