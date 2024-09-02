@@ -1,10 +1,10 @@
 pkgbase = celt
 	pkgdesc = Low-latency audio communication codec
 	pkgver = 0.11.3
-	pkgrel = 6
+	pkgrel = 7
 	url = https://gitlab.xiph.org/xiph/celt/
 	arch = x86_64
-	license = BSD
+	license = BSD-2-Clause
 	depends = libogg
 	source = https://gitlab.xiph.org/xiph/celt/-/archive/v0.11.3/celt-v0.11.3.tar.bz2
 	source = 010-celt-fix-tandem-test.patch

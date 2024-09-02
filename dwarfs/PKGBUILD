@@ -19,18 +19,9 @@ makedepends=(
   'utf8cpp' 'range-v3' 'nlohmann-json'
   'gtest' 'parallel-hashmap'
 )
-source=("$pkgname-$pkgver.tar.xz::https://github.com/mhx/dwarfs/releases/download/v$pkgver/dwarfs-$pkgver.tar.xz"
-  0001-makepkg-Disable-faulty-test.patch)
-sha256sums=('db785e0e0f257fa4363d90153db34127add4552791a72998b30ded787840d039'
-  '4288b9e93c32d4645ac585d2b30ceb4b79d45f9f33348009c7b3c5af3147442c')
-b2sums=('5885e7dc4092dd678383958839afcc02e906c95dcb8e2af2a649738a3d41196ec51f17a4362b413863136bd67cbd3d8225c147ed2da1a089561ec6e5d2587d4b'
-  '9a9f8b111480b16072737b37aa344595c5f595dbc2d602028d22d153721f94ee7d261b8a00d9b92aff35bb1664cf0e291e6291f6e64cefdee0d51f6618896a7e')
-
-prepare() {
-  cd "$pkgname-$pkgver"
-
-  patch -Np1 -i "$srcdir/0001-makepkg-Disable-faulty-test.patch"
-}
+source=("$pkgname-$pkgver.tar.xz::https://github.com/mhx/dwarfs/releases/download/v$pkgver/dwarfs-$pkgver.tar.xz")
+sha256sums=('db785e0e0f257fa4363d90153db34127add4552791a72998b30ded787840d039')
+b2sums=('5885e7dc4092dd678383958839afcc02e906c95dcb8e2af2a649738a3d41196ec51f17a4362b413863136bd67cbd3d8225c147ed2da1a089561ec6e5d2587d4b')
 
 build() {
   # Setting up release flags manually here so we get to use `CMAKE_BUILD_TYPE=None`
