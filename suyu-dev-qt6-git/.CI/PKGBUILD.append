@@ -10,4 +10,4 @@ _bump_pkgrel() {
   fi
 }
 
-_bump_pkgrel r27440.4eb41467f8-1 1
+_bump_pkgrel r27440.4eb41467f8-1 2
