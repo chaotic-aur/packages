@@ -8,7 +8,7 @@
 
 _pkgname=neovim
 pkgname="$_pkgname-git"
-pkgver=0.11.0.r686.ge1937286f0
+pkgver=0.11.0.r711.g7b7c95dac9
 pkgrel=1
 pkgdesc='Fork of Vim aiming to improve user experience, plugins, and GUIs'
 arch=(i686 x86_64 armv7h armv6h aarch64)
@@ -27,6 +27,7 @@ depends=(
   'tree-sitter-markdown'
   'tree-sitter-query'
   'tree-sitter-vimdoc'
+  'tree-sitter-vim'
   'tree-sitter>=0.22.2'
   'unibilium'
 )

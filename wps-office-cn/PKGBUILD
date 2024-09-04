@@ -7,7 +7,7 @@
 
 pkgbase=wps-office-cn
 pkgname=('wps-office-cn' 'wps-office-mime-cn' 'wps-office-mui-zh-cn')
-pkgver=11.1.0.11723
+pkgver=12.1.0.17881
 pkgrel=1
 pkgdesc="Kingsoft Office (WPS Office) CN version - an office productivity suite"
 #arch=('x86_64' 'aarch64')
@@ -20,7 +20,7 @@ options=('!emptydirs')
 # https://gitlab.com/cwittlut/wps-tsk/-/blob/main/tsk.sh?ref_type=heads by Ryan Tsien
 # https://pastebin.com/29TeRUMj by Asuka Minato
 _get_source_url() {
-  url="https://wps-linux-personal.wpscdn.cn/wps/download/ep/Linux2019/${pkgver##*.}/wps-office_${pkgver}_$1.deb"
+  url="https://wps-linux-personal.wpscdn.cn/wps/download/ep/Linux2023/${pkgver##*.}/wps-office_${pkgver}_$1.deb"
   uri="${url#https://wps-linux-personal.wpscdn.cn}"
   secrityKey='7f8faaaa468174dc1c9cd62e5f218a5b'
   timestamp10=$(date '+%s')
@@ -34,7 +34,7 @@ source_x86_64=("wps-office_${pkgver}_amd64.deb::$(_get_source_url amd64)")
 #source_aarch64=("wps-office_${pkgver}_arm64.deb::$(_get_source_url arm64)")
 source=('fix-wps-python-parse.patch')
 sha1sums=('f3713481edf04ffb08be8d24dce66554dd5a4f13')
-sha1sums_x86_64=('7ef522d02341ad2904e6d97024c19dff6fb92d2c')
+sha1sums_x86_64=('ef71d43eaa06a6ffbad4f6307499b80f25478d42')
 
 prepare() {
   bsdtar -xpf data.tar.xz
@@ -43,13 +43,13 @@ prepare() {
   sed -i 's|/opt/kingsoft/wps-office|/usr/lib|' *
   [[ "$CARCH" = "aarch64" ]] && sed -i '2a export LD_PRELOAD=/usr/lib/libfreetype.so' *
 
-  cd "${srcdir}/usr/share/icons/hicolor"
-  for _file in ./*; do
-    if [ -e ${_file}/mimetypes/wps-office2019-etmain.png ]; then
-      mkdir -p ${_file}/apps
-      cp -p ${_file}/mimetypes/wps-office2019* ${_file}/apps
-    fi
-  done
+  #   cd "${srcdir}/usr/share/icons/hicolor"
+  #   for _file in ./*; do
+  #       if [ -e ${_file}/mimetypes/wps-office2019-etmain.png ]; then
+  #           mkdir -p ${_file}/apps
+  #           cp -p ${_file}/mimetypes/wps-office2019* ${_file}/apps
+  #       fi
+  #   done
 
   cd "${srcdir}"
   patch -Np1 -i "${srcdir}/fix-wps-python-parse.patch"

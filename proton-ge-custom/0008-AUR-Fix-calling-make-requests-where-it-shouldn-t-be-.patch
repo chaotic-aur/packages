@@ -1,4 +1,4 @@
-From ea3794ddeb8be96a5df5025ffb6e74947a07006f Mon Sep 17 00:00:00 2001
+From 634307cab45e4e4dc9fc52d6e81eefc79a5798e9 Mon Sep 17 00:00:00 2001
 From: Stelios Tsampas <loathingkernel@gmail.com>
 Date: Thu, 6 Jun 2024 19:47:02 +0300
 Subject: [PATCH 8/8] AUR: Fix calling make-requests where it shouldn't be
@@ -9,7 +9,7 @@ Subject: [PATCH 8/8] AUR: Fix calling make-requests where it shouldn't be
  1 file changed, 1 deletion(-)
 
 diff --git a/Makefile.in b/Makefile.in
-index 8678acfb..b61f889a 100644
+index 63e19456..3f5b912f 100644
 --- a/Makefile.in
 +++ b/Makefile.in
 @@ -639,7 +639,6 @@ $(eval $(call rules-wine-requests,wine))

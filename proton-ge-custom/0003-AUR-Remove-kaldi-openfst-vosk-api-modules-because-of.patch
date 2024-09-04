@@ -1,4 +1,4 @@
-From e903672e7cb7f2400143f1fb17e9f0e3a1a7267a Mon Sep 17 00:00:00 2001
+From 11ed39b3eea3f29c6da5f4eaf06e471300cb14c1 Mon Sep 17 00:00:00 2001
 From: Stelios Tsampas <loathingkernel@gmail.com>
 Date: Wed, 12 Jul 2023 17:56:34 +0300
 Subject: [PATCH 3/8] AUR Remove kaldi, openfst, vosk-api modules because of
@@ -9,7 +9,7 @@ Subject: [PATCH 3/8] AUR Remove kaldi, openfst, vosk-api modules because of
  1 file changed, 1 insertion(+), 81 deletions(-)
 
 diff --git a/Makefile.in b/Makefile.in
-index e5372746..0ff4c115 100644
+index 09ac795d..95b7875f 100644
 --- a/Makefile.in
 +++ b/Makefile.in
 @@ -586,86 +586,6 @@ $(OBJ)/.steamexe-post-build64:
