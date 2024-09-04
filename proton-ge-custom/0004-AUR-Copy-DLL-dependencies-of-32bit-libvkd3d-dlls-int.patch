@@ -1,4 +1,4 @@
-From 6a057e1d8378d98b60ec85dd0f5f7365e1900aea Mon Sep 17 00:00:00 2001
+From 074fff76270251fbbfb2ff3d21f84ca735b8c9d8 Mon Sep 17 00:00:00 2001
 From: Stelios Tsampas <loathingkernel@gmail.com>
 Date: Wed, 12 Jul 2023 03:16:34 +0300
 Subject: [PATCH 4/8] AUR Copy DLL dependencies of 32bit libvkd3d dlls into the
@@ -20,10 +20,10 @@ a runtime dependency.
  1 file changed, 9 insertions(+)
 
 diff --git a/proton b/proton
-index 25c32f64..3a500a43 100755
+index 586318e4..f7bf9f22 100755
 --- a/proton
 +++ b/proton
-@@ -1027,6 +1027,15 @@ class CompatData:
+@@ -1034,6 +1034,15 @@ class CompatData:
                          prefix=self.prefix_dir, track_file=tracked_files, link_debug=True)
                  try_copy(g_proton.lib_dir + "vkd3d/libvkd3d-shader-1.dll", "drive_c/windows/syswow64",
                          prefix=self.prefix_dir, track_file=tracked_files, link_debug=True)
