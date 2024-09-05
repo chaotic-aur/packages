@@ -12,7 +12,7 @@
 : ${_build_pgo:=true}
 
 # reuse existing PGO profile
-: ${_build_pgo_reuse:=true}
+: ${_build_pgo_reuse:=try}
 
 # package debug symbols for upload
 : ${_build_symbols:=false}
@@ -29,6 +29,7 @@
 # modify package name
 : ${_build_hg:=true}
 
+unset _pkgtype
 [[ "${_build_nightly::1}" == "t" ]] && _pkgtype+="-nightly"
 [[ "${_build_wayland::1}" == "t" ]] && _pkgtype+="-wayland"
 [[ "${_build_hg::1}" == "t" ]] && _pkgtype+="-hg"
@@ -36,7 +37,7 @@
 ## basic info
 pkgname="firefox${_pkgtype:-}"
 _pkgname=firefox-nightly
-pkgver=125.0a1+20240220.1+hef9cbc0f26f8
+pkgver=131.0a1+20240828.1+hc9eea28a07a6
 pkgrel=1
 pkgdesc="Standalone web browser from mozilla.org"
 url="https://www.mozilla.org/firefox/channel/#nightly"
@@ -224,7 +225,7 @@ prepare() {
   cd "${_repo##*/}"
 
   # Change install dir from 'firefox' to 'firefox-nightly'
-  patch -Np1 -i ../firefox-install-dir.patch
+  patch -Np1 -F100 -i "../firefox-install-dir.patch"
 
   echo -n "$_google_api_key" > google-api-key
   echo -n "$_mozilla_api_key" > mozilla-api-key
@@ -319,13 +320,11 @@ END
   fi
 }
 
-build() {
+build() (
   cd "${_repo##*/}"
 
   export XDG_RUNTIME_DIR="${XDG_RUNTIME_DIR:-$srcdir/xdg-runtime}"
   [ ! -d "$XDG_RUNTIME_DIR" ] && install -dm700 "${XDG_RUNTIME_DIR:?}"
-
-  export LIBGL_ALWAYS_SOFTWARE=true
 
   export MACH_BUILD_PYTHON_NATIVE_PACKAGE_SOURCE=pip
   export MOZBUILD_STATE_PATH="$srcdir/mozbuild"
@@ -334,13 +333,21 @@ build() {
   export MOZ_NOSPAM=1
   export MOZ_SOURCE_REPO="$_repo"
 
+  # malloc_usable_size is used in various parts of the codebase
+  CFLAGS="${CFLAGS/_FORTIFY_SOURCE=3/_FORTIFY_SOURCE=2}"
+  CXXFLAGS="${CXXFLAGS/_FORTIFY_SOURCE=3/_FORTIFY_SOURCE=2}"
+
+  # Breaks compilation since https://bugzilla.mozilla.org/show_bug.cgi?id=1896066
+  CFLAGS="${CFLAGS/-fexceptions/}"
+  CXXFLAGS="${CXXFLAGS/-fexceptions/}"
+
   # LTO/PGO needs more open files
   ulimit -n 4096
 
   # Do 3-tier PGO
   if [[ "${_build_pgo::1}" == "t" ]]; then
-    local _old_profdata="${SRCDEST:-$startdir}/merged.profdata"
-    local _old_jarlog="${SRCDEST:-$startdir}/jarlog"
+    local _old_profdata="$SRCDEST/merged.profdata"
+    local _old_jarlog="$SRCDEST/jarlog"
 
     # Restore old profile
     if [[ "${_build_pgo_reuse::1}" == "t" ]]; then
@@ -360,10 +367,26 @@ build() {
       echo "Building instrumented browser..."
       cat > .mozconfig ../mozconfig
       echo >> .mozconfig "ac_add_options --enable-profile-generate=cross"
-      ./mach build
+      ./mach build --priority normal
 
       echo "Profiling instrumented browser..."
       ./mach package
+
+      local _headless_env=(
+        LLVM_PROFDATA=llvm-profdata
+        JARLOG_FILE="${PWD@Q}/jarlog"
+        LIBGL_ALWAYS_SOFTWARE=true
+        MOZ_DISABLE_CONTENT_SANDBOX=1
+        MOZ_DISABLE_GMP_SANDBOX=1
+        MOZ_DISABLE_GPU_SANDBOX=1
+        MOZ_DISABLE_RDD_SANDBOX=1
+        MOZ_DISABLE_SOCKET_PROCESS_SANDBOX=1
+        MOZ_DISABLE_UTILITY_SANDBOX=1
+        MOZ_DISABLE_VR_SANDBOX=1
+        GTK_A11Y=none
+        NO_AT_BRIDGE=1
+        dbus-run-session
+      )
 
       if [[ "${_build_pgo_xvfb::1}" == "t" ]]; then
         local _headless_run=(
@@ -377,11 +400,10 @@ build() {
         )
       fi
 
-      LLVM_PROFDATA=llvm-profdata JARLOG_FILE=${PWD@Q}/jarlog \
-        "${_headless_run[@]}" -- ./mach python build/pgo/profileserver.py
+      env "${_headless_env[@]}" "${_headless_run[@]}" -- ./mach python build/pgo/profileserver.py
 
       echo "Removing instrumented browser..."
-      ./mach clobber
+      ./mach clobber objdir
     fi
 
     echo "Building optimized browser..."
@@ -408,16 +430,16 @@ build() {
       echo "Jar log not found."
     fi
 
-    ./mach build
+    ./mach build --priority normal
   else
     echo "Building browser..."
     cat > .mozconfig ../mozconfig
-    ./mach build
+    ./mach build --priority normal
   fi
 
   echo "Building symbol archive..."
   ./mach buildsymbols
-}
+)
 
 package() {
   cd "${_repo##*/}"
