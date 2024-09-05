@@ -1,13 +1,12 @@
 pkgbase = obs-studio-stable
 	pkgdesc = Free, open source software for live streaming and recording - Browser enabled
-	pkgver = 30.2.2
+	pkgver = 30.2.3
 	pkgrel = 1
 	url = https://github.com/obsproject/obs-studio
 	arch = x86_64
 	license = GPL-2.0-or-later
 	makedepends = asio
 	makedepends = cmake
-	makedepends = ffnvcodec-headers-12-1
 	makedepends = git
 	makedepends = libfdk-aac
 	makedepends = luajit
@@ -22,7 +21,23 @@ pkgbase = obs-studio-stable
 	makedepends = websocketpp
 	makedepends = x264
 	makedepends = xdg-desktop-portal
-	makedepends = cef-minimal-obs-bin
+	makedepends = alsa-lib
+	makedepends = dbus
+	makedepends = expat
+	makedepends = gcc-libs
+	makedepends = glib2
+	makedepends = glibc
+	makedepends = libcups
+	makedepends = libdrm
+	makedepends = libx11
+	makedepends = libxcb
+	makedepends = libxcomposite
+	makedepends = libxdamage
+	makedepends = libxext
+	makedepends = libxfixes
+	makedepends = libxkbcommon
+	makedepends = mesa
+	makedepends = wayland
 	depends = curl
 	depends = ffmpeg
 	depends = jack
@@ -36,7 +51,10 @@ pkgbase = obs-studio-stable
 	depends = libvpl
 	depends = speexdsp
 	depends = qrcodegencpp-cmake
-	optdepends = chaotic-interfere: chaotic-aur interference tracking
+	depends = at-spi2-core
+	depends = libxrandr
+	depends = nspr
+	depends = nss
 	optdepends = libfdk-aac: FDK AAC codec support
 	optdepends = libva-intel-driver: hardware encoding
 	optdepends = libva-mesa-driver: hardware encoding
@@ -45,15 +63,21 @@ pkgbase = obs-studio-stable
 	optdepends = sndio: sndio input client
 	optdepends = v4l2loopback-dkms: virtual camera support
 	optdepends = vlc: VLC Media Source
-	provides = obs-studio=30.2.2
+	provides = obs-studio=30.2.3
 	conflicts = obs-studio
 	options = !debug
-	source = obs-studio::git+https://github.com/obsproject/obs-studio.git#tag=30.2.2
+	source = obs-studio::git+https://github.com/obsproject/obs-studio.git#tag=30.2.3
+	source = nv-codec-headers::git+https://github.com/FFmpeg/nv-codec-headers.git#tag=n12.1.14.0
+	source = 0004-mbedtls-19f9097.patch::https://aur.archlinux.org/cgit/aur.git/plain/0004-Max_tls_v1_2_mbedtls_3_6_0_workaround.patch?h=obs-studio-browser&id=19f9097dd3803abf8296acac36c7ab4a6b684a3f
+	source = cef_binary_5060_linux_x86_64_v3.tar.xz::https://cdn-fastly.obsproject.com/downloads//cef_binary_5060_linux_x86_64_v3.tar.xz
 	source = mixer.ftl-sdk::git+https://github.com/Mixer/ftl-sdk.git
 	source = obsproject.obs-browser::git+https://github.com/obsproject/obs-browser.git
 	source = obsproject.obs-websocket::git+https://github.com/obsproject/obs-websocket.git
 	source = akheron.jansson::git+https://github.com/akheron/jansson.git
 	source = curl::git+https://github.com/curl/curl.git
+	sha256sums = SKIP
+	sha256sums = SKIP
+	sha256sums = c397a8da291547c757a42f7727a5e6650aa70e6e531f2ef150356eb9eb1fb49c
 	sha256sums = SKIP
 	sha256sums = SKIP
 	sha256sums = SKIP

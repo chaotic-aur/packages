@@ -8,15 +8,17 @@
 ## options
 : ${_autoupdate:=true}
 
-: ${_build_cef:=false}
-
 : ${_plugin_aja:=false}
 : ${_plugin_webrtc:=false}
+
+# build-aux/modules/99-cef.json
+: ${_cef_branch:=5060}
+: ${_cef_ver=_v3}
 
 ## basic info
 _pkgname="obs-studio"
 pkgname="$_pkgname-stable"
-pkgver=30.2.2
+pkgver=30.2.3
 pkgrel=1
 pkgdesc="Free, open source software for live streaming and recording - Browser enabled"
 url="https://github.com/obsproject/obs-studio"
@@ -38,13 +40,12 @@ depends=(
   libvpl
   speexdsp
 
-  # AUR
-  qrcodegencpp-cmake
+  qrcodegencpp-cmake # AUR
 )
 makedepends=(
   asio
   cmake
-  ffnvcodec-headers-12-1 # ffnvcodec-headers
+  #ffnvcodec-headers
   git
   libfdk-aac
   luajit
@@ -61,8 +62,6 @@ makedepends=(
   xdg-desktop-portal
 )
 optdepends=(
-  'chaotic-interfere: chaotic-aur interference tracking'
-
   'libfdk-aac: FDK AAC codec support'
   'libva-intel-driver: hardware encoding'
   'libva-mesa-driver: hardware encoding'
@@ -84,12 +83,6 @@ _source_main() {
   source=("$_pkgsrc"::"git+$url.git#tag=$_pkgver")
   sha256sums=('SKIP')
 
-  if [ "${_build_cef::1}" == "t" ]; then
-    _source_cef
-  else
-    makedepends+=('cef-minimal-obs-bin') # AUR
-  fi
-
   if [ "${_plugin_aja::1}" == "t" ]; then
     makedepends+=('libajantv2') # AUR
     _plugin_aja='ON'
@@ -103,9 +96,35 @@ _source_main() {
   else
     _plugin_webrtc='OFF'
   fi
+}
 
-  _source_obs_studio
-  _source_mixer_ftl_sdk
+_source_fixes() {
+  local _patch_commit="19f9097dd3803abf8296acac36c7ab4a6b684a3f"
+  source+=(
+    "nv-codec-headers"::"git+https://github.com/FFmpeg/nv-codec-headers.git#tag=n12.1.14.0"
+    "0004-mbedtls-${_patch_commit::7}.patch"::"https://aur.archlinux.org/cgit/aur.git/plain/0004-Max_tls_v1_2_mbedtls_3_6_0_workaround.patch?h=obs-studio-browser&id=$_patch_commit"
+  )
+  sha256sums+=(
+    'SKIP'
+    'c397a8da291547c757a42f7727a5e6650aa70e6e531f2ef150356eb9eb1fb49c'
+  )
+
+  _prepare_fixes() (
+    cd "$_pkgsrc"
+    local src
+    for src in "${source[@]}"; do
+      src="${src%%::*}"
+      src="${src##*/}"
+      src="${src%.zst}"
+      if [[ $src == *.patch ]]; then
+        printf '\nApplying patch: %s\n' "$src"
+        patch -Np1 -F100 -i "${srcdir:?}/$src"
+        echo
+      fi
+    done
+
+    make PREFIX="$srcdir/build_nvcodec_headers" -C "$srcdir/nv-codec-headers" install
+  )
 }
 
 _source_obs_studio() {
@@ -183,29 +202,13 @@ _source_cef() {
     wayland
   )
 
-  # build-aux/modules/99-cef.json
-  _cef_branch=5060
   _cef_src="cef_binary_${_cef_branch}_linux_${CARCH}"
-  _cef_ver="_v3"
   _cef_ext="tar.xz"
   _cef_filename="$_cef_src$_cef_ver.$_cef_ext"
   _cef_dl_url="https://cdn-fastly.obsproject.com/downloads/"
 
   source+=("$_cef_filename"::"$_cef_dl_url/$_cef_filename")
-  sha256sums+=('1253a6a36c3b8ac5b5ece9bfdb6eae6ab75e49516375fc475e2e871795ad9bea')
-
-  _build_cef() {
-    local _cmake_options=(
-      -S "$_cef_src"
-      -B "$_cef_src"
-      -DCMAKE_BUILD_TYPE=Release
-      -DPROJECT_ARCH=$CARCH
-      -Wno-dev
-    )
-
-    cmake "${_cmake_options[@]}"
-    cmake --build "$_cef_src"
-  }
+  sha256sums+=('SKIP')
 }
 
 prepare() {
@@ -220,6 +223,7 @@ prepare() {
 
   _prepare_obs_studio
   _prepare_mixer_ftl_sdk
+  _prepare_fixes
 
   sed -E \
     -e 's&(\s*find_package\(FFnvcodec)\b.*\b(REQUIRED\))&\1 12 \2&' \
@@ -227,9 +231,27 @@ prepare() {
     -i "$_pkgsrc/plugins/obs-ffmpeg/cmake/legacy.cmake"
 }
 
+_build_cef() {
+  local _cmake_options=(
+    -S "$_cef_src"
+    -B "$_cef_src"
+    -DCMAKE_BUILD_TYPE=Release
+    -DPROJECT_ARCH=$CARCH
+    -Wno-dev
+  )
+
+  cmake "${_cmake_options[@]}"
+  cmake --build "$_cef_src"
+
+  # need absolute path later
+  _cef_src="$srcdir/$_cef_src"
+}
+
 _build_obs_studio() {
   export CFLAGS+=" -fno-strict-aliasing -Wno-error=deprecated-declarations"
   export CXXFLAGS+=" -fno-strict-aliasing -Wno-error=deprecated-declarations"
+
+  #export PKG_CONFIG_PATH="$srcdir/build_nvcodec_headers/lib/pkgconfig"
 
   local _cmake_options=(
     -B build
@@ -237,22 +259,24 @@ _build_obs_studio() {
     -DCMAKE_BUILD_TYPE=None
     -DCMAKE_INSTALL_PREFIX='/usr'
     -DCMAKE_INSTALL_LIBDIR='lib'
-    -DCEF_ROOT_DIR="$_cef_src"
-    -DOBS_VERSION_OVERRIDE="${pkgver%%.r*}"
-    -DBUILD_FOR_DISTRIBUTION=ON
-    -DBUILD_BROWSER=ON # qrcodegencpp-cmake
-    -DENABLE_LIBFDK=ON
-    # -DENABLE_NATIVE_NVENC=OFF # ffnvcodec-headers-12-1
-    -DBUILD_TESTS=OFF
-    -DENABLE_UNIT_TESTS=OFF
-    -Wno-dev
-
     -DENABLE_AJA="${_plugin_aja:?}"
     -DENABLE_JACK=ON
+    -DENABLE_LIBFDK=ON
     -DENABLE_NEW_MPEGTS_OUTPUT=ON
     -DENABLE_VLC=OFF
     -DENABLE_VST=ON
     -DENABLE_WEBRTC="${_plugin_webrtc:?}"
+
+    -DENABLE_BROWSER=ON # qrcodegencpp-cmake
+    -DCEF_ROOT_DIR="$_cef_src"
+
+    -DFFnvcodec_INCLUDE_DIR="$srcdir/nv-codec-headers/include"
+
+    -DOBS_VERSION_OVERRIDE="${pkgver%%.r*}"
+    -DBUILD_FOR_DISTRIBUTION=ON
+    -DBUILD_TESTS=OFF
+    -DENABLE_UNIT_TESTS=OFF
+    -Wno-dev
   )
 
   cmake "${_cmake_options[@]}"
@@ -260,13 +284,11 @@ _build_obs_studio() {
 }
 
 build() {
-  if [ "${_build_cef::1}" == "t" ]; then
-    _build_cef
-    _cef_src="$srcdir/$_cef_src"
-  else
-    _cef_src="/opt/cef-obs"
-  fi
+  export CFLAGS CXXFLAGS
+  CFLAGS="${CFLAGS/_FORTIFY_SOURCE=*/_FORTIFY_SOURCE=2}"
+  CXXFLAGS="${CXXFLAGS/_FORTIFY_SOURCE=*/_FORTIFY_SOURCE=2}"
 
+  _build_cef
   _build_obs_studio
 }
 
@@ -305,3 +327,7 @@ _update_version() {
 
 _update_version
 _source_main
+_source_fixes
+_source_cef
+_source_obs_studio
+_source_mixer_ftl_sdk
