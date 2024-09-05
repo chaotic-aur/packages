@@ -1,0 +1,17 @@
+pkgbase = volta
+	pkgdesc = The Hassle-Free JavaScript Tool Manager
+	pkgver = 2.0.1
+	pkgrel = 1
+	url = https://volta.sh/
+	arch = x86_64
+	license = BSD-2-Clause
+	makedepends = cargo
+	depends = gcc-libs
+	depends = glibc
+	provides = volta
+	conflicts = volta-bin
+	options = !lto
+	source = volta-2.0.1::https://github.com/volta-cli/volta/archive/refs/tags/v2.0.1.tar.gz
+	sha256sums = 4ccffc86b7841cb8bc9a55436529209dbbb9621992e43cbad48ccc7ffadba493
+
+pkgname = volta
