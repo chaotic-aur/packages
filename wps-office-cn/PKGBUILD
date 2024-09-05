@@ -57,8 +57,7 @@ prepare() {
 
 package_wps-office-cn() {
   depends=('fontconfig' 'xorg-mkfontscale' 'libxrender' 'desktop-file-utils' 'shared-mime-info' 'xdg-utils' 'glu' 'sdl2' 'libpulse' 'hicolor-icon-theme' 'libxss' 'sqlite' 'libtool' 'libxslt' 'libjpeg-turbo')
-  optdepends=('libtiff5: Provide libtiff.so.5 for wpspdf working'
-    'cups: for printing support'
+  optdepends=('cups: for printing support'
     'libjpeg-turbo: JPEG image codec support'
     'pango: for complex (right-to-left) text support'
     'curl: An URL retrieval utility and library'
