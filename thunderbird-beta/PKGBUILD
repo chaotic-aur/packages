@@ -9,7 +9,7 @@ fi
 ## basic info
 _pkgname=thunderbird
 pkgname=thunderbird-beta
-pkgver=130.0b3
+pkgver=131.0b3
 pkgrel=1
 pkgdesc='Beta version of standalone mail and news reader from mozilla.org'
 url="https://www.thunderbird.net/"
@@ -98,7 +98,7 @@ _mozilla_api_key=16674381-f021-49de-8622-3021c5942aff
 
 prepare() {
   mkdir -p mozbuild
-  cd "${_pkgname}-${pkgver%b*}"
+  cd "${_pkgname}-${_pkgver%b*}"
 
   local src
   for src in "${source[@]}"; do
@@ -158,7 +158,7 @@ END
 }
 
 build() {
-  cd "${_pkgname}-${pkgver%b*}"
+  cd "${_pkgname}-${_pkgver%b*}"
 
   export MACH_BUILD_PYTHON_NATIVE_PACKAGE_SOURCE=pip
   export MOZBUILD_STATE_PATH="$srcdir/mozbuild"
@@ -178,7 +178,7 @@ build() {
 }
 
 package() {
-  cd "${_pkgname}-${pkgver%b*}"
+  cd "${_pkgname}-${_pkgver%b*}"
   DESTDIR="$pkgdir" ./mach install
 
   local vendorjs="$pkgdir/usr/lib/$pkgname/browser/defaults/preferences/vendor.js"
