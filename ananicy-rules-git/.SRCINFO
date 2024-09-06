@@ -1,0 +1,15 @@
+pkgbase = ananicy-rules-git
+	pkgdesc = Rules for ananicy-cpp
+	pkgver = 2.2.1.r192.g6ee9669
+	pkgrel = 1
+	url = https://github.com/kuche1/minq-ananicy
+	arch = any
+	license = GPL3
+	makedepends = git
+	conflicts = ananicy
+	conflicts = ananicy-git
+	backup = etc/ananicy.d/ananicy.conf
+	source = ananicy::git+https://github.com/kuche1/minq-ananicy
+	md5sums = SKIP
+
+pkgname = ananicy-rules-git
