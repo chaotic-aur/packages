@@ -1,13 +1,11 @@
 # Maintainer:
 
-## useful links
+## links
 # https://stockfishchess.org/
 # https://github.com/official-stockfish/Stockfish
 
 ## options
-if [ -n "$_srcinfo" ] || [ -n "$_pkgver" ]; then
-  : ${_autoupdate:=false}
-else
+if [ -z "$_srcinfo" ] && [ -z "$_pkgver" ]; then
   : ${_autoupdate:=true}
 fi
 
@@ -25,15 +23,14 @@ unset _pkgtype
 ## basic info
 _pkgname=stockfish
 pkgname="$_pkgname${_pkgtype:-}"
-pkgver=16.1
-pkgrel=1
+pkgver=17
+pkgrel=2
 pkgdesc="A strong UCI chess engine"
 url="https://github.com/official-stockfish/Stockfish"
 license=('GPL-3.0-only')
 arch=('x86_64')
 
-# main package
-_main_package() {
+_source_main() {
   makedepends=(
     'git'
   )
@@ -55,15 +52,15 @@ _main_package() {
   fi
 
   if [ "${_build_git::1}" != "t" ]; then
-    _main_stable
+    _source_stable
 
-    _nnue_big="nn-b1a57edbea57.nnue"   # 63MB
-    _nnue_small="nn-baff1ede1f90.nnue" # 3.3MB
+    _nnue_big="nn-1111cefa1111.nnue"   # 72MB
+    _nnue_small="nn-37f18f62d772.nnue" # 3.4MB
   else
-    _main_git
+    _source_git
 
-    _nnue_big="nn-ddcfb9224cdb.nnue"   # 71MB
-    _nnue_small="nn-37f18f62d772.nnue" # 3.3MB
+    _nnue_big="nn-1111cefa1111.nnue"   # 72MB
+    _nnue_small="nn-37f18f62d772.nnue" # 3.4MB
   fi
 
   # check EvalFileDefaultName{Big,Small} in src/evaluate.h
@@ -77,8 +74,7 @@ _main_package() {
   )
 }
 
-# stable package
-_main_stable() {
+_source_stable() {
   _update_version
 
   _pkgsrc="Stockfish-sf_$_pkgver"
@@ -90,8 +86,7 @@ _main_stable() {
   }
 }
 
-# git package
-_main_git() {
+_source_git() {
   _pkgsrc="$_pkgname"
   source+=("$_pkgsrc"::"git+$url.git")
   sha256sums+=('SKIP')
@@ -104,7 +99,6 @@ _main_git() {
   }
 }
 
-## common functions
 prepare() {
   ln -sf "$srcdir/$_nnue_big" "$_pkgsrc/src/"
   ln -sf "$srcdir/$_nnue_small" "$_pkgsrc/src/"
@@ -182,7 +176,6 @@ package() {
   make PREFIX="$pkgdir/usr" install
 }
 
-# update version
 _update_version() {
   : ${_pkgver:=${pkgver%%.r*}}
 
@@ -205,5 +198,4 @@ _update_version() {
   fi
 }
 
-# execute
-_main_package
+_source_main
