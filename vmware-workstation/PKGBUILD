@@ -60,7 +60,7 @@ backup=(
   'etc/conf.d/vmware'
 )
 source=(
-  "https://softwareupdate.vmware.com/cds/vmw-desktop/ws/${_legacy_ver}/${_legacy_buildver}/linux/core/VMware-Workstation-${_pkgver/_/-}.${CARCH}.bundle.tar"
+  "https://softwareupdate.vmware.com/cds/vmw-desktop/ws/${pkgver}/${_buildver}/linux/core/VMware-Workstation-${_pkgver/_/-}.${CARCH}.bundle.tar"
   "https://softwareupdate.vmware.com/cds/vmw-desktop/ws/${_legacy_ver}/${_legacy_buildver}/linux/packages/vmware-tools-linux-${_legacy_tools_version/_/-}.${CARCH}.component.tar"
   "https://softwareupdate.vmware.com/cds/vmw-desktop/ws/${_legacy_ver}/${_legacy_buildver}/linux/packages/vmware-tools-linuxPreGlibc25-${_legacy_tools_version/_/-}.${CARCH}.component.tar"
   "https://softwareupdate.vmware.com/cds/vmw-desktop/ws/${_legacy_ver}/${_legacy_buildver}/linux/packages/vmware-tools-netware-${_legacy_tools_version/_/-}.${CARCH}.component.tar"
