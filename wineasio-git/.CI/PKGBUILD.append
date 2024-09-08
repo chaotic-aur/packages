@@ -1,0 +1,8 @@
+depends=(${depends[@]/wine*/})
+makedepends+=('wine-staging')
+
+eval _orig_"$(declare -f package)"
+package() {
+  depends+=('wine')
+  _orig_package
+}
