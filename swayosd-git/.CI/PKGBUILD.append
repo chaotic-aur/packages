@@ -1,0 +1,23 @@
+unset -f prepare
+
+license=('GPL-3.0-only')
+
+_pkgsrc="swayosd"
+source=("$_pkgsrc"::"git+${url}.git")
+sha256sums=('SKIP')
+
+pkgver() {
+  cd "$_pkgsrc"
+  printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+build() {
+  arch-meson "$_pkgsrc" build
+  meson compile -C build
+  meson install -C build --destdir "$srcdir/fakeinstall"
+}
+
+package() {
+  mv "$srcdir/fakeinstall"/* "$pkgdir/"
+  chmod -R u+rwX,go+rX,go-w "$pkgdir/"
+}
