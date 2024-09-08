@@ -1,0 +1,40 @@
+# Maintainer: Stefano Capitani <stefanoatmanjarodotorg>
+# Maintainer: excalibur1234 @forum.manjaro.org
+
+_pkgname=pacui
+pkgname=$_pkgname-git
+pkgver=r1081.4976123
+pkgrel=1
+pkgdesc="Bash script providing advanced Pacman and Yay/Pikaur/Aurman/Pakku/Trizen/Paru/Pacaur/Pamac-cli functionality in a simple UI"
+arch=(any)
+url="https://github.com/excalibur1234/$_pkgname"
+license=('GPL3')
+depends=('sudo' 'expac' 'fzf' 'pacman-contrib')
+makedepends=('git')
+provides=("$_pkgname")
+conflicts=("$_pkgname")
+optdepends=('yay: One AUR helper is needed for AUR support'
+            'pikaur: One AUR helper is needed for AUR support'
+            'aurman: One AUR helper is needed for AUR support'
+            'pakku: One AUR helper is needed for AUR support'
+            'trizen: One AUR helper is needed for AUR support'
+            'paru: One AUR helper is needed for AUR support'
+            'pacaur: One AUR helper is needed for AUR support'
+            'pamac-cli: One AUR helper is needed for AUR support'
+            'pacman-mirrors: Can optionally be used for Manjaro mirror support'
+            'reflector: Can optionally be used for Arch Linux mirror support'
+            'flatpak: Needed for Flatpak update support'
+            'snapd: Needed for for Snap update support'
+            'fwupd: Needed for firmware update support'
+            'downgrade: Needed for hidden "downgrade" option')
+source=("$_pkgname::git+https://github.com/excalibur1234/$_pkgname.git")
+md5sums=('SKIP')
+
+pkgver() {
+            cd "$srcdir/$_pkgname"
+            echo "r$(git rev-list --count HEAD).$(git rev-parse --short HEAD)"
+}
+
+package () {
+            install -Dm755 "$srcdir/$_pkgname/pacui" "$pkgdir/usr/bin/pacui"
+}
