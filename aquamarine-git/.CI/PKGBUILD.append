@@ -1,6 +1,7 @@
 pkgdesc="a very light linux rendering backend library"
 arch=('x86_64')
 
+depends=(${depends[@]/hyprwayland-scanner*/hyprwayland-scanner-git})
 makedepends+=('ninja')
 
 provides=("aquamarine=$pkgver")
@@ -30,3 +31,15 @@ package() {
   DESTDIR="$pkgdir" cmake --install build
   install -Dm644 "$_pkgname"/LICENSE -t "$pkgdir/usr/share/licenses/$pkgname/"
 }
+
+_bump_pkgrel() {
+  local _pkgver_old="${1%-*}"
+  local _pkgrel_old="${1##*-}"
+  local _bump="${2}"
+
+  if [[ "$pkgver" == "$_pkgver_old" ]] && [[ "$pkgrel" == "$_pkgrel_old" ]]; then
+    pkgrel+=".$_bump"
+  fi
+}
+
+_bump_pkgrel 0.4.1.r0.ge4a1320-1 2
