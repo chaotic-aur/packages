@@ -25,7 +25,7 @@ depends=(gcc-libs
   systemd-libs
   wayland
   wayland-protocols)
-makedepends=(cmake)
+makedepends=('git' 'cmake' 'gcc' 'hyprwayland-scanner-git')
 source=("${_pkgname}::git+https://github.com/hyprwm/aquamarine.git")
 sha256sums=('SKIP')
 
