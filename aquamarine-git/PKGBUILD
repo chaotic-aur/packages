@@ -1,18 +1,32 @@
 # Maintainer: dawfukfr <dawfukfr@gmail.com>
+# Contributor: Caleb Maclennan <caleb@alerque.com>
 
 _pkgname="aquamarine"
 pkgname="${_pkgname}-git"
-pkgver=0.1.0_r147.g7a84686
+pkgver=0.4.0_r213.ga8eb8ae
 pkgrel=1
-pkgdesc="Aquamarine is a very light linux rendering backend library "
-arch=(any)
-url="https://github.com/hyprwm/aquamarine"
-license=('BSD-3-Clause')
-depends=('pugixml' 'seatd' 'wayland-protocols' 'pixman' 'libdisplay-info' 'opengl-driver' 'hyprutils-git' 'libinput')
-makedepends=('git' 'cmake' 'gcc' 'hyprwayland-scanner-git')
+pkgdesc='a very light linux rendering backend library'
+arch=(x86_64)
+url="https://github.com/hyprwm/$_pkgname"
+license=(BSD-3-Clause)
+depends=(gcc-libs
+  glibc
+  hyprutils
+  hyprwayland-scanner
+  libdisplay-info
+  libdrm
+  libglvnd
+  libinput
+  mesa
+  opengl-driver
+  pixman
+  pugixml
+  seatd
+  systemd-libs
+  wayland
+  wayland-protocols)
+makedepends=(cmake)
 source=("${_pkgname}::git+https://github.com/hyprwm/aquamarine.git")
-provides=("aquamarine")
-conflicts=("aquamarine")
 sha256sums=('SKIP')
 
 pkgver() {
@@ -22,14 +36,15 @@ pkgver() {
 }
 
 build() {
-  cd "${srcdir}/${_pkgname}"
-  cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build
-  cmake --build ./build --config Release --target all -j$(nproc 2> /dev/null || getconf _NPROCESSORS_CONF)
+  cd "$_pkgname"
+  cmake -B build \
+    -D CMAKE_INSTALL_PREFIX=/usr \
+    -D CMAKE_BUILD_TYPE=Release
+  cmake --build build
 }
 
 package() {
-  cd "${srcdir}/${_pkgname}"
-  DESTDIR="${pkgdir}" cmake --install build
-
-  install -Dm644 LICENSE -t "${pkgdir}/usr/share/licenses/${pkgname}"
+  cd "$_pkgname"
+  DESTDIR="$pkgdir" cmake --install build
+  install -Dm0644 -t "$pkgdir/usr/share/licenses/$_pkgname" LICENSE
 }
