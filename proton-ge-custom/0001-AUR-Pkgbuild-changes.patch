@@ -1,4 +1,4 @@
-From a50741d3a3b4f9c78360397b8573daff5ee829a7 Mon Sep 17 00:00:00 2001
+From 0460ffb4fad56a0029e9a1659f7313235020d31d Mon Sep 17 00:00:00 2001
 From: Stelios Tsampas <loathingkernel@gmail.com>
 Date: Tue, 7 Feb 2023 22:00:48 +0200
 Subject: [PATCH 1/8] AUR Pkgbuild changes
@@ -481,7 +481,7 @@ index 5c3b59a3..ed6589e0 100644
  	winebuild --$(lastword $(subst ., ,$(4))) --fake-module -E "$(basename $(4)).spec" -o "$(4).fake"
  	mkdir -p $$($(2)_LIBDIR$(3))/$(LIBDIR_WINE_$(3))
 diff --git a/proton b/proton
-index e71c062c..586318e4 100755
+index 2c98178c..1a357538 100755
 --- a/proton
 +++ b/proton
 @@ -524,7 +524,6 @@ class Proton:
@@ -492,7 +492,7 @@ index e71c062c..586318e4 100755
  
      def path(self, d):
          return self.base_dir + d
-@@ -1724,8 +1723,6 @@ if __name__ == "__main__":
+@@ -1726,8 +1725,6 @@ if __name__ == "__main__":
  
      g_proton = Proton(os.path.dirname(sys.argv[0]))
  
@@ -501,7 +501,7 @@ index e71c062c..586318e4 100755
  
      g_compatdata = CompatData(os.environ["STEAM_COMPAT_DATA_PATH"])
  
-@@ -1737,7 +1734,8 @@ if __name__ == "__main__":
+@@ -1739,7 +1736,8 @@ if __name__ == "__main__":
      os.environ["PROTON_DLL_COPY"] = "*"
  
      if g_proton.missing_default_prefix():
