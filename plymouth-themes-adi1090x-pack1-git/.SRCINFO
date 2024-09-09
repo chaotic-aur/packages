@@ -1,0 +1,51 @@
+pkgbase = plymouth-themes-adi1090x-pack1-git
+	pkgdesc = The plymouth theme collection by adi1090x
+	pkgver = r28.32a0d92
+	pkgrel = 1
+	url = https://github.com/adi1090x/plymouth-themes
+	arch = any
+	license = GPL
+	depends = plymouth
+	source = git+https://github.com/adi1090x/plymouth-themes.git
+	md5sums = SKIP
+
+pkgname = plymouth-theme-abstract-ring-git
+
+pkgname = plymouth-theme-abstract-ring-alt-git
+
+pkgname = plymouth-theme-alienware-git
+
+pkgname = plymouth-theme-angular-git
+
+pkgname = plymouth-theme-angular-alt-git
+
+pkgname = plymouth-theme-black-hud-git
+
+pkgname = plymouth-theme-blockchain-git
+
+pkgname = plymouth-theme-circle-git
+
+pkgname = plymouth-theme-circle-alt-git
+
+pkgname = plymouth-theme-circle-flow-git
+
+pkgname = plymouth-theme-circle-hud-git
+
+pkgname = plymouth-theme-circuit-git
+
+pkgname = plymouth-theme-colorful-git
+
+pkgname = plymouth-theme-colorful-loop-git
+
+pkgname = plymouth-theme-colorful-sliced-git
+
+pkgname = plymouth-theme-connect-git
+
+pkgname = plymouth-theme-cross-hud-git
+
+pkgname = plymouth-theme-cubes-git
+
+pkgname = plymouth-theme-cuts-git
+
+pkgname = plymouth-theme-cuts-alt-git
+
