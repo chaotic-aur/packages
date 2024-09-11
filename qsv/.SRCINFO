@@ -1,6 +1,6 @@
 pkgbase = qsv
 	pkgdesc = CSV data-wrangling toolkit (fork of xsv)
-	pkgver = 0.133.1
+	pkgver = 0.134.0
 	pkgrel = 1
 	url = https://github.com/jqnatividad/qsv
 	arch = x86_64
@@ -12,7 +12,7 @@ pkgbase = qsv
 	depends = python
 	depends = python-xlsxwriter
 	options = !lto
-	source = https://github.com/jqnatividad/qsv/archive/0.133.1/qsv-0.133.1.tar.gz
-	sha256sums = f2f59c07ea8d84d527641b6f6c2e1eeff114d04860d2904a2b85361ea62db204
+	source = https://github.com/jqnatividad/qsv/archive/0.134.0/qsv-0.134.0.tar.gz
+	sha256sums = 276b34e830564daf3a7643855628ceda4379291c7818076a8f8648ebc9e345f4
 
 pkgname = qsv
