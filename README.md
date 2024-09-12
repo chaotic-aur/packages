@@ -216,6 +216,8 @@ processes with.
 - `BUILDER_CACHE_SOURCES`: Can be set to `true` in case the sources should be cached between builds. This can be useful
   in case of slow sources or sources that are not available all the time. Sources will be cleared automatically after 1
   month, which is important in case packages are getting removed or the source changes.
+- `BUILDER_EXTRA_TIMEOUT`: If set, will multiply the global `BUILDER_TIMEOUT` value with the given multiplier.
+  If e.g., the default timeout value of `3600` is used, setting this to `2` would increase the build timeout to `7200`.
 
 ### Known state variables
 
