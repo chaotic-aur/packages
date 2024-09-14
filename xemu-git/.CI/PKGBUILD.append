@@ -8,4 +8,4 @@ _bump_pkgrel() {
   fi
 }
 
-_bump_pkgrel 0.7.132.r0.g8707d2aa26-1 1
+_bump_pkgrel 0.7.132.r0.g8707d2aa26-1 2
