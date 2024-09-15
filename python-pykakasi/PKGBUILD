@@ -21,7 +21,7 @@ makedepends=(
   python-wheel
 )
 source=("git+$url.git#tag=v$pkgver")
-b2sums=('81cc3b366c61a552e7de5a2a900a258ad0847d6a0f60dff0ebd20c77ed6fce3604e72634901dc11041f46dbe437c83f25db617f7d74df732f4ade7e4983c10cd')
+b2sums=('8c5a168696b2493bcdba39f877c014b31006055a85b86f9e4f1b09708005017d14db2f2113409e2cc45930681133849f4c95ee7ad1aea7fff071440b50c27fbe')
 
 build() {
   cd pykakasi
