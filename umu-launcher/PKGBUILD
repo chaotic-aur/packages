@@ -1,7 +1,7 @@
 # Maintainer: loathingkernel <loathingkernel _a_ gmail _d_ com>
 
 pkgname=umu-launcher
-pkgver=0.1.RC4.r273.3af25f4
+pkgver=0.1.RC4.r274.e064439
 pkgrel=1
 pkgdesc="This is the Unified Launcher for Windows Games on Linux, to run Proton with fixes outside of Steam"
 arch=('x86_64')
@@ -61,7 +61,7 @@ provides=('ulwgl-launcher')
 conflicts=('ulwgl-launcher')
 replaces=('ulwgl-launcher')
 install=
-_commit=3af25f44079f4a09ccd618501bb72ab368d033d3
+_commit=e06443981e3bf09cbc70aaffe245e4a03f1a6df7
 _origin="https://github.com/Open-Wine-Components/umu-launcher.git"
 source=(
   "git+$_origin#commit=$_commit"
@@ -87,4 +87,4 @@ package() {
   make DESTDIR="$pkgdir" install
 }
 
-sha256sums=('08d9352f76d1634b8108f16b628edd773ff811f4bef8e6b3bff4fd9b2ae556ee')
+sha256sums=('b829a58ade9326dfd53a6a0f0e0af58415315bdc62a0ba2ca05fafbb42270a7d')

@@ -1,7 +1,7 @@
 pkgbase = zen-browser-bin
 	pkgdesc = Standalone web browser - Static binaries from upstream
 	pkgver = 1.0.0.a.39
-	pkgrel = 1
+	pkgrel = 2
 	url = https://github.com/zen-browser/desktop
 	arch = x86_64
 	arch = i686
@@ -24,11 +24,11 @@ pkgbase = zen-browser-bin
 	options = !strip
 	source = zen-browser-1.0.0-a.39.tar.bz2::https://github.com/zen-browser/desktop/releases/download/1.0.0-a.39/zen.linux-generic.tar.bz2
 	source = zen-browser.sh
-	source = zen-browser.desktop
+	source = zen-alpha.desktop
 	source = policies.json
 	sha256sums = 9dddbca7c934a11b058d6f9f6a65dd32646be903e8b810c7c75e58d2aabe721f
 	sha256sums = 642bcde5b15fddb712d10ed53299781108a265432237ab27a96c5c5c489718db
-	sha256sums = ce2e54bd9dd9ecbd9acb983e2fa38afcdef9884ba84abc5ec874ae74844cfb71
+	sha256sums = e62545a1f4a61f95efe2a844141d6efd6e2add554c20c333b8635b5c848c35a2
 	sha256sums = f93eb77db526147a8a20744905923a6eda79e2fbcc9f282e2f9228a7a995c798
 
 pkgname = zen-browser-bin
