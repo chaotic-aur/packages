@@ -1,2 +1,16 @@
 options=(${options[@]/debug*/})
 options+=(!debug)
+
+provides+=('libalpm.so')
+
+_bump_pkgrel() {
+  local _pkgver_old="${1%-*}"
+  local _pkgrel_old="${1##*-}"
+  local _bump="${2}"
+
+  if [[ "$pkgver" == "$_pkgver_old" ]] && [[ "$pkgrel" == "$_pkgrel_old" ]]; then
+    pkgrel+=".$_bump"
+  fi
+}
+
+_bump_pkgrel 7.0.0.r6.g7bc5d55b-1 1
