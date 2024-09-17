@@ -13,7 +13,7 @@ depends=('glfw' 'mbedtls' 'curl' 'dbus'
   'freetype2' 'file' 'hicolor-icon-theme' 'xdg-desktop-portal'
   'fmt' 'yara' 'capstone')
 makedepends=('cmake'
-  'llvm' 'librsvg' 'nlohmann-json'
+  'llvm' 'librsvg' 'nlohmann-json' 'libxrandr'
   'python' 'cli11' 'dotnet-runtime')
 optdepends=('dotnet-runtime: support for .NET scripts')
 provides=('imhex-patterns')
