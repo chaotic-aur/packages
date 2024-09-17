@@ -14,7 +14,7 @@ _pkgtype+="-git"
 ## basic info
 _pkgname="torzu"
 pkgname="$_pkgname${_pkgtype:-}"
-pkgver=2024.08.10.r6.g6e61673
+pkgver=2024.08.10.r7.g7b143fb
 pkgrel=1
 pkgdesc="Yet another emulator fork"
 url="https://notabug.org/litucks/torzu"
@@ -22,15 +22,12 @@ license=('GPL-3.0-or-later')
 arch=('x86_64')
 
 depends=(
-  'boost-libs'
   'ffmpeg'
-  'fmt'
   'qt6-multimedia'
   'qt6-webengine'
   'sdl2'
 )
 makedepends=(
-  'boost'
   'catch2'
   'cmake'
   'git'
@@ -41,6 +38,11 @@ makedepends=(
   'rapidjson'
   'robin-map'
   'stb'
+
+  'spirv-headers'
+  'spirv-tools'
+  'vulkan-headers'
+  'vulkan-utility-libraries'
 )
 
 provides=(
@@ -60,19 +62,65 @@ _source_main() {
   sha256sums=('SKIP')
 }
 
+_source_boost() {
+  _pkgver_boost="1.85.0"
+  _pkgname_boost="boost_${_pkgver_boost//./_}"
+
+  source+=("https://boostorg.jfrog.io/artifactory/main/release/$_pkgver_boost/source/$_pkgname_boost.tar.bz2")
+  sha256sums+=('SKIP')
+
+  _build_boost() {
+    local JOBS="$(sed 's/.*\(-j *[0-9]\+\).*/\1/' <<< $MAKEFLAGS)"
+    local python_version=$(python -c 'import sys; print(".".join(map(str, sys.version_info[:2])))')
+
+    pushd "$_pkgname_boost/tools/build"
+    ./bootstrap.sh --cxxflags="$CXXFLAGS $LDFLAGS"
+    ./b2 install --prefix="$srcdir"/deps
+    ln -s b2 "$srcdir"/deps/bin/bjam
+    popd
+
+    cd "$_pkgname_boost"
+    ./bootstrap.sh --with-toolset=gcc --with-icu --with-python=python3
+
+    # support for OpenMPI
+    echo "using mpi ;" >> project-config.jam
+
+    # boostbook is needed by quickbook
+    install -dm755 "$srcdir"/deps/share/boostbook
+    cp -a tools/boostbook/{xsl,dtd} "$srcdir"/deps/share/boostbook/
+
+    # install to $srcdir/deps
+    ./b2 install \
+      variant=release \
+      debug-symbols=off \
+      threading=multi \
+      runtime-link=static \
+      link=static \
+      toolset=gcc \
+      python=$python_version \
+      cflags="$CPPFLAGS $CFLAGS -fPIC -O3 -ffat-lto-objects" \
+      cxxflags="$CPPFLAGS $CXXFLAGS -fPIC -O3 -ffat-lto-objects" \
+      linkflags="$LDFLAGS" \
+      --layout=system \
+      $JOBS \
+      \
+      --prefix="$srcdir"/deps
+  }
+}
+
 _source_torzu() {
   source+=(
     'arun11299.cpp-jwt'::'git+https://github.com/arun11299/cpp-jwt.git'
     'brofield.simpleini'::'git+https://github.com/brofield/simpleini.git'
     'bylaws.libadrenotools'::'git+https://github.com/bylaws/libadrenotools.git'
     #'ffmpeg'::'git+https://github.com/FFmpeg/FFmpeg.git'
-    #'fmtlib.fmt'::'git+https://github.com/fmtlib/fmt.git'
+    'fmtlib.fmt'::'git+https://github.com/fmtlib/fmt.git'
     'gpuopen-librariesandsdks.vulkanmemoryallocator'::'git+https://github.com/GPUOpen-LibrariesAndSDKs/VulkanMemoryAllocator.git'
     'herumi.xbyak'::'git+https://github.com/herumi/xbyak.git'
-    'khronosgroup.spirv-headers'::'git+https://github.com/KhronosGroup/SPIRV-Headers.git'
-    'khronosgroup.spirv-tools'::'git+https://github.com/KhronosGroup/SPIRV-Tools.git'
-    'khronosgroup.vulkan-headers'::'git+https://github.com/KhronosGroup/Vulkan-Headers.git'
-    'khronosgroup.vulkan-utility-libraries'::'git+https://github.com/KhronosGroup/Vulkan-Utility-Libraries.git'
+    #'khronosgroup.spirv-headers'::'git+https://github.com/KhronosGroup/SPIRV-Headers.git'
+    #'khronosgroup.spirv-tools'::'git+https://github.com/KhronosGroup/SPIRV-Tools.git'
+    #'khronosgroup.vulkan-headers'::'git+https://github.com/KhronosGroup/Vulkan-Headers.git'
+    #'khronosgroup.vulkan-utility-libraries'::'git+https://github.com/KhronosGroup/Vulkan-Utility-Libraries.git'
     'lat9nq.tzdb_to_nx'::'git+https://github.com/lat9nq/tzdb_to_nx.git'
     #'libsdl-org.sdl'::'git+https://github.com/libsdl-org/SDL.git'
     'libusb'::'git+https://github.com/libusb/libusb.git'
@@ -88,9 +136,9 @@ _source_torzu() {
     #'SKIP'
     #'SKIP'
     #'SKIP'
-    'SKIP'
-    'SKIP'
-    'SKIP'
+    #'SKIP'
+    #'SKIP'
+    #'SKIP'
     'SKIP'
     'SKIP'
     'SKIP'
@@ -113,13 +161,13 @@ _source_torzu() {
       'brofield.simpleini'::'externals/simpleini'
       'bylaws.libadrenotools'::'externals/libadrenotools'
       #'ffmpeg'::'externals/ffmpeg/ffmpeg'
-      #'fmtlib.fmt'::'externals/fmt'
+      'fmtlib.fmt'::'externals/fmt'
       'gpuopen-librariesandsdks.vulkanmemoryallocator'::'externals/VulkanMemoryAllocator'
       'herumi.xbyak'::'externals/xbyak'
-      'khronosgroup.spirv-headers'::'externals/SPIRV-Headers'
-      'khronosgroup.spirv-tools'::'externals/SPIRV-Tools'
-      'khronosgroup.vulkan-headers'::'externals/Vulkan-Headers'
-      'khronosgroup.vulkan-utility-libraries'::'externals/Vulkan-Utility-Libraries'
+      #'khronosgroup.spirv-headers'::'externals/SPIRV-Headers'
+      #'khronosgroup.spirv-tools'::'externals/SPIRV-Tools'
+      #'khronosgroup.vulkan-headers'::'externals/Vulkan-Headers'
+      #'khronosgroup.vulkan-utility-libraries'::'externals/Vulkan-Utility-Libraries'
       'lat9nq.tzdb_to_nx'::'externals/nx_tzdb/tzdb_to_nx'
       #'libsdl-org.sdl'::'externals/SDL'
       'libusb'::'externals/libusb/libusb'
@@ -192,6 +240,7 @@ _source_mozilla_cubeb() {
 }
 
 _source_main
+_source_boost
 _source_torzu
 _source_bylaws_libadrenotools
 _source_lat9nq_tzdb_to_nx
@@ -211,6 +260,10 @@ prepare() {
   _prepare_bylaws_libadrenotools
   _prepare_lat9nq_tzdb_to_nx
   _prepare_mozilla_cubeb
+
+  sed -E -e '/find_package.*fmt/d' \
+    -i "$_pkgsrc/externals/CMakeLists.txt" \
+    "$_pkgsrc/CMakeLists.txt"
 }
 
 pkgver() {
@@ -219,12 +272,7 @@ pkgver() {
     | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
 }
 
-build() {
-  if [[ "${_build_avx::1}" == "t" ]]; then
-    CFLAGS="$(echo "$CFLAGS" | sed -E 's@(\s*-(march|mtune)=\S+\s*)@ @g;s@\s*-O[0-9]\s*@ @g;s@\s+@ @g') -march=x86-64-v3 -mtune=generic -O3"
-    CXXFLAGS="$(echo "$CXXFLAGS" | sed -E 's@(\s*-(march|mtune)=\S+\s*)@ @g;s@\s*-O[0-9]\s*@ @g;s@\s+@ @g') -march=x86-64-v3 -mtune=generic -O3"
-  fi
-
+_build_torzu() {
   local _cmake_options=(
     -S "$_pkgsrc"
     -B build
@@ -247,7 +295,7 @@ build() {
     -DYUZU_USE_EXTERNAL_SDL2=OFF
     -DYUZU_USE_EXTERNAL_VULKAN_HEADERS=OFF
     -DYUZU_USE_EXTERNAL_VULKAN_SPIRV_TOOLS=OFF
-    -DYUZU_USE_EXTERNAL_VULKAN_UTILITY_LIBRARIES=ON
+    -DYUZU_USE_EXTERNAL_VULKAN_UTILITY_LIBRARIES=OFF
 
     -DYUZU_USE_FASTER_LD=OFF
 
@@ -266,11 +314,23 @@ build() {
     -DYUZU_ENABLE_LTO=ON
     -DYUZU_CRASH_DUMPS=OFF
     -DYUZU_TESTS=OFF
+
+    -DBoost_INCLUDE_DIR="$srcdir/deps/include"
     -Wno-dev
   )
 
   cmake "${_cmake_options[@]}"
   cmake --build build
+}
+
+build() {
+  if [[ "${_build_avx::1}" == "t" ]]; then
+    CFLAGS="$(echo "$CFLAGS" | sed -E 's@(\s*-(march|mtune)=\S+\s*)@ @g;s@\s*-O[0-9]\s*@ @g;s@\s+@ @g') -march=x86-64-v3 -mtune=generic -O3"
+    CXXFLAGS="$(echo "$CXXFLAGS" | sed -E 's@(\s*-(march|mtune)=\S+\s*)@ @g;s@\s*-O[0-9]\s*@ @g;s@\s+@ @g') -march=x86-64-v3 -mtune=generic -O3"
+  fi
+
+  (_build_boost)
+  (_build_torzu)
 }
 
 package() {
