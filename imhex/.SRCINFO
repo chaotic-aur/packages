@@ -9,6 +9,7 @@ pkgbase = imhex
 	makedepends = llvm
 	makedepends = librsvg
 	makedepends = nlohmann-json
+	makedepends = libxrandr
 	makedepends = python
 	makedepends = cli11
 	makedepends = dotnet-runtime

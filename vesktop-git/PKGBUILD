@@ -1,104 +1,63 @@
-# Maintainer:
+# Maintainer: zt <zt@zt64.dev>
+# Maintainer: cookie <kyliepc@proton.me>
+_pkgname=vesktop
+pkgname=vesktop-git
+pkgdesc="A standalone Electron-based Discord app with Vencord & improved Linux support (git version)"
+pkgver=1.5.3.r11.g24fbf35
+pkgrel=2
 
-## options
-#: ${_electron_version=31}
-: ${_install_path:=usr/share}
-
-# basic info
-_pkgname="vesktop"
-pkgname="$_pkgname-git"
-pkgdesc="Custom Discord desktop app with Vencord preinstalled"
-pkgver=1.5.3.r8.g75354ad
-pkgrel=1
+arch=("x86_64" "aarch64")
 url="https://github.com/Vencord/Vesktop"
 license=('GPL-3.0-only')
-arch=("any")
 
-# electron version detection
-if [ -z "$_electron_version" ]; then
-  _electron_version_request=$(
-    curl -LSsf https://github.com/Vencord/Vesktop/raw/main/package.json \
-      | grep '"electron":' \
-      | sed -Ee 's@^\s*"electron": "\^([0-9]+)\..*".*$@\1@' \
-      | sort -rV | head -1
-  )
-fi
-
-if [ -n "$_electron_version_request" ]; then
-  if pacman -Qi "electron${_electron_version_request:?}" > /dev/null 2>&1 || pacman -Qi "electron${_electron_version_request:?}-bin" > /dev/null 2>&1; then
-    : ${_electron_version=$_electron_version_request}
-  fi
-fi
-
-# continue package
-depends=(
-  "electron${_electron_version:-}"
-)
-makedepends=(
-  'git'
-  'pnpm'
-)
+depends=('alsa-lib' 'gtk3' 'nss')
+makedepends=('nodejs>=18')
 optdepends=(
   'libnotify: Notifications'
   'xdg-utils: Open links, files, etc'
 )
 
-provides=("$_pkgname=${pkgver%%.r*}")
-conflicts=("$_pkgname")
+provides=("vesktop")
+conflicts=('vesktop-electron-git' 'vencord-desktop-git')
 
-_pkgsrc="$_pkgname"
-source=("$_pkgsrc"::"git+$url.git")
-sha256sums=('SKIP')
+source=("$_pkgname::git+$url.git" "vesktop.desktop" "vesktop.sh" "afterPack.js")
+
+sha256sums=('SKIP'
+  'c7845033716d7fdec2ea1daf8c3575b504bc6a5c19c702e3722a0e6237ae571f'
+  '4a790359a465979dbf3b5d815ed0d5f3f8a381a5ae08e1b359cee40dbd81d2ad'
+  '122b17ce996318e533e6f2ab1c9b2961b39c3eba271c9b40f10c0da5dd738baa')
 
 pkgver() {
-  cd "$_pkgsrc"
+  cd "$_pkgname"
   git describe --long --tags --abbrev=7 --exclude='*[a-zA-Z][a-zA-Z]*' \
     | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
 }
 
 build() {
-  export SYSTEM_ELECTRON_VERSION=$(< "/usr/lib/electron${_electron_version:-}/version")
-  export ELECTRONVERSION=${SYSTEM_ELECTRON_VERSION%%.*}
+  cd "$srcdir/$_pkgname"
 
-  sed -E \
-    -e 's&^(\s*)("electron"): "(.*)"(,?)$&\1\2: "'"$SYSTEM_ELECTRON_VERSION"'"\4&' \
-    -e '/linux/s&^&"electronDist": "/usr/lib/electron'"${_electron_version:-}"'",\n&' \
-    -i "$_pkgsrc/package.json"
+  # Add unpacked icon extraction script.
+  sed -i '/"beforePack": "scripts\/build\/sandboxFix.js",/a\ \ \ \ \ \ \ \ "afterPack": "'$srcdir'/afterPack.js",' package.json
 
-  cd "$_pkgsrc"
-  pnpm install
-  pnpm package:dir
+  corepack pnpm i
+  corepack pnpm build
+  corepack pnpx electron-builder --dir
 }
 
 package() {
-  install -d "$pkgdir/$_install_path/$_pkgname"
-  cp --reflink=auto -r "$_pkgsrc/dist/linux-unpacked/resources/app.asar" "$pkgdir/$_install_path/$_pkgname/"
+  cd "$srcdir/$_pkgname"
 
-  install -Dm644 "$_pkgsrc/static/icon.png" "$pkgdir/usr/share/pixmaps/$_pkgname.png"
-  install -Dm644 "$_pkgsrc/LICENSE" -t "$pkgdir/usr/share/licenses/$pkgname/"
+  # Create necessary directories
+  install -d "$pkgdir/usr/lib/$_pkgname"
+  install -d "$pkgdir/usr/bin"
 
-  install -Dm755 /dev/stdin "$pkgdir/usr/bin/$_pkgname" << END
-#!/usr/bin/env sh
-XDG_CONFIG_HOME="\${XDG_CONFIG_HOME:-\$HOME/.config}"
-_FLAGS_FILE="\$XDG_CONFIG_HOME/${_pkgname}-flags.conf"
+  cp -R "dist/linux-unpacked/." "$pkgdir/usr/lib/$_pkgname"
 
-if [ -r "\$_FLAGS_FILE" ]; then
-  _USER_FLAGS="\$(grep -v '^#' "\$_FLAGS_FILE")"
-fi
+  install -Dm 644 "../vesktop.desktop" "$pkgdir/usr/share/applications/vesktop.desktop" # Install desktop entry
+  install -Dm 644 "LICENSE" "$pkgdir/usr/share/licenses/$pkgname/LICENSE"               # Install license
+  for _icons in 1024 512 256 128 64 48 32 16; do
+    install -Dm644 "dist/.icon-set/icon_${_icons}.png" "$pkgdir/usr/share/icons/hicolor/${_icons}x${_icons}/apps/$_pkgname.png"
+  done # Install icons
 
-exec electron${_electron_version:-} /$_install_path/$_pkgname/app.asar \$_USER_FLAGS "\$@"
-END
-
-  install -Dm755 /dev/stdin "$pkgdir/usr/share/applications/$_pkgname.desktop" << END
-[Desktop Entry]
-Name=Vesktop
-GenericName=Internet Messenger
-Comment=$pkgdesc
-Type=Application
-Exec=$_pkgname
-Icon=$_pkgname
-Categories=Network;InstantMessaging;
-StartupWMClass=Vesktop;
-Keywords=discord;vencord;vesktop
-END
+  install -Dm755 "../vesktop.sh" "$pkgdir/usr/bin/$_pkgname" # Start script
 }
