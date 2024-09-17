@@ -1,29 +1,26 @@
-# Maintainer: Alexandre Bouvier <contact@amb.tf>
-_pkgname=cemu
-pkgname=$_pkgname-git
-pkgver=2.1.r4.g0d8fd7c0
+# Maintainer:
+
+_pkgname="cemu"
+pkgname="$_pkgname-git"
+pkgver=2.2.r3.g8508c62
 pkgrel=1
 pkgdesc="Nintendo Wii U emulator"
-arch=('x86_64')
-url="https://cemu.info/"
+url="https://github.com/cemu-project/Cemu"
 license=('MPL-2.0')
+arch=('x86_64')
+
 depends=(
-  'discord-rpc'
-  'gcc-libs'
-  'glibc'
-  'glslang>=14'
-  'hicolor-icon-theme'
+  'glslang'
   'libx11'
   'pugixml'
   'sdl2'
-  'wxwidgets-gtk3>=3.2'
+  'wxwidgets-gtk3'
 )
 makedepends=(
   'boost'
-  'cmake>=3.21.1'
+  'cmake'
   'cubeb'
   'curl'
-  'fmt>=9'
   'git'
   'glib2'
   'glm'
@@ -35,33 +32,45 @@ makedepends=(
   'libusb'
   'libzip'
   'nasm'
+  'ninja'
   'openssl'
   'rapidjson'
-  'vulkan-headers>=1:1.3.225'
+  'vulkan-headers'
   'wayland'
   'wayland-protocols'
-  'zarchive>=0.1.2'
+  'zarchive'
   'zlib'
   'zstd'
 )
-provides=("$_pkgname")
-conflicts=("$_pkgname")
-source=(
-  "$_pkgname::git+https://github.com/cemu-project/Cemu.git"
-  'imgui::git+https://github.com/ocornut/imgui.git'
-)
-b2sums=(
-  'SKIP'
-  'SKIP'
-)
 
-pkgver() {
-  cd $_pkgname
-  git describe --long --tags | sed 's/^v//;s/\([^-]*-g\)/r\1/;s/-/./g'
+provides=("$_pkgname=${pkgver%%.r*}")
+conflicts=("$_pkgname")
+
+_source_main() {
+  _pkgsrc="$_pkgname"
+  source=(
+    "$_pkgsrc"::"git+$url.git"
+    "imgui"::"git+https://github.com/ocornut/imgui.git"
+  )
+  sha256sums=(
+    'SKIP'
+    'SKIP'
+  )
 }
 
+_source_fmt() {
+  #_commit_fmt='a33701196adfad74917046096bf5a2aa0ab0bb50' # 9.1.0
+  _commit_fmt='e69e5f977d458f2650bb346dadf2ad30c5320281' # 10.2.1
+
+  source+=("fmtlib.fmt"::"git+https://github.com/fmtlib/fmt.git#commit=$_commit_fmt")
+  sha256sums+=('SKIP')
+}
+
+_source_main
+_source_fmt
+
 prepare() {
-  cd $_pkgname
+  cd "$_pkgsrc"
   git config submodule.dependencies/imgui.url ../imgui
   git -c protocol.file.allow=always submodule update
   sed -i '/CMAKE_INTERPROCEDURAL_OPTIMIZATION/d' CMakeLists.txt
@@ -69,14 +78,59 @@ prepare() {
   sed -i '/FMT_HEADER_ONLY/d' src/Common/precompiled.h
 }
 
-build() {
-  cmake -S $_pkgname -B build \
-    -DCMAKE_BUILD_TYPE=Release \
-    -DCMAKE_C_FLAGS_RELEASE="-DNDEBUG" \
-    -DCMAKE_CXX_FLAGS_RELEASE="-DNDEBUG" \
-    -DENABLE_VCPKG=OFF \
+pkgver() {
+  cd "$_pkgsrc"
+  git describe --long --tags --abbrev=7 --exclude='*[a-zA-Z][a-zA-Z]*' \
+    | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
+}
+
+_build_fmt() {
+  echo "Building fmt..."
+
+  local _cmake_options=(
+    -B build_fmt
+    -S "fmtlib.fmt"
+    -G Ninja
+    -DCMAKE_BUILD_TYPE=None
+    -DCMAKE_INSTALL_PREFIX='/usr'
+    -DFMT_CMAKE_DIR='lib/cmake/fmt'
+    -DFMT_DOC=OFF
+    -DFMT_INC_DIR='include/fmt'
+    -DFMT_PKGCONFIG_DIR='lib/fmt/pkgconfig'
+    -DBUILD_SHARED_LIBS=OFF
     -Wno-dev
+  )
+
+  cmake "${_cmake_options[@]}"
+  cmake --build build_fmt
+  DESTDIR="$srcdir/deps" cmake --install build_fmt
+}
+
+_build_main() {
+  echo "Building cemu..."
+
+  export CFLAGS CXXFLAGS
+  CFLAGS+=' -DNDEBUG'
+  CXXFLAGS+=' -DNDEBUG'
+
+  local _cmake_options=(
+    -B build
+    -S "$_pkgsrc"
+    -G Ninja
+    -DCMAKE_BUILD_TYPE=None
+    -DENABLE_DISCORD_RPC=OFF
+    -DENABLE_VCPKG=OFF
+    -Dfmt_DIR="$srcdir/deps/usr/lib/cmake/fmt"
+    -Wno-dev
+  )
+
+  cmake "${_cmake_options[@]}"
   cmake --build build
+}
+
+build() {
+  (_build_fmt)
+  (_build_main)
 }
 
 package() {
@@ -85,7 +139,6 @@ package() {
     'libcrypto.so'
     'libcubeb.so'
     'libcurl.so'
-    'libfmt.so'
     'libgdk-3.so'
     'libgobject-2.0.so'
     'libgtk-3.so'
@@ -98,12 +151,15 @@ package() {
     'libzip.so'
     'libzstd.so'
   )
-  cd $_pkgname
-  # shellcheck disable=SC2154
-  install -d "$pkgdir"/usr/{bin,share/Cemu}
-  mv bin/Cemu_release "$pkgdir"/usr/bin/Cemu
-  cp -dr --no-preserve=ownership -t "$pkgdir"/usr/share/Cemu bin/*
-  install -Dm644 -t "$pkgdir"/usr/share/applications dist/linux/info.cemu.Cemu.desktop
-  install -Dm644 -t "$pkgdir"/usr/share/icons/hicolor/128x128/apps dist/linux/info.cemu.Cemu.png
-  install -Dm644 -t "$pkgdir"/usr/share/metainfo dist/linux/info.cemu.Cemu.metainfo.xml
+
+  cd "$_pkgsrc"
+
+  install -dm755 "$pkgdir"/usr/{bin,share/Cemu}
+  mv bin/Cemu_none "$pkgdir"/usr/bin/Cemu
+  cp --reflink=auto -a bin/* "$pkgdir"/usr/share/Cemu/
+
+  install -Dm644 dist/linux/info.cemu.Cemu.desktop -t "$pkgdir"/usr/share/applications/
+  install -Dm644 dist/linux/info.cemu.Cemu.png -t "$pkgdir"/usr/share/pixmaps/
+
+  chmod -R u+rwX,go+rX,go-w "$pkgdir/"
 }
