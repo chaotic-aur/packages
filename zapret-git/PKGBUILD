@@ -5,8 +5,8 @@
 
 _pkgname="zapret"
 pkgbase="$_pkgname${_pkgtype:-}"
-pkgver=61.r22.gf8a673b
-pkgrel=2
+pkgver=62.r3.gc532ec4
+pkgrel=1
 pkgdesc="Bypass deep packet inspection"
 url="https://github.com/bol-van/zapret"
 license=('MIT')
@@ -44,11 +44,11 @@ pkgver() {
   local _file _hash _ver _rev
   _file="docs/changes.txt"
   read -r _hash _ver < <(
-    NL=$(awk '/^v[[:digit:]]+/{n=NR}END{print n}' "$_file")
+    NL=$(awk '/^v[0-9]+/{n=NR}END{print n}' "$_file")
 
     git blame -L "$NL,+1" -- "$_file" \
       | awk '{print $1" "$NF }' \
-      | sed -E -e 's& v([[:digit:]]+)& \1&'
+      | sed -E -e 's& v([0-9]+)([^0-9].*)?$& \1&'
   )
   _rev=$(git rev-list --count --cherry-pick "$_hash"...HEAD)
 

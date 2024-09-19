@@ -1,27 +1,29 @@
-# Maintainer: w1nst0n <w1nst0n at keemail dot me>
 pkgname=universal-android-debloater-bin
-pkgver=0.5.1
-pkgrel=1
+pkgver=1.1.0
+pkgrel=2
 pkgdesc="Cross-platform GUI written in Rust using ADB to debloat non-rooted Android devices."
 arch=('x86_64')
-url="https://github.com/0x192/universal-android-debloater"
-license=('GPL3')
-depends=('android-tools' 'fontconfig' 'vulkan-icd-loader')
+url="https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation"
+license=('GPL-3.0-or-later')
+depends=('android-tools')
 provides=('universal-android-debloater')
 conflicts=('universal-android-debloater')
-source=("$url/releases/download/$pkgver/uad_gui-noselfupdate-linux.tar.gz"
-  "uad_gui.desktop"
-  "uad_gui-noselfupdate-linux.tar.gz.sig")
-sha256sums=('6bca075ac226fb6df8cffd2368b0ccb8c47cfee02a310c4e98d5ef1fcc4a169f'
-  'e55f259fab5e09d6e91412dbfa74859f609615606422b0e3c937cc774eaedbf3'
-  'SKIP')
-validpgpkeys=('09FD287B96B572E0802279D813639119486820A1') # w1nst0n <w1nst0n at keemail dot me>
+source=("$url/releases/download/v$pkgver/uad-ng-noselfupdate-linux.tar.gz"
+  "$url/releases/download/v$pkgver/uad-ng-noselfupdate-linux-checksum"
+  "uad-ng.png::https://raw.githubusercontent.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/main/resources/assets/logo-dark.png"
+  "uad-ng.desktop")
+sha256sums=('SKIP'
+  'SKIP'
+  '019c4df893dca5b54557c381881d7946b7a53ebf5b610cc04d61c2980c1a22ec'
+  '8d5d790fffd35101af340792d081f8f75b61b1579bc8f89acab818f03f1071ea')
 
 prepare() {
-  mv uad_gui-noselfupdate-linux uad_gui
+  cd "${srcdir}"
+  sha256sum -c uad-ng-noselfupdate-linux-checksum
 }
 
 package() {
-  install -Dm755 uad_gui -t "$pkgdir/usr/bin"
-  install -Dm644 "$srcdir/uad_gui.desktop" -t "$pkgdir/usr/share/applications"
+  install -Dm755 "${srcdir}/uad-ng-noselfupdate-linux" -T "${pkgdir}/usr/bin/uad-ng"
+  install -Dm644 "${srcdir}/uad-ng.desktop" -t "${pkgdir}/usr/share/applications"
+  install -Dm644 "${srcdir}/uad-ng.png" -t "${pkgdir}/usr/share/pixmaps"
 }
