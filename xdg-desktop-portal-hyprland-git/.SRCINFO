@@ -1,6 +1,6 @@
 pkgbase = xdg-desktop-portal-hyprland-git
 	pkgdesc = xdg-desktop-portal backend for hyprland
-	pkgver = 1.3.2.r4.gb9b97e5
+	pkgver = 1.3.4.r0.g73b8c4f
 	pkgrel = 1
 	url = https://github.com/hyprwm/xdg-desktop-portal-hyprland
 	arch = x86_64
@@ -12,13 +12,14 @@ pkgbase = xdg-desktop-portal-hyprland-git
 	makedepends = wayland-protocols
 	depends = hyprlang-git
 	depends = hyprutils-git
+	depends = hyprwayland-scanner-git
 	depends = libpipewire
 	depends = qt6-base
 	depends = sdbus-cpp
 	optdepends = grim: required for the screenshot portal to function
 	optdepends = hyprland: the Hyprland compositor
 	optdepends = slurp: support for interactive mode for the screenshot portal
-	provides = xdg-desktop-portal-hyprland=1.3.2
+	provides = xdg-desktop-portal-hyprland=1.3.4
 	provides = xdg-desktop-portal-impl
 	conflicts = xdg-desktop-portal-hyprland
 	source = xdg-desktop-portal-hyprland::git+https://github.com/hyprwm/xdg-desktop-portal-hyprland.git
