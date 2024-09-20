@@ -4,7 +4,7 @@ _pkgname=vesktop
 pkgname=vesktop-git
 pkgdesc="A standalone Electron-based Discord app with Vencord & improved Linux support (git version)"
 pkgver=1.5.3.r11.g24fbf35
-pkgrel=2
+pkgrel=3
 
 arch=("x86_64" "aarch64")
 url="https://github.com/Vencord/Vesktop"
@@ -53,8 +53,8 @@ package() {
 
   cp -R "dist/linux-unpacked/." "$pkgdir/usr/lib/$_pkgname"
 
-  install -Dm 644 "../vesktop.desktop" "$pkgdir/usr/share/applications/vesktop.desktop" # Install desktop entry
-  install -Dm 644 "LICENSE" "$pkgdir/usr/share/licenses/$pkgname/LICENSE"               # Install license
+  install -Dm644 "../vesktop.desktop" "$pkgdir/usr/share/applications/vesktop.desktop" # Install desktop entry
+  install -Dm644 "LICENSE" "$pkgdir/usr/share/licenses/$pkgname/LICENSE"               # Install license
   for _icons in 1024 512 256 128 64 48 32 16; do
     install -Dm644 "dist/.icon-set/icon_${_icons}.png" "$pkgdir/usr/share/icons/hicolor/${_icons}x${_icons}/apps/$_pkgname.png"
   done # Install icons

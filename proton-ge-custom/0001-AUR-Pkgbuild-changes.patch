@@ -1,4 +1,4 @@
-From 0460ffb4fad56a0029e9a1659f7313235020d31d Mon Sep 17 00:00:00 2001
+From 310516eb572c0956028f1a6212bb018a1261088c Mon Sep 17 00:00:00 2001
 From: Stelios Tsampas <loathingkernel@gmail.com>
 Date: Tue, 7 Feb 2023 22:00:48 +0200
 Subject: [PATCH 1/8] AUR Pkgbuild changes
@@ -16,8 +16,8 @@ Subject: [PATCH 1/8] AUR Pkgbuild changes
  make/rules-meson.mk            |  3 +-
  make/rules-winemaker.mk        |  2 +-
  proton                         |  6 +--
- toolmanifest_runtime.vdf       |  3 --
- 13 files changed, 85 insertions(+), 42 deletions(-)
+ toolmanifest_runtime.vdf       |  1 -
+ 13 files changed, 85 insertions(+), 40 deletions(-)
 
 diff --git a/Makefile.in b/Makefile.in
 index 77bfd26c..09ac795d 100644
@@ -512,17 +512,17 @@ index 2c98178c..1a357538 100755
      g_session.init_session(sys.argv[1] != "runinprefix")
  
 diff --git a/toolmanifest_runtime.vdf b/toolmanifest_runtime.vdf
-index beddcbbb..b6f36788 100644
+index beddcbbb..5404093e 100644
 --- a/toolmanifest_runtime.vdf
 +++ b/toolmanifest_runtime.vdf
-@@ -2,7 +2,4 @@
+@@ -2,7 +2,6 @@
  {
    "version" "2"
    "commandline" "/proton %verb%"
 -  "require_tool_appid" "1628350"
--  "use_sessions" "1"
--  "compatmanager_layer_name" "proton"
+   "use_sessions" "1"
+   "compatmanager_layer_name" "proton"
  }
 -- 
-2.46.0
+2.46.1
 

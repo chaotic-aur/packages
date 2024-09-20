@@ -1,4 +1,4 @@
-From a46c7d0220648da47612d3d065e7fae5b2866f10 Mon Sep 17 00:00:00 2001
+From 7575631e65c8b49fdb7a3665ade665dcea643fc1 Mon Sep 17 00:00:00 2001
 From: Stelios Tsampas <loathingkernel@gmail.com>
 Date: Thu, 6 Jun 2024 19:47:02 +0300
 Subject: [PATCH 8/8] AUR: Fix calling make-requests where it shouldn't be
@@ -21,5 +21,5 @@ index 63e19456..3f5b912f 100644
  
  $(OBJ)/.wine-post-build64:
 -- 
-2.46.0
+2.46.1
 
