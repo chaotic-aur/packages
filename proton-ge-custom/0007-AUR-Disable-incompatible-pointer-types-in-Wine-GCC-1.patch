@@ -1,4 +1,4 @@
-From 559d327bddaf5d2602557d8492eedb61235b2ad3 Mon Sep 17 00:00:00 2001
+From 14d97533f92265ee8b717529b064d2bb0dbe75ea Mon Sep 17 00:00:00 2001
 From: Stelios Tsampas <loathingkernel@gmail.com>
 Date: Sat, 11 May 2024 21:58:52 +0300
 Subject: [PATCH 7/8] AUR: Disable incompatible-pointer-types in Wine (GCC 14)
@@ -22,5 +22,5 @@ index f60afcb4..63e19456 100644
  
  $(eval $(call rules-source,wine,$(SRCDIR)/wine))
 -- 
-2.46.0
+2.46.1
 
