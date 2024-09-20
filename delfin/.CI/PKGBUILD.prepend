@@ -1,3 +1,0 @@
-export CARGO_HOME="$SRCDEST/cargo-home"
-export CARGO_TARGET_DIR=target
-export RUSTUP_TOOLCHAIN=stable
