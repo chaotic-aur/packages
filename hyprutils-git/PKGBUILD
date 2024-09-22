@@ -2,7 +2,7 @@
 
 _pkgname="hyprutils"
 pkgname="${_pkgname}-git"
-pkgver=0.1.1.r3.g0693f939
+pkgver=0.2.2.r0.gd97af4f6
 pkgrel=1
 pkgdesc="Hyprland utilities library used across the ecosystem"
 arch=(any)

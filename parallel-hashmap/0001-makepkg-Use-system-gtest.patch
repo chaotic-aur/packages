@@ -1,23 +1,23 @@
-From 8b95aad477c32ebefeee5c76092dee38c7c4b0f7 Mon Sep 17 00:00:00 2001
+From 9f9289177e1298a57d7b1957db3a065aab6d8e9c Mon Sep 17 00:00:00 2001
 From: KokaKiwi <kokakiwi+git@kokakiwi.net>
-Date: Mon, 29 Jan 2024 11:17:58 +0100
+Date: Sat, 21 Sep 2024 18:20:18 +0200
 Subject: [PATCH] makepkg: Use system gtest
 
 ---
- CMakeLists.txt | 11 ++---------
- 1 file changed, 2 insertions(+), 9 deletions(-)
+ CMakeLists.txt | 10 ++--------
+ 1 file changed, 2 insertions(+), 8 deletions(-)
 
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index d247c28..e964a5b 100644
+index 7396052..e9c5744 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
-@@ -98,14 +98,8 @@ endif()
+@@ -95,14 +95,8 @@ endif()
  
  if (PHMAP_BUILD_TESTS)
  
 -    if (NOT PHMAP_GTEST_LIBS)
 -        include(cmake/DownloadGTest.cmake)
--    
+-
 -        check_target(gtest)
 -        check_target(gtest_main)
 -        check_target(gmock)
@@ -28,11 +28,6 @@ index d247c28..e964a5b 100644
  
      enable_testing()
  
-@@ -205,4 +199,3 @@ if (PHMAP_BUILD_EXAMPLES)
-     target_link_libraries(ex_knucleotide Threads::Threads)
-     target_link_libraries(ex_bench Threads::Threads)
- endif()
--
 -- 
-2.43.0
+2.46.1
 
