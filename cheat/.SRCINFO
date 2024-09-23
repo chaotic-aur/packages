@@ -1,0 +1,26 @@
+pkgbase = cheat
+	pkgdesc = Allows you to create and view interactive cheatsheets on the command-line
+	pkgver = 4.4.2
+	pkgrel = 3
+	url = https://github.com/cheat/cheat
+	arch = x86_64
+	arch = arm
+	arch = armv6h
+	arch = armv7h
+	arch = aarch64
+	license = MIT AND CC0-1.0
+	makedepends = git
+	makedepends = go
+	makedepends = pandoc
+	depends = glibc
+	optdepends = fzf: Fuzzy Finder integration for bash-completion
+	conflicts = python-cheat
+	backup = etc/cheat/conf.yml
+	source = cheat-4.4.2.tar.gz::https://github.com/cheat/cheat/archive/refs/tags/4.4.2.tar.gz
+	source = conf.yml
+	source = git+https://github.com/cheat/cheatsheets.git#commit=36bdb99dcfadde210503d8c2dcf94b34ee950e1d
+	sha256sums = 6968ffdebb7c2a8390dea45f97884af3c623cda6c2d36c4c04443ed2454da431
+	sha256sums = 7eddb96f22a29b0d4dc1d953cdb047342495230ea3c0cb16f78a1d888e79fa8e
+	sha256sums = daed9ee395975c898ea392885960ac5c01d5695bafcdee220b153911b8c10318
+
+pkgname = cheat
