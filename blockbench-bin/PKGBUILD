@@ -6,7 +6,7 @@ _pkgname=blockbench
 provides=(blockbench)
 conflicts=(blockbench)
 pkgname_orig=Blockbench
-pkgver=4.10.4
+pkgver=4.11.0
 pkgrel=1
 pkgdesc="A low-poly 3D model editor"
 arch=('x86_64')
@@ -40,7 +40,7 @@ depends=('alsa-lib'
   'pango')
 makedepends=('gzip')
 source=("https://github.com/JannisX11/blockbench/releases/download/v${pkgver}/Blockbench_${pkgver}.deb")
-sha256sums=('1d9a0617c243c6101126972aebdb51a238207f81f68789759d5fe25d1e943722')
+sha256sums=('19431473107f167f0f2324d3b7250e94f89dd30fb4b420cb63d308b62c042358')
 
 package() {
   msg2 "Extracting the data.tar.xz..."

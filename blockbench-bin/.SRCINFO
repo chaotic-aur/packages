@@ -1,6 +1,6 @@
 pkgbase = blockbench-bin
 	pkgdesc = A low-poly 3D model editor
-	pkgver = 4.10.4
+	pkgver = 4.11.0
 	pkgrel = 1
 	url = https://blockbench.net/
 	arch = x86_64
@@ -34,7 +34,7 @@ pkgbase = blockbench-bin
 	depends = pango
 	provides = blockbench
 	conflicts = blockbench
-	source = https://github.com/JannisX11/blockbench/releases/download/v4.10.4/Blockbench_4.10.4.deb
-	sha256sums = 1d9a0617c243c6101126972aebdb51a238207f81f68789759d5fe25d1e943722
+	source = https://github.com/JannisX11/blockbench/releases/download/v4.11.0/Blockbench_4.11.0.deb
+	sha256sums = 19431473107f167f0f2324d3b7250e94f89dd30fb4b420cb63d308b62c042358
 
 pkgname = blockbench-bin
