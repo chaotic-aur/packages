@@ -1,2 +1,3 @@
 BUILDER_CACHE_SOURCES=true
 CI_PKGBUILD_SOURCE=https://aur.archlinux.org/iverilog-git.git
+CI_GIT_COMMIT=25a84d5cfcecf67bfb7734929a1df98c4b137ce6

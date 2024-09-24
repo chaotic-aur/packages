@@ -1,2 +1,3 @@
 BUILDER_CACHE_SOURCES=true
 CI_PKGBUILD_SOURCE=https://aur.archlinux.org/flycast-git.git
+CI_GIT_COMMIT=7907100b9cffe326dce458d7c5febdd47fc0926e

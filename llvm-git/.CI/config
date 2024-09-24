@@ -1,3 +1,4 @@
 CI_ON_TRIGGER=heavy
 BUILDER_CACHE_SOURCES=true
 CI_PKGBUILD_SOURCE=https://github.com/chaotic-aur/pkgbuild-llvm-git.git
+CI_GIT_COMMIT=aeb18ebbe0a1a2fbce9b432eefed46c1d90968ea

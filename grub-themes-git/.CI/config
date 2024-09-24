@@ -1,2 +1,3 @@
 BUILDER_CACHE_SOURCES=true
 CI_PKGBUILD_SOURCE=https://aur.archlinux.org/grub-themes-git.git
+CI_GIT_COMMIT=a697a28fe639281d5bb1d4678dc9eb3bc4acbc0d

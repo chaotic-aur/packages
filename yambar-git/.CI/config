@@ -1,2 +1,3 @@
 BUILDER_CACHE_SOURCES=true
 CI_PKGBUILD_SOURCE=https://aur.archlinux.org/yambar-git.git
+CI_GIT_COMMIT=0f47cbb889716dcd0824b5501cab6f5f1cc85eac

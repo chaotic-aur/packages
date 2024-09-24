@@ -1,2 +1,3 @@
 BUILDER_CACHE_SOURCES=true
 CI_PKGBUILD_SOURCE=https://aur.archlinux.org/gamescope-session-git.git
+CI_GIT_COMMIT=0b469397e97d1c7edc48d78002ac6159b88d8d03

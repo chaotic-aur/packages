@@ -1,2 +1,3 @@
 BUILDER_CACHE_SOURCES=true
 CI_PKGBUILD_SOURCE=https://aur.archlinux.org/prjxray-git.git
+CI_GIT_COMMIT=db8a2619c6598091ebe795c108e807336360520f

@@ -1,2 +1,3 @@
 BUILDER_CACHE_SOURCES=true
 CI_PKGBUILD_SOURCE=https://aur.archlinux.org/zapret-git.git
+CI_GIT_COMMIT=8ec0ce067d3fb36d57127f18b94d50d11c1e6a54
