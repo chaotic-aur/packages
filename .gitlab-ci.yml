@@ -6,7 +6,7 @@ variables:
 
 default:
   before_script:
-    - apk add --no-cache --upgrade git bash findutils grep curl jq shfmt rsync diffutils gawk openssh tar zstd pacman
+    - apk add --no-cache --upgrade git bash findutils grep curl jq shfmt rsync diffutils gawk openssh tar zstd
     - git remote set-url origin $REPO_URL
     - git fetch --tags --all --depth 20
 
@@ -31,6 +31,7 @@ on-schedule:
   image: alpine:latest
   script:
     - .ci/on-schedule.sh
+    - .ci/gitlab-clean.sh # Clean old artifacts
   artifacts:
     paths:
       - .ci/deptree.txt

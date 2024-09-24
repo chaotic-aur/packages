@@ -40,7 +40,7 @@ git config --global user.email "$GIT_AUTHOR_EMAIL"
 git config --global init.defaultBranch "master"
 
 if [ -v TEMPLATE_ENABLE_UPDATES ] && [ "$TEMPLATE_ENABLE_UPDATES" == "true" ]; then
-    .ci/update-template.sh && UTIL_PRINT_INFO "Updated CI template." && exit 0 || true
+    { .ci/update-template.sh && UTIL_PRINT_INFO "Updated CI template." && exit 0; } || true
 fi
 
 # Check if the scheduled tag does not exist or scheduled does not point to HEAD
@@ -57,36 +57,8 @@ declare -A CHANGED_LIBS=()
 DELETE_BRANCHES=()
 UTIL_GET_PACKAGES PACKAGES
 COMMIT="${COMMIT:-false}"
-PUSH=false
-
-# Manage the .state worktree to confine the state of packages to a separate branch
-# The goal is to keep the commit history clean
-function manage_state() {
-    if git show-ref --quiet "origin/state"; then
-        git worktree add .state origin/state --detach -q
-        # We have to make sure that the commit is still in the history of the state branch
-        # Otherwise, this implies a force push happened. We need to re-create the state from scratch.
-        if [ ! -f .state/.commit ] || ! git branch --contains "$(cat .state/.commit)" &>/dev/null; then
-            git worktree remove .state
-        fi
-    fi
-    git worktree add .newstate -B state --orphan -q
-}
-
-# Check if the current commit is already an automatic commit
-# If it is, check if we should overwrite it
-function manage_commit() {
-    if [ -v CI_OVERWRITE_COMMITS ] && [ "$CI_OVERWRITE_COMMITS" == "true" ]; then
-        local COMMIT_MSG=""
-        local REGEX="^chore\(packages\): update packages( \[skip ci\])?$"
-        if COMMIT_MSG="$(git log -1 --pretty=%s)"; then
-            if [[ "$COMMIT_MSG" =~ $REGEX ]]; then
-                # Signal that we should not only append to the commit, but also force push the branch
-                COMMIT=force
-            fi
-        fi
-    fi
-}
+# Signals if the .ci/version-state file has already been comitted or not
+VERSION_STATE_UPDATED=false
 
 # Loop through all packages to do optimized aur RPC calls
 # $1 = Output associative array
@@ -119,13 +91,13 @@ function collect_changed_libs() {
     if [ -z "$CI_LIB_DB" ]; then
         return 0
     fi
-    if [ ! -f .state/versions ]; then
-        mkdir -p .state || true
-        touch .state/versions
+    if [ ! -f .ci/version-state ]; then
+        touch .ci/version-state
     fi
 
     IFS=' ' read -r -a link_array <<<"${CI_LIB_DB//\"/}"
 
+    local _TEMP_LIB
     _TEMP_LIB="$(mktemp -d)"
 
     for repo in "${link_array[@]}"; do
@@ -133,16 +105,40 @@ function collect_changed_libs() {
     done
 
     # Sort versions file in-place because comm requires it
-    sort -o "${_TEMP_LIB}/versions.new"{,}
-    comm -23 .state/versions "${_TEMP_LIB}/versions.new" >"$_TEMP_LIB/versions.diff"
+    sort -o "${_TEMP_LIB}/version-state"{,}
+    comm -13 .ci/version-state "${_TEMP_LIB}/version-state" >"$_TEMP_LIB/versions.diff"
 
     while IFS= read -r line; do
         IFS=':' read -r -a pkg <<<"$line"
         CHANGED_LIBS["${pkg[0]}"]="true"
     done <"$_TEMP_LIB/versions.diff"
+
+    mv "${_TEMP_LIB}/version-state" .ci/version-state
+    rm -rf "$_TEMP_LIB"
+}
+
+function generate-commit() {
+    set -euo pipefail
+    if [ "$COMMIT" == "false" ]; then
+        COMMIT=true
+        if [ -v GITLAB_CI ]; then git commit -q -m "chore(packages): update packages"; fi
+        if [ -v GITHUB_ACTIONS ]; then git commit -q -m "chore(packages): update packages [skip ci]"; fi
+    else
+        git commit -q --amend --no-edit --date=now
+    fi
+}
+
+function save-version-state() {
+    set -euo pipefail
+    if [ "$VERSION_STATE_UPDATED" == "false" ]; then
+        git add .ci/version-state
+        generate-commit
+        VERSION_STATE_UPDATED=true
+    fi
 }
 
 function update-lib-bump() {
+    set -euo pipefail
     local bump=0
     local -n pkg_config=${1:-VARIABLES}
 
@@ -151,7 +147,7 @@ function update-lib-bump() {
     fi
 
     # Split the string on : into an array
-    IFS=':' read -r -a LIBS <<<"${CONFIG[CI_REBUILD_TRIGGERS]}"
+    IFS=':' read -r -a LIBS <<<"${pkg_config[CI_REBUILD_TRIGGERS]}"
     for library in "${LIBS[@]}"; do
         if [[ -v CHANGED_LIBS["$library"] ]]; then
             bump=1
@@ -160,24 +156,33 @@ function update-lib-bump() {
     done
 
     if [ $bump -eq 1 ]; then
-        echo "Bumping pkgrel of $package because of a detected library mismatch"
-        
-        local _PKGVER _BUMPCOUNT _PKGVER_IN_DB
-        # Example format: 1:1.2.3-1/1 or 1.2.3
-        # Split at slash, but if it doesnt exist, set it to 1
-        _PKGVER="${CONFIG[CI_PACKAGE_BUMP]%%/*}"
-        _BUMPCOUNT="${CONFIG[CI_PACKAGE_BUMP]#*/}"
-        _PKGVER_IN_DB=$(grep "$package:" "${_TEMP_LIB}/versions.new" | cut -d ":" -f 2)
+        save-version-state
+        UTIL_PRINT_INFO "$package: Bumping pkgrel of $package because of a detected library version change"
 
-        if [[ "${_BUMPCOUNT}" == "${CONFIG[CI_PACKAGE_BUMP]}" ]]; then
+        local _PKGVER _BUMPCOUNT _PKGVER_IN_DB
+        _PKGVER_IN_DB="$(grep "^$package:" ".ci/version-state" | cut -d ":" -f 2 || true)"
+
+        if [ -z "$_PKGVER_IN_DB" ]; then
+            UTIL_PRINT_WARNING "$package: Could not find package version in the version-state file."
+            return 0
+        fi
+
+        if [[ -v pkg_config[CI_PACKAGE_BUMP] ]]; then
+            _PKGVER="${pkg_config[CI_PACKAGE_BUMP]%%/*}"
+            _BUMPCOUNT="${pkg_config[CI_PACKAGE_BUMP]#*/}"
+
+            # If the version we except matches the version in the database
+            if [ "$(vercmp "${_PKGVER}" "${_PKGVER_IN_DB}")" = "0" ]; then
+                # Increment the bump count
+                _BUMPCOUNT=$(( _BUMPCOUNT + 1 ))
+            else
+                # Otherwise, set the bump count to 1
+                _BUMPCOUNT=1
+            fi
+        else
             _BUMPCOUNT=1
         fi
-
-        if [ "$(vercmp "${_PKGVER}" "${_PKGVER_IN_DB}")" = "0" ]; then
-            pkg_config[CI_PACKAGE_BUMP]="$_PKGVER_IN_DB/$_BUMPCOUNT"
-        else 
-            pkg_config[CI_PACKAGE_BUMP]=""
-        fi
+        pkg_config[CI_PACKAGE_BUMP]="$_PKGVER_IN_DB/$_BUMPCOUNT"
     fi
 }
 
@@ -235,7 +240,7 @@ function update_via_git() {
     local pkgbase="${VARIABLES_VIA_GIT[PKGBASE]}"
 
     for i in {1..2}; do
-        if git clone -q --depth=1 "$2" "$TMPDIR/aur-pulls/$pkgbase" 2>&1; then
+        if git clone -q --depth=1 "$2" "$TMPDIR/aur-pulls/$pkgbase" 2>/dev/null; then
             break
         fi
         if [ "$i" -ne 2 ]; then
@@ -396,12 +401,6 @@ function update_vcs() {
     fi
 }
 
-# Create .state and .newstate worktrees
-manage_state
-
-# Reduce history pollution from automatic commits
-manage_commit
-
 # Collect last modified timestamps from AUR in an efficient way
 collect_aur_timestamps AUR_TIMESTAMPS
 
@@ -427,8 +426,6 @@ for package in "${PACKAGES[@]}"; do
     if ! git diff --exit-code --quiet -- "$package"; then
         # shellcheck disable=SC2102
         if [[ -v VARIABLES[CI_REQUIRES_REVIEW] ]] && [ "${VARIABLES[CI_REQUIRES_REVIEW]}" == "true" ]; then
-            # The updated state of the package will still be written to the state branch, even if the main content goes onto the PR branch
-            # This is okay, because merging the PR branch will trigger a build, so that behavior is expected and prevents a double execution
             if [ "$COMMIT" == "false" ]; then
                 .ci/create-pr.sh "$package" false
             else
@@ -436,59 +433,36 @@ for package in "${PACKAGES[@]}"; do
                 # This is because there is a very high chance this current commit will be amended
                 .ci/create-pr.sh "$package" true
             fi
-            PUSH=true
         else
             git add "$package"
-            if [ "$COMMIT" == "false" ]; then
-                COMMIT=true
-                [ -v GITLAB_CI ] && git commit -q -m "chore(packages): update packages"
-                [ -v GITHUB_ACTIONS ] && git commit -q -m "chore(packages): update packages [skip ci]"
-            else
-                git commit -q --amend --no-edit --date=now
-            fi
-            PUSH=true
+            generate-commit
 
-            # We don't want to schedule packages that have a specific trigger to prevent 
+            # We don't want to schedule packages that have a specific trigger to prevent
             # large packages getting scheduled too often and wasting resources (e.g. llvm-git)
-            if [ -v "VARIABLES[CI_ON_TRIGGER]" ]; then
+            if [[ ${VARIABLES[CI_ON_TRIGGER]+x} ]]; then
                 UTIL_PRINT_INFO "Will not schedule $package because it has trigger ${VARIABLES[CI_ON_TRIGGER]} set."
-            else 
+            else
                 MODIFIED_PACKAGES+=("$package")
-            fi 
+            fi
 
             if [ -v CI_HUMAN_REVIEW ] && [ "$CI_HUMAN_REVIEW" == "true" ] && git show-ref --quiet "origin/update-$package"; then
                 DELETE_BRANCHES+=("update-$package")
             fi
         fi
-    # We also need to check the worktree for changes, because we might have an updated git hash
-    elif ! UTIL_CHECK_STATE_DIFF "$package"; then
-        MODIFIED_PACKAGES+=("$package")
     fi
 done
-
-# Update the lib versions state file
-if [ $PUSH == true ]; then
-    mv "$_TEMP_LIB/versions.new" .newstate/versions
-    git add .newstate/versions
-    git commit -q --amend --no-edit --date=now
-fi
-
-git rev-parse HEAD >.newstate/.commit
-git -C .newstate add -A
-git -C .newstate commit -q -m "chore(state): update state" --allow-empty
 
 if [ ${#MODIFIED_PACKAGES[@]} -ne 0 ]; then
     .ci/schedule-packages.sh schedule "${MODIFIED_PACKAGES[@]}"
     .ci/manage-aur.sh "${MODIFIED_PACKAGES[@]}"
 fi
 
-if [ "$PUSH" = true ]; then
+if [ "$COMMIT" = true ]; then
     git tag -f scheduled
     git_push_args=()
     for branch in "${DELETE_BRANCHES[@]}"; do
         git_push_args+=(":$branch")
     done
     [ -v GITLAB_CI ] && git_push_args+=("-o" "ci.skip")
-    [ "$COMMIT" == "force" ] && git_push_args+=("--force-with-lease=main")
-    git push --atomic origin HEAD:main +state +refs/tags/scheduled "${git_push_args[@]}"
+    git push --atomic origin HEAD:main +refs/tags/scheduled "${git_push_args[@]}"
 fi

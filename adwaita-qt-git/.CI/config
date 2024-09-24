@@ -1,2 +1,3 @@
 BUILDER_CACHE_SOURCES=true
 CI_PKGBUILD_SOURCE=https://aur.archlinux.org/adwaita-qt-git.git
+CI_GIT_COMMIT=0a774368916def5c9889de50f3323dec11de781e

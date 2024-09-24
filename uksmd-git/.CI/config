@@ -1,2 +1,3 @@
 BUILDER_CACHE_SOURCES=true
 CI_PKGBUILD_SOURCE=https://aur.archlinux.org/uksmd-git.git
+CI_GIT_COMMIT=ec2bfd88585d7b900baaaede1f57566c95e8c506

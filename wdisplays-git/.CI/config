@@ -1,2 +1,3 @@
 BUILDER_CACHE_SOURCES=true
 CI_PKGBUILD_SOURCE=https://aur.archlinux.org/wdisplays-git.git
+CI_GIT_COMMIT=6233901a887c2bce4989dbb936c2cb51e02b23a0

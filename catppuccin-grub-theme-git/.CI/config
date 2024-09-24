@@ -1,2 +1,3 @@
 BUILDER_CACHE_SOURCES=true
 CI_PKGBUILD_SOURCE=https://aur.archlinux.org/catppuccin-grub-theme-git.git
+CI_GIT_COMMIT=b8e617076daed2b38292af9e14c0a22e2c2bd659
