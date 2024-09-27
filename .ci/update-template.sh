@@ -24,7 +24,7 @@ git clone --depth=1 "$TEMPLATE_REPO" "$TMPDIR/template" -b "main" -q
 trap "git reset --hard $CURRENT_REV" ERR
 
 # Generic template files
-rsync -a --delete --exclude ".ci/config" --exclude ".ci/version-state" \
+rsync -a --delete --exclude ".ci/config" --exclude ".ci/aur-state" \
     --include ".ci/***" \
     "${CI_RSYNC_ARGS[@]}" \
     --exclude "*" \
