@@ -141,17 +141,10 @@ function generate-commit() {
         COMMIT_MESSAGE+=" [skip ci]"
     fi
     if [ "$1" == ".final" ]; then
-        local COMMIT_DESCRIPTION="" packages=""
+        local COMMIT_DESCRIPTION=""
         if (( ${#COMMIT_MESSAGE_PACKAGES[@]} > 0 )); then
-            packages="$(printf "%s, " "${COMMIT_MESSAGE_PACKAGES[@]}")"
-            COMMIT_DESCRIPTION="Package files were changed for the following package"
-            if (( ${#COMMIT_MESSAGE_PACKAGES[@]} > 1 )); then
-                COMMIT_DESCRIPTION+=$'s:\n'
-            else
-                COMMIT_DESCRIPTION+=$':\n'
-            fi
-            COMMIT_DESCRIPTION+="${packages%, }"
-            COMMIT_DESCRIPTION+=$'\n\nNote: This is not the same as the list of packages that were scheduled for a rebuild. Certain packages listed here may be built on a different schedule.'
+            local packages="$(printf "%s, " "${COMMIT_MESSAGE_PACKAGES[@]}")"
+            COMMIT_DESCRIPTION+="changed: ${packages%, }"
         fi
         git commit -q --amend -m "$COMMIT_MESSAGE" -m "$COMMIT_DESCRIPTION"
     else
