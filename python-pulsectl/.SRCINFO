@@ -1,6 +1,6 @@
 pkgbase = python-pulsectl
 	pkgdesc = Python high-level interface and ctypes-based bindings for PulseAudio (libpulse)
-	pkgver = 24.4.0
+	pkgver = 24.8.0
 	pkgrel = 1
 	epoch = 1
 	url = https://github.com/mk-fg/python-pulse-control
@@ -13,7 +13,7 @@ pkgbase = python-pulsectl
 	depends = python
 	depends = libpulse
 	conflicts = python-pulse-control
-	source = https://files.pythonhosted.org/packages/source/p/pulsectl/pulsectl-24.4.0.tar.gz
-	sha256sums = 697ed50e7d452e78678ae38e2ab935843008bec448955283cd0fb362867e3165
+	source = https://files.pythonhosted.org/packages/source/p/pulsectl/pulsectl-24.8.0.tar.gz
+	sha256sums = b051506d0d73d3cc4357cefd3de17bb859d7ecf004e994b0f7cfa87851bc7156
 
 pkgname = python-pulsectl

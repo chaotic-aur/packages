@@ -1,3 +1,2 @@
 BUILDER_CACHE_SOURCES=true
 CI_PKGBUILD_SOURCE=https://aur.archlinux.org/manuskript-git.git
-CI_GIT_COMMIT=5a109250bb0786c48c040a26f1a4d06cd2a33c40
