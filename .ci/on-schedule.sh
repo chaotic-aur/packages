@@ -476,7 +476,11 @@ for package in "${PACKAGES[@]}"; do
         fi
     # We also need to check the worktree for changes, because we might have an updated git hash
     elif ! UTIL_CHECK_STATE_DIFF "$package"; then
-        MODIFIED_PACKAGES+=("$package")
+        if [[ -v "VARIABLES[CI_ON_TRIGGER]" ]]; then
+            UTIL_PRINT_INFO "Will not schedule $package because it has trigger ${VARIABLES[CI_ON_TRIGGER]} set."
+        else
+            MODIFIED_PACKAGES+=("$package")
+        fi
     fi
 done
 
