@@ -1,3 +1,2 @@
 BUILDER_CACHE_SOURCES=true
 CI_PKGBUILD_SOURCE=https://aur.archlinux.org/qadwaitadecorations-git.git
-CI_GIT_COMMIT=f40f31dadc074bd989db6dd90e52eecf33c4567b

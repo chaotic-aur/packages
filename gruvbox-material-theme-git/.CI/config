@@ -1,3 +1,2 @@
 BUILDER_CACHE_SOURCES=true
 CI_PKGBUILD_SOURCE=https://aur.archlinux.org/gruvbox-material-theme-git.git
-CI_GIT_COMMIT=808959bcfe8b9409b49a7f92052198f0882ae8bc

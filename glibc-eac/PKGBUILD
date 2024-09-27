@@ -33,7 +33,7 @@ b2sums=('74c4f1e1231834579d19c96cc60fc370c9c4468e254fe069aad6102c8678d163ab6e58e
 
 pkgver() {
   cd glibc
-  git describe --abbrev 12 --tags | sed 's/[^-]*-//;s/[^-]*-/&r/;s/-/+/g'
+  git describe --abbrev=12 --tags | sed 's/[^-]*-//;s/[^-]*-/&r/;s/-/+/g'
 }
 
 prepare() {

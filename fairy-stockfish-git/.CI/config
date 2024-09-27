@@ -1,3 +1,2 @@
 BUILDER_CACHE_SOURCES=true
 CI_PKGBUILD_SOURCE=https://aur.archlinux.org/fairy-stockfish.git
-CI_GIT_COMMIT=2c78fc75f9a7f641b7804abc25fd14cd1274c8dc

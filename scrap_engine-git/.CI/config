@@ -1,3 +1,2 @@
 BUILDER_CACHE_SOURCES=true
 CI_PKGBUILD_SOURCE=https://aur.archlinux.org/scrap_engine-git.git
-CI_GIT_COMMIT=044bc7a42afdfc47e7fafcca080044e53a3cca20
