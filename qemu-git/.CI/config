@@ -1,3 +1,2 @@
 BUILDER_CACHE_SOURCES=true
 CI_PKGBUILD_SOURCE=https://aur.archlinux.org/qemu-git.git
-CI_GIT_COMMIT=a5dd9ee060b0ad65239889a62e93a33276055981

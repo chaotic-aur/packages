@@ -1,3 +1,2 @@
 BUILDER_CACHE_SOURCES=true
 CI_PKGBUILD_SOURCE=https://aur.archlinux.org/vim-coc-sources-git.git
-CI_GIT_COMMIT=78890dc581401c2f21cf668631d211c66b40be2b

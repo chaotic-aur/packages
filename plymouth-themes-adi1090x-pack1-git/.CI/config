@@ -1,3 +1,2 @@
 BUILDER_CACHE_SOURCES=true
 CI_PKGBUILD_SOURCE=https://aur.archlinux.org/plymouth-themes-adi1090x-pack1-git.git
-CI_GIT_COMMIT=5d8817458d764bff4ff9daae94cf1bbaabf16ede

@@ -1,3 +1,2 @@
 BUILDER_CACHE_SOURCES=true
 CI_PKGBUILD_SOURCE=https://aur.archlinux.org/lightly-git.git
-CI_GIT_COMMIT=00ca23447844114d41bfc0d37cf8823202c082e8
