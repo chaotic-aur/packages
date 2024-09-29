@@ -5,13 +5,13 @@ if [ -z "$_srcinfo" ] && [ -z "$_pkgver" ]; then
   : ${_autoupdate:=true}
 fi
 
-: ${_fvm_version:=3.19.6}
+: ${_fvm_version:=3.24.3}
 
 ## basic info
 _pkgname="nyrna"
 pkgname="$_pkgname"
-pkgver=2.21.0
-pkgrel=2
+pkgver=2.22.0
+pkgrel=1
 pkgdesc='Suspend games and applications at any time and resume whenever you wish'
 url="https://github.com/Merrit/nyrna"
 license=('GPL-3.0-or-later')
@@ -28,7 +28,7 @@ depends=(
 makedepends=(
   'clang'
   'cmake'
-  'fvm'
+  'fvm' # AUR
   'git'
   'lld'
   'llvm'
@@ -55,7 +55,7 @@ build() {
 
   fvm flutter --disable-analytics
   #fvm flutter pub upgrade --major-versions
-  fvm flutter pub get
+  fvm flutter --no-version-check pub get
 
   fvm dart run build_runner build --delete-conflicting-outputs
   fvm flutter build linux --no-pub --release
