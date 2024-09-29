@@ -1,1 +1,4 @@
-depends+=('hyprutils-git')
+depends+=(
+  'hyprutils-git'
+  'hyprwayland-scanner-git'
+)
