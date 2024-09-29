@@ -10,8 +10,8 @@
 # basic info
 _pkgname="localsend"
 pkgname="$_pkgname-git"
-pkgver=1.14.0.r89.g1095418
-pkgrel=3
+pkgver=1.15.4.r89.gfd8002e
+pkgrel=1
 pkgdesc="An open source cross-platform alternative to AirDrop"
 url="https://github.com/localsend/localsend"
 license=('MIT')
@@ -23,14 +23,12 @@ depends=(
 makedepends=(
   'clang'
   'cmake'
+  'fvm' # AUR
   'git'
   'lld'
   'llvm'
   'ninja'
   'patchelf'
-
-  ## AUR
-  'fvm'
 )
 
 conflicts=("$_pkgname=${pkgver%%.r*}")
@@ -52,10 +50,10 @@ build() {
   cd "$_pkgsrc/app"
   fvm install
 
-  fvm flutter --disable-telemetry
+  fvm flutter --disable-analytics
   #fvm flutter pub upgrade --major-versions
   fvm flutter --no-version-check pub get
-  fvm flutter build linux --release
+  fvm flutter build linux --no-pub --release
 }
 
 package() {
