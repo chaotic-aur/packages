@@ -1,6 +1,6 @@
 pkgbase = zen-browser-bin
 	pkgdesc = Performance oriented Firefox-based web browser
-	pkgver = 1.0.1.a.5
+	pkgver = 1.0.1.a.6
 	pkgrel = 1
 	url = https://github.com/zen-browser/desktop
 	arch = x86_64
@@ -19,14 +19,14 @@ pkgbase = zen-browser-bin
 	optdepends = pulseaudio: Audio support
 	optdepends = speech-dispatcher: Text-to-Speech
 	optdepends = hunspell-en_US: Spell checking, American English
-	provides = zen-browser=1.0.1.a.5
+	provides = zen-browser=1.0.1.a.6
 	conflicts = zen-browser
 	options = !strip
-	source = zen-browser-1.0.1-a.5.tar.bz2::https://github.com/zen-browser/desktop/releases/download/1.0.1-a.5/zen.linux-generic.tar.bz2
+	source = zen-browser-1.0.1-a.6.tar.bz2::https://github.com/zen-browser/desktop/releases/download/1.0.1-a.6/zen.linux-generic.tar.bz2
 	source = zen-browser.sh
 	source = zen-alpha.desktop
 	source = policies.json
-	sha256sums = 8b490ff5b55685abcac698d3267a7cdbb327db125086df13fa9482f0c67ed532
+	sha256sums = fa4a624734e2df3a50560d2deb709547f4a1febe84b85b4e1397057d0ee74bf0
 	sha256sums = 642bcde5b15fddb712d10ed53299781108a265432237ab27a96c5c5c489718db
 	sha256sums = e62545a1f4a61f95efe2a844141d6efd6e2add554c20c333b8635b5c848c35a2
 	sha256sums = f93eb77db526147a8a20744905923a6eda79e2fbcc9f282e2f9228a7a995c798
