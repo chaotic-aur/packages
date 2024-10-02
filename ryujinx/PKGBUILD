@@ -1,18 +1,12 @@
 # Maintainer:
-# Contributor: Marco Rubin <marco.rubin@protonmail.com>
 
-## options
-if [ -z "$_srcinfo" ] && [ -z "$_pkgver" ]; then
-  : ${_autoupdate:=true}
-fi
+: ${_commit:=a2c003501371463fd1f98d2e5a7602ae19c21d7c} # 1.1.1403
 
-## basic info
 _pkgname="ryujinx"
 pkgname="$_pkgname"
-pkgver=1.1.1400
+pkgver=1.1.1403
 pkgrel=1
 pkgdesc="Experimental Nintendo Switch Emulator written in C#"
-url="https://github.com/Ryujinx/Ryujinx"
 license=('MIT')
 arch=('x86_64')
 
@@ -23,21 +17,21 @@ depends=(
 makedepends=(
   'desktop-file-utils'
   'dotnet-sdk-bin' # aur/dotnet-core-bin
+  'git'
 )
 
 options=('!strip' '!debug' 'emptydirs')
 install="$_pkgname.install"
 
 _source_ryujinx() {
-  _pkgsrc="Ryujinx-$_pkgver"
-  _pkgext="tar.gz"
-  source=("$_pkgname-$_pkgver.$_pkgext"::"$url/archive/$_pkgver.$_pkgext")
+  local _url="https://github.com/IsaacMarovitz/Ryujinx"
+
+  _pkgsrc="$_pkgname"
+  source=("$_pkgsrc"::"git+$_url.git#commit=$_commit")
   sha256sums=('SKIP')
 }
 
-pkgver() {
-  echo "${_pkgver:?}"
-}
+_source_ryujinx
 
 build() {
   cd "$_pkgsrc"
@@ -112,28 +106,3 @@ package() {
   desktop-file-edit --set-key="Exec" --set-value="ryujinx %f" "$pkgdir/usr/share/applications/ryujinx.desktop"
   desktop-file-edit --set-icon="ryujinx" "$pkgdir/usr/share/applications/ryujinx.desktop"
 }
-
-_update_version() {
-  : ${_pkgver:=${pkgver%%.r*}}
-
-  if [[ "${_autoupdate::1}" != "t" ]]; then
-    return
-  fi
-
-  local _response=$(curl -Ssf "$url/releases.atom")
-  local _tag=$(
-    printf '%s' "$_response" \
-      | grep '"https://.*/releases/tag/.*"' \
-      | sed -E 's@^.*/releases/tag/(.*)".*$@\1@' \
-      | grep -Ev '[a-z]{2}' | sort -rV | head -1
-  )
-  local _pkgver_new="${_tag#v}"
-
-  # update _pkgver
-  if [ "$_pkgver" != "${_pkgver_new:?}" ]; then
-    _pkgver="${_pkgver_new:?}"
-  fi
-}
-
-_update_version
-_source_ryujinx
