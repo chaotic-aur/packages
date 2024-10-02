@@ -1,13 +1,13 @@
 # Maintainer: loathingkernel <loathingkernel _a_ gmail _d_ com>
 
 pkgname=proton-ge-custom
-_srctag=GE-Proton9-13
+_srctag=GE-Proton9-15
 _commit=
 pkgver=${_srctag//-/.}
 _geckover=2.47.4
-_monover=9.2.0
-_xaliaver=0.4.2
-pkgrel=2
+_monover=9.3.0
+_xaliaver=0.4.4
+pkgrel=1
 epoch=2
 pkgdesc="Compatibility tool for Steam Play based on Wine and additional components, GloriousEggroll's custom build"
 url="https://github.com/GloriousEggroll/proton-ge-custom"
@@ -201,8 +201,8 @@ build() {
   # AVX is "hard" disabled for 32bit in any case.
   # AVX/AVX2 for 64bit is disabled below.
   # Seems unnecessery for 64bit if -mtune=generic is used
-  CFLAGS+=" -mno-avx2"   # -mno-avx"
-  CXXFLAGS+=" -mno-avx2" # -mno-avx"
+  #CFLAGS+=" -mno-avx2 -mno-avx"
+  #CXXFLAGS+=" -mno-avx2 -mno-avx"
 
   export CFLAGS CXXFLAGS RUSTFLAGS LDFLAGS
 
@@ -262,16 +262,16 @@ package() {
     $(find "$_monodir" -iname "*x86_64.dll" -or -iname "*x86_64.exe")
 }
 
-sha256sums=('ddc48427bfbe260a6b98b564cff8c7948f4c0d42099115fb76597bc4243c91aa'
+sha256sums=('907cead744a7dafbf6be27cdd0a4e990d9d50a40be0a55c3c1a37ebf3e28d0ff'
   '2cfc8d5c948602e21eff8a78613e1826f2d033df9672cace87fed56e8310afb6'
   'fd88fc7e537d058d7a8abf0c1ebc90c574892a466de86706a26d254710a82814'
-  '59b35dfe525f32c581884b6c7865496e13b3cd200c5ed267c43fb4663e0cd757'
-  '50ce2cc85162343e62340b0ca7994ceba94592ab395fb99711e94e108e991f0c'
-  '5c72143d6a032b2e46f0551353b854a4286654b1ec2dcce8f60768e0d496654c'
-  '997db92bbe14e7ae81a44ad161db24462fed2cdf33f517d17052d28efbfc8cf6'
-  'bcf015d96773915775e144e2f87b5da707cae4bc820fefcca68b115707385408'
-  'b1d9fbc21633f1a006a8fa08347bed785d6815f85182b3400b8c0f57281c67cf'
-  '743a84886f35cc5736970dfb2a14109d9de81b721f6a5fddb8b3f1fd769213e5'
-  '09eeeff53e078cfd7dbc889ceecffe06c5c77c3f59eb28db6e57ee3c30dd601d'
-  '1bf397513787974138dac097da57782e1f019b7b6e6b1774bffce18e9faa7c0d'
-  '94f1ab5928bb65ddcd202517825db008bc05c373ae8f4ed8739318decbea3e03')
+  'c23deb9e3217a574f242b78d74cb94c4948a37d1f2715941b803a02e535854a6'
+  'a5cfd3090ebf7fb694bce573ef87b300b86f61204987ecbd068a2fe5079b7e6e'
+  '126770120d3b6b269079769de7ae29cfd54782fde28e7a0e36102665eb0a67dd'
+  '62230516752cc45023e10488e9d9dfbd14a94a3218ae78ac096830d2bddc70df'
+  '8c1e56b38b72efa7572cd4e6a81713b469174c7644966da184906ce1e8bac3c9'
+  '49441bb3ca95d0fa9b38fb07a31253586734d02b0c05d7d4b1533b54aa13cc75'
+  '22c6564be5644c8f60381230b6cf27be3636539e6f557b22d615f70b0b98f87b'
+  '1d094251962659373fbda2c37986b482aa43ec9c31ebf5365125359eab4a4888'
+  'd5a285d99820037f9a4230122ef0b774730aa32e9b45b5b9dcddfc023089cdbe'
+  'd5a41c018634563e0acae6d3797356b67868d8354e2c022d482c3f6ad468ceaa')
