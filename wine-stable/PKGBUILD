@@ -98,8 +98,8 @@ build() {
   export CFLAGS="$CFLAGS -ffat-lto-objects"
 
   # Apply flags for cross-compilation
-  export CROSSCFLAGS="-O2 -pipe"
-  export CROSSCXXFLAGS="-O2 -pipe"
+  export CROSSCFLAGS="-O2 -pipe -g"
+  export CROSSCXXFLAGS="-O2 -pipe -g"
   export CROSSLDFLAGS="-Wl,-O1"
 
   msg2 "Building Wine-64..."
