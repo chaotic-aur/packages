@@ -70,7 +70,17 @@ if [ "$COMMAND" == "schedule" ]; then
     # Write dep tree to file so it can be transferred as file. 
     # This is necessary because the output of the function turned out too large for the command line.
     generate_deptree >.ci/deptree.txt
-    PARAMS+=("${PACKAGES[@]}")
+    for package in "${PACKAGES[@]}"; do
+        unset VARIABLES
+        declare -A VARIABLES=()
+        UTIL_READ_MANAGED_PACAKGE "$package" VARIABLES || true
+        PACKAGE_PASSED_STRING="$package"
+        # Append the build class (e.g. a package that requires a lot of compute resources will be class 2)
+        if [ -v "VARIABLES[BUILDER_CLASS]" ]; then
+            PACKAGE_PASSED_STRING+="/${VARIABLES[BUILDER_CLASS]}"
+        fi
+        PARAMS+=("${PACKAGE_PASSED_STRING}")
+    done
 elif [ "$COMMAND" == "auto-repo-remove" ]; then
     PARAMS+=("${PACKAGES[@]}")
 fi
