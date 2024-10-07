@@ -3,16 +3,16 @@
 
 _pkgname="aquamarine"
 pkgname="${_pkgname}-git"
-pkgver=0.4.0_r213.ga8eb8ae
-pkgrel=1
+pkgver=0.4.1_r220.gb82fdaf
+pkgrel=2
 pkgdesc='a very light linux rendering backend library'
 arch=(x86_64)
 url="https://github.com/hyprwm/$_pkgname"
 license=(BSD-3-Clause)
 depends=(gcc-libs
   glibc
-  hyprutils
-  hyprwayland-scanner
+  hyprutils-git
+  hyprwayland-scanner-git
   libdisplay-info
   libdrm
   libglvnd
@@ -25,7 +25,9 @@ depends=(gcc-libs
   systemd-libs
   wayland
   wayland-protocols)
-makedepends=('git' 'cmake' 'gcc' 'hyprwayland-scanner-git')
+makedepends=('git' 'cmake' 'gcc')
+conflicts=($_pkgname)
+provides=($_pkgname)
 source=("${_pkgname}::git+https://github.com/hyprwm/aquamarine.git")
 sha256sums=('SKIP')
 
