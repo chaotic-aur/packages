@@ -1,21 +1,22 @@
 pkgbase = xboxdrv
 	pkgdesc = Userspace Xbox gamepad driver and input remapper
-	pkgver = 0.8.11
+	pkgver = 0.8.12
 	pkgrel = 1
 	url = https://github.com/xiota/xboxdrv
 	arch = x86_64
 	license = GPL-3.0-or-later
 	makedepends = git
 	makedepends = glib2-devel
-	makedepends = pkg-config
-	makedepends = scons
+	makedepends = meson
+	makedepends = ninja
 	depends = python
 	depends = dbus-glib
 	depends = dbus-python
 	depends = libusb
 	depends = libx11
+	options = !debug
 	backup = etc/default/xboxdrv
-	source = xboxdrv::git+https://github.com/xiota/xboxdrv.git#tag=v0.8.11
+	source = xboxdrv::git+https://github.com/xiota/xboxdrv.git#commit=4c2fbd264510ca588cfd24931db8d6e81990ea24
 	source = xboxdrv.default
 	source = xboxdrv.service
 	sha256sums = SKIP
