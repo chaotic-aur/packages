@@ -7,10 +7,10 @@ pkgbase = hyprlang-git
 	license = GPL
 	makedepends = git
 	makedepends = cmake
-	makedepends = hyprutils-git
 	makedepends = pixman
 	depends = gcc-libs
 	depends = glibc
+	depends = hyprutils-git
 	provides = hyprlang=0.5.2
 	provides = libhyprlang.so
 	conflicts = hyprlang
