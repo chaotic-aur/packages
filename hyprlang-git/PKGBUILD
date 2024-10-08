@@ -9,8 +9,8 @@ pkgdesc="The official implementation library for the hypr config language"
 arch=(any)
 url="https://github.com/hyprwm/hyprlang"
 license=('GPL')
-depends=('gcc-libs' 'glibc')
-makedepends=('git' 'cmake' 'hyprutils-git' 'pixman')
+depends=('gcc-libs' 'glibc' 'hyprutils-git')
+makedepends=('git' 'cmake' 'pixman')
 source=("$_pkgname::git+$url.git")
 conflicts=("$_pkgname")
 provides=("$_pkgname=${pkgver%%.r*}" "lib$_pkgname.so")
