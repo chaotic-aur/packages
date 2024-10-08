@@ -12,6 +12,7 @@ PACKAGES=("$@")
 
 # shellcheck source=./util.shlib
 source .ci/util.shlib
+UTIL_READ_CONFIG_FILE
 
 if [ -v "PACKAGES[0]" ] && [ "${PACKAGES[0]}" == "all" ] && [ "$COMMAND" == "schedule" ]; then
     UTIL_PRINT_INFO "Rebuild of all packages requested."
@@ -78,6 +79,8 @@ if [ "$COMMAND" == "schedule" ]; then
         # Append the build class (e.g. a package that requires a lot of compute resources will be class 2)
         if [ -v "VARIABLES[BUILDER_CLASS]" ]; then
             PACKAGE_PASSED_STRING+="/${VARIABLES[BUILDER_CLASS]}"
+        elif [ "$CI_DEFAULT_CLASS" != "" ]; then
+            PACKAGE_PASSED_STRING+="/${CI_DEFAULT_CLASS}"
         fi
         PARAMS+=("${PACKAGE_PASSED_STRING}")
     done
