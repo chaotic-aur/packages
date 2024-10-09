@@ -4,7 +4,7 @@
 pkgname=waveterm
 _pkgname=Wave
 _appname="${_pkgname} Terminal"
-pkgver=0.8.6
+pkgver=0.8.9
 _electronversion=32
 _nodeversion=22
 pkgrel=1
@@ -19,6 +19,7 @@ license=('Apache-2.0')
 conflicts=("${pkgname}")
 depends=(
   "electron${_electronversion}"
+  'libvips'
 )
 makedepends=(
   'gcc'
@@ -38,7 +39,7 @@ source=(
   "${pkgname}-${pkgver}.tar.gz::${_ghurl}/archive/refs/tags/v${pkgver}.tar.gz"
   "${pkgname}.sh"
 )
-sha256sums=('7f2b285ab0e064556479cd25f4157660a047eb8556066cc05555e3cc175695a3'
+sha256sums=('1392e7c83aa7ab106347abeab1929e3488c6a6f0e15307250c9bf110bc414d25'
   '291f50480f5a61bc9c68db7d44cd0412071128706baa868a9cb854f8779a1980')
 _ensure_local_nvm() {
   local NVM_DIR="${srcdir}/.nvm"
@@ -73,14 +74,16 @@ build() {
     export npm_config_electron_builder_binaries_mirror=https://registry.npmmirror.com/-/binary/electron-builder-binaries/
     echo 'npmRegistryServer: "https://registry.npmmirror.com"' >> "${srcdir}/.electron-gyp/.yarnrc.yml"
     go env -w GOPROXY=https://goproxy.cn,direct
-    gem sources --add https://mirrors.tuna.tsinghua.edu.cn/rubygems/ --remove https://rubygems.org/
-    bundle config mirror.https://rubygems.org https://mirrors.tuna.tsinghua.edu.cn/rubygems
+    gem sources --add https://mirrors.aliyun.com/rubygems/ --remove https://rubygems.org/
+    bundle config mirror.https://rubygems.org https://mirrors.aliyun.com/rubygems
   else
     echo "Your network is OK."
   fi
   sed -i "s/\"electron\": \"[^\"]*\"/\"electron\": \"${SYSTEM_ELECTRON_VERSION}\"/g" package.json
   sed -i "s/build\/icons.icns/build\/appicon.png/g;s/\"zip\", \"deb\", \"rpm\", \"AppImage\", \"pacman\"/\"dir\"/g" electron-builder.config.cjs
   sed -i "/- build:server:macos/d;/- build:server:windows/d" Taskfile.yml
+  sed -i "138,145d" Taskfile.yml
+  sed -i "122,129d" Taskfile.yml
   gem install fpm
   _yarnver=$(grep "yarn@" package.json | awk '{print $2}' | sed "s/\"//g;s/yarn@//g;s/,//g")
   corepack enable yarn
@@ -91,6 +94,7 @@ build() {
 package() {
   install -Dm755 "${srcdir}/${pkgname}.sh" "${pkgdir}/usr/bin/${pkgname}"
   install -Dm644 "${srcdir}/${pkgname}-${pkgver}/make/linux-"*/resources/app.asar -t "${pkgdir}/usr/lib/${pkgname}"
+  cp -r "${srcdir}/${pkgname}-${pkgver}/make/linux-"*/resources/app.asar.unpacked "${pkgdir}/usr/lib/${pkgname}"
   install -Dm644 "${srcdir}/${pkgname}.desktop" -t "${pkgdir}/usr/share/applications"
   install -Dm644 "${srcdir}/${pkgname}-${pkgver}/build/appicon.png" "${pkgdir}/usr/share/pixmaps/${pkgname}.png"
 }
