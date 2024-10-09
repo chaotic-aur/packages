@@ -3,17 +3,20 @@
 
 pkgname=qsv
 pkgver=0.136.0
-pkgrel=1
+pkgrel=2
 pkgdesc='CSV data-wrangling toolkit (fork of xsv)'
 arch=(x86_64)
 url="https://github.com/jqnatividad/$pkgname"
 license=(MIT Unlicense)
-depends=(python
-  python-xlsxwriter)
+depends=(bzip2 libbz2.so
+  gcc-libs # libgcc_s.so libstdc++.so
+  glibc    # libc.so libm.so
+  python   # libpython3.12.so
+  python-xlsxwriter
+  wayland libwayland-client.so)
 makedepends=(cargo
   clang
-  luau
-  wayland)
+  luau)
 _archive="$pkgname-$pkgver"
 options=(!lto)
 source=("$url/archive/$pkgver/$_archive.tar.gz")
