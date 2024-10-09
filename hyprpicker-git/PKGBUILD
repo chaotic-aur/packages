@@ -1,9 +1,10 @@
-# Maintainer: éclairevoyant
+# Maintainer: imnotpolar
+# Contributor: éclairevoyant
 # Contributor: ThatOneCalculator <kainoa at t1c dot dev>
 
 _pkgname=hyprpicker
 pkgname="$_pkgname-git"
-pkgver=0.2.0.r6.0eb4919
+pkgver=0.4.1.r1.4411a6d
 pkgrel=1
 pkgdesc="A wlroots-compatible Wayland color picker that does not suck"
 arch=(x86_64)
@@ -14,16 +15,18 @@ makedepends=(
   cmake
   gdb
   git
-  libglvnd
+  libgl
   libjpeg-turbo
   meson
   ninja
   pango
   wayland-protocols
-  wlroots
   xorgproto
+  pkg-config
 )
-optdepends=('wl-clipboard: --autocopy')
+optdepends=('wl-clipboard: --autocopy'
+  'hyprutils: choose either hyprutils or hyprutils-git'
+  'hyprutils-git: choose either hyprutils or hyprutils-git')
 source=("git+$url.git")
 provides=("$_pkgname=${pkgver%%.r*}")
 conflicts=("$_pkgname")
