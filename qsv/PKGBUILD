@@ -1,10 +1,8 @@
 # Maintainer: Caleb Maclennan <caleb@alerque.com>
 # Maintainer: Bennett Petzold <dansecob.aur gmail com>
 
-BUILDENV+=(!check)
-
 pkgname=qsv
-pkgver=0.134.0
+pkgver=0.136.0
 pkgrel=1
 pkgdesc='CSV data-wrangling toolkit (fork of xsv)'
 arch=(x86_64)
@@ -14,11 +12,12 @@ depends=(python
   python-xlsxwriter)
 makedepends=(cargo
   clang
-  luau)
+  luau
+  wayland)
 _archive="$pkgname-$pkgver"
 options=(!lto)
 source=("$url/archive/$pkgver/$_archive.tar.gz")
-sha256sums=('276b34e830564daf3a7643855628ceda4379291c7818076a8f8648ebc9e345f4')
+sha256sums=('12149c7d84a3f1a28a65bb6e82a5d87b3f2f886e1142be90233e1507158f94a0')
 
 prepare() {
   cd "$_archive"
@@ -43,7 +42,7 @@ build() {
 
 check() {
   _srcenv
-  cargo test --frozen --features distrib_features
+  # cargo test --frozen --features distrib_features
 }
 
 package() {
