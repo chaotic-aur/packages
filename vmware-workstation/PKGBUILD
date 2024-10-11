@@ -17,7 +17,7 @@ pkgname=vmware-workstation
 pkgver=17.6.1
 _buildver=24319023
 _pkgver=${pkgver}_${_buildver}
-pkgrel=1
+pkgrel=2
 _tools_version=12.4.5_23787635
 _legacy_ver=17.5.2
 _legacy_buildver=23775571
@@ -92,7 +92,7 @@ sha256sums=(
   'd79f79f17e5f37399046d16be3967e0cff3c9474e2cb6ea3f2c3ebea3ff68cea'
   '4643fff3ed4f8af5a56a1c4c2084fa7327d78e58ee9b0687b98390a4b4a1ac14'
   '196c842f758b813afb202b0db2d09d457fccafac212ca41ef3277dfe9ceaf9ec'
-  'bf2e5ff35f06c1447bff4c9dc4c6faf1f1ddd0af048eed1cfca9d661b15cdc2c'
+  'bfe89506d4a246a2f41bb4d36393ac6b8dafa21e0985f26647450fb7c5b39f4e'
   'd4e9884f5f11cef4e261023d895eba5b57a8a80623bff0de8b3f1c47154b2a11'
   '20abd21da43ac31741f8bb26db1ae7d8f4ef4c5082c9a2cc3ae5da494f1b9529'
 
