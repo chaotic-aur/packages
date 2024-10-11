@@ -1,6 +1,6 @@
-# Maintainer: NextWorks <nextworks@protonmail.com>
-# Maintainer: Peter Jung <admin@ptr1337.dev>
 # Maintainer: Luis Vervaet <luisvervaet@gmail.com>
+# Maintainer: Peter Jung <admin@ptr1337.dev>
+# Contributor: NextWorks <nextworks@protonmail.com>
 # Contributor: Alad Wenter <alad@archlinux.org>
 # Contributor: Luna Jernberg <droidbittin@gmail.com>
 # Contributor: Hilton Medeiros <medeiros.hilton@gmail.com>
@@ -9,9 +9,9 @@
 
 pkgname=zen-browser-bin
 _pkgname=zen-browser
-_realpkgver=1.0.1-a.7
+_realpkgver=1.0.1-a.8
 _desktopname=zen-alpha
-pkgver=1.0.1.a.7
+pkgver=1.0.1.a.8
 pkgrel=1
 pkgdesc="Performance oriented Firefox-based web browser"
 arch=('x86_64' 'i686')
@@ -32,7 +32,7 @@ source=("zen-browser-$_realpkgver.tar.bz2::https://github.com/zen-browser/deskto
   "$_pkgname.sh"
   "$_desktopname.desktop"
   "policies.json")
-sha256sums=('f0b86668a4715ef93a8c1bcf0831aa0f791221b0f235db071feba413cfce57fb'
+sha256sums=('1e8fa61fca7e3b02a38b7b21954163680838db7faae50520875946fbbf3f928d'
   '642bcde5b15fddb712d10ed53299781108a265432237ab27a96c5c5c489718db'
   'e62545a1f4a61f95efe2a844141d6efd6e2add554c20c333b8635b5c848c35a2'
   'f93eb77db526147a8a20744905923a6eda79e2fbcc9f282e2f9228a7a995c798')
