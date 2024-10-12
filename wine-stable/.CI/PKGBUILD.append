@@ -21,8 +21,8 @@ _check_rebuild() {
   _hash=$(git ls-remote https://gitlab.archlinux.org/archlinux/packaging/packages/wine.git HEAD | head -1 | sed -E 's&^(\S+)\s.*&\1&')
   _response=$(
     curl -Ssf "https://gitlab.archlinux.org/archlinux/packaging/packages/wine/-/commit/$_hash.diff" \
-      | grep -E '^-' \
-      | grep -Ev '(---|pkgver|sha512sums|wine-[0-9\.]+\.tar)'
+      | grep -E '^[-\+]' \
+      | grep -Ev '(---|\+\+\+|pkgver|-\s*pkgrel|pkgrel\s*=\s*1\b|sha512sums|wine-[0-9\.]+\.tar)'
   )
 
   if [ "$pkgver" != "$_old_pkgver" ]; then
