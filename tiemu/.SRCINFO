@@ -1,0 +1,19 @@
+pkgbase = tiemu
+	pkgdesc = Emulator of TI-89/92/92+/V200 calculators
+	pkgver = 3.04
+	pkgrel = 1
+	url = https://github.com/debrouxl/tiemu
+	arch = i686
+	arch = x86_64
+	license = GPL-2.0-or-later
+	makedepends = git
+	depends = libglade
+	depends = libticalcs
+	depends = sdl12-compat
+	options = !libtool
+	source = tiemu::git+https://github.com/debrouxl/tiemu.git#commit=2b8df9280d2054e11ffcf7e57a73899b3ce7a7e5
+	source = sysdeps.patch
+	sha256sums = SKIP
+	sha256sums = e5270440115bfbba6721d44b8e5a0fca295a8c02c724b07cff717ab887b6cfc8
+
+pkgname = tiemu
