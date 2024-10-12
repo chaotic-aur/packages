@@ -4,3 +4,6 @@
 sed -e 's&test -s jarlog&&g' -i PKGBUILD
 sed -e 's&stat -c "Jar log found (%s bytes)" jarlog&&g' -i PKGBUILD
 sed -e 's&ac_add_options --with-pgo-jarlog=${PWD@Q}/jarlog&&g' -i PKGBUILD
+
+# fix dbus error
+sed -E -e 's&^(\s*)( xvfb-run )&\1 dbus-run-session \2&' -i PKGBUILD
