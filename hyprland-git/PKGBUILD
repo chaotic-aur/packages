@@ -3,7 +3,7 @@
 # Contributor: ThatOneCalculator <kainoa at t1c dot dev>
 
 pkgname=hyprland-git
-pkgver=0.42.0.r64.82c67e61
+pkgver=0.44.0.r37.5c3bd8e9
 pkgrel=1
 pkgdesc="Hyprland is an independent, highly customizable, dynamic tiling Wayland compositor that doesn't sacrifice on its looks."
 arch=(x86_64 aarch64)
@@ -127,9 +127,6 @@ package() {
   cd Hyprland
 
   meson install -C build --destdir "$pkgdir"
-
-  # FIXME: remove after xdg-desktop-portal-hyprland disowns hyprland-portals.conf
-  rm -rf "$pkgdir/usr/share/xdg-desktop-portal"
 
   # license
   install -Dm0644 -t "$pkgdir/usr/share/licenses/${pkgname}" LICENSE
