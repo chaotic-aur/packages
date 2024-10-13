@@ -8,7 +8,7 @@ pkgrel=1
 pkgdesc="Hyprland is an independent, highly customizable, dynamic tiling Wayland compositor that doesn't sacrifice on its looks."
 arch=(x86_64 aarch64)
 url="https://github.com/hyprwm/Hyprland"
-license=(BSD)
+license=(BSD-3-Clause)
 depends=(
   aquamarine-git
   cairo
