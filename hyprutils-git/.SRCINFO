@@ -1,6 +1,6 @@
 pkgbase = hyprutils-git
 	pkgdesc = Hyprland utilities library used across the ecosystem
-	pkgver = 0.2.2.r0.gd97af4f6
+	pkgver = 0.2.3.r2.g3f529343
 	pkgrel = 1
 	url = https://github.com/hyprwm/hyprutils
 	arch = any
@@ -10,7 +10,7 @@ pkgbase = hyprutils-git
 	makedepends = gcc
 	makedepends = make
 	depends = pixman
-	provides = hyprutils=0.2.2
+	provides = hyprutils=0.2.3
 	provides = libhyprutils.so
 	conflicts = hyprutils
 	source = hyprutils::git+https://github.com/hyprwm/hyprutils.git
