@@ -58,7 +58,7 @@ _lqxpatchrel=5
 _lqxpatchver=${_lqxpatchname}-${_major}-${_lqxpatchrel}
 pkgbase=linux-lqx
 pkgver=6.11.3.lqx1
-pkgrel=3
+pkgrel=4
 pkgdesc='Linux Liquorix'
 url='https://liquorix.net/'
 arch=(x86_64)
@@ -207,6 +207,10 @@ prepare() {
   echo "Replacing Debian TOMOYO configuration with upstream Arch Linux..."
   scripts/config --set-str CONFIG_SECURITY_TOMOYO_POLICY_LOADER "/usr/bin/tomoyo-init"
   scripts/config --set-str CONFIG_SECURITY_TOMOYO_ACTIVATION_TRIGGER "/usr/lib/systemd/systemd"
+
+  ## Add landlock for pacman sandbox support
+  echo "Adding 'landlock' to CONFIG_LSM for pacman sandbox support"
+  scripts/config --set-str CONFIG_LSM "landlock,lockdown,yama,bpf"
 
   ### Running make nconfig
   [[ -z "$_makenconfig" ]] || make nconfig
