@@ -1,104 +1,50 @@
-# Maintainer:
+# Maintainer: ThatOneCalculator <kainoa@t1c.dev>
+# Based on the xdg-desktop-portal-wlr-git PKGBUILD
 
 _pkgname="xdg-desktop-portal-hyprland"
 pkgname="${_pkgname}-git"
-pkgver=1.3.4.r0.g73b8c4f
-pkgrel=1
+pkgver=1.3.6.r1.gfb9c8d66
+pkgrel=2
 pkgdesc="xdg-desktop-portal backend for hyprland"
 url="https://github.com/hyprwm/xdg-desktop-portal-hyprland"
-license=('BSD-3-Clause')
-arch=('x86_64')
-
-depends=(
-  hyprlang-git
-  hyprutils-git
-  hyprwayland-scanner-git
-  libpipewire
-  qt6-base
-  sdbus-cpp
-
-  ## implicit
-  #libdrm
-  #mesa
-  #wayland
-)
-makedepends=(
-  cmake
-  git
-  ninja
-  wayland
-  wayland-protocols
-)
+arch=(x86_64)
+license=(BSD)
+provides=("${pkgname%-git}" "xdg-desktop-portal-impl" "xdg-desktop-portal-wlr")
+conflicts=("${pkgname%-git}")
+depends=("libpipewire" "libinih" "qt6-base" "qt6-wayland" "wayland" "sdbus-cpp" "libdrm" "xdg-desktop-portal" "mesa" "hyprlang-git" "hyprwayland-scanner-git>=0.4.2" "hyprutils-git")
+makedepends=("git" "wayland-protocols" "scdoc" "cmake")
 optdepends=(
-  'grim: required for the screenshot portal to function'
-  'hyprland: the Hyprland compositor'
-  'slurp: support for interactive mode for the screenshot portal'
+  "grim: required for the screenshot portal to function"
+  "slurp: support for interactive mode for the screenshot portal; one of the built-in chooser options for the screencast portal"
+  "hyprland: the Hyprland compositor"
 )
+source=("${_pkgname}::git+$url.git")
+sha256sums=('SKIP')
 
-provides=(
-  "$_pkgname=${pkgver%%.r*}"
-  "xdg-desktop-portal-impl"
-)
-conflicts=("$_pkgname")
-
-_pkgsrc="$_pkgname"
-source=(
-  "$_pkgsrc"::"git+$url.git"
-  'hyprwm.hyprland-protocols'::'git+https://github.com/hyprwm/hyprland-protocols.git'
-  'kistler-group.sdbus-cpp'::'git+https://github.com/Kistler-Group/sdbus-cpp.git'
-)
-sha256sums=(
-  'SKIP'
-  'SKIP'
-  'SKIP'
-)
+backup=("usr/share/xdg-desktop-portal/hyprland-portals.conf")
 
 pkgver() {
-  cd "$_pkgsrc"
-  git describe --long --tags --abbrev=7 \
-    | sed -E 's/^v//;s/([^-]*-g)/r\1/;s/-/./g'
+  cd "${_pkgname}"
+  git describe --long --tags --abbrev=8 --exclude='*[a-zA-Z][a-zA-Z]*' \
+    | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
 }
 
 prepare() {
-  _submodule_update() {
-    local _module
-    for _module in "${_submodules[@]}"; do
-      git submodule init "${_module##*::}"
-      git submodule set-url "${_module##*::}" "$srcdir/${_module%::*}"
-      git -c protocol.file.allow=always submodule update "${_module##*::}"
-    done
-  }
-
-  cd "$_pkgsrc"
-  local _submodules=(
-    'hyprwm.hyprland-protocols'::'subprojects/hyprland-protocols'
-    'kistler-group.sdbus-cpp'::'subprojects/sdbus-cpp'
-  )
-  _submodule_update
+  cd "${srcdir}/${_pkgname}"
+  git submodule update --init
 }
 
 build() {
-  local _cmake_options=(
-    -B build
-    -S "$_pkgsrc"
-    -G Ninja
-    -DCMAKE_BUILD_TYPE=Release
-    -DCMAKE_INSTALL_PREFIX=/usr
-    -DCMAKE_INSTALL_LIBEXECDIR=/usr/lib
+  cd "${srcdir}/${_pkgname}"
 
-    -Wno-dev
-  )
-
-  cmake "${_cmake_options[@]}"
-  cmake --build build
+  cmake -DCMAKE_INSTALL_LIBEXECDIR=/usr/lib -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr -S . -B build -Wno-dev
+  cmake --build build --config Release --target all
 }
 
 package() {
-  DESTDIR="$pkgdir" cmake --install build
-  install -Dm644 "$_pkgsrc/LICENSE" -t "$pkgdir/usr/share/licenses/$pkgname/"
+  cd "${srcdir}/${_pkgname}"
 
-  install -Dm644 /dev/stdin "$pkgdir/usr/share/xdg-desktop-portal/hyprland-portals.conf" << END
-[preferred]
-default=gtk;hyprland
-END
+  DESTDIR="${pkgdir}" cmake --install build
+
+  install -Dm644 LICENSE -t "${pkgdir}/usr/share/licenses/${_pkgname}"
 }
