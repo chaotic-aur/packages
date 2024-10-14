@@ -2,10 +2,11 @@
 #
 # mantainer: Muflone http://www.muflone.com/contacts/english/
 # contributor: Piero Proietti <piero.proietti_at_gmail.com>
-_commit=f000a83d2492fa6220b999d6923ffb1272bfbff4
+
+_commit=4a10b2a21680a8c9f9b01151da2b0cd482fb827e
 pkgname=penguins-eggs
 pkgver=10.0.42
-pkgrel=2
+pkgrel=5
 pkgdesc="A console tool that allows you to remaster your system and redistribute it as live images on USB sticks or via PXE"
 arch=('any')
 url="https://penguins-eggs.net"
@@ -36,7 +37,6 @@ depends=(
   'squashfs-tools'
   'sshfs'
   'xdg-utils'
-  'bash-completion'
 )
 optdepends=(
   'bash-completion: eggs autocomplete'
@@ -64,6 +64,7 @@ build() {
 
 package() {
   cd "$srcdir"/"$pkgname"
+
   install -Dm644 .oclif.manifest.json package.json -t "$pkgdir/"usr/lib/"$pkgname"
   cp -r addons \
     assets \
@@ -82,9 +83,6 @@ package() {
 
   # Fix permissions
   chown root:root "$pkgdir/"usr/lib/"$pkgname/"
-
-  # Package contains reference to $srcdir
-  # find "$pkgdir/"usr/lib/"$pkgname" -name package.json -print0 | xargs -r -0 sed -i '/_where/d'
 
   # Install documentation
   install -Dm644 README.md -t "$pkgdir/"usr/share/doc/"$pkgname/"
