@@ -1,5 +1,5 @@
 pkgbase = radarr
-	pkgdesc = Smart PVR for newsgroup and bittorrent users.
+	pkgdesc = Movie organizer/manager for usenet and torrent users.
 	pkgver = 5.12.2.9335
 	pkgrel = 1
 	url = https://radarr.tv
