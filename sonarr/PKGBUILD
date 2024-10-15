@@ -1,5 +1,5 @@
-# Maintainer: Donald Webster <fryfrog@gmail.com>
-# Contributor: txtsd <aur.archlinux@ihavea.quest>
+# Maintainer: txtsd <aur.archlinux@ihavea.quest>
+# contributor: Donald Webster <fryfrog@gmail.com>
 # Contributor: Justin Dray <justin@dray.be>
 # Contributor: Daniel Egeberg <daniel.egeberg@gmail.com>
 # Helpful URL: https://services.sonarr.tv/v1/releases
