@@ -1,1 +1,2 @@
-u radarr - "Radarr daemon" /var/lib/radarr
+u radarr - "Radarr Daemon" /var/lib/radarr
+g radarr
