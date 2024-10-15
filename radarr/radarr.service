@@ -7,16 +7,21 @@
 # UMask=002
 
 [Unit]
-Description=Radarr Service
+Description=Radarr Daemon
 Wants=network-online.target
 After=network-online.target
 
 [Service]
+Type=simple
 User=radarr
 Group=radarr
 SyslogIdentifier=radarr
+Environment=XDG_DATA_HOME=/var/lib/radarr
+WorkingDirectory=/usr/lib/radarr
 ExecStart=/usr/lib/radarr/bin/Radarr -nobrowser -data=/var/lib/radarr
-Type=simple
+Restart=on-failure
+RestartSec=5
+KillMode=process
 
 [Install]
 WantedBy=multi-user.target
