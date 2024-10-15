@@ -7,7 +7,7 @@
 # UMask=002
 
 [Unit]
-Description=Sonarr Service
+Description=Sonarr Daemon
 Wants=network-online.target
 After=network-online.target
 
@@ -16,8 +16,12 @@ Type=simple
 User=sonarr
 Group=sonarr
 SyslogIdentifier=sonarr
+Environment=XDG_DATA_HOME=/var/lib/sonarr
+WorkingDirectory=/usr/lib/sonarr
 ExecStart=/usr/lib/sonarr/bin/Sonarr -nobrowser -data=/var/lib/sonarr
 Restart=on-failure
+RestartSec=5
+KillMode=process
 
 [Install]
 WantedBy=multi-user.target
