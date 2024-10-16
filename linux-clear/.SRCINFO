@@ -1,6 +1,6 @@
 pkgbase = linux-clear
 	pkgdesc = Linux kernel with patches from Clear Linux which allow for higher performance.
-	pkgver = 6.10.12
+	pkgver = 6.11.3
 	pkgrel = 1
 	url = https://github.com/clearlinux-pkgs/linux
 	arch = x86_64
@@ -18,18 +18,18 @@ pkgbase = linux-clear
 	makedepends = zstd
 	options = !strip
 	options = !debug
-	source = https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.10.tar.xz
-	source = https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.10.tar.sign
-	source = https://cdn.kernel.org/pub/linux/kernel/v6.x/patch-6.10.12.xz
-	source = cl-linux::git+https://github.com/clearlinux-pkgs/linux.git#tag=6.10.12-1467
-	source = more-uarches-20240221.2.tar.gz::https://github.com/graysky2/kernel_compiler_patch/archive/20240221.2.tar.gz
+	source = https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.11.tar.xz
+	source = https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.11.tar.sign
+	source = https://cdn.kernel.org/pub/linux/kernel/v6.x/patch-6.11.3.xz
+	source = cl-linux::git+https://github.com/clearlinux-pkgs/linux.git#tag=6.11.12-1472
+	source = more-uarches-20241001.tar.gz::https://github.com/graysky2/kernel_compiler_patch/archive/20241001.tar.gz
 	validpgpkeys = ABAF11C65A2970B130ABE3C479BE3E4300411886
 	validpgpkeys = 647F28654894E3BD457199BE38DBBDC86092693E
-	sha256sums = 774698422ee54c5f1e704456f37c65c06b51b4e9a8b0866f34580d86fef8e226
+	sha256sums = 55d2c6c025ebc27810c748d66325dd5bc601e8d32f8581d9e77673529bdacb2e
 	sha256sums = SKIP
-	sha256sums = 85994d53de093fff217962232b49629b6c5607eae03fa4e234fed740a16ff665
+	sha256sums = 4c808f6dd8814ab55a343649a2e2b925895b7f97044d15fa3424e5cf69349c3e
 	sha256sums = SKIP
-	sha256sums = 1d3ac3e581cbc5108f882fcdc75d74f7f069654c71bad65febe5ba15a7a3a14f
+	sha256sums = 3c0a38110cc21dca6b6efec03ce82ed24f473da190354cf740b5ecd6f6589aa7
 
 pkgname = linux-clear
 	pkgdesc = Linux kernel with patches from Clear Linux which allow for higher performance. This package includes the kernel and compiled modules.
