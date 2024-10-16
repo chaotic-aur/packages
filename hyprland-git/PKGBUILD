@@ -3,7 +3,7 @@
 # Contributor: ThatOneCalculator <kainoa at t1c dot dev>
 
 pkgname=hyprland-git
-pkgver=0.44.0.r37.5c3bd8e9
+pkgver=0.44.0.r46.0baf166d
 pkgrel=1
 pkgdesc="Hyprland is an independent, highly customizable, dynamic tiling Wayland compositor that doesn't sacrifice on its looks."
 arch=(x86_64 aarch64)
@@ -55,6 +55,7 @@ makedepends=(
   gdb
   git
   hyprwayland-scanner-git
+  hyprland-protocols-git
   jq
   make
   meson
@@ -72,11 +73,9 @@ provides=("hyprland=${pkgver%%.r*}")
 conflicts=(hyprland)
 source=(
   "git+https://github.com/hyprwm/Hyprland.git"
-  "git+https://github.com/hyprwm/hyprland-protocols.git"
   "git+https://github.com/canihavesomecoffee/udis86.git"
 )
 b2sums=(
-  'SKIP'
   'SKIP'
   'SKIP'
 )
