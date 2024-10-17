@@ -118,6 +118,10 @@ _use_llvm_lto=${_use_llvm_lto-none}
 # https://github.com/CachyOS/linux-cachyos/issues/36
 _use_lto_suffix=${_use_lto_suffix-y}
 
+# Use suffix -gcc when requested by the user
+# This was added to facilitate https://github.com/CachyOS/linux-cachyos/issues/286
+_use_gcc_suffix=${_use_gcc_suffix-}
+
 # KCFI is a proposed forward-edge control-flow integrity scheme for
 # Clang, which is more suitable for kernel use than the existing CFI
 # scheme used by CONFIG_CFI_CLANG. kCFI doesn't require LTO, doesn't
@@ -144,14 +148,15 @@ _build_debug=${_build_debug-}
 
 if [[ "$_use_llvm_lto" = "thin" || "$_use_llvm_lto" = "full" ]] && [ "$_use_lto_suffix" = "y" ]; then
   _pkgsuffix="cachyos-${_cpusched}-lto"
-  pkgbase="linux-$_pkgsuffix"
-
-elif [ -n "$_use_llvm_lto" ] || [[ "$_use_lto_suffix" = "n" ]]; then
+elif [ "$_use_llvm_lto" = "none" ] && [ -z "$_use_kcfi" ] && [ "$_use_gcc_suffix" = "y" ]; then
+  _pkgsuffix="cachyos-${_cpusched}-gcc"
+else
   _pkgsuffix="cachyos-${_cpusched}"
-  pkgbase="linux-$_pkgsuffix"
 fi
+
+pkgbase="linux-$_pkgsuffix"
 _major=6.11
-_minor=2
+_minor=4
 #_minorc=$((_minor+1))
 #_rcver=rc8
 pkgver=${_major}.${_minor}
@@ -242,12 +247,10 @@ case "$_cpusched" in
   eevdf) ## 6.12 EEVDF patches
     source+=("${_patchsource}/sched/0001-eevdf-next.patch") ;;
   rt) ## EEVDF with RT patches
-    source+=("${_patchsource}/misc/0001-rt.patch"
-      linux-cachyos-rt.install) ;;
+    source+=("${_patchsource}/misc/0001-rt.patch") ;;
   rt-bore) ## RT with BORE Scheduler
     source+=("${_patchsource}/misc/0001-rt.patch"
-      "${_patchsource}/sched/0001-bore-cachy-rt.patch"
-      linux-cachyos-rt.install) ;;
+      "${_patchsource}/sched/0001-bore-cachy-rt.patch") ;;
   hardened) ## Hardened Patches with BORE Scheduler
     source+=("${_patchsource}/sched/0001-bore-cachy.patch"
       "${_patchsource}/misc/0001-hardened.patch") ;;
@@ -598,7 +601,7 @@ _package() {
     'linux-firmware: firmware images needed for some devices'
     'modprobed-db: Keeps track of EVERY kernel module that has ever been probed - useful for those of us who make localmodconfig'
     'uksmd: Userspace KSM helper daemon')
-  provides=(VIRTUALBOX-GUEST-MODULES WIREGUARD-MODULE KSMBD-MODULE UKSMD-BUILTIN)
+  provides=(VIRTUALBOX-GUEST-MODULES WIREGUARD-MODULE KSMBD-MODULE UKSMD-BUILTIN NTSYNC-MODULE)
 
   cd "$_srcname"
 
@@ -778,8 +781,8 @@ for _p in "${pkgname[@]}"; do
     }"
 done
 
-b2sums=('5720e8dd0bed0247dcfe0bdbce17e36e67bff56811611ae1b04f048b77b6e60c2a48303db73c5a0d4a56c7125cdd695116c4dfd965bd7cb28aa932f427bb3e7d'
-  '92e635bb3553896146bea23e5e414853723be9843c94750bc6d4bc327a76925bedb2b3b4481f2816a4691d684e417eae0279c1a2019cb37e9e852914696695da'
+b2sums=('0c77f514e29881b27b8bf815a55845b65182a25be006815541c0e843c2bbc0d12ee978d2a418d779d296c361bbba2d78ff58a0c13ae78382552afadb1e43aaec'
+  '362795780f8fba58025621263af15ca06f9240cefcd248ffc8ffe79e2f9a6427d67b95c5bd13d0a861a459ed0ad4931ce4b62bd5d4ab80aa9374a24c5cc7633f'
   'b1e964389424d43c398a76e7cee16a643ac027722b91fe59022afacb19956db5856b2808ca0dd484f6d0dfc170482982678d7a9a00779d98cd62d5105200a667'
-  'cdb2c8d3184c4f0c9c9d50cf78db2e5e4a56eac0162b5d2400277e98c0432fecb96a25c50ef99aae328524bb546c3941e5fb3141e59d4943796574d73cd83182'
-  '247c736bb3f1b99d5b42fab824fb9e174dd83191ec6d1f7eaff56e0e63425e1fdb7d829fb6521dc506d92eef9a40ca870382284f489ad460b10e140d2e110f11')
+  'a657ccdd799c18bdccbb90db63d0accd2b388da827d8cfc8b758deb94cb003b39e1fd99aecbd7b2605a2938eff334b3a5387ff4848cdde408a0f2bd70d92f394'
+  '7a41b35dd68457724b23b769803edac7f090d2032177fdada6fbf67604cfc6f167f68853b9be15eacd04204f16bbf06af26307720dfe9d78f400365b9616871f')
