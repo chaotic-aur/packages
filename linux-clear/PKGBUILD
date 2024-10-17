@@ -121,7 +121,7 @@
 _kernel_major=6.11
 _kernel_minor=3
 # Clear Linux patches version
-_clr=12-1472
+_clr=3-1472
 # kernel_compiler_patch version
 _kernelcompilerpatch="20241001"
 # Source directory names
@@ -131,7 +131,7 @@ _src_clr=${_kernel_major}.${_clr}
 # Package information
 pkgbase=linux-clear
 pkgver=${_kernel_major}.${_kernel_minor}
-pkgrel=1
+pkgrel=2
 pkgdesc="Linux kernel with patches from Clear Linux which allow for higher performance."
 arch=("x86_64")
 url="https://github.com/clearlinux-pkgs/linux"
