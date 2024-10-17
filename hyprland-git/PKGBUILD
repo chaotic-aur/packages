@@ -3,7 +3,7 @@
 # Contributor: ThatOneCalculator <kainoa at t1c dot dev>
 
 pkgname=hyprland-git
-pkgver=0.44.0.r46.0baf166d
+pkgver=0.44.0.r51.495b92fb
 pkgrel=1
 pkgdesc="Hyprland is an independent, highly customizable, dynamic tiling Wayland compositor that doesn't sacrifice on its looks."
 arch=(x86_64 aarch64)
@@ -87,7 +87,6 @@ pick_mr() {
 prepare() {
   cd Hyprland
   git submodule init
-  git config submodule.subprojects/hyprland-protocols.url "$srcdir/hyprland-protocols"
   git config submodule.subprojects/udis86.url "$srcdir/udis86"
   git config submodule.subprojects/tracy.update none
   git -c protocol.file.allow=always submodule update

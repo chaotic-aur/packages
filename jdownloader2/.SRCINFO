@@ -1,11 +1,11 @@
 pkgbase = jdownloader2
 	pkgdesc = Download manager, written in Java, for one-click hosting sites like Rapidshare and MEGA. Uses its own updater.
 	pkgver = latest
-	pkgrel = 19
+	pkgrel = 21
 	url = https://jdownloader.org/
 	install = jdownloader.install
 	arch = any
-	license = GPL
+	license = LicenseRef-GPL-3.0+proprietary
 	depends = java-runtime
 	depends = libarchive
 	depends = hicolor-icon-theme
