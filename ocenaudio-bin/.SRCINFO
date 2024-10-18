@@ -1,12 +1,12 @@
 pkgbase = ocenaudio-bin
 	pkgdesc = Cross-platform, easy to use, fast and functional audio editor
 	pkgver = 3.14.5
-	pkgrel = 1
+	pkgrel = 2
 	url = https://www.ocenaudio.com/
 	arch = x86_64
 	license = custom
 	depends = hicolor-icon-theme
-	depends = jack2
+	depends = jack
 	depends = libpulse
 	depends = qt6-base
 	provides = ocenaudio
