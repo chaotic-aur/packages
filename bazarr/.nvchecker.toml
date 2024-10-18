@@ -1,0 +1,6 @@
+[bazarr]
+source = "github"
+github = "morpheus65535/bazarr"
+prefix = "v"
+include_regex = "v(\\d+\\.\\d+\\.\\d+)"
+use_latest_release = true

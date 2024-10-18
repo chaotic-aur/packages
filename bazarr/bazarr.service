@@ -7,17 +7,19 @@
 # UMask=002
 
 [Unit]
-Description=Bazarr Service
-After=network.target
+Description=Bazarr Daemon
+Wants=network-online.target
+After=network-online.target
 
 [Service]
+Type=simple
 User=bazarr
 Group=bazarr
-Type=simple
-KillSignal=SIGINT
-ExecStart=/usr/bin/python /usr/lib/bazarr/bazarr.py --no-update --config /var/lib/bazarr
-Restart=on-failure
 SyslogIdentifier=bazarr
+ExecStart=/usr/bin/python /usr/lib/python3.12/site-packages/bazarr/bazarr.py --no-update --config /var/lib/bazarr
+Restart=on-failure
+RestartSec=5
+KillSignal=SIGINT
 
 [Install]
 WantedBy=multi-user.target

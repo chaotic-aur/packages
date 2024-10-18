@@ -1,4 +1,5 @@
 # Maintainer: Donald Webster <fryfrog@gmail.com>
+# Maintainer: txtsd <aur.archlinux@ihavea.quest>
 # Contributor: Pieter Goetschalckx <3.14.e.ter <at> gmail <dot> com>
 
 pkgname=bazarr
@@ -6,15 +7,12 @@ pkgver=1.4.5
 pkgrel=1
 pkgdesc="Subtitle management and download automation for Sonarr and Radarr."
 arch=('any')
-url="https://github.com/morpheus65535/bazarr"
-license=('GPL3')
-options=('!strip' 'staticlibs')
-makedepends=(
-  'unzip'
-  'python-setuptools'
-)
+url="https://www.bazarr.media"
+license=('GPL-3.0-or-later')
 depends=(
-  'sqlite'
+  'bash'
+  'ffmpeg'
+  'gdk-pixbuf2'
   'python'
   'python-gevent'
   'python-gevent-websocket'
@@ -22,34 +20,47 @@ depends=(
   'python-numpy'
   'python-pillow'
   'python-webrtcvad'
-  'ffmpeg'
+  'sqlite'
   'unrar'
+  'python-platformdirs'
+  'python-ujson'
+  'python-greenlet'
+  'python-setuptools'
+  'python-tomli'
 )
+makedepends=(
+  'unzip'
+)
+provides=(bazarr)
+conflicts=(bazarr)
+options=('!debug')
 source=(
-  "bazarr-${pkgver}.zip::https://github.com/morpheus65535/bazarr/releases/download/v${pkgver}/bazarr.zip"
+  "${pkgname}-${pkgver}.zip::https://github.com/morpheus65535/bazarr/releases/download/v${pkgver}/bazarr.zip"
   'bazarr.service'
   'bazarr.sysusers'
   'bazarr.install'
   'bazarr.tmpfiles'
 )
-noextract=("bazarr-${pkgver}.zip")
-
+noextract=("${pkgname}-${pkgver}.zip")
 sha256sums=('629c7d338885d40a52200200ace515ea3a6f1f4be051c49e6fb3945d919beda9'
-  '27f84a4c5f59b115ae8b84270f677ab75912c60fe07d54e6d97f001f2ed45cb0'
-  '92fd48cbd7e5fe3a0388bbe756a52098fc461ef2dc87d9e886452e4f15acdcdc'
+  '2782e250117f7a85110d62472b834316fadcf32ca1874ad01541e7dd9a54215c'
+  '73a60121fd2b7b8f5bad75ec4b0f92552fcae0e29a4b9e6aaf15f86a825a88a3'
   '573beeac951d427e980332ce4d8645ae2299082e6c9c04f96e2a41a98c3acc60'
   'e7055260d0f3554e8b628d9560d8e12a40f720d76542048df0dfc838db88357b')
 
 prepare() {
-  unzip -qq -o -d bazarr-${pkgver} bazarr-${pkgver}.zip
+  unzip -qq -o -d "${pkgname}-${pkgver}" "${pkgname}-${pkgver}.zip"
 }
 
 package() {
-  install -d -m 755 "${pkgdir}/usr/lib/bazarr"
+  local _pyver="$(python -c 'import sys; print("%i.%i" % sys.version_info[:2])')"
+  local _pdir="${pkgdir}/usr/lib/python${_pyver}/site-packages/${pkgname}"
 
-  cp -dpr --no-preserve=ownership "${srcdir}/bazarr-${pkgver}/"* "${pkgdir}/usr/lib/bazarr"
+  install -dm755 "${_pdir}"
+  cp -dpr --no-preserve=ownership "${srcdir}/${pkgname}-${pkgver}/"* "${_pdir}"
+  python -m compileall "${pkgdir}"
 
-  install -D -m 644 "${srcdir}/bazarr.service" "${pkgdir}/usr/lib/systemd/system/bazarr.service"
-  install -D -m 644 "${srcdir}/bazarr.sysusers" "${pkgdir}/usr/lib/sysusers.d/bazarr.conf"
-  install -D -m 644 "${srcdir}/bazarr.tmpfiles" "${pkgdir}/usr/lib/tmpfiles.d/bazarr.conf"
+  install -Dm644 "${srcdir}/bazarr.service" "${pkgdir}/usr/lib/systemd/system/bazarr.service"
+  install -Dm644 "${srcdir}/bazarr.sysusers" "${pkgdir}/usr/lib/sysusers.d/bazarr.conf"
+  install -Dm644 "${srcdir}/bazarr.tmpfiles" "${pkgdir}/usr/lib/tmpfiles.d/bazarr.conf"
 }
