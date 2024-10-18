@@ -4,12 +4,12 @@
 _pkgname=ocenaudio
 pkgname="$_pkgname-bin"
 pkgver=3.14.5
-pkgrel=1
+pkgrel=2
 pkgdesc="Cross-platform, easy to use, fast and functional audio editor"
 arch=('x86_64')
 url="https://www.ocenaudio.com/"
 license=('custom')
-depends=('hicolor-icon-theme' 'jack2' 'libpulse' 'qt6-base')
+depends=('hicolor-icon-theme' 'jack' 'libpulse' 'qt6-base')
 provides=("$_pkgname")
 conflicts=("$_pkgname")
 sha256sums=('daf279b9d35463d5534af30fa05109682a691fbebd299e4906ebde2b40c5505f')
