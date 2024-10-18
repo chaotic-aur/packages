@@ -1,5 +1,7 @@
 # Maintainer: txtsd <aur.archlinux@ihavea.quest>
-# Contributor: Donald Webster <fryfrog@gmail.com>
+# Maintainer: Donald Webster <fryfrog@gmail.com>
+# Contributor: Devin Buhl <devin.kray@gmail.com>
+# Helpful URL: https://radarr.servarr.com/v1/update/master?version=0.0.0.0&os=linux&runtime=netcore&arch=x64
 
 pkgname=radarr
 _pkgname=Radarr
@@ -18,6 +20,7 @@ depends=(
 )
 makedepends=('dotnet-sdk-6.0' 'yarn')
 optdepends=(
+  'postgresql: postgresql database'
   'sabnzbd: usenet downloader'
   'nzbget: usenet downloader'
   'qbittorrent: torrent downloader'
@@ -29,6 +32,7 @@ optdepends=(
   'jackett: torrent indexer proxy'
   'nzbhydra2: torznab and usenet indexer proxy'
   'prowlarr: torrent and usenet indexer proxy'
+  'autobrr: irc, torrent and usenet indexer proxy'
 )
 options=(!debug)
 source=(
@@ -101,7 +105,7 @@ check() {
   # See: https://github.com/Radarr/Radarr/issues/7299
   # Integration tests also completely fail
   _filters="${_filters}&FullyQualifiedName!~should_get_version_info"
-  _filters="${_filters}&FullyQualifiedName!~should_get_version_info"
+  _filters="${_filters}&FullyQualifiedName!~should_get_version_info_from_actual_linux"
   _filters="${_filters}&Category!=IntegrationTest"
 
   # Link build to tests
