@@ -68,8 +68,3 @@ Server = https://us-tx-mirror.chaotic.cx/$repo/$arch
 # Utah
 # * By: ash <t.me/the_ashh>
 Server = https://us-ut-mirror.chaotic.cx/$repo/$arch
-
-
-# IPFS mirror - for instructions on how to use it consult the projects repo (https://github.com/RubenKelevra/pacman.store)
-# * By: RubenKelevra / pacman.store
-# Server = http://chaotic-aur.pkg.pacman.store.ipns.localhost:8080/$arch
