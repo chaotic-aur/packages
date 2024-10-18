@@ -1,6 +1,6 @@
 # Maintainer: Donald Webster <fryfrog@gmail.com>
 # Maintainer: txtsd <aur.archlinux@ihavea.quest>
-# Contributor: Pieter Goetschalckx <3.14.e.ter <at> gmail <dot> com>
+# Contributor: Pieter Goetschalckx <3.14.e.ter@gmail.com>
 
 pkgname=bazarr
 pkgver=1.4.5
@@ -28,11 +28,7 @@ depends=(
   'python-setuptools'
   'python-tomli'
 )
-makedepends=(
-  'unzip'
-)
-provides=(bazarr)
-conflicts=(bazarr)
+makedepends=('unzip')
 options=('!debug')
 source=(
   "${pkgname}-${pkgver}.zip::https://github.com/morpheus65535/bazarr/releases/download/v${pkgver}/bazarr.zip"
