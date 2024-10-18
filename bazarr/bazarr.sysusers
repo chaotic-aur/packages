@@ -1,1 +1,2 @@
-u bazarr - "Bazarr daemon" /usr/lib/bazarr
+u bazarr - "Bazarr Daemon" /var/lib/bazarr
+g bazarr
