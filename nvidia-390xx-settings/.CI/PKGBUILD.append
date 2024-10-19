@@ -8,4 +8,4 @@ _bump_pkgrel() {
   fi
 }
 
-_bump_pkgrel 9.16-1 1
+_bump_pkgrel 390.157-1 2
