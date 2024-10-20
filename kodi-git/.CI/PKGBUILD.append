@@ -1,3 +1,6 @@
+# delete outdated patch file
+find "$SRCDEST" -maxdepth 1 -mtime +1 -type f -iname "*.patch" -delete
+
 _renderer=gl
 
 pkgver() {
