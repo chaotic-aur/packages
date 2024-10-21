@@ -1,0 +1,4 @@
+[jellyseerr]
+source = "git"
+git = "https://github.com/Fallenbagel/jellyseerr.git"
+prefix = "v"
