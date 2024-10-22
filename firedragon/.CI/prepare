@@ -1,6 +1,0 @@
-#!/usr/bin/env sh
-
-# skip failing part of pgo
-sed -e 's&test -s jarlog&&g' -i PKGBUILD
-sed -e 's&stat -c "Jar log found (%s bytes)" jarlog&&g' -i PKGBUILD
-sed -e 's&ac_add_options --with-pgo-jarlog=${PWD@Q}/jarlog&&g' -i PKGBUILD
