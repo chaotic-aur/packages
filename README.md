@@ -258,7 +258,7 @@ To make use of it, set `CI_ON_TRIGGER=daily` inside the `.CI/config` file of the
 
 #### Manual scheduling
 
-##### #Scheduling packages without git commits
+##### Scheduling packages without git commits
 
 Packages can be added to the schedule manually by going to
 the [pipeline runs](https://gitlab.com/chaotic-aur/pkgbuilds/-/pipelines) page, selecting "Run pipeline" and
@@ -267,7 +267,7 @@ schedule them.
 `PACKAGES` can also be set to `all` to schedule all packages. In case one or many packages are getting scheduled, it
 needs to follow the format `pkgname1:pkgname2:pkgname3`.
 
-###### Running scheduled pipelines on-demand
+##### Running scheduled pipelines on-demand
 
 This can be done by going to the [pipeline runs](https://gitlab.com/chaotic-aur/pkgbuilds/-/pipeline_schedules) page,
 selecting "Run pipeline" (the play symbol). A link to the pipeline page will be provided, where the pipeline logs can be
@@ -334,7 +334,7 @@ processes with.
 - `CI_REBUILD_TRIGGERS`: Add packages known to be causing rebuilds to this variable. A list of repositories to track
   package versions for is provided via the repositories' `CI_LIB_DB` parameter. Each package version is hashed and
   dumped to `.ci/lib.state`. Each scheduled pipeline run compares versions by checking hash mismatches and will bump
-  each affected package via `CI_PACKAGE_BUMP`.
+  each affected package via `CI_PACKAGE_BUMP`. It needs to follow the format `package1:package2:package3`.
 - `BUILDER_CACHE_SOURCES`: Can be set to `true` in case the sources should be cached between builds. This can be useful
   in case of slow sources or sources that are not available all the time. Sources will be cleared automatically after 1
   month, which is important in case packages are getting removed or the source changes.
