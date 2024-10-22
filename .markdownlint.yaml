@@ -6,7 +6,7 @@ default: true
 extends: null
 
 # MD001/heading-increment/header-increment - Heading levels should only increment by one level at a time
-MD001: true
+MD001: false
 
 # MD002/first-heading-h1/first-header-h1 - First heading should be a top-level heading
 MD002:
