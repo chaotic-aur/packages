@@ -12,7 +12,7 @@ pkgbase = hypridle-git
 	makedepends = xorgproto
 	depends = wayland
 	depends = hyprlang-git
-	depends = sdbus-cpp
+	depends = sdbus-cpp>=2.0.0
 	depends = systemd
 	depends = wayland-protocols
 	depends = hyprutils-git
