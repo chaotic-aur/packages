@@ -1,6 +1,6 @@
 pkgbase = powershell-bin
 	pkgdesc = A cross-platform automation and configuration tool/framework (binary package)
-	pkgver = 7.4.5
+	pkgver = 7.4.6
 	pkgrel = 1
 	url = https://github.com/Powershell/Powershell
 	install = powershell.install
@@ -14,12 +14,12 @@ pkgbase = powershell-bin
 	optdepends = lttng-ust2.12: CoreCLR tracing
 	provides = powershell
 	conflicts = powershell
-	noextract = powershell-bin-7.4.5-1.tar.gz
-	source_x86_64 = powershell-bin-7.4.5-1.tar.gz::https://github.com/Powershell/Powershell/releases/download/v7.4.5/powershell-7.4.5-linux-x64.tar.gz
-	sha256sums_x86_64 = c23509cc4d08c62b9ff6ea26f579ee4c50f978aa34269334a85eda2fec36f45b
-	source_armv7h = powershell-bin-7.4.5-1.tar.gz::https://github.com/Powershell/Powershell/releases/download/v7.4.5/powershell-7.4.5-linux-arm32.tar.gz
-	sha256sums_armv7h = 0ea22a016c73f6796bb686bce4f79cf3b56d9b96c2fd8b7f5072bc2fe09ade93
-	source_aarch64 = powershell-bin-7.4.5-1.tar.gz::https://github.com/Powershell/Powershell/releases/download/v7.4.5/powershell-7.4.5-linux-arm64.tar.gz
-	sha256sums_aarch64 = f0968649ecd47d5500ccb766c4ff4da34e0d78254cce9098c7f42d0e5484b513
+	noextract = powershell-bin-7.4.6-1.tar.gz
+	source_x86_64 = powershell-bin-7.4.6-1.tar.gz::https://github.com/Powershell/Powershell/releases/download/v7.4.6/powershell-7.4.6-linux-x64.tar.gz
+	sha256sums_x86_64 = 6f6015203c47806c5cc444c19d8ed019695e610fbd948154264bf9ca8e157561
+	source_armv7h = powershell-bin-7.4.6-1.tar.gz::https://github.com/Powershell/Powershell/releases/download/v7.4.6/powershell-7.4.6-linux-arm32.tar.gz
+	sha256sums_armv7h = 6f6015203c47806c5cc444c19d8ed019695e610fbd948154264bf9ca8e157561
+	source_aarch64 = powershell-bin-7.4.6-1.tar.gz::https://github.com/Powershell/Powershell/releases/download/v7.4.6/powershell-7.4.6-linux-arm64.tar.gz
+	sha256sums_aarch64 = 6f6015203c47806c5cc444c19d8ed019695e610fbd948154264bf9ca8e157561
 
 pkgname = powershell-bin
