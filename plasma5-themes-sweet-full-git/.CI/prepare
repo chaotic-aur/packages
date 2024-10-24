@@ -1,0 +1,2 @@
+#!/usr/bin/env sh
+sed -e 's&$pkgdir/usr/share/themes/$_pkgname&$pkgdir/usr/share/themes/Sweet-Dark&' -i PKGBUILD
