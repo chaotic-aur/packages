@@ -1,0 +1,18 @@
+pkgbase = hyprland-protocols-git
+	pkgdesc = Wayland protocol extensions for Hyprland
+	pkgver = 0.4.0.r1.a7c1838
+	pkgrel = 1
+	url = https://github.com/hyprwm/hyprland-protocols
+	arch = x86_64
+	arch = aarch64
+	license = BSD-3-Clause
+	makedepends = git
+	makedepends = make
+	makedepends = meson
+	makedepends = ninja
+	provides = hyprland-protocols=0.4.0
+	conflicts = hyprland-protocols
+	source = git+https://github.com/hyprwm/hyprland-protocols.git
+	b2sums = SKIP
+
+pkgname = hyprland-protocols-git
