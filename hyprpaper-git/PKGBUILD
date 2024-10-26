@@ -3,7 +3,7 @@
 
 _pkgname="hyprpaper"
 pkgname="$_pkgname-git"
-pkgver=0.7.0.r15.g87791c0
+pkgver=0.7.1.r6.g3f8cc92
 pkgrel=1
 pkgdesc="a blazing fast wayland wallpaper utility with IPC controls"
 url="https://github.com/hyprwm/hyprpaper"
@@ -11,14 +11,16 @@ license=('BSD-3-Clause')
 arch=('x86_64')
 
 depends=(
-  hyprlang-git
-  hyprutils-git
-  hyprwayland-scanner-git
   libjpeg.so
   libmagic.so # file
   libwebp.so
   pango
   wayland
+
+  ## AUR
+  hyprlang-git
+  hyprutils-git
+  hyprwayland-scanner-git
 )
 makedepends=(
   cmake
@@ -58,7 +60,6 @@ build() {
 }
 
 package() {
-  # DESTDIR="$pkgdir" cmake --install build
-  install -Dm0755 "build/$_pkgname" -t "$pkgdir/usr/bin/"
+  DESTDIR="$pkgdir" cmake --install build
   install -Dm0644 "$_pkgsrc/LICENSE" -t "$pkgdir/usr/share/licenses/$pkgname/"
 }
