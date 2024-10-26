@@ -1,6 +1,5 @@
 [sonarr]
-source = "github"
-github = "Sonarr/Sonarr"
-prefix = "v"
-include_regex = "v(\\d+\\.\\d+\\.\\d+\\.\\d+)"
-use_latest_release = true
+source = "jq"
+url = "https://services.sonarr.tv/v1/releases"
+filter = '."v4-stable".version'
+include_regex = "(\\d+\\.\\d+\\.\\d+\\.\\d+)"
