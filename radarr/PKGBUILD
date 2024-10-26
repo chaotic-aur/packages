@@ -5,7 +5,7 @@
 
 pkgname=radarr
 _pkgname=Radarr
-pkgver=5.12.2.9335
+pkgver=5.13.1.9378
 pkgrel=1
 pkgdesc='Movie organizer/manager for usenet and torrent users.'
 arch=('x86_64' 'aarch64' 'armv7h')
@@ -42,7 +42,7 @@ source=(
   'radarr.sysusers'
   'radarr.tmpfiles'
 )
-sha256sums=('98379e63815e34cfd06b74804f64ee2ca4978fe51f2d45e64bcdd12b4760307c'
+sha256sums=('1a4988034c8023f5402f5279410b8cbfb6d908ad2132526513ceffacf54c9ef5'
   '1868e8df575bfda008cc82f92440c2a0465de28b7a032bf46fc2745d760b3fba'
   'e2d5222d78523c31be3b1cf638bb5e07f175acd5d10ce39c839dd26ea2b01f67'
   '8875537e5bff23cde3e94ddbd7919ee8c4d7b42a63913dd8b80e45691a16ecbd'
