@@ -7,7 +7,7 @@
 pkgname=sonarr
 _pkgname=Sonarr
 pkgver=4.0.10.2544
-pkgrel=2
+pkgrel=3
 pkgdesc='Smart PVR for newsgroup and torrent users.'
 arch=('x86_64' 'aarch64' 'armv7h')
 url='https://sonarr.tv'
@@ -18,6 +18,7 @@ depends=(
   'gcc-libs'
   'glibc'
   'sqlite'
+  'ffmpeg'
 )
 makedepends=('dotnet-sdk-6.0' 'yarn')
 optdepends=(
@@ -27,6 +28,9 @@ optdepends=(
   'qbittorrent: torrent downloader'
   'deluge: torrent downloader'
   'rtorrent: torrent downloader'
+  'nodejs-flood: torrent downloader'
+  'vuze: torrent downloader'
+  'aria2: torrent downloader'
   'transmission-cli: torrent downloader (CLI and daemon)'
   'transmission-gtk: torrent downloader (GTK+)'
   'transmission-qt: torrent downloader (Qt)'
@@ -59,6 +63,7 @@ _framework='net6.0'
 _runtime="linux-${_CARCH}"
 _output="_output"
 _artifacts="${_output}/${_framework}/${_runtime}/publish"
+_branch='main'
 
 prepare() {
   cd "${srcdir}/${_pkgname}-${pkgver}"
@@ -66,34 +71,46 @@ prepare() {
   # Remove upstream dotnet version
   rm global.json
 
+  # Prepare backend
+  export DOTNET_CLI_TELEMETRY_OPTOUT=1
+  export DOTNET_NOLOGO=1
+  export DOTNET_SKIP_FIRST_TIME_EXPERIENCE=1
+  dotnet restore src/${_pkgname}.sln \
+    --runtime ${_runtime} \
+    --locked-mode
+
+  # Prepare frontend
   yarn install --frozen-lockfile --network-timeout 120000
 }
 
 build() {
   cd "${srcdir}/${_pkgname}-${pkgver}"
 
+  # Build backend
   export DOTNET_CLI_TELEMETRY_OPTOUT=1
+  export DOTNET_NOLOGO=1
+  export DOTNET_SKIP_FIRST_TIME_EXPERIENCE=1
   dotnet build src/${_pkgname}.sln \
     --framework ${_framework} \
     --runtime ${_runtime} \
     --no-self-contained \
+    --no-restore \
     --configuration Release \
     -p:Platform=Posix \
     -p:AssemblyVersion=${pkgver} \
-    -p:AssemblyConfiguration=main \
+    -p:AssemblyConfiguration=${_branch} \
     -p:RuntimeIdentifiers=${_runtime} \
     -t:PublishAllRids \
     && dotnet build-server shutdown # Build servers do not terminate automatically
 
-  # Remove Service Helpers, Update, and Windows files
-  rm "${_artifacts}/ServiceInstall."*
-  rm "${_artifacts}/ServiceUninstall."*
+  # Remove ffprobe, Service Helpers, Update, and Windows files
+  rm "${_artifacts}/ffprobe"
+  rm "${_artifacts}/ServiceInstall"*
+  rm "${_artifacts}/ServiceUninstall"*
   rm "${_artifacts}/Sonarr.Windows."*
   rm -rf "${_output}/Sonarr.Update"
 
-  # Fix ffprobe permissions
-  chmod +x "${_artifacts}"/ffprobe
-
+  # Build frontend
   yarn run build --env production
 }
 
@@ -104,14 +121,15 @@ check() {
   # Skip Tests:
   # These tests fail because /etc/arch-release doesn't contain a ${VERSION_ID}
   # See: https://github.com/Sonarr/Sonarr/issues/7299
+  # Integration tests also completely fail
   _filters="${_filters}&FullyQualifiedName!~should_get_version_info"
   _filters="${_filters}&FullyQualifiedName!~should_get_version_info_from_actual_linux"
   _filters="${_filters}&Category!=IntegrationTest"
 
-  # Link build to tests
-  ln -sf ../../../${_artifacts} _tests/${_framework}/${_runtime}/bin
+  # Prepare for tests
   mkdir -p ~/.config/Sonarr
 
+  # Test backend
   dotnet test src \
     --runtime "${_runtime}" \
     --configuration Release \
@@ -123,8 +141,13 @@ package() {
   cd "${srcdir}/${_pkgname}-${pkgver}"
   install -dm755 "${pkgdir}/usr/lib/sonarr/bin/UI"
 
+  # Copy backend
   cp -dpr --no-preserve=ownership "${_artifacts}/"* "${pkgdir}/usr/lib/sonarr/bin"
+  # Copy frontend
   cp -dpr --no-preserve=ownership "${_output}/UI/"* "${pkgdir}/usr/lib/sonarr/bin/UI"
+
+  # Use system ffprobe
+  ln -s /usr/bin/ffprobe "${pkgdir}/usr/lib/sonarr/bin/ffprobe"
 
   # License
   install -Dm644 "${srcdir}/${_pkgname}-${pkgver}/LICENSE.md" "${pkgdir}/usr/share/licenses/${pkgname}"
