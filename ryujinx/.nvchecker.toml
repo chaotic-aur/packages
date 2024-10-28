@@ -1,0 +1,4 @@
+[ryujinx]
+source = "git"
+git = "https://github.com/GreemDev/Ryujinx.git"
+prefix = "v"
