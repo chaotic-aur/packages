@@ -5,7 +5,7 @@
 
 pkgname="openbangla-keyboard"
 pkgver="2.0.0"
-pkgrel=7
+pkgrel=8
 pkgdesc="An OpenSource, Unicode compliant Bengali Input Method"
 arch=('x86_64')
 url="http://openbangla.github.io"
@@ -19,7 +19,7 @@ source=(
   "$pkgname::git+https://github.com/OpenBangla/OpenBangla-keyboard.git#tag=$pkgver"
   "riti::git+https://github.com/OpenBangla/riti.git"
 )
-sha256sums=('SKIP'
+sha256sums=('7d590d3336cdfe40ea72772ceb2f51feb69ca6d97762e065e9c16070a26067a0'
   'SKIP')
 
 pkgver() {
