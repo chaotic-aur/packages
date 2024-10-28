@@ -14,14 +14,49 @@ After=network-online.target
 [Service]
 Type=simple
 User=sonarr
-Group=sonarr
-SyslogIdentifier=sonarr
+Group=media
+UMask=002
 Environment=XDG_DATA_HOME=/var/lib/sonarr
-WorkingDirectory=/usr/lib/sonarr
 ExecStart=/usr/lib/sonarr/bin/Sonarr -nobrowser -data=/var/lib/sonarr
-Restart=on-failure
-RestartSec=5
 KillMode=process
+PIDFile=/run/sonarr/sonarr.pid
+Restart=on-failure
+RestartSec=10
+TimeoutStopSec=20
+SyslogIdentifier=sonarr
+ConfigurationDirectory=sonarr
+LogsDirectory=sonarr
+RuntimeDirectory=sonarr
+StateDirectory=sonarr
+WorkingDirectory=/var/lib/sonarr
+
+# Hardening
+CapabilityBoundingSet=CAP_CHOWN CAP_FSETID CAP_SETGID
+LockPersonality=true
+NoNewPrivileges=true
+PrivateTmp=true
+PrivateUsers=true
+ProcSubset=pid
+ProtectClock=true
+ProtectControlGroups=true
+ProtectHome=true
+ProtectHostname=true
+ProtectKernelLogs=true
+ProtectKernelModules=true
+ProtectKernelTunables=true
+ProtectProc=invisible
+ProtectSystem=full
+RemoveIPC=true
+RestrictAddressFamilies=AF_INET AF_INET6
+RestrictNamespaces=true
+RestrictRealtime=true
+SocketBindAllow=ipv4:tcp
+SocketBindAllow=ipv6:tcp
+SocketBindDeny=any
+SystemCallArchitectures=native
+SystemCallErrorNumber=EPERM
+SystemCallFilter=@system-service
+SystemCallFilter=~@privileged
 
 [Install]
 WantedBy=multi-user.target
