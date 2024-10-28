@@ -1,2 +1,3 @@
 u radarr - "Radarr Daemon" /var/lib/radarr
-g radarr
+g media  -
+m radarr media
