@@ -7,7 +7,7 @@
 pkgname=sonarr
 _pkgname=Sonarr
 pkgver=4.0.10.2544
-pkgrel=3
+pkgrel=4
 pkgdesc='Smart PVR for newsgroup and torrent users.'
 arch=('x86_64' 'aarch64' 'armv7h')
 url='https://sonarr.tv'
@@ -49,9 +49,9 @@ source=(
 )
 sha256sums=('d6f1b1d04ea572cfd2aba72d8adac1925f544c43b99f31f3a047588f8369be78'
   '19112dc0051224b4de66f28077c93b6ee06e163b5194e6aecf62dedf66ff45a9'
-  'b26aa01e07e5864b588ebe51a2993eaafb03fa0f7ec3806f2996dd2daf46aee7'
-  '047585a1d448ad2c6e2962fb60d4f71e01a2529e464b25d340bb0d31b8e0f08f'
-  '7bf87304383b7d58ecab59b3686d00a8f1b6fbe4af3a86da35a887e4cebee411')
+  'b3a611461373108cd7bd197e7e91d6d8a240ea18d40efe1624c15a16df7dc762'
+  '00141d4cbf34daa6d91b26179d4847ec970e2767382e18fdf9af2ec84a0ff43e'
+  '1f76177648e0c424ef76bb94fc7b806fae2c474272e022af662dc8033fe76652')
 
 case ${CARCH} in
   x86_64) _CARCH='x64' ;;
@@ -67,6 +67,10 @@ _branch='main'
 
 prepare() {
   cd "${srcdir}/${_pkgname}-${pkgver}"
+
+  # Fix CVE-2024-43485
+  sed 's/System\.Text\.Json" Version="6\.0\.9"/System\.Text\.Json" Version="6\.0\.10"/' -i src/NzbDrone.Common/Sonarr.Common.csproj
+  sed 's/System\.Text\.Json" Version="6\.0\.9"/System\.Text\.Json" Version="6\.0\.10"/' -i src/NzbDrone.Core/Sonarr.Core.csproj
 
   # Remove upstream dotnet version
   rm global.json
@@ -130,6 +134,9 @@ check() {
   mkdir -p ~/.config/Sonarr
 
   # Test backend
+  export DOTNET_CLI_TELEMETRY_OPTOUT=1
+  export DOTNET_NOLOGO=1
+  export DOTNET_SKIP_FIRST_TIME_EXPERIENCE=1
   dotnet test src \
     --runtime "${_runtime}" \
     --configuration Release \
