@@ -23,6 +23,7 @@ pkgbase = hyprlock-git
 	depends = libwebp
 	depends = hyprutils-git
 	depends = file
+	depends = sdbus-cpp>=2.0.0
 	provides = hyprlock
 	conflicts = hyprlock
 	backup = etc/pam.d/hyprlock
