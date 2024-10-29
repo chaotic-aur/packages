@@ -82,7 +82,7 @@ function parse_changed_files() {
         fi
 
         # Extract the root folder of the changed file
-        if [[ "$file" =~ ^([\w\._-]+)/ ]]; then
+        if [[ "$file" =~ ^([a-z0-9\._-]+)/ ]]; then
             local folder="${BASH_REMATCH[1]}"
             if [ -d "$folder" ]; then
                 CHANGED_ROOT_FOLDERS["$folder"]=1
