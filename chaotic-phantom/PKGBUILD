@@ -1,0 +1,17 @@
+pkgbase='phantom'
+pkgname=(
+  ueberzugpp
+  whisper.cpp-cublas
+)
+pkgver=0.0.1
+pkgrel=1
+pkgdesc="metapackage - pending delete"
+arch=('any')
+
+package_ueberzugpp() {
+  :
+}
+
+package_whisper.cpp-cublas() {
+  :
+}
