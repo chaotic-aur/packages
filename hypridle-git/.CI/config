@@ -1,1 +1,2 @@
+CI_REBUILD_TRIGGERS=hyprlang-git:hyprutils-git:sdbus-cpp
 CI_PKGBUILD_SOURCE=aur
