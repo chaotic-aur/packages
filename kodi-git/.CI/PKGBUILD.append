@@ -1,10 +1,5 @@
 _renderer=gl
 
-source=(${source[@]//pr24972.patch::*/})
-source+=("pr24972-$pkgver.patch"::"https://patch-diff.githubusercontent.com/raw/xbmc/xbmc/pull/24972.patch")
-
-eval "$(declare -f prepare | sed "s/pr24972\.patch/pr24972-$pkgver.patch/")"
-
 pkgver() {
   cd "$_gitname"
   local _tag=$(git tag | grep -E '^[0-9]' | grep -Ev 'rc' | grep -Ev '[0-9][ab][0-9]' | sort -rV | head -1)

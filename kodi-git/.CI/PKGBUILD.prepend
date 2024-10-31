@@ -1,3 +1,3 @@
+# delete outdated patch files
 cd "$SRCDEST"
-ls -la
-rm -rvf *.*
+rm -rvf *.patch
