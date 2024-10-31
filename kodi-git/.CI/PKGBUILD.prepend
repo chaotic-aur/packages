@@ -1,0 +1,3 @@
+cd "$SRCDEST"
+ls -la
+rm -rvf *.*
