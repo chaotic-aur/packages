@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+# delete outdated patch file
+find -maxdepth 1 -mtime +1 -type f -iname "*.patch" -delete
