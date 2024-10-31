@@ -10,6 +10,7 @@ User=jellyseerr
 Group=jellyseerr
 Type=exec
 Restart=on-failure
+RestartSec=5
 WorkingDirectory=/usr/lib/jellyseerr
 ExecStart=/usr/bin/node dist/index.js
 
