@@ -1,0 +1,11 @@
+license=(
+  'BSD-3-Clause-Clear'
+  'LicenseRef-AOM-Patent-License-1.0'
+)
+
+pkgver() {
+  git -C SVT-AV1 describe --long --tags --abbrev=7 \
+    --exclude='*[a-zA-Z][a-zA-Z]*' \
+    --exclude='*[A-Z]*' \
+    | sed 's/\([^-]*-g\)/r\1/;s/-/./g;s/^v//'
+}
