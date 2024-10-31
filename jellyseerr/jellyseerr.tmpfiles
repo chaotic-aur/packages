@@ -1,4 +1,7 @@
-d /var/lib/jellyseerr      0750 jellyseerr jellyseerr -
-d /var/lib/jellyseerr/db   0750 jellyseerr jellyseerr -
-d /var/lib/jellyseerr/logs 0750 jellyseerr jellyseerr -
-L /var/log/jellyseerr - - - - /var/lib/jellyseerr/logs/
+d /var/lib/jellyseerr           0750 jellyseerr jellyseerr -
+d /var/lib/jellyseerr/db        0750 jellyseerr jellyseerr -
+d /var/lib/jellyseerr/logs      0750 jellyseerr jellyseerr -
+Z /var/lib/jellyseerr           -    jellyseerr jellyseerr
+# L /var/lib/jellyseerr           - - - - /usr/lib/jellyseer/config/
+L /var/log/jellyseerr           - - - - /var/lib/jellyseerr/logs/
+L /etc/jellyseerr/settings.json - - - - /var/lib/jellyseerr/settings.json

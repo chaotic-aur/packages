@@ -1,64 +1,86 @@
 # Maintainer: jab416171 <jab416171@gmail.com>
+# Maintainer: txtsd <aur.archlinux@ihavea.quest>
 # Contributor: Donald Webster <fryfrog@gmail.com>
 # Contributor: Martins Mozeiko <martins.mozeiko@gmail.com>
 
 pkgname=jellyseerr
 pkgver=2.0.1
-pkgrel=1
+pkgrel=2
 pkgdesc='Request management and media discovery tool for the Plex ecosystem'
 arch=('x86_64')
 url='https://github.com/Fallenbagel/jellyseerr'
 license=('MIT')
-depends=('nodejs')
-optdepends=(
-  'jellyfin: The Free Software Media System'
+depends=(
+  'bash'
+  'glibc'
+  'java-runtime'
+  'python'
 )
-makedepends=('yarn')
-options=('!strip')
-backup=('etc/conf.d/jellyseerr')
-source=("${pkgname}-${pkgver}.tar.gz::https://github.com/Fallenbagel/jellyseerr/archive/v${pkgver}.tar.gz"
+optdepends=('jellyfin: The Free Software Media System')
+makedepends=('pnpm' 'nodejs-lts-iron')
+options=('!strip' '!debug')
+backup=(
+  'etc/conf.d/jellyseerr'
+  'etc/jellyseerr/settings.json'
+)
+source=(
+  "${pkgname}-${pkgver}.tar.gz::https://github.com/Fallenbagel/jellyseerr/archive/v${pkgver}.tar.gz"
   'jellyseerr.sysusers'
   'jellyseerr.tmpfiles'
   'jellyseerr.service'
   'jellyseerr.conf.d'
-  'no-prepare-husky.patch')
+  '0001-Don-t-use-husky.patch'
+  '0002-Remove-need-for-npm-npx.patch'
+)
 sha256sums=('3ea5ae6ffd68eac767acb9a36adb41f1dc4018232cd6dca0cc31668c1f5c005b'
   '372ee94f76040ea76af49fd2f9db851375559458ba1b55ea41f1b2768fe10cb8'
-  'cb0b856fc93969c901e69eb31dc201f4e37c8a2d30041beabf1a82077cca4c24'
-  '84159db69b33ef3c4e6a424b32331f78e92efe316355c05e3f86920e1ad24c05'
+  '5a986d594045facc646f3f17ef0f3e053bc95df86f6f8fff5a793d9bdbbab0ed'
+  'da984bb844c6dfbcb489bb43f8552b5e36cc25f5d975b63afd31757093ca82e8'
   '5a446cc8fa0a47a49dbbd6920d49eb4569f988e808cbb0bdbb609ab179a94426'
-  'db59be528c86ccb6bb9136ea2892ac4af2bcf8aa4b99da0df1d6ba18e5106458')
+  '1d2ee741644c3dc4520c2e4f0213343429eadfda7231950e03170dddae73d9bc'
+  'e2777886a0e7000bd680fbdc17547d42faeb4cebd7b0ddc6493630d70b3f9f42')
+
+prepare() {
+  cd "${srcdir}/${pkgname}-${pkgver}"
+
+  patch -Np1 -i "${srcdir}/0001-Don-t-use-husky.patch"
+  patch -Np1 -i "${srcdir}/0002-Remove-need-for-npm-npx.patch"
+
+  echo "{\"commitTag\": \"${pkgver}\"}" > committag.json
+
+  export NEXT_TELEMETRY_DISABLED=1
+  pnpm install --frozen-lockfile
+}
 
 build() {
   cd "${srcdir}/${pkgname}-${pkgver}"
 
-  export COMMIT_TAG=${pkgver}
-  echo "{\"commitTag\": \"${COMMIT_TAG}\"}" > committag.json
-
   mkdir -p .next "${srcdir}/.jellyseer_cache"
-  rm -rf .next/cache # in case previous builds have it as real folder
+  rm -rf .next/cache # In case previous builds have it as real folder
   ln -s "${srcdir}/.jellyseer_cache" .next/cache
 
-  patch -p0 < "../../no-prepare-husky.patch"
-
-  yarn --frozen-lockfile
-  yarn build
-  yarn install --production --ignore-scripts --prefer-offline
-  yarn cache clean
+  export NEXT_TELEMETRY_DISABLED=1
+  export CYPRESS_INSTALL_BINARY=0
+  pnpm build
+  pnpm prune --prod --ignore-scripts
 }
 
 package() {
-  install -m0755 -d "${pkgdir}/usr/lib/jellyseerr"
-  cp -dr --no-preserve='ownership' "${srcdir}/${pkgname}-${pkgver}/." "${pkgdir}/usr/lib/jellyseerr"
+  depends=('nodejs')
+  cd "${srcdir}/${pkgname}-${pkgver}"
+
+  install -dm755 "${pkgdir}/usr/lib/jellyseerr"
+  install -dm755 "${pkgdir}/usr/lib/jellyseerr/.next/standalone/.next"
+  cp -dr --no-preserve='ownership' "${srcdir}/${pkgname}-${pkgver}/"{.next,dist,public,node_modules} "${pkgdir}/usr/lib/jellyseerr"
+  cp -d --no-preserve='ownership' "${srcdir}/${pkgname}-${pkgver}/"{package.json,overseerr-api.yml} "${pkgdir}/usr/lib/jellyseerr"
 
   find "${pkgdir}/usr/lib/jellyseerr/.next" -type f -print0 | xargs -0 sed -i "s^${srcdir}/${pkgname}-${pkgver}^/usr/lib/jellyseerr^g"
 
-  rm -rf "${pkgdir}/usr/lib/jellyseerr/config"
-  rm -rf "${pkgdir}/usr/lib/jellyseerr/.next/cache"
   ln -s "/var/lib/jellyseerr" "${pkgdir}/usr/lib/jellyseerr/config"
 
-  install -Dm0644 "${srcdir}/jellyseerr.conf.d" "${pkgdir}/etc/conf.d/jellyseerr"
-  install -Dm0644 "${srcdir}/jellyseerr.sysusers" "${pkgdir}/usr/lib/sysusers.d/jellyseerr.conf"
-  install -Dm0644 "${srcdir}/jellyseerr.tmpfiles" "${pkgdir}/usr/lib/tmpfiles.d/jellyseerr.conf"
-  install -Dm0644 "${srcdir}/jellyseerr.service" "${pkgdir}/usr/lib/systemd/system/jellyseerr.service"
+  install -Dm644 'LICENSE' "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
+  install -Dm644 "${srcdir}/jellyseerr.conf.d" "${pkgdir}/etc/conf.d/jellyseerr"
+  install -Dm644 "${srcdir}/jellyseerr.sysusers" "${pkgdir}/usr/lib/sysusers.d/jellyseerr.conf"
+  install -Dm644 "${srcdir}/jellyseerr.tmpfiles" "${pkgdir}/usr/lib/tmpfiles.d/jellyseerr.conf"
+  install -Dm644 "${srcdir}/jellyseerr.service" "${pkgdir}/usr/lib/systemd/system/jellyseerr.service"
 }
