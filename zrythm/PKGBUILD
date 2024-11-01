@@ -1,13 +1,13 @@
-# Maintainer:
+# Maintainer: aur.chaotic.cx
 
 ## links
 # https://www.zrythm.org
 # https://gitlab.zrythm.org/zrythm/zrythm
 
-: ${_pkgver:=1.0.0-rc.1}
+: ${_pkgver:=1.0.0-rc.2}
 
 pkgname=zrythm
-pkgver=1.0.0.rc.1
+pkgver=1.0.0.rc.2
 pkgrel=1
 pkgdesc='Highly automated and intuitive digital audio workstation'
 url="https://gitlab.zrythm.org/zrythm/zrythm"
@@ -75,7 +75,7 @@ source=(
   0001-gcc13-fixes.patch
 )
 sha256sums=(
-  'ab22ce31530fdb947e7d72d5444710319c82ca9f59527274dc85e5fb57eb19e6'
+  'ebdde5f58b1334e3fcf4361750075932ad0655a66f4c445585c705896e824639'
   'SKIP'
   'SKIP'
   'bb93eea519020e491f85c38ab3901ac530bbf747c4e7acc3aaea39f402091653'
