@@ -1,11 +1,12 @@
 # Maintainer:
+# Contributor: leuko <aur202307_et_aydos_de>
 
 _pkgname="xpra-html5"
 pkgname="$_pkgname-git"
-pkgver=9.0.r137.g4202af3
+pkgver=16.2.r37.ged0b9fc
 pkgrel=1
 pkgdesc="HTML5 client for Xpra"
-url='https://github.com/Xpra-org/xpra-html5'
+url="https://github.com/Xpra-org/xpra-html5"
 license=('MPL-2.0')
 arch=('x86_64')
 
@@ -26,8 +27,13 @@ sha256sums=('SKIP')
 
 pkgver() {
   cd "$_pkgsrc"
-  git describe --long --tags --abbrev=7 --exclude='*[a-zA-Z][a-zA-Z]*' \
-    | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
+  local _tag _pkgver _version _revision _hash
+  _tag=$(git tag | sort -rV | head -1)
+  _pkgver=$(sed -E 's&^[^0-9]*&&' <<< "${_tag:?}")
+  _version="${_tag#v}"
+  _revision=$(git rev-list --count --cherry-pick "$_tag"...HEAD)
+  _hash=$(git rev-parse --short=7 HEAD)
+  printf '%s.r%s.g%s' "${_version:?}" "${_revision:?}" "${_hash:?}"
 }
 
 package() {
