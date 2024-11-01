@@ -57,6 +57,7 @@ PacUI has the following hard dependency:
 If you want PacUI to fully work, these dependencies are needed as well:
 - [expac](https://github.com/falconindy/expac)
 - [fzf](https://github.com/junegunn/fzf)
+- less
 - [pacman-contrib](https://www.archlinux.org/packages/community/x86_64/pacman-contrib/) (on Arch Linux)
 
 By default, Pacman is used for package management. If you want to enable the use of the AUR, PacUI optionally requires at least one of these AUR helpers: 
