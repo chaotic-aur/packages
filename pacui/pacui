@@ -260,7 +260,7 @@ function func_u
         if [[ -f /usr/bin/flatpak ]]
         then
             echo " updating flatpak packages ..."
-            flatpak update -y
+            flatpak update                                                          # both --user and --system in 1 command (as described in documentation)
             echo ""
         fi
 }
@@ -357,10 +357,12 @@ function func_m
         if [[ "$connection_error" == "false" ]] && [[ -f /usr/bin/flatpak ]]
         then
             echo " repairing flatpak(s) ..."
-            sudo flatpak repair
+            sudo flatpak repair --system --verbose                                  # repair system-wide flatpaks
+            echo ""
+            flatpak repair --user --verbose                                         # repair per-user flatpaks
             echo ""
             echo " cleaning up orphaned flatpak(s) ..."
-            flatpak uninstall --unused --delete-data -y
+            flatpak uninstall --unused --delete-data --verbose                      # both --user and --system in 1 command (as described in documentation)
             echo ""
         fi
 
@@ -396,6 +398,28 @@ function func_m
         echo ""
 
 
+        echo " searching potentially unneeded packages ..."
+        # "LC_ALL=C" forces the output to use english language. this is important, if the output is queried.
+        if [[ "$( LC_ALL=C sudo pacman -Rsu --print $(pacman -Qqd) )" != " there is nothing to do" ]]
+        then
+            sudo pacman -Rsu --print $(pacman -Qqd) --color always              # display unneeded packages
+            # ask, whether to remove these packages:
+            echo -e " \e[41m Do you want to remove these potentially unneeded packages? [y|N] \e[0m"
+            echo -e " \e[41m This can cause system breakage! \e[0m"
+            read -r -n 1 -e answer                                              # save user input in "answer" variable (only accept 1 character as input)
+
+            case ${answer:-n} in                                                # if ENTER is pressed, the variable "answer" is empty. if "answer" is empty, its default value is "n".
+                y|Y|yes|YES|Yes )                                               # do this, if "answer" is y or Y or yes or YES or Yes
+                    sudo pacman -Rsu $(pacman -Qqd) --color always --noconfirm                      # ATTENTION: (i do not know why but) using quotes (" symbols) around $(...) breaks pacman command for multiple packages
+                    ;;
+                * )                                                             # do this in all other cases
+                    echo -e " \e[1m Potentially unneeded packages have not been removed.\e[0m"
+                    ;;
+            esac                                                                # end of "case" loop
+        fi
+        echo ""
+
+
         echo " sudo pacdiff ..."
         #set +u                                                                     # temporarily disable strict mode for environment variables
         if [[ -n "$DIFFPROG" ]]                                                     # this if-condition avoids error message when $DIFFPROG is not set/empty
@@ -417,16 +441,6 @@ function func_m
             echo -e " \e[1m Display detailed information about a systemd service with: systemctl status <SYSTEMD SERVICE NAME> \e[0m"
             echo
             systemctl list-units --state=failed
-            echo
-        fi
-        echo ""
-
-
-        echo " checking symlink(s) ..."
-        if [[ -n "$(sudo find -xtype l)" ]]                                         # only run, if output of "sudo find -xtype l -print" is not empty
-        then
-            echo -e " \e[41m The following symbolic links are broken, please fix them manually: \e[0m"
-            sudo find -xtype l
         fi
         echo ""
 
@@ -510,35 +524,41 @@ function func_m
         sudo paccache --verbose --remove --keep 3
         echo ""
 
-        if [[ "$AUR_Helper" == "yay" ]]
+        if [[ -d $HOME/.cache/yay/ ]]
         then
             echo " cleaning yay package cache '$HOME/.cache/yay/' ..."
-            paccache --verbose --remove --keep 2 --cachedir $HOME/.cache/yay/       # ATTENTION: (i do not know why but) using quotes (" or ' symbols) around cach directory path breaks this command
+            paccache --verbose --remove --keep 1 --cachedir $HOME/.cache/yay/       # ATTENTION: (i do not know why but) using quotes (" or ' symbols) around cach directory path breaks this command
             echo ""
         fi
-        if [[ "$AUR_Helper" == "pikaur" ]]
+        if [[ -d $HOME/.cache/pikaur/pkg/ ]]
         then
             echo " cleaning pikaur package cache '$HOME/.cache/pikaur/pkg/' ..."
-            paccache --verbose --remove --keep 2 --cachedir $HOME/.cache/pikaur/pkg/            # ATTENTION: (i do not know why but) using quotes (" or ' symbols) around cach directory path breaks this command
+            paccache --verbose --remove --keep 1 --cachedir $HOME/.cache/pikaur/pkg/            # ATTENTION: (i do not know why but) using quotes (" or ' symbols) around cach directory path breaks this command
             echo ""
         fi
-        if [[ "$AUR_Helper" == "aurman" ]]
+        if [[ -d $HOME/.cache/aurman/ ]]
         then
             echo " cleaning aurman package cache '$HOME/.cache/aurman/' ..."
-            paccache --verbose --remove --keep 2 --cachedir $HOME/.cache/aurman/    # ATTENTION: (i do not know why but) using quotes (" or ' symbols) around cach directory path breaks this command
+            paccache --verbose --remove --keep 1 --cachedir $HOME/.cache/aurman/    # ATTENTION: (i do not know why but) using quotes (" or ' symbols) around cach directory path breaks this command
             echo ""
         fi
-        if [[ "$AUR_Helper" == "pakku" ]]
+        if [[ -d $HOME/.cache/pakku/ ]]
         then
             echo " cleaning pakku package cache '$HOME/.cache/pakku/' ..."
-            paccache --verbose --remove --keep 2 --cachedir $HOME/.cache/pakku/     # ATTENTION: (i do not know why but) using quotes (" or ' symbols) around cach directory path breaks this command
+            paccache --verbose --remove --keep 1 --cachedir $HOME/.cache/pakku/     # ATTENTION: (i do not know why but) using quotes (" or ' symbols) around cach directory path breaks this command
             echo ""
         fi
         # trizen uses package cache directory of pacman
-        if [[ "$AUR_Helper" == "paru" ]]
+        if [[ -d $HOME/.cache/paru/ ]]
         then
             echo " cleaning paru package cache '$HOME/.cache/paru/' ..."
-            paccache --verbose --remove --keep 2 --cachedir $HOME/.cache/paru/      # ATTENTION: (i do not know why but) using quotes (" or ' symbols) around cach directory path breaks this command
+            paccache --verbose --remove --keep 1 --cachedir $HOME/.cache/paru/      # ATTENTION: (i do not know why but) using quotes (" or ' symbols) around cach directory path breaks this command
+            echo ""
+        fi
+        if [[ -d $XDG_CACHE_HOME/paru/ ]]
+        then
+            echo " cleaning paru package cache '$XDG_CACHE_HOME/paru/' ..."
+            paccache --verbose --remove --keep 1 --cachedir $XDG_CACHE_HOME/paru/   # ATTENTION: (i do not know why but) using quotes (" or ' symbols) around cach directory path breaks this command
             echo ""
         fi
         # pacaur uses package cache directory of pacman
@@ -2499,7 +2519,7 @@ This will quit PacUI and clear your terminal. Scroll up to see all terminal outp
 \e[1m1 - UPDATE SYSTEM
 \e[36m"yay -Syua"
 \e[36m"sudo snap refresh" \e[0m(only if snapd is installed)
-\e[36m"flatpak update -y" \e[0m(only if flatpak is installed)
+\e[36m"flatpak update" \e[0m(only if flatpak is installed)
 The first command compares a list of all installed packages with package database on your system repository mirror/server. If an updated package is available from your system repositories, it will get downloaded and installed on your system.
 Afterwards, all packages from the Arch User Repository (AUR), which have an updated PKGBUILD file, are downloaded, compiled, and installed.
 If updates from system repositories fail, the user is offered the choice to update packages using \e[36m"sudo pacman -Syu --overwrite='*'"\e[0m.
@@ -2519,14 +2539,18 @@ This command generates a new mirrorlist of all available Manjaro repository mirr
 \e[36m"sudo reflector --verbose --protocol https,ftps --age 5 --sort rate --save /etc/pacman.d/mirrorlist && sudo pacman -Syyuu" \e[0m(for Arch and other Arch-based distros)
 This command generates a new mirrorslist of secure and fast repository mirrors/servers. Then it resyncs the database to match the mirrors and updates the system.
 
-\e[36m"sudo flatpak repair" \e[0m(only if flatpak is installed)
+\e[36m"flatpak repair" \e[0m(only if flatpak is installed)
 This command repairs anything wrong with flatpak. It can even clean up unneeded files.
 
-\e[36m"flatpak uninstall --unused --delete-data -y" \e[0m(only if flatpak is installed)
-This command cleans up unused flatpak packages, which are typically left over after flatpak updates.
+\e[36m"flatpak uninstall --unused --delete-data" \e[0m(only if flatpak is installed)
+This command cleans up unused flatpak packages, which are typically left over after flatpak updates or manual removals.
 
 \e[36m"sudo pacman -Rsn $(pacman -Qqdt)"
 This option lists all orphaned packages on your system. Orphaned packages are old and no longer needed dependencies (packages not explicitly installed by you), which were never removed from your system.
+If you want to keep an orphaned package, use this command: "sudo pacman -D --asexplicit <PACKAGE NAME>"
+
+\e[36m"sudo pacman -Rsu $(pacman -Qqd)"
+This option lists all potentially unneeded packages on your system. Potentially unneeded packages (not detected by "sudo pacman -Rsn $(pacman -Qqdt)" previously) are e.g. dependency cycles (also known as "circular dependencies"), excessive dependencies (fulfilled more than once), some non-explicit optionals etc.
 
 \e[36m"sudo pacdiff"
 A .pacnew file may be created during a package upgrade to avoid overwriting a file (e.g. a config file) which already exists and was previously modified by the user. A .pacsave file may be created during a package removal, or by a package installation (the package must be removed first). These files require manual intervention from the user and it is good practice to handle them regularly - ideally everytime a .pacnew/.pacsave file has been created.
@@ -2539,10 +2563,6 @@ In most cases, the syntax does not change and you can simply remove the .pacnew 
 
 \e[36m"systemctl list-units --state=failed"
 This command checks for systemd units in a failed state. It is possible the systemd service will no longer be failed after a reboot. But if a systemd service still fails after a reboot, you should manually fix the problem. Start by using the command "systemctl status <SYSTEMD UNIT NAME>".
-
-\e[36m"sudo find -xtype l" \e[0m(only if there are broken symlinks)
-This command displays a list of broken symbolic links on your system. These links are not deleted by default. You have to decide yourself what to do with them. When you have doubt about deleting them, leave them on your system. They can sometimes cause problems, but they use almost no hard drive space.
-Symbolic links can be removed manually or "sudo find -xtype l -delete" can be used to remove all broken symbolic links.
 
 \e[36m"pacman -Dk"
 This command checks your local package repository for consistency and shows missing packages, dependencies, or other errors. Please refer to "man pacman" for a more detailed explanation.
@@ -2562,11 +2582,11 @@ This command limits all log files in journalctl to a combined size of 250 megaby
 
 \e[36m"sudo paccache --verbose --remove --uninstalled --keep 1"
 \e[36m"sudo paccache --verbose --remove --keep 3"
-\e[36m"paccache --verbose --remove --keep 2 --cachedir $HOME/.cache/yay/"
+\e[36m"paccache --verbose --remove --keep 1 --cachedir $HOME/.cache/yay/"
 By default Pacman uses this cache directory for downloading packages: /var/cache/pacman/pkg/ . No cached packages get deleted automatically. The package cache of an old and actively used installation can become quite large. Clean it to regain space on your root partition.
 The first command removes all old packages from cache, which are not installed (anymore) on your system (except the latest version of that package).
 The second command removes all old packages from cache except the 3 latest versions: The version you have currently installed on your system and 2 previous versions. Old package versions are kept to enable you to use ROLL BACK SYSTEM (or to manually downgrade packages) even without a working internet connection.
-The third command removes built AUR packages (except the latest 2 versions).
+The third command removes built AUR packages (except the latest version).
 
 \e[36m"comm -13 <(echo "$available_kernels") <(echo "$installed_kernels")" \e[0m(for Manjaro)
 This long "comm" command compares the output of 2 lists: The first list of <KERNEL NAME> contains (still) available kernels in your repository (which are also installed on your system) and the second list of <KERNEL NAME> contains installed kernels.
@@ -3273,3 +3293,4 @@ do
 # now, the infinite while-loop will start again from its top by clearing the terminal screen and redrawing the UI
 
 done                                                                                # close while-loop
+
