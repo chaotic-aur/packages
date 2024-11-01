@@ -9,7 +9,7 @@ pkgdesc="Bash script providing advanced Pacman and Yay/Pikaur/Aurman/Pakku/Trize
 arch=(any)
 url="https://github.com/excalibur1234/$pkgname"
 license=('GPL3')
-depends=('pacman-contrib' 'expac' 'sudo' 'fzf')
+depends=('pacman-contrib' 'expac' 'sudo' 'fzf' 'less')
 
 
 conflicts=("$pkgname-git")
