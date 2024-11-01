@@ -1,4 +1,9 @@
 # Maintainer:
+# Contributor: Matthew Sexton <matthew@asylumtech.com>
+# Contributor: Felix Bühler <account at buehler dot rocks>
+# Contirbutor: Nils Czernia <nils[at]czserver.de>
+
+: ${_sync_nmap:=false}
 
 _gitname="nmap"
 _pkgname="zenmap"
@@ -38,7 +43,11 @@ _source_main() {
 }
 
 pkgver() {
-  LANG=C LC_ALL=C pacman -Si nmap | grep -Pom1 '^Version\s+:\s+\K\S+(?=-[0-9])'
+  if [[ "${_sync_nmap::1}" == "t" ]]; then
+    LANG=C LC_ALL=C pacman -Si nmap | grep -Pom1 '^Version\s+:\s+\K\S+(?=-[0-9])'
+  else
+    echo "${pkgver:?}"
+  fi
 }
 
 build() {
