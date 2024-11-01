@@ -5,7 +5,7 @@
 
 pkgname=jellyseerr
 pkgver=2.0.1
-pkgrel=2
+pkgrel=3
 pkgdesc='Request management and media discovery tool for the Plex ecosystem'
 arch=('x86_64')
 url='https://github.com/Fallenbagel/jellyseerr'
@@ -13,10 +13,12 @@ license=('MIT')
 depends=(
   'bash'
   'glibc'
-  'java-runtime'
-  'python'
 )
-optdepends=('jellyfin: The Free Software Media System')
+optdepends=(
+  'jellyfin-server: The Free Software Media System'
+  'plex-media-server: Plex Media Server'
+  'emby-server: The open media solution'
+)
 makedepends=('pnpm' 'nodejs-lts-iron')
 options=('!strip' '!debug')
 backup=(
@@ -66,7 +68,7 @@ build() {
 }
 
 package() {
-  depends=('nodejs')
+  depends+=('nodejs')
   cd "${srcdir}/${pkgname}-${pkgver}"
 
   install -dm755 "${pkgdir}/usr/lib/jellyseerr"
