@@ -1,10 +1,16 @@
-# Be sure to use `systemctl edit radarr` to modify this service with an override.conf because
-# direct changes will be overwritten by package updates.
+# Be sure to use `systemctl edit radarr` to modify this service with an
+# override.conf because direct changes will be overwritten by package updates.
 #
-# A user per service w/ shared group setup would have an override like:
+# A user per service with shared group setup would have an override like:
 # [Service]
 # Group=sharedgroupname
 # UMask=002
+#
+# If your media directory is in /home (it shouldn't be)
+# You will need to have an override like:
+# [Service]
+# PrivateUsers=false
+# ProtectHome=false
 
 [Unit]
 Description=Radarr Daemon
