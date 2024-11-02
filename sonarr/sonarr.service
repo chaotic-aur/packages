@@ -11,6 +11,10 @@
 # [Service]
 # PrivateUsers=false
 # ProtectHome=false
+#
+# When running sonarr in LXC:
+# [Service]
+# PrivateUsers=false
 
 [Unit]
 Description=Sonarr Daemon
