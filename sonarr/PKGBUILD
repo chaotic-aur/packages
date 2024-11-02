@@ -7,7 +7,7 @@
 pkgname=sonarr
 _pkgname=Sonarr
 pkgver=4.0.10.2544
-pkgrel=8
+pkgrel=9
 pkgdesc='Smart PVR for newsgroup and torrent users.'
 arch=('x86_64' 'aarch64' 'armv7h')
 url='https://sonarr.tv'
@@ -49,7 +49,7 @@ source=(
 )
 sha256sums=('d6f1b1d04ea572cfd2aba72d8adac1925f544c43b99f31f3a047588f8369be78'
   '19112dc0051224b4de66f28077c93b6ee06e163b5194e6aecf62dedf66ff45a9'
-  '3fe3cef29b846bd294eb1f7b24451c18a5cc5ceed6142ca4994de3788c4db665'
+  'b2673e7b2c7964ceb9672a078797d12fb3c1c8ea908bfaf6330514b8644b0ba2'
   '00141d4cbf34daa6d91b26179d4847ec970e2767382e18fdf9af2ec84a0ff43e'
   '0acb3697a5001b00f79269581cd08645f9d5e1e9f0a57cc3e7deeb12d66accc9')
 
@@ -79,8 +79,8 @@ prepare() {
   export DOTNET_CLI_TELEMETRY_OPTOUT=1
   export DOTNET_NOLOGO=1
   export DOTNET_SKIP_FIRST_TIME_EXPERIENCE=1
-  dotnet restore src/${_pkgname}.sln \
-    --runtime ${_runtime} \
+  dotnet restore "src/${_pkgname}.sln" \
+    --runtime "${_runtime}" \
     --locked-mode
 
   # Prepare frontend
@@ -94,16 +94,16 @@ build() {
   export DOTNET_CLI_TELEMETRY_OPTOUT=1
   export DOTNET_NOLOGO=1
   export DOTNET_SKIP_FIRST_TIME_EXPERIENCE=1
-  dotnet build src/${_pkgname}.sln \
-    --framework ${_framework} \
-    --runtime ${_runtime} \
+  dotnet build "src/${_pkgname}.sln" \
+    --framework "${_framework}" \
+    --runtime "${_runtime}" \
     --no-self-contained \
     --no-restore \
     --configuration Release \
     -p:Platform=Posix \
     -p:AssemblyVersion=${pkgver} \
     -p:AssemblyConfiguration=${_branch} \
-    -p:RuntimeIdentifiers=${_runtime} \
+    -p:RuntimeIdentifiers="${_runtime}" \
     -t:PublishAllRids \
     && dotnet build-server shutdown # Build servers do not terminate automatically
 

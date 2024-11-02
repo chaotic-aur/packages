@@ -11,6 +11,10 @@
 # [Service]
 # PrivateUsers=false
 # ProtectHome=false
+#
+# When running radarr in LXC:
+# [Service]
+# PrivateUsers=false
 
 [Unit]
 Description=Radarr Daemon
