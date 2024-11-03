@@ -1,6 +1,6 @@
 pkgbase = localsend-git
 	pkgdesc = An open source cross-platform alternative to AirDrop
-	pkgver = 1.15.4.r89.gfd8002e
+	pkgver = 1.16.0.r4.g1a7927f
 	pkgrel = 1
 	url = https://github.com/localsend/localsend
 	arch = x86_64
@@ -15,7 +15,7 @@ pkgbase = localsend-git
 	makedepends = patchelf
 	depends = libayatana-appindicator
 	provides = localsend
-	conflicts = localsend=1.15.4
+	conflicts = localsend=1.16.0
 	source = localsend::git+https://github.com/localsend/localsend.git
 	sha256sums = SKIP
 
