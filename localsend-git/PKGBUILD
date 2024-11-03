@@ -1,16 +1,16 @@
-# Maintainer:
+# Maintainer: aur.chaotic.cx
 
 ## links
 # https://localsend.org/
 # https://github.com/localsend/localsend
 
 ## options
-: ${_install_path:=opt}
+: ${_install_path:=usr/lib}
 
 # basic info
 _pkgname="localsend"
 pkgname="$_pkgname-git"
-pkgver=1.15.4.r89.gfd8002e
+pkgver=1.16.0.r4.g1a7927f
 pkgrel=1
 pkgdesc="An open source cross-platform alternative to AirDrop"
 url="https://github.com/localsend/localsend"
@@ -76,7 +76,7 @@ package() {
   ln -sfr "$pkgdir/$_install_path/$_pkgname/$_pkgname" "$pkgdir/usr/bin/${_pkgname}"
 
   # icon
-  install -Dm644 "$srcdir/$_pkgname/app/build/flutter_assets/assets/img/logo-512.png" "$pkgdir/usr/share/pixmaps/$_pkgname.png"
+  install -Dm644 "$srcdir/$_pkgsrc/app/build/flutter_assets/assets/img/logo-512.png" "$pkgdir/usr/share/pixmaps/$_pkgname.png"
 
   # .desktop file
   install -Dm644 /dev/stdin "$pkgdir/usr/share/applications/$_pkgname.desktop" << END
@@ -90,7 +90,7 @@ Terminal=false
 Categories=Utility;Network;
 END
 
-  #license
+  # license
   install -Dm644 "$srcdir/$_pkgsrc/LICENSE" -t "$pkgdir/usr/share/licenses/$pkgname/"
 
   # permissions
