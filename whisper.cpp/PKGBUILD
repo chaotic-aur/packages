@@ -4,12 +4,11 @@ pkgbase=whisper.cpp
 pkgname=(
   "${pkgbase}"
   "${pkgbase}-cuda"
-  "${pkgbase}-clblas"
-  # "${pkgbase}-hipblas"
   "${pkgbase}-openvino"
+  "${pkgbase}-vulkan"
 )
 pkgver=1.7.1
-pkgrel=2
+pkgrel=3
 pkgdesc="Port of OpenAI's Whisper model in C/C++"
 arch=('armv7h' 'aarch64' 'x86_64')
 url="https://github.com/ggerganov/whisper.cpp"
@@ -17,13 +16,13 @@ license=("MIT")
 depends=('glibc' 'gcc-libs')
 makedepends=(
   'blas-openblas'
-  'clblast'
   'cmake'
   'cuda'
   'git'
   'openvino'
-  # 'rocm-hip-sdk'
+  'vulkan-icd-loader'
 )
+
 source=("${pkgbase}-${pkgver}.tar.gz::${url}/archive/v${pkgver}.tar.gz")
 
 prepare() {
@@ -57,27 +56,22 @@ build() {
   )
   local _cmake_openblas_args=(
     "${_cmake_args[@]}"
-    -DWHISPER_OPENBLAS=ON
-  )
-
-  local _cmake_clblas_args=(
-    "${_cmake_args[@]}"
-    -DWHISPER_CLBLAST=ON
+    -DGGML_OPENBLAS=1
   )
 
   local _cmake_cuda_args=(
     "${_cmake_args[@]}"
-    -DWHISPER_CUDA=ON
-  )
-
-  local _cmake_hipblas_args=(
-    "${_cmake_args[@]}"
-    -DWHISPER_HIPBLAS=ON
+    -DGGML_CUDA=1
   )
 
   local _cmake_openvino_args=(
     "${_cmake_args[@]}"
-    -DWHISPER_OPENVINO=ON
+    -DWHISPER_OPENVINO=1
+  )
+
+  local _cmake_vulkan_args=(
+    "${_cmake_args[@]}"
+    -DGGML_VULKAN=1
   )
 
   echo "Build ${pkgbase} with OPENBlas"
@@ -85,26 +79,21 @@ build() {
   cmake "${_cmake_openblas_args[@]}"
   cmake --build build
 
-  echo "Build ${pkgbase} with OpenCL"
-  cd "${srcdir}/${pkgbase}-clblas"
-  cmake "${_cmake_clblas_args[@]}"
-  cmake --build build
-
-  echo "Build ${pkgbase} with cuda (NVIDIA CUDA)"
+  echo "Build ${pkgbase} with CUDA (NVIDIA CUDA)"
   cd "${srcdir}/${pkgbase}-cuda"
   export PATH+=":/opt/cuda/bin"
   cmake "${_cmake_cuda_args[@]}"
   cmake --build build
 
-  # echo "Build ${pkgbase} with HIPBlas (AMD ROCm)"
-  # cd "${srcdir}/${pkgbase}-hipblas"
-  # cmake "${_cmake_hipblas_args[@]}"
-  # cmake --build build
-
   echo "Build ${pkgbase} with OpenVINO run-time"
   cd "${srcdir}/${pkgbase}-openvino"
   source /opt/intel/openvino/setupvars.sh
   cmake "${_cmake_openvino_args[@]}"
+  cmake --build build
+
+  echo "Build ${pkgbase} with Vulkan run-time"
+  cd "${srcdir}/${pkgbase}-vulkan"
+  cmake "${_cmake_vulkan_args[@]}"
   cmake --build build
 }
 
@@ -114,17 +103,6 @@ package_whisper.cpp() {
   provides=("${pkgbase}=${pkgver}")
 
   cd "${pkgbase}"
-  DESTDIR="${pkgdir}" cmake --install build
-  _package
-}
-
-package_whisper.cpp-clblas() {
-  pkgdesc="$pkgdesc (with OpenCL optimizations)"
-  depends+=('clblast')
-  provides=("${pkgbase}=${pkgver}")
-  conflicts=("${pkgbase}")
-
-  cd "${pkgbase}-clblas"
   DESTDIR="${pkgdir}" cmake --install build
   _package
 }
@@ -140,20 +118,20 @@ package_whisper.cpp-cuda() {
   _package
 }
 
-package_whisper.cpp-hipblas() {
-  pkgdesc="$pkgdesc (with AMD ROCm optimizations)"
-  depends+=('rocm-hip-runtime')
+package_whisper.cpp-openvino() {
+  pkgdesc="$pkgdesc (with OpenVINO run-time)"
+  depends+=('openvino' 'pugixml')
   provides=("${pkgbase}=${pkgver}")
   conflicts=("${pkgbase}")
 
-  cd "${pkgbase}-hipblas"
+  cd "${pkgbase}-openvino"
   DESTDIR="${pkgdir}" cmake --install build
   _package
 }
 
-package_whisper.cpp-openvino() {
-  pkgdesc="$pkgdesc (with OpenVINO run-time)"
-  depends+=('openvino' 'pugixml')
+package_whisper.cpp-vulkan() {
+  pkgdesc="$pkgdesc (with Vulkan optimizations)"
+  depends+=('vulkan-driver' 'vulkan-icd-loader')
   provides=("${pkgbase}=${pkgver}")
   conflicts=("${pkgbase}")
 
