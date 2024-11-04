@@ -13,9 +13,11 @@ pkgbase = localsend-git
 	makedepends = llvm
 	makedepends = ninja
 	makedepends = patchelf
+	makedepends = rustup
 	depends = libayatana-appindicator
 	provides = localsend
 	conflicts = localsend=1.16.0
+	options = !lto
 	source = localsend::git+https://github.com/localsend/localsend.git
 	sha256sums = SKIP
 
