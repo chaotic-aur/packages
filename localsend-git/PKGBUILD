@@ -29,10 +29,13 @@ makedepends=(
   'llvm'
   'ninja'
   'patchelf'
+  'rustup'
 )
 
 conflicts=("$_pkgname=${pkgver%%.r*}")
 provides=("$_pkgname")
+
+options=('!lto')
 
 _pkgsrc="$_pkgname"
 source=("$_pkgsrc"::"git+$url.git")
@@ -59,7 +62,7 @@ build() {
 package() {
   cd "$_pkgsrc/app/build/linux/x64/release/bundle"
 
-  # app files
+  # files
   install -Dm755 "localsend_app" "$pkgdir/$_install_path/$_pkgname/$_pkgname"
   cp --reflink=auto -r lib/ "$pkgdir/$_install_path/$_pkgname/"
   cp --reflink=auto -r data/ "$pkgdir/$_install_path/$_pkgname/"
@@ -78,7 +81,7 @@ package() {
   # icon
   install -Dm644 "$srcdir/$_pkgsrc/app/build/flutter_assets/assets/img/logo-512.png" "$pkgdir/usr/share/pixmaps/$_pkgname.png"
 
-  # .desktop file
+  # launcher
   install -Dm644 /dev/stdin "$pkgdir/usr/share/applications/$_pkgname.desktop" << END
 [Desktop Entry]
 Type=Application
