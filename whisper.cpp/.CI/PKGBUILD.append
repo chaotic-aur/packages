@@ -1,6 +1,6 @@
 for _p in "${pkgname[@]}"; do
   eval "package_$_p() {
     depends+=('libggml')
-    $(declare -f "_package_$_p" | tail -n +2)
+    $(declare -f "package_$_p" | tail -n +2)
   }"
 done
