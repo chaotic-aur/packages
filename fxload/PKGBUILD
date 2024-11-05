@@ -1,4 +1,4 @@
-# Maintainer:
+# Maintainer: aur.chaotic.cx
 
 _pkgver=$(LANG=C LC_ALL=C pacman -Si core/libusb | grep '^Version' | head -1 | sed -nE 's@^Version\s+: (.*)-.*$@\1@p')
 
