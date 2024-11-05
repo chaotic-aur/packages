@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-
-set -x
-
-updpkgsums
-makepkg --printsrcinfo > .SRCINFO
-# rm *.zip
