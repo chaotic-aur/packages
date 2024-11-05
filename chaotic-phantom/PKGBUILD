@@ -1,0 +1,15 @@
+pkgbase='phantom'
+pkgname=(
+  pamac-git
+  whisper.cpp-clblas
+)
+pkgver=0.0.1
+pkgrel=1
+pkgdesc="metapackage - pending delete"
+arch=('any')
+
+for _p in "${pkgname[@]}"; do
+  eval "package_$_p() {
+    :
+  }"
+done
