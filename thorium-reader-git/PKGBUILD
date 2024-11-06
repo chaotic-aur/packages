@@ -1,8 +1,8 @@
-# Maintainer:
+# Maintainer: aur.chaotic.cx
 
 ## options
 : ${_electron_version=}
-: ${_nodeversion:=20}
+: ${_nodeversion:=23}
 : ${_install_path:=usr/share}
 
 : ${_build_git:=false}
@@ -10,7 +10,7 @@
 ## basic info
 _pkgname="thorium-reader"
 pkgname="$_pkgname-git"
-pkgver=3.0.0.r11.g91b1aa7
+pkgver=3.0.0.r100.g2294270
 pkgrel=1
 pkgdesc="Cross-platform desktop reading app based on the Readium Desktop toolkit"
 url="https://github.com/edrlab/thorium-reader"
@@ -55,7 +55,7 @@ pkgver() {
   printf '%s.r%s.g%s' "${_version:?}" "${_revision:?}" "${_hash:?}"
 }
 
-build() {
+build() (
   _nvm_env
 
   sed -E \
@@ -66,9 +66,11 @@ build() {
   npm install --no-audit --no-fund --prefer-offline
   npm run package:build
   npm exec -c "electron-builder --linux --x64 --dir --publish never -c.electronDist='/usr/lib/electron${_electron_version:-}' -c.electronVersion=${SYSTEM_ELECTRON_VERSION}"
-}
+)
 
-package() {
+package() (
+  _nvm_env
+
   install -Dm755 /dev/stdin "$pkgdir/usr/bin/$_pkgname" << END
 #!/usr/bin/env sh
 if [ "\$#" -lt 1 ]; then
@@ -97,4 +99,4 @@ END
   install -Dm644 "$_pkgsrc/resources/icon.png" "$pkgdir/usr/share/pixmaps/$_pkgname.png"
 
   install -Dm644 "$_pkgsrc/LICENSE" -t "$pkgdir/usr/share/licenses/$pkgname"
-}
+)
