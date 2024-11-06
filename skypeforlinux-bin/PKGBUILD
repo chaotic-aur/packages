@@ -1,9 +1,9 @@
-# Maintainer:
+# Maintainer: aur.chaotic.cx
 
 _pkgname="skypeforlinux"
 _snapname="skype"
 pkgname="$_pkgname-bin"
-pkgver=8.125.0.201
+pkgver=8.131.0.202
 pkgrel=1
 pkgdesc='Skype for Linux'
 url="https://snapcraft.io/$_snapname"

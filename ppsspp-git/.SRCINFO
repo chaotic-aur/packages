@@ -1,6 +1,6 @@
 pkgbase = ppsspp-git
 	pkgdesc = PSP emulator written in C++
-	pkgver = 1.17.1.r823.g0b76d44
+	pkgver = 1.18.1.r31.ga703b9a
 	pkgrel = 1
 	url = https://github.com/hrydgard/ppsspp
 	arch = x86_64
@@ -18,8 +18,8 @@ pkgbase = ppsspp-git
 	depends = libzip
 	depends = sdl2
 	depends = snappy
-	provides = ppsspp=1.17.1
-	provides = ppsspp-assets=1.17.1
+	provides = ppsspp=1.18.1
+	provides = ppsspp-assets=1.18.1
 	conflicts = ppsspp
 	conflicts = ppsspp-assets
 	options = !lto

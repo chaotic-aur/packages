@@ -1,6 +1,6 @@
 pkgbase = kdenlive-stabledeps-git
 	pkgdesc = A non-linear video editor for Linux using the MLT video framework
-	pkgver = 24.04.80.r45.g7a9a151
+	pkgver = 24.08.2.r372.g1bc5b7c
 	pkgrel = 1
 	url = https://invent.kde.org/multimedia/kdenlive
 	arch = x86_64

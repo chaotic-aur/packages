@@ -1,8 +1,8 @@
-# Maintainer:
+# Maintainer: aur.chaotic.cx
 
 _pkgname="cemu"
 pkgname="$_pkgname-git"
-pkgver=2.2.r3.g8508c62
+pkgver=2.3.r1.g9941e00
 pkgrel=1
 pkgdesc="Nintendo Wii U emulator"
 url="https://github.com/cemu-project/Cemu"

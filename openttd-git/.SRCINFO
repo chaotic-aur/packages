@@ -1,6 +1,6 @@
 pkgbase = openttd-git
 	pkgdesc = Engine for running Transport Tycoon Deluxe
-	pkgver = 14.1.r698.g22e525d
+	pkgver = 14.1.r918.g14fac2a
 	pkgrel = 1
 	url = https://github.com/OpenTTD/OpenTTD
 	arch = x86_64
@@ -13,7 +13,7 @@ pkgbase = openttd-git
 	depends = hicolor-icon-theme
 	optdepends = openttd-opengfx: free graphics
 	optdepends = openttd-opensfx: free soundset
-	provides = openttd=14.1.r698.g22e525d
+	provides = openttd=14.1.r918.g14fac2a
 	conflicts = openttd
 	source = openttd::git+https://github.com/OpenTTD/OpenTTD.git
 	sha256sums = SKIP

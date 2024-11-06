@@ -1,8 +1,8 @@
-# Maintainer:
+# Maintainer: aur.chaotic.cx
 
 _pkgname=openttd
 pkgname="$_pkgname-git"
-pkgver=14.1.r698.g22e525d
+pkgver=14.1.r918.g14fac2a
 pkgrel=1
 pkgdesc="Engine for running Transport Tycoon Deluxe"
 url="https://github.com/OpenTTD/OpenTTD"
