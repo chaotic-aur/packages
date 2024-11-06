@@ -1,4 +1,4 @@
-# Maintainer:
+# Maintainer: aur.chaotic.cx
 
 ## links
 # https://fluffychat.im/
@@ -15,7 +15,7 @@ fi
 _pkgname="fluffychat"
 pkgname="$_pkgname"
 pkgver=1.22.1
-pkgrel=1
+pkgrel=2
 pkgdesc="The cutest instant messenger in the [matrix]"
 url="https://github.com/krille-chan/fluffychat"
 license=('AGPL-3.0-only')

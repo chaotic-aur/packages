@@ -1,9 +1,9 @@
-# Maintainer:
+# Maintainer: aur.chaotic.cx
 
 _pkgname="image-roll"
 pkgname="$_pkgname"
 pkgver=2.1.0
-pkgrel=1
+pkgrel=2
 pkgdesc="GTK image viewer with basic image manipulation tools"
 url="https://github.com/weclaw1/image-roll"
 license=('MIT')

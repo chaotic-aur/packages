@@ -1,6 +1,6 @@
 pkgbase = cemu-git
 	pkgdesc = Nintendo Wii U emulator
-	pkgver = 2.2.r3.g8508c62
+	pkgver = 2.3.r1.g9941e00
 	pkgrel = 1
 	url = https://github.com/cemu-project/Cemu
 	arch = x86_64
@@ -34,7 +34,7 @@ pkgbase = cemu-git
 	depends = pugixml
 	depends = sdl2
 	depends = wxwidgets-gtk3
-	provides = cemu=2.2
+	provides = cemu=2.3
 	conflicts = cemu
 	source = cemu::git+https://github.com/cemu-project/Cemu.git
 	source = imgui::git+https://github.com/ocornut/imgui.git

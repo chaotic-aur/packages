@@ -1,7 +1,7 @@
 pkgbase = stockfish-git
 	pkgdesc = A strong UCI chess engine
-	pkgver = 17.r0.ge0bfc4b
-	pkgrel = 2
+	pkgver = 17.r51.g24c5779
+	pkgrel = 1
 	url = https://github.com/official-stockfish/Stockfish
 	arch = x86_64
 	license = GPL-3.0-only

@@ -1,7 +1,10 @@
+# Maintainer: aur.chaotic.cx
+# Adapted for Chaotic-AUR by PedroHLC <root@pedrohlc.com>
+
 # Neofetch Maintainer: Dylan Araps <dyl@tfwno.gf>
 # neofetch-git AUR PKGBUILD - https://aur.archlinux.org/packages/neofetch-git/
 # Frogged by Tk-Glitch <tkg@froggi.es>
-# Adapted for Chaotic-AUR by PedroHLC <root@pedrohlc.com>
+
 pkgname=chaotic-neofetch-git
 _pkgname=neofetch
 pkgver=7.1.0.r166.gccd5d9f5

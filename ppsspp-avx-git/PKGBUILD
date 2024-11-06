@@ -1,8 +1,10 @@
-## useful links:
+# Maintainer: aur.chaotic.cx
+
+## links:
 # https://www.ppsspp.org/
 # https://github.com/hrydgard/ppsspp
 
-# options
+## options
 : ${_build_qt:=false}
 : ${_build_sdl:=true}
 
@@ -19,64 +21,57 @@ fi
 [[ "${_build_avx::1}" == "t" ]] && _pkgtype+='-avx'
 [[ "${_build_git::1}" == "t" ]] && _pkgtype+='-git'
 
-# basic info
+## basic info
 _pkgname="ppsspp"
 pkgname="${_pkgname}${_pkgtype:-}"
-pkgver=1.17.1.r823.g0b76d44
+pkgver=1.18.1.r31.ga703b9a
 pkgrel=1
 pkgdesc='PSP emulator written in C++'
 url="https://github.com/hrydgard/ppsspp"
 arch=(x86_64 aarch64)
 license=('GPL-2.0-or-later')
 
-# main package
-_main_package() {
-  depends=(
-    glew
-    libzip
-    sdl2
-    snappy
+depends=(
+  glew
+  libzip
+  sdl2
+  snappy
+)
+makedepends=(
+  clang
+  cmake
+  gendesk
+  git
+  lld
+  ninja
+  python
+)
 
-    ## implicit
-    #libglvnd
-    #libpng
-    #zlib
-    #zstd
+if [[ "${_build_qt::1}" == "t" ]]; then
+  makedepends+=(
+    qt5-tools
+    qt5-base
+    qt5-multimedia
   )
-  makedepends=(
-    clang
-    cmake
-    gendesk
-    git
-    lld
-    ninja
-    python
+fi
+if [[ "${_build_sdl::1}" == "t" ]]; then
+  makedepends+=(
+    sdl2_ttf
   )
+fi
 
-  if [[ "${_build_qt::1}" == "t" ]]; then
-    makedepends+=(
-      qt5-tools
-      qt5-base
-      qt5-multimedia
-    )
-  fi
-  if [[ "${_build_sdl::1}" == "t" ]]; then
-    makedepends+=(
-      sdl2_ttf
-    )
-  fi
+provides=(
+  "ppsspp=${pkgver%%.r*}"
+  "ppsspp-assets=${pkgver%%.r*}"
+)
+conflicts=(
+  "ppsspp"
+  "ppsspp-assets"
+)
 
-  provides=(
-    "ppsspp=${pkgver%%.r*}"
-    "ppsspp-assets=${pkgver%%.r*}"
-  )
-  conflicts=(
-    "ppsspp"
-    "ppsspp-assets"
-  )
+options=(!lto)
 
-  options=(!lto)
-
+_source_main() {
   _pkgsrc="ppsspp"
   source=(
     "git+https://github.com/hrydgard/ppsspp.git"
@@ -84,16 +79,8 @@ _main_package() {
   sha256sums=(
     'SKIP'
   )
-
-  _source_ppsspp
-
-  _source_bylaws_libadrenotools
-  _source_hrydgard_ppsspp_ffmpeg
-  _source_kingcom_armips
-  _source_tencent_rapidjson
 }
 
-# submodules
 _source_ppsspp() {
   source+=(
     'bylaws.libadrenotools'::'git+https://github.com/bylaws/libadrenotools.git'
@@ -266,7 +253,14 @@ _source_tencent_rapidjson() {
   )
 }
 
-# common functions
+_source_main
+_source_ppsspp
+
+_source_bylaws_libadrenotools
+_source_hrydgard_ppsspp_ffmpeg
+_source_kingcom_armips
+_source_tencent_rapidjson
+
 pkgver() {
   cd ppsspp
   git describe --long --tags --abbrev=7 --exclude='*[a-zA-Z][a-zA-Z]*' \
@@ -427,6 +421,3 @@ package() {
 
   install -Dm644 ppsspp/icons/icon-512.svg "$pkgdir/usr/share/pixmaps/ppsspp.svg"
 }
-
-# execute
-_main_package

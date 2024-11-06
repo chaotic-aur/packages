@@ -1,4 +1,4 @@
-# Maintainer:
+# Maintainer: aur.chaotic.cx
 
 ## links
 # https://www.bluemail.me
@@ -6,8 +6,8 @@
 _pkgname="bluemail"
 _snapname="bluemail"
 pkgname="$_pkgname"
-pkgver=1.137.2
-pkgrel=3
+pkgver=1.140.34
+pkgrel=1
 pkgdesc="BlueMail is a free, secure, universal email app, capable of managing an unlimited number of mail accounts"
 url="https://snapcraft.io/$_snapname"
 arch=('x86_64')

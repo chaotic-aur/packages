@@ -1,4 +1,4 @@
-# Maintainer:
+# Maintainer: aur.chaotic.cx
 
 ## links
 # https://stockfishchess.org/
@@ -23,8 +23,8 @@ unset _pkgtype
 ## basic info
 _pkgname=stockfish
 pkgname="$_pkgname${_pkgtype:-}"
-pkgver=17.r0.ge0bfc4b
-pkgrel=2
+pkgver=17.r51.g24c5779
+pkgrel=1
 pkgdesc="A strong UCI chess engine"
 url="https://github.com/official-stockfish/Stockfish"
 license=('GPL-3.0-only')

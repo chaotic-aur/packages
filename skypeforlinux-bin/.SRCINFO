@@ -1,6 +1,6 @@
 pkgbase = skypeforlinux-bin
 	pkgdesc = Skype for Linux
-	pkgver = 8.125.0.201
+	pkgver = 8.131.0.202
 	pkgrel = 1
 	url = https://snapcraft.io/skype
 	arch = x86_64
@@ -9,7 +9,7 @@ pkgbase = skypeforlinux-bin
 	makedepends = pandoc
 	makedepends = sha3sum
 	makedepends = squashfs-tools
-	source = skypeforlinux-8.125.0.201.snap::https://api.snapcraft.io/api/v1/snaps/download/QRDEfjn4WJYnm0FzDKwqqRZZI77awQEV_353.snap
+	source = skypeforlinux-8.131.0.202.snap::https://api.snapcraft.io/api/v1/snaps/download/QRDEfjn4WJYnm0FzDKwqqRZZI77awQEV_370.snap
 	sha256sums = SKIP
 
 pkgname = skypeforlinux-bin

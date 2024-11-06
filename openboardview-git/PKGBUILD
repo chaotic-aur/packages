@@ -1,11 +1,11 @@
-# Maintainer:
+# Maintainer: aur.chaotic.cx
 
 ## links
 # http://openboardview.org/
 
 _pkgname="openboardview"
 pkgname="$_pkgname-git"
-pkgver=9.95.1.r0.g502d7ff
+pkgver=9.95.1.r29.geaf0dce
 pkgrel=1
 pkgdesc="Linux SDL/ImGui edition software for viewing .brd files"
 url="https://github.com/OpenBoardView/OpenBoardView"

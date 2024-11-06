@@ -1,4 +1,4 @@
-# Maintainer:
+# Maintainer: aur.chaotic.cx
 
 ## options
 if [ -z "$_srcinfo" ] && [ -z "$_pkgver" ]; then
