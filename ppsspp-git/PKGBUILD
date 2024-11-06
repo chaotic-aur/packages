@@ -260,12 +260,12 @@ _source_tencent_rapidjson() {
 }
 
 _source_main
-#_source_ppsspp
+_source_ppsspp
 
-#_source_bylaws_libadrenotools
-#_source_hrydgard_ppsspp_ffmpeg
-#_source_kingcom_armips
-#_source_tencent_rapidjson
+_source_bylaws_libadrenotools
+_source_hrydgard_ppsspp_ffmpeg
+_source_kingcom_armips
+_source_tencent_rapidjson
 
 pkgver() {
   cd ppsspp
