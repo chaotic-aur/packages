@@ -10,7 +10,7 @@
 
 : ${_build_ffmpeg:=true}
 
-: ${_build_avx:=true}
+: ${_build_avx:=false}
 : ${_build_git:=true}
 
 unset _pkgtype
@@ -24,7 +24,7 @@ fi
 ## basic info
 _pkgname="ppsspp"
 pkgname="${_pkgname}${_pkgtype:-}"
-pkgver=1.18.1.r31.ga703b9a
+pkgver=1.18.1.r55.g74aeb1c
 pkgrel=1
 pkgdesc='PSP emulator written in C++'
 url="https://github.com/hrydgard/ppsspp"
@@ -89,7 +89,9 @@ _source_ppsspp() {
     'facebook.zstd'::'git+https://github.com/facebook/zstd.git'
     'google.cpu_features'::'git+https://github.com/google/cpu_features.git'
     'hrydgard.minidx9'::'git+https://github.com/hrydgard/minidx9.git'
+    'hrydgard.ppsspp-ffmpeg'::'git+https://github.com/hrydgard/ppsspp-ffmpeg.git'
     'hrydgard.ppsspp-freetype'::'git+https://github.com/hrydgard/ppsspp-freetype.git'
+    'hrydgard.ppsspp-lua'::'git+https://github.com/hrydgard/ppsspp-lua.git'
     'hrydgard.ppsspp-mac-sdl'::'git+https://github.com/hrydgard/ppsspp-mac-sdl.git'
     'hrydgard.ppsspp-moltenvk'::'git+https://github.com/hrydgard/ppsspp-moltenvk.git'
     'hrydgard.pspautotests'::'git+https://github.com/hrydgard/pspautotests.git'
@@ -105,6 +107,8 @@ _source_ppsspp() {
     'unknownbrackets.ppsspp-debugger'::'git+https://github.com/unknownbrackets/ppsspp-debugger.git'
   )
   sha256sums+=(
+    'SKIP'
+    'SKIP'
     'SKIP'
     'SKIP'
     'SKIP'
@@ -145,7 +149,9 @@ _source_ppsspp() {
       'facebook.zstd'::'ext/zstd'
       'google.cpu_features'::'ext/cpu_features'
       'hrydgard.minidx9'::'dx9sdk'
+      'hrydgard.ppsspp-ffmpeg'::'ffmpeg'
       'hrydgard.ppsspp-freetype'::'ext/native/tools/prebuilt'
+      'hrydgard.ppsspp-lua'::'ext/lua'
       'hrydgard.ppsspp-mac-sdl'::'SDL/macOS'
       'hrydgard.ppsspp-moltenvk'::'ios/MoltenVK'
       'hrydgard.pspautotests'::'pspautotests'
@@ -254,12 +260,12 @@ _source_tencent_rapidjson() {
 }
 
 _source_main
-_source_ppsspp
+#_source_ppsspp
 
-_source_bylaws_libadrenotools
-_source_hrydgard_ppsspp_ffmpeg
-_source_kingcom_armips
-_source_tencent_rapidjson
+#_source_bylaws_libadrenotools
+#_source_hrydgard_ppsspp_ffmpeg
+#_source_kingcom_armips
+#_source_tencent_rapidjson
 
 pkgver() {
   cd ppsspp

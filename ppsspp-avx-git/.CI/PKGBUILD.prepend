@@ -1,0 +1,4 @@
+_build_qt=false
+_build_sdl=true
+_build_ffmpeg=true
+_build_avx:=true
