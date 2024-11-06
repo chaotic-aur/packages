@@ -136,13 +136,22 @@ function collect_changed_libs() {
 function generate-commit() {
     set -euo pipefail
 
-    local COMMIT_MESSAGE="chore(packages): update packages"
+    local COMMIT_MESSAGE
+    if (( ${#COMMIT_MESSAGE_PACKAGES[@]} > 0 )) && (( ${#COMMIT_MESSAGE_PACKAGES[@]} < 4 )); then
+        local packages="$(printf "%s, " "${COMMIT_MESSAGE_PACKAGES[@]}")"
+        COMMIT_MESSAGE="chore(packages): update ${packages%, }"
+    elif (( ${#COMMIT_MESSAGE_PACKAGES[@]} > 3 )); then
+        COMMIT_MESSAGE="chore(packages): update packages (${#COMMIT_MESSAGE_PACKAGES[@]})"
+    else 
+        COMMIT_MESSAGE="chore(packages): update packages"
+    fi
+    
     if [ -v GITHUB_ACTIONS ]; then
         COMMIT_MESSAGE+=" [skip ci]"
     fi
     if [ "$1" == ".final" ]; then
         local COMMIT_DESCRIPTION=""
-        if (( ${#COMMIT_MESSAGE_PACKAGES[@]} > 0 )); then
+        if (( ${#COMMIT_MESSAGE_PACKAGES[@]} > 3 )); then
             local packages="$(printf "%s, " "${COMMIT_MESSAGE_PACKAGES[@]}")"
             COMMIT_DESCRIPTION+="changed: ${packages%, }"
         fi
