@@ -1,6 +1,6 @@
 pkgbase = gimp-git
 	pkgdesc = GNU Image Manipulation Program
-	pkgver = 2.99.18.r1583.gcf28937
+	pkgver = 2.99.18.r1896.g15f5b15
 	pkgrel = 1
 	url = https://gitlab.gnome.org/GNOME/gimp
 	arch = i686
