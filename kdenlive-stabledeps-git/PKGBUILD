@@ -1,6 +1,8 @@
+# Maintainer: aur.chaotic.cx
+
 _pkgname="kdenlive"
 pkgname="$_pkgname-stabledeps-git"
-pkgver=24.04.80.r45.g7a9a151
+pkgver=24.08.2.r372.g1bc5b7c
 pkgrel=1
 pkgdesc='A non-linear video editor for Linux using the MLT video framework'
 url='https://invent.kde.org/multimedia/kdenlive'

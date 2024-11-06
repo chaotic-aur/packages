@@ -1,4 +1,4 @@
-# Maintainer:
+# Maintainer: aur.chaotic.cx
 
 ## links
 # http://vub63vv26q6v27xzv2dtcd25xumubshogm67yrpaz2rculqxs7jlfqad.onion/torzu-emu/torzu
@@ -14,7 +14,7 @@ _pkgtype+="-git"
 ## basic info
 _pkgname="torzu"
 pkgname="$_pkgname${_pkgtype:-}"
-pkgver=2024.08.10.r7.g7b143fb
+pkgver=2024.08.10.r23.g5de1cb5
 pkgrel=1
 pkgdesc="Yet another emulator fork"
 url="https://notabug.org/litucks/torzu"

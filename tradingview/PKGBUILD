@@ -1,4 +1,4 @@
-# Maintainer:
+# Maintainer: aur.chaotic.cx
 
 ## links
 # https://www.tradingview.com/desktop/
@@ -6,7 +6,7 @@
 _pkgname="tradingview"
 _snapname="tradingview"
 pkgname="$_pkgname"
-pkgver=2.8.1
+pkgver=2.9.3
 pkgrel=1
 pkgdesc='Charting platform for traders and investors'
 arch=('x86_64')

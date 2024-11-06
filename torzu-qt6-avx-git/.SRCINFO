@@ -1,6 +1,6 @@
 pkgbase = torzu-qt6-git
 	pkgdesc = Yet another emulator fork
-	pkgver = 2024.08.10.r7.g7b143fb
+	pkgver = 2024.08.10.r23.g5de1cb5
 	pkgrel = 1
 	url = https://notabug.org/litucks/torzu
 	arch = x86_64

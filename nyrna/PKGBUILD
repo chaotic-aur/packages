@@ -1,4 +1,4 @@
-# Maintainer:
+# Maintainer: aur.chaotic.cx
 
 ## options
 if [ -z "$_srcinfo" ] && [ -z "$_pkgver" ]; then
@@ -10,7 +10,7 @@ fi
 ## basic info
 _pkgname="nyrna"
 pkgname="$_pkgname"
-pkgver=2.22.0
+pkgver=2.24.0
 pkgrel=1
 pkgdesc='Suspend games and applications at any time and resume whenever you wish'
 url="https://github.com/Merrit/nyrna"

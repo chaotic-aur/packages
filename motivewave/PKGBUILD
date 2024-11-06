@@ -1,8 +1,8 @@
-# Maintainer:
+# Maintainer: aur.chaotic.cx
 
 _pkgname="motivewave"
 pkgname="$_pkgname"
-pkgver=6.9.5
+pkgver=6.9.9
 pkgrel=1
 pkgdesc="Advanced trading and charting application"
 url="https://www.motivewave.com"

@@ -1,4 +1,4 @@
-# Maintainer:
+# Maintainer: aur.chaotic.cx
 
 ## links
 # https://obsproject.com
@@ -16,8 +16,8 @@
 ## basic info
 _pkgname="obs-studio"
 pkgname="$_pkgname-git"
-pkgver=30.2.3.r182.g34735be
-pkgrel=2
+pkgver=30.2.3.r358.gd7292a4
+pkgrel=1
 pkgdesc="Free, open source software for live streaming and recording - Browser enabled"
 url="https://github.com/obsproject/obs-studio"
 license=("GPL-2.0-or-later")

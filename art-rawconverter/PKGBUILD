@@ -1,4 +1,4 @@
-# Maintainer:
+# Maintainer: aur.chaotic.cx
 
 ## options
 if [ -z "$_srcinfo" ] && [ -z "$_pkgver" ]; then
@@ -17,7 +17,7 @@ unset _pkgtype
 ## basic info
 _pkgname="art-rawconverter"
 pkgname="$_pkgname${_pkgtype:-}"
-pkgver=1.23
+pkgver=1.24.1
 pkgrel=1
 pkgdesc="Raw image converter forked from RawTherapee with ease of use in mind"
 url="https://bitbucket.org/agriggio/art"

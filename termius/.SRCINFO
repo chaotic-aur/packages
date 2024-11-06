@@ -1,6 +1,6 @@
 pkgbase = termius
 	pkgdesc = Desktop SSH Client
-	pkgver = 9.3.1
+	pkgver = 9.8.5
 	pkgrel = 1
 	url = https://snapcraft.io/termius-app
 	arch = x86_64
@@ -9,7 +9,7 @@ pkgbase = termius
 	makedepends = pandoc
 	makedepends = sha3sum
 	makedepends = squashfs-tools
-	source = termius-9.3.1.snap::https://api.snapcraft.io/api/v1/snaps/download/WkTBXwoX81rBe3s3OTt3EiiLKBx2QhuS_199.snap
+	source = termius-9.8.5.snap::https://api.snapcraft.io/api/v1/snaps/download/WkTBXwoX81rBe3s3OTt3EiiLKBx2QhuS_208.snap
 	sha256sums = SKIP
 
 pkgname = termius
