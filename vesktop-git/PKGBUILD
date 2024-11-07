@@ -2,8 +2,8 @@
 # Maintainer: cookie <kyliepc@proton.me>
 _pkgname=vesktop
 pkgname=vesktop-git
-pkgdesc="A standalone Electron-based Discord app with Vencord & improved Linux support (git version)"
-pkgver=1.5.3.r17.g062b536
+pkgdesc="A standalone Electron-based Discord app with Vencord & improved Linux support"
+pkgver=1.5.3.r22.g5d675ef
 pkgrel=1
 
 arch=("x86_64" "aarch64")
@@ -18,7 +18,7 @@ optdepends=(
 )
 
 provides=("vesktop")
-conflicts=('vesktop-electron-git' 'vencord-desktop-git')
+conflicts=('vesktop')
 
 source=("$_pkgname::git+$url.git" "vesktop.desktop" "vesktop.sh" "afterPack.js")
 
