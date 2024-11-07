@@ -16,7 +16,7 @@
 ## basic info
 _pkgname="obs-studio"
 pkgname="$_pkgname-git"
-pkgver=30.2.3.r358.gd7292a4
+pkgver=30.2.3.r364.gb854f61
 pkgrel=1
 pkgdesc="Free, open source software for live streaming and recording - Browser enabled"
 url="https://github.com/obsproject/obs-studio"
@@ -28,17 +28,16 @@ depends=(
   ffmpeg
   jack
   jansson
+  libpipewire
+  librist
+  libvpl
   libxcomposite
   mbedtls
   pciutils
+  qrcodegencpp-cmake # AUR
   qt6-svg
   rnnoise
-
-  librist
-  libvpl
   speexdsp
-
-  qrcodegencpp-cmake # AUR
 )
 makedepends=(
   asio
@@ -74,7 +73,7 @@ optdepends=(
 provides=("$_pkgname=${pkgver%%.r*}")
 conflicts=("$_pkgname")
 
-options=(!debug)
+options=('!debug')
 
 _source_main() {
   _pkgsrc="$_pkgname"
@@ -89,7 +88,7 @@ _source_main() {
   fi
 
   if [ "${_plugin_webrtc::1}" == "t" ]; then
-    makedepends+=('libdatachannel') # AUR
+    makedepends+=('libdatachannel')
     _plugin_webrtc='ON'
   else
     _plugin_webrtc='OFF'
@@ -122,6 +121,7 @@ _prepare_obs_studio() (
 _source_cef() {
   depends+=(
     at-spi2-core
+    libxdamage
     libxrandr
     nspr
     nss
@@ -139,7 +139,6 @@ _source_cef() {
     libx11
     libxcb
     libxcomposite
-    libxdamage
     libxext
     libxfixes
     libxkbcommon
@@ -206,10 +205,11 @@ _build_obs_studio() {
     -DCMAKE_INSTALL_LIBDIR='lib'
     -DCEF_ROOT_DIR="$_cef_src"
     -DOBS_VERSION_OVERRIDE="${pkgver%%.r*}"
+    -DOBS_COMPILE_DEPRECATION_AS_WARNING=ON
     -DENABLE_BROWSER=ON # qrcodegencpp-cmake
     -DENABLE_LIBFDK=ON
-    -DBUILD_TESTS=OFF
     -DENABLE_UNIT_TESTS=OFF
+    -DBUILD_TESTS=OFF
     -Wno-dev
 
     -DENABLE_AJA="${_plugin_aja:?}"
