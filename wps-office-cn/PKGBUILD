@@ -8,7 +8,7 @@
 
 pkgbase=wps-office-cn
 pkgname=('wps-office-cn' 'wps-office-mime-cn' 'wps-office-mui-zh-cn')
-pkgver=12.1.0.17885
+pkgver=12.1.0.17900
 pkgrel=1
 pkgdesc="Kingsoft Office (WPS Office) CN version - an office productivity suite"
 #arch=('x86_64' 'aarch64')
@@ -35,7 +35,7 @@ source_x86_64=("wps-office_${pkgver}_amd64.deb::$(_get_source_url amd64)")
 #source_aarch64=("wps-office_${pkgver}_arm64.deb::$(_get_source_url arm64)")
 source=('fix-wps-python-parse.patch')
 sha1sums=('f3713481edf04ffb08be8d24dce66554dd5a4f13')
-sha1sums_x86_64=('89d695abee061c97fd64062d99c776e6f516b172')
+sha1sums_x86_64=('a245fe88c25d0992fb6d2b1e37ba99dc15fe2a5f')
 
 prepare() {
   bsdtar -xpf data.tar.xz
@@ -67,7 +67,7 @@ package_wps-office-cn() {
     'wps-office-fonts: FZ TTF fonts provided by wps community'
     'wps-office-mime-cn: Use mime files provided by Kingsoft'
     'wps-office-mui-zh-cn: zh_CN support for WPS Office')
-  install=${pkgname}.install
+  install="${pkgname}.install"
   conflicts=('kingsoft-office' 'wps-office')
   provides=('wps-office')
   cd "${srcdir}/opt/kingsoft/wps-office/"
@@ -75,9 +75,9 @@ package_wps-office-cn() {
   install -d "${pkgdir}/usr/lib"
   cp -r office6 "${pkgdir}/usr/lib"
   # Fix for icu>=71.1
-  rm ${pkgdir}/usr/lib/office6/libstdc++.so*
+  rm "${pkgdir}/usr/lib/office6/libstdc++.so"*
   # Use system libjpeg
-  rm ${pkgdir}/usr/lib/office6/libjpeg.so*
+  rm "${pkgdir}/usr/lib/office6/libjpeg.so"*
   [[ "$CARCH" = "aarch64" ]] && rm "${pkgdir}"/usr/lib/office6/libfreetype.so*
   install -Dm644 -t "${pkgdir}/usr/share/licenses/${pkgname}" office6/mui/default/*.html
   rm -r "${pkgdir}/usr/lib/office6/mui/en_US/resource/help"
