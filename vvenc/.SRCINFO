@@ -1,0 +1,13 @@
+pkgbase = vvenc
+	pkgdesc = A H.266/VVC (Versatile Video Coding) encoder
+	pkgver = 1.12.1
+	pkgrel = 1
+	url = https://github.com/fraunhoferhhi/vvenc/
+	arch = x86_64
+	license = BSD-3-Clause-Clear
+	makedepends = cmake
+	depends = gcc-libs
+	source = https://github.com/fraunhoferhhi/vvenc/archive/v1.12.1/vvenc-1.12.1.tar.gz
+	sha256sums = ba353363779e8f835200f319c801b052a97d592ebc817b52c41bdce093fa2fe2
+
+pkgname = vvenc
