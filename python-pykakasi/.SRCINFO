@@ -12,9 +12,10 @@ pkgbase = python-pykakasi
 	makedepends = python-setuptools-scm
 	makedepends = python-sphinx
 	makedepends = python-wheel
+	depends = python
 	depends = python-deprecated
 	depends = python-jaconv
 	source = git+https://codeberg.org/miurahr/pykakasi.git#tag=v2.3.0
-	b2sums = 8c5a168696b2493bcdba39f877c014b31006055a85b86f9e4f1b09708005017d14db2f2113409e2cc45930681133849f4c95ee7ad1aea7fff071440b50c27fbe
+	sha256sums = d976864bda183f919e9dd70accd2d053d31101450550e54d51ca4f3d786fa696
 
 pkgname = python-pykakasi
