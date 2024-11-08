@@ -5,15 +5,15 @@
 pkgname=balena-etcher
 _pkgname=etcher
 pkgver=1.19.25
-pkgrel=1
+pkgrel=2
 epoch=2
 pkgdesc='Flash OS images to SD cards & USB drives, safely and easily'
 arch=('x86_64' 'i686' 'armv7h' 'aarch64')
 _github_url='https://github.com/balena-io/etcher'
 url='https://balena.io/etcher'
-license=(Apache)
-_electron=electron30
-depends=("${_electron}" "nodejs")
+license=(Apache-2.0)
+_electron=electron33
+depends=("${_electron}" "nodejs-lts-iron")
 makedepends=("npm" "python" 'jq' 'moreutils' 'python-setuptools' 'git')
 optdepends=("libnotify: for notifications")
 conflicts=("${_pkgname}"
@@ -58,6 +58,32 @@ build() {
   npm install --prefix . etcher-sdk ws lodash
 }
 
+__clean_modules() {
+  local __arch_remove
+  __arch_remove=arm64
+  if [[ "$CARCH" == "aarch64" ]]; then
+    __arch_remove=x64
+  fi
+  cd "${pkgdir}/usr/lib/${pkgname}/utils/node_modules"
+  rm -rf {drivelist,mountutils,xxhash-addon}/build/{config.gypi,Makefile,*.mk,Release/{obj.target,.deps,*.a}}
+  rm -rf lzma-native/prebuilds/{darwin-{arm64,x64},win32-{ia32,x64},linux-${__arch_remove}}
+  rm -rf drivelist/node-addon-api/nothing.target.mk
+  rm -rf usb/prebuilds/{android,win32,darwin}-*
+  case $CARCH in
+    x86_64)
+      rm -rf usb/prebuilds/linux-{arm*,ia32}
+      ;;
+    i386)
+      rm -rf usb/prebuilds/linux-{arm*,x64}
+      ;;
+    aarch64)
+      rm -rf usb/prebuilds/linux-{arm,x64,ia32}
+      ;;
+    armv7h)
+      rm -rf usb/prebuilds/linux-{arm64,x64,ia32,arm/node.napi.armv6.node}
+      ;;
+  esac
+}
 package() {
   cd "${_pkgname}-${pkgver}"
 
@@ -76,4 +102,5 @@ package() {
     install -Dm644 "assets/iconset/${size}.png" \
       "${pkgdir}/usr/share/icons/hicolor/${size}/apps/${pkgname}.png"
   done
+  __clean_modules
 }
