@@ -1,0 +1,10 @@
+diff --git a/cmake/install/lcevc_dec.pc b/cmake/install/lcevc_dec.pc
+index 9021f2a..dfbdc44 100644
+--- a/cmake/install/lcevc_dec.pc
++++ b/cmake/install/lcevc_dec.pc
+@@ -1,4 +1,4 @@
+-prefix=${pcfiledir}/..
++prefix=/usr
+ libdir=${prefix}/lib
+ includedir=${prefix}/include
+ 
