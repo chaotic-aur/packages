@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+# prevent ghc heap overflow
+sed -E -e '/GHCRTSFLAGS=/s&-M\S+\b&&' -i PKGBUILD
