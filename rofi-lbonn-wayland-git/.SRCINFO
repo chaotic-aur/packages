@@ -1,6 +1,6 @@
 pkgbase = rofi-lbonn-wayland-git
 	pkgdesc = A window switcher, application launcher and dmenu replacement (fork with Wayland support)
-	pkgver = 1.7.5.wayland1.r42.g5d4a3e14
+	pkgver = 1.7.5.wayland3.r50.g2baa809d
 	pkgrel = 1
 	url = https://github.com/lbonn/rofi
 	arch = x86_64
@@ -16,10 +16,13 @@ pkgbase = rofi-lbonn-wayland-git
 	depends = startup-notification
 	depends = wayland
 	depends = xcb-util-cursor
+	depends = xcb-util-keysyms
 	depends = xcb-util-wm
 	depends = xcb-util-xrm
 	optdepends = i3-wm: use as a window switcher
+	provides = rofi-lbonn-wayland
 	provides = rofi
+	conflicts = rofi-lbonn-wayland
 	conflicts = rofi
 	source = rofi-lbonn-wayland-git::git+https://github.com/lbonn/rofi.git#branch=wayland
 	source = git+https://github.com/sardemff7/libgwater.git
