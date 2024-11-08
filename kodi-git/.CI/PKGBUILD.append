@@ -1,10 +1,21 @@
+url="https://github.com/xbmc/xbmc"
+
 _renderer=gl
 
 pkgver() {
   cd "$_gitname"
-  local _tag=$(git tag | grep -E '^[0-9]' | grep -Ev 'rc' | grep -Ev '[0-9][ab][0-9]' | sort -rV | head -1)
-  local _version=$(sed -E 's&-[A-Za-z]*$&&' <<< "${_tag}")
-  local _revision=$(git rev-list --count --cherry-pick "$_tag"...HEAD)
-  local _hash=$(git rev-parse --short=7 HEAD)
-  printf '%s.r%s.g%s' "${_version:?}" "${_revision:?}" "${_hash:?}"
+
+  local _file _hash _ver _rev _commit
+  _file="version.txt"
+  read -r _hash _ver < <(
+    NL=$(awk '/^VERSION_MAJOR [[:digit:]]+/{n=NR}END{print n}' "$_file")
+
+    git blame -L "$NL,+1" -- "$_file" \
+      | awk '{print $1" "$NF }' \
+      | sed -E -e 's& v([[:digit:]]+)& \1&'
+  )
+  _rev=$(git rev-list --count --cherry-pick "$_hash"...HEAD)
+  _commit=$(git rev-parse --short=7 HEAD)
+
+  printf "%s.r%s.g%s" "${_ver:?}" "${_rev:?}" "${_commit:?}"
 }
