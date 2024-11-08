@@ -10,22 +10,27 @@
 # Contributor: SanskritFritz (gmail)
 
 pkgname=rofi-lbonn-wayland-git
-pkgver=1.7.5.wayland1.r42.g5d4a3e14
+pkgver=1.7.5.wayland3.r50.g2baa809d
 pkgrel=1
 pkgdesc='A window switcher, application launcher and dmenu replacement (fork with Wayland support)'
-arch=('x86_64' 'aarch64')
-url='https://github.com/lbonn/rofi'
+#arch=(x86_64)
+arch=(x86_64 aarch64)
+url=https://github.com/lbonn/rofi
 license=(MIT)
-depends=('check' 'librsvg' 'libxdg-basedir' 'libxkbcommon-x11' 'startup-notification'
-  'wayland' 'xcb-util-cursor' 'xcb-util-wm' 'xcb-util-xrm')
-makedepends=('git' 'meson' 'wayland-protocols')
+depends=(
+  check librsvg libxdg-basedir libxkbcommon-x11 startup-notification
+  wayland xcb-util-cursor xcb-util-keysyms xcb-util-wm xcb-util-xrm)
+makedepends=(git meson wayland-protocols)
 optdepends=('i3-wm: use as a window switcher')
-provides=('rofi')
-conflicts=('rofi')
-source=("$pkgname::git+$url.git#branch=wayland"
+provides=("${pkgname%-git}" rofi)
+conflicts=("${pkgname%-git}" rofi)
+source=(
+  "$pkgname::git+$url.git#branch=wayland"
   "git+https://github.com/sardemff7/libgwater.git"
   "git+https://github.com/sardemff7/libnkutils.git")
-sha256sums=('SKIP' 'SKIP' 'SKIP')
+sha256sums=('SKIP'
+  'SKIP'
+  'SKIP')
 
 pkgver() {
   git -C $pkgname describe --long | sed 's/\([^-]*-g\)/r\1/;s/[-+]/./g'
@@ -52,6 +57,6 @@ check() {
 package() {
   meson install -C build --destdir="$pkgdir"
 
-  install -Dm644 $pkgname/COPYING -t "$pkgdir/usr/share/licenses/$pkgname/"
+  install -Dm644 $pkgname/COPYING -t "$pkgdir/usr/share/licenses/${pkgname%-git}"
   install -Dm755 $pkgname/Examples/*.sh -t "$pkgdir/usr/share/doc/rofi/examples/"
 }
