@@ -1,0 +1,3 @@
+# check requires display
+unset checkdepends
+unset -f check
