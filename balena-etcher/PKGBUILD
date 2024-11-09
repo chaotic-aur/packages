@@ -5,7 +5,7 @@
 pkgname=balena-etcher
 _pkgname=etcher
 pkgver=1.19.25
-pkgrel=2
+pkgrel=3
 epoch=2
 pkgdesc='Flash OS images to SD cards & USB drives, safely and easily'
 arch=('x86_64' 'i686' 'armv7h' 'aarch64')
@@ -13,7 +13,7 @@ _github_url='https://github.com/balena-io/etcher'
 url='https://balena.io/etcher'
 license=(Apache-2.0)
 _electron=electron33
-depends=("${_electron}" "nodejs-lts-iron")
+depends=("${_electron}" "nodejs")
 makedepends=("npm" "python" 'jq' 'moreutils' 'python-setuptools' 'git')
 optdepends=("libnotify: for notifications")
 conflicts=("${_pkgname}"
@@ -40,6 +40,7 @@ prepare() {
   jq ".devDependencies.electron = \"$electronVersion\"" package.json | sponge package.json
   jq ".build.electronDist = \"$electronDist\"" package.json | sponge package.json
   jq ".build.electronVersion = \"$electronVersion\"" package.json | sponge package.json
+  jq '.+= { "overrides": {"nan": "2.22.0"}}' package.json | sponge package.json
   sed -i lib/gui/etcher.ts -e "s|process.resourcesPath|'/usr/lib/${pkgname}'|"
   sed -i ${srcdir}/${pkgname} -e "s|__ELECTRON__|${_electron}|"
 }
