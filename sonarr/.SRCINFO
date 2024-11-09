@@ -1,8 +1,9 @@
 pkgbase = sonarr
 	pkgdesc = Smart PVR for newsgroup and torrent users.
 	pkgver = 4.0.10.2544
-	pkgrel = 9
+	pkgrel = 10
 	url = https://sonarr.tv
+	install = sonarr.install
 	arch = x86_64
 	arch = aarch64
 	arch = armv7h
@@ -37,10 +38,12 @@ pkgbase = sonarr
 	source = sonarr.service
 	source = sonarr.sysusers
 	source = sonarr.tmpfiles
+	source = sonarr.install
 	sha256sums = d6f1b1d04ea572cfd2aba72d8adac1925f544c43b99f31f3a047588f8369be78
 	sha256sums = 19112dc0051224b4de66f28077c93b6ee06e163b5194e6aecf62dedf66ff45a9
 	sha256sums = b2673e7b2c7964ceb9672a078797d12fb3c1c8ea908bfaf6330514b8644b0ba2
 	sha256sums = 00141d4cbf34daa6d91b26179d4847ec970e2767382e18fdf9af2ec84a0ff43e
 	sha256sums = 0acb3697a5001b00f79269581cd08645f9d5e1e9f0a57cc3e7deeb12d66accc9
+	sha256sums = 3d912d367eeb89ead06dc9dc45de093f48ddc601188731d54775c33e04e369aa
 
 pkgname = sonarr
