@@ -1,0 +1,4 @@
+[trustedqsl]
+source = "regex"
+url = "https://www.arrl.org/tqsl-download"
+regex = '<a href=".*/tqsl/tqsl-([0-9\.]+)\.tar\.gz".*>'
