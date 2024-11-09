@@ -1,4 +1,5 @@
-# Maintainer: aur.chaotic.cx
+# Maintainer:
+# Contributor: Yamada Hayao <development@fascode.net>
 
 _pkgname="getoptions"
 pkgname="${_pkgname}-git"
@@ -9,7 +10,14 @@ url="https://github.com/ko1nksm/getoptions"
 license=('CC0-1.0')
 arch=('any')
 
-provides=("$_pkgname=${pkgver%%.r*}")
+depends=(
+  'bash'
+)
+makedepends=(
+  'git'
+)
+
+provides=("$_pkgname")
 conflicts=("$_pkgname")
 
 _pkgsrc="$_pkgname"
