@@ -6,7 +6,7 @@
 pkgname=radarr
 _pkgname=Radarr
 pkgver=5.14.0.9383
-pkgrel=8
+pkgrel=9
 pkgdesc='Movie organizer/manager for usenet and torrent users.'
 arch=('x86_64' 'aarch64' 'armv7h')
 url='https://radarr.video'
@@ -39,6 +39,7 @@ optdepends=(
   'autobrr: irc, torrent and usenet indexer proxy'
 )
 options=(!debug)
+install=radarr.install
 source=(
   "${pkgname}-${pkgver}.tar.gz::https://github.com/Radarr/Radarr/archive/refs/tags/v${pkgver}.tar.gz"
   'package_info'
