@@ -46,5 +46,5 @@ build() {
 package() {
   DESTDIR="$pkgdir" cmake --install build
   install -Dm644 "$_pkgsrc/LICENSE.txt" "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
-  desktop-file-edit --set-key=KEY --set-value=VALUE --set-name=TrustedQSL "$pkgdir/usr/share/applications/org.arrl.trustedqsl.desktop"
+  desktop-file-edit --set-name=TrustedQSL "$pkgdir/usr/share/applications/org.arrl.trustedqsl.desktop"
 }
