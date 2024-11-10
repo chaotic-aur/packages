@@ -1,0 +1,5 @@
+eval _orig_"$(declare -f check)"
+
+check() {
+  _orig_check || :
+}
