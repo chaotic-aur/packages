@@ -1,6 +1,7 @@
 url="https://gitlab.com/kicad/code/kicad"
 license=('GPL-3.0-or-later')
 
+depends+=('nng')
 makedepends+=('ninja')
 
 provides=("kicad=$pkgver")
@@ -25,6 +26,7 @@ build() {
     -DCMAKE_BUILD_TYPE=None
     -DCMAKE_INSTALL_PREFIX='/usr'
     -DCMAKE_INSTALL_LIBDIR='lib'
+    -DKICAD_UPDATE_CHECK=OFF
     -DKICAD_USE_EGL=ON
     -DBUILD_TESTING=OFF
     -Wno-dev
