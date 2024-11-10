@@ -3,7 +3,7 @@
 
 pkgname=ripcord-arch-libs
 pkgver=0.4.29
-pkgrel=3
+pkgrel=4
 pkgdesc='Qt-based Discord and Slack client. Modified to run on system libraries for Wayland support.'
 arch=(x86_64)
 url='https://cancel.fm/ripcord/'
@@ -65,5 +65,6 @@ package() {
   # Application
   chmod 755 -R squashfs-root
   mv squashfs-root/* "${pkgdir}/usr/lib/ripcord/"
+  ln -s /usr/lib/ripcord/lib/libsodium.so.18 "${pkgdir}/usr/lib/libsodium.so.18"
   ln -s /usr/lib/ripcord/Ripcord "${pkgdir}/usr/bin/ripcord"
 }
