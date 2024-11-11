@@ -5,7 +5,7 @@
 pkgname=packwiz-git
 _pkgname="${pkgname%-git}"
 pkgver=r369.0626c00
-pkgrel=1
+pkgrel=2
 pkgdesc="A command line tool for creating minecraft modpacks."
 arch=(x86_64)
 url='https://packwiz.infra.link'
@@ -29,6 +29,7 @@ prepare() {
   mkdir -p "completions"
 
   export GOPATH="${srcdir}"
+  export GOFLAGS="-modcacherw"
   go mod download
 }
 
