@@ -1,0 +1,4 @@
+[funchook]
+source = "git"
+git = "https://github.com/kubo/funchook.git"
+prefix = "v"

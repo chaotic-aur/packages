@@ -1,0 +1,14 @@
+pkgbase = funchook
+	pkgdesc = Hook function calls by inserting jump instructions at runtime
+	pkgver = 1.1.3
+	pkgrel = 1
+	url = https://github.com/kubo/funchook
+	arch = i686
+	arch = x86_64
+	license = GPL-2.0-or-later
+	makedepends = cmake
+	depends = glibc
+	source = https://github.com/kubo/funchook/releases/download/v1.1.3/funchook-1.1.3.tar.gz
+	sha256sums = d49d682f5d2386c173b6e006967ecfee37c45fd1eef3e9d4232992ccdaca4ef5
+
+pkgname = funchook
