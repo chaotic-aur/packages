@@ -1,7 +1,7 @@
 # Maintainer: KokaKiwi <kokakiwi+aur at kokakiwi dot net>
 
 pkgname=parallel-hashmap
-pkgver=1.4.0
+pkgver=1.4.1
 pkgrel=1
 pkgdesc='A family of header-only, very fast and memory-friendly hashmap and btree containers.'
 url='https://greg7mdp.github.io/parallel-hashmap/'
@@ -11,9 +11,9 @@ makedepends=('cmake' 'make' 'git' 'gtest')
 optdepends=('python: For Conan python package manager.')
 source=("$pkgname-$pkgver.tar.gz::https://github.com/greg7mdp/parallel-hashmap/archive/v$pkgver.tar.gz"
   0001-makepkg-Use-system-gtest.patch)
-sha256sums=('766e05d19c27d9c09e6f9a627868daf451f4fbdd1b617f1bb875fb9402bfb78b'
+sha256sums=('949874f4207b8735422438b23b884fb1f4b926689bb5eebff38cc4d357d09cd2'
   '361c5b363fca4a247ba940f2bca1ee60e6ed889a1aebfd13b057a1e31e5c170e')
-b2sums=('238e9d1b45ca55f90b77a15a6d14e0c053c750d04b5e6b286a0da4a270f1e2879d90bd7e7d9f194d24d4c53a06d3184434f6cc65ab3016bb82dca91d811ddbc5'
+b2sums=('bcb5886173a25325c6381f0f174f08de33a2c9c9a0bd43eed6eee6273a2dba357fdfc09064a35aef219c03f7460cf10949808ea982e2dede89f4e103bcbe4b8f'
   '7cea2282dd3787d94fa86ea37c01bed855f9163311ca3d91f5c0df27b273960ecea10ba13f94a434d56c5fdf568645aa3fb8c581337f1d93fee933c9b724078a')
 
 prepare() {
