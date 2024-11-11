@@ -3,7 +3,7 @@
 # Contributor: ThatOneCalculator <kainoa at t1c dot dev>
 
 pkgname=hyprland-git
-pkgver=0.44.0.r51.495b92fb
+pkgver=0.44.0.r123.0ec128e5
 pkgrel=1
 pkgdesc="Hyprland is an independent, highly customizable, dynamic tiling Wayland compositor that doesn't sacrifice on its looks."
 arch=(x86_64 aarch64)
@@ -52,7 +52,6 @@ depends=(
 )
 makedepends=(
   cmake
-  gdb
   git
   hyprwayland-scanner-git
   hyprland-protocols-git
@@ -68,6 +67,7 @@ optdepends=(
   'cmake: to build and install plugins using hyprpm'
   'cpio: to build and install plugins using hyprpm'
   'meson: to build and install plugins using hyprpm'
+  'uwsm: the recommended way to start Hyprland'
 )
 provides=("hyprland=${pkgver%%.r*}")
 conflicts=(hyprland)
