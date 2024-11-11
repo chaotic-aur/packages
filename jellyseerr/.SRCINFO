@@ -1,7 +1,7 @@
 pkgbase = jellyseerr
 	pkgdesc = Request management and media discovery tool for the Plex ecosystem
 	pkgver = 2.0.1
-	pkgrel = 4
+	pkgrel = 5
 	url = https://github.com/Fallenbagel/jellyseerr
 	arch = x86_64
 	arch = aarch64
@@ -13,8 +13,6 @@ pkgbase = jellyseerr
 	optdepends = jellyfin-server: The Free Software Media System
 	optdepends = plex-media-server: Plex Media Server
 	optdepends = emby-server: The open media solution
-	options = !strip
-	options = !debug
 	backup = etc/conf.d/jellyseerr
 	backup = etc/jellyseerr/settings.json
 	source = jellyseerr-2.0.1.tar.gz::https://github.com/Fallenbagel/jellyseerr/archive/v2.0.1.tar.gz
