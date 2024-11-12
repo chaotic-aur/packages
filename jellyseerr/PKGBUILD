@@ -4,8 +4,8 @@
 # Contributor: Martins Mozeiko <martins.mozeiko@gmail.com>
 
 pkgname=jellyseerr
-pkgver=2.0.1
-pkgrel=7
+pkgver=2.1.0
+pkgrel=1
 pkgdesc='Request management and media discovery tool for the Plex ecosystem'
 arch=(x86_64 aarch64)
 url='https://github.com/Fallenbagel/jellyseerr'
@@ -37,7 +37,7 @@ source=(
   0001-Don-t-use-husky.patch
   0002-Remove-need-for-npm-npx.patch
 )
-sha256sums=('3ea5ae6ffd68eac767acb9a36adb41f1dc4018232cd6dca0cc31668c1f5c005b'
+sha256sums=('ee8ca3046a5789b758cfe43472732ddb5a9b45d2e8396b075c82e757b3e7ec2c'
   '2bac9f51b528ac40b7e0f952a032dde323533c0a986ac8be4c762fbe8dbad21f'
   '5d5463c799709f3a8134002a1d99501afbdd237d58a11539c8f998ce22205959'
   '7cba7aadecc255a69e5d94c2ecc788cb925293aee230e9a1ead8aebd58fbe012'
