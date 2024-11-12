@@ -5,7 +5,7 @@
 
 pkgname=jellyseerr
 pkgver=2.0.1
-pkgrel=6
+pkgrel=7
 pkgdesc='Request management and media discovery tool for the Plex ecosystem'
 arch=(x86_64 aarch64)
 url='https://github.com/Fallenbagel/jellyseerr'
@@ -39,7 +39,7 @@ source=(
 )
 sha256sums=('3ea5ae6ffd68eac767acb9a36adb41f1dc4018232cd6dca0cc31668c1f5c005b'
   '2bac9f51b528ac40b7e0f952a032dde323533c0a986ac8be4c762fbe8dbad21f'
-  'eb38f0bcb71a3553df8f8c9a6f536a1daf93508d244e7cd7ae491abb2b7ce578'
+  '5d5463c799709f3a8134002a1d99501afbdd237d58a11539c8f998ce22205959'
   '7cba7aadecc255a69e5d94c2ecc788cb925293aee230e9a1ead8aebd58fbe012'
   '5a446cc8fa0a47a49dbbd6920d49eb4569f988e808cbb0bdbb609ab179a94426'
   '8d7bf6eb0a71905d764ffa8a43934b645c9e8945c3fecec995674acf053dd7bd'
@@ -61,12 +61,10 @@ prepare() {
 build() {
   cd "${srcdir}/${pkgname}-${pkgver}"
 
-  rm -rf .next/cache
-
   export NEXT_TELEMETRY_DISABLED=1
   export CYPRESS_INSTALL_BINARY=0
   pnpm build
-  pnpm prune --prod --ignore-scripts
+  pnpm prune --prod --ignore-scripts --no-optional
 }
 
 package() {
@@ -74,12 +72,9 @@ package() {
   cd "${srcdir}/${pkgname}-${pkgver}"
 
   install -dm755 "${pkgdir}/usr/lib/jellyseerr"
-  install -dm755 "${pkgdir}/usr/lib/jellyseerr/.next/standalone/.next"
   cp -dr --no-preserve='ownership' "${srcdir}/${pkgname}-${pkgver}/"{.next,dist,public,node_modules} "${pkgdir}/usr/lib/jellyseerr"
   cp -d --no-preserve='ownership' "${srcdir}/${pkgname}-${pkgver}/"{package.json,overseerr-api.yml,next.config.js} "${pkgdir}/usr/lib/jellyseerr"
-
-  # Handle .next cache
-  install -dm755 "${pkgdir}/usr/lib/jellyseerr/.next/cache"
+  rm -rf "${pkgdir}/usr/lib/jellyseerr/.next/cache"
 
   find "${pkgdir}/usr/lib/jellyseerr/.next" -type f -print0 | xargs -0 sed -i "s^${srcdir}/${pkgname}-${pkgver}^/usr/lib/jellyseerr^g"
 
