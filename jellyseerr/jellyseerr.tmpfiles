@@ -6,6 +6,5 @@ d /usr/lib/jellyseerr/config/cache/images/tmdb    0750 jellyseerr media -
 Z /var/lib/jellyseerr                             -    jellyseerr media
 # L /var/lib/jellyseerr                             - - - - /usr/lib/jellyseer/config/
 L /var/cache/jellyseerr/images                    - - - - /usr/lib/jellyseerr/config/cache/images/
-L /var/cache/jellyseerr                           - - - - /usr/lib/jellyseerr/.next/cache
 L /var/log/jellyseerr                             - - - - /var/lib/jellyseerr/logs/
 L /etc/jellyseerr/settings.json                   - - - - /var/lib/jellyseerr/settings.json

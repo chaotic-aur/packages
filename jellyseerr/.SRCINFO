@@ -1,7 +1,7 @@
 pkgbase = jellyseerr
 	pkgdesc = Request management and media discovery tool for the Plex ecosystem
 	pkgver = 2.0.1
-	pkgrel = 6
+	pkgrel = 7
 	url = https://github.com/Fallenbagel/jellyseerr
 	install = jellyseerr.install
 	arch = x86_64
@@ -28,7 +28,7 @@ pkgbase = jellyseerr
 	source = 0002-Remove-need-for-npm-npx.patch
 	sha256sums = 3ea5ae6ffd68eac767acb9a36adb41f1dc4018232cd6dca0cc31668c1f5c005b
 	sha256sums = 2bac9f51b528ac40b7e0f952a032dde323533c0a986ac8be4c762fbe8dbad21f
-	sha256sums = eb38f0bcb71a3553df8f8c9a6f536a1daf93508d244e7cd7ae491abb2b7ce578
+	sha256sums = 5d5463c799709f3a8134002a1d99501afbdd237d58a11539c8f998ce22205959
 	sha256sums = 7cba7aadecc255a69e5d94c2ecc788cb925293aee230e9a1ead8aebd58fbe012
 	sha256sums = 5a446cc8fa0a47a49dbbd6920d49eb4569f988e808cbb0bdbb609ab179a94426
 	sha256sums = 8d7bf6eb0a71905d764ffa8a43934b645c9e8945c3fecec995674acf053dd7bd
