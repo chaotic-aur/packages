@@ -1,3 +1,10 @@
+# Be sure to use `systemctl edit lidarr` to modify this service with an
+# override.conf because direct changes will be overwritten by package updates.
+#
+# When running lidarr in LXC:
+# [Service]
+# PrivateUsers=false
+
 [Unit]
 Description=Jellyseerr Service
 Wants=network-online.target
@@ -7,7 +14,7 @@ After=network-online.target
 EnvironmentFile=/etc/conf.d/jellyseerr
 Environment=NODE_ENV=production
 User=jellyseerr
-Group=jellyseerr
+Group=media
 Type=exec
 Restart=on-failure
 RestartSec=5
