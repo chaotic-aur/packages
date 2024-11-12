@@ -1,1 +1,3 @@
-u jellyseerr - "jellyseerr daemon" /var/lib/jellyseerr
+u jellyseerr - "Jellyseerr Daemon" /var/lib/jellyseerr
+g jellyseerr
+m jellyseerr media
