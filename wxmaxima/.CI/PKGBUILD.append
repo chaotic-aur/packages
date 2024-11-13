@@ -1,0 +1,24 @@
+_pkgname="wxmaxima"
+url="https://github.com/wxmaxima-developers/wxmaxima"
+
+makedepends+=('ninja')
+
+_pkgsrc="wxmaxima-Version-$pkgver"
+_pkgext="tar.gz"
+source=("$_pkgname-$pkgver.$_pkgext"::"https://github.com/wxMaxima-developers/wxmaxima/archive/refs/tags/Version-$pkgver.$_pkgext")
+sha512sums=('SKIP')
+
+build() {
+  local _cmake_options=(
+    -B build
+    -S "$_pkgsrc"
+    -G Ninja
+    -DCMAKE_BUILD_TYPE=None
+    -DCMAKE_INSTALL_PREFIX='/usr'
+    -DwxWidgets_CONFIG_EXECUTABLE=/usr/bin/wx-config
+    -Wno-dev
+  )
+
+  cmake "${_cmake_options[@]}"
+  cmake --build build
+}
