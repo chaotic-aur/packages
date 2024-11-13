@@ -5,7 +5,7 @@
 
 pkgname=jellyseerr
 pkgver=2.1.0
-pkgrel=1
+pkgrel=2
 pkgdesc='Request management and media discovery tool for the Plex ecosystem'
 arch=(x86_64 aarch64)
 url='https://github.com/Fallenbagel/jellyseerr'
@@ -19,13 +19,15 @@ optdepends=(
   'jellyfin-server: The Free Software Media System'
   'plex-media-server: Plex Media Server'
   'emby-server: The open media solution'
+  'sonarr: Smart PVR for newsgroup and torrent users'
+  'radarr: Movie organizer/manager for usenet and torrent users'
 )
 makedepends=(pnpm nodejs-lts-iron)
 backup=(
   etc/conf.d/jellyseerr
-  etc/jellyseerr/settings.json
+  usr/lib/jellyseerr/config/settings.json
 )
-options=(!debug)
+options=(!strip !debug)
 install=jellyseerr.install
 source=(
   "${pkgname}-${pkgver}.tar.gz::https://github.com/Fallenbagel/jellyseerr/archive/v${pkgver}.tar.gz"
@@ -39,7 +41,7 @@ source=(
 )
 sha256sums=('ee8ca3046a5789b758cfe43472732ddb5a9b45d2e8396b075c82e757b3e7ec2c'
   '2bac9f51b528ac40b7e0f952a032dde323533c0a986ac8be4c762fbe8dbad21f'
-  '5d5463c799709f3a8134002a1d99501afbdd237d58a11539c8f998ce22205959'
+  '5d764d5157c8bdfb537d03bd7e5ce09debaa7e98aed1df82b3f5896ee4c0d79e'
   '7cba7aadecc255a69e5d94c2ecc788cb925293aee230e9a1ead8aebd58fbe012'
   '5a446cc8fa0a47a49dbbd6920d49eb4569f988e808cbb0bdbb609ab179a94426'
   '8d7bf6eb0a71905d764ffa8a43934b645c9e8945c3fecec995674acf053dd7bd'
@@ -63,8 +65,10 @@ build() {
 
   export NEXT_TELEMETRY_DISABLED=1
   export CYPRESS_INSTALL_BINARY=0
+  # See: https://aur.archlinux.org/packages/jellyseerr#comment-998270
+  export SHARP_IGNORE_GLOBAL_LIBVIPS=1
   pnpm build
-  pnpm prune --prod --ignore-scripts --no-optional
+  pnpm prune --prod --ignore-scripts
 }
 
 package() {
@@ -77,8 +81,6 @@ package() {
   rm -rf "${pkgdir}/usr/lib/jellyseerr/.next/cache"
 
   find "${pkgdir}/usr/lib/jellyseerr/.next" -type f -print0 | xargs -0 sed -i "s^${srcdir}/${pkgname}-${pkgver}^/usr/lib/jellyseerr^g"
-
-  ln -s "/var/lib/jellyseerr" "${pkgdir}/usr/lib/jellyseerr/config"
 
   install -Dm644 'LICENSE' "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
   install -Dm644 "${srcdir}/jellyseerr.conf.d" "${pkgdir}/etc/conf.d/jellyseerr"
