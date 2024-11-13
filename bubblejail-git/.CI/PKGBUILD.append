@@ -16,7 +16,9 @@ eval _orig_"$(declare -f prepare)"
 prepare() {
   patch -d "$pkgname" -Np1 -F100 -i "$srcdir/0096-expandvars-0.patch"
 
-  sed -E -e '/--urgency.*critical/d' \
+  sed -E \
+    -e '/urgency/d' \
+    -e '/critical/d' \
     -i "$pkgname/src/bubblejail/bubblejail_cli.py"
 
   sed -E -e 's@^(\s+display_in_gui) = False$@\1 = True@' \
