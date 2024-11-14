@@ -1,4 +1,0 @@
-unset provides
-unset conflicts
-
-makedepends+=('cmake')
