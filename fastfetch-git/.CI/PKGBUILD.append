@@ -1,0 +1,10 @@
+makedepends+=(
+  'python-requests'
+)
+
+eval "_orig_$(declare -f build | sed -E 's&(-Wno-dev)\b&-G Ninja \1&')"
+
+build() {
+  (_orig_build)
+  [ ! -e build/fastfetch.1 ] && python "fastfetch/scripts/gen-pciids.py" > build/fastfetch.1
+}
