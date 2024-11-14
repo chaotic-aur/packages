@@ -2,41 +2,43 @@
 # Maintainer: Atakku <atakkudev@gmail.com>
 
 pkgname=blockbench-bin
-_pkgname=${pkgname%%-bin}
+_pkgname="${pkgname%-bin}"
 _pkgname_orig=Blockbench
 pkgver=4.11.2
-pkgrel=1
-pkgdesc="A low-poly 3D model editor"
-arch=('x86_64' 'armv7h')
-url="https://blockbench.net/"
+pkgrel=2
+pkgdesc='A low-poly 3D model editor'
+arch=(x86_64 armv7h)
+url='https://blockbench.net'
 license=('GPL-3.0-or-later')
-depends=('alsa-lib'
-  'at-spi2-core'
-  'cairo'
-  'dbus'
-  'expat'
-  'gcc-libs'
-  'giblib'
-  'glib2'
-  'glibc'
-  'gtk3'
-  'hicolor-icon-theme'
-  'imlib2'
-  'libcups'
-  'libdrm'
-  'libx11'
-  'libxcb'
-  'libxcomposite'
-  'libxdamage'
-  'libxext'
-  'libxfixes'
-  'libxkbcommon'
-  'libxrandr'
-  'mesa'
-  'nspr'
-  'nss'
-  'pango')
-makedepends=('gzip')
+depends=(
+  alsa-lib
+  at-spi2-core
+  cairo
+  dbus
+  expat
+  gcc-libs
+  giblib
+  glib2
+  glibc
+  gtk3
+  hicolor-icon-theme
+  imlib2
+  libcups
+  libdrm
+  libx11
+  libxcb
+  libxcomposite
+  libxdamage
+  libxext
+  libxfixes
+  libxkbcommon
+  libxrandr
+  mesa
+  nspr
+  nss
+  pango
+)
+makedepends=(gzip)
 provides=("${_pkgname}")
 conflicts=("${_pkgname}")
 options=(!debug)
