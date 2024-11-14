@@ -5,5 +5,5 @@ Terminal=false
 Type=Application
 Icon=blockbench
 StartupWMClass=Blockbench
-Comment=Low-poly modeling and animation software
+Comment=A low-poly 3D model editor
 Categories=Graphics;3DGraphics;
