@@ -1,5 +1,5 @@
 pkgbase = sonarr
-	pkgdesc = Smart PVR for newsgroup and torrent users.
+	pkgdesc = Smart PVR for newsgroup and torrent users
 	pkgver = 4.0.10.2544
 	pkgrel = 10
 	url = https://sonarr.tv
@@ -32,7 +32,6 @@ pkgbase = sonarr
 	optdepends = nzbhydra2: torznab and usenet indexer proxy
 	optdepends = prowlarr: torrent and usenet indexer proxy
 	optdepends = autobrr: irc, torrent and usenet indexer proxy
-	options = !debug
 	source = sonarr-4.0.10.2544.tar.gz::https://github.com/Sonarr/Sonarr/archive/refs/tags/v4.0.10.2544.tar.gz
 	source = package_info
 	source = sonarr.service
