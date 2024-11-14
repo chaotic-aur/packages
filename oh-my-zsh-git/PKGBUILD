@@ -6,7 +6,7 @@
 # Contributor: ThinCarrotShrimp <christoph.r.martin+arch at gmail dot com>
 
 pkgname=oh-my-zsh-git
-pkgver=r7279.677f5010d
+pkgver=r7424.c690f7316
 pkgrel=1
 pkgdesc="A community-driven framework for managing your zsh configuration. Includes 180+ optional plugins and over 120 themes to spice up your morning, and an auto-update tool so that makes it easy to keep up with the latest updates from the community"
 arch=('any')
@@ -23,9 +23,7 @@ install=${pkgname}.install
 source=("${pkgname}::git+https://github.com/ohmyzsh/ohmyzsh.git"
   '0001-zshrc.patch')
 sha256sums=('SKIP'
-  '83a3733eb5408e9ff7d87c68659c8a2c481e3c5e607ce04c071ab638a1f7e9f3')
-# conflicts=('grml-zsh-config'
-#            'grml-zsh-config-git')
+  '409c49adabd24ba101bddb7f843d82193b0ae0efec7e7527df1561278834056f')
 
 pkgver() {
   cd ${pkgname}
