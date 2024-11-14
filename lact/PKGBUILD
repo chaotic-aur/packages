@@ -1,7 +1,7 @@
 # Maintainer: Ilya Zlobintsev <ilya.zl@protonmail.com>
 pkgname=('lact' 'lact-libadwaita')
 pkgbase=lact
-pkgver=0.5.6
+pkgver=0.6.0
 pkgrel=1
 pkgdesc="AMDGPU Controller application"
 arch=('x86_64' 'aarch64')
@@ -12,7 +12,7 @@ makedepends=('blueprint-compiler' 'cargo' 'clang' 'libadwaita' 'git')
 install="$pkgbase.install"
 source=("git+https://github.com/ilya-zlobintsev/LACT.git#tag=v$pkgver")
 # Since the source is a git repository tag and not an archive, there's no single file with a checksum to check
-sha256sums=('9440a4d94f95d0a62124d635855817ea95fc8a5d2a70f2e52cb166364e1e630f')
+sha256sums=('86091bd9a2de430d36fd824e3dce9b6267271247f1ebfccdec2bd234cfd8d5cb')
 
 prepare() {
   cd "LACT"
