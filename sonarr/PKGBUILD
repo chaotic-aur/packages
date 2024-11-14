@@ -8,19 +8,19 @@ pkgname=sonarr
 _pkgname=Sonarr
 pkgver=4.0.10.2544
 pkgrel=10
-pkgdesc='Smart PVR for newsgroup and torrent users.'
-arch=('x86_64' 'aarch64' 'armv7h')
+pkgdesc='Smart PVR for newsgroup and torrent users'
+arch=(x86_64 aarch64 armv7h)
 url='https://sonarr.tv'
 license=('GPL-3.0-or-later')
-groups=('servarr')
+groups=(servarr)
 depends=(
-  'aspnet-runtime-6.0'
-  'gcc-libs'
-  'glibc'
-  'sqlite'
-  'ffmpeg'
+  aspnet-runtime-6.0
+  gcc-libs
+  glibc
+  sqlite
+  ffmpeg
 )
-makedepends=('dotnet-sdk-6.0' 'yarn')
+makedepends=(dotnet-sdk-6.0 yarn)
 optdepends=(
   'postgresql: postgresql database'
   'sabnzbd: usenet downloader'
@@ -39,15 +39,14 @@ optdepends=(
   'prowlarr: torrent and usenet indexer proxy'
   'autobrr: irc, torrent and usenet indexer proxy'
 )
-options=(!debug)
 install=sonarr.install
 source=(
   "${pkgname}-${pkgver}.tar.gz::https://github.com/Sonarr/Sonarr/archive/refs/tags/v${pkgver}.tar.gz"
-  'package_info'
-  'sonarr.service'
-  'sonarr.sysusers'
-  'sonarr.tmpfiles'
-  'sonarr.install'
+  package_info
+  sonarr.service
+  sonarr.sysusers
+  sonarr.tmpfiles
+  sonarr.install
 )
 sha256sums=('d6f1b1d04ea572cfd2aba72d8adac1925f544c43b99f31f3a047588f8369be78'
   '19112dc0051224b4de66f28077c93b6ee06e163b5194e6aecf62dedf66ff45a9'
@@ -64,12 +63,12 @@ esac
 
 _framework='net6.0'
 _runtime="linux-${_CARCH}"
-_output="_output"
+_output='_output'
 _artifacts="${_output}/${_framework}/${_runtime}/publish"
 _branch='main'
 
 prepare() {
-  cd "${srcdir}/${_pkgname}-${pkgver}"
+  cd "${_pkgname}-${pkgver}"
 
   # Fix CVE-2024-43485
   sed 's/System\.Text\.Json" Version="6\.0\.9"/System\.Text\.Json" Version="6\.0\.10"/' -i src/NzbDrone.Common/Sonarr.Common.csproj
@@ -91,7 +90,7 @@ prepare() {
 }
 
 build() {
-  cd "${srcdir}/${_pkgname}-${pkgver}"
+  cd "${_pkgname}-${pkgver}"
 
   # Build backend
   export DOTNET_CLI_TELEMETRY_OPTOUT=1
@@ -122,16 +121,17 @@ build() {
 }
 
 check() {
-  cd "${srcdir}/${_pkgname}-${pkgver}"
-  local _filters="Category!=ManualTest&Category!=AutomationTest&Category!=WINDOWS"
+  cd "${_pkgname}-${pkgver}"
 
   # Skip Tests:
+  local _filters='Category!=ManualTest'
+  _filters+='&Category!=AutomationTest'
+  _filters+='&Category!=IntegrationTest'
+  _filters+='&Category!=WINDOWS'
   # These tests fail because /etc/arch-release doesn't contain a ${VERSION_ID}
   # See: https://github.com/Sonarr/Sonarr/issues/7299
-  # Integration tests also completely fail
-  _filters="${_filters}&FullyQualifiedName!~should_get_version_info"
-  _filters="${_filters}&FullyQualifiedName!~should_get_version_info_from_actual_linux"
-  _filters="${_filters}&Category!=IntegrationTest"
+  _filters+='&FullyQualifiedName!~should_get_version_info'
+  _filters+='&FullyQualifiedName!~should_get_version_info_from_actual_linux'
 
   # Prepare for tests
   mkdir -p ~/.config/Sonarr
@@ -148,7 +148,7 @@ check() {
 }
 
 package() {
-  cd "${srcdir}/${_pkgname}-${pkgver}"
+  cd "${_pkgname}-${pkgver}"
   install -dm755 "${pkgdir}/usr/lib/sonarr/bin/UI"
 
   # Copy backend
@@ -160,13 +160,15 @@ package() {
   ln -s /usr/bin/ffprobe "${pkgdir}/usr/lib/sonarr/bin/ffprobe"
 
   # License
-  install -Dm644 "${srcdir}/${_pkgname}-${pkgver}/LICENSE.md" "${pkgdir}/usr/share/licenses/${pkgname}"
+  install -Dm644 LICENSE.md "${pkgdir}/usr/share/licenses/${pkgname}"
 
+  cd "${srcdir}"
   # Disable built in updater.
-  install -Dm644 "${srcdir}/package_info" "${pkgdir}/usr/lib/sonarr"
+  install -Dm644 package_info "${pkgdir}/usr/lib/sonarr"
   echo "PackageVersion=${pkgver}-${pkgrel}" >> "${pkgdir}/usr/lib/sonarr/package_info"
 
-  install -Dm644 "${srcdir}/sonarr.service" "${pkgdir}/usr/lib/systemd/system/sonarr.service"
-  install -Dm644 "${srcdir}/sonarr.sysusers" "${pkgdir}/usr/lib/sysusers.d/sonarr.conf"
-  install -Dm644 "${srcdir}/sonarr.tmpfiles" "${pkgdir}/usr/lib/tmpfiles.d/sonarr.conf"
+  # Systemd
+  install -Dm644 sonarr.service "${pkgdir}/usr/lib/systemd/system/sonarr.service"
+  install -Dm644 sonarr.sysusers "${pkgdir}/usr/lib/sysusers.d/sonarr.conf"
+  install -Dm644 sonarr.tmpfiles "${pkgdir}/usr/lib/tmpfiles.d/sonarr.conf"
 }
