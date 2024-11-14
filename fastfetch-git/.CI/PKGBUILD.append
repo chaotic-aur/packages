@@ -2,7 +2,7 @@ makedepends+=(
   'python-requests'
 )
 
-eval "_orig_$(declare -f build | sed -E 's&(-Wno-dev)\b&-G Ninja \1&')"
+eval _orig_"$(declare -f build)"
 
 build() {
   (_orig_build)
