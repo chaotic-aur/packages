@@ -1,24 +1,13 @@
-_pkgname="wxmaxima"
-url="https://github.com/wxmaxima-developers/wxmaxima"
+pkgname="$_pkgname"
 
-makedepends+=('ninja')
+prepare() {
+  cd "$_pkgsrc"
+  local _tag=$(git tag | grep '^Version-' | grep -Ev '^\S+-.*[A-Za-z]{2}.*$' | sort -rV | head -1)
+  git -c advice.detachedHead=false checkout -f "${_tag:?}"
+  git describe --tags --long
+}
 
-_pkgsrc="wxmaxima-Version-$pkgver"
-_pkgext="tar.gz"
-source=("$_pkgname-$pkgver.$_pkgext"::"https://github.com/wxMaxima-developers/wxmaxima/archive/refs/tags/Version-$pkgver.$_pkgext")
-sha512sums=('SKIP')
-
-build() {
-  local _cmake_options=(
-    -B build
-    -S "$_pkgsrc"
-    -G Ninja
-    -DCMAKE_BUILD_TYPE=None
-    -DCMAKE_INSTALL_PREFIX='/usr'
-    -DwxWidgets_CONFIG_EXECUTABLE=/usr/bin/wx-config
-    -Wno-dev
-  )
-
-  cmake "${_cmake_options[@]}"
-  cmake --build build
+pkgver() {
+  cd "$_pkgsrc"
+  git describe --tags | sed -E 's/^[^0-9]*//'
 }
