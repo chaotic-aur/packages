@@ -1,0 +1,2 @@
+REQ_ORIGIN=github/2850, github/2865
+REQ_REASON=depends: aylurs-gtk-shell, aylurs-gtk-shell-git
