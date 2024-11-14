@@ -1,0 +1,27 @@
+pkgbase = libastal-git
+	pkgdesc = Building blocks for building desktop shells.
+	pkgver = r540.c5eba25
+	pkgrel = 2
+	url = https://github.com/Aylur/astal
+	arch = x86_64
+	groups = libastal
+	license = LGPL-2.1-only
+	makedepends = git
+	makedepends = wayland
+	makedepends = wayland-protocols
+	makedepends = gobject-introspection
+	makedepends = meson
+	makedepends = vala
+	depends = glib2
+	depends = glibc
+	depends = gtk3
+	depends = gtk-layer-shell
+	depends = gdk-pixbuf2
+	depends = wayland
+	depends = libastal-io
+	provides = libastal
+	provides = libastal.so=3-64
+	source = git+https://github.com/Aylur/astal.git
+	sha256sums = SKIP
+
+pkgname = libastal-git
