@@ -1,6 +1,6 @@
 # Override this file with a modified version in /etc/tmpfiles.d/
 d /var/lib/sonarr/logs   0755 sonarr media
 Z /var/lib/sonarr        - sonarr media
-L /var/log/sonarr        - - - - /var/lib/sonarr/logs/
+L /var/log/sonarr        - - - - /var/lib/sonarr/logs
 L /run/sonarr/sonarr.pid - - - - /var/lib/sonarr/sonarr.pid
 L /etc/sonarr/config.xml - - - - /var/lib/sonarr/config.xml
