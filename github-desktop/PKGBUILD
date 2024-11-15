@@ -5,7 +5,7 @@
 # Contributor: Jiawen Geng
 
 pkgname=github-desktop
-pkgver=3.4.3
+pkgver=3.4.8
 _gitname="release-$pkgver-linux1"
 pkgrel=1
 pkgdesc='GUI for managing Git and GitHub'
@@ -22,7 +22,8 @@ depends=(curl
   unzip)
 optdepends=('github-cli: CLI interface for GitHub'
   'hub: CLI interface for GitHub')
-makedepends=(nodejs-lts-iron
+makedepends=(python-setuptools
+  nodejs-lts-iron
   npm
   xorg-server-xvfb
   yarn)
@@ -32,7 +33,7 @@ source=("$pkgname::git+https://github.com/shiftkey/desktop.git#tag=$_gitname"
   'git+https://github.com/github/gitignore.git'
   'git+https://github.com/github/choosealicense.com.git'
   "$pkgname.desktop")
-sha256sums=('e91af0fb0b02c4fa0778228e29cd9a859707dd6b772c4524cc82cdbf96bf0763'
+sha256sums=('afee5ef15f58007a150b4f482eff821c759a34bd9977e15e8d04f7cce9d3a7f5'
   'SKIP'
   'SKIP'
   'SKIP'
