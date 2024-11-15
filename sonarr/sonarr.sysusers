@@ -1,3 +1,2 @@
 u sonarr - "Sonarr Daemon" /var/lib/sonarr
-g media  -
 m sonarr media
