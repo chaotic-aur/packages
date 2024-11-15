@@ -1,10 +1,11 @@
 pkgbase = github-desktop
 	pkgdesc = GUI for managing Git and GitHub
-	pkgver = 3.4.3
+	pkgver = 3.4.8
 	pkgrel = 1
 	url = https://desktop.github.com
 	arch = x86_64
 	license = MIT
+	makedepends = python-setuptools
 	makedepends = nodejs-lts-iron
 	makedepends = npm
 	makedepends = xorg-server-xvfb
@@ -19,12 +20,12 @@ pkgbase = github-desktop
 	depends = unzip
 	optdepends = github-cli: CLI interface for GitHub
 	optdepends = hub: CLI interface for GitHub
-	source = github-desktop::git+https://github.com/shiftkey/desktop.git#tag=release-3.4.3-linux1
+	source = github-desktop::git+https://github.com/shiftkey/desktop.git#tag=release-3.4.8-linux1
 	source = git+https://github.com/github/gemoji.git
 	source = git+https://github.com/github/gitignore.git
 	source = git+https://github.com/github/choosealicense.com.git
 	source = github-desktop.desktop
-	sha256sums = e91af0fb0b02c4fa0778228e29cd9a859707dd6b772c4524cc82cdbf96bf0763
+	sha256sums = afee5ef15f58007a150b4f482eff821c759a34bd9977e15e8d04f7cce9d3a7f5
 	sha256sums = SKIP
 	sha256sums = SKIP
 	sha256sums = SKIP
