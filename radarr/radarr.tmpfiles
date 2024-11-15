@@ -1,6 +1,6 @@
 # Override this file with a modified version in /etc/tmpfiles.d/
 d /var/lib/radarr/logs   0755 radarr media
 Z /var/lib/radarr        - radarr media
-L /var/log/radarr        - - - - /var/lib/radarr/logs/
+L /var/log/radarr        - - - - /var/lib/radarr/logs
 L /run/radarr/radarr.pid - - - - /var/lib/radarr/radarr.pid
 L /etc/radarr/config.xml - - - - /var/lib/radarr/config.xml
