@@ -21,10 +21,11 @@ build() {
   python setup.py build
 }
 
-check() {
-  cd "$_pkgname-$pkgver"
-  python setup.py test
-}
+# Temporarily removed, otherwise fails with `error: invalid command 'test'`
+# check() {
+#   cd "$_pkgname-$pkgver"
+#   python setup.py test
+# }
 
 package() {
   cd "$_pkgname-$pkgver"
