@@ -1,0 +1,20 @@
+pkgbase = vr-video-player
+	pkgdesc = A virtual reality video player for Linux
+	pkgver = r137.0410062
+	pkgrel = 1
+	url = https://git.dec05eba.com/vr-video-player
+	arch = x86_64
+	license = BSD-3-Clause
+	depends = glm
+	depends = glew
+	depends = sdl2
+	depends = openvr
+	depends = libx11
+	depends = libxcomposite
+	depends = libxfixes
+	depends = mpv
+	depends = xdotool
+	source = vr-video-player-r137.0410062.tar.gz::https://dec05eba.com/snapshot/vr-video-player.git.r137.0410062.tar.gz
+	sha512sums = fba7cc5df7fa8bffbe74cbc96d3a8ede262ea34e105c7bdc19a4b55dcee7ac820157fab36c875144a04630c0c735afdd186f9aaa4517be1e7599a9861b086f28
+
+pkgname = vr-video-player
