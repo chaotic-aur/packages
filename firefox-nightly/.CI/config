@@ -1,4 +1,5 @@
-CI_ON_TRIGGER=heavy
 BUILDER_CACHE_SOURCES=true
-CI_PKGBUILD_SOURCE=https://aur.archlinux.org/firefox-hg.git
 BUILDER_CLASS=9
+CI_ON_TRIGGER=heavy
+CI_PACKAGE_BUMP=134.0a1+20241116.09+h8cdd01816-1/1
+CI_PKGBUILD_SOURCE=https://aur.archlinux.org/firefox-hg.git
