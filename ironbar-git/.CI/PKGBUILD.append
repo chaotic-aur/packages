@@ -1,0 +1,18 @@
+_pkgname="ironbar"
+
+url="https://github.com/JakeStanger/ironbar"
+
+depends+=(
+  'libdbusmenu-glib'
+  'libdbusmenu-gtk3'
+)
+
+provides=("$_pkgname")
+conflicts=("$_pkgname")
+
+_pkgsrc="$_pkgname"
+pkgver() {
+  cd "$_pkgsrc"
+  git describe --long --tags --abbrev=7 --exclude='*[a-zA-Z][a-zA-Z]*' \
+    | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
+}
