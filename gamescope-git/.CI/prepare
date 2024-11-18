@@ -1,3 +1,0 @@
-#!/usr/bin/env sh
-
-sed -e '/chmod/d' -i PKGBUILD
