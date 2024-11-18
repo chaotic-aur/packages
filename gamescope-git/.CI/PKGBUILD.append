@@ -10,7 +10,7 @@ pkgver() {
   printf '%s.r%s.g%s' "${_version:?}" "${_revision:?}" "${_hash:?}"
 }
 
-eval _orig_"$(declare -f package | sed '/chmod/d)"
+eval _orig_"$(declare -f package | sed '/chmod/d')"
 
 package() {
   _orig_package
