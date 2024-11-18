@@ -137,21 +137,21 @@ function generate-commit() {
     set -euo pipefail
 
     local COMMIT_MESSAGE
-    if (( ${#COMMIT_MESSAGE_PACKAGES[@]} > 0 )) && (( ${#COMMIT_MESSAGE_PACKAGES[@]} < 4 )); then
+    if ((${#COMMIT_MESSAGE_PACKAGES[@]} > 0)) && ((${#COMMIT_MESSAGE_PACKAGES[@]} < 4)); then
         local packages="$(printf "%s, " "${COMMIT_MESSAGE_PACKAGES[@]}")"
-        COMMIT_MESSAGE="chore(packages): update ${packages%, }"
-    elif (( ${#COMMIT_MESSAGE_PACKAGES[@]} > 3 )); then
-        COMMIT_MESSAGE="chore(packages): update packages (${#COMMIT_MESSAGE_PACKAGES[@]})"
-    else 
-        COMMIT_MESSAGE="chore(packages): update packages"
+        COMMIT_MESSAGE="chore(update): ${packages%, }"
+    elif ((${#COMMIT_MESSAGE_PACKAGES[@]} > 3)); then
+        COMMIT_MESSAGE="chore(update): update packages (${#COMMIT_MESSAGE_PACKAGES[@]})"
+    else
+        COMMIT_MESSAGE="chore(update): update packages"
     fi
-    
+
     if [ -v GITHUB_ACTIONS ]; then
         COMMIT_MESSAGE+=" [skip ci]"
     fi
     if [ "$1" == ".final" ]; then
         local COMMIT_DESCRIPTION=""
-        if (( ${#COMMIT_MESSAGE_PACKAGES[@]} > 3 )); then
+        if ((${#COMMIT_MESSAGE_PACKAGES[@]} > 3)); then
             local packages="$(printf "%s, " "${COMMIT_MESSAGE_PACKAGES[@]}")"
             COMMIT_DESCRIPTION+="changed: ${packages%, }"
         fi
@@ -203,7 +203,7 @@ function update-lib-bump() {
             # If the version we except matches the version in the database
             if [ "$(vercmp "${_PKGVER}" "${_PKGVER_IN_DB}")" = "0" ]; then
                 # Increment the bump count
-                _BUMPCOUNT=$(( _BUMPCOUNT + 1 ))
+                _BUMPCOUNT=$((_BUMPCOUNT + 1))
             else
                 # Otherwise, set the bump count to 1
                 _BUMPCOUNT=1
@@ -386,7 +386,7 @@ function update_pkgbuild() {
         fi
         local NEW_TIMESTAMP="${AUR_TIMESTAMPS[$pkgbase]}"
 
-        if (( NEW_TIMESTAMP <= LAST_AUR_TIMESTAMP )); then
+        if ((NEW_TIMESTAMP <= LAST_AUR_TIMESTAMP)); then
             return 0
         fi
         http_proxy="$CI_AUR_PROXY" https_proxy="$CI_AUR_PROXY" update_via_git VARIABLES_UPDATE_PKGBUILD "$git_url"
