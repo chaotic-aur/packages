@@ -1,7 +1,7 @@
 pkgbase = openboard
 	pkgdesc = Interactive whiteboard software for schools and universities
-	pkgver = 1.7.1
-	pkgrel = 4
+	pkgver = 1.7.2
+	pkgrel = 1
 	url = http://openboard.ch/index.en.html
 	arch = x86_64
 	arch = i686
@@ -18,15 +18,7 @@ pkgbase = openboard
 	depends = ffmpeg
 	depends = quazip-qt6
 	depends = poppler
-	source = https://github.com/OpenBoard-org/OpenBoard/archive/v1.7.1.tar.gz
-	source = openboard-c++20-support.patch::https://github.com/OpenBoard-org/OpenBoard/commit/6a0be1b4607da3c3eb9b7d8b547e7b489bc2d219.patch
-	source = openboard-use-c++20.patch::https://github.com/OpenBoard-org/OpenBoard/commit/ffeea1b662b012bd25a025f2130fa2c2044919f9.patch
-	source = openboard-add-ffmpeg-7-support.patch::https://patch-diff.githubusercontent.com/raw/OpenBoard-org/OpenBoard/pull/1017.patch
-	source = openboard-add-qt-6.8-support.patch::https://github.com/OpenBoard-org/OpenBoard/commit/d7cf544678c1fbcd31c56a1bdf5e7d7133183049.patch
-	sha256sums = 5c9fcb54bc1598b4b7026e6ecca07137660dd3d45bda472a5710acf600a2a22f
-	sha256sums = ac8b4a37192454781216cf38b2fa702d3548a61b5e1c5ce419aa98bcdea77312
-	sha256sums = 8a0765cbc45f3e0e1c78f82d6c627afbb85bf17fbe1e256fec6e1c9ea2fd9313
-	sha256sums = d39d06b6b9152103efb6983c13f7d258b1eedd8e07d823a718ea816c849ba21d
-	sha256sums = 6c55d4a099a5006fc3401feccb56e7935b2184e63dc546aca0fa257aff929167
+	source = https://github.com/OpenBoard-org/OpenBoard/archive/v1.7.2.tar.gz
+	sha256sums = 47ef1ab60f21280b907d9205c7381537be640a64a4808861fb83b70d1d519370
 
 pkgname = openboard
