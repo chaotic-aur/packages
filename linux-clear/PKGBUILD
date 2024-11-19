@@ -1,5 +1,8 @@
+#!/usr/bin/env bash
+# shellcheck disable=SC2034 disable=SC2048 disable=SC2086 disable=SC2154
 # Maintainer: JeremyStarTM <jeremystartm@staropensource.de>
 # Maintainer: Josip Ponjavic <josipponjavic at gmail dot com>
+# Contributor: yarost12 <yaro330@gmail.com>
 
 ### BUILD OPTIONS
 # You can modify these settings by executing "env _<setting>=<value> makepkg"
@@ -117,7 +120,7 @@
 
 # Kernel version
 _kernel_major=6.11
-_kernel_minor=7
+_kernel_minor=9
 # Clear Linux patches version
 _clr=6-1477
 # kernel_compiler_patch version
@@ -148,13 +151,12 @@ source=(
 
 [[ -n "${_use_llvm_lto}" ]] && BUILD_FLAGS=("LLVM=1" "LLVM_IAS=1")
 
-export KBUILD_BUILD_HOST=archlinux
-export KBUILD_BUILD_USER=${pkgbase}
-export KBUILD_BUILD_TIMESTAMP="$(date -Ru${SOURCE_DATE_EPOCH:+d @$SOURCE_DATE_EPOCH})"
+export "KBUILD_BUILD_HOST=archlinux"
+export "KBUILD_BUILD_USER=${pkgbase}"
+export "KBUILD_BUILD_TIMESTAMP=$(date -Ru${SOURCE_DATE_EPOCH:+d @$SOURCE_DATE_EPOCH})"
 
-prepare() {
-  cd "${_src_linux}" || exit 1
-
+# Applies all patches
+apply_patches() {
   # Patch with kernel version patches
   patch -Np1 -i ../patch-${_kernel_major}.${_kernel_minor} || true
 
@@ -172,7 +174,27 @@ prepare() {
 
     patch -Np1 -i "${srcdir}/cl-linux/${i}" || true
   done
+}
 
+# Copies the kernel config
+copy_defconfig() {
+  local "_cur_major_ver=$(zcat /proc/config.gz | grep Linux | grep -o '[0-9]*[0-9]\.[0-9]*[0-9]')"
+  [[ "${_cur_major_ver}" != "${_kernel_major}" ]] \
+    && warning "Major version was updated, you should regen the defconfig"
+
+  if [[ -s /proc/config.gz ]]; then
+    # modprobe configs
+    zcat /proc/config.gz > ./.config
+    make ${BUILD_FLAGS[*]} olddefconfig
+  else
+    warning "Your kernel was not compiled with IKCONFIG_PROC."
+    warning "Unable to read kernel configuration, aborting."
+    exit
+  fi
+}
+
+# Updates the kernel config
+update_defconfig() {
   # Copy configuration file (if found)
   if [ -f "${startdir}/kconfig" ]; then
     echo ":: Using configuration file \"${startdir}/kconfig\""
@@ -270,18 +292,24 @@ prepare() {
   # Ask for subarch
   [[ -z "${_subarch}" ]] && make ${BUILD_FLAGS[*]} oldconfig
 
-  # Optionally use the configuration of the running kernel
-  # Written originally by nous, see
-  # https://web.archive.org/web/20110711231356/https://aur.archlinux.org/packages.php?ID=40191 (package doesn't exist anymore)
-  [[ -n "${_use_current}" ]] \
-    && if [[ -s /proc/config.gz ]]; then
-      # modprobe configs
-      zcat /proc/config.gz > ./.config
-    else
-      warning "Your kernel was not compiled with IKCONFIG_PROC."
-      warning "Unable to read kernel configuration, aborting."
-      exit
-    fi
+  # Open configuration editors
+  [[ -n "$_makemenuconfig" ]] && make ${BUILD_FLAGS[*]} menuconfig
+  [[ -n "$_makexconfig" ]] && make ${BUILD_FLAGS[*]} xconfig
+  [[ -n "$_makenconfig" ]] && make ${BUILD_FLAGS[*]} nconfig
+
+  # Save configuration
+  # shellcheck disable=SC2015
+  [[ -n "${_copyfinalconfig}" ]] && cp -Tf ./.config "${startdir}/kconfig-new" || true
+}
+
+# Prepares the installation
+prepare() {
+  cd "${_src_linux}" || exit 1
+
+  apply_patches
+
+  [[ -n "${_use_current}" ]] && copy_defconfig
+  [[ -z "${_use_current}" ]] && update_defconfig
 
   # Read and apply modprobed database
   # See https://aur.archlinux.org/packages/modprobed-db
@@ -294,21 +322,15 @@ prepare() {
 
   # Write kernel version
   make -s kernelrelease > version
-
-  # Open configuration editors
-  [[ -n "$_makemenuconfig" ]] && make ${BUILD_FLAGS[*]} menuconfig
-  [[ -n "$_makexconfig" ]] && make ${BUILD_FLAGS[*]} xconfig
-  [[ -n "$_makenconfig" ]] && make ${BUILD_FLAGS[*]} nconfig
-
-  # Save configuration
-  [[ -n "${_copyfinalconfig}" ]] && cp -Tf ./.config "${startdir}/kconfig-new" || true
 }
 
+# Build kernel
 build() {
   cd "${_src_linux}" || exit 1
   make ${BUILD_FLAGS[*]} all
 }
 
+# Packages the kernel package
 _package() {
   pkgdesc="${pkgdesc} This package includes the kernel and compiled modules."
   depends=("coreutils" "kmod" "initramfs")
@@ -318,7 +340,7 @@ _package() {
   install=linux.install
 
   cd "${_src_linux}" || exit 1
-  local modulesdir="${pkgdir}/usr/lib/modules/$(< version)"
+  local "modulesdir=${pkgdir}/usr/lib/modules/$(< version)"
 
   # Create boot image
   # systemd expects to find the kernel there to allow hibernation
@@ -336,12 +358,13 @@ _package() {
   rm "${modulesdir}"/build
 }
 
+# Packages the headers package
 _package-headers() {
   pkgdesc="${pkgdesc} This package includes header files and scripts for building kernel modules."
   depends=("pahole")
 
   cd "${_src_linux}" || exit 1
-  local builddir="${pkgdir}/usr/lib/modules/$(< version)/build"
+  local "builddir=${pkgdir}/usr/lib/modules/$(< version)/build"
 
   install -Dt "${builddir}" -m644 .config Makefile Module.symvers System.map \
     localversion.* version vmlinux
@@ -418,8 +441,8 @@ _package-headers() {
 pkgname=("$pkgbase" "$pkgbase-headers")
 for _p in "${pkgname[@]}"; do
   eval "package_$_p() {
-    $(declare -f "_package${_p#$pkgbase}")
-    _package${_p#$pkgbase}
+    $(declare -f "_package${_p#"$pkgbase"}")
+    _package${_p#"$pkgbase"}
   }"
 done
 
@@ -432,6 +455,6 @@ validpgpkeys=(
 )
 sha256sums=("55d2c6c025ebc27810c748d66325dd5bc601e8d32f8581d9e77673529bdacb2e"
   "SKIP"
-  "4ccabe59805d7efd8165405624695255a87811cbea5c0e1d7a3981c21789b2ec"
+  "d1c0981b5287252677e8f74a9f5d83aebceba77a4b1be24cba33102267f2c418"
   "SKIP"
   "b3fd8b1c5bbd39a577afcccf6f1119fdf83f6d72119f4c0811801bdd51d1bc61")
