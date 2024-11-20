@@ -20,7 +20,6 @@ Still, the old repo will be kept around as a push-only mirror.
   - [VFIO](https://aur.archlinux.org/packages/linux-vfio),
   - [XanMod](https://aur.archlinux.org/packages/linux-xanmod) / [XanMod-RT](https://aur.archlinux.org/packages/linux-xanmod-rt) / [XanMod-LTS](https://aur.archlinux.org/packages/linux-xanmod-lts),
   - [Mainline](https://aur.archlinux.org/packages/linux-mainline),
-  - [AMD](https://aur.archlinux.org/packages/linux-amd) / [AMD Znver2](https://aur.archlinux.org/packages/linux-amd-znver2) / [AMD Znver3](https://aur.archlinux.org/packages/linux-amd-znver3),
   - [LQX](https://aur.archlinux.org/packages/linux-lqx)
   - and a few architecture-specific variants of the previously mentioned kernels
 - Emulators and gaming utilities
@@ -213,9 +212,9 @@ Whenever pushing a new commit, the CI pipeline will carry out the following acti
 
 #### On-schedule pipelines
 
-##### Half-hourly
+##### Hourly
 
-Every half an hour, the on-schedule pipeline will carry out a few tasks:
+Every hour, the on-schedule pipeline will carry out a few tasks:
 
 - Updating the CI template from the template repository (in case this is enabled via `.ci/config`)
 - Check if the scheduled tag does not exist or scheduled does not point to HEAD (in this case abort mission!)
