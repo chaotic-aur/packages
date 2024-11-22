@@ -1,4 +1,4 @@
-BUILDER_CACHE_SOURCES=true
 CI_ON_TRIGGER=check
+BUILDER_CACHE_SOURCES=true
 CI_PACKAGE_BUMP=9.21-1/4
 CI_PKGBUILD_SOURCE=https://aur.archlinux.org/wine-wow64-git.git
