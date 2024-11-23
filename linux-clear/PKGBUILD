@@ -120,7 +120,7 @@
 
 # Kernel version
 _kernel_major=6.11
-_kernel_minor=9
+_kernel_minor=10
 # Clear Linux patches version
 _clr=6-1477
 # kernel_compiler_patch version
@@ -455,6 +455,6 @@ validpgpkeys=(
 )
 sha256sums=("55d2c6c025ebc27810c748d66325dd5bc601e8d32f8581d9e77673529bdacb2e"
   "SKIP"
-  "d1c0981b5287252677e8f74a9f5d83aebceba77a4b1be24cba33102267f2c418"
+  "d2a794cfdb4f2979e6aec50e6a6ac3f9242a266df929a1daf923cc701cf88c67"
   "SKIP"
   "b3fd8b1c5bbd39a577afcccf6f1119fdf83f6d72119f4c0811801bdd51d1bc61")
