@@ -1,5 +1,0 @@
-declare -x REDIS_SSH_HOST="builds.garudalinux.org"
-declare -x REDIS_SSH_PORT="400"
-declare -x REDIS_SSH_USER="package-deployer"
-declare -x REDIS_PORT="6379"
-declare -a PARAMS_SCHEDULE=([0]="schedule" [1]="--target-repo=chaotic-aur" [2]="--source-repo=chaotic-aur" [3]="--commit" [4]="a9209732da125f98a5c791e72afa14dbd53f3690:1558128563" [5]="xpadneo-dkms-git/5" [6]="gajim-git/5" [7]="vlang-git/5" [8]="zapret-git/5" [9]="radare2-git/5" [10]="fooyin-git/5" [11]="vlc-git/5" [12]="ayugram-desktop/5" [13]="kodi-stable-git/5" [14]="river-git/5" [15]="mangohud-git/5" [16]="searxng-git/5" [17]="lib32-vulkan-nouveau-git/5" [18]="vulkan-nouveau-git/5" [19]="wlx-overlay-s-git/5" [20]="carla-git/5" [21]="coreutils-hybrid-git/5" [22]="alvr/catbuilder" [23]="mkosi-git/5" [24]="lib32-mangohud-git/5" [25]="neovim-git/5")
