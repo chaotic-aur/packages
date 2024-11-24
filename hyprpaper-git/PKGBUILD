@@ -3,7 +3,7 @@
 
 _pkgname="hyprpaper"
 pkgname="$_pkgname-git"
-pkgver=0.7.1.r6.g3f8cc92
+pkgver=0.7.1.r8.g0b5e350
 pkgrel=1
 pkgdesc="a blazing fast wayland wallpaper utility with IPC controls"
 url="https://github.com/hyprwm/hyprpaper"
@@ -12,6 +12,7 @@ arch=('x86_64')
 
 depends=(
   libjpeg.so
+  libjxl.so
   libmagic.so # file
   libwebp.so
   pango
