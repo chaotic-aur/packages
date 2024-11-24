@@ -19,6 +19,9 @@
       flake = false;
     };
 
+    # Flake parts
+    flake-parts.url = "github:hercules-ci/flake-parts";
+
     # The single source of truth
     nixpkgs.follows = "chaotic/nixpkgs";
 
