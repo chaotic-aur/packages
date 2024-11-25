@@ -1,6 +1,6 @@
-pkgbase = cosmic-applibrary-git
+pkgbase = cosmic-app-library-git
 	pkgdesc = An application launcher for the COSMIC desktop
-	pkgver = 1.0.0.alpha.3.r0.g3dd148d
+	pkgver = 1.0.0.alpha.3.r1.g676656d
 	pkgrel = 1
 	url = https://github.com/pop-os/cosmic-applibrary
 	arch = x86_64
@@ -12,11 +12,10 @@ pkgbase = cosmic-applibrary-git
 	makedepends = mold
 	depends = hicolor-icon-theme
 	depends = libxkbcommon
-	provides = cosmic-applibrary
 	provides = cosmic-app-library
-	conflicts = cosmic-applibrary
 	conflicts = cosmic-app-library
+	conflicts = cosmic-applibrary
 	source = git+https://github.com/pop-os/cosmic-applibrary.git
 	sha256sums = SKIP
 
-pkgname = cosmic-applibrary-git
+pkgname = cosmic-app-library-git
