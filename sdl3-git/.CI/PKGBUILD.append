@@ -1,0 +1,9 @@
+url="https://github.com/libsdl-org/SDL"
+
+depends=(${depends[@]//libxext/})
+depends=(${depends[@]//libxrender/})
+depends=(${depends[@]//libx11/})
+depends=(${depends[@]//libgl/})
+depends=(${depends[@]//libxcursor/})
+depends=(${depends[@]//hidapi/})
+depends=(${depends[@]//libusb/})
