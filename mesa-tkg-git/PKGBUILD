@@ -632,20 +632,6 @@ package_lib32-mesa-tkg-git() {
   fi
 
   install -Dt "$pkgdir"/usr/share/licenses/$pkgname "$srcdir"/LICENSE
-
-  if (cd "$srcdir/$_mesa_srcdir" && ! git merge-base --is-ancestor 63e1e7209c2bf7d8bbce18380d4f1b2cff4c0bbb HEAD); then
-    msg2 '#############################################################################################'
-    msg2 ''
-    msg2 '   Reminder: You can enable ACO at runtime with the `RADV_PERFTEST=aco` environment variable.'
-    msg2 ''
-    msg2 '#############################################################################################'
-  else
-    msg2 '#############################################################################################'
-    msg2 ''
-    msg2 '   Reminder: You can disable ACO at runtime with the `RADV_DEBUG=llvm` environment variable.'
-    msg2 ''
-    msg2 '#############################################################################################'
-  fi
 }
 
 trap exit_cleanup EXIT
