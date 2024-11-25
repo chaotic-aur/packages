@@ -1,0 +1,8 @@
+unset optdepends
+
+eval _orig_"$(declare -f package)"
+package() {
+  depends+=(java-runtime)
+
+  _orig_package
+}
