@@ -1,0 +1,18 @@
+pkgbase = python-screeninfo
+	pkgdesc = Python library to fetch location and size of physical screens
+	pkgver = 0.8.1
+	pkgrel = 2
+	url = https://github.com/rr-/screeninfo
+	arch = any
+	license = MIT
+	makedepends = python-build
+	makedepends = python-poetry-core
+	makedepends = python-installer
+	depends = python
+	optdepends = libxinerama: xinerama backend
+	optdepends = libxrandr: randr backend
+	optdepends = libdrm: experimental DRM backend
+	source = python-screeninfo-0.8.1.tar.gz::https://github.com/rr-/screeninfo/archive/0.8.1.tar.gz
+	sha256sums = f6b3eeb22196a253611df1d3ee8fff549f2654730823ef4d2533018c27f13b09
+
+pkgname = python-screeninfo
