@@ -1,2 +1,4 @@
-licence=('GPL-3.0-or-later')
+license=('GPL-3.0-or-later')
 url="${url%.git}"
+
+depends+=('jq')
