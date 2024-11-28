@@ -1,5 +1,9 @@
 url="https://github.com/xbmc/xbmc"
 
+makedepends=(${makedepends[@]//jdk*/})
+makedepends=(${makedepends[@]//java-runtime*/})
+makedepends+=('java-runtime<=21')
+
 _renderer=gl
 
 pkgver() {
