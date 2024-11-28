@@ -3,7 +3,7 @@
 
 _pkgname="hyprpaper"
 pkgname="$_pkgname-git"
-pkgver=0.7.1.r8.g0b5e350
+pkgver=0.7.1.r11.ga3ceb20
 pkgrel=1
 pkgdesc="a blazing fast wayland wallpaper utility with IPC controls"
 url="https://github.com/hyprwm/hyprpaper"
@@ -19,6 +19,7 @@ depends=(
   wayland
 
   ## AUR
+  hyprgraphics-git
   hyprlang-git
   hyprutils-git
   hyprwayland-scanner-git
