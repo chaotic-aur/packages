@@ -14,6 +14,7 @@ pkgbase = hyprpicker-git
 	makedepends = ninja
 	makedepends = pango
 	makedepends = hyprutils-git
+	makedepends = hyprwayland-scanner-git
 	makedepends = wayland-protocols
 	makedepends = xorgproto
 	makedepends = pkg-config

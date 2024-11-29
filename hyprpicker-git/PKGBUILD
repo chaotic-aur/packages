@@ -21,6 +21,7 @@ makedepends=(
   ninja
   pango
   hyprutils-git
+  hyprwayland-scanner-git
   wayland-protocols
   xorgproto
   pkg-config
