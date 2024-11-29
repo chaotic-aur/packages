@@ -3,8 +3,8 @@
 
 _pkgname='superproductivity'
 pkgname="${_pkgname}-bin"
-pkgver=10.1.1
-pkgrel=4
+pkgver=10.2.3
+pkgrel=1
 pkgdesc="ToDo List / Time Tracker / Personal Jira Task Manager"
 arch=('x86_64')
 url="http://super-productivity.com/"
