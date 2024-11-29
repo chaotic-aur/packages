@@ -13,6 +13,7 @@ pkgbase = hyprpicker-git
 	makedepends = meson
 	makedepends = ninja
 	makedepends = pango
+	makedepends = hyprutils-git
 	makedepends = wayland-protocols
 	makedepends = xorgproto
 	makedepends = pkg-config
@@ -22,8 +23,6 @@ pkgbase = hyprpicker-git
 	depends = libxkbcommon
 	depends = wayland
 	optdepends = wl-clipboard: --autocopy
-	optdepends = hyprutils: choose either hyprutils or hyprutils-git
-	optdepends = hyprutils-git: choose either hyprutils or hyprutils-git
 	provides = hyprpicker=0.4.1
 	conflicts = hyprpicker
 	source = git+https://github.com/hyprwm/hyprpicker.git

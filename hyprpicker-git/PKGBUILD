@@ -20,13 +20,12 @@ makedepends=(
   meson
   ninja
   pango
+  hyprutils-git
   wayland-protocols
   xorgproto
   pkg-config
 )
-optdepends=('wl-clipboard: --autocopy'
-  'hyprutils: choose either hyprutils or hyprutils-git'
-  'hyprutils-git: choose either hyprutils or hyprutils-git')
+optdepends=('wl-clipboard: --autocopy')
 source=("git+$url.git")
 provides=("$_pkgname=${pkgver%%.r*}")
 conflicts=("$_pkgname")
