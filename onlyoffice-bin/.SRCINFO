@@ -1,6 +1,6 @@
 pkgbase = onlyoffice-bin
 	pkgdesc = An office suite that combines text, spreadsheet and presentation editors
-	pkgver = 8.2.1
+	pkgver = 8.2.2
 	pkgrel = 1
 	url = https://www.onlyoffice.com/
 	arch = x86_64
@@ -25,12 +25,12 @@ pkgbase = onlyoffice-bin
 	optdepends = ttf-ms-fonts: for Microsoft fonts
 	provides = onlyoffice=${pkgver}
 	conflicts = onlyoffice
-	noextract = onlyoffice-desktopeditors--8.2.1.deb
+	noextract = onlyoffice-desktopeditors--8.2.2.deb
 	options = !strip
 	options = !emptydirs
-	source = onlyoffice-desktopeditors--8.2.1.deb::https://github.com/ONLYOFFICE/DesktopEditors/releases/download/v8.2.1/onlyoffice-desktopeditors_amd64.deb
+	source = onlyoffice-desktopeditors--8.2.2.deb::https://github.com/ONLYOFFICE/DesktopEditors/releases/download/v8.2.2/onlyoffice-desktopeditors_amd64.deb
 	source = 010-onlyoffice-bin-fix-document-opening.patch
-	sha256sums = a6d77d89a2dfc8aed1ec79150d437e6c0fd5705b3d6bcf4b9d4794ff6bf0fea3
+	sha256sums = 0f02a93cccac2e18c00626141836ecda31b4960473597f97e21afe2dbda5c6a9
 	sha256sums = 670de5f8b72679a54ff41a96ba1bdba9231a93260d1a8eaf304f66c8e40efdb7
 
 pkgname = onlyoffice-bin
