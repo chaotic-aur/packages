@@ -1,7 +1,0 @@
-[Desktop Entry]
-Type=Application
-Name=JDownloader
-NoDisplay=true
-Exec=JDownloader --focus -co %F
-Terminal=false
-MimeType=application/x-dlc-container;application/x-ccf-container;application/x-rsdf-container;
