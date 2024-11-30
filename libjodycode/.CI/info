@@ -1,2 +1,2 @@
-REQ_ORIGIN=github/
-REQ_REASON=depends
+REQ_ORIGIN=github/1680
+REQ_REASON=depends # jdupes
