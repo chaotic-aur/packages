@@ -1,0 +1,12 @@
+pkgdesc="Cross-platform community-driven port of Keepass password manager"
+
+_pkgsrc="$_gitname"
+pkgver() {
+  cd "$_pkgsrc"
+  local _tag _version _revision _hash
+  _tag=$(git tag -l '[0-9]*' | grep -Ev '[a-z][a-z]' | sort -rV | head -1)
+  _version="${_tag:?}"
+  _revision=$(git rev-list --count --cherry-pick "$_tag"...HEAD)
+  _hash=$(git rev-parse --short=7 HEAD)
+  printf '%s.r%s.g%s' "${_version:?}" "${_revision:?}" "${_hash:?}"
+}
