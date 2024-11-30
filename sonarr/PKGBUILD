@@ -7,7 +7,7 @@
 pkgname=sonarr
 _pkgname=Sonarr
 pkgver=4.0.11.2680
-pkgrel=1
+pkgrel=2
 pkgdesc='Smart PVR for newsgroup and torrent users'
 arch=(x86_64 aarch64 armv7h)
 url='https://sonarr.tv'
@@ -18,7 +18,6 @@ depends=(
   gcc-libs
   glibc
   sqlite
-  ffmpeg
 )
 makedepends=(dotnet-sdk-6.0 yarn)
 optdepends=(
@@ -46,14 +45,12 @@ source=(
   sonarr.service
   sonarr.sysusers
   sonarr.tmpfiles
-  sonarr.install
 )
 sha256sums=('34fa3cae35ed8ed6596a2e18ad97bc85ce91885a0fa28f92c101488166812ec2'
   '19112dc0051224b4de66f28077c93b6ee06e163b5194e6aecf62dedf66ff45a9'
   '64d1e9bafeaa6f47329222d31fbcf2dbb575566d391334ea034a857e144dfe62'
   '00141d4cbf34daa6d91b26179d4847ec970e2767382e18fdf9af2ec84a0ff43e'
-  'd6b18a83dd9c213470d984f71ddcefcd64d12bb87f68225cc4ebf5fa4a831703'
-  '3d912d367eeb89ead06dc9dc45de093f48ddc601188731d54775c33e04e369aa')
+  'd6b18a83dd9c213470d984f71ddcefcd64d12bb87f68225cc4ebf5fa4a831703')
 
 case ${CARCH} in
   x86_64) _CARCH='x64' ;;
@@ -69,10 +66,6 @@ _branch='main'
 
 prepare() {
   cd "${_pkgname}-${pkgver}"
-
-  # Fix CVE-2024-43485
-  sed 's/System\.Text\.Json" Version="6\.0\.9"/System\.Text\.Json" Version="6\.0\.10"/' -i src/NzbDrone.Common/Sonarr.Common.csproj
-  sed 's/System\.Text\.Json" Version="6\.0\.9"/System\.Text\.Json" Version="6\.0\.10"/' -i src/NzbDrone.Core/Sonarr.Core.csproj
 
   # Remove upstream dotnet version
   rm global.json
@@ -109,34 +102,34 @@ build() {
     -t:PublishAllRids \
     && dotnet build-server shutdown # Build servers do not terminate automatically
 
-  # Remove ffprobe, Service Helpers, Update, and Windows files
-  rm "${_artifacts}/ffprobe"
-  rm "${_artifacts}/ServiceInstall"*
-  rm "${_artifacts}/ServiceUninstall"*
-  rm "${_artifacts}/Sonarr.Windows."*
-  rm -rf "${_output}/Sonarr.Update"
-
   # Build frontend
   yarn run build --env production
 }
 
 package() {
   cd "${_pkgname}-${pkgver}"
+
   install -dm755 "${pkgdir}/usr/lib/sonarr/bin/UI"
 
-  # Copy backend
-  cp -dpr --no-preserve=ownership "${_artifacts}/"* "${pkgdir}/usr/lib/sonarr/bin"
-  # Copy frontend
-  cp -dpr --no-preserve=ownership "${_output}/UI/"* "${pkgdir}/usr/lib/sonarr/bin/UI"
+  # Remove Service Helpers, Update, and Windows files
+  rm "${_artifacts}/ServiceInstall"*
+  rm "${_artifacts}/ServiceUninstall"*
+  rm "${_artifacts}/Sonarr.Windows."*
+  rm -rf "${_output}/Sonarr.Update"
 
-  # Use system ffprobe
-  ln -s /usr/bin/ffprobe "${pkgdir}/usr/lib/sonarr/bin/ffprobe"
+  # Copy backend
+  cp -dr "${_artifacts}/"* "${pkgdir}/usr/lib/sonarr/bin"
+  # Copy frontend
+  cp -dr "${_output}/UI/"* "${pkgdir}/usr/lib/sonarr/bin/UI"
+
+  # Set executable permissions
+  chmod 755 "${pkgdir}/usr/lib/sonarr/bin/ffprobe"
 
   # License
   install -Dm644 LICENSE.md "${pkgdir}/usr/share/licenses/${pkgname}"
 
-  cd "${srcdir}"
   # Disable built in updater.
+  cd "${srcdir}"
   install -Dm644 package_info "${pkgdir}/usr/lib/sonarr"
   echo "PackageVersion=${pkgver}-${pkgrel}" >> "${pkgdir}/usr/lib/sonarr/package_info"
 
