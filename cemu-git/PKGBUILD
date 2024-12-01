@@ -1,8 +1,11 @@
 # Maintainer: aur.chaotic.cx
 
+: ${_commit_fmt:=0c9fce2ffefecfdce794e1859584e25877b7b592}     # 11.0.2
+: ${_commit_glslang:=fa9c3deb49e035a8abcabe366f26aac010f6cbfb} # 14.3.0
+
 _pkgname="cemu"
 pkgname="$_pkgname-git"
-pkgver=2.3.r1.g9941e00
+pkgver=2.4.r7.g0735237
 pkgrel=1
 pkgdesc="Nintendo Wii U emulator"
 url="https://github.com/cemu-project/Cemu"
@@ -10,16 +13,16 @@ license=('MPL-2.0')
 arch=('x86_64')
 
 depends=(
-  'glslang'
   'libx11'
   'pugixml'
   'sdl2'
+  'spirv-tools'
   'wxwidgets-gtk3'
 )
 makedepends=(
   'boost'
   'cmake'
-  'cubeb'
+  'cubeb' # AUR
   'curl'
   'git'
   'glib2'
@@ -35,6 +38,7 @@ makedepends=(
   'ninja'
   'openssl'
   'rapidjson'
+  'spirv-headers'
   'vulkan-headers'
   'wayland'
   'wayland-protocols'
@@ -59,22 +63,25 @@ _source_main() {
 }
 
 _source_fmt() {
-  #_commit_fmt='a33701196adfad74917046096bf5a2aa0ab0bb50' # 9.1.0
-  _commit_fmt='e69e5f977d458f2650bb346dadf2ad30c5320281' # 10.2.1
-
   source+=("fmtlib.fmt"::"git+https://github.com/fmtlib/fmt.git#commit=$_commit_fmt")
+  sha256sums+=('SKIP')
+}
+
+_source_glslang() {
+  source+=("khronosgroup.glslang"::"git+https://github.com/KhronosGroup/glslang.git#commit=$_commit_glslang")
   sha256sums+=('SKIP')
 }
 
 _source_main
 _source_fmt
+_source_glslang
 
 prepare() {
   cd "$_pkgsrc"
   git config submodule.dependencies/imgui.url ../imgui
   git -c protocol.file.allow=always submodule update
+
   sed -i '/CMAKE_INTERPROCEDURAL_OPTIMIZATION/d' CMakeLists.txt
-  sed -i '/discord-rpc/d' CMakeLists.txt
   sed -i '/FMT_HEADER_ONLY/d' src/Common/precompiled.h
 }
 
@@ -84,7 +91,7 @@ pkgver() {
     | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
 }
 
-_build_fmt() {
+_build_fmt() (
   echo "Building fmt..."
 
   local _cmake_options=(
@@ -104,14 +111,29 @@ _build_fmt() {
   cmake "${_cmake_options[@]}"
   cmake --build build_fmt
   DESTDIR="$srcdir/deps" cmake --install build_fmt
-}
+)
 
-_build_main() {
+_build_glslang() (
+  echo "Building glslang..."
+
+  local _cmake_options=(
+    -B build_glslang
+    -S "khronosgroup.glslang"
+    -G Ninja
+    -DCMAKE_BUILD_TYPE=None
+    -DCMAKE_INSTALL_PREFIX='/usr'
+    -DALLOW_EXTERNAL_SPIRV_TOOLS=ON
+    -DBUILD_SHARED_LIBS=OFF
+    -Wno-dev
+  )
+
+  cmake "${_cmake_options[@]}"
+  cmake --build build_glslang
+  DESTDIR="$srcdir/deps" cmake --install build_glslang
+)
+
+_build_main() (
   echo "Building cemu..."
-
-  export CFLAGS CXXFLAGS
-  CFLAGS+=' -DNDEBUG'
-  CXXFLAGS+=' -DNDEBUG'
 
   local _cmake_options=(
     -B build
@@ -121,16 +143,23 @@ _build_main() {
     -DENABLE_DISCORD_RPC=OFF
     -DENABLE_VCPKG=OFF
     -Dfmt_DIR="$srcdir/deps/usr/lib/cmake/fmt"
+    -Dglslang_DIR="$srcdir/deps/usr/lib/cmake/glslang"
     -Wno-dev
   )
 
   cmake "${_cmake_options[@]}"
   cmake --build build
-}
+)
 
 build() {
-  (_build_fmt)
-  (_build_main)
+  export CFLAGS CXXFLAGS LDFLAGS
+  CFLAGS+=' -DNDEBUG'
+  CXXFLAGS+=' -DNDEBUG'
+  LDFLAGS+=" -ffat-lto-objects -Wl,--copy-dt-needed-entries"
+
+  _build_fmt
+  _build_glslang
+  _build_main
 }
 
 package() {

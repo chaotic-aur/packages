@@ -1,6 +1,6 @@
 pkgbase = cemu-git
 	pkgdesc = Nintendo Wii U emulator
-	pkgver = 2.3.r1.g9941e00
+	pkgver = 2.4.r7.g0735237
 	pkgrel = 1
 	url = https://github.com/cemu-project/Cemu
 	arch = x86_64
@@ -23,31 +23,34 @@ pkgbase = cemu-git
 	makedepends = ninja
 	makedepends = openssl
 	makedepends = rapidjson
+	makedepends = spirv-headers
 	makedepends = vulkan-headers
 	makedepends = wayland
 	makedepends = wayland-protocols
 	makedepends = zarchive
 	makedepends = zlib
 	makedepends = zstd
-	depends = glslang
 	depends = libx11
 	depends = pugixml
 	depends = sdl2
+	depends = spirv-tools
 	depends = wxwidgets-gtk3
-	provides = cemu=2.3
+	provides = cemu=2.4
 	conflicts = cemu
 	source = cemu::git+https://github.com/cemu-project/Cemu.git
 	source = imgui::git+https://github.com/ocornut/imgui.git
-	source = fmtlib.fmt::git+https://github.com/fmtlib/fmt.git#commit=e69e5f977d458f2650bb346dadf2ad30c5320281
+	source = fmtlib.fmt::git+https://github.com/fmtlib/fmt.git#commit=0c9fce2ffefecfdce794e1859584e25877b7b592
+	source = khronosgroup.glslang::git+https://github.com/KhronosGroup/glslang.git#commit=fa9c3deb49e035a8abcabe366f26aac010f6cbfb
+	sha256sums = SKIP
 	sha256sums = SKIP
 	sha256sums = SKIP
 	sha256sums = SKIP
 
 pkgname = cemu-git
-	depends = glslang
 	depends = libx11
 	depends = pugixml
 	depends = sdl2
+	depends = spirv-tools
 	depends = wxwidgets-gtk3
 	depends = libboost_program_options.so
 	depends = libcrypto.so
