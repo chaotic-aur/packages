@@ -1,1 +1,10 @@
+license=('GPL-3.0-or-later')
+
+makedepends+=('clang')
+
 options=(${options[@]//*debug*/})
+
+check() {
+  cd "build"
+  meson test -v || :
+}
