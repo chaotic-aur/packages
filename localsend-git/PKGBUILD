@@ -10,7 +10,7 @@
 # basic info
 _pkgname="localsend"
 pkgname="$_pkgname-git"
-pkgver=1.16.0.r4.g1a7927f
+pkgver=1.16.1.r27.gf34d4fc
 pkgrel=1
 pkgdesc="An open source cross-platform alternative to AirDrop"
 url="https://github.com/localsend/localsend"
@@ -45,6 +45,11 @@ pkgver() {
   cd "$_pkgsrc"
   git describe --long --tags --abbrev=7 --exclude='*[a-zA-Z][a-zA-Z]*' \
     | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
+}
+
+prepare() {
+  cd "$_pkgsrc"
+  sed -E -e 's&^channel = .*$&channel = "stable"&' -i app/rust-toolchain.toml
 }
 
 build() {
