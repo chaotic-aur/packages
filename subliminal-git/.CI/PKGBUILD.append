@@ -1,0 +1,7 @@
+makedepends+=(
+  'python-hatch-vcs'
+  'python-hatchling'
+)
+
+eval "$(declare -f build | sed -E '/\bman\b/d')"
+eval "$(declare -f package | sed -E '/\bman\b/d')"
