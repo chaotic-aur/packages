@@ -1,0 +1,1 @@
+eval "$(declare -f build | sed -E -e 's&\S+mangoapp_layer=\S+&&')"
