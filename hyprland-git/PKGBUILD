@@ -1,5 +1,6 @@
 # Maintainer: FabioLolix
 # Maintainer: éclairevoyant
+# Maintainer: alba4k <blaskoazzolaaaron@gmail.com>
 # Contributor: ThatOneCalculator <kainoa at t1c dot dev>
 
 pkgname=hyprland-git
@@ -16,9 +17,10 @@ depends=(
   glib2
   glibc
   glslang
-  hyprutils-git
   hyprcursor-git
+  hyprgraphics-git
   hyprlang-git
+  hyprutils-git
   libdisplay-info
   libdrm
   libglvnd
