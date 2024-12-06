@@ -3,6 +3,15 @@ post_install() {
   echo -e "\n  1. This package now comes with a shared group 'media'"
   echo -e "     Override if necessary."
   echo -e "\n  Overriding is done with \`systemctl edit jellyseerr\`\n"
+
+  if [[ -L var/lib/jellyseerr ]]; then
+    rm var/lib/jellyseerr
+    mv -r usr/lib/jellyseerr/config/ var/lib/jellyseerr
+  fi
+
+  if [[ -L var/log/jellyseerr ]]; then
+    rm var/log/jellyseerr
+  fi
 }
 
 post_upgrade() {

@@ -5,7 +5,7 @@
 
 pkgname=jellyseerr
 pkgver=2.1.0
-pkgrel=2
+pkgrel=3
 pkgdesc='Request management and media discovery tool for the Plex ecosystem'
 arch=(x86_64 aarch64)
 url='https://github.com/Fallenbagel/jellyseerr'
@@ -35,21 +35,19 @@ source=(
   jellyseerr.tmpfiles
   jellyseerr.service
   jellyseerr.conf.d
-  jellyseerr.install
   0001-Don-t-use-husky.patch
   0002-Remove-need-for-npm-npx.patch
 )
 sha256sums=('ee8ca3046a5789b758cfe43472732ddb5a9b45d2e8396b075c82e757b3e7ec2c'
   '2bac9f51b528ac40b7e0f952a032dde323533c0a986ac8be4c762fbe8dbad21f'
-  '5d764d5157c8bdfb537d03bd7e5ce09debaa7e98aed1df82b3f5896ee4c0d79e'
-  '7cba7aadecc255a69e5d94c2ecc788cb925293aee230e9a1ead8aebd58fbe012'
+  '5247acfdd5dcdb799114165ee4b7150e32abd95c44e8c68753e62b1f450c7aa8'
+  'a9a05d2cd5b238ee2fe939967fa7ae278f264cc892e1ba0890bd7584151dddec'
   '5a446cc8fa0a47a49dbbd6920d49eb4569f988e808cbb0bdbb609ab179a94426'
-  '8d7bf6eb0a71905d764ffa8a43934b645c9e8945c3fecec995674acf053dd7bd'
   '1d2ee741644c3dc4520c2e4f0213343429eadfda7231950e03170dddae73d9bc'
   'e2777886a0e7000bd680fbdc17547d42faeb4cebd7b0ddc6493630d70b3f9f42')
 
 prepare() {
-  cd "${srcdir}/${pkgname}-${pkgver}"
+  cd "${pkgname}-${pkgver}"
 
   patch -Np1 -i "${srcdir}/0001-Don-t-use-husky.patch"
   patch -Np1 -i "${srcdir}/0002-Remove-need-for-npm-npx.patch"
@@ -61,7 +59,7 @@ prepare() {
 }
 
 build() {
-  cd "${srcdir}/${pkgname}-${pkgver}"
+  cd "${pkgname}-${pkgver}"
 
   export NEXT_TELEMETRY_DISABLED=1
   export CYPRESS_INSTALL_BINARY=0
@@ -73,18 +71,27 @@ build() {
 
 package() {
   depends+=(nodejs)
-  cd "${srcdir}/${pkgname}-${pkgver}"
 
+  cd "${pkgname}-${pkgver}"
   install -dm755 "${pkgdir}/usr/lib/jellyseerr"
-  cp -dr --no-preserve='ownership' "${srcdir}/${pkgname}-${pkgver}/"{.next,dist,public,node_modules} "${pkgdir}/usr/lib/jellyseerr"
-  cp -d --no-preserve='ownership' "${srcdir}/${pkgname}-${pkgver}/"{package.json,overseerr-api.yml,next.config.js} "${pkgdir}/usr/lib/jellyseerr"
+
+  # Copy jellyseerr
+  cp -dr --no-preserve='ownership' ./{.next,dist,public,node_modules} "${pkgdir}/usr/lib/jellyseerr"
+  cp -d --no-preserve='ownership' ./{package.json,overseerr-api.yml,next.config.js} "${pkgdir}/usr/lib/jellyseerr"
+
+  # Remove cache
   rm -rf "${pkgdir}/usr/lib/jellyseerr/.next/cache"
 
+  # Fix paths
   find "${pkgdir}/usr/lib/jellyseerr/.next" -type f -print0 | xargs -0 sed -i "s^${srcdir}/${pkgname}-${pkgver}^/usr/lib/jellyseerr^g"
 
-  install -Dm644 'LICENSE' "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
-  install -Dm644 "${srcdir}/jellyseerr.conf.d" "${pkgdir}/etc/conf.d/jellyseerr"
-  install -Dm644 "${srcdir}/jellyseerr.sysusers" "${pkgdir}/usr/lib/sysusers.d/jellyseerr.conf"
-  install -Dm644 "${srcdir}/jellyseerr.tmpfiles" "${pkgdir}/usr/lib/tmpfiles.d/jellyseerr.conf"
-  install -Dm644 "${srcdir}/jellyseerr.service" "${pkgdir}/usr/lib/systemd/system/jellyseerr.service"
+  # Install license
+  install -Dm644 LICENSE "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
+
+  # Systemd
+  cd "${srcdir}"
+  install -Dm644 jellyseerr.conf.d "${pkgdir}/etc/conf.d/jellyseerr"
+  install -Dm644 jellyseerr.sysusers "${pkgdir}/usr/lib/sysusers.d/jellyseerr.conf"
+  install -Dm644 jellyseerr.tmpfiles "${pkgdir}/usr/lib/tmpfiles.d/jellyseerr.conf"
+  install -Dm644 jellyseerr.service "${pkgdir}/usr/lib/systemd/system/jellyseerr.service"
 }

@@ -1,8 +1,9 @@
 # Override this file with a modified version in /etc/tmpfiles.d/
-Z /var/lib/jellyseerr                             -    jellyseerr media
-Z /usr/lib/jellyseerr                             -    jellyseerr media
-# L /var/lib/jellyseerr                             - - - - /usr/lib/jellyseer/config
-L /usr/lib/jellyseerr/config                      - - - - /var/lib/jellyseerr
-L /var/cache/jellyseerr                           - - - - /usr/lib/jellyseerr/config/cache
-L /var/log/jellyseerr                             - - - - /usr/lib/jellyseerr/config/logs
-L /etc/jellyseerr/settings.json                   - - - - /usr/lib/jellyseerr/config/settings.json
+d /var/lib/jellyseerr                             755 jellyseerr media
+Z /var/lib/jellyseerr                             -   jellyseerr media
+Z /var/cache/jellyseerr                           -   jellyseerr media
+Z /usr/lib/jellyseerr                             -   jellyseerr media
+L /var/cache/jellyseerr                           - - - - /var/lib/jellyseerr/cache
+# L /var/cache/jellyseerr/.next/cache               - - - - /usr/lib/jellyseerr/.next/cache
+L /var/log/jellyseerr                             - - - - /var/lib/jellyseerr/logs
+L /etc/jellyseerr/settings.json                   - - - - /var/lib/jellyseerr/settings.json
