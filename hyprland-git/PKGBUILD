@@ -19,6 +19,7 @@ depends=(
   glslang
   hyprcursor-git
   hyprgraphics-git
+  hyprland-qtutils-git
   hyprlang-git
   hyprutils-git
   libdisplay-info

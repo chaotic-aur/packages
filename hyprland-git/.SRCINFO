@@ -25,6 +25,7 @@ pkgbase = hyprland-git
 	depends = glslang
 	depends = hyprcursor-git
 	depends = hyprgraphics-git
+	depends = hyprland-qtutils-git
 	depends = hyprlang-git
 	depends = hyprutils-git
 	depends = libdisplay-info
