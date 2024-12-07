@@ -1,6 +1,6 @@
 pkgbase = lib32-mangohud-git
 	pkgdesc = 32-bit libraries for MangoHud and MangoApp
-	pkgver = 0.7.2.r13.g41b8761
+	pkgver = 0.7.2.r110.g24d3cd9
 	pkgrel = 1
 	url = https://github.com/flightlessmango/MangoHud
 	arch = x86_64
