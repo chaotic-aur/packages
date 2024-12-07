@@ -1,5 +1,0 @@
-depends=(${depends[@]/hyprlang*/})
-depends=(${depends[@]/hyprutils*/})
-
-depends+=('hyprlang-git')
-depends+=('hyprutils-git')
