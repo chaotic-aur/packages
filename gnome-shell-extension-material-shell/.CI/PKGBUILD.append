@@ -1,7 +1,0 @@
-eval _orig_"$(declare -f build)"
-
-build() {
-  export MAKEFLAGS='-j1'
-
-  _orig_build
-}
