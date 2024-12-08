@@ -2,102 +2,50 @@
 name: "👶 Request to add new package"
 description: "Request to add new package"
 labels: ["request:new-pkg"]
-title: "[Request] "
+title: "[Request] package_name"
 body:
   - type: textarea
     attributes:
-      label: "Package:"
+      label: "Package"
       description: |
         Link to the package base in the AUR.  Include any known AUR dependencies.
         If a relevant issue already exists, please comment instead of opening a new one.
-      placeholder: "https://aur.archlinux.org/pkgbase/packagenamehere"
+      value: |
+        https://aur.archlinux.org/pkgbase/package_name
     validations:
       required: true
   - type: textarea
     attributes:
-      label: "Purpose:"
-      description: "What does the package do?  How is it used?  How is it useful?"
-    validations:
-      required: true
-  - type: textarea
-    attributes:
-      label: "Benefits:"
+      label: "Purpose"
       description: |
-        What specific benefits does this package have over other packages?
+        What does the package do?  How is it used?  How is it useful?
+        What specific benefits does this package have over other packages (eg, stable vs git)?
         Why would a user use this package instead of another?
         What are some use cases for this package?
-      placeholder: "This is important for cvs/git packages."
+    validations:
+      required: true
   - type: textarea
     attributes:
-      label: "Building:"
-      description: |
-        Read: https://wiki.archlinux.org/title/DeveloperWiki:Building_in_a_clean_chroot
-        If you have built this package, type the commands you used.
-        If any special procedures were needed, please describe them.
-      placeholder: "makepkg 🙃"
-  - type: textarea
-    attributes:
-      label: "Copyright:"
+      label: "License"
       description: |
         What is the name of the copyright license?
-        Only the name is needed for standard licenses, like GPL2.
-        Include both the name and link to non-standard or custom licenses.
-        Include a link to the EULA if there is one.
-      placeholder: "GPL3"
+        Packages with licenses that prohibit redistribution will be rejected.
+        Only the name is needed for standard licenses, like GPL-2.0-only.
+        Include link for non-standard licenses and EULA.
+      value: |
+        GPL-3.0-or-later
     validations:
       required: true
-  - type: dropdown
+  - type: checkboxes
+    id: presubmission
     attributes:
-      label: "Expected Interest:"
+      label: Submission checklist
       description: |
-        How many others do you expect would be interested in this package?
-        Try to be accurate.  Packages may be dropped if they don't meet expectations.
+        Before submitting this request, please ensure:
       options:
-        - "Only me"
-        - "Few"
-        - "Some"
-        - "Many"
-        - "Half"
-        - "Most"
-        - "Everyone"
-    validations:
-      required: true
-  - type: dropdown
-    attributes:
-      label: "Already available?"
-      description: |
-        Is this package already available in Arch or Chaotic AUR?
-        Do not answer without searching first.
-        `pacman -Ss <pkgname>`
-      options:
-        - "Yes"
-        - "No"
-    validations:
-      required: true
-  - type: dropdown
-    attributes:
-      label: "Unique request?"
-      description: |
-        Is this request unique?
-        Do not answer without searching first.
-        https://github.com/chaotic-aur/packages/issues
-      options:
-        - "No"
-        - "Yes"
-    validations:
-      required: true
-  - type: dropdown
-    attributes:
-      label: "Banned package?"
-      description: |
-        Is this package banned?
-        Do not answer without checking first.
-        https://github.com/chaotic-aur/packages#banished-and-rejected-packages-
-      options:
-        - "Yes"
-        - "No"
-    validations:
-      required: true
-  - type: textarea
-    attributes:
-      label: "More information:"
+        - label: The package is not banned.
+          required: true
+        - label: The package is not available in Chaotic AUR or official Arch repos.
+          required: true
+        - label: The package has not already been requested.
+          required: true

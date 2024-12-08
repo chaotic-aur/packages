@@ -1,51 +1,28 @@
 ---
-name: "🏗️ Request to rebuild package"
-description: "Request to rebuild package."
+name: "Request rebuild 🏗️ / Report bugs 🐛"
+description: "Report bugs or request to rebuild package."
 labels: ["request:rebuild-pkg"]
-title: "[Rebuild] "
+title: "[Rebuild] package_name"
 body:
   - type: textarea
     attributes:
-      label: "Packages:"
+      label: "Packages"
       description: |
         Link to the package bases in the AUR.
         Please ensure that the AUR package has already been updated before reporting.
         If a relevant issue already exists, please comment instead of opening a new one.
-      placeholder: "https://aur.archlinux.org/pkgbase/packagenamehere"
-    validations:
-      required: true
-  - type: input
-    attributes:
-      label: "Latest chaotic version"
-      placeholder: "`0.0.0.r0.gc0ffec0ffe`"
+      value: |
+        https://aur.archlinux.org/pkgbase/package_name
     validations:
       required: true
   - type: textarea
     attributes:
-      label: "Reason for rebuild"
+      label: "Description"
       description: |
         Why does this package need to be rebuilt?
-      placeholder: "Broken?  Missing?  Outdated?  Etc.
-
-        Include details to aid troubleshooting.
-
-        Include latest upstream version for outdated packages."
+      value: |
+        Broken?  Missing?  Outdated?  Etc.
+        Include details, such as error messages, to aid troubleshooting.
+        Include current and latest versions for outdated packages.
     validations:
       required: true
-  - type: textarea
-    attributes:
-      label: "Logs"
-      description: |
-        If available.  Find them here: https://builds.garudalinux.org/repos/chaotic-aur/logs/
-      placeholder: "https://builds.garudalinux.org/repos/chaotic-aur/logs/some-package.log"
-  - type: textarea
-    attributes:
-      label: "Builds?"
-      description: |
-        Read: https://wiki.archlinux.org/title/DeveloperWiki:Building_in_a_clean_chroot
-        If you have built this package, type the commands you used.
-        If any special procedures were needed, please describe them.
-      placeholder: "makepkg 🙃"
-  - type: textarea
-    attributes:
-      label: "More information"
