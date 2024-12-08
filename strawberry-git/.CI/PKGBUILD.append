@@ -1,0 +1,8 @@
+eval _orig_"$(declare -f package)"
+
+package() {
+  provides+=('strawberry-full-git')
+  conflicts+=('strawberry-full-git')
+  replaces=('strawberry-full-git')
+  _orig_package
+}
