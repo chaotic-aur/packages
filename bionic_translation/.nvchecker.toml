@@ -1,0 +1,5 @@
+[bionic_translation]
+source = "git"
+git = "https://gitlab.com/android_translation_layer/bionic_translation.git"
+branch = "master"
+use_commit = true
