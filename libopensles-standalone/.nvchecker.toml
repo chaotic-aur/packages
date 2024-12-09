@@ -1,0 +1,5 @@
+[libopensles-standalone]
+source = "git"
+git = "https://gitlab.com/android_translation_layer/libopensles-standalone.git"
+branch = "known_working_desktop_build"
+use_commit = true
