@@ -1,0 +1,17 @@
+url="https://github.com/zyedidia/micro"
+
+depends+=(
+  'hicolor-icon-theme'
+  'glibc'
+)
+
+provides=('micro')
+conflicts=('micro')
+
+_pkgsrc="$pkgname"
+pkgver() {
+  cd "$_pkgsrc"
+  git describe --long --tags --abbrev=7 --exclude='*[a-zA-Z][a-zA-Z]*' \
+    | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
+
+}
