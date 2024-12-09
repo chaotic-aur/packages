@@ -1,0 +1,11 @@
+pkgbase = bsd-compat-headers
+	pkgdesc = BSD compatibility headers (tree)
+	pkgver = 0.7.2
+	pkgrel = 2
+	url = https://gitlab.alpinelinux.org/alpine/aports
+	arch = any
+	license = BSD-2-Clause AND BSD-3-Clause
+	source = tree.h
+	sha256sums = e0ea17940260f9c1fdd2d35f74eec141d21f09844eaea91131993cb950901a16
+
+pkgname = bsd-compat-headers

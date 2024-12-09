@@ -1,0 +1,4 @@
+[bsd-compat-headers]
+source = "regex"
+url = "https://pkgs.alpinelinux.org/package/edge/main/x86_64/bsd-compat-headers"
+regex = "<strong>(\\d+\\.\\d+\\.\\d+)-r6</strong>"
