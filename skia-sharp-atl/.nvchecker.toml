@@ -1,0 +1,5 @@
+[skia-sharp-atl]
+source = "git"
+git = "https://github.com/Mis012/skia.git"
+branch = "with-patches-applied"
+use_commit = true

@@ -1,0 +1,221 @@
+# Maintainer: txtsd <aur.archlinux@ihavea.quest>
+# Contributor: Maxime Gauduin <alucryd@archlinux.org>
+
+pkgname=skia-sharp-atl
+_pkgname=${pkgname%-atl}
+pkgver=r67245.ced64f6f90
+pkgrel=4
+_major=99
+_minor=9
+_release=0
+pkgdesc='A complete 2D graphic library for drawing Text, Geometries, and Images (Mis012 fork)'
+arch=(x86_64 aarch64 armv7h)
+url=https://github.com/Mis012/skia/tree/with-patches-applied
+license=(BSD-3-Clause)
+depends=(
+  expat
+  fontconfig
+  gcc-libs
+  glibc
+  harfbuzz
+  libfreetype.so
+  libjpeg-turbo
+  libpng
+  libwebp
+  zlib
+)
+makedepends=(
+  clang
+  gn
+  ninja
+  python
+)
+provides=(
+  libSkiaSharp.so
+  "${_pkgname}"
+)
+conflicts=("${_pkgname}")
+_commit_skia='ced64f6f90cb5349de58e349309d3514cb345c28'
+_commit_brotli='6d03dfbedda1615c4cba1211f8d81735575209c8'
+_commit_abseil_cpp='cb436cf0142b4cbe47aae94223443df7f82e2920'
+_commit_dng_sdk='c8d0c9b1d16bfda56f15165d39e0ffa360a11123'
+_commit_egl_registry='a0bca08de07c7d7651047bedc0b653cfaaa4f2ae'
+_commit_highway='424360251cdcfc314cfc528f53c872ecd63af0f0'
+_commit_imgui='55d35d8387c15bf0cfd71861df67af8cfbda7456'
+_commit_libavif='f49462dc93784bf34148715eee36ab6697ca0b35'
+_commit_libgav1='0fb779c1e169fe6c229cd1fa9cc6ea6feeb441da'
+_commit_jpeg_xl='a205468bc5d3a353fb15dae2398a101dff52f2d3'
+_commit_libyuv='d248929c059ff7629a85333699717d7a677d8d96'
+_commit_libmicrohttpd='748945ec6f1c67b7efc934ab0808e1d32f2fb98d'
+_commit_oboe='b02a12d1dd821118763debec6b83d00a8a0ee419'
+_commit_opengl_registry='14b80ebeab022b2c78f84a573f01028c96075553'
+_commit_perfetto='93885509be1c9240bc55fa515ceb34811e54a394'
+_commit_piex='bb217acdca1cc0c16b704669dd6f91a1b509c406'
+_commit_vulkanmemoryallocator='7de5cc00de50e71a3aab22dea52fbb7ff4efceb6'
+_commit_vulkan_deps='8a3971e5e9c5cddc437d1cf5e4ac1ed0728d6a49'
+_commit_spirv_cross='12542fc6fc05000e04742daf93892a0b10edbe80'
+_commit_spirv_headers='bdbfd019be6952fd8fa9bd5606a8798a7530c853'
+_commit_spirv_tools='e7c6084fd1d6d6f5ac393e842728d8be309688ca'
+_commit_vello='ef2630ad9c647b90863cb0915701d54725733968'
+_commit_vulkan_headers='9e61870ecbd32514113b467e0a0c46f60ed222c7'
+_commit_vulkan_tools='80b010b1e1b08c1f092fb2bfa337faadf8ea1ba3'
+_commit_wuffs_mirror_release_c='a0041ac0310b3156b963e2f2bea09245f25ec073'
+_commit_harfbuzz='09a266236147497bd8149240062c31c16fbc81e3'
+_commit_zlib='c876c8f87101c5a75f6014b0f832499afeb65b73'
+source=(
+  "${pkgname}-${_commit_skia}.tar.gz::https://github.com/Mis012/skia/archive/${_commit_skia}.tar.gz"
+  "https://github.com/google/brotli/archive/${_commit_brotli}/brotli-${_commit_brotli}.tar.gz"
+  "https://github.com/abseil/abseil-cpp/archive/${_commit_abseil_cpp}/abseil-cpp-${_commit_abseil_cpp}.tar.gz"
+  "dng_sdk-${_commit_dng_sdk}.tar.gz::https://android.googlesource.com/platform/external/dng_sdk.git/+archive/${_commit_dng_sdk}.tar.gz"
+  "https://github.com/KhronosGroup/egl-registry/archive/${_commit_egl_registry}/egl-registry-${_commit_egl_registry}.tar.gz"
+  "https://github.com/google/highway/archive/${_commit_highway}/highway-${_commit_highway}.tar.gz"
+  "https://github.com/ocornut/imgui/archive/${_commit_imgui}/imgui-${_commit_imgui}.tar.gz"
+  "https://github.com/AOMediaCodec/libavif/archive/${_commit_libavif}/libavif-${_commit_libavif}.tar.gz"
+  "libgav1-${_commit_libgav1}.tar.gz::https://chromium.googlesource.com/codecs/libgav1.git/+archive/${_commit_libgav1}.tar.gz"
+  "https://gitlab.com/wg1/jpeg-xl/-/archive/${_commit_jpeg_xl}/libjxl-${_commit_jpeg_xl}.tar.gz"
+  "libyuv-${_commit_libyuv}.tar.gz::https://chromium.googlesource.com/libyuv/libyuv.git/+archive/${_commit_libyuv}.tar.gz"
+  "microhttpd-${_commit_libmicrohttpd}.tar.gz::https://android.googlesource.com/platform/external/libmicrohttpd.git/+archive/${_commit_libmicrohttpd}.tar.gz"
+  "https://github.com/google/oboe/archive/${_commit_oboe}/oboe-${_commit_oboe}.tar.gz"
+  "https://github.com/KhronosGroup/opengl-registry/archive/${_commit_opengl_registry}/opengl-registry-${_commit_opengl_registry}.tar.gz"
+  "perfetto-${_commit_perfetto}.tar.gz::https://android.googlesource.com/platform/external/perfetto.git/+archive/${_commit_perfetto}.tar.gz"
+  "piex-${_commit_piex}.tar.gz::https://android.googlesource.com/platform/external/piex.git/+archive/${_commit_piex}.tar.gz"
+  "https://github.com/GPUOpen-LibrariesAndSDKs/vulkanmemoryallocator/archive/${_commit_vulkanmemoryallocator}/vulkanmemoryallocator-${_commit_vulkanmemoryallocator}.tar.gz"
+  "vulkan-deps-${_commit_vulkan_deps}.tar.gz::https://chromium.googlesource.com/vulkan-deps.git/+archive/${_commit_vulkan_deps}.tar.gz"
+  "https://github.com/KhronosGroup/spirv-cross/archive/${_commit_spirv_cross}/spirv-cross-${_commit_spirv_cross}.tar.gz"
+  "https://github.com/KhronosGroup/spirv-headers/archive/${_commit_spirv_headers}/spirv-headers-${_commit_spirv_headers}.tar.gz"
+  "https://github.com/KhronosGroup/spirv-tools/archive/${_commit_spirv_tools}/spirv-tools-${_commit_spirv_tools}.tar.gz"
+  "https://github.com/linebender/vello/archive/${_commit_vello}/vello-${_commit_vello}.tar.gz"
+  "https://github.com/KhronosGroup/vulkan-headers/archive/${_commit_vulkan_headers}/vulkan-headers-${_commit_vulkan_headers}.tar.gz"
+  "https://github.com/KhronosGroup/vulkan-tools/archive/${_commit_vulkan_tools}/vulkan-tools-${_commit_vulkan_tools}.tar.gz"
+  "https://github.com/google/wuffs-mirror-release-c/archive/${_commit_wuffs_mirror_release_c}/wuffs-${_commit_wuffs_mirror_release_c}.tar.gz"
+  "harfbuzz-${_commit_harfbuzz}.tar.gz::https://chromium.googlesource.com/external/github.com/harfbuzz/harfbuzz.git/+archive/${_commit_harfbuzz}.tar.gz"
+  "zlib-${_commit_zlib}.tar.gz::https://chromium.googlesource.com/chromium/src/third_party/zlib.git/+archive/${_commit_zlib}.tar.gz"
+)
+noextract=(
+  "dng_sdk-${_commit_dng_sdk}.tar.gz"
+  "libgav1-${_commit_libgav1}.tar.gz"
+  "libyuv-${_commit_libyuv}.tar.gz"
+  "microhttpd-${_commit_libmicrohttpd}.tar.gz"
+  "perfetto-${_commit_perfetto}.tar.gz"
+  "piex-${_commit_piex}.tar.gz"
+  "vulkan-deps-${_commit_vulkan_deps}.tar.gz"
+  "harfbuzz-${_commit_harfbuzz}.tar.gz"
+  "zlib-${_commit_zlib}.tar.gz"
+)
+sha256sums=('5312c10171306082da9de117188ff1c20f313b6a66a2991a398e2a5e38c49311'
+  '0e8eea905081ce894d1616970a83b21265a13505ce06e8aa6a747fd686938d10'
+  'da7d9db9bbebc504fdedf73c615f55c50c014095c65eb422d2ced86bc855a92b'
+  'SKIP'
+  'b4f7710b158d2d9eaa7a35114613cc02f6325fd7bda82be08154720af0f48727'
+  '4aa527b67ae477b4b1ea7664fa75a882be3d4e6ca60fae4c93d6feb61739986a'
+  '684f95bd9600f97f677699320bfd77e5e33397209a74525080b8a4156b71a9fb'
+  '4b432c3566e4ea1e252ec6632e1f1c1968d670c3f22a31ed8bc48b5a4508f29d'
+  'SKIP'
+  '0125fc24e2bb98f6fbd0ba364131d816c06955640b07ffe7f3a7cd26d73e1694'
+  'SKIP'
+  'SKIP'
+  '5754de6ecd93f2afa9b9c25464806487fe037085c9fb65fb52d6a8f2a3a32831'
+  'a8f0082af2720682a0cafddeaf88292308d17c09a80d7ba016c52ca027e73b63'
+  'SKIP'
+  'SKIP'
+  '17fc50d4c356b8513d2fbcb5809d6e7a2cacbe404db11cdf4ba10a396668dbde'
+  'SKIP'
+  '15250ad527b850d8494c078509ac91d8bf829f3952f745fb72b5b226280aa9e7'
+  '607e416d19ffab113fae2b4989f05ec6cb89809290525c02beb3a912ecfb7ed2'
+  '0ba10742a1d2936758de98459447256c7ceb547b3b64ad96738fbcb26bc2cbf2'
+  '7a97b12f7f1d83e0bd9ad3b8720e201b403d644056b4423616da799696b62a5d'
+  'c1fac868ca8542c2da41da092e6980d3447aac6d99b672e4ff7ef09ca606a09f'
+  'ee947d584f8e2799c0036de4b0a1cd13fad0c8f4a663f9f8dc44418c0ac1ebb9'
+  'fdd604d71af37bd81c2dc5f65c8e114c18814562fdef7c71bdd2837e81350d6f'
+  'SKIP'
+  'SKIP')
+
+case "${CARCH}" in
+  x86_64) _arch=x64 ;;
+  *) _arch="${CARCH}" ;;
+esac
+
+prepare() {
+  cd "skia-${_commit_skia}"
+
+  mkdir -p third_party/externals/{dng_sdk,libgav1,libyuv,microhttpd,perfetto,piex,vulkan-deps,harfbuzz,zlib}
+
+  bsdtar -xf "${srcdir}/dng_sdk-${_commit_dng_sdk}.tar.gz" -C third_party/externals/dng_sdk
+  bsdtar -xf "${srcdir}/libgav1-${_commit_libgav1}.tar.gz" -C third_party/externals/libgav1
+  bsdtar -xf "${srcdir}/libyuv-${_commit_libyuv}.tar.gz" -C third_party/externals/libyuv
+  bsdtar -xf "${srcdir}/microhttpd-${_commit_libmicrohttpd}.tar.gz" -C third_party/externals/microhttpd
+  bsdtar -xf "${srcdir}/perfetto-${_commit_perfetto}.tar.gz" -C third_party/externals/perfetto
+  bsdtar -xf "${srcdir}/piex-${_commit_piex}.tar.gz" -C third_party/externals/piex
+  bsdtar -xf "${srcdir}/vulkan-deps-${_commit_vulkan_deps}.tar.gz" -C third_party/externals/vulkan-deps
+  bsdtar -xf "${srcdir}/harfbuzz-${_commit_harfbuzz}.tar.gz" -C third_party/externals/harfbuzz
+  bsdtar -xf "${srcdir}/zlib-${_commit_zlib}.tar.gz" -C third_party/externals/zlib
+
+  mv "${srcdir}/brotli-${_commit_brotli}" third_party/externals/brotli
+  mv "${srcdir}/abseil-cpp-${_commit_abseil_cpp}" third_party/externals/abseil-cpp
+  mv "${srcdir}/EGL-Registry-${_commit_egl_registry}" third_party/externals/egl-registry
+  mv "${srcdir}/highway-${_commit_highway}" third_party/externals/highway
+  mv "${srcdir}/imgui-${_commit_imgui}" third_party/externals/imgui
+  mv "${srcdir}/libavif-${_commit_libavif}" third_party/externals/libavif
+  mv "${srcdir}/jpeg-xl-${_commit_jpeg_xl}" third_party/externals/libjxl
+  mv "${srcdir}/oboe-${_commit_oboe}" third_party/externals/oboe
+  mv "${srcdir}/OpenGL-Registry-${_commit_opengl_registry}" third_party/externals/opengl-registry
+  mv "${srcdir}/VulkanMemoryAllocator-${_commit_vulkanmemoryallocator}" third_party/externals/vulkanmemoryallocator
+  mv "${srcdir}/SPIRV-Cross-${_commit_spirv_cross}" third_party/externals/spirv-cross
+  mv "${srcdir}/SPIRV-Headers-${_commit_spirv_headers}" third_party/externals/spirv-headers
+  mv "${srcdir}/SPIRV-Tools-${_commit_spirv_tools}" third_party/externals/spirv-tools
+  mv "${srcdir}/vello-${_commit_vello}" third_party/externals/vello
+  mv "${srcdir}/Vulkan-Headers-${_commit_vulkan_headers}" third_party/externals/vulkan-headers
+  mv "${srcdir}/Vulkan-Tools-${_commit_vulkan_tools}" third_party/externals/vulkan-tools
+  mv "${srcdir}/wuffs-mirror-release-c-${_commit_wuffs_mirror_release_c}" third_party/externals/wuffs
+}
+
+build() {
+  cd "skia-${_commit_skia}"
+
+  CFLAGS="${CFLAGS} \
+    -DSKIA_C_DLL"
+
+  extra_cflags=""
+  for cflag in ${CFLAGS}; do
+    extra_cflags+="\"${cflag}\","
+  done
+  extra_ldflags=""
+  for ldflag in ${LDFLAGS}; do
+    extra_ldflags+="\"${ldflag}\","
+  done
+
+  gn gen out \
+    --args="\
+      target_os=\"linux\" \
+      target_cpu=\"x64\" \
+      cc=\"clang\" \
+      cxx=\"clang++\" \
+      extra_cflags=[${extra_cflags}] \
+      extra_ldflags=[${extra_ldflags}] \
+      skia_enable_gpu=true \
+      skia_enable_tools=false \
+      skia_use_dng_sdk=true \
+      skia_use_icu=false \
+      skia_use_piex=true \
+      skia_use_sfntly=false \
+      skia_use_system_harfbuzz=true \
+      skia_use_system_expat=true \
+      skia_use_system_freetype2=true \
+      skia_use_system_libjpeg_turbo=true \
+      skia_use_system_libpng=true \
+      skia_use_system_libwebp=true \
+      skia_use_system_zlib=true \
+      is_component_build=false \
+      is_debug=false \
+      is_official_build=true \
+      linux_soname_version=\"${_major}.${_minor}.${_release}\""
+  ninja -C out
+}
+
+package() {
+  install -Dm755 "skia-${_commit_skia}/out/libSkiaSharp.so.${_major}.${_minor}.${_release}" -t "${pkgdir}/usr/lib/"
+  ln -s "libSkiaSharp.so.${_major}.${_minor}.${_release}" "${pkgdir}/usr/lib/libSkiaSharp.so.${_major}"
+  ln -s "libSkiaSharp.so.${_major}.${_minor}.${_release}" "${pkgdir}/usr/lib/libSkiaSharp.so.${_major}.${_minor}"
+  ln -s "libSkiaSharp.so.${_major}" "${pkgdir}/usr/lib/libSkiaSharp.so"
+  install -Dm644 "skia-${_commit_skia}/LICENSE" "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
+}
