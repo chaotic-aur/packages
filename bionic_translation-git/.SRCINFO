@@ -1,0 +1,23 @@
+pkgbase = bionic_translation-git
+	pkgdesc = A set of libraries for loading bionic-linked .so files on musl/glibc
+	pkgver = r68.e502e92
+	pkgrel = 2
+	url = https://gitlab.com/android_translation_layer/bionic_translation
+	arch = x86_64
+	arch = aarch64
+	arch = armv7h
+	license = MIT
+	makedepends = git
+	makedepends = elfutils
+	makedepends = mesa
+	makedepends = meson
+	depends = glibc
+	depends = libbsd
+	depends = libglvnd
+	depends = libunwind
+	provides = bionic_translation
+	conflicts = bionic_translation
+	source = git+https://gitlab.com/android_translation_layer/bionic_translation.git/
+	sha256sums = SKIP
+
+pkgname = bionic_translation-git
