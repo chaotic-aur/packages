@@ -1,0 +1,7 @@
+[wolfssl-jni]
+source = "git"
+git = "https://github.com/wolfssl/wolfssl.git"
+include_regex = "v[\\d.]*-stable"
+from_pattern = '^v([\d.]+)-stable$'
+to_pattern = '\1'
+
