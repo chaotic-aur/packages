@@ -1,0 +1,21 @@
+pkgbase = libopensles-standalone-git
+	pkgdesc = A lightly patched version of Google's libOpenSLES implementation
+	pkgver = r280.605a83f
+	pkgrel = 1
+	url = https://gitlab.com/android_translation_layer/libopensles-standalone
+	arch = x86_64
+	arch = aarch64
+	arch = armv7h
+	license = Apache-2.0
+	makedepends = git
+	makedepends = jdk8-openjdk
+	makedepends = meson
+	depends = glibc
+	depends = libsndfile
+	depends = sdl2
+	provides = libopensles-standalone
+	conflicts = libopensles-standalone
+	source = git+https://gitlab.com/android_translation_layer/libopensles-standalone.git
+	sha256sums = SKIP
+
+pkgname = libopensles-standalone-git
