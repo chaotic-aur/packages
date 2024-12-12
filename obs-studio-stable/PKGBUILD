@@ -12,13 +12,13 @@
 : ${_plugin_webrtc:=false}
 
 # build-aux/modules/99-cef.json
-: ${_cef_branch:=5060}
-: ${_cef_ver=_v3}
+: ${_cef_branch:=6533}
+: ${_cef_ver=}
 
 ## basic info
 _pkgname="obs-studio"
 pkgname="$_pkgname-stable"
-pkgver=30.2.3
+pkgver=31.0.0
 pkgrel=1
 pkgdesc="Free, open source software for live streaming and recording - Browser enabled"
 url="https://github.com/obsproject/obs-studio"
@@ -30,22 +30,21 @@ depends=(
   ffmpeg
   jack
   jansson
+  libpipewire
+  librist
+  libvpl
   libxcomposite
   mbedtls
   pciutils
+  qrcodegencpp-cmake # AUR
   qt6-svg
   rnnoise
-
-  librist
-  libvpl
   speexdsp
-
-  qrcodegencpp-cmake # AUR
 )
 makedepends=(
   asio
   cmake
-  #ffnvcodec-headers
+  ffnvcodec-headers
   git
   libfdk-aac
   luajit
@@ -76,7 +75,7 @@ optdepends=(
 provides=("$_pkgname=${pkgver%%.r*}")
 conflicts=("$_pkgname")
 
-options=(!debug)
+options=('!debug')
 
 _source_main() {
   _pkgsrc="$_pkgname"
@@ -91,45 +90,15 @@ _source_main() {
   fi
 
   if [ "${_plugin_webrtc::1}" == "t" ]; then
-    makedepends+=('libdatachannel') # AUR
+    makedepends+=('libdatachannel')
     _plugin_webrtc='ON'
   else
     _plugin_webrtc='OFF'
   fi
 }
 
-_source_fixes() {
-  local _patch_commit="19f9097dd3803abf8296acac36c7ab4a6b684a3f"
-  source+=(
-    "nv-codec-headers"::"git+https://github.com/FFmpeg/nv-codec-headers.git#tag=n12.1.14.0"
-    "0004-mbedtls-${_patch_commit::7}.patch"::"https://aur.archlinux.org/cgit/aur.git/plain/0004-Max_tls_v1_2_mbedtls_3_6_0_workaround.patch?h=obs-studio-browser&id=$_patch_commit"
-  )
-  sha256sums+=(
-    'SKIP'
-    'c397a8da291547c757a42f7727a5e6650aa70e6e531f2ef150356eb9eb1fb49c'
-  )
-
-  _prepare_fixes() (
-    cd "$_pkgsrc"
-    local src
-    for src in "${source[@]}"; do
-      src="${src%%::*}"
-      src="${src##*/}"
-      src="${src%.zst}"
-      if [[ $src == *.patch ]]; then
-        printf '\nApplying patch: %s\n' "$src"
-        patch -Np1 -F100 -i "${srcdir:?}/$src"
-        echo
-      fi
-    done
-
-    make PREFIX="$srcdir/build_nvcodec_headers" -C "$srcdir/nv-codec-headers" install
-  )
-}
-
 _source_obs_studio() {
   source+=(
-    'mixer.ftl-sdk'::'git+https://github.com/Mixer/ftl-sdk.git'
     #'obsproject.libdshowcapture'::'git+https://github.com/obsproject/libdshowcapture.git'
     'obsproject.obs-browser'::'git+https://github.com/obsproject/obs-browser.git'
     'obsproject.obs-websocket'::'git+https://github.com/obsproject/obs-websocket.git'
@@ -138,45 +107,23 @@ _source_obs_studio() {
   sha256sums+=(
     'SKIP'
     'SKIP'
-    'SKIP'
-  )
-
-  _prepare_obs_studio() (
-    cd "$srcdir/$_pkgsrc"
-    local _submodules=(
-      'mixer.ftl-sdk'::'plugins/obs-outputs/ftl-sdk'
-      #'obsproject.libdshowcapture'::'plugins/win-dshow/libdshowcapture'
-      'obsproject.obs-browser'::'plugins/obs-browser'
-      'obsproject.obs-websocket'::'plugins/obs-websocket'
-    )
-    _submodule_update
   )
 }
 
-_source_mixer_ftl_sdk() {
-  source+=(
-    'akheron.jansson'::'git+https://github.com/akheron/jansson.git'
-    'curl'::'git+https://github.com/curl/curl.git'
+_prepare_obs_studio() (
+  cd "$srcdir/$_pkgsrc"
+  local _submodules=(
+    #'obsproject.libdshowcapture'::'plugins/win-dshow/libdshowcapture'
+    'obsproject.obs-browser'::'plugins/obs-browser'
+    'obsproject.obs-websocket'::'plugins/obs-websocket'
   )
-  sha256sums+=(
-    'SKIP'
-    'SKIP'
-  )
-
-  _prepare_mixer_ftl_sdk() (
-    cd "${srcdir:?}/$_pkgsrc"
-    cd 'plugins/obs-outputs/ftl-sdk'
-    local _submodules=(
-      'akheron.jansson'::'libjansson'
-      'curl'::'libcurl'
-    )
-    _submodule_update
-  )
-}
+  _submodule_update
+)
 
 _source_cef() {
   depends+=(
     at-spi2-core
+    libxdamage
     libxrandr
     nspr
     nss
@@ -194,7 +141,6 @@ _source_cef() {
     libx11
     libxcb
     libxcomposite
-    libxdamage
     libxext
     libxfixes
     libxkbcommon
@@ -222,13 +168,6 @@ prepare() {
   }
 
   _prepare_obs_studio
-  _prepare_mixer_ftl_sdk
-  _prepare_fixes
-
-  sed -E \
-    -e 's&(\s*find_package\(FFnvcodec)\b.*\b(REQUIRED\))&\1 12 \2&' \
-    -i "$_pkgsrc/plugins/obs-ffmpeg/cmake/dependencies.cmake" \
-    -i "$_pkgsrc/plugins/obs-ffmpeg/cmake/legacy.cmake"
 }
 
 _build_cef() {
@@ -248,35 +187,27 @@ _build_cef() {
 }
 
 _build_obs_studio() {
-  export CFLAGS+=" -fno-strict-aliasing -Wno-error=deprecated-declarations"
-  export CXXFLAGS+=" -fno-strict-aliasing -Wno-error=deprecated-declarations"
-
-  #export PKG_CONFIG_PATH="$srcdir/build_nvcodec_headers/lib/pkgconfig"
-
   local _cmake_options=(
     -B build
     -S "$_pkgsrc"
     -DCMAKE_BUILD_TYPE=None
     -DCMAKE_INSTALL_PREFIX='/usr'
     -DCMAKE_INSTALL_LIBDIR='lib'
+    -DCEF_ROOT_DIR="$_cef_src"
+    -DOBS_VERSION_OVERRIDE="${pkgver%%.r*}"
+    -DOBS_COMPILE_DEPRECATION_AS_WARNING=ON
+    -DENABLE_BROWSER=ON # qrcodegencpp-cmake
+    -DENABLE_LIBFDK=ON
+    -DENABLE_UNIT_TESTS=OFF
+    -DBUILD_TESTS=OFF
+    -Wno-dev
+
     -DENABLE_AJA="${_plugin_aja:?}"
     -DENABLE_JACK=ON
-    -DENABLE_LIBFDK=ON
     -DENABLE_NEW_MPEGTS_OUTPUT=ON
     -DENABLE_VLC=OFF
     -DENABLE_VST=ON
     -DENABLE_WEBRTC="${_plugin_webrtc:?}"
-
-    -DENABLE_BROWSER=ON # qrcodegencpp-cmake
-    -DCEF_ROOT_DIR="$_cef_src"
-
-    -DFFnvcodec_INCLUDE_DIR="$srcdir/nv-codec-headers/include"
-
-    -DOBS_VERSION_OVERRIDE="${pkgver%%.r*}"
-    -DBUILD_FOR_DISTRIBUTION=ON
-    -DBUILD_TESTS=OFF
-    -DENABLE_UNIT_TESTS=OFF
-    -Wno-dev
   )
 
   cmake "${_cmake_options[@]}"
@@ -327,7 +258,5 @@ _update_version() {
 
 _update_version
 _source_main
-_source_fixes
 _source_cef
 _source_obs_studio
-_source_mixer_ftl_sdk

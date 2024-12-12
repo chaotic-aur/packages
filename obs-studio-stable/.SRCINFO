@@ -1,12 +1,13 @@
 pkgbase = obs-studio-stable
 	pkgdesc = Free, open source software for live streaming and recording - Browser enabled
-	pkgver = 30.2.3
+	pkgver = 31.0.0
 	pkgrel = 1
 	url = https://github.com/obsproject/obs-studio
 	arch = x86_64
 	license = GPL-2.0-or-later
 	makedepends = asio
 	makedepends = cmake
+	makedepends = ffnvcodec-headers
 	makedepends = git
 	makedepends = libfdk-aac
 	makedepends = luajit
@@ -32,7 +33,6 @@ pkgbase = obs-studio-stable
 	makedepends = libx11
 	makedepends = libxcb
 	makedepends = libxcomposite
-	makedepends = libxdamage
 	makedepends = libxext
 	makedepends = libxfixes
 	makedepends = libxkbcommon
@@ -42,16 +42,18 @@ pkgbase = obs-studio-stable
 	depends = ffmpeg
 	depends = jack
 	depends = jansson
+	depends = libpipewire
+	depends = librist
+	depends = libvpl
 	depends = libxcomposite
 	depends = mbedtls
 	depends = pciutils
+	depends = qrcodegencpp-cmake
 	depends = qt6-svg
 	depends = rnnoise
-	depends = librist
-	depends = libvpl
 	depends = speexdsp
-	depends = qrcodegencpp-cmake
 	depends = at-spi2-core
+	depends = libxdamage
 	depends = libxrandr
 	depends = nspr
 	depends = nss
@@ -63,23 +65,13 @@ pkgbase = obs-studio-stable
 	optdepends = sndio: sndio input client
 	optdepends = v4l2loopback-dkms: virtual camera support
 	optdepends = vlc: VLC Media Source
-	provides = obs-studio=30.2.3
+	provides = obs-studio=31.0.0
 	conflicts = obs-studio
 	options = !debug
-	source = obs-studio::git+https://github.com/obsproject/obs-studio.git#tag=30.2.3
-	source = nv-codec-headers::git+https://github.com/FFmpeg/nv-codec-headers.git#tag=n12.1.14.0
-	source = 0004-mbedtls-19f9097.patch::https://aur.archlinux.org/cgit/aur.git/plain/0004-Max_tls_v1_2_mbedtls_3_6_0_workaround.patch?h=obs-studio-browser&id=19f9097dd3803abf8296acac36c7ab4a6b684a3f
-	source = cef_binary_5060_linux_x86_64_v3.tar.xz::https://cdn-fastly.obsproject.com/downloads//cef_binary_5060_linux_x86_64_v3.tar.xz
-	source = mixer.ftl-sdk::git+https://github.com/Mixer/ftl-sdk.git
+	source = obs-studio::git+https://github.com/obsproject/obs-studio.git#tag=31.0.0
+	source = cef_binary_6533_linux_x86_64.tar.xz::https://cdn-fastly.obsproject.com/downloads//cef_binary_6533_linux_x86_64.tar.xz
 	source = obsproject.obs-browser::git+https://github.com/obsproject/obs-browser.git
 	source = obsproject.obs-websocket::git+https://github.com/obsproject/obs-websocket.git
-	source = akheron.jansson::git+https://github.com/akheron/jansson.git
-	source = curl::git+https://github.com/curl/curl.git
-	sha256sums = SKIP
-	sha256sums = SKIP
-	sha256sums = c397a8da291547c757a42f7727a5e6650aa70e6e531f2ef150356eb9eb1fb49c
-	sha256sums = SKIP
-	sha256sums = SKIP
 	sha256sums = SKIP
 	sha256sums = SKIP
 	sha256sums = SKIP
