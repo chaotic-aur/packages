@@ -1,5 +1,0 @@
-[python-pykakasi]
-source = "git"
-git = "https://codeberg.org/miurahr/pykakasi.git"
-prefix = "v"
-include_regex = "v\\d+\\.\\d+\\.\\d+"
