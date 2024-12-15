@@ -2,14 +2,14 @@
 
 _pkgname="hyprland-qtutils"
 pkgname="${_pkgname}-git"
-pkgver=0.0.1.r3.aee8461
+pkgver=0.0.1.r14.3833097
 pkgrel=1
 pkgdesc="Hyprland QT/qml utility apps"
 arch=(any)
 url="https://github.com/hyprwm/hyprland-qtutils"
 license=('BSD-3-Clause')
-depends=('hyprutils-git' 'qqc2-desktop-style')
-makedepends=('git' 'cmake' 'gcc' 'gdb')
+depends=('hyprutils-git' 'qqc2-desktop-style' 'qt6-wayland')
+makedepends=('git' 'cmake' 'gcc')
 source=("${_pkgname}::git+https://github.com/hyprwm/hyprland-qtutils.git")
 provides=("hyprland-qtutils")
 conflicts=("hyprland-qtutils")
