@@ -5,7 +5,7 @@
 
 pkgname=jellyseerr
 pkgver=2.1.0
-pkgrel=3
+pkgrel=4
 pkgdesc='Request management and media discovery tool for the Plex ecosystem'
 arch=(x86_64 aarch64)
 url='https://github.com/Fallenbagel/jellyseerr'
@@ -39,9 +39,9 @@ source=(
   0002-Remove-need-for-npm-npx.patch
 )
 sha256sums=('ee8ca3046a5789b758cfe43472732ddb5a9b45d2e8396b075c82e757b3e7ec2c'
-  '2bac9f51b528ac40b7e0f952a032dde323533c0a986ac8be4c762fbe8dbad21f'
-  '5247acfdd5dcdb799114165ee4b7150e32abd95c44e8c68753e62b1f450c7aa8'
-  'a9a05d2cd5b238ee2fe939967fa7ae278f264cc892e1ba0890bd7584151dddec'
+  '092221b83ded237f57003587533f623d9bc70455493dae9508bb0edac226f9cd'
+  '202d6e4c1d4ee555c33fe7e8473c74aef795e145f3bbc885333c003a75e17f14'
+  'ee4a4ed8b2ff41fe00582e11283526a08a2ed1154e8e278d898d98c8184c65eb'
   '5a446cc8fa0a47a49dbbd6920d49eb4569f988e808cbb0bdbb609ab179a94426'
   '1d2ee741644c3dc4520c2e4f0213343429eadfda7231950e03170dddae73d9bc'
   'e2777886a0e7000bd680fbdc17547d42faeb4cebd7b0ddc6493630d70b3f9f42')

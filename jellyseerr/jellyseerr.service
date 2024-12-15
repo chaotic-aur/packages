@@ -25,7 +25,8 @@ TimeoutStopSec=20
 SyslogIdentifier=jellyseerr
 StateDirectory=jellyseerr
 ConfigurationDirectory=jellyseerr
-LogsDirectory=jellyseerr
+# LogsDirectory=jellyseerr
+# CacheDirectory=jellyseerr
 RuntimeDirectory=jellyseerr
 WorkingDirectory=/usr/lib/jellyseerr
 
