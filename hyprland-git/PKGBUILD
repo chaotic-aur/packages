@@ -4,10 +4,10 @@
 # Contributor: ThatOneCalculator <kainoa at t1c dot dev>
 
 pkgname=hyprland-git
-pkgver=0.45.0.r18.3fb47372
+pkgver=0.45.0.r120.e340e9f4
 pkgrel=1
 pkgdesc="Hyprland is an independent, highly customizable, dynamic tiling Wayland compositor that doesn't sacrifice on its looks"
-arch=(x86_64 aarch64)
+arch=(any)
 url="https://github.com/hyprwm/Hyprland"
 license=(BSD-3-Clause)
 depends=(
@@ -39,6 +39,7 @@ depends=(
   pango
   pixman
   polkit
+  re2
   seatd
   systemd-libs
   tomlplusplus
@@ -98,6 +99,7 @@ prepare() {
     git config user.name local && git config user.email '<>' && git config commit.gpgsign false
   fi
   # Pick pull requests from github using `pick_mr <pull request number>`.
+  # e.g. `pick_mr 1000`
 }
 
 pkgver() {
@@ -107,27 +109,14 @@ pkgver() {
 build() {
   cd Hyprland
 
-  export CXXFLAGS="-w" # suppress all compiler warnings
-  meson setup build \
-    --wipe \
-    --prefix /usr \
-    --libexecdir lib \
-    --buildtype release \
-    --wrap-mode nodownload \
-    -D warning_level=0 \
-    -D b_lto=true \
-    -D b_pie=true \
-    -D default_library=shared \
-    -D xwayland=enabled \
-    -D systemd=enabled
-
-  meson compile -C build
+  cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX=/usr -S . -B ./build
+  cmake --build ./build --config Release --target all
 }
 
 package() {
   cd Hyprland
 
-  meson install -C build --destdir "$pkgdir"
+  DESTDIR="${pkgdir}" cmake --install build
 
   # license
   install -Dm0644 -t "$pkgdir/usr/share/licenses/${pkgname}" LICENSE
