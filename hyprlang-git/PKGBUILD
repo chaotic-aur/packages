@@ -1,14 +1,14 @@
 # Maintainer: zjeffer
-# Co-Maintainer: alba4k <blaskoazzolaaaron@gmail.com>
+# Maintainer: alba4k <blaskoazzolaaaron@gmail.com>
 
 _pkgname=hyprlang
 pkgname="${_pkgname}-git"
 pkgver=0.5.2.r8.gadbefbf4
 pkgrel=1
 pkgdesc="The official implementation library for the hypr config language"
-arch=(any)
+arch=(x86_64 aarch64)
 url="https://github.com/hyprwm/hyprlang"
-license=('GPL')
+license=('LGPL-3.0-or-later')
 depends=('gcc-libs' 'glibc' 'hyprutils-git')
 makedepends=('git' 'cmake' 'pixman')
 source=("$_pkgname::git+$url.git")
@@ -24,7 +24,7 @@ pkgver() {
 
 build() {
   cd "${srcdir}/${_pkgname}"
-  cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build
+  cmake --no-warn-unused-cli -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build
   cmake --build ./build --config Release --target hyprlang
 }
 

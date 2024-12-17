@@ -4,12 +4,12 @@
 # Contributor: ThatOneCalculator <kainoa at t1c dot dev>
 
 pkgname=hyprland-git
-pkgver=0.45.0.r120.e340e9f4
+pkgver=0.46.0.r6.5f1df55f
 pkgrel=1
 pkgdesc="Hyprland is an independent, highly customizable, dynamic tiling Wayland compositor that doesn't sacrifice on its looks"
-arch=(any)
+arch=(x86_64 aarch64)
 url="https://github.com/hyprwm/Hyprland"
-license=(BSD-3-Clause)
+license=('BSD-3-Clause' 'BSD-2-Clause')
 depends=(
   aquamarine-git
   cairo
@@ -43,6 +43,7 @@ depends=(
   seatd
   systemd-libs
   tomlplusplus
+  util-linux-libs
   wayland
   wayland-protocols
   xcb-proto
@@ -59,12 +60,8 @@ makedepends=(
   git
   hyprwayland-scanner-git
   hyprland-protocols-git
-  jq
-  make
-  meson
-  ninja
-  patch
-  pkgconf
+  #patch
+  #pkgconf
   xorgproto
 )
 optdepends=(
@@ -109,7 +106,7 @@ pkgver() {
 build() {
   cd Hyprland
 
-  cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX=/usr -S . -B ./build
+  cmake --no-warn-unused-cli -DCMAKE_INSTALL_PREFIX=/usr -S . -B ./build
   cmake --build ./build --config Release --target all
 }
 

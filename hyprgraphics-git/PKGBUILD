@@ -5,7 +5,7 @@ pkgname="${_pkgname}-git"
 pkgver=0.1.0.r0.g4d927a52
 pkgrel=1
 pkgdesc="Hyprland graphics / resource utilities"
-arch=(any)
+arch=(x86_64 aarch64)
 url="https://github.com/hyprwm/hyprgraphics"
 license=('BSD-3-Clause')
 depends=('pixman' 'cairo' 'hyprutils-git' 'libjpeg' 'libwebp' 'libjxl' 'file')
@@ -23,7 +23,7 @@ pkgver() {
 
 build() {
   cd "${srcdir}/${_pkgname}"
-  cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX=/usr -S . -B ./build
+  cmake --no-warn-unused-cli -DCMAKE_INSTALL_PREFIX=/usr -S . -B ./build
   cmake --build ./build --config Release --target hyprgraphics
 }
 

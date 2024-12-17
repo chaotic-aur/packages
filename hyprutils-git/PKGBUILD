@@ -2,10 +2,10 @@
 
 _pkgname="hyprutils"
 pkgname="${_pkgname}-git"
-pkgver=0.2.3.r2.g3f529343
+pkgver=0.2.3.r3.gfd4be8b9
 pkgrel=1
 pkgdesc="Hyprland utilities library used across the ecosystem"
-arch=(any)
+arch=(x86_64 aarch64)
 url="https://github.com/hyprwm/hyprutils"
 license=('BSD-3-Clause')
 depends=('pixman')
@@ -23,7 +23,7 @@ pkgver() {
 
 build() {
   cd "${srcdir}/${_pkgname}"
-  cmake --no-warn-unused-cli -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build
+  cmake --no-warn-unused-cli -DCMAKE_INSTALL_PREFIX:PATH=/usr -S . -B ./build
   cmake --build ./build --config Release --target all
 }
 

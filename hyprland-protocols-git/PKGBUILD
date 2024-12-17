@@ -8,55 +8,19 @@ pkgdesc="Wayland protocol extensions for Hyprland"
 arch=(x86_64 aarch64)
 url="https://github.com/hyprwm/hyprland-protocols"
 license=(BSD-3-Clause)
-# depends=(git)
 makedepends=(
-  #   cmake
-  #   gdb
   git
-  #   hyprwayland-scanner-git
-  #   jq
-  make
   meson
   ninja
-  #   patch
-  #   pkgconf
-  #   xorgproto
 )
-# optdepends=(
-#   'cmake: to build and install plugins using hyprpm'
-#   'cpio: to build and install plugins using hyprpm'
-#   'meson: to build and install plugins using hyprpm'
-# )
 provides=("${pkgname%%-git}=${pkgver%%.r*}")
 conflicts=(${pkgname%%-git})
 source=(
   "git+${url}.git"
-  #   "git+https://github.com/hyprwm/hyprland-protocols.git"
-  #   "git+https://github.com/canihavesomecoffee/udis86.git"
 )
 b2sums=(
   'SKIP'
-  #   'SKIP'
-  #   'SKIP'
 )
-
-pick_mr() {
-  git pull origin pull/$1/head --no-edit
-}
-
-prepare() {
-  cd ${pkgname%%-git}
-  git submodule init
-  #   git config submodule.subprojects/hyprland-protocols.url "$srcdir/hyprland-protocols"
-  #   git config submodule.subprojects/udis86.url "$srcdir/udis86"
-  #   git config submodule.subprojects/tracy.update none
-  git -c protocol.file.allow=always submodule update
-
-  if [[ -z "$(git config --get user.name)" ]]; then
-    git config user.name local && git config user.email '<>' && git config commit.gpgsign false
-  fi
-  # Pick pull requests from github using `pick_mr <pull request number>`.
-}
 
 pkgver() {
   git -C ${pkgname%%-git} describe --long --tags | sed 's/^v//;s/\([^-]*-\)g/r\1/;s/-/./g'
@@ -65,19 +29,12 @@ pkgver() {
 build() {
   cd ${pkgname%%-git}
 
-  export CXXFLAGS="-w" # suppress all compiler warnings
   meson setup build \
     --wipe \
     --prefix /usr \
     --libexecdir lib \
     --buildtype release \
-    --wrap-mode nodownload \
-    -D warning_level=0 \
-    -D b_lto=true \
-    -D b_pie=true \
-    -D default_library=shared # \
-  # -D xwayland=enabled \
-  # -D systemd=enabled
+    --wrap-mode nodownload
 
   meson compile -C build
 }
@@ -86,9 +43,6 @@ package() {
   cd ${pkgname%%-git}
 
   meson install -C build --destdir "$pkgdir"
-
-  # FIXME: remove after xdg-desktop-portal-hyprland disowns hyprland-portals.conf
-  rm -rf "$pkgdir/usr/share/xdg-desktop-portal"
 
   # license
   install -Dm0644 -t "$pkgdir/usr/share/licenses/${pkgname}" LICENSE
