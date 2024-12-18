@@ -8,15 +8,17 @@
 
 pkgname=gittyup
 pkgver=1.4.0
-pkgrel=2
+pkgrel=3
 pkgdesc='Graphical Git client (GitAhead fork)'
 url="https://murmele.github.io/${pkgname^}"
 _url="https://github.com/Murmele/${pkgname^}"
-arch=(x86_64)
+arch=(x86_64 aarch64)
 license=(MIT)
 depends=(cmark
   git
   hunspell
+  hicolor-icon-theme
+  libsecret
   libssh2
   lua
   lua-lpeg
@@ -64,7 +66,6 @@ build() {
     -D CMAKE_INSTALL_DATADIR=share
     -D DEBUG_OUTPUT=OFF
     -D LUA_MODULES_PATH=/usr/lib/lua/5.4
-    -D ENABLE_REPRODUCIBLE_BUILDS=OFF
     -D ENABLE_UPDATE_OVER_GUI=OFF
     -D GENERATE_APPDATA=OFF
     -D BUILD_SHARED_LIBS=OFF
@@ -89,9 +90,8 @@ check() {
 }
 
 package() {
+  DESTDIR="$pkgdir" cmake --install build
   install -Dm0644 -t "$pkgdir/usr/share/licenses/$pkgname/" "${pkgname^}/LICENSE.md"
-  install -Dm0644 "${pkgname^}/rsrc/linux/com.github.Murmele.Gittyup.desktop" "$pkgdir/usr/share/applications/gittyup.desktop"
-  DESTDIR="$pkgdir" ninja -C build install
   pushd "$pkgdir/usr"
   rm -f lib/libQt*.so.* lib/*.a
   rm -rf include lib/{cmake,pkgconfig,Plugins}
