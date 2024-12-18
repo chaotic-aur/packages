@@ -107,7 +107,7 @@ build() {
   cd Hyprland
 
   cmake --no-warn-unused-cli -DCMAKE_INSTALL_PREFIX=/usr -S . -B ./build
-  cmake --build ./build --config Release --target all
+  cmake --build ./build --target all
 }
 
 package() {
@@ -115,7 +115,8 @@ package() {
 
   DESTDIR="${pkgdir}" cmake --install build
 
-  # license
+  # licenses
   install -Dm0644 -t "$pkgdir/usr/share/licenses/${pkgname}" LICENSE
+  install -Dm0644 subprojects/udis86/LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE-udis86"
 }
 # vi: et ts=2 sw=2
