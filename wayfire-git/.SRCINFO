@@ -1,6 +1,6 @@
 pkgbase = wayfire-git
 	pkgdesc = 3D wayland compositor
-	pkgver = 0.9.0.r11.g6796b085
+	pkgver = 0.9.0.r23.g0f9d50d1
 	pkgrel = 1
 	url = https://github.com/WayfireWM/wayfire
 	arch = x86_64
@@ -31,8 +31,10 @@ pkgbase = wayfire-git
 	depends = wf-config-git
 	depends = glm
 	depends = glslang
+	depends = lcms2
 	depends = libinput
 	depends = libdisplay-info
+	depends = libliftoff
 	depends = libxcb
 	depends = opengl-driver
 	depends = xcb-util-errors
@@ -47,11 +49,9 @@ pkgbase = wayfire-git
 	depends = libxkbcommon.so
 	optdepends = xorg-xeyes
 	provides = wayfire
-	provides = wlroots
-	provides = wlroots-git
-	provides = libwlroots.so
+	provides = wlroots=0.18.2
+	provides = libwlroots-0.18.so
 	conflicts = wayfire
-	conflicts = wlroots-git
 	source = git+https://github.com/WayfireWM/wayfire
 	sha256sums = SKIP
 

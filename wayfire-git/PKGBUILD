@@ -1,8 +1,10 @@
 # Maintainer: Solomon Choina <shlomochoina@gmail.com>
 # Co-Maintainer: Frank Tao <frank.tao@uwaterloo.ca>
 # Co-Maintainer: Christopher Snowhill <kode54@gmail.com>
+_wlroots_version=0.18.2
+_wlroots_majver=0.18
 pkgname=wayfire-git
-pkgver=0.9.0.r11.g6796b085
+pkgver=0.9.0.r23.g0f9d50d1
 pkgrel=1
 pkgdesc="3D wayland compositor"
 arch=('x86_64')
@@ -20,8 +22,8 @@ depends=(
   'glm'
 
   # wlroots
-  'glslang' 'libinput' 'libdisplay-info'
-  'libxcb' 'opengl-driver'
+  'glslang' 'lcms2' 'libinput' 'libdisplay-info'
+  'libliftoff' 'libxcb' 'opengl-driver'
   'xcb-util-errors' 'xcb-util-renderutil'
   'xcb-util-wm' 'libpixman-1.so' 'libseat.so'
   'libudev.so' 'libvulkan.so' 'libwayland-client.so'
@@ -31,8 +33,8 @@ makedepends=('git' 'meson' 'ninja' 'cmake' 'vulkan-headers' 'doctest'
   'pkgconf' 'wayland-protocols' 'nlohmann-json' 'libxml2'
 )
 optdepends=('xorg-xeyes')
-provides=("${pkgname%-git}" 'wlroots' 'wlroots-git' 'libwlroots.so')
-conflicts=("${pkgname%-git}" 'wlroots-git')
+provides=("${pkgname%-git}" "wlroots=${_wlroots_version}" "libwlroots-${_wlroots_majver}.so")
+conflicts=("${pkgname%-git}")
 replaces=()
 options=()
 
