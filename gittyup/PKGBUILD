@@ -8,7 +8,7 @@
 
 pkgname=gittyup
 pkgver=1.4.0
-pkgrel=3
+pkgrel=4
 pkgdesc='Graphical Git client (GitAhead fork)'
 url="https://murmele.github.io/${pkgname^}"
 _url="https://github.com/Murmele/${pkgname^}"
@@ -26,7 +26,6 @@ depends=(cmark
   qt5-base)
 makedepends=(cmake
   libgnome-keyring
-  ninja
   qt5-tools
   qt5-translations)
 optdepends=('git-lfs: git-lfs support'
@@ -59,16 +58,15 @@ prepare() {
 
 build() {
   local _flags=(
-    -G Ninja
     -W no-dev
-    -D CMAKE_BUILD_TYPE=None
+    -D CMAKE_BUILD_TYPE=Release
     -D CMAKE_INSTALL_PREFIX=/usr
     -D CMAKE_INSTALL_DATADIR=share
-    -D DEBUG_OUTPUT=OFF
     -D LUA_MODULES_PATH=/usr/lib/lua/5.4
+    -D BUILD_SHARED_LIBS=OFF
+    -D DEBUG_OUTPUT=OFF
     -D ENABLE_UPDATE_OVER_GUI=OFF
     -D GENERATE_APPDATA=OFF
-    -D BUILD_SHARED_LIBS=OFF
     -D USE_SYSTEM_CMARK=ON
     -D USE_SYSTEM_GIT=ON
     -D USE_SYSTEM_HUNSPELL=ON
@@ -82,11 +80,10 @@ build() {
     -B build \
     -S "${pkgname^}"
   cmake --build build
-  # ninja -C build
 }
 
 check() {
-  ninja -C build check
+  cmake --check build
 }
 
 package() {

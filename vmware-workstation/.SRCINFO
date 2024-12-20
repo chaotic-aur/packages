@@ -1,7 +1,7 @@
 pkgbase = vmware-workstation
 	pkgdesc = The industry standard for running multiple operating systems as virtual machines on a single Linux PC.
 	pkgver = 17.6.2
-	pkgrel = 1
+	pkgrel = 2
 	url = https://www.vmware.com/products/workstation-for-linux.html
 	install = vmware-workstation.install
 	arch = x86_64
@@ -34,7 +34,7 @@ pkgbase = vmware-workstation
 	source = https://softwareupdate.vmware.com/cds/vmw-desktop/ws/17.5.2/23775571/linux/packages/vmware-tools-linuxPreGlibc25-12.4.0-23259341.x86_64.component.tar
 	source = https://softwareupdate.vmware.com/cds/vmw-desktop/ws/17.5.2/23775571/linux/packages/vmware-tools-netware-12.4.0-23259341.x86_64.component.tar
 	source = https://softwareupdate.vmware.com/cds/vmw-desktop/ws/17.5.2/23775571/linux/packages/vmware-tools-solaris-12.4.0-23259341.x86_64.component.tar
-	source = https://softwareupdate.vmware.com/cds/vmw-desktop/ws/17.6.2/24409262/linux/packages/vmware-tools-windows-12.4.5-23787635.x86_64.component.tar
+	source = vmware-tools-windows-12.4.5-23787635-17.6.2.x86_64.component.tar::https://softwareupdate.vmware.com/cds/vmw-desktop/ws/17.6.2/24409262/linux/packages/vmware-tools-windows-12.4.5-23787635.x86_64.component.tar
 	source = https://softwareupdate.vmware.com/cds/vmw-desktop/ws/17.5.2/23775571/linux/packages/vmware-tools-winPre2k-12.4.0-23259341.x86_64.component.tar
 	source = https://softwareupdate.vmware.com/cds/vmw-desktop/ws/17.5.2/23775571/linux/packages/vmware-tools-winPreVista-12.4.0-23259341.x86_64.component.tar
 	source = vmware-bootstrap

@@ -1,14 +1,13 @@
 pkgbase = gittyup
 	pkgdesc = Graphical Git client (GitAhead fork)
 	pkgver = 1.4.0
-	pkgrel = 3
+	pkgrel = 4
 	url = https://murmele.github.io/Gittyup
 	arch = x86_64
 	arch = aarch64
 	license = MIT
 	makedepends = cmake
 	makedepends = libgnome-keyring
-	makedepends = ninja
 	makedepends = qt5-tools
 	makedepends = qt5-translations
 	depends = cmark

@@ -17,7 +17,7 @@ pkgname=vmware-workstation
 pkgver=17.6.2
 _buildver=24409262
 _pkgver=${pkgver}_${_buildver}
-pkgrel=1
+pkgrel=2
 _tools_version=12.4.5_23787635
 _legacy_ver=17.5.2
 _legacy_buildver=23775571
@@ -65,7 +65,7 @@ source=(
   "https://softwareupdate.vmware.com/cds/vmw-desktop/ws/${_legacy_ver}/${_legacy_buildver}/linux/packages/vmware-tools-linuxPreGlibc25-${_legacy_tools_version/_/-}.${CARCH}.component.tar"
   "https://softwareupdate.vmware.com/cds/vmw-desktop/ws/${_legacy_ver}/${_legacy_buildver}/linux/packages/vmware-tools-netware-${_legacy_tools_version/_/-}.${CARCH}.component.tar"
   "https://softwareupdate.vmware.com/cds/vmw-desktop/ws/${_legacy_ver}/${_legacy_buildver}/linux/packages/vmware-tools-solaris-${_legacy_tools_version/_/-}.${CARCH}.component.tar"
-  "https://softwareupdate.vmware.com/cds/vmw-desktop/ws/${pkgver}/${_buildver}/linux/packages/vmware-tools-windows-${_tools_version/_/-}.${CARCH}.component.tar"
+  "vmware-tools-windows-${_tools_version/_/-}-${pkgver}.${CARCH}.component.tar::https://softwareupdate.vmware.com/cds/vmw-desktop/ws/${pkgver}/${_buildver}/linux/packages/vmware-tools-windows-${_tools_version/_/-}.${CARCH}.component.tar"
   "https://softwareupdate.vmware.com/cds/vmw-desktop/ws/${_legacy_ver}/${_legacy_buildver}/linux/packages/vmware-tools-winPre2k-${_legacy_tools_version/_/-}.${CARCH}.component.tar"
   "https://softwareupdate.vmware.com/cds/vmw-desktop/ws/${_legacy_ver}/${_legacy_buildver}/linux/packages/vmware-tools-winPreVista-${_legacy_tools_version/_/-}.${CARCH}.component.tar"
 
