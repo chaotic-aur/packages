@@ -3,7 +3,7 @@
 
 _pkgname="hyprpaper"
 pkgname="$_pkgname-git"
-pkgver=0.7.3.r0.geb9db3b
+pkgver=0.7.3.r1.gf15e678
 pkgrel=1
 pkgdesc="a blazing fast wayland wallpaper utility with IPC controls"
 url="https://github.com/hyprwm/hyprpaper"
@@ -18,7 +18,7 @@ depends=(
   hyprgraphics-git
   hyprlang-git
   hyprutils-git
-  #hyprwayland-scanner-git
+  hyprwayland-scanner-git
 )
 makedepends=(
   cmake
