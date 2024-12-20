@@ -14,10 +14,10 @@
 
 #PKGEXT=.pkg.tar
 pkgname=vmware-workstation
-pkgver=17.6.1
-_buildver=24319023
+pkgver=17.6.2
+_buildver=24409262
 _pkgver=${pkgver}_${_buildver}
-pkgrel=2
+pkgrel=1
 _tools_version=12.4.5_23787635
 _legacy_ver=17.5.2
 _legacy_buildver=23775571
@@ -87,12 +87,12 @@ source=(
   'vmnet.patch'
 )
 sha256sums=(
-  '173712fe4a0b2535e25161f91f502ed048b3f15007f266e889d9107832d13e64'
+  '59e3ed00e678dccd2f76a9d511270a0f6495a74830cf6399865ac4024f2193ab'
   'd862be0d12796134b40e5ffc7534a5e6161b8898355fe32ca8f705a3806cbfe4'
   'd79f79f17e5f37399046d16be3967e0cff3c9474e2cb6ea3f2c3ebea3ff68cea'
   '4643fff3ed4f8af5a56a1c4c2084fa7327d78e58ee9b0687b98390a4b4a1ac14'
   '196c842f758b813afb202b0db2d09d457fccafac212ca41ef3277dfe9ceaf9ec'
-  'bfe89506d4a246a2f41bb4d36393ac6b8dafa21e0985f26647450fb7c5b39f4e'
+  '41740393320650d535401bc2eafd4fd97bf7d51eb295a8a0ece8ee5ee8107c81'
   'd4e9884f5f11cef4e261023d895eba5b57a8a80623bff0de8b3f1c47154b2a11'
   '20abd21da43ac31741f8bb26db1ae7d8f4ef4c5082c9a2cc3ae5da494f1b9529'
 
