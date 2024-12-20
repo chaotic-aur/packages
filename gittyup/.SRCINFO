@@ -1,7 +1,7 @@
 pkgbase = gittyup
 	pkgdesc = Graphical Git client (GitAhead fork)
 	pkgver = 1.4.0
-	pkgrel = 4
+	pkgrel = 5
 	url = https://murmele.github.io/Gittyup
 	arch = x86_64
 	arch = aarch64
