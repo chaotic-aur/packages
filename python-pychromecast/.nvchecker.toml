@@ -1,0 +1,4 @@
+[python-pychromecast]
+source = "git"
+git = "https://github.com/home-assistant-libs/pychromecast.git"
+prefix = "v"

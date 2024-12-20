@@ -1,0 +1,3 @@
+[python-nanoid]
+source = "pypi"
+pypi = "nanoid"

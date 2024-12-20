@@ -1,0 +1,4 @@
+[python-hwdata]
+source = "git"
+git = "https://github.com/xsuchy/python-hwdata.git"
+prefix = "python-hwdata-"

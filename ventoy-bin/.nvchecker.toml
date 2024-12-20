@@ -1,0 +1,4 @@
+[ventoy-bin]
+source = "git"
+git = "https://github.com/ventoy/Ventoy.git"
+prefix = "v"
