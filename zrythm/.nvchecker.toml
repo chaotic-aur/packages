@@ -1,0 +1,4 @@
+[zrythm]
+source = "git"
+git = "https://gitlab.zrythm.org/zrythm/zrythm.git"
+prefix = "v"

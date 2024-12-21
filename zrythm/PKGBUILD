@@ -4,10 +4,11 @@
 # https://www.zrythm.org
 # https://gitlab.zrythm.org/zrythm/zrythm
 
-: ${_pkgver:=1.0.0-rc.2}
+: ${_pkgver:=1.0.0}
 
-pkgname=zrythm
-pkgver=1.0.0.rc.2
+_pkgname="zrythm"
+pkgname="$_pkgname"
+pkgver=${_pkgver//-/.}
 pkgrel=1
 pkgdesc='Highly automated and intuitive digital audio workstation'
 url="https://gitlab.zrythm.org/zrythm/zrythm"
@@ -15,92 +16,84 @@ license=('AGPL-3.0-or-later')
 arch=('x86_64')
 
 depends=(
-  appstream
-  boost
-  breeze-icons
-  chromaprint
-  dconf
-  fftw
-  fluidsynth
-  graphene
-  graphviz
-  gtk4
-  gtksourceview5
-  guile
-  json-glib
-  libadwaita
-  libepoxy
-  libpanel
-  libxinerama
-  libxrandr
-  lilv
-  pcre
-  portaudio
-  qt5-base
-  rtaudio
-  rtmidi
-  rubberband
-  sdl2
-  serd
-  sratom
-  vamp-plugin-sdk
-  xxhash
-  yyjson
-  zix
+  'appstream'
+  'boost'
+  'breeze-icons'
+  'chromaprint'
+  'dconf'
+  'fftw'
+  'fluidsynth'
+  'graphene'
+  'graphviz'
+  'gtk4'
+  'gtksourceview5'
+  'guile'
+  'json-glib'
+  'libadwaita'
+  'libbacktrace'
+  'libepoxy'
+  'libpanel'
+  'libxinerama'
+  'libxrandr'
+  'lilv'
+  'pcre'
+  'portaudio'
+  'qt5-base'
+  'rtaudio'
+  'rtmidi'
+  'rubberband'
+  'sdl2'
+  'serd'
+  'sratom'
+  'vamp-plugin-sdk'
+  'xxhash'
+  'yyjson'
+  'zix'
 
   # AUR
-  carla-git
-  libaudec
-  libbacktrace
-  libcyaml
-  lsp-dsp-lib
-  reproc
+  'carla>=2.5.9.r303'
+  'libaudec'
+  'libcyaml'
+  'lsp-dsp-lib'
+  'reproc'
 )
 makedepends=(
-  cmake
-  git
-  glib2-devel
-  help2man
-  meson
-  ruby-sass
-  sassc
+  'cmake'
+  'git'
+  'glib2-devel'
+  'help2man'
+  'meson'
+  'ruby-sass'
+  'sassc'
 )
-optdepends=('realtime-privileges: allow memory locking')
+optdepends=(
+  'realtime-privileges: allow memory locking'
+)
 
-_pkgsrc="$pkgname-$_pkgver"
+_pkgsrc="$_pkgname-$_pkgver"
 _pkgext="tar.xz"
 source=(
   "https://www.zrythm.org/releases/$_pkgsrc.$_pkgext"{,.asc}
   "git+https://github.com/drobilla/zix.git"
-  0001-gcc13-fixes.patch
 )
 sha256sums=(
-  'ebdde5f58b1334e3fcf4361750075932ad0655a66f4c445585c705896e824639'
+  'd143a0a17066b50db8a6db875d2699c9e5b70f1bbe18db00fee034840144fede'
   'SKIP'
   'SKIP'
-  'bb93eea519020e491f85c38ab3901ac530bbf747c4e7acc3aaea39f402091653'
 )
 validpgpkeys=(
   '48132384AD3DF7D86E254B83022EAE42313D70F3' # Alexandros Theodotou <alex@zrythm.org>
 )
 
-pkgver() {
-  echo "${_pkgver/-/.}"
-}
-
 prepare() {
   cd "$_pkgsrc"
 
-  patch -Np1 -i ../0001-gcc13-fixes.patch
   # use our local clones
   sed -i "s|https://github.com/drobilla/zix|$srcdir/zix|" "subprojects/zix.wrap"
   meson subprojects download zix
 }
 
 build() {
-  export CFLAGS
-  CFLAGS+=" -Wno-error=incompatible-pointer-types"
-
   local _meson_args=(
     --wrap-mode=nofallback
     --force-fallback-for=zix-0
