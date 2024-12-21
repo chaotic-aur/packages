@@ -1,6 +1,6 @@
 pkgbase = hyprlang-git
 	pkgdesc = The official implementation library for the hypr config language
-	pkgver = 0.5.2.r8.gadbefbf4
+	pkgver = 0.6.0.r3.g16e59c1e
 	pkgrel = 1
 	url = https://github.com/hyprwm/hyprlang
 	arch = x86_64
@@ -12,7 +12,7 @@ pkgbase = hyprlang-git
 	depends = gcc-libs
 	depends = glibc
 	depends = hyprutils-git
-	provides = hyprlang=0.5.2
+	provides = hyprlang=0.6.0
 	provides = libhyprlang.so
 	conflicts = hyprlang
 	source = hyprlang::git+https://github.com/hyprwm/hyprlang.git
