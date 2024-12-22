@@ -1,0 +1,13 @@
+url="https://github.com/godotengine/godot"
+
+_pkgsrc="$_gitname"
+pkgver() {
+  cd "$_pkgsrc"
+
+  local _tag _ version _revision _hash
+  _tag=$(git tag | sort -rV | head -1)
+  _version="${_tag%-stable}"
+  _revision=$(git rev-list --count --cherry-pick "$_tag"...HEAD)
+  _hash=$(git rev-parse --short=7 HEAD)
+  printf '%s.r%s.g%s' "${_version:?}" "${_revision:?}" "${_hash:?}"
+}

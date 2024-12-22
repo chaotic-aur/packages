@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+_check_status() (
+  local _url_repo _url_ci _commit _response _msg_err _success_ci
+  _url_repo="https://github.com/godotengine/godot"
+  _commit=$(git ls-remote "$_url_repo.git" HEAD 2>/dev/null | grep -m1 -oP '\w+(?=\t\w)')
+  _url_ci="$_url_repo/commit/$_commit/checks"
+  _response=$(curl -Ssf "$_url_ci")
+  _success_ci=false
+
+  if grep -qo 'favicon-success.svg' <<<"$_response"; then
+    _msg_err="Check-in success."
+    _success_ci=true
+  elif grep -qo 'favicon-failure.svg' <<<"$_response"; then
+    _msg_err="Error: Check-in failed."
+    _success_ci=false
+  else
+    _msg_err="Error: Check-in incomplete."
+    _success_ci=false
+  fi
+
+  echo "$_msg_err"
+  echo "> $_url_ci"
+
+  if [ "${_success_ci::1}" != "t" ]; then
+    return "$CI_CODE_SKIP"
+  fi
+)
+
+_check_status || return $?
