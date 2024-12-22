@@ -1,7 +1,7 @@
 # Maintainer: Nick Østergaard <oe.nick at gmail dot com>
 
 pkgname=kicad-git
-pkgver=8.99.0.r1825.gb38357a5ea
+pkgver=9.0.0.rc1.r18.gc587788430
 pkgrel=1
 pkgdesc="Electronic schematic and printed circuit board (PCB) design tools"
 arch=('i686' 'x86_64')
@@ -34,11 +34,10 @@ build() {
     -DCMAKE_EXE_LINKER_FLAGS=-fuse-ld=gold \
     -DKICAD_SCRIPTING_WXPYTHON_PHOENIX=ON
 
-  make
+  cmake --build .
 }
 
 package() {
   cd "${srcdir}/${pkgname}"
-  cd build
-  make DESTDIR="${pkgdir}" install
+  DESTDIR="${pkgdir}" cmake --install build
 }
