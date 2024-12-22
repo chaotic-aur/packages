@@ -1,3 +1,2 @@
-BUILDER_CACHE_SOURCES=true
-CI_PACKAGE_BUMP=1.4.1-1/1
+CI_PACKAGE_BUMP=1.4.1-1/2
 CI_PKGBUILD_SOURCE=https://aur.archlinux.org/scrap_engine-git.git
