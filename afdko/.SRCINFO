@@ -1,7 +1,7 @@
 pkgbase = afdko
 	pkgdesc = Adobe Font Development Kit for OpenType
 	pkgver = 4.0.2
-	pkgrel = 1
+	pkgrel = 2
 	url = https://github.com/adobe-type-tools/afdko
 	arch = x86_64
 	license = Apache-2.0
