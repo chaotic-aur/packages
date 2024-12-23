@@ -1,0 +1,19 @@
+url="https://github.com/dahenson/agenda"
+
+license=('GPL-3.0-or-later')
+
+_pkgsrc="$_gitname"
+pkgver() {
+  cd "$_pkgsrc"
+  git describe --long --tags --abbrev=7 --exclude='*[a-zA-Z][a-zA-Z]*' \
+    | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
+}
+
+build() {
+  arch-meson "$_pkgsrc" build
+  meson compile -C build
+}
+
+package() {
+  meson install -C build --destdir "$pkgdir"
+}
