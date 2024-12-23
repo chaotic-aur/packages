@@ -1,12 +1,13 @@
 pkgbase = python-vdf
 	pkgdesc = Library for working with Valve's VDF text format
 	pkgver = 4.0
-	pkgrel = 1
+	pkgrel = 2
 	url = https://github.com/solsticegamestudios/vdf
 	arch = any
 	license = MIT
 	checkdepends = python-nose
 	checkdepends = python-coverage
+	checkdepends = python-pytest
 	makedepends = python-setuptools
 	depends = python>=3.6
 	source = python-vdf-4.0.tar.gz::https://github.com/solsticegamestudios/vdf/archive/v4.0.tar.gz
