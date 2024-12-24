@@ -1,4 +1,4 @@
 CI_ON_TRIGGER=heavy
 BUILDER_CACHE_SOURCES=true
-CI_PKGBUILD_SOURCE=https://aur.archlinux.org/lean4-git.git
+CI_PKGBUILD_SOURCE=aur
 BUILDER_CLASS=9
