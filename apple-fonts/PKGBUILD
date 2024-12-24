@@ -1,8 +1,8 @@
 # Maintainer:  Alessandro Marchioro <marciozgaming@gmail.com>
 # Co-Maintainer: Cp Dong <cp-dong at outlook dot com>
 pkgname=apple-fonts
-pkgver=6
-pkgrel=2
+pkgver=6.0.1.1726709071
+pkgrel=1
 pkgdesc='Fonts for Apple platforms, including San Francisco and New York typefaces'
 arch=(any)
 url='https://developer.apple.com/fonts/'
@@ -10,43 +10,38 @@ license=('custom')
 provides=('ttf-font')
 depends=()
 makedepends=(p7zip)
-source=('https://devimages-cdn.apple.com/design/resources/download/SF-Pro.dmg'
-  'https://devimages-cdn.apple.com/design/resources/download/SF-Compact.dmg'
-  'https://devimages-cdn.apple.com/design/resources/download/SF-Mono.dmg'
-  'https://devimages-cdn.apple.com/design/resources/download/NY.dmg'
-  'LICENSE.THE-APPLE-SF-PRO-FONT'
-  'LICENSE.THE-APPLE-SF-COMPACT-FONT'
-  'LICENSE.THE-APPLE-SF-MONO-FONT'
-  'LICENSE.THE-APPLE-NEW-YORK-FONT')
+_baseurl='https://devimages-cdn.apple.com/design/resources/download/'
+source=("${_baseurl}SF-Pro.dmg"
+  "${_baseurl}SF-Compact.dmg"
+  "${_baseurl}SF-Mono.dmg"
+  "${_baseurl}NY.dmg")
 sha256sums=('21c701d2e5967cf0a2747617eac02eb2e1195fdd3a755628f086aa797eff3bcf'
   '3e5ada33a4b01fcb13c67541a3a2eab7d07ab406430bffd508fc2bfcf35c9e59'
   '6d4a0b78e3aacd06f913f642cead1c7db4af34ed48856d7171a2e0b55d9a7945'
-  '1c2eedb4526cc0f326f8b7ea978f5a433756476a2c8c56072537608edb88f8f4'
-  '18273048eee4851c929531c954a5c36bbd897404e49c69309a3fc452973c3885'
-  'a3c5661529d654e92e7310fc2572eae7f6a165db54be918e2bee35afb39159f1'
-  '079512256688e048803fedeb087eaaf8a3109448f160c6f84c6561f4eb763296'
-  '5579b2b33d529bd51efab1f378e5c600aafd8fe1481f3c28e5d914742c801ba2')
+  '1c2eedb4526cc0f326f8b7ea978f5a433756476a2c8c56072537608edb88f8f4')
 noextract=("${source[@]##*/}")
 
 prepare() {
   cd "$srcdir"
-  mkdir -p fonts src
+  mkdir -p fonts licenses tmp
   for archive in *.dmg; do
-    7z e "$archive" -y -osrc/
-    cd src/
+    7z e "$archive" -y -otmp/
+    cd tmp/
     7z x *.pkg -y
+    font=$(grep -o -e "THE APPLE .* FONT" Resources/English.lproj/License.rtf | head -n 1)
+    mv Resources/English.lproj/License.rtf "$srcdir/licenses/LICENSE.${font// /-}"
+    cd *.pkg/
+    7z x Payload -y
     7z x 'Payload~' -y
     mv Library/Fonts/* "$srcdir/fonts/"
     cd "$srcdir"
-    rm -rf src/{*,.*}
+    rm -r tmp/{*,.*}
   done
-  rmdir src/
+  rmdir tmp/
 }
 
 package() {
-  install -Dm644 -t "$pkgdir/usr/share/licenses/$pkgname" \
-    LICENSE.THE-APPLE-SF-PRO-FONT LICENSE.THE-APPLE-SF-COMPACT-FONT \
-    LICENSE.THE-APPLE-SF-MONO-FONT LICENSE.THE-APPLE-NEW-YORK-FONT
+  install -Dm644 -t "$pkgdir/usr/share/licenses/$pkgname" "$srcdir/licenses"/*
 
   install -Dm644 -t "$pkgdir/usr/share/fonts/$pkgname" "$srcdir/fonts"/*
 }
