@@ -1,0 +1,5 @@
+url="https://gitlab.com/kaliko/python-musicpd"
+
+license=('LGPL-3.0-or-later')
+
+makedepends+=('python-setuptools')
