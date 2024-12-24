@@ -1,0 +1,6 @@
+license=('BSD-3-Clause')
+
+unset checkdepends
+unset -f check
+
+eval "$(declare -f package | grep -v '/doc/')"
