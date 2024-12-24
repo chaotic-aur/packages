@@ -1,0 +1,4 @@
+_py=cp$(python --version | sed -E 's&^\S+ ([0-9]+)\.([0-9]+).*&\1\2&')
+_wheel="${_pkgname/-/_}-$pkgver-$_py-$_py-manylinux_2_17_$CARCH.manylinux2014_$CARCH.whl"
+source=("https://files.pythonhosted.org/packages/$_py/${_pkgname::1}/$_pkgname/$_wheel")
+sha256sums=('SKIP')
