@@ -1,0 +1,39 @@
+From 141c13b34d29c448c6580cfe34d9fb33944655fd Mon Sep 17 00:00:00 2001
+From: txtsd <code@ihavea.quest>
+Date: Tue, 22 Oct 2024 18:18:51 +0530
+Subject: [PATCH] fix: Create strtobool() since disutils is deprecated
+
+Signed-off-by: txtsd <code@ihavea.quest>
+---
+ bazarr/app/get_args.py | 17 ++++++++++++++++-
+ 1 file changed, 16 insertions(+), 1 deletion(-)
+
+diff --git a/bazarr/app/get_args.py b/bazarr/app/get_args.py
+index 5e52a2da8..52fdb0df4 100644
+--- a/bazarr/app/get_args.py
++++ b/bazarr/app/get_args.py
+@@ -3,7 +3,22 @@
+ import os
+ import argparse
+
+-from distutils.util import strtobool
++
++def strtobool(val):
++    """Convert a string representation of truth to true (1) or false (0).
++
++    True values are 'y', 'yes', 't', 'true', 'on', and '1'; false values
++    are 'n', 'no', 'f', 'false', 'off', and '0'.  Raises ValueError if
++    'val' is anything else.
++    """
++    val = val.lower()
++    if val in ('y', 'yes', 't', 'true', 'on', '1'):
++        return 1
++    elif val in ('n', 'no', 'f', 'false', 'off', '0'):
++        return 0
++    else:
++        raise ValueError(f"invalid truth value {val!r}")
++
+
+ no_update = os.environ.get("NO_UPDATE", "false").strip() == "true"
+ no_cli = os.environ.get("NO_CLI", "false").strip() == "true"
+
