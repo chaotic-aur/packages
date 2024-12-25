@@ -1,0 +1,22 @@
+pkgbase = kindleunpack-git
+	pkgdesc = Extract text, images, and metadata from Kindle and Mobi files
+	pkgver = 0.83.r10.g7fe6f80
+	pkgrel = 1
+	url = https://github.com/kevinhendricks/KindleUnpack
+	arch = any
+	license = GPL-3.0-only
+	makedepends = git
+	makedepends = python-build
+	makedepends = python-installer
+	makedepends = python-setuptools
+	makedepends = python-wheel
+	depends = python
+	depends = tk
+	provides = kindleunpack=0.83
+	conflicts = kindleunpack
+	source = kindleunpack::git+https://github.com/kevinhendricks/KindleUnpack.git
+	source = Installing-with-setuptools.diff
+	sha256sums = SKIP
+	sha256sums = 4c4eb18f9716875d90cf6c6b781ece9cbb316e2dcecebd2e89caec142bd25505
+
+pkgname = kindleunpack-git

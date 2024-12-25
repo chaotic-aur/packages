@@ -1,0 +1,56 @@
+# Maintainer: aur.chaotic.cx
+
+_pkgname="kindleunpack"
+pkgname="${_pkgname}-git"
+pkgver=0.83.r10.g7fe6f80
+pkgrel=1
+pkgdesc='Extract text, images, and metadata from Kindle and Mobi files'
+url="https://github.com/kevinhendricks/KindleUnpack"
+license=('GPL-3.0-only')
+arch=('any')
+
+depends=(
+  'python'
+  'tk'
+)
+makedepends=(
+  'git'
+  'python-build'
+  'python-installer'
+  'python-setuptools'
+  'python-wheel'
+)
+
+provides=("$_pkgname=${pkgver%%.r*}")
+conflicts=("$_pkgname")
+
+_pkgsrc="$_pkgname"
+source=(
+  "$_pkgname"::"git+$url.git"
+  "Installing-with-setuptools.diff"
+)
+sha256sums=(
+  'SKIP'
+  '4c4eb18f9716875d90cf6c6b781ece9cbb316e2dcecebd2e89caec142bd25505'
+)
+
+prepare() {
+  cd "$_pkgsrc"
+  patch -Np1 -i ../Installing-with-setuptools.diff
+}
+
+pkgver() {
+  cd "$_pkgsrc"
+  git describe --long --tags --abbrev=7 --exclude='*[a-zA-Z][a-zA-Z]*' --exclude='*[a-z]' --exclude='*.*' \
+    | sed -E 's/^v([0-9])([0-9])/\1.\2/;s/([^-]*-g)/r\1/;s/-/./g'
+}
+
+build() {
+  cd "$_pkgsrc"
+  python -m build --wheel --no-isolation --skip-dependency-check
+}
+
+package() {
+  cd "$_pkgsrc"
+  python -m installer --destdir="$pkgdir" dist/*.whl
+}
