@@ -1,0 +1,5 @@
+url="https://github.com/IgeNiaI/Q-Zandronum"
+
+license=('LicenseRef-Zandronum')
+
+source_x86_64=("Q-Zandronum_${pkgver}_Linux_amd64.tar.gz"::"${source_x86_64[0]//.tar.gz/.gz}")
