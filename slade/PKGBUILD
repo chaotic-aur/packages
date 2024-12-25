@@ -3,7 +3,7 @@
 
 pkgname=slade
 pkgver=3.2.7
-pkgrel=3
+pkgrel=4
 pkgdesc='SLADE3 Doom editor'
 arch=('i686' 'x86_64')
 url='http://slade.mancubus.net/'
@@ -32,6 +32,7 @@ build() {
   export CCACHE_SLOPPINESS=pch_defines,time_macros
   cmake -D CMAKE_BUILD_TYPE=None \
     -D CMAKE_INSTALL_PREFIX=/usr \
+    -D wxUSE_GLCANVAS_EGL=OFF \
     .
   make
 }
