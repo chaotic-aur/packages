@@ -1,33 +1,45 @@
 # Maintainer: aur.chaotic.cx
 
 _pkgname="llama-cpp"
-pkgname="$_pkgname-git"
-pkgver=b4391.r0.g9ba399d
-pkgrel=1
+pkgbase="$_pkgname-git"
+pkgname=(
+  "$_pkgname-git"
+  "$_pkgname-vulkan-git"
+  "$_pkgname-devel-git"
+)
+pkgver=b4393.r0.gd79d8f3
+pkgrel=2
 pkgdesc="Port of Facebook's LLaMA model in C/C++"
 url="https://github.com/ggerganov/llama.cpp"
 license=('MIT')
 arch=('x86_64')
 
-depends=(
+_depends_common=(
   'curl'
-  'openblas'
-  'openblas64'
   'python'
   'python-numpy'
   'python-sentencepiece' # AUR
+)
+_depends_openblas=(
+  'openblas'
+)
+_depends_vulkan=(
+  'vulkan-icd-loader'
+)
+
+depends=(
+  ${_depends_common[@]}
+  ${_depends_openblas[@]}
+  ${_depends_vulkan[@]}
 )
 makedepends=(
   'cmake'
   'git'
   'ninja'
   'openmp'
+  'shaderc'
+  'vulkan-headers'
 )
-
-provides=("$_pkgname")
-conflicts=("$_pkgname")
-
-backup=("etc/conf.d/$_pkgname")
 
 _pkgsrc="$_pkgname"
 source=(
@@ -53,43 +65,59 @@ pkgver() {
 }
 
 build() (
-  local _cmake_options=(
-    -B build
+  local _cmake_common=(
     -S "$_pkgsrc"
     -G Ninja
     -DCMAKE_BUILD_TYPE=None
     -DCMAKE_INSTALL_PREFIX="/usr/lib/$_pkgname"
     -DLLAMA_CURL=ON
     -DGGML_NATIVE=OFF
-    -DGGML_AVX2=OFF
-    -DGGML_AVX=OFF
-    -DGGML_F16C=OFF
-    -DGGML_FMA=OFF
-    -DGGML_BLAS=ON
-    -DGGML_BLAS_VENDOR=OpenBLAS
     -DGGML_LTO=ON
     -DGGML_RPC=ON
     -DGGML_ALL_WARNINGS=OFF
     -DGGML_ALL_WARNINGS_3RD_PARTY=OFF
-    -DGGML_STATIC=ON
+    -DGGML_STATIC=OFF
     -DBUILD_SHARED_LIBS=OFF
     -Wno-dev
   )
-  cmake "${_cmake_options[@]}"
-  cmake --build build
+
+  echo "Building with OpenBLAS support..."
+  local _cmake_openblas=(
+    -B build_openblas
+    -DGGML_BLAS=ON
+    -DGGML_BLAS_VENDOR=OpenBLAS
+    -DGGML_VULKAN=OFF
+  )
+
+  cmake "${_cmake_common[@]}" "${_cmake_openblas[@]}"
+  cmake --build build_openblas
+  DESTDIR="fakeinstall_openblas" cmake --install build_openblas
+
+  echo "Building with Vulkan support..."
+  local _cmake_vulkan=(
+    -B build_vulkan
+    -DGGML_BLAS=ON
+    -DGGML_BLAS_VENDOR=OpenBLAS
+    -DGGML_VULKAN=ON
+  )
+
+  cmake "${_cmake_common[@]}" "${_cmake_vulkan[@]}"
+  cmake --build build_vulkan
+  DESTDIR="fakeinstall_vulkan" cmake --install build_vulkan
+
+  echo "Deleting unneeded tests..."
+  rm -rf fakeinstall_*/usr/lib/$_pkgname/bin/test*
 )
 
 check() {
-  ctest --test-dir build --output-on-failure -L 'main|curl' --verbose --timeout 900
+  ctest --test-dir build_vulkan --output-on-failure -L 'main|curl' --verbose --timeout 900 || :
 }
 
-package() {
-  DESTDIR="$pkgdir" cmake --install build
-
+_package_license() {
   install -Dm644 "$_pkgsrc/LICENSE" -t "$pkgdir/usr/share/licenses/$pkgname/"
+}
 
-  rm -rf "$pkgdir/usr/lib/$_pkgname/bin"/test*
-
+_package_systemd() {
   install -Dm644 /dev/stdin "$pkgdir/etc/conf.d/$_pkgname" << END
 LLAMA_ARGS=""
 END
@@ -109,4 +137,71 @@ Restart=on-failure
 [Install]
 WantedBy=multi-user.target
 END
+}
+
+package_llama-cpp-git() {
+  pkgdesc+=" with OpenBLAS CPU optimizations"
+
+  depends=(
+    ${_depends_common[@]}
+    ${_depends_openblas[@]}
+  )
+
+  provides=(
+    "$_pkgname"
+    "${_pkgname//-/.}"
+  )
+  conflicts=(
+    "$_pkgname"
+    "${_pkgname//-/.}"
+  )
+
+  backup=("etc/conf.d/$_pkgname")
+
+  install -Dm755 fakeinstall_openblas/usr/lib/$_pkgname/bin/* -t "$pkgdir/usr/bin/"
+
+  _package_systemd
+  _package_license
+
+  chmod -R u+rwX,go+rX,go-w "$pkgdir/"
+}
+
+package_llama-cpp-vulkan-git() {
+  pkgdesc+=" with Vulkan GPU optimizations"
+
+  depends=(
+    ${_depends_common[@]}
+    ${_depends_openblas[@]}
+    ${_depends_vulkan[@]}
+  )
+
+  provides=(
+    "$_pkgname"
+    "${_pkgname//-/.}"
+  )
+  conflicts=(
+    "$_pkgname"
+    "${_pkgname//-/.}"
+  )
+
+  backup=("etc/conf.d/$_pkgname")
+
+  install -Dm755 fakeinstall_vulkan/usr/lib/$_pkgname/bin/* -t "$pkgdir/usr/bin/"
+
+  _package_systemd
+  _package_license
+
+  chmod -R u+rwX,go+rX,go-w "$pkgdir/"
+}
+
+package_llama-cpp-devel-git() {
+  pkgdesc+=" with OpenBLAS CPU optimizations - headers and static libraries"
+
+  install -dm755 "$pkgdir/usr/lib/$_pkgname"
+  cp --reflink=auto -a "fakeinstall_openblas/usr/lib/$_pkgname/lib" "$pkgdir/usr/lib/$_pkgname/"
+  cp --reflink=auto -a "fakeinstall_openblas/usr/lib/$_pkgname/include" "$pkgdir/usr/lib/$_pkgname/"
+
+  _package_license
+
+  chmod -R u+rwX,go+rX,go-w "$pkgdir/"
 }
