@@ -1,0 +1,112 @@
+# Maintainer: aur.chaotic.cx
+
+_pkgname="llama-cpp"
+pkgname="$_pkgname-git"
+pkgver=b4391.r0.g9ba399d
+pkgrel=1
+pkgdesc="Port of Facebook's LLaMA model in C/C++"
+url="https://github.com/ggerganov/llama.cpp"
+license=('MIT')
+arch=('x86_64')
+
+depends=(
+  'curl'
+  'openblas'
+  'openblas64'
+  'python'
+  'python-numpy'
+  'python-sentencepiece' # AUR
+)
+makedepends=(
+  'cmake'
+  'git'
+  'ninja'
+  'openmp'
+)
+
+provides=("$_pkgname")
+conflicts=("$_pkgname")
+
+backup=("etc/conf.d/$_pkgname")
+
+_pkgsrc="$_pkgname"
+source=(
+  "$_pkgsrc"::"git+$url.git"
+  "git+https://github.com/nomic-ai/kompute.git"
+)
+sha256sums=(
+  'SKIP'
+  'SKIP'
+)
+
+prepare() {
+  cd "$_pkgsrc"
+  git submodule init
+  git config submodule.kompute.url "${srcdir}/kompute"
+  git -c protocol.file.allow=always submodule update
+}
+
+pkgver() {
+  cd "$_pkgsrc"
+  git describe --long --tags --abbrev=7 --exclude='*[a-zA-Z][a-zA-Z]*' --match='b*' \
+    | sed -E 's/([^-]*-g)/r\1/;s/-/./g'
+}
+
+build() (
+  local _cmake_options=(
+    -B build
+    -S "$_pkgsrc"
+    -G Ninja
+    -DCMAKE_BUILD_TYPE=None
+    -DCMAKE_INSTALL_PREFIX="/usr/lib/$_pkgname"
+    -DLLAMA_CURL=ON
+    -DGGML_NATIVE=OFF
+    -DGGML_AVX2=OFF
+    -DGGML_AVX=OFF
+    -DGGML_F16C=OFF
+    -DGGML_FMA=OFF
+    -DGGML_BLAS=ON
+    -DGGML_BLAS_VENDOR=OpenBLAS
+    -DGGML_LTO=ON
+    -DGGML_RPC=ON
+    -DGGML_ALL_WARNINGS=OFF
+    -DGGML_ALL_WARNINGS_3RD_PARTY=OFF
+    -DGGML_STATIC=ON
+    -DBUILD_SHARED_LIBS=OFF
+    -Wno-dev
+  )
+  cmake "${_cmake_options[@]}"
+  cmake --build build
+)
+
+check() {
+  ctest --test-dir build --output-on-failure -L 'main|curl' --verbose --timeout 900
+}
+
+package() {
+  DESTDIR="$pkgdir" cmake --install build
+
+  install -Dm644 "$_pkgsrc/LICENSE" -t "$pkgdir/usr/share/licenses/$pkgname/"
+
+  rm -rf "$pkgdir/usr/lib/$_pkgname/bin"/test*
+
+  install -Dm644 /dev/stdin "$pkgdir/etc/conf.d/$_pkgname" << END
+LLAMA_ARGS=""
+END
+
+  install -Dm644 /dev/stdin "$pkgdir/usr/lib/systemd/system/$_pkgname.service" << END
+[Unit]
+Description=$_pkgname Server
+After=syslog.target network.target local-fs.target remote-fs.target nss-lookup.target
+
+[Service]
+Type=simple
+EnvironmentFile=/etc/conf.d/$_pkgname
+ExecStart=/usr/lib/$_pkgname/bin/llama-server \$LLAMA_ARGS
+ExecReload=/bin/kill -s HUP \$MAINPID
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+END
+}

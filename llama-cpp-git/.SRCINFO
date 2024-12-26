@@ -1,0 +1,26 @@
+pkgbase = llama-cpp-git
+	pkgdesc = Port of Facebook's LLaMA model in C/C++
+	pkgver = b4391.r0.g9ba399d
+	pkgrel = 1
+	url = https://github.com/ggerganov/llama.cpp
+	arch = x86_64
+	license = MIT
+	makedepends = cmake
+	makedepends = git
+	makedepends = ninja
+	makedepends = openmp
+	depends = curl
+	depends = openblas
+	depends = openblas64
+	depends = python
+	depends = python-numpy
+	depends = python-sentencepiece
+	provides = llama-cpp
+	conflicts = llama-cpp
+	backup = etc/conf.d/llama-cpp
+	source = llama-cpp::git+https://github.com/ggerganov/llama.cpp.git
+	source = git+https://github.com/nomic-ai/kompute.git
+	sha256sums = SKIP
+	sha256sums = SKIP
+
+pkgname = llama-cpp-git
