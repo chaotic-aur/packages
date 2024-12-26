@@ -1,0 +1,4 @@
+[whisper-cpp-git]
+source = "git"
+git = "https://github.com/ggerganov/whisper.cpp.git"
+prefix = "v"

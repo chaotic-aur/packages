@@ -1,0 +1,123 @@
+# Maintainer: aur.chaotic.cx
+
+_pkgname="whisper-cpp"
+pkgbase="$_pkgname-git"
+pkgname=(
+  "$_pkgname-git"
+  "$_pkgname-vulkan-git"
+)
+pkgver=1.7.3.r10.g7d55637
+pkgrel=1
+pkgdesc="Port of OpenAI's Whisper model in C/C++"
+url="https://github.com/ggerganov/whisper.cpp"
+license=('MIT')
+arch=('x86_64')
+
+_depends_common=()
+_depends_openblas=(
+  'openblas'
+)
+_depends_vulkan=(
+  'vulkan-icd-loader'
+)
+
+depends=(
+  ${_depends_common[@]}
+  ${_depends_openblas[@]}
+  ${_depends_vulkan[@]}
+)
+makedepends=(
+  'cmake'
+  'git'
+  'ninja'
+  'openmp'
+  'shaderc'
+  'vulkan-headers'
+)
+
+provides=(
+  "$_pkgname"
+  "${_pkgname//-/.}"
+)
+conflicts=(
+  "$_pkgname"
+  "${_pkgname//-/.}"
+)
+
+_pkgsrc="$_pkgname"
+source=("$_pkgsrc"::"git+$url.git")
+sha256sums=('SKIP')
+
+pkgver() {
+  cd "$_pkgsrc"
+  git describe --long --tags --abbrev=7 --exclude='*[a-zA-Z][a-zA-Z]*' \
+    | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
+}
+
+build() (
+  local _cmake_common=(
+    -S "$_pkgsrc"
+    -G Ninja
+    -DCMAKE_BUILD_TYPE=None
+    -DCMAKE_INSTALL_PREFIX='/usr'
+    -DGGML_NATIVE=OFF
+    -DGGML_LTO=ON
+    -DGGML_RPC=ON
+    -DGGML_ALL_WARNINGS=OFF
+    -DGGML_ALL_WARNINGS_3RD_PARTY=OFF
+    -DGGML_STATIC=OFF
+    -DBUILD_SHARED_LIBS=OFF
+    -Wno-dev
+  )
+
+  echo "Building with OpenBLAS support..."
+  local _cmake_openblas=(
+    -B build_openblas
+    -DGGML_BLAS=ON
+    -DGGML_BLAS_VENDOR=OpenBLAS
+    -DGGML_VULKAN=OFF
+  )
+
+  cmake "${_cmake_common[@]}" "${_cmake_openblas[@]}"
+  cmake --build build_openblas
+  DESTDIR="fakeinstall_openblas" cmake --install build_openblas
+
+  echo "Building with Vulkan support..."
+  local _cmake_vulkan=(
+    -B build_vulkan
+    -DGGML_BLAS=ON
+    -DGGML_BLAS_VENDOR=OpenBLAS
+    -DGGML_VULKAN=ON
+  )
+
+  cmake "${_cmake_common[@]}" "${_cmake_vulkan[@]}"
+  cmake --build build_vulkan
+  DESTDIR="fakeinstall_vulkan" cmake --install build_vulkan
+)
+
+package_whisper-cpp-git() {
+  pkgdesc+=" with OpenBLAS CPU optimizations"
+
+  depends=(
+    ${_depends_common[@]}
+    ${_depends_openblas[@]}
+  )
+
+  install -Dm755 fakeinstall_openblas/usr/bin/whisper* -t "$pkgdir/usr/bin/"
+  install -Dm644 "$_pkgsrc/LICENSE" -t "$pkgdir/usr/share/licenses/$pkgname/"
+  chmod -R u+rwX,go+rX,go-w "$pkgdir/"
+}
+
+package_whisper-cpp-vulkan-git() {
+  pkgdesc+=" with Vulkan GPU optimizations"
+
+  depends=(
+    ${_depends_common[@]}
+    ${_depends_openblas[@]}
+    ${_depends_vulkan[@]}
+  )
+
+  install -Dm755 fakeinstall_vulkan/usr/bin/whisper* -t "$pkgdir/usr/bin/"
+  install -Dm644 "$_pkgsrc/LICENSE" -t "$pkgdir/usr/share/licenses/$pkgname/"
+  chmod -R u+rwX,go+rX,go-w "$pkgdir/"
+}
