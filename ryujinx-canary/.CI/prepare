@@ -1,0 +1,24 @@
+#!/usr/bin/env sh
+
+_check_status() {
+  local url _pkgver _response _tag _pkgver_new
+
+  eval "$(grep -Eom1 '^url="\S+"' PKGBUILD)"
+  _pkgver=$(LANG=C LC_ALL=C pacman -Si chaotic-aur/ryujinx-canary | grep -Pom1 '^Version\s+:\s+\K\S+(?=-[0-9])')
+
+  _response=$(curl -Ssf "$url/tags")
+  _tag=$(
+    printf '%s' "$_response" \
+      | grep -E '/tag/Canary-([0-9\.]+)"' \
+      | sed -E 's&^.*/tag/Canary-([0-9\.]+)".*$&\1&' \
+      | sort -rV | head -1
+  )
+  _pkgver_new="${_tag#v}"
+
+  if [ $(vercmp "$_pkgver" "${_pkgver_new:?}") -ge 0 ]; then
+    echo "Skipping build.  $_pkgver >= $_pkgver_new"
+    return "$CI_CODE_SKIP"
+  fi
+}
+
+_check_status || return $?
