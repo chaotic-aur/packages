@@ -15,6 +15,7 @@ pkgbase = hyprland-git
 	depends = aquamarine-git
 	depends = cairo
 	depends = gcc-libs
+	depends = glaze
 	depends = glib2
 	depends = glibc
 	depends = glslang

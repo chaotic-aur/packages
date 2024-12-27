@@ -14,6 +14,7 @@ depends=(
   aquamarine-git
   cairo
   gcc-libs
+  glaze
   glib2
   glibc
   glslang
