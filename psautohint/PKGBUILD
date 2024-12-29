@@ -3,7 +3,7 @@
 
 pkgname=psautohint
 pkgver=2.4.0
-pkgrel=3
+pkgrel=4
 epoch=3
 pkgdesc='A standalone version of AFDKO’s autohinter'
 arch=(x86_64)
