@@ -1,0 +1,17 @@
+unset epoch
+
+url="https://github.com/openzfs/zfs"
+license=('CDDL-1.0')
+
+_pkgsrc="zfs"
+pkgver() {
+  cd "$_pkgsrc"
+  local _tag _version _revision _hash
+  _tag=$(git tag -l 'zfs-[0-9]*' \
+    | grep -Ev -e 'zfs-.*[a-z][a-z]' -e '99' \
+    | sort -rV | head -1)
+  _version="${_tag#zfs-}"
+  _revision=$(git rev-list --count --cherry-pick "$_tag"...HEAD)
+  _hash=$(git rev-parse --short=7 HEAD)
+  printf '%s.r%s.g%s' "${_version:?}" "${_revision:?}" "${_hash:?}"
+}
