@@ -1,6 +1,11 @@
+export PYO3_USE_ABI3_FORWARD_COMPATIBILITY=1
+
+unset epoch
+
 license=('EUPL-1.2')
 
-depends+=(fontconfig freetype2)
+provides=('surfer-waveform')
+conflicts=('surfer-waveform')
 
 _pkgsrc="$pkgname"
 pkgver() {
