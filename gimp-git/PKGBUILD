@@ -2,7 +2,7 @@
 
 _pkgname="gimp"
 pkgname="$_pkgname-git"
-pkgver=2.99.18.r1896.g15f5b15
+pkgver=3.0.0RC2.r19.gf8436b6
 pkgrel=1
 pkgdesc="GNU Image Manipulation Program"
 url="https://gitlab.gnome.org/GNOME/gimp"
@@ -11,25 +11,21 @@ arch=('i686' 'x86_64')
 
 depends=(
   'appstream-glib'
-  'babl-git'
+  'babl-git' # AUR
   'cairo'
-  'dbus-glib'
-  'desktop-file-utils'
-  'enchant'
-  'gegl-git'
-  'gobject-introspection'
-  'gtk-doc'
-  'icu'
+  'cfitsio'
+  'gegl-git' # AUR
   'lcms2'
-  'libart-lgpl'
-  'libexif'
   'libgexiv2'
+  'libgudev'
   'librsvg'
   'libwmf'
+  'libxmu'
   'mypaint-brushes1'
   'openexr'
   'poppler-data'
   'poppler-glib'
+  'python-gobject'
 )
 makedepends=(
   'aalib'
@@ -40,6 +36,7 @@ makedepends=(
   'gjs'
   'glib-networking'
   'glib2-devel'
+  'gobject-introspection'
   'intltool'
   'iso-codes'
   'libheif'
@@ -52,11 +49,9 @@ makedepends=(
   'meson'
   'python-gobject'
   'python-packaging'
+  'vala'
   'webkit2gtk'
   'zlib'
-
-  'cfitsio'
-  'vala'
 )
 checkdepends=(
   'xorg-server-xvfb'
@@ -90,8 +85,8 @@ sha256sums=(
 
 pkgver() {
   cd "$_pkgsrc"
-  git describe --long --tags --abbrev=7 --exclude='*[RW]*' \
-    | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/[-_]/./g'
+  git describe --long --tags --abbrev=7 \
+    | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/_RC/RC/;s/[-_]/./g'
 }
 
 prepare() {
@@ -134,27 +129,31 @@ check() {
 }
 
 package() {
-  local _pkgver=$(sed -E 's@^([0-9]+\.[0-9]+).*$@\1@' <<< ${pkgver})
-
   meson install -C build --destdir "$pkgdir"
+
+  local _gimpver=$(
+    echo "$pkgdir"/usr/share/gimp/[0-9]* \
+      | sed -E -e 's&'"$pkgdir"'/usr/share/gimp/&\n&g;s& &\n&g' \
+      | sort -bur | head -1
+  )
 
   # .desktop
   sed \
     -e 's/^\(Name.*\)/\1 (devel)/g' \
-    -e 's/Icon=gimp/Icon=gimp-'"${_pkgver:?}"'/g' \
+    -e 's/Icon=gimp/Icon=gimp-'"${_gimpver:?}"'/g' \
     -i "$pkgdir/usr/share/applications/gimp.desktop"
-  mv "$pkgdir/usr/share/applications"/gimp{,-${_pkgver:?}}.desktop
+  mv "$pkgdir/usr/share/applications"/gimp{,-$_gimpver}.desktop
 
   # appdata.xml
   sed \
-    -e 's/org.gimp.GIMP/org.gimp.GIMP-'"${_pkgver:?}"'/g' \
-    -e 's/gimp.desktop/gimp-'"${_pkgver:?}"'.desktop/g' \
+    -e 's/org.gimp.GIMP/org.gimp.GIMP-'"$_gimpver"'/g' \
+    -e 's/gimp.desktop/gimp-'"$_gimpver"'.desktop/g' \
     -i "$pkgdir/usr/share/metainfo/org.gimp.GIMP.appdata.xml"
-  mv "$pkgdir/usr/share/metainfo"/org.gimp.GIMP{,-${_pkgver:?}}.appdata.xml
+  mv "$pkgdir/usr/share/metainfo"/org.gimp.GIMP{,-$_gimpver}.appdata.xml
 
   # icons
   for i in 16 22 24 32 48 256; do
-    mv "$pkgdir/usr/share/icons/hicolor/${i}x${i}/apps"/gimp{,-${_pkgver:?}}.png
+    mv "$pkgdir/usr/share/icons/hicolor/${i}x${i}/apps"/gimp{,-$_gimpver}.png
   done
 
   # conflicts
@@ -173,7 +172,7 @@ package() {
   done
 
   # palette
-  install -Dm644 /dev/stdin -t "$pkgdir/usr/share/gimp/${_pkgver:?}/palettes/" << 'END'
+  install -Dm644 /dev/stdin "$pkgdir/usr/share/gimp/$_gimpver/palettes/Linux.gpl" << 'END'
 GIMP Palette
 Name: linux
 #

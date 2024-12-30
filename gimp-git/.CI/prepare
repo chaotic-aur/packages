@@ -1,5 +1,21 @@
 #!/usr/bin/env bash
 
+_check_rate() {
+  local _rate _date_build _epoch_build _epoch_now _epoch_diff
+
+  _rate="$((3600 * ${1}))" # hours
+  _date_build="$(LANG=C LC_ALL=C pacman -Si "chaotic-aur/gimp-git" | grep -Pom1 '^Build Date\s+:\s+\K\S.*\S$')"
+  _epoch_build=$(\date '+%s' -d "$_date_build")
+  _epoch_now=$(\date '+%s')
+  _epoch_diff="$((_epoch_now - _epoch_build))"
+
+  if [[ "$_epoch_diff" -lt "$_rate" ]]; then
+    echo "Heavy package.  Skipping build."
+    echo "> Last built $((_epoch_diff / 3600)) hours ago."
+    return $CI_CODE_SKIP
+  fi
+}
+
 _check_status() (
   local _url_repo _url_ci _commit _response _status _msg_err _success_ci
   _url_repo="https://gitlab.gnome.org/GNOME/gimp"
@@ -31,4 +47,5 @@ _check_status() (
   fi
 )
 
-_check_status || return $?
+_check_rate 18 || return $?
+# _check_status || return $?
