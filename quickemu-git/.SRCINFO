@@ -1,0 +1,25 @@
+pkgbase = quickemu-git
+	pkgdesc = Quickly create and run optimised Windows, macOS and Linux desktop virtual machines
+	pkgver = 4.9.6.r35.g84595dc
+	pkgrel = 1
+	url = https://github.com/quickemu-project/quickemu
+	arch = any
+	license = MIT
+	makedepends = git
+	depends = qemu-desktop
+	depends = jq
+	depends = python3
+	depends = cdrtools
+	depends = usbutils
+	depends = spice-gtk
+	depends = swtpm
+	depends = xorg-xrandr
+	depends = zsync
+	depends = edk2-ovmf
+	optdepends = quickgui: graphical user interface
+	provides = quickemu
+	conflicts = quickemu
+	source = git+https://github.com/quickemu-project/quickemu.git
+	b2sums = SKIP
+
+pkgname = quickemu-git
