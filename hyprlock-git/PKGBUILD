@@ -9,7 +9,7 @@ arch=(x86_64 aarch64)
 url="https://github.com/hyprwm/hyprlock"
 license=('BSD-3-Clause')
 depends=('wayland' 'hyprlang-git' 'pango' 'pam' 'libxkbcommon' 'libglvnd' 'libdrm' 'mesa' 'hyprutils-git' 'hyprgraphics-git' 'sdbus-cpp>=2.0.0')
-makedepends=('git' 'cmake' 'gcc' 'wayland-protocols' 'xorgproto')
+makedepends=('git' 'cmake' 'gcc' 'hyprwayland-scanner-git' 'wayland-protocols' 'xorgproto')
 source=("${_pkgname}::git+https://github.com/hyprwm/hyprlock.git")
 conflicts=("${_pkgname}")
 provides=("${_pkgname}")
