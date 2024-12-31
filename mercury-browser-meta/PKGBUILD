@@ -1,0 +1,22 @@
+# Maintainer: aur.chaotic.cx
+
+pkgname="mercury-browser-bin"
+pkgver=999
+pkgrel=1
+pkgdesc="CVE-2024-9680 - switch to extra/firefox"
+url="https://www.mozilla.org/en-US/security/advisories/mfsa2024-51"
+arch=('any')
+
+install="mercury-browser.install"
+
+package() {
+  replaces=(
+    mercury-browser-bin
+    mercury-browser-avx-bin
+    mercury-browser-avx2-bin
+    mercury-browser-sse3-bin
+    mercury-browser-sse4-bin
+  )
+
+  depends=('firefox')
+}
