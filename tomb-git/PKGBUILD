@@ -7,7 +7,7 @@
 _name=tomb
 pkgbase="${_name}-git"
 pkgname=("${_name}-git" "${_name}-kdf-git")
-pkgver=2.11.r0.g2b75962
+pkgver=2.11.r63.g212b0e3
 pkgrel=1
 pkgdesc="simple tool to manage encrypted storage"
 arch=('any')
@@ -17,13 +17,19 @@ makedepends=('git' 'libgcrypt')
 conflicts=("${_name}")
 provides=("${_name}")
 source=("${_name}::git+https://github.com/dyne/${_name//t/T}.git"
+  0001-it.patch
   "_${_name}")
 sha256sums=('SKIP'
+  '7be401ed4b6fd1600de91eeb9928d51089102050064aa9e2a5dda7cbd8c18a06'
   '8007bc208fdac3fbd7a61320b48c4c8073639b478fcc410145a3792986aca9e8')
 
 pkgver() {
   cd "${_name}"
   git describe --long --tags | sed -r 's/([^-]*-g)/r\1/;s/-/./g;s/v//'
+}
+
+prepare() {
+  patch -Np1 -i "${srcdir}"/0001-it.patch
 }
 
 build() {
@@ -39,7 +45,8 @@ package_tomb-git() {
     'qrencode: for paper backups of keys'
     'plocate: fast search file names'
     'recoll: fast search file contents'
-    'argon2: support for argon2 KDF')
+    'argon2: support for argon2 KDF'
+    'acl: own mountpoint in /run/media/$USER')
 
   cd "${_name}"
   make DESTDIR="${pkgdir}" PREFIX=/usr install
