@@ -1,6 +1,6 @@
 pkgbase = vopono
 	pkgdesc = Run applications through VPN connections in network namespaces
-	pkgver = 0.10.10
+	pkgver = 0.10.11
 	pkgrel = 1
 	url = https://github.com/jamesmcm/vopono
 	arch = any
@@ -15,7 +15,7 @@ pkgbase = vopono
 	provides = vopono
 	conflicts = vopono
 	options = !lto
-	source = vopono-0.10.10.tar.gz::https://github.com/jamesmcm/vopono/archive/0.10.10.tar.gz
-	sha256sums = d40da982b38214915e6e345c7f235bbf4394b9bee32469b19f841db5b62705f2
+	source = vopono-0.10.11.tar.gz::https://github.com/jamesmcm/vopono/archive/0.10.11.tar.gz
+	sha256sums = 9612db690f08787508bf85a18096b8b989c0ad42bbcbae47f8947a57632ca4a5
 
 pkgname = vopono
