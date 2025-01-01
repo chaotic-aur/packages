@@ -1,3 +1,5 @@
+unset backup
+
 _pkgsrc="Hyprland"
 pkgver() {
   cd "$_pkgsrc"
