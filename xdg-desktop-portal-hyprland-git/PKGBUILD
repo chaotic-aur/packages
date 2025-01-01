@@ -3,8 +3,8 @@
 
 _pkgname="xdg-desktop-portal-hyprland"
 pkgname="${_pkgname}-git"
-pkgver=1.3.6.r1.gfb9c8d66
-pkgrel=2
+pkgver=1.3.9.r1.gd7f18dda
+pkgrel=1
 pkgdesc="xdg-desktop-portal backend for hyprland"
 url="https://github.com/hyprwm/xdg-desktop-portal-hyprland"
 arch=(x86_64)
@@ -20,8 +20,6 @@ optdepends=(
 )
 source=("${_pkgname}::git+$url.git")
 sha256sums=('SKIP')
-
-backup=("usr/share/xdg-desktop-portal/hyprland-portals.conf")
 
 pkgver() {
   cd "${_pkgname}"

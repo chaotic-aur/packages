@@ -4,7 +4,7 @@
 # Contributor: ThatOneCalculator <kainoa at t1c dot dev>
 
 pkgname=hyprland-git
-pkgver=0.46.0.r52.1989b004
+pkgver=0.46.0.r54.4e93b2de
 pkgrel=1
 pkgdesc="Hyprland is an independent, highly customizable, dynamic tiling Wayland compositor that doesn't sacrifice on its looks"
 arch=(x86_64 aarch64)
@@ -82,6 +82,8 @@ b2sums=(
   'SKIP'
   'SKIP'
 )
+
+backup=("usr/share/xdg-desktop-portal/hyprland-portal.conf")
 
 pick_mr() {
   git pull origin pull/$1/head --no-edit
