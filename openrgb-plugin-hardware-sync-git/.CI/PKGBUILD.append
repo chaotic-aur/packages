@@ -1,0 +1,4 @@
+_pkgsrc="OpenRGBHardwareSyncPlugin"
+prepare() {
+  sed '1i #include <algorithm>' -i "$_pkgsrc/HardwareMeasure.cpp"
+}
