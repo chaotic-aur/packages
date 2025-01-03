@@ -1,15 +1,16 @@
 pkgbase = upscayl-bin
 	pkgdesc = Free and Open Source AI Image Upscaler
 	pkgver = 2.15.0
-	pkgrel = 1
+	pkgrel = 3
 	url = https://github.com/upscayl/upscayl
 	arch = x86_64
 	license = AGPL-3.0-only
 	makedepends = unzip
 	depends = libvips
 	depends = openjpeg2
-	depends = electron
+	depends = electron27
 	depends = nodejs
+	depends = vulkan-driver
 	provides = upscayl
 	conflicts = upscayl
 	noextract = upscayl-2.15.0-linux.zip
@@ -17,6 +18,6 @@ pkgbase = upscayl-bin
 	source = https://github.com/upscayl/upscayl/releases/download/v2.15.0/upscayl-2.15.0-linux.zip
 	source = upscayl
 	sha512sums = 2500a453c8eb9014d958a278ad8557c34085ce80dd2fce112b12e1643a1c37469ec09914c8ad06795cbf6ad23bd30ba6cb4290f0933b1cd37cc1a8724ac61553
-	sha512sums = eae35fb7bef2b50512dec60fe1ab9e5bb7f4cd71931bd36951ee30a2d238299aeab88bac35aba4108ddd5c3e2cf6948a9cd144b0f3451e30c4f28b81d2e1e07a
+	sha512sums = babf083cba6d621b51279bfce68cd9929f1cf2db006b6f80c651fb09f5c2751865eb8bf46a7168496b3a0a4e99edcb25bdf1bae815fe9b1a5215806fae7d468e
 
 pkgname = upscayl-bin

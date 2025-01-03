@@ -1,7 +1,7 @@
 pkgbase = coolercontrol-liqctld
 	pkgdesc = liquidctl daemon for CoolerControl
 	pkgver = 1.4.5
-	pkgrel = 1
+	pkgrel = 2
 	url = https://gitlab.com/coolercontrol/coolercontrol
 	arch = x86_64
 	groups = coolercontrol-bin
