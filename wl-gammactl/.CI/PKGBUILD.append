@@ -1,0 +1,14 @@
+unset epoch
+
+url="https://github.com/mischw/wl-gammactl"
+
+source[0]="git+$url.git#commit=07fc9fe9428301105863fd3a5844f92f2a87f33b"
+
+eval _orig_"$(declare -f prepare)"
+
+prepare() {
+  (_orig_prepare)
+
+  sed -e "s&dependency('wlroots')&dependency('wlroots-0.18')&" \
+    -i "$pkgname/meson.build"
+}
