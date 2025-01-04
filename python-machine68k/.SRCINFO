@@ -1,0 +1,18 @@
+pkgbase = python-machine68k
+	pkgdesc = Cython binding for a m68k system emulator
+	pkgver = 0.3.0
+	pkgrel = 2
+	url = https://github.com/cnvogelg/machine68k
+	arch = x86_64
+	license = GPL-2.0-only
+	makedepends = cython
+	makedepends = python-build
+	makedepends = python-installer
+	makedepends = python-setuptools
+	makedepends = python-setuptools-scm
+	makedepends = python-wheel
+	depends = python
+	source = machine68k-0.3.0.tar.gz::https://files.pythonhosted.org/packages/source/m/machine68k/machine68k-0.3.0.tar.gz
+	sha256sums = 40bf621b208ae402317c3bd0abb7b6ae36124a2fc416d33599f35ee337028deb
+
+pkgname = python-machine68k
