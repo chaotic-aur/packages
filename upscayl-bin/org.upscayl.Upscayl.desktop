@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Comment=Upscale Images with AI
+Name=Upscayl
+Icon=org.upscayl.Upscayl
+Exec=upscayl %U
+StartupNotify=false
+Categories=Graphics;
