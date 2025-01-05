@@ -1,1 +1,1 @@
-depends=(${depends//bionic_translation*/bionic_translation-git})
+depends+=(${depends//bionic_translation*/bionic_translation-git})
