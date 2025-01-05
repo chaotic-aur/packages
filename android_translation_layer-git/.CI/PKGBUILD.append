@@ -1,4 +1,4 @@
-depends=(${depends//art_standalone*/art_standalone-git})
-depends=(${depends//bionic_translation*/bionic_translation-git})
-depends=(${depends//libopensles-standalone*/libopensles-standalone-git})
-depends=(${depends//skia-sharp-atl*/skia-sharp-atl-git})
+depends+=(art_standalone-git)
+depends+=(bionic_translation-git)
+depends+=(libopensles-standalone-git)
+depends+=(skia-sharp-atl-git)
