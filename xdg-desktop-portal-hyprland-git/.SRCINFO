@@ -10,6 +10,7 @@ pkgbase = xdg-desktop-portal-hyprland-git
 	makedepends = scdoc
 	makedepends = cmake
 	makedepends = hyprland-protocols-git
+	makedepends = hyprwayland-scanner-git
 	depends = libpipewire
 	depends = libinih
 	depends = qt6-base
@@ -20,7 +21,6 @@ pkgbase = xdg-desktop-portal-hyprland-git
 	depends = xdg-desktop-portal
 	depends = mesa
 	depends = hyprlang-git
-	depends = hyprwayland-scanner-git>=0.4.2
 	depends = hyprutils-git
 	optdepends = grim: required for the screenshot portal to function
 	optdepends = slurp: support for interactive mode for the screenshot portal; one of the built-in chooser options for the screencast portal

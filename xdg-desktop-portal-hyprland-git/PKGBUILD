@@ -11,8 +11,8 @@ arch=(x86_64)
 license=(BSD-3-Clause)
 provides=("${pkgname%-git}" "xdg-desktop-portal-impl")
 conflicts=("${pkgname%-git}")
-depends=("libpipewire" "libinih" "qt6-base" "qt6-wayland" "wayland" "sdbus-cpp" "libdrm" "xdg-desktop-portal" "mesa" "hyprlang-git" "hyprwayland-scanner-git>=0.4.2" "hyprutils-git")
-makedepends=("git" "wayland-protocols" "scdoc" "cmake" "hyprland-protocols-git")
+depends=("libpipewire" "libinih" "qt6-base" "qt6-wayland" "wayland" "sdbus-cpp" "libdrm" "xdg-desktop-portal" "mesa" "hyprlang-git" "hyprutils-git")
+makedepends=("git" "wayland-protocols" "scdoc" "cmake" "hyprland-protocols-git" "hyprwayland-scanner-git")
 optdepends=(
   "grim: required for the screenshot portal to function"
   "slurp: support for interactive mode for the screenshot portal; one of the built-in chooser options for the screencast portal"
