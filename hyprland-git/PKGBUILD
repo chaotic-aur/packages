@@ -4,7 +4,7 @@
 # Contributor: ThatOneCalculator <kainoa at t1c dot dev>
 
 pkgname=hyprland-git
-pkgver=0.46.0.r54.4e93b2de
+pkgver=0.46.0.r73.gb0bae154
 pkgrel=1
 pkgdesc="Hyprland is an independent, highly customizable, dynamic tiling Wayland compositor that doesn't sacrifice on its looks"
 arch=(x86_64 aarch64)
@@ -86,6 +86,7 @@ b2sums=(
 backup=("usr/share/xdg-desktop-portal/hyprland-portal.conf")
 
 pick_mr() {
+  cd Hyprland
   git pull origin pull/$1/head --no-edit
 }
 
@@ -104,7 +105,9 @@ prepare() {
 }
 
 pkgver() {
-  git -C Hyprland describe --long --tags | sed 's/^v//;s/\([^-]*-\)g/r\1/;s/-/./g'
+  cd Hyprland
+  git describe --long --tags --abbrev=8 --exclude='*[a-zA-Z][a-zA-Z]*' \
+    | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
 }
 
 build() {
