@@ -28,10 +28,7 @@
     # Easy linting for PKGBUILDs and other things inside the devshell
     pre-commit-hooks = {
       url = "github:cachix/pre-commit-hooks.nix";
-      inputs = {
-        nixpkgs.follows = "chaotic/nixpkgs";
-        nixpkgs-stable.follows = "chaotic/nixpkgs";
-      };
+      inputs.nixpkgs.follows = "chaotic/nixpkgs";
     };
   };
   outputs =
@@ -41,10 +38,8 @@
     , pre-commit-hooks
     , self
     , ...
-    } @ inp:
+    } @ inputs:
     let
-      inputs = inp;
-
       perSystem =
         { pkgs
         , system
@@ -56,16 +51,6 @@
               commitizen.enable = true;
               markdownlint.enable = true;
               nixpkgs-fmt.enable = true;
-              pkgbuilds-shellcheck = {
-                enable = true;
-                name = "PKGBUILD shellcheck";
-                # Just inform about potential issues, fixing everything up
-                # will likely be impossible
-                entry = "${pkgs.shellcheck}/bin/shellcheck || true";
-                files = "(PKGBUILD|install$)";
-                types = [ "text" ];
-                language = "system";
-              };
               pkgbuilds-formatting = {
                 enable = true;
                 name = "PKGBUILD shfmt";
@@ -82,8 +67,9 @@
 
           devShells =
             let
-              cpb = pkgs.callPackage "${inp.chaotic-portable-builder}/nix/default.nix" { };
-              makeDevshell = import "${inp.devshell}/modules" pkgs;
+              chaotic = pkgs.writeShellScriptBin "chaotic" ./.tools/chaotic.sh;
+              cpb = pkgs.callPackage "${inputs.chaotic-portable-builder}/nix/default.nix" { };
+              makeDevshell = import "${inputs.devshell}/modules" pkgs;
               mkShell = config:
                 (makeDevshell {
                   configuration = {
@@ -99,12 +85,15 @@
                   motd = ''
                     Welcome to Chaotic-AUR's maintenance devshell! 🎉
                   '';
-                  name = "chaotic";
+                  name = "chaotic-devshell";
                   packages = [
-                    cpb
+                    pkgs.aria2
                     pkgs.fuse-overlayfs
+                    pkgs.getoptions
+                    pkgs.jq
                     pkgs.podman
                     pkgs.skopeo
+                    pkgs.trash-cli
                   ];
                   startup = {
                     preCommitHooks.text = self.checks.${system}.pre-commit-check.shellHook;
@@ -125,6 +114,11 @@
                   };
                 };
                 commands = [
+                  {
+                    help = "Helper script for maintaining packages";
+                    name = "chaotic";
+                    package = chaotic;
+                  }
                   {
                     help = "Chaotic Portable Builder for local builds";
                     name = "cpb";
