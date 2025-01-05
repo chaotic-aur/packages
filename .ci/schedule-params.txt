@@ -1,5 +1,0 @@
-declare -x REDIS_SSH_HOST="builds.garudalinux.org"
-declare -x REDIS_SSH_PORT="400"
-declare -x REDIS_SSH_USER="package-deployer"
-declare -x REDIS_PORT="6379"
-declare -a PARAMS_SCHEDULE=([0]="schedule" [1]="--target-repo=chaotic-aur" [2]="--source-repo=chaotic-aur" [3]="--commit" [4]="1a2f1100b809c27d1d65fbfabb359c4bda683235:1612008722" [5]="radarr/5" [6]="vlc-git/5" [7]="mihomo/5" [8]="numbat-git/5")
