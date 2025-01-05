@@ -2,15 +2,15 @@
 
 pkgname=art_standalone-git
 _pkgname="${pkgname%-git}"
-pkgver=r167.57f9bbd9
-pkgrel=3
+pkgver=r184.1f3e7592
+pkgrel=1
 pkgdesc='A standalone version of Dalvik with Art built in'
 url='https://gitlab.com/android_translation_layer/art_standalone'
 arch=(x86_64 aarch64 armv7h)
 license=('Apache-2.0')
 depends=(
   bash
-  bionic_translation
+  bionic_translation-git
   expat
   gcc-libs
   glibc

@@ -1,7 +1,7 @@
 pkgbase = art_standalone-git
 	pkgdesc = A standalone version of Dalvik with Art built in
-	pkgver = r167.57f9bbd9
-	pkgrel = 3
+	pkgver = r184.1f3e7592
+	pkgrel = 1
 	url = https://gitlab.com/android_translation_layer/art_standalone
 	arch = x86_64
 	arch = aarch64
@@ -16,7 +16,7 @@ pkgbase = art_standalone-git
 	makedepends = valgrind
 	makedepends = zip
 	depends = bash
-	depends = bionic_translation
+	depends = bionic_translation-git
 	depends = expat
 	depends = gcc-libs
 	depends = glibc
@@ -35,7 +35,7 @@ pkgbase = art_standalone-git
 
 pkgname = art_standalone-git
 	depends = bash
-	depends = bionic_translation
+	depends = bionic_translation-git
 	depends = expat
 	depends = gcc-libs
 	depends = glibc
