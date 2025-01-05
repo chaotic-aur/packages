@@ -14,6 +14,8 @@ source .ci/config
 
 git config --global user.name "$GIT_AUTHOR_NAME"
 git config --global user.email "$GIT_AUTHOR_EMAIL"
+
+# In case new commits have been pushed by on-schedule
 git checkout main
 git pull --rebase
 
@@ -38,6 +40,9 @@ rsync -a --verbose --delete --include ".tools/update-tools.sh" \
     --include ".prettierignore" \
     --include ".shellcheckrc" \
     --include ".yamllint" \
+    --include ".tools" \
+    --include ".tools/chaotic.sh" \
+    --include ".tools/update-tools.sh" \
     --include "default.nix" \
     --include "flake.lock" \
     --include "flake.nix" \
@@ -46,7 +51,7 @@ rsync -a --verbose --delete --include ".tools/update-tools.sh" \
     "$TMPDIR/template/" .
 
 if ! git diff --exit-code --quiet; then
-    git add .
+    git add . ':!.ci/*.txt'
     git commit "${CI_COMMIT_MSG[@]}"
     # Check if the scheduled tag does not exist or scheduled does not point to HEAD. In which case, the scheduled tag will not be pushed
     if ! [ "$(git tag -l "scheduled")" ] || [ "$(git rev-parse HEAD^)" != "$(git rev-parse scheduled)" ]; then
