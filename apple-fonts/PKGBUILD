@@ -2,14 +2,14 @@
 # Co-Maintainer: Cp Dong <cp-dong at outlook dot com>
 pkgname=apple-fonts
 pkgver=6.0.1.1726709071
-pkgrel=1
+pkgrel=2
 pkgdesc='Fonts for Apple platforms, including San Francisco and New York typefaces'
 arch=(any)
 url='https://developer.apple.com/fonts/'
 license=('custom')
 provides=('ttf-font')
 depends=()
-makedepends=(p7zip)
+makedepends=(7zip)
 _baseurl='https://devimages-cdn.apple.com/design/resources/download/'
 source=("${_baseurl}SF-Pro.dmg"
   "${_baseurl}SF-Compact.dmg"
@@ -27,12 +27,12 @@ prepare() {
   for archive in *.dmg; do
     7z e "$archive" -y -otmp/
     cd tmp/
-    7z x *.pkg -y
+    7z x -txar *.pkg -y
     font=$(grep -o -e "THE APPLE .* FONT" Resources/English.lproj/License.rtf | head -n 1)
     mv Resources/English.lproj/License.rtf "$srcdir/licenses/LICENSE.${font// /-}"
     cd *.pkg/
     7z x Payload -y
-    7z x 'Payload~' -y
+    7z x Payload\~ -y
     mv Library/Fonts/* "$srcdir/fonts/"
     cd "$srcdir"
     rm -r tmp/{*,.*}

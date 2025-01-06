@@ -1,11 +1,11 @@
 pkgbase = apple-fonts
 	pkgdesc = Fonts for Apple platforms, including San Francisco and New York typefaces
 	pkgver = 6.0.1.1726709071
-	pkgrel = 1
+	pkgrel = 2
 	url = https://developer.apple.com/fonts/
 	arch = any
 	license = custom
-	makedepends = p7zip
+	makedepends = 7zip
 	provides = ttf-font
 	noextract = SF-Pro.dmg
 	noextract = SF-Compact.dmg
