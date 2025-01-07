@@ -58,6 +58,7 @@ depends=(
 makedepends=(
   cmake
   git
+  glaze
   hyprwayland-scanner-git
   hyprland-protocols-git
   #patch

@@ -2,7 +2,7 @@
 
 _pkgname="hyprlock"
 pkgname="${_pkgname}-git"
-pkgver=0.5.0.r11.gc3c28feb
+pkgver=0.6.1.r8.gde844d39
 pkgrel=1
 pkgdesc=" Hyprland's GPU-accelerated screen locking utility "
 arch=(x86_64 aarch64)
@@ -17,8 +17,20 @@ sha256sums=('SKIP')
 
 backup=('etc/pam.d/hyprlock')
 
+pick_mr() {
+  cd ${srcdir}/${_pkgname}
+
+  git pull origin pull/$1/head --no-edit
+}
+
+prepare() {
+  # Pick pull request form github using `pick_mr <pull request numebr>`.
+  # e.g. `pick_mr 100`
+  echo -n
+}
+
 pkgver() {
-  cd ${_pkgname}
+  cd ${srcdir}/${_pkgname}
 
   git describe --long --tags --abbrev=8 --exclude='*[a-zA-Z][a-zA-Z]*' \
     | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'

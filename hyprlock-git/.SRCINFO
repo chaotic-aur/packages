@@ -1,6 +1,6 @@
 pkgbase = hyprlock-git
 	pkgdesc = Hyprland's GPU-accelerated screen locking utility
-	pkgver = 0.5.0.r11.gc3c28feb
+	pkgver = 0.6.1.r8.gde844d39
 	pkgrel = 1
 	url = https://github.com/hyprwm/hyprlock
 	arch = x86_64
