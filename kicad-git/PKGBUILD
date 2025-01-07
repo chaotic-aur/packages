@@ -1,15 +1,15 @@
 # Maintainer: Nick Østergaard <oe.nick at gmail dot com>
 
 pkgname=kicad-git
-pkgver=9.0.0.rc1.r18.gc587788430
+pkgver=9.0.0.rc1.r499.gf665760a8e
 pkgrel=1
 pkgdesc="Electronic schematic and printed circuit board (PCB) design tools"
 arch=('i686' 'x86_64')
 url="https://kicad.org/"
-license=('GPL')
+license=('GPL-3.0-or-later')
 depends=('glew' 'wxwidgets-gtk3' 'desktop-file-utils' 'boost-libs' 'python'
   'glm' 'curl' 'swig' 'python-wxpython' 'opencascade'
-  'ngspice>=27' 'unixodbc' 'libgit2' 'protobuf' 'zstd')
+  'ngspice>=27' 'unixodbc' 'libgit2' 'protobuf' 'zstd' 'nng')
 makedepends=('cmake' 'git' 'zlib' 'mesa' 'boost')
 optdepends=('kicad-library: for footprints')
 conflicts=('kicad' 'kicad-bzr')
@@ -32,7 +32,7 @@ build() {
     -DCMAKE_INSTALL_LIBDIR=lib \
     -DKICAD_USE_EGL=ON \
     -DCMAKE_EXE_LINKER_FLAGS=-fuse-ld=gold \
-    -DKICAD_SCRIPTING_WXPYTHON_PHOENIX=ON
+    -DKICAD_USE_CMAKE_FINDPROTOBUF=0
 
   cmake --build .
 }
