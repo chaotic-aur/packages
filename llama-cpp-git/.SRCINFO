@@ -1,6 +1,6 @@
 pkgbase = llama-cpp-git
 	pkgdesc = Port of Facebook's LLaMA model in C/C++
-	pkgver = b4393.r0.gd79d8f3
+	pkgver = b4435.r1.g53ff6b9
 	pkgrel = 2
 	url = https://github.com/ggerganov/llama.cpp
 	arch = x86_64
@@ -51,3 +51,10 @@ pkgname = llama-cpp-vulkan-git
 
 pkgname = llama-cpp-devel-git
 	pkgdesc = Port of Facebook's LLaMA model in C/C++ with OpenBLAS CPU optimizations - headers and static libraries
+	provides = llama-cpp-devel
+	conflicts = llama-cpp-devel
+
+pkgname = llama-cpp-vulkan-devel-git
+	pkgdesc = Port of Facebook's LLaMA model in C/C++ with Vulkan GPU optimizations - headers and static libraries
+	provides = llama-cpp-devel
+	conflicts = llama-cpp-devel

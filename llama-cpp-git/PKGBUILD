@@ -6,8 +6,9 @@ pkgname=(
   "$_pkgname-git"
   "$_pkgname-vulkan-git"
   "$_pkgname-devel-git"
+  "$_pkgname-vulkan-devel-git"
 )
-pkgver=b4393.r0.gd79d8f3
+pkgver=b4435.r1.g53ff6b9
 pkgrel=2
 pkgdesc="Port of Facebook's LLaMA model in C/C++"
 url="https://github.com/ggerganov/llama.cpp"
