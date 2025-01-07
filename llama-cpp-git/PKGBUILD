@@ -72,6 +72,10 @@ build() (
     -DCMAKE_INSTALL_PREFIX="/usr/lib/$_pkgname"
     -DLLAMA_CURL=ON
     -DGGML_NATIVE=OFF
+    -DGGML_AVX2=OFF
+    -DGGML_AVX=OFF
+    -DGGML_F16C=OFF
+    -DGGML_FMA=OFF
     -DGGML_LTO=ON
     -DGGML_RPC=ON
     -DGGML_ALL_WARNINGS=OFF
@@ -115,6 +119,7 @@ check() {
 
 _package_license() {
   install -Dm644 "$_pkgsrc/LICENSE" -t "$pkgdir/usr/share/licenses/$pkgname/"
+  chmod -R u+rwX,go+rX,go-w "$pkgdir/"
 }
 
 _package_systemd() {
@@ -162,8 +167,6 @@ package_llama-cpp-git() {
 
   _package_systemd
   _package_license
-
-  chmod -R u+rwX,go+rX,go-w "$pkgdir/"
 }
 
 package_llama-cpp-vulkan-git() {
@@ -190,18 +193,30 @@ package_llama-cpp-vulkan-git() {
 
   _package_systemd
   _package_license
-
-  chmod -R u+rwX,go+rX,go-w "$pkgdir/"
 }
 
 package_llama-cpp-devel-git() {
   pkgdesc+=" with OpenBLAS CPU optimizations - headers and static libraries"
+
+  provides=('llama-cpp-devel')
+  conflicts=('llama-cpp-devel')
 
   install -dm755 "$pkgdir/usr/lib/$_pkgname"
   cp --reflink=auto -a "fakeinstall_openblas/usr/lib/$_pkgname/lib" "$pkgdir/usr/lib/$_pkgname/"
   cp --reflink=auto -a "fakeinstall_openblas/usr/lib/$_pkgname/include" "$pkgdir/usr/lib/$_pkgname/"
 
   _package_license
+}
 
-  chmod -R u+rwX,go+rX,go-w "$pkgdir/"
+package_llama-cpp-vulkan-devel-git() {
+  pkgdesc+=" with Vulkan GPU optimizations - headers and static libraries"
+
+  provides=('llama-cpp-devel')
+  conflicts=('llama-cpp-devel')
+
+  install -dm755 "$pkgdir/usr/lib/$_pkgname"
+  cp --reflink=auto -a "fakeinstall_vulkan/usr/lib/$_pkgname/lib" "$pkgdir/usr/lib/$_pkgname/"
+  cp --reflink=auto -a "fakeinstall_vulkan/usr/lib/$_pkgname/include" "$pkgdir/usr/lib/$_pkgname/"
+
+  _package_license
 }
