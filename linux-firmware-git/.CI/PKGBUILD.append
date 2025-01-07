@@ -1,0 +1,2 @@
+# -j flag causes error
+unset MAKEFLAGS
