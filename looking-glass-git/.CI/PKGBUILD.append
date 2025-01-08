@@ -1,0 +1,4 @@
+url="https://github.com/gnif/LookingGlass"
+license=('GPL-2.0-or-later')
+
+eval $(declare -f build | sed -E 's&(-DCMAKE_INSTALL_PREFIX=)&-DOPTIMIZE_FOR_NATIVE=OFF \1&')
