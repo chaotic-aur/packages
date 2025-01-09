@@ -2,6 +2,3 @@
 
 # mangle replaces directive
 sed -E -e 's&^(\s*)(replaces\+?=)&\1 _ignore_\2&g' -i PKGBUILD
-
-# fix LDFLAGS
-sed -E -e 's&^(\s*export LDFLAGS)=.*$&\1=${LDFLAGS/,-z,now/,-z,lazy}&' -i PKGBUILD
