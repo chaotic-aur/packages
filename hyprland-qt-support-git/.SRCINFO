@@ -1,0 +1,20 @@
+pkgbase = hyprland-qt-support-git
+	pkgdesc = A qml style provider for hypr* qt apps
+	pkgver = 0.1.0.r2.g0ecf224f
+	pkgrel = 1
+	url = https://github.com/hyprwm/hyprland-qt-support
+	arch = x86_64
+	arch = aarch64
+	license = BSD-3-Clause
+	makedepends = git
+	makedepends = cmake
+	makedepends = gcc
+	makedepends = pkgconf
+	depends = qt6-wayland>=6.6.0
+	depends = hyprlang>=0.6.0
+	provides = hyprland-qt-support
+	conflicts = hyprland-qt-support
+	source = hyprland-qt-support::git+https://github.com/hyprwm/hyprland-qt-support.git
+	sha256sums = SKIP
+
+pkgname = hyprland-qt-support-git
