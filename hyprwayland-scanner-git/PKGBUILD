@@ -2,7 +2,7 @@
 
 _pkgname="hyprwayland-scanner"
 pkgname="${_pkgname}-git"
-pkgver=0.4.2.r1.g500c81a9
+pkgver=0.4.4.r0.gde913476
 pkgrel=1
 pkgdesc="A Hyprland implementation of wayland-scanner, in and for C++"
 arch=(x86_64 aarch64)

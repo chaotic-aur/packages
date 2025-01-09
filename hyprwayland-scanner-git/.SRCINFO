@@ -1,6 +1,6 @@
 pkgbase = hyprwayland-scanner-git
 	pkgdesc = A Hyprland implementation of wayland-scanner, in and for C++
-	pkgver = 0.4.2.r1.g500c81a9
+	pkgver = 0.4.4.r0.gde913476
 	pkgrel = 1
 	url = https://github.com/hyprwm/hyprwayland-scanner
 	arch = x86_64
