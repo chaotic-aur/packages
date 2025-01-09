@@ -269,9 +269,6 @@ prepare() {
   _prepare_hrydgard_ppsspp_ffmpeg
   _prepare_kingcom_armips
   _prepare_tencent_rapidjson
-
-  sed -E -e 's&_TTF_Font&TTF_Font&g' \
-    -i "$_pkgsrc/Common/Render/Text/draw_text_sdl.h"
 }
 
 build() {
