@@ -11,7 +11,7 @@ pkgbase = hyprland-qt-support-git
 	makedepends = gcc
 	makedepends = pkgconf
 	depends = qt6-wayland>=6.6.0
-	depends = hyprlang>=0.6.0
+	depends = hyprlang-git>=0.6.0
 	provides = hyprland-qt-support
 	conflicts = hyprland-qt-support
 	source = hyprland-qt-support::git+https://github.com/hyprwm/hyprland-qt-support.git

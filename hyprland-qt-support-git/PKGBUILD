@@ -8,7 +8,7 @@ pkgdesc="A qml style provider for hypr* qt apps"
 arch=(x86_64 aarch64)
 url="https://github.com/hyprwm/hyprland-qt-support"
 license=('BSD-3-Clause')
-depends=('qt6-wayland>=6.6.0' 'hyprlang>=0.6.0')
+depends=('qt6-wayland>=6.6.0' 'hyprlang-git>=0.6.0')
 makedepends=('git' 'cmake' 'gcc' 'pkgconf')
 source=("${_pkgname}::git+https://github.com/hyprwm/hyprland-qt-support.git")
 conflicts=("${_pkgname}")

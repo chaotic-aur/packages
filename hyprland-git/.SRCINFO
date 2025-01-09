@@ -1,6 +1,6 @@
 pkgbase = hyprland-git
 	pkgdesc = Hyprland is an independent, highly customizable, dynamic tiling Wayland compositor that doesn't sacrifice on its looks
-	pkgver = 0.46.0.r73.gb0bae154
+	pkgver = 0.46.0.r97.ge66eab7b
 	pkgrel = 1
 	url = https://github.com/hyprwm/Hyprland
 	arch = x86_64
@@ -64,7 +64,7 @@ pkgbase = hyprland-git
 	optdepends = uwsm: the recommended way to start Hyprland
 	provides = hyprland=0.46.0
 	conflicts = hyprland
-	backup = usr/share/xdg-desktop-portal/hyprland-portal.conf
+	backup = usr/share/xdg-desktop-portal/hyprland-portals.conf
 	source = git+https://github.com/hyprwm/Hyprland.git
 	source = git+https://github.com/canihavesomecoffee/udis86.git
 	b2sums = SKIP
