@@ -1,3 +1,0 @@
-#!/usr/bin/env sh
-
-sed '/cmake_install\.cmake/d' -i PKGBUILD
