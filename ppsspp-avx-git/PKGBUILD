@@ -5,60 +5,40 @@
 # https://github.com/hrydgard/ppsspp
 
 ## options
-: ${_build_qt:=false}
-: ${_build_sdl:=true}
-
 : ${_build_ffmpeg:=true}
 
 : ${_build_avx:=false}
 : ${_build_git:=true}
 
 unset _pkgtype
-if [[ ${CARCH::1} == "a" ]]; then
-  _build_avx=false
-fi
-
 [[ "${_build_avx::1}" == "t" ]] && _pkgtype+='-avx'
 [[ "${_build_git::1}" == "t" ]] && _pkgtype+='-git'
 
 ## basic info
 _pkgname="ppsspp"
 pkgname="${_pkgname}${_pkgtype:-}"
-pkgver=1.18.1.r55.g74aeb1c
+pkgver=1.18.1.r742.g5431bb3
 pkgrel=1
 pkgdesc='PSP emulator written in C++'
 url="https://github.com/hrydgard/ppsspp"
-arch=(x86_64 aarch64)
+arch=('x86_64')
 license=('GPL-2.0-or-later')
 
 depends=(
   glew
   libzip
   sdl2
+  sdl2_ttf
   snappy
 )
 makedepends=(
   clang
   cmake
-  gendesk
   git
   lld
   ninja
   python
 )
-
-if [[ "${_build_qt::1}" == "t" ]]; then
-  makedepends+=(
-    qt5-tools
-    qt5-base
-    qt5-multimedia
-  )
-fi
-if [[ "${_build_sdl::1}" == "t" ]]; then
-  makedepends+=(
-    sdl2_ttf
-  )
-fi
 
 provides=(
   "ppsspp=${pkgver%%.r*}"
@@ -283,42 +263,15 @@ prepare() {
     done
   }
 
-  # desktop files
-  local _gendesk_options=(
-    -q -f -n
-    --pkgname="ppsspp-qt"
-    --pkgdesc="$pkgdesc"
-    --name="PPSSPP (Qt)"
-    --exec="PPSSPPQt %f"
-    --icon="ppsspp"
-    --terminal=false
-    --categories="Game"
-    --startupnotify=true
-  )
-
-  gendesk "${_gendesk_options[@]}"
-
-  local _gendesk_options=(
-    -q -f -n
-    --pkgname="ppsspp-sdl"
-    --pkgdesc="$pkgdesc"
-    --name="PPSSPP (SDL)"
-    --exec="PPSSPPSDL %f"
-    --icon="ppsspp"
-    --terminal=false
-    --categories="Game"
-    --startupnotify=true
-  )
-
-  gendesk "${_gendesk_options[@]}"
-
-  # submodules
   _prepare_ppsspp
 
   _prepare_bylaws_libadrenotools
   _prepare_hrydgard_ppsspp_ffmpeg
   _prepare_kingcom_armips
   _prepare_tencent_rapidjson
+
+  sed -E -e 's&_TTF_Font&TTF_Font&g' \
+    -i "$_pkgsrc/Common/Render/Text/draw_text_sdl.h"
 }
 
 build() {
@@ -351,40 +304,20 @@ build() {
     # Rebuild ffmpeg locally
     (
       cd ppsspp/ffmpeg
-      case "$CARCH" in
-        x86_64)
-          ./linux_x86-64.sh
-          ;;
-        aarch64)
-          ./linux_arm64_native.sh
-          ;;
-      esac
+      ./linux_x86-64.sh
     )
   else
     _cmake_options+=(-DUSE_SYSTEM_FFMPEG=ON)
   fi
 
-  if [[ "${_build_sdl::1}" == "t" ]]; then
-    local _cmake_sdl=(
-      -B build-sdl
-      -DHEADLESS=ON
-      -DUSING_QT_UI=OFF
-    )
+  local _cmake_sdl=(
+    -B build-sdl
+    -DHEADLESS=ON
+    -DUSING_QT_UI=OFF
+  )
 
-    cmake "${_cmake_options[@]}" "${_cmake_sdl[@]}"
-    cmake --build build-sdl
-  fi
-
-  if [[ "${_build_qt::1}" == "t" ]]; then
-    local _cmake_qt=(
-      -B build-qt
-      -DHEADLESS=OFF
-      -DUSING_QT_UI=ON
-    )
-
-    cmake "${_cmake_options[@]}" "${_cmake_qt[@]}"
-    cmake --build build-qt
-  fi
+  cmake "${_cmake_options[@]}" "${_cmake_sdl[@]}"
+  cmake --build build-sdl
 }
 
 package() {
@@ -392,38 +325,32 @@ package() {
     hicolor-icon-theme
   )
 
-  local _assets
+  local _assets="build-sdl"
+  install -Dm755 "$_assets/PPSSPPSDL" -t "$pkgdir/usr/bin/"
+  install -Dm755 "$_assets/PPSSPPHeadless" -t "$pkgdir/usr/bin/"
 
-  if [[ "${_build_sdl::1}" == "t" ]]; then
-    depends+=(
-      fontconfig
-      sdl2_ttf
-    )
-
-    _assets="build-sdl"
-    install -Dm755 "$_assets/PPSSPPSDL" -t "$pkgdir/usr/bin/"
-    install -Dm755 "$_assets/PPSSPPHeadless" -t "$pkgdir/usr/bin/"
-    install -Dm644 ppsspp-sdl.desktop -t "$pkgdir/usr/share/applications/"
-    ln -sf PPSSPPSDL "$pkgdir/usr/bin/ppsspp-sdl"
-    ln -sf PPSSPPHeadless "$pkgdir/usr/bin/ppsspp-headless"
-  fi
-
-  if [[ "${_build_qt::1}" == "t" ]]; then
-    depends+=(
-      qt5-base
-      qt5-multimedia
-    )
-
-    _assets="build-qt"
-    install -Dm755 "$_assets/PPSSPPQt" -t "${pkgdir}"/usr/bin/
-    install -Dm644 ppsspp-qt.desktop -t "${pkgdir}"/usr/share/applications/
-  fi
+  ln -sf PPSSPPSDL "$pkgdir/usr/bin/ppsspp-sdl"
+  ln -sf PPSSPPHeadless "$pkgdir/usr/bin/ppsspp-headless"
 
   install -dm755 "$pkgdir/usr/share/ppsspp"
-  cp -dr --reflink=auto --no-preserve=ownership "$_assets/assets" "$pkgdir/usr/share/ppsspp/"
+  cp --reflink=auto -a "$_assets/assets" "$pkgdir/usr/share/ppsspp/"
 
   install -dm755 "$pkgdir/usr/share/icons"
-  cp -dr --reflink=auto --no-preserve=ownership "ppsspp/icons/hicolor" "$pkgdir/usr/share/icons/"
+  cp --reflink=auto -a "ppsspp/icons/hicolor" "$pkgdir/usr/share/icons/"
 
   install -Dm644 ppsspp/icons/icon-512.svg "$pkgdir/usr/share/pixmaps/ppsspp.svg"
+
+  install -Dm644 /dev/stdin "$pkgdir/usr/share/applications/ppsspp-sdl.desktop" << END
+[Desktop Entry]
+Type=Application
+Name=PPSSPP (SDL)
+Comment=$pkgdesc
+Exec=PPSSPPSDL %f
+Icon=ppsspp
+Terminal=false
+StartupNotify=true
+Categories=Game;
+END
+
+  chmod -R u+rwX,go+rX,go-w "$pkgdir/"
 }
