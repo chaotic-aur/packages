@@ -1,8 +1,9 @@
 pkgver() {
   cd "wayfire"
-  local _tag=$(git tag | sort -rV | head -1)
-  local _pkgver=$(sed -E 's&^[^0-9]*&&' <<< "${_tag:?}")
-  local _revision=$(git rev-list --count --cherry-pick $_tag...HEAD)
-  local _hash=$(git rev-parse --short HEAD)
-  printf '%s.r%s.g%s' "${_pkgver:?}" "${_revision:?}" "${_hash:?}"
+  local _tag _version _revision _hash
+  _tag=$(git tag -l 'v[0-9]*' | grep -Ev '[a-z][a-z]' | sort -rV | head -1)
+  _version="${_tag#v}"
+  _revision=$(git rev-list --count --cherry-pick "$_tag"...HEAD)
+  _hash=$(git rev-parse --short=7 HEAD)
+  printf '%s.r%s.g%s' "${_version:?}" "${_revision:?}" "${_hash:?}"
 }

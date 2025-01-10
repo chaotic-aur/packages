@@ -1,1 +1,0 @@
-depends=(${depends[@]//python-future/})

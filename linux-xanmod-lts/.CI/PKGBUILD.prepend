@@ -1,5 +1,3 @@
-export MAKEFLAGS="${MAKEFLAGS:-} -j $(nproc)"
-
 # package options
 _microarchitecture=91
 _config=config_x86-64-v1

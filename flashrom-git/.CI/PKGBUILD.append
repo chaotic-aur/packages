@@ -1,8 +1,8 @@
 _pkgsrc="$_gitname"
 pkgver() {
   cd "$_pkgsrc"
+  local _tag _version _revision _hash
   _tag=$(git tag -l 'v[0-9]*' | grep -Ev '[a-z][a-z]' | sort -rV | head -1)
-  _pkgver=$(sed -E 's&^[^0-9]*&&' <<< "${_tag:?}")
   _version="${_tag#v}"
   _revision=$(git rev-list --count --cherry-pick "$_tag"...HEAD)
   _hash=$(git rev-parse --short=7 HEAD)

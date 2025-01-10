@@ -6,10 +6,8 @@ unset install
 
 pkgver() {
   cd "${_pkgname}"
-
-  local _tag _pkgver _ version _revision _hash
+  local _tag _version _revision _hash
   _tag=$(git tag | sort -rV | head -1)
-  _pkgver=$(sed -E 's&^[^0-9]*&&' <<< "${_tag:?}")
   _version="${_tag#v}"
   _revision=$(git rev-list --count --cherry-pick "$_tag"...HEAD)
   _hash=$(git rev-parse --short=7 HEAD)

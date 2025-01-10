@@ -1,1 +1,1 @@
-export   LDFLAGS+=" -Wl,--copy-dt-needed-entries"
+export LDFLAGS+=" -Wl,--copy-dt-needed-entries"

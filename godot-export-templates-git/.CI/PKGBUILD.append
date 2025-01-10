@@ -4,7 +4,7 @@ _pkgsrc="$_gitname"
 pkgver() {
   cd "$_pkgsrc"
 
-  local _tag _ version _revision _hash
+  local _tag _version _revision _hash
   _tag=$(git tag | sort -rV | head -1)
   _version="${_tag%-stable}"
   _revision=$(git rev-list --count --cherry-pick "$_tag"...HEAD)
