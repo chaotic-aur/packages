@@ -1,6 +1,57 @@
-pkgdesc="Tiling Wayland compositor and replacement for the i3 window manager"
+_epoch=$epoch
+unset epoch
 
-_pkgsrc="$pkgname"
+pkgbase="sway-git"
+url="https://github.com/swaywm/sway"
+
+depends=(
+  ${depends[@]//wlroots*}
+  glslang
+  lcms2
+  libdisplay-info
+  libdrm
+  libglvnd
+  libinput
+  libliftoff
+  libxcb
+  libxkbcommon
+  opengl-driver
+  pixman
+  seatd
+  systemd-libs
+  vulkan-icd-loader
+  wayland
+  xcb-util-errors
+  xcb-util-renderutil
+  xcb-util-wm
+)
+makedepends+=(
+  git
+  vulkan-headers
+  xorg-xwayland
+)
+
+provides=("sway=$_epoch:${pkgver%%.r*}")
+conflicts=("sway")
+
+_pkgsrc="sway"
+source[0]="$_pkgsrc"::"git+$url.git"
+sha512sums[0]='SKIP'
+
+source[1]="wlroots"::"git+https://gitlab.freedesktop.org/wlroots/wlroots.git"
+sha512sums[1]='SKIP'
+
+eval _orig_"$(declare -f prepare)"
+
+prepare() (
+  local pkgver=$(pkgver)
+  install -dm755 "$_pkgsrc/subprojects"
+  ln -sf "../../wlroots" "$_pkgsrc/subprojects/wlroots"
+  ln -sf "$_pkgsrc" "$pkgname-$pkgver"
+
+  _orig_prepare
+)
+
 pkgver() {
   cd "$_pkgsrc"
   local _tag _version _revision _hash
@@ -10,3 +61,18 @@ pkgver() {
   _hash=$(git rev-parse --short=7 HEAD)
   printf '%s.r%s.g%s' "${_version:?}" "${_revision:?}" "${_hash:?}"
 }
+
+eval _orig_"$(declare -f build | sed -E 's&(arch-meson.*?) -D&\1 -D default_library=static -D&')"
+
+build() (
+  export CFLAGS+=" -Wno-error"
+  _orig_build
+)
+
+eval _orig_"$(declare -f package)"
+
+package() (
+  _orig_package
+  rm -rf "$pkgdir/usr/include"
+  rm -rf "$pkgdir/usr/lib"
+)
