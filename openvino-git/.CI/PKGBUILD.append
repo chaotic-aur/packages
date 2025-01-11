@@ -1,1 +1,3 @@
 url="https://github.com/openvinotoolkit/openvino"
+
+depends+=('blas-openblas')
