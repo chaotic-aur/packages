@@ -1,11 +1,12 @@
 _epoch=$epoch
 unset epoch
 
-pkgbase="sway-git"
+_pkgname="sway"
+pkgname="sway-git"
 url="https://github.com/swaywm/sway"
 
 depends=(
-  ${depends[@]//wlroots*}
+  ${depends[@]//wlroots*/}
   glslang
   lcms2
   libdisplay-info
@@ -31,10 +32,10 @@ makedepends+=(
   xorg-xwayland
 )
 
-provides=("sway=$_epoch:${pkgver%%.r*}")
-conflicts=("sway")
+provides=("$_pkgname=$_epoch:${pkgver%%.r*}")
+conflicts=("$_pkgname")
 
-_pkgsrc="sway"
+_pkgsrc="$_pkgname"
 source[0]="$_pkgsrc"::"git+$url.git"
 sha512sums[0]='SKIP'
 
