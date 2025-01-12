@@ -5,7 +5,7 @@
 
 _pkgname="cemu"
 pkgname="$_pkgname-git"
-pkgver=2.5.r5.g2b0cbf7
+pkgver=2.5.r13.g07cd402
 pkgrel=1
 pkgdesc="Nintendo Wii U emulator"
 url="https://github.com/cemu-project/Cemu"
@@ -82,8 +82,8 @@ prepare() {
   git config submodule.dependencies/imgui.url ../imgui
   git -c protocol.file.allow=always submodule update
 
-  sed -i '/CMAKE_INTERPROCEDURAL_OPTIMIZATION/d' CMakeLists.txt
-  sed -i '/FMT_HEADER_ONLY/d' src/Common/precompiled.h
+  sed -e '/CMAKE_INTERPROCEDURAL_OPTIMIZATION/d' -i CMakeLists.txt
+  sed -e '/FMT_HEADER_ONLY/d' -i src/Common/precompiled.h
 }
 
 pkgver() {
@@ -105,6 +105,7 @@ _build_fmt() (
     -DFMT_DOC=OFF
     -DFMT_INC_DIR='include/fmt'
     -DFMT_PKGCONFIG_DIR='lib/fmt/pkgconfig'
+    -DFMT_TEST=OFF
     -DBUILD_SHARED_LIBS=OFF
     -Wno-dev
   )
@@ -125,6 +126,7 @@ _build_glslang() (
     -DCMAKE_INSTALL_PREFIX='/usr'
     -DALLOW_EXTERNAL_SPIRV_TOOLS=ON
     -DBUILD_SHARED_LIBS=OFF
+    -DGLSLANG_TESTS=OFF
     -Wno-dev
   )
 
@@ -135,7 +137,6 @@ _build_glslang() (
 
 _build_main() (
   echo "Building cemu..."
-
   local _cmake_options=(
     -B build
     -S "$_pkgsrc"
@@ -152,7 +153,7 @@ _build_main() (
   cmake --build build
 )
 
-build() {
+build() (
   export CFLAGS CXXFLAGS LDFLAGS
   CFLAGS+=' -DNDEBUG'
   CXXFLAGS+=' -DNDEBUG'
@@ -161,7 +162,7 @@ build() {
   _build_fmt
   _build_glslang
   _build_main
-}
+)
 
 package() {
   depends+=(
