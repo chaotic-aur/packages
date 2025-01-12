@@ -2,7 +2,7 @@
 pkgname=r-quick-share
 _pkgname=rquickshare
 pkgver=0.11.3
-pkgrel=1
+pkgrel=2
 pkgdesc="Rust implementation of NearbyShare/QuickShare from Android for Linux."
 arch=('x86_64')
 url="https://github.com/Martichou/rquickshare"
@@ -79,6 +79,6 @@ package() {
   install -Dm644 icons/icon.png \
     "$pkgdir/usr/share/icons/hicolor/512x512/apps/${_pkgname}.png"
 
-  install -Dm644 "target/release/bundle/deb//RQuickShare_${pkgver}_amd64/data/usr/share/applications/${_pkgname}.desktop" -t \
+  install -Dm644 "target/release/bundle/deb/RQuickShare_${pkgver}_amd64/data/usr/share/applications/RQuickShare.desktop" -t \
     "$pkgdir/usr/share/applications/"
 }
