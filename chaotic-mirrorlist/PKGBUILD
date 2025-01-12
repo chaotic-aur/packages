@@ -3,18 +3,6 @@
 # Contributor: Florian Pritz <bluewind@xinu.at>
 # Contributor: Dan McGee <dan@archlinux.org>
 
-pkgname=chaotic-mirrorlist
-pkgver=20240724
-pkgrel=1
-pkgdesc="Chaotic-AUR mirrorlist to use with Pacman"
-arch=('any')
-url="https://aur.chaotic.cx"
-license=('GPL')
-backup=(etc/pacman.d/chaotic-mirrorlist)
-source=(mirrorlist)
-# This replaces gets removed by the build infra, but it is also present in the interfere
-replaces=(chaotic-kf5-dummy)
-
 # NOTE on building this package:
 # * Go to the trunk/ directory
 # * Run bash -c ". PKGBUILD; updatelist"
@@ -26,9 +14,34 @@ updatelist() {
   curl -o mirrorlist "$url/mirrorlist.txt"
 }
 
+pkgname=chaotic-mirrorlist
+pkgver=20240724
+pkgrel=2
+pkgdesc="Chaotic-AUR mirrorlist to use with Pacman"
+url="https://aur.chaotic.cx"
+license=('GPL')
+arch=('any')
+
+backup=(etc/pacman.d/chaotic-mirrorlist)
+source=(mirrorlist)
+sha256sums=('11ece2a372515432648bc1dfaa2b7af093b91251f5421810549fa86ef188eddd')
+
 package() {
+  # force removal of unwanted packages
+  replaces=(
+    # CVE-2024-9680
+    mercury-browser
+    mercury-browser-avx
+    mercury-browser-avx-bin
+    mercury-browser-avx2
+    mercury-browser-avx2-bin
+    mercury-browser-bin
+    mercury-browser-sse3
+    mercury-browser-sse3-bin
+    mercury-browser-sse4
+    mercury-browser-sse4-bin
+  )
+
   mkdir -p "$pkgdir/etc/pacman.d"
   install -m644 "$srcdir/mirrorlist" "$pkgdir/etc/pacman.d/chaotic-mirrorlist"
 }
-
-sha256sums=('11ece2a372515432648bc1dfaa2b7af093b91251f5421810549fa86ef188eddd')
