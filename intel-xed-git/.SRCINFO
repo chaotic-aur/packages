@@ -1,4 +1,4 @@
-pkgbase = intelxed-git
+pkgbase = intel-xed-git
 	pkgdesc = A library for encoding and decoding x86 instructions
 	pkgver = 2024.11.04.r0.gd4d5020
 	pkgrel = 1
@@ -12,11 +12,13 @@ pkgbase = intelxed-git
 	makedepends = python-setuptools
 	makedepends = python-wheel
 	depends = glibc
+	provides = intel-xed=2024.11.04
 	provides = intelxed=2024.11.04
+	conflicts = intel-xed
 	conflicts = intelxed
-	source = intelxed::git+https://github.com/intelxed/xed.git
+	source = intel-xed::git+https://github.com/intelxed/xed.git
 	source = intelxed.mbuild::git+https://github.com/intelxed/mbuild
 	sha256sums = SKIP
 	sha256sums = SKIP
 
-pkgname = intelxed-git
+pkgname = intel-xed-git

@@ -1,6 +1,6 @@
 # Maintainer: aur.chaotic.cx
 
-_pkgname=intelxed
+_pkgname="intel-xed"
 pkgname="$_pkgname-git"
 pkgver=2024.11.04.r0.gd4d5020
 pkgrel=1
@@ -21,8 +21,14 @@ makedepends=(
   'python-wheel'
 )
 
-provides=("$_pkgname=${pkgver%%.r*}")
-conflicts=("$_pkgname")
+provides=(
+  "$_pkgname=${pkgver%%.r*}"
+  "intelxed=${pkgver%%.r*}"
+)
+conflicts=(
+  "$_pkgname"
+  "intelxed"
+)
 
 _pkgsrc="$_pkgname"
 _pkgsrc_mbuild="intelxed.mbuild"
@@ -61,25 +67,26 @@ END
 )
 
 package() {
-  cd "$_pkgsrc"/kits/xed-install-base-*-lin-x86-64
-
-  # binaries
-  install -Dm755 bin/* -t "$pkgdir/usr/bin/"
-  mv "$pkgdir/usr/bin/xed" "$pkgdir/usr/bin/intelxed"
+  cd "$_pkgsrc"/kits/xed-install-base-*-lin-x86-64/
 
   # headers
   install -dm755 "$pkgdir/usr/include"
-  cp -r include/* "$pkgdir/usr/include/"
+  cp --reflink=auto -a include/* "$pkgdir/usr/include/"
 
   # libs
   install -Dm644 lib/* -t "$pkgdir/usr/lib/"
 
+  # binaries and symlink
+  install -Dm755 bin/* -t "$pkgdir/usr/lib/$_pkgname/bin/"
+  install -dm755 "$pkgdir/usr/bin"
+  ln -srf "$pkgdir/usr/lib/$_pkgname/bin/xed" "$pkgdir/usr/bin/intel-xed"
+
   # reference
-  install -dm755 "$pkgdir/usr/share/$_pkgname/ref-manual"
-  cp -r doc/ref-manual/html/* "$pkgdir/usr/share/$_pkgname/ref-manual/"
+  install -dm755 "$pkgdir/usr/lib/$_pkgname/ref-manual"
+  cp --reflink=auto -a doc/ref-manual/html/* "$pkgdir/usr/lib/$_pkgname/ref-manual/"
 
   # examples
-  install -Dm644 examples/* -t "$pkgdir/usr/share/$_pkgname/examples/"
+  install -Dm644 examples/* -t "$pkgdir/usr/lib/$_pkgname/examples/"
 
   # permissions
   chmod -R u+rwX,go+rX,go-w "$pkgdir/"
