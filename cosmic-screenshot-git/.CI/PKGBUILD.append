@@ -1,0 +1,5 @@
+makedepends=(${makedepends[@]//mold/})
+
+eval "$(declare -f prepare | sed '/lto\.patch/d')"
+
+eval "$(declare -f build | sed '/fuse-ld=mold/d')"
