@@ -1,6 +1,0 @@
-eval _orig_"$(declare -f package)"
-
-package() {
-  replaces=('whisper-git')
-  _orig_package
-}
