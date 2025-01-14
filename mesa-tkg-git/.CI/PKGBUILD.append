@@ -1,0 +1,7 @@
+CFLAGS+=" -g1"
+CXXFLAGS+=" -g1"
+
+url="${_mesa_source%.git}"
+license=('MIT' 'BSD-3-Clause' 'SGI-B-2.0')
+
+depends=(${depends[@]//>=*})
