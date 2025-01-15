@@ -1,8 +1,8 @@
 # Maintainer: Mark Wagie <mark dot wagie at proton dot me>
 pkgname=r-quick-share
 _pkgname=rquickshare
-pkgver=0.11.3
-pkgrel=2
+pkgver=0.11.4
+pkgrel=1
 pkgdesc="Rust implementation of NearbyShare/QuickShare from Android for Linux."
 arch=('x86_64')
 url="https://github.com/Martichou/rquickshare"
@@ -18,7 +18,7 @@ makedepends=(
   'protobuf'
 )
 source=("${_pkgname}-$pkgver.tar.gz::$url/archive/refs/tags/v$pkgver.tar.gz")
-sha256sums=('eb7672550f1fb4947c36ae1b42fa21840044554f3fb822ceac08191c412ef091')
+sha256sums=('fcd4a4fe4080bfbf21cbaac4b9fc4eca07cb0cf7e6cd08daf06a81cabc5a0e57')
 
 prepare() {
   cd "${_pkgname}-$pkgver"
