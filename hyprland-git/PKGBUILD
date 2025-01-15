@@ -4,7 +4,7 @@
 # Contributor: ThatOneCalculator <kainoa at t1c dot dev>
 
 pkgname=hyprland-git
-pkgver=0.46.0.r97.ge66eab7b
+pkgver=0.46.0.r115.ga6b26371
 pkgrel=1
 pkgdesc="Hyprland is an independent, highly customizable, dynamic tiling Wayland compositor that doesn't sacrifice on its looks"
 arch=(x86_64 aarch64)
@@ -73,7 +73,7 @@ optdepends=(
   'glaze: to build and install plugins using hyprpm'
   'uwsm: the recommended way to start Hyprland'
 )
-provides=("hyprland=${pkgver%%.r*}")
+provides=("hyprland=${pkgver%%.r*}" "wayland-compositor")
 conflicts=(hyprland)
 source=(
   "git+https://github.com/hyprwm/Hyprland.git"
@@ -87,8 +87,8 @@ b2sums=(
 backup=("usr/share/xdg-desktop-portal/hyprland-portals.conf")
 
 pick_mr() {
-  cd Hyprland
-  git pull origin pull/$1/head --no-edit
+  cd "$srcdir/Hyprland"
+  git pull origin pull/$1/head --no-edit --rebase
 }
 
 prepare() {
@@ -106,20 +106,20 @@ prepare() {
 }
 
 pkgver() {
-  cd Hyprland
+  cd "$srcdir/Hyprland"
   git describe --long --tags --abbrev=8 --exclude='*[a-zA-Z][a-zA-Z]*' \
     | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
 }
 
 build() {
-  cd Hyprland
+  cd "$srcdir/Hyprland"
 
   cmake --no-warn-unused-cli -DCMAKE_INSTALL_PREFIX=/usr -S . -B ./build
   cmake --build ./build --target all
 }
 
 package() {
-  cd Hyprland
+  cd "$srcdir/Hyprland"
 
   DESTDIR="${pkgdir}" cmake --install build
 
