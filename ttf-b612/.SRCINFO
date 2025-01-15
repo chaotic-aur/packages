@@ -1,0 +1,12 @@
+pkgbase = ttf-b612
+	pkgdesc = A highly legible sans-serif font family designed for aircraft cockpit screens
+	pkgver = 1.008
+	pkgrel = 5
+	url = https://github.com/polarsys/b612
+	arch = any
+	license = EPL-2.0
+	license = OFL-1.1
+	source = b612-1.008.tar.gz::https://github.com/polarsys/b612/archive/1.008.tar.gz
+	sha256sums = bfe4827931a22ecde5576c2bd06b462d467b89fa580b6ded651346f94eba8dd6
+
+pkgname = ttf-b612

@@ -1,0 +1,26 @@
+# Maintainer: aur.chaotic.cx
+
+## links
+# http://b612-font.com/
+# https://github.com/polarsys/b612
+
+_pkgname="ttf-b612"
+pkgname="$_pkgname"
+pkgver=1.008
+pkgrel=5
+pkgdesc="A highly legible sans-serif font family designed for aircraft cockpit screens"
+url="https://github.com/polarsys/b612"
+license=('EPL-2.0' 'OFL-1.1')
+arch=("any")
+
+_pkgsrc="b612-$pkgver"
+_pkgext="tar.gz"
+source=("$_pkgsrc.$_pkgext"::"$url/archive/$pkgver.$_pkgext")
+sha256sums=('bfe4827931a22ecde5576c2bd06b462d467b89fa580b6ded651346f94eba8dd6')
+
+package() {
+  install -Dm644 "$_pkgsrc/fonts/ttf"/*.ttf -t "$pkgdir/usr/share/fonts/b612/"
+
+  install -Dm644 "$_pkgsrc/EPL-2.0.html" -t "$pkgdir/usr/share/licenses/$pkgname/"
+  install -Dm644 "$_pkgsrc/OFL.txt" "$pkgdir/usr/share/licenses/$pkgname/OFL-1.1.txt"
+}
