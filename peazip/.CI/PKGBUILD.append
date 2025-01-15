@@ -1,0 +1,13 @@
+eval _orig_"$(declare -f package)"
+
+package() {
+  replaces=(
+    'peazip-qt-bin'
+    'peazip-qt-bin-debug'
+    'peazip-qt5'
+    'peazip-qt-build'
+    'peazip-qt-opensuse'
+  )
+
+  _orig_package
+}
