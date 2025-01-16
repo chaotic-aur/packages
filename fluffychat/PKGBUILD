@@ -1,25 +1,23 @@
-# Maintainer: aur.chaotic.cx
+# Maintainer:
+# Contributor: The one with the braid <info@braid.business>
 
 ## links
 # https://fluffychat.im/
 # https://github.com/krille-chan/fluffychat
 
-## options
-if [ -z "$_srcinfo" ] && [ -z "$_pkgver" ]; then
-  : ${_autoupdate:=true}
-fi
+: ${_fvm_version:=3.24.5}
 
-: ${_fvm_version:=3.24.1}
+: ${FVM_CACHE_PATH:=$SRCDEST/fvm-cache}
+export FVM_CACHE_PATH
 
-## basic info
 _pkgname="fluffychat"
 pkgname="$_pkgname"
-pkgver=1.22.1
+pkgver=1.23.0
 pkgrel=2
 pkgdesc="The cutest instant messenger in the [matrix]"
 url="https://github.com/krille-chan/fluffychat"
 license=('AGPL-3.0-only')
-arch=('x86_64')
+arch=('x86_64' 'aarch64')
 
 depends=(
   'gtk3'
@@ -33,7 +31,7 @@ depends=(
 makedepends=(
   'clang'
   'cmake'
-  'fvm'
+  'fvm' # AUR
   'git'
   'lld'
   'llvm'
@@ -42,15 +40,20 @@ makedepends=(
 
 options=('!strip' '!debug')
 
-_source_main() {
-  _pkgsrc="$_pkgname-$_pkgver"
-  _pkgext="tar.gz"
-  source=("$_pkgsrc.$_pkgext"::"$url/archive/refs/tags/v$_pkgver.$_pkgext")
-  sha256sums=('SKIP')
-}
+_pkgsrc="$_pkgname-$pkgver"
+_pkgext="tar.gz"
+source=("$_pkgsrc.$_pkgext"::"$url/archive/refs/tags/v$pkgver.$_pkgext")
+sha256sums=('7165285e7eefe8a5906f06bdad6e7ca2c7cda1da4381c6f0d09e0f927e99cda8')
 
 build() {
-  export FVM_CACHE_PATH="$SRCDEST/fvm-cache"
+  if [ "${CARCH::1}" != "x" ]; then
+    # fix incompatible C(XX)FLAGS on Arch Linux on ARM
+    CFLAGS="${CFLAGS//-fstack-protector-strong/}"
+    CFLAGS="${CFLAGS//-fstack-clash-protection/}"
+
+    CXXFLAGS="${CXXFLAGS//-fstack-protector-strong/}"
+    CXXFLAGS="${CXXFLAGS//-fstack-clash-protection/}"
+  fi
 
   cd "$_pkgsrc"
   fvm install $_fvm_version
@@ -63,7 +66,7 @@ build() {
 }
 
 package() {
-  cd "$_pkgsrc/build/linux/x64/release"
+  cd "$_pkgsrc"/build/linux/*/release
   cmake -DCMAKE_INSTALL_PREFIX="$pkgdir/usr/lib/$_pkgname" .
   cmake -P cmake_install.cmake
 
@@ -72,10 +75,10 @@ package() {
   ln -s "/usr/lib/$_pkgname/$_pkgname" "$pkgdir/usr/bin/$_pkgname"
 
   # license
-  install -Dm644 "$srcdir/$_pkgname-$_pkgver/LICENSE" -t "$pkgdir/usr/share/licenses/$pkgname/"
+  install -Dm644 "$srcdir/$_pkgname-$pkgver/LICENSE" -t "$pkgdir/usr/share/licenses/$pkgname/"
 
   # icon
-  install -Dm644 "$srcdir/$_pkgname-$_pkgver/assets/favicon.png" "$pkgdir/usr/share/pixmaps/$_pkgname.png"
+  install -Dm644 "$srcdir/$_pkgname-$pkgver/assets/favicon.png" "$pkgdir/usr/share/pixmaps/$_pkgname.png"
 
   # launcher
   install -Dm644 /dev/stdin "$pkgdir/usr/share/applications/$_pkgname.desktop" << END
@@ -93,32 +96,3 @@ Categories=Network;InstantMessaging;Chat;MatrixClient
 X-Purism-FormFactor=Workstation;Mobile;
 END
 }
-
-_update_version() {
-  : ${_pkgver:=${pkgver%%.r*}}
-
-  if [[ "${_autoupdate::1}" != "t" ]]; then
-    return
-  fi
-
-  local _response=$(curl -Ssf "$url/releases.atom")
-  local _tag=$(
-    printf '%s' "$_response" \
-      | grep '"https://.*/releases/tag/.*"' \
-      | sed -E 's@^.*/releases/tag/(.*)".*$@\1@' \
-      | grep -Ev '[a-z]{2}' | sort -rV | head -1
-  )
-  local _pkgver_new="${_tag#v}"
-
-  # update _pkgver
-  if [ "$_pkgver" != "${_pkgver_new:?}" ]; then
-    _pkgver="${_pkgver_new:?}"
-  fi
-
-  pkgver() {
-    echo "${_pkgver:?}"
-  }
-}
-
-_update_version
-_source_main
