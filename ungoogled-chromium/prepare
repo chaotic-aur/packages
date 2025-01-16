@@ -1,0 +1,2 @@
+#!/usr/bin/env sh
+sed '/chrome_pgo_phase/d' -i PKGBUILD
