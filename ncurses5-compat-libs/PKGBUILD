@@ -1,4 +1,4 @@
-# Contributor:  Bartłomiej Piotrowski <bpiotrowski@archlinux.org>
+# Contributor: Bartłomiej Piotrowski <bpiotrowski@archlinux.org>
 # Contributor: Mateusz Gozdek <mgozdekof@gmail.com>
 # Contributor: Allan McRae <allan@archlinux.org>
 # Contributor: judd <jvinet@zeroflux.org>
@@ -9,7 +9,7 @@ pkgver=6.5
 pkgrel=1
 pkgdesc='System V Release 4.0 curses emulation library, ABI 5'
 arch=(i686 x86_64)
-url='http://invisible-island.net/ncurses/ncurses.html'
+url='https://invisible-island.net/ncurses/ncurses.html'
 license=(MIT)
 depends=(glibc gcc-libs sh)
 provides=(libtinfo5)
