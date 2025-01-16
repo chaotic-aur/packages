@@ -1,6 +1,6 @@
 pkgbase = rubymine
 	pkgdesc = Ruby and Rails IDE with the full stack of essential developer tools
-	pkgver = 2024.3.1
+	pkgver = 2024.3.1.1
 	pkgrel = 1
 	url = https://www.jetbrains.com/ruby/
 	install = rubymine.install
@@ -11,10 +11,10 @@ pkgbase = rubymine
 	depends = gtk-update-icon-cache
 	optdepends = ruby: Ruby run/debug support
 	options = !strip
-	source = https://download.jetbrains.com/ruby/RubyMine-2024.3.1.tar.gz
+	source = https://download.jetbrains.com/ruby/RubyMine-2024.3.1.1.tar.gz
 	source = rubymine.desktop
 	source = rubymine.install
-	sha256sums = d288557a95b8f28b2bec32a749bf104ae33d2b0e899c164772856b82c1a51380
+	sha256sums = fe849fd90725f12c6dabb20973f1d5eb6fc9baddd692961197527326639d7def
 	sha256sums = 72df0e7c605caf7b6c98e9335f4eee9c8bfe8fcc24523634fd8c1ebe019534d6
 	sha256sums = 7ecadddf2b315b22df3a5c7b90e18be7ea69e2a0d869ee18bf0e031b2c508f76
 
