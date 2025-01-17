@@ -1,21 +1,23 @@
 pkgbase = intellij-idea-ultimate-edition
 	pkgdesc = An intelligent IDE for Java, Groovy and other programming languages with advanced refactoring features intensely focused on developer productivity.
-	pkgver = 2024.3.1.1
+	pkgver = 2024.3.2
 	pkgrel = 1
 	url = https://www.jetbrains.com/idea/
 	arch = x86_64
 	arch = aarch64
 	license = custom:commercial
+	provides = intellij-idea-ultimate-edition-jre
+	conflicts = intellij-idea-ultimate-edition-jre
 	options = !strip
 	source = jetbrains-idea.desktop
 	sha256sums = 83af2ba8f9f14275a6684e79d6d4bd9b48cd852c047dacfc81324588fa2ff92b
-	source_x86_64 = https://download.jetbrains.com/idea/ideaIU-2024.3.1.1.tar.gz
-	sha256sums_x86_64 = d80684aa73fe9dee14ea405058d54a34340266cf675bfbaf4c760da6eb2d3fe9
-	source_aarch64 = https://download.jetbrains.com/idea/ideaIU-2024.3.1.1-aarch64.tar.gz
-	source_aarch64 = https://cache-redirector.jetbrains.com/intellij-jbr/jbr-21.0.4-linux-aarch64-b631.2.tar.gz
+	source_x86_64 = https://download.jetbrains.com/idea/ideaIU-2024.3.2.tar.gz
+	sha256sums_x86_64 = 05f30fff53c1b73f9c261e812c236134e203bf7d847424a27d9409fd6b0b6fcb
+	source_aarch64 = https://download.jetbrains.com/idea/ideaIU-2024.3.2-aarch64.tar.gz
+	source_aarch64 = https://cache-redirector.jetbrains.com/intellij-jbr/jbr-21.0.5-linux-aarch64-b750.29.tar.gz
 	source_aarch64 = https://github.com/JetBrains/intellij-community/raw/master/bin/linux/aarch64/fsnotifier
-	sha256sums_aarch64 = b3487662edf0904de4bfcd069231068350f7d8e964c0718b88ecbc18a83e5f47
-	sha256sums_aarch64 = 3531269760c1dd866ed806342ae3929415e4a94a1365bd0a2e7c3d1f3739972d
+	sha256sums_aarch64 = d41082d25ec1639d399a5cbbabf29afa8082d6eddff8b24e56107f159dbe85b4
+	sha256sums_aarch64 = b4a7b7dfe21523bdf6aa69247bfbece3dc62a442e72bfe42d72105a7f6e1daab
 	sha256sums_aarch64 = eb3c61973d34f051dcd3a9ae628a6ee37cd2b24a1394673bb28421a6f39dae29
 
 pkgname = intellij-idea-ultimate-edition
@@ -27,6 +29,3 @@ pkgname = intellij-idea-ultimate-edition
 	optdepends = libdbusmenu-glib: For global menu support
 	backup = opt/intellij-idea-ultimate-edition/bin/idea64.vmoptions
 	backup = opt/intellij-idea-ultimate-edition/bin/idea.properties
-
-pkgname = intellij-idea-ultimate-edition-jre
-	url = https://github.com/JetBrains/JetBrainsRuntime

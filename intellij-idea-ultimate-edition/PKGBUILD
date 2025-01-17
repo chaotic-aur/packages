@@ -1,28 +1,29 @@
 # Maintainer: D. Can Celasun <can[at]dcc[dot]im>
 # Co-Maintainer: Urs Wolfer <uwolfer @ fwo.ch>
 
-pkgbase=intellij-idea-ultimate-edition
-pkgname=(intellij-idea-ultimate-edition intellij-idea-ultimate-edition-jre)
-pkgver=2024.3.1.1
+pkgname=intellij-idea-ultimate-edition
+pkgver=2024.3.2
 pkgrel=1
-_buildver=243.22562.218
-jbr_ver=21.0.4
-jbr_build=aarch64-b631
-jbr_minor=2
+_buildver=243.23654.117
+jbr_ver=21.0.5
+jbr_build=aarch64-b750
+jbr_minor=29
 arch=('x86_64' 'aarch64')
 pkgdesc="An intelligent IDE for Java, Groovy and other programming languages with advanced refactoring features intensely focused on developer productivity."
 url="https://www.jetbrains.com/idea/"
 license=('custom:commercial')
 options=(!strip)
+conflicts=(intellij-idea-ultimate-edition-jre)
+provides=(intellij-idea-ultimate-edition-jre)
 source=("jetbrains-idea.desktop")
 source_x86_64=("https://download.jetbrains.com/idea/ideaIU-$pkgver.tar.gz")
 source_aarch64=("https://download.jetbrains.com/idea/ideaIU-$pkgver-aarch64.tar.gz"
   "https://cache-redirector.jetbrains.com/intellij-jbr/jbr-$jbr_ver-linux-$jbr_build.$jbr_minor.tar.gz"
   "https://github.com/JetBrains/intellij-community/raw/master/bin/linux/aarch64/fsnotifier")
 sha256sums=('83af2ba8f9f14275a6684e79d6d4bd9b48cd852c047dacfc81324588fa2ff92b')
-sha256sums_x86_64=('d80684aa73fe9dee14ea405058d54a34340266cf675bfbaf4c760da6eb2d3fe9')
-sha256sums_aarch64=('b3487662edf0904de4bfcd069231068350f7d8e964c0718b88ecbc18a83e5f47'
-  '3531269760c1dd866ed806342ae3929415e4a94a1365bd0a2e7c3d1f3739972d'
+sha256sums_x86_64=('05f30fff53c1b73f9c261e812c236134e203bf7d847424a27d9409fd6b0b6fcb')
+sha256sums_aarch64=('d41082d25ec1639d399a5cbbabf29afa8082d6eddff8b24e56107f159dbe85b4'
+  'b4a7b7dfe21523bdf6aa69247bfbece3dc62a442e72bfe42d72105a7f6e1daab'
   'eb3c61973d34f051dcd3a9ae628a6ee37cd2b24a1394673bb28421a6f39dae29')
 
 prepare() {
@@ -54,6 +55,7 @@ package_intellij-idea-ultimate-edition() {
 
   install -d "$pkgdir"/{opt/$pkgname,usr/bin}
   mv idea-IU-${_buildver}/* "$pkgdir"/opt/$pkgbase
+  mv "$srcdir"/jbr "$pkgdir"/opt/$pkgbase
 
   # https://youtrack.jetbrains.com/issue/IDEA-185828
   chmod +x "$pkgdir"/opt/$pkgbase/plugins/maven/lib/maven3/bin/mvn
@@ -64,12 +66,6 @@ package_intellij-idea-ultimate-edition() {
 
   # workaround FS#40934
   sed -i 's|lcd|on|' "$pkgdir"/opt/$pkgname/bin/*.vmoptions
-}
-
-package_intellij-idea-ultimate-edition-jre() {
-  url="https://github.com/JetBrains/JetBrainsRuntime"
-  install -d -m 755 "$pkgdir"/opt/$pkgbase
-  mv "$srcdir"/jbr "$pkgdir"/opt/$pkgbase
 }
 
 # vim:set ts=2 sw=2 et:
