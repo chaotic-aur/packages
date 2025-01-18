@@ -1,4 +1,5 @@
-# Maintainer: aur.chaotic.cx
+# Maintainer:
+# Contributor: copygirl <copygirl@mcft.net>
 
 : ${_pkgtype:=-git}
 
