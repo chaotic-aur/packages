@@ -1,2 +1,2 @@
-CI_PACKAGE_BUMP=1.10.r57.ga6c0441-1/1
+CI_PACKAGE_BUMP=1.10.r57.ga6c0441-1/2
 CI_PKGBUILD_SOURCE=https://gitlab.archlinux.org/archlinux/packaging/packages/sway.git
