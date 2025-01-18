@@ -1,3 +1,4 @@
-CI_ON_TRIGGER=daily
 BUILDER_CACHE_SOURCES=true
+CI_ON_TRIGGER=daily
+CI_PACKAGE_BUMP=2412.r153.gce508ba-1/1
 CI_PKGBUILD_SOURCE=https://aur.archlinux.org/dolphin-emu-debugfast-git.git
