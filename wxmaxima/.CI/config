@@ -1,3 +1,4 @@
-CI_ON_TRIGGER=check
 BUILDER_CACHE_SOURCES=true
+CI_ON_TRIGGER=check
+CI_PACKAGE_BUMP=24.11.0-1/1
 CI_PKGBUILD_SOURCE=https://aur.archlinux.org/wxmaxima-git.git
