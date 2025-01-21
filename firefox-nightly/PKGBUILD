@@ -1,45 +1,21 @@
-# Maintainer:  Devin Cofer <ranguvar[at]ranguvar[dot]io>
-# Maintainer:  Niko Cantero <[at]niko:conduit.rs (Matrix)>
-# Contributor: Kyle De'Vir (QuartzDragon) <kyle[dot]devir[at]mykolab[dot]com>
-# Contributor: Jonas Heinrich <onny@project-insanity.org>
-# Contributor: Maxwell Anselm <silverhammermba+aur@gmail.com>
-# Contributor: Jan Alexander Steffens (heftig) <jan.steffens@gmail.com>
-# Contributor: Ionut Biru <ibiru@archlinux.org>
-# Contributor: Jakub Schmidtke <sjakub@gmail.com>
+# Maintainer: aur.chaotic.cx
 
 ## options
-# three-stage profile-guided optimization
 : ${_build_pgo:=true}
-
-# reuse existing PGO profile
 : ${_build_pgo_reuse:=try}
-
-# package debug symbols for upload
-: ${_build_symbols:=false}
-
-# make latest mozilla-central nightly revision
-: ${_build_nightly:=false}
-
-# target wayland only
-: ${_build_wayland:=false}
-
-# profile with xvfb-run, if possible
 : ${_build_pgo_xvfb:=false}
 
-# modify package name
-: ${_build_hg:=true}
+: ${_build_symbols:=false}
 
-unset _pkgtype
-[[ "${_build_nightly::1}" == "t" ]] && _pkgtype+="-nightly"
-[[ "${_build_wayland::1}" == "t" ]] && _pkgtype+="-wayland"
-[[ "${_build_hg::1}" == "t" ]] && _pkgtype+="-hg"
+: ${_ver_clang=}
+: ${RUSTUP_TOOLCHAIN:=stable}
 
 ## basic info
-pkgname="firefox${_pkgtype:-}"
 _pkgname=firefox-nightly
-pkgver=131.0a1+20240828.1+hc9eea28a07a6
+pkgname="$_pkgname"
+pkgver=136.0a1+20250118.09+hd71625119
 pkgrel=1
-pkgdesc="Standalone web browser from mozilla.org"
+pkgdesc="Fast, Private & Safe Web Browser"
 url="https://www.mozilla.org/firefox/channel/#nightly"
 license=('MPL-2.0')
 arch=(x86_64)
@@ -51,31 +27,34 @@ depends=(
   libevent
   libjpeg
   libpulse
-  libvpx
-  libwebp
+  libvpx.so
+  libwebp.so
+  libxss
+  libxt
   mime-types
   pipewire
   ttf-font
   zlib
 )
 makedepends=(
+  "clang${_ver_clang:-}"
+  "lld${_ver_clang:-}"
+  "llvm${_ver_clang:-}"
+  "wasi-compiler-rt${_ver_clang:-}"
+  cargo
   cbindgen
-  clang
   diffutils
   dump_syms
   imake
   inetutils
   jack
-  lld
-  llvm
   mercurial
   mesa
   nasm
   nodejs
   python
-  rust
+  #python-setuptools
   unzip
-  wasi-compiler-rt
   wasi-libc
   wasi-libc++
   wasi-libc++abi
@@ -91,45 +70,17 @@ optdepends=(
 )
 
 if [[ "${_build_pgo::1}" == "t" ]]; then
-  if [[ "${_build_pgo_xvfb::1}" == "t" ]] && [ "${_build_wayland::1}" != "t" ]; then
+  if [[ "${_build_pgo_xvfb::1}" == "t" ]]; then
     makedepends+=(
       xorg-server-xvfb
     )
   else
     makedepends+=(
       weston
-      xwayland-run # AUR
+      xorg-xwayland
+      wlheadless-run # aur/xwayland-run-git
     )
   fi
-fi
-
-if [[ "${_build_nightly::1}" == "t" ]]; then
-  pkgdesc+=" - nightly"
-else
-  pkgdesc+=" - mozilla-unified hg, nightly branding"
-fi
-
-if [[ "${_build_wayland::1}" == "t" ]]; then
-  pkgdesc+=", targeting wayland"
-else
-  pkgdesc+=", targeting wayland and x11"
-
-  depends+=(
-    libxss
-    libxt
-  )
-fi
-
-if [[ "${_build_hg::1}" == "t" ]]; then
-  depends+=(
-    nspr-hg
-    nss-hg
-  )
-fi
-
-if [[ "$pkgname" != "firefox-nightly" ]]; then
-  provides=('firefox-nightly')
-  conflicts=('firefox-nightly')
 fi
 
 options=(
@@ -140,99 +91,62 @@ options=(
   !strip
 )
 
-if [[ "${_build_nightly::1}" == "t" ]]; then
-  _get_version_info() {
-    local _info_url="https://archive.mozilla.org/pub/firefox/nightly/latest-mozilla-central"
-    local _filename=$(
-      curl -Ssf "$_info_url/" | grep linux-x86_64\.txt \
-        | sed -E 's&^.*href=".*/(firefox-.*\.linux-x86_64\.txt)".*$&\1&' \
-        | sort -rV | head -1
-    )
-    local _response=$(curl -Ssf "$_info_url/$_filename")
-    _version=$(printf '%s' "$_filename" | sed -E 's&^firefox-([0-9]+\.[0-9].*)\.en-US\.linux-x86_64\.txt$&\1&')
-    _date=$(printf '%s' "$_response" | head -1 | sed -E 's&^([0-9]{8})([0-9]*)$&\1.\2&')
-    _revision=$(printf '%s' "$_response" | tail -1 | sed -E 's&^.*/rev/([a-f0-9]+)$&\1&')
-  }
-  _get_version_info
+_get_version_info() {
+  local _info_url="https://archive.mozilla.org/pub/firefox/nightly/latest-mozilla-central"
+  local _filename=$(
+    curl -Ssf "$_info_url/" | grep linux-x86_64\.txt \
+      | sed -E 's&^.*href=".*/(firefox-.*\.linux-x86_64\.txt)".*$&\1&' \
+      | sort -rV | head -1
+  )
+  local _response=$(curl -Ssf "$_info_url/$_filename")
+  _version=$(printf '%s' "$_filename" | sed -E 's&^firefox-([0-9]+\.[0-9].*)\.en-US\.linux-x86_64\.txt$&\1&')
+  _date=$(printf '%s' "$_response" | head -1 | sed -E 's&^([0-9]{8})([0-9]*)$&\1.\2&')
+  _revision=$(printf '%s' "$_response" | tail -1 | sed -E 's&^.*/rev/([a-f0-9]+)$&\1&')
+}
 
-  _repo="https://hg.mozilla.org/mozilla-central"
+_source_main() {
+  _repo="mozilla-central"
 
-  source+=("hg+$_repo#revision=$_revision")
-  sha256sums+=('SKIP')
+  source=(
+    "hg+https://hg.mozilla.org/$_repo#revision=$_revision"
+    'firefox-nightly.desktop'
+    'identity-icons-brand.svg'
+    'firefox-install-dir.patch'
+  )
+  sha256sums=(
+    'SKIP'
+    '022e9329fdb4af6267ad32a1398a9ae94a90cbb1e80dcf63e8b19e95490e7a35'
+    'a9b8b4a0a1f4a7b4af77d5fc70c2686d624038909263c795ecc81e0aec7711e9'
+    'c80937969086550237b0e89a02330d438ce17c3764e43cc5d030cb21c2abce5f'
+  )
 
-  pkgver() {
-    printf '%s+%s+h%s' "${_version:?}" "${_date::11}" "${_revision::9}"
-  }
-else
-  _repo="https://hg.mozilla.org/mozilla-unified"
+  validpgpkeys=(
+    # Mozilla Software Releases <release@mozilla.com>
+    # https://blog.mozilla.org/security/2023/05/11/updated-gpg-key-for-signing-firefox-releases/
+    14F26682D0916CDD81E37B6D61B7B526D98F0353
+  )
+}
 
-  source+=("hg+$_repo")
-  sha256sums+=('SKIP')
+_get_version_info
+_source_main
 
-  pkgver() {
-    cd "${_repo##*/}"
-
-    local version=$(< browser/config/version_display.txt)
-    local date=$(date +%Y%m%d) # Without TZ=UTC, to match systemd timer
-    local counter=1
-    local rev=$(hg id -i -r. | sed 's/+$//')
-
-    local last_rev=${pkgver##*+h} tmp=${pkgver#*+}
-    tmp=${tmp%+*}
-    local last_date=${tmp%.*} last_counter=${tmp#*.}
-    if [[ $date == $last_date ]]; then
-      if [[ $rev == $last_rev ]]; then
-        counter=$last_counter
-      else
-        counter=$((last_counter + 1))
-      fi
-    fi
-
-    echo $version+$date.$counter+h$rev
-  }
-fi
-
-source+=(
-  $_pkgname.desktop
-  identity-icons-brand.svg
-  firefox-install-dir.patch
-)
-sha256sums+=(
-  '022e9329fdb4af6267ad32a1398a9ae94a90cbb1e80dcf63e8b19e95490e7a35'
-  'a9b8b4a0a1f4a7b4af77d5fc70c2686d624038909263c795ecc81e0aec7711e9'
-  'c80937969086550237b0e89a02330d438ce17c3764e43cc5d030cb21c2abce5f'
-)
-validpgpkeys=(
-  # Mozilla Software Releases <release@mozilla.com>
-  # https://blog.mozilla.org/security/2023/05/11/updated-gpg-key-for-signing-firefox-releases/
-  14F26682D0916CDD81E37B6D61B7B526D98F0353
-)
-
-# Google API keys (see http://www.chromium.org/developers/how-tos/api-keys)
-# Note: These are for Arch Linux use ONLY. For your own distribution, please
-# get your own set of keys. Feel free to contact foutrelis@archlinux.org for
-# more information.
-_google_api_key=AIzaSyDwr302FpOSkGRpLlUpPThNTDPbXcIn_FM
-
-# Mozilla API keys (see https://location.services.mozilla.com/api)
-# Note: These are for Arch Linux use ONLY. For your own distribution, please
-# get your own set of keys. Feel free to contact heftig@archlinux.org for
-# more information.
-_mozilla_api_key=e05d56db0a694edc8b5aaebda3f2db6a
+pkgver() {
+  # set by _get_version_info
+  printf '%s+%s+h%s' "${_version:?}" "${_date::11}" "${_revision::9}"
+}
 
 prepare() {
-  mkdir mozbuild
+  mkdir -p mozbuild
   cd "${_repo##*/}"
 
-  # Change install dir from 'firefox' to 'firefox-nightly'
-  patch -Np1 -F100 -i "../firefox-install-dir.patch"
-
-  echo -n "$_google_api_key" > google-api-key
-  echo -n "$_mozilla_api_key" > mozilla-api-key
+  # Google API keys (see http://www.chromium.org/developers/how-tos/api-keys)
+  # Note: These are for Arch Linux use ONLY. For your own distribution, please
+  # get your own set of keys. Feel free to contact foutrelis@archlinux.org for
+  # more information.
+  echo -n "AIzaSyDwr302FpOSkGRpLlUpPThNTDPbXcIn_FM" > google-api-key
 
   cat > ../mozconfig << END
 ac_add_options --enable-application=browser
-ac_add_options --disable-artifact-builds
 mk_add_options MOZ_OBJDIR=${PWD@Q}/obj
 
 ac_add_options --prefix=/usr
@@ -241,10 +155,10 @@ ac_add_options --enable-hardening
 ac_add_options --enable-rust-simd
 ac_add_options --enable-wasm-simd
 ac_add_options --enable-linker=lld
+ac_add_options --disable-install-strip
 ac_add_options --disable-elf-hack
 ac_add_options --disable-bootstrap
 ac_add_options --with-wasi-sysroot=/usr/share/wasi-sysroot
-export MOZ_ENABLE_WAYLAND=1
 
 # Branding
 ac_add_options --with-branding=browser/branding/nightly
@@ -260,7 +174,6 @@ export MOZ_REQUIRE_SIGNING=
 # Keys
 ac_add_options --with-google-location-service-api-keyfile=${PWD@Q}/google-api-key
 ac_add_options --with-google-safebrowsing-api-keyfile=${PWD@Q}/google-api-key
-ac_add_options --with-mozilla-api-keyfile=${PWD@Q}/mozilla-api-key
 
 # System Libraries
 ac_add_options --with-system-jpeg
@@ -293,35 +206,37 @@ mk_add_options MOZ_SERVICES_HEALTHREPORT=0
 mk_add_options MOZ_TELEMETRY_REPORTING=0
 
 # Optimization
-ac_add_options --enable-optimize=-O3
+ac_add_options --enable-optimize
 ac_add_options --enable-lto=cross,full
-ac_add_options OPT_LEVEL="3"
-ac_add_options RUSTC_OPT_LEVEL="3"
+ac_add_options OPT_LEVEL="2"
+ac_add_options RUSTC_OPT_LEVEL="2"
 
 # Other
-export AR=llvm-ar
-export CC='clang'
-export CXX='clang++'
-export NM=llvm-nm
-export RANLIB=llvm-ranlib
+export AR=llvm-ar${_ver_clang:+-$_ver_clang}
+export CC=clang${_ver_clang:+-$_ver_clang}
+export CXX=clang++${_ver_clang:+-$_ver_clang}
+export NM=llvm-nm${_ver_clang:+-$_ver_clang}
+export RANLIB=llvm-ranlib${_ver_clang:+-$_ver_clang}
 END
 
-  if [[ "${_build_wayland::1}" == "t" ]]; then
-    echo >> ../mozconfig "ac_add_options --enable-default-toolkit=cairo-gtk3-wayland-only"
-  else
-    echo >> ../mozconfig "ac_add_options --enable-default-toolkit=cairo-gtk3-x11-wayland"
-  fi
-
-  if [[ "${_build_hg::1}" == "t" ]]; then
-    cat >> ../mozconfig << END
-ac_add_options --with-system-nspr
-ac_add_options --with-system-nss
-END
-  fi
+  local src
+  for src in "${source[@]}"; do
+    src="${src%%::*}"
+    src="${src##*/}"
+    src="${src%.zst}"
+    if [[ $src == *.patch ]]; then
+      printf '\nApplying patch: %s\n' "$src"
+      patch -Np1 -F100 -i "${srcdir:?}/$src"
+    fi
+  done
 }
 
 build() (
   cd "${_repo##*/}"
+
+  export PATH="/usr/lib/llvm${_ver_clang:-}/bin:$PATH"
+  export LD_LIBRARY_PATH=/usr/lib/llvm${_ver_clang:-}/lib
+  export RUSTUP_TOOLCHAIN
 
   export XDG_RUNTIME_DIR="${XDG_RUNTIME_DIR:-$srcdir/xdg-runtime}"
   [ ! -d "$XDG_RUNTIME_DIR" ] && install -dm700 "${XDG_RUNTIME_DIR:?}"
@@ -329,8 +244,9 @@ build() (
   export MACH_BUILD_PYTHON_NATIVE_PACKAGE_SOURCE=pip
   export MOZBUILD_STATE_PATH="$srcdir/mozbuild"
   export MOZ_BUILD_DATE="$(date -u${SOURCE_DATE_EPOCH:+d @$SOURCE_DATE_EPOCH} +%Y%m%d%H%M%S)"
-  export MOZ_ENABLE_FULL_SYMBOLS=1
   export MOZ_NOSPAM=1
+
+  export MOZ_ENABLE_FULL_SYMBOLS=1
   export MOZ_SOURCE_REPO="$_repo"
 
   # malloc_usable_size is used in various parts of the codebase
@@ -411,8 +327,10 @@ build() (
 
     if [[ -s merged.profdata ]]; then
       stat -c "Profile data found (%s bytes)" merged.profdata
-      echo >> .mozconfig "ac_add_options --enable-profile-use=cross"
-      echo >> .mozconfig "ac_add_options --with-pgo-profile-path='${PWD@Q}/merged.profdata'"
+      cat >> .mozconfig - << END
+ac_add_options --enable-profile-use=cross
+ac_add_options --with-pgo-profile-path=${PWD@Q}/merged.profdata
+END
 
       # save profdata for reuse
       cp --reflink=auto -f merged.profdata "$_old_profdata"
@@ -422,7 +340,9 @@ build() (
 
     if [[ -s jarlog ]]; then
       stat -c "Jar log found (%s bytes)" jarlog
-      echo >> .mozconfig "ac_add_options --with-pgo-jarlog='${PWD@Q}/jarlog'"
+      cat >> .mozconfig - << END
+ac_add_options --with-pgo-jarlog=${PWD@Q}/jarlog
+END
 
       # save jarlog for reuse
       cp --reflink=auto -f jarlog "$_old_jarlog"
@@ -437,8 +357,10 @@ build() (
     ./mach build --priority normal
   fi
 
-  echo "Building symbol archive..."
-  ./mach buildsymbols
+  if [[ "${_build_symbols::1}" == "t" ]]; then
+    echo "Building symbol archive..."
+    ./mach buildsymbols
+  fi
 )
 
 package() {
@@ -522,8 +444,8 @@ END
   install -Dvm644 /dev/stdin "$sprovider" << END
 [Shell Search Provider]
 DesktopId=$_pkgname.desktop
-BusName=org.mozilla.${_pkgname//-/}.SearchProvider
-ObjectPath=/org/mozilla/${_pkgname//-/}/SearchProvider
+BusName=org.mozilla.${_pkgname//-/_}.SearchProvider
+ObjectPath=/org/mozilla/${_pkgname//-/_}/SearchProvider
 Version=2
 END
 
@@ -537,5 +459,3 @@ END
     fi
   fi
 }
-
-# vim:set sw=2 sts=-1 et:

@@ -1,6 +1,6 @@
 # occasionally regenerate pgo profile
 _set_pgo_reuse() {
-  local _old_profdata="${DESTDIR:-$startdir}/merged.profdata"
+  local _old_profdata="$SRCDEST/merged.profdata"
 
   if [[ -s "$_old_profdata" ]]; then
     local _time_now=$(\date '+%s')
@@ -20,6 +20,3 @@ _set_pgo_reuse() {
 _set_pgo_reuse
 
 : ${_build_symbols:=false}
-: ${_build_nightly:=true}
-: ${_build_wayland:=false}
-: ${_build_hg:=false}
