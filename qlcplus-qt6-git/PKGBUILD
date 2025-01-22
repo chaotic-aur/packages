@@ -1,0 +1,70 @@
+# Maintainer: aur.chaotic.cx
+
+## links
+# http://qlcplus.org/
+# https://github.com/mcallegari/qlcplus
+
+_pkgname="qlcplus"
+pkgname="$_pkgname-qt6-git"
+pkgver=4.14.0.r3.g7b60262
+pkgrel=1
+pkgdesc="Q Light Controller Plus to control professional DMX lighting fixtures"
+url="https://github.com/mcallegari/qlcplus"
+license=('Apache-2.0')
+arch=('x86_64' 'armv7h')
+
+depends=(
+  'fftw'
+  'libftdi'
+  'libmad'
+  'libsndfile'
+  'qt6-multimedia'
+  'qt6-serialport'
+  'qt6-svg'
+  'qt6-websockets'
+)
+makedepends=(
+  'cmake'
+  'git'
+  'ninja'
+  'qt6-tools'
+)
+optdepends=(
+  'ola: Open Lighting Architecture plugin'
+)
+
+provides=("$_pkgname")
+conflicts=("$_pkgname")
+
+_pkgsrc="$_pkgname"
+source=("$_pkgsrc"::"git+$url.git")
+sha256sums=('SKIP')
+
+pkgver() {
+  cd "$_pkgsrc"
+  local _tag _version _revision _hash
+  _tag=$(git tag | grep -E '^QLC\+_[0-9\.]+$' | sort -rV | head -1)
+  _version=$(sed -E 's&^[^0-9]*&&' <<< "${_tag:?}")
+  _revision=$(git rev-list --count --cherry-pick "$_tag"...HEAD)
+  _hash=$(git rev-parse --short=7 HEAD)
+  printf '%s.r%s.g%s' "${_version:?}" "${_revision:?}" "${_hash:?}"
+}
+
+build() {
+  local _cmake_options=(
+    -B build
+    -S "$_pkgsrc"
+    -G Ninja
+    -DCMAKE_BUILD_TYPE=None
+    -DCMAKE_INSTALL_PREFIX='/usr'
+    -DQT_VERSION_MAJOR=6
+    -Wno-dev
+  )
+
+  cmake "${_cmake_options[@]}"
+  cmake --build build
+}
+
+package() {
+  DESTDIR="$pkgdir" cmake --install build
+}
