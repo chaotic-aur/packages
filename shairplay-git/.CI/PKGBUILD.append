@@ -1,0 +1,11 @@
+license=('GPL-3.0-or-later')
+
+unset epoch
+
+_pkgsrc="shairplay"
+pkgver() {
+  cd "$_pkgsrc"
+  printf "r%s.%s" \
+    "$(git rev-list --count HEAD)" \
+    "$(git rev-parse --short=7 HEAD)"
+}
