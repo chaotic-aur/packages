@@ -5,7 +5,7 @@
 
 pkgname=jellyseerr
 pkgver=2.3.0
-pkgrel=1
+pkgrel=2
 pkgdesc='Request management and media discovery tool for the Plex ecosystem'
 arch=(x86_64 aarch64)
 url='https://github.com/Fallenbagel/jellyseerr'
@@ -22,7 +22,7 @@ optdepends=(
   'sonarr: Smart PVR for newsgroup and torrent users'
   'radarr: Movie organizer/manager for usenet and torrent users'
 )
-makedepends=(pnpm nodejs-lts-jod)
+makedepends=(pnpm)
 backup=(
   etc/conf.d/jellyseerr
   usr/lib/jellyseerr/config/settings.json
@@ -30,13 +30,15 @@ backup=(
 options=(!strip !debug)
 install=jellyseerr.install
 source=(
-  "${pkgname}-${pkgver}.tar.gz::https://github.com/Fallenbagel/jellyseerr/archive/v${pkgver}.tar.gz"
+  "${pkgname}-${pkgver}.tar.gz::${url}/archive/v${pkgver}.tar.gz"
+  "arch.patch::${url}/compare/develop...pnpm-10-for-arch-folks.patch"
   jellyseerr.sysusers
   jellyseerr.tmpfiles
   jellyseerr.service
   jellyseerr.conf.d
 )
 sha256sums=('05ed38173f9835ccedd2c24fe490637c9fa64ca3f213747b6776bde634b66827'
+  '909904a7690665b154ed8411bb8902d23da9511d08ca83c7da60cea4266f7846'
   '092221b83ded237f57003587533f623d9bc70455493dae9508bb0edac226f9cd'
   '202d6e4c1d4ee555c33fe7e8473c74aef795e145f3bbc885333c003a75e17f14'
   'ee4a4ed8b2ff41fe00582e11283526a08a2ed1154e8e278d898d98c8184c65eb'
@@ -45,8 +47,9 @@ sha256sums=('05ed38173f9835ccedd2c24fe490637c9fa64ca3f213747b6776bde634b66827'
 prepare() {
   cd "${pkgname}-${pkgver}"
 
+  patch -Np1 -i "../arch.patch"
+
   sed -i 's/husky install//' package.json
-  sed -i 's/"pnpm": "^9.0.0"/"pnpm": "^10.0.0"/' package.json
 
   echo "{\"commitTag\": \"${pkgver}\"}" > committag.json
 
