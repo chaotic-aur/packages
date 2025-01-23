@@ -1,1 +1,2 @@
+CI_REBUILD_TRIGGERS=hyprlang-git:qt6-wayland
 CI_PKGBUILD_SOURCE=aur
