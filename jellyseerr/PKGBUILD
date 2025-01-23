@@ -5,7 +5,7 @@
 
 pkgname=jellyseerr
 pkgver=2.3.0
-pkgrel=3
+pkgrel=4
 pkgdesc='Request management and media discovery tool for the Plex ecosystem'
 arch=(x86_64 aarch64)
 url='https://github.com/Fallenbagel/jellyseerr'
@@ -14,7 +14,7 @@ depends=(
   bash
   gcc-libs
   glibc
-  pnpm
+  nodejs
 )
 optdepends=(
   'jellyfin-server: The Free Software Media System'
