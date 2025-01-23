@@ -2,7 +2,7 @@
 
 _pkgname="gimp"
 pkgname="$_pkgname-git"
-pkgver=3.0.0RC2.r19.gf8436b6
+pkgver=3.0.0RC2.r219.gbb2181b
 pkgrel=1
 pkgdesc="GNU Image Manipulation Program"
 url="https://gitlab.gnome.org/GNOME/gimp"
@@ -113,7 +113,6 @@ build() {
     --libexecdir=/usr/bin
     -Dappdata-test=disabled
     -Dcheck-update=no
-    -Dg-ir-doc=false
     -Dgi-docgen=disabled
     -Dheadless-tests=enabled
     -Dilbm=disabled
