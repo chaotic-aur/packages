@@ -5,7 +5,7 @@
 
 pkgname=jellyseerr
 pkgver=2.3.0
-pkgrel=2
+pkgrel=3
 pkgdesc='Request management and media discovery tool for the Plex ecosystem'
 arch=(x86_64 aarch64)
 url='https://github.com/Fallenbagel/jellyseerr'
@@ -14,6 +14,7 @@ depends=(
   bash
   gcc-libs
   glibc
+  pnpm
 )
 optdepends=(
   'jellyfin-server: The Free Software Media System'
@@ -38,7 +39,7 @@ source=(
   jellyseerr.conf.d
 )
 sha256sums=('05ed38173f9835ccedd2c24fe490637c9fa64ca3f213747b6776bde634b66827'
-  '909904a7690665b154ed8411bb8902d23da9511d08ca83c7da60cea4266f7846'
+  '482e758d9d376becdcd7b5fbfbe8682cf2fb9d20ea9a89c2b8040dddd2645015'
   '092221b83ded237f57003587533f623d9bc70455493dae9508bb0edac226f9cd'
   '202d6e4c1d4ee555c33fe7e8473c74aef795e145f3bbc885333c003a75e17f14'
   'ee4a4ed8b2ff41fe00582e11283526a08a2ed1154e8e278d898d98c8184c65eb'
@@ -69,8 +70,6 @@ build() {
 }
 
 package() {
-  depends+=(nodejs)
-
   cd "${pkgname}-${pkgver}"
   install -dm755 "${pkgdir}/usr/lib/jellyseerr"
 
