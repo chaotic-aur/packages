@@ -1,2 +1,0 @@
-export LIBGL_ALWAYS_SOFTWARE=true
-export GALLIUM_DRIVER=softpipe
