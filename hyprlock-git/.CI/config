@@ -1,2 +1,3 @@
 CI_REBUILD_TRIGGERS=hyprlang-git:hyprgraphics-git:hyprwayland-scanner-git
+CI_PACKAGE_BUMP=0.6.1.r16.g742eb98c-1/1
 CI_PKGBUILD_SOURCE=aur
