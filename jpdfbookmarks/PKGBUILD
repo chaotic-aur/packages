@@ -1,0 +1,63 @@
+# Maintainer: aur.chaotic.cx
+
+_pkgname="jpdfbookmarks"
+pkgname="$_pkgname"
+pkgver=2.5.2
+pkgrel=3
+pkgdesc="Java PDF bookmarks editor"
+url="https://flavianopetrocchi.blogspot.com/"
+license=('GPL-3.0-or-later')
+arch=('any')
+
+_pkgsrc="$_pkgname-$pkgver"
+_pkgext="tar.gz"
+source=(
+  "$_pkgsrc.$_pkgext"::"https://downloads.sourceforge.net/project/jpdfbookmarks/JPdfBookmarks-$pkgver/$_pkgsrc.$_pkgext"
+  #"$_pkgname-src-$pkgver.$_pkgext"::"https://downloads.sourceforge.net/project/jpdfbookmarks/JPdfBookmarks-$pkgver/$_pkgname-src-$pkgver.$_pkgext"
+)
+sha256sums=(
+  '8ab51c20414591632e48ad3817e6c97e9c029db8aaeff23d74c219718cfe19f9'
+  #'27333374386101eede63251a21816683888b84efad806afe5e5bedcfca9914bf'
+)
+
+package() {
+  depends=('java-runtime')
+
+  cd "$_pkgsrc"
+  install -dm755 "$pkgdir/usr/share/java/$_pkgname/lib"
+  install -Dm644 lib/* -t "$pkgdir/usr/share/java/$_pkgname/lib/"
+
+  install -Dm755 "$_pkgname.jar" -t "$pkgdir/usr/share/java/$_pkgname/"
+
+  install -Dm644 "$_pkgname.png" -t "$pkgdir/usr/share/pixmaps/"
+
+  install -Dm755 /dev/stdin "$pkgdir/usr/bin/$_pkgname" << END
+#!/usr/bin/env sh
+JAR_NAME="$_pkgname.jar"
+JVM_OPTIONS="-Xms64m -Xmx512m -splash: "
+SCRIPT_DIR="/usr/share/java/$_pkgname"
+
+if [ -n "\$JAVA_HOME" ]; then
+  exec "\$JAVA_HOME/bin/java" \$JVM_OPTIONS -jar "\$SCRIPT_DIR/\$JAR_NAME" "\$@"
+else
+  exec java \$JVM_OPTIONS -jar "\$SCRIPT_DIR/\$JAR_NAME" "\$@"
+fi
+END
+
+  install -Dm644 /dev/stdin "$pkgdir/usr/share/applications/$_pkgname.desktop" << END
+[Desktop Entry]
+Type=Application
+Name=JPdfBookmarks
+GenericName=$pkgdesc
+Comment=$pkgdesc
+Exec=$_pkgname %f
+Icon=$_pkgname
+StartupWMClass=it-flavianopetrocchi-jpdfbookmarks-JPdfBookmarks
+MimeType=application/pdf;
+X-KDE-StartupNotify=true
+Terminal=false
+Categories=Office;
+END
+
+  chmod -R u+rwX,go+rX,go-w "$pkgdir/"
+}

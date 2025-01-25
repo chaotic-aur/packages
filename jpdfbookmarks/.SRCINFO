@@ -1,0 +1,12 @@
+pkgbase = jpdfbookmarks
+	pkgdesc = Java PDF bookmarks editor
+	pkgver = 2.5.2
+	pkgrel = 3
+	url = https://flavianopetrocchi.blogspot.com/
+	arch = any
+	license = GPL-3.0-or-later
+	source = jpdfbookmarks-2.5.2.tar.gz::https://downloads.sourceforge.net/project/jpdfbookmarks/JPdfBookmarks-2.5.2/jpdfbookmarks-2.5.2.tar.gz
+	sha256sums = 8ab51c20414591632e48ad3817e6c97e9c029db8aaeff23d74c219718cfe19f9
+
+pkgname = jpdfbookmarks
+	depends = java-runtime
