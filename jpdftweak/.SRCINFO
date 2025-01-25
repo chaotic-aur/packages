@@ -1,0 +1,12 @@
+pkgbase = jpdftweak
+	pkgdesc = A Swiss Army Knife for PDF files
+	pkgver = 1.1
+	pkgrel = 2
+	url = http://jpdftweak.sourceforge.net/
+	arch = any
+	license = AGPL-3.0-or-later
+	source = https://downloads.sourceforge.net/project/jpdftweak/jpdftweak/jpdftweak-1.1/jpdftweak-compact-1.1.zip
+	sha256sums = e8aa3f44bc93a7a0a4d32d500fdc02509608cc2cf5a34942a772a10eec478897
+
+pkgname = jpdftweak
+	depends = java-runtime

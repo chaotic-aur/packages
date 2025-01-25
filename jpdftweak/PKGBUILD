@@ -1,0 +1,55 @@
+# Maintainer: aur.chaotic.cx
+
+_pkgname="jpdftweak"
+pkgname="$_pkgname"
+pkgver=1.1
+pkgrel=2
+pkgdesc="A Swiss Army Knife for PDF files"
+url="http://jpdftweak.sourceforge.net/"
+license=('AGPL-3.0-or-later')
+arch=('any')
+
+source=(
+  "https://downloads.sourceforge.net/project/jpdftweak/jpdftweak/jpdftweak-$pkgver/jpdftweak-compact-$pkgver.zip"
+  #"https://downloads.sourceforge.net/project/jpdftweak/jpdftweak/jpdftweak-$pkgver/jpdftweak-src-$pkgver.zip"
+)
+sha256sums=(
+  'e8aa3f44bc93a7a0a4d32d500fdc02509608cc2cf5a34942a772a10eec478897'
+  #'2156403c11c1e7e9366d5ed3b61a318ed5df0df30b522a79fc7e204d74129f67'
+)
+
+package() {
+  depends=('java-runtime')
+
+  install -Dm755 "$_pkgname.jar" -t "$pkgdir/usr/share/java/$_pkgname/"
+
+  install -Dm644 icons/icon256.png "$pkgdir/usr/share/pixmaps/$_pkgname.png"
+
+  install -Dm755 /dev/stdin "$pkgdir/usr/bin/$_pkgname" << END
+#!/usr/bin/env sh
+JAR_NAME="$_pkgname.jar"
+JVM_OPTIONS="-Xms64m -Xmx512m "
+SCRIPT_DIR="/usr/share/java/$_pkgname"
+
+if [ -n "\$JAVA_HOME" ]; then
+  exec "\$JAVA_HOME/bin/java" \$JVM_OPTIONS -jar "\$SCRIPT_DIR/\$JAR_NAME" "\$@"
+else
+  exec java \$JVM_OPTIONS -jar "\$SCRIPT_DIR/\$JAR_NAME" "\$@"
+fi
+END
+
+  install -Dm644 /dev/stdin "$pkgdir/usr/share/applications/$_pkgname.desktop" << END
+[Desktop Entry]
+Type=Application
+Name=jPdf Tweak
+Comment=$pkgdesc
+Exec=$_pkgname %f
+Icon=$_pkgname
+StartupWMClass=jpdftweak-Main
+X-KDE-StartupNotify=true
+Terminal=false
+Categories=Office;
+END
+
+  chmod -R u+rwX,go+rX,go-w "$pkgdir/"
+}
