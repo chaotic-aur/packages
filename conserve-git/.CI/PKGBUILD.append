@@ -1,0 +1,13 @@
+license=('GPL-2.0-or-later')
+depends=(
+  'gcc-libs'
+  'openssl'
+  'zlib'
+)
+
+_pkgsrc="${pkgname%-git}"
+
+check() {
+  cd "$_pkgsrc"
+  cargo test
+}
