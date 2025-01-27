@@ -13,6 +13,7 @@ pkgbase = hyprgraphics-git
 	depends = cairo
 	depends = hyprutils-git
 	depends = libjpeg
+	depends = libspng
 	depends = libwebp
 	depends = libjxl
 	depends = file
