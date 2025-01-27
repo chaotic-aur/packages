@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+_check_update() {
+  local _dl_url _regex _filename _pkgver_new _pkgver_old
+  _dl_url=$(
+    curl -v --no-progress-meter -r 0-1 "https://www.motivewave.com/update/download.do?file_type=LINUX" 2>&1 > /dev/null \
+      | grep location \
+      | sed -E 's@^.*\blocation:.*\b(https:.*\.deb).*$@\1@'
+  )
+
+  _regex='motivewave_([0-9]+\.[0-9]+\.[0-9]+)_amd64\.deb'
+
+  _filename=$(
+    printf '%s' "$_dl_url" \
+      | sed -E 's@^.*/('"$_regex"')$@\1@'
+  )
+
+  _pkgver_new=$(
+    printf '%s' "$_filename" \
+      | sed -E 's@^'"$_regex"'$@\1@'
+  )
+
+  _pkgver_old=$(LANG=C LC_ALL=C pacman -Si "chaotic-aur/motivewave" | grep -Pom1 '^Version\s+:\s+\K\S.*\S$')
+
+  if [ $(vercmp "$_pkgver_old" "${_pkgver_new:?}") -ge 0 ]; then
+    echo "Skipping build.  $_pkgver_old >= $_pkgver_new"
+    return "$CI_CODE_SKIP"
+  fi
+}
+
+_check_update || return $?
