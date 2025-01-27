@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+_check_update() {
+  local _snapname _response _dl_url _pkgver_new _pkgver_old
+  _snapname="tradingview"
+
+  _response=$(
+    curl -H 'Snap-Device-Series: 16' --no-progress-meter "http://api.snapcraft.io/v2/snaps/info/$_snapname" \
+      | sed 's@,@,\n@g'
+  )
+
+  _dl_url=$(
+    printf '%s' "$_response" \
+      | grep '"url"' \
+      | sed -E 's@^"url":"(https:.*\.snap)".*$@\1@' \
+      | head -1
+  )
+
+  _pkgver_new=$(
+    printf '%s' "$_response" \
+      | grep '"version"' \
+      | sed -E 's@^"version":"([0-9]+\.[0-9]+\.[0-9]+)".*$@\1@' \
+      | head -1
+  )
+
+  _pkgver_old=$(LANG=C LC_ALL=C pacman -Si "chaotic-aur/tradingview" | grep -Pom1 '^Version\s+:\s+\K\S.*\S$')
+
+  if [ $(vercmp "$_pkgver_old" "${_pkgver_new:?}") -ge 0 ]; then
+    echo "Skipping build.  $_pkgver_old >= $_pkgver_new"
+    return "$CI_CODE_SKIP"
+  fi
+}
+
+_check_update || return $?
