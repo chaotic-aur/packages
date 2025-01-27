@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+_check_update() {
+  local _url _response _tag _pkgver_new _pkgver_old
+  _url="https://github.com/manjaro/pamac"
+  _response=$(curl -Ssf "$_url/releases.atom")
+  _tag=$(
+    printf '%s' "$_response" \
+      | grep '"https://.*/releases/tag/.*"' \
+      | sed -E 's@^.*/releases/tag/v?(.*)".*$@\1@' \
+      | grep -Ev '[a-z]{2}' | sort -rV | head -1
+  )
+  _pkgver_new="${_tag#v}"
+
+  _pkgver_old=$(LANG=C LC_ALL=C pacman -Si chaotic-aur/pamac | grep -Pom1 '^Version\s+:\s+\K\S+(?=-[0-9])')
+
+  if [ $(vercmp "$_pkgver_old" "${_pkgver_new:?}") -ge 0 ]; then
+    echo "Skipping build.  $_pkgver_old >= $_pkgver_new"
+    return "$CI_CODE_SKIP"
+  fi
+}
+
+_check_update || return $?
