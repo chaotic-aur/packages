@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+_check_update() {
+  local _pkgver_old _pkgver_new
+  _pkgver_old=$(LANG=C LC_ALL=C pacman -Si "chaotic-aur/thunderbird-beta" | grep -Pom1 '^Version\s+:\s+\K\S.*\S$')
+  _pkgver_new=$(
+    curl -I --no-progress-meter "https://download.mozilla.org/?product=thunderbird-beta-latest&os=linux64&lang=en-US" \
+      | strings | grep -E '^Location: (.*)$' | sed -E 's&^.*/releases/([0-9][^/]+)/.*$&\1&'
+  )
+
+  if [ $(vercmp "$_pkgver_old" "${_pkgver_new:?}") -ge 0 ]; then
+    echo "Skipping build.  $_pkgver_old >= $_pkgver_new"
+    return "$CI_CODE_SKIP"
+  fi
+}
+
+_check_update || return $?
