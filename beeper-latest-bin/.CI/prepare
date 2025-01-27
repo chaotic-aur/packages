@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+_check_update() {
+  local _dl_url _filename _pkgver_new _pkgver_old
+  _dl_url="https://download.beeper.com/linux/appImage/x64"
+
+  _filename=$(
+    curl -v --no-progress-meter -r 0-1 "$_dl_url" 2>&1 > /dev/null \
+      | grep content-disposition \
+      | sed -E 's@^.*\bcontent-disposition:.*\bfilename="([^"]+)".*$@\1@'
+  )
+
+  _pkgver_new=$(
+    printf '%s' "$_filename" \
+      | sed -E 's@^beeper-([0-9]+\.[0-9]+\.[0-9]+)(.*)?.AppImage$@\1@'
+  )
+
+  _pkgver_old=$(LANG=C LC_ALL=C pacman -Si "chaotic-aur/beeper-latest-bin" | grep -Pom1 '^Version\s+:\s+\K\S.*\S$')
+
+  if [ $(vercmp "$_pkgver_old" "${_pkgver_new:?}") -ge 0 ]; then
+    echo "Skipping build.  $_pkgver_old >= $_pkgver_new"
+    return "$CI_CODE_SKIP"
+  fi
+}
+
+_check_update || return $?
