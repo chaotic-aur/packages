@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+_check_update() {
+  local _url _response _tag _pkgver_new _pkgver_old
+  _url="https://github.com/wxmaxima-developers/wxmaxima"
+  _response=$(curl -Ssf "$_url/releases")
+  _tag=$(
+    printf '%s' "$_response" \
+      | grep -Pom1 "(?<=/releases/tag/Version-)[0-9\.]+(?=\")"
+  )
+  _pkgver_new="${_tag:?}"
+
+  _pkgver_old=$(LANG=C LC_ALL=C pacman -Si chaotic-aur/wxmaxima | grep -Pom1 '^Version\s+:\s+\K\S+(?=-[0-9])')
+
+  if [ $(vercmp "$_pkgver_old" "${_pkgver_new:?}") -ge 0 ]; then
+    echo "Skipping build.  $_pkgver_old >= $_pkgver_new"
+    return "$CI_CODE_SKIP"
+  fi
+}
+
+_check_update || return $?
