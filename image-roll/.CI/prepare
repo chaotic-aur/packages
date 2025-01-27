@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+_check_update() {
+  local _url _repo _response _get _pkgver_new _pkgver_old
+  _url="https://github.com/weclaw1/image-roll"
+  _repo="${_url#*//*/}"
+  _response=$(curl "https://api.github.com/repos/${_repo:?}/tags" -s)
+
+  _get() {
+    printf '%s' "$_response" \
+      | awk -F '"' '/"'"$1"'":/{print $4}' \
+      | sed 's@^.*[a-z-].*$@@' | sort -rV | head -1
+  }
+  _pkgver_new=$(_get name)
+
+  _pkgver_old=$(LANG=C LC_ALL=C pacman -Si chaotic-aur/image-roll | grep -Pom1 '^Version\s+:\s+\K\S+(?=-[0-9])')
+
+  if [ $(vercmp "$_pkgver_old" "${_pkgver_new:?}") -ge 0 ]; then
+    echo "Skipping build.  $_pkgver_old >= $_pkgver_new"
+    return "$CI_CODE_SKIP"
+  fi
+}
+
+_check_update || return $?
