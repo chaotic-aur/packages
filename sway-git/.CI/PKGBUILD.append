@@ -39,16 +39,17 @@ _pkgsrc="$_pkgname"
 source[0]="$_pkgsrc"::"git+$url.git"
 sha512sums[0]='SKIP'
 
-source[1]="wlroots"::"git+https://gitlab.freedesktop.org/wlroots/wlroots.git"
-sha512sums[1]='SKIP'
+source+=("wlroots"::"git+https://gitlab.freedesktop.org/wlroots/wlroots.git")
+sha512sums+=('SKIP')
 
 eval _orig_"$(declare -f prepare)"
 
 prepare() (
   local pkgver=$(pkgver)
   install -dm755 "$_pkgsrc/subprojects"
-  ln -sf "../../wlroots" "$_pkgsrc/subprojects/wlroots"
+  ln -sfr "wlroots" "$_pkgsrc/subprojects/wlroots"
   ln -sf "$_pkgsrc" "$pkgname-$pkgver"
+  ln -sf "$_pkgsrc" "$pkgname"
 
   _orig_prepare
 )
