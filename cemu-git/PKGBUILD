@@ -5,8 +5,8 @@
 
 _pkgname="cemu"
 pkgname="$_pkgname-git"
-pkgver=2.5.r13.g07cd402
-pkgrel=1
+pkgver=2.5.r19.ge834515
+pkgrel=2
 pkgdesc="Nintendo Wii U emulator"
 url="https://github.com/cemu-project/Cemu"
 license=('MPL-2.0')
@@ -23,7 +23,6 @@ makedepends=(
   'bluez-libs'
   'boost'
   'cmake'
-  'cubeb' # AUR
   'curl'
   'git'
   'glib2'
@@ -53,13 +52,35 @@ conflicts=("$_pkgname")
 
 _source_main() {
   _pkgsrc="$_pkgname"
-  source=(
-    "$_pkgsrc"::"git+$url.git"
-    "imgui"::"git+https://github.com/ocornut/imgui.git"
+  source=("$_pkgsrc"::"git+$url.git")
+  sha256sums=('SKIP')
+}
+
+_source_cemu() {
+  local _sources_add=(
+    #'exzap.zarchive'::'git+https://github.com/Exzap/ZArchive.git'
+    #'khronosgroup.vulkan-headers'::'git+https://github.com/KhronosGroup/Vulkan-Headers.git'
+    #'microsoft.vcpkg'::'git+https://github.com/microsoft/vcpkg.git'
+    'mozilla.cubeb'::'git+https://github.com/mozilla/cubeb.git'
+    'ocornut.imgui'::'git+https://github.com/ocornut/imgui.git'
   )
-  sha256sums=(
-    'SKIP'
-    'SKIP'
+
+  local _p
+  for _p in ${_sources_add[@]}; do
+    source+=("$_p")
+    sha256sums+=('SKIP')
+  done
+
+  _prepare_cemu() (
+    cd "$srcdir/$_pkgsrc"
+    local _submodules=(
+      #'exzap.zarchive'::'dependencies/ZArchive'
+      #'khronosgroup.vulkan-headers'::'dependencies/Vulkan-Headers'
+      #'microsoft.vcpkg'::'dependencies/vcpkg'
+      'mozilla.cubeb'::'dependencies/cubeb'
+      'ocornut.imgui'::'dependencies/imgui'
+    )
+    _submodule_update
   )
 }
 
@@ -74,16 +95,24 @@ _source_glslang() {
 }
 
 _source_main
+_source_cemu
 _source_fmt
 _source_glslang
 
 prepare() {
-  cd "$_pkgsrc"
-  git config submodule.dependencies/imgui.url ../imgui
-  git -c protocol.file.allow=always submodule update
+  _submodule_update() {
+    local _module
+    for _module in "${_submodules[@]}"; do
+      git submodule init "${_module##*::}"
+      git submodule set-url "${_module##*::}" "$srcdir/${_module%%::*}"
+      git -c protocol.file.allow=always submodule update "${_module##*::}"
+    done
+  }
 
-  sed -e '/CMAKE_INTERPROCEDURAL_OPTIMIZATION/d' -i CMakeLists.txt
-  sed -e '/FMT_HEADER_ONLY/d' -i src/Common/precompiled.h
+  _prepare_cemu
+
+  sed -e '/CMAKE_INTERPROCEDURAL_OPTIMIZATION/d' -i "$_pkgsrc/CMakeLists.txt"
+  sed -e '/FMT_HEADER_ONLY/d' -i "$_pkgsrc/src/Common/precompiled.h"
 }
 
 pkgver() {
@@ -144,6 +173,7 @@ _build_main() (
     -DCMAKE_BUILD_TYPE=None
     -DENABLE_DISCORD_RPC=OFF
     -DENABLE_VCPKG=OFF
+    -DUSE_SANITIZERS=OFF # cubeb
     -Dfmt_DIR="$srcdir/deps/usr/lib/cmake/fmt"
     -Dglslang_DIR="$srcdir/deps/usr/lib/cmake/glslang"
     -Wno-dev
@@ -169,7 +199,6 @@ package() {
     'libbluetooth.so'
     'libboost_program_options.so'
     'libcrypto.so'
-    'libcubeb.so'
     'libcurl.so'
     'libgdk-3.so'
     'libgobject-2.0.so'
