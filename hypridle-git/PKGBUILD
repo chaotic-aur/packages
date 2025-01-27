@@ -9,7 +9,7 @@ arch=(x86_64 aarch64)
 url="https://github.com/hyprwm/hypridle"
 license=('BSD-3-Clause')
 depends=('wayland' 'hyprlang-git' 'sdbus-cpp>=2.0.0' 'systemd' 'wayland-protocols' 'hyprutils-git')
-makedepends=('git' 'cmake' 'gcc')
+makedepends=('git' 'cmake' 'gcc' 'hyprwayland-scanner-git')
 source=("${_pkgname}::git+https://github.com/hyprwm/hypridle.git")
 provides=("hypridle")
 conflicts=("hypridle")

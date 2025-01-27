@@ -9,6 +9,7 @@ pkgbase = hypridle-git
 	makedepends = git
 	makedepends = cmake
 	makedepends = gcc
+	makedepends = hyprwayland-scanner-git
 	depends = wayland
 	depends = hyprlang-git
 	depends = sdbus-cpp>=2.0.0
