@@ -6,7 +6,7 @@
 pkgname=sway
 pkgver=1.10.1
 epoch=1
-pkgrel=1
+pkgrel=2
 pkgdesc='Tiling Wayland compositor and replacement for the i3 window manager'
 arch=(x86_64)
 url='https://swaywm.org/'
@@ -28,7 +28,7 @@ depends=(
   'wlroots'
   'xcb-util-wm'
 )
-makedepends=(git meson ninja scdoc setconf wayland-protocols)
+makedepends=(git meson ninja scdoc wayland-protocols)
 provides=('wayland-compositor')
 backup=(
   etc/sway/config
@@ -51,20 +51,22 @@ optdepends=(
   'xdg-desktop-portal-gtk: Default xdg-desktop-portal for file picking'
   'xdg-desktop-portal-wlr: xdg-desktop-portal backend'
 )
-source=("git+https://github.com/swaywm/sway.git#tag=${pkgver}?signed"
+source=("git+https://github.com/swaywm/sway.git#tag=$pkgver?signed"
   "50-systemd-user.conf"
-  "sway-portals.conf")
+  "sway-portals.conf"
+  "remove_git_version_format.patch")
 install=sway.install
 sha512sums=('ec7752ac270dac861130255d00b135f03b1e9bc8313b2f21b1e565a7e0a10ef4fa839c6566f541e5b922715b8da836c654b29ebad0d0850699c03e0bb08a8796'
   'd5f9aadbb4bbef067c31d4c8c14dad220eb6f3e559e9157e20e1e3d47faf2f77b9a15e52519c3ffc53dc8a5202cb28757b81a4b3b0cc5dd50a4ddc49e03fe06e'
-  '4f9576b7218aef8152eb60e646985e96b13540b7a4fd34ba68fdc490199cf7a7b46bbee85587e41bffe81fc730222cf408d5712e6251edc85a0a0b0408c1a2df')
+  '4f9576b7218aef8152eb60e646985e96b13540b7a4fd34ba68fdc490199cf7a7b46bbee85587e41bffe81fc730222cf408d5712e6251edc85a0a0b0408c1a2df'
+  'c3a450d3411b5ec6d4bcb485744213a49ee95698d3237804a7bf93258e091753de4666a2245ffe74129151749ec296be4d7741814380133b673f3fd2ec71932b')
 validpgpkeys=('34FF9526CFEF0E97A340E2E40FDE7BE0E88F5E48' # Simon Ser
   '9DDA3B9FA5D58DD5392C78E652CB6609B22DA89A')            # Drew DeVault
 
 prepare() {
   cd "$pkgname"
-  # Set the version information to 'Arch Linux' instead of 'makepkg'
-  sed -i "s/branch \\\'@1@\\\'/Arch Linux/g" meson.build
+  # Patch meson.build to not use git version format (despite `git` presence in the build env)
+  patch -Np1 -i "$srcdir/remove_git_version_format.patch"
 }
 
 build() {
