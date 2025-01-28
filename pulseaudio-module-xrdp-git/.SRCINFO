@@ -1,7 +1,7 @@
 pkgbase = pulseaudio-module-xrdp-git
 	pkgdesc = xrdp pulseaudio module
 	pkgver = 0.7.r19.g1910e49
-	pkgrel = 1
+	pkgrel = 2
 	url = https://github.com/neutrinolabs/pulseaudio-module-xrdp
 	arch = x86_64
 	license = LGPL-2.1-only
