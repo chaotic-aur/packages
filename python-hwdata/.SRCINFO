@@ -1,18 +1,17 @@
 pkgbase = python-hwdata
 	pkgdesc = Python bindings to hwdata
-	pkgver = 2.4.1
+	pkgver = 2.4.2
 	pkgrel = 1
 	url = https://github.com/xsuchy/python-hwdata
 	arch = any
 	license = GPL-2.0-or-later
-	checkdepends = python-pylint
 	makedepends = python-build
 	makedepends = python-installer
 	makedepends = python-setuptools
 	makedepends = python-wheel
 	depends = hwdata
 	depends = python
-	source = https://github.com/xsuchy/python-hwdata/archive/refs/tags/python-hwdata-2.4.1-1.tar.gz
-	sha256sums = a737e0a923c6233048257ad85f3c822544875bc5202c73aaa2808f39d49c29aa
+	source = https://github.com/xsuchy/python-hwdata/archive/refs/tags/python-hwdata-2.4.2-1.tar.gz
+	sha256sums = f17daaf2b7d13645e43d0bcaa7ab7ecda819f3a70e347cfd6ff9130609f9d9de
 
 pkgname = python-hwdata
