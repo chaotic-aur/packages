@@ -1,2 +1,1 @@
-BUILDER_CACHE_SOURCES=true
 CI_PKGBUILD_SOURCE=https://aur.archlinux.org/qoi-git.git

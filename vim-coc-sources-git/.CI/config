@@ -1,3 +1,1 @@
-BUILDER_CACHE_SOURCES=true
-CI_PACKAGE_BUMP=1.2.5.r28.g78890dc-1/1
 CI_PKGBUILD_SOURCE=https://aur.archlinux.org/vim-coc-sources-git.git
