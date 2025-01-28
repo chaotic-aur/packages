@@ -4,7 +4,7 @@
 
 pkgname=powershell-bin
 _pkgname=${pkgname%-bin}
-pkgver=7.4.6
+pkgver=7.5.0
 pkgrel=1
 pkgdesc="A cross-platform automation and configuration tool/framework (binary package)"
 arch=(x86_64 armv7h aarch64)
@@ -13,7 +13,6 @@ license=(MIT)
 depends=(
   gcc-libs
   glibc
-  zlib
 )
 optdepends=('lttng-ust2.12: CoreCLR tracing')
 provides=(powershell)
@@ -25,9 +24,9 @@ source_armv7h=("$_artifact::$url/releases/download/v$pkgver/powershell-$pkgver-l
 source_aarch64=("$_artifact::$url/releases/download/v$pkgver/powershell-$pkgver-linux-arm64.tar.gz")
 source_x86_64=("$_artifact::$url/releases/download/v$pkgver/powershell-$pkgver-linux-x64.tar.gz")
 noextract=("$_artifact")
-sha256sums_x86_64=('6f6015203c47806c5cc444c19d8ed019695e610fbd948154264bf9ca8e157561')
-sha256sums_armv7h=('6f6015203c47806c5cc444c19d8ed019695e610fbd948154264bf9ca8e157561')
-sha256sums_aarch64=('6f6015203c47806c5cc444c19d8ed019695e610fbd948154264bf9ca8e157561')
+sha256sums_x86_64=('7ebb0048a38009de5a59d620a10f33d7ba4920ace2379b104a67fafb79e2841b')
+sha256sums_armv7h=('7ebb0048a38009de5a59d620a10f33d7ba4920ace2379b104a67fafb79e2841b')
+sha256sums_aarch64=('7ebb0048a38009de5a59d620a10f33d7ba4920ace2379b104a67fafb79e2841b')
 
 prepare() {
   mkdir -p "$_archive"
