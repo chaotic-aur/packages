@@ -1,2 +1,2 @@
-BUILDER_CACHE_SOURCES=true
+CI_REBUILD_TRIGGERS=glibc
 CI_PKGBUILD_SOURCE=https://gitlab.archlinux.org/archlinux/packaging/packages/glibc.git
