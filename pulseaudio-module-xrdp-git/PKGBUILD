@@ -1,4 +1,4 @@
-# Maintainer: aur.chaotic.cx
+# Maintainer: Jat <chat@jat.email>
 
 _pkgname="pulseaudio-module-xrdp"
 pkgname="$_pkgname-git"
@@ -7,7 +7,7 @@ pkgrel=2
 pkgdesc="xrdp pulseaudio module"
 url="https://github.com/neutrinolabs/pulseaudio-module-xrdp"
 license=('LGPL-2.1-only')
-arch=('x86_64')
+arch=('i686' 'x86_64' 'armv6h' 'armv7l' 'aarch64')
 
 makedepends=(
   'check'
@@ -19,6 +19,8 @@ makedepends=(
 
 provides=("$_pkgname")
 conflicts=("$_pkgname")
+
+install="$_pkgname.install"
 
 _pkgsrc="$_pkgname"
 _pkgsrc_pulse="pulseaudio"
