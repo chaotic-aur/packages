@@ -2,7 +2,7 @@
 
 _pkgname="gimp"
 pkgname="$_pkgname-git"
-pkgver=3.0.0RC2.r219.gbb2181b
+pkgver=3.0.0RC2.r269.g5d241d3
 pkgrel=1
 pkgdesc="GNU Image Manipulation Program"
 url="https://gitlab.gnome.org/GNOME/gimp"
@@ -11,10 +11,10 @@ arch=('i686' 'x86_64')
 
 depends=(
   'appstream-glib'
-  'babl-git' # AUR
+  'babl'
   'cairo'
   'cfitsio'
-  'gegl-git' # AUR
+  'gegl'
   'lcms2'
   'libgexiv2'
   'libgudev'
