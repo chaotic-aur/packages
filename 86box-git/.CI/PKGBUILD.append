@@ -1,10 +1,14 @@
 url="https://github.com/86box/86box"
 unset options
 
+_pkgsrc="$pkgname"
+
 build() {
+  export CFLAGS+=" -Wno-error=format-security"
+
   local _cmake_options=(
     -B build
-    -S "$pkgname"
+    -S "$_pkgsrc"
     -G Ninja
     -DCMAKE_BUILD_TYPE=None
     -DCMAKE_INSTALL_PREFIX='/usr'
