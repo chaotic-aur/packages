@@ -16,7 +16,7 @@ prepare() {
   (_orig_prepare)
 
   # fix patch
-  sed -Ee 's&^(\+  tst-libc_dlvsym-static)$&\1 \\&' -i "$srcdir/$_rogue_company_reverts_patch"
+  sed -Ee '/modules-names-tests = /s/,\\$/ \\/' -i "$srcdir/$_rogue_company_reverts_patch"
 
   cd glibc
 
