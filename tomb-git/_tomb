@@ -7,6 +7,7 @@ _tomb_commands(){
    _cmds=(
       'bury:hide tomb key in a jpeg'
       'close:close specified tomb or all open tombs'
+      'cloak:transform a key into text using a cipher'
       'dig:create a new empty TOMB file of size -s in MB'
       'engrave:makes a QR code of a KEY to be saved on paper'
       'exhume:extract a buried tomb key'
@@ -21,6 +22,7 @@ _tomb_commands(){
       'search:looks for filenames matching text patterns'
       'setkey:change the KEY locking a TOMB (needs old one)'
       'slam:close specified tomb and kill all PIDs using it'
+      'uncloak:extract a key from a text using a cipher'
       )
    _describe 'command' _cmds
 }
@@ -40,6 +42,10 @@ _arguments -C -A "-*" \
     -v'[print version information]' \
     -q'[run quietly]' \
     -D'[print debugging information]' \
-    --kdf'[specify the KDF method]' \
+    --kdf'[forge keys armored against dictionary attacks (pbkdf2, argon2)]' \
+    --kdfiter'[Number of iterations (meaning depending on KDF algorithm) (pbkdf2, argon2)]' \
+    --kdfmem'[memory to be used (argon2)]' \
+    --kdfpar'[number of threads (argon2)]' \
     --no-color'[do not use colors]' \
+    --sudo'[super user exec alternative to sudo (doas and more)]' \
     '*: :_files' && ret=0
