@@ -1,0 +1,52 @@
+license=('GPL-2.0-or-later')
+
+depends=(
+  'sdl2'
+  'sdl2_mixer'
+  'sdl2_net'
+)
+makedepends=(
+  'cmake'
+  'ninja'
+  'git'
+)
+
+_pkgsrc="crispy-doom"
+
+prepare() {
+  sed -E -e '1i #include <ctype.h>' \
+    -i "$_pkgsrc/src/heretic/in_lude.c"
+
+  sed -E -e '1i #include <math.h>' \
+    -i "$_pkgsrc/src/heretic/g_game.c" \
+    "$_pkgsrc/src/hexen/g_game.c" \
+    "$_pkgsrc/src/i_video.c"
+
+  sed -E -e '1i #include <stdlib.h>' \
+    -i "$_pkgsrc/src/mus2mid.c" \
+    "$_pkgsrc/src/strife/p_setup.c"
+
+  sed -E -e '1i #include <string.h>' \
+    -i "$_pkgsrc/src/i_flmusic.c" \
+    "$_pkgsrc/src/i_sound.c" \
+    "$_pkgsrc/src/net_gui.c" \
+    "$_pkgsrc/src/v_diskicon.c"
+}
+
+build() {
+  local _cmake_options=(
+    -B build
+    -S "$_pkgsrc"
+    -G Ninja
+    -DCMAKE_BUILD_TYPE=None
+    -DCMAKE_INSTALL_PREFIX='/usr'
+    -Wno-dev
+  )
+
+  cmake "${_cmake_options[@]}"
+  cmake --build build
+}
+
+package() {
+  DESTDIR="$pkgdir" cmake --install build
+}
