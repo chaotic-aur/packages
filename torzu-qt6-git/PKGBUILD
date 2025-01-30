@@ -3,7 +3,8 @@
 ## links
 # http://vub63vv26q6v27xzv2dtcd25xumubshogm67yrpaz2rculqxs7jlfqad.onion/torzu-emu/torzu
 
-## options
+: ${_boost_version=1.85.0}
+: ${_boost_cksum=7009fe1faa1697476bdc7027703a2badb84e849b7b0baad5086b087b971f8617}
 : ${_build_avx:=false}
 
 unset _pkgtype
@@ -11,10 +12,9 @@ _pkgtype+="-qt6"
 [[ "${_build_avx::1}" == "t" ]] && _pkgtype+="-avx"
 _pkgtype+="-git"
 
-## basic info
 _pkgname="torzu"
 pkgname="$_pkgname${_pkgtype:-}"
-pkgver=2024.08.10.r23.g5de1cb5
+pkgver=2024.08.10.r37.g02cfee3
 pkgrel=1
 pkgdesc="Yet another emulator fork"
 url="https://notabug.org/litucks/torzu"
@@ -28,7 +28,6 @@ depends=(
   'sdl2'
 )
 makedepends=(
-  'catch2'
   'cmake'
   'git'
   'glslang'
@@ -54,8 +53,6 @@ conflicts=(
   'yuzu'
 )
 
-options=('!lto')
-
 _source_main() {
   _pkgsrc="torzu.notabug"
   source=("$_pkgsrc"::"git+$url.git")
@@ -63,49 +60,10 @@ _source_main() {
 }
 
 _source_boost() {
-  _pkgver_boost="1.85.0"
-  _pkgname_boost="boost_${_pkgver_boost//./_}"
-
-  source+=("https://boostorg.jfrog.io/artifactory/main/release/$_pkgver_boost/source/$_pkgname_boost.tar.bz2")
-  sha256sums+=('SKIP')
-
-  _build_boost() {
-    local JOBS="$(sed 's/.*\(-j *[0-9]\+\).*/\1/' <<< $MAKEFLAGS)"
-    local python_version=$(python -c 'import sys; print(".".join(map(str, sys.version_info[:2])))')
-
-    pushd "$_pkgname_boost/tools/build"
-    ./bootstrap.sh --cxxflags="$CXXFLAGS $LDFLAGS"
-    ./b2 install --prefix="$srcdir"/deps
-    ln -s b2 "$srcdir"/deps/bin/bjam
-    popd
-
-    cd "$_pkgname_boost"
-    ./bootstrap.sh --with-toolset=gcc --with-icu --with-python=python3
-
-    # support for OpenMPI
-    echo "using mpi ;" >> project-config.jam
-
-    # boostbook is needed by quickbook
-    install -dm755 "$srcdir"/deps/share/boostbook
-    cp -a tools/boostbook/{xsl,dtd} "$srcdir"/deps/share/boostbook/
-
-    # install to $srcdir/deps
-    ./b2 install \
-      variant=release \
-      debug-symbols=off \
-      threading=multi \
-      runtime-link=static \
-      link=static \
-      toolset=gcc \
-      python=$python_version \
-      cflags="$CPPFLAGS $CFLAGS -fPIC -O3 -ffat-lto-objects" \
-      cxxflags="$CPPFLAGS $CXXFLAGS -fPIC -O3 -ffat-lto-objects" \
-      linkflags="$LDFLAGS" \
-      --layout=system \
-      $JOBS \
-      \
-      --prefix="$srcdir"/deps
-  }
+  _pkgname_boost="boost_${_boost_version//./_}"
+  _pkgext_boost="tar.bz2"
+  source+=("$_pkgname_boost.$_pkgext_boost"::"https://archives.boost.io/release/$_boost_version/source/$_pkgname_boost.$_pkgext_boost")
+  sha256sums+=("$_boost_cksum")
 }
 
 _source_torzu() {
@@ -218,33 +176,11 @@ _source_lat9nq_tzdb_to_nx() {
   )
 }
 
-_source_mozilla_cubeb() {
-  source+=(
-    'arsenm.sanitizers-cmake'::'git+https://github.com/arsenm/sanitizers-cmake.git'
-    'google.googletest'::'git+https://github.com/google/googletest.git'
-  )
-  sha256sums+=(
-    'SKIP'
-    'SKIP'
-  )
-
-  _prepare_mozilla_cubeb() (
-    cd "$srcdir/$_pkgsrc"
-    cd 'externals/cubeb'
-    local _submodules=(
-      'arsenm.sanitizers-cmake'::'cmake/sanitizers-cmake'
-      'google.googletest'::'googletest'
-    )
-    _submodule_update
-  )
-}
-
 _source_main
 _source_boost
 _source_torzu
 _source_bylaws_libadrenotools
 _source_lat9nq_tzdb_to_nx
-_source_mozilla_cubeb
 
 prepare() {
   _submodule_update() {
@@ -259,7 +195,6 @@ prepare() {
   _prepare_torzu
   _prepare_bylaws_libadrenotools
   _prepare_lat9nq_tzdb_to_nx
-  _prepare_mozilla_cubeb
 
   sed -E -e '/find_package.*fmt/d' \
     -i "$_pkgsrc/externals/CMakeLists.txt" \
@@ -272,7 +207,45 @@ pkgver() {
     | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
 }
 
-_build_torzu() {
+_build_boost() (
+  local JOBS="$(sed 's/.*\(-j *[0-9]\+\).*/\1/' <<< $MAKEFLAGS)"
+  local python_version=$(python -c 'import sys; print(".".join(map(str, sys.version_info[:2])))')
+
+  pushd "$_pkgname_boost/tools/build"
+  ./bootstrap.sh --cxxflags="$CXXFLAGS $LDFLAGS"
+  ./b2 install --prefix="$srcdir"/deps
+  ln -s b2 "$srcdir"/deps/bin/bjam
+  popd
+
+  cd "$_pkgname_boost"
+  ./bootstrap.sh --with-toolset=gcc --with-icu --with-python=python3
+
+  # support for OpenMPI
+  echo "using mpi ;" >> project-config.jam
+
+  # boostbook is needed by quickbook
+  install -dm755 "$srcdir"/deps/share/boostbook
+  cp -a tools/boostbook/{xsl,dtd} "$srcdir"/deps/share/boostbook/
+
+  # install to $srcdir/deps
+  ./b2 install \
+    variant=release \
+    debug-symbols=off \
+    threading=multi \
+    runtime-link=static \
+    link=static \
+    toolset=gcc \
+    python=$python_version \
+    cflags="$CPPFLAGS $CFLAGS -fPIC -O3 -ffat-lto-objects" \
+    cxxflags="$CPPFLAGS $CXXFLAGS -fPIC -O3 -ffat-lto-objects" \
+    linkflags="$LDFLAGS" \
+    --layout=system \
+    $JOBS \
+    \
+    --prefix="$srcdir"/deps
+)
+
+_build_torzu() (
   local _cmake_options=(
     -S "$_pkgsrc"
     -B build
@@ -315,13 +288,14 @@ _build_torzu() {
     -DYUZU_CRASH_DUMPS=OFF
     -DYUZU_TESTS=OFF
 
+    -DUSE_SANITIZERS=OFF # cubeb
     -DBoost_INCLUDE_DIR="$srcdir/deps/include"
     -Wno-dev
   )
 
   cmake "${_cmake_options[@]}"
   cmake --build build
-}
+)
 
 build() {
   if [[ "${_build_avx::1}" == "t" ]]; then
@@ -329,11 +303,10 @@ build() {
     CXXFLAGS="$(echo "$CXXFLAGS" | sed -E 's@(\s*-(march|mtune)=\S+\s*)@ @g;s@\s*-O[0-9]\s*@ @g;s@\s+@ @g') -march=x86-64-v3 -mtune=generic -O3"
   fi
 
-  (_build_boost)
-  (_build_torzu)
+  _build_boost
+  _build_torzu
 }
 
 package() {
   DESTDIR="$pkgdir" cmake --install build
-  #install -Dm644 "$_pkgsrc/dist/72-yuzu-input.rules" -t "$pkgdir/usr/lib/udev/rules.d/"
 }
