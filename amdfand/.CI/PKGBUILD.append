@@ -1,0 +1,4 @@
+unset provides
+unset conflicts
+
+depends+=('gcc-libs')
