@@ -3,7 +3,11 @@
 
   inputs = {
     # Chaotic Nyx (binary cache)
-    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+    chaotic = {
+      url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+      inputs.fenix.follows = "";
+      inputs.jovian.follows = "";
+    };
 
     # Local debug builds using infra 4.0 code
     chaotic-portable-builder = {
@@ -32,8 +36,7 @@
     };
   };
   outputs =
-    { devshell
-    , flake-parts
+    { flake-parts
     , nixpkgs
     , pre-commit-hooks
     , self
@@ -67,7 +70,7 @@
 
           devShells =
             let
-              chaotic = pkgs.writeShellScriptBin "chaotic" ./.tools/chaotic.sh;
+              chaotic = builtins.readFile ./.tools/chaotic.sh;
               cpb = pkgs.callPackage "${inputs.chaotic-portable-builder}/nix/default.nix" { };
               makeDevshell = import "${inputs.devshell}/modules" pkgs;
               mkShell = config:
@@ -82,18 +85,12 @@
               default = chaotic-shell;
               chaotic-shell = mkShell {
                 devshell = {
-                  motd = ''
-                    Welcome to Chaotic-AUR's maintenance devshell! 🎉
-                  '';
                   name = "chaotic-devshell";
-                  packages = [
-                    pkgs.aria2
-                    pkgs.fuse-overlayfs
-                    pkgs.getoptions
-                    pkgs.jq
-                    pkgs.podman
-                    pkgs.skopeo
-                    pkgs.trash-cli
+                  packages = with pkgs; [
+                    fuse-overlayfs
+                    jq
+                    podman
+                    skopeo
                   ];
                   startup = {
                     preCommitHooks.text = self.checks.${system}.pre-commit-check.shellHook;
@@ -117,23 +114,56 @@
                   {
                     help = "Helper script for maintaining packages";
                     name = "chaotic";
-                    package = chaotic;
+                    command = chaotic;
+                    category = "Chaotic tools";
                   }
                   {
                     help = "Chaotic Portable Builder for local builds";
                     name = "cpb";
                     package = cpb;
+                    category = "Chaotic tools";
                   }
-                  { package = "actionlint"; }
-                  { package = "commitizen"; }
-                  { package = "editorconfig-checker"; }
-                  { package = "markdownlint-cli"; }
-                  { package = "nixpkgs-fmt"; }
-                  { package = "nodePackages_latest.prettier"; }
-                  { package = "pre-commit"; }
-                  { package = "shellcheck"; }
-                  { package = "shfmt"; }
-                  { package = "yamllint"; }
+                  {
+                    package = "actionlint";
+                    category = "Linters";
+                  }
+                  {
+                    package = "commitizen";
+                    category = "Linters";
+                  }
+                  {
+                    package = "editorconfig-checker";
+                    category = "Linters";
+                  }
+                  {
+                    package = "markdownlint-cli";
+                    category = "Linters";
+                  }
+                  {
+                    package = "nixpkgs-fmt";
+                    category = "Formatters";
+                  }
+                  {
+                    package = "nodePackages_latest.prettier";
+                    category = "Formatters";
+                  }
+                  {
+                    package = "pre-commit";
+                    category = "Linters";
+                  }
+                  {
+                    name = "shellcheck";
+                    package = "shellcheck";
+                    category = "Linters";
+                  }
+                  {
+                    package = "shfmt";
+                    category = "Formatters";
+                  }
+                  {
+                    package = "yamllint";
+                    category = "Linters";
+                  }
                 ];
               };
             };
