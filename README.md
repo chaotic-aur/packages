@@ -11,7 +11,7 @@ Still, the old repo will be kept around as a push-only mirror.
 
 ![Chaotic-AUR](https://avatars.githubusercontent.com/u/66071775?s=400&u=99bc0536e7e77fe3e58839996600848f2d930ed5&v=4)
 
-#### Some packages we have already built
+## Some packages we have already built
 
 - Variations of the Linux kernel such as
   - [Cachyos](https://aur.archlinux.org/packages/linux-cachyos) / [Cachyos-BORE](https://aur.archlinux.org/packages/linux-cachyos-bore),
@@ -39,7 +39,7 @@ check out our [build status page](https://aur.chaotic.cx/status)!
 A complete list of packages with their current versions is additionally
 available [here](https://aur.chaotic.cx/package-list).
 
-#### Modified packages
+## Modified packages
 
 While we would prefer to build AUR packages without modification, doing so is often not practical or possible.
 
@@ -54,13 +54,13 @@ To address such issues:
 - Manual corrections may be applied with [Interfere](https://github.com/chaotic-aur/interfere).
 - The original package may be forked as a custom package.
 
-#### Special packages
+## Special packages
 
 - `chaotic-keyring`: Public keys to verify the Chaotic-AUR package signatures.
 - `chaotic-mirrorlist`: List of servers mirroring Chaotic-AUR packages.
 - `chaotic-interfere`: Marker indicating manually applied interferes. This package is _not_ intended to be installed.
 
-#### Banished and rejected packages 📑
+## Banished and rejected packages 📑
 
 This is a list of packages that we will reject for good reasons:
 
@@ -96,7 +96,7 @@ This is a list of packages that we will reject for good reasons:
 - Dependencies without any dependents: Such packages are useless by themselves. Maintaining them wastes effort that is
   better spent elsewhere.
 
-#### Banned due to licensing issues 🛑
+## Banned due to licensing issues 🛑
 
 - **AMDGPU PRO** Drivers. Redistribution of both software and documentation is prohibited.
 
@@ -113,7 +113,7 @@ This is a list of packages that we will reject for good reasons:
 
 - **tlauncher**: Legal gray area, as it potentially allows playing Minecraft in a reduced capacity without a license.
 
-### Build system details
+## Build system details
 
 Our previous build tools, the so-called [toolbox](https://github.com/chaotic-aur/toolbox) was initially created by
 @pedrohlc to deal with one issue: having a lot of packages to compile while not having many maintainers for all the
@@ -132,7 +132,7 @@ A few key ideas about this new setup:
 - The tools should be available as Docker containers to make them easy to use on other systems than Arch.
 - All logic besides the scheduler (which is written in TypeScript using BullMQ) should be written in Bash
 
-### How it works
+## How it works
 
 The new system consists of three integral parts:
 
@@ -168,9 +168,9 @@ Compared to Infra 3.0, this means we have the following key differences:
 The following will contain information to understand how it all works together, the full build system API documentation
 can be found [here](https://chaotic-manager.pages.dev/).
 
-### Workflows and information
+## Workflows and information
 
-#### Adding packages
+### Adding packages
 
 Adding packages is as easy as creating a new folder named after the `$pkgbase` of the package. Put the PKGBUILD and all
 other required files in here.
@@ -189,14 +189,14 @@ so ([cz-cli](https://github.com/commitizen/cz-cli) can help with that!). This me
 
 This not only helps with having a uniform commit history, it also allows automatic changelog generation.
 
-#### Removing packages
+### Removing packages
 
 This can be done by removing the folder containing a package's PKGBUILD. A cleanup job will then automatically remove
 any obsolete package via the `on-commit` pipeline run. This will also consider any split packages that a package might
 produce.
 Renaming folders does also count as removing packages.
 
-#### On-commit pipeline
+### On-commit pipeline
 
 Whenever pushing a new commit, the CI pipeline will carry out the following actions:
 
@@ -210,9 +210,9 @@ Whenever pushing a new commit, the CI pipeline will carry out the following acti
   all obsolete packages in case an earlier step is detected.
 - In case all of these actions succeed, the `scheduled` tag gets updated, so we can refer to it on a later pipeline run.
 
-#### On-schedule pipelines
+### On-schedule pipelines
 
-##### Hourly
+#### Hourly
 
 Every hour, the on-schedule pipeline will carry out a few tasks:
 
@@ -250,14 +250,14 @@ Every hour, the on-schedule pipeline will carry out a few tasks:
 - Obsolete branches (eg. merged review PRs) are getting pruned
 - The scheduled tag gets updated again
 
-##### Daily
+#### Daily
 
 A daily pipeline schedule has been added for specific packages which generate their `pkgver` dynamically.
 To make use of it, set `CI_ON_TRIGGER=daily` inside the `.CI/config` file of the package.
 
-#### Manual scheduling
+### Manual scheduling
 
-##### Scheduling packages without git commits
+#### Scheduling packages without git commits
 
 Packages can be added to the schedule manually by going to
 the [pipeline runs](https://gitlab.com/chaotic-aur/pkgbuilds/-/pipelines) page, selecting "Run pipeline" and
@@ -272,7 +272,7 @@ This can be done by going to the [pipeline runs](https://gitlab.com/chaotic-aur/
 selecting "Run pipeline" (the play symbol). A link to the pipeline page will be provided, where the pipeline logs can be
 obtained.
 
-#### Adding interfere
+### Adding interfere
 
 Put the required interfere file in the `.CI` folder of a PKGBUILD folder:
 
@@ -291,18 +291,18 @@ Put the required interfere file in the `.CI` folder of a PKGBUILD folder:
 - `on-failure.sh`: A script that is being executed if the build fails.
 - `on-success.sh`: A script that is being executed if the build succeeds.
 
-#### Bumping pkgrel
+### Bumping pkgrel
 
 This is now carried out by adding the required variable `CI_PACKAGE_BUMP` to `.CI/config`. See below for more
 information.
 
-#### Dependency trees
+### Dependency trees
 
 The CI builds dependency trees automatically. They are passed to the Chaotic manager as a CI artifact and read whenever
 a schedule command is being executed.
 No manual intervention is needed.
 
-#### .CI/config
+### .CI/config
 
 The `.CI/config` file inside each package directory contains additional flags to control the pipelines and build
 processes with.
@@ -340,7 +340,7 @@ processes with.
 - `BUILDER_EXTRA_TIMEOUT`: If set, will multiply the global `BUILDER_TIMEOUT` value with the given multiplier.
   If e.g., the default timeout value of `3600` is used, setting this to `2` would increase the build timeout to `7200`.
 
-#### Known state variables
+### Known state variables
 
 State will be kept in the .state worktree. It can be viewed by browsing the `state` branch of a PKGBUILD repository.
 Each package will have their own file named after the package name. The following variables are known to be stored:
@@ -351,7 +351,7 @@ Each package will have their own file named after the package name. The followin
   build. -`CI_PKGBUILD_TIMESTAMP`: The last modified date of the PKGBUILD on AUR. This is used to determine whether the
   PKGBUILD has changed. If it differs, schedule a build. Will be maintained automatically.
 
-#### Managing AUR packages
+### Managing AUR packages
 
 AUR packages can also be managed via this repository in an automated way using `.CI_CONFIG`.
 This means that after each scheduled and on-commit pipeline, the AUR repository will be updated to reflect the changes
@@ -360,14 +360,14 @@ Files not relevant to AUR maintenance (e.g. `.CI` folders) will be omitted.
 The commit message reflects the fact that the commit was created by a CI pipeline
 and contains the link to the source repository's commit history and the pipeline run which triggered the update commit.
 
-#### Updating the CI's scripts
+### Updating the CI's scripts
 
 This is done automatically via the CI pipeline. Once changes have been detected on the template repository, all files
 will be updated to the current version.
 
-### Issues and pipeline failures
+## Issues and pipeline failures
 
-#### Last on-commit pipeline failed
+### Last on-commit pipeline failed
 
 This can happen in case of a few reasons, for example having provided an invalid package name. This causes
 the `scheduled` tag to not be updated.
@@ -380,19 +380,19 @@ evaluate the previous commits it missed, leading to noticing the same issue agai
 continuing.
 This has been a design decision to prevent failures from being overlooked.
 
-#### Resetting the build queue
+### Resetting the build queue
 
 There might be rare cases in which a reset of the build queue is needed. This can be done by shutting down the central
 Redis instance, removing its dump, and restarting its service. This will, however, also wipe any logs stored inside
 Redis.
 
-#### Live-updating logs
+### Live-updating logs
 
 Logs are live-updating and can be viewed in real-time via the web server.
 In case GitLab is used and `PACKAGE_REPOS_NOTIFIERS` is set,
 an external CI stage will be created for every package scheduled during the CI run, linking to the log.
 
-#### Prometheus metrics
+### Prometheus metrics
 
 Prometheus metrics are available at the `/metrics` endpoint of the web server.
 Currently, we collect default `prom-client` metrics as well as statistics about total event count of each build status
@@ -404,5 +404,14 @@ These can be collected via a Prometheus instance and then be visualized using Gr
 This repository features a NixOS flake, which may be used to set up the needed things like pre-commit hooks and checks,
 as well as needed utilities, automatically via [direnv](https://direnv.net/). This includes checking PKGBUILDs
 via `shellcheck` and `shfmt`.
+
+### With Nix
+
 Needed are `nix` (the package manager) and [direnv](https://direnv.net/), after that, the environment may be entered by
 running `direnv allow`.
+
+### Without Nix
+
+A bundled variant of the devshell is available via the `repo-common` [GitLab CI artifacts](https://gitlab.com/chaotic-aur/repo-common/-/pipelines).
+After downloading and unzipping simply execute the binary inside the PKGBUILDS folder.
+Bootstrapping will take a while since dependencies will be unpacked.
