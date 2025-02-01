@@ -6,7 +6,7 @@
 _pkgname="termius"
 _snapname="$_pkgname-app"
 pkgname="$_pkgname"
-pkgver=9.8.5
+pkgver=9.13.1
 pkgrel=1
 pkgdesc="Desktop SSH Client"
 url='https://snapcraft.io/termius-app'
@@ -15,9 +15,9 @@ license=('custom')
 
 makedepends=(
   'html-xml-utils'
-  'pandoc'
   'sha3sum'
   'squashfs-tools'
+  'w3m'
 )
 
 _source_main() {
@@ -41,7 +41,7 @@ prepare() {
     1> "$_privacy_policy-2.html" \
     2> /dev/null
 
-  pandoc --quiet -t plain -o "$_privacy_policy.txt" "$_privacy_policy-2.html"
+  w3m -O UTF-8 -cols 80 -dump "$_privacy_policy-2.html" > "$_privacy_policy.txt"
 
   # terms of use
   curl --no-progress-meter \
@@ -52,7 +52,7 @@ prepare() {
     1> "$_terms_of_use-2.html" \
     2> /dev/null
 
-  pandoc --quiet -t plain -o "$_terms_of_use.txt" "$_terms_of_use-2.html"
+  w3m -O UTF-8 -cols 80 -dump "$_terms_of_use-2.html" > "$_terms_of_use.txt"
 
   # unpack
   mkdir -p "$_pkgname-$_pkgver"
@@ -113,6 +113,7 @@ package() {
 _update_version() {
   : ${_pkgver:=${pkgver%%.r*}}
 
+  local _response
   _response=$(
     curl -H 'Snap-Device-Series: 16' --no-progress-meter "http://api.snapcraft.io/v2/snaps/info/$_snapname" \
       | sed 's@,@,\n@g'
@@ -143,7 +144,7 @@ _update_version() {
   _filename="$_pkgname-$_pkgver_new.snap"
 
   # update _pkgver
-  if [ "$_pkgver" != "${_pkgver_new:?}" ]; then
+  if [ $(vercmp "${_pkgver_new:?}" "$_pkgver") -gt 0 ]; then
     _pkgver="${_pkgver_new:?}"
   fi
 
