@@ -7,18 +7,15 @@
 
 ## options
 : ${_autoupdate:=true}
-
 : ${_plugin_aja:=false}
-: ${_plugin_webrtc:=false}
 
 # build-aux/modules/99-cef.json
 : ${_cef_branch:=6533}
 : ${_cef_ver=}
 
-## basic info
 _pkgname="obs-studio"
 pkgname="$_pkgname-stable"
-pkgver=31.0.0
+pkgver=31.0.1
 pkgrel=1
 pkgdesc="Free, open source software for live streaming and recording - Browser enabled"
 url="https://github.com/obsproject/obs-studio"
@@ -26,39 +23,40 @@ license=("GPL-2.0-or-later")
 arch=("x86_64")
 
 depends=(
-  curl
-  ffmpeg
-  jack
-  jansson
-  libpipewire
-  librist
-  libvpl
-  libxcomposite
-  mbedtls
-  pciutils
-  qrcodegencpp-cmake # AUR
-  qt6-svg
-  rnnoise
-  speexdsp
+  'curl'
+  'ffmpeg'
+  'jack'
+  'jansson'
+  'libpipewire'
+  'librist'
+  'libvpl'
+  'libxcomposite'
+  'mbedtls'
+  'pciutils'
+  'qrcodegencpp-cmake'
+  'qt6-svg'
+  'rnnoise'
+  'speexdsp'
 )
 makedepends=(
-  asio
-  cmake
-  ffnvcodec-headers
-  git
-  libfdk-aac
-  luajit
-  nlohmann-json
-  python
-  qt6-wayland
-  sndio
-  swig
-  uthash
-  vlc
-  wayland
-  websocketpp
-  x264
-  xdg-desktop-portal
+  'asio'
+  'cmake'
+  'ffnvcodec-headers'
+  'git'
+  'libdatachannel'
+  'libfdk-aac'
+  'luajit'
+  'nlohmann-json'
+  'python'
+  'qt6-wayland'
+  'sndio'
+  'swig'
+  'uthash'
+  'vlc'
+  'wayland'
+  'websocketpp'
+  'x264'
+  'xdg-desktop-portal'
 )
 optdepends=(
   'libfdk-aac: FDK AAC codec support'
@@ -68,7 +66,6 @@ optdepends=(
   'python: scripting support'
   'sndio: sndio input client'
   'v4l2loopback-dkms: virtual camera support'
-
   'vlc: VLC Media Source'
 )
 
@@ -87,13 +84,6 @@ _source_main() {
     _plugin_aja='ON'
   else
     _plugin_aja='OFF'
-  fi
-
-  if [ "${_plugin_webrtc::1}" == "t" ]; then
-    makedepends+=('libdatachannel')
-    _plugin_webrtc='ON'
-  else
-    _plugin_webrtc='OFF'
   fi
 }
 
@@ -122,30 +112,28 @@ _prepare_obs_studio() (
 
 _source_cef() {
   depends+=(
-    at-spi2-core
-    libxdamage
-    libxrandr
-    nspr
-    nss
+    'at-spi2-core'
+    'libxdamage'
+    'libxrandr'
+    'nspr'
+    'nss'
   )
 
   makedepends+=(
-    alsa-lib
-    dbus
-    expat
-    gcc-libs
-    glib2
-    glibc
-    libcups
-    libdrm
-    libx11
-    libxcb
-    libxcomposite
-    libxext
-    libxfixes
-    libxkbcommon
-    mesa
-    wayland
+    'alsa-lib'
+    'dbus'
+    'expat'
+    'glib2'
+    'libcups'
+    'libdrm'
+    'libx11'
+    'libxcb'
+    'libxcomposite'
+    'libxext'
+    'libxfixes'
+    'libxkbcommon'
+    'mesa'
+    'wayland'
   )
 
   _cef_src="cef_binary_${_cef_branch}_linux_${CARCH}"
@@ -170,7 +158,11 @@ prepare() {
   _prepare_obs_studio
 }
 
-_build_cef() {
+pkgver() {
+  echo "${_pkgver:?}"
+}
+
+_build_cef() (
   local _cmake_options=(
     -S "$_cef_src"
     -B "$_cef_src"
@@ -181,19 +173,16 @@ _build_cef() {
 
   cmake "${_cmake_options[@]}"
   cmake --build "$_cef_src"
+)
 
-  # need absolute path later
-  _cef_src="$srcdir/$_cef_src"
-}
-
-_build_obs_studio() {
+_build_obs_studio() (
   local _cmake_options=(
     -B build
     -S "$_pkgsrc"
     -DCMAKE_BUILD_TYPE=None
     -DCMAKE_INSTALL_PREFIX='/usr'
     -DCMAKE_INSTALL_LIBDIR='lib'
-    -DCEF_ROOT_DIR="$_cef_src"
+    -DCEF_ROOT_DIR="$srcdir/$_cef_src"
     -DOBS_VERSION_OVERRIDE="${pkgver%%.r*}"
     -DOBS_COMPILE_DEPRECATION_AS_WARNING=ON
     -DENABLE_BROWSER=ON # qrcodegencpp-cmake
@@ -207,27 +196,25 @@ _build_obs_studio() {
     -DENABLE_NEW_MPEGTS_OUTPUT=ON
     -DENABLE_VLC=OFF
     -DENABLE_VST=ON
-    -DENABLE_WEBRTC="${_plugin_webrtc:?}"
+    -DENABLE_WEBRTC=ON
   )
 
   cmake "${_cmake_options[@]}"
   cmake --build build
-}
+)
 
-build() {
+build() (
   export CFLAGS CXXFLAGS
-  CFLAGS="${CFLAGS/_FORTIFY_SOURCE=*/_FORTIFY_SOURCE=2}"
-  CXXFLAGS="${CXXFLAGS/_FORTIFY_SOURCE=*/_FORTIFY_SOURCE=2}"
+  CFLAGS="${CFLAGS/_FORTIFY_SOURCE=?/_FORTIFY_SOURCE=2}"
+  CXXFLAGS="${CXXFLAGS/_FORTIFY_SOURCE=?/_FORTIFY_SOURCE=2}"
 
   _build_cef
   _build_obs_studio
-}
+)
 
 package() {
   DESTDIR="$pkgdir" cmake --install build
-
-  # fix permissions
-  chmod -R u=rwX,go=rX "$pkgdir"
+  chmod -R u+rwX,go+rX,go-w "$pkgdir"
 }
 
 _update_version() {
@@ -237,23 +224,19 @@ _update_version() {
     return
   fi
 
-  local _response=$(curl -Ssf "$url/releases.atom")
-  local _tag=$(
+  local _response _tag _pkgver_new
+  _response=$(curl -Ssf "$url/releases.atom")
+  _tag=$(
     printf '%s' "$_response" \
       | grep '/releases/tag/' \
       | sed -E 's@^.*/releases/tag/(.*)".*$@\1@' \
       | grep -Ev '[a-z]{2}' | sort -V | tail -1
   )
-  local _pkgver_new="${_tag#v}"
+  _pkgver_new="${_tag#v}"
 
-  # update _pkgver
-  if [ "$_pkgver" != "${_pkgver_new:?}" ]; then
+  if [ $(vercmp "${_pkgver_new:?}" "$_pkgver") -gt 0 ]; then
     _pkgver="${_pkgver_new:?}"
   fi
-
-  pkgver() {
-    echo "${_pkgver:?}"
-  }
 }
 
 _update_version
