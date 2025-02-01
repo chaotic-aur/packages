@@ -1,0 +1,72 @@
+# Maintainer: aur.chaotic.cx
+
+: ${_cksum:=e4f2a8796ee2f4357e02f38747a3d80aa48a3deca80aa41b21a3b8841855bf1e}
+
+_pkgname="bun"
+pkgname="$_pkgname-bin"
+pkgver=1.2.1
+pkgrel=1
+pkgdesc="JavaScript runtime, bundler, test runner, and package manager"
+url="https://github.com/oven-sh/bun"
+license=('MIT')
+arch=('x86_64')
+
+depends=('glibc')
+
+provides=("$_pkgname")
+conflicts=("$_pkgname")
+
+_source_main() {
+  _pkgsrc="bun-linux-x64-baseline"
+  _pkgext="zip"
+  source=(
+    "$_pkgsrc-$_pkgver.$_pkgext"::"$url/releases/download/bun-v$_pkgver/$_pkgsrc.$_pkgext"
+    "LICENSE-$_pkgver.md"::"$url/raw/bun-v$_pkgver/LICENSE.md"
+  )
+  sha256sums=(
+    "$_cksum"
+    '4cf82fd717b2b34dfabf6087c35fcffd28386054f1791d2e6ecfdfcafe0131a8'
+  )
+}
+
+pkgver() {
+  echo "${_pkgver:?}"
+}
+
+build() {
+  SHELL=zsh "$_pkgsrc/bun" completions > "bun.zsh"
+  SHELL=bash "$_pkgsrc/bun" completions > "bun.bash"
+  SHELL=fish "$_pkgsrc/bun" completions > "bun.fish"
+}
+
+package() {
+  install -Dm755 "$_pkgsrc/bun" "$pkgdir/usr/bin/bun"
+  install -Dm644 "LICENSE-$pkgver.md" "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+
+  install -Dm644 bun.zsh "$pkgdir/usr/share/zsh/site-functions/_bun"
+  install -Dm644 bun.bash "$pkgdir/usr/share/bash-completion/completions/bun"
+  install -Dm644 bun.fish "$pkgdir/usr/share/fish/vendor_completions.d/bun.fish"
+}
+
+_update_version() {
+  : ${_pkgver:=${pkgver%%.r*}}
+
+  local _repo _response _pkgver_new
+  _repo="${url#*//*/}"
+  _response=$(curl -s "https://api.github.com/repos/${_repo:?}/tags")
+
+  _get() {
+    printf '%s' "$_response" \
+      | awk -F '"' '/"'"$1"'":/{print $4}' \
+      | grep -E '^bun-v[0-9\.]+$' | sort -rV | head -1
+  }
+  _pkgver_new=$(_get name | sed -E 's&^bun-v([0-9\.]+)$&\1&')
+
+  if [ $(vercmp "${_pkgver_new:?}" "$_pkgver") -gt 0 ]; then
+    _pkgver="${_pkgver_new:?}"
+    _cksum='SKIP'
+  fi
+}
+
+_update_version
+_source_main

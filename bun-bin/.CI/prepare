@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+_check_update() {
+  local _url _repo _response _pkgver_new
+  _url="https://github.com/oven-sh/bun"
+  _repo="${_url#*//*/}"
+  _response=$(curl -s "https://api.github.com/repos/${_repo:?}/tags")
+
+  _get() {
+    printf '%s' "$_response" \
+      | awk -F '"' '/"'"$1"'":/{print $4}' \
+      | grep -E '^bun-v[0-9\.]+$' | sort -rV | head -1
+  }
+  _pkgver_new=$(_get name | sed -E 's&^bun-v([0-9\.]+)$&\1&')
+
+  _pkgver_old=$(LANG=C LC_ALL=C pacman -Si chaotic-aur/bun-bin | grep -Pom1 '^Version\s+:\s+\K\S+(?=-[0-9])')
+
+  if [ $(vercmp "$_pkgver_old" "${_pkgver_new:?}") -ge 0 ]; then
+    echo "Skipping build.  $_pkgver_old >= $_pkgver_new"
+    return "$CI_CODE_SKIP"
+  fi
+}
+
+_check_update || return $?

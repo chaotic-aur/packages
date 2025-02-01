@@ -1,0 +1,16 @@
+pkgbase = bun-bin
+	pkgdesc = JavaScript runtime, bundler, test runner, and package manager
+	pkgver = 1.2.1
+	pkgrel = 1
+	url = https://github.com/oven-sh/bun
+	arch = x86_64
+	license = MIT
+	depends = glibc
+	provides = bun
+	conflicts = bun
+	source = bun-linux-x64-baseline-1.2.1.zip::https://github.com/oven-sh/bun/releases/download/bun-v1.2.1/bun-linux-x64-baseline.zip
+	source = LICENSE-1.2.1.md::https://github.com/oven-sh/bun/raw/bun-v1.2.1/LICENSE.md
+	sha256sums = e4f2a8796ee2f4357e02f38747a3d80aa48a3deca80aa41b21a3b8841855bf1e
+	sha256sums = 4cf82fd717b2b34dfabf6087c35fcffd28386054f1791d2e6ecfdfcafe0131a8
+
+pkgname = bun-bin
