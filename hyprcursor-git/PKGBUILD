@@ -2,7 +2,7 @@
 
 _pkgname="hyprcursor"
 pkgname="${_pkgname}-git"
-pkgver=0.1.8.r0.gcab47461
+pkgver=0.1.11.r3.g9c5dd1f7
 pkgrel=1
 pkgdesc="The hyprland cursor format, library and utilities"
 arch=(x86_64 aarch64)
