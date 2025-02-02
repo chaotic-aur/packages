@@ -20,6 +20,13 @@ LIBRARY_PATH="${FILEBOT_HOME}/lib/$(uname -m):/lib64"
 # as of 09.03.2024 seems relevant under KDE 6.0 using Wayland and nvidia/amd gpu
 WAYLAND_DISPLAY=
 
+# Force _JAVA_AWT_WM_NONREPARENTING for wayland to avoid gray / blank screen
+# see https://github.com/arch-noob/filebot/issues/30 and https://wiki.archlinux.org/title/Java
+# relevant for sway or any other non-opiononated window manager
+if [[ "$XDG_SESSION_TYPE" == "wayland" ]]; then
+    export _JAVA_AWT_WM_NONREPARENTING=1
+fi
+
 # shellcheck disable=SC2086
 java \
   -Dapplication.deployment=aur \
