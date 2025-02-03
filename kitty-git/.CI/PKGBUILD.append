@@ -1,0 +1,6 @@
+unset epoch
+
+url="https://github.com/kovidgoyal/kitty"
+license=('GPL-3.0-only')
+
+depends+=('cairo')
