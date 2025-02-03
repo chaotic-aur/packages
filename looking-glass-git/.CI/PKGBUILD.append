@@ -1,3 +1,5 @@
+unset epoch
+
 url="https://github.com/gnif/LookingGlass"
 license=('GPL-2.0-or-later')
 
