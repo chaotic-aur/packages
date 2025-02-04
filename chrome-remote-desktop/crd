@@ -27,22 +27,20 @@ function stop() {
 }
 
 function start() {
-  if [ ! -f ${HOME}/.chrome-remote-desktop-session ]
-  then
-    print_red "Seems like you haven't set this up yet. Try running: "; print_green "crd --setup"; print_red "."; printf "\n"
+  if [ ! -f ${HOME}/.chrome-remote-desktop-session ]; then
+    print_red "Seems like you haven't set this up yet. Try running: "; printf "\n"
+    print_green "crd --setup"; printf "\n"
     exit
   fi
 
-  if [ ! -f ${HOME}/.config/chrome-remote-desktop/host#*.json ]
-  then
+  if [ ! -f ${HOME}/.config/chrome-remote-desktop/host#*.json ]; then
     print_red "Seems like you haven't activated CRD in your browser. Please do that before trying to run the server."; printf "\n"
     exit
   fi
 
   rm -rf ${HOME}/.config/chrome-remote-desktop/pulseaudio*
   crd_size=$(cat ${HOME}/.config/chrome-remote-desktop/Size)
-  if [ -z "${crd_size}" ]
-  then
+  if [ -z "${crd_size}" ]; then
     /opt/google/chrome-remote-desktop/chrome-remote-desktop --start
   else
     /opt/google/chrome-remote-desktop/chrome-remote-desktop --size="${crd_size}" --start
@@ -65,8 +63,7 @@ function setup() {
   touch ${HOME}/.config/chrome-remote-desktop/Size
 
   EDITOR="${VISUAL:-${EDITOR:-nano}}"
-  if ! which "${EDITOR}" > /dev/null 2>&1
-  then
+  if ! which "${EDITOR}" > /dev/null 2>&1; then
     print_red "Editor "; print_green "${EDITOR}"; print_red " not found, please call setup defining an editor first by"; printf "\n"
     print_red "either exporting "; print_green "EDITOR"; print_red " variable or calling command with "; print_green "EDITOR"; print_red " variable"; printf "\n"
     print_red "(e.g. "; print_green "EDITOR="; print_blue "<editor_of_your_choice>"; print_green " crd --setup"; print_red ")"; printf "\n"
@@ -74,37 +71,40 @@ function setup() {
   fi
 
   crd_session="${HOME}/.chrome-remote-desktop-session"
-  if [[ -z $(cat "${crd_session}") ]]
-  then
+  if [[ -z $(cat "${crd_session}") ]]; then
     echo "# You will have to uncomment one of the following lines for CRD to work" >> "${crd_session}"
     echo "# Remove the # and save the file." >> "${crd_session}"
     echo "# " >> "${crd_session}"
     echo "export \$(dbus-launch)" >> "${crd_session}"
     grep -R "^Exec=" "/usr/share/xsessions/" | sed "s|/usr/.*=|#exec |" >> "${crd_session}"
   fi
-  print_blue "Now entering the editor to make the appropriate changes to your session file."; printf "\n"
+  print_blue "Now entering the editor to make the appropriate changes to"; printf "\n"
+  print_blue "your session file."; printf "\n"
   read -rsp $"Press any key to continue..." -n1 key; printf "\n\n"
   "${EDITOR}" "${crd_session}"
+  sleep 0.5
 
+  print_blue "############################################################"; printf "\n"
   crd_size="${HOME}/.config/chrome-remote-desktop/Size"
-  print_blue "If you want to set a default size for all clients, please add a"; printf "\n"
-  print_blue "value with format "; print_green "[width]x[height]"; print_blue " (e.g "; print_green "1360x768"; print_blue ") in file"; printf "\n"
-  print_green "${crd_size}"; print_blue "."; printf "\n"
+  print_blue "If you want to set a default size for all clients, please"; printf "\n"
+  print_blue "add a value with format "; print_green "[width]x[height]"; print_blue " (e.g "; print_green "1360x768"; printf "\n"
+  print_blue ") in file"; print_green "${crd_size}"; print_blue "."; printf "\n\n"
   print_blue "Remember that this will affect all clients you use."; printf "\n"
-  print_blue "If you dont want a default size please leave it blank."; printf "\n"
+  print_blue "If you dont want a default size please leave it blank."; printf "\n\n"
   print_blue "Now entering the editor to make the appropriate changes to"; printf "\n"
   print_blue "your Size file. Do not enter any comments to this file."; printf "\n"
   read -rsp $"Press any key to continue..." -n1 key; printf "\n\n"
   "${EDITOR}" "${crd_size}"
+  sleep 0.5
 
+  print_blue "############################################################"; printf "\n"
   print_blue "This completes the setup."; printf "\n\n"
   print_blue "Please remember that you will need to allow Chrome or Chromium"; printf "\n"
   print_blue "to act as a server for this to work at all."; printf "\n\n"
-  print_blue "To do that, open "; print_green "https://remotedesktop.google.com/"; print_blue " in your chrome or chromium browser"; printf "\n"
-  print_blue "and follow the instructions. Clicking the computer will open"; printf "\n"
-  print_blue "it in the browser window in default resolution."; printf "\n"
-  print_blue "For a more pleasant chromoting experience, just issue the command: "; print_green "crd --restart"; printf "\n\n"
-  print_blue "Happy chromoting! "; print_green ":)"; printf "\n\n"
+  print_blue "To do that, open "; print_green "https://remotedesktop.google.com/headless/"; printf "\n"
+  print_blue "in your chrome or chromium browser and follow the instructions."; printf "\n\n"
+  print_blue "If you want to start the service at boot, issue the command:"; printf "\n"
+  print_green "systemctl enable chrome-remote-desktop@\${USER}"; printf "\n\n"
 }
 
 function help() {
