@@ -1,0 +1,14 @@
+pkgbase = symfpu-cvc5
+	pkgdesc = A fork of SymFPU, a (concrete or symbolic) implementation of IEEE-754 / SMT-LIB flating-point for cvc5
+	pkgver = r20230627.e6ac3af
+	pkgrel = 3
+	url = https://github.com/cvc5/symfpu
+	arch = x86_64
+	license = GPL3
+	makedepends = bash
+	makedepends = git
+	provides = symfpu=r20230627.e6ac3af
+	source = git+https://github.com/cvc5/symfpu.git#commit=e6ac3af9c2c574498ea171c957425b407625448b
+	sha256sums = eb0eeda22c5ff9345c94249cc880dae57ac5eb42992675143150ec1814052955
+
+pkgname = symfpu-cvc5
