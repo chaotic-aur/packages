@@ -25,7 +25,7 @@ pkgbase = chrome-remote-desktop
 	source = xdg-base-directory.patch
 	sha256sums = b2f8a2ee4317a1b5493062a397470ec4444e9ee52a852564310b6e9baa1a6886
 	sha256sums = fcc38269eb1cc902abff9688eda9377a22367e39b9f111f87c0dd8e77adb82e2
-	sha256sums = d73aa7cb4e1b616bd460bb3439b342cf05f7358f7bcb2d881121f35ccd675797
+	sha256sums = e4105af96f029a80275986a0b19c7eaf563034230b20ee4d9158e1169d155e6d
 	sha256sums = 90bcfab85a87cfa6d038a55c556206f74b22eb03644ea51f46732cfb27679963
 
 pkgname = chrome-remote-desktop
