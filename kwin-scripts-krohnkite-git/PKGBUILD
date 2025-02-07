@@ -4,7 +4,7 @@
 _gitname="krohnkite"
 _pkgname="kwin-scripts-$_gitname"
 pkgname="$_pkgname-git"
-pkgver=0.9.5.r2.gdd35653
+pkgver=0.9.8.5.r5.gd7a5e3f
 pkgrel=1
 pkgdesc="A dynamic tiling extension for KWin"
 url="https://github.com/anametologin/krohnkite"
@@ -49,9 +49,6 @@ build() {
   install -Dm644 res/main.qml ../pkg/contents/ui/main.qml
   install -Dm644 res/popup.qml ../pkg/contents/ui/popup.qml
   install -Dm644 res/shortcuts.qml ../pkg/contents/ui/shortcuts.qml
-
-  #cd "$srcdir"
-  #7z a -tzip "$_gitname-$pkgver.kwinscript" pkg/*
 }
 
 package() {
@@ -61,8 +58,6 @@ package() {
 
   install -dm755 "$pkgdir/usr/share/kwin/scripts/$_gitname"
   cp -ra "pkg/." "$pkgdir/usr/share/kwin/scripts/$_gitname/"
-
-  install -Dm644 "$_pkgsrc/res/metadata.desktop" "$pkgdir/usr/share/kservices6/$_gitname.desktop"
 
   install -Dm644 "$srcdir/$_pkgsrc/LICENSE" -t "$pkgdir/usr/share/licenses/$pkgname/"
 }
