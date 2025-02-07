@@ -12,10 +12,10 @@
 
 _pkgname="librewolf"
 pkgname="${_pkgname}"
-pkgver=134.0.1
+pkgver=134.0.2
 pkgrel=1
 pkgdesc="A web browser focused on privacy, security, and freedom"
-url="https://codeberg.org/librewolf"
+url="https://codeberg.org/librewolf/source"
 arch=('x86_64')
 license=('MPL-2.0')
 
@@ -109,24 +109,12 @@ _source_main() {
     "$_pkgname.desktop"
   )
   sha256sums=(
-    '08791e736474c8d9dc3c1ff1d0438e24d8aace66ca3b3709eb1491ae5e7fc203'
+    '146c61a725a849a6b0ffb8d85b3cea6b925bc5b21847c65b8ed5ae70e4ea8025'
     '7d01d317b7db7416783febc18ee1237ade2ec86c1567e2c2dd628a94cbf2f25d'
   )
 }
 
-_source_patches() {
-  source+=(
-    "50d41051085b.patch"::"https://hg.mozilla.org/mozilla-central/raw-rev/50d41051085b"
-    "d12754638c68.patch"::"https://hg.mozilla.org/mozilla-central/raw-rev/d12754638c68"
-  )
-  sha256sums+=(
-    'f68c5fd889288726fa6deff0aec6d30c60c0864e1ba9318cb3186af6a771748d'
-    'd01d3b692db818dab1f15035b73ad27894c7b2b80431b9eb7ca80194765c91a9'
-  )
-}
-
 _source_main
-#_source_patches
 
 prepare() {
   mkdir -p mozbuild
