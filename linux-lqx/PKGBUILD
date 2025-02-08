@@ -54,10 +54,10 @@ _htmldocs_enable=
 _major=6.12
 _srcname=linux-${_major}
 _lqxpatchname=liquorix-package
-_lqxpatchrel=16
+_lqxpatchrel=18
 _lqxpatchver=${_lqxpatchname}-${_major}-${_lqxpatchrel}
 pkgbase=linux-lqx
-pkgver=6.12.12.lqx2
+pkgver=6.12.13.lqx2
 pkgrel=1
 pkgdesc='Linux Liquorix'
 url='https://liquorix.net/'
@@ -103,7 +103,7 @@ validpgpkeys=(
 )
 sha512sums=('a37b1823df7b4f72542f689b65882634740ba0401a42fdcf6601d9efd2e132e5a7650e70450ba76f6cd1f13ca31180f2ccee9d54fe4df89bc0000ade4380a548'
   'SKIP'
-  '998ddd99cc66de0c23ca7f86e3f66562b9b86f4ea9c7fa2c5c486343049e38c9808f3195381dbded93696feb959e2346324305f4c9adfc51e41f1e8e86a97da9')
+  '174add0c1a92f8a0bd0c5b993afd90aa852c584f8b5d50f3547057558231bd81f36ee35d02a179858cde0d0b1cf39402a4ce895c4e53132b05dd533b48eac199')
 
 export KBUILD_BUILD_HOST=archlinux
 export KBUILD_BUILD_USER=$pkgbase
