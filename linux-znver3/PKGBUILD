@@ -2,7 +2,7 @@
 
 pkgbase=linux
 pkgver=6.13.1.arch2
-pkgrel=1
+pkgrel=2
 pkgdesc='Linux'
 url='https://github.com/archlinux/linux'
 arch=(x86_64)
