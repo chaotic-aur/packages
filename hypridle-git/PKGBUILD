@@ -2,7 +2,7 @@
 
 _pkgname="hypridle"
 pkgname="${_pkgname}-git"
-pkgver=0.1.1.r4.gdad6ac14
+pkgver=0.1.5.r7.g93cb051c
 pkgrel=1
 pkgdesc="Hyprland's idle daemon"
 arch=(x86_64 aarch64)
@@ -14,6 +14,18 @@ source=("${_pkgname}::git+https://github.com/hyprwm/hypridle.git")
 provides=("hypridle")
 conflicts=("hypridle")
 sha256sums=('SKIP')
+
+pick_mr() {
+  cd ${srcdir}/${_pkgname}
+
+  git pull origin pull/$1/head --no-edit --rebase
+}
+
+prepare() {
+  # Pick pull request from github using `pick_mr <pull request number>`
+  # e.g. `pick_mr 100`
+  echo -n
+}
 
 pkgver() {
   cd ${_pkgname}
