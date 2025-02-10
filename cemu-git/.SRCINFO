@@ -1,12 +1,13 @@
 pkgbase = cemu-git
 	pkgdesc = Nintendo Wii U emulator
-	pkgver = 2.5.r19.ge834515
-	pkgrel = 2
+	pkgver = 2.6.r0.ga6fb0a4
+	pkgrel = 1
 	url = https://github.com/cemu-project/Cemu
 	arch = x86_64
 	license = MPL-2.0
 	makedepends = bluez-libs
 	makedepends = boost
+	makedepends = clang
 	makedepends = cmake
 	makedepends = curl
 	makedepends = git
@@ -35,7 +36,7 @@ pkgbase = cemu-git
 	depends = sdl2
 	depends = spirv-tools
 	depends = wxwidgets-gtk3
-	provides = cemu=2.5
+	provides = cemu=2.6
 	conflicts = cemu
 	source = cemu::git+https://github.com/cemu-project/Cemu.git
 	source = mozilla.cubeb::git+https://github.com/mozilla/cubeb.git

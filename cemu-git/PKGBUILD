@@ -5,8 +5,8 @@
 
 _pkgname="cemu"
 pkgname="$_pkgname-git"
-pkgver=2.5.r19.ge834515
-pkgrel=2
+pkgver=2.6.r0.ga6fb0a4
+pkgrel=1
 pkgdesc="Nintendo Wii U emulator"
 url="https://github.com/cemu-project/Cemu"
 license=('MPL-2.0')
@@ -22,6 +22,7 @@ depends=(
 makedepends=(
   'bluez-libs'
   'boost'
+  'clang'
   'cmake'
   'curl'
   'git'
@@ -184,7 +185,9 @@ _build_main() (
 )
 
 build() (
-  export CFLAGS CXXFLAGS LDFLAGS
+  export CC CXX CFLAGS CXXFLAGS LDFLAGS
+  CC=clang
+  CXX=clang++
   CFLAGS+=' -DNDEBUG'
   CXXFLAGS+=' -DNDEBUG'
   LDFLAGS+=" -ffat-lto-objects -Wl,--copy-dt-needed-entries"
