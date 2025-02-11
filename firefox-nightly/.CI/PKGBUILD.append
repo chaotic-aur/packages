@@ -1,9 +1,0 @@
-eval _orig_"$(declare -f package)"
-
-package() {
-  provides+=('firefox-wayland-hg')
-  conflicts+=('firefox-wayland-hg')
-  replaces+=('firefox-wayland-hg')
-
-  _orig_package
-}
