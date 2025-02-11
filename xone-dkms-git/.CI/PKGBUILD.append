@@ -1,0 +1,9 @@
+eval _orig_"$(declare -f package)"
+
+package() {
+  provides+=('xone-dlundqvist-dkms-git')
+  conflicts+=('xone-dlundqvist-dkms-git')
+  replaces+=('xone-dlundqvist-dkms-git')
+
+  _orig_package
+}
