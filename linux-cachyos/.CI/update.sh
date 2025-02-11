@@ -10,6 +10,6 @@ _PKG="linux-cachyos"
 # Run this before comparing to avoid unnecessary diffs
 shfmt -w "$TMPDIR/$_PKG/PKGBUILD"
 
-if [[ $(diff -ruN ungoogled-chromium/PKGBUILD "$TMPDIR/PKGBUILD") != "" ]]; then
+if [[ $(diff -ruN "$_PKG/PKGBUILD" "$TMPDIR/PKGBUILD") != "" ]]; then
   rsync -a --exclude "aur" "$TMPDIR/$_PKG/" "$_PKG" || echo "Failed to copy files"
 fi
