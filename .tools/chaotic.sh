@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # deps: aria2 getoptions trash-cli
 
-VERSION="0.0.4"
+VERSION="0.0.5"
 
 if [ "${EUID:-$(id -u)}" -eq 0 ]; then
   ecbo "Do not run as root user."
@@ -44,26 +44,31 @@ source "$_config_file"
 parser_definition() {
   setup REST help:usage -- "Usage: $(basename $0) [options]... [INPUT]" ''
   msg -- 'Options:'
-  flag ADD -a --add -- "add or update package"
-  flag BUMP -b --bump -- "bump package pkgrel"
-  flag DROP -d --drop -- "drop package"
-  flag EDIT -e --edit -- "edit package config/info"
-  param ISSUE -i --issue -- "github issue number"
+  flag ADD -a --add -- "[package-list] - add or update packages"
+  flag BUMP -b --bump -- "[package-list] - bump pkgrel of packages"
+  flag DROP -d --drop -- "[package-list] - drop packages"
 
-  flag COMMIT --commit -- "commit package"
+  flag TRIGGER_REBUILD --trigger-rebuild --tr -- "[trigger-package] [package-list] - add rebuild trigger to packages"
+  flag TRIGGER_PIPELINE --trigger-pipeline --tp -- "[trigger-name] [package-list] - add pipeline trigger to packages"
+
+  flag COMMIT --commit -- "[package-list] - commit packages"
   param MSG --msg -- "commit message"
+  flag EDIT -e --edit -- "edit config/info of packages"
+  param ISSUE -n --issue -- "github issue number"
 
-  flag CHECK -c --check -- "create list of broken/missing packages"
-  flag CHECKBASE --check-base -- "create list of broken/missing pkgbases"
-  flag CHECKSYNC --check-sync -- "check package sync with aur"
-  flag LIST -l --list -- "create list of packages contained in repos"
+  flag CHECKSYNC --check-sync --cs -- "[package-list] - check package sync with aur"
 
-  flag METRIC -m --metric -- "show 30-day download count for package"
+  flag CHECK -c --check -- "create lists of broken/missing *packages*"
+  flag CHECKBASE --check-base -- "create list of broken/missing *pkgbases*"
+  flag LIST --list -- "create list of packages contained in repos"
+
+  flag BUILDLOG -l --log -- "[package-list] - show log of most recent build attempt"
+  flag METRIC -m --metric -- "[package-list] - show 30-day download count for package"
 
   flag _SSH -s --ssh -- "ssh to chaotic server"
   flag RSYNC -r --rsync -- "download file from chaotic server"
 
-  option USER -u --user on: "$_user" -- "set user"
+  option USER -u --user on: "$_user" -- "set remote user"
 
   disp :usage -h --help
   disp VERSION --version
@@ -190,6 +195,20 @@ chaotic_proc_path_pkg() {
   printf "%s::%s" "${_path:?}" "${_pkg:?}"
 }
 
+chaotic_log() {
+  if [ $# -eq 0 ] || [ -z "$1" ]; then
+    >&2 echo "# error: missing package name"
+    return 1
+  fi
+
+  local p _pkg _response
+  for p in "$@"; do
+    _pkg="${p%[/,]}"
+    _response=$(curl -s --connect-timeout 3 -m 15 "https://builds.garudalinux.org/logs/api/logs/$_pkg")
+    less -R <<< "$_response"
+  done
+}
+
 chaotic_metric() {
   if [ $# -eq 0 ] || [ -z "$1" ]; then
     >&2 echo "# error: missing package name"
@@ -199,7 +218,7 @@ chaotic_metric() {
   local p n _pkg
   for p in "$@"; do
     _pkg="${p%[/,]}"
-    local n=$(curl -s "https://metrics.chaotic.cx/30d/package/$_pkg")
+    n=$(curl -s "https://metrics.chaotic.cx/30d/package/$_pkg")
     printf '%s # %s\n' "$_pkg" "$n"
   done
 }
@@ -242,7 +261,7 @@ chaotic_check_sync() (
     if grep -q 'CI_PKGBUILD_SOURCE=aur' "$_path/.CI/config"; then
       printf 'chaotic_check_sync_aux "%s" "%s"\n' "$_path" "$_pkg"
     fi
-  done | parallel -j $((2*$(nproc)))
+  done | parallel -j $((2 * $(nproc)))
 )
 
 chaotic_add() (
@@ -303,9 +322,6 @@ END
 
       >&2 echo "# info: running shfmt"
       shfmt -w "$_path"/PKGBUILD
-
-      >&2 echo "# info: running shellcheck"
-      printf "line\tcolumn\tlevel\tcode\tdescription\n$(shellcheck -f json -x "${_path}/PKGBUILD" | jq -r 'map(.line,.column,.level,.code,.message,"\n") | join("\t")' |sed 's/^\t*//')" "$_path/PKGBUILD" |column    
     fi
   done
 )
@@ -316,7 +332,7 @@ chaotic_bump() {
     return 1
   fi
 
-  local p _tmp _path _pkg _current _pkgver _bump
+  local p _tmp _path _pkg _current _pkgver _bump _msg
   for p in "$@"; do
     if _tmp="$(chaotic_proc_path_pkg "$p")"; then
       _path="${_tmp%%::*}"
@@ -340,13 +356,68 @@ chaotic_bump() {
       _bump=$((_bump + 1))
     fi
 
+    echo "# bump: $_pkg $_pkgver/$_bump"
     if grep -qs '^CI_PACKAGE_BUMP=' "$_path/.CI/config"; then
-      echo "# bump: $_pkg $_pkgver/$_bump"
       sed -E -e 's&(CI_PACKAGE_BUMP)=.*$&\1='"$_pkgver/$_bump&" -i "$_path/.CI/config"
+    elif grep -qs '^CI_REBUILD_TRIGGERS=' "$_path/.CI/config"; then
+      sed -E -e 's&(CI_REBUILD_TRIGGERS=.*)$&CI_PACKAGE_BUMP='"$_pkgver/$_bump"'\n\1&' -i "$_path/.CI/config"
     else
-      echo "# bump: $_pkg $_pkgver/$_bump"
       sed -E -e 's&(CI_PKGBUILD_SOURCE=.*)$&CI_PACKAGE_BUMP='"$_pkgver/$_bump"'\n\1&' -i "$_path/.CI/config"
     fi
+  done
+}
+
+# $1 = trigger
+# $@ = packages
+chaotic_trigger_rebuild() {
+  if [ $# -lt 2 ] || [ -z "$1" ] || [ -z "$2" ]; then
+    >&2 echo "# error: missing trigger/package names"
+    return 1
+  fi
+
+  local _trigger p _tmp _path _pkg _pkgver _bump _msg
+  _trigger="$1"
+  shift
+
+  for p in "$@"; do
+    if _tmp="$(chaotic_proc_path_pkg "$p")"; then
+      _path="${_tmp%%::*}"
+      _pkg="${_tmp##*::}"
+    else
+      continue
+    fi
+
+    if grep -qs '^CI_REBUILD_TRIGGERS=' "$_path/.CI/config"; then
+      if ! grep -qs '^CI_REBUILD_TRIGGERS=.*'"$_trigger" "$_path/.CI/config"; then
+        sed -E -e 's&(CI_REBUILD_TRIGGERS=\S+)$&\1:'"$_trigger" -i "$_path/.CI/config"
+      fi
+    else
+      sed -E -e 's&(CI_PKGBUILD_SOURCE=.*)$&CI_REBUILD_TRIGGERS='"$_trigger"'\n\1&' -i "$_path/.CI/config"
+    fi
+  done
+}
+
+# $1 = trigger
+# $@ = packages
+chaotic_trigger_pipeline() {
+  if [ $# -lt 2 ] || [ -z "$1" ] || [ -z "$2" ]; then
+    >&2 echo "# error: missing trigger/package names"
+    return 1
+  fi
+
+  local _trigger p _tmp _path _pkg _pkgver _bump _msg
+  _trigger="$1"
+  shift
+
+  for p in "$@"; do
+    if _tmp="$(chaotic_proc_path_pkg "$p")"; then
+      _path="${_tmp%%::*}"
+      _pkg="${_tmp##*::}"
+    else
+      continue
+    fi
+
+    sed -e '1i CI_ON_TRIGGER='"$_trigger" -i "$_path/.CI/config"
   done
 }
 
@@ -454,6 +525,8 @@ elif [ "$RSYNC" = 1 ]; then
 
   echo "${_cmd[*]}"
   "${_cmd[@]}"
+elif [ "$BUILDLOG" = 1 ]; then
+  chaotic_log "$@"
 elif [ "$ADD" = 1 ]; then
   chaotic_add "$@"
 elif [ "$BUMP" = 1 ]; then
@@ -464,6 +537,10 @@ elif [ "$EDIT" = 1 ]; then
   chaotic_edit "$@"
 elif [ "$COMMIT" = 1 ]; then
   chaotic_commit "$@"
+elif [ "$TRIGGER_REBUILD" = 1 ]; then
+  chaotic_trigger_rebuild "$@"
+elif [ "$TRIGGER_PIPELINE" = 1 ]; then
+  chaotic_trigger_pipeline "$@"
 elif [ "$METRIC" = 1 ]; then
   chaotic_metric "$@"
 else
