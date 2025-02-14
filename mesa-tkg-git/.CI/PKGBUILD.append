@@ -1,7 +1,11 @@
-CFLAGS+=" -g1"
-CXXFLAGS+=" -g1"
+export CFLAGS+=" -g1"
+export CXXFLAGS+=" -g1"
 
 url="${_mesa_source%.git}"
 license=('MIT' 'BSD-3-Clause' 'SGI-B-2.0')
 
 depends=(${depends[@]//>=*})
+makedepends=(
+  ${makedepends[@]//>=*}
+  lib32-clang
+)
