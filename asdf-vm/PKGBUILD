@@ -1,11 +1,12 @@
 # Maintainer: Alec Mev <alec@mev.earth>
+# Maintainer: Raphael Nestler <raphael.nestler@gmail.com>
 
 _pkgname=asdf
 pkgname=asdf-vm
 pkgver=0.16.2
 pkgrel=1
 pkgdesc='Extendable version manager with support for Ruby, Node.js, Elixir, Erlang & more'
-arch=('x86_64')
+arch=('x86_64' 'aarch64')
 url='https://asdf-vm.com'
 license=('MIT')
 makedepends=('go')
