@@ -1,6 +1,6 @@
 pkgbase = obs-studio-git
 	pkgdesc = Free, open source software for live streaming and recording - Browser enabled
-	pkgver = 31.0.1.r81.g6f115df
+	pkgver = 31.0.1.r96.g80ea1b1
 	pkgrel = 1
 	url = https://github.com/obsproject/obs-studio
 	arch = x86_64
