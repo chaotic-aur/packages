@@ -2,11 +2,11 @@
 # Contributor: Levente Polyak <anthraxx[at]archlinux[dot]org>
 # Contributor: Andrew Rabert <ar@nullsum.net>
 
-: ${_commit:=a6d3a755346520c3a44fc539253c985a80da0ac0} # 0.8.13
+: ${_commit:=a7be45051b2c920d6dfec4d0c515c815883bdaff}
 
 _pkgname="xboxdrv"
 pkgname="$_pkgname"
-pkgver=0.8.13
+pkgver=0.8.14
 pkgrel=1
 pkgdesc="Userspace Xbox gamepad driver and input remapper"
 url="https://github.com/xiota/xboxdrv"
