@@ -11,7 +11,7 @@ license=('BSD-3-Clause')
 depends=('pixman' 'cairo' 'hyprutils-git' 'libjpeg' 'libspng' 'libwebp' 'libjxl' 'file')
 makedepends=('git' 'cmake' 'gcc')
 source=("${_pkgname}::git+https://github.com/hyprwm/hyprgraphics.git")
-provides=("hyprgraphics")
+provides=("${_pkgname}=${pkgver%%.r*}" "lib$_pkgname.so")
 conflicts=("hyprgraphics")
 sha256sums=('SKIP')
 

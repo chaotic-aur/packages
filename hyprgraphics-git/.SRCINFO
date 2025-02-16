@@ -17,7 +17,8 @@ pkgbase = hyprgraphics-git
 	depends = libwebp
 	depends = libjxl
 	depends = file
-	provides = hyprgraphics
+	provides = hyprgraphics=0.1.0
+	provides = libhyprgraphics.so
 	conflicts = hyprgraphics
 	source = hyprgraphics::git+https://github.com/hyprwm/hyprgraphics.git
 	sha256sums = SKIP
