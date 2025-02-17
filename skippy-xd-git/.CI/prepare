@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+sed 's/AUR Edition/Chaotic AUR Edition/' -i PKGBUILD
