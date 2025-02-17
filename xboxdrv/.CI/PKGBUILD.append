@@ -1,0 +1,9 @@
+eval _orig_"$(declare -f package)"
+
+package() {
+  provides+=('xboxdrv-cebtenzzre-git' 'xboxdrv-stable-git')
+  conflicts+=('xboxdrv-cebtenzzre-git' 'xboxdrv-stable-git')
+  replaces+=('xboxdrv-cebtenzzre-git' 'xboxdrv-stable-git')
+
+  _orig_package
+}
