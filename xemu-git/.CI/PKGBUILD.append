@@ -1,1 +1,4 @@
 url="https://github.com/xemu-project/xemu"
+
+depends=(${depends[@]//*cpp-httplib*/})
+makedepends+=('cpp-httplib')
