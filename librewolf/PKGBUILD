@@ -143,7 +143,7 @@ ac_add_options --disable-bootstrap
 ac_add_options --with-wasi-sysroot=/usr/share/wasi-sysroot
 
 # Branding
-ac_add_options --with-app-basename=$_pkgname
+ac_add_options --with-app-basename=Firefox # affects user-agent
 ac_add_options --with-app-name=$_pkgname
 ac_add_options --with-branding=browser/branding/librewolf
 ac_add_options --with-unsigned-addon-scopes=app,system
