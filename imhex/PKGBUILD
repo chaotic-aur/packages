@@ -3,14 +3,14 @@
 
 _pkgname=ImHex
 pkgname=${_pkgname,,}
-pkgver=1.36.2
+pkgver=1.37.1
 pkgrel=1
 pkgdesc='A Hex Editor for Reverse Engineers, Programmers and people that value their eye sight when working at 3 AM'
 url='https://imhex.werwolv.net'
 license=('GPL-2.0-or-later')
 arch=('x86_64')
 depends=('glfw' 'mbedtls' 'curl' 'dbus'
-  'freetype2' 'file' 'hicolor-icon-theme' 'xdg-desktop-portal'
+  'freetype2' 'file' 'hicolor-icon-theme' 'xdg-desktop-portal' 'fontconfig'
   'fmt' 'yara' 'capstone')
 makedepends=('git' 'cmake'
   'llvm' 'librsvg' 'nlohmann-json' 'libxrandr'
@@ -20,10 +20,10 @@ provides=('imhex-patterns')
 conflicts=('imhex-patterns-git')
 source=("$pkgname-$pkgver.tar.gz::https://github.com/WerWolv/ImHex/releases/download/v$pkgver/Full.Sources.tar.gz"
   "imhex-patterns-$pkgver.tar.gz::https://github.com/WerWolv/ImHex-Patterns/archive/refs/tags/ImHex-v$pkgver.tar.gz")
-sha256sums=('29bed22dae537b83ac4cce905352b4a1c5342862a67cad5575c58ff41f5847f7'
-  'd1555d142347ddf576e5c0b1a19050ae168e8d174b206d269a9e84e07d2515c9')
-b2sums=('e0c9c8ae8ce003a3115a239d89a660e7dd1c2c709c8aa1007463ddfc7861a5f10394cef1621a09ed9f7bd90fbfa5249a14aed619bd9f50c53500a1a9dc090aa0'
-  '891f8610f643616c5e7625a2a1ca6035038ef67aa6e425fe9fb997a2b18484800bc8caa0ebb52bdeadd61595409b1b768d4bedc22621622c5865143a663507a7')
+sha256sums=('09f410a69f5a75b3800d93b6d8d6db75038e1e872e9366ab245c0f3ebfe4496e'
+  'cb345e053fdf2f25cc6b7df025fd4178fa012394fc5aeb2b36a5453ab485e5b3')
+b2sums=('b6cd8c03fe058a2b30d12dfa6ee89ff69ec5baa9857c3c94ad0489364b646f616f133b03affbf4706dec40ddac27753d6ba4581c55b3150a519e640e0a2ad525'
+  'ab909571ef060b664db523e3258e7bfda58c96a2a126a9b8a4eed933c2f6bf8e21e4836d0997757b6d0aae9746a613599a351a12dd573ebb7283999be7954838')
 options=(!lto !strip)
 
 build() {
@@ -62,7 +62,7 @@ package() {
     "$srcdir/ImHex-Patterns-ImHex-v$pkgver"/{constants,encodings,includes,magic,nodes,patterns,plugins,scripts,tests,themes,tips,yara}
 
   # Desktop file(s)
-  install -Dm0644 "$_pkgname/resources/icon.png" "$pkgdir/usr/share/pixmaps/imhex.png"
+  install -Dm0644 "$_pkgname/resources/icon.svg" "$pkgdir/usr/share/pixmaps/imhex.svg"
 
   # Documentation
   install -Dm0644 -t "$pkgdir/usr/share/doc/$pkgname" \
