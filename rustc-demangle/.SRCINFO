@@ -1,7 +1,7 @@
 pkgbase = rustc-demangle
 	pkgdesc = Demangling for Rust symbols, C API
 	pkgver = 0.1.24
-	pkgrel = 2
+	pkgrel = 4
 	url = https://github.com/rust-lang/rustc-demangle
 	arch = x86_64
 	arch = aarch64
