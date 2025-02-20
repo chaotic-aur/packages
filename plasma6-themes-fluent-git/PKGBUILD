@@ -1,6 +1,6 @@
 # Maintainer: Sainnhe Park <sainnhe@gmail.com>
 # Maintainer: Anupam Srivastava <anupam@dont.tech>
-pkgname=plasma5-themes-fluent-git
+pkgname=plasma6-themes-fluent-git
 _themeName=Fluent
 _gitname="$_themeName-kde"
 pkgver=r103.9d6b7d4
@@ -13,7 +13,8 @@ optdepends=('plasma-desktop: for included plasma theme' 'kvantum: for included k
 makedepends=('git')
 source=("git+${url}.git")
 sha256sums=('SKIP')
-conflicts=('fluent-kde-theme-git')
+conflicts=('fluent-kde-theme-git' 'plasma5-themes-fluent-git')
+replaces=('plasma5-themes-fluent-git')
 
 pkgver() {
   cd ${_gitname}
