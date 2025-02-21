@@ -1,5 +1,6 @@
-# Maintainer: Caleb Maclennan <caleb@alerque.com>
-# Maintainer: José Miguel Sarasola <jmsaraur@gmail.com>
+# Maintainer: brave <aur@brave.com>
+# Contributor: Caleb Maclennan <caleb@alerque.com>
+# Contributor: José Miguel Sarasola <jmsaraur@gmail.com>
 # Contributor: Như Bảo Trương <28810481+nhubaotruong@users.noreply.github.com>
 # Contributor: Andrés Rodríguez <hello@andres.codes>
 # Contributor: Jacob Mischka <jacob@mischka.me>
@@ -7,9 +8,6 @@
 # Contributor: Simón Oroño <simonorono@protonmail.com>
 # Contributor: now-im <now im 627 @ gmail . com>
 # Contributor: Giusy Digital <kurmikon at libero dot it>
-
-# Version notes:
-# `curl https://brave-browser-downloads.s3.brave.com/latest/release.version`
 
 pkgname=brave-bin
 pkgver=1.75.178
