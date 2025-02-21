@@ -1,2 +1,24 @@
 options=(${options[@]/debug*/})
 options+=(!debug)
+
+# advance commit for compatibility with scenefx 0.2
+if [ $(vercmp "$pkgver" 0.4.1) -lt 0 ]; then
+  : ${_commit=50d4cf45ab77ea1476860b993ed34bb32d3f434a}
+
+  pkgver=0.4.1
+  pkgrel=0
+
+  depends=(
+    ${depends[@]//*scenefx*/}
+    "libscenefx-0.2.so"
+  )
+
+  _pkgsrc="swayfx-$_commit"
+  _pkgext="tar.gz"
+  source[0]="$_pkgsrc"::"https://github.com/WillPower3309/swayfx/archive/$_commit.$_pkgext"
+  sha512sums[0]='SKIP'
+
+  prepare() {
+    ln -sf "$_pkgsrc" "swayfx-$pkgver"
+  }
+fi
