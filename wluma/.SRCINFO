@@ -1,7 +1,7 @@
 pkgbase = wluma
 	pkgdesc = Automatic brightness adjustment based on screen contents and ALS
 	pkgver = 4.7.0
-	pkgrel = 1
+	pkgrel = 2
 	url = https://github.com/maximbaz/wluma
 	arch = x86_64
 	arch = aarch64

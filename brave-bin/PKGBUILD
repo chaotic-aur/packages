@@ -1,4 +1,4 @@
-# Maintainer: brave <aur@brave.com>
+# Maintainer: brave <aur-release@brave.com>
 # Contributor: Caleb Maclennan <caleb@alerque.com>
 # Contributor: José Miguel Sarasola <jmsaraur@gmail.com>
 # Contributor: Như Bảo Trương <28810481+nhubaotruong@users.noreply.github.com>
