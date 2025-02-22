@@ -37,7 +37,7 @@ check out our [build status page](https://aur.chaotic.cx/status)!
 🕵️‍♀️
 
 A complete list of packages with their current versions is additionally
-available [here](https://aur.chaotic.cx/package-list).
+available [here](https://aur.chaotic.cx/packages).
 
 ## Modified packages
 
@@ -50,8 +50,8 @@ While we would prefer to build AUR packages without modification, doing so is of
 
 To address such issues:
 
-- [Toolbox](https://github.com/chaotic-aur/toolbox) automatically corrects some common errors.
-- Manual corrections may be applied with [Interfere](https://github.com/chaotic-aur/interfere).
+- The build system automatically corrects some common errors.
+- Manual corrections may be applied with an interfere
 - The original package may be forked as a custom package.
 
 ## Special packages
@@ -74,7 +74,7 @@ This is a list of packages that we will reject for good reasons:
 - **gst-plugins-{ugly,bad}**: These need to be rebuilt too frequently, which can't be dealt with as we don't control the
   packages pkgrel. Ultimately this would result in a bad user experience.
 
-- **ffmpeg-{full,headless}**: These need to be rebuilt too frequently, which can't be dealt with as we don't
+- **ffmpeg-headless**: Needs to be rebuilt too frequently, which can't be dealt with as we don't
   control the packages pkgrel. Ultimately this would result in a bad user experience.
 
 - **mpv-amd, ffmpeg-amd**: This is just MPV/FFMPEG without CUDA and NVENC to achieve shorter build times without actual
@@ -82,16 +82,13 @@ This is a list of packages that we will reject for good reasons:
 
 - **unreal-engine (and -git)**: Some mirrors don't have sufficient storage space.
 
-- **python2**: Has been EOL for a couple of years and
-  was [removed from Arch repositories](https://archlinux.org/news/removing-python2-from-the-repositories/). Requests for
-  packages that depend on it in any way will be rejected (
-  see [#1958](https://github.com/chaotic-aur/packages/issues/1958)).
+- **python2**: Has been EOL for years and
+  was [removed from Arch repositories](https://archlinux.org/news/removing-python2-from-the-repositories/).
 
 - **linux-ck**: Other kernels contain the same optimizations, and official pre-built binaries are available
   from [repo-ck](https://wiki.archlinux.org/title/Unofficial_user_repositories#repo-ck).
 
 - Packages that use EOL, non-standard, or modified versions of Electron. Packages that use Electron as a web browser.
-  The consecutive cluster of Electron versions available from the `extra` repository are acceptable.
 
 - Dependencies without any dependents: Such packages are useless by themselves. Maintaining them wastes effort that is
   better spent elsewhere.
