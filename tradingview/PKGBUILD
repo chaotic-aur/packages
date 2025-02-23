@@ -6,8 +6,8 @@
 _pkgname="tradingview"
 _snapname="tradingview"
 pkgname="$_pkgname"
-pkgver=2.9.3
-pkgrel=1
+pkgver=2.9.5
+pkgrel=2
 pkgdesc='Charting platform for traders and investors'
 arch=('x86_64')
 url="https://snapcraft.io/$_snapname"
@@ -15,9 +15,9 @@ license=('LicenseRef-TradingView')
 
 makedepends=(
   'html-xml-utils'
-  'pandoc'
   'sha3sum'
   'squashfs-tools'
+  'w3m'
 )
 
 _source_main() {
@@ -25,7 +25,7 @@ _source_main() {
   sha256sums=('SKIP')
 }
 
-_eula_basename="$_pkgname-eula"
+_terms_of_use="$_pkgname-eula"
 
 prepare() {
   # check upstream sha3-384sum
@@ -33,14 +33,14 @@ prepare() {
 
   # download tradingview policies/eula
   curl --no-progress-meter \
-    -o "$_eula_basename-1.html" \
+    -o "$_terms_of_use-1.html" \
     "https://www.tradingview.com/policies/"
 
-  hxextract .tv-policies "$_eula_basename-1.html" \
-    1> "$_eula_basename-2.html" \
+  hxextract .tv-policies "$_terms_of_use-1.html" \
+    1> "$_terms_of_use-2.html" \
     2> /dev/null
 
-  pandoc --quiet -t plain -o "$_eula_basename.txt" "$_eula_basename-2.html"
+  w3m -O UTF-8 -cols 80 -dump "$_terms_of_use-2.html" > "$_terms_of_use.txt"
 
   # unpack
   mkdir -p "$_pkgname-$_pkgver"
@@ -101,7 +101,7 @@ package() {
   install -Dm644 "$srcdir/$_pkgname.desktop" "$pkgdir/usr/share/applications/$_pkgname.desktop"
 
   # license/eula
-  install -Dm644 "$_eula_basename.txt" -t "$pkgdir/usr/share/licenses/$pkgname"
+  install -Dm644 "$_terms_of_use.txt" -t "$pkgdir/usr/share/licenses/$pkgname"
 }
 
 _update_version() {
