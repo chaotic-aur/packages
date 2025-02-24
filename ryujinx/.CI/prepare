@@ -1,10 +1,10 @@
 #!/usr/bin/env sh
 
 _check_status() {
-  local url _pkgver _response _tag _pkgver_new
+  local url pkgver pkgrel _pkgver _response _tag _pkgver_new
 
-  eval "$(grep -Eom1 '^url="\S+"' PKGBUILD)"
-  _pkgver=$(LANG=C LC_ALL=C pacman -Si chaotic-aur/ryujinx | grep -Pom1 '^Version\s+:\s+\K\S+(?=-[0-9])')
+  eval "$(grep -Eom1 '^(url|pkgver|pkgrel)="\S+"' PKGBUILD)"
+  _pkgver=$(LANG=C LC_ALL=C pacman -Si chaotic-aur/ryujinx | grep -Pom1 '^Version\s+:\s+\K\S+')
 
   _response=$(curl -Ssf "$url/releases")
   _tag=$(
@@ -15,7 +15,11 @@ _check_status() {
   )
   _pkgver_new="${_tag#v}"
 
-  if [ $(vercmp "$_pkgver" "${_pkgver_new:?}") -ge 0 ]; then
+  if [ $(vercmp "${_pkgver_new:?}" "$_pkgver") -ge 0 ]; then
+    echo "New upstream release.  $_pkgver_new >= $_pkgver"
+  elif [ $(vercmp "${pkgver}-${pkgrel}" "$_pkgver") -ge 0]; then
+    echo "Continuing build.  ${pkgver}-${pkgrel} >= $_pkgver"
+  else
     echo "Skipping build.  $_pkgver >= $_pkgver_new"
     return "$CI_CODE_SKIP"
   fi
