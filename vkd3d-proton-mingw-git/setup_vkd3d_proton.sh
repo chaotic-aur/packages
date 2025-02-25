@@ -35,6 +35,23 @@ while (($# > 0)); do
   shift
 done
 
+wineserver="wineserver"
+# $PATH is the way for user to control where wine is located (including custom Wine versions).
+# Pure 64-bit Wine (non Wow64) requires skipping 32-bit steps.
+# In such case, wine64 and winebooot will be present, but wine binary will be missing,
+# however it can be present in other PATHs, so it shouldn't be used, to avoid versions mixing.
+wine_path=$(dirname "$(which $wineserver)")
+echo "Using Wine installation in $(dirname $wine_path)"
+wine="$wine_path/wine"
+wine64="$wine_path/wine64"
+
+if [ -z "$WINEPREFIX" ]; then
+    WINEPREFIX="$HOME/.wine"
+fi
+
+# Wait for any existing wine processes in the current prefix to exit
+$wineserver -w
+
 # check wine prefix before invoking wine, so that we
 # don't accidentally create one if the user screws up
 if [ -n "$WINEPREFIX" ] && ! [ -f "$WINEPREFIX/system.reg" ]; then
@@ -47,17 +64,6 @@ export WINEDEBUG=-all
 # disable mscoree and mshtml to avoid downloading
 # wine gecko and mono
 export WINEDLLOVERRIDES="mscoree,mshtml="
-
-wineserver="wineserver"
-
-# $PATH is the way for user to control where wine is located (including custom Wine versions).
-# Pure 64-bit Wine (non Wow64) requires skipping 32-bit steps.
-# In such case, wine64 and winebooot will be present, but wine binary will be missing,
-# however it can be present in other PATHs, so it shouldn't be used, to avoid versions mixing.
-wine_path=$(dirname "$(which $wineserver)")
-wine="$wine_path/wine"
-wine64="$wine_path/wine64"
-wineboot="$wine_path/wineboot"
 
 # Thank you winetricks!
 get_file_arch()
@@ -77,7 +83,10 @@ get_file_arch()
 if [ -z "$WINEARCH" ]; then
   wine_arch=$(get_file_arch "$wine")
   wine64_arch=$(get_file_arch "$wine64")
-  if [ "$wine_arch" == "x86_64" ] || [ "$wine64_arch" == "x86_64" ]; then
+  if [ -f "$WINEPREFIX"/system.reg ]; then
+    arch="$(grep "^#arch=win" "$WINEPREFIX"/system.reg)"
+    arch="${arch##*=}"
+  elif [ "$wine_arch" == "x86_64" ] || [ "$wine64_arch" == "x86_64" ]; then
     arch=win64
   elif [ "$wine_arch" == "i386" ] && [ "$wine64_arch" == "" ]; then
     arch=win32
@@ -87,7 +96,7 @@ else
 fi
 
 if ! [ -f "$wine64" ]; then
-   wine64="$wine"
+  wine64="$wine"
 fi
 
 if [ "$arch" == "win32" ]; then
@@ -101,6 +110,7 @@ if [ -z "$wine_ver" ]; then
   exit 1
 fi
 
+wineboot="$wine64 wineboot.exe"
 # ensure wine placeholder dlls are recreated
 # if they are missing
 $wineboot -u
@@ -223,3 +233,4 @@ uninstall() {
 
 $action d3d12
 $action d3d12core
+
