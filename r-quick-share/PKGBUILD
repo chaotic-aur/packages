@@ -2,7 +2,7 @@
 pkgname=r-quick-share
 _pkgname=rquickshare
 pkgver=0.11.4
-pkgrel=1
+pkgrel=2
 pkgdesc="Rust implementation of NearbyShare/QuickShare from Android for Linux."
 arch=('x86_64')
 url="https://github.com/Martichou/rquickshare"
@@ -81,4 +81,8 @@ package() {
 
   install -Dm644 "target/release/bundle/deb/RQuickShare_${pkgver}_amd64/data/usr/share/applications/RQuickShare.desktop" -t \
     "$pkgdir/usr/share/applications/"
+
+  # Set StartupWMClass
+  desktop-file-edit --set-key=StartupWMClass --set-value="${_pkgname}" \
+    "$pkgdir/usr/share/applications/RQuickShare.desktop"
 }
