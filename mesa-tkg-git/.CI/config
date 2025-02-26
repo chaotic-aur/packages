@@ -1,3 +1,3 @@
+CI_ON_TRIGGER=daily
 BUILDER_CACHE_SOURCES=true
 CI_PKGBUILD_SOURCE=https://github.com/Frogging-Family/mesa-git.git
-BUILDER_CLASS=9
