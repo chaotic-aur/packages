@@ -1,6 +1,9 @@
 options=(${options[@]/debug*/})
 options+=(!debug)
 
+provides=(${provides[@]//swayfx*})
+conflicts=(${conflicts[@]//swayfx*})
+
 # advance commit for compatibility with scenefx 0.2
 if [ $(vercmp "$pkgver" 0.4.1) -lt 0 ]; then
   : ${_commit=50d4cf45ab77ea1476860b993ed34bb32d3f434a}
