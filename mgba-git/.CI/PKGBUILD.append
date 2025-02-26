@@ -1,0 +1,42 @@
+url="https://github.com/mgba-emu/mgba"
+
+_pkgsrc="mgba"
+
+pkgver() {
+  cd "$_pkgsrc"
+  local _file _hash _ver _rev _commit
+  _file="version.cmake"
+  read -r _hash _ver < <(
+    NL=$(awk '/set\(LIB_VERSION_ABI [0-9\.]+\)/{n=NR}END{print n}' "$_file")
+
+    git blame -L "$NL,+1" -- "$_file" \
+      | awk '{print $1" "$NF }' \
+      | sed -E -e 's& ([0-9\.]+)\)$& \1&'
+  )
+  _rev=$(git rev-list --count --cherry-pick "$_hash"...HEAD)
+  _commit=$(git rev-parse --short=7 HEAD)
+
+  printf "%s.r%s.g%s" "${_ver:?}" "${_rev:?}" "${_commit:?}"
+}
+
+build() {
+  local _cmake_options=(
+    -B build
+    -S "$_pkgsrc"
+    -G Ninja
+    -DCMAKE_BUILD_TYPE=None
+    -DCMAKE_INSTALL_PREFIX='/usr'
+    -DCMAKE_INSTALL_LIBDIR='lib'
+    -DUSE_MINIZIP=OFF
+    -Wno-dev
+  )
+
+  cmake "${_cmake_options[@]}"
+  cmake --build build
+}
+
+eval "$(declare -f package_libmgba-git | sed 's& (git build)&&')"
+
+eval "$(declare -f package_mgba-qt-git | sed '/pkgdesc/d')"
+
+eval "$(declare -f package_mgba-sdl-git | sed '/pkgdesc/d')"
