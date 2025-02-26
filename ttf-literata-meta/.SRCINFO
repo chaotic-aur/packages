@@ -1,0 +1,18 @@
+pkgbase = ttf-literata-meta
+	pkgdesc = metapackage - to remove some problem font packages
+	pkgver = 1
+	pkgrel = 1
+	arch = any
+
+pkgname = ttf-literata-meta
+	depends = ttf-literata-git
+	conflicts = otf-literata
+	conflicts = ttf-literata
+	conflicts = ttf-literata-opticals
+	conflicts = ttf-literata-webfont-opticals
+	conflicts = ttf-literata-webfonts
+	replaces = otf-literata
+	replaces = ttf-literata
+	replaces = ttf-literata-opticals
+	replaces = ttf-literata-webfont-opticals
+	replaces = ttf-literata-webfonts

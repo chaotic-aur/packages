@@ -1,0 +1,25 @@
+# Maintainer: aur.chaotic.cx
+
+pkgname="ttf-literata-meta"
+pkgver=1
+pkgrel=1
+pkgdesc="metapackage - to remove some problem font packages"
+arch=('any')
+
+package() {
+  depends=('ttf-literata-git')
+  conflicts=(
+    'otf-literata'
+    'ttf-literata'
+    'ttf-literata-opticals'
+    'ttf-literata-webfont-opticals'
+    'ttf-literata-webfonts'
+  )
+  replaces=(
+    'otf-literata'
+    'ttf-literata'
+    'ttf-literata-opticals'
+    'ttf-literata-webfont-opticals'
+    'ttf-literata-webfonts'
+  )
+}
