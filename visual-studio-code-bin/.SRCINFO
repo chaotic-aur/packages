@@ -1,7 +1,7 @@
 pkgbase = visual-studio-code-bin
 	pkgdesc = Visual Studio Code (vscode): Editor for building and debugging modern web and cloud applications (official binary version)
 	pkgver = 1.97.2
-	pkgrel = 1
+	pkgrel = 2
 	url = https://code.visualstudio.com/
 	install = visual-studio-code-bin.install
 	arch = x86_64
@@ -28,6 +28,7 @@ pkgbase = visual-studio-code-bin
 	provides = code
 	provides = vscode
 	conflicts = code
+	options = !strip
 	source = code.desktop.in::https://raw.githubusercontent.com/microsoft/vscode/1.97.2/resources/linux/code.desktop
 	source = code-url-handler.desktop.in::https://raw.githubusercontent.com/microsoft/vscode/1.97.2/resources/linux/code-url-handler.desktop
 	source = code-workspace.xml.in::https://raw.githubusercontent.com/microsoft/vscode/1.97.2/resources/linux/code-workspace.xml
