@@ -1,0 +1,16 @@
+[Unit]
+Description=gonic service
+After=network.target
+
+[Service]
+Type=simple
+User=gonic
+Group=gonic
+
+Restart=on-failure
+RestartSec=10
+
+ExecStart=/usr/bin/gonic -config-path /var/lib/gonic/config
+
+[Install]
+WantedBy=multi-user.target

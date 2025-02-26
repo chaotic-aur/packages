@@ -1,0 +1,11 @@
+--- a/contrib/gonic.service
++++ b/contrib/gonic.service
+@@ -11,7 +10,7 @@
+ Restart=on-failure
+ RestartSec=10
+ 
+-ExecStart=/usr/local/bin/gonic -config-path /etc/gonic/config
++ExecStart=/usr/bin/gonic -config-path /var/lib/gonic/config
+ 
+ [Install]
+ WantedBy=multi-user.target
