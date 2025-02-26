@@ -1,0 +1,23 @@
+pkgbase = zulucrypt-qt6
+	pkgdesc = A CLI and GUI frontend to cryptsetup
+	pkgver = 7.1.0
+	pkgrel = 1
+	url = https://github.com/mhogomchungu/zuluCrypt
+	arch = x86_64
+	license = GPL-2.0-or-later
+	makedepends = cmake
+	makedepends = git
+	makedepends = ninja
+	depends = cryptsetup
+	depends = hicolor-icon-theme
+	depends = libpwquality
+	depends = libsecret
+	depends = qt6-base
+	depends = util-linux
+	optdepends = kwalletmanager: retrieve volume keys from kde kwallet
+	provides = zulucrypt
+	conflicts = zulucrypt
+	source = zulucrypt::git+https://github.com/mhogomchungu/zuluCrypt.git#tag=7.1.0
+	sha256sums = SKIP
+
+pkgname = zulucrypt-qt6

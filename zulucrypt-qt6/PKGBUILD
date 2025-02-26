@@ -1,0 +1,61 @@
+# Maintainer: aur.chaotic.cx
+
+_pkgname="zulucrypt"
+pkgname="$_pkgname-qt6"
+pkgver=7.1.0
+pkgrel=1
+pkgdesc="A CLI and GUI frontend to cryptsetup"
+url="https://github.com/mhogomchungu/zuluCrypt"
+license=('GPL-2.0-or-later')
+arch=('x86_64')
+
+depends=(
+  'cryptsetup'
+  'hicolor-icon-theme'
+  'libpwquality'
+  'libsecret'
+  'qt6-base'
+  'util-linux'
+)
+makedepends=(
+  'cmake'
+  'git'
+  'ninja'
+)
+optdepends=(
+  'kwalletmanager: retrieve volume keys from kde kwallet'
+)
+
+provides=("$_pkgname")
+conflicts=("$_pkgname")
+
+_pkgsrc="$_pkgname"
+source=("$_pkgsrc"::"git+$url.git#tag=$pkgver")
+sha256sums=('SKIP')
+
+build() {
+  local _cmake_options=(
+    -B build
+    -S "$_pkgsrc"
+    -G Ninja
+    -DCMAKE_BUILD_TYPE=None
+    -DCMAKE_INSTALL_PREFIX='/usr'
+    -DHOMEMOUNTPREFIX=OFF
+    -DNOGNOME=OFF
+    -DNOGUI=OFF
+    -DNOKDE=OFF
+    -DBUILD_WITH_QT6=ON
+    -Wno-dev
+  )
+
+  cmake "${_cmake_options[@]}"
+  cmake --build build
+}
+
+package() {
+  DESTDIR="$pkgdir" cmake --install build
+
+  install -Dm644 /dev/stdin "$pkgdir/etc/modules-load.d/$_pkgname.conf" << END
+loop
+END
+}
