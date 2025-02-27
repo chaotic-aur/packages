@@ -1,2 +1,3 @@
 CI_ON_TRIGGER=check
+CI_PACKAGE_BUMP=143-1/1
 CI_PKGBUILD_SOURCE=https://aur.archlinux.org/ares-emu-avx-git.git

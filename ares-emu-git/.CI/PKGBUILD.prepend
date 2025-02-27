@@ -1,2 +1,2 @@
-: ${_build_avx:=false}
+: ${_build_level:=1}
 : ${_build_git:=true}

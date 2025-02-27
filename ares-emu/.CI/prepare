@@ -1,7 +1,13 @@
 #!/usr/bin/env bash
 
 _check_update() {
-  local _url _response _tag _pkgver_new _pkgver_old
+  local _url _response _tag _pkgver CI_PACKAGE_BUMP _pkgver_new
+
+  _pkgver=$(LANG=C LC_ALL=C pacman -Si chaotic-aur/ares-emu | grep -Pom1 '^Version\s+:\s+\K\S+')
+
+  CI_PACKAGE_BUMP="$_pkgver"
+  eval "$(grep -Eom1 '^CI_PACKAGE_BUMP=\S+$' .CI/config | sed 's&/&.&g')"
+
   _url="https://github.com/ares-emulator/ares"
   _response=$(curl -Ssf "$_url/releases")
   _tag=$(
@@ -12,10 +18,12 @@ _check_update() {
   )
   _pkgver_new="${_tag#v}"
 
-  _pkgver_old=$(LANG=C LC_ALL=C pacman -Si chaotic-aur/ares-emu | grep -Pom1 '^Version\s+:\s+\K\S+(?=-[0-9])')
-
-  if [ $(vercmp "$_pkgver_old" "${_pkgver_new:?}") -ge 0 ]; then
-    echo "Skipping build.  $_pkgver_old >= $_pkgver_new"
+  if [ $(vercmp "${_pkgver_new:?}" "$_pkgver") -gt 0 ]; then
+    echo "New upstream release.  $_pkgver_new >= $_pkgver"
+  elif [ $(vercmp "$CI_PACKAGE_BUMP" "$_pkgver") -gt 0 ]; then
+    echo "Continuing build.  $CI_PACKAGE_BUMP >= $_pkgver"
+  else
+    echo "Skipping build.  $_pkgver >= $_pkgver_new"
     return "$CI_CODE_SKIP"
   fi
 }
