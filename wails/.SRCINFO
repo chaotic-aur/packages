@@ -1,0 +1,18 @@
+pkgbase = wails
+	pkgdesc = Create desktop apps using Go and Web Technologies
+	pkgver = 2.10.1
+	pkgrel = 1
+	url = https://github.com/wailsapp/wails
+	arch = x86_64
+	license = MIT
+	makedepends = go
+	makedepends = webkit2gtk
+	makedepends = gtk3
+	depends = glibc
+	depends = npm
+	optdepends = docker
+	source = https://github.com/wailsapp/wails/archive/v2.10.1/wails-2.10.1.tar.gz
+	sha512sums = 10d22463464fdd1b2099b4deb53ecf0cfc180a17e05c33505f9ce45e84ad1e5c33b3a2d739bcbc9a755b7925e984a932135c8574b5f33b9f5e201890c2a45fbd
+	b2sums = c55fad83597ccb879fe51dc43564578abf42acfd164a7aeab214cc0df83fe03f812e0a76692f50664f1b2ee9eba3351b189c1f645a2dc9bd5f5d51f105ac7645
+
+pkgname = wails
