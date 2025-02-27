@@ -13,12 +13,12 @@ makedepends=('git')
 provides=('symbiyosys')
 conflicts=('symbiyosys')
 optdepends=('yices: solving using yices2'
-            'z3: solving using z3'
-            'boolector: solving using boolector')
-source=("git+https://github.com/YosysHQ/${_gitname}.git" \
-        'LICENSE')
+  'z3: solving using z3'
+  'boolector: solving using boolector')
+source=("git+https://github.com/YosysHQ/${_gitname}.git"
+  'LICENSE')
 sha512sums=('SKIP'
-            'a3202289ff7828c55d3ec3e22d23ed78a34fcae165a7c666d71d3cedd9abe06f638a09750d8c2d43dfca5781f1b32a616f439c3713a12265c02473f88c0f426d')
+  'a3202289ff7828c55d3ec3e22d23ed78a34fcae165a7c666d71d3cedd9abe06f638a09750d8c2d43dfca5781f1b32a616f439c3713a12265c02473f88c0f426d')
 
 pkgver() {
   cd "${_gitname}"
@@ -26,8 +26,8 @@ pkgver() {
 }
 
 package() {
-   cd "${_gitname}"
-   make PREFIX=/usr DESTDIR="$pkgdir" install
+  cd "${_gitname}"
+  make PREFIX=/usr DESTDIR="$pkgdir" install
 
   install -D -m 644 "${srcdir}/LICENSE" "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
 }
