@@ -6,7 +6,7 @@
 
 _pkgname="qlcplus"
 pkgname="$_pkgname-qt6-git"
-pkgver=4.14.0.r3.g7b60262
+pkgver=4.14.0.r50.g701c4c5
 pkgrel=1
 pkgdesc="Q Light Controller Plus to control professional DMX lighting fixtures"
 url="https://github.com/mcallegari/qlcplus"
@@ -35,6 +35,8 @@ optdepends=(
 
 provides=("$_pkgname")
 conflicts=("$_pkgname")
+
+options=('!lto')
 
 _pkgsrc="$_pkgname"
 source=("$_pkgsrc"::"git+$url.git")
