@@ -1,4 +1,5 @@
 # Maintainer: Manuel Stoeckl <com dоt mstoeckl аt wppkgb>
+# SPDX-License-Identifier: 0BSD
 pkgname=waypipe
 pkgver=0.10.3
 pkgrel=1
