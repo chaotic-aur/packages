@@ -2,12 +2,12 @@
 # Contributor: Caleb Maclennan <caleb@alerque.com>
 
 pkgname=resvg
-pkgver=0.44.0
-pkgrel=1
+pkgver=0.45.0
+pkgrel=2
 pkgdesc='SVG rendering library and CLI'
 arch=(i686 x86_64)
 url="https://github.com/RazrFalcon/$pkgname"
-license=(MPL2)
+license=(Apache-2.0 MIT)
 depends=(gdk-pixbuf2)
 optdepends=(
   'qt5-base: For the Qt backend'
@@ -15,8 +15,8 @@ optdepends=(
   'kio5: For the dolphin thumbnailer'
 )
 makedepends=(cargo clang qt5-base qt5-tools kio5 cairo pango cmake extra-cmake-modules)
-source=("$url/archive/v$pkgver/$pkgname-$pkgver.tar.gz")
-sha256sums=('b45c906b4c72ff46405d74eb98ec1b93842f1528a8e835860f22b057b210306a')
+source=("$url/archive/$pkgver/$pkgname-$pkgver.tar.gz")
+sha256sums=('871a1583da6af849f8bafd44abc0a75fa7bc9d8ccb242b9e0eae5b5cd4e156c1')
 
 prepare() {
   cd "$pkgname-$pkgver"
@@ -27,6 +27,7 @@ prepare() {
 build() {
   cd "$pkgname-$pkgver"
 
+  export CARGO_TARGET_DIR=target
   export RUSTUP_TOOLCHAIN=stable
   export CARGO_TARGET_DIR=target
   cargo build --workspace --frozen --release --all-features
@@ -53,12 +54,15 @@ build() {
 
 check() {
   cd "$pkgname-$pkgver"
+
+  export CARGO_TARGET_DIR=target
   export RUSTUP_TOOLCHAIN=stable
   cargo test --frozen --all-features
 }
 
 package() {
   cd "$pkgname-$pkgver"
+
   install -Dm755 -t "$pkgdir/usr/bin/" target/release/{resvg,usvg} tools/viewsvg/viewsvg
   make -C tools/kde-dolphin-thumbnailer/build install
   install -Dm755 -t "$pkgdir/usr/lib/" target/release/libresvg.so
