@@ -1,40 +1,18 @@
-depends+=('yyjson')
+# Note: yyjson is statically linked when not found
+
 makedepends+=('ninja')
 
+provides=('woof-doom')
+conflicts=('woof-doom')
+
 _pkgsrc="woof"
+
+unset -f prepare
 
 pkgver() {
   cd "$_pkgsrc"
   git describe --long --tags --abbrev=7 --match='woof_*' \
     | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
-}
-
-prepare() {
-  sed -E -e '1i #include <ctype.h>' \
-    -i "$_pkgsrc/src/mn_setup.c" \
-    "$_pkgsrc/textscreen/txt_fileselect.c"
-
-  sed -E -e '1i #include <math.h>' \
-    -i "$_pkgsrc/src/i_flickstick.c" \
-    "$_pkgsrc/src/i_midimusic.c" \
-    "$_pkgsrc/src/i_video.c" \
-    "$_pkgsrc/src/mn_setup.c" \
-    "$_pkgsrc/src/st_stuff.c"
-
-  sed -E -e '1i #include <stdio.h>' \
-    -i "$_pkgsrc/src/mn_setup.c"
-
-  sed -E -e '1i #include <string.h>' \
-    -i "$_pkgsrc/setup/multiplayer.c" \
-    "$_pkgsrc/src/i_endoom.c" \
-    "$_pkgsrc/src/i_flickstick.c" \
-    "$_pkgsrc/src/i_gamepad.c" \
-    "$_pkgsrc/src/i_input.c" \
-    "$_pkgsrc/src/i_midimusic.c" \
-    "$_pkgsrc/src/i_oalmusic.c" \
-    "$_pkgsrc/src/i_pcsound.c" \
-    "$_pkgsrc/src/st_sbardef.c" \
-    "$_pkgsrc/src/w_file.c"
 }
 
 build() {
