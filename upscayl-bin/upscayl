@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-
-export ELECTRON_IS_DEV=0
-
-electron27 /usr/share/upscayl/app.asar "$@"
