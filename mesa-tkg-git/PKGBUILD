@@ -227,7 +227,7 @@ case $MESA_WHICH_LLVM in
     makedepends+=('llvm>=8.0.0' 'clang>=8.0.0')
     _llvm='llvm-libs>=8.0.0'
     if [ "$_lib32" == "true" ]; then
-      makedepends+=('lib32-llvm>=8.0.0')
+      makedepends+=('lib32-llvm>=8.0.0' 'lib32-clang>=8.0.0')
       _lib32_llvm='lib32-llvm-libs>=8.0.0'
     fi
     msg2 "Using llvm (default)"
