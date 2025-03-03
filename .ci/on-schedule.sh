@@ -399,7 +399,7 @@ function update_vcs() {
     local pkgbase="${VARIABLES_UPDATE_VCS[PKGBASE]}"
 
     # Check if pkgbase ends with -git or if CI_GIT_COMMIT is set
-    if [[ "$pkgbase" != *-git ]] && [ ! -v "VARIABLES_UPDATE_VCS[CI_GIT_COMMIT]" ]; then
+    if [[ "$pkgbase" != *-git ]] && [[ "${VARIABLES[CI_FORCE_VCS]:-false}" != "true" ]]; then
         return 0
     fi
 
