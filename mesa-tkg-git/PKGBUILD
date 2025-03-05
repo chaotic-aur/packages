@@ -386,13 +386,17 @@ build() {
     _microsoft_clc="-D microsoft-clc=${_disabled_}"
   fi
 
-  # osmesa post ee802372
-  if (cd "$srcdir/$_mesa_srcdir" && git merge-base --is-ancestor ee802372180a2b4460cc7abb53438e45c6b6f1e4 HEAD); then
-    if [ "$_osmesa" != "false" ]; then
-      _osmesa="true"
+  # osmesa
+  if (cd "$srcdir/$_mesa_srcdir" && ! git merge-base --is-ancestor 027ccd963b1f8f288bef4224aedcddc1557e4f8a HEAD); then
+    if (cd "$srcdir/$_mesa_srcdir" && git merge-base --is-ancestor ee802372180a2b4460cc7abb53438e45c6b6f1e4 HEAD); then
+      if [ "$_osmesa" != "false" ]; then
+        _osmesa="-D osmesa=true"
+      else
+        _osmesa="-D osmesa=false"
+      fi
+    else
+      _osmesa="-D osmesa=gallium"
     fi
-  else
-    _osmesa="gallium"
   fi
 
   # optional codecs after 7ab05e3
@@ -488,11 +492,10 @@ build() {
     -D libunwind=${_enabled_} \
     -D llvm=${_enabled_} \
     -D lmsensors=${_enabled_} \
-    -D osmesa=${_osmesa} \
     -D shared-glapi=${_enabled_} \
     -D opengl=true \
     -D zstd=auto \
-    -D valgrind=${_enabled_} $_legacy_switches $_dri3 $_omx $_dri_inc $_microsoft_clc $_xvmc $_layers $_optional_codecs $_android_libbacktrace $_intel_rt $_no_lto $_additional_meson_flags $_additional_meson_flags_64
+    -D valgrind=${_enabled_} $_legacy_switches $_dri3 $_omx $_dri_inc $_microsoft_clc $_osmesa $_xvmc $_layers $_optional_codecs $_android_libbacktrace $_intel_rt $_no_lto $_additional_meson_flags $_additional_meson_flags_64
 
   meson configure _build64 --no-pager
 
@@ -549,10 +552,9 @@ build() {
       -D libunwind=${_disabled_} \
       -D llvm=${_enabled_} \
       -D lmsensors=${_enabled_} \
-      -D osmesa=${_osmesa} \
       -D shared-glapi=${_enabled_} \
       -D zstd=auto \
-      -D valgrind=${_disabled_} $_legacy_switches $_dri3 $_omx_32 $_dri_inc $_microsoft_clc $_xvmc $_layers $_optional_codecs $_android_libbacktrace $_intel_rt_32 $_intel_clc_32 $_no_lto $_additional_meson_flags $_additional_meson_flags_32
+      -D valgrind=${_disabled_} $_legacy_switches $_dri3 $_omx_32 $_dri_inc $_microsoft_clc $_osmesa $_xvmc $_layers $_optional_codecs $_android_libbacktrace $_intel_rt_32 $_intel_clc_32 $_no_lto $_additional_meson_flags $_additional_meson_flags_32
 
     meson configure _build32 --no-pager
 
