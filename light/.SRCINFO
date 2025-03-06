@@ -1,0 +1,23 @@
+pkgbase = light
+	pkgdesc = A program to control backlights (and other hardware lights)
+	pkgver = 1.2.2
+	pkgrel = 5
+	url = https://gitlab.com/dpeukert/light
+	install = light.install
+	arch = x86_64
+	arch = i486
+	arch = i686
+	arch = pentium4
+	arch = armv7h
+	arch = aarch64
+	license = GPL-3.0-only
+	source = light-1.2.2-5.tar.gz::https://gitlab.com/dpeukert/light/-/archive/2a54078cbe3814105ee4f565f451b1b5947fbde0/light-2a54078cbe3814105ee4f565f451b1b5947fbde0.tar.gz
+	source = fix-global-var.diff
+	source = namespace-udev-rule.diff
+	source = update-manpage.diff
+	sha512sums = 343bffdf7d007066fb82b4305fe961b70b74c206e0f8c1fb3d2d184a09fee9f02491a3fbe01515663a90ec40c20cf2a3dccb8a252597b907ab8ad0b6e33b5238
+	sha512sums = e020deaca76f65a032f6f694f07b43af6318d46f52e0e16554a883d54c43c5519c7bbb3ecbc6e8f39d2828fbebe73d37aa82d4051b2cc652a1775286188b6ded
+	sha512sums = 1cee6c3f10a6534e03bdf6874b95e699fdf8900f7cb9d86df6f8b99f0f77ff2b80d515eb3f4e43602f5ae19fa3009db63301ff862f1d02b8a17f3282ea063232
+	sha512sums = 36cad74b303c206035dd6941269209278c0661358820444ce97b6ef383761e258ccf56d12c80590278972db0e1be98fae3632269cbababc49690726a61fc1708
+
+pkgname = light
