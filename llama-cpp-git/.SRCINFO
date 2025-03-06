@@ -49,12 +49,16 @@ pkgname = llama-cpp-vulkan-git
 	conflicts = llama.cpp
 	backup = etc/conf.d/llama-cpp
 
-pkgname = llama-cpp-devel-git
-	pkgdesc = Port of Facebook's LLaMA model in C/C++ with OpenBLAS CPU optimizations - headers and static libraries
-	provides = llama-cpp-devel
-	conflicts = llama-cpp-devel
-
-pkgname = llama-cpp-vulkan-devel-git
-	pkgdesc = Port of Facebook's LLaMA model in C/C++ with Vulkan GPU optimizations - headers and static libraries
-	provides = llama-cpp-devel
-	conflicts = llama-cpp-devel
+pkgname = llama-cpp-vulkan-x64v3-git
+	pkgdesc = Port of Facebook's LLaMA model in C/C++ with Vulkan GPU and x86-64-v3 optimizations
+	depends = curl
+	depends = python
+	depends = python-numpy
+	depends = python-sentencepiece
+	depends = openblas
+	depends = vulkan-icd-loader
+	provides = llama-cpp
+	provides = llama.cpp
+	conflicts = llama-cpp
+	conflicts = llama.cpp
+	backup = etc/conf.d/llama-cpp

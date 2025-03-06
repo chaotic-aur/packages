@@ -5,8 +5,9 @@ pkgbase="$_pkgname-git"
 pkgname=(
   "$_pkgname-git"
   "$_pkgname-vulkan-git"
-  "$_pkgname-devel-git"
-  "$_pkgname-vulkan-devel-git"
+  "$_pkgname-vulkan-x64v3-git"
+  #"$_pkgname-devel-git"
+  #"$_pkgname-vulkan-devel-git"
 )
 pkgver=b4435.r1.g53ff6b9
 pkgrel=2
@@ -73,10 +74,6 @@ build() (
     -DCMAKE_INSTALL_PREFIX="/usr/lib/$_pkgname"
     -DLLAMA_CURL=ON
     -DGGML_NATIVE=OFF
-    -DGGML_AVX2=OFF
-    -DGGML_AVX=OFF
-    -DGGML_F16C=OFF
-    -DGGML_FMA=OFF
     -DGGML_LTO=ON
     -DGGML_RPC=ON
     -DGGML_ALL_WARNINGS=OFF
@@ -86,36 +83,58 @@ build() (
     -Wno-dev
   )
 
-  echo "Building with OpenBLAS support..."
   local _cmake_openblas=(
-    -B build_openblas
     -DGGML_BLAS=ON
     -DGGML_BLAS_VENDOR=OpenBLAS
     -DGGML_VULKAN=OFF
   )
 
-  cmake "${_cmake_common[@]}" "${_cmake_openblas[@]}"
-  cmake --build build_openblas
-  DESTDIR="fakeinstall_openblas" cmake --install build_openblas
-
-  echo "Building with Vulkan support..."
   local _cmake_vulkan=(
-    -B build_vulkan
     -DGGML_BLAS=ON
     -DGGML_BLAS_VENDOR=OpenBLAS
     -DGGML_VULKAN=ON
   )
 
-  cmake "${_cmake_common[@]}" "${_cmake_vulkan[@]}"
-  cmake --build build_vulkan
-  DESTDIR="fakeinstall_vulkan" cmake --install build_vulkan
+  local _cmake_x64v1=(
+    -DGGML_AVX2=OFF
+    -DGGML_AVX=OFF
+    -DGGML_F16C=OFF
+    -DGGML_FMA=OFF
+  )
+
+  local _cmake_x64v3=(
+    -DGGML_AVX2=ON
+    -DGGML_AVX=ON
+    -DGGML_F16C=ON
+    -DGGML_FMA=ON
+  )
+
+  local _build_path
+
+  echo "Building with OpenBLAS support..."
+  _build_path="openblas"
+  cmake -B "build_${_build_path}" "${_cmake_common[@]}" "${_cmake_openblas[@]}" "${_cmake_x64v1[@]}"
+  cmake --build "build_${_build_path}"
+  DESTDIR="fakeinstall_${_build_path}" cmake --install "build_${_build_path}"
+
+  echo "Building with Vulkan support..."
+  _build_path="vulkan"
+  cmake -B "build_${_build_path}" "${_cmake_common[@]}" "${_cmake_vulkan[@]}" "${_cmake_x64v1[@]}"
+  cmake --build "build_${_build_path}"
+  DESTDIR="fakeinstall_${_build_path}" cmake --install "build_${_build_path}"
+
+  echo "Building with Vulkan and x86-64-v3 support..."
+  _build_path="vulkan_x64v3"
+  cmake -B "build_${_build_path}" "${_cmake_common[@]}" "${_cmake_vulkan[@]}" "${_cmake_x64v3[@]}"
+  cmake --build "build_${_build_path}"
+  DESTDIR="fakeinstall_${_build_path}" cmake --install "build_${_build_path}"
 
   echo "Deleting unneeded tests..."
   rm -rf fakeinstall_*/usr/lib/$_pkgname/bin/test*
 )
 
 check() {
-  ctest --test-dir build_vulkan --output-on-failure -L 'main|curl' --verbose --timeout 900 || :
+  ctest --test-dir build_vulkan_x64v3 --output-on-failure -L 'main|curl' --verbose --timeout 900 || :
 }
 
 _package_license() {
@@ -196,7 +215,33 @@ package_llama-cpp-vulkan-git() {
   _package_license
 }
 
-package_llama-cpp-devel-git() {
+package_llama-cpp-vulkan-x64v3-git() {
+  pkgdesc+=" with Vulkan GPU and x86-64-v3 optimizations"
+
+  depends=(
+    ${_depends_common[@]}
+    ${_depends_openblas[@]}
+    ${_depends_vulkan[@]}
+  )
+
+  provides=(
+    "$_pkgname"
+    "${_pkgname//-/.}"
+  )
+  conflicts=(
+    "$_pkgname"
+    "${_pkgname//-/.}"
+  )
+
+  backup=("etc/conf.d/$_pkgname")
+
+  install -Dm755 fakeinstall_vulkan_x64v3/usr/lib/$_pkgname/bin/* -t "$pkgdir/usr/bin/"
+
+  _package_systemd
+  _package_license
+}
+
+_package_llama-cpp-devel-git() {
   pkgdesc+=" with OpenBLAS CPU optimizations - headers and static libraries"
 
   provides=('llama-cpp-devel')
@@ -209,7 +254,7 @@ package_llama-cpp-devel-git() {
   _package_license
 }
 
-package_llama-cpp-vulkan-devel-git() {
+_package_llama-cpp-vulkan-devel-git() {
   pkgdesc+=" with Vulkan GPU optimizations - headers and static libraries"
 
   provides=('llama-cpp-devel')
