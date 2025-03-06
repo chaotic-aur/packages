@@ -1,5 +1,14 @@
+_pkgsrc="code"
+
 pkgver() {
-  cd "$srcdir/code"
+  cd "$_pkgsrc"
   git describe --long --tags --abbrev=7 --exclude='*[a-zA-Z][a-zA-Z]*' \
     | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
+}
+
+eval _orig_"$(declare -f prepare)"
+
+prepare() {
+  sed -E '/\.patch"/d' -i "$_pkgsrc/package.json"
+  (_orig_prepare)
 }
