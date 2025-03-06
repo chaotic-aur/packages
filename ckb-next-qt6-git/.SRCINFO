@@ -1,0 +1,22 @@
+pkgbase = ckb-next-qt6-git
+	pkgdesc = Corsair Keyboard and Mouse Input Driver
+	pkgver = 0.6.0.r62.g22cdb6d
+	pkgrel = 1
+	url = https://github.com/ckb-next/ckb-next
+	install = ckb-next.install
+	arch = x86_64
+	license = GPL-2.0-or-later
+	makedepends = cmake
+	makedepends = git
+	makedepends = ninja
+	makedepends = qt6-tools
+	makedepends = libpulse
+	depends = hicolor-icon-theme
+	depends = quazip-qt6
+	optdepends = libpulse: for mviz
+	provides = ckb-next
+	conflicts = ckb-next
+	source = ckb-next::git+https://github.com/ckb-next/ckb-next.git
+	sha256sums = SKIP
+
+pkgname = ckb-next-qt6-git
