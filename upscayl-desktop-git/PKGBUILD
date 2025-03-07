@@ -1,0 +1,112 @@
+# Maintainer: aur.chaotic.cx
+
+: ${_electron_dist=/usr/lib/electron}
+
+_pkgname="upscayl"
+pkgname="$_pkgname-desktop-git"
+pkgver=2.15.1.r25.gf1da88f
+pkgrel=1
+pkgdesc="AI image upscaler frontend"
+url="https://github.com/upscayl/upscayl"
+license=('AGPL-3.0-only')
+arch=('x86_64')
+
+depends=(
+  'electron'
+)
+makedepends=(
+  'git'
+  'npm'
+)
+optdepends=(
+  'vulkan-intel: Open-source Vulkan driver for Intel GPUs'
+  'vulkan-radeon: Open-source Vulkan driver for AMD GPUs'
+  'vulkan-nouveau: Open-source Vulkan driver for Nvidia GPUs'
+)
+
+provides=("$_pkgname")
+conflicts=("$_pkgname")
+
+_pkgsrc="$_pkgname"
+source=("$_pkgsrc"::"git+$url.git")
+sha256sums=('SKIP')
+
+pkgver() {
+  cd "$_pkgsrc"
+  git describe --long --tags --abbrev=7 --exclude='*[a-zA-Z][a-zA-Z]*' \
+    | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
+}
+
+build() {
+  cd "$_pkgsrc"
+  NODE_ENV=development npm install
+  NODE_ENV=production npm run tsc
+  NODE_ENV=production npm run build
+  NODE_ENV=production npm exec -c "electron-builder --linux dir -c.electronDist=${_electron_dist} -c.electronVersion=$(cat $_electron_dist/version)"
+
+  # remove prebuilt binary
+  rm -f dist/linux-*/resources/bin/upscayl-bin
+}
+
+package() {
+  depends+=(
+    'upscayl-ncnn'
+  )
+
+  # resources
+  install -Dm755 -d "$pkgdir/usr/lib/$_pkgname"
+  cp --reflink=auto -a "$_pkgsrc/dist/linux-"*/resources/* "$pkgdir/usr/lib/$_pkgname/"
+
+  # symlink upscayl-ncnn
+  ln -srf "$pkgdir/usr/lib/upscayl/upscayl" "$pkgdir/usr/lib/upscayl/bin/upscayl-bin"
+
+  # icon
+  install -Dm644 "$_pkgsrc/build/icon.png" "$pkgdir/usr/share/pixmaps/$_pkgname.png"
+
+  # metainfo
+  install -Dm644 "$_pkgsrc/flatpak/org.upscayl.Upscayl.metainfo.xml" "$pkgdir/usr/share/metainfo/$_pkgname.metainfo.xml"
+
+  # launcher
+  install -Dm644 /dev/stdin "$pkgdir/usr/share/applications/$_pkgname.desktop" << END
+[Desktop Entry]
+Type=Application
+Name=${_pkgname^}
+Comment=$pkgdesc
+Exec=$_pkgname-desktop %U
+Icon=$_pkgname
+Terminal=false
+StartupNotify=true
+Categories=Graphics;
+StartupWMClass=$_pkgname
+END
+
+  # script
+  install -Dm755 /dev/stdin "$pkgdir/usr/bin/$_pkgname-desktop" << END
+#!/usr/bin/env bash
+
+name="$_pkgname"
+flags_file="\${XDG_CONFIG_HOME:-\$HOME/.config}/\${name}-flags.conf"
+
+lines=()
+if [[ -f "\${flags_file}" ]]; then
+    mapfile -t lines < "\${flags_file}"
+fi
+
+flags=()
+for line in "\${lines[@]}"; do
+  if [[ ! "\${line}" =~ ^[[:space:]]*#.* ]] && [[ -n "\${line}" ]]; then
+    flags+=("\${line}")
+  fi
+done
+
+: \${ELECTRON_IS_DEV:=0}
+export ELECTRON_IS_DEV
+: \${ELECTRON_FORCE_IS_PACKAGED:=true}
+export ELECTRON_FORCE_IS_PACKAGED
+
+exec /usr/bin/electron "\${flags[@]}" "/usr/lib/$_pkgname/app.asar" "\$@"
+END
+
+  # permissions
+  chmod -R u+rwX,go+rX,go-w "$pkgdir/"
+}
