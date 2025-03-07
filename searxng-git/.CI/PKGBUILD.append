@@ -1,0 +1,9 @@
+url="https://github.com/searxng/searxng"
+
+_pkgsrc="searxng"
+pkgver() {
+  cd "$_pkgsrc"
+  printf "r%s.%s" \
+    "$(git rev-list --count HEAD)" \
+    "$(git rev-parse --short=7 HEAD)"
+}
