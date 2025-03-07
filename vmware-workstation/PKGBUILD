@@ -14,11 +14,11 @@
 
 #PKGEXT=.pkg.tar
 pkgname=vmware-workstation
-pkgver=17.6.2
-_buildver=24409262
+pkgver=17.6.3
+_buildver=24583834
 _pkgver=${pkgver}_${_buildver}
-pkgrel=2
-_tools_version=12.4.5_23787635
+pkgrel=1
+_tools_version=12.5.0-24276846
 _legacy_ver=17.5.2
 _legacy_buildver=23775571
 _legacy_tools_version=12.4.0_23259341
@@ -86,33 +86,31 @@ source=(
   'vmmon.patch'
   'vmnet.patch'
 )
-sha256sums=(
-  '59e3ed00e678dccd2f76a9d511270a0f6495a74830cf6399865ac4024f2193ab'
+sha256sums=('4f3b643068bbd6e4c864e1b434cfef080faa18382b988d012dc4738094a73e74'
   'd862be0d12796134b40e5ffc7534a5e6161b8898355fe32ca8f705a3806cbfe4'
   'd79f79f17e5f37399046d16be3967e0cff3c9474e2cb6ea3f2c3ebea3ff68cea'
   '4643fff3ed4f8af5a56a1c4c2084fa7327d78e58ee9b0687b98390a4b4a1ac14'
   '196c842f758b813afb202b0db2d09d457fccafac212ca41ef3277dfe9ceaf9ec'
-  '41740393320650d535401bc2eafd4fd97bf7d51eb295a8a0ece8ee5ee8107c81'
+  '81b63fd7f3a7f9f7b24cddb8712a592b4b3c9f269338a8897c55146c9766a18b'
   'd4e9884f5f11cef4e261023d895eba5b57a8a80623bff0de8b3f1c47154b2a11'
   '20abd21da43ac31741f8bb26db1ae7d8f4ef4c5082c9a2cc3ae5da494f1b9529'
-
   '12e7b16abf8d7e858532edabb8868919c678063c566a6535855b194aac72d55e'
   'da1698bf4e73ae466c1c7fc93891eba4b9c4581856649635e6532275dbfea141'
   'ac81b0470feebba36482fbb2a9f641fef98924711bf761c0e6fdec67178194de'
   '48d203450db426e8780f3696a2cf85ee08db004e93f8aca50a9aa24129b1e839'
   'b94959a11b28e51b541321be0588190eb10825e9ff55cbd16eb01483a839a69f'
-
   '9b4fbe0ba83f761a2eb9ecd05d48428f8b0a5b3abd8404ccbd928408e682f02b'
   'c0a5aea785db06921fb350d36d5e0fd9a14f5eee0c835686ec6fea1af8c92245'
   'd7a9fbf39a0345ae2f14f7f389f30b1110f605d187e0c241e99bbb18993c250d'
   '16a73931894a65d43da489ff25d07647c0ecddf60d443b103bceca63504910fe'
   'fe1b1be8297f4170406f97dd1f8b385d911faf45afe19cbc0c26b8092b3ddf8d'
-
   '10562d11d50edab9abc2b29c8948714edcb9b084f99b3766d07ddd21259e372e'
   '273d4357599a3e54259c78cc49054fef8ecfd2c2eda35cbcde3a53a62777a5ac'
   '32ae0ba7836c2212b819e3e7ec3f96667c1ac6d5083003eab1e794f0c032f640'
   '74453f184ff57390ea0696144f0fc767cc875635595c964d5d5e7924a01c82d8'
-)
+  '4d470e2160acb5da7d52d478f6ef12829c5ebe3c04e3154652466ba0bfeed3f6'
+  '8a61e03d0edbbf60c1c84a43aa87a6e950f82d2c71b968888f019345c2f684f3'
+  '392c1effcdec516000e9f8ffc97f2586524d8953d3e7d6f2c5f93f2acd809d91')
 options=(!strip emptydirs !debug)
 
 if [ -z "$_remove_vmware_keymaps_dependency" ]; then
@@ -132,7 +130,7 @@ if [ -n "$_enable_macOS_guests" ]; then
 
   makedepends+=(
     python
-    p7zip
+    7zip
     uefitool
   )
 
@@ -140,11 +138,6 @@ if [ -n "$_enable_macOS_guests" ]; then
     "VMware-Fusion-${_vmware_fusion_ver_full/_/-}_universal.zip.tar::https://softwareupdate.vmware.com/cds/vmw-desktop/fusion/${_vmware_fusion_ver}/${_vmware_fusion_buildver}/universal/core/com.vmware.fusion.zip.tar"
     "unlocker.py"
     "efi-patches.txt"
-  )
-  sha256sums+=(
-    '4d470e2160acb5da7d52d478f6ef12829c5ebe3c04e3154652466ba0bfeed3f6'
-    '8a61e03d0edbbf60c1c84a43aa87a6e950f82d2c71b968888f019345c2f684f3'
-    '392c1effcdec516000e9f8ffc97f2586524d8953d3e7d6f2c5f93f2acd809d91'
   )
 
   _fusion_isoimages=(darwin darwinPre15)
