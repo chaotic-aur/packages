@@ -3,4 +3,21 @@ unset epoch
 url="https://github.com/gnif/LookingGlass"
 license=('GPL-2.0-or-later')
 
+_count=0
+for i in "${source[@]}"; do
+  if [[ "$i" =~ \.patch$ ]]; then
+    unset source[$_count]
+    unset sha512sums[$_count]
+  else
+    _count=$((_count + 1))
+  fi
+done
+
+eval _orig_"$(declare -f prepare)"
+
+prepare() {
+  touch empty.patch
+  _orig_prepare
+}
+
 eval $(declare -f build | sed -E 's&(-DCMAKE_INSTALL_PREFIX=)&-DOPTIMIZE_FOR_NATIVE=OFF \1&')
