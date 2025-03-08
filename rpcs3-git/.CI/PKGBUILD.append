@@ -1,19 +1,24 @@
-export LDFLAGS+=" -Wl,--copy-dt-needed-entries"
-export VERBOSE=1
+pkgdesc="PlayStation 3 emulator"
+
+makedepends+=('ninja')
+
+_pkgsrc="rpcs3"
 
 pkgver() {
-  cd rpcs3
+  cd "$_pkgsrc"
+  local _tag _version _revision _hash
+  _tag=$(git tag -l 'v[0-9]*' | grep -Ev '[A-Za-z][A-Za-z]' | sort -rV | head -1)
+  _version="${_tag#v}"
+  _revision=$(git rev-list --count --cherry-pick "$_tag"...HEAD)
+  _hash=$(git rev-parse --short=7 HEAD)
+  printf '%s.r%s.g%s' "${_version:?}" "${_revision:?}" "${_hash:?}"
+}
 
-  _tag=$(git tag | sort -rV | head -1)
-  if [[ $(vercmp "$_tag" "v0.0.29") -lt "0" ]]; then
-    _tag="v0.0.29"
-  fi
+eval "$(declare -f build | sed -E 's&\S+CMAKE_BUILD_TYPE=\S+&-G Ninja -Wno-dev -DCMAKE_BUILD_TYPE=None&')"
 
-  _revision=$(git rev-list --count --cherry-pick ${_tag:?}...HEAD)
-  _hash=$(git rev-parse --short HEAD)
+eval _orig_"$(declare -f package)"
 
-  printf '%s.r%s.g%s' \
-    "${_tag#v}" \
-    "$_revision" \
-    "$_hash"
+package() {
+  (_orig_package)
+  rm -rf "$pkgdir/usr/share/rpcs3"/{git,test}
 }
