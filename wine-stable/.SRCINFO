@@ -1,7 +1,7 @@
 pkgbase = wine
 	pkgdesc = A compatibility layer for running Windows programs
-	pkgver = 10.2
-	pkgrel = 2
+	pkgver = 10.3
+	pkgrel = 1
 	url = https://www.winehq.org
 	install = wine.install
 	arch = x86_64
@@ -133,14 +133,12 @@ pkgbase = wine
 	optdepends = wine-mono
 	options = staticlibs
 	options = !lto
-	source = git+https://gitlab.winehq.org/wine/wine.git?signed#tag=wine-10.2
-	source = fix-ptr-access.patch::https://gitlab.winehq.org/wine/wine/-/commit/05315ce3da4d6f04232611fb5dd6ffbd77f87ce7.patch
+	source = git+https://gitlab.winehq.org/wine/wine.git?signed#tag=wine-10.3
 	source = 30-win32-aliases.conf
 	source = wine-binfmt.conf
 	validpgpkeys = 5AC1A08B03BD7A313E0A955AF5E6E9EEB9461DD7
 	validpgpkeys = DA23579A74D4AD9AF9D3F945CEFAC8EAAF17519D
-	sha512sums = 2664d57860cd74706556bcf7e6ec48b4a7c49d8f22ed791bfc43caa50d43733a5a28c68a9d89842b9cce7b403d68dd21b9e328efc3349229cdeaf1f31188b51e
-	sha512sums = 547a1a31fcfa421e982da6032cdf398e5814d6f35c0670029d69853b89bde6dddfe47c514c2c5ff59d1d0f673c9a9df9adce88d199305f8ed2143ae8d65e2057
+	sha512sums = d3cdc9c798d7c3ebffc73de8000e7c79260b8ba3019b41bebed8b329293ed4283110b3404a7d71a8204416fda2045bb2778d5f260f1139fb991ea798a5166e27
 	sha512sums = 6e54ece7ec7022b3c9d94ad64bdf1017338da16c618966e8baf398e6f18f80f7b0576edf1d1da47ed77b96d577e4cbb2bb0156b0b11c183a0accf22654b0a2bb
 	sha512sums = bdde7ae015d8a98ba55e84b86dc05aca1d4f8de85be7e4bd6187054bfe4ac83b5a20538945b63fb073caab78022141e9545685e4e3698c97ff173cf30859e285
 
