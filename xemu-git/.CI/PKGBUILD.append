@@ -1,41 +1,33 @@
+pkgdesc="Original Xbox emulator"
 url="https://github.com/xemu-project/xemu"
 
-# drop use-system-libs.patch
-depends=(${depends[@]//*cpp-httplib*/})
-depends=(${depends[@]//glslang/})
+depends=(
+  'gtk3'
+  'libepoxy'
+  'libpcap'
+  'libsamplerate'
+  'libslirp'
+  'sdl2'
+  'xxhash'
+)
 
-makedepends=(${makedepends[@]//tomlplusplus*/})
-makedepends=(${makedepends[@]//nlohmann-json*/})
-
-_count=0
-for i in "${source[@]}"; do
-  if [[ "$i" =~ use-system-libs\.patch$ ]]; then
-    unset source[$_count]
-    unset b2sums[$_count]
-  fi
-
-  _count=$((_count + 1))
-done
+makedepends=(
+  'cmake'
+  'git'
+  'meson'
+  'python-yaml'
+  'vulkan-headers'
+  'vulkan-icd-loader'
+)
 
 _pkgsrc="$_pkgname"
 
 prepare() {
   mkdir -p build
-
   cd "$_pkgsrc"
-  local src
-  for src in "${source[@]}"; do
-    src="${src%%::*}"
-    src="${src##*/}"
-    src="${src%.zst}"
-    if [[ $src == *.patch ]]; then
-      printf '\nApplying patch: %s\n' "$src"
-      patch -Np1 -F100 -i "${srcdir:?}/$src"
-      echo
-    fi
-  done
-
   python scripts/gen-license.py > XEMU_LICENSE
 }
 
-eval "$(declare -f package | sed -E 's&\S+tomlplusplus\S+&&')"
+eval "$(declare -f build | sed -E 's&\S*disable-download\S*&&')"
+
+eval "$(declare -f package | sed -E '/depends[+=]/d')"
