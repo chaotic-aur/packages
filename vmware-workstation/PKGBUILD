@@ -17,7 +17,7 @@ pkgname=vmware-workstation
 pkgver=17.6.3
 _buildver=24583834
 _pkgver=${pkgver}_${_buildver}
-pkgrel=1
+pkgrel=2
 _tools_version=12.5.0-24276846
 _legacy_ver=17.5.2
 _legacy_buildver=23775571
@@ -107,10 +107,7 @@ sha256sums=('4f3b643068bbd6e4c864e1b434cfef080faa18382b988d012dc4738094a73e74'
   '10562d11d50edab9abc2b29c8948714edcb9b084f99b3766d07ddd21259e372e'
   '273d4357599a3e54259c78cc49054fef8ecfd2c2eda35cbcde3a53a62777a5ac'
   '32ae0ba7836c2212b819e3e7ec3f96667c1ac6d5083003eab1e794f0c032f640'
-  '74453f184ff57390ea0696144f0fc767cc875635595c964d5d5e7924a01c82d8'
-  '4d470e2160acb5da7d52d478f6ef12829c5ebe3c04e3154652466ba0bfeed3f6'
-  '8a61e03d0edbbf60c1c84a43aa87a6e950f82d2c71b968888f019345c2f684f3'
-  '392c1effcdec516000e9f8ffc97f2586524d8953d3e7d6f2c5f93f2acd809d91')
+  '74453f184ff57390ea0696144f0fc767cc875635595c964d5d5e7924a01c82d8')
 options=(!strip emptydirs !debug)
 
 if [ -z "$_remove_vmware_keymaps_dependency" ]; then
@@ -138,6 +135,12 @@ if [ -n "$_enable_macOS_guests" ]; then
     "VMware-Fusion-${_vmware_fusion_ver_full/_/-}_universal.zip.tar::https://softwareupdate.vmware.com/cds/vmw-desktop/fusion/${_vmware_fusion_ver}/${_vmware_fusion_buildver}/universal/core/com.vmware.fusion.zip.tar"
     "unlocker.py"
     "efi-patches.txt"
+  )
+
+  sha256sums+=(
+    '4d470e2160acb5da7d52d478f6ef12829c5ebe3c04e3154652466ba0bfeed3f6'
+    '8a61e03d0edbbf60c1c84a43aa87a6e950f82d2c71b968888f019345c2f684f3'
+    '392c1effcdec516000e9f8ffc97f2586524d8953d3e7d6f2c5f93f2acd809d91'
   )
 
   _fusion_isoimages=(darwin darwinPre15)
