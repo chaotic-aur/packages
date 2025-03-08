@@ -1,0 +1,5 @@
+[aws-cli-v2]
+# Currently there is no plan to publish aws-cli-v2 onto PyPI
+# https://github.com/aws/aws-cli/issues/4947
+source = "git"
+git = "https://github.com/aws/aws-cli"
