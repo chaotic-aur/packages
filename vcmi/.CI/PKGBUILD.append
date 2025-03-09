@@ -1,6 +1,9 @@
 url="https://github.com/vcmi/vcmi"
 
-license=('GPL-2.0-or-later')
+license=(
+  'GPL-2.0-or-later' # program
+  'CC-BY-SA-4.0'     # assets
+)
 
 depends=(${depends[@]//fuzzylite*/})
 
