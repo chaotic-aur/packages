@@ -7,7 +7,7 @@
 pkgname=sonarr
 _pkgname=Sonarr
 pkgver=4.0.13.2932
-pkgrel=1
+pkgrel=2
 pkgdesc='Smart PVR for newsgroup and torrent users'
 arch=(x86_64 aarch64 armv7h)
 url='https://sonarr.tv'
@@ -70,10 +70,12 @@ prepare() {
   # Remove upstream dotnet version
   rm global.json
 
-  # Prepare backend
   export DOTNET_CLI_TELEMETRY_OPTOUT=1
   export DOTNET_NOLOGO=1
   export DOTNET_SKIP_FIRST_TIME_EXPERIENCE=1
+  dotnet new globaljson --sdk-version 6.0.113 --force
+
+  # Prepare backend
   dotnet restore "src/${_pkgname}.sln" \
     --runtime "${_runtime}" \
     --locked-mode
