@@ -1,7 +1,0 @@
-license=('BSD-3-Clause')
-
-eval _orig_"$(declare -f package | sed '/install.*share\/doc/d')"
-
-package() {
-  _orig_package
-}

@@ -1,5 +1,0 @@
-[vulkan-memory-allocator]
-source = "github"
-github = "GPUOpen-LibrariesAndSDKs/VulkanMemoryAllocator"
-use_max_tag = true
-prefix = "v"

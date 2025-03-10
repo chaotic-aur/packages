@@ -1,76 +1,52 @@
 pkgbase = shadps4-git
-	pkgdesc = Sony PlayStation 4 emulator
-	pkgver = 0.5.0.r259.ga78f8afe
+	pkgdesc = PlayStation 4 emulator
+	pkgver = 0.6.0.r219.ga711f4d
 	pkgrel = 1
-	url = https://shadps4.net/
-	arch = aarch64
+	url = https://github.com/shadps4-emu/shadPS4
 	arch = x86_64
 	license = GPL-2.0-or-later
-	makedepends = boost>=1.84
-	makedepends = cmake>=3.16.3
-	makedepends = ffmpeg>=2:5.1.2
-	makedepends = fmt>=10.2
+	makedepends = boost
+	makedepends = cmake
 	makedepends = git
-	makedepends = half>=1.12
-	makedepends = libpng>=1.6
-	makedepends = magic_enum>=0.9.7
-	makedepends = qt6-base
-	makedepends = qt6-multimedia
+	makedepends = half
+	makedepends = ninja
 	makedepends = qt6-tools
 	makedepends = rapidjson
-	makedepends = renderdoc
-	makedepends = robin-map>=1.3
+	makedepends = robin-map
 	makedepends = spirv-headers
 	makedepends = stb
-	makedepends = toml11>=4.2
-	makedepends = vulkan-headers>=1:1.4.305
-	makedepends = vulkan-memory-allocator>=3.1
-	makedepends = xbyak>=7.07
-	makedepends = xxhash>=0.8.2
-	makedepends = zlib
-	makedepends = zycore-c
-	depends = crypto++>=8.9
-	depends = gcc-libs
-	depends = glibc
-	depends = glslang>=15
-	depends = hicolor-icon-theme
-	depends = pugixml>=1.14
-	depends = sdl3>=3.1.8
-	optdepends = renderdoc: for graphics debugging
-	optdepends = vulkan-validation-layers: for vulkan debugging
-	provides = shadps4=0.5.0.r259.ga78f8afe
+	makedepends = toml11
+	depends = crypto++
+	depends = glslang
+	depends = ffmpeg
+	depends = libfmt.so
+	depends = xxhash
+	depends = pugixml
+	depends = qt6-multimedia
+	depends = sdl3
+	provides = shadps4=0.6.0.r219.ga711f4d
 	conflicts = shadps4
 	source = shadps4::git+https://github.com/shadps4-emu/shadPS4.git
-	source = shadps4-discord-rpc::git+https://github.com/shadps4-emu/ext-discord-rpc.git
-	source = shadps4-imgui::git+https://github.com/shadps4-emu/ext-imgui.git
-	source = shadps4-libatrac9::git+https://github.com/shadps4-emu/ext-LibAtrac9.git
-	source = shadps4-sirit::git+https://github.com/shadps4-emu/sirit.git
-	source = shadps4-tracy::git+https://github.com/shadps4-emu/tracy.git
-	source = zydis::git+https://github.com/zyantific/zydis.git
-	b2sums = SKIP
-	b2sums = SKIP
-	b2sums = SKIP
-	b2sums = SKIP
-	b2sums = SKIP
-	b2sums = SKIP
-	b2sums = SKIP
+	source = gpuopen-librariesandsdks.vulkanmemoryallocator::git+https://github.com/GPUOpen-LibrariesAndSDKs/VulkanMemoryAllocator.git
+	source = herumi.xbyak::git+https://github.com/herumi/xbyak.git
+	source = khronosgroup.vulkan-headers::git+https://github.com/KhronosGroup/Vulkan-Headers.git
+	source = neargye.magic_enum::git+https://github.com/Neargye/magic_enum.git
+	source = shadps4-emu.ext-discord-rpc::git+https://github.com/shadps4-emu/ext-discord-rpc.git
+	source = shadps4-emu.ext-imgui::git+https://github.com/shadps4-emu/ext-imgui.git
+	source = shadps4-emu.ext-libatrac9::git+https://github.com/shadps4-emu/ext-LibAtrac9.git
+	source = shadps4-emu.sirit::git+https://github.com/shadps4-emu/sirit.git
+	source = shadps4-emu.tracy::git+https://github.com/shadps4-emu/tracy.git
+	source = zyantific.zydis::git+https://github.com/zyantific/zydis.git
+	sha256sums = SKIP
+	sha256sums = SKIP
+	sha256sums = SKIP
+	sha256sums = SKIP
+	sha256sums = SKIP
+	sha256sums = SKIP
+	sha256sums = SKIP
+	sha256sums = SKIP
+	sha256sums = SKIP
+	sha256sums = SKIP
+	sha256sums = SKIP
 
 pkgname = shadps4-git
-	depends = crypto++>=8.9
-	depends = gcc-libs
-	depends = glibc
-	depends = glslang>=15
-	depends = hicolor-icon-theme
-	depends = pugixml>=1.14
-	depends = sdl3>=3.1.8
-	depends = libavcodec.so
-	depends = libavformat.so
-	depends = libavutil.so
-	depends = libfmt.so
-	depends = libpng16.so
-	depends = libswresample.so
-	depends = libswscale.so
-	depends = libxxhash.so
-	depends = libz.so
-	depends = qt6-base
-	depends = qt6-multimedia
