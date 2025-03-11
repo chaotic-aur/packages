@@ -1,0 +1,237 @@
+# Maintainer: aur.chaotic.cx
+
+## options
+: ${_build_level:=3}
+
+unset _pkgtype
+[[ "${_build_instrumented::1}" == "t" ]] && _pkgtype+="-instrumented"
+[[ "${_build_level::1}" == "2" ]] && _pkgtype+="-x64v2"
+[[ "${_build_level::1}" == "3" ]] && _pkgtype+="-avx"
+[[ "${_build_level::1}" == "4" ]] && _pkgtype+="-x64v4"
+_pkgtype+="-git"
+
+_pkgname="rpcs3"
+pkgname="$_pkgname${_pkgtype:-}"
+
+pkgver=0.0.35.r103.g3737cc3
+pkgrel=0.3
+pkgdesc="PlayStation 3 emulator"
+url="https://github.com/RPCS3/rpcs3"
+license=('GPL-2.0-only')
+arch=('x86_64' 'x86_64_v2' 'x86_64_v3' 'x86_64_v4')
+
+depends=(
+  'ffmpeg'
+  'sdl2'
+  'flatbuffers'
+  'glew'
+  'openal'
+  'opencv'
+  'pugixml'
+  'qt6-multimedia'
+  'qt6-svg'
+)
+makedepends=(
+  'clang'
+  'cmake'
+  'git'
+  'lld'
+  'llvm'
+  'ninja'
+)
+
+case "$CARCH" in
+  x86_64_v2)
+    _build_level=2
+    ;;
+  x86_64_v3)
+    _build_level=3
+    ;;
+  x86_64_v4)
+    _build_level=4
+    ;;
+  *) # no changes; may be user defined
+    ;;
+esac
+
+provides=("$_pkgname")
+conflicts=("$_pkgname")
+
+options=('!lto')
+
+_source_main() {
+  _pkgsrc="$_pkgname"
+  source=("$_pkgsrc"::"git+https://github.com/RPCS3/rpcs3.git")
+  sha256sums=('SKIP')
+
+  _prepare_main() (
+    sed -E -e 's&\.\./\.\./&https://github.com/&' \
+      -e 's&^\s*ignore = .*$&&' \
+      -i "$_pkgsrc/.gitmodules"
+
+    sed -E 's&FATAL_ERROR&WARNING&' -i "$_pkgsrc/CMakeLists.txt"
+  )
+}
+
+_source_rpcs() {
+  local _sources_add=(
+    'asmjit'::'git+https://github.com/asmjit/asmjit.git'
+    #'curl'::'git+https://github.com/curl/curl.git'
+    'facebook.zstd'::'git+https://github.com/facebook/zstd.git'
+    'fna-xna.faudio'::'git+https://github.com/FNA-XNA/FAudio.git'
+    #'glennrp.libpng'::'git+https://github.com/glennrp/libpng.git'
+    'google.flatbuffers'::'git+https://github.com/google/flatbuffers.git'
+    #'ip7z.7zip'::'git+https://github.com/ip7z/7zip.git'
+    #'kcat.openal-soft'::'git+https://github.com/kcat/openal-soft.git'
+    'khronosgroup.glslang'::'git+https://github.com/KhronosGroup/glslang.git'
+    #'libsdl-org.sdl'::'git+https://github.com/libsdl-org/SDL.git'
+    'libusb'::'git+https://github.com/libusb/libusb.git'
+    #'llvm.llvm-project'::'git+https://github.com/llvm/llvm-project.git'
+    #'madler.zlib'::'git+https://github.com/madler/zlib.git'
+    'megamouse.opencv_minimal'::'git+https://github.com/Megamouse/opencv_minimal.git'
+    'miniupnp'::'git+https://github.com/miniupnp/miniupnp.git'
+    'mozilla.cubeb'::'git+https://github.com/mozilla/cubeb.git'
+    'nothings.stb'::'git+https://github.com/nothings/stb.git'
+    #'rpcs3.ffmpeg-core'::'git+https://github.com/RPCS3/ffmpeg-core.git'
+    #'rpcs3.hidapi'::'git+https://github.com/RPCS3/hidapi.git'
+    'rpcs3.soundtouch'::'git+https://github.com/RPCS3/soundtouch.git'
+    'rpcs3.yaml-cpp'::'git+https://github.com/RPCS3/yaml-cpp.git'
+    'thestk.rtmidi'::'git+https://github.com/thestk/rtmidi.git'
+    'wolfssl'::'git+https://github.com/wolfSSL/wolfssl.git'
+    'xiotechnologies.fusion'::'git+https://github.com/xioTechnologies/Fusion.git'
+    #'zeux.pugixml'::'git+https://github.com/zeux/pugixml.git'
+  )
+
+  local _p
+  for _p in ${_sources_add[@]}; do
+    source+=("$_p")
+    sha256sums+=('SKIP')
+  done
+
+  _prepare_rpcs() (
+    cd "$srcdir/$_pkgsrc"
+    local _submodules=(
+      'asmjit'::'3rdparty/asmjit/asmjit'
+      #'curl'::'3rdparty/curl/curl'
+      'facebook.zstd'::'3rdparty/zstd/zstd'
+      'fna-xna.faudio'::'3rdparty/FAudio'
+      #'glennrp.libpng'::'3rdparty/libpng/libpng'
+      'google.flatbuffers'::'3rdparty/flatbuffers'
+      #'ip7z.7zip'::'3rdparty/7zip/7zip'
+      #'kcat.openal-soft'::'3rdparty/OpenAL/openal-soft'
+      'khronosgroup.glslang'::'3rdparty/glslang/glslang'
+      #'libsdl-org.sdl'::'3rdparty/libsdl-org/SDL'
+      'libusb'::'3rdparty/libusb/libusb'
+      #'llvm.llvm-project'::'3rdparty/llvm/llvm'
+      #'madler.zlib'::'3rdparty/zlib/zlib'
+      'megamouse.opencv_minimal'::'3rdparty/opencv/opencv'
+      'miniupnp'::'3rdparty/miniupnp/miniupnp'
+      'mozilla.cubeb'::'3rdparty/cubeb/cubeb'
+      'nothings.stb'::'3rdparty/stblib/stb'
+      #'rpcs3.ffmpeg-core'::'3rdparty/ffmpeg'
+      #'rpcs3.hidapi'::'3rdparty/hidapi/hidapi'
+      'rpcs3.soundtouch'::'3rdparty/SoundTouch/soundtouch'
+      'rpcs3.yaml-cpp'::'3rdparty/yaml-cpp/yaml-cpp'
+      'thestk.rtmidi'::'3rdparty/rtmidi/rtmidi'
+      'wolfssl'::'3rdparty/wolfssl/wolfssl'
+      'xiotechnologies.fusion'::'3rdparty/fusion/fusion'
+      #'zeux.pugixml'::'3rdparty/pugixml'
+    )
+    _submodule_update
+
+    # out-of-tree commit
+    git submodule init 3rdparty/hidapi/hidapi
+    git submodule update 3rdparty/hidapi/hidapi
+
+    # fix includes
+    sed -E 's&3rdparty/OpenAL/openal-soft/include/&&' \
+      -i "rpcs3/Emu/Cell/Modules/cellMic.h" \
+      "rpcs3/Emu/Cell/Modules/cellMic.cpp" \
+      "rpcs3/rpcs3qt/microphone_creator.cpp" \
+      "rpcs3/rpcs3qt/microphone_creator.cpp"
+  )
+}
+
+_source_main
+_source_rpcs
+
+prepare() {
+  _submodule_update() {
+    local _module
+    for _module in "${_submodules[@]}"; do
+      git submodule init "${_module##*::}"
+      git submodule set-url "${_module##*::}" "$srcdir/${_module%%::*}"
+      git -c protocol.file.allow=always submodule update "${_module##*::}"
+    done
+  }
+  _run_if_exists _prepare_main
+  _run_if_exists _prepare_rpcs
+}
+
+pkgver() {
+  cd "$_pkgsrc"
+  local _tag _version _revision _hash
+  _tag=$(git tag -l 'v[0-9]*' | grep -Ev '[A-Za-z][A-Za-z]' | sort -rV | head -1)
+  _version="${_tag#v}"
+  _revision=$(git rev-list --count --cherry-pick "$_tag"...HEAD)
+  _hash=$(git rev-parse --short=7 HEAD)
+  printf '%s.r%s.g%s' "${_version:?}" "${_revision:?}" "${_hash:?}"
+}
+
+build() (
+  local _cflags _cxxflags _ldflags
+  export CC CXX CFLAGS CXXFLAGS LDFLAGS
+  CC=clang
+  CXX=clang++
+
+  _cxxflags=(${CXXFLAGS})
+  CXXFLAGS="${_cxxflags[@]//*GLIBCXX_ASSERTIONS*/}"
+
+  _ldflags=(${LDFLAGS})
+  LDFLAGS="${_ldflags[S]//*fuse-ld*/} -fuse-ld=lld"
+
+  if [[ ${_build_level::1} =~ ^[2-4]$ ]]; then
+    _cflags=($(sed -E -e 's&-(march|mtune)=\S+\b&&g' -e 's&-O[0-9]\b&&g' <<< "${CFLAGS}"))
+    CFLAGS="-march=x86-64-v${_build_level::1} -mtune=generic -O3 ${_cflags[@]}"
+
+    _cxxflags=($(sed -E -e 's&-(march|mtune)=\S+\b&&g' -e 's&-O[0-9]\b&&g' <<< "${CXXFLAGS}"))
+    CXXFLAGS="-march=x86-64-v${_build_level::1} -mtune=generic -O3 ${_cxxflags[@]}"
+  fi
+
+  local _cmake_options=(
+    -B build
+    -S "$_pkgsrc"
+    -G Ninja
+    -DCMAKE_BUILD_TYPE=None
+    -DCMAKE_INSTALL_PREFIX='/usr'
+    -DUSE_NATIVE_INSTRUCTIONS=OFF
+    -DBUILD_LLVM=OFF
+    -DUSE_SDL=ON
+    -DUSE_SYSTEM_CURL=ON
+    -DUSE_SYSTEM_FFMPEG=ON
+    -DUSE_SYSTEM_FLATBUFFERS=ON
+    -DUSE_SYSTEM_LIBPNG=ON
+    -DUSE_SYSTEM_OPENCV=ON
+    -DUSE_SYSTEM_PUGIXML=ON
+    -DUSE_SYSTEM_SDL=ON
+    -DUSE_SYSTEM_WOLFSSL=OFF
+    -DUSE_SYSTEM_ZLIB=ON
+    -DUSE_SANITIZERS=OFF # cubeb
+    -DBUILD_TESTING=OFF
+    -Wno-dev
+  )
+
+  cmake "${_cmake_options[@]}"
+  cmake --build build
+)
+
+package() {
+  DESTDIR="${pkgdir}" cmake --install build
+  rm -rf "$pkgdir/usr/share/rpcs3"/{git,test}
+}
+
+_run_if_exists() {
+  if declare -F "$1" > /dev/null; then
+    eval "$1"
+  fi
+}
