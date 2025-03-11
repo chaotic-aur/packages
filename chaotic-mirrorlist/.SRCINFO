@@ -1,7 +1,7 @@
 pkgbase = chaotic-mirrorlist
 	pkgdesc = Chaotic-AUR mirrorlist to use with Pacman
 	pkgver = 20240724
-	pkgrel = 2
+	pkgrel = 3
 	url = https://aur.chaotic.cx
 	arch = any
 	license = GPL
@@ -10,13 +10,3 @@ pkgbase = chaotic-mirrorlist
 	sha256sums = 11ece2a372515432648bc1dfaa2b7af093b91251f5421810549fa86ef188eddd
 
 pkgname = chaotic-mirrorlist
-	replaces = mercury-browser
-	replaces = mercury-browser-avx
-	replaces = mercury-browser-avx-bin
-	replaces = mercury-browser-avx2
-	replaces = mercury-browser-avx2-bin
-	replaces = mercury-browser-bin
-	replaces = mercury-browser-sse3
-	replaces = mercury-browser-sse3-bin
-	replaces = mercury-browser-sse4
-	replaces = mercury-browser-sse4-bin
