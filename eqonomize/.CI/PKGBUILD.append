@@ -1,0 +1,5 @@
+url="https://github.com/Eqonomize/Eqonomize"
+
+license=('GPL-3.0-or-later')
+
+depends+=('hicolor-icon-theme')
