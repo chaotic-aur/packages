@@ -1,0 +1,4 @@
+unset checkdepends
+unset -f check
+
+url="https://github.com/andyholmes/valent"
