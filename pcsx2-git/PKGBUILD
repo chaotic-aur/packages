@@ -1,0 +1,110 @@
+# Maintainer: WeirdBeard <obarrtimothy@gmail.com>
+# Contributor: rafaelff <rafaelff@gnome.org>,
+# Contributor: éclairevoyant
+# Contributor: Maxime Gauduin <alucryd@archlinux.org>
+# Contributor: Themaister <maister@archlinux.us>
+
+pkgname=pcsx2-git
+pkgver=2.3.205.r0.g1fd22dcc1c
+pkgrel=1
+pkgdesc='PlayStation 2 emulator'
+arch=(x86_64)
+url=https://github.com/PCSX2/pcsx2
+license=(
+  GPL-3.0-or-later
+)
+
+depends=(
+  alsa-lib
+  ffmpeg
+  hicolor-icon-theme
+  libaio
+  libbacktrace
+  libglvnd
+  libpcap
+  libpng
+  libxi
+  libxrandr
+  qt6-base
+  qt6-svg
+  sdl3
+  shaderc
+  soundtouch
+  wayland
+  xcb-util-cursor
+)
+makedepends=(
+  7zip
+  clang
+  cmake
+  extra-cmake-modules
+  git
+  libpipewire
+  libpulse
+  lld
+  llvm
+  ninja
+  qt6-tools
+  qt6-wayland
+)
+optdepends=(
+  'alsa-utils: Sound player for RetroAchievements'
+  'gstreamer: Backup sound player for RetroAchievements'
+  'libpipewire: Pipewire support'
+  'libpulse: Pulseaudio support'
+  'qt6-wayland: Wayland support'
+)
+provides=(${pkgname%-git})
+conflicts=(${pkgname%-git})
+options=(!lto)
+
+source=(
+  git+https://github.com/PCSX2/pcsx2.git
+  git+https://github.com/PCSX2/pcsx2_patches.git
+)
+install=pcsx2-git.install
+
+pkgver() {
+  cd pcsx2
+  git describe --long --tags | sed 's/\([^-]*-g\)/r\1/;s/-/./g;s/^v//'
+}
+
+build() {
+  # See .github/workflows/scripts/linux/generate-cmake-qt.sh
+  cmake -S pcsx2 -B build \
+    -G Ninja \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_C_COMPILER=clang \
+    -DCMAKE_CXX_COMPILER=clang++ \
+    -DCMAKE_EXE_LINKER_FLAGS_INIT="-fuse-ld=lld" \
+    -DCMAKE_MODULE_LINKER_FLAGS_INIT="-fuse-ld=lld" \
+    -DUSE_VULKAN=ON \
+    -DENABLE_SETCAP=OFF \
+    -DWAYLAND_API=ON \
+    -DCMAKE_INSTALL_PREFIX="/usr" \
+    -DCMAKE_INTERPROCEDURAL_OPTIMIZATION=ON \
+    -DDISABLE_ADVANCE_SIMD=ON \
+    -DCMAKE_PREFIX_PATH="${srcdir}/deps-build" \
+    -DPACKAGE_MODE=ON
+
+  # Build
+  ninja -C build
+
+  cd pcsx2_patches
+  7z a -r ../patches.zip patches/.
+}
+
+package() {
+  DESTDIR="${pkgdir}" cmake --install build
+
+  install -Dm644 pcsx2/.github/workflows/scripts/linux/pcsx2-qt.desktop \
+    "${pkgdir}"/usr/share/applications/PCSX2.desktop
+  install -Dm644 pcsx2/bin/resources/icons/AppIconLarge.png \
+    "${pkgdir}"/usr/share/icons/hicolor/512x512/apps/PCSX2.png
+  install -Dm644 -t "${pkgdir}"/usr/share/PCSX2/resources/ patches.zip
+}
+
+sha256sums=(
+  'SKIP'
+  'SKIP'
+)
