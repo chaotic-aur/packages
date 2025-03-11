@@ -4,8 +4,8 @@
 # Contributor: Martins Mozeiko <martins.mozeiko@gmail.com>
 
 pkgname=jellyseerr
-pkgver=2.3.0
-pkgrel=4
+pkgver=2.5.0
+pkgrel=1
 pkgdesc='Request management and media discovery tool for the Plex ecosystem'
 arch=(x86_64 aarch64)
 url='https://github.com/Fallenbagel/jellyseerr'
@@ -32,14 +32,15 @@ options=(!strip !debug)
 install=jellyseerr.install
 source=(
   "${pkgname}-${pkgver}.tar.gz::${url}/archive/v${pkgver}.tar.gz"
-  "arch.patch::${url}/compare/develop...pnpm-10-for-arch-folks.patch"
+  # "arch.patch::${url}/compare/develop...pnpm-10-for-arch-folks.patch"
+  arch.patch
   jellyseerr.sysusers
   jellyseerr.tmpfiles
   jellyseerr.service
   jellyseerr.conf.d
 )
-sha256sums=('05ed38173f9835ccedd2c24fe490637c9fa64ca3f213747b6776bde634b66827'
-  '482e758d9d376becdcd7b5fbfbe8682cf2fb9d20ea9a89c2b8040dddd2645015'
+sha256sums=('9015998f12ea3d3653f243d67ee764e4ef42f60c5f7d8f3aeb65b36afb9d420d'
+  'c7aa1a366c970e9963b3754cad576dddf5fa2598a51f871fd5718a8389077029'
   '092221b83ded237f57003587533f623d9bc70455493dae9508bb0edac226f9cd'
   '202d6e4c1d4ee555c33fe7e8473c74aef795e145f3bbc885333c003a75e17f14'
   'ee4a4ed8b2ff41fe00582e11283526a08a2ed1154e8e278d898d98c8184c65eb'
@@ -75,7 +76,7 @@ package() {
 
   # Copy jellyseerr
   cp -dr --no-preserve='ownership' ./{.next,dist,public,node_modules} "${pkgdir}/usr/lib/jellyseerr"
-  cp -d --no-preserve='ownership' ./{package.json,overseerr-api.yml,next.config.js} "${pkgdir}/usr/lib/jellyseerr"
+  cp -d --no-preserve='ownership' ./{package.json,jellyseerr-api.yml,next.config.js} "${pkgdir}/usr/lib/jellyseerr"
 
   # Remove cache
   rm -rf "${pkgdir}/usr/lib/jellyseerr/.next/cache"
