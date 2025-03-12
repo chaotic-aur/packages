@@ -1,6 +1,8 @@
-: ${_build_avx:=false}
 : ${_debugfast:=false}
+: ${_build_unittests:=false}
+: ${_build_clang:=true}
 : ${_build_debugfast:=false}
+: ${_build_level:=1}
 : ${_build_git:=true}
 
 pkgbase=dolphin-emu-git
