@@ -21,5 +21,5 @@ sed -E \
 
 # update pkgdesc
 sed -E \
-  -e 's&^(\s+)(_package\$\{_p#\$pkgbase\})$&\1\2\n\1pkgdesc+=\\" - amd znver2\\"&' \
+  -e 's&^(\s+)(_package\$\{_p#\$pkgbase\})$&\1\2\n\1pkgdesc+=\\" - AMD Zen 2\\"&' \
   -i PKGBUILD
