@@ -3,16 +3,16 @@
 
 pkgname=subtitleedit
 pkgver=4.0.11
-pkgrel=1
+pkgrel=2
 pkgdesc='An advanced subtitle editor and converter'
 arch=('any')
 url='https://www.nikse.dk/SubtitleEdit'
 license=('GPL-3.0-only')
-depends=('mono')
-optdepends=('vlc: Video support'
+depends=('mono' 'ttf-dejavu')
+optdepends=('ffmpeg: waveform extraction'
   'mpv: Video support'
-  'tesseract: OCR support'
-  'ffmpeg: Waveform extraction')
+  'vlc: Video support'
+  'tesseract: OCR support')
 makedepends=('unzip')
 source=("https://github.com/SubtitleEdit/subtitleedit/releases/download/$pkgver/SE${pkgver//./}.zip"
   'subtitleedit'
