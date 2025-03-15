@@ -1,111 +1,230 @@
-# Maintainer: WeirdBeard <obarrtimothy@gmail.com>
-# Contributor: rafaelff <rafaelff@gnome.org>,
-# Contributor: éclairevoyant
-# Contributor: Maxime Gauduin <alucryd@archlinux.org>
-# Contributor: Themaister <maister@archlinux.us>
+# Maintainer:
 
-pkgname=pcsx2-git
-pkgver=2.3.222.r1.g6addc7cf5f
-pkgrel=1
+## useful commands
+# LLVM_PROFILE_FILE="default_%9m.profraw" pcsx2-qt
+# llvm-profdata merge -output=pcsx2-avx-git.profdata *.profraw
+
+## options
+: ${_build_instrumented:=false}
+: ${_build_pgo:=try}
+
+: ${_build_level:=3}
+: ${_build_git:=true}
+
+unset _pkgtype
+[[ "${_build_instrumented::1}" == "t" ]] && _pkgtype+="-instrumented"
+[[ "${_build_level::1}" == "2" ]] && _pkgtype+="-x64v2"
+[[ "${_build_level::1}" == "3" ]] && _pkgtype+="-avx"
+[[ "${_build_level::1}" == "4" ]] && _pkgtype+="-x64v4"
+[[ "${_build_git::1}" == "t" ]] && _pkgtype+="-git"
+
+_pkgname="pcsx2"
+pkgname="$_pkgname${_pkgtype:-}"
+pkgver=2.3.212.r1.gfbc95f2
+pkgrel=2
 pkgdesc='PlayStation 2 emulator'
-arch=(x86_64)
-url=https://github.com/PCSX2/pcsx2
-license=(
-  GPL-3.0-or-later
-)
+url="https://github.com/PCSX2/pcsx2"
+license=('GPL-3.0-or-later')
+arch=('x86_64' 'x86_64_v2' 'x86_64_v3' 'x86_64_v4')
 
 depends=(
-  alsa-lib
-  ffmpeg
-  hicolor-icon-theme
-  libaio
-  libbacktrace
-  libglvnd
   libpcap
   libpng
+  libpulse
+  libwebp
   libxi
   libxrandr
   qt6-base
-  qt6-svg
   sdl3
-  shaderc
-  soundtouch
-  wayland
-  xcb-util-cursor
 )
 makedepends=(
-  7zip
+  ## compiler
   clang
-  cmake
-  extra-cmake-modules
-  kddockwidgets-git
-  git
-  libpipewire
-  libpulse
   lld
   llvm
+
+  ## build
+  cmake
+  extra-cmake-modules
+  git
   ninja
+
+  ## pcsx2
+  shaderc
   qt6-tools
-  qt6-wayland
+
+  # patches
+  7zip
 )
 optdepends=(
   'alsa-utils: Sound player for RetroAchievements'
   'gstreamer: Backup sound player for RetroAchievements'
-  'libpipewire: Pipewire support'
-  'libpulse: Pulseaudio support'
-  'qt6-wayland: Wayland support'
 )
-provides=(${pkgname%-git})
-conflicts=(${pkgname%-git})
-options=(!lto)
 
-source=(
-  git+https://github.com/PCSX2/pcsx2.git
-  git+https://github.com/PCSX2/pcsx2_patches.git
-)
-install=pcsx2-git.install
+case "$CARCH" in
+  x86_64_v2)
+    _build_level=2
+    ;;
+  x86_64_v3)
+    _build_level=3
+    ;;
+  x86_64_v4)
+    _build_level=4
+    ;;
+  *) # no changes; may be user defined
+    ;;
+esac
 
-pkgver() {
-  cd pcsx2
-  git describe --long --tags | sed 's/\([^-]*-g\)/r\1/;s/-/./g;s/^v//'
+if [ "${_build_git::1}" == "t" ]; then
+  provides=("$_pkgname")
+  conflicts=("$_pkgname")
+  _commit="master"
+
+  pkgver() {
+    cd "$_pkgsrc"
+    git describe --long --tags --abbrev=7 --exclude='*[a-zA-Z][a-zA-Z]*' \
+      | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
+  }
+fi
+
+options=('!debug' 'lto')
+install="$_pkgname.install"
+
+_source_pcsx2() {
+  _pkgsrc="$_pkgname"
+  source+=("$_pkgsrc"::"git+$url.git#commit=$_commit")
+  sha256sums+=('SKIP')
 }
 
-build() {
-  # See .github/workflows/scripts/linux/generate-cmake-qt.sh
-  cmake -S pcsx2 -B build \
-    -G Ninja \
-    -DCMAKE_BUILD_TYPE=Release \
-    -DCMAKE_C_COMPILER=clang \
-    -DCMAKE_CXX_COMPILER=clang++ \
-    -DCMAKE_EXE_LINKER_FLAGS_INIT="-fuse-ld=lld" \
-    -DCMAKE_MODULE_LINKER_FLAGS_INIT="-fuse-ld=lld" \
-    -DUSE_VULKAN=ON \
-    -DENABLE_SETCAP=OFF \
-    -DWAYLAND_API=ON \
-    -DCMAKE_INSTALL_PREFIX="/usr" \
-    -DCMAKE_INTERPROCEDURAL_OPTIMIZATION=ON \
-    -DDISABLE_ADVANCE_SIMD=ON \
-    -DCMAKE_PREFIX_PATH="${srcdir}/deps-build" \
+_source_pcsx2_patches() {
+  source+=("pcsx2_patches"::"git+https://github.com/PCSX2/pcsx2_patches.git")
+  sha256sums+=('SKIP')
+}
+
+_source_pcsx2
+_source_pcsx2_patches
+
+prepare() {
+  _submodule_update() {
+    local _module
+    for _module in "${_submodules[@]}"; do
+      git submodule init "${_module##*::}"
+      git submodule set-url "${_module##*::}" "$srcdir/${_module%::*}"
+      git -c protocol.file.allow=always submodule update "${_module##*::}"
+    done
+  }
+
+  cd "$_pkgsrc"
+
+  # prevent march=native
+  sed -E -e 's@^(\s*)(add_compile_options\(.*march=native.*\))@\1message("skip: march=native")@' \
+    -i "cmake/BuildParameters.cmake"
+
+  # adjust data path
+  sed -E -e '/CMAKE_INSTALL_FULL_DATADIR/s@/PCSX2\b@/'"${_pkgname}@" \
+    -i "pcsx2/CMakeLists.txt" \
+    "cmake/BuildParameters.cmake"
+}
+
+_build_pcsx2() (
+  echo "Building pcsx2..."
+  local _cmake_pcsx2
+
+  _cmake_pcsx2+=(
+    -S "$_pkgsrc"
+    -B build_pcsx2
+    -G Ninja
+    -DCMAKE_BUILD_TYPE=None
+    -DCMAKE_INSTALL_PREFIX='/usr'
+    -DENABLE_SETCAP=OFF
     -DPACKAGE_MODE=ON
+    -DUSE_ASAN=OFF
+    -DUSE_BACKTRACE=OFF
+    -DUSE_VULKAN=ON
+    -DWAYLAND_API=ON
+    -DX11_API=ON
+    -DENABLE_TESTS=OFF
+    -Wno-dev
+  )
 
-  # Build
-  ninja -C build
+  if [[ ${_build_level::1} =~ ^[2-4]$ ]]; then
+    _cmake_pcsx2+=(-DDISABLE_ADVANCE_SIMD=OFF)
+  else
+    _cmake_pcsx2+=(-DDISABLE_ADVANCE_SIMD=ON)
+  fi
 
+  local _pgo_profile_old="${SRCDEST:-$startdir}/$pkgname.profdata"
+  local _pgo_profile="$srcdir/$pkgname.profdata"
+  if [[ "${_build_instrumented::1}" == "t" ]]; then
+    echo "Compiling with instrumentation."
+    CFLAGS+=" -fprofile-generate"
+    CXXFLAGS+=" -fprofile-generate"
+  elif [[ "${_build_pgo::1}" == "t" ]] && [ -e "$_pgo_profile_old" ]; then
+    echo "Compiling with profile-guided optimization."
+    cp --reflink=auto "$_pgo_profile_old" "$_pgo_profile"
+
+    CFLAGS+=" -fprofile-use='$_pgo_profile'"
+    CXXFLAGS+=" -fprofile-use='$_pgo_profile'"
+  else
+    echo "Compiling with standard optimization."
+  fi
+
+  cmake "${_cmake_pcsx2[@]}"
+  cmake --build build_pcsx2
+)
+
+_build_pcsx2_patches() (
   cd pcsx2_patches
-  7z a -r ../patches.zip patches/.
-}
+  7z a -mx=9 -r ../patches.zip patches/.
+)
+
+build() (
+  export CC CXX CFLAGS CXXFLAGS LDFLAGS
+  CC=clang
+  CXX=clang++
+
+  local _ldflags=(${LDFLAGS})
+  LDFLAGS="${_ldflags[@]//*fuse-ld*/} -fuse-ld=lld"
+
+  if [[ ${_build_level::1} =~ ^[2-4]$ ]]; then
+    local _cflags _cxxflags
+    _cflags=(
+      -march=x86-64-v${_build_level::1} -mtune=generic -O3
+      $(sed -E -e 's&-(march|mtune)=\S+\b&&g' -e 's&-O[0-9]+\b&&g' <<< "${CFLAGS}")
+    )
+    CFLAGS="${_cflags[@]}"
+
+    _cxxflags=(
+      -march=x86-64-v${_build_level::1} -mtune=generic -O3
+      $(sed -E -e 's&-(march|mtune)=\S+\b&&g' -e 's&-O[0-9]+\b&&g' <<< "${CXXFLAGS}")
+    )
+    CXXFLAGS="${_cxxflags[@]}"
+  fi
+
+  _build_pcsx2
+  _build_pcsx2_patches
+)
 
 package() {
-  DESTDIR="${pkgdir}" cmake --install build
+  DESTDIR="$pkgdir" cmake --install build_pcsx2
+  ln -srf "$pkgdir/usr/bin"/{pcsx2-qt,$_pkgname}
 
-  install -Dm644 pcsx2/.github/workflows/scripts/linux/pcsx2-qt.desktop \
-    "${pkgdir}"/usr/share/applications/PCSX2.desktop
-  install -Dm644 pcsx2/bin/resources/icons/AppIconLarge.png \
-    "${pkgdir}"/usr/share/icons/hicolor/512x512/apps/PCSX2.png
-  install -Dm644 -t "${pkgdir}"/usr/share/PCSX2/resources/ patches.zip
+  install -Dm644 patches.zip -t "$pkgdir/usr/share/$_pkgname/resources/"
+
+  install -Dm644 pcsx2/bin/resources/icons/AppIconLarge.png "$pkgdir/usr/share/pixmaps/$_pkgname.png"
+
+  install -Dm755 /dev/stdin "$pkgdir/usr/share/applications/$_pkgname.desktop" << END
+[Desktop Entry]
+Type=Application
+Name=PCSX2
+GenericName=$pkgdesc
+Comment=$pkgdesc
+TryExec=$_pkgname
+Exec=$_pkgname %f
+Icon=$_pkgname
+Terminal=false
+StartupNotify=true
+StartupWMClass=$_pkgname
+Categories=Game;Emulator
+END
 }
-
-sha256sums=(
-  'SKIP'
-  'SKIP'
-)
