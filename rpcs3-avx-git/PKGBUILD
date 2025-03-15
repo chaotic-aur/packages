@@ -13,8 +13,8 @@ _pkgtype+="-git"
 _pkgname="rpcs3"
 pkgname="$_pkgname${_pkgtype:-}"
 
-pkgver=0.0.35.r103.g3737cc3
-pkgrel=0.3
+pkgver=0.0.35.r113.gf9a72e8
+pkgrel=1
 pkgdesc="PlayStation 3 emulator"
 url="https://github.com/RPCS3/rpcs3"
 license=('GPL-2.0-only')
@@ -22,7 +22,6 @@ arch=('x86_64' 'x86_64_v2' 'x86_64_v3' 'x86_64_v4')
 
 depends=(
   'ffmpeg'
-  'sdl2'
   'flatbuffers'
   'glew'
   'openal'
@@ -30,6 +29,7 @@ depends=(
   'pugixml'
   'qt6-multimedia'
   'qt6-svg'
+  'sdl3'
 )
 makedepends=(
   'clang'
