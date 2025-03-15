@@ -1,17 +1,14 @@
-# Maintainer: aur.chaotic.cx
-
-## links
-# http://qlcplus.org/
-# https://github.com/mcallegari/qlcplus
+# Maintainer:
+# Contributor: Leo Verto <leotheverto+aur@gmail.com>
 
 _pkgname="qlcplus"
-pkgname="$_pkgname-qt6-git"
-pkgver=4.14.0.r50.g701c4c5
+pkgname="$_pkgname-git"
+pkgver=4.14.1.r0.gdaf4399
 pkgrel=1
 pkgdesc="Q Light Controller Plus to control professional DMX lighting fixtures"
 url="https://github.com/mcallegari/qlcplus"
 license=('Apache-2.0')
-arch=('x86_64' 'armv7h')
+arch=('x86_64' 'i686' 'armv7h')
 
 depends=(
   'fftw'
@@ -44,12 +41,8 @@ sha256sums=('SKIP')
 
 pkgver() {
   cd "$_pkgsrc"
-  local _tag _version _revision _hash
-  _tag=$(git tag | grep -E '^QLC\+_[0-9\.]+$' | sort -rV | head -1)
-  _version=$(sed -E 's&^[^0-9]*&&' <<< "${_tag:?}")
-  _revision=$(git rev-list --count --cherry-pick "$_tag"...HEAD)
-  _hash=$(git rev-parse --short=7 HEAD)
-  printf '%s.r%s.g%s' "${_version:?}" "${_revision:?}" "${_hash:?}"
+  git describe --long --tags --abbrev=7 --exclude='*[Rab]*' \
+    | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
 }
 
 build() {

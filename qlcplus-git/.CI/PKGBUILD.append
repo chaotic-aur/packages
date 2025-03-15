@@ -1,0 +1,9 @@
+eval _orig_"$(declare -f package)"
+
+package() {
+  replaces=(
+    'qlcplus-qt6-git'
+  )
+
+  _orig_package
+}
