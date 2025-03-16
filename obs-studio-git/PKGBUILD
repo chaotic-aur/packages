@@ -10,11 +10,11 @@
 
 # build-aux/modules/99-cef.json
 : ${_cef_branch:=6533}
-: ${_cef_ver=}
+: ${_cef_ver=_v3}
 
 _pkgname="obs-studio"
 pkgname="$_pkgname-git"
-pkgver=31.0.1.r96.g80ea1b1
+pkgver=31.0.2.r116.g8db61f2
 pkgrel=1
 pkgdesc="Free, open source software for live streaming and recording - Browser enabled"
 url="https://github.com/obsproject/obs-studio"
@@ -38,7 +38,7 @@ depends=(
   'speexdsp'
 )
 makedepends=(
-  'asio'
+  #'asio'
   'cmake'
   'ffnvcodec-headers'
   'git'
@@ -87,27 +87,28 @@ _source_main() {
 }
 
 _source_obs_studio() {
-  source+=(
+  local _sources_add=(
     #'obsproject.libdshowcapture'::'git+https://github.com/obsproject/libdshowcapture.git'
     'obsproject.obs-browser'::'git+https://github.com/obsproject/obs-browser.git'
     'obsproject.obs-websocket'::'git+https://github.com/obsproject/obs-websocket.git'
   )
 
-  sha256sums+=(
-    'SKIP'
-    'SKIP'
+  local _p
+  for _p in ${_sources_add[@]}; do
+    source+=("$_p")
+    sha256sums+=('SKIP')
+  done
+
+  _prepare_obs_studio() (
+    cd "$srcdir/$_pkgsrc"
+    local _submodules=(
+      #'obsproject.libdshowcapture'::'plugins/win-dshow/libdshowcapture'
+      'obsproject.obs-browser'::'plugins/obs-browser'
+      'obsproject.obs-websocket'::'plugins/obs-websocket'
+    )
+    _submodule_update
   )
 }
-
-_prepare_obs_studio() (
-  cd "$srcdir/$_pkgsrc"
-  local _submodules=(
-    #'obsproject.libdshowcapture'::'plugins/win-dshow/libdshowcapture'
-    'obsproject.obs-browser'::'plugins/obs-browser'
-    'obsproject.obs-websocket'::'plugins/obs-websocket'
-  )
-  _submodule_update
-)
 
 _source_cef() {
   depends+=(
@@ -138,13 +139,30 @@ _source_cef() {
   _cef_src="cef_binary_${_cef_branch}_linux_${CARCH}"
   _cef_ext="tar.xz"
   _cef_filename="$_cef_src$_cef_ver.$_cef_ext"
-  _cef_dl_url="https://cdn-fastly.obsproject.com/downloads/"
+  _cef_dl_url="https://cdn-fastly.obsproject.com/downloads"
 
   source+=("$_cef_filename"::"$_cef_dl_url/$_cef_filename")
   sha256sums+=('SKIP')
 }
 
+_source_asio() {
+  _pkgsrc_asio="asio"
+  _ver_asio=1.32.0
+  source+=("$_pkgsrc_asio"::"git+https://github.com/chriskohlhoff/asio.git#tag=asio-${_ver_asio//./-}")
+  sha256sums+=('SKIP')
+
+  _build_asio() (
+    cd "$_pkgsrc_asio/asio"
+    autoreconf -fiv
+    ./configure --prefix=/usr
+    make
+    make DESTDIR="$srcdir/deps" install
+    find "$srcdir/deps" -type f
+  )
+}
+
 _source_main
+_source_asio
 _source_cef
 _source_obs_studio
 
@@ -158,7 +176,7 @@ prepare() {
     done
   }
 
-  _prepare_obs_studio
+  _run_if_exists _prepare_obs_studio
 }
 
 pkgver() {
@@ -189,6 +207,7 @@ _build_obs_studio() (
     -DCMAKE_BUILD_TYPE=None
     -DCMAKE_INSTALL_PREFIX='/usr'
     -DCMAKE_INSTALL_LIBDIR='lib'
+    -DCMAKE_PREFIX_PATH="$srcdir/deps/usr"
     -DCEF_ROOT_DIR="$srcdir/$_cef_src"
     -DOBS_VERSION_OVERRIDE="${pkgver%%.r*}"
     -DOBS_COMPILE_DEPRECATION_AS_WARNING=ON
@@ -215,6 +234,7 @@ build() (
   CFLAGS="${CFLAGS/_FORTIFY_SOURCE=?/_FORTIFY_SOURCE=2}"
   CXXFLAGS="${CXXFLAGS/_FORTIFY_SOURCE=?/_FORTIFY_SOURCE=2}"
 
+  _build_asio
   _build_cef
   _build_obs_studio
 )
@@ -222,4 +242,10 @@ build() (
 package() {
   DESTDIR="$pkgdir" cmake --install build
   chmod -R u+rwX,go+rX,go-w "$pkgdir"
+}
+
+_run_if_exists() {
+  if declare -F "$1" > /dev/null; then
+    eval "$1"
+  fi
 }
