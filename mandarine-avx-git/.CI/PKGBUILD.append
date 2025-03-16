@@ -1,0 +1,46 @@
+pkgname="$_pkgname-avx-git"
+pkgdesc="Yet another emulator fork"
+
+makedepends+=('lld')
+
+_pkgsrc="$_pkgname"
+pkgver() {
+  cd "$_pkgsrc"
+  git describe --long --tags --abbrev=7 --exclude='*[a-zA-Z][a-zA-Z]*' \
+    | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/[-,]/./g'
+}
+
+eval _orig_"$(declare -f build | sed -E 's&(-DCMAKE_INSTALL_PREFIX=)&-Wno-dev \1&')"
+
+build() {
+  export CC CXX CFLAGS CXXFLAGS LDFLAGS
+  CC=clang
+  CXX=clang++
+
+  local _ldflags=(${LDFLAGS})
+  LDFLAGS="${_ldflags[@]//*fuse-ld*/} -fuse-ld=lld"
+
+  local _cflags _cxxflags
+  _cflags=(
+    -march=x86-64-v3 -O3
+    $(sed -E -e 's&-(march|mtune)=\S+\b&&g' -e 's&-O[0-9]+\b&&g' <<< "${CFLAGS}")
+  )
+  CFLAGS="${_cflags[@]}"
+
+  _cxxflags=(
+    -march=x86-64-v3 -O3
+    $(sed -E -e 's&-(march|mtune)=\S+\b&&g' -e 's&-O[0-9]+\b&&g' <<< "${CXXFLAGS}")
+  )
+  CXXFLAGS="${_cxxflags[@]}"
+
+  _orig_build
+}
+
+
+eval _orig_"$(declare -f prepare)"
+
+prepare() {
+  (_orig_prepare)
+
+  sed '/SPIRV-Tools/d' -i "$_pkgsrc/externals/CMakeLists.txt"
+}
