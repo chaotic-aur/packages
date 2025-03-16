@@ -1,6 +1,4 @@
-_pkgsrc="$_pkgname"
-
-makedepends+=('spirv-tools')
+pkgdesc="Yet another emulator fork"
 
 _pkgsrc="$_pkgname"
 pkgver() {
