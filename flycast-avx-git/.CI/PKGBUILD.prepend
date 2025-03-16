@@ -1,1 +1,1 @@
-: ${_build_avx:=true}
+: ${_build_level:=3}
