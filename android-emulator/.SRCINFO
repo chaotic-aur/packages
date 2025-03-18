@@ -1,6 +1,6 @@
 pkgbase = android-emulator
 	pkgdesc = Google Android Emulator
-	pkgver = 35.3.11
+	pkgver = 35.4.9
 	pkgrel = 1
 	url = https://developer.android.com/studio/releases/emulator.html
 	install = android-emulator.install
@@ -26,13 +26,13 @@ pkgbase = android-emulator
 	depends = nspr
 	depends = nss
 	depends = zlib
-	source = https://dl.google.com/android/repository/emulator-linux_x64-12836668.zip
+	source = https://dl.google.com/android/repository/emulator-linux_x64-13025442.zip
 	source = android-emulator.sh
 	source = android-emulator.csh
 	source = package.xml
-	sha1sums = 99d847b09428b9842a3e52430e3f0decfc79c080
+	sha1sums = dc8d58c3948dcfa946417afaa60ad397c7329765
 	sha1sums = 80c9b3ffc8865b5f8e55b1ffed36c08ee7a9d8ad
 	sha1sums = e1485ef14463f275005cae43a0a1e43ce52354ca
-	sha1sums = e0ad76cdfacef78fd30a072c3d6a892c6352aded
+	sha1sums = 61811d29cba7690cd6ab4502f0e99eb1a898a58a
 
 pkgname = android-emulator
