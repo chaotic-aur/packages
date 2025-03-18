@@ -1,44 +1,40 @@
 # Maintainer: aur.chaotic.cx
 
 ## options
+: ${_use_system_electron:=true}
+
 : ${_electron_version=}
-: ${_nodeversion:=23}
+: ${_nodeversion:=22}
 : ${_install_path:=usr/share}
 
 _pkgname="thorium-reader"
 pkgname="$_pkgname-git"
-pkgver=3.0.0.r258.g7fee4d0
+pkgver=3.1.1.r11.g5bdcae6
 pkgrel=1
-pkgdesc="Cross-platform desktop reading app based on the Readium Desktop toolkit"
+pkgdesc="eBook reader based on the Readium Desktop toolkit"
 url="https://github.com/edrlab/thorium-reader"
 license=('MIT')
 arch=('any')
 
-depends=(
-  "electron${_electron_version:-}"
-)
 makedepends=(
   'git'
-  'nvm'
+  'nvm' # AUR
 )
+
+if [ "${_use_system_electron::1}" == "t" ]; then
+  makedepends+=('electron')
+fi
 
 provides+=("$_pkgname")
 conflicts+=("$_pkgname")
 
-_source_main() {
-  _pkgsrc="$_pkgname"
-  source=("$_pkgsrc"::"git+$url.git")
-  sha256sums=('SKIP')
-}
-
-_source_main
+_pkgsrc="$_pkgname"
+source=("$_pkgsrc"::"git+$url.git")
+sha256sums=('SKIP')
 
 _nvm_env() {
   export HOME="$SRCDEST/node-home"
   export NVM_DIR="$SRCDEST/node-nvm"
-
-  export SYSTEM_ELECTRON_VERSION=$(< "/usr/lib/electron${_electron_version:-}/version")
-  export ELECTRONVERSION=${SYSTEM_ELECTRON_VERSION%%.*}
 
   # set up nvm
   source /usr/share/nvm/init-nvm.sh || [[ $? != 1 ]]
@@ -46,9 +42,30 @@ _nvm_env() {
   nvm use $_nodeversion
 }
 
+_electron_env() {
+  if [ "${_use_system_electron::1}" != "t" ]; then
+    return
+  fi
+
+  export SYSTEM_ELECTRON_VERSION=$(< "/usr/lib/electron${_electron_version:-}/version")
+  export ELECTRONVERSION=${SYSTEM_ELECTRON_VERSION%%.*}
+}
+
+prepare() {
+  _electron_env
+  if [ "${_use_system_electron::1}" == "t" ]; then
+    sed -E \
+      -e 's&^(\s*)("electron"): "(.*)"(,?)$&\1\2: "'"$SYSTEM_ELECTRON_VERSION"'"\4&' \
+      -i "$_pkgsrc/package.json"
+  fi
+
+  sed -E \
+    -e 's&("npm"): \S+$&\1: ">=1.0.0"&' \
+    -i "$_pkgsrc/package.json"
+}
+
 pkgver() {
   cd "$_pkgsrc"
-
   local _tag=$(git tag | grep -Ev '[a-z]{2}' | grep '^v' | sort -rV | head -1)
   local _version="${_tag#v}"
   local _revision=$(git rev-list --count --cherry-pick "$_tag"...HEAD)
@@ -58,19 +75,47 @@ pkgver() {
 
 build() (
   _nvm_env
+  _electron_env
 
-  sed -E \
-    -e 's&^(\s*)("electron"): "(.*)"(,?)$&\1\2: "'"$SYSTEM_ELECTRON_VERSION"'"\4&' \
-    -i "$_pkgsrc/package.json"
+  local _builder_options=()
+  if [ "${_use_system_electron::1}" == "t" ]; then
+    _builder_options+=(
+      -c.electronDist="'/usr/lib/electron${_electron_version:-}'"
+      -c.electronVersion=${SYSTEM_ELECTRON_VERSION}
+    )
+  fi
 
   cd "$_pkgsrc"
   npm install --no-audit --no-fund --prefer-offline
   npm run package:build
-  npm exec -c "electron-builder --linux --x64 --dir --publish never -c.electronDist='/usr/lib/electron${_electron_version:-}' -c.electronVersion=${SYSTEM_ELECTRON_VERSION}"
+  npm exec -c "electron-builder --linux --dir --publish never ${_builder_options[@]}"
 )
 
 package() {
-  install -Dm755 /dev/stdin "$pkgdir/usr/bin/$_pkgname" << END
+  # launcher
+  install -Dm644 /dev/stdin "$pkgdir/usr/share/applications/$_pkgname.desktop" << END
+[Desktop Entry]
+Type=Application
+Name=Thorium Reader
+Comment=Cross-platform desktop reading app based on the Readium Desktop toolkit
+Exec=$_pkgname %u
+Icon=$_pkgname
+Terminal=false
+StartupNotify=true
+Categories=Office;
+MimeType=application/epub+zip;
+StartupWMClass=EDRLab.ThoriumReader
+END
+
+  # icon
+  install -Dm644 "$_pkgsrc/resources/icon.png" "$pkgdir/usr/share/pixmaps/$_pkgname.png"
+
+  # license
+  install -Dm644 "$_pkgsrc/LICENSE" -t "$pkgdir/usr/share/licenses/$pkgname"
+
+  # script
+  local _script=$(
+    cat << END
 #!/usr/bin/env bash
 
 set -euo pipefail
@@ -94,6 +139,22 @@ done
 export ELECTRON_IS_DEV
 : \${ELECTRON_FORCE_IS_PACKAGED:=true}
 export ELECTRON_FORCE_IS_PACKAGED
+END
+  )
+
+  # system vs vendor electron
+  if [ "${_use_system_electron::1}" == "t" ]; then
+    if [ "${_install_path::1}" = "/" || "$_install_path" = "usr/lib" ]; then
+      _install_path="usr/share"
+    fi
+
+    _electron_env
+    depends=("electron${ELECTRONVERSION:-}")
+
+    install -Dm644 "$_pkgsrc/release/linux-unpacked/resources/app.asar" -t "$pkgdir/$_install_path/$_pkgname/"
+
+    install -Dm755 /dev/stdin "$pkgdir/usr/bin/$_pkgname" << END
+$_script
 
 if [ -z "\$@" ]; then
   cd "/$_install_path/$_pkgname/"
@@ -102,23 +163,18 @@ else
   exec electron${_electron_version:-} "\${flags[@]}" "/$_install_path/$_pkgname/app.asar" "\$@"
 fi
 END
+  else
+    if [ "${_install_path::1}" = "/" || "$_install_path" = "usr/share" ]; then
+      _install_path="usr/lib"
+    fi
 
-  install -Dm644 /dev/stdin "$pkgdir/usr/share/applications/$_pkgname.desktop" << END
-[Desktop Entry]
-Type=Application
-Name=Thorium Reader
-Comment=Cross-platform desktop reading app based on the Readium Desktop toolkit
-Exec=$_pkgname %u
-Icon=$_pkgname
-Terminal=false
-StartupNotify=true
-Categories=Office;
-MimeType=application/epub+zip;
-StartupWMClass=EDRLab.ThoriumReader
+    install -dm755 "$pkgdir/$_install_path/$_pkgname"
+    mv "$_pkgsrc/release/linux-unpacked"/* "$pkgdir/$_install_path/$_pkgname/"
+
+    install -Dm755 /dev/stdin "$pkgdir/usr/bin/$_pkgname" << END
+$_script
+
+exec "/$_install_path/$_pkgname/$_pkgname" "\${flags[@]}" "\$@"
 END
-
-  install -Dm644 "$_pkgsrc/release/linux-unpacked/resources/app.asar" -t "$pkgdir/$_install_path/$_pkgname/"
-  install -Dm644 "$_pkgsrc/resources/icon.png" "$pkgdir/usr/share/pixmaps/$_pkgname.png"
-
-  install -Dm644 "$_pkgsrc/LICENSE" -t "$pkgdir/usr/share/licenses/$pkgname"
+  fi
 }
