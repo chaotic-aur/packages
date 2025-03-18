@@ -179,7 +179,6 @@ _package-headers() {
 
   # Rust support
   echo "Installing Rust files..."
-  install -Dt "$builddir/rust" -m644 scripts/target.json
   install -Dt "$builddir/rust" -m644 rust/*.rmeta
   install -Dt "$builddir/rust" -m644 rust/*.so
 
