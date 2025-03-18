@@ -1,7 +1,7 @@
 pkgbase = gimp-git
 	pkgdesc = GNU Image Manipulation Program
-	pkgver = 3.0.0RC2.r269.g5d241d3
-	pkgrel = 1
+	pkgver = 3.0.0.r9.g36d8a63
+	pkgrel = 2
 	url = https://gitlab.gnome.org/GNOME/gimp
 	arch = i686
 	arch = x86_64
@@ -61,6 +61,7 @@ pkgbase = gimp-git
 	optdepends = libxpm: XPM support
 	optdepends = lua-lgi: LUA scripting support
 	optdepends = luajit: LUA scripting support
+	conflicts = gimp
 	source = gimp::git+https://gitlab.gnome.org/GNOME/gimp.git
 	source = gimp-data::git+https://gitlab.gnome.org/GNOME/gimp-data.git
 	sha256sums = SKIP

@@ -2,8 +2,8 @@
 
 _pkgname="gimp"
 pkgname="$_pkgname-git"
-pkgver=3.0.0RC2.r269.g5d241d3
-pkgrel=1
+pkgver=3.0.0.r9.g36d8a63
+pkgrel=2
 pkgdesc="GNU Image Manipulation Program"
 url="https://gitlab.gnome.org/GNOME/gimp"
 license=('GPL-3.0-or-later')
@@ -72,6 +72,8 @@ optdepends=(
   'lua-lgi: LUA scripting support'
   'luajit: LUA scripting support'
 )
+
+conflicts=("$_pkgname")
 
 _pkgsrc="gimp"
 source=(
