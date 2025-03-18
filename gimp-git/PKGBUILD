@@ -73,6 +73,7 @@ optdepends=(
   'luajit: LUA scripting support'
 )
 
+provides=("$_pkgname=${pkgver%%.g}")
 conflicts=("$_pkgname")
 
 _pkgsrc="gimp"

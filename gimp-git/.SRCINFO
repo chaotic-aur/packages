@@ -61,6 +61,7 @@ pkgbase = gimp-git
 	optdepends = libxpm: XPM support
 	optdepends = lua-lgi: LUA scripting support
 	optdepends = luajit: LUA scripting support
+	provides = gimp=3.0.0.r9.g36d8a63
 	conflicts = gimp
 	source = gimp::git+https://gitlab.gnome.org/GNOME/gimp.git
 	source = gimp-data::git+https://gitlab.gnome.org/GNOME/gimp-data.git
