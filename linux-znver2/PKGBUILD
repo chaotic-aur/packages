@@ -177,10 +177,9 @@ _package-headers() {
   echo "Installing KConfig files..."
   find . -name 'Kconfig*' -exec install -Dm644 {} "$builddir/{}" \;
 
-  # Rust support
   echo "Installing Rust files..."
   install -Dt "$builddir/rust" -m644 rust/*.rmeta
-  install -Dt "$builddir/rust" -m644 rust/*.so
+  install -Dt "$builddir/rust" rust/*.so
 
   echo "Removing unneeded architectures..."
   local arch
