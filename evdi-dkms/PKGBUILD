@@ -1,4 +1,4 @@
-# Maintainer: aur.chaotic.cx
+# Maintainer:
 
 _pkgname="evdi"
 pkgname="$_pkgname-dkms"
