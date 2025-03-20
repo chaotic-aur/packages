@@ -1,6 +1,6 @@
 pkgbase = onlyoffice-bin
 	pkgdesc = An office suite that combines text, spreadsheet and presentation editors
-	pkgver = 8.3.1
+	pkgver = 8.3.2
 	pkgrel = 1
 	url = https://www.onlyoffice.com/
 	arch = x86_64
@@ -26,12 +26,12 @@ pkgbase = onlyoffice-bin
 	optdepends = gst-plugins-good: for playing embedded video files
 	provides = onlyoffice=${pkgver}
 	conflicts = onlyoffice
-	noextract = onlyoffice-desktopeditors--8.3.1.deb
+	noextract = onlyoffice-desktopeditors--8.3.2.deb
 	options = !strip
 	options = !emptydirs
-	source = onlyoffice-desktopeditors--8.3.1.deb::https://github.com/ONLYOFFICE/DesktopEditors/releases/download/v8.3.1/onlyoffice-desktopeditors_amd64.deb
+	source = onlyoffice-desktopeditors--8.3.2.deb::https://github.com/ONLYOFFICE/DesktopEditors/releases/download/v8.3.2/onlyoffice-desktopeditors_amd64.deb
 	source = 010-onlyoffice-bin-fix-document-opening.patch
-	sha256sums = e9ea172ce2ec847a67dde684c79ee597aea70fe82cd4b654113d024a6e287797
+	sha256sums = ba91a330b3495189caccee14b38b7ea91b9c2a5880a290e4c2696c617f112daf
 	sha256sums = 670de5f8b72679a54ff41a96ba1bdba9231a93260d1a8eaf304f66c8e40efdb7
 
 pkgname = onlyoffice-bin
