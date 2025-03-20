@@ -1,0 +1,22 @@
+pkgbase = ksnip-git
+	pkgdesc = Screenshot and annotation tool (Qt6)
+	pkgver = 1.10.1.r115.g2fc56dd
+	pkgrel = 1
+	url = https://github.com/ksnip/ksnip
+	arch = x86_64
+	license = GPL-2.0-or-later
+	makedepends = cmake
+	makedepends = extra-cmake-modules
+	makedepends = git
+	makedepends = ninja
+	makedepends = qt6-tools
+	depends = hicolor-icon-theme
+	depends = kimageannotator
+	depends = qt6-base
+	depends = qt6-svg
+	provides = ksnip
+	conflicts = ksnip
+	source = ksnip::git+https://github.com/ksnip/ksnip.git
+	sha256sums = SKIP
+
+pkgname = ksnip-git
