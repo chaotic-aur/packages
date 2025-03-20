@@ -3,7 +3,7 @@
 _pkgname="nats-server"
 pkgname="${_pkgname}-bin"
 pkgdesc="Simple, secure and high performance open source messaging system"
-pkgver=2.10.26
+pkgver=2.11.0
 pkgrel=1
 provides=("${_pkgname}=${pkgver}")
 conflicts=("${_pkgname}")
@@ -11,12 +11,12 @@ arch=("x86_64")
 url="https://nats.io"
 license=("Apache")
 source=(
-  "https://github.com/nats-io/nats-server/releases/download/v$pkgver/nats-server-v$pkgver-linux-amd64.zip"
+  "https://github.com/nats-io/nats-server/releases/download/v$pkgver/nats-server-v$pkgver-linux-amd64.tar.gz"
   "local://nats-server.service"
 )
 
 sha256sums=(
-  "a035c8d3206b95fc377fbe1738f113c48796231274e78a0b9d2518042e7d61e8"
+  "8e486041359de5bb562c16604c3815d88d99efed77c338b1c96efa46856a8b98"
   "6b46575f585ef0b8415c5b71592b3cb2aee9fc93447e043a5f92033513199a5a"
 )
 
