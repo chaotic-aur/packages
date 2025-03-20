@@ -9,7 +9,7 @@ fi
 ## basic info
 _pkgname=thunderbird
 pkgname=thunderbird-beta
-pkgver=135.0b3
+pkgver=137.0b2
 pkgrel=1
 pkgdesc='Beta version of standalone mail and news reader from mozilla.org'
 url="https://www.thunderbird.net/"
@@ -70,7 +70,7 @@ _source_main() {
     install-dir.patch
     metainfo.patch
   )
-  sha256sums=('1bde45085c27af61c75d7763bf5f0f43777da94ddbe148514f07178bb4d1db6b'
+  sha256sums=('cea76e52a0b7c642c9c7c950a96840d0acfe487f9bece4ab92791ddaacc68e20'
     'SKIP'
     'c620a080414b15e822073e22685c781a8b1789b93d5474aedcadbd8801945d97'
     'c959c9f2b60a42dc937f744c018196906727d468d8f1d7402fb4f743484c414b'
