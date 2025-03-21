@@ -1,0 +1,37 @@
+# Maintainer: aur.chaotic.cx
+
+_pkgname="zenergy"
+pkgname="$_pkgname-dkms-git"
+pkgver=r30.7c4e83d
+pkgrel=1
+pkgdesc="Linux kernel driver for reading RAPL registers for AMD Zen CPUs"
+url="https://github.com/boukehaarsma23/zenergy"
+license=('GPL-2.0-only')
+arch=('x86_64')
+
+depends=(
+  'dkms'
+)
+makedepends=(
+  'git'
+)
+
+provides=("$_pkgname-dkms")
+conflicts=("$_pkgname-dkms")
+
+_pkgsrc="$_pkgname"
+source=("$_pkgsrc"::"git+$url.git")
+sha256sums=('SKIP')
+
+pkgver() {
+  cd "$_pkgsrc"
+  printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short=7 HEAD)"
+}
+
+prepare() {
+  sed -e "s/@VERSION@/$pkgver/" -i "$_pkgsrc/dkms.conf"
+}
+
+package() {
+  install -Dm644 "$_pkgsrc"/{dkms.conf,Makefile,zenergy.c} -t "$pkgdir/usr/src/$_pkgname-$pkgver/"
+}
