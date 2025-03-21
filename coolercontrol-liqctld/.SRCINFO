@@ -1,6 +1,6 @@
 pkgbase = coolercontrol-liqctld
 	pkgdesc = liquidctl daemon for CoolerControl
-	pkgver = 2.0.0
+	pkgver = 2.0.1
 	pkgrel = 1
 	url = https://gitlab.com/coolercontrol/coolercontrol
 	arch = x86_64
@@ -18,7 +18,7 @@ pkgbase = coolercontrol-liqctld
 	depends = uvicorn
 	provides = coolercontrol-liqctld
 	conflicts = coolercontrol-liqctld
-	source = https://gitlab.com/coolercontrol/coolercontrol/-/archive/2.0.0/coolercontrol-2.0.0.tar.gz
-	sha256sums = 92f2577a6455c1faa3bd568776902e591ff71ed26ea547b22205b6b11ea76fd7
+	source = https://gitlab.com/coolercontrol/coolercontrol/-/archive/2.0.1/coolercontrol-2.0.1.tar.gz
+	sha256sums = ced4fb060785d3dcd6b3c58d825477e379f4d406c4b448d0bf2bcffcad33ae3b
 
 pkgname = coolercontrol-liqctld
