@@ -2,6 +2,20 @@ unset -f check
 
 url="https://github.com/FreeCAD/FreeCAD"
 
+depends+=('libspnav')
+
+makedepends+=('pybind11')
+
+optdepends=("${optdepends[@]//*libspnav:*/}")
+
+for i in "${optdepends[@]}"; do
+  if [ -z "$i" ]; then
+    unset optdepends[$_count]
+  fi
+
+  _count=$((_count + 1))
+done
+
 _pkgsrc="FreeCAD"
 pkgver() {
   cd "$_pkgsrc"
