@@ -6,14 +6,13 @@ depends+=('libspnav')
 
 makedepends+=('pybind11')
 
-optdepends=("${optdepends[@]//*libspnav:*/}")
+_optdepends=("${optdepends[@]//*libspnav:*/}")
+unset optdepends
 
-for i in "${optdepends[@]}"; do
-  if [ -z "$i" ]; then
-    unset optdepends[$_count]
+for i in "${_optdepends[@]}"; do
+  if [ -n "$i" ]; then
+    optdepends+=("$i")
   fi
-
-  _count=$((_count + 1))
 done
 
 _pkgsrc="FreeCAD"
