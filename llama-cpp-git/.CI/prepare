@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+_check_rate() {
+  local _rate _date_build _epoch_build _epoch_now _epoch_diff
+
+  _rate="$((3600 * ${1}))" # hours
+  _date_build="$(LANG=C LC_ALL=C pacman -Si "chaotic-aur/llama-cpp-git" | grep -Pom1 '^Build Date\s+:\s+\K\S.*\S$')"
+  _epoch_build=$(\date '+%s' -d "$_date_build")
+  _epoch_now=$(\date '+%s')
+  _epoch_diff="$((_epoch_now - _epoch_build))"
+
+  if [[ "$_epoch_diff" -lt "$_rate" ]]; then
+    echo "Heavy package.  Skipping build."
+    echo "> Last built $((_epoch_diff / 3600)) hours ago."
+    return $CI_CODE_SKIP
+  fi
+}
+
+_check_bump() {
+  local url pkgver pkgrel _pkgver
+
+  eval "$(grep -Eo '^(url|pkgver|pkgrel)=\S+' PKGBUILD)"
+  _pkgver=$(LANG=C LC_ALL=C pacman -Si chaotic-aur/llama-cpp-git | grep -Pom1 '^Version\s+:\s+\K\S+')
+
+  CI_PACKAGE_BUMP="$_pkgver"
+  eval "$(grep -Eom1 '^CI_PACKAGE_BUMP=\S+$' .CI/config | sed 's&/&.&g')"
+
+  if [ $(vercmp "${pkgver:-0}-${pkgrel:-0}" "$_pkgver") -gt 0 ]; then
+    echo "New PKGBUILD.  ${pkgver}-${pkgrel} > $_pkgver"
+  elif [ $(vercmp "$CI_PACKAGE_BUMP" "$_pkgver") -gt 0 ]; then
+    echo "Bumped.  $CI_PACKAGE_BUMP >= $_pkgver"
+  else
+    return 2
+  fi
+}
+
+_check_bump || _check_rate 18 || return $?
