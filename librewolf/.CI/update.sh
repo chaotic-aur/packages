@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 
-_PKG="librewolf"
+: ${PACKAGE:=librewolf}
+
 UPSTREAM_REPO="https://codeberg.org/librewolf/source"
 
-_OLD_VERSION=$(LANG=C LC_ALL=C pacman -Si chaotic-aur/$_PKG | grep -Pom1 '^Version\s+:\s+\K\S+')
+_OLD_VERSION=$(LANG=C LC_ALL=C pacman -Si chaotic-aur/$PACKAGE | grep -Pom1 '^Version\s+:\s+\K\S+')
 
 _RESPONSE=$(curl -Ssf "${UPSTREAM_REPO}/releases")
 _TAG=$(
@@ -25,5 +26,5 @@ if [ $(vercmp "$_TAG" "$_OLD_VERSION") -gt 0 ]; then
     -e 's&^(: \$\{_cksum):=.*&\1:='"${_SUM##*-}\}&" \
     -e 's&^(pkgver)=.*$&\1='"${_TAG%%-*}&" \
     -e 's&^(pkgrel)=.*$&\1='"${_TAG##*-}&" \
-    -i "$_PKG/PKGBUILD"
+    -i "PKGBUILD"
 fi
