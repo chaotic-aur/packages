@@ -15,6 +15,9 @@ for i in "${_optdepends[@]}"; do
   fi
 done
 
+provides=('freecad')
+conflicts=('freecad')
+
 _pkgsrc="FreeCAD"
 pkgver() {
   cd "$_pkgsrc"
