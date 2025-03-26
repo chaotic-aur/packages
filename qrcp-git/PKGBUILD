@@ -1,40 +1,39 @@
-# Maintainer: Miguel Useche <migueluseche@skatox.com>
+# Maintainer:
+# Contributor: Filipe Nascimento <flipee at tuta dot io>
 
-_pkgname=qrcp
-pkgname="$_pkgname-git"
-pkgver=r221.63dc102
-pkgrel=1
-pkgdesc="Transfer files over wifi from your computer to your mobile device by scanning a QR code without leaving the terminal."
-arch=('any')
-url="https://github.com/claudiodangelis/$_pkgname"
+_pkgname="qrcp"
+pkgname="$_pkgname"
+pkgver=0.11.6
+pkgrel=2
+pkgdesc="Transfer files over WiFi from computer to mobile by scanning a QR code at the terminal"
+url="https://github.com/claudiodangelis/qrcp"
 license=('MIT')
-makedepends=('go>=1.8' 'git')
-provides=("$_pkgname")
-options=('!strip' '!emptydirs')
-source=("git+$url.git")
-sha512sums=('SKIP')
+arch=('i686' 'x86_64' 'armv7h' 'aarch64')
 
-pkgver() {
-  cd "$_pkgname"
-  printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
-}
+depends=('glibc')
+makedepends=('go')
+
+_pkgsrc="$_pkgname-$pkgver"
+_pkgext="tar.gz"
+source=("$_pkgsrc.$_pkgext"::"$url/archive/refs/tags/v$pkgver.$_pkgext")
+sha256sums=('a3eff505f366713fcb7694e0e292ff2da05e270f9539b6a8561c4cf267ec23c8')
 
 build() {
-  cd $_pkgname
+  cd "$_pkgsrc"
+
+  local _go_ldflags=(
+    -linkmode=external
+    -X github.com/claudiodangelis/qrcp/version.version=$pkgver
+    -X github.com/claudiodangelis/qrcp/version.date=$(date -d@"$SOURCE_DATE_EPOCH" +%Y-%m-%dT%H:%M:%SZ)
+  )
 
   export CGO_CPPFLAGS="${CPPFLAGS}"
   export CGO_CFLAGS="${CFLAGS}"
   export CGO_CXXFLAGS="${CXXFLAGS}"
   export CGO_LDFLAGS="${LDFLAGS}"
+  export GOFLAGS="-buildmode=pie -trimpath -mod=readonly -modcacherw"
 
-  go build \
-    -trimpath \
-    -buildmode=pie \
-    -mod=readonly \
-    -modcacherw \
-    -ldflags "-linkmode=external
-            -X \"github.com/claudiodangelis/qrcp/version.version=$pkgver\"
-            -X \"github.com/claudiodangelis/qrcp/version.date=$(date -d@"$SOURCE_DATE_EPOCH" +%Y-%m-%dT%H:%M:%SZ)\""
+  go build -ldflags="${_go_ldflags[*]}"
 
   ./qrcp completion bash | install -Dm644 /dev/stdin share/bash-completion/completions/qrcp
   ./qrcp completion zsh | install -Dm644 /dev/stdin share/zsh/site-functions/_qrcp
@@ -42,9 +41,8 @@ build() {
 }
 
 package() {
-  cd $_pkgname
-  install -Dm755 $_pkgname -t "$pkgdir/usr/bin"
+  cd "$_pkgsrc"
+  install -Dm755 qrcp -t "$pkgdir/usr/bin"
   cp -r share/ "$pkgdir/usr"
-  install -Dm644 README.md -t "$pkgdir/usr/share/doc/$_pkgname"
-  install -Dm644 LICENSE -t "$pkgdir/usr/share/licenses/$_pkgname"
+  install -Dm644 LICENSE -t "$pkgdir/usr/share/licenses/$pkgname"
 }
