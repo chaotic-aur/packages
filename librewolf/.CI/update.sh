@@ -4,7 +4,8 @@
 
 UPSTREAM_REPO="https://codeberg.org/librewolf/source"
 
-_OLD_VERSION=$(LANG=C LC_ALL=C pacman -Si chaotic-aur/$PACKAGE | grep -Pom1 '^Version\s+:\s+\K\S+')
+eval "$(grep -Eo '^(url|pkgver|pkgrel)=\S+' PKGBUILD)"
+_OLD_VERSION="$pkgver-$pkgrel"
 
 _RESPONSE=$(curl -Ssf "${UPSTREAM_REPO}/releases")
 _TAG=$(
