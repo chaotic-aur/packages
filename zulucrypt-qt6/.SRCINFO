@@ -17,7 +17,7 @@ pkgbase = zulucrypt-qt6
 	optdepends = kwalletmanager: retrieve volume keys from kde kwallet
 	provides = zulucrypt
 	conflicts = zulucrypt
-	source = zulucrypt::git+https://github.com/mhogomchungu/zuluCrypt.git#tag=7.1.0
+	source = zulucrypt::git+https://github.com/mhogomchungu/zuluCrypt.git
 	sha256sums = SKIP
 
 pkgname = zulucrypt-qt6

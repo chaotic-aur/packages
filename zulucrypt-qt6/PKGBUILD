@@ -30,8 +30,19 @@ provides=("$_pkgname")
 conflicts=("$_pkgname")
 
 _pkgsrc="$_pkgname"
-source=("$_pkgsrc"::"git+$url.git#tag=$pkgver")
+source=("$_pkgsrc"::"git+$url.git")
 sha256sums=('SKIP')
+
+prepare() {
+  cd "$_pkgsrc"
+  local _tag=$(git tag -l '[0-9]*' | grep -Ev '[A-Za-z][A-Za-z]' | sort -rV | head -1)
+  git -c advice.detachedHead=false checkout -f "$_tag"
+}
+
+pkgver() {
+  cd "$_pkgsrc"
+  git describe --tags --exclude='*[a-zA-Z][a-zA-Z]*'
+}
 
 build() {
   local _cmake_options=(
