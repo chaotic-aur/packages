@@ -1,44 +1,36 @@
 # Maintainer: aur.chaotic.cx
 
+: ${_install_path:=opt}
+
 _pkgname="llama-cpp"
 pkgbase="$_pkgname-git"
 pkgname=(
   "$_pkgname-git"
-  "$_pkgname-vulkan-git"
-  "$_pkgname-vulkan-x64v3-git"
-  #"$_pkgname-devel-git"
-  #"$_pkgname-vulkan-devel-git"
+  "$_pkgname-x64v3-git"
+  "$_pkgname-cuda-git"
 )
-pkgver=b4435.r1.g53ff6b9
-pkgrel=2
+pkgver=b4966.r1.gf17a3bb
+pkgrel=1
 pkgdesc="Port of Facebook's LLaMA model in C/C++"
 url="https://github.com/ggerganov/llama.cpp"
 license=('MIT')
 arch=('x86_64')
 
-_depends_common=(
+depends=(
   'curl'
   'python'
   'python-numpy'
   'python-sentencepiece' # AUR
-)
-_depends_openblas=(
   'openblas'
-)
-_depends_vulkan=(
   'vulkan-icd-loader'
-)
-
-depends=(
-  ${_depends_common[@]}
-  ${_depends_openblas[@]}
-  ${_depends_vulkan[@]}
 )
 makedepends=(
   'cmake'
+  'cuda'
   'git'
   'ninja'
   'openmp'
+  'patchelf'
   'shaderc'
   'vulkan-headers'
 )
@@ -71,33 +63,25 @@ build() (
     -S "$_pkgsrc"
     -G Ninja
     -DCMAKE_BUILD_TYPE=None
-    -DCMAKE_INSTALL_PREFIX="/usr/lib/$_pkgname"
+    -DCMAKE_INSTALL_PREFIX="/$_install_path/$_pkgname"
     -DLLAMA_CURL=ON
     -DGGML_NATIVE=OFF
     -DGGML_LTO=ON
     -DGGML_RPC=ON
     -DGGML_ALL_WARNINGS=OFF
     -DGGML_ALL_WARNINGS_3RD_PARTY=OFF
-    -DGGML_STATIC=OFF
-    -DBUILD_SHARED_LIBS=OFF
-    -Wno-dev
-  )
-
-  local _cmake_openblas=(
-    -DGGML_BLAS=ON
-    -DGGML_BLAS_VENDOR=OpenBLAS
-    -DGGML_VULKAN=OFF
-  )
-
-  local _cmake_vulkan=(
     -DGGML_BLAS=ON
     -DGGML_BLAS_VENDOR=OpenBLAS
     -DGGML_VULKAN=ON
+    -DGGML_STATIC=OFF
+    -DBUILD_SHARED_LIBS=ON
+    -Wno-dev
   )
 
   local _cmake_x64v1=(
     -DGGML_AVX2=OFF
     -DGGML_AVX=OFF
+    -DGGML_BMI2=OFF
     -DGGML_F16C=OFF
     -DGGML_FMA=OFF
   )
@@ -105,32 +89,57 @@ build() (
   local _cmake_x64v3=(
     -DGGML_AVX2=ON
     -DGGML_AVX=ON
+    -DGGML_BMI2=ON
     -DGGML_F16C=ON
     -DGGML_FMA=ON
   )
 
+  local _cmake_cuda=(
+    -DGGML_CUDA=ON
+    -DGGML_CUDA_F16=ON
+  )
+
   local _build_path
 
-  echo "Building with OpenBLAS support..."
-  _build_path="openblas"
-  cmake -B "build_${_build_path}" "${_cmake_common[@]}" "${_cmake_openblas[@]}" "${_cmake_x64v1[@]}"
-  cmake --build "build_${_build_path}"
-  DESTDIR="fakeinstall_${_build_path}" cmake --install "build_${_build_path}"
+  if grep -Eqm1 '\b'"$_pkgname"'-git\b' <<< "${pkgname[*]}"; then
+    echo "Building with OpenBLAS + Vulkan support..."
+    _build_path="x64v1"
+    cmake -B "build_${_build_path}" "${_cmake_common[@]}" "${_cmake_x64v1[@]}"
+    cmake --build "build_${_build_path}"
+    DESTDIR="fakeinstall_${_build_path}" cmake --install "build_${_build_path}"
+  fi
 
-  echo "Building with Vulkan support..."
-  _build_path="vulkan"
-  cmake -B "build_${_build_path}" "${_cmake_common[@]}" "${_cmake_vulkan[@]}" "${_cmake_x64v1[@]}"
-  cmake --build "build_${_build_path}"
-  DESTDIR="fakeinstall_${_build_path}" cmake --install "build_${_build_path}"
+  if grep -Eqm1 '\b'"$_pkgname"'-x64v3-git\b' <<< "${pkgname[*]}"; then
+    echo "Building with OpenBLAS + Vulkan + x86-64-v3 support..."
+    _build_path="x64v3"
+    cmake -B "build_${_build_path}" "${_cmake_common[@]}" "${_cmake_x64v3[@]}"
+    cmake --build "build_${_build_path}"
+    DESTDIR="fakeinstall_${_build_path}" cmake --install "build_${_build_path}"
+  fi
 
-  echo "Building with Vulkan and x86-64-v3 support..."
-  _build_path="vulkan_x64v3"
-  cmake -B "build_${_build_path}" "${_cmake_common[@]}" "${_cmake_vulkan[@]}" "${_cmake_x64v3[@]}"
-  cmake --build "build_${_build_path}"
-  DESTDIR="fakeinstall_${_build_path}" cmake --install "build_${_build_path}"
+  if grep -Eqm1 '\b'"$_pkgname"'-cuda-git\b' <<< "${pkgname[*]}"; then
+    echo "Building with OpenBLAS + Vulkan + CUDA support..."
+    _build_path="cuda"
+    cmake -B "build_${_build_path}" "${_cmake_common[@]}" "${_cmake_cuda[@]}"
+    cmake --build "build_${_build_path}"
+    DESTDIR="fakeinstall_${_build_path}" cmake --install "build_${_build_path}"
+  fi
 
   echo "Deleting unneeded tests..."
-  rm -rf fakeinstall_*/usr/lib/$_pkgname/bin/test*
+  rm -rf fakeinstall_*/$_install_path/$_pkgname/bin/test*
+  rm -rf fakeinstall_*/$_install_path/$_pkgname/include
+  rm -rf fakeinstall_*/$_install_path/$_pkgname/lib/cmake
+  rm -rf fakeinstall_*/$_install_path/$_pkgname/lib/pkgconfig
+
+  local i _files
+  _files=(
+    fakeinstall_*/$_install_path/$_pkgname/bin/llama-*
+    fakeinstall_*/$_install_path/$_pkgname/bin/vulkan-*
+    fakeinstall_*/$_install_path/$_pkgname/lib/*.so
+  )
+  for i in "${_files[@]}"; do
+    patchelf --set-rpath '$ORIGIN/../lib' "$i"
+  done
 )
 
 check() {
@@ -155,7 +164,7 @@ After=syslog.target network.target local-fs.target remote-fs.target nss-lookup.t
 [Service]
 Type=simple
 EnvironmentFile=/etc/conf.d/$_pkgname
-ExecStart=/usr/lib/$_pkgname/bin/llama-server \$LLAMA_ARGS
+ExecStart=/$_install_path/$_pkgname/bin/llama-server \$LLAMA_ARGS
 ExecReload=/bin/kill -s HUP \$MAINPID
 Restart=on-failure
 
@@ -164,13 +173,49 @@ WantedBy=multi-user.target
 END
 }
 
+_package_lamma-cpp() {
+  local _base_dir="$1"
+  cp --reflink=auto -a "$_base_dir"/* -t "$pkgdir/"
+
+  install -dm755 "$pkgdir/usr/bin"
+  ln -srf "$pkgdir/$_install_path/$_pkgname/bin/llama-cli" "$pkgdir/usr/bin/${i##*/}"
+
+  chmod -R u+rwX,go+rX,go-w "$pkgdir/"
+}
+
 package_llama-cpp-git() {
-  pkgdesc+=" with OpenBLAS CPU optimizations"
+  pkgdesc+=" with OpenBLAS + Vulkan optimizations"
 
-  depends=(
-    ${_depends_common[@]}
-    ${_depends_openblas[@]}
-  )
+  provides=("${_pkgname//-/.}")
+  conflicts=("${_pkgname//-/.}")
+  replaces=('llama-cpp-vulkan-git')
+
+  backup=("etc/conf.d/$_pkgname")
+
+  _package_lamma-cpp fakeinstall_x64v1
+
+  _package_systemd
+  _package_license
+}
+
+package_llama-cpp-cuda-git() {
+  pkgdesc+=" with OpenBLAS + Vulkan + CUDA optimizations"
+
+  depends+=('cuda')
+
+  provides=("${_pkgname//-/.}")
+  conflicts=("${_pkgname//-/.}")
+
+  backup=("etc/conf.d/$_pkgname")
+
+  _package_lamma-cpp fakeinstall_cuda
+
+  _package_systemd
+  _package_license
+}
+
+package_llama-cpp-x64v3-git() {
+  pkgdesc+=" with OpenBLAS + Vulkan + x86-64-v3 optimizations"
 
   provides=(
     "$_pkgname"
@@ -180,89 +225,12 @@ package_llama-cpp-git() {
     "$_pkgname"
     "${_pkgname//-/.}"
   )
+  replaces=('llama-cpp-vulkan-x64v3-git')
 
   backup=("etc/conf.d/$_pkgname")
 
-  install -Dm755 fakeinstall_openblas/usr/lib/$_pkgname/bin/* -t "$pkgdir/usr/bin/"
+  _package_lamma-cpp fakeinstall_x64v3
 
   _package_systemd
-  _package_license
-}
-
-package_llama-cpp-vulkan-git() {
-  pkgdesc+=" with Vulkan GPU optimizations"
-
-  depends=(
-    ${_depends_common[@]}
-    ${_depends_openblas[@]}
-    ${_depends_vulkan[@]}
-  )
-
-  provides=(
-    "$_pkgname"
-    "${_pkgname//-/.}"
-  )
-  conflicts=(
-    "$_pkgname"
-    "${_pkgname//-/.}"
-  )
-
-  backup=("etc/conf.d/$_pkgname")
-
-  install -Dm755 fakeinstall_vulkan/usr/lib/$_pkgname/bin/* -t "$pkgdir/usr/bin/"
-
-  _package_systemd
-  _package_license
-}
-
-package_llama-cpp-vulkan-x64v3-git() {
-  pkgdesc+=" with Vulkan GPU and x86-64-v3 optimizations"
-
-  depends=(
-    ${_depends_common[@]}
-    ${_depends_openblas[@]}
-    ${_depends_vulkan[@]}
-  )
-
-  provides=(
-    "$_pkgname"
-    "${_pkgname//-/.}"
-  )
-  conflicts=(
-    "$_pkgname"
-    "${_pkgname//-/.}"
-  )
-
-  backup=("etc/conf.d/$_pkgname")
-
-  install -Dm755 fakeinstall_vulkan_x64v3/usr/lib/$_pkgname/bin/* -t "$pkgdir/usr/bin/"
-
-  _package_systemd
-  _package_license
-}
-
-_package_llama-cpp-devel-git() {
-  pkgdesc+=" with OpenBLAS CPU optimizations - headers and static libraries"
-
-  provides=('llama-cpp-devel')
-  conflicts=('llama-cpp-devel')
-
-  install -dm755 "$pkgdir/usr/lib/$_pkgname"
-  cp --reflink=auto -a "fakeinstall_openblas/usr/lib/$_pkgname/lib" "$pkgdir/usr/lib/$_pkgname/"
-  cp --reflink=auto -a "fakeinstall_openblas/usr/lib/$_pkgname/include" "$pkgdir/usr/lib/$_pkgname/"
-
-  _package_license
-}
-
-_package_llama-cpp-vulkan-devel-git() {
-  pkgdesc+=" with Vulkan GPU optimizations - headers and static libraries"
-
-  provides=('llama-cpp-devel')
-  conflicts=('llama-cpp-devel')
-
-  install -dm755 "$pkgdir/usr/lib/$_pkgname"
-  cp --reflink=auto -a "fakeinstall_vulkan/usr/lib/$_pkgname/lib" "$pkgdir/usr/lib/$_pkgname/"
-  cp --reflink=auto -a "fakeinstall_vulkan/usr/lib/$_pkgname/include" "$pkgdir/usr/lib/$_pkgname/"
-
   _package_license
 }
