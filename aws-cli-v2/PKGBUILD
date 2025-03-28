@@ -6,7 +6,7 @@
 
 pkgname=aws-cli-v2
 # https://github.com/aws/aws-cli/raw/v2/CHANGELOG.rst
-pkgver=2.25.2
+pkgver=2.25.5
 pkgrel=1
 pkgdesc='Unified command line interface for Amazon Web Services (version 2)'
 arch=(any)
@@ -29,14 +29,14 @@ source=("https://awscli.amazonaws.com/awscli-$pkgver.tar.gz"{,.sig}
   allow-egg-info.diff
   botocore-2990-rebased.patch
   botocore-2551.patch)
-sha256sums=('ba08e65df57c6b49d15e33c9d127d79fcada8629974452c2c81f9e6cd383728d'
+sha256sums=('429d5bb20408b266946d818fc949cc7bc5ca21185bd3818bc1c7acad6e2a914d'
   'SKIP'
-  '0267e41561ab2c46a97ebfb024f0b047aabc9e6b9866f204b2c1a84ee5810d63'
+  '444f0d2eb314f07474ce752e02932140bb9b9fec15c79bafe567f62a42398e93'
   '893d61d7e958c3c02bfa1e03bf58f6f6abd98849d248cc661f1c56423df9f312'
-  '4fc614b8550d7363bb2d578c6b49326c9255203eb2f933fd0551f96ed5fb1f30'
+  'e4729ea33f9d5939618ce227a8f47afe27e3fd79528caaca752c499321fd1098'
   'b3442e645a983c1c2c99079a991421b356e9474f43d4ae35d43af5c7cf94e71e'
   '6768df8667fe7fd827e6eef1c4cdb3eae25aba5806bbc725270200a585f62152'
-  'a43c3e9aba8974fc09f1780a37b6a94108b15dbbbcecdf6d9e7e224ca135816b'
+  '71b3f985b2f16f8878600e119f8cd8c9080182abaace7484a23476311934b968'
   '778c621885dae2218c840eec06a0e0294df7d1180dea12264b34a93994be7c0d')
 validpgpkeys=(
   'FB5DB77FD5C118B80511ADA8A6310ACC4672475C' # the key mentioned on https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html

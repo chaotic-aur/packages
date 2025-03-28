@@ -1,14 +1,14 @@
---- a/backends/pep517.py	2023-02-16 02:15:30.000000000 +0800
-+++ b/backends/pep517.py	2023-02-18 01:31:54.245328767 +0800
-@@ -30,6 +30,7 @@
- import os
- import glob
- import tarfile
-+import tempfile
+--- a/backends/pep517.py	2025-03-27 22:59:27.503461878 -0700
++++ b/backends/pep517.py	2025-03-27 23:00:56.860222831 -0700
+@@ -33,6 +33,7 @@
  import shutil
  import sys
+ import tarfile
++import tempfile
  import zipfile
-@@ -214,14 +215,16 @@
+ from pathlib import Path
+ 
+@@ -216,14 +217,16 @@
  
  
  def _build_and_inject_ac_index(build_dir, extracted_wheel_dir):

@@ -21,17 +21,17 @@ index 843be90e484..9da9bf2b443 100644
 --- a/tests/functional/botocore/test_credentials.py
 +++ b/tests/functional/botocore/test_credentials.py
 @@ -19,7 +19,7 @@
- import mock
- import tempfile
- import shutil
+ import threading
+ import time
+ import uuid
 -from datetime import datetime, timedelta
 +from datetime import datetime, timedelta, timezone
- import sys
  
  import pytest
-@@ -47,8 +47,8 @@
- from botocore.tokens import SSOTokenProvider
- from botocore.utils import datetime2timestamp
+ from botocore import UNSIGNED
+@@ -61,8 +61,8 @@
+     unittest,
+ )
  
 -TIME_IN_ONE_HOUR = datetime.utcnow() + timedelta(hours=1)
 -TIME_IN_SIX_MONTHS = datetime.utcnow() + timedelta(hours=4320)

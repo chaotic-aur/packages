@@ -11,7 +11,7 @@ diff --git a/botocore/awsrequest.py b/botocore/awsrequest.py
 index f00a0dde57..9123e65c9d 100644
 --- a/botocore/awsrequest.py
 +++ b/botocore/awsrequest.py
-@@ -66,33 +66,34 @@ class AWSConnection:
+@@ -66,34 +66,34 @@
      def __init__(self, *args, **kwargs):
          super(AWSConnection, self).__init__(*args, **kwargs)
          self._original_response_cls = self.response_class
@@ -52,17 +52,20 @@ index f00a0dde57..9123e65c9d 100644
              self._expect_header_set = False
              self.response_class = self._original_response_cls
 -        rval = super(AWSConnection, self)._send_request(
--            method, url, body, headers, *args, **kwargs)
+-            method, url, body, headers, *args, **kwargs
+-        )
 +        rval = super().request(method, url, body, headers, *args, **kwargs)
          self._expect_header_set = False
          return rval
  
-@@ -210,8 +210,15 @@ def _send_message_body(self, message_body):
+@@ -210,10 +210,15 @@
  
      def send(self, str):
          if self._response_received:
--            logger.debug("send() called, but reseponse already received. "
--                         "Not sending data.")
+-            logger.debug(
+-                "send() called, but reseponse already received. "
+-                "Not sending data."
+-            )
 +            if not self._send_called:
 +                # urllib3 2.0 chunks and calls send potentially
 +                # thousands of times inside `request` unlike the
