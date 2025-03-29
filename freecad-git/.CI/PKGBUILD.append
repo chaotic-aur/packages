@@ -2,9 +2,14 @@ unset -f check
 
 url="https://github.com/FreeCAD/FreeCAD"
 
+license=('LGPL-2.1-or-later')
+
 depends+=('libspnav')
 
-makedepends+=('pybind11')
+makedepends+=(
+  'fast_float'
+  'pybind11'
+)
 
 _optdepends=("${optdepends[@]//*libspnav:*/}")
 unset optdepends
@@ -19,6 +24,7 @@ provides=('freecad')
 conflicts=('freecad')
 
 _pkgsrc="FreeCAD"
+
 pkgver() {
   cd "$_pkgsrc"
   local _tag _version _revision _hash
@@ -27,4 +33,44 @@ pkgver() {
   _revision=$(git rev-list --count --cherry-pick "$_tag"...HEAD)
   _hash=$(git rev-parse --short=7 HEAD)
   printf '%s.r%s.g%s' "${_version:?}" "${_revision:?}" "${_hash:?}"
+}
+
+build() {
+  local _cmake_options=(
+    -B build
+    -S "$_pkgsrc"
+    -G Ninja
+    -DCMAKE_BUILD_TYPE=None
+    -DCMAKE_INSTALL_PREFIX=/usr/lib/freecad
+    -DCMAKE_INSTALL_DATADIR=/usr/share/freecad
+    -DCMAKE_INSTALL_DATAROOTDIR=/usr/share
+    -DCMAKE_INSTALL_DOCDIR=/usr/share/freecad/doc
+    -DBUILD_DESIGNER_PLUGIN=ON
+    -DBUILD_FLAT_MESH=ON
+    -DFREECAD_QT_VERSION=6
+    -DFREECAD_USE_EXTERNAL_PIVY=ON
+    -DFREECAD_USE_PCL=OFF
+    -DFREECAD_USE_QT_FILEDIALOG=ON
+    -DINSTALL_TO_SITEPACKAGES=ON
+    -DENABLE_DEVELOPER_TESTS=OFF
+    -DBUILD_TESTING=OFF
+    -Wno-dev
+  )
+
+  cmake "${_cmake_options[@]}"
+  cmake --build build
+}
+
+package() {
+  DESTDIR="$pkgdir" cmake --install build
+
+  # tools
+  install -Dm755 FreeCAD/src/Tools/fcinfo -t "$pkgdir/usr/bin/"
+
+  # symlinks
+  install -d "$pkgdir/usr/bin"
+  ln -sf /usr/lib/freecad/bin/FreeCAD "$pkgdir/usr/bin/freecad"
+  ln -sf /usr/lib/freecad/bin/FreeCAD "$pkgdir/usr/bin/FreeCAD"
+  ln -sf /usr/lib/freecad/bin/FreeCADCmd "$pkgdir/usr/bin/freecadcmd"
+  ln -sf /usr/lib/freecad/bin/FreeCADCmd "$pkgdir/usr/bin/FreeCADCmd"
 }
