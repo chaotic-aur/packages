@@ -1,43 +1,23 @@
 pkgbase = drawpile
 	pkgdesc = Collaborative drawing program specially made for use with pen tablets
 	pkgver = 2.2.2
-	pkgrel = 1
-	url = https://drawpile.net/
-	arch = i686
+	pkgrel = 2
+	url = https://github.com/drawpile/Drawpile
 	arch = x86_64
-	license = GPL3
+	license = GPL-3.0-or-later
+	makedepends = cargo
 	makedepends = cmake
 	makedepends = extra-cmake-modules
-	makedepends = karchive5
-	makedepends = qt6-multimedia
-	makedepends = qt6-svg
+	makedepends = git
+	makedepends = ninja
 	makedepends = qt6-tools
-	source = https://github.com/drawpile/Drawpile/archive/refs/tags/2.2.2.tar.gz
-	sha256sums = 159fc433b21ac3f82388a4b45853f2ed13fbb47b7dd57874bf4e41f44f801969
+	depends = qt6-multimedia
+	depends = qt6-svg
+	depends = libzip
+	source = drawpile::git+https://github.com/drawpile/Drawpile.git
+	sha256sums = SKIP
 
 pkgname = drawpile
-	pkgdesc = Collaborative drawing program specially made for use with pen tablets (meta package)
-	arch = any
-	depends = drawpile-client
-	depends = drawpile-server
-	depends = drawpile-tools
-
-pkgname = drawpile-client
-	pkgdesc = Collaborative drawing program specially made for use with pen tablets (client)
-	install = drawpile.install
-	depends = desktop-file-utils
-	depends = karchive5
-	depends = qt6-multimedia
-	optdepends = qtkeychain-qt6: Password storage
-
-pkgname = drawpile-server
-	pkgdesc = Collaborative drawing program specially made for use with pen tablets (server)
-	depends = karchive5
-	optdepends = libmicrohttpd: web-admin feature
-	optdepends = libsodium: ext-auth support
-	optdepends = libsystemd: systemd and logging support
-	optdepends = qt6-websockets: web-client support
-
-pkgname = drawpile-tools
-	pkgdesc = Collaborative drawing program specially made for use with pen tablets (tools)
-	depends = cargo
+	replaces = drawpile-client
+	replaces = drawpile-server
+	replaces = drawpile-tools

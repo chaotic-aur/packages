@@ -1,77 +1,73 @@
-# Maintainer: MV <notfood.dev@gmail.com>
-# Contributor: Manuel Hüsers <aur@huesers.de>
-# Contributor: Alexander Rødseth <rodseth@gmail.com>
-# Contributor: Franco Iacomella <yaco@gnu.org>
+# Maintainer: aur.chaotic.cx
 
-pkgbase='drawpile'
-pkgname=("${pkgbase}"{,'-client','-server','-tools'})
+_pkgname='drawpile'
+pkgname="$_pkgname"
 pkgver=2.2.2
-pkgrel=1
-pkgdesc='Collaborative drawing program specially made for use with pen tablets'
-arch=('i686' 'x86_64')
-url='https://drawpile.net/'
-license=('GPL3')
-makedepends=('cmake' 'extra-cmake-modules' 'karchive5' 'qt6-multimedia' 'qt6-svg' 'qt6-tools')
-source=(
-  "https://github.com/drawpile/Drawpile/archive/refs/tags/${pkgver}.tar.gz")
-sha256sums=(
-  '159fc433b21ac3f82388a4b45853f2ed13fbb47b7dd57874bf4e41f44f801969')
+pkgrel=2
+pkgdesc="Collaborative drawing program specially made for use with pen tablets"
+url="https://github.com/drawpile/Drawpile"
+license=('GPL-3.0-or-later')
+arch=('x86_64')
 
-_cmakeargs+=(
-  '--preset linux-release-qt6-all-make'
-  '-DCMAKE_EXPORT_COMPILE_COMMANDS=OFF'
-  '-DCMAKE_INSTALL_PREFIX=/usr'
-  '-DSOURCE_ASSETS=OFF')
+depends=(
+  'qt6-multimedia'
+  'qt6-svg'
+  'libzip'
+)
+makedepends=(
+  'cargo'
+  'cmake'
+  'extra-cmake-modules'
+  'git'
+  'ninja'
+  'qt6-tools'
+)
+
+_pkgsrc="$_pkgname"
+source=("$_pkgsrc"::"git+$url.git")
+sha256sums=('SKIP')
+
+prepare() {
+  cd "$_pkgsrc"
+  _tag=$(git tag | grep -Ev '[A-Za-z]{2}' | sort -rV | head -1)
+  git -c advice.detachedHead=false checkout -f "$_tag"
+}
+
+pkgver() {
+  cd "$_pkgsrc"
+  git describe --tags
+}
 
 build() {
-  cd "Drawpile-${pkgver}"
-  cmake "${_cmakeargs[@]}" -B build
+  local _cmake_options=(
+    -B build
+    -S "$_pkgsrc"
+    -G Ninja
+    -DCMAKE_BUILD_TYPE=Release
+    -DCMAKE_INSTALL_PREFIX='/usr'
+    -DBUILTINSERVER=ON
+    -DCLIENT=ON
+    -DCMAKE_EXPORT_COMPILE_COMMANDS=OFF
+    -DENABLE_ARCH_NATIVE=OFF
+    -DQT_VERSION=6
+    -DSERVER=ON
+    -DSERVERGUI=ON
+    -DSOURCE_ASSETS=OFF
+    -DTESTS=OFF
+    -DTOOLS=ON
+    -Wno-dev
+  )
+
+  cmake "${_cmake_options[@]}"
   cmake --build build
 }
 
-package_drawpile() {
-  pkgdesc+=' (meta package)'
-  arch=('any')
-  depends=("${pkgbase}-client" "${pkgbase}-server" "${pkgbase}-tools")
+package() {
+  replaces=(
+    drawpile-client
+    drawpile-server
+    drawpile-tools
+  )
 
-  cd "Drawpile-${pkgver}"
-
-  DESTDIR="${srcdir}/pkg" cmake --install build
-}
-
-package_drawpile-client() {
-  pkgdesc+=' (client)'
-  depends=('desktop-file-utils' 'karchive5' 'qt6-multimedia')
-  optdepends=('qtkeychain-qt6: Password storage')
-  install="${pkgbase}.install"
-
-  cd "Drawpile-${pkgver}"
-
-  mkdir -p "${pkgdir}"/usr/{bin,share}
-  cp -r "${srcdir}"/pkg/usr/share/* "${pkgdir}"/usr/share
-  cp "${srcdir}"/pkg/usr/bin/drawpile "${pkgdir}"/usr/bin
-}
-
-package_drawpile-server() {
-  pkgdesc+=' (server)'
-  depends=('karchive5')
-  optdepends=('libmicrohttpd: web-admin feature'
-    'libsodium: ext-auth support'
-    'libsystemd: systemd and logging support'
-    'qt6-websockets: web-client support')
-
-  cd "Drawpile-${pkgver}"
-
-  mkdir -p "${pkgdir}"/usr/bin
-  cp "${srcdir}"/pkg/usr/bin/drawpile-srv "${pkgdir}"/usr/bin
-}
-
-package_drawpile-tools() {
-  pkgdesc+=' (tools)'
-  depends=('cargo')
-
-  cd "Drawpile-${pkgver}"
-
-  mkdir -p "${pkgdir}"/usr/bin
-  cp "${srcdir}"/pkg/usr/bin/{dprectool,drawpile-cmd,drawpile-timelapse} "${pkgdir}"/usr/bin
+  DESTDIR="$pkgdir" cmake --install build
 }
