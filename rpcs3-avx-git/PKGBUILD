@@ -13,7 +13,7 @@ _pkgtype+="-git"
 _pkgname="rpcs3"
 pkgname="$_pkgname${_pkgtype:-}"
 
-pkgver=0.0.35.r113.gf9a72e8
+pkgver=0.0.35.r183.g01cdc83
 pkgrel=1
 pkgdesc="PlayStation 3 emulator"
 url="https://github.com/RPCS3/rpcs3"
@@ -39,20 +39,6 @@ makedepends=(
   'llvm'
   'ninja'
 )
-
-case "$CARCH" in
-  x86_64_v2)
-    _build_level=2
-    ;;
-  x86_64_v3)
-    _build_level=3
-    ;;
-  x86_64_v4)
-    _build_level=4
-    ;;
-  *) # no changes; may be user defined
-    ;;
-esac
 
 provides=("$_pkgname")
 conflicts=("$_pkgname")
@@ -80,7 +66,7 @@ _source_rpcs() {
     'facebook.zstd'::'git+https://github.com/facebook/zstd.git'
     'fna-xna.faudio'::'git+https://github.com/FNA-XNA/FAudio.git'
     #'glennrp.libpng'::'git+https://github.com/glennrp/libpng.git'
-    'google.flatbuffers'::'git+https://github.com/google/flatbuffers.git'
+    #'google.flatbuffers'::'git+https://github.com/google/flatbuffers.git'
     #'ip7z.7zip'::'git+https://github.com/ip7z/7zip.git'
     #'kcat.openal-soft'::'git+https://github.com/kcat/openal-soft.git'
     'khronosgroup.glslang'::'git+https://github.com/KhronosGroup/glslang.git'
@@ -88,7 +74,8 @@ _source_rpcs() {
     'libusb'::'git+https://github.com/libusb/libusb.git'
     #'llvm.llvm-project'::'git+https://github.com/llvm/llvm-project.git'
     #'madler.zlib'::'git+https://github.com/madler/zlib.git'
-    'megamouse.opencv_minimal'::'git+https://github.com/Megamouse/opencv_minimal.git'
+    #'megamouse.opencv_minimal'::'git+https://github.com/Megamouse/opencv_minimal.git'
+    'megamouse.vulkanmemoryallocator'::'git+https://github.com/Megamouse/VulkanMemoryAllocator.git'
     'miniupnp'::'git+https://github.com/miniupnp/miniupnp.git'
     'mozilla.cubeb'::'git+https://github.com/mozilla/cubeb.git'
     'nothings.stb'::'git+https://github.com/nothings/stb.git'
@@ -97,6 +84,7 @@ _source_rpcs() {
     'rpcs3.soundtouch'::'git+https://github.com/RPCS3/soundtouch.git'
     'rpcs3.yaml-cpp'::'git+https://github.com/RPCS3/yaml-cpp.git'
     'thestk.rtmidi'::'git+https://github.com/thestk/rtmidi.git'
+    'vestrel.discord-rpc'::'git+https://github.com/Vestrel/discord-rpc.git'
     'wolfssl'::'git+https://github.com/wolfSSL/wolfssl.git'
     'xiotechnologies.fusion'::'git+https://github.com/xioTechnologies/Fusion.git'
     #'zeux.pugixml'::'git+https://github.com/zeux/pugixml.git'
@@ -116,7 +104,7 @@ _source_rpcs() {
       'facebook.zstd'::'3rdparty/zstd/zstd'
       'fna-xna.faudio'::'3rdparty/FAudio'
       #'glennrp.libpng'::'3rdparty/libpng/libpng'
-      'google.flatbuffers'::'3rdparty/flatbuffers'
+      #'google.flatbuffers'::'3rdparty/flatbuffers'
       #'ip7z.7zip'::'3rdparty/7zip/7zip'
       #'kcat.openal-soft'::'3rdparty/OpenAL/openal-soft'
       'khronosgroup.glslang'::'3rdparty/glslang/glslang'
@@ -124,7 +112,8 @@ _source_rpcs() {
       'libusb'::'3rdparty/libusb/libusb'
       #'llvm.llvm-project'::'3rdparty/llvm/llvm'
       #'madler.zlib'::'3rdparty/zlib/zlib'
-      'megamouse.opencv_minimal'::'3rdparty/opencv/opencv'
+      #'megamouse.opencv_minimal'::'3rdparty/opencv/opencv'
+      'megamouse.vulkanmemoryallocator'::'3rdparty/GPUOpen/VulkanMemoryAllocator'
       'miniupnp'::'3rdparty/miniupnp/miniupnp'
       'mozilla.cubeb'::'3rdparty/cubeb/cubeb'
       'nothings.stb'::'3rdparty/stblib/stb'
@@ -133,17 +122,18 @@ _source_rpcs() {
       'rpcs3.soundtouch'::'3rdparty/SoundTouch/soundtouch'
       'rpcs3.yaml-cpp'::'3rdparty/yaml-cpp/yaml-cpp'
       'thestk.rtmidi'::'3rdparty/rtmidi/rtmidi'
+      'vestrel.discord-rpc'::'3rdparty/discord-rpc/discord-rpc'
       'wolfssl'::'3rdparty/wolfssl/wolfssl'
       'xiotechnologies.fusion'::'3rdparty/fusion/fusion'
       #'zeux.pugixml'::'3rdparty/pugixml'
     )
     _submodule_update
 
-    # out-of-tree commit
+    # out-of-tree commit 6bfdcf7368169efe1b745cd4468d45cda05ef8de
     git submodule init 3rdparty/hidapi/hidapi
     git submodule update 3rdparty/hidapi/hidapi
 
-    # fix includes
+    # fix includes for system library
     sed -E 's&3rdparty/OpenAL/openal-soft/include/&&' \
       -i "rpcs3/Emu/Cell/Modules/cellMic.h" \
       "rpcs3/Emu/Cell/Modules/cellMic.cpp" \
