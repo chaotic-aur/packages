@@ -13,7 +13,7 @@ _pkgtype+="-git"
 _pkgname="rpcs3"
 pkgname="$_pkgname${_pkgtype:-}"
 
-pkgver=0.0.35.r183.g01cdc83
+pkgver=0.0.35.r185.gcd840ef
 pkgrel=1
 pkgdesc="PlayStation 3 emulator"
 url="https://github.com/RPCS3/rpcs3"
@@ -169,6 +169,8 @@ pkgver() {
 }
 
 build() (
+  export CMAKE_POLICY_VERSION_MINIMUM=3.5
+
   local _cflags _cxxflags _ldflags
   export CC CXX CFLAGS CXXFLAGS LDFLAGS
   CC=clang
