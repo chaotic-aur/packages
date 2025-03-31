@@ -2,7 +2,7 @@
 
 _pkgname=openttd
 pkgname="$_pkgname-git"
-pkgver=14.1.r918.g14fac2a
+pkgver=14.1.r1961.g0055e16
 pkgrel=1
 pkgdesc="Engine for running Transport Tycoon Deluxe"
 url="https://github.com/OpenTTD/OpenTTD"
@@ -13,6 +13,7 @@ depends=(
   'fluidsynth'
   'fontconfig'
   'hicolor-icon-theme'
+  'sdl2'
 )
 makedepends=(
   'cmake'
@@ -39,11 +40,6 @@ pkgver() {
   _revision=$(git rev-list --count --cherry-pick "$_tag"...HEAD)
   _hash=$(git rev-parse --short=7 HEAD)
   printf '%s.r%s.g%s' "${_version:?}" "${_revision:?}" "${_hash:?}"
-}
-
-prepare() {
-  # remove bad characters
-  sed 's/\xe2\x80\x8b//g' -i "$_pkgsrc"/src/lang/*.txt
 }
 
 build() {
