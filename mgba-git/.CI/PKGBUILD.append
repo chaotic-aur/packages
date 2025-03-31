@@ -1,3 +1,5 @@
+export CMAKE_POLICY_VERSION_MINIMUM=3.5
+
 url="https://github.com/mgba-emu/mgba"
 
 _pkgsrc="mgba"
@@ -37,6 +39,6 @@ build() {
 
 eval "$(declare -f package_libmgba-git | sed 's& (git build)&&')"
 
-eval "$(declare -f package_mgba-qt-git | sed '/pkgdesc/d')"
+eval "$(declare -f package_mgba-qt-git | sed 's& (git build)&&')"
 
-eval "$(declare -f package_mgba-sdl-git | sed '/pkgdesc/d')"
+eval "$(declare -f package_mgba-sdl-git | sed 's& (git build)&&')"
