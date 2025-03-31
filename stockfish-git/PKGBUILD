@@ -20,59 +20,29 @@ unset _pkgtype
 [[ "${_build_avx::1}" == "t" ]] && _pkgtype+="-avx"
 [[ "${_build_git::1}" == "t" ]] && _pkgtype+="-git"
 
-## basic info
 _pkgname=stockfish
 pkgname="$_pkgname${_pkgtype:-}"
-pkgver=17.r51.g24c5779
-pkgrel=1
+pkgver=17.1.r0.g03e2748
+pkgrel=2
 pkgdesc="A strong UCI chess engine"
 url="https://github.com/official-stockfish/Stockfish"
 license=('GPL-3.0-only')
 arch=('x86_64')
 
-_source_main() {
-  makedepends=(
-    'git'
+makedepends=(
+  'git'
+)
+optdepends=(
+  'polyglot-winboard: xboard support'
+)
+
+if [[ "${_build_clang::1}" == "t" ]]; then
+  makedepends+=(
+    'clang'
+    'lld'
+    'llvm'
   )
-  optdepends=(
-    'polyglot-winboard: xboard support'
-  )
-
-  if [[ "${_build_git::1}" == "t" ]] || [[ "${_build_avx::1}" == "t" ]]; then
-    provides+=(stockfish="${pkgver%%.r*}")
-    conflicts+=(stockfish)
-  fi
-
-  if [[ "${_build_clang::1}" == "t" ]]; then
-    makedepends+=(
-      'clang'
-      'lld'
-      'llvm'
-    )
-  fi
-
-  if [ "${_build_git::1}" != "t" ]; then
-    _source_stable
-
-    _nnue_big="nn-1111cefa1111.nnue"   # 72MB
-    _nnue_small="nn-37f18f62d772.nnue" # 3.4MB
-  else
-    _source_git
-
-    _nnue_big="nn-1111cefa1111.nnue"   # 72MB
-    _nnue_small="nn-37f18f62d772.nnue" # 3.4MB
-  fi
-
-  # check EvalFileDefaultName{Big,Small} in src/evaluate.h
-  source+=(
-    "https://tests.stockfishchess.org/api/nn/${_nnue_big}"
-    "https://tests.stockfishchess.org/api/nn/${_nnue_small}"
-  )
-  sha256sums+=(
-    'SKIP'
-    'SKIP'
-  )
-}
+fi
 
 _source_stable() {
   _update_version
@@ -87,6 +57,9 @@ _source_stable() {
 }
 
 _source_git() {
+  provides+=(stockfish="${pkgver%%.r*}")
+  conflicts+=(stockfish)
+
   _pkgsrc="$_pkgname"
   source+=("$_pkgsrc"::"git+$url.git")
   sha256sums+=('SKIP')
@@ -100,6 +73,13 @@ _source_git() {
 }
 
 prepare() {
+  # download nnue files
+  local _nnue_big=$(grep -Em1 'define EvalFileDefaultNameBig' "$_pkgsrc/src/evaluate.h" | sed -E 's&^.*"(\S+)".*$&\1&')
+  local _nnue_small=$(grep -Em1 'define EvalFileDefaultNameBig' "$_pkgsrc/src/evaluate.h" | sed -E 's&^.*"(\S+)".*$&\1&')
+
+  curl -qgC - -o "$_nnue_big" "https://tests.stockfishchess.org/api/nn/${_nnue_big}"
+  curl -qgC - -o "$_nnue_small" "https://tests.stockfishchess.org/api/nn/${_nnue_small}"
+
   ln -sf "$srcdir/$_nnue_big" "$_pkgsrc/src/"
   ln -sf "$srcdir/$_nnue_small" "$_pkgsrc/src/"
 }
@@ -198,4 +178,8 @@ _update_version() {
   fi
 }
 
-_source_main
+if [ "${_build_git::1}" != "t" ]; then
+  _source_stable
+else
+  _source_git
+fi
