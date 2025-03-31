@@ -1,6 +1,6 @@
-pkgbase = stockfish
+pkgbase = stockfish-git
 	pkgdesc = A strong UCI chess engine
-	pkgver = 17
+	pkgver = 17.1.r0.g03e2748
 	pkgrel = 2
 	url = https://github.com/official-stockfish/Stockfish
 	arch = x86_64
@@ -10,11 +10,9 @@ pkgbase = stockfish
 	makedepends = lld
 	makedepends = llvm
 	optdepends = polyglot-winboard: xboard support
-	source = stockfish-17.zip::https://github.com/official-stockfish/Stockfish/archive/sf_17.zip
-	source = https://tests.stockfishchess.org/api/nn/nn-1111cefa1111.nnue
-	source = https://tests.stockfishchess.org/api/nn/nn-37f18f62d772.nnue
-	sha256sums = SKIP
-	sha256sums = SKIP
+	provides = stockfish=17.1
+	conflicts = stockfish
+	source = stockfish::git+https://github.com/official-stockfish/Stockfish.git
 	sha256sums = SKIP
 
-pkgname = stockfish
+pkgname = stockfish-git
