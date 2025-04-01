@@ -1,0 +1,59 @@
+# Maintainer: aur.chaotic.cx
+
+: ${_commit:=c3f386aa279b130b37a4a4e91e758c7f02ec898c} # 0.9.3.r5
+
+_pkgname="python-retry"
+pkgname="$_pkgname"
+pkgver=0.9.3
+pkgrel=3
+pkgdesc="Easy to use retry decorator"
+url="https://github.com/invl/retry"
+license=('Apache-2.0')
+arch=('any')
+
+depends=(
+  'python'
+)
+makedepends=(
+  'python-build'
+  'python-installer'
+  'python-setuptools'
+  'python-wheel'
+)
+checkdepends=(
+  'python-pytest'
+)
+optdepends=(
+  'python-decorator: preserves function signatures'
+)
+
+_pkgsrc="retry-$_commit"
+_pkgext="tar.gz"
+source=(
+  "$pkgname-$pkgver-${_commit::7}.$_pkgext"::"$url/archive/$_commit.$_pkgext"
+  '001-setup.py.patch'
+)
+sha256sums=(
+  '855a6bb05942ff94eb5f0240ff7ad2aef7db5bd0749c352d1dcbc9f5c0c8675e'
+  '77d9b4b8ab54fa5bdee78bf39ad765db0a04fe71aad76e5773e62505bb27f2f9'
+)
+
+prepare() {
+  patch -Np1 -F100 -d "$_pkgsrc" -i "$srcdir/001-setup.py.patch"
+}
+
+build() {
+  cd "$_pkgsrc"
+  python -m build --wheel --no-isolation --skip-dependency-check
+}
+
+check() {
+  cd "$_pkgsrc"
+  PYTHONPATH="$PWD" pytest -x --disable-warnings
+}
+
+package() {
+  cd "$_pkgsrc"
+  PYTHONHASHSEED=0 python -m installer --destdir="$pkgdir/" dist/*.whl
+  install -Dm644 README.rst -t "$pkgdir/usr/share/doc/$pkgname/"
+}
