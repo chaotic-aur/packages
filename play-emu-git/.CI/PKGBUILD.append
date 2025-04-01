@@ -1,2 +1,4 @@
-depends=(${depends[@]//qt5-*/})
-depends+=(qt6-base)
+export CMAKE_POLICY_VERSION_MINIMUM=3.5
+
+pkgdesc="Experimental Playstation 2 emulator"
+url="https://github.com/jpd002/Play-"
