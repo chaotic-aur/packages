@@ -5,24 +5,26 @@
 # https://github.com/hrydgard/ppsspp
 
 ## options
-: ${_build_ffmpeg:=true}
+: ${_build_clang:=false}
+: ${_build_ffmpeg:=false}
 
-: ${_build_avx:=false}
+: ${_build_level:=1}
 : ${_build_git:=true}
 
 unset _pkgtype
-[[ "${_build_avx::1}" == "t" ]] && _pkgtype+='-avx'
+[[ "${_build_level::1}" == "2" ]] && _pkgtype+="-x64v2"
+[[ "${_build_level::1}" == "3" ]] && _pkgtype+="-avx"
+[[ "${_build_level::1}" == "4" ]] && _pkgtype+="-x64v4"
 [[ "${_build_git::1}" == "t" ]] && _pkgtype+='-git'
 
-## basic info
 _pkgname="ppsspp"
 pkgname="${_pkgname}${_pkgtype:-}"
-pkgver=1.18.1.r742.g5431bb3
+pkgver=1.18.1.r1556.g963ccf2
 pkgrel=1
 pkgdesc='PSP emulator written in C++'
 url="https://github.com/hrydgard/ppsspp"
-arch=('x86_64')
 license=('GPL-2.0-or-later')
+arch=('x86_64' 'x86_64_v2' 'x86_64_v3' 'x86_64_v4')
 
 depends=(
   glew
@@ -62,19 +64,18 @@ _source_main() {
 }
 
 _source_ppsspp() {
-  source+=(
+  local _sources_add=(
     'bylaws.libadrenotools'::'git+https://github.com/bylaws/libadrenotools.git'
     'discordapp.discord-rpc'::'git+https://github.com/discordapp/discord-rpc.git'
     'erkkah.naett'::'git+https://github.com/erkkah/naett.git'
-    'facebook.zstd'::'git+https://github.com/facebook/zstd.git'
+    #'facebook.zstd'::'git+https://github.com/facebook/zstd.git'
     'google.cpu_features'::'git+https://github.com/google/cpu_features.git'
     'hrydgard.minidx9'::'git+https://github.com/hrydgard/minidx9.git'
-    'hrydgard.ppsspp-ffmpeg'::'git+https://github.com/hrydgard/ppsspp-ffmpeg.git'
     'hrydgard.ppsspp-freetype'::'git+https://github.com/hrydgard/ppsspp-freetype.git'
     'hrydgard.ppsspp-lua'::'git+https://github.com/hrydgard/ppsspp-lua.git'
-    'hrydgard.ppsspp-mac-sdl'::'git+https://github.com/hrydgard/ppsspp-mac-sdl.git'
+    #'hrydgard.ppsspp-mac-sdl'::'git+https://github.com/hrydgard/ppsspp-mac-sdl.git'
     'hrydgard.ppsspp-moltenvk'::'git+https://github.com/hrydgard/ppsspp-moltenvk.git'
-    'hrydgard.pspautotests'::'git+https://github.com/hrydgard/pspautotests.git'
+    #'hrydgard.pspautotests'::'git+https://github.com/hrydgard/pspautotests.git'
     'khronosgroup.glslang'::'git+https://github.com/KhronosGroup/glslang.git'
     'khronosgroup.openxr-sdk'::'git+https://github.com/KhronosGroup/OpenXR-SDK.git'
     'khronosgroup.spirv-cross'::'git+https://github.com/KhronosGroup/SPIRV-Cross.git'
@@ -84,32 +85,14 @@ _source_ppsspp() {
     'retroachievements.rcheevos'::'git+https://github.com/RetroAchievements/rcheevos.git'
     'rtissera.libchdr'::'git+https://github.com/rtissera/libchdr.git'
     'tencent.rapidjson'::'git+https://github.com/Tencent/rapidjson.git'
-    'unknownbrackets.ppsspp-debugger'::'git+https://github.com/unknownbrackets/ppsspp-debugger.git'
+    #'unknownbrackets.ppsspp-debugger'::'git+https://github.com/unknownbrackets/ppsspp-debugger.git'
   )
-  sha256sums+=(
-    'SKIP'
-    'SKIP'
-    'SKIP'
-    'SKIP'
-    'SKIP'
-    'SKIP'
-    'SKIP'
-    'SKIP'
-    'SKIP'
-    'SKIP'
-    'SKIP'
-    'SKIP'
-    'SKIP'
-    'SKIP'
-    'SKIP'
-    'SKIP'
-    'SKIP'
-    'SKIP'
-    'SKIP'
-    'SKIP'
-    'SKIP'
-    'SKIP'
-  )
+
+  local _p
+  for _p in ${_sources_add[@]}; do
+    source+=("$_p")
+    sha256sums+=('SKIP')
+  done
 
   if [[ "${_build_ffmpeg::1}" == "t" ]]; then
     source+=(
@@ -126,15 +109,14 @@ _source_ppsspp() {
       'bylaws.libadrenotools'::'ext/libadrenotools'
       'discordapp.discord-rpc'::'ext/discord-rpc'
       'erkkah.naett'::'ext/naett'
-      'facebook.zstd'::'ext/zstd'
+      #'facebook.zstd'::'ext/zstd'
       'google.cpu_features'::'ext/cpu_features'
       'hrydgard.minidx9'::'dx9sdk'
-      'hrydgard.ppsspp-ffmpeg'::'ffmpeg'
       'hrydgard.ppsspp-freetype'::'ext/native/tools/prebuilt'
       'hrydgard.ppsspp-lua'::'ext/lua'
-      'hrydgard.ppsspp-mac-sdl'::'SDL/macOS'
+      #'hrydgard.ppsspp-mac-sdl'::'SDL/macOS'
       'hrydgard.ppsspp-moltenvk'::'ios/MoltenVK'
-      'hrydgard.pspautotests'::'pspautotests'
+      #'hrydgard.pspautotests'::'pspautotests'
       'khronosgroup.glslang'::'ext/glslang'
       'khronosgroup.openxr-sdk'::'ext/OpenXR-SDK'
       'khronosgroup.spirv-cross'::'ext/SPIRV-Cross'
@@ -144,7 +126,7 @@ _source_ppsspp() {
       'retroachievements.rcheevos'::'ext/rcheevos'
       'rtissera.libchdr'::'ext/libchdr'
       'tencent.rapidjson'::'ext/rapidjson'
-      'unknownbrackets.ppsspp-debugger'::'assets/debugger'
+      #'unknownbrackets.ppsspp-debugger'::'assets/debugger'
     )
 
     if [[ "${_build_ffmpeg::1}" == "t" ]]; then
@@ -263,34 +245,51 @@ prepare() {
     done
   }
 
-  _prepare_ppsspp
+  _run_if_exists _prepare_ppsspp
 
-  _prepare_bylaws_libadrenotools
-  _prepare_hrydgard_ppsspp_ffmpeg
-  _prepare_kingcom_armips
-  _prepare_tencent_rapidjson
+  _run_if_exists _prepare_bylaws_libadrenotools
+  _run_if_exists _prepare_hrydgard_ppsspp_ffmpeg
+  _run_if_exists _prepare_kingcom_armips
+  _run_if_exists _prepare_tencent_rapidjson
 }
 
 build() {
-  if [[ "${_build_avx::1}" == "t" ]]; then
-    export CFLAGS="$(echo "$CFLAGS" | sed -E 's@(\s*-(march|mtune)=\S+\s*)@ @g;s@\s*-O[0-9]\s*@ @g;s@\s+@ @g') -march=x86-64-v3 -mtune=generic -O3"
-    export CXXFLAGS="$(echo "$CXXFLAGS" | sed -E 's@(\s*-(march|mtune)=\S+\s*)@ @g;s@\s*-O[0-9]\s*@ @g;s@\s+@ @g') -march=x86-64-v3 -mtune=generic -O3"
+
+  if [[ "${_build_clang::1}" == "t" ]]; then
+    export CC CXX LDFLAGS
+    CC=clang
+    CXX=clang++
+
+    local _ldflags=(${LDFLAGS})
+    LDFLAGS="${_ldflags[@]//*fuse-ld*/} -fuse-ld=lld"
   fi
 
-  export CC=clang
-  export CXX=clang++
-  export LDFLAGS+=" -Wl,-fuse-ld=lld"
+  if [[ ${_build_level::1} =~ ^[2-4]$ ]]; then
+    export CFLAGS CXXFLAGS
+    local _cflags _cxxflags
+    _cflags=(
+      -march=x86-64-v${_build_level::1} -mtune=generic -O3
+      $(sed -E -e 's&-(march|mtune)=\S+\b&&g' -e 's&-O[0-9]+\b&&g' <<< "${CFLAGS}")
+    )
+    CFLAGS="${_cflags[@]}"
+
+    _cxxflags=(
+      -march=x86-64-v${_build_level::1} -mtune=generic -O3
+      $(sed -E -e 's&-(march|mtune)=\S+\b&&g' -e 's&-O[0-9]+\b&&g' <<< "${CXXFLAGS}")
+    )
+    CXXFLAGS="${_cxxflags[@]}"
+  fi
 
   local _cmake_options=(
     -S "$_pkgsrc"
-    -DCMAKE_BUILD_TYPE=Release
+    -G Ninja
+    -DCMAKE_BUILD_TYPE=None
     -DCMAKE_SKIP_RPATH=ON
     -DOpenGL_GL_PREFERENCE=GLVND
     -DUSE_SYSTEM_MINIUPNPC=OFF
     -DUSE_SYSTEM_LIBZIP=ON
     -DUSE_SYSTEM_SNAPPY=ON
     -DUSE_SYSTEM_ZSTD=ON
-
     -DBUILD_TESTING=OFF
     -Wno-dev
   )
@@ -350,4 +349,10 @@ Categories=Game;
 END
 
   chmod -R u+rwX,go+rX,go-w "$pkgdir/"
+}
+
+_run_if_exists() {
+  if declare -F "$1" > /dev/null; then
+    eval "$1"
+  fi
 }
