@@ -35,6 +35,7 @@ build() {
     -W no-dev \
     -D CMAKE_INSTALL_PREFIX=/usr \
     -D CMAKE_BUILD_TYPE=None \
+    -D CMAKE_POLICY_VERSION_MINIMUM=3.5 \
     -D WITH_TESTS=ON \
     -D PREFER_SYSTEM_ZSTD=ON \
     -D PREFER_SYSTEM_XXHASH=ON \
