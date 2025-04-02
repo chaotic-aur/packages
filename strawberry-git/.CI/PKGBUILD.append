@@ -1,0 +1,4 @@
+export CMAKE_POLICY_VERSION_MINIMUM=3.5
+
+depends+=('qt6-xcb-private-headers')
+makedepends+=('rapidjson')
