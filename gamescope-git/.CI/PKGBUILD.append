@@ -1,3 +1,5 @@
+export CMAKE_POLICY_VERSION_MINIMUM=3.5
+
 _pkgsrc="$_pkgname"
 pkgver() {
   cd "$_pkgsrc"
