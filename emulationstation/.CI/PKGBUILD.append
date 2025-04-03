@@ -1,0 +1,12 @@
+export CMAKE_POLICY_VERSION_MINIMUM=3.5
+
+depends=(${depends[@]//rapidjson*/})
+makedepends+=('rapidjson')
+
+_optdeps=("${optdepends[@]//ppsspp-headless*/}")
+unset optdepends
+for i in "${_optdeps[@]}"; do
+  if [ -n "$i" ]; then
+    optdepends+=("$i")
+  fi
+done
