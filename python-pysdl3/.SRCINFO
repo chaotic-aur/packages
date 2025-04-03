@@ -1,0 +1,21 @@
+pkgbase = python-pysdl3
+	pkgdesc = Python ctypes wrapper around SDL3
+	pkgver = 0.9.7b5
+	pkgrel = 1
+	url = https://github.com/Aermoss/PySDL3
+	arch = x86_64
+	license = MIT
+	makedepends = git
+	makedepends = python-build
+	makedepends = python-installer
+	depends = alsa-lib
+	depends = freetype2
+	depends = python-aiohttp
+	depends = python-packaging
+	depends = python-requests
+	depends = sdl3
+	optdepends = sdl3_image
+	source = python-pysdl3-0.9.7b5::git+https://github.com/Aermoss/PySDL3.git#tag=v0.9.7b5
+	sha256sums = 995617f400cd87387d1fbd07b6a2f14616e0fcf09b3983ef2460dbe3d8893f13
+
+pkgname = python-pysdl3
