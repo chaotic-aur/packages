@@ -10,7 +10,7 @@
 
 _pkgname="citron"
 pkgname="$_pkgname-git"
-pkgver=0.5.r40.ga5125d0
+pkgver=0.6.1.r14.g0dac3c1
 pkgrel=1
 pkgdesc="Yet another emulator fork"
 url="https://git.citron-emu.org/Citron/Citron"
@@ -282,6 +282,9 @@ prepare() {
 
   sed -E '/async_pipe\.hpp/s&^#include.*$&#include <boost/process/v1/async_pipe.hpp>&' \
     -i "$_pkgsrc"/src/core/debugger/debugger.cpp
+
+  # warn instead of error
+  sed -E '/Werror=/d' -i "$_pkgsrc"/src/CMakeLists.txt
 }
 
 pkgver() {
@@ -351,6 +354,8 @@ _build_main() (
 )
 
 build() (
+  export CMAKE_POLICY_VERSION_MINIMUM=3.5
+
   _run_if_exists _build_boost
   _run_if_exists _build_fmt
   _build_main
