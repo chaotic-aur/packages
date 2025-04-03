@@ -9,12 +9,12 @@ arch=('any')
 url="https://github.com/archlinux-downgrade/$pkgname"
 license=('GPL')
 backup=(etc/xdg/downgrade/downgrade.conf)
-source=("https://github.com/archlinux-downgrade/$pkgname/releases/download/v$pkgver/downgrade-$pkgver.tar.gz")
+source=("https://github.com/archlinux-downgrade/$pkgname/releases/download/v${pkgver//_/-}/downgrade-${pkgver//_/-}.tar.gz")
 depends=('pacman-contrib' 'fzf') # pacsort
 optdepends=('sudo: for installation via sudo')
 
 package() {
-  cd "$pkgname-$pkgver" || exit 1
+  cd "$pkgname-${pkgver//_/-}" || exit 1
 
   make DESTDIR="$pkgdir" PREFIX=/usr install
 }
