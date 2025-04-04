@@ -1,0 +1,13 @@
+pkgbase = pixelorama
+	pkgdesc = A 2D sprite editor made with the Godot Engine
+	pkgver = 1.1
+	pkgrel = 1
+	url = https://github.com/Orama-Interactive/Pixelorama
+	arch = any
+	license = MIT
+	makedepends = git
+	depends = godot
+	source = pixelorama::git+https://github.com/Orama-Interactive/Pixelorama.git
+	sha256sums = SKIP
+
+pkgname = pixelorama

@@ -1,0 +1,56 @@
+# Maintainer: aur.chaotic.cx
+
+: ${_install_path:=usr/share}
+
+_pkgname="pixelorama"
+pkgname="$_pkgname"
+pkgver=1.1
+pkgrel=1
+pkgdesc="A 2D sprite editor made with the Godot Engine"
+url="https://github.com/Orama-Interactive/Pixelorama"
+license=('MIT')
+arch=('any')
+
+depends=('godot')
+makedepends=('git')
+
+_pkgsrc="$_pkgname"
+source=("$_pkgsrc"::"git+$url.git")
+sha256sums=('SKIP')
+
+prepare() {
+  cd "$_pkgsrc"
+  local _tag=$(git tag | sort -rV | head -1)
+  git -c advice.detachedHead=false checkout -f "$_tag"
+}
+
+pkgver() {
+  cd "$_pkgsrc"
+  git describe --tag | sed -E 's/^[^0-9]+//'
+}
+
+build() {
+  cd "$_pkgsrc"
+  godot --export-pack "Linux 64-bit" "$_pkgname.pck" --display-driver headless
+}
+
+package() {
+  cd "$_pkgsrc"
+  install -Dm755 "$_pkgname.pck" -t "$pkgdir/$_install_path/$_pkgname/"
+
+  cp -a pixelorama_data/{Brushes,Palettes,Patterns} "$pkgdir/$_install_path/$_pkgname/"
+
+  install -Dm644 "assets/graphics/icons/icon.png" "$pkgdir/usr/share/pixmaps/$_pkgname.png"
+
+  install -Dm644 "Misc/Linux/com.orama_interactive.Pixelorama.desktop" "$pkgdir/usr/share/applications/$_pkgname.desktop"
+
+  install -Dm644 "LICENSE" -t "$pkgdir/usr/share/licenses/$pkgname/"
+
+  install -Dm755 /dev/stdin "${pkgdir}/usr/bin/$_pkgname" << END
+#!/usr/bin/env bash
+cd "/$_install_path/$_pkgname"
+exec godot --main-pack "$_pkgname.pck"
+END
+
+  chmod -R u+rwX,go+rX,go-w "$pkgdir/"
+}
