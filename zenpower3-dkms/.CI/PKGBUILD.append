@@ -1,9 +1,0 @@
-eval _orig_"$(declare -f package)"
-
-package() {
-  provides+=('zenpower-dkms')
-  conflicts+=('zenpower-dkms')
-  replaces+=('zenpower-dkms')
-
-  _orig_package
-}
