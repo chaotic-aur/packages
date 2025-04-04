@@ -7,14 +7,13 @@ pkgname=(
   'openvino-intel-npu-plugin'
   'python-openvino')
 pkgver=2025.0.0
-pkgrel=1
+pkgrel=3
 _commit=1f68be9f5945f2a239ada580e62c992d820f9cb7
 pkgdesc='A toolkit for optimizing and deploying deep learning models'
 arch=('x86_64')
 url='https://docs.openvino.ai/'
-license=('Apache-2.0' 'LicenseRef-Custom')
+license=('Apache-2.0' 'LicenseRef-custom')
 makedepends=(
-  'abseil-cpp'
   'cmake'
   'flatbuffers'
   'git'
@@ -145,6 +144,7 @@ build() {
     -DCMAKE_BUILD_TYPE:STRING='Release' \
     -DCMAKE_CXX_STANDARD:STRING='17' \
     -DCMAKE_INSTALL_PREFIX:PATH='/usr' \
+    -DCMAKE_POLICY_VERSION_MINIMUM:STRING="3.5.0" \
     -DCMAKE_SKIP_RPATH:BOOL='YES' \
     -DENABLE_SSE42:BOOL='OFF' \
     -DENABLE_AVX2:BOOL='OFF' \
@@ -176,7 +176,8 @@ build() {
 
 package_openvino() {
   depends=(
-    'abseil-cpp'
+    'gcc-libs'
+    'glibc'
     'onetbb'
     'protobuf'
     'pugixml'
@@ -208,6 +209,8 @@ package_openvino() {
 package_openvino-intel-gpu-plugin() {
   pkgdesc='Intel GPU plugin for OpenVINO'
   depends=(
+    'gcc-libs'
+    'glibc'
     'intel-compute-runtime'
     'ocl-icd'
     'onetbb'
@@ -221,6 +224,8 @@ package_openvino-intel-gpu-plugin() {
 package_openvino-intel-npu-plugin() {
   pkgdesc='Intel NPU plugin for OpenVINO'
   depends=(
+    'gcc-libs'
+    'glibc'
     'intel-npu-compiler'
     'intel-npu-driver'
     'onetbb'
@@ -235,6 +240,8 @@ package_openvino-intel-npu-plugin() {
 package_python-openvino() {
   pkgdesc='Python bindings for OpenVINO'
   depends=(
+    'gcc-libs'
+    'glibc'
     "openvino=${pkgver}"
     'python'
     'python-numpy'

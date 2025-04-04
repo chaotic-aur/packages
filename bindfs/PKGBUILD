@@ -3,7 +3,7 @@
 
 pkgname=bindfs
 pkgver=1.17.7
-pkgrel=2
+pkgrel=3
 pkgdesc="A FUSE filesystem for mirroring a directory to another directory, similar to 'mount --bind', with permission settings."
 arch=('i686' 'x86_64' 'armv6h' 'armv6l' 'armv7h')
 url="http://bindfs.org/"

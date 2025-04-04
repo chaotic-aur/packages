@@ -7,7 +7,7 @@
 
 pkgname=opencv2
 pkgver=2.4.13.7
-pkgrel=6
+pkgrel=7
 pkgdesc='Open Source Computer Vision Library (version 2.x)'
 arch=('x86_64')
 license=('BSD-3-Clause')
@@ -37,7 +37,7 @@ source=("https://github.com/opencv/opencv/archive/${pkgver}/${pkgname}-${pkgver}
   '020-opencv2-cmake4-fix.patch')
 sha256sums=('192d903588ae2cdceab3d7dc5a5636b023132c8369f184ca89ccec0312ae33d0'
   '0ac6a30a0708339486941b0c784a3a94f4ab2a5154cd74ae82edd405b4f61823'
-  'c9428d97f5d6e7f9607aab2c1e5a8b2db5a0823d317cc54cb6cc2ede7e6b88cb')
+  'e66d3cc57c87b7d94f0a46e6d1aecea15aff059a1f98c05b4e8f95381afd6398')
 
 prepare() {
   patch -d "opencv-${pkgver}" -Np1 -i "${srcdir}/010-opencv2-remove-prototypes-warnings.patch"
@@ -50,6 +50,7 @@ build() {
     -G 'Unix Makefiles' \
     -DCMAKE_BUILD_TYPE:STRING='None' \
     -DCMAKE_INSTALL_PREFIX:PATH='/opt/opencv2' \
+    -DCMAKE_POLICY_VERSION_MINIMUM:STRING="3.5.0" \
     -DCMAKE_SKIP_INSTALL_RPATH:BOOL='YES' \
     -DBUILD_JASPER:BOOL='ON' \
     -DBUILD_opencv_java:BOOL='OFF' \

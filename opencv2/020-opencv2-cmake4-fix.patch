@@ -1,20 +1,5 @@
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
-@@ -37,11 +37,11 @@ endif(NOT CMAKE_TOOLCHAIN_FILE)
- # Top level OpenCV project
- # --------------------------------------------------------------
- if(CMAKE_GENERATOR MATCHES Xcode AND XCODE_VERSION VERSION_GREATER 4.3)
--  cmake_minimum_required(VERSION 3.0)
-+  cmake_minimum_required(VERSION 3.5)
- elseif(IOS)
--  cmake_minimum_required(VERSION 3.0)
-+  cmake_minimum_required(VERSION 3.5)
- else()
--  cmake_minimum_required(VERSION 2.8.12.2)
-+  cmake_minimum_required(VERSION 3.5.0)
- endif()
- 
- if(POLICY CMP0026)
 @@ -50,7 +50,7 @@ endif()
  
  if (POLICY CMP0042)
@@ -25,60 +10,3 @@
  
  # must go before the project command
  if(POLICY CMP0026)
---- a/doc/tutorials/introduction/linux_gcc_cmake/linux_gcc_cmake.rst
-+++ b/doc/tutorials/introduction/linux_gcc_cmake/linux_gcc_cmake.rst
-@@ -60,7 +60,7 @@ Now you have to create your CMakeLists.t
- 
- .. code-block:: cmake
- 
--   cmake_minimum_required(VERSION 2.8)
-+   cmake_minimum_required(VERSION 3.5)
-    project( DisplayImage )
-    find_package( OpenCV REQUIRED )
-    add_executable( DisplayImage DisplayImage.cpp )
---- a/platforms/android/android.toolchain.cmake
-+++ b/platforms/android/android.toolchain.cmake
-@@ -208,7 +208,7 @@
- #
- # ------------------------------------------------------------------------------
- 
--cmake_minimum_required( VERSION 2.6.3 )
-+cmake_minimum_required( VERSION 3.5.0 )
- 
- if( DEFINED CMAKE_CROSSCOMPILING )
-  # subsequent toolchain loading is not really needed
---- a/platforms/linux/gnu.toolchain.cmake
-+++ b/platforms/linux/gnu.toolchain.cmake
-@@ -1,4 +1,4 @@
--cmake_minimum_required(VERSION 2.8)
-+cmake_minimum_required(VERSION 3.5)
- 
- # load settings in case of "try compile"
- set(TOOLCHAIN_CONFIG_FILE "${CMAKE_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/toolchain.config.cmake")
---- a/samples/CMakeLists.txt
-+++ b/samples/CMakeLists.txt
-@@ -36,7 +36,7 @@ else()
- #
- # BUILD CASE 2: Build samples with library binaries
- #
--cmake_minimum_required(VERSION 2.8)
-+cmake_minimum_required(VERSION 3.5)
- 
- project(samples C CXX)
- option(BUILD_EXAMPLES "Build samples" ON)
-@@ -80,4 +80,4 @@ endif()
- #
- # END OF BUILD CASE 2: Build samples with library binaries
- #
--endif()
-\ No newline at end of file
-+endif()
---- a/samples/cpp/Qt_sample/CMakeLists.txt
-+++ b/samples/cpp/Qt_sample/CMakeLists.txt
-@@ -1,5 +1,5 @@
- #http://www.cmake.org/cmake/help/cmake2.6docs.html
--cmake_minimum_required (VERSION 2.6)
-+cmake_minimum_required (VERSION 3.5)
- project (OpenGL_Qt_Binding)
- 
- 
