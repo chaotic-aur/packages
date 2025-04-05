@@ -6,9 +6,9 @@
 
 _name=tomb
 pkgbase="${_name}-git"
-pkgname=("${_name}-git" "${_name}-kdf-git")
-pkgver=2.11.r75.g9f79e8b
-pkgrel=2
+pkgname=("${_name}-git" "${_name}-kdf-git" "${_name}-cloak-git")
+pkgver=2.11.r76.g586b5cb
+pkgrel=1
 pkgdesc="simple tool to manage encrypted storage"
 arch=('any')
 url="https://www.dyne.org/software/tomb/"
@@ -60,4 +60,20 @@ package_tomb-kdf-git() {
 
   cd "${_name}/extras/kdf-keys"
   make DESTDIR="${pkgdir}" PREFIX=/usr install
+}
+
+package_tomb-cloak-git() {
+  pkgdesc="Crypto Undertaker extension for steganography"
+  depends=('python')
+  conflicts=("${_name}-cloak")
+  provides=("${_name}-cloak")
+
+  cd "${_name}/extras/cloak"
+  make DESTDIR="${pkgdir}" PREFIX=/usr install
+
+  # Install cipher files
+  install -dm644 "${pkgdir}/usr/share/${_name}/ciphers"
+  for cipher in ciphers/*; do
+    install -m644 ${cipher} "${pkgdir}/usr/share/${_name}/ciphers"
+  done
 }

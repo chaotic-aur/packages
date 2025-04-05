@@ -1,6 +1,6 @@
 pkgbase = coolercontrold
 	pkgdesc = A program to monitor and control your cooling devices. This package contains the CoolerControl service daemon.
-	pkgver = 2.0.1
+	pkgver = 2.1.0
 	pkgrel = 1
 	url = https://gitlab.com/coolercontrol/coolercontrol
 	arch = x86_64
@@ -16,7 +16,7 @@ pkgbase = coolercontrold
 	provides = coolercontrold
 	conflicts = coolercontrold
 	options = !lto
-	source = https://gitlab.com/coolercontrol/coolercontrol/-/archive/2.0.1/coolercontrol-2.0.1.tar.gz
-	sha256sums = ced4fb060785d3dcd6b3c58d825477e379f4d406c4b448d0bf2bcffcad33ae3b
+	source = https://gitlab.com/coolercontrol/coolercontrol/-/archive/2.1.0/coolercontrol-2.1.0.tar.gz
+	sha256sums = f0850097914fb8892ee49c03c5cea55e78c8f3e6aa99b417fc86f44250b6bdbd
 
 pkgname = coolercontrold
