@@ -24,7 +24,7 @@ prepare() {
   (_orig_prepare)
 
   cd "$_pkgsrc"
-  curl https://github.com/YosysHQ/yosys/pull/3339.patch | patch -Np1 -F100 -i -
+  curl -L https://github.com/YosysHQ/yosys/pull/3339.patch | patch -Np1 -F100 -i -
 }
 
 eval _orig_"$(declare -f build | sed -E 's&(ENABLE_PYOSYS)=1&\1=0&')"
