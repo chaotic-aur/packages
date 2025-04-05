@@ -1,1 +1,18 @@
+_pkgname="ironbar"
+_pkgsrc="$_pkgname"
+
 url="https://github.com/JakeStanger/ironbar"
+
+options=('!lto')
+
+depends=(
+  ${depends[@]//libdbusmenu-glib*/}
+  'libpulse'
+  'luajit'
+)
+
+eval _orig_"$(declare -f package)"
+package() {
+  (_orig_package)
+  install -Dm644 "$_pkgsrc/LICENSE" -t "$pkgdir/usr/share/licenses/$pkgname/"
+}
