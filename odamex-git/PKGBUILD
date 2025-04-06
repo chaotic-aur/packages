@@ -1,76 +1,71 @@
-# Maintainer: Gustavo Ramos Rehermann <rehermann6046 at gmail.com>
-# Contributor: Mikael Eriksson <mikael_eriksson at miffe.org>
-# Contributor: Pol Marcet Sardà <polmarcetsarda at gmail.com>
-# Contributor: Thomas Dziedzic < gostrc at gmail >
-# Contributor: Christoph Zeiler <archNOSPAM_at_moonblade.dot.org>
-# Contributor: Curtis Smith <kman922002 at gmail.com>
+# Maintainer: aur.chaotic.cx
 
-pkgbase=odamex-git
-pkgname=odamex-git
-pkgver=10.4.0.r39.g0880dd097
+_pkgname="odamex"
+pkgname="$_pkgname-git"
+pkgver=11.0.0.r257.g90428368c
 pkgrel=1
-pkgdesc='A free client/server multiplayer engine for the classic FPS Doom.'
-arch=('i686' 'x86_64' 'aarch64')
-url='http://odamex.net/'
-license=('GPL')
-depends=('sdl2_mixer' 'sdl2' 'portmidi' 'miniupnpc' 'curl' 'zlib' 'libpng')
-makedepends=('git' 'cmake' 'deutex')
-optdepends=('timidity++: Required for the SDL2 MIDI music backend'
-  'doomseeker: Online Doom multiplayer server launcher')
-source=(
-  "odamex-git::git+https://github.com/odamex/odamex.git#branch=stable"
-  #"git+https://github.com/curl/curl.git"
-  #"git+https://github.com/madler/zlib.git"
-  #"git+https://github.com/glennrp/libpng.git"
-  "git+https://github.com/fltk/fltk"
-  "git+https://github.com/protocolbuffers/protobuf.git"
-  "git+https://github.com/miniupnp/miniupnp.git"
-  "git+https://github.com/open-source-parsers/jsoncpp.git")
-sha256sums=('SKIP'
-  'SKIP'
-  'SKIP'
-  'SKIP'
-  'SKIP')
-provides=('odamex')
-conflicts=('odamex')
+pkgdesc='A free client/server multiplayer engine for the classic FPS Doom'
+url="https://github.com/odamex/odamex"
+license=('GPL-2.0-or-later')
+arch=('x86_64')
 
-pkgver() {
-  cd "odamex-git"
-  printf "%s" "$(git describe --long --tags | sed 's/\([^-]*-g\)/r\1/;s/-/./g')"
-}
+depends=(
+  'curl'
+  'libpng'
+  'portmidi'
+  'sdl2'
+  'sdl2_mixer'
+  'zlib'
+)
+makedepends=(
+  'cmake'
+  'deutex'
+  'git'
+  'ninja'
+)
+optdepends=(
+  'timidity++: Required for the SDL2 MIDI music backend'
+  'doomseeker: Online Doom multiplayer server launcher'
+)
 
-_submodlibs=(fltk protobuf miniupnp jsoncpp)
+provides=("$_pkgname")
+conflicts=("$_pkgname")
+
+_pkgsrc="$_pkgname"
+source=("$_pkgsrc"::"git+$url.git#branch=stable")
+sha256sums=('SKIP')
 
 prepare() {
-  cd odamex-git
-  git submodule init
-  for SUBMODLIB in "${_submodlibs[@]}"; do
-    git config submodule.libraries/$SUBMODLIB.url "$srcdir/$SUBMODLIB"
-  done
-  git submodule--helper update
+  cd "$_pkgsrc"
+  git submodule update --init --depth 1 --recursive
 }
 
-_configure() {
-  cd "odamex-git"
-
-  export CFLAGS="-DSDL20 $CFLAGS"
-  export CXXFLAGS="-DSDL20 $CXXFLAGS"
-
-  cmake -DCMAKE_BUILD_TYPE=None \
-    -D BUILD_LAUNCHER=True \
-    -DCMAKE_INSTALL_PREFIX=/usr \
-    .
+pkgver() {
+  cd "$_pkgsrc"
+  git describe --long --tags --abbrev=7 --exclude='*[a-zA-Z][a-zA-Z]*' \
+    | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
 }
 
 build() {
-  _configure
-  make
+  export CFLAGS CXXFLAGS
+  CFLAGS+=" -DSDL20"
+  CXXFLAGS+=" -DSDL20"
+
+  local _cmake_options=(
+    -B build
+    -S "$_pkgsrc"
+    -G Ninja
+    -DCMAKE_BUILD_TYPE=None
+    -DCMAKE_INSTALL_PREFIX='/usr'
+    -DBUILD_LAUNCHER=True
+    -DBUILD_TESTING=OFF
+    -Wno-dev
+  )
+
+  cmake "${_cmake_options[@]}"
+  cmake --build build
 }
 
 package() {
-  cd "odamex-git"
-
-  make DESTDIR="$pkgdir/" install
+  DESTDIR="$pkgdir" cmake --install build
 }
-
-# vim:set ts=2 sw=2 et:
