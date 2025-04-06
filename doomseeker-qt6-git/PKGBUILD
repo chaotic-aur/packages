@@ -1,0 +1,66 @@
+# Maintainer: aur.chaotic.cx
+
+_pkgname="doomseeker"
+pkgname="$_pkgname-qt6-git"
+pkgver=1.5.1.r6.gebf8a09
+pkgrel=1
+pkgdesc="A cross-platform Doom server browser"
+url="https://bitbucket.org/Doomseeker/doomseeker.git"
+license=("LGPL-2.1-or-later")
+arch=('x86_64')
+
+depends=(
+  'zlib'
+  'bzip2'
+  'qt6-base'
+  'qt6-multimedia'
+)
+makedepends=(
+  'cmake'
+  'git'
+  'ninja'
+  'qt6-tools'
+)
+optdepends=(
+  'zandronum: GZDoom fork supporting client/server multiplayer'
+  'odamex: Classic client/server multiplayer fork'
+  'chocolate-doom: Doom source port accurately reproducing the original DOS versions of Doom'
+)
+
+provides=("$_pkgname")
+conflicts=("$_pkgname")
+
+_pkgsrc="$_pkgname"
+source=("$_pkgsrc"::"git+$url.git")
+sha256sums=('SKIP')
+
+prepare() {
+  sed -e '1i #include <QSet>\n#include <QMap>' \
+    -i "$_pkgsrc/src/core/ip2c/ip2c.h" \
+    "$_pkgsrc/src/core/refresher/udpsocketpool.cpp"
+}
+
+pkgver() {
+  cd "$_pkgsrc"
+  git describe --long --tags --abbrev=7 --exclude='*[a-zA-Z][a-zA-Z]*' \
+    | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
+}
+
+build() {
+  local _cmake_options=(
+    -B build
+    -S "$_pkgsrc"
+    -G Ninja
+    -DCMAKE_BUILD_TYPE=None
+    -DCMAKE_INSTALL_PREFIX='/usr'
+    -DQt_PACKAGE='Qt6'
+    -Wno-dev
+  )
+
+  cmake "${_cmake_options[@]}"
+  cmake --build build
+}
+
+package() {
+  DESTDIR="$pkgdir" cmake --install build
+}
