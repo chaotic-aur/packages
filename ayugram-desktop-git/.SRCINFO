@@ -1,7 +1,7 @@
 pkgbase = ayugram-desktop-git
 	pkgdesc = Desktop Telegram client with good customization and Ghost mode
-	pkgver = 5.8.3.r0.g87da02a
-	pkgrel = 1
+	pkgver = 5.12.3.r3.gb3552d8
+	pkgrel = 2
 	url = https://github.com/AyuGram/AyuGramDesktop
 	arch = x86_64
 	arch = aarch64

@@ -7,8 +7,8 @@
 
 _pkgname="ayugram-desktop"
 pkgname="$_pkgname-git"
-pkgver=5.8.3.r0.g87da02a
-pkgrel=1
+pkgver=5.12.3.r3.gb3552d8
+pkgrel=2
 pkgdesc="Desktop Telegram client with good customization and Ghost mode"
 url="https://github.com/AyuGram/AyuGramDesktop"
 license=('GPL-3.0-or-later')
@@ -246,6 +246,11 @@ prepare() {
   _prepare_ayugram
   _prepare_desktop_app_cmake_helpers
   _prepare_mnauw_cppgir
+
+  # for Qt 6.9
+  sed -E -e 's&QGenericUnixServices&QDesktopUnixServices&' \
+    -e 's&qgenericunixservices_p&qdesktopunixservices_p&' \
+    -i "$_pkgsrc/Telegram/lib_base/base/platform/linux/base_linux_xdp_utilities.cpp"
 }
 
 pkgver() {
