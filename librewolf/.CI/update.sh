@@ -1,24 +1,19 @@
 #!/usr/bin/env bash
 
-: ${PACKAGE:=librewolf}
-
-UPSTREAM_REPO="https://codeberg.org/librewolf/source"
-
 eval "$(grep -Eo '^(url|pkgver|pkgrel)=\S+' PKGBUILD)"
 _OLD_VERSION="$pkgver-$pkgrel"
 
-_RESPONSE=$(curl -Ssf "${UPSTREAM_REPO}/releases")
+_RESPONSE=$(curl -Ssf "https://gitlab.com/librewolf-community/browser/source/-/releases.atom")
 _TAG=$(
-  echo "$_RESPONSE" |
-    grep -Eom1 '/tag/\S+"' |
-    sed -E 's&^.*/([0-9\.]+-[0-9]+)"$&\1&'
+  echo "${_RESPONSE:?}" |
+    grep -Pom1 '(?<=/releases/)[0-9\.-]+(?=")'
 )
 
-if [ $(vercmp "$_TAG" "$_OLD_VERSION") -gt 0 ]; then
+if [ "${_TAG:?}" != "${_OLD_VERSION:?}" ]; then
   _RESPONSE=$(curl -Ssf "https://gitlab.com/api/v4/projects/32320088/packages/generic/librewolf-source/${_TAG}/librewolf-${_TAG}.source.tar.gz.sha256sum")
 
   _SUM=$(
-    echo "$_RESPONSE" |
+    echo "${_RESPONSE:?}" |
       cut -d' ' -f1
   )
 
