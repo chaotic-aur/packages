@@ -2,7 +2,7 @@
 
 _pkgname="hyprland-qtutils"
 pkgname="${_pkgname}-git"
-pkgver=0.0.1.r14.3833097
+pkgver=0.1.3.r5.g96bf0677
 pkgrel=1
 pkgdesc="Hyprland QT/qml utility apps"
 arch=(x86_64 aarch64)

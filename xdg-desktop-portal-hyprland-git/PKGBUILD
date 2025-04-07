@@ -3,7 +3,7 @@
 
 _pkgname="xdg-desktop-portal-hyprland"
 pkgname="${_pkgname}-git"
-pkgver=1.3.9.r1.gd7f18dda
+pkgver=1.3.9.r4.g150b0b6f
 pkgrel=1
 pkgdesc="xdg-desktop-portal backend for hyprland"
 url="https://github.com/hyprwm/xdg-desktop-portal-hyprland"
@@ -18,8 +18,10 @@ optdepends=(
   "slurp: support for interactive mode for the screenshot portal; one of the built-in chooser options for the screencast portal"
   "hyprland: the Hyprland compositor"
 )
-source=("${_pkgname}::git+$url.git")
-sha256sums=('SKIP')
+source=("${_pkgname}::git+$url.git" "hyprland-portals.conf")
+sha256sums=('SKIP' 'aa061ba0530569907cf280870cc2b86333e0d7c2965d9ac020f5b3e05e9bd2e2')
+
+backup=("usr/share/xdg-desktop-portal/hyprland-portals.conf")
 
 pkgver() {
   cd "${_pkgname}"
@@ -43,6 +45,6 @@ package() {
   cd "${srcdir}/${_pkgname}"
 
   DESTDIR="${pkgdir}" cmake --install build
-
+  install -Dm0644 -t "$pkgdir/usr/share/xdg-desktop-portal/" "${srcdir}/hyprland-portals.conf"
   install -Dm644 LICENSE -t "${pkgdir}/usr/share/licenses/${_pkgname}"
 }

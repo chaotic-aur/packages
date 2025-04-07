@@ -3,7 +3,7 @@
 
 _pkgname=hyprlang
 pkgname="${_pkgname}-git"
-pkgver=0.6.0.r3.g16e59c1e
+pkgver=0.6.0.r6.gf41271d3
 pkgrel=1
 pkgdesc="The official implementation library for the hypr config language"
 arch=(x86_64 aarch64)
