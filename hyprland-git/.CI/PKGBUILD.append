@@ -17,7 +17,5 @@ package() {
   _orig_package
 
   # sync with extra/hyprland
-  rm -frv "$pkgdir/usr/include/hyprland/protocols"
-  rm -frv "$pkgdir/usr/share/xdg-desktop-portal"
   rm -fv "$pkgdir/usr/include/hyprland/src/version.h.in"
 }
