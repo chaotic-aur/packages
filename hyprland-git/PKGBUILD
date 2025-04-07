@@ -126,8 +126,5 @@ package() {
   # licenses
   install -Dm0644 -t "$pkgdir/usr/share/licenses/${pkgname}" LICENSE
   install -Dm0644 subprojects/udis86/LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE-udis86"
-
-  # not sure it makes sense to keep this here instead of in xdph
-  rm -frv "$pkgdir/usr/share/xdg-desktop-portal"
 }
 # vi: et ts=2 sw=2
