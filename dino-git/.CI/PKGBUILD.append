@@ -1,3 +1,9 @@
+pkgdesc="Modern XMPP (Jabber) chat client written in Vala"
+url="https://github.com/dino/dino"
+license=('GPL-3.0-only')
+
+depends=(${depends[@]//libsignal-protocol-c*/libomemo-c})
+
 _pkgsrc="${pkgname%-git}"
 pkgver() {
   cd "$_pkgsrc"
