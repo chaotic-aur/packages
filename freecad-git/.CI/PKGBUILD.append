@@ -27,6 +27,14 @@ conflicts=('freecad')
 
 _pkgsrc="FreeCAD"
 
+eval _orig_"$(declare -f prepare)"
+prepare() {
+  (_orig_prepare)
+
+  # remove cmake version check
+  sed -E '/FATAL_ERROR/d' -i "$_pkgsrc/CMakeLists.txt"
+}
+
 pkgver() {
   cd "$_pkgsrc"
   local _tag _version _revision _hash
