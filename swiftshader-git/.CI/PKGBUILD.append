@@ -1,0 +1,4 @@
+export CMAKE_POLICY_VERSION_MINIMUM=3.5
+
+pkgdesc='High-performance CPU-based implementation of the Vulkan graphics API'
+license=('Apache-2.0')
