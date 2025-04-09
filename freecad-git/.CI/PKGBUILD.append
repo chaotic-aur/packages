@@ -32,7 +32,9 @@ prepare() {
   (_orig_prepare)
 
   # remove cmake version check
-  sed -E '/FATAL_ERROR/d' -i "$_pkgsrc/CMakeLists.txt"
+  sed -E -e '/FATAL_ERROR/d' \
+    -e '1i cmake_minimum_required(VERSION 4.0)' \
+    -i "$_pkgsrc/CMakeLists.txt"
 }
 
 pkgver() {
