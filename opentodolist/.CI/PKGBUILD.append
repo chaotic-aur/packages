@@ -1,0 +1,12 @@
+unset -f pkgver
+unset -f checkdepends
+unset -f check
+
+export CFLAGS+=" -Wno-error=deprecated-declarations"
+export CXXFLAGS+=" -Wno-error=deprecated-declarations"
+
+export CMAKE_POLICY_VERSION_MINIMUM=3.5
+
+url="https://gitlab.com/rpdev/opentodolist"
+
+license=('GPL-3.0-or-later')
