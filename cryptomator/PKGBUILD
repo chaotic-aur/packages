@@ -18,11 +18,11 @@ _jdkver=23.0.1+11
 _jfxver=23.0.1
 source=("cryptomator-${pkgver//_/-}.tar.gz::https://github.com/cryptomator/cryptomator/archive/refs/tags/${pkgver//_/-}.tar.gz"
   "cryptomator-${pkgver//_/-}.tar.gz.asc::https://github.com/cryptomator/cryptomator/releases/download/${pkgver//_/-}/cryptomator-${pkgver//_/-}.tar.gz.asc")
-source_x86_64=("jdk.tar.gz::https://github.com/adoptium/temurin${_jdkver:0:2}-binaries/releases/download/jdk-${_jdkver//\+/%2B}/OpenJDK${_jdkver:0:2}U-jdk_x64_linux_hotspot_${_jdkver//\+/_}.tar.gz"
-  "openjfx.zip::https://download2.gluonhq.com/openjfx/${_jfxver}/openjfx-${_jfxver}_linux-x64_bin-jmods.zip")
-source_aarch64=("jdk.tar.gz::https://github.com/adoptium/temurin${_jdkver:0:2}-binaries/releases/download/jdk-${_jdkver//\+/%2B}/OpenJDK${_jdkver:0:2}U-jdk_aarch64_linux_hotspot_${_jdkver//\+/_}.tar.gz"
-  "openjfx.zip::https://download2.gluonhq.com/openjfx/${_jfxver}/openjfx-${_jfxver}_linux-aarch64_bin-jmods.zip")
-noextract=('jdk.tar.gz' 'openjfx.zip')
+source_x86_64=("jdk-${_jdkver}.tar.gz::https://github.com/adoptium/temurin${_jdkver:0:2}-binaries/releases/download/jdk-${_jdkver//\+/%2B}/OpenJDK${_jdkver:0:2}U-jdk_x64_linux_hotspot_${_jdkver//\+/_}.tar.gz"
+  "openjfx-${_jfxver}.zip::https://download2.gluonhq.com/openjfx/${_jfxver}/openjfx-${_jfxver}_linux-x64_bin-jmods.zip")
+source_aarch64=("jdk-${_jdkver}.tar.gz::https://github.com/adoptium/temurin${_jdkver:0:2}-binaries/releases/download/jdk-${_jdkver//\+/%2B}/OpenJDK${_jdkver:0:2}U-jdk_aarch64_linux_hotspot_${_jdkver//\+/_}.tar.gz"
+  "openjfx-${_jfxver}.zip::https://download2.gluonhq.com/openjfx/${_jfxver}/openjfx-${_jfxver}_linux-aarch64_bin-jmods.zip")
+noextract=("jdk-${_jfxver}.tar.gz" "openjfx-${_jdkver}.zip")
 sha256sums=('b75362e76a3f66a6ff149e35fdeb67e669ab311f90ebe5d22fc77ca60f8372e3'
   'SKIP')
 sha256sums_x86_64=('2400267e4e9c0f6ae880a4d763af6caf18c673714bdee5debf8388b0b5d52886'
@@ -34,13 +34,13 @@ options=('!strip')
 validpgpkeys=('58117AFA1F85B3EEC154677D615D449FE6E6A235')
 
 build() {
-  export JAVA_HOME="${srcdir}/jdk"
-  export JMODS_PATH="${srcdir}/jmods:${JAVA_HOME}/jmods"
+  export JAVA_HOME="${srcdir}/jdk-${_jdkver}"
+  export JMODS_PATH="${srcdir}/jmods-${_jfxver}:${JAVA_HOME}/jmods"
 
-  tar xvfz jdk.tar.gz --transform 's!^[^/]*!jdk!'
+  tar xfz "jdk-${_jdkver}.tar.gz"
 
-  mkdir jmods
-  unzip -j openjfx.zip \*/javafx.base.jmod \*/javafx.controls.jmod \*/javafx.fxml.jmod \*/javafx.graphics.jmod -d jmods
+  mkdir "jmods-${_jfxver}"
+  unzip -j "openjfx-${_jfxver}.zip" \*/javafx.base.jmod \*/javafx.controls.jmod \*/javafx.fxml.jmod \*/javafx.graphics.jmod -d "jmods-${_jfxver}"
 
   cd "${srcdir}/cryptomator-${pkgver//_/-}"
 
