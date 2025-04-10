@@ -1,50 +1,58 @@
 # Maintainer: alba4k <blaskoazzolaaaron@gmail.com>
 
 _pkgname="hyprland-qt-support"
-pkgname="${_pkgname}-git"
-pkgver=0.1.0.r2.g0ecf224f
+_pkgsrc=$_pkgname
+pkgname="$_pkgname-git"
+pkgver=0.1.0.r8.g073c52b
 pkgrel=1
 pkgdesc="A qml style provider for hypr* qt apps"
-arch=(x86_64 aarch64)
-url="https://github.com/hyprwm/hyprland-qt-support"
+arch=('x86_64' 'aarch64')
+url="https://github.com/hyprwm/$_pkgname"
 license=('BSD-3-Clause')
-depends=('qt6-wayland>=6.6.0' 'hyprlang-git>=0.6.0')
-makedepends=('git' 'cmake' 'gcc' 'pkgconf')
-source=("${_pkgname}::git+https://github.com/hyprwm/hyprland-qt-support.git")
-conflicts=("${_pkgname}")
-provides=("${_pkgname}")
+depends=(
+  'qt6-wayland>=6.6.0'
+  'hyprlang-git>=0.6.0'
+)
+makedepends=(
+  cmake
+  git
+  ninja
+)
+source=("$_pkgsrc::git+$url.git")
+conflicts=("$_pkgname")
+provides=("$_pkgname=${pkgver%%.r*}")
 sha256sums=('SKIP')
 
-pick_mr() {
-  cd ${srcdir}/${_pkgname}
-
-  git pull origin pull/$1/head --no-edit
-}
-
+: '
 prepare() {
-  # Pick pull request form github using `pick_mr <pull request numebr>`.
-  # e.g. `pick_mr 100`
-  echo -n
+	# Pick pull request form GitHub replacing NUM with the pr number
+	# e.g. git pull origin pull/111/head --no-edit --rebase
+
+	git pull origin pull/NUM/head --no-edit --rebase
 }
+'
 
 pkgver() {
-  cd ${srcdir}/${_pkgname}
-
-  git describe --long --tags --abbrev=8 --exclude='*[a-zA-Z][a-zA-Z]*' \
-    | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
+  cd "$_pkgsrc"
+  git describe --long --tags --abbrev=7 | sed 's/^v//;s/\([^-]*-g\)/r\1/;s/-/./g'
 }
 
 build() {
-  cd "${srcdir}/${_pkgname}"
-
-  cmake --no-warn-unused-cli -DCMAKE_INSTALL_PREFIX:PATH=/usr -DINSTALL_QML_PREFIX=/lib/qt6/qml -DCMAKE_INSTALL_LIBDIR=/usr/lib -S . -B ./build
-  cmake --build ./build --config Release --target all
+  local cmake_options=(
+    -B build
+    -S "$_pkgsrc"
+    -G Ninja
+    -W no-dev
+    -D CMAKE_BUILD_TYPE=None
+    -D CMAKE_INSTALL_PREFIX=/usr
+    -D INSTALL_QML_PREFIX=/lib/qt6/qml
+    -D CMAKE_INSTALL_LIBDIR=/usr/lib
+  )
+  cmake "${cmake_options[@]}"
+  cmake --build build
 }
 
 package() {
-  cd "${srcdir}/${_pkgname}"
-
-  DESTDIR="${pkgdir}" cmake --install build
-
-  install -Dm644 LICENSE -t "${pkgdir}/usr/share/licenses/${pkgname}"
+  DESTDIR="$pkgdir" cmake --install build
+  install -Dm644 "$_pkgsrc/LICENSE" -t "$pkgdir/usr/share/licenses/$pkgname/"
 }

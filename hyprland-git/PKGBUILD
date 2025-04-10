@@ -3,13 +3,15 @@
 # Maintainer: alba4k <blaskoazzolaaaron@gmail.com>
 # Contributor: ThatOneCalculator <kainoa at t1c dot dev>
 
-pkgname=hyprland-git
-pkgver=0.48.0.r53.ge76f2776
+_pkgname="hyprland"
+_pkgsrc=$_pkgname
+pkgname="$_pkgname-git"
+pkgver=0.48.0.r62.gd775686
 pkgrel=1
 pkgdesc="Hyprland is an independent, highly customizable, dynamic tiling Wayland compositor that doesn't sacrifice on its looks"
-arch=(x86_64 aarch64)
-url="https://github.com/hyprwm/Hyprland"
-license=('BSD-3-Clause' 'BSD-2-Clause')
+arch=('x86_64' 'aarch64')
+url="https://github.com/hyprwm/$_pkgname"
+license=('BSD-3-Clause')
 depends=(
   aquamarine-git
   cairo
@@ -59,8 +61,9 @@ makedepends=(
   cmake
   git
   glaze
-  hyprwayland-scanner-git
   hyprland-protocols-git
+  hyprwayland-scanner-git
+  ninja
   #patch
   #pkgconf
   python # required by udis86
@@ -73,12 +76,12 @@ optdepends=(
   'glaze: to build and install plugins using hyprpm'
   'uwsm: the recommended way to start Hyprland'
 )
-provides=("hyprland=${pkgver%%.r*}" "wayland-compositor")
-conflicts=(hyprland)
 source=(
-  "git+https://github.com/hyprwm/Hyprland.git"
-  "git+https://github.com/canihavesomecoffee/udis86.git"
+  "$_pkgsrc::git+$url.git"
+  "udis86::git+https://github.com/canihavesomecoffee/udis86.git"
 )
+conflicts=("$_pkgname")
+provides=("$_pkgname=${pkgver%%.r*}" "wayland-compositor")
 b2sums=(
   'SKIP'
   'SKIP'
@@ -86,13 +89,8 @@ b2sums=(
 
 backup=("usr/share/xdg-desktop-portal/hyprland-portals.conf")
 
-pick_mr() {
-  cd "$srcdir/Hyprland"
-  git pull origin pull/$1/head --no-edit --rebase
-}
-
 prepare() {
-  cd Hyprland
+  cd "$_pkgsrc"
   git submodule init
   git config submodule.subprojects/udis86.url "$srcdir/udis86"
   git config submodule.subprojects/tracy.update none
@@ -101,30 +99,32 @@ prepare() {
   if [[ -z "$(git config --get user.name)" ]]; then
     git config user.name local && git config user.email '<>' && git config commit.gpgsign false
   fi
-  # Pick pull requests from github using `pick_mr <pull request number>`.
-  # e.g. `pick_mr 1000`
+
+  # Pick pull request form GitHub replacing NUM with the pr number
+  # e.g. git pull origin pull/111/head --no-edit --rebase
+  # git pull origin pull/NUM/head --no-edit --rebase
 }
 
 pkgver() {
-  cd "$srcdir/Hyprland"
-  git describe --long --tags --abbrev=8 --exclude='*[a-zA-Z][a-zA-Z]*' \
-    | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
+  cd "$_pkgsrc"
+  git describe --long --tags --abbrev=7 | sed 's/^v//;s/\([^-]*-g\)/r\1/;s/-/./g'
 }
 
 build() {
-  cd "$srcdir/Hyprland"
-
-  cmake --no-warn-unused-cli -DCMAKE_INSTALL_PREFIX=/usr -S . -B ./build
-  cmake --build ./build --target all
+  local cmake_options=(
+    -B build
+    -S "$_pkgsrc"
+    -G Ninja
+    -W no-dev
+    -D CMAKE_BUILD_TYPE=None
+    -D CMAKE_INSTALL_PREFIX=/usr
+  )
+  cmake "${cmake_options[@]}"
+  cmake --build build
 }
 
 package() {
-  cd "$srcdir/Hyprland"
-
-  DESTDIR="${pkgdir}" cmake --install build
-
-  # licenses
-  install -Dm0644 -t "$pkgdir/usr/share/licenses/${pkgname}" LICENSE
-  install -Dm0644 subprojects/udis86/LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE-udis86"
+  DESTDIR="$pkgdir" cmake --install build
+  install -Dm0644 "$srcdir/Hyprland/LICENSE" -t "$pkgdir/usr/share/licenses/${pkgname}/"
+  install -Dm0644 "$srcdir/Hyprland/subprojects/udis86/LICENSE" "$pkgdir/usr/share/licenses/$pkgname/LICENSE-udis86"
 }
-# vi: et ts=2 sw=2

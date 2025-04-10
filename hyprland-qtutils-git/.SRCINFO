@@ -1,18 +1,18 @@
 pkgbase = hyprland-qtutils-git
 	pkgdesc = Hyprland QT/qml utility apps
-	pkgver = 0.1.3.r5.g96bf0677
+	pkgver = 0.1.3.r6.g3504a29
 	pkgrel = 1
 	url = https://github.com/hyprwm/hyprland-qtutils
 	arch = x86_64
 	arch = aarch64
 	license = BSD-3-Clause
-	makedepends = git
 	makedepends = cmake
-	makedepends = gcc
-	depends = hyprutils-git
+	makedepends = git
+	makedepends = ninja
 	depends = hyprland-qt-support-git
+	depends = hyprutils-git
 	depends = qt6-wayland
-	provides = hyprland-qtutils
+	provides = hyprland-qtutils=0.1.3
 	conflicts = hyprland-qtutils
 	source = hyprland-qtutils::git+https://github.com/hyprwm/hyprland-qtutils.git
 	sha256sums = SKIP

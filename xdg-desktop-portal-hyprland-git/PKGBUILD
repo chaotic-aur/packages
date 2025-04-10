@@ -1,46 +1,76 @@
 # Maintainer: alba4k <blaskoazzolaaaron@gmail.com>
+# Contributor: ThatOneCalculator <kainoa at t1c dot dev>
 
 _pkgname="xdg-desktop-portal-hyprland"
-pkgname="${_pkgname}-git"
-pkgver=1.3.9.r4.g150b0b6f
+_pkgsrc=$_pkgname
+pkgname="$_pkgname-git"
+pkgver=1.3.9.r4.g150b0b6
 pkgrel=1
-pkgdesc="xdg-desktop-portal backend for hyprland"
-url="https://github.com/hyprwm/xdg-desktop-portal-hyprland"
-arch=(x86_64)
-license=(BSD-3-Clause)
-provides=("${pkgname%-git}" "xdg-desktop-portal-impl")
-conflicts=("${pkgname%-git}")
-depends=("libpipewire" "libinih" "qt6-base" "qt6-wayland" "wayland" "sdbus-cpp" "libdrm" "xdg-desktop-portal" "mesa" "hyprlang-git" "hyprutils-git")
-makedepends=("git" "wayland-protocols" "scdoc" "cmake" "hyprland-protocols-git" "hyprwayland-scanner-git")
-optdepends=(
-  "grim: required for the screenshot portal to function"
-  "slurp: support for interactive mode for the screenshot portal; one of the built-in chooser options for the screencast portal"
-  "hyprland: the Hyprland compositor"
+pkgdesc="xdg-desktop-portal backend for Hyprland"
+arch=('x86_64' 'aarch64')
+url="https://github.com/hyprwm/$_pkgname"
+license=('BSD-3-Clause')
+depends=(
+  hyprlang-git
+  hyprutils-git
+  libdrm
+  libinih
+  libpipewire
+  mesa
+  qt6-base
+  qt6-wayland
+  sdbus-cpp
+  wayland
+  xdg-desktop-portal
 )
-source=("${_pkgname}::git+$url.git")
+makedepends=(
+  cmake
+  git
+  hyprland-protocols-git
+  hyprwayland-scanner-git
+  ninja
+  scdoc
+  wayland-protocols
+)
+optdepends=(
+  'grim: required for the screenshot portal to function'
+  'slurp: support for interactive mode for the screenshot portal; one of the built-in chooser options for the screencast portal'
+  'hyprland: the Hyprland compositor'
+)
+source=("$_pkgsrc::git+$url.git")
+conflicts=("$_pkgname")
+provides=("$_pkgname=${pkgver%%.r*}")
 sha256sums=('SKIP')
 
-pkgver() {
-  cd "${_pkgname}"
-  git describe --long --tags --abbrev=8 --exclude='*[a-zA-Z][a-zA-Z]*' \
-    | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
-}
-
+: '
 prepare() {
-  cd "${srcdir}/${_pkgname}"
-  git submodule update --init
+	# Pick pull request form GitHub replacing NUM with the pr number
+	# e.g. git pull origin pull/111/head --no-edit --rebase
+
+	git pull origin pull/NUM/head --no-edit --rebase
+}
+'
+
+pkgver() {
+  cd "$_pkgsrc"
+  git describe --long --tags --abbrev=7 | sed 's/^v//;s/\([^-]*-g\)/r\1/;s/-/./g'
 }
 
 build() {
-  cd "${srcdir}/${_pkgname}"
-
-  cmake -DCMAKE_INSTALL_LIBEXECDIR=/usr/lib -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr -S . -B build -Wno-dev
-  cmake --build build --config Release --target all
+  local cmake_options=(
+    -B build
+    -S "$_pkgsrc"
+    -G Ninja
+    -W no-dev
+    -D CMAKE_BUILD_TYPE=None
+    -D CMAKE_INSTALL_PREFIX=/usr
+    -D CMAKE_INSTALL_LIBEXECDIR=/usr/lib
+  )
+  cmake "${cmake_options[@]}"
+  cmake --build build
 }
 
 package() {
-  cd "${srcdir}/${_pkgname}"
-
-  DESTDIR="${pkgdir}" cmake --install build
-  install -Dm644 LICENSE -t "${pkgdir}/usr/share/licenses/${_pkgname}"
+  DESTDIR="$pkgdir" cmake --install build
+  install -Dm644 "$_pkgsrc/LICENSE" -t "$pkgdir/usr/share/licenses/$pkgname/"
 }
