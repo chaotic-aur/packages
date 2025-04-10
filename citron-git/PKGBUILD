@@ -10,7 +10,7 @@
 
 _pkgname="citron"
 pkgname="$_pkgname-git"
-pkgver=0.6.1.r14.g0dac3c1
+pkgver=0.6.1.r16.g964bbf4
 pkgrel=1
 pkgdesc="Yet another emulator fork"
 url="https://git.citron-emu.org/Citron/Citron"
@@ -284,7 +284,27 @@ prepare() {
     -i "$_pkgsrc"/src/core/debugger/debugger.cpp
 
   # warn instead of error
-  sed -E '/Werror=/d' -i "$_pkgsrc"/src/CMakeLists.txt
+  find "$_pkgsrc/src" -name "CMakeLists.txt" -exec sed -E '/Werror=/d' -i {} \;
+
+  # add missing headers
+  sed -E -e '1i #include <fcntl.h>\n#include <list>\n#include <thread>' \
+    -i "$_pkgsrc"/src/video_core/vulkan_common/hybrid_memory.h
+
+  # fix struct order
+  patch -d "$_pkgsrc" -Np1 -F100 -i - << END
+--- citron.old/src/video_core/vulkan_common/hybrid_memory.cpp
++++ citron.new/src/video_core/vulkan_common/hybrid_memory.cpp
+@@ -171,8 +171,8 @@
+ 
+                 if (page) {
+                     struct uffdio_copy copy = {
+-                        .src = (uintptr_t)page,
+                         .dst = (uintptr_t)addr,
++                        .src = (uintptr_t)page,
+                         .len = PageSize,
+                         .mode = 0
+                     };
+END
 }
 
 pkgver() {
@@ -298,7 +318,7 @@ _build_main() (
     -S "$_pkgsrc"
     -B build
     -G Ninja
-    -DCMAKE_BUILD_TYPE="Release"
+    -DCMAKE_BUILD_TYPE=None
     -DCMAKE_INSTALL_PREFIX="/usr"
 
     -DENABLE_QT6=ON
