@@ -1,51 +1,59 @@
 # Maintainer: aur.chaotic.cx
 
-: ${_commit_fmt:=0c9fce2ffefecfdce794e1859584e25877b7b592}     # 11.0.2
-: ${_commit_glslang:=fa9c3deb49e035a8abcabe366f26aac010f6cbfb} # 14.3.0
-
 _pkgname="cemu"
 pkgname="$_pkgname-git"
-pkgver=2.6.r0.ga6fb0a4
-pkgrel=1
-pkgdesc="Nintendo Wii U emulator"
+pkgver=2.6.r6.gc4eab08
+pkgrel=2
+pkgdesc="A Wii U emulator"
 url="https://github.com/cemu-project/Cemu"
 license=('MPL-2.0')
 arch=('x86_64')
 
 depends=(
+  'glib2'
+  'glslang'
+  'gtk3'
+  'libbluetooth.so'             # bluez-libs
+  'libboost_program_options.so' # boost-libs
+  'libfmt.so'                   # fmt
+  'libspeexdsp.so'              # speexdsp
   'libx11'
+  'libzarchive.so' # zarchive
+  'libzip.so'      # libzip
+  'openssl'
   'pugixml'
   'sdl2'
   'spirv-tools'
   'wxwidgets-gtk3'
 )
 makedepends=(
-  'bluez-libs'
   'boost'
   'clang'
   'cmake'
-  'curl'
   'git'
-  'glib2'
   'glm'
   'glu'
-  'gtk3'
-  'hidapi'
   'libgl'
   'libpng'
-  'libusb'
-  'libzip'
   'nasm'
   'ninja'
-  'openssl'
   'rapidjson'
   'spirv-headers'
   'vulkan-headers'
-  'wayland'
   'wayland-protocols'
-  'zarchive'
-  'zlib'
-  'zstd'
+
+  # cubeb, no sound if not present
+  'alsa-lib'
+  'jack'
+  'libpulse'
+  'sndio'
+  'speexdsp'
+)
+optdepends+=(
+  'alsa-lib: for ALSA backend'
+  'jack: for JACK backend'
+  'libpulse: for PulseAudio backend'
+  'sndio: for sndio backend'
 )
 
 provides=("$_pkgname=${pkgver%%.r*}")
@@ -85,20 +93,8 @@ _source_cemu() {
   )
 }
 
-_source_fmt() {
-  source+=("fmtlib.fmt"::"git+https://github.com/fmtlib/fmt.git#commit=$_commit_fmt")
-  sha256sums+=('SKIP')
-}
-
-_source_glslang() {
-  source+=("khronosgroup.glslang"::"git+https://github.com/KhronosGroup/glslang.git#commit=$_commit_glslang")
-  sha256sums+=('SKIP')
-}
-
 _source_main
 _source_cemu
-_source_fmt
-_source_glslang
 
 prepare() {
   _submodule_update() {
@@ -110,10 +106,13 @@ prepare() {
     done
   }
 
-  _prepare_cemu
+  _run_if_exists _prepare_cemu
 
   sed -e '/CMAKE_INTERPROCEDURAL_OPTIMIZATION/d' -i "$_pkgsrc/CMakeLists.txt"
   sed -e '/FMT_HEADER_ONLY/d' -i "$_pkgsrc/src/Common/precompiled.h"
+
+  # fix share folder name
+  sed -e '/roamingPath = GetAppDataRoamingPath/s&"Cemu"&"cemu"&' -i "$_pkgsrc/src/gui/CemuApp.cpp"
 }
 
 pkgver() {
@@ -122,61 +121,17 @@ pkgver() {
     | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
 }
 
-_build_fmt() (
-  echo "Building fmt..."
-
-  local _cmake_options=(
-    -B build_fmt
-    -S "fmtlib.fmt"
-    -G Ninja
-    -DCMAKE_BUILD_TYPE=None
-    -DCMAKE_INSTALL_PREFIX='/usr'
-    -DFMT_CMAKE_DIR='lib/cmake/fmt'
-    -DFMT_DOC=OFF
-    -DFMT_INC_DIR='include/fmt'
-    -DFMT_PKGCONFIG_DIR='lib/fmt/pkgconfig'
-    -DFMT_TEST=OFF
-    -DBUILD_SHARED_LIBS=OFF
-    -Wno-dev
-  )
-
-  cmake "${_cmake_options[@]}"
-  cmake --build build_fmt
-  DESTDIR="$srcdir/deps" cmake --install build_fmt
-)
-
-_build_glslang() (
-  echo "Building glslang..."
-
-  local _cmake_options=(
-    -B build_glslang
-    -S "khronosgroup.glslang"
-    -G Ninja
-    -DCMAKE_BUILD_TYPE=None
-    -DCMAKE_INSTALL_PREFIX='/usr'
-    -DALLOW_EXTERNAL_SPIRV_TOOLS=ON
-    -DBUILD_SHARED_LIBS=OFF
-    -DGLSLANG_TESTS=OFF
-    -Wno-dev
-  )
-
-  cmake "${_cmake_options[@]}"
-  cmake --build build_glslang
-  DESTDIR="$srcdir/deps" cmake --install build_glslang
-)
-
-_build_main() (
+_build_cemu() (
   echo "Building cemu..."
   local _cmake_options=(
     -B build
     -S "$_pkgsrc"
     -G Ninja
     -DCMAKE_BUILD_TYPE=None
+    -DALLOW_PORTABLE=OFF
     -DENABLE_DISCORD_RPC=OFF
     -DENABLE_VCPKG=OFF
     -DUSE_SANITIZERS=OFF # cubeb
-    -Dfmt_DIR="$srcdir/deps/usr/lib/cmake/fmt"
-    -Dglslang_DIR="$srcdir/deps/usr/lib/cmake/glslang"
     -Wno-dev
   )
 
@@ -185,45 +140,45 @@ _build_main() (
 )
 
 build() (
-  export CC CXX CFLAGS CXXFLAGS LDFLAGS
+  export CC CXX CFLAGS CXXFLAGS
   CC=clang
   CXX=clang++
   CFLAGS+=' -DNDEBUG'
   CXXFLAGS+=' -DNDEBUG'
-  LDFLAGS+=" -ffat-lto-objects -Wl,--copy-dt-needed-entries"
 
-  _build_fmt
-  _build_glslang
-  _build_main
+  _run_if_exists _build_cemu
 )
 
 package() {
-  depends+=(
-    'libbluetooth.so'
-    'libboost_program_options.so'
-    'libcrypto.so'
-    'libcurl.so'
-    'libgdk-3.so'
-    'libgobject-2.0.so'
-    'libgtk-3.so'
-    'libhidapi-hidraw.so'
-    'libssl.so'
-    'libusb-1.0.so'
-    'libwayland-client.so'
-    'libz.so'
-    'libzarchive.so'
-    'libzip.so'
-    'libzstd.so'
-  )
+  local _exec_name="Cemu_none"
 
-  cd "$_pkgsrc"
+  install -dm755 "$pkgdir/usr/bin"
+  mv "$_pkgsrc/bin/$_exec_name" "$pkgdir/usr/bin/$_pkgname"
 
-  install -dm755 "$pkgdir"/usr/{bin,share/Cemu}
-  mv bin/Cemu_none "$pkgdir"/usr/bin/Cemu
-  cp --reflink=auto -a bin/* "$pkgdir"/usr/share/Cemu/
+  install -dm755 "$pkgdir/usr/share/$_pkgname"
+  cp -a "$_pkgsrc"/bin/* "$pkgdir/usr/share/$_pkgname/"
 
-  install -Dm644 dist/linux/info.cemu.Cemu.desktop -t "$pkgdir"/usr/share/applications/
-  install -Dm644 dist/linux/info.cemu.Cemu.png -t "$pkgdir"/usr/share/pixmaps/
+  install -Dm644 "$_pkgsrc"/dist/linux/info.cemu.Cemu.png "$pkgdir/usr/share/pixmaps/$_pkgname.png"
+
+  install -Dm644 /dev/stdin "$pkgdir/usr/share/applications/$_pkgname.desktop" << END
+[Desktop Entry]
+Type=Application
+Name=${_pkgname^}
+Icon=$_pkgname
+Exec=$_pkgname
+GenericName=Wii U Emulator
+Comment=$pkgdesc
+Terminal=false
+Categories=Game;Emulator;
+Keywords=Nintendo;
+MimeType=application/x-wii-u-rom;
+END
 
   chmod -R u+rwX,go+rX,go-w "$pkgdir/"
+}
+
+_run_if_exists() {
+  if declare -F "$1" > /dev/null; then
+    eval "$1"
+  fi
 }
