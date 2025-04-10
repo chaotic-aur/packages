@@ -13,8 +13,8 @@ _pkgtype+="-git"
 _pkgname="rpcs3"
 pkgname="$_pkgname${_pkgtype:-}"
 
-pkgver=0.0.35.r185.gcd840ef
-pkgrel=1
+pkgver=0.0.36.r53.g9b7d5cd
+pkgrel=2
 pkgdesc="PlayStation 3 emulator"
 url="https://github.com/RPCS3/rpcs3"
 license=('GPL-2.0-only')
@@ -30,6 +30,7 @@ depends=(
   'qt6-multimedia'
   'qt6-svg'
   'sdl3'
+  'vulkan-icd-loader'
 )
 makedepends=(
   'clang'
@@ -38,6 +39,14 @@ makedepends=(
   'lld'
   'llvm'
   'ninja'
+  'vulkan-headers'
+
+  # cubeb
+  'alsa-lib'
+  'jack'
+  'libpulse'
+  'sndio'
+  'speexdsp'
 )
 
 provides=("$_pkgname")
