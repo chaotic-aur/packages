@@ -8,7 +8,7 @@ pkgver=0.6.0.r10.g72df386
 pkgrel=1
 pkgdesc="The official implementation library for the hypr config language"
 arch=('x86_64' 'aarch64')
-url="https://github.com/hyprwm/$_pkgname"
+url="https://github.com/hyprwm/hyprlang"
 license=('LGPL-3.0-or-later')
 depends=( # CHANGE THIS
   gcc-libs
@@ -25,15 +25,6 @@ source=("$_pkgsrc::git+$url.git")
 conflicts=("$_pkgname")
 provides=("$_pkgname=${pkgver%%.r*}" "lib$_pkgname.so")
 sha256sums=('SKIP')
-
-: '
-prepare() {
-	# Pick pull request form GitHub replacing NUM with the pr number
-	# e.g. git pull origin pull/111/head --no-edit --rebase
-
-	git pull origin pull/NUM/head --no-edit --rebase
-}
-'
 
 pkgver() {
   cd "$_pkgsrc"

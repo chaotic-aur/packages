@@ -1,66 +1,13 @@
 # Maintainer: alba4k <blaskoazzolaaaron@gmail.com>
 
 _pkgname="hyprlock"
-pkgname="${_pkgname}-git"
-pkgver=0.8.0.r1.g71d35aa
-pkgrel=1
-pkgdesc="Hyprland's GPU-accelerated screen locking utility"
-arch=(x86_64 aarch64)
-url="https://github.com/hyprwm/hyprlock"
-license=('BSD-3-Clause')
-depends=('wayland' 'hyprlang-git' 'pango' 'pam' 'libxkbcommon' 'libglvnd' 'libdrm' 'mesa' 'hyprutils-git' 'hyprgraphics-git' 'sdbus-cpp>=2.0.0')
-makedepends=('git' 'cmake' 'gcc' 'hyprwayland-scanner-git' 'wayland-protocols' 'xorgproto')
-source=("${_pkgname}::git+https://github.com/hyprwm/hyprlock.git")
-conflicts=("${_pkgname}")
-provides=("${_pkgname}")
-sha256sums=('SKIP')
-
-backup=('etc/pam.d/hyprlock')
-
-pick_mr() {
-  cd ${srcdir}/${_pkgname}
-
-  git pull origin pull/$1/head --no-edit --rebase
-}
-
-prepare() {
-  # Pick pull request form github using `pick_mr <pull request numebr>`.
-  # e.g. `pick_mr 100`
-  echo -n
-}
-
-pkgver() {
-  cd ${srcdir}/${_pkgname}
-
-  git describe --long --tags --abbrev=8 --exclude='*[a-zA-Z][a-zA-Z]*' \
-    | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
-}
-
-build() {
-  cd "${srcdir}/${_pkgname}"
-
-  cmake --no-warn-unused-cli -DCMAKE_INSTALL_PREFIX=/usr -S . -B ./build
-  cmake --build ./build --config Release --target hyprlock
-}
-
-package() {
-  cd "${srcdir}/${_pkgname}"
-
-  DESTDIR="${pkgdir}" cmake --install build
-
-  install -Dm644 LICENSE -t "${pkgdir}/usr/share/licenses/${pkgname}"
-}
-
-# Maintainer: alba4k <blaskoazzolaaaron@gmail.com>
-
-_pkgname="hyprlock"
 _pkgsrc=$_pkgname
 pkgname="$_pkgname-git"
 pkgver=0.8.0.r1.g71d35aa
 pkgrel=1
 pkgdesc="Hyprland's GPU-accelerated screen locking utility"
 arch=('x86_64' 'aarch64')
-url="https://github.com/hyprwm/$_pkgname"
+url="https://github.com/hyprwm/hyprlock"
 license=('BSD-3-Clause')
 depends=(
   'sdbus-cpp>=2.0.0'
@@ -88,15 +35,6 @@ provides=("$_pkgname=${pkgver%%.r*}")
 sha256sums=('SKIP')
 
 backup=('etc/pam.d/hyprlock')
-
-: '
-prepare() {
-	# Pick pull request form GitHub replacing NUM with the pr number
-	# e.g. git pull origin pull/111/head --no-edit --rebase
-
-	git pull origin pull/NUM/head --no-edit --rebase
-}
-'
 
 pkgver() {
   cd "$_pkgsrc"

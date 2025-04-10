@@ -7,7 +7,7 @@ pkgver=0.4.4.r2.g206367a
 pkgrel=1
 pkgdesc="A Hyprland implementation of wayland-scanner, in and for C++"
 arch=('x86_64' 'aarch64')
-url="https://github.com/hyprwm/$_pkgname"
+url="https://github.com/hyprwm/hyprwayland-scanner"
 license=('BSD-3-Clause')
 depends=(
   pugixml
@@ -21,15 +21,6 @@ source=("$_pkgsrc::git+$url.git")
 conflicts=("$_pkgname")
 provides=("$_pkgname=${pkgver%%.r*}")
 sha256sums=('SKIP')
-
-: '
-prepare() {
-	# Pick pull request form GitHub replacing NUM with the pr number
-	# e.g. git pull origin pull/111/head --no-edit --rebase
-
-	git pull origin pull/NUM/head --no-edit --rebase
-}
-'
 
 pkgver() {
   cd "$_pkgsrc"

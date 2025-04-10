@@ -7,7 +7,7 @@ pkgver=0.1.6.r1.g66d1815
 pkgrel=1
 pkgdesc="Hyprland's idle daemon"
 arch=('x86_64' 'aarch64')
-url="https://github.com/hyprwm/$_pkgname"
+url="https://github.com/hyprwm/hypridle"
 license=('BSD-3-Clause')
 depends=(
   hyprlang-git
@@ -28,15 +28,6 @@ source=("$_pkgsrc::git+$url.git")
 conflicts=("$_pkgname")
 provides=("$_pkgname=${pkgver%%.r*}")
 sha256sums=('SKIP')
-
-: '
-prepare() {
-	# Pick pull request form GitHub replacing NUM with the pr number
-	# e.g. git pull origin pull/111/head --no-edit --rebase
-
-	git pull origin pull/NUM/head --no-edit --rebase
-}
-'
 
 pkgver() {
   cd "$_pkgsrc"

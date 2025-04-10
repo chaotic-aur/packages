@@ -9,7 +9,7 @@ pkgver=0.6.4.r0.g3a5c2bd
 pkgrel=1
 pkgdesc="Wayland protocol extensions for Hyprland"
 arch=('x86_64' 'aarch64')
-url="https://github.com/hyprwm/$_pkgname"
+url="https://github.com/hyprwm/hyprland-protocols"
 license=('BSD-3-Clause')
 makedepends=(
   meson
@@ -20,15 +20,6 @@ source=("$_pkgsrc::git+$url.git")
 conflicts=("$_pkgname")
 provides=("$_pkgname=${pkgver%%.r*}")
 sha256sums=('SKIP')
-
-: '
-prepare() {
-	# Pick pull request form GitHub replacing NUM with the pr number
-	# e.g. git pull origin pull/111/head --no-edit --rebase
-
-	git pull origin pull/NUM/head --no-edit --rebase
-}
-'
 
 pkgver() {
   cd "$_pkgsrc"

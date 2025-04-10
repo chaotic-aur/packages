@@ -7,7 +7,7 @@ pkgver=0.1.0.r8.g073c52b
 pkgrel=1
 pkgdesc="A qml style provider for hypr* qt apps"
 arch=('x86_64' 'aarch64')
-url="https://github.com/hyprwm/$_pkgname"
+url="https://github.com/hyprwm/hyprland-qt-support"
 license=('BSD-3-Clause')
 depends=(
   'qt6-wayland>=6.6.0'
@@ -22,15 +22,6 @@ source=("$_pkgsrc::git+$url.git")
 conflicts=("$_pkgname")
 provides=("$_pkgname=${pkgver%%.r*}")
 sha256sums=('SKIP')
-
-: '
-prepare() {
-	# Pick pull request form GitHub replacing NUM with the pr number
-	# e.g. git pull origin pull/111/head --no-edit --rebase
-
-	git pull origin pull/NUM/head --no-edit --rebase
-}
-'
 
 pkgver() {
   cd "$_pkgsrc"

@@ -10,7 +10,7 @@ pkgver=0.48.0.r62.gd775686
 pkgrel=1
 pkgdesc="Hyprland is an independent, highly customizable, dynamic tiling Wayland compositor that doesn't sacrifice on its looks"
 arch=('x86_64' 'aarch64')
-url="https://github.com/hyprwm/$_pkgname"
+url="https://github.com/hyprwm/Hyprland"
 license=('BSD-3-Clause')
 depends=(
   aquamarine-git
@@ -99,10 +99,6 @@ prepare() {
   if [[ -z "$(git config --get user.name)" ]]; then
     git config user.name local && git config user.email '<>' && git config commit.gpgsign false
   fi
-
-  # Pick pull request form GitHub replacing NUM with the pr number
-  # e.g. git pull origin pull/111/head --no-edit --rebase
-  # git pull origin pull/NUM/head --no-edit --rebase
 }
 
 pkgver() {
@@ -125,6 +121,6 @@ build() {
 
 package() {
   DESTDIR="$pkgdir" cmake --install build
-  install -Dm0644 "$srcdir/Hyprland/LICENSE" -t "$pkgdir/usr/share/licenses/${pkgname}/"
-  install -Dm0644 "$srcdir/Hyprland/subprojects/udis86/LICENSE" "$pkgdir/usr/share/licenses/$pkgname/LICENSE-udis86"
+  install -Dm0644 "$_pkgsrc/LICENSE" -t "$pkgdir/usr/share/licenses/${pkgname}/"
+  install -Dm0644 "$_pkgsrc/subprojects/udis86/LICENSE" "$pkgdir/usr/share/licenses/$pkgname/LICENSE-udis86"
 }

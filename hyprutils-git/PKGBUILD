@@ -7,7 +7,7 @@ pkgver=0.6.0.r0.gf2dc70e
 pkgrel=1
 pkgdesc="Hyprland utilities library used across the ecosystem"
 arch=('x86_64' 'aarch64')
-url="https://github.com/hyprwm/$_pkgname"
+url="https://github.com/hyprwm/hyprutils"
 license=('BSD-3-Clause')
 depends=(
   pixman
@@ -21,15 +21,6 @@ source=("$_pkgsrc::git+$url.git")
 conflicts=("$_pkgname")
 provides=("$_pkgname=${pkgver%%.r*}" "lib$_pkgname.so")
 sha256sums=('SKIP')
-
-: '
-prepare() {
-	# Pick pull request form GitHub replacing NUM with the pr number
-	# e.g. git pull origin pull/111/head --no-edit --rebase
-
-	git pull origin pull/NUM/head --no-edit --rebase
-}
-'
 
 pkgver() {
   cd "$_pkgsrc"

@@ -8,7 +8,7 @@ pkgver=1.3.9.r4.g150b0b6
 pkgrel=1
 pkgdesc="xdg-desktop-portal backend for Hyprland"
 arch=('x86_64' 'aarch64')
-url="https://github.com/hyprwm/$_pkgname"
+url="https://github.com/hyprwm/xdg-desktop-portal-hyprland"
 license=('BSD-3-Clause')
 depends=(
   hyprlang-git
@@ -41,15 +41,6 @@ source=("$_pkgsrc::git+$url.git")
 conflicts=("$_pkgname")
 provides=("$_pkgname=${pkgver%%.r*}")
 sha256sums=('SKIP')
-
-: '
-prepare() {
-	# Pick pull request form GitHub replacing NUM with the pr number
-	# e.g. git pull origin pull/111/head --no-edit --rebase
-
-	git pull origin pull/NUM/head --no-edit --rebase
-}
-'
 
 pkgver() {
   cd "$_pkgsrc"
