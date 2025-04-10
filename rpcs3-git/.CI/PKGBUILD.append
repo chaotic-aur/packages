@@ -1,8 +1,9 @@
-export CMAKE_POLICY_VERSION_MINIMUM=3.5
-
 pkgdesc="PlayStation 3 emulator"
 
-makedepends+=('ninja')
+makedepends+=(
+  'ninja'
+  'vulkan-headers'
+)
 
 _pkgsrc="rpcs3"
 
@@ -22,5 +23,5 @@ eval _orig_"$(declare -f package)"
 
 package() {
   (_orig_package)
-  rm -rf "$pkgdir/usr/share/rpcs3"/{git,test}
+  rm -rf "$pkgdir/usr/share/rpcs3"/git
 }
