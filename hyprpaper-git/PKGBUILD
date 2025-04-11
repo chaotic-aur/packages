@@ -1,24 +1,23 @@
-# Maintainer:
+# Maintainer: xiota
+# Maintainer: alba4k <blaskoazzolaaaron@gmail.com>
 # Contributor: ThatOneCalculator <kainoa@t1c.dev>
 
 _pkgname="hyprpaper"
 pkgname="$_pkgname-git"
-pkgver=0.7.3.r1.gf15e678
+pkgver=0.7.4.r4.g05337a4
 pkgrel=1
-pkgdesc="a blazing fast wayland wallpaper utility with IPC controls"
+pkgdesc="A blazing fast wayland wallpaper utility with IPC controls"
+arch=('x86_64' 'aarch64')
 url="https://github.com/hyprwm/hyprpaper"
 license=('BSD-3-Clause')
-arch=('x86_64')
 
 depends=(
-  pango
-  wayland
-
-  ## AUR
   hyprgraphics-git
   hyprlang-git
   hyprutils-git
   hyprwayland-scanner-git
+  pango
+  wayland
 )
 makedepends=(
   cmake
@@ -32,28 +31,25 @@ makedepends=(
 provides=("$_pkgname=${pkgver%%.r*}")
 conflicts=("$_pkgname")
 
-_pkgsrc="$_pkgname"
-source=("$_pkgsrc"::"git+$url.git")
+_pkgsrc=$_pkgname
+source=("$_pkgsrc::git+$url.git")
 sha256sums=('SKIP')
 
 pkgver() {
   cd "$_pkgsrc"
-  git describe --long --tags --abbrev=7 --exclude='*[a-zA-Z][a-zA-Z]*' \
-    | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
+  git describe --long --tags --abbrev=7 | sed 's/^v//;s/\([^-]*-g\)/r\1/;s/-/./g'
 }
 
 build() {
-  local _cmake_options=(
+  local cmake_options=(
     -B build
     -S "$_pkgsrc"
     -G Ninja
-    -DCMAKE_BUILD_TYPE=None
-    -DCMAKE_INSTALL_PREFIX='/usr'
-    -Wno-dev
+    -W no-dev
+    -D CMAKE_BUILD_TYPE=None
+    -D CMAKE_INSTALL_PREFIX=/usr
   )
-
-  cmake "${_cmake_options[@]}"
-  make -C "$_pkgsrc" protocols
+  cmake "${cmake_options[@]}"
   cmake --build build
 }
 

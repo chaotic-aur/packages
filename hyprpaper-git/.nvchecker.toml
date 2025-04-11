@@ -1,4 +1,0 @@
-[hyprpaper-git]
-source = "git"
-git = "https://github.com/hyprwm/hyprpaper.git"
-prefix = "v"
