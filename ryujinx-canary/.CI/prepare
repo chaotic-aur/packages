@@ -6,16 +6,16 @@ _check_status() {
   eval "$(grep -Eo '^(url|pkgver|pkgrel)=\S+' PKGBUILD)"
   _pkgver=$(LANG=C LC_ALL=C pacman -Si chaotic-aur/ryujinx-canary | grep -Pom1 '^Version\s+:\s+\K\S+')
 
-  _response=$(curl -Ssf "$url/tags")
+  _response=$(curl -L -Ssf "$url/-/tags?format=atom")
   _tag=$(
     printf '%s' "$_response" \
-      | grep -E '/tag/Canary-([0-9\.]+)"' \
-      | sed -E 's&^.*/tag/Canary-([0-9\.]+)".*$&\1&' \
+      | grep -E '/tags/Canary-([0-9\.]+)"' \
+      | sed -E 's&^.*/tags/Canary-([0-9\.]+)".*$&\1&' \
       | sort -rV | head -1
   )
-  _pkgver_new="${_tag#v}"
+  _pkgver_new="${_tag:-}"
 
-  if [ $(vercmp "${_pkgver_new:?}" "$_pkgver") -gt 0 ]; then
+  if [ $(vercmp "${_pkgver_new:-0}" "${_pkgver:-0}") -gt 0 ]; then
     echo "New upstream release.  $_pkgver_new > $_pkgver"
   elif [ $(vercmp "${pkgver:-0}-${pkgrel:-0}" "$_pkgver") -gt 0 ]; then
     echo "Continuing build.  ${pkgver}-${pkgrel} > $_pkgver"
