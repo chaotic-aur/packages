@@ -1,6 +1,3 @@
-unset backup
-
-_pkgsrc="Hyprland"
 pkgver() {
   cd "$_pkgsrc"
 
@@ -16,6 +13,6 @@ eval _orig_"$(declare -f package)"
 package() {
   _orig_package
 
-  # sync with extra/hyprland
+  # extraneous file
   rm -fv "$pkgdir/usr/include/hyprland/src/version.h.in"
 }
