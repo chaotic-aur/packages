@@ -4,8 +4,8 @@
 
 pkgname=python-xvfbwrapper
 _pkgname="${pkgname#python-}"
-pkgver=0.2.9
-pkgrel=12
+pkgver=0.2.10
+pkgrel=1
 pkgdesc='Manage headless displays with Xvfb (X virtual framebuffer)'
 arch=(any)
 url='https://github.com/cgoldberg/xvfbwrapper'
@@ -23,7 +23,7 @@ makedepends=(
 checkdepends=(python-pytest)
 options=(!debug)
 source=("${pkgname}-${pkgver}.tar.gz::${url}/archive/refs/tags/${pkgver}.tar.gz")
-sha256sums=('7b991de03fad1dd0e50d814e3cb3588fb69011d91320f32155d5422c83385788')
+sha256sums=('afdcaece51c8a7968a2e88eb46347826e99372ee48d266d2999c995bf6081e5f')
 
 build() {
   cd "${_pkgname}-${pkgver}"

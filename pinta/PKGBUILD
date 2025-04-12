@@ -1,25 +1,24 @@
 # Maintainer: Rafael Baboni Dominiquini <rafaeldominiquini at gmail dot com>
 
 pkgname=pinta
-pkgver=2.1.2
-pkgrel=2
+pkgver=3.0
+pkgrel=1
 pkgdesc="Drawing/editing program modeled after Paint.NET. It's goal is to provide a simplified alternative to GIMP for casual users"
 arch=(any)
 url="https://pinta-project.com"
 license=(MIT)
 depends=(dotnet-runtime libadwaita hicolor-icon-theme webp-pixbuf-loader)
-makedepends=(autoconf-archive intltool dotnet-sdk)
+makedepends=(autoconf-archive intltool dotnet-sdk gtk4 gcc perl)
 provides=($pkgname)
 conflicts=($pkgname-git)
 source=("Pinta-${pkgver}.tar.gz::https://github.com/PintaProject/Pinta/archive/refs/tags/${pkgver}.tar.gz")
-sha256sums=('51939b5ecf1cfd546189da4a4c54146616052710434e718136cf1fa3dee9d680')
+sha256sums=('d7c4abb3133706253e7645d9347a6ab3e8616bee023f33db852c76f0e2bf102d')
 
 prepare() {
   cd "${srcdir}/Pinta-${pkgver}"
 
-  sed -i '/^PINTA_BUILD_OPTS/ s/$/ -maxcpucount:1/' Makefile.am
-
-  sed -i 's/net8.0/net9.0/g' Directory.Build.props configure.ac
+  sed -i 's/net8.0/net9.0/g' Directory.Build.props
+  sed -i 's/StartupWMClass=Pinta/StartupWMClass=com.github.PintaProject.Pinta/g' xdg/pinta.desktop.in
 
   ./autogen.sh --prefix=/usr --sysconfdir=/etc --localstatedir=/var
 }
