@@ -1,7 +1,6 @@
 # Maintainer: alba4k <blaskoazzolaaaron@gmail.com>
 
 _pkgname="hypridle"
-_pkgsrc=$_pkgname
 pkgname="$_pkgname-git"
 pkgver=0.1.6.r1.g66d1815
 pkgrel=1
@@ -9,6 +8,7 @@ pkgdesc="Hyprland's idle daemon"
 arch=('x86_64' 'aarch64')
 url="https://github.com/hyprwm/hypridle"
 license=('BSD-3-Clause')
+
 depends=(
   hyprlang-git
   hyprutils-git
@@ -24,9 +24,12 @@ makedepends=(
   ninja
   wayland-protocols
 )
-source=("$_pkgsrc::git+$url.git")
-conflicts=("$_pkgname")
+
 provides=("$_pkgname=${pkgver%%.r*}")
+conflicts=("$_pkgname")
+
+_pkgsrc=$_pkgname
+source=("$_pkgsrc::git+$url.git")
 sha256sums=('SKIP')
 
 pkgver() {

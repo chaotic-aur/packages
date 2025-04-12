@@ -4,7 +4,6 @@
 # Contributor: ThatOneCalculator <kainoa at t1c dot dev>
 
 _pkgname="hyprland"
-_pkgsrc=$_pkgname
 pkgname="$_pkgname-git"
 pkgver=0.48.0.r62.gd775686
 pkgrel=1
@@ -12,6 +11,7 @@ pkgdesc="Hyprland is an independent, highly customizable, dynamic tiling Wayland
 arch=('x86_64' 'aarch64')
 url="https://github.com/hyprwm/Hyprland"
 license=('BSD-3-Clause')
+
 depends=(
   aquamarine-git
   cairo
@@ -76,13 +76,16 @@ optdepends=(
   'glaze: to build and install plugins using hyprpm'
   'uwsm: the recommended way to start Hyprland'
 )
+
+conflicts=("$_pkgname")
+provides=("$_pkgname=${pkgver%%.r*}" "wayland-compositor")
+
+_pkgsrc=$_pkgname
 source=(
   "$_pkgsrc::git+$url.git"
   "udis86::git+https://github.com/canihavesomecoffee/udis86.git"
 )
-conflicts=("$_pkgname")
-provides=("$_pkgname=${pkgver%%.r*}" "wayland-compositor")
-b2sums=(
+sha256sums=(
   'SKIP'
   'SKIP'
 )

@@ -1,51 +1,67 @@
 # Maintainer: imnotpolar
+# Maintainer: alba4k <blaskoazzolaaaron@gmail.com>
 # Contributor: éclairevoyant
 # Contributor: ThatOneCalculator <kainoa at t1c dot dev>
 
-_pkgname=hyprpicker
+_pkgname="hyprpicker"
 pkgname="$_pkgname-git"
-pkgver=0.4.1.r1.4411a6d
+pkgver=0.4.4.r0.gfd77aea
 pkgrel=1
 pkgdesc="A wlroots-compatible Wayland color picker that does not suck"
-arch=(x86_64)
-url="https://github.com/hyprwm/$_pkgname"
+arch=('x86_64' 'aarch64')
+url="https://github.com/hyprwm/hyprpicker"
 license=('BSD-3-Clause')
-depends=(cairo gcc-libs glibc libxkbcommon wayland)
+
+depends=(
+  cairo
+  gcc-libs
+  glibc
+  libxkbcommon
+  wayland
+)
 makedepends=(
   cmake
-  gdb
   git
+  hyprutils-git
+  hyprwayland-scanner-git
   libgl
   libjpeg-turbo
   meson
   ninja
   pango
-  hyprutils-git
-  hyprwayland-scanner-git
   wayland-protocols
   xorgproto
-  pkg-config
 )
-optdepends=('wl-clipboard: --autocopy')
-source=("git+$url.git")
+optdepends=(
+  'wl-clipboard: --autocopy'
+)
+
 provides=("$_pkgname=${pkgver%%.r*}")
 conflicts=("$_pkgname")
-b2sums=('SKIP')
+
+_pkgsrc=$_pkgname
+source=("$_pkgsrc::git+$url.git")
+sha256sums=('SKIP')
 
 pkgver() {
-  git -C $_pkgname describe --long --tags | sed 's/^v//;s/\([^-]*-\)g/r\1/;s/-/./g'
+  cd "$_pkgsrc"
+  git describe --long --tags --abbrev=7 | sed 's/^v//;s/\([^-]*-g\)/r\1/;s/-/./g'
 }
 
 build() {
-  cmake -B build -S $_pkgname
+  local cmake_options=(
+    -B build
+    -S "$_pkgsrc"
+    -G Ninja
+    -W no-dev
+    -D CMAKE_BUILD_TYPE=None
+    -D CMAKE_INSTALL_PREFIX=/usr
+  )
+  cmake "${cmake_options[@]}"
   cmake --build build
 }
 
 package() {
-  install -vDm755 build/hyprpicker -t "$pkgdir/usr/bin/"
-
-  cd $_pkgname
-  install -vDm644 LICENSE -t "$pkgdir/usr/share/licenses/$pkgname/"
-  install -vDm644 doc/$_pkgname.1 -t "$pkgdir/usr/share/man/man1/"
-  install -vDm644 README.md -t "$pkgdir/usr/share/doc/$_pkgname/"
+  DESTDIR="$pkgdir" cmake --install build
+  install -Dm644 "$_pkgsrc/LICENSE" -t "$pkgdir/usr/share/licenses/$pkgname/"
 }

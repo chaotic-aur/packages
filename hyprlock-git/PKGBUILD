@@ -1,7 +1,6 @@
 # Maintainer: alba4k <blaskoazzolaaaron@gmail.com>
 
 _pkgname="hyprlock"
-_pkgsrc=$_pkgname
 pkgname="$_pkgname-git"
 pkgver=0.8.0.r1.g71d35aa
 pkgrel=1
@@ -9,6 +8,7 @@ pkgdesc="Hyprland's GPU-accelerated screen locking utility"
 arch=('x86_64' 'aarch64')
 url="https://github.com/hyprwm/hyprlock"
 license=('BSD-3-Clause')
+
 depends=(
   'sdbus-cpp>=2.0.0'
   hyprgraphics-git
@@ -29,9 +29,12 @@ makedepends=(
   ninja
   wayland-protocols
 )
-source=("$_pkgsrc::git+$url.git")
-conflicts=("$_pkgname")
+
 provides=("$_pkgname=${pkgver%%.r*}")
+conflicts=("$_pkgname")
+
+_pkgsrc=$_pkgname
+source=("$_pkgsrc::git+$url.git")
 sha256sums=('SKIP')
 
 backup=('etc/pam.d/hyprlock')

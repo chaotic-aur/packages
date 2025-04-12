@@ -1,7 +1,6 @@
 # Maintainer: alba4k <blaskoazzolaaaron@gmail.com>
 
 _pkgname="hyprwayland-scanner"
-_pkgsrc=$_pkgname
 pkgname="$_pkgname-git"
 pkgver=0.4.4.r2.g206367a
 pkgrel=1
@@ -9,6 +8,7 @@ pkgdesc="A Hyprland implementation of wayland-scanner, in and for C++"
 arch=('x86_64' 'aarch64')
 url="https://github.com/hyprwm/hyprwayland-scanner"
 license=('BSD-3-Clause')
+
 depends=(
   pugixml
 )
@@ -17,9 +17,12 @@ makedepends=(
   git
   ninja
 )
-source=("$_pkgsrc::git+$url.git")
-conflicts=("$_pkgname")
+
 provides=("$_pkgname=${pkgver%%.r*}")
+conflicts=("$_pkgname")
+
+_pkgsrc=$_pkgname
+source=("$_pkgsrc::git+$url.git")
 sha256sums=('SKIP')
 
 pkgver() {

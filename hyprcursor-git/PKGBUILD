@@ -1,7 +1,6 @@
 # Maintainer: alba4k <blaskoazzolaaaron@gmail.com>
 
 _pkgname="hyprcursor"
-_pkgsrc=$_pkgname
 pkgname="$_pkgname-git"
 pkgver=0.1.12.r1.g2fd3642
 pkgrel=1
@@ -21,9 +20,12 @@ makedepends=(
   cmake
   ninja
 )
-source=("$_pkgsrc::git+$url.git")
+
 conflicts=("$_pkgname")
 provides=("$_pkgname=${pkgver}" "lib$_pkgname.so")
+
+_pkgsrc=$_pkgname
+source=("$_pkgsrc::git+$url.git")
 sha256sums=('SKIP')
 
 pkgver() {

@@ -3,7 +3,6 @@
 # Contributor: Caleb Maclennan <caleb@alerque.com>
 
 _pkgname="aquamarine"
-_pkgsrc=$_pkgname
 pkgname="$_pkgname-git"
 pkgver=0.8.0.r3.gc8282f4
 pkgrel=1
@@ -11,6 +10,7 @@ pkgdesc="Aquamarine is a very light linux rendering backend library"
 arch=('x86_64' 'aarch64')
 url="https://github.com/hyprwm/$_pkgname"
 license=('BSD-3-Clause')
+
 depends=(
   gcc-libs
   glibc
@@ -34,9 +34,12 @@ makedepends=(
   git
   ninja
 )
-source=("$_pkgsrc::git+$url.git")
-conflicts=("$_pkgname")
+
 provides=("$_pkgname=${pkgver%%.r*}")
+conflicts=("$_pkgname")
+
+_pkgsrc=$_pkgname
+source=("$_pkgsrc::git+$url.git")
 sha256sums=('SKIP')
 
 pkgver() {

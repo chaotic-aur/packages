@@ -1,7 +1,6 @@
 # Maintainer: alba4k <blaskoazzolaaaron@gmail.com>
 
 _pkgname="hyprutils"
-_pkgsrc=$_pkgname
 pkgname="$_pkgname-git"
 pkgver=0.6.0.r0.gf2dc70e
 pkgrel=1
@@ -9,6 +8,7 @@ pkgdesc="Hyprland utilities library used across the ecosystem"
 arch=('x86_64' 'aarch64')
 url="https://github.com/hyprwm/hyprutils"
 license=('BSD-3-Clause')
+
 depends=(
   pixman
 )
@@ -17,9 +17,12 @@ makedepends=(
   git
   ninja
 )
-source=("$_pkgsrc::git+$url.git")
-conflicts=("$_pkgname")
+
 provides=("$_pkgname=${pkgver%%.r*}" "lib$_pkgname.so")
+conflicts=("$_pkgname")
+
+_pkgsrc=$_pkgname
+source=("$_pkgsrc::git+$url.git")
 sha256sums=('SKIP')
 
 pkgver() {

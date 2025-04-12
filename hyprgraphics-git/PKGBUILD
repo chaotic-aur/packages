@@ -1,7 +1,6 @@
 # Maintainer: alba4k <blaskoazzolaaaron@gmail.com>
 
 _pkgname="hyprgraphics"
-_pkgsrc=$_pkgname
 pkgname="$_pkgname-git"
 pkgver=0.1.3.r0.g9d7f268
 pkgrel=1
@@ -9,6 +8,7 @@ pkgdesc="Hyprland graphics / resource utilities"
 arch=('x86_64' 'aarch64')
 url="https://github.com/hyprwm/hyprgraphics"
 license=('BSD-3-Clause')
+
 depends=(
   cairo
   file
@@ -24,9 +24,12 @@ makedepends=(
   git
   ninja
 )
-source=("$_pkgsrc::git+$url.git")
-conflicts=("$_pkgname")
+
 provides=("$_pkgname=${pkgver%%.r*}" "lib$_pkgname.so")
+conflicts=("$_pkgname")
+
+_pkgsrc=$_pkgname
+source=("$_pkgsrc::git+$url.git")
 sha256sums=('SKIP')
 
 pkgver() {

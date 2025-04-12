@@ -2,7 +2,6 @@
 # Maintainer: alba4k <blaskoazzolaaaron@gmail.com>
 
 _pkgname="hyprlang"
-_pkgsrc=$_pkgname
 pkgname="$_pkgname-git"
 pkgver=0.6.0.r10.g72df386
 pkgrel=1
@@ -10,20 +9,24 @@ pkgdesc="The official implementation library for the hypr config language"
 arch=('x86_64' 'aarch64')
 url="https://github.com/hyprwm/hyprlang"
 license=('LGPL-3.0-or-later')
-depends=( # CHANGE THIS
+
+depends=(
   gcc-libs
   glibc
   hyprutils-git
 )
-makedepends=( # CHANGE THIS
+makedepends=(
   cmake
   git
   ninja
   pixman
 )
-source=("$_pkgsrc::git+$url.git")
-conflicts=("$_pkgname")
+
 provides=("$_pkgname=${pkgver%%.r*}" "lib$_pkgname.so")
+conflicts=("$_pkgname")
+
+_pkgsrc=$_pkgname
+source=("$_pkgsrc::git+$url.git")
 sha256sums=('SKIP')
 
 pkgver() {

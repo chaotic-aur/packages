@@ -1,7 +1,6 @@
 # Maintainer: alba4k <blaskoazzolaaaron@gmail.com>
 
 _pkgname="hyprland-qtutils"
-_pkgsrc=$_pkgname
 pkgname="$_pkgname-git"
 pkgver=0.1.3.r6.g3504a29
 pkgrel=1
@@ -9,6 +8,7 @@ pkgdesc="Hyprland QT/qml utility apps"
 arch=('x86_64' 'aarch64')
 url="https://github.com/hyprwm/hyprland-qtutils"
 license=('BSD-3-Clause')
+
 depends=(
   hyprland-qt-support-git
   hyprutils-git
@@ -19,9 +19,12 @@ makedepends=(
   git
   ninja
 )
-source=("$_pkgsrc::git+$url.git")
-conflicts=("$_pkgname")
+
 provides=("$_pkgname=${pkgver%%.r*}")
+conflicts=("$_pkgname")
+
+_pkgsrc=$_pkgname
+source=("$_pkgsrc::git+$url.git")
 sha256sums=('SKIP')
 
 pkgver() {

@@ -1,7 +1,6 @@
 # Maintainer: alba4k <blaskoazzolaaaron@gmail.com>
 
 _pkgname="hyprland-qt-support"
-_pkgsrc=$_pkgname
 pkgname="$_pkgname-git"
 pkgver=0.1.0.r8.g073c52b
 pkgrel=1
@@ -9,6 +8,7 @@ pkgdesc="A qml style provider for hypr* qt apps"
 arch=('x86_64' 'aarch64')
 url="https://github.com/hyprwm/hyprland-qt-support"
 license=('BSD-3-Clause')
+
 depends=(
   'qt6-wayland>=6.6.0'
   'hyprlang-git>=0.6.0'
@@ -18,9 +18,12 @@ makedepends=(
   git
   ninja
 )
-source=("$_pkgsrc::git+$url.git")
-conflicts=("$_pkgname")
+
 provides=("$_pkgname=${pkgver%%.r*}")
+conflicts=("$_pkgname")
+
+_pkgsrc=$_pkgname
+source=("$_pkgsrc::git+$url.git")
 sha256sums=('SKIP')
 
 pkgver() {

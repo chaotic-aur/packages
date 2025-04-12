@@ -68,7 +68,7 @@ pkgbase = hyprland-git
 	backup = usr/share/xdg-desktop-portal/hyprland-portals.conf
 	source = hyprland::git+https://github.com/hyprwm/Hyprland.git
 	source = udis86::git+https://github.com/canihavesomecoffee/udis86.git
-	b2sums = SKIP
-	b2sums = SKIP
+	sha256sums = SKIP
+	sha256sums = SKIP
 
 pkgname = hyprland-git
