@@ -1,7 +1,7 @@
 pkgbase = jellyfin-media-player
 	pkgdesc = Jellyfin Desktop Client
 	pkgver = 1.12.0
-	pkgrel = 2
+	pkgrel = 3
 	url = https://github.com/jellyfin/jellyfin-media-player
 	arch = i686
 	arch = x86_64
@@ -21,7 +21,7 @@ pkgbase = jellyfin-media-player
 	source = disable-update-check.patch
 	source = fix-cmake-4.patch
 	sha256sums = a90c8ced214f7f66f440bb690c64ac333e18bdfb5bc54d845ea5fc2d04f31ed5
-	sha256sums = 23727ef8f727ac17af228f29aa5508230caac9d02f37d6c12908fcf50d4f382a
+	sha256sums = 2aef728dfdef17f089186d1a2b604837678fa896b4c299dd710b6f37d290aba0
 	sha256sums = 7ff8a15d9e9a7bc9a75bc9f0ee730408827827f6f6d564686ac9f9ca26525342
 
 pkgname = jellyfin-media-player
