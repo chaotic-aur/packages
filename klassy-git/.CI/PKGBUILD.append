@@ -1,0 +1,16 @@
+export CMAKE_GENERATOR=Ninja
+
+license=('GPL-2.0-or-later' 'MIT')
+
+makedepends+=('ninja')
+
+_pkgsrc="$_pkgname"
+pkgver() {
+  cd "$_pkgsrc"
+  local _tag _version _revision _hash
+  _tag=$(git tag -l '*breeze*' | sort -rV | head -1)
+  _version="${_tag#*breeze}"
+  _revision=$(git rev-list --count --cherry-pick "$_tag"...HEAD)
+  _commit=$(git rev-parse --short=7 HEAD)
+  printf '%s.r%s.g%s' "${_version:?}" "${_revision:?}" "${_commit:?}"
+}
