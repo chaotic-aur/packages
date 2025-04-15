@@ -1,16 +1,8 @@
 # Maintainer: aur.chaotic.cx
 
-## options
-: ${_build_boost:=false}
-: ${_boost_version:=1.85.0}
-: ${_boost_cksum:=7009fe1faa1697476bdc7027703a2badb84e849b7b0baad5086b087b971f8617}
-
-: ${_build_fmt:=false}
-: ${_commit_fmt:=9cf9f38eded63e5e0fb95cd536ba51be601d7fa2} # 11.1.3
-
 _pkgname="citron"
 pkgname="$_pkgname-git"
-pkgver=0.6.1.r16.g964bbf4
+pkgver=0.6.1.r22.ga1f3414
 pkgrel=1
 pkgdesc="Yet another emulator fork"
 url="https://git.citron-emu.org/Citron/Citron"
@@ -19,12 +11,15 @@ arch=('x86_64')
 
 depends=(
   'ffmpeg'
+  'libboost_context.so' # boost-libs
+  'libfmt.so'
   'libusb'
   'qt6-multimedia'
   'qt6-webengine'
   'sdl2'
 )
 makedepends=(
+  'boost'
   'cmake'
   'git'
   'glslang'
@@ -43,80 +38,6 @@ _source_main() {
   _pkgsrc="$_pkgname"
   source=("$_pkgsrc"::"git+$url.git")
   sha256sums=('SKIP')
-}
-
-_source_fmt() {
-  source+=("fmtlib.fmt"::"git+https://github.com/fmtlib/fmt.git#commit=$_commit_fmt")
-  sha256sums+=('SKIP')
-
-  _build_fmt() (
-    echo "Building fmt..."
-
-    local _cmake_options=(
-      -B build_fmt
-      -S "fmtlib.fmt"
-      -G Ninja
-      -DCMAKE_BUILD_TYPE=None
-      -DCMAKE_INSTALL_PREFIX='/usr'
-      -DFMT_CMAKE_DIR='lib/cmake/fmt'
-      -DFMT_DOC=OFF
-      -DFMT_INC_DIR='include/fmt'
-      -DFMT_PKGCONFIG_DIR='lib/fmt/pkgconfig'
-      -DFMT_TEST=OFF
-      -DBUILD_SHARED_LIBS=OFF
-      -Wno-dev
-    )
-
-    cmake "${_cmake_options[@]}"
-    cmake --build build_fmt
-    DESTDIR="$srcdir/deps" cmake --install build_fmt
-  )
-}
-
-_source_boost() {
-  _pkgname_boost="boost_${_boost_version//./_}"
-  _pkgext_boost="tar.bz2"
-  source+=("$_pkgname_boost.$_pkgext_boost"::"https://archives.boost.io/release/$_boost_version/source/$_pkgname_boost.$_pkgext_boost")
-  sha256sums+=("$_boost_cksum")
-
-  _build_boost() (
-    echo "Building boost..."
-    local JOBS="$(sed 's/.*\(-j *[0-9]\+\).*/\1/' <<< $MAKEFLAGS)"
-    local python_version=$(python -c 'import sys; print(".".join(map(str, sys.version_info[:2])))')
-
-    pushd "$_pkgname_boost/tools/build"
-    ./bootstrap.sh --cxxflags="$CXXFLAGS $LDFLAGS"
-    ./b2 install --prefix="$srcdir"/deps
-    ln -s b2 "$srcdir"/deps/bin/bjam
-    popd
-
-    cd "$_pkgname_boost"
-    ./bootstrap.sh --with-toolset=gcc --with-icu --with-python=python3
-
-    # support for OpenMPI
-    echo "using mpi ;" >> project-config.jam
-
-    # boostbook is needed by quickbook
-    install -dm755 "$srcdir"/deps/share/boostbook
-    cp -a tools/boostbook/{xsl,dtd} "$srcdir"/deps/share/boostbook/
-
-    # install to $srcdir/deps
-    ./b2 install \
-      variant=release \
-      debug-symbols=off \
-      threading=multi \
-      runtime-link=static \
-      link=static \
-      toolset=gcc \
-      python=$python_version \
-      cflags="$CPPFLAGS $CFLAGS -fPIC -O3 -ffat-lto-objects" \
-      cxxflags="$CPPFLAGS $CXXFLAGS -fPIC -O3 -ffat-lto-objects" \
-      linkflags="$LDFLAGS" \
-      --layout=system \
-      $JOBS \
-      \
-      --prefix="$srcdir"/deps
-  )
 }
 
 _source_citron() {
@@ -249,19 +170,6 @@ _source_bylaws_libadrenotools
 _source_lat9nq_tzdb_to_nx
 _source_yuzu_mirror_sirit
 
-if [[ "${_build_boost::1}" == "t" ]]; then
-  _source_boost
-else
-  depends+=('libboost_context.so') # boost-libs
-  makedepends+=('boost')
-fi
-
-if [[ "${_build_fmt::1}" == "t" ]]; then
-  _source_fmt
-else
-  depends+=('libfmt.so')
-fi
-
 prepare() {
   _submodule_update() {
     local _module
@@ -285,26 +193,6 @@ prepare() {
 
   # warn instead of error
   find "$_pkgsrc/src" -name "CMakeLists.txt" -exec sed -E '/Werror=/d' -i {} \;
-
-  # add missing headers
-  sed -E -e '1i #include <fcntl.h>\n#include <list>\n#include <thread>' \
-    -i "$_pkgsrc"/src/video_core/vulkan_common/hybrid_memory.h
-
-  # fix struct order
-  patch -d "$_pkgsrc" -Np1 -F100 -i - << END
---- citron.old/src/video_core/vulkan_common/hybrid_memory.cpp
-+++ citron.new/src/video_core/vulkan_common/hybrid_memory.cpp
-@@ -171,8 +171,8 @@
- 
-                 if (page) {
-                     struct uffdio_copy copy = {
--                        .src = (uintptr_t)page,
-                         .dst = (uintptr_t)addr,
-+                        .src = (uintptr_t)page,
-                         .len = PageSize,
-                         .mode = 0
-                     };
-END
 }
 
 pkgver() {
@@ -313,7 +201,9 @@ pkgver() {
     | sed -E 's/^[^0-9]*//;s/-[^g][a-z\-]+-/-/;s/([^-]*-g)/r\1/;s/-/./g'
 }
 
-_build_main() (
+build() (
+  export CMAKE_POLICY_VERSION_MINIMUM=3.5
+
   local _cmake_options=(
     -S "$_pkgsrc"
     -B build
@@ -356,29 +246,12 @@ _build_main() (
     -DCITRON_CRASH_DUMPS=OFF
     -DCITRON_TESTS=OFF
 
-    #-DBOOST_ALLOW_DEPRECATED_HEADERS=1
     -DUSE_SANITIZERS=OFF # cubeb
     -Wno-dev
   )
 
-  if [[ "${_build_boost::1}" == "t" ]]; then
-    _cmake_options+=(-DBoost_INCLUDE_DIR="$srcdir/deps/include")
-  fi
-
-  if [[ "${_build_fmt::1}" == "t" ]]; then
-    _cmake_options+=(-Dfmt_DIR="$srcdir/deps/usr/lib/cmake/fmt")
-  fi
-
   cmake "${_cmake_options[@]}"
   cmake --build build
-)
-
-build() (
-  export CMAKE_POLICY_VERSION_MINIMUM=3.5
-
-  _run_if_exists _build_boost
-  _run_if_exists _build_fmt
-  _build_main
 )
 
 package() {
