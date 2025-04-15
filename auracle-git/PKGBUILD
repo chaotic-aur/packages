@@ -2,13 +2,13 @@
 
 pkgname=auracle-git
 _pkgname="${pkgname%-git}"
-pkgver=r420.f4cebb5
+pkgver=r424.231c554
 pkgrel=1
 pkgdesc='A flexible client for the AUR'
 arch=('x86_64' 'i686')
 url="https://github.com/falconindy/auracle"
 license=('MIT')
-depends=('pacman' 'libcurl.so' 'libsystemd')
+depends=('glaze' 'pacman' 'libcurl.so' 'libsystemd')
 makedepends=('meson' 'git' 'perl' 'systemd')
 checkdepends=('python' 'fakechroot' 'gtest')
 provides=("$_pkgname")
