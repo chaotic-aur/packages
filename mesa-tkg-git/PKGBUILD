@@ -448,13 +448,34 @@ build() {
   # omx removal
   if (cd "$srcdir/$_mesa_srcdir" && ! git merge-base --is-ancestor 9b6c27a320ab4b0fcf1fb16220ae7c3d3f06f7df HEAD); then
     _omx="-D gallium-omx=${_gallium_omx}"
-    _omx_32="-D gallium-omx="${_disabled_}""
+    _omx_32="-D gallium-omx=${_disabled_}"
   fi
 
   # dri3 removal
   if (cd "$srcdir/$_mesa_srcdir" && ! git merge-base --is-ancestor 8f6fca89aa1812b03da6d9f7fac3966955abc41e HEAD); then
     _dri3="-D dri3=${_enabled_}"
   fi
+
+  # gallium-nine deprecation
+  if (cd "$srcdir/$_mesa_srcdir" && ! git merge-base --is-ancestor 6b6cb825e92ad3bf33b1e032151e32c7b79d8323 HEAD); then
+    _galliumnine="-D gallium-nine=true"
+  fi
+
+  # gallium-xa deprecation
+  if (cd "$srcdir/$_mesa_srcdir" && ! git merge-base --is-ancestor cf40099730c4af304227c30c891834cec220abff HEAD); then
+    _galliumxa="-D gallium-xa=${_gallium_xa}"
+  fi
+
+  # shared-glapi option removal
+  if (cd "$srcdir/$_mesa_srcdir" && ! git merge-base --is-ancestor fefb1a6fb3cff1b227e835c2f67accd33fb96b2a HEAD); then
+    _sharedglapi="-D shared-glapi=${_enabled_}"
+  fi
+
+  # gallium-opencl deprecation
+  if (cd "$srcdir/$_mesa_srcdir" && ! git merge-base --is-ancestor 5844dea31620f36c41ac738e17fefd57084b2dbb HEAD); then
+    _galliumopencl="-D gallium-opencl=icd"
+  fi
+
   # /Selector fixes
 
   if [ -n "${CUSTOM_GCC_PATH}" ] && [ "$_compiler" != "clang" ]; then
@@ -470,6 +491,10 @@ build() {
     export CXX="g++"
   fi
 
+  if [ "$_rusticl" = "true" ]; then
+    _rusticladditions="-D rust_std=2021 -D llvm=enabled"
+  fi
+
   arch-meson $_mesa_srcdir _build64 \
     --wrap-mode=nofallback \
     --force-fallback-for=syn,paste \
@@ -479,11 +504,9 @@ build() {
     -D vulkan-drivers=${_vulkan_drivers} \
     -D egl=${_enabled_} \
     -D gallium-extra-hud=true \
-    -D gallium-nine=true \
-    -D gallium-opencl=icd \
+    -D gallium-rusticl=${_rusticl} \
     -D gallium-va=${_gallium_va} \
     -D gallium-vdpau=${_gallium_vdpau} \
-    -D gallium-xa=${_gallium_xa} \
     -D gbm=${_enabled_} \
     -D gles1=${_disabled_} \
     -D gles2=${_enabled_} \
@@ -492,10 +515,9 @@ build() {
     -D libunwind=${_enabled_} \
     -D llvm=${_enabled_} \
     -D lmsensors=${_enabled_} \
-    -D shared-glapi=${_enabled_} \
     -D opengl=true \
     -D zstd=auto \
-    -D valgrind=${_enabled_} $_legacy_switches $_dri3 $_omx $_dri_inc $_microsoft_clc $_osmesa $_xvmc $_layers $_optional_codecs $_android_libbacktrace $_intel_rt $_no_lto $_additional_meson_flags $_additional_meson_flags_64
+    -D valgrind=${_enabled_} $_legacy_switches $_dri3 $_omx $_dri_inc $_microsoft_clc $_osmesa $_xvmc $_layers $_optional_codecs $_android_libbacktrace $_intel_rt $_galliumnine $_galliumxa $_sharedglapi $_galliumopencl $_rusticladditions $_no_lto $_additional_meson_flags $_additional_meson_flags_64
 
   meson configure _build64 --no-pager
 
@@ -539,11 +561,9 @@ build() {
       -D vulkan-drivers=${_vulkan_drivers} \
       -D egl=${_enabled_} \
       -D gallium-extra-hud=true \
-      -D gallium-nine=true \
-      -D gallium-opencl=${_disabled_} \
+      -D gallium-rusticl=${_rusticl} \
       -D gallium-va=${_gallium_va} \
       -D gallium-vdpau=${_gallium_vdpau} \
-      -D gallium-xa=${_gallium_xa} \
       -D gbm=${_enabled_} \
       -D gles1=${_disabled_} \
       -D gles2=${_enabled_} \
@@ -554,7 +574,7 @@ build() {
       -D lmsensors=${_enabled_} \
       -D shared-glapi=${_enabled_} \
       -D zstd=auto \
-      -D valgrind=${_disabled_} $_legacy_switches $_dri3 $_omx_32 $_dri_inc $_microsoft_clc $_osmesa $_xvmc $_layers $_optional_codecs $_android_libbacktrace $_intel_rt_32 $_intel_clc_32 $_no_lto $_additional_meson_flags $_additional_meson_flags_32
+      -D valgrind=${_disabled_} $_legacy_switches $_dri3 $_omx_32 $_dri_inc $_microsoft_clc $_osmesa $_xvmc $_layers $_optional_codecs $_android_libbacktrace $_intel_rt_32 $_intel_clc_32 $_galliumnine $_galliumxa $_sharedglapi $_galliumopencl $_rusticladditions $_no_lto $_additional_meson_flags $_additional_meson_flags_32
 
     meson configure _build32 --no-pager
 
