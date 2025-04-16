@@ -1,11 +1,6 @@
-# Maintainer:
-
-## links
-# https://ares-emu.net/
-# https://github.com/ares-emulator/ares
+# Maintainer: aur.chaotic.cx
 
 ## options
-
 : ${_build_level:=3}
 : ${_build_git:=true}
 
@@ -44,49 +39,20 @@ makedepends=(
   'ninja'
 )
 
-_source_stable() {
-  _pkgsrc="$_pkgname"
-  source=("$_pkgsrc"::"git+$url.git")
-  sha256sums=("SKIP")
+provides=("$_pkgname=${pkgver%%.r*}")
+conflicts=("$_pkgname")
 
-  _prepare() (
-    cd "$_pkgsrc"
-    _tag=$(git tag | grep -Ev '[A-Za-z]{2}' | sort -rV | head -1)
-    git -c advice.detachedHead=false checkout -f "$_tag"
+_pkgsrc="$_pkgname"
+source=("$_pkgsrc"::"git+$url.git")
+sha256sums=("SKIP")
 
-    git cherry-pick -n -m1 --empty=drop 54c898f199694c2d5866dad45aecb68fda4ee3b7
-  )
-
-  pkgver() {
-    cd "$_pkgsrc"
-    git describe --tag | sed -E 's/^[^0-9]+//'
-  }
+pkgver() {
+  cd "$_pkgsrc"
+  git describe --long --tags --abbrev=7 --exclude='*[a-zA-Z][a-zA-Z]*' \
+    | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
 }
-
-_source_git() {
-  provides=("$_pkgname=${pkgver%%.r*}")
-  conflicts=("$_pkgname")
-
-  _pkgsrc="$_pkgname"
-  source=("$_pkgsrc"::"git+$url.git")
-  sha256sums=("SKIP")
-
-  pkgver() {
-    cd "$_pkgsrc"
-    git describe --long --tags --abbrev=7 --exclude='*[a-zA-Z][a-zA-Z]*' \
-      | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
-  }
-}
-
-if [ "${_build_git::1}" != "t" ]; then
-  _source_stable
-else
-  _source_git
-fi
 
 prepare() {
-  _run_if_exists _prepare
-
   # clear unwanted settings
   local _files=(
     "$_pkgsrc/cmake"/{macos,windows}/*.cmake
@@ -150,10 +116,4 @@ package() {
 
   DESTDIR="$pkgdir" cmake --install build
   install -Dm644 "$_pkgsrc/LICENSE" -t "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
-}
-
-_run_if_exists() {
-  if declare -F "$1" > /dev/null; then
-    eval "$1"
-  fi
 }
