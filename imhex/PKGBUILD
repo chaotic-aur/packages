@@ -24,13 +24,14 @@ sha256sums=('711481cc8dfc368d1b88f5d3e8a44d65f23fa43eb9db092599924f3a4cf1aaa2'
   '541eddc8cc427d1aeb749bc455911fccc87f64a7784bd4bbc35ecb7b56c03ad5')
 b2sums=('11f93ca310ddec8ec7d074d5450a02f3147d40aaa92387fbe7fce3be08445e129bbd7336d923e971a2f7f2b6df778a6210de73060cb91abe85161e7fd88588b7'
   'c8699f9f26faeae784b4c4cb14b682d0f4d0c544ef8c9596b8688c19e6066d7101a7c32979ee807cd4a05225fe2548a8759b1fd0a07c578ea5c0fcdb9f104e69')
-options=(!lto !strip)
+options=(!lto)
 
 build() {
   export CXXFLAGS="$CXXFLAGS -Wno-inconsistent-missing-override"
 
   cmake -B build -S "$_pkgname" \
     -Wno-dev \
+    -D CMAKE_POLICY_VERSION_MINIMUM=3.5 \
     -D CMAKE_BUILD_TYPE=Release \
     -D CMAKE_INSTALL_PREFIX=/usr \
     -D CMAKE_SKIP_RPATH=ON \
