@@ -1,7 +1,7 @@
 pkgbase = simplescreenrecorder-qt6-git
 	pkgdesc = A feature-rich screen recorder that supports X11 and OpenGL
 	pkgver = 0.4.4.r57.gc50e83e
-	pkgrel = 1
+	pkgrel = 2
 	url = https://github.com/MaartenBaert/ssr
 	arch = x86_64
 	license = GPL-3.0-or-later
@@ -23,6 +23,8 @@ pkgbase = simplescreenrecorder-qt6-git
 	depends = libxinerama
 	depends = qt6-base
 	depends = v4l-utils
+	provides = simplescreenrecorder
+	conflicts = simplescreenrecorder
 	source = simplescreenrecorder::git+https://github.com/MaartenBaert/ssr.git
 	sha256sums = SKIP
 

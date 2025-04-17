@@ -5,7 +5,7 @@ export CMAKE_POLICY_VERSION_MINIMUM=3.5
 _pkgname="simplescreenrecorder"
 pkgname="$_pkgname-qt6-git"
 pkgver=0.4.4.r57.gc50e83e
-pkgrel=1
+pkgrel=2
 pkgdesc="A feature-rich screen recorder that supports X11 and OpenGL"
 url="https://github.com/MaartenBaert/ssr"
 license=("GPL-3.0-or-later")
@@ -33,6 +33,9 @@ makedepends=(
   'ninja'
   'qt6-tools'
 )
+
+provides=("$_pkgname")
+conflicts=("$_pkgname")
 
 _pkgsrc="$_pkgname"
 source=("$_pkgsrc"::"git+$url.git")
