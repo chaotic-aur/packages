@@ -1,0 +1,27 @@
+url="https://github.com/arminstraub/krop"
+
+if [ $(vercmp 0.7.0-1 $pkgver-$pkgrel) -gt 0 ]; then
+  pkgver=0.7.0
+  pkgrel=1
+
+  depends=(
+    ${depends[@]//*-sip*/}
+    'hicolor-icon-theme'
+  )
+  makedepends=(${makedepends[@]//sip*/})
+
+  _pkgsrc="$pkgname-$pkgver"
+  _pkgext="tar.gz"
+  source=("$_pkgsrc.$_pkgext"::"$url/archive/v$pkgver.$_pkgext")
+  sha256sums=('373cd802af7831935f2084cadaab65f5358680f976227e03df71c953eacdee61')
+
+  build() {
+    cd "$_pkgsrc"
+    python -m build --wheel --no-isolation
+  }
+
+  package() {
+    cd "$_pkgsrc"
+    python -m installer --destdir="$pkgdir" dist/*.whl
+  }
+fi
