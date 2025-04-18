@@ -1,0 +1,16 @@
+unset install
+
+license=('LicenseRef-PicoTechnologyLimited')
+
+depends=(${depends[@]//execstack*/})
+
+package() {
+  tar -C "$pkgdir" -xf data.tar.xz
+
+  install -Dm644 "$pkgdir/usr/share/doc/libpicocv/copyright" -t "$pkgdir/usr/share/licenses/$pkgname/"
+
+  rm -rf "$pkgdir/usr"
+  rm -rf "$pkgdir/opt/picoscope/share"
+
+  chmod -R u+rwX,go+rX,go-w "$pkgdir/"
+}
