@@ -3,7 +3,7 @@
 
 _pkgname="xdg-desktop-portal-hyprland"
 pkgname="$_pkgname-git"
-pkgver=1.3.9.r4.g150b0b6
+pkgver=1.3.9.r5.gbe6771e
 pkgrel=1
 pkgdesc="xdg-desktop-portal backend for Hyprland"
 arch=('x86_64' 'aarch64')
@@ -38,7 +38,7 @@ optdepends=(
   'hyprland: the Hyprland compositor'
 )
 
-provides=("$_pkgname=${pkgver%%.r*}")
+provides=("$_pkgname=${pkgver%%.r*}" "xdg-desktop-portal-impl")
 conflicts=("$_pkgname")
 
 _pkgsrc=$_pkgname
