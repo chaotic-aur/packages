@@ -2,7 +2,7 @@
 # Maintainer: Adrian Insaurralde <adrianinsaval at gmail dot com>
 
 pkgname=freecad-git
-pkgver=0.22.0.36999.ged77603af9
+pkgver=1.1.0.41361.g774ec2cc93
 pkgrel=1
 pkgdesc='A general purpose 3D CAD modeler - git checkout'
 arch=('x86_64')
@@ -18,6 +18,7 @@ depends=(
   netcdf
   opencascade
   openmpi
+  pybind11
   pyside6
   pyside6-tools
   python-yaml
@@ -75,17 +76,19 @@ prepare() {
 
 build() {
   cmake \
-    -B build \
+    -B build-makepkg \
     -D BUILD_FLAT_MESH=ON \
     -D BUILD_DESIGNER_PLUGIN=ON \
     -D FREECAD_QT_VERSION=6 \
     -D CMAKE_BUILD_TYPE=Release \
+    -D CMAKE_POLICY_VERSION_MINIMUM=3.5 \
     -D CMAKE_C_FLAGS="$CFLAGS -ffat-lto-objects -fPIC -w" \
     -D CMAKE_CXX_FLAGS="$CXXFLAGS -ffat-lto-objects -fPIC -w" \
     -D CMAKE_INSTALL_DATADIR=/usr/share/freecad \
     -D CMAKE_INSTALL_DATAROOTDIR=/usr/share \
     -D CMAKE_INSTALL_DOCDIR=/usr/share/freecad/doc \
     -D CMAKE_INSTALL_PREFIX=/usr/lib/freecad \
+    -D FREECAD_USE_PCL=OFF \
     -D FREECAD_USE_EXTERNAL_PIVY=ON \
     -D FREECAD_USE_QT_FILEDIALOG=ON \
     -D INSTALL_TO_SITEPACKAGES=ON \
@@ -93,22 +96,23 @@ build() {
     -G Ninja \
     -S FreeCAD \
     -W no-dev
-  ninja -C build
+  ninja -C build-makepkg
 }
 
 check() {
-  cd build
+  cd build-makepkg
   LD_LIBRARY_PATH=lib bin/FreeCADCmd --console --run-test 0
 }
 
 package() {
-  DESTDIR="$pkgdir" ninja -C build install
+  DESTDIR="$pkgdir" ninja -C build-makepkg install
 
   # tools
-  install -Dm755 FreeCAD/src/Tools/{freecad-thumbnailer,fcinfo} -t "$pkgdir/usr/bin/"
+  install -Dm755 FreeCAD/src/Tools/fcinfo -t "$pkgdir/usr/bin/"
 
   # symlinks
   install -d "$pkgdir/usr/bin"
+  ln -sf /usr/lib/freecad/bin/freecad-thumbnailer "$pkgdir/usr/bin/freecad-thumbnailer"
   ln -sf /usr/lib/freecad/bin/FreeCAD "$pkgdir/usr/bin/freecad"
   ln -sf /usr/lib/freecad/bin/FreeCAD "$pkgdir/usr/bin/FreeCAD"
   ln -sf /usr/lib/freecad/bin/FreeCADCmd "$pkgdir/usr/bin/freecadcmd"

@@ -1,0 +1,3 @@
+[chromium-widevine]
+source='cmd'
+cmd='curl https://dl.google.com/widevine-cdm/versions.txt | tail -n 1'

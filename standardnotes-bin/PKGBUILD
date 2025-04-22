@@ -5,7 +5,7 @@
 pkgname=standardnotes-bin
 _realname="Standard Notes"
 pkgver=3.195.13
-pkgrel=1
+pkgrel=2
 pkgdesc='Free, open-source encrypted notes app.'
 arch=('x86_64' 'aarch64')
 url='https://github.com/standardnotes/app'
