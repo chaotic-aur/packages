@@ -3,14 +3,14 @@
 pkgname=emulationstation
 _gitname=EmulationStation
 pkgver=2.11.2
-pkgrel=1
+pkgrel=2
 pkgdesc="Emulation Station is a flexible emulator front-end supporting keyboardless navigation and custom system themes."
 arch=('i686' 'x86_64' 'armv6h' 'armv7h' 'aarch64')
 url="https://github.com/RetroPie/EmulationStation"
 license=('MIT')
 install=emulationstation.install
 depends=('vlc' 'alsa-lib' 'sdl2' 'boost-libs' 'freeimage' 'curl' 'libraw' 'libcec' 'rapidjson' 'pugixml')
-makedepends=('cmake' 'boost' 'freetype2' 'curl')
+makedepends=('patch' 'cmake' 'boost' 'freetype2' 'curl')
 optdepends=('ttf-droid: Fallback fonts for Chinese/Japanese/Korean characters'
   'dolphin-emu: GameCube and Wii support'
   'mupen64plus: Nintendo 64 support'
@@ -56,9 +56,10 @@ build() {
     -DCMAKE_BUILD_TYPE:STRING='None' \
     -DCMAKE_INSTALL_LIBDIR:PATH='lib' \
     -DCMAKE_INSTALL_PREFIX:PATH='/usr' \
+    -DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
     ${_cmakeflags} \
-    -Wno-dev -Wno-deprecated \
-    ..
+    -Wno-dev -Wno-deprecated
+
   make -C "${_gitname}-${pkgver}/build" all
 }
 
