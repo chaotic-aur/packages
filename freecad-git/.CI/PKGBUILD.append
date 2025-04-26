@@ -6,7 +6,10 @@ url="https://github.com/FreeCAD/FreeCAD"
 
 license=('LGPL-2.1-or-later')
 
-depends+=('libspnav')
+depends+=(
+  'hdf5'
+  'libspnav'
+)
 
 makedepends+=(
   'fast_float'
