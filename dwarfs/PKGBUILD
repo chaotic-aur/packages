@@ -34,6 +34,7 @@ build() {
   cmake -B build -S "$pkgname-$pkgver" \
     -W no-dev \
     -D CMAKE_INSTALL_PREFIX=/usr \
+    -D CMAKE_INSTALL_SBINDIR=bin \
     -D CMAKE_BUILD_TYPE=None \
     -D CMAKE_POLICY_VERSION_MINIMUM=3.5 \
     -D WITH_TESTS=ON \
@@ -56,9 +57,6 @@ check() {
 
 package() {
   cmake --install build --prefix "$pkgdir/usr"
-
-  mv "$pkgdir/usr/sbin"/* "$pkgdir/usr/bin"
-  rm -rf "$pkgdir/usr/sbin"
 
   install -Dm0644 "$pkgname-$pkgver/LICENSE" "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
 }
