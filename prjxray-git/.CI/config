@@ -1,2 +1,1 @@
-CI_PACKAGE_BUMP=r3903.69bec225-1/1
-CI_PKGBUILD_SOURCE=https://aur.archlinux.org/prjxray-git.git
+CI_PKGBUILD_SOURCE=aur
