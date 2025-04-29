@@ -2,10 +2,10 @@
 
 _pkgname="citron"
 pkgname="$_pkgname-git"
-pkgver=0.6.1.r22.ga1f3414
+pkgver=0.6.1.r40.g65dfe32
 pkgrel=1
 pkgdesc="Yet another emulator fork"
-url="https://git.citron-emu.org/Citron/Citron"
+url="https://git.citron-emu.org/citron/emu"
 license=('GPL-3.0-or-later')
 arch=('x86_64')
 

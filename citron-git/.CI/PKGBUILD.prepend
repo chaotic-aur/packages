@@ -1,0 +1,5 @@
+# update repo url
+eval $(grep -m1 '^url=' PKGBUILD)
+if git -C "$SRCDEST/citron" remote -v | grep -qm1 "$url" ; then
+  git remote set-url origin "$url.git"
+fi
