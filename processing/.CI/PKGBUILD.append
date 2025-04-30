@@ -1,0 +1,8 @@
+url="https://github.com/processing/processing4"
+
+license=(
+  'GPL-2.0-only'
+  'LGPL-2.1-only' # core library
+)
+
+makedepends+=('xdg-utils')
