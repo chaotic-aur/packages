@@ -1,0 +1,16 @@
+pkgbase = plutosvg
+	pkgdesc = Tiny SVG rendering library in C
+	pkgver = 0.0.6
+	pkgrel = 1
+	url = https://github.com/sammycage/plutosvg
+	arch = x86_64
+	license = MIT
+	makedepends = cmake
+	makedepends = git
+	makedepends = ninja
+	depends = freetype2
+	depends = plutovg
+	source = plutosvg::git+https://github.com/sammycage/plutosvg.git#tag=v0.0.6
+	sha256sums = SKIP
+
+pkgname = plutosvg
