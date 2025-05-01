@@ -2,7 +2,7 @@
 
 _pkgname="ckb-next"
 pkgname="$_pkgname-qt6-git"
-pkgver=0.6.0.r62.g22cdb6d
+pkgver=0.6.2.r9.g659b8ff
 pkgrel=1
 pkgdesc="Corsair Keyboard and Mouse Input Driver"
 url="https://github.com/ckb-next/ckb-next"
@@ -11,14 +11,16 @@ arch=('x86_64')
 
 depends=(
   'hicolor-icon-theme'
+  'qt6-wayland'
   'quazip-qt6'
 )
 makedepends=(
   'cmake'
   'git'
+  'libpulse'
   'ninja'
   'qt6-tools'
-  'libpulse'
+  'wayland-protocols'
 )
 optdepends=(
   'libpulse: for mviz'
