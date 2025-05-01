@@ -1,0 +1,13 @@
+export CMAKE_GENERATOR=Ninja
+
+url="https://github.com/tsujan/Arqiver"
+
+license=('GPL-3.0-or-later')
+
+depends+=(
+  'hicolor-icon-theme'
+  'qt6-base'
+  'qt6-svg'
+)
+
+makedepends+=('ninja')
