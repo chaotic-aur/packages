@@ -11,7 +11,7 @@
 _pkgname='beeper'
 pkgname="$_pkgname${_pkgtype:-}"
 pkgver=4.0.661
-pkgrel=1
+pkgrel=2
 pkgdesc="The ultimate messaging app"
 depends=(libappindicator-gtk3 libnotify libsecret hicolor-icon-theme)
 url="https://www.beeper.com/beta"
@@ -22,7 +22,7 @@ options=('!strip' '!debug')
 
 _source_main() {
   provides=("$_pkgname")
-  conflicts=("$_pkgname" beeper-latest-bin)
+  conflicts=("$_pkgname")
 
   source=("$_filename"::"$_dl_url")
   sha256sums=('SKIP')
