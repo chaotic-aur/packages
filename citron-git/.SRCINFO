@@ -1,6 +1,6 @@
 pkgbase = citron-git
 	pkgdesc = Yet another emulator fork
-	pkgver = 0.6.1.r40.g65dfe32
+	pkgver = 0.6.1.r53.g03aab9b
 	pkgrel = 1
 	url = https://git.citron-emu.org/citron/emu
 	arch = x86_64

@@ -2,7 +2,7 @@
 
 _pkgname="citron"
 pkgname="$_pkgname-git"
-pkgver=0.6.1.r40.g65dfe32
+pkgver=0.6.1.r53.g03aab9b
 pkgrel=1
 pkgdesc="Yet another emulator fork"
 url="https://git.citron-emu.org/citron/emu"
@@ -184,11 +184,9 @@ prepare() {
   _run_if_exists _prepare_lat9nq_tzdb_to_nx
   _run_if_exists _prepare_yuzu_mirror_sirit
 
-  # fixes for boost 1.87
-  sed -E 's&\bio_service\b&io_context&g' \
-    -i "$_pkgsrc"/src/input_common/drivers/udp_client.cpp
-
-  sed -E '/async_pipe\.hpp/s&^#include.*$&#include <boost/process/v1/async_pipe.hpp>&' \
+  # fix for boost 1.88
+  sed -E -e 's|#include *<boost/process/async_pipe.hpp>|#include <boost/process/v1/async_pipe.hpp>|g' \
+    -e 's&\bboost::process::async_pipe\b&boost::process::v1::async_pipe&g' \
     -i "$_pkgsrc"/src/core/debugger/debugger.cpp
 
   # warn instead of error
