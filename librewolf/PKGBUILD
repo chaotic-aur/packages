@@ -8,14 +8,14 @@
 : ${_ver_clang=}
 : ${RUSTUP_TOOLCHAIN:=stable}
 
-: ${_pkgrel:=1}
+: ${_pkgrel:=2}
 
-: ${_cksum:=9e95f2c6380ba03d33f53af3157428cc9b65db388d701ba5c4daf8ee49eaa706}
+: ${_cksum:=308ac7a2d890bb798d3058dcf89415ccfb37e80e951f141b13c2ca98a758efd2}
 
 _pkgname="librewolf"
 pkgname="${_pkgname}"
 pkgver=138.0.1
-pkgrel=1
+pkgrel=2
 pkgdesc="A web browser focused on privacy, security, and freedom"
 url="https://codeberg.org/librewolf/source"
 arch=('x86_64')

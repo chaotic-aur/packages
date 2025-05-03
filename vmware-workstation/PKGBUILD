@@ -18,7 +18,7 @@ pkgname=vmware-workstation
 pkgver=17.6.3
 _buildver=24583834
 _pkgver=${pkgver}_${_buildver}
-pkgrel=4
+pkgrel=5
 _tools_version=12.5.0-24276846
 _legacy_ver=17.5.2
 _legacy_buildver=23775571
@@ -67,6 +67,7 @@ source=(
   "https://softwareupdate-prod.broadcom.com/cds/vmw-desktop/ws/${_legacy_ver}/${_legacy_buildver}/linux/packages/vmware-tools-netware-${_legacy_tools_version/_/-}.${CARCH}.component.tar"
   "https://softwareupdate-prod.broadcom.com/cds/vmw-desktop/ws/${_legacy_ver}/${_legacy_buildver}/linux/packages/vmware-tools-solaris-${_legacy_tools_version/_/-}.${CARCH}.component.tar"
   "vmware-tools-windows-${_tools_version/_/-}-${pkgver}.${CARCH}.component.tar::https://softwareupdate-prod.broadcom.com/cds/vmw-desktop/ws/${pkgver}/${_buildver}/linux/packages/vmware-tools-windows-${_tools_version/_/-}.${CARCH}.component.tar"
+  "vmware-tools-windows-x86-${_tools_version/_/-}-${pkgver}.${CARCH}.component.tar::https://softwareupdate-prod.broadcom.com/cds/vmw-desktop/ws/${pkgver}/${_buildver}/linux/packages/vmware-tools-windows-x86-${_tools_version/_/-}.${CARCH}.component.tar"
   "https://softwareupdate-prod.broadcom.com/cds/vmw-desktop/ws/${_legacy_ver}/${_legacy_buildver}/linux/packages/vmware-tools-winPre2k-${_legacy_tools_version/_/-}.${CARCH}.component.tar"
   "https://softwareupdate-prod.broadcom.com/cds/vmw-desktop/ws/${_legacy_ver}/${_legacy_buildver}/linux/packages/vmware-tools-winPreVista-${_legacy_tools_version/_/-}.${CARCH}.component.tar"
 
@@ -96,6 +97,7 @@ sha256sums=('4f3b643068bbd6e4c864e1b434cfef080faa18382b988d012dc4738094a73e74'
   '4643fff3ed4f8af5a56a1c4c2084fa7327d78e58ee9b0687b98390a4b4a1ac14'
   '196c842f758b813afb202b0db2d09d457fccafac212ca41ef3277dfe9ceaf9ec'
   '81b63fd7f3a7f9f7b24cddb8712a592b4b3c9f269338a8897c55146c9766a18b'
+  '5078060e520cf1491d1585d9b85a311bfcde1da080fc527512840d44040eb137'
   'd4e9884f5f11cef4e261023d895eba5b57a8a80623bff0de8b3f1c47154b2a11'
   '20abd21da43ac31741f8bb26db1ae7d8f4ef4c5082c9a2cc3ae5da494f1b9529'
   '3b8f9d6e43f5d1dff0576cb93d008c14e0434d7233872f6c63988513d2bda5d1'
@@ -122,7 +124,7 @@ if [ -z "$_remove_vmware_keymaps_dependency" ]; then
   )
 fi
 
-_isoimages=(linux linuxPreGlibc25 netware solaris windows winPre2k winPreVista)
+_isoimages=(linux linuxPreGlibc25 netware solaris windows windows-x86 winPre2k winPreVista)
 
 if [ -n "$_enable_macOS_guests" ]; then
 
@@ -186,6 +188,7 @@ prepare() {
     --install-component "vmware-tools-netware-${_legacy_tools_version/_/-}.${CARCH}.component" \
     --install-component "vmware-tools-solaris-${_legacy_tools_version/_/-}.${CARCH}.component" \
     --install-component "vmware-tools-windows-${_tools_version/_/-}.${CARCH}.component" \
+    --install-component "vmware-tools-windows-x86-${_tools_version/_/-}.${CARCH}.component" \
     --install-component "vmware-tools-winPre2k-${_legacy_tools_version/_/-}.${CARCH}.component" \
     --install-component "vmware-tools-winPreVista-${_legacy_tools_version/_/-}.${CARCH}.component" \
     --extract "$extracted_dir"
