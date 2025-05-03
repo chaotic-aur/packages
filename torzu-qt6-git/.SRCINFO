@@ -1,7 +1,7 @@
 pkgbase = torzu-qt6-git
 	pkgdesc = Yet another emulator fork
-	pkgver = 2024.08.10.r66.g125f4e2
-	pkgrel = 1
+	pkgver = 2025.04.16.r0.g945de31
+	pkgrel = 2
 	url = https://notabug.org/litucks/torzu
 	arch = x86_64
 	arch = x86_64_v2
@@ -28,6 +28,7 @@ pkgbase = torzu-qt6-git
 	makedepends = sndio
 	makedepends = speexdsp
 	depends = ffmpeg
+	depends = libboost_context.so
 	depends = qt6-multimedia
 	depends = qt6-webengine
 	depends = sdl2

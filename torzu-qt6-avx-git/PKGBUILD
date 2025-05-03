@@ -5,8 +5,6 @@
 
 : ${_build_level:=1}
 
-export CMAKE_POLICY_VERSION_MINIMUM=3.5
-
 unset _pkgtype
 _pkgtype+="-qt6"
 [[ "${_build_level::1}" == "2" ]] && _pkgtype+="-x64v2"
@@ -16,8 +14,8 @@ _pkgtype+="-git"
 
 _pkgname="torzu"
 pkgname="$_pkgname${_pkgtype:-}"
-pkgver=2024.08.10.r66.g125f4e2
-pkgrel=1
+pkgver=2025.04.16.r0.g945de31
+pkgrel=2
 pkgdesc="Yet another emulator fork"
 url="https://notabug.org/litucks/torzu"
 license=('GPL-3.0-or-later')
@@ -25,6 +23,7 @@ arch=('x86_64' 'x86_64_v2' 'x86_64_v3' 'x86_64_v4')
 
 depends=(
   'ffmpeg'
+  'libboost_context.so' # boost-libs
   'qt6-multimedia'
   'qt6-webengine'
   'sdl2'
@@ -201,6 +200,8 @@ pkgver() {
 }
 
 build() {
+  export CMAKE_POLICY_VERSION_MINIMUM=3.5
+
   if [[ ${_build_level::1} =~ ^[2-4]$ ]]; then
     export CFLAGS CXXFLAGS
     local _cflags _cxxflags
