@@ -1,6 +1,6 @@
 pkgbase = hyprutils-git
 	pkgdesc = Hyprland utilities library used across the ecosystem
-	pkgver = 0.7.0.r0.5f51dce
+	pkgver = 0.7.0.r0.g05878d9
 	pkgrel = 1
 	url = https://github.com/hyprwm/hyprutils
 	arch = x86_64

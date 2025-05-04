@@ -2,7 +2,7 @@
 
 _pkgname="hyprutils"
 pkgname="$_pkgname-git"
-pkgver=0.7.0.r0.5f51dce
+pkgver=0.7.0.r0.g05878d9
 pkgrel=1
 pkgdesc="Hyprland utilities library used across the ecosystem"
 arch=('x86_64' 'aarch64')
