@@ -10,8 +10,8 @@ unset _pkgtype
 
 _pkgname="ares-emu"
 pkgname="$_pkgname${_pkgtype:-}"
-pkgver=143
-pkgrel=2
+pkgver=144
+pkgrel=1
 pkgdesc="Multi-system emulator focused on accuracy and preservation"
 url="https://github.com/ares-emulator/ares"
 license=("ISC")
@@ -26,7 +26,7 @@ depends=(
   'libretro-shaders'
   'libudev.so' # systemd-libs
   'openal'
-  'sdl2'
+  'sdl3'
 )
 makedepends=(
   'clang'
@@ -46,12 +46,12 @@ _prepare() (
   _tag=$(git tag | grep -Ev '[A-Za-z]{2}' | sort -rV | head -1)
   git -c advice.detachedHead=false checkout -f "$_tag"
 
-  git cherry-pick -n -m1 --empty=drop 54c898f199694c2d5866dad45aecb68fda4ee3b7
+  #git cherry-pick -n -m1 --empty=drop 54c898f199694c2d5866dad45aecb68fda4ee3b7
 )
 
 pkgver() {
   cd "$_pkgsrc"
-  git describe --tag | sed -E 's/^[^0-9]+//'
+  git describe --tag --exclude='*[a-zA-Z][a-zA-Z]*' | sed -E 's/^[^0-9]+//'
 }
 
 prepare() {
@@ -82,11 +82,11 @@ build() (
   if [[ ${_build_level::1} =~ ^[2-4]$ ]]; then
     local _cflags _cxxflags
     _cflags=(
-      -march=x86-64-v3 -mtune=generic -O3
+      -march=x86-64-v3 -O3
       $(sed -E -e 's&-(march|mtune)=\S+\b&&g' -e 's&-O[0-9]+\b&&g' <<< ${CFLAGS})
     )
     _cxxflags=(
-      -march=x86-64-v3 -mtune=generic -O3
+      -march=x86-64-v3 -O3
       $(sed -E -e 's&-(march|mtune)=\S+\b&&g' -e 's&-O[0-9]+\b&&g' <<< ${CXXFLAGS})
     )
 

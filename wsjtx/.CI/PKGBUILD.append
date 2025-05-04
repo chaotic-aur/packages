@@ -1,5 +1,74 @@
 export CMAKE_POLICY_VERSION_MINIMUM=3.5
 
+if [ "$(vercmp 2.7.0 $pkgver)" -gt 0 ]; then
+  pkgver=2.7.0
+  pkgrel=2
+
+  unset sha512sums
+  sha256sums=('3788f5df636af792514609ec2b4abe58477aa5f0ad32cb826424866fc21cec93')
+fi
+
 url="https://sourceforge.net/projects/wsjt/"
 
 license=('GPL-3.0-or-later')
+
+depends=(
+  'fftw'
+  'libboost_filesystem.so'
+  'libboost_log.so'
+  'libboost_log_setup.so'
+  'libboost_thread.so'
+  'libusb'
+  'qt5-base'
+  'qt5-multimedia'
+  'qt5-serialport'
+)
+makedepends=(
+  'asciidoc'
+  'asciidoctor'
+  'boost'
+  'cmake'
+  'gcc-fortran'
+  'ninja'
+  'qt5-tools'
+)
+
+_pkgsrc="$pkgname-$pkgver"
+source=("$_pkgsrc.tar.gz"::"http://downloads.sourceforge.net/sourceforge/wsjt/$pkgname-$pkgver.tgz")
+
+prepare() {
+  for i in "$_pkgsrc/src"/*.{tgz,tar.gz}; do
+    [ -e "$i" ] && bsdtar -xf "$i"
+  done
+}
+
+_build_hamlib() (
+  cd hamlib-*
+  ./configure --prefix="$srcdir/deps" --disable-shared --enable-static --without-cxx-binding
+  make all
+  make install-strip DESTDIR=""
+)
+
+_build_wsjtx() (
+  local _cmake_options=(
+    -B build
+    -S wsjtx
+    -G Ninja
+    -DCMAKE_BUILD_TYPE=None
+    -DCMAKE_INSTALL_PREFIX='/usr'
+    -DCMAKE_PREFIX_PATH="$srcdir/deps"
+    -Wno-dev
+  )
+
+  cmake "${_cmake_options[@]}"
+  cmake --build build
+)
+
+build() {
+  _build_hamlib
+  _build_wsjtx
+}
+
+package() {
+  DESTDIR="$pkgdir" cmake --install build
+}

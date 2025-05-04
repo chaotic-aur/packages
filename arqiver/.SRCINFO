@@ -1,0 +1,17 @@
+pkgbase = arqiver
+	pkgdesc = Simple Qt archive manager based on libarchive
+	pkgver = 1.0.1
+	pkgrel = 1
+	url = https://github.com/tsujan/Arqiver
+	arch = x86_64
+	license = GPL3
+	makedepends = cmake
+	makedepends = qt6-svg
+	makedepends = qt6-tools
+	depends = libarchive
+	depends = gzip
+	depends = 7zip
+	source = https://github.com/tsujan/Arqiver/releases/download/V1.0.1/Arqiver-1.0.1.tar.xz
+	sha512sums = 384fbacfd37ae8b9b313ab5bfc539c2569f1d213d574f855379176dda9557198d3467d41adf58eaeb15dcb15a88a44be962dc152607ad832717ae17f86d9d436
+
+pkgname = arqiver

@@ -4,7 +4,7 @@
 
 pkgname=python-xvfbwrapper
 _pkgname="${pkgname#python-}"
-pkgver=0.2.10
+pkgver=0.2.11
 pkgrel=1
 pkgdesc='Manage headless displays with Xvfb (X virtual framebuffer)'
 arch=(any)
@@ -23,7 +23,7 @@ makedepends=(
 checkdepends=(python-pytest)
 options=(!debug)
 source=("${pkgname}-${pkgver}.tar.gz::${url}/archive/refs/tags/${pkgver}.tar.gz")
-sha256sums=('afdcaece51c8a7968a2e88eb46347826e99372ee48d266d2999c995bf6081e5f')
+sha256sums=('7cd0804e42ed7671af65e4eab50c1b9cad99ca838f73f795a0314af8d0a04901')
 
 build() {
   cd "${_pkgname}-${pkgver}"
@@ -42,6 +42,6 @@ package() {
 
   python -m installer --destdir="${pkgdir}" dist/*.whl
 
-  install -Dm644 README.rst "${pkgdir}/usr/share/doc/${pkgname}/README.rst"
+  install -Dm644 README.md "${pkgdir}/usr/share/doc/${pkgname}/README.md"
   install -Dm644 LICENSE "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
 }

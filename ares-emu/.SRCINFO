@@ -1,7 +1,7 @@
 pkgbase = ares-emu
 	pkgdesc = Multi-system emulator focused on accuracy and preservation
-	pkgver = 143
-	pkgrel = 2
+	pkgver = 144
+	pkgrel = 1
 	url = https://github.com/ares-emulator/ares
 	arch = x86_64
 	arch = x86_64_v2
@@ -22,7 +22,7 @@ pkgbase = ares-emu
 	depends = libretro-shaders
 	depends = libudev.so
 	depends = openal
-	depends = sdl2
+	depends = sdl3
 	source = ares-emu::git+https://github.com/ares-emulator/ares.git
 	sha256sums = SKIP
 
@@ -35,6 +35,6 @@ pkgname = ares-emu
 	depends = libretro-shaders
 	depends = libudev.so
 	depends = openal
-	depends = sdl2
+	depends = sdl3
 	depends = vulkan-driver
 	depends = vulkan-icd-loader

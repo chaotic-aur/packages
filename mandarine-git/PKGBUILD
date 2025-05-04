@@ -1,167 +1,333 @@
-# Maintainer: username227 <gfrank227 at gmail dot com>
-# Maintainer: HurricanePootis <hurricanepootis@protonmail.com>
+# Maintainer: aur.chaotic.cx
+
+## options
+: ${_build_level:=1}
+: ${_build_git:=true}
+
+unset _pkgtype
+[[ "${_build_instrumented::1}" == "t" ]] && _pkgtype+="-instrumented"
+[[ "${_build_level::1}" == "2" ]] && _pkgtype+="-x64v2"
+[[ "${_build_level::1}" == "3" ]] && _pkgtype+="-x64v3"
+[[ "${_build_level::1}" == "4" ]] && _pkgtype+="-x64v4"
+[[ "${_build_git::1}" == "t" ]] && _pkgtype+="-git"
+
 _pkgname="mandarine"
-pkgname=$_pkgname-git
-pkgver=r10300.9bbb672
+pkgname="$_pkgname${_pkgtype}"
+pkgver=1.2.1.r31.g6ae06c5
 pkgrel=1
-arch=('x86_64')
-pkgdesc='3ds emulator - citra fork with tweaks/enhancements'
-url='https://github.com/mandarine3ds/mandarine'
+pkgdesc="A 3DS emulator"
+url="https://github.com/mandarine3ds/mandarine"
 license=("GPL-2.0-or-later")
-depends=('sdl2' 'mbedtls' 'speexdsp' 'qt6-multimedia' 'ffmpeg' 'libfdk-aac' 'libusb' 'openssl' 'glibc' 'gcc-libs' 'sndio' 'zstd' 'soundtouch' 'fmt' 'libinih' 'openal' 'enet' 'boost-libs')
-makedepends=('git' 'cmake' 'python' 'doxygen' 'rapidjson' 'llvm' 'qt6-tools' 'gcc' 'glslang' 'vulkan-headers' 'nlohmann-json' 'catch2' 'clang' 'ninja' 'boost' 'spirv-tools')
-conflicts=('mandarine')
-provides=('mandarine')
-source=("git+https://github.com/mandarine3ds/mandarine"
-  "boost::git+https://github.com/PabloMK7/ext-boost.git"
-  "git+https://github.com/neobrain/nihstro.git"
-  "git+https://codeberg.org/soundtouch/soundtouch.git"
-  "catch2::git+https://github.com/catchorg/Catch2"
-  "git+https://github.com/PabloMK7/dynarmic.git"
-  "git+https://github.com/herumi/xbyak.git"
-  "git+https://github.com/fmtlib/fmt.git"
-  "git+https://github.com/lsalzman/enet.git"
-  "git+https://github.com/benhoyt/inih.git"
-  "libressl::git+https://github.com/PabloMK7/ext-libressl-portable.git"
-  "git+https://github.com/libusb/libusb.git"
-  "git+https://github.com/mozilla/cubeb"
-  "git+https://github.com/PabloMK7/discord-rpc.git"
-  "git+https://github.com/arun11299/cpp-jwt.git"
-  "git+https://github.com/wwylele/teakra.git"
-  "git+https://github.com/lvandeve/lodepng.git"
-  "git+https://github.com/facebook/zstd.git"
-  "git+https://github.com/lemenkov/libyuv.git"
-  "sdl2::git+https://github.com/libsdl-org/SDL"
-  "git+https://github.com/abdes/cryptopp-cmake.git"
-  "git+https://github.com/weidai11/cryptopp.git"
-  "git+https://github.com/septag/dds-ktx"
-  "git+https://github.com/kcat/openal-soft"
-  "git+https://github.com/KhronosGroup/glslang"
-  "vma::git+https://github.com/GPUOpen-LibrariesAndSDKs/VulkanMemoryAllocator"
-  "vulkan-headers::git+https://github.com/KhronosGroup/Vulkan-Headers"
-  "git+https://github.com/PabloMK7/sirit"
-  "git+https://github.com/knik0/faad2"
-  "library-headers::git+https://github.com/PabloMK7/ext-library-headers.git"
-  "git+https://github.com/bylaws/libadrenotools"
-  "git+https://github.com/merryhime/oaknut.git"
-  "git+https://github.com/google/oboe.git"
-  "SPIRV-Tools::git+https://github.com/KhronosGroup/SPIRV-Tools.git"
-  "git+https://github.com/google/googletest"          # cubeb
-  "git+https://github.com/arsenm/sanitizers-cmake"    # cubeb
-  "git+https://github.com/KhronosGroup/SPIRV-Headers" # sirit
-  "git+https://github.com/bylaws/liblinkernsbypass")  # libadrenotools
-sha256sums=('SKIP'
-  'SKIP'
-  'SKIP'
-  'SKIP'
-  'SKIP'
-  'SKIP'
-  'SKIP'
-  'SKIP'
-  'SKIP'
-  'SKIP'
-  'SKIP'
-  'SKIP'
-  'SKIP'
-  'SKIP'
-  'SKIP'
-  'SKIP'
-  'SKIP'
-  'SKIP'
-  'SKIP'
-  'SKIP'
-  'SKIP'
-  'SKIP'
-  'SKIP'
-  'SKIP'
-  'SKIP'
-  'SKIP'
-  'SKIP'
-  'SKIP'
-  'SKIP'
-  'SKIP'
-  'SKIP'
-  'SKIP'
-  'SKIP'
-  'SKIP'
-  'SKIP'
-  'SKIP'
-  'SKIP'
-  'SKIP')
-pkgver() {
-  cd "$srcdir/$_pkgname"
-  #echo "r$(git rev-list --count HEAD).$(git rev-parse --short HEAD)"
-  printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short=7 HEAD)" # Get canary version plus commit
+arch=('x86_64' 'x86_64_v2' 'x86_64_v3' 'x86_64_v4')
+
+depends=(
+  'enet'
+  'ffmpeg'
+  'libfdk-aac'
+  'libinih'
+  'libusb'
+  'mbedtls'
+  'openal'
+  'openssl'
+  'qt6-multimedia'
+  'sdl2'
+  'sndio'
+  'soundtouch'
+  'speexdsp'
+  'zstd'
+)
+makedepends=(
+  'catch2'
+  'clang'
+  'cmake'
+  'doxygen'
+  'git'
+  #'glslang'
+  'lld'
+  'llvm'
+  'ninja'
+  'nlohmann-json'
+  'python'
+  'qt6-tools'
+  'rapidjson'
+  #'spirv-tools'
+  #'vulkan-headers'
+)
+
+provides=("$_pkgname")
+conflicts=("$_pkgname")
+
+_source_main() {
+  _pkgsrc="$_pkgname"
+  source=("git+$url.git")
+  sha256sums=('SKIP')
 }
-prepare() {
-  cd "$srcdir/$_pkgname"
-  git submodule init
-  for submodule in {boost,nihstro,soundtouch,catch2,dynarmic,xbyak,fmt,enet,inih,libressl,libusb,cubeb,discord-rpc,cpp-jwt,teakra,lodepng,zstd,libyuv,sdl2,cryptopp-cmake,cryptopp,dds-ktx,openal-soft,glslang,vma,vulkan-headers,sirit,faad2,library-headers,libadrenotools,oaknut,SPIRV-Tools}; do
-    git config submodule.${submodule}.url "$srcdir/${submodule}"
+
+_source_mandarine() {
+  local _sources_add=(
+    'abdes.cryptopp-cmake'::'git+https://github.com/abdes/cryptopp-cmake.git'
+    'arun11299.cpp-jwt'::'git+https://github.com/arun11299/cpp-jwt.git'
+    #'benhoyt.inih'::'git+https://github.com/benhoyt/inih.git'
+    'bylaws.libadrenotools'::'git+https://github.com/bylaws/libadrenotools.git'
+    #'catchorg.catch2'::'git+https://github.com/catchorg/Catch2.git'
+    #'facebook.zstd'::'git+https://github.com/facebook/zstd.git'
+    'fmtlib.fmt'::'git+https://github.com/fmtlib/fmt.git'
+    #'google.oboe'::'git+https://github.com/google/oboe.git'
+    'gpuopen-librariesandsdks.vulkanmemoryallocator'::'git+https://github.com/GPUOpen-LibrariesAndSDKs/VulkanMemoryAllocator.git'
+    'herumi.xbyak'::'git+https://github.com/herumi/xbyak.git'
+    #'kcat.openal-soft'::'git+https://github.com/kcat/openal-soft.git'
+    'khronosgroup.glslang'::'git+https://github.com/KhronosGroup/glslang.git'
+    'khronosgroup.spirv-tools'::'git+https://github.com/KhronosGroup/SPIRV-Tools.git'
+    'khronosgroup.vulkan-headers'::'git+https://github.com/KhronosGroup/Vulkan-Headers.git'
+    'knik0.faad2'::'git+https://github.com/knik0/faad2.git'
+    'lemenkov.libyuv'::'git+https://github.com/lemenkov/libyuv.git'
+    #'libsdl-org.sdl'::'git+https://github.com/libsdl-org/SDL.git'
+    'libusb'::'git+https://github.com/libusb/libusb.git'
+    #'lsalzman.enet'::'git+https://github.com/lsalzman/enet.git'
+    'lvandeve.lodepng'::'git+https://github.com/lvandeve/lodepng.git'
+    'merryhime.oaknut'::'git+https://github.com/merryhime/oaknut.git'
+    'mozilla.cubeb'::'git+https://github.com/mozilla/cubeb.git'
+    'neobrain.nihstro'::'git+https://github.com/neobrain/nihstro.git'
+    'pablomk7.discord-rpc'::'git+https://github.com/PabloMK7/discord-rpc.git'
+    'pablomk7.dynarmic'::'git+https://github.com/PabloMK7/dynarmic.git'
+    'pablomk7.ext-boost'::'git+https://github.com/PabloMK7/ext-boost.git'
+    'pablomk7.ext-library-headers'::'git+https://github.com/PabloMK7/ext-library-headers.git'
+    'pablomk7.ext-libressl-portable'::'git+https://github.com/PabloMK7/ext-libressl-portable.git'
+    'pablomk7.sirit'::'git+https://github.com/PabloMK7/sirit.git'
+    'septag.dds-ktx'::'git+https://github.com/septag/dds-ktx.git'
+    #'soundtouch'::'git+https://codeberg.org/soundtouch/soundtouch.git'
+    'weidai11.cryptopp'::'git+https://github.com/weidai11/cryptopp.git'
+    'wwylele.teakra'::'git+https://github.com/wwylele/teakra.git'
+  )
+
+  local _p
+  for _p in ${_sources_add[@]}; do
+    source+=("$_p")
+    sha256sums+=('SKIP')
   done
-  git config submodule.externals/oboe.url "$srcdir/oboe"
-  git -c protocol.file.allow=always submodule update
 
-  cd "$srcdir/$_pkgname/externals/cubeb"
-  git submodule init
-  git config submodule.googletest.url "$srcdir/googletest"
-  git config submodule."cmake/sanitizers-cmake".url "$srcdir/sanitizers-cmake"
-  git -c protocol.file.allow=always submodule update
-
-  cd "$srcdir/$_pkgname/externals/sirit/"
-  git submodule init
-  git config submodule.externals/SPIRV-Headers.url "$srcdir/SPIRV-Headers"
-  git -c protocol.file.allow=always submodule update
-
-  cd "$srcdir/$_pkgname/externals/libadrenotools/"
-  git submodule init
-  git config submodule.lib/linkernsbypass.url "$srcdir/liblinkernsbypass"
-  git -c protocol.file.allow=always submodule update
+  _prepare_mandarine() (
+    cd "$srcdir/$_pkgsrc"
+    local _submodules=(
+      'abdes.cryptopp-cmake'::'externals/cryptopp-cmake'
+      'arun11299.cpp-jwt'::'externals/cpp-jwt'
+      #'benhoyt.inih'::'externals/inih/inih'
+      'bylaws.libadrenotools'::'externals/libadrenotools'
+      #'catchorg.catch2'::'externals/catch2'
+      #'facebook.zstd'::'externals/zstd'
+      'fmtlib.fmt'::'externals/fmt'
+      #'google.oboe'::'externals/oboe'
+      'gpuopen-librariesandsdks.vulkanmemoryallocator'::'externals/vma'
+      'herumi.xbyak'::'externals/xbyak'
+      #'kcat.openal-soft'::'externals/openal-soft'
+      'khronosgroup.glslang'::'externals/glslang'
+      'khronosgroup.spirv-tools'::'externals/SPIRV-Tools'
+      'khronosgroup.vulkan-headers'::'externals/vulkan-headers'
+      'knik0.faad2'::'externals/faad2/faad2'
+      'lemenkov.libyuv'::'externals/libyuv'
+      #'libsdl-org.sdl'::'externals/sdl2/SDL'
+      'libusb'::'externals/libusb/libusb'
+      #'lsalzman.enet'::'externals/enet'
+      'lvandeve.lodepng'::'externals/lodepng/lodepng'
+      'merryhime.oaknut'::'externals/oaknut'
+      'mozilla.cubeb'::'externals/cubeb'
+      'neobrain.nihstro'::'externals/nihstro'
+      'pablomk7.discord-rpc'::'externals/discord-rpc'
+      'pablomk7.dynarmic'::'externals/dynarmic'
+      'pablomk7.ext-boost'::'externals/boost'
+      'pablomk7.ext-library-headers'::'externals/library-headers'
+      'pablomk7.ext-libressl-portable'::'externals/libressl'
+      'pablomk7.sirit'::'externals/sirit'
+      'septag.dds-ktx'::'externals/dds-ktx'
+      #'soundtouch'::'externals/soundtouch'
+      'weidai11.cryptopp'::'externals/cryptopp'
+      'wwylele.teakra'::'externals/teakra'
+    )
+    _submodule_update
+  )
 }
-build() {
-  export CFLAGS=$(echo $CFLAGS | sed 's/-Wp,-D_FORTIFY_SOURCE=3//g')
-  export CXXFLAGS=$(echo $CXXFLAGS | sed 's/-Wp,-D_FORTIFY_SOURCE=3//g')
-  CXXFLAGS+=" -I/usr/lib/libusb-1.0 -flto=thin"
-  CFLAGS+=" -flto=thin"
 
-  cmake -B build -S "$_pkgname" -G Ninja \
-    -DCMAKE_INSTALL_PREFIX=/usr \
-    -DCMAKE_BUILD_TYPE=None \
-    -DENABLE_QT_TRANSLATION=ON \
-    -DUSE_DISCORD_PRESENCE=ON \
-    -DCMAKE_CXX_COMPILER=clang++ \
-    -DCMAKE_C_COMPILER=clang \
-    -DCMAKE_CXX_FLAGS="$CXXFLAGS" \
-    -DCMAKE_C_FLAGS="$CFLAGS" \
-    -DUSE_SYSTEM_GLSLANG=OFF \
-    -DUSE_SYSTEM_CATCH2=ON \
-    -DUSE_SYSTEM_FMT=ON \
-    -DUSE_SYSTEM_INIH=ON \
-    -DUSE_SYSTEM_JSON=ON \
-    -DUSE_SYSTEM_LIBUSB=ON \
-    -DUSE_SYSTEM_OPENAL=ON \
-    -DUSE_SYSTEM_OPENSSL=ON \
-    -DUSE_SYSTEM_SOUNDTOUCH=ON \
-    -DUSE_SYSTEM_ZSTD=ON \
-    -DUSE_SYSTEM_SDL2=ON \
-    -DUSE_SYSTEM_VULKAN_HEADERS=OFF \
-    -DUSE_SYSTEM_BOOST=OFF \
-    -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+_source_bylaws_libadrenotools() {
+  local _sources_add=(
+    'bylaws.liblinkernsbypass'::'git+https://github.com/bylaws/liblinkernsbypass.git'
+  )
+
+  local _p
+  for _p in ${_sources_add[@]}; do
+    source+=("$_p")
+    sha256sums+=('SKIP')
+  done
+
+  _prepare_bylaws_libadrenotools() (
+    cd "$srcdir/$_pkgsrc"
+    cd 'externals/libadrenotools'
+    local _submodules=(
+      'bylaws.liblinkernsbypass'::'lib/linkernsbypass'
+    )
+    _submodule_update
+  )
+}
+
+_source_mozilla_cubeb() {
+  local _sources_add=(
+    #'arsenm.sanitizers-cmake'::'git+https://github.com/arsenm/sanitizers-cmake.git'
+    #'google.googletest'::'git+https://github.com/google/googletest.git'
+    'mozilla.cubeb-coreaudio-rs'::'git+https://github.com/mozilla/cubeb-coreaudio-rs.git'
+    'mozilla.cubeb-pulse-rs'::'git+https://github.com/mozilla/cubeb-pulse-rs.git'
+  )
+
+  local _p
+  for _p in ${_sources_add[@]}; do
+    source+=("$_p")
+    sha256sums+=('SKIP')
+  done
+
+  _prepare_mozilla_cubeb() (
+    cd "$srcdir/$_pkgsrc"
+    cd 'externals/cubeb'
+    local _submodules=(
+      #'arsenm.sanitizers-cmake'::'cmake/sanitizers-cmake'
+      #'google.googletest'::'googletest'
+      'mozilla.cubeb-coreaudio-rs'::'src/cubeb-coreaudio-rs'
+      'mozilla.cubeb-pulse-rs'::'src/cubeb-pulse-rs'
+    )
+    _submodule_update
+  )
+}
+
+_source_pablomk7_sirit() {
+  local _sources_add=(
+    'khronosgroup.spirv-headers'::'git+https://github.com/KhronosGroup/SPIRV-Headers.git'
+  )
+
+  local _p
+  for _p in ${_sources_add[@]}; do
+    source+=("$_p")
+    sha256sums+=('SKIP')
+  done
+
+  _prepare_pablomk7_sirit() (
+    cd "$srcdir/$_pkgsrc"
+    cd 'externals/sirit'
+    local _submodules=(
+      'khronosgroup.spirv-headers'::'externals/SPIRV-Headers'
+    )
+    _submodule_update
+  )
+}
+
+_source_main
+_source_mandarine
+_source_bylaws_libadrenotools
+#_source_mozilla_cubeb
+_source_pablomk7_sirit
+
+prepare() {
+  _submodule_update() {
+    local _module
+    for _module in "${_submodules[@]}"; do
+      git submodule init "${_module##*::}"
+      git submodule set-url "${_module##*::}" "$srcdir/${_module%%::*}"
+      git -c protocol.file.allow=always submodule update "${_module##*::}"
+    done
+  }
+
+  _run_if_exists _prepare_mandarine
+  _run_if_exists _prepare_bylaws_libadrenotools
+  _run_if_exists _prepare_mozilla_cubeb
+  _run_if_exists _prepare_pablomk7_sirit
+
+  # don't check for unwanted submodules
+  sed -e '/check_submodules_present()/d' -i "$_pkgsrc/CMakeLists.txt"
+
+  # fix version
+  local _pkgver _pkgrev
+  _pkgver=$(pkgver)
+  _pkgrev=$(git -C "$_pkgsrc" rev-parse --short=7 HEAD)
+  sed -E \
+    -e "s&@@BUILD_DATE&$(date -u --rfc-3339=date)&" \
+    -e "s&@BUILD_FULLNAME@&$_pkgver&" \
+    -e "s&@GIT_BRANCH@&master&" \
+    -e "s&@GIT_DESC@&$_pkgrev&" \
+    -e "s&@BUILD_VERSION@&${_pkgver%%.r*}&" \
+    -e "s&@GIT_REV@&$_pkgrev&" \
+    -e "s&@REPO_NAME@&${_pkgname^}&" \
+    -i "$_pkgsrc/src/common/scm_rev.cpp.in"
+}
+
+pkgver() {
+  cd "$_pkgsrc"
+  git describe --long --tags --abbrev=7 --exclude='*[a-zA-Z][a-zA-Z]*' \
+    | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/[-,]/./g'
+}
+
+build() {
+  export CMAKE_POLICY_VERSION_MINIMUM=3.5
+
+  export CC CXX CFLAGS CXXFLAGS LDFLAGS
+  CC=clang
+  CXX=clang++
+  CFLAGS="${CFLAGS//_FORTIFY_SOURCE=?/_FORTIFY_SOURCE=2} -Wno-error=deprecated-declarations"
+  CXXFLAGS="${CFLAGS//_FORTIFY_SOURCE=?/_FORTIFY_SOURCE=2} -Wno-error=deprecated-declarations -I/usr/lib/libusb-1.0"
+
+  local _ldflags=(${LDFLAGS})
+  LDFLAGS="${_ldflags[@]//*fuse-ld*/} -fuse-ld=lld"
+
+  if [[ ${_build_level::1} =~ ^[2-4]$ ]]; then
+    local _cflags _cxxflags
+    _cflags=(
+      -march=x86-64-v${_build_level::1} -O3
+      $(sed -E -e 's&-(march|mtune)=\S+\b&&g' -e 's&-O[0-9]+\b&&g' <<< "${CFLAGS}")
+    )
+    CFLAGS="${_cflags[@]}"
+
+    _cxxflags=(
+      -march=x86-64-v${_build_level::1} -O3
+      $(sed -E -e 's&-(march|mtune)=\S+\b&&g' -e 's&-O[0-9]+\b&&g' <<< "${CXXFLAGS}")
+    )
+    CXXFLAGS="${_cxxflags[@]}"
+  fi
+
+  local _cmake_options=(
+    -B build
+    -S "$_pkgsrc"
+    -G Ninja
+    -DCMAKE_BUILD_TYPE=None
+    -DCMAKE_INSTALL_PREFIX='/usr'
+    -DENABLE_QT_TRANSLATION=OFF # translations have spurious errors
+    -DUSE_DISCORD_PRESENCE=ON
+    -DUSE_SYSTEM_BOOST=OFF
+    -DUSE_SYSTEM_CATCH2=ON
+    -DUSE_SYSTEM_ENET=ON
+    -DUSE_SYSTEM_FMT=OFF
+    -DUSE_SYSTEM_GLSLANG=OFF
+    -DUSE_SYSTEM_INIH=ON
+    -DUSE_SYSTEM_JSON=ON
+    -DUSE_SYSTEM_LIBUSB=ON
+    -DUSE_SYSTEM_OPENAL=ON
+    -DUSE_SYSTEM_OPENSSL=ON
+    -DUSE_SYSTEM_SDL2=ON
+    -DUSE_SYSTEM_SOUNDTOUCH=ON
+    -DUSE_SYSTEM_VULKAN_HEADERS=OFF
+    -DUSE_SYSTEM_ZSTD=ON
+    -DUSE_SYSTEM_XBYAK=OFF
+    -DUSE_SANITIZERS=OFF
+    -DBUILD_TESTING=OFF
+    -Wno-dev
+  )
+
+  cmake "${_cmake_options[@]}"
   cmake --build build
 }
+
 package() {
   DESTDIR="$pkgdir/" cmake --install build
   rm -rf $pkgdir/usr/include/
   rm -rf $pkgdir/usr/lib/
 }
 
-#
-#
-#
-#	-DUSE_SYSTEM_BOOST=OFF \
-#
-#
-#
-#
-#
-#
+_run_if_exists() {
+  if declare -F "$1" > /dev/null; then
+    eval "$1"
+  fi
+}

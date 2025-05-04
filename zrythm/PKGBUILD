@@ -9,7 +9,7 @@
 _pkgname="zrythm"
 pkgname="$_pkgname"
 pkgver=${_pkgver//-/.}
-pkgrel=1
+pkgrel=2
 pkgdesc='Highly automated and intuitive digital audio workstation'
 url="https://gitlab.zrythm.org/zrythm/zrythm"
 license=('AGPL-3.0-or-later')
@@ -17,8 +17,8 @@ arch=('x86_64')
 
 depends=(
   'appstream'
-  'boost'
   'breeze-icons'
+  'carla>=2.5.9.r303' # AUR
   'chromaprint'
   'dconf'
   'fftw'
@@ -30,15 +30,19 @@ depends=(
   'guile'
   'json-glib'
   'libadwaita'
+  'libaudec' # AUR
   'libbacktrace'
+  'libcyaml'
   'libepoxy'
   'libpanel'
   'libxinerama'
   'libxrandr'
   'lilv'
+  'lsp-dsp-lib' # AUR
   'pcre'
   'portaudio'
   'qt5-base'
+  'reproc' # AUR
   'rtaudio'
   'rtmidi'
   'rubberband'
@@ -49,15 +53,9 @@ depends=(
   'xxhash'
   'yyjson'
   'zix'
-
-  # AUR
-  'carla>=2.5.9.r303'
-  'libaudec'
-  'libcyaml'
-  'lsp-dsp-lib'
-  'reproc'
 )
 makedepends=(
+  'boost'
   'cmake'
   'git'
   'glib2-devel'

@@ -12,7 +12,7 @@ unset _pkgtype
 
 _pkgname="ares-emu"
 pkgname="$_pkgname${_pkgtype:-}"
-pkgver=143.r72.ga247271
+pkgver=144.r0.g728105b
 pkgrel=1
 pkgdesc="Multi-system emulator focused on accuracy and preservation"
 url="https://github.com/ares-emulator/ares"
@@ -78,11 +78,11 @@ build() (
   if [[ ${_build_level::1} =~ ^[2-4]$ ]]; then
     local _cflags _cxxflags
     _cflags=(
-      -march=x86-64-v3 -mtune=generic -O3
+      -march=x86-64-v3 -O3
       $(sed -E -e 's&-(march|mtune)=\S+\b&&g' -e 's&-O[0-9]+\b&&g' <<< ${CFLAGS})
     )
     _cxxflags=(
-      -march=x86-64-v3 -mtune=generic -O3
+      -march=x86-64-v3 -O3
       $(sed -E -e 's&-(march|mtune)=\S+\b&&g' -e 's&-O[0-9]+\b&&g' <<< ${CXXFLAGS})
     )
 

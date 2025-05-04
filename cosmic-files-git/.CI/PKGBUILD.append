@@ -1,0 +1,10 @@
+makedepends=(
+  ${makedepends[@]//mold*/}
+  'clang'
+)
+
+options+=('!lto')
+
+eval "$(declare -f prepare | sed '/patch/d')"
+
+eval "$(declare -f build | sed '/mold/d')"

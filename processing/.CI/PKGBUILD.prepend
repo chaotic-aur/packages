@@ -1,0 +1,2 @@
+# package fails if doesn't exist
+mkdir -p "$HOME/.config"

@@ -2,7 +2,7 @@
 
 pkgname=dwarfs
 pkgver=0.12.3
-pkgrel=1
+pkgrel=2
 pkgdesc="A fast high compression read-only file system"
 url='https://github.com/mhx/dwarfs'
 arch=('x86_64' 'aarch64')
@@ -34,6 +34,7 @@ build() {
   cmake -B build -S "$pkgname-$pkgver" \
     -W no-dev \
     -D CMAKE_INSTALL_PREFIX=/usr \
+    -D CMAKE_INSTALL_SBINDIR=bin \
     -D CMAKE_BUILD_TYPE=None \
     -D CMAKE_POLICY_VERSION_MINIMUM=3.5 \
     -D WITH_TESTS=ON \
@@ -48,17 +49,11 @@ build() {
 }
 
 check() {
-  #TODO: Find a way to either load the `fuse` module for the tests or disable the tests only when `fuse` module is not
-  #      loaded
-  #      Also wtf with perfmon test??
-  cmake --build build --target test -- ARGS="-E '(dwarfs/tools_test\..*|dwarfsextract_test\.perfmon)'"
+  cmake --build build --target test
 }
 
 package() {
   cmake --install build --prefix "$pkgdir/usr"
-
-  mv "$pkgdir/usr/sbin"/* "$pkgdir/usr/bin"
-  rm -rf "$pkgdir/usr/sbin"
 
   install -Dm0644 "$pkgname-$pkgver/LICENSE" "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
 }

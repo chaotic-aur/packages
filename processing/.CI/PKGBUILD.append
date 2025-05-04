@@ -1,0 +1,17 @@
+url="https://github.com/processing/processing4"
+
+license=(
+  'GPL-2.0-only'
+  'LGPL-2.1-only' # core library
+)
+
+makedepends+=('xdg-utils')
+
+eval _orig_"$(declare -f package)"
+
+package() {
+  # needs to be present to be removed later
+  install -Dm644 /dev/null "$pkgdir/usr/share/applications/mimeinfo.cache"
+
+  _orig_package
+}

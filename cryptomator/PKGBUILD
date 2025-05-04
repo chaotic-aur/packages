@@ -5,7 +5,7 @@
 # Contributor: Armin Schrenk <armin.schrenk@skymatic.de>
 
 pkgname=cryptomator
-pkgver=1.15.3 #Note: hyphens (-) must be replaced by underscores (_)
+pkgver=1.16.0 #Note: hyphens (-) must be replaced by underscores (_)
 pkgrel=1
 pkgdesc="Multiplatform transparent client-side encryption of your files in the cloud."
 arch=('any')
@@ -14,8 +14,8 @@ license=('GPL3')
 depends=('fuse3' 'alsa-lib' 'hicolor-icon-theme' 'libxtst' 'libnet' 'libxrender')
 makedepends=('maven' 'unzip')
 optdepends=('keepassxc-cryptomator: Use KeePassXC to store vault passwords' 'ttf-hanazono: Install this font when using Japanese system language')
-_jdkver=23.0.1+11
-_jfxver=23.0.1
+_jdkver=23.0.2+7
+_jfxver=23.0.2
 source=("cryptomator-${pkgver//_/-}.tar.gz::https://github.com/cryptomator/cryptomator/archive/refs/tags/${pkgver//_/-}.tar.gz"
   "cryptomator-${pkgver//_/-}.tar.gz.asc::https://github.com/cryptomator/cryptomator/releases/download/${pkgver//_/-}/cryptomator-${pkgver//_/-}.tar.gz.asc")
 source_x86_64=("jdk-${_jdkver}.tar.gz::https://github.com/adoptium/temurin${_jdkver:0:2}-binaries/releases/download/jdk-${_jdkver//\+/%2B}/OpenJDK${_jdkver:0:2}U-jdk_x64_linux_hotspot_${_jdkver//\+/_}.tar.gz"
@@ -23,12 +23,12 @@ source_x86_64=("jdk-${_jdkver}.tar.gz::https://github.com/adoptium/temurin${_jdk
 source_aarch64=("jdk-${_jdkver}.tar.gz::https://github.com/adoptium/temurin${_jdkver:0:2}-binaries/releases/download/jdk-${_jdkver//\+/%2B}/OpenJDK${_jdkver:0:2}U-jdk_aarch64_linux_hotspot_${_jdkver//\+/_}.tar.gz"
   "openjfx-${_jfxver}.zip::https://download2.gluonhq.com/openjfx/${_jfxver}/openjfx-${_jfxver}_linux-aarch64_bin-jmods.zip")
 noextract=("jdk-${_jfxver}.tar.gz" "openjfx-${_jdkver}.zip")
-sha256sums=('b75362e76a3f66a6ff149e35fdeb67e669ab311f90ebe5d22fc77ca60f8372e3'
+sha256sums=('4463fbb12f4101e4b6aebbc5fdbe9903ffebfe03050e0bbf9422769117dc1d32'
   'SKIP')
-sha256sums_x86_64=('2400267e4e9c0f6ae880a4d763af6caf18c673714bdee5debf8388b0b5d52886'
-  '2164bca470bf70a5e2764645e2078ba7f787b274e5be3d7df30d87c5bb62bba6')
-sha256sums_aarch64=('808e3843293e50515bf02ad2f956e543da65e32dac82ae7a266a147b3485c61a'
-  '09c92fa9fa0b82adefd88640a14ebb2a49e5f3f733a57d1542f5590d060ffe1b')
+sha256sums_x86_64=('870ac8c05c6fe563e7a3878a47d0234b83c050e83651d2c47e8b822ec74512dd'
+  '063baebc6922e4a89c94b9dfb7a4f53e59e8d6fec400d4e670b31bc2ab324dec')
+sha256sums_aarch64=('fb43ae1202402842559cb6223886ec1663b90ffbec48479abbcb92c92c9012eb'
+  '9bbedaeae1590b69e2b22237bda310936df33e344dbc243bea2e86acaab3a0d8')
 options=('!strip')
 
 validpgpkeys=('58117AFA1F85B3EEC154677D615D449FE6E6A235')
