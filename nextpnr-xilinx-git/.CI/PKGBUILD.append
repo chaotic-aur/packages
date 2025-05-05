@@ -1,0 +1,4 @@
+export CMAKE_POLICY_VERSION_MINIMUM=3.5
+
+url="https://github.com/gatecat/nextpnr-xilinx"
+license=('ISC')
