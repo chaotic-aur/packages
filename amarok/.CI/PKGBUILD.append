@@ -1,0 +1,12 @@
+export CMAKE_GENERATOR=Ninja
+
+url="https://invent.kde.org/multimedia/amarok"
+
+makedepends+=('ninja')
+
+eval _orig_"$(declare -f package)"
+
+package() {
+  replaces=('amarok-qt6')
+  _orig_package
+}
