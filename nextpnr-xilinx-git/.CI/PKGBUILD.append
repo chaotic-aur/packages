@@ -2,3 +2,8 @@ export CMAKE_POLICY_VERSION_MINIMUM=3.5
 
 url="https://github.com/gatecat/nextpnr-xilinx"
 license=('ISC')
+
+_pkgsrc="$_pkgname"
+prepare() {
+  sed '1i #include <cstdint>' -i "$_pkgsrc"/3rdparty/json11/json11.cpp
+}
