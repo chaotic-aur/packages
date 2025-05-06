@@ -1,7 +1,7 @@
 pkgbase = gestures
 	pkgdesc = Modern, minimal GUI app for libinput-gestures
 	pkgver = 0.3.1
-	pkgrel = 2
+	pkgrel = 3
 	url = https://gitlab.com/nokun/gestures
 	arch = any
 	license = GPL3
