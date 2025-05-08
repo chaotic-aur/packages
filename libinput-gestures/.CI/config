@@ -1,1 +1,2 @@
-CI_PKGBUILD_SOURCE=aur
+CI_PACKAGE_BUMP=2.80-1/1
+CI_PKGBUILD_SOURCE=https://aur.archlinux.org/libinput-gestures-git.git
