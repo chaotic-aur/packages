@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+
+_check_rate() {
+  local _rate _date_build _epoch_build _epoch_now _epoch_diff
+
+  _rate="$((3600 * ${1}))" # hours
+  _date_build="$(LANG=C LC_ALL=C pacman -Si "chaotic-aur/ladybird-git" | grep -Pom1 '^Build Date\s+:\s+\K\S.*\S$')"
+  _epoch_build=$(\date '+%s' -d "$_date_build")
+  _epoch_now=$(\date '+%s')
+  _epoch_diff="$((_epoch_now - _epoch_build))"
+
+  if [[ "$_epoch_diff" -lt "$_rate" ]]; then
+    echo "Heavy package.  Skipping build."
+    echo "> Last built $((_epoch_diff / 3600)) hours ago."
+    return $CI_CODE_SKIP
+  fi
+}
+
+_check_status() (
+  local _url_repo _url_ci _commit _response _msg_err _success_ci
+  _url_repo="https://github.com/LadybirdBrowser/ladybird"
+  _commit=$(git ls-remote "$_url_repo.git" HEAD 2>/dev/null | grep -m1 -oP '\w+(?=\t\w)')
+  _url_ci="$_url_repo/commit/$_commit/checks"
+  _response=$(curl -Ssf "$_url_ci")
+  _success_ci=false
+
+  if grep -qo 'favicon-success.svg' <<<"$_response"; then
+    _msg_err="Check-in success."
+    _success_ci=true
+  elif grep -qo 'favicon-failure.svg' <<<"$_response"; then
+    _msg_err="Error: Check-in failed."
+    _success_ci=false
+  else
+    _msg_err="Error: Check-in incomplete."
+    _success_ci=false
+  fi
+
+  echo "$_msg_err"
+  echo "> $_url_ci"
+
+  if [ "${_success_ci::1}" != "t" ]; then
+    return "$CI_CODE_SKIP"
+  fi
+)
+
+_check_rate 18 || return $?
+_check_status || return $?
