@@ -6,7 +6,7 @@
 
 pkgname=aws-cli-v2
 # https://github.com/aws/aws-cli/raw/v2/CHANGELOG.rst
-pkgver=2.27.8
+pkgver=2.27.11
 pkgrel=1
 pkgdesc='Unified command line interface for Amazon Web Services (version 2)'
 arch=(any)
@@ -29,7 +29,7 @@ source=("https://awscli.amazonaws.com/awscli-$pkgver.tar.gz"{,.sig}
   allow-egg-info.diff
   botocore-2990-rebased.patch
   botocore-2551.patch)
-sha256sums=('e930bef8cbc6f6f888941b26da069c7a2bbf55c233d6a24f6732beada9acb186'
+sha256sums=('c73a40fb63e11308a916d0274898dac5c00d912be55a9523bfa50384b97e6708'
   'SKIP'
   '444f0d2eb314f07474ce752e02932140bb9b9fec15c79bafe567f62a42398e93'
   '893d61d7e958c3c02bfa1e03bf58f6f6abd98849d248cc661f1c56423df9f312'
