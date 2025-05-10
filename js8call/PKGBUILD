@@ -25,7 +25,13 @@ prepare() {
 
 build() {
   cd "$srcdir"/build
-  cmake -Wno-dev -Dhamlib_LIBRARY_DIRS=/usr/lib/ -DCMAKE_INSTALL_PREFIX="${pkgdir}"/usr -DCMAKE_BUILD_TYPE=Release "$srcdir"/$pkgname-$pkgver
+  cmake \
+    -Wno-dev \
+    -DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
+    -Dhamlib_LIBRARY_DIRS=/usr/lib/ \
+    -DCMAKE_INSTALL_PREFIX="${pkgdir}"/usr \
+    -DCMAKE_BUILD_TYPE=Release \
+    "$srcdir"/$pkgname-$pkgver
   cmake --build .
 }
 
