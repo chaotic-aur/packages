@@ -1,12 +1,10 @@
-# Maintainer: aur.chaotic.cx
-
-## links
-# https://obsproject.com
-# https://github.com/obsproject/obs-studio
-# https://github.com/obsproject/cef
+# Maintainer: Benjamin Klettbach <b dot klettbach at gmail dot com >
+# Contributor: Jonathan Steel <jsteel at archlinux.org>
+# Contributor: ArcticVanguard <LideEmily at gmail dot com>
+# Contributor: ledti <antergist at gmail dot com>
 
 ## options
-: ${_plugin_aja:=false}
+: ${_plugin_aja:=true}
 
 # build-aux/modules/99-cef.json
 : ${_cef_branch:=6533}
@@ -14,12 +12,12 @@
 
 _pkgname="obs-studio"
 pkgname="$_pkgname-git"
-pkgver=31.0.2.r116.g8db61f2
+pkgver=31.0.3.r236.g000437f
 pkgrel=1
-pkgdesc="Free, open source software for live streaming and recording - Browser enabled"
+pkgdesc="Free and open source software for video recording and live streaming"
 url="https://github.com/obsproject/obs-studio"
-license=("GPL-2.0-or-later")
-arch=("x86_64")
+license=("GPL-2.0-only")
+arch=("i686" "x86_64")
 
 depends=(
   'curl'
@@ -38,8 +36,9 @@ depends=(
   'speexdsp'
 )
 makedepends=(
-  #'asio'
+  'asio'
   'cmake'
+  'extra-cmake-modules'
   'ffnvcodec-headers'
   'git'
   'libdatachannel'
@@ -57,6 +56,7 @@ makedepends=(
   'x264'
   'xdg-desktop-portal'
 )
+
 optdepends=(
   'libfdk-aac: FDK AAC codec support'
   'libva-intel-driver: hardware encoding'
@@ -68,45 +68,26 @@ optdepends=(
   'vlc: VLC Media Source'
 )
 
-provides=("$_pkgname=${pkgver%%.r*}")
-conflicts=("$_pkgname")
+if [ "${_plugin_aja::1}" == "t" ]; then
+  makedepends+=('libajantv2') # AUR
+  _plugin_aja='ON'
+else
+  _plugin_aja='OFF'
+fi
 
-options=('!debug')
+provides=("obs-studio=$pkgver")
+conflicts=("obs-studio")
 
 _source_main() {
-  _pkgsrc="$_pkgname"
-  source=("$_pkgsrc"::"git+$url.git")
-  sha256sums=('SKIP')
-
-  if [ "${_plugin_aja::1}" == "t" ]; then
-    makedepends+=('libajantv2') # AUR
-    _plugin_aja='ON'
-  else
-    _plugin_aja='OFF'
-  fi
-}
-
-_source_obs_studio() {
-  local _sources_add=(
-    #'obsproject.libdshowcapture'::'git+https://github.com/obsproject/libdshowcapture.git'
-    'obsproject.obs-browser'::'git+https://github.com/obsproject/obs-browser.git'
-    'obsproject.obs-websocket'::'git+https://github.com/obsproject/obs-websocket.git'
+  source=(
+    "$pkgname::git+https://github.com/obsproject/obs-studio.git#branch=master"
+    "git+https://github.com/obsproject/obs-browser.git"
+    "git+https://github.com/obsproject/obs-websocket.git"
   )
-
-  local _p
-  for _p in ${_sources_add[@]}; do
-    source+=("$_p")
-    sha256sums+=('SKIP')
-  done
-
-  _prepare_obs_studio() (
-    cd "$srcdir/$_pkgsrc"
-    local _submodules=(
-      #'obsproject.libdshowcapture'::'plugins/win-dshow/libdshowcapture'
-      'obsproject.obs-browser'::'plugins/obs-browser'
-      'obsproject.obs-websocket'::'plugins/obs-websocket'
-    )
-    _submodule_update
+  sha256sums=(
+    'SKIP'
+    'SKIP'
+    'SKIP'
   )
 }
 
@@ -124,6 +105,7 @@ _source_cef() {
     'dbus'
     'expat'
     'glib2'
+    'glibc'
     'libcups'
     'libdrm'
     'libx11'
@@ -145,46 +127,24 @@ _source_cef() {
   sha256sums+=('SKIP')
 }
 
-_source_asio() {
-  _pkgsrc_asio="asio"
-  _ver_asio=1.32.0
-  source+=("$_pkgsrc_asio"::"git+https://github.com/chriskohlhoff/asio.git#tag=asio-${_ver_asio//./-}")
-  sha256sums+=('SKIP')
-
-  _build_asio() (
-    cd "$_pkgsrc_asio/asio"
-    autoreconf -fiv
-    ./configure --prefix=/usr
-    make
-    make DESTDIR="$srcdir/deps" install
-    find "$srcdir/deps" -type f
-  )
-}
-
 _source_main
-_source_asio
 _source_cef
-_source_obs_studio
-
-prepare() {
-  _submodule_update() {
-    local _module
-    for _module in "${_submodules[@]}"; do
-      git submodule init "${_module##*::}"
-      git submodule set-url "${_module##*::}" "$srcdir/${_module%::*}"
-      git -c protocol.file.allow=always submodule update "${_module##*::}"
-    done
-  }
-
-  _run_if_exists _prepare_obs_studio
-}
 
 pkgver() {
-  cd "$_pkgsrc"
+  cd "$pkgname"
   local _version=$(git tag | grep -Ev '.*[a-z]{2}.*' | sort -rV | head -1)
   local _revision=$(git rev-list --count --cherry-pick "$_version"...HEAD)
   local _hash=$(git rev-parse --short=7 HEAD)
   printf '%s.r%s.g%s' "${_version:?}" "${_revision:?}" "${_hash:?}"
+}
+
+prepare() {
+  cd "$pkgname"
+  gitconf="protocol.file.allow=always"
+
+  git config submodule.plugins/obs-browser.url $srcdir/obs-browser
+  git config submodule.plugins/obs-websocket.url $srcdir/obs-websocket
+  git -c $gitconf submodule update
 }
 
 _build_cef() (
@@ -203,7 +163,7 @@ _build_cef() (
 _build_obs_studio() (
   local _cmake_options=(
     -B build
-    -S "$_pkgsrc"
+    -S "$pkgname"
     -DCMAKE_BUILD_TYPE=None
     -DCMAKE_INSTALL_PREFIX='/usr'
     -DCMAKE_INSTALL_LIBDIR='lib'
@@ -234,7 +194,6 @@ build() (
   CFLAGS="${CFLAGS/_FORTIFY_SOURCE=?/_FORTIFY_SOURCE=2}"
   CXXFLAGS="${CXXFLAGS/_FORTIFY_SOURCE=?/_FORTIFY_SOURCE=2}"
 
-  _build_asio
   _build_cef
   _build_obs_studio
 )
@@ -244,8 +203,4 @@ package() {
   chmod -R u+rwX,go+rX,go-w "$pkgdir"
 }
 
-_run_if_exists() {
-  if declare -F "$1" > /dev/null; then
-    eval "$1"
-  fi
-}
+# vim: ts=2:sw=2:expandtab
