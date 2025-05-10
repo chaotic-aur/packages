@@ -1,8 +1,8 @@
 # Contributor: Lex Black <autumn-wind@web.de>
 
 pkgname=mpvpaper
-pkgver=1.7
-pkgrel=2
+pkgver=1.8
+pkgrel=1
 pkgdesc="video wallpaper program for wlroots based wayland compositors"
 arch=('i686' 'x86_64')
 url="https://github.com/GhostNaN/$pkgname"
@@ -11,11 +11,9 @@ depends=('libmpv.so' 'libwayland-client.so' 'libwayland-egl.so')
 makedepends=('meson' 'ninja' 'wayland-protocols')
 optdepends=('socat: control via sockets')
 source=(${pkgname}-${pkgver}.tar.gz::https://github.com/GhostNaN/mpvpaper/archive/${pkgver}.tar.gz)
-b2sums=('103582b7e5cce6293572c21299c125ef112441d1cec355e133bf54cb299123cde77deb92cd19f819102a0e6389018d4027965bb66070098a01c06f11c30b64c4')
+b2sums=('4166cfa3f87686176d379c6240296a8bcf290f2c26a349ff0177d7585b36304af117e255d677b9d70a23327745abcabd2a07efb3bf760b16f34e65e81ca7a80c')
 
 build() {
-  # Change incompatible-pointer-type back to warning instead of error (default GCC 14+)
-  CFLAGS+=' -Wno-error=incompatible-pointer-types'
   arch-meson "$pkgname-$pkgver" build
   meson compile -C build
 }
