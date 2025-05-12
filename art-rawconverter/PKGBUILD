@@ -1,26 +1,11 @@
 # Maintainer: aur.chaotic.cx
 
-## options
-if [ -z "$_srcinfo" ] && [ -z "$_pkgver" ]; then
-  : ${_autoupdate:=true}
-fi
-
-: ${_build_clang:=true}
-
-: ${_build_avx:=false}
-: ${_build_git:=false}
-
-unset _pkgtype
-[[ "${_build_avx::1}" == "t" ]] && _pkgtype+="-avx"
-[[ "${_build_git::1}" == "t" ]] && _pkgtype+="-git"
-
-## basic info
 _pkgname="art-rawconverter"
-pkgname="$_pkgname${_pkgtype:-}"
+pkgname="$_pkgname"
 pkgver=1.24.1
-pkgrel=2
+pkgrel=1
 pkgdesc="Raw image converter forked from RawTherapee with ease of use in mind"
-url="https://bitbucket.org/agriggio/art"
+url="https://github.com/artpixls/ART"
 license=('GPL-3.0-or-later')
 arch=('x86_64')
 
@@ -43,6 +28,7 @@ makedepends=(
   'cmake'
   'fakeroot'
   'git'
+  'ninja'
   'pkgconf'
 )
 optdepends=(
@@ -51,41 +37,12 @@ optdepends=(
   'perl-image-exiftool: metadata support for CR3 images'
 )
 
-if [[ "${_build_clang::1}" == "t" ]]; then
-  makedepends+=(
-    'clang'
-    'lld'
-    'llvm'
-  )
-fi
-
-_update_version() {
-  : ${_pkgver:=${pkgver%%.r*}}
-
-  if [[ "${_autoupdate::1}" != "t" ]]; then
-    return
-  fi
-
-  local _regex='^\s*<td class="name">([0-9\.]+)</td>.*$'
-  local _response=$(curl -Ssf "https://bitbucket.org/agriggio/art/downloads/?tab=tags")
-  local _tag=$(
-    printf '%s' "$_response" \
-      | grep -E "$_regex" \
-      | sed -E 's@'"$_regex"'@\1@' \
-      | sort -rV | head -1
-  )
-  local _pkgver_new="${_tag#v}"
-
-  # update _pkgver
-  if [ "$_pkgver" != "${_pkgver_new:?}" ]; then
-    _pkgver="${_pkgver_new:?}"
-  fi
-}
-
-_source_stable() {
+_source_main() {
   _update_version
 
-  _pkgsrc="$_pkgname"
+  options=('!lto')
+
+  _pkgsrc="${_pkgname}.github"
   source=("$_pkgsrc"::"git+$url.git#tag=$_pkgver")
   sha256sums=('SKIP')
 
@@ -93,26 +50,6 @@ _source_stable() {
     echo "${_pkgver:?}"
   }
 }
-
-_source_git() {
-  provides=("$_pkgname")
-  conflicts=("$_pkgname")
-
-  _pkgsrc="$_pkgname"
-  source=("$_pkgsrc"::"git+$url.git")
-  sha256sums=('SKIP')
-
-  pkgver() {
-    cd "$_pkgsrc"
-    git describe --long --tags --exclude='*[a-zA-Z][a-zA-Z]*' | sed -E 's/^v//;s/([^-]*-g)/r\1/;s/-/./g'
-  }
-}
-
-if [ "${_build_git::1}" != "t" ]; then
-  _source_stable
-else
-  _source_git
-fi
 
 prepare() {
   _pkgver=$(pkgver)
@@ -127,33 +64,13 @@ build() {
   local _cmake_options=(
     -B build
     -S "$_pkgsrc"
-    -DCMAKE_INSTALL_PREFIX=/usr
+    -G Ninja
     -DCMAKE_BUILD_TYPE=None
-    -DWITH_LTO=ON
+    -DCMAKE_INSTALL_PREFIX=/usr
     -DENABLE_LIBRAW=ON
     -DENABLE_OCIO=ON
-    -DBUILD_SHARED=ON
     -Wno-dev
   )
-
-  if [[ "${_build_clang::1}" == "t" ]]; then
-    export AR=llvm-ar
-    export NM=llvm-nm
-
-    _cmake_options+=(
-      -DCMAKE_C_COMPILER=clang
-      -DCMAKE_CXX_COMPILER=clang++
-
-      -DCMAKE_EXE_LINKER_FLAGS_INIT="-fuse-ld=lld"
-      -DCMAKE_MODULE_LINKER_FLAGS_INIT="-fuse-ld=lld"
-      -DCMAKE_SHARED_LINKER_FLAGS_INIT="-fuse-ld=lld"
-    )
-  fi
-
-  if [[ "${_build_avx::1}" == "t" ]]; then
-    export CFLAGS="$(echo "$CFLAGS" | sed -E 's@(\s*-(march|mtune)=\S+\s*)@ @g;s@\s*-O[0-9]\s*@ @g;s@\s+@ @g') -march=x86-64-v3 -mtune=generic -O3"
-    export CXXFLAGS="$(echo "$CXXFLAGS" | sed -E 's@(\s*-(march|mtune)=\S+\s*)@ @g;s@\s*-O[0-9]\s*@ @g;s@\s+@ @g') -march=x86-64-v3 -mtune=generic -O3"
-  fi
 
   cmake "${_cmake_options[@]}"
   cmake --build build
@@ -166,3 +83,26 @@ package() {
   ln -s "ART" "$pkgdir/usr/bin/art"
   ln -s "ART-cli" "$pkgdir/usr/bin/art-cli"
 }
+
+_update_version() {
+  : ${_pkgver:=${pkgver%%.r*}}
+
+  if [ "${_autoupdate::1}" != "t" ]; then
+    return
+  fi
+
+  local _response _tag _pkgver_new
+  _response=$(curl -Ssf "$url/releases.atom")
+  _tag=$(
+    printf '%s' "$_response" \
+      | grep -Po '(?<=/tag/)[0-9.]+(?=")' \
+      | sort -rV | head -1
+  )
+  _pkgver_new="${_tag:?}"
+
+  if [ $(vercmp "${_pkgver_new:?}" "$_pkgver") -gt 0 ]; then
+    _pkgver="${_pkgver_new:?}"
+  fi
+}
+
+_source_main
