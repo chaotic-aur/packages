@@ -1,12 +1,3 @@
 pkgdesc="Independent web browser in pre-alpha state"
 
 options=('!debug' '!emptydirs' '!lto' '!staticlibs')
-
-eval _orig_"$(declare -f package)"
-
-package() {
-  _orig_package
-
-  find "$pkgdir" -name '*.a' -delete
-  find "$pkgdir" -name '*.cmake' -delete
-}
