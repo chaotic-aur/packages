@@ -1,0 +1,15 @@
+pkgbase = python-setuptools-reproducible
+	pkgdesc = Extension of setuptools to support reproducible builds
+	pkgver = 0.1
+	pkgrel = 1
+	url = https://github.com/wimglenn/setuptools-reproducible
+	arch = any
+	license = MIT
+	makedepends = python-build
+	makedepends = python-installer
+	makedepends = python-wheel
+	depends = python-setuptools
+	source = setuptools-reproducible-0.1.tar.gz::https://github.com/wimglenn/setuptools-reproducible/archive/refs/tags/v0.1.tar.gz
+	sha256sums = 10688a31a300dba15e7420205752868a9c0a65e17763d7357f356e2de973e6aa
+
+pkgname = python-setuptools-reproducible

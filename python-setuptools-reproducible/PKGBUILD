@@ -1,0 +1,25 @@
+# Contributor: Lex Black <autumn-wind@web.de>
+
+_module="setuptools-reproducible"
+pkgname="python-${_module}"
+pkgver=0.1
+pkgrel=1
+pkgdesc="Extension of setuptools to support reproducible builds"
+arch=("any")
+url="https://github.com/wimglenn/setuptools-reproducible"
+license=("MIT")
+depends=(python-setuptools)
+makedepends=(python-build python-installer python-wheel)
+source=(${_module}-${pkgver}.tar.gz::https://github.com/wimglenn/${_module}/archive/refs/tags/v${pkgver}.tar.gz)
+sha256sums=('10688a31a300dba15e7420205752868a9c0a65e17763d7357f356e2de973e6aa')
+
+build() {
+  cd "${_module}-${pkgver}"
+  python -m build --wheel --no-isolation
+}
+
+package() {
+  cd "${_module}-${pkgver}"
+  python -m installer --destdir="$pkgdir" dist/*.whl
+  install -D -m644 LICENSE "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
+}
