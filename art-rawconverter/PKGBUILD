@@ -61,6 +61,8 @@ prepare() {
 }
 
 build() {
+  export CMAKE_POLICY_VERSION_MINIMUM=3.5
+
   local _cmake_options=(
     -B build
     -S "$_pkgsrc"
