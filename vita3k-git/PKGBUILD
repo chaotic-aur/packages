@@ -4,7 +4,7 @@
 
 _pkgname="vita3k"
 pkgname="$_pkgname-git"
-pkgver=r3751.7c2110290
+pkgver=r3785.36b220eab
 pkgrel=1
 pkgdesc="Experimental PlayStation Vita emulator"
 url="https://github.com/Vita3K/Vita3K"
@@ -44,6 +44,8 @@ prepare() {
 
   # Needed to have correct title version
   git remote set-url origin "$url.git"
+
+  sed '1i #include <cstdint>' -i external/glslang/SPIRV/SpvBuilder.h
 }
 
 build() {
