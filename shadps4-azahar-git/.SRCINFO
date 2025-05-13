@@ -1,7 +1,7 @@
 pkgbase = shadps4-azahar-git
 	pkgdesc = PlayStation 4 emulator
 	pkgver = 0.8.0a.r61.g1f9da3d
-	pkgrel = 1
+	pkgrel = 2
 	url = https://github.com/AzaharPlus/shadPS4Plus
 	arch = x86_64
 	arch = x86_64_v2

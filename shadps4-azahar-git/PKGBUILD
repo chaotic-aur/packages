@@ -15,7 +15,7 @@ unset _pkgtype
 _pkgname="shadps4-azahar"
 pkgname="$_pkgname${_pkgtype:-}"
 pkgver=0.8.0a.r61.g1f9da3d
-pkgrel=1
+pkgrel=2
 pkgdesc="PlayStation 4 emulator"
 url="https://github.com/AzaharPlus/shadPS4Plus"
 license=('GPL-2.0-or-later')
@@ -86,6 +86,9 @@ prepare() {
 
   git submodule update --init --recursive --depth 1
 
+  # respect system build flags
+  sed -E -e '/march/d' -i CMakeLists.txt
+
   # set version info
   local _tag _version
   _tag=$(git tag -l 'SHAD_PS4_PLUS_[0-9]*' | sort -rV | head -1)
@@ -97,8 +100,6 @@ prepare() {
       <<< "${_tag:?}"
   )
 
-  sed -E -e '/march/d' -i CMakeLists.txt
-
   git tag -f "$_version" "$_tag"
 
   local _pkgver=$(cd "$srcdir" && pkgver)
@@ -109,6 +110,17 @@ prepare() {
 
   sed -E -e 's&(fmt::format)\("shadPS4 v&\1("shadPS4 Azahar &' \
     -i src/emulator.cpp src/qt_gui/main_window.cpp
+
+  # this is an unofficial build
+  # hide links to prevent issue reports to upstream
+  sed -E \
+    -e '/^\s*preloadImages\(\);.*$/i     ui->image_1->setVisible(false);' \
+    -e '/^\s*preloadImages\(\);.*$/i     ui->image_2->setVisible(false);' \
+    -e '/^\s*preloadImages\(\);.*$/i     ui->image_3->setVisible(false);' \
+    -e '/^\s*preloadImages\(\);.*$/i     ui->image_4->setVisible(false);' \
+    -e '/^\s*preloadImages\(\);.*$/i     ui->image_5->setVisible(false);' \
+    -e '/^\s*preloadImages\(\);.*$/d' \
+    -i src/qt_gui/about_dialog.cpp
 }
 
 pkgver() {
