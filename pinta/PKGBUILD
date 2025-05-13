@@ -2,13 +2,13 @@
 
 pkgname=pinta
 pkgver=3.0
-pkgrel=2
+pkgrel=3
 pkgdesc="Drawing/editing program modeled after Paint.NET. It's goal is to provide a simplified alternative to GIMP for casual users"
 arch=(any)
 url="https://pinta-project.com"
 license=(MIT)
 depends=(dotnet-runtime dotnet-host libadwaita hicolor-icon-theme webp-pixbuf-loader)
-makedepends=(autoconf-archive intltool dotnet-sdk dotnet-runtime dotnet-host dotnet-targeting-pack gtk4 gcc perl)
+makedepends=(base-devel pkgconf autoconf-archive intltool dotnet-sdk dotnet-runtime dotnet-host dotnet-targeting-pack gtk4 perl)
 provides=($pkgname)
 conflicts=($pkgname-git)
 source=("Pinta-${pkgver}.tar.gz::https://github.com/PintaProject/Pinta/archive/refs/tags/${pkgver}.tar.gz")
