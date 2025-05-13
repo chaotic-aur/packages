@@ -1,29 +1,49 @@
 # Maintainer: aur.chaotic.cx
 
+## options
+: ${_use_clang:=false}
+
+: ${_build_level:=1}
+: ${_build_git:=true}
+
+unset _pkgtype
+[[ "${_build_level::1}" == "2" ]] && _pkgtype+="-x64v2"
+[[ "${_build_level::1}" == "3" ]] && _pkgtype+="-x64v3"
+[[ "${_build_level::1}" == "4" ]] && _pkgtype+="-x64v4"
+[[ "${_build_git::1}" == "t" ]] && _pkgtype+="-git"
+
 _pkgname="shadps4"
-pkgname="$_pkgname-git"
-pkgver=0.7.0.r38.g3f33d21
-pkgrel=1
+pkgname="$_pkgname${_pkgtype:-}"
+pkgver=0.8.0.r74.g4cd13ea
+pkgrel=2
 pkgdesc="PlayStation 4 emulator"
 url="https://github.com/shadps4-emu/shadPS4"
 license=('GPL-2.0-or-later')
-arch=('x86_64')
+arch=('x86_64' 'x86_64_v2' 'x86_64_v3' 'x86_64_v4')
 
 depends=(
-  'crypto++'
   'glslang'
-  'ffmpeg'
+  'libavcodec.so'  # ffmpeg
+  'libavformat.so' # ffmpeg
+  'libavutil.so'   # ffmpeg
   'libfmt.so'
-  'xxhash'
+  'libpng16.so'      # libpng
+  'libswresample.so' # ffmpeg
+  'libswscale.so'    # ffmpeg
+  'libusb-1.0.so'    # libusb
+  'libxxhash.so'     # xxhash
+  'libz.so'          # zlib
   'pugixml'
   'qt6-multimedia'
   'sdl3'
 )
 makedepends=(
   'boost'
+  'clang'
   'cmake'
   'git'
   'half'
+  'lld'
   'ninja'
   'qt6-tools'
   'rapidjson'
@@ -33,107 +53,59 @@ makedepends=(
   'toml11'
 )
 
-provides=("$_pkgname=$pkgver")
+provides=("$_pkgname")
 conflicts=("$_pkgname")
 
-_source_main() {
-  _pkgsrc="$_pkgname"
-  source=("$_pkgsrc"::"git+https://github.com/shadps4-emu/shadPS4.git")
-  sha256sums=('SKIP')
-}
-
-_source_shadps4() {
-  local _sources_add=(
-    #'cyan4973.xxhash'::'git+https://github.com/Cyan4973/xxHash.git'
-    'gpuopen-librariesandsdks.vulkanmemoryallocator'::'git+https://github.com/GPUOpen-LibrariesAndSDKs/VulkanMemoryAllocator.git'
-    'herumi.xbyak'::'git+https://github.com/herumi/xbyak.git'
-    #'howardhinnant.date'::'git+https://github.com/HowardHinnant/date.git'
-    #'khronosgroup.glslang'::'git+https://github.com/KhronosGroup/glslang.git'
-    #'khronosgroup.moltenvk'::'git+https://github.com/KhronosGroup/MoltenVK.git'
-    #'khronosgroup.spirv-cross'::'git+https://github.com/KhronosGroup/SPIRV-Cross.git'
-    'khronosgroup.vulkan-headers'::'git+https://github.com/KhronosGroup/Vulkan-Headers.git'
-    'neargye.magic_enum'::'git+https://github.com/Neargye/magic_enum.git'
-    #'pnggroup.libpng'::'git+https://github.com/pnggroup/libpng.git'
-    #'rocm.half'::'git+https://github.com/ROCm/half.git'
-    #'shadps4-emu.ext-boost'::'git+https://github.com/shadps4-emu/ext-boost.git'
-    #'shadps4-emu.ext-cryptopp'::'git+https://github.com/shadps4-emu/ext-cryptopp.git'
-    #'shadps4-emu.ext-cryptopp-cmake'::'git+https://github.com/shadps4-emu/ext-cryptopp-cmake.git'
-    #'shadps4-emu.ext-cryptoppwin'::'git+https://github.com/shadps4-emu/ext-cryptoppwin.git'
-    'shadps4-emu.ext-discord-rpc'::'git+https://github.com/shadps4-emu/ext-discord-rpc.git'
-    #'shadps4-emu.ext-ffmpeg-core'::'git+https://github.com/shadps4-emu/ext-ffmpeg-core.git'
-    #'shadps4-emu.ext-fmt'::'git+https://github.com/shadps4-emu/ext-fmt.git'
-    'shadps4-emu.ext-imgui'::'git+https://github.com/shadps4-emu/ext-imgui.git'
-    'shadps4-emu.ext-libatrac9'::'git+https://github.com/shadps4-emu/ext-LibAtrac9.git'
-    #'shadps4-emu.ext-sdl'::'git+https://github.com/shadps4-emu/ext-SDL.git'
-    #'shadps4-emu.ext-zlib-ng'::'git+https://github.com/shadps4-emu/ext-zlib-ng.git'
-    'shadps4-emu.sirit'::'git+https://github.com/shadps4-emu/sirit.git'
-    'shadps4-emu.tracy'::'git+https://github.com/shadps4-emu/tracy.git'
-    #'shadps4-emu.winpthreads'::'git+https://github.com/shadps4-emu/winpthreads.git'
-    #'tessil.robin-map'::'git+https://github.com/Tessil/robin-map.git'
-    #'toruniina.toml11'::'git+https://github.com/ToruNiina/toml11.git'
-    #'uscilab.cereal'::'git+https://github.com/USCiLab/cereal.git'
-    #'zeux.pugixml'::'git+https://github.com/zeux/pugixml.git'
-    'zyantific.zydis'::'git+https://github.com/zyantific/zydis.git'
-  )
-
-  local _p
-  for _p in ${_sources_add[@]}; do
-    source+=("$_p")
-    sha256sums+=('SKIP')
-  done
-
-  _prepare_shadps4() (
-    cd "$srcdir/$_pkgsrc"
-    local _submodules=(
-      #'cyan4973.xxhash'::'externals/xxhash'
-      'gpuopen-librariesandsdks.vulkanmemoryallocator'::'externals/vma'
-      'herumi.xbyak'::'externals/xbyak'
-      #'howardhinnant.date'::'externals/date'
-      #'khronosgroup.glslang'::'externals/glslang'
-      #'khronosgroup.moltenvk'::'externals/MoltenVK/MoltenVK'
-      #'khronosgroup.spirv-cross'::'externals/MoltenVK/SPIRV-Cross'
-      'khronosgroup.vulkan-headers'::'externals/vulkan-headers'
-      'neargye.magic_enum'::'externals/magic_enum'
-      #'pnggroup.libpng'::'externals/libpng'
-      #'rocm.half'::'externals/half'
-      #'shadps4-emu.ext-boost'::'externals/ext-boost'
-      #'shadps4-emu.ext-cryptopp'::'externals/cryptopp'
-      #'shadps4-emu.ext-cryptopp-cmake'::'externals/cryptopp-cmake'
-      #'shadps4-emu.ext-cryptoppwin'::'externals/cryptoppwin'
-      'shadps4-emu.ext-discord-rpc'::'externals/discord-rpc'
-      #'shadps4-emu.ext-ffmpeg-core'::'externals/ffmpeg-core'
-      #'shadps4-emu.ext-fmt'::'externals/fmt'
-      'shadps4-emu.ext-imgui'::'externals/dear_imgui'
-      'shadps4-emu.ext-libatrac9'::'externals/LibAtrac9'
-      #'shadps4-emu.ext-sdl'::'externals/sdl3'
-      #'shadps4-emu.ext-zlib-ng'::'externals/zlib-ng'
-      'shadps4-emu.sirit'::'externals/sirit'
-      'shadps4-emu.tracy'::'externals/tracy'
-      #'shadps4-emu.winpthreads'::'externals/winpthreads'
-      #'tessil.robin-map'::'externals/robin-map'
-      #'toruniina.toml11'::'externals/toml11'
-      #'uscilab.cereal'::'externals/MoltenVK/cereal'
-      #'zeux.pugixml'::'externals/pugixml'
-      'zyantific.zydis'::'externals/zydis'
-    )
-    _submodule_update
-  )
-}
-
-_source_main
-_source_shadps4
+_pkgsrc="$_pkgname"
+source=("$_pkgsrc"::"git+$url.git")
+sha256sums=('SKIP')
 
 prepare() {
-  _submodule_update() {
-    local _module
-    for _module in "${_submodules[@]}"; do
-      git submodule init "${_module##*::}"
-      git submodule set-url "${_module##*::}" "$srcdir/${_module%%::*}"
-      git -c protocol.file.allow=always submodule update "${_module##*::}"
-    done
-  }
+  cd "$_pkgsrc"
 
-  _run_if_exists _prepare_shadps4
+  git rm -r externals/MoltenVK/MoltenVK
+  git rm -r externals/MoltenVK/SPIRV-Cross
+  git rm -r externals/MoltenVK/cereal
+  git rm -r externals/date
+  git rm -r externals/ext-boost
+  git rm -r externals/ffmpeg-core
+  git rm -r externals/fmt
+  git rm -r externals/glslang
+  git rm -r externals/half
+  git rm -r externals/libpng
+  git rm -r externals/pugixml
+  git rm -r externals/robin-map
+  git rm -r externals/sdl3
+  git rm -r externals/toml11
+  git rm -r externals/winpthreads
+  git rm -r externals/xxhash
+  git rm -r externals/zlib-ng
+
+  git submodule update --init --recursive --depth 1
+
+  # respect system build flags
+  sed -E -e '/march/d' -i CMakeLists.txt
+
+  # set version info
+  local _pkgver=$(cd "$srcdir" && pkgver)
+
+  sed -E -e 's&@APP_VERSION@&'"${_pkgver:?}&" \
+    -e 's&@APP_IS_RELEASE@&true&' \
+    -i src/common/scm_rev.cpp.in
+
+  sed -E -e 's&(fmt::format)\("shadPS4 v&\1("shadPS4 &' \
+    -i src/emulator.cpp src/qt_gui/main_window.cpp
+
+  # this is an unofficial build
+  # hide links to prevent issue reports to upstream
+  sed -E \
+    -e '/^\s*preloadImages\(\);.*$/i     ui->image_1->setVisible(false);' \
+    -e '/^\s*preloadImages\(\);.*$/i     ui->image_2->setVisible(false);' \
+    -e '/^\s*preloadImages\(\);.*$/i     ui->image_3->setVisible(false);' \
+    -e '/^\s*preloadImages\(\);.*$/i     ui->image_4->setVisible(false);' \
+    -e '/^\s*preloadImages\(\);.*$/i     ui->image_5->setVisible(false);' \
+    -e '/^\s*preloadImages\(\);.*$/d' \
+    -i src/qt_gui/about_dialog.cpp
 }
 
 pkgver() {
@@ -145,30 +117,80 @@ pkgver() {
 build() (
   export CMAKE_POLICY_VERSION_MINIMUM=3.5
 
+  if [[ "${_use_clang::1}" == "t" ]]; then
+    export CC CXX LDFLAGS
+    CC=clang
+    CXX=clang++
+
+    local _ldflags=(${LDFLAGS})
+    LDFLAGS="${_ldflags[@]//*fuse-ld*/} -fuse-ld=lld"
+  fi
+
+  if [[ ${_build_level::1} =~ ^[2-4]$ ]]; then
+    export CFLAGS CXXFLAGS
+    local _cflags _cxxflags
+    _cflags=(
+      -march=x86-64-v${_build_level::1} -O3
+      $(sed -E -e 's&-(march|mtune)=\S+\b&&g' -e 's&-O[0-9]+\b&&g' <<< "${CFLAGS}")
+    )
+    CFLAGS="${_cflags[@]}"
+
+    _cxxflags=(
+      -march=x86-64-v${_build_level::1} -O3
+      $(sed -E -e 's&-(march|mtune)=\S+\b&&g' -e 's&-O[0-9]+\b&&g' <<< "${CXXFLAGS}")
+    )
+    CXXFLAGS="${_cxxflags[@]}"
+  fi
+
   local _cmake_options=(
-    -B build
     -S "$_pkgsrc"
     -G Ninja
     -DCMAKE_BUILD_TYPE=None
     -DCMAKE_INSTALL_PREFIX='/usr'
     -DCMAKE_SKIP_RPATH=ON
-    -DENABLE_QT_GUI=ON
     -DENABLE_UPDATER=OFF
     -DSIRIT_USE_SYSTEM_SPIRV_HEADERS=ON
     -DBUILD_TESTING=OFF
     -Wno-dev
   )
 
-  cmake "${_cmake_options[@]}"
-  cmake --build build
+  local _cmake_sdl=(
+    -B build_sdl
+    -DENABLE_QT_GUI=OFF
+    "${_cmake_options[@]}"
+  )
+
+  cmake "${_cmake_sdl[@]}"
+  cmake --build build_sdl
+
+  local _cmake_qt=(
+    -B build_qt
+    -DENABLE_QT_GUI=ON
+    "${_cmake_options[@]}"
+  )
+
+  cmake "${_cmake_qt[@]}"
+  cmake --build build_qt
 )
 
 package() {
-  DESTDIR="$pkgdir" cmake --install build
-}
+  # DESTDIR="$pkgdir" cmake --install build
 
-_run_if_exists() {
-  if declare -F "$1" > /dev/null; then
-    eval "$1"
-  fi
+  install -Dm755 build_sdl/shadps4 "$pkgdir/usr/bin/${_pkgname}-sdl"
+
+  install -Dm755 build_qt/shadps4 "$pkgdir/usr/bin/$_pkgname"
+
+  install -Dm644 "$_pkgsrc/src/images/shadps4.svg" "$pkgdir/usr/share/pixmaps/$_pkgname.svg"
+
+  install -Dm644 /dev/stdin "$pkgdir/usr/share/applications/$_pkgname.desktop" << END
+[Desktop Entry]
+Type=Application
+Name=shadPS4
+Comment=$pkgdesc
+Exec=$_pkgname
+Icon=$_pkgname
+Terminal=false
+Categories=Game;Emulator;
+StartupWMClass=shadps4;
+END
 }
