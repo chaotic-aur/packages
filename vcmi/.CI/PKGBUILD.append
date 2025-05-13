@@ -1,0 +1,3 @@
+depends=(${depends[@]//fuzzylite*/})
+
+eval "$(declare -f build | sed 's&(FORCE_BUNDLED_FL)=\S+&\1=ON&')"
