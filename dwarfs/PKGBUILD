@@ -1,8 +1,8 @@
 # Maintainer: KokaKiwi <kokakiwi+aur@kokakiwi.net>
 
 pkgname=dwarfs
-pkgver=0.12.3
-pkgrel=2
+pkgver=0.12.4
+pkgrel=1
 pkgdesc="A fast high compression read-only file system"
 url='https://github.com/mhx/dwarfs'
 arch=('x86_64' 'aarch64')
@@ -20,8 +20,8 @@ makedepends=(
   'gtest' 'parallel-hashmap'
 )
 source=("$pkgname-$pkgver.tar.xz::https://github.com/mhx/dwarfs/releases/download/v$pkgver/dwarfs-$pkgver.tar.xz")
-sha256sums=('bd2d54178c59e229f2280eea747479a569e6f6d38340e90360220d00988f5589')
-b2sums=('d8e078adebf840d76fd3b0d92d4a2454e73f03fd2d3fe6253f99a914e858a7aabe9f7908445475f50320237a92114cf67468149ac3752cb9eb13c9503d5d9472')
+sha256sums=('352d13a3c7d9416e0a7d0d959306a25908b58d1ff47fb97e30a7c8490fcff259')
+b2sums=('1aad8f84cd2b79445f952b9e2ce55ff534c77d48a9ae5f15c73359b368eca032d1a85d023595e6f99cb1c83a949405387eb5d8a4b2b8b1336798fa5ae6069905')
 
 build() {
   # Setting up release flags manually here so we get to use `CMAKE_BUILD_TYPE=None`
