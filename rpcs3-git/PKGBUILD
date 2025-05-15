@@ -1,136 +1,125 @@
-# Maintainer: Zion Nimchuk <zionnimchuk@gmail.com>
-# Submitter: Maxime Gauduin <alucryd@archlinux.org>
+# Maintainer: aur.chaotic.cx
 
-pkgname=rpcs3-git
-pkgver=0.0.36.r17936.a9b911750f
+_pkgname="rpcs3"
+pkgname="$_pkgname-git"
+pkgver=0.0.36.r223.g64a3e50
 pkgrel=1
-pkgdesc='A Sony PlayStation 3 emulator'
-arch=(x86_64 aarch64)
-url=https://github.com/RPCS3/rpcs3
-license=(GPL-2.0-only)
+pkgdesc="PlayStation 3 emulator"
+url="https://github.com/RPCS3/rpcs3"
+license=('GPL-2.0-only')
+arch=('x86_64')
+
 depends=(
-  alsa-lib
-  glew
-  glu
-  # Use bundled FFMPEG for now since we use FFMPEG 5.1.2
-  #libavcodec.so
-  #libavutil.so
-  #libswscale.so
-  libevdev
-  libgl
-  libice
-  libpng
-  libpulse
-  libsm
-  libx11
-  libxext
-  openal
-  qt6-base
-  qt6-declarative
-  qt6-multimedia
-  qt6-svg
-  sdl3
-  vulkan-icd-loader
-  zlib
-  curl
-  pugixml
-  flatbuffers
-  llvm
-  opencv
-)
-optdepends=(
-  vulkan-validation-layers
-  rpcs3-udev
+  'ffmpeg'
+  'flatbuffers'
+  'glew'
+  'openal'
+  'opencv'
+  'pugixml'
+  'qt6-multimedia'
+  'qt6-svg'
+  'sdl3'
+  'vulkan-icd-loader'
 )
 makedepends=(
-  cmake
-  git
-  libglvnd
-  python
-  # clang+lld is required because audio is broken with latest gcc
-  clang
-  lld
-  vulkan-headers
-)
-provides=(rpcs3)
-conflicts=(rpcs3)
-options=(!emptydirs !lto !strip)
-source=(
-  git+https://github.com/RPCS3/rpcs3.git
-  git+https://github.com/KhronosGroup/glslang.git
-)
-sha256sums=(
-  SKIP
-  SKIP
+  'clang'
+  'cmake'
+  'git'
+  'lld'
+  'llvm'
+  'ninja'
+  'vulkan-headers'
+
+  # cubeb
+  'alsa-lib'
+  'jack'
+  'libpulse'
+  'sndio'
+  'speexdsp'
 )
 
-pkgver() {
-  cd rpcs3
+provides=("$_pkgname")
+conflicts=("$_pkgname")
 
-  COMM_TAG="$(grep 'version{.*}' rpcs3/rpcs3_version.cpp | awk -F[{,] '{printf "%d.%d.%d", $2, $3, $4}')"
-  COMM_COUNT="$(git rev-list --count HEAD)"
-  COMM_HASH="$(git rev-parse --short HEAD)"
-  echo "${COMM_TAG}.r${COMM_COUNT}.${COMM_HASH}"
-}
+options=('!lto')
+
+_pkgsrc="$_pkgname"
+source=("$_pkgsrc"::"git+https://github.com/RPCS3/rpcs3.git")
+sha256sums=('SKIP')
 
 prepare() {
-  cd rpcs3
+  cd "$_pkgsrc"
 
-  git submodule init 3rdparty/glslang/glslang
-  git config submodule.3rdparty/glslang.url ../glslang
+  git rm -r '3rdparty/7zip/7zip'
+  git rm -r '3rdparty/OpenAL/openal-soft'
+  git rm -r '3rdparty/curl/curl'
+  git rm -r '3rdparty/ffmpeg'
+  git rm -r '3rdparty/flatbuffers'
+  git rm -r '3rdparty/libpng/libpng'
+  git rm -r '3rdparty/libsdl-org/SDL'
+  git rm -r '3rdparty/llvm/llvm'
+  git rm -r '3rdparty/opencv/opencv'
+  git rm -r '3rdparty/pugixml'
+  git rm -r '3rdparty/zlib/zlib'
 
-  SUBMODULES=($(git config --file .gitmodules --get-regexp path \
-    | awk '!/libpng/ && !/zlib/ && !/curl/ && !/llvm/ && !/glslang/ && !/pugixml/ && !/SDL/ && !/flatbuffers/ '))
+  # fix gitmodule links
+  sed -E -e '/ignore = /d' \
+    -e 's&^(\s*url) = \.\./\.\./&\1 = https://github.com/&' \
+    -i .gitmodules
 
-  # We need to convert from a relative folder path to a https://github.com path
-  for ((i = 0; i < ${#SUBMODULES[@]}; i += 2)); do
-    pathid=${SUBMODULES[$i]}
-    path=${SUBMODULES[$i + 1]}
+  git submodule update --init --recursive --depth=1
 
-    git submodule init $path
-    urlid=${pathid/%.path/.url}
+  # warn instead of error
+  sed -E 's&FATAL_ERROR&WARNING&' -i CMakeLists.txt
 
-    # This gets the last two paths in the url, ie RPCS3/rpcs3.git
-    url=$(git config $urlid | awk -F/ '{print $(NF-1)"/"$(NF-0)}')
-
-    git config $urlid https://github.com/$url
-    git -c protocol.file.allow=always submodule update --init --filter=tree:0 $path
-  done
-
-  git -c protocol.file.allow=always submodule update 3rdparty/glslang/glslang
+  # fix includes for system library
+  sed -E 's&3rdparty/OpenAL/openal-soft/include/&&' \
+    -i "rpcs3/Emu/Cell/Modules/cellMic.cpp" \
+    "rpcs3/Emu/Cell/Modules/cellMic.h" \
+    "rpcs3/rpcs3qt/microphone_creator.cpp"
 }
 
-build() {
-  # GLIBCXX_ASSERTIONS is know to cause unwanted assertions and crash rpcs3
-  BAD_FLAG="-Wp,-D_GLIBCXX_ASSERTIONS"
-  CXXFLAGS="${CXXFLAGS//$BAD_FLAG/}"
+pkgver() {
+  cd "$_pkgsrc"
+  local _tag _version _revision _hash
+  _tag=$(git tag -l 'v[0-9]*' | grep -Ev '[A-Za-z][A-Za-z]' | sort -rV | head -1)
+  _version="${_tag#v}"
+  _revision=$(git rev-list --count --cherry-pick "$_tag"...HEAD)
+  _hash=$(git rev-parse --short=7 HEAD)
+  printf '%s.r%s.g%s' "${_version:?}" "${_revision:?}" "${_hash:?}"
+}
 
-  CC=clang CXX=clang++ cmake -S rpcs3 -B build \
-    -DCMAKE_BUILD_TYPE=Release \
-    -DCMAKE_INSTALL_PREFIX=/usr \
-    -DCMAKE_SKIP_RPATH=ON \
-    -DUSE_NATIVE_INSTRUCTIONS=OFF \
-    -DUSE_SYSTEM_FFMPEG=OFF \
-    -DUSE_SYSTEM_LIBPNG=ON \
-    -DUSE_SYSTEM_ZLIB=ON \
-    -DUSE_SYSTEM_CURL=ON \
-    -DUSE_SYSTEM_FLATBUFFERS=ON \
-    -DUSE_SYSTEM_PUGIXML=ON \
-    -DUSE_SYSTEM_OPENCV=ON \
-    -DUSE_SDL=ON \
-    -DUSE_SYSTEM_SDL=ON \
-    -DBUILD_LLVM=OFF \
-    -DUSE_SYSTEM_WOLFSSL=OFF \
-    -DCMAKE_LINKER=lld \
-    -DCMAKE_SHARED_LINKER_FLAGS="$LDFLAGS -fuse-ld=lld" \
-    -DCMAKE_EXE_LINKER_FLAGS="$LDFLAGS -fuse-ld=lld" \
-    -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+build() (
+  export CMAKE_POLICY_VERSION_MINIMUM=3.5
 
+  local _cmake_options=(
+    -B build
+    -S "$_pkgsrc"
+    -G Ninja
+    -DCMAKE_BUILD_TYPE=None
+    -DCMAKE_INSTALL_PREFIX='/usr'
+    -DUSE_NATIVE_INSTRUCTIONS=OFF
+    -DBUILD_LLVM=OFF
+    -DUSE_SDL=ON
+    -DUSE_SYSTEM_CURL=ON
+    -DUSE_SYSTEM_FFMPEG=ON
+    -DUSE_SYSTEM_FLATBUFFERS=ON
+    -DUSE_SYSTEM_LIBPNG=ON
+    -DUSE_SYSTEM_OPENCV=ON
+    -DUSE_SYSTEM_PUGIXML=ON
+    -DUSE_SYSTEM_SDL=ON
+    -DUSE_SYSTEM_WOLFSSL=OFF
+    -DUSE_SYSTEM_ZLIB=ON
+    -DUSE_SANITIZERS=OFF # cubeb
+    -DBUILD_TESTING=OFF
+    -Wno-dev
+  )
+
+  cmake "${_cmake_options[@]}"
   cmake --build build
-}
+)
 
 package() {
   DESTDIR="${pkgdir}" cmake --install build
+  rm -rf "$pkgdir/usr/share/rpcs3/git"
 }
-
-# vim: ts=2 sw=2 et:
