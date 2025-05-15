@@ -1,0 +1,12 @@
+license=('GPL-3.0-or-later')
+
+depends+=('zeromq')
+
+_pkgsrc="$_pkgname"
+
+eval _orig_"$(declare -f prepare)"
+
+prepare() {
+  (_orig_prepare)
+  sed '1i #include <cstdint>' -i "$_pkgsrc"/lib/Json.cpp
+}
