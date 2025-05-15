@@ -3,14 +3,14 @@
 # Maintainer: William Horvath <william at horvath dot blog>
 
 pkgname=llvm-mingw
-pkgver=20.1.4+20250430
+pkgver=20.1.5+20250514
 pkgrel=1
 
 # This controls the version we will pull.
-_tag="20250430"
+_tag="20250514"
 
 # When updating, needs to be manually changed to the mingw_commit echoed during prepare().
-mingw_commit="dcbe86832f5c161ab70098ffb11b1e4955577140"
+mingw_commit="7e3f2dd90ce4ecfad3c3e54c147317fadd980234"
 
 pkgdesc="A self-contained LLVM/Clang/LLD based mingw-w64 toolchain for i686 and x86_64 targets"
 arch=('x86_64')
@@ -66,9 +66,9 @@ source=(
   "llvm-project-${pkgver%'+'"$_tag"}.tar.gz::https://github.com/llvm/llvm-project/archive/refs/tags/llvmorg-${pkgver%'+'"$_tag"}.tar.gz"
   "mingw-w64-g${mingw_commit:0:6}.tar.gz::https://github.com/mingw-w64/mingw-w64/archive/${mingw_commit}.tar.gz"
 )
-sha256sums=('497619c2e6e5e5c6cf2ca9887c2610f078c37dfa9f3b2538186e6fe8ba0e4944'
-  '65e3a582c4c684fa707a56ff643427bce3633eceaceae3295d81c0e830f44b89'
-  'cef7657c51173d74de0d498d5e13356b7d0aa0955a26a33e452f3e194f40d981')
+sha256sums=('140d4b0759faf19a8807a331f57d92b12304ec42194ef6e19c908c739202ab17'
+  '205c436f93a7e185cf9d63ae57e645f23561a4d1bf854f2c5bd78995a43a5c05'
+  '78b3574b229d72ad61b938d3c9d155f773c3c7a72b362972f28b25219cc141f7')
 
 pkgver() {
   # This looks to be where the maintainer (Martin Storsjö) does version bumps
