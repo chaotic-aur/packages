@@ -1,0 +1,13 @@
+unset install
+
+url="https://github.com/waydroid/waydroid"
+license=('GPL-3.0-or-later')
+
+depends+=('python')
+
+eval _orig_"$(declare -f package)"
+
+package() {
+  _orig_package
+  python -m compileall -f -r 9 -s "$pkgdir" "$pkgdir/usr/lib/waydroid/"
+}
