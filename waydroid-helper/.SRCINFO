@@ -1,0 +1,30 @@
+pkgbase = waydroid-helper
+	pkgdesc = A GUI application for Waydroid configuration and extension installation
+	pkgver = 0.1.2
+	pkgrel = 1
+	url = https://github.com/ayasa520/waydroid-helper
+	arch = any
+	license = GPL-3.0-or-later
+	makedepends = git
+	makedepends = python-setuptools
+	makedepends = meson
+	makedepends = ninja
+	depends = python
+	depends = fakeroot
+	depends = python-bidict
+	depends = python-httpx
+	depends = python-gobject>=3.50.0
+	depends = python-yaml
+	depends = python-pywayland
+	depends = python-cairo
+	depends = gtk4
+	depends = libadwaita
+	depends = python-aiofiles
+	depends = python-dbus
+	optdepends = bindfs: shared folders support
+	provides = waydroid-helper
+	conflicts = waydroid-helper
+	source = https://github.com/ayasa520/waydroid-helper/archive/refs/tags/v0.1.2.tar.gz
+	sha256sums = 7cc84d55f1308134c34e82dc104cc7148ad37975532c5e5c180571b45c41de5f
+
+pkgname = waydroid-helper
