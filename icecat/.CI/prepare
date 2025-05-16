@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+return "$CI_CODE_SKIP"
