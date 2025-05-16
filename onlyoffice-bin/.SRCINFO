@@ -1,7 +1,7 @@
 pkgbase = onlyoffice-bin
 	pkgdesc = An office suite that combines text, spreadsheet and presentation editors
 	pkgver = 8.3.3
-	pkgrel = 1
+	pkgrel = 2
 	url = https://www.onlyoffice.com/
 	arch = x86_64
 	license = AGPL-3.0-only
@@ -24,6 +24,7 @@ pkgbase = onlyoffice-bin
 	optdepends = otf-takao: for japanese Takao fonts
 	optdepends = ttf-ms-fonts: for Microsoft fonts
 	optdepends = gst-plugins-good: for playing embedded video files
+	optdepends = gst-libav: for playing embedded video files
 	provides = onlyoffice=${pkgver}
 	conflicts = onlyoffice
 	noextract = onlyoffice-desktopeditors--8.3.3.deb

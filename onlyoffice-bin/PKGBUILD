@@ -4,7 +4,7 @@
 
 pkgname=onlyoffice-bin
 pkgver=8.3.3
-pkgrel=1
+pkgrel=2
 pkgdesc='An office suite that combines text, spreadsheet and presentation editors'
 arch=('x86_64')
 url='https://www.onlyoffice.com/'
@@ -15,7 +15,8 @@ depends=('curl' 'gtk3' 'alsa-lib' 'libpulse' 'gstreamer' 'gst-plugins-base-libs'
 optdepends=('libreoffice: for OpenSymbol fonts'
   'otf-takao: for japanese Takao fonts'
   'ttf-ms-fonts: for Microsoft fonts'
-  'gst-plugins-good: for playing embedded video files')
+  'gst-plugins-good: for playing embedded video files'
+  'gst-libav: for playing embedded video files')
 provides=('onlyoffice=${pkgver}')
 conflicts=('onlyoffice')
 options=('!strip' '!emptydirs')
