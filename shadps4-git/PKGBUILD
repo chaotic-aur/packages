@@ -14,8 +14,8 @@ unset _pkgtype
 
 _pkgname="shadps4"
 pkgname="$_pkgname${_pkgtype:-}"
-pkgver=0.8.0.r74.g4cd13ea
-pkgrel=2
+pkgver=0.8.0.r94.gffd3158
+pkgrel=1
 pkgdesc="PlayStation 4 emulator"
 url="https://github.com/shadps4-emu/shadPS4"
 license=('GPL-2.0-or-later')
@@ -77,7 +77,6 @@ prepare() {
   git rm -r externals/robin-map
   git rm -r externals/sdl3
   git rm -r externals/toml11
-  git rm -r externals/winpthreads
   git rm -r externals/xxhash
   git rm -r externals/zlib-ng
 
