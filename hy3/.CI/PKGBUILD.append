@@ -1,0 +1,10 @@
+export CMAKE_GENERATOR=Ninja
+makedepends+=('ninja')
+
+unset conflicts
+
+license=('GPL-3.0-only')
+
+depends=('hyprland')
+
+eval "$(declare -f build | sed -E 's&(CMAKE_BUILD_TYPE)=\S+&\1=None')"
