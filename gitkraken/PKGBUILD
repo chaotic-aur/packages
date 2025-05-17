@@ -11,7 +11,7 @@
 
 pkgname=gitkraken
 pkgrel=1
-pkgver=11.1.0
+pkgver=11.1.1
 pkgdesc="The intuitive, fast, and beautiful cross-platform Git client."
 url="https://www.gitkraken.com/"
 provides=('gitkraken')
@@ -24,12 +24,12 @@ makedepends=()
 backup=()
 install=''
 source=(
-  "${pkgname}-${pkgver}.tar.gz::https://release.axocdn.com/linux/GitKraken-v${pkgver}.tar.gz"
+  "${pkgname}-${pkgver}.tar.gz::https://api.gitkraken.dev/releases/production/linux/x64/${pkgver}/gitkraken-amd64.tar.gz"
   "GitKraken.desktop"
   "eula.html"
   "gitkraken.sh"
 )
-sha256sums=('e8850f5797c6886d77c8433a4220c4ac6f03b615d8ec04c139f9cccbddbd9419'
+sha256sums=('3d9937ab015be1af403e801b52a38740108fc3501fff89dda0115cf31e96d6b2'
   'f4a63737eccf279b0b131fe34e4a711aaf0dd5be86e932baf2593069553ef3b1'
   '5b7b39b331bc32a606e1e79c695df4519c9b220225be00fb34ef368c3af319a6'
   'c78ef86324946f856cc5c11549990722155a5e883dc94f92a95169c7ab5fb63e')
