@@ -1,0 +1,157 @@
+# Maintainer: aur.chaotic.cx
+
+: ${_install_path:=opt}
+
+_pkgname="llama-cpp"
+pkgname="$_pkgname-cuda-git"
+pkgver=b5415.r0.g6a2bc8b
+pkgrel=1
+pkgdesc="Port of Facebook's LLaMA model in C/C++"
+url="https://github.com/ggml-org/llama.cpp"
+license=('MIT')
+arch=('x86_64')
+
+depends=(
+  'curl'
+  'python'
+  'python-numpy'
+  'python-sentencepiece' # aur/sentencepiece
+  'openblas'
+  'vulkan-icd-loader'
+)
+makedepends=(
+  'cmake'
+  'cuda'
+  'git'
+  'ninja'
+  'openmp'
+  'shaderc'
+  'vulkan-headers'
+)
+
+provides=(
+  "$_pkgname"
+  "${_pkgname//-/.}"
+)
+conflicts=(
+  "$_pkgname"
+  "${_pkgname//-/.}"
+)
+
+_pkgsrc="$_pkgname"
+source=("$_pkgsrc"::"git+$url.git")
+sha256sums=('SKIP')
+
+prepare() {
+  cd "$_pkgsrc"
+  git submodule update --init --recursive --depth=1
+
+  # ignore cpu feature flags; allow global microarchitecture level
+  sed -E -e '/(set|APPEND).ARCH_FLAGS/d' -i ggml/src/ggml-cpu/CMakeLists.txt
+}
+
+pkgver() {
+  cd "$_pkgsrc"
+  git describe --long --tags --abbrev=7 --exclude='*[a-zA-Z][a-zA-Z]*' --match='b*' \
+    | sed -E 's/([^-]*-g)/r\1/;s/-/./g'
+}
+
+build() (
+  local _cmake_common=(
+    -S "$_pkgsrc"
+    -G Ninja
+    -DCMAKE_BUILD_TYPE=None
+    -DCMAKE_INSTALL_PREFIX="/$_install_path/$_pkgname"
+    -DLLAMA_CURL=ON
+    -DGGML_NATIVE=ON # will follow standard flags; march=native removed in prepare
+    -DGGML_LTO=ON
+    -DGGML_RPC=ON
+    -DGGML_ALL_WARNINGS=OFF
+    -DGGML_ALL_WARNINGS_3RD_PARTY=OFF
+    -DGGML_BLAS=ON
+    -DGGML_BLAS_VENDOR=OpenBLAS
+    -DGGML_VULKAN=ON
+    -DGGML_STATIC=OFF
+    -DBUILD_SHARED_LIBS=ON
+    -Wno-dev
+  )
+
+  _cmake_common+=(
+    -DGGML_CUDA=ON
+    -DGGML_CUDA_F16=ON
+  )
+
+  _cflags=($(sed -E -e 's&-(march|mtune)=\S+\b&&g' -e 's&-O[0-9]+\b&&g' <<< "${CFLAGS}"))
+  _cxxflags=($(sed -E -e 's&-(march|mtune)=\S+\b&&g' -e 's&-O[0-9]+\b&&g' <<< "${CXXFLAGS}"))
+
+  echo "Building with OpenBLAS + Vulkan support..."
+  CFLAGS="${_cflags[@]} -march=x86-64 -O3"
+  CXXFLAGS="${_cxxflags[@]}  -march=x86-64 -O3"
+  _build_path="x86-64"
+  cmake -B "build_${_build_path}" "${_cmake_common[@]}"
+  cmake --build "build_${_build_path}"
+  DESTDIR="fakeinstall_${_build_path}" cmake --install "build_${_build_path}"
+
+  echo "Deleting unneeded tests..."
+  rm -rf fakeinstall_*/"$_install_path/$_pkgname"/bin/test*
+  rm -rf fakeinstall_*/"$_install_path/$_pkgname"/include
+  rm -rf fakeinstall_*/"$_install_path/$_pkgname"/lib/cmake
+  rm -rf fakeinstall_*/"$_install_path/$_pkgname"/lib/pkgconfig
+)
+
+check() {
+  ctest --test-dir build_x86-64 --output-on-failure -L 'main|curl' --verbose --timeout 900 || :
+}
+
+package() {
+  pkgdesc+=" with OpenBLAS + Vulkan + CUDA optimizations"
+
+  backup=("etc/conf.d/$_pkgname")
+
+  _arch="x86-64"
+  _base_dir="fakeinstall_${_arch}"
+  cp -a "$_base_dir"/* -t "$pkgdir/"
+
+  # loader script
+  pushd "$pkgdir/$_install_path/$_pkgname/bin"
+  for i in llama*; do
+    mv "$i" "$i.real"
+    ln -s llama-script.sh "$i"
+  done
+  popd
+
+  mkdir -pm755 "$pkgdir/usr/bin"
+  ln -s "/$_install_path/$_pkgname/bin/llama-script.sh" "$pkgdir/usr/bin/llama-cli"
+
+  install -Dm755 /dev/stdin "$pkgdir/$_install_path/$_pkgname/bin/llama-script.sh" << END
+#!/usr/bin/env sh
+_name=\$(basename "\$0")
+export LD_LIBRARY_PATH="/$_install_path/$_pkgname/lib"
+exec "/$_install_path/$_pkgname/bin/\${_name}.real" "\$@"
+END
+
+  install -Dm644 /dev/stdin "$pkgdir/etc/conf.d/$_pkgname" << END
+LD_LIBRARY_PATH="/$_install_path/$_pkgname/lib"
+LLAMA_ARGS=""
+END
+
+  install -Dm644 /dev/stdin "$pkgdir/usr/lib/systemd/system/$_pkgname.service" << END
+[Unit]
+Description=$_pkgname Server
+After=syslog.target network.target local-fs.target remote-fs.target nss-lookup.target
+
+[Service]
+Type=simple
+EnvironmentFile=/etc/conf.d/$_pkgname
+ExecStart=/$_install_path/$_pkgname/bin/llama-server.real \$LLAMA_ARGS
+ExecReload=/bin/kill -s HUP \$MAINPID
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+END
+
+  install -Dm644 "$_pkgsrc/LICENSE" -t "$pkgdir/usr/share/licenses/$pkgname/"
+
+  chmod -R u+rwX,go+rX,go-w "$pkgdir/"
+}
