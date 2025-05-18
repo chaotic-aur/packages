@@ -1,5 +1,4 @@
 pkgdesc="A tool to probe for hardware, check operability and find drivers"
 license=('LGPL-2.1-or-later')
-arch=('x86_64')
 
-depends=(${depends[@]//v4l-utils*/edid-decode})
+depends=(${depends[@]//v4l-utils*/v4l-utils})
