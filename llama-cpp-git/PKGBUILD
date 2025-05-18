@@ -3,16 +3,11 @@
 : ${_install_path:=opt}
 
 _pkgname="llama-cpp"
-pkgbase="$_pkgname-git"
-pkgname=(
-  "$_pkgname-git"
-  "$_pkgname-x64v3-git"
-  "$_pkgname-cuda-git"
-)
-pkgver=b4966.r1.gf17a3bb
+pkgname="$_pkgname-git"
+pkgver=b5415.r0.g6a2bc8b
 pkgrel=1
 pkgdesc="Port of Facebook's LLaMA model in C/C++"
-url="https://github.com/ggerganov/llama.cpp"
+url="https://github.com/ggml-org/llama.cpp"
 license=('MIT')
 arch=('x86_64')
 
@@ -20,36 +15,38 @@ depends=(
   'curl'
   'python'
   'python-numpy'
-  'python-sentencepiece' # AUR
+  'python-sentencepiece' # aur/sentencepiece
   'openblas'
   'vulkan-icd-loader'
 )
 makedepends=(
   'cmake'
-  'cuda'
   'git'
   'ninja'
   'openmp'
-  'patchelf'
   'shaderc'
   'vulkan-headers'
 )
 
+provides=(
+  "$_pkgname"
+  "${_pkgname//-/.}"
+)
+conflicts=(
+  "$_pkgname"
+  "${_pkgname//-/.}"
+)
+
 _pkgsrc="$_pkgname"
-source=(
-  "$_pkgsrc"::"git+$url.git"
-  "git+https://github.com/nomic-ai/kompute.git"
-)
-sha256sums=(
-  'SKIP'
-  'SKIP'
-)
+source=("$_pkgsrc"::"git+$url.git")
+sha256sums=('SKIP')
 
 prepare() {
   cd "$_pkgsrc"
-  git submodule init
-  git config submodule.kompute.url "${srcdir}/kompute"
-  git -c protocol.file.allow=always submodule update
+  git submodule update --init --recursive --depth=1
+
+  # ignore cpu feature flags; allow global microarchitecture level
+  sed -E -e '/(set|APPEND).ARCH_FLAGS/d' -i ggml/src/ggml-cpu/CMakeLists.txt
 }
 
 pkgver() {
@@ -65,7 +62,7 @@ build() (
     -DCMAKE_BUILD_TYPE=None
     -DCMAKE_INSTALL_PREFIX="/$_install_path/$_pkgname"
     -DLLAMA_CURL=ON
-    -DGGML_NATIVE=OFF
+    -DGGML_NATIVE=ON # will follow standard flags; march=native removed in prepare
     -DGGML_LTO=ON
     -DGGML_RPC=ON
     -DGGML_ALL_WARNINGS=OFF
@@ -78,81 +75,99 @@ build() (
     -Wno-dev
   )
 
-  local _cmake_x64v1=(
-    -DGGML_AVX2=OFF
-    -DGGML_AVX=OFF
-    -DGGML_BMI2=OFF
-    -DGGML_F16C=OFF
-    -DGGML_FMA=OFF
-  )
+  _cflags=($(sed -E -e 's&-(march|mtune)=\S+\b&&g' -e 's&-O[0-9]+\b&&g' <<< "${CFLAGS}"))
+  _cxxflags=($(sed -E -e 's&-(march|mtune)=\S+\b&&g' -e 's&-O[0-9]+\b&&g' <<< "${CXXFLAGS}"))
 
-  local _cmake_x64v3=(
-    -DGGML_AVX2=ON
-    -DGGML_AVX=ON
-    -DGGML_BMI2=ON
-    -DGGML_F16C=ON
-    -DGGML_FMA=ON
-  )
+  echo "Building with OpenBLAS + Vulkan support..."
+  CFLAGS="${_cflags[@]} -march=x86-64 -O3"
+  CXXFLAGS="${_cxxflags[@]}  -march=x86-64 -O3"
+  _build_path="x86-64"
+  cmake -B "build_${_build_path}" "${_cmake_common[@]}"
+  cmake --build "build_${_build_path}"
+  DESTDIR="fakeinstall_${_build_path}" cmake --install "build_${_build_path}"
 
-  local _cmake_cuda=(
-    -DGGML_CUDA=ON
-    -DGGML_CUDA_F16=ON
-  )
+  echo "Building with OpenBLAS + Vulkan + x86-64-v2 support..."
+  CFLAGS="${_cflags[@]} -march=x86-64-v2 -O3"
+  CXXFLAGS="${_cxxflags[@]}  -march=x86-64-v2 -O3"
+  _build_path="x86-64-v2"
+  cmake -B "build_${_build_path}" "${_cmake_common[@]}"
+  cmake --build "build_${_build_path}"
+  DESTDIR="fakeinstall_${_build_path}" cmake --install "build_${_build_path}"
 
-  local _build_path
+  echo "Building with OpenBLAS + Vulkan + x86-64-v3 support..."
+  CFLAGS="${_cflags[@]} -march=x86-64-v3 -O3"
+  CXXFLAGS="${_cxxflags[@]}  -march=x86-64-v3 -O3"
+  _build_path="x86-64-v3"
+  cmake -B "build_${_build_path}" "${_cmake_common[@]}"
+  cmake --build "build_${_build_path}"
+  DESTDIR="fakeinstall_${_build_path}" cmake --install "build_${_build_path}"
 
-  if grep -Eqm1 '\b'"$_pkgname"'-git\b' <<< "${pkgname[*]}"; then
-    echo "Building with OpenBLAS + Vulkan support..."
-    _build_path="x64v1"
-    cmake -B "build_${_build_path}" "${_cmake_common[@]}" "${_cmake_x64v1[@]}"
-    cmake --build "build_${_build_path}"
-    DESTDIR="fakeinstall_${_build_path}" cmake --install "build_${_build_path}"
-  fi
-
-  if grep -Eqm1 '\b'"$_pkgname"'-x64v3-git\b' <<< "${pkgname[*]}"; then
-    echo "Building with OpenBLAS + Vulkan + x86-64-v3 support..."
-    _build_path="x64v3"
-    cmake -B "build_${_build_path}" "${_cmake_common[@]}" "${_cmake_x64v3[@]}"
-    cmake --build "build_${_build_path}"
-    DESTDIR="fakeinstall_${_build_path}" cmake --install "build_${_build_path}"
-  fi
-
-  if grep -Eqm1 '\b'"$_pkgname"'-cuda-git\b' <<< "${pkgname[*]}"; then
-    echo "Building with OpenBLAS + Vulkan + CUDA support..."
-    _build_path="cuda"
-    cmake -B "build_${_build_path}" "${_cmake_common[@]}" "${_cmake_cuda[@]}"
-    cmake --build "build_${_build_path}"
-    DESTDIR="fakeinstall_${_build_path}" cmake --install "build_${_build_path}"
-  fi
+  echo "Building with OpenBLAS + Vulkan + x86-64-v4 support..."
+  CFLAGS="${_cflags[@]} -march=x86-64-v4 -O3"
+  CXXFLAGS="${_cxxflags[@]}  -march=x86-64-v4 -O3"
+  _build_path="x86-64-v4"
+  cmake -B "build_${_build_path}" "${_cmake_common[@]}"
+  cmake --build "build_${_build_path}"
+  DESTDIR="fakeinstall_${_build_path}" cmake --install "build_${_build_path}"
 
   echo "Deleting unneeded tests..."
-  rm -rf fakeinstall_*/$_install_path/$_pkgname/bin/test*
-  rm -rf fakeinstall_*/$_install_path/$_pkgname/include
-  rm -rf fakeinstall_*/$_install_path/$_pkgname/lib/cmake
-  rm -rf fakeinstall_*/$_install_path/$_pkgname/lib/pkgconfig
-
-  local i _files
-  _files=(
-    fakeinstall_*/$_install_path/$_pkgname/bin/llama-*
-    fakeinstall_*/$_install_path/$_pkgname/bin/vulkan-*
-    fakeinstall_*/$_install_path/$_pkgname/lib/*.so
-  )
-  for i in "${_files[@]}"; do
-    patchelf --set-rpath '$ORIGIN/../lib' "$i"
-  done
+  rm -rf fakeinstall_*/"$_install_path/$_pkgname"/bin/test*
+  rm -rf fakeinstall_*/"$_install_path/$_pkgname"/include
+  rm -rf fakeinstall_*/"$_install_path/$_pkgname"/lib/cmake
+  rm -rf fakeinstall_*/"$_install_path/$_pkgname"/lib/pkgconfig
 )
 
 check() {
-  ctest --test-dir build_vulkan_x64v3 --output-on-failure -L 'main|curl' --verbose --timeout 900 || :
+  ctest --test-dir build_x86-64 --output-on-failure -L 'main|curl' --verbose --timeout 900 || :
 }
 
-_package_license() {
-  install -Dm644 "$_pkgsrc/LICENSE" -t "$pkgdir/usr/share/licenses/$pkgname/"
-  chmod -R u+rwX,go+rX,go-w "$pkgdir/"
-}
+package() {
+  pkgdesc+=" with OpenBLAS + Vulkan optimizations"
 
-_package_systemd() {
+  backup=("etc/conf.d/$_pkgname")
+
+  _arch="x86-64"
+  _base_dir="fakeinstall_${_arch}"
+  cp -a "$_base_dir"/* -t "$pkgdir/"
+
+  _arch="x86-64-v2"
+  _base_dir="fakeinstall_${_arch}"
+  _lib_dir="glibc-hwcaps/${_arch}"
+  mkdir -pm755 "$pkgdir/$_install_path/$_pkgname/lib/$_lib_dir"
+  cp -a "$_base_dir/$_install_path/$_pkgname/lib"/* "$pkgdir/$_install_path/$_pkgname/lib/$_lib_dir"
+
+  _arch="x86-64-v3"
+  _base_dir="fakeinstall_${_arch}"
+  _lib_dir="glibc-hwcaps/${_arch}"
+  mkdir -pm755 "$pkgdir/$_install_path/$_pkgname/lib/$_lib_dir"
+  cp -a "$_base_dir/$_install_path/$_pkgname/lib"/* "$pkgdir/$_install_path/$_pkgname/lib/$_lib_dir"
+
+  _arch="x86-64-v4"
+  _base_dir="fakeinstall_${_arch}"
+  _lib_dir="glibc-hwcaps/${_arch}"
+  mkdir -pm755 "$pkgdir/$_install_path/$_pkgname/lib/$_lib_dir"
+  cp -a "$_base_dir/$_install_path/$_pkgname/lib"/* "$pkgdir/$_install_path/$_pkgname/lib/$_lib_dir"
+
+  # loader script
+  pushd "$pkgdir/$_install_path/$_pkgname/bin"
+  for i in llama*; do
+    mv "$i" "$i.real"
+    ln -s llama-script.sh "$i"
+  done
+  popd
+
+  mkdir -pm755 "$pkgdir/usr/bin"
+  ln -s "/$_install_path/$_pkgname/bin/llama-script.sh" "$pkgdir/usr/bin/llama-cli"
+
+  install -Dm755 /dev/stdin "$pkgdir/$_install_path/$_pkgname/bin/llama-script.sh" << END
+#!/usr/bin/env sh
+_name=\$(basename "\$0")
+export LD_LIBRARY_PATH="/$_install_path/$_pkgname/lib"
+exec "/$_install_path/$_pkgname/bin/\${_name}.real" "\$@"
+END
+
   install -Dm644 /dev/stdin "$pkgdir/etc/conf.d/$_pkgname" << END
+LD_LIBRARY_PATH="/$_install_path/$_pkgname/lib"
 LLAMA_ARGS=""
 END
 
@@ -164,73 +179,15 @@ After=syslog.target network.target local-fs.target remote-fs.target nss-lookup.t
 [Service]
 Type=simple
 EnvironmentFile=/etc/conf.d/$_pkgname
-ExecStart=/$_install_path/$_pkgname/bin/llama-server \$LLAMA_ARGS
+ExecStart=/$_install_path/$_pkgname/bin/llama-server.real \$LLAMA_ARGS
 ExecReload=/bin/kill -s HUP \$MAINPID
 Restart=on-failure
 
 [Install]
 WantedBy=multi-user.target
 END
-}
 
-_package_lamma-cpp() {
-  local _base_dir="$1"
-  cp --reflink=auto -a "$_base_dir"/* -t "$pkgdir/"
-
-  install -dm755 "$pkgdir/usr/bin"
-  ln -srf "$pkgdir/$_install_path/$_pkgname/bin/llama-cli" "$pkgdir/usr/bin/${i##*/}"
+  install -Dm644 "$_pkgsrc/LICENSE" -t "$pkgdir/usr/share/licenses/$pkgname/"
 
   chmod -R u+rwX,go+rX,go-w "$pkgdir/"
-}
-
-package_llama-cpp-git() {
-  pkgdesc+=" with OpenBLAS + Vulkan optimizations"
-
-  provides=("${_pkgname//-/.}")
-  conflicts=("${_pkgname//-/.}")
-  replaces=('llama-cpp-vulkan-git')
-
-  backup=("etc/conf.d/$_pkgname")
-
-  _package_lamma-cpp fakeinstall_x64v1
-
-  _package_systemd
-  _package_license
-}
-
-package_llama-cpp-cuda-git() {
-  pkgdesc+=" with OpenBLAS + Vulkan + CUDA optimizations"
-
-  depends+=('cuda')
-
-  provides=("${_pkgname//-/.}")
-  conflicts=("${_pkgname//-/.}")
-
-  backup=("etc/conf.d/$_pkgname")
-
-  _package_lamma-cpp fakeinstall_cuda
-
-  _package_systemd
-  _package_license
-}
-
-package_llama-cpp-x64v3-git() {
-  pkgdesc+=" with OpenBLAS + Vulkan + x86-64-v3 optimizations"
-
-  provides=(
-    "$_pkgname"
-    "${_pkgname//-/.}"
-  )
-  conflicts=(
-    "$_pkgname"
-    "${_pkgname//-/.}"
-  )
-  replaces=('llama-cpp-vulkan-x64v3-git')
-
-  backup=("etc/conf.d/$_pkgname")
-
-  _package_lamma-cpp fakeinstall_x64v3
-
-  _package_systemd
-  _package_license
 }
