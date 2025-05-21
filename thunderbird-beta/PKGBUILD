@@ -9,7 +9,7 @@ fi
 ## basic info
 _pkgname=thunderbird
 pkgname=thunderbird-beta
-pkgver=139.0b3
+pkgver=139.0b4
 pkgrel=1
 pkgdesc='Beta version of standalone mail and news reader from mozilla.org'
 url="https://www.thunderbird.net/"
