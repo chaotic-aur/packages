@@ -5,7 +5,6 @@ pkgbase = pinta
 	url = https://pinta-project.com
 	arch = any
 	license = MIT
-	makedepends = base-devel
 	makedepends = pkgconf
 	makedepends = autoconf-archive
 	makedepends = intltool
