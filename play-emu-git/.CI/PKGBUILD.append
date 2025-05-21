@@ -1,19 +1,7 @@
 export CMAKE_POLICY_VERSION_MINIMUM=3.5
+
 export CMAKE_GENERATOR=Ninja
+makedepends+=('ninja')
 
 pkgdesc="Experimental Playstation 2 emulator"
 url="https://github.com/jpd002/Play-"
-
-makdepends+=('ninja')
-
-eval _orig_"$(declare -f prepare)"
-
-_pkgsrc="play-emu"
-prepare() {
-  (_orig_prepare)
-
-  cd "$_pkgsrc"
-  sed -e '1i #include <cstdint>' \
-    -i deps/CodeGen/include/*.h \
-    deps/Framework/tests/XmlTest.cpp
-}
