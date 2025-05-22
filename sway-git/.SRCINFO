@@ -1,7 +1,7 @@
 pkgbase = sway
 	pkgdesc = Tiling Wayland compositor and replacement for the i3 window manager
 	pkgver = 1.10.1
-	pkgrel = 2
+	pkgrel = 3
 	epoch = 1
 	url = https://swaywm.org/
 	install = sway.install
@@ -25,7 +25,7 @@ pkgbase = sway
 	depends = pango
 	depends = pcre2
 	depends = ttf-font
-	depends = wlroots
+	depends = wlroots0.18
 	depends = xcb-util-wm
 	optdepends = brightnessctl: Brightness adjustment tool used in the default configuration
 	optdepends = foot: Terminal emulator used in the default configuration
