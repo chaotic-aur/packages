@@ -1,6 +1,6 @@
 pkgbase = linux-xanmod-lts
 	pkgdesc = Linux Xanmod - Long Term Support [LTS]
-	pkgver = 6.12.29
+	pkgver = 6.12.30
 	pkgrel = 1
 	url = http://www.xanmod.org/
 	arch = x86_64
@@ -17,13 +17,13 @@ pkgbase = linux-xanmod-lts
 	options = !strip
 	source = https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.12.tar.xz
 	source = https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.12.tar.sign
-	source = https://downloads.sourceforge.net/project/xanmod/releases/lts/6.12.29-xanmod1/patch-6.12.29-xanmod1.xz
+	source = https://downloads.sourceforge.net/project/xanmod/releases/lts/6.12.30-xanmod1/patch-6.12.30-xanmod1.xz
 	source = choose-gcc-optimization.sh
 	validpgpkeys = ABAF11C65A2970B130ABE3C479BE3E4300411886
 	validpgpkeys = 647F28654894E3BD457199BE38DBBDC86092693E
 	sha256sums = b1a2562be56e42afb3f8489d4c2a7ac472ac23098f1ef1c1e40da601f54625eb
 	sha256sums = SKIP
-	sha256sums = 347ce7c6395e2fa5ffcd14fe8bbd8a8780d879bfd88ace2a1533fa680973ec1f
+	sha256sums = 72dbb4292b1782d7d4a7ad1e5454fbb14bc4a64f86cbab6942e07ae19d403195
 	sha256sums = a8b38eb482eb685944757182c4886404abc12703e5e56ec39c7d61298d17d71f
 
 pkgname = linux-xanmod-lts

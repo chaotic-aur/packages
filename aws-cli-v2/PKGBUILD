@@ -6,7 +6,7 @@
 
 pkgname=aws-cli-v2
 # https://github.com/aws/aws-cli/raw/v2/CHANGELOG.rst
-pkgver=2.27.18
+pkgver=2.27.21
 pkgrel=1
 pkgdesc='Unified command line interface for Amazon Web Services (version 2)'
 arch=(any)
@@ -28,8 +28,9 @@ source=("https://awscli.amazonaws.com/awscli-$pkgver.tar.gz"{,.sig}
   "${pkgname}-ruamel-yaml-v4.patch"
   allow-egg-info.diff
   botocore-2990-rebased.patch
-  botocore-2551.patch)
-sha256sums=('cb4bab07609d1b55694d1b65e8cde4db470e50ed6784fa82bc8952bf13d19c53'
+  botocore-2551.patch
+  prompt_toolkit.patch)
+sha256sums=('f094bd1c226c81aa2c8be6fb8cd8de4f6285daf3554b484579a1f8f042e3388a'
   'SKIP'
   '444f0d2eb314f07474ce752e02932140bb9b9fec15c79bafe567f62a42398e93'
   '893d61d7e958c3c02bfa1e03bf58f6f6abd98849d248cc661f1c56423df9f312'
@@ -37,7 +38,8 @@ sha256sums=('cb4bab07609d1b55694d1b65e8cde4db470e50ed6784fa82bc8952bf13d19c53'
   'b3442e645a983c1c2c99079a991421b356e9474f43d4ae35d43af5c7cf94e71e'
   '1c16c82ffad39cf170e4673c8933b584162f206cb8d32c194795e5cf0e89cd69'
   '64d331c0b7e43834131c9fc549609a847faf96b0ae00c06f6e2d4ac7c8bb9089'
-  '778c621885dae2218c840eec06a0e0294df7d1180dea12264b34a93994be7c0d')
+  '778c621885dae2218c840eec06a0e0294df7d1180dea12264b34a93994be7c0d'
+  'f11edd5579a8de41431132b036ab4948ca749060ff63ee50d2a4cdd5c1adc087')
 validpgpkeys=(
   'FB5DB77FD5C118B80511ADA8A6310ACC4672475C' # the key mentioned on https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
 )
@@ -63,6 +65,11 @@ prepare() {
 
   # tests/dependencies checks dependencies, and many Arch Linux packages are not using PEP 517 yet
   patch -Np1 -i ../allow-egg-info.diff
+
+  # Workaround for issue with prompt_toolkit. Related issues:
+  # https://github.com/aws/aws-cli/issues/9453
+  # https://github.com/prompt-toolkit/python-prompt-toolkit/issues/1988
+  patch -Np0 -i ../prompt_toolkit.patch
 
   pushd awscli
 
