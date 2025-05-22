@@ -1,6 +1,6 @@
-pkgbase = wine-wow64-git
+pkgbase = wine-git
 	pkgdesc = A compatibility layer for running Windows programs
-	pkgver = 10.1.r47.g902dcd6
+	pkgver = 10.8.r58.ga550040
 	pkgrel = 1
 	url = https://gitlab.winehq.org/wine/wine
 	arch = x86_64
@@ -47,10 +47,10 @@ pkgbase = wine-wow64-git
 	optdepends = cups
 	optdepends = samba
 	optdepends = sane
-	provides = wine-wow64=10.1
-	provides = wine=10.1
-	conflicts = wine-wow64
+	provides = wine=10.8.r58
+	provides = wine-wow64=10.8.r58
 	conflicts = wine
+	conflicts = wine-wow64
 	options = staticlibs
 	options = !lto
 	backup = usr/lib/binfmt.d/wine.conf
@@ -61,4 +61,4 @@ pkgbase = wine-wow64-git
 	sha256sums = SKIP
 	sha256sums = SKIP
 
-pkgname = wine-wow64-git
+pkgname = wine-git

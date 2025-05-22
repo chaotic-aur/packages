@@ -1,0 +1,135 @@
+# Maintainer: aur.chaotic.cx
+
+_pkgname="wine"
+pkgname="$_pkgname-git"
+pkgver=10.8.r58.ga550040
+pkgrel=1
+pkgdesc="A compatibility layer for running Windows programs"
+url="https://gitlab.winehq.org/wine/wine"
+license=('LGPL-2.1-or-later')
+arch=('x86_64')
+
+depends=(
+  alsa-lib
+  fontconfig
+  freetype2
+  gettext
+  gnutls
+  gst-plugins-base-libs
+  libpcap
+  libpulse
+  libxcomposite
+  libxcursor
+  libxi
+  libxinerama
+  libxkbcommon
+  libxrandr
+  opencl-icd-loader
+  pcsclite
+  sdl2
+  unixodbc
+  v4l-utils
+  wayland
+  desktop-file-utils
+  libgphoto2
+)
+makedepends=(
+  libxxf86vm
+  mesa
+  mesa-libgl
+  vulkan-icd-loader
+  autoconf
+  bison
+  flex
+  git
+  mingw-w64-gcc
+  opencl-headers
+  perl
+  vulkan-headers
+)
+_makeoptdeps=(
+  ::alsa-plugins
+  ::dosbox
+  libcups::cups
+  samba::samba
+  sane::sane
+)
+for i in "${_makeoptdeps[@]}"; do
+  [ -n "${i%%::*}" ] && makedepends+=("${i%%::*}")
+  [ -n "${i##*::}" ] && optdepends+=("${i##*::}")
+done
+
+options=(staticlibs !lto)
+backup=("usr/lib/binfmt.d/wine.conf")
+
+provides=(
+  "wine=${pkgver%%.g*}"
+  "wine-wow64=${pkgver%%.g*}"
+)
+conflicts=(
+  'wine'
+  'wine-wow64'
+)
+
+_pkgsrc="$_pkgname"
+source=(
+  "$_pkgsrc"::"git+$url.git"
+  '30-win32-aliases.conf'
+  'wine-binfmt.conf'
+)
+sha256sums=(
+  'SKIP'
+  'SKIP'
+  'SKIP'
+)
+
+pkgver() {
+  cd "$_pkgsrc"
+  local _version=$(
+    git tag --list 'wine-[0-9]*.[0-9]*' \
+      | sed -E 's/^[^0-9]+//;s/^.*[A-Za-z]{2}.*$//' \
+      | sort -V | tail -1
+  )
+  local _revision=$(git rev-list --count --cherry-pick wine-$_version...HEAD)
+  local _hash=$(git rev-parse --short=7 HEAD)
+  printf '%s.r%s.g%s' "${_version:?}" "${_revision:?}" "${_hash:?}"
+}
+
+build() {
+  # Apply flags for cross-compilation
+  export CROSSCFLAGS="-O2 -pipe"
+  export CROSSCXXFLAGS="-O2 -pipe"
+  export CROSSLDFLAGS="-Wl,-O1"
+
+  local _configure_options=(
+    --disable-tests
+    --prefix=/usr
+    --libdir=/usr/lib
+    --enable-archs=x86_64,i386
+    --with-wayland
+  )
+
+  cd "$_pkgsrc"
+  ./configure "${_configure_options[@]}"
+  make
+}
+
+package() {
+  cd "$_pkgsrc"
+
+  make install \
+    prefix="$pkgdir/usr" \
+    libdir="$pkgdir/usr/lib" \
+    dlldir="$pkgdir/usr/lib/wine"
+
+  ln -sf wine "$pkgdir/usr/bin/wine64"
+
+  # Font aliasing settings for Win32 applications
+  install -Dm644 "$srcdir/30-win32-aliases.conf" -t "$pkgdir/usr/share/fontconfig/conf.avail/"
+
+  install -d "$pkgdir/usr/share/fontconfig/conf.default"
+  ln -s ../conf.avail/30-win32-aliases.conf "$pkgdir/usr/share/fontconfig/conf.default/30-win32-aliases.conf"
+
+  # binfmt config
+  install -Dm644 "$srcdir/wine-binfmt.conf" "$pkgdir/usr/lib/binfmt.d/wine.conf"
+}
