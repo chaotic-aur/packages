@@ -17,9 +17,6 @@ optdepends=(
   'xdg-utils: Open links, files, etc'
 )
 
-provides=("vesktop")
-conflicts=('vesktop')
-
 source=("$_pkgname-$pkgver.tar.gz::https://github.com/Vencord/Vesktop/archive/v${pkgver}.tar.gz" "vesktop.desktop" "vesktop.sh" "afterPack.js")
 
 sha256sums=('757beb3a8b4e0dc182b3e1109a68d4f98836521e3ee3fba89a1f19a831c57499'
