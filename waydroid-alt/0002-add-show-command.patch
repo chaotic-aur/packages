@@ -1,0 +1,26 @@
+diff --git a/tools/__init__.py b/tools/__init__.py
+index 819d54a..429dee7 100644
+--- a/tools/__init__.py
++++ b/tools/__init__.py
+@@ -122,7 +122,7 @@ def main():
+         elif args.action == "logcat":
+             actionNeedRoot(args.action)
+             helpers.lxc.logcat(args)
+-        elif args.action == "show-full-ui":
++        elif args.action == "show-full-ui" or args.action == "show":
+             actions.app_manager.showFullUI(args)
+         elif args.action == "first-launch":
+             actions.remote_init_client(args)
+diff --git a/tools/helpers/arguments.py b/tools/helpers/arguments.py
+index 2f3af66..21c4aa8 100644
+--- a/tools/helpers/arguments.py
++++ b/tools/helpers/arguments.py
+@@ -101,7 +101,7 @@ def arguments_prop(subparser):
+     return ret
+ 
+ def arguments_fullUI(subparser):
+-    ret = subparser.add_parser("show-full-ui", help="show android full screen in window")
++    ret = subparser.add_parser("show-full-ui", aliases=["show"], help="show android full screen in window")
+     return ret
+ 
+ def arguments_firstLaunch(subparser):

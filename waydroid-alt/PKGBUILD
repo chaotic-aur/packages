@@ -1,0 +1,73 @@
+# Maintainer: aur.chaotic.cx
+
+_pkgname="waydroid"
+pkgname="$_pkgname-alt"
+pkgver=1.5.1
+pkgrel=1
+pkgdesc="A container-based Android system - with desktop menu creation disabled"
+url="https://github.com/waydroid/waydroid"
+license=('GPL-3.0-or-later')
+arch=('any')
+
+depends=(
+  'dbus-python'
+  'dnsmasq'
+  'gtk3'
+  'lxc'
+  'nftables'
+  'python'
+  'python-gbinder'
+  'python-gobject'
+)
+makedepends=(
+  'git'
+)
+
+provides=("$_pkgname=$pkgver")
+conflicts=("$_pkgname")
+
+_pkgsrc="$_pkgname"
+source=(
+  "$_pkgsrc"::"git+$url.git"
+  '0001-disable-launchers.patch'
+  '0002-add-show-command.patch'
+)
+sha256sums=(
+  'SKIP'
+  '6049aa934f07183d597b1eb8e9ea8b6fadc8ada31768e0f9260f2dbdb9735413'
+  '64d66c53c4e9cd7eb71dd692811b5e6b43163c0a6d78c0afa833a5b344949ff0'
+)
+
+prepare() {
+  cd "$_pkgsrc"
+  local _tag
+  _tag=$(git tag -l '[0-9]*' | grep -Ev '[A-Za-z][A-Za-z]' | sort -rV | head -1)
+  git -c advice.detachedHead=false checkout -f "${_tag:?}"
+
+  local src
+  for src in "${source[@]}"; do
+    src="${src%%::*}"
+    src="${src##*/}"
+    src="${src%.zst}"
+    if [[ $src == *.patch ]]; then
+      printf '\nApplying patch: %s\n' "$src"
+      patch -Np1 -F100 -i "${srcdir:?}/$src"
+    fi
+  done
+}
+
+pkgver() {
+  cd "$_pkgsrc"
+  git describe --tags | sed 's/^[0-9]+//'
+}
+
+package() {
+  cd "$_pkgsrc"
+  make install DESTDIR="$pkgdir" USE_NFTABLES=1
+
+  python -m compileall -f -p / -s "$pkgdir" "$pkgdir/"
+
+  rm -rf "$pkgdir/usr/share/applications/"
+  rm -rf "$pkgdir/usr/share/icons/"
+  rm -rf "$pkgdir/usr/share/metainfo/"
+}

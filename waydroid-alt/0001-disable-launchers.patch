@@ -1,0 +1,22 @@
+diff --git a/tools/services/user_manager.py b/tools/services/user_manager.py
+index dbde361..30b29dc 100644
+--- a/tools/services/user_manager.py
++++ b/tools/services/user_manager.py
+@@ -17,6 +17,8 @@ def start(args, session, unlocked_cb=None):
+     def makeDesktopFile(appInfo):
+         if appInfo is None:
+             return -1
++        else:
++            return 0
+ 
+         showApp = False
+         for cat in appInfo["categories"]:
+@@ -48,6 +50,8 @@ Icon={waydroid_data}/icons/com.android.settings.png
+             return 0
+ 
+     def makeWaydroidDesktopFile(hide):
++        return
++
+         desktop_file_path = apps_dir + "/Waydroid.desktop"
+         # If the user has set the desktop file as read-only, we won't replace it
+         if os.path.isfile(desktop_file_path) and not os.access(desktop_file_path, os.W_OK):
