@@ -69,10 +69,12 @@ options=(staticlibs !lto)
 backup=("usr/lib/binfmt.d/wine.conf")
 
 provides=(
+  "wine=${pkgver%%.g*}"
   "wine-staging=${pkgver%%.g*}"
   "wine-staging-wow64=${pkgver%%.g*}"
 )
 conflicts=(
+  'wine'
   'wine-staging'
   'wine-staging-wow64'
 )

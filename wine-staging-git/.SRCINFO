@@ -47,8 +47,10 @@ pkgbase = wine-staging-git
 	optdepends = cups
 	optdepends = samba
 	optdepends = sane
+	provides = wine=10.8.r58
 	provides = wine-staging=10.8.r58
 	provides = wine-staging-wow64=10.8.r58
+	conflicts = wine
 	conflicts = wine-staging
 	conflicts = wine-staging-wow64
 	options = staticlibs
