@@ -1,0 +1,6 @@
+eval _orig_"$(declare -f package)"
+
+package() {
+  replaces=('evdi-git')
+  _orig_package
+}
