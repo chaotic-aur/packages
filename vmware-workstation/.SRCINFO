@@ -1,7 +1,7 @@
 pkgbase = vmware-workstation
 	pkgdesc = The industry standard for running multiple operating systems as virtual machines on a single Linux PC.
 	pkgver = 17.6.3
-	pkgrel = 5
+	pkgrel = 6
 	url = https://www.vmware.com/products/workstation-for-linux.html
 	install = vmware-workstation.install
 	arch = x86_64
@@ -18,6 +18,7 @@ pkgbase = vmware-workstation
 	depends = pcsclite
 	depends = hicolor-icon-theme
 	depends = libxcrypt-compat
+	depends = libxml2-legacy
 	depends = gtk3
 	depends = gcr
 	optdepends = linux-headers: build modules against Arch kernel
