@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+install -Dm644 /dev/stdin waydroid.install << END
+pre_upgrade() {
+  rm -rf usr/lib/waydroid
+}
+
+pre_install() {
+  rm -rf usr/lib/waydroid
+}
+
+post_remove() {
+  rm -rf usr/lib/waydroid
+}
+END
