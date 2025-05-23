@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+install -Dm644 /dev/stdin waydroid-script.install << END
+pre_upgrade() {
+  rm -rf opt/waydroid-script
+}
+
+pre_install() {
+  rm -rf opt/waydroid-script
+}
+
+post_remove() {
+  rm -rf opt/waydroid-script
+}
+END

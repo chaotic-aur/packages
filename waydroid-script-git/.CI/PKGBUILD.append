@@ -6,12 +6,12 @@ done
 
 depends=('python')
 
+install="waydroid-script.install"
+
 eval _orig_"$(declare -f package)"
 
 package() {
   depends+=(${_deps_old[@]})
-
   _orig_package
-
-  python -m compileall -f -r 9 -s "$pkgdir" "$pkgdir/opt/$_pkgname/"
+  python -m compileall -f -p / -s "$pkgdir" "$pkgdir/"
 }
