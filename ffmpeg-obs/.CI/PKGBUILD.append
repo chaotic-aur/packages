@@ -4,3 +4,10 @@ provides=(
   ${provides[@]//ffmpeg*/}
   "ffmpeg=$epoch:$pkgver"
 )
+
+eval _orig_"$(declare -f package)"
+
+package() {
+  depends+=('libplacebo.so')
+  _orig_package
+}
