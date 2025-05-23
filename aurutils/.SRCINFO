@@ -1,6 +1,6 @@
 pkgbase = aurutils
 	pkgdesc = helper tools for the arch user repository
-	pkgver = 20.4
+	pkgver = 20.5
 	pkgrel = 1
 	url = https://github.com/AladW/aurutils
 	install = aurutils.install
@@ -21,7 +21,7 @@ pkgbase = aurutils
 	optdepends = bat: view-delta example script
 	optdepends = git-delta: view-delta example script
 	optdepends = python-srcinfo: sync-rebuild example script
-	source = aurutils-20.4.tar.gz::https://github.com/AladW/aurutils/archive/refs/tags/20.4.tar.gz
-	sha256sums = 593d0cd006e42ca6f5acacfdfaca0a26a159d645aaa32a1523d4e48cb4e91f3b
+	source = aurutils-20.5.tar.gz::https://github.com/AladW/aurutils/archive/refs/tags/20.5.tar.gz
+	sha256sums = 7a7b238c73b8a4be9e1a75963dbc6204263797572165bcd009d9b2cdee2d3068
 
 pkgname = aurutils
