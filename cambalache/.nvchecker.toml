@@ -1,0 +1,4 @@
+[cambalache]
+source = "git"
+git = "https://gitlab.gnome.org/jpu/cambalache.git"
+include_regex = '.*.[0-9]*[02468].*'
