@@ -5,41 +5,38 @@
 # Contributor: megadriver <megadriver at gmx dot com>
 
 pkgname='hplip-minimal'
-pkgver=3.24.4
-pkgrel=7
+pkgver=3.25.2
+pkgrel=1
 pkgdesc='Only printer drivers from HPLIP with proprietary binary plugin'
 arch=('x86_64')
 url='https://developers.hp.com/hp-linux-imaging-and-printing/'
 license=('GPL-2.0-only' 'MIT' 'BSD-3-Clause' 'GPL-3.0-only' 'LicenseRef-HPLIP')
-depends=(libjpeg-turbo libcups)
+depends=(libcups)
 makedepends=(python libusb cups)
 conflicts=('hplip' 'hplip-lite' 'hplip-plugin')
 provides=('hplip')
-backup=('etc/hp/hplip.conf')
+backup=('etc/hp/hplip.conf' 'var/lib/hp/hplip.state')
 optdepends=('cups: for printing support')
-source=(https://downloads.sourceforge.net/hplip/hplip-$pkgver.tar.gz{,.asc}
-  https://developers.hp.com/sites/default/files/hplip-${pkgver}-plugin.run{,.asc}
-  0003-models.dat-Re-add-drivers-missing-from-3.19.1.patch
-  0024-Add-include-cups-ppd.h-in-various-places-as-CUPS-2.2.patch
-  hplip-pserror-gcc14.patch)
-sha256sums=('5d7643831893a5e2addf9d42d581a5dbfe5aaf023626886b8762c5645da0f1fb'
+source=(https://downloads.sourceforge.net/project/hplip/hplip/$pkgver/hplip-$pkgver.tar.gz{,.asc}
+  https://developers.hp.com/system/files/2025-03/hplip-$pkgver-plugin_run.zip
+  hplip-missing-drivers.patch
+  hplip-pserror-c99.patch)
+sha256sums=('f99e5eda0704ece359fb2bd9f2254e4a167257cee4da947481e8268a9cb87c50'
   'SKIP'
-  '1f3c6bdd25661a8a2e18153655d6f06f028c1d9c308d69c8ecfd7767a2d0c5aa'
   'SKIP'
-  '29c4c882deda828257420aeb7b388d5b7dd6400daa2e23cbfbc8dde8367ad5a3'
-  '17f63f4d55ae071922b49585cc9a933ecb997348a9daeb6a30f8ddba49969fce'
-  'b3f865424f288c7e3e44c46816fcd87f10ac6be7caa2a8698a82b9a5981cd1d7')
+  'a8ba5021c68816b63654e328c2872cedf49fa9f8769631cfcb96c667055c7313'
+  '33380f46f9e44cce1b6c5fcc10917cc363654ac157dca3cccf620d05ce7e3f19')
 validpgpkeys=('4ABA2F66DBD5A95894910E0673D770CDA59047B9') # HPLIP (HP Linux Imaging and Printing) <hplip@hp.com>
 options=(!makeflags)
+DLAGENTS=("https::/usr/bin/curl -A 'Mozilla/5.0' -oL %o %u")
 
 prepare() {
   sh "hplip-$pkgver-plugin.run" --target "$srcdir/hplip-$pkgver-plugin" --noexec
 
   cd "hplip-$pkgver"
 
-  patch -Np1 -i ../0003-models.dat-Re-add-drivers-missing-from-3.19.1.patch
-  patch -Np1 -i ../0024-Add-include-cups-ppd.h-in-various-places-as-CUPS-2.2.patch
-  patch -Np1 -i ../hplip-pserror-gcc14.patch
+  patch -Np1 -i ../hplip-missing-drivers.patch
+  patch -Np1 -i ../hplip-pserror-c99.patch
 
   export AUTOMAKE='automake --foreign'
   autoreconf --force --install

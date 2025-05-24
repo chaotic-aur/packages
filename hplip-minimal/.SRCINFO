@@ -12,7 +12,6 @@ pkgbase = hplip-minimal
 	makedepends = python
 	makedepends = libusb
 	makedepends = cups
-	depends = libjpeg-turbo
 	depends = libcups
 	optdepends = cups: for printing support
 	provides = hplip
@@ -24,14 +23,14 @@ pkgbase = hplip-minimal
 	options = !makeflags
 	source = https://downloads.sourceforge.net/hplip/hplip-3.25.2.tar.gz
 	source = https://downloads.sourceforge.net/hplip/hplip-3.25.2.tar.gz.asc
-	source = hplip-plugin-3.25.2.zip::https://developers.hp.com/system/files/2025-03/hplip-3.25.2-plugin_run.zip
+	source = https://developers.hp.com/system/files/2025-03/hplip-3.25.2-plugin_run.zip
 	source = hplip-missing-drivers.patch
 	source = hplip-pserror-c99.patch
 	validpgpkeys = 4ABA2F66DBD5A95894910E0673D770CDA59047B9
-	sha256sums = e872ff28eb2517705a95f6e1839efa1e50a77a33aae8905278df2bd820919653
+	sha256sums = f99e5eda0704ece359fb2bd9f2254e4a167257cee4da947481e8268a9cb87c50
 	sha256sums = SKIP
-	sha256sums = aa3fe95f5e6970447a2244a88af0f83b92a88d49aa4a0553f0709916b4597d20
+	sha256sums = SKIP
+	sha256sums = a8ba5021c68816b63654e328c2872cedf49fa9f8769631cfcb96c667055c7313
 	sha256sums = 33380f46f9e44cce1b6c5fcc10917cc363654ac157dca3cccf620d05ce7e3f19
 
 pkgname = hplip-minimal
-
