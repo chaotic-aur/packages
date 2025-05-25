@@ -1,0 +1,16 @@
+unset replaces
+
+arch=('any')
+
+_old_deps=("${depends[@]}")
+unset depends
+
+_pkgsrc="$pkgname-$pkgver"
+
+eval _orig_"$(declare -f package)"
+
+package() {
+  depends=("${_old_deps[@]}")
+  _orig_package
+  install -Dm644 "$srcdir/$_pkgsrc/MIT" "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+}
