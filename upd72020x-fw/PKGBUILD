@@ -2,7 +2,7 @@
 
 pkgname=upd72020x-fw
 pkgver=1.0.0
-pkgrel=2
+pkgrel=3
 epoch=1
 pkgdesc="Renesas uPD720201 / uPD720202 USB 3.0 chipsets firmware"
 arch=('any')
