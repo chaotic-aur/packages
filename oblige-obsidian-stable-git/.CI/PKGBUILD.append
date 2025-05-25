@@ -1,0 +1,7 @@
+export CMAKE_POLICY_VERSION_MINIMUM=3.5
+
+export CMAKE_GENERATOR=Ninja
+makedepends+=('ninja')
+
+url="https://github.com/obsidian-level-maker/Obsidian"
+license=('GPL-2.0-or-later')
