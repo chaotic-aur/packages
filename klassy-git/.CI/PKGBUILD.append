@@ -1,8 +1,6 @@
-export CMAKE_GENERATOR=Ninja
+# note: cannot use ninja, causes race condition
 
 license=('GPL-2.0-or-later' 'MIT')
-
-makedepends+=('ninja')
 
 _pkgsrc="$_pkgname"
 pkgver() {
