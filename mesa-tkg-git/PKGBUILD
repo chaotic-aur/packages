@@ -20,7 +20,10 @@ plain '    `:sdNNNNNNNNNNNNNNNNNNNNNNNNNds:`'
 plain '       `-+shdNNNNNNNNNNNNNNNdhs+-`'
 plain '             `.-:///////:-.`'
 
-_where="$PWD" # track basedir as different Arch based distros are moving srcdir around
+if [ -z "$_where" ]; then
+  export _where="$PWD" # track basedir as different Arch based distros are moving srcdir around
+fi
+
 source "$_where"/customization.cfg
 
 # Load external configuration file if present. Available variable values will overwrite customization.cfg ones.
@@ -476,6 +479,11 @@ build() {
     _galliumopencl="-D gallium-opencl=icd"
   fi
 
+  # Windows-only feature gallium-mediafoundation needs explicit disabling on Linux because reasons
+  if (cd "$srcdir/$_mesa_srcdir" && git merge-base --is-ancestor d348fd5fb5b50edfbdf00f12fd900f77fd658a52 HEAD); then
+    _mediafoundation="-D gallium-mediafoundation=disabled"
+  fi
+
   # /Selector fixes
 
   if [ -n "${CUSTOM_GCC_PATH}" ] && [ "$_compiler" != "clang" ]; then
@@ -517,7 +525,7 @@ build() {
     -D lmsensors=${_enabled_} \
     -D opengl=true \
     -D zstd=auto \
-    -D valgrind=${_enabled_} $_legacy_switches $_dri3 $_omx $_dri_inc $_microsoft_clc $_osmesa $_xvmc $_layers $_optional_codecs $_android_libbacktrace $_intel_rt $_galliumnine $_galliumxa $_sharedglapi $_galliumopencl $_rusticladditions $_no_lto $_additional_meson_flags $_additional_meson_flags_64
+    -D valgrind=${_enabled_} $_legacy_switches $_dri3 $_omx $_dri_inc $_microsoft_clc $_osmesa $_xvmc $_layers $_optional_codecs $_android_libbacktrace $_intel_rt $_galliumnine $_galliumxa $_sharedglapi $_galliumopencl $_mediafoundation $_rusticladditions $_no_lto $_additional_meson_flags $_additional_meson_flags_64
 
   meson configure _build64 --no-pager
 
@@ -574,7 +582,7 @@ build() {
       -D lmsensors=${_enabled_} \
       -D shared-glapi=${_enabled_} \
       -D zstd=auto \
-      -D valgrind=${_disabled_} $_legacy_switches $_dri3 $_omx_32 $_dri_inc $_microsoft_clc $_osmesa $_xvmc $_layers $_optional_codecs $_android_libbacktrace $_intel_rt_32 $_intel_clc_32 $_galliumnine $_galliumxa $_sharedglapi $_galliumopencl $_rusticladditions $_no_lto $_additional_meson_flags $_additional_meson_flags_32
+      -D valgrind=${_disabled_} $_legacy_switches $_dri3 $_omx_32 $_dri_inc $_microsoft_clc $_osmesa $_xvmc $_layers $_optional_codecs $_android_libbacktrace $_intel_rt_32 $_intel_clc_32 $_galliumnine $_galliumxa $_sharedglapi $_galliumopencl $_mediafoundation $_rusticladditions $_no_lto $_additional_meson_flags $_additional_meson_flags_32
 
     meson configure _build32 --no-pager
 
