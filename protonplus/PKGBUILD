@@ -1,6 +1,6 @@
 # Maintainer: Mark Wagie <mark dot wagie at proton dot me>
 pkgname=protonplus
-pkgver=0.4.30
+pkgver=0.4.31
 pkgrel=1
 pkgdesc="A simple Wine and Proton-based compatiblity tools manager for GNOME"
 arch=('x86_64')
@@ -17,7 +17,7 @@ makedepends=(
 )
 checkdepends=('appstream-glib')
 source=("$pkgname-$pkgver.tar.gz::$url/archive/refs/tags/v$pkgver.tar.gz")
-sha256sums=('316f5c3886443711a952af490cf418a64383d16b9bd2c3046abe3038487a6814')
+sha256sums=('1abbf8053f37b2cc765c18cb2d5b355e687d25b32bbb1bd0426749295328b357')
 
 build() {
   arch-meson "ProtonPlus-$pkgver" build
