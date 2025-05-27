@@ -1,11 +1,12 @@
 pkgbase = xfce-theme-manager
 	pkgdesc = Integrated theme manager for xfce4
-	pkgver = 3.8
-	pkgrel = 2
+	pkgver = 0.3.9
+	pkgrel = 1
+	epoch = 1
 	url = https://github.com/KeithDHedger/Xfce-Theme-Manager
 	arch = i686
 	arch = x86_64
-	license = GPL3
+	license = GPL-3.0-or-later
 	makedepends = pkg-config
 	depends = gtk2
 	depends = gdk-pixbuf2
@@ -13,7 +14,7 @@ pkgbase = xfce-theme-manager
 	depends = libxcursor
 	depends = libxfce4ui
 	optdepends = xfce4-composite-editor: A simple GUI to tweak xfwm, can be launched from xfce-theme-manager
-	source = https://github.com/KeithDHedger/Xfce-Theme-Manager/archive/v3.8.tar.gz
-	sha256sums = da4b6b0ea9b9acde30893358ce2c997f298ffc6fac32e84aab6fa141b7bf26eb
+	source = 0.3.9.tar.gz::https://github.com/KeithDHedger/Xfce-Theme-Manager/archive/v0.3.9.tar.gz
+	sha256sums = 3637984378e7b2a40232809dd0cd116ba8b7090dc47f411cbed3c6ef2b271d44
 
 pkgname = xfce-theme-manager
