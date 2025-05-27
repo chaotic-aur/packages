@@ -1,3 +1,0 @@
-#!/bin/sh
-# A script to run PlanMaker.
-/usr/share/office2024/planmaker "$@"

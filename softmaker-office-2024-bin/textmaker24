@@ -1,3 +1,0 @@
-#!/bin/sh
-# A script to run TextMaker.
-/usr/share/office2024/textmaker "$@"
