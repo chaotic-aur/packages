@@ -1,11 +1,9 @@
 # Maintainer: aur.chaotic.cx
 
-: ${_install_path:=opt}
-
 _pkgname="llama-cpp"
 pkgname="$_pkgname-git"
-pkgver=b5415.r0.g6a2bc8b
-pkgrel=1
+pkgver=b5529.r1.g6385b84
+pkgrel=2
 pkgdesc="Port of Facebook's LLaMA model in C/C++"
 url="https://github.com/ggml-org/llama.cpp"
 license=('MIT')
@@ -13,19 +11,15 @@ arch=('x86_64')
 
 depends=(
   'curl'
+  'libggml'
   'python'
   'python-numpy'
   'python-sentencepiece' # aur/sentencepiece
-  'openblas'
-  'vulkan-icd-loader'
 )
 makedepends=(
   'cmake'
   'git'
   'ninja'
-  'openmp'
-  'shaderc'
-  'vulkan-headers'
 )
 
 provides=(
@@ -44,9 +38,6 @@ sha256sums=('SKIP')
 prepare() {
   cd "$_pkgsrc"
   git submodule update --init --recursive --depth=1
-
-  # ignore cpu feature flags; allow global microarchitecture level
-  sed -E -e '/(set|APPEND).ARCH_FLAGS/d' -i ggml/src/ggml-cpu/CMakeLists.txt
 }
 
 pkgver() {
@@ -56,118 +47,36 @@ pkgver() {
 }
 
 build() (
-  local _cmake_common=(
+  local _cmake_options=(
+    -B build
     -S "$_pkgsrc"
     -G Ninja
     -DCMAKE_BUILD_TYPE=None
-    -DCMAKE_INSTALL_PREFIX="/$_install_path/$_pkgname"
+    -DCMAKE_INSTALL_PREFIX='/usr'
+    -DLLAMA_BUILD_COMMON=ON
+    -DLLAMA_BUILD_EXAMPLES=OFF
+    -DLLAMA_BUILD_SERVER=ON
+    -DLLAMA_BUILD_TESTS=${CHECKFUNC}
+    -DLLAMA_BUILD_TOOLS=ON
     -DLLAMA_CURL=ON
-    -DGGML_NATIVE=ON # will follow standard flags; march=native removed in prepare
-    -DGGML_LTO=ON
-    -DGGML_RPC=ON
-    -DGGML_ALL_WARNINGS=OFF
-    -DGGML_ALL_WARNINGS_3RD_PARTY=OFF
-    -DGGML_BLAS=ON
-    -DGGML_BLAS_VENDOR=OpenBLAS
-    -DGGML_VULKAN=ON
-    -DGGML_STATIC=OFF
+    -DLLAMA_USE_SYSTEM_GGML=ON
     -DBUILD_SHARED_LIBS=ON
     -Wno-dev
   )
-
-  _cflags=($(sed -E -e 's&-(march|mtune)=\S+\b&&g' -e 's&-O[0-9]+\b&&g' <<< "${CFLAGS}"))
-  _cxxflags=($(sed -E -e 's&-(march|mtune)=\S+\b&&g' -e 's&-O[0-9]+\b&&g' <<< "${CXXFLAGS}"))
-
-  echo "Building with OpenBLAS + Vulkan support..."
-  CFLAGS="${_cflags[@]} -march=x86-64 -O3"
-  CXXFLAGS="${_cxxflags[@]}  -march=x86-64 -O3"
-  _build_path="x86-64"
-  cmake -B "build_${_build_path}" "${_cmake_common[@]}"
-  cmake --build "build_${_build_path}"
-  DESTDIR="fakeinstall_${_build_path}" cmake --install "build_${_build_path}"
-
-  echo "Building with OpenBLAS + Vulkan + x86-64-v2 support..."
-  CFLAGS="${_cflags[@]} -march=x86-64-v2 -O3"
-  CXXFLAGS="${_cxxflags[@]}  -march=x86-64-v2 -O3"
-  _build_path="x86-64-v2"
-  cmake -B "build_${_build_path}" "${_cmake_common[@]}"
-  cmake --build "build_${_build_path}"
-  DESTDIR="fakeinstall_${_build_path}" cmake --install "build_${_build_path}"
-
-  echo "Building with OpenBLAS + Vulkan + x86-64-v3 support..."
-  CFLAGS="${_cflags[@]} -march=x86-64-v3 -O3"
-  CXXFLAGS="${_cxxflags[@]}  -march=x86-64-v3 -O3"
-  _build_path="x86-64-v3"
-  cmake -B "build_${_build_path}" "${_cmake_common[@]}"
-  cmake --build "build_${_build_path}"
-  DESTDIR="fakeinstall_${_build_path}" cmake --install "build_${_build_path}"
-
-  echo "Building with OpenBLAS + Vulkan + x86-64-v4 support..."
-  CFLAGS="${_cflags[@]} -march=x86-64-v4 -O3"
-  CXXFLAGS="${_cxxflags[@]}  -march=x86-64-v4 -O3"
-  _build_path="x86-64-v4"
-  cmake -B "build_${_build_path}" "${_cmake_common[@]}"
-  cmake --build "build_${_build_path}"
-  DESTDIR="fakeinstall_${_build_path}" cmake --install "build_${_build_path}"
-
-  echo "Deleting unneeded tests..."
-  rm -rf fakeinstall_*/"$_install_path/$_pkgname"/bin/test*
-  rm -rf fakeinstall_*/"$_install_path/$_pkgname"/include
-  rm -rf fakeinstall_*/"$_install_path/$_pkgname"/lib/cmake
-  rm -rf fakeinstall_*/"$_install_path/$_pkgname"/lib/pkgconfig
+  cmake "${_cmake_options[@]}"
+  cmake --build build
 )
 
 check() {
-  ctest --test-dir build_x86-64 --output-on-failure -L 'main|curl' --verbose --timeout 900 || :
+  ctest --test-dir build --output-on-failure --verbose --timeout 900 || :
 }
 
 package() {
-  pkgdesc+=" with OpenBLAS + Vulkan optimizations"
-
   backup=("etc/conf.d/$_pkgname")
 
-  _arch="x86-64"
-  _base_dir="fakeinstall_${_arch}"
-  cp -a "$_base_dir"/* -t "$pkgdir/"
-
-  _arch="x86-64-v2"
-  _base_dir="fakeinstall_${_arch}"
-  _lib_dir="glibc-hwcaps/${_arch}"
-  mkdir -pm755 "$pkgdir/$_install_path/$_pkgname/lib/$_lib_dir"
-  cp -a "$_base_dir/$_install_path/$_pkgname/lib"/* "$pkgdir/$_install_path/$_pkgname/lib/$_lib_dir"
-
-  _arch="x86-64-v3"
-  _base_dir="fakeinstall_${_arch}"
-  _lib_dir="glibc-hwcaps/${_arch}"
-  mkdir -pm755 "$pkgdir/$_install_path/$_pkgname/lib/$_lib_dir"
-  cp -a "$_base_dir/$_install_path/$_pkgname/lib"/* "$pkgdir/$_install_path/$_pkgname/lib/$_lib_dir"
-
-  _arch="x86-64-v4"
-  _base_dir="fakeinstall_${_arch}"
-  _lib_dir="glibc-hwcaps/${_arch}"
-  mkdir -pm755 "$pkgdir/$_install_path/$_pkgname/lib/$_lib_dir"
-  cp -a "$_base_dir/$_install_path/$_pkgname/lib"/* "$pkgdir/$_install_path/$_pkgname/lib/$_lib_dir"
-
-  # loader script
-  pushd "$pkgdir/$_install_path/$_pkgname/bin"
-  for i in llama*; do
-    mv "$i" "$i.real"
-    ln -s llama-script.sh "$i"
-  done
-  popd
-
-  mkdir -pm755 "$pkgdir/usr/bin"
-  ln -s "/$_install_path/$_pkgname/bin/llama-script.sh" "$pkgdir/usr/bin/llama-cli"
-
-  install -Dm755 /dev/stdin "$pkgdir/$_install_path/$_pkgname/bin/llama-script.sh" << END
-#!/usr/bin/env sh
-_name=\$(basename "\$0")
-export LD_LIBRARY_PATH="/$_install_path/$_pkgname/lib"
-exec "/$_install_path/$_pkgname/bin/\${_name}.real" "\$@"
-END
+  DESTDIR="$pkgdir" cmake --install build
 
   install -Dm644 /dev/stdin "$pkgdir/etc/conf.d/$_pkgname" << END
-LD_LIBRARY_PATH="/$_install_path/$_pkgname/lib"
 LLAMA_ARGS=""
 END
 
@@ -179,7 +88,7 @@ After=syslog.target network.target local-fs.target remote-fs.target nss-lookup.t
 [Service]
 Type=simple
 EnvironmentFile=/etc/conf.d/$_pkgname
-ExecStart=/$_install_path/$_pkgname/bin/llama-server.real \$LLAMA_ARGS
+ExecStart=/usr/bin/llama-server \$LLAMA_ARGS
 ExecReload=/bin/kill -s HUP \$MAINPID
 Restart=on-failure
 
@@ -189,5 +98,8 @@ END
 
   install -Dm644 "$_pkgsrc/LICENSE" -t "$pkgdir/usr/share/licenses/$pkgname/"
 
-  chmod -R u+rwX,go+rX,go-w "$pkgdir/"
+  # unwanted files
+  rm -rf "$pkgdir/usr/bin"/test*
+  rm -rf "$pkgdir/usr/include"
+  rm -rf "$pkgdir/usr/lib"/{cmake,pkgconfig}
 }
