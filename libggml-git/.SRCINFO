@@ -1,0 +1,21 @@
+pkgbase = libggml-git
+	pkgdesc = Tensor library for machine learning
+	pkgver = r2112.7cd89f6
+	pkgrel = 1
+	url = https://github.com/ggml-org/ggml
+	arch = x86_64
+	license = MIT
+	makedepends = cmake
+	makedepends = git
+	makedepends = ninja
+	makedepends = shaderc
+	makedepends = vulkan-headers
+	depends = openblas
+	depends = vulkan-icd-loader
+	provides = libggml=r2112
+	conflicts = libggml
+	source = libggml::git+https://github.com/ggml-org/ggml.git
+	sha256sums = SKIP
+
+pkgname = libggml-git
+	pkgdesc = Tensor library for machine learning with OpenBLAS + Vulkan optimizations
