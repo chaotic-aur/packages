@@ -1,0 +1,8 @@
+export CMAKE_POLICY_VERSION_MINIMUM=3.5
+
+export CMAKE_GENERATOR=Ninja
+makedepends+=('ninja')
+
+url="https://github.com/amule-project/amule"
+
+license=('GPL-2.0-or-later')
