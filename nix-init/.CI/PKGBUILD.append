@@ -1,3 +1,5 @@
 # use vendored libgit2
 depends=(${depends[@]//*libgit2*/})
 eval "$(declare -f build  | sed '/GIT2/d')"
+
+options=('!lto')
