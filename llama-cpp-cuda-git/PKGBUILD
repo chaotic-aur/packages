@@ -4,7 +4,7 @@
 
 _pkgname="llama-cpp"
 pkgname="$_pkgname-cuda-git"
-pkgver=b5415.r0.g6a2bc8b
+pkgver=b5527.r3.g6385b84
 pkgrel=1
 pkgdesc="Port of Facebook's LLaMA model in C/C++"
 url="https://github.com/ggml-org/llama.cpp"
@@ -62,6 +62,11 @@ build() (
     -G Ninja
     -DCMAKE_BUILD_TYPE=None
     -DCMAKE_INSTALL_PREFIX="/$_install_path/$_pkgname"
+    -DLLAMA_BUILD_COMMON=ON
+    -DLLAMA_BUILD_EXAMPLES=OFF
+    -DLLAMA_BUILD_SERVER=ON
+    -DLLAMA_BUILD_TESTS=${CHECKFUNC}
+    -DLLAMA_BUILD_TOOLS=ON
     -DLLAMA_CURL=ON
     -DGGML_NATIVE=ON # will follow standard flags; march=native removed in prepare
     -DGGML_LTO=ON
