@@ -1,4 +1,0 @@
-unset epoch
-
-provides+=('bluez-deprecated-tools')
-conflicts+=('bluez-deprecated-tools')
