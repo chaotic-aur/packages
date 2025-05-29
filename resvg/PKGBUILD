@@ -2,8 +2,8 @@
 # Contributor: Caleb Maclennan <caleb@alerque.com>
 
 pkgname=resvg
-pkgver=0.45.0
-pkgrel=3
+pkgver=0.45.1
+pkgrel=1
 pkgdesc='SVG rendering library and CLI'
 arch=(i686 x86_64)
 url="https://github.com/linebender/$pkgname"
@@ -14,8 +14,8 @@ optdepends=(
   'cairo: For the cairo backend'
 )
 makedepends=(cargo clang qt5-base qt5-tools cairo pango)
-source=("$url/archive/$pkgver/$pkgname-$pkgver.tar.gz")
-sha256sums=('871a1583da6af849f8bafd44abc0a75fa7bc9d8ccb242b9e0eae5b5cd4e156c1')
+source=("$url/archive/v$pkgver/$pkgname-v$pkgver.tar.gz")
+sha256sums=('02915519b7409f43110f3cbdc5f87724efd58da1d8516914bdabf060c8a9a178')
 
 prepare() {
   cd "$pkgname-$pkgver"
