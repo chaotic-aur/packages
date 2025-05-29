@@ -1,6 +1,18 @@
-export CMAKE_POLICY_VERSION_MINIMUM=3.5
+export CMAKE_GENERATOR=Ninja
+makedepends+=('ninja')
 
 depends+=(
   'libFLAC++.so'
   'libFLAC.so'
 )
+
+check() {
+  local _test_opts=(
+    --test-dir build
+    --output-on-failure
+    --parallel $(nproc)
+    --verbose
+    -E 'end_to_end|mutating_and_error_ops|categorize'
+  )
+  ctest "${_test_opts[@]}"
+}
