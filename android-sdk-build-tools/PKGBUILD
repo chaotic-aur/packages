@@ -19,7 +19,8 @@ arch=('x86_64')
 url="https://developer.android.com/studio/releases/build-tools"
 license=('custom')
 depends=('gcc-libs' 'zlib' 'bash')
-optdepends=('lib32-gcc-libs' 'lib32-zlib' 'java-runtime')
+optdepends=('lib32-gcc-libs' 'lib32-zlib' 'java-runtime'
+  'ncurses5-compat-libs: necessary to run bcc_compat and llvm-rs-cc')
 
 source=("https://dl.google.com/android/repository/build-tools_r${_ver}_linux.zip"
   "package.xml")

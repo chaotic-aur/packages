@@ -11,6 +11,7 @@ pkgbase = android-sdk-build-tools
 	optdepends = lib32-gcc-libs
 	optdepends = lib32-zlib
 	optdepends = java-runtime
+	optdepends = ncurses5-compat-libs: necessary to run bcc_compat and llvm-rs-cc
 	options = !strip
 	source = https://dl.google.com/android/repository/build-tools_r35.0.1_linux.zip
 	source = package.xml
