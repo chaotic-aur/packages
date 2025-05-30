@@ -1,1 +1,2 @@
 CI_PKGBUILD_SOURCE=https://aur.archlinux.org/linux-vfio.git
+BUILDER_CLASS=7
