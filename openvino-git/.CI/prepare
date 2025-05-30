@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+# mangle replaces directive
+sed -E -e 's&^(\s*)(replaces\+?=)&\1 _ignore_\2&g' -i PKGBUILD
+
+# pre-build checks
 _check_rate() {
   local _rate _date_build _epoch_build _epoch_now _epoch_diff
 

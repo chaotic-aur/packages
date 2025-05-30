@@ -1,1 +1,8 @@
+export CMAKE_GENERATOR=Ninja
+makedepends+=('ninja')
+
 url="https://github.com/openvinotoolkit/openvino"
+
+pkgdesc="${pkgdesc% (*}"
+
+eval "$(declare -f build | sed -E "s&-G 'Unix Makefiles'&&g")"
