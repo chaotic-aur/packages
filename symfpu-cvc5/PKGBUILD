@@ -21,16 +21,16 @@ pkgver() {
 }
 
 package() {
-    cd "$srcdir/$_pkgname"
-    install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+  cd "$srcdir/$_pkgname"
+  install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
 
-    mkdir -p "$pkgdir/usr/include/$_pkgname"
+  mkdir -p "$pkgdir/usr/include/$_pkgname"
 
-    cp -r core "$pkgdir/usr/include/$_pkgname/core"
-    cp -r utils "$pkgdir/usr/include/$_pkgname/utils"
+  cp -r core "$pkgdir/usr/include/$_pkgname/core"
+  cp -r utils "$pkgdir/usr/include/$_pkgname/utils"
 
-    chmod -R 644 "$pkgdir/usr/include/$_pkgname"
-    chmod 755 "$pkgdir/usr/include/$_pkgname"
-    chmod 755 "$pkgdir/usr/include/$_pkgname/core"
-    chmod 755 "$pkgdir/usr/include/$_pkgname/utils"
+  chmod -R 644 "$pkgdir/usr/include/$_pkgname"
+  chmod 755 "$pkgdir/usr/include/$_pkgname"
+  chmod 755 "$pkgdir/usr/include/$_pkgname/core"
+  chmod 755 "$pkgdir/usr/include/$_pkgname/utils"
 }

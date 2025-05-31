@@ -1,1 +1,2 @@
 CI_PKGBUILD_SOURCE=https://aur.archlinux.org/sing-geoip.git
+BUILDER_CLASS=7
