@@ -1,6 +1,11 @@
+# exclude libggml-cuda-git
+depends=(${depends[@]//libggml*/})
+makedepends+=('libggml-git')
+
 eval _orig_"$(declare -f package)"
 
 package() {
+  depends+=('libggml')
   replaces=('whisper-cpp-vulkan-git')
   _orig_package
 }
