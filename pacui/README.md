@@ -28,12 +28,12 @@ Table of Contents
       * [Diff program](#diff-program)
    * [Useful Tips and Recommended Settings](#useful-tips-and-recommended-settings)
       * [Additional Pacman Settings](#additional-pacman-settings)
+      * [Additional Reflector Settings](#additional-reflector-settings)
       * [Alias](#alias)
       * [Search syntax](#search-syntax)
    * [Help](#help)
       * [Short PacUI Help](#short-pacui-help)
       * [Detailed PacUI Help](#detailed-pacui-help)
-      * [Manjaro Forum Threads](#manjaro-forum-threads)
 
 
 ## Screenshots
@@ -57,8 +57,8 @@ PacUI has the following hard dependency:
 If you want PacUI to fully work, these dependencies are needed as well:
 - [expac](https://github.com/falconindy/expac)
 - [fzf](https://github.com/junegunn/fzf)
-- less
-- [pacman-contrib](https://www.archlinux.org/packages/community/x86_64/pacman-contrib/) (on Arch Linux)
+- [less](https://archlinux.org/packages/core/x86_64/less/)
+- [pacman-contrib](https://archlinux.org/packages/extra/x86_64/pacman-contrib/) (on Arch Linux)
 
 By default, Pacman is used for package management. If you want to enable the use of the AUR, PacUI optionally requires at least one of these AUR helpers: 
 - [Yay](https://github.com/Jguer/yay)
@@ -72,15 +72,15 @@ By default, Pacman is used for package management. If you want to enable the use
 
 PacUI supports even more features, if these packages are installed:
 - pacman-mirrors (on Manjaro): PacUI uses "pacman-mirrors" to update your list of repository mirrors and automatically choose the fastest one for you. If this is not installed, "rankmirrors" (which is part of "pacman-contrib") gets used instead.
-- [reflector](https://archlinux.org/packages/community/any/reflector/) (on Arch Linux): PacUI uses "reflector" to update your list of repository mirrors and automatically choose the fastest one for you. If this is not installed, "rankmirrors" (which is part of "pacman-contrib") gets used instead.
+- [reflector](https://archlinux.org/packages/extra/any/reflector/) (on Arch Linux): PacUI uses "reflector" to update your list of repository mirrors and automatically choose the fastest one for you. If this is not installed, "rankmirrors" (which is part of "pacman-contrib") gets used instead.
 - [flatpak](https://archlinux.org/packages/extra/x86_64/flatpak/): PacUI uses "flatpak" to update and clean your installed flatpak packages.
 - [snapd](https://aur.archlinux.org/packages/snapd): PacUI uses "snapd" to update and clean your installed snapd packages.
-- [fwupd](https://archlinux.org/packages/community/x86_64/fwupd/): PacUI uses "fwupd" to install firmware updates for your system.
-- [downgrade](https://aur.archlinux.org/packages/downgrade): PacUI activates a hidden "Downgrade Packages" option, which lets you use "downgrade" from within PacUI.
+- [fwupd](https://archlinux.org/packages/extra/x86_64/fwupd/): PacUI uses "fwupd" to install firmware updates for your system.
+- [downgrade](https://aur.archlinux.org/packages/downgrade): PacUI activates a hidden DOWNGRADE PACKAGES option, which lets you use "downgrade" from within PacUI.
 
 ### Execute without prior Installation
 If possible, read chapter [Dependencies](#dependencies) first and install any dependencies you need.
-PacUI file can be downloaded and run without prior installation:
+`pacui` file can be downloaded and run without prior installation:
 ```
 wget https://raw.githubusercontent.com/excalibur1234/pacui/master/pacui
 ```
@@ -97,17 +97,17 @@ I find this feature of PacUI invaluable for fixing systems. Here are two example
 Please read chapter [Dependencies](#dependencies) first and decide which packages to install to suit your needs.
 
 PacUI can be manually installed (i.e. executing the same steps as described in the PKBUILD file) as follows:
-1. Download 'pacui' file:
+1. Download `pacui` file:
 ```
 wget https://raw.githubusercontent.com/excalibur1234/pacui/master/pacui
 ```
-2. Make 'pacui' file executable:
-```
-chmod +x pacui
-```
-3. Install 'pacui' file manually:
+2. Install `pacui` file manually:
 ```
 sudo cp pacui /usr/bin/
+```
+3. Make `pacui` file executable:
+```
+sudo chmod +x /usr/bin/pacui
 ```
 
 ### Manjaro
@@ -125,7 +125,7 @@ PacUI is [no longer available on the AUR](https://github.com/excalibur1234/pacui
 PKGBUILDs are still availble (see `PKGBUILD_AUR` file) and Pacui can be executed without installation or manually installed (see above).
 
 ### chaotic-aur
-Both the stable and -git version of PacUI are in [chaotic-aur](https://lonewolf.pedrohlc.com/chaotic-aur/).  After adding chaotic-aur to your list of repositories, PacUI can be installed using the same commands as within Manjaro (see above).
+Both the stable and -git version of PacUI are in [chaotic-aur](https://aur.chaotic.cx/packages?search=pacui).  After adding chaotic-aur to your list of repositories, PacUI can be installed using the same commands as within Manjaro (see above).
 
 
 ## Usage
@@ -146,7 +146,7 @@ PacUI does not care, whether you use upper or lower case letters as options or w
 - `pacui -rt`
 - `pacui --rt`
 
-This principle can be used with all of PacUI's options. Here is another random example (of PacUI's hidden "List Packages by Size" option):
+This principle can be used with all of PacUI's options. Here is another random example (of PacUI's hidden LIST PACKAGES BY SIZE option):
 - `pacui LS`
 - `pacui -LS`
 - `pacui --LS`
@@ -178,38 +178,50 @@ Examples:
 ### Multiple installed AUR helpers
 If more than one AUR helper is installed, they are automatically used in the same order as listed [above](#dependencies) (i.e. Yay is used with priority while Pamac-cli is only used as a last resort). A specific AUR helper can be set with the `PACUI_AUR_HELPER` environment variable.
 
-Environment variables can typically be set by adding them to your /etc/environment file. If this file exists on your system, it can be selected using PacUI's "Edit Config Files" option:
+Environment variables can typically be set by adding them to your `/etc/environment` file. If this file exists on your system, it can be selected using PacUI's EDIT CINFIG FILES option:
 ```
 pacui c
 ```
 
 ### Diff program
-As described in [Detailed PacUI Help](#detailed-pacui-help), PacUI uses [pacdiff](https://wiki.archlinux.org/title/Pacman/Pacnew_and_Pacsave#pacdiff) for comparing .pac* files and a diff program specified by the `DIFFPROG` environment variable.
+As described in [Detailed PacUI Help](#detailed-pacui-help), PacUI uses [pacdiff](https://wiki.archlinux.org/title/Pacman/Pacnew_and_Pacsave#pacdiff) for comparing `.pac*` files and a diff program specified by the `DIFFPROG` environment variable.
 
-If the `DIFFPROG` environment variable is not set, PacUI uses its own diff program to (only!) show any differences in old and new .pac* files.
+If the `DIFFPROG` environment variable is not set, PacUI uses its own diff program to (only!) show any differences in old and new `.pac*` files.
 
 ## Useful Tips and Recommended Settings
 
-It is highly recommended to use an utility, which notifies the user about available updates alongside of PacUI. Such a lightweight utility is for example [update-notifier](https://github.com/Chrysostomus/update-notifier).
+It is highly recommended to use an utility, which notifies the user about available updates alongside of PacUI. 
+The [Arch Wiki recommends](https://wiki.archlinux.org/title/System_maintenance#Partial_upgrades_are_unsupported) for this: 
+```
+checkupdates
+```
 
 Along with PacUI the following settings are recommended by the author:
 
 ### Additional Pacman Settings
-- An easy way to edit the /etc/pacman.conf file by using PacUI is:
+- An easy way to edit the `/etc/pacman.conf` file by using PacUI is:
 ```
 pacui c
 ```
-- A fancy list view for all Pacman updates can be enabled by uncommenting the following line:
+- A fancy list view for all Pacman updates can be enabled by uncommenting the following lines:
 ```
+#Color
 #VerbosePkgLists
 ```
-- Parallel Pacman downloads can be enabled by uncommenting the following line:
+
+### Additional Reflector Settings
+PacUI uses Reflector, if it is found on the system.
+
+PacUI uses the same configuration file for Reflector as the optional systemd service and timer in Arch Linux. An easy way to edit this file `/etc/xdg/reflector/reflector.conf` by using PacUI is:
 ```
-#ParallelDownloads = 3
+pacui c
 ```
+In this file, it is recommended to edit at least the `--country` flag for your nearest country. 
+
+This can speed up MAINTAIN SYSTEM dramatically and yield better results.
 
 ### Alias
-If you use PacUI without the UI it is recommended to use an alias for PacUI to reduce the amount of necessary typing. Do this by adding the following line to your ~/.bashrc file (if you use bash):
+If you use PacUI without the UI it is recommended to use an alias for PacUI to reduce the amount of necessary typing. Do this by adding the following line to your `~/.bashrc` file (if you use bash):
 ```
 alias p='pacui'
 ```
@@ -244,11 +256,11 @@ For short help, e.g. when using PacUI without UI, use one of the following comma
 - `pacui -h`
 
 ### Detailed PacUI Help
-Choose the "Help" option within PacUI's UI by pressing "H" or "h". `pacui --help` from the terminal will call PacUI's detailed help page, too.
+Choose the HELP option within PacUI's UI by pressing "H" or "h". `pacui --help` from the terminal will call PacUI's detailed help page, too.
 
-This help page explains some general stuff such as how to navigate PacUI. It also explains every PacUI option in detail. If you want to look up which commands PacUI uses under the hood and understand them in order to use PacUI correctly, this is the right place for you!
+This help page explains some general stuff such as how to navigate PacUI. It also explains every PacUI option in detail. If you want to look up which commands PacUI uses in general under the hood and understand them in order to use PacUI correctly, this is the right place for you!
 
-### Manjaro Forum Threads
- - [New Forum](https://forum.manjaro.org/t/pacui-bash-script-providing-advanced-pacman-and-yay-pikaur-aurman-pakku-trizen-pacaur-pamac-cli-functionality-in-a-simple-ui/561)
- - [Archived Forum - Read-Only Topic](https://archived.forum.manjaro.org/t/pacui-a-simple-bash-frontend-for-pacman-and-yaourt-pacaur/677)
- - [Classic Forum - Inactive Thread](https://classicforum.manjaro.org/index.php?topic=21399.0)
+Internally, PacUI uses even more commands than mentioned in the detailed help page. 
+If you are brave enough, feel free to take a look in your `/usr/bin/pacui` file. It is a single BASH script of about 3k lines. However, there are many functions, which are each much shorter. In general, the most easy to read code is used (even if it is longer) including many helpful comments!
+If you still have trouble understanding the code of PacUI, try asking an AI for explanations (of a limited subset) of PacUI's code.
+Because PacUI is free software, feel free to "steal" and adjust any of PacUI's code to your liking and e.g. add it to your own `~/.bashrc` (or `~/.zshrc`).
