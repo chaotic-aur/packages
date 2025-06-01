@@ -323,7 +323,7 @@ function UTIL_PARSE_DATABASE() {
     declare -A already_parsed=() # Prevent processing one pkgbase more than once
 
     # Extract db name from URL
-    repo=$(echo "$db_url" | grep -oP '.*\/\K[^\/]*(?=.db)')
+    repo=$(basename "$db_url" .db)
 
     UTIL_PRINT_INFO "Retrieving new package versions from database $repo..."
 
@@ -331,7 +331,11 @@ function UTIL_PARSE_DATABASE() {
     wget -P "${tmp_dir}/${repo}" "${db_url}" &>/dev/null
     tar -xf "${tmp_dir}/${repo}/${repo}.db" -C "${tmp_dir}/${repo}"
 
+    # Use find with xargs instead of -exec to avoid pipeline issues
     while read -r pkgbase version; do
+        # Skip empty lines
+        [[ -n "$pkgbase" && -n "$version" ]] || continue
+        
         # Escape any dots in the package name since that breaks the code
         # because of an invalid arithmetic statement
         normalized_pkgbase=${pkgbase//./}
@@ -341,7 +345,7 @@ function UTIL_PARSE_DATABASE() {
             echo "$pkgbase:$version" >>"${tmp_dir}/version-state"
             already_parsed["$normalized_pkgbase"]="true"
         fi
-    done < <(find "${tmp_dir}/${repo}" -maxdepth 2 -name 'desc' -exec awk -f .ci/awk/parse-database.awk {} +)
+    done < <(find "${tmp_dir}/${repo}" -maxdepth 2 -name 'desc' -print0 | xargs -0 gawk -f .ci/awk/parse-database.awk)
 }
 
 # $1: Message

@@ -10,7 +10,8 @@ default:
     - git remote set-url origin $REPO_URL
     - git fetch --tags --all --depth 20
 
-include: ".gitlab-ci-*.yml"
+include:
+  - local: ".gitlab-ci-*.yml"
 
 on-commit:
   stage: process
