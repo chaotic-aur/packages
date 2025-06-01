@@ -44,6 +44,37 @@ elif [ -v GITHUB_ACTIONS ]; then
     UTIL_PRINT_WARNING "Pipeline updates are not supported on GitHub Actions yet."
 fi
 
+function generate_mirror_url() {
+    set -euo pipefail
+    local mirror=""
+
+    if [ -v CI_LIB_DB ]; then
+        IFS=' ' read -r -a databases <<<"$CI_LIB_DB"
+        local database=""
+        
+        for db in "${databases[@]}"; do
+            # Check for core, extra, or community databases
+            if [[ "$db" == *"/core/os/"* ]] || [[ "$db" == *"/extra/os/"* ]] || [[ "$db" == *"/community/os/"* ]]; then
+                database="$db"
+                break
+            fi
+        done
+
+        if [ -n "$database" ]; then
+            # Transform database URL to pacman mirrorlist format
+            # https://mirror.example.com/core/os/x86_64/core.db -> https://mirror.example.com/$repo/os/$arch
+            # Extract base URL by removing /repo/os/arch/repo.db part
+            local base_url="${database%/*/*/*/*}"
+            mirror="$base_url/\$repo/os/\$arch"
+            echo "$mirror"
+        else
+            UTIL_PRINT_WARNING "No valid database (core, extra, community) found in CI_LIB_DB."
+        fi
+    else
+        UTIL_PRINT_WARNING "CI_LIB_DB is not set. Cannot generate mirror URL."
+    fi
+}
+
 function generate_deptree() {
     set -euo pipefail
     declare -a ALL_PACKAGES
@@ -84,6 +115,13 @@ if [ "$COMMAND" == "schedule" ]; then
         fi
         PARAMS+=("${PACKAGE_PASSED_STRING}")
     done
+
+    # Add the build repo to the parameters
+    arch_mirror=$(generate_mirror_url)
+    if [[ $arch_mirror != "" ]]; then
+        UTIL_PRINT_INFO "Passing arch mirror: $arch_mirror"
+        PARAMS+=("--arch-mirror=$arch_mirror")
+    fi
 elif [ "$COMMAND" == "auto-repo-remove" ]; then
     PARAMS+=("${PACKAGES[@]}")
 fi
