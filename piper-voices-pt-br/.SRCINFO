@@ -1,14 +1,31 @@
 pkgbase = piper-voices-pt-br
-	pkgdesc = Voices for Piper text to speech system (pt_BR)
+	pkgdesc = Voices for Piper text to speech system
 	pkgver = 1.0.0
-	pkgrel = 3
+	pkgrel = 4
 	url = https://huggingface.co/rhasspy/piper-voices
 	arch = any
-	groups = piper-voices
 	license = MIT
 	makedepends = git-lfs
-	depends = piper-voices-common
 	provides = piper-voices
-	conflicts = piper-voices-minimal
+	source = piper-voices::git+https://huggingface.co/rhasspy/piper-voices.git#tag=v1.0.0
+	sha256sums = SKIP
 
-pkgname = piper-voices-pt-br
+pkgname = piper-voices-pt-br-cadu
+	pkgdesc = Voices for Piper text to speech system - pt_BR/cadu
+	depends = piper-voices-common
+	conflicts = piper-voices-pt-br
+
+pkgname = piper-voices-pt-br-edresson
+	pkgdesc = Voices for Piper text to speech system - pt_BR/edresson
+	depends = piper-voices-common
+	conflicts = piper-voices-pt-br
+
+pkgname = piper-voices-pt-br-faber
+	pkgdesc = Voices for Piper text to speech system - pt_BR/faber
+	depends = piper-voices-common
+	conflicts = piper-voices-pt-br
+
+pkgname = piper-voices-pt-br-jeff
+	pkgdesc = Voices for Piper text to speech system - pt_BR/jeff
+	depends = piper-voices-common
+	conflicts = piper-voices-pt-br
