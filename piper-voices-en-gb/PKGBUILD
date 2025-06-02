@@ -1,0 +1,84 @@
+# Maintainer: aur.chaotic.cx
+
+## options
+: ${_locale:=en_GB}
+: ${_voices=alan-medium:alba-medium:aru-medium:cori-medium:jenny_dioco-medium:northern_english_male-medium:semaine-medium:southern_english_female-low:vctk-medium} # colon separated list, empty for all
+
+export GIT_LFS_SKIP_SMUDGE=1
+
+_pkgname="piper-voices"
+pkgbase="$_pkgname-$(sed 's&_&-&g' <<< "${_locale,,}")"
+pkgver=1.0.0
+pkgrel=4
+pkgdesc="Voices for Piper text to speech system"
+url="https://huggingface.co/rhasspy/piper-voices"
+license=("MIT")
+arch=("any")
+
+makedepends=('git-lfs')
+
+provides=("piper-voices")
+
+_pkgsrc="$_pkgname"
+source=("$_pkgsrc"::"git+$url.git#tag=v$pkgver")
+sha256sums=('SKIP')
+
+prepare() {
+  cd "$_pkgsrc"
+
+  # needed for lfs to work
+  git remote set-url origin "$url.git"
+
+  # collect list of models
+  if [ -n "$_voices" ]; then
+    for i in ${_voices//:/ }; do
+      mapfile -t -O "${#_models[@]}" _models < <(find . -type f -name "*$_locale*$i*.onnx" -printf "/%P\n")
+    done
+  else
+    mapfile -t _models < <(find . -type f -name "*$_locale*.onnx" -printf "/%P\n")
+  fi
+
+  echo 'Downloading the following models:'
+  printf '%s\n' ${_models[*]}
+
+  git lfs install
+  git lfs pull --include $(
+    IFS=,
+    echo "${_models[*]}"
+  )
+}
+
+_package() {
+  local _lang="${_locale%_*}"
+
+  if [ -n "$1" ]; then
+    local _voice="$1"
+    mkdir -pm755 "$pkgdir/usr/share/piper-voices/$_lang/$_locale/${_voice%-*}"
+    cp -r "piper-voices/$_lang/$_locale/${_voice//-/\/}"/* "$pkgdir/usr/share/piper-voices/$_lang/$_locale/${_voice%-*}"
+  else
+    mkdir -pm755 "$pkgdir/usr/share/piper-voices/$_lang"
+    cp -r "piper-voices/$_lang/$_locale" "$pkgdir/usr/share/piper-voices/$_lang"
+  fi
+
+  # remove mp3 samples
+  find "$pkgdir/usr/share/piper-voices" -type d -name 'samples' -exec rm -rf {} +
+}
+
+if [ -n "$_voices" ]; then
+  for _voice in ${_voices//:/ }; do
+    pkgname+=("${pkgbase}-${_voice%-*}")
+    eval "package_${pkgbase}-${_voice%-*}() {
+      pkgdesc+=\" - ${_locale}/${_voice%-*}\"
+      depends+=(\"$_pkgname-common\")
+      conflicts+=(\"$pkgbase\")
+      _package ${_voice}
+    }"
+  done
+else
+  pkgname+=("$pkgbase")
+  eval "package() {
+    pkgdesc+=\" - \${_locale}\"
+    depends+=(\"$_pkgname-common\")
+    _package
+  }"
+fi

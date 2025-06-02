@@ -1,0 +1,56 @@
+pkgbase = piper-voices-en-gb
+	pkgdesc = Voices for Piper text to speech system
+	pkgver = 1.0.0
+	pkgrel = 4
+	url = https://huggingface.co/rhasspy/piper-voices
+	arch = any
+	license = MIT
+	makedepends = git-lfs
+	provides = piper-voices
+	source = piper-voices::git+https://huggingface.co/rhasspy/piper-voices.git#tag=v1.0.0
+	sha256sums = SKIP
+
+pkgname = piper-voices-en-gb-alan
+	pkgdesc = Voices for Piper text to speech system - en_GB/alan
+	depends = piper-voices-common
+	conflicts = piper-voices-en-gb
+
+pkgname = piper-voices-en-gb-alba
+	pkgdesc = Voices for Piper text to speech system - en_GB/alba
+	depends = piper-voices-common
+	conflicts = piper-voices-en-gb
+
+pkgname = piper-voices-en-gb-aru
+	pkgdesc = Voices for Piper text to speech system - en_GB/aru
+	depends = piper-voices-common
+	conflicts = piper-voices-en-gb
+
+pkgname = piper-voices-en-gb-cori
+	pkgdesc = Voices for Piper text to speech system - en_GB/cori
+	depends = piper-voices-common
+	conflicts = piper-voices-en-gb
+
+pkgname = piper-voices-en-gb-jenny_dioco
+	pkgdesc = Voices for Piper text to speech system - en_GB/jenny_dioco
+	depends = piper-voices-common
+	conflicts = piper-voices-en-gb
+
+pkgname = piper-voices-en-gb-northern_english_male
+	pkgdesc = Voices for Piper text to speech system - en_GB/northern_english_male
+	depends = piper-voices-common
+	conflicts = piper-voices-en-gb
+
+pkgname = piper-voices-en-gb-semaine
+	pkgdesc = Voices for Piper text to speech system - en_GB/semaine
+	depends = piper-voices-common
+	conflicts = piper-voices-en-gb
+
+pkgname = piper-voices-en-gb-southern_english_female
+	pkgdesc = Voices for Piper text to speech system - en_GB/southern_english_female
+	depends = piper-voices-common
+	conflicts = piper-voices-en-gb
+
+pkgname = piper-voices-en-gb-vctk
+	pkgdesc = Voices for Piper text to speech system - en_GB/vctk
+	depends = piper-voices-common
+	conflicts = piper-voices-en-gb
