@@ -1,7 +1,7 @@
 pkgbase = piper-voices-en-us
 	pkgdesc = Voices for Piper text to speech system
 	pkgver = 1.0.0
-	pkgrel = 4
+	pkgrel = 5
 	url = https://huggingface.co/rhasspy/piper-voices
 	arch = any
 	license = MIT
@@ -11,96 +11,99 @@ pkgbase = piper-voices-en-us
 	sha256sums = SKIP
 
 pkgname = piper-voices-en-us-amy
-	pkgdesc = Voices for Piper text to speech system - en_US/amy
+	pkgdesc = Voices for Piper text to speech system - en_US: amy
 	depends = piper-voices-common
-	conflicts = piper-voices-en-us
 
 pkgname = piper-voices-en-us-arctic
-	pkgdesc = Voices for Piper text to speech system - en_US/arctic
+	pkgdesc = Voices for Piper text to speech system - en_US: arctic
 	depends = piper-voices-common
-	conflicts = piper-voices-en-us
 
 pkgname = piper-voices-en-us-bryce
-	pkgdesc = Voices for Piper text to speech system - en_US/bryce
+	pkgdesc = Voices for Piper text to speech system - en_US: bryce
 	depends = piper-voices-common
-	conflicts = piper-voices-en-us
 
 pkgname = piper-voices-en-us-danny
-	pkgdesc = Voices for Piper text to speech system - en_US/danny
+	pkgdesc = Voices for Piper text to speech system - en_US: danny
 	depends = piper-voices-common
-	conflicts = piper-voices-en-us
 
 pkgname = piper-voices-en-us-hfc_female
-	pkgdesc = Voices for Piper text to speech system - en_US/hfc_female
+	pkgdesc = Voices for Piper text to speech system - en_US: hfc_female
 	depends = piper-voices-common
-	conflicts = piper-voices-en-us
 
 pkgname = piper-voices-en-us-hfc_male
-	pkgdesc = Voices for Piper text to speech system - en_US/hfc_male
+	pkgdesc = Voices for Piper text to speech system - en_US: hfc_male
 	depends = piper-voices-common
-	conflicts = piper-voices-en-us
 
 pkgname = piper-voices-en-us-joe
-	pkgdesc = Voices for Piper text to speech system - en_US/joe
+	pkgdesc = Voices for Piper text to speech system - en_US: joe
 	depends = piper-voices-common
-	conflicts = piper-voices-en-us
 
 pkgname = piper-voices-en-us-john
-	pkgdesc = Voices for Piper text to speech system - en_US/john
+	pkgdesc = Voices for Piper text to speech system - en_US: john
 	depends = piper-voices-common
-	conflicts = piper-voices-en-us
 
 pkgname = piper-voices-en-us-kathleen
-	pkgdesc = Voices for Piper text to speech system - en_US/kathleen
+	pkgdesc = Voices for Piper text to speech system - en_US: kathleen
 	depends = piper-voices-common
-	conflicts = piper-voices-en-us
 
 pkgname = piper-voices-en-us-kristin
-	pkgdesc = Voices for Piper text to speech system - en_US/kristin
+	pkgdesc = Voices for Piper text to speech system - en_US: kristin
 	depends = piper-voices-common
-	conflicts = piper-voices-en-us
 
 pkgname = piper-voices-en-us-kusal
-	pkgdesc = Voices for Piper text to speech system - en_US/kusal
+	pkgdesc = Voices for Piper text to speech system - en_US: kusal
 	depends = piper-voices-common
-	conflicts = piper-voices-en-us
 
 pkgname = piper-voices-en-us-l2arctic
-	pkgdesc = Voices for Piper text to speech system - en_US/l2arctic
+	pkgdesc = Voices for Piper text to speech system - en_US: l2arctic
 	depends = piper-voices-common
-	conflicts = piper-voices-en-us
 
 pkgname = piper-voices-en-us-lessac
-	pkgdesc = Voices for Piper text to speech system - en_US/lessac
+	pkgdesc = Voices for Piper text to speech system - en_US: lessac
 	depends = piper-voices-common
-	conflicts = piper-voices-en-us
 
 pkgname = piper-voices-en-us-libritts_r
-	pkgdesc = Voices for Piper text to speech system - en_US/libritts_r
+	pkgdesc = Voices for Piper text to speech system - en_US: libritts_r
 	depends = piper-voices-common
-	conflicts = piper-voices-en-us
 
 pkgname = piper-voices-en-us-ljspeech
-	pkgdesc = Voices for Piper text to speech system - en_US/ljspeech
+	pkgdesc = Voices for Piper text to speech system - en_US: ljspeech
 	depends = piper-voices-common
-	conflicts = piper-voices-en-us
 
 pkgname = piper-voices-en-us-norman
-	pkgdesc = Voices for Piper text to speech system - en_US/norman
+	pkgdesc = Voices for Piper text to speech system - en_US: norman
 	depends = piper-voices-common
-	conflicts = piper-voices-en-us
 
 pkgname = piper-voices-en-us-reza_ibrahim
-	pkgdesc = Voices for Piper text to speech system - en_US/reza_ibrahim
+	pkgdesc = Voices for Piper text to speech system - en_US: reza_ibrahim
 	depends = piper-voices-common
-	conflicts = piper-voices-en-us
 
 pkgname = piper-voices-en-us-ryan
-	pkgdesc = Voices for Piper text to speech system - en_US/ryan
+	pkgdesc = Voices for Piper text to speech system - en_US: ryan
 	depends = piper-voices-common
-	conflicts = piper-voices-en-us
 
 pkgname = piper-voices-en-us-sam
-	pkgdesc = Voices for Piper text to speech system - en_US/sam
+	pkgdesc = Voices for Piper text to speech system - en_US: sam
 	depends = piper-voices-common
-	conflicts = piper-voices-en-us
+
+pkgname = piper-voices-en-us
+	pkgdesc = Voices for Piper text to speech system - en_US - metapackage
+	depends = piper-voices-en-us-amy
+	depends = piper-voices-en-us-arctic
+	depends = piper-voices-en-us-bryce
+	depends = piper-voices-en-us-danny
+	depends = piper-voices-en-us-hfc_female
+	depends = piper-voices-en-us-hfc_male
+	depends = piper-voices-en-us-joe
+	depends = piper-voices-en-us-john
+	depends = piper-voices-en-us-kathleen
+	depends = piper-voices-en-us-kristin
+	depends = piper-voices-en-us-kusal
+	depends = piper-voices-en-us-l2arctic
+	depends = piper-voices-en-us-lessac
+	depends = piper-voices-en-us-libritts_r
+	depends = piper-voices-en-us-ljspeech
+	depends = piper-voices-en-us-norman
+	depends = piper-voices-en-us-reza_ibrahim
+	depends = piper-voices-en-us-ryan
+	depends = piper-voices-en-us-sam
