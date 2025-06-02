@@ -1,31 +1,61 @@
-# Maintainer: AlphaJack <alphajack at tuta dot io>
+# Maintainer: aur.chaotic.cx
 
-_pkgbase="piper-voices"
-pkgname="$_pkgbase-common"
+_pkgname="piper-voices"
+pkgname="$_pkgname-common"
 pkgver=1.0.0
-pkgrel=5
+pkgrel=7
 pkgdesc="Voices for Piper text to speech system (common files)"
-url="https://huggingface.co/rhasspy/$_pkgbase"
+url="https://huggingface.co/rhasspy/piper-voices"
 license=("MIT")
 arch=("any")
-depends=("piper-tts" "alsa-utils")
-optdepends=(
-  "speech-dispatcher: tts support for third party apps"
-  "$_pkgbase-minimal: single voice for en-us"
-  "$_pkgbase: voices for all languages")
-source=(
-  "https://huggingface.co/rhasspy/$_pkgbase/resolve/main/voices.json"
-  "piper-generic.conf"
-  "piper-dispatcher"
+
+depends=(
+  "piper-tts"
+  "alsa-utils"
 )
-b2sums=('SKIP'
-  '96c0975b956a4c878fcfa5a933fe6e157b0bc40e1973e47b68fd63032bd2112c2c9f712277aac8d1cf9dea833d092c38d3dbb446676e4328855134854219d0b5'
-  '2b5129e2e2fd4cb48602bf5d18052b124b31886cf02268de83d7b687f7e681ab83dc8baeb683c905664d26f4ddab6f86d95fbe3849113c26e5be5c557642810f')
-options=("!strip")
+optdepends=(
+  'speech-dispatcher: tts support for third party apps'
+)
+
 install="$pkgname.install"
 
+source=("voices-$pkgver.json"::"https://huggingface.co/rhasspy/piper-voices/resolve/v$pkgver/voices.json")
+sha256sums=('66f6b221551769c5237f46c6f104cd1ff099a6f1e7a91c6e6eea4dc4bd4f1f03')
+
 package() {
-  install -D -m 664 "$srcdir/voices.json" -t "$pkgdir/usr/share/$_pkgbase"
-  install -D -m 664 "$srcdir/piper-generic.conf" -t "$pkgdir/etc/speech-dispatcher/modules"
-  install -D -m 775 "$srcdir/piper-dispatcher" -t "$pkgdir/usr/bin"
+  install -Dm664 "voices-$pkgver.json" "$pkgdir/usr/share/$_pkgname/voices.json"
+
+  # https://aur.archlinux.org/packages/piper-tts-bin#comment-939482
+  install -Dm775 /dev/stdin "$pkgdir/usr/bin/piper-dispatcher" << END
+#!/usr/bin/env bash
+
+VOICES_PATH="/usr/share/piper-voices"
+
+if [[ \${VOICE: -3} = low ]]; then
+  RATE=16000
+else
+  RATE=22050
+fi
+
+printf %s "\$DATA" | piper-tts --model "\$VOICES_PATH/\$VOICE.onnx" --output-raw | aplay -r "\$RATE" -f S16_LE -t raw -
+
+wait
+END
+
+  install -Dm664 /dev/stdin "$pkgdir/etc/speech-dispatcher/modules/piper-generic.conf" << END
+Debug "1"
+
+GenericPunctNone ""
+GenericPunctSome "--punct=\"()[]{};:\""
+GenericPunctMost "--punct=\"()[]{};:\""
+GenericPunctAll "--punct"
+
+GenericExecuteSynth "env DATA="\"\$DATA\"" VOICE="\"\$VOICE\"" /usr/bin/piper-dispatcher"
+
+GenericCmdDependency "piper-tts"
+
+AddVoice "en" "MALE1"    "en/en_US/ryan/high/en_US-ryan-high"
+
+DefaultVoice             "en/en_US/ryan/high/en_US-ryan-high"
+END
 }
