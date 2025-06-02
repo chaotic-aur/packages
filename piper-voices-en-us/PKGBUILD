@@ -1,42 +1,46 @@
-# Maintainer: AlphaJack <alphajack at tuta dot io>
+# Maintainer: aur.chaotic.cx
 
-# to create a package for another locale, check the available locales from
-# https://huggingface.co/rhasspy/piper-voices/tree/main
-# then copy this PKGBUILD and adjust $_lang and $_region accordingly
+## options
+: ${_locale:=en_US}
+: ${_voices=amy-medium:arctic-medium:bryce-medium:danny-low:hfc_female-medium:hfc_male-medium:joe-medium:john-medium:kathleen-low:kristin-medium:kusal-medium:l2arctic-medium:lessac-medium:libritts_r-medium:ljspeech-medium:norman-medium:reza_ibrahim-medium:ryan-medium:sam-medium} # colon separated list, empty for all
 
-_lang="en"
-_region="US"
+export GIT_LFS_SKIP_SMUDGE=1
 
-_regionSmall=${_region,,}
-_locale="${_lang}_${_region}"
-pkgname="piper-voices-${_lang}-${_regionSmall}"
+_pkgname="piper-voices"
+pkgbase="$_pkgname-$(sed 's&_&-&g' <<< "${_locale,,}")"
 pkgver=1.0.0
-pkgrel=3
-pkgdesc="Voices for Piper text to speech system ($_locale)"
+pkgrel=4
+pkgdesc="Voices for Piper text to speech system"
 url="https://huggingface.co/rhasspy/piper-voices"
 license=("MIT")
 arch=("any")
-groups=("piper-voices")
+
+makedepends=('git-lfs')
+
 provides=("piper-voices")
-# only en_US conflicts with minimal, other locales are compatible with it
-conflicts=("piper-voices-minimal")
-depends=("piper-voices-common")
-makedepends=("git-lfs")
+
+_pkgsrc="$_pkgname"
+source=("$_pkgsrc"::"git+$url.git#tag=v$pkgver")
+sha256sums=('SKIP')
 
 prepare() {
-  # needed to avoid smudge error
-  rm -rf "piper-voices"
+  cd "$_pkgsrc"
 
-  # download the full repo (~220MB) but keep the lfs pointers
-  GIT_LFS_SKIP_SMUDGE=1 git clone "https://huggingface.co/rhasspy/piper-voices"
+  # needed for lfs to work
+  git remote set-url origin "$url.git"
 
-  # define specific models to be downloaded
-  cd "piper-voices"
-  mapfile -t _models < <(find . -type f -name "*$_locale*.onnx" -printf "/%P\n")
+  # collect list of models
+  if [ -n "$_voices" ]; then
+    for i in ${_voices//:/ }; do
+      mapfile -t -O "${#_models[@]}" _models < <(find . -type f -name "*$_locale*$i*.onnx" -printf "/%P\n")
+    done
+  else
+    mapfile -t _models < <(find . -type f -name "*$_locale*.onnx" -printf "/%P\n")
+  fi
+
   echo 'Downloading the following models:'
   printf '%s\n' ${_models[*]}
 
-  # convert specific lfs pointers into actual models
   git lfs install
   git lfs pull --include $(
     IFS=,
@@ -44,12 +48,37 @@ prepare() {
   )
 }
 
-package() {
-  # copy only the specific locale
-  cd "piper-voices"
-  install -d "$pkgdir/usr/share/piper-voices/$_lang"
-  cp -r "$_lang/$_locale" "$pkgdir/usr/share/piper-voices/$_lang"
+_package() {
+  local _lang="${_locale%_*}"
+
+  if [ -n "$1" ]; then
+    local _voice="$1"
+    mkdir -pm755 "$pkgdir/usr/share/piper-voices/$_lang/$_locale/${_voice%-*}"
+    cp -r "piper-voices/$_lang/$_locale/${_voice//-/\/}"/* "$pkgdir/usr/share/piper-voices/$_lang/$_locale/${_voice%-*}"
+  else
+    mkdir -pm755 "$pkgdir/usr/share/piper-voices/$_lang"
+    cp -r "piper-voices/$_lang/$_locale" "$pkgdir/usr/share/piper-voices/$_lang"
+  fi
 
   # remove mp3 samples
   find "$pkgdir/usr/share/piper-voices" -type d -name 'samples' -exec rm -rf {} +
 }
+
+if [ -n "$_voices" ]; then
+  for _voice in ${_voices//:/ }; do
+    pkgname+=("${pkgbase}-${_voice%-*}")
+    eval "package_${pkgbase}-${_voice%-*}() {
+      pkgdesc+=\" - ${_locale}/${_voice%-*}\"
+      depends+=(\"$_pkgname-common\")
+      conflicts+=(\"$pkgbase\")
+      _package ${_voice}
+    }"
+  done
+else
+  pkgname+=("$pkgbase")
+  eval "package() {
+    pkgdesc+=\" - \${_locale}\"
+    depends+=(\"$_pkgname-common\")
+    _package
+  }"
+fi
