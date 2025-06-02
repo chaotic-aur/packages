@@ -2,14 +2,14 @@
 
 ## options
 : ${_locale:=pt_BR}
-: ${_voices=cadu:edresson:faber:jeff} # colon separated list, empty for all
+: ${_voices=cadu-medium:edresson-low:faber-medium:jeff-medium} # colon separated list, empty for all
 
 export GIT_LFS_SKIP_SMUDGE=1
 
 _pkgname="piper-voices"
 pkgbase="$_pkgname-$(sed 's&_&-&g' <<< "${_locale,,}")"
 pkgver=1.0.0
-pkgrel=4
+pkgrel=5
 pkgdesc="Voices for Piper text to speech system"
 url="https://huggingface.co/rhasspy/piper-voices"
 license=("MIT")
@@ -52,9 +52,10 @@ _package() {
   local _lang="${_locale%_*}"
 
   if [ -n "$1" ]; then
-    local _voice="$1"
-    mkdir -pm755 "$pkgdir/usr/share/piper-voices/$_lang/$_locale"
-    cp -r "piper-voices/$_lang/$_locale/$_voice" "$pkgdir/usr/share/piper-voices/$_lang/$_locale"
+    local _voice="${1%-*}"
+    local _quality="${1#*-}"
+    mkdir -pm755 "$pkgdir/usr/share/piper-voices/$_lang/$_locale/$_voice/$_quality"
+    cp -r "piper-voices/$_lang/$_locale/$_voice/$_quality"/* "$pkgdir/usr/share/piper-voices/$_lang/$_locale/$_voice/$_quality"
   else
     mkdir -pm755 "$pkgdir/usr/share/piper-voices/$_lang"
     cp -r "piper-voices/$_lang/$_locale" "$pkgdir/usr/share/piper-voices/$_lang"
@@ -66,14 +67,19 @@ _package() {
 
 if [ -n "$_voices" ]; then
   for _voice in ${_voices//:/ }; do
-    pkgname+=("${pkgbase}-${_voice}")
-    eval "package_${pkgbase}-${_voice}() {
-      pkgdesc+=\" - ${_locale}/${_voice}\"
+    pkgname+=("${pkgbase}-${_voice%-*}")
+    eval "package_${pkgbase}-${_voice%-*}() {
+      pkgdesc+=\" - ${_locale}: ${_voice%-*}\"
       depends+=(\"$_pkgname-common\")
-      conflicts+=(\"$pkgbase\")
-      _package $_voice
+      _package ${_voice}
     }"
   done
+
+  eval "package_$pkgbase() {
+    pkgdesc+=\" - \${_locale} - metapackage\"
+    depends+=(${pkgname[@]})
+  }"
+  pkgname+=("$pkgbase")
 else
   pkgname+=("$pkgbase")
   eval "package() {
