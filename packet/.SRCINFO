@@ -1,6 +1,6 @@
 pkgbase = packet
 	pkgdesc = A Quick Share client for Linux
-	pkgver = 0.3.1
+	pkgver = 0.3.2
 	pkgrel = 1
 	url = https://github.com/nozwock/packet
 	arch = x86_64
@@ -10,7 +10,7 @@ pkgbase = packet
 	makedepends = meson
 	makedepends = protobuf
 	depends = libadwaita
-	source = packet-0.3.1.tar.gz::https://github.com/nozwock/packet/archive/refs/tags/0.3.1.tar.gz
-	sha256sums = 3063e4d723c6cd5f4f4361b316dbd73d8c3b53063f65b0d5d47832e2f1746db5
+	source = packet-0.3.2.tar.gz::https://github.com/nozwock/packet/archive/refs/tags/0.3.2.tar.gz
+	sha256sums = 23f1aa0a6460c78f907a935bd17e99d303fa1788a16926aaaf9f19c3f44974c5
 
 pkgname = packet
