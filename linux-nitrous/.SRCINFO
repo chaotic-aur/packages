@@ -1,6 +1,6 @@
 pkgbase = linux-nitrous
-	pkgver = 6.14.9
-	pkgrel = 2
+	pkgver = 6.14.10
+	pkgrel = 1
 	url = https://gitlab.com/xdevs23/linux-nitrous
 	arch = x86_64
 	license = GPL2
@@ -28,9 +28,9 @@ pkgbase = linux-nitrous
 	makedepends = rust
 	makedepends = ccache
 	options = !strip
-	source = https://gitlab.com/xdevs23/linux-nitrous/-/archive/v6.14.9-2/linux-nitrous-v6.14.9-2.tar.gz
+	source = https://gitlab.com/xdevs23/linux-nitrous/-/archive/v6.14.10-1/linux-nitrous-v6.14.10-1.tar.gz
 	source = linux-nitrous.preset
-	sha256sums = 1e7ea30667adbb7e1f9864edf31d30f9af6b2435caa6cc4367055438679a19d5
+	sha256sums = 30d39868a8e32400268bdde412a2e5cf8b08777509886aafc00ae4af821474d3
 	sha256sums = 59cf1dfe08c144868ad87705dd62a0400921c042b1e12691e42cf214fe9a9402
 
 pkgname = linux-nitrous
@@ -40,12 +40,12 @@ pkgname = linux-nitrous
 	depends = kmod
 	depends = initramfs
 	optdepends = wireless-regdb: to set the correct wireless channels of your country
-	optdepends = linux-nitrous-headers=6.14.9-2: to build DKMS modules against this kernel
+	optdepends = linux-nitrous-headers=6.14.10-1: to build DKMS modules against this kernel
 	optdepends = linux-firmware: Additional firmware blobs
 	provides = WIREGUARD-MODULE
 	provides = NTFS3-MODULE
 	provides = BINDER-MODULE
-	provides = binder_linux-dkms=6.14.9
+	provides = binder_linux-dkms=6.14.10
 	backup = etc/mkinitcpio.d/linux-nitrous.preset
 
 pkgname = linux-nitrous-headers
