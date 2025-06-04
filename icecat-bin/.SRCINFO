@@ -1,0 +1,19 @@
+pkgbase = icecat-bin
+	pkgdesc = GNU version of the Firefox ESR browser
+	pkgver = 115.24.0
+	pkgrel = 1
+	url = https://icecatbrowser.org
+	arch = x86_64
+	license = MPL-2.0
+	provides = icecat=115.24.0
+	conflicts = icecat
+	noextract = icecat-115.24.0.en-US.linux-x86_64.tar.bz2
+	options = !strip
+	options = !debug
+	source = https://icecatbrowser.org/assets/icecat/115.24.0/icecat-115.24.0.en-US.linux-x86_64.tar.bz2
+	sha256sums = b3e4ce0c16f8313c1a63057e5acb96fd73232976dee444cf210c7b28aa4ca028
+
+pkgname = icecat-bin
+	depends = alsa-lib
+	depends = dbus-glib
+	depends = gtk3
