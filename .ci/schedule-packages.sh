@@ -49,10 +49,16 @@ function generate_mirror_url() {
     local mirror=""
 
     if [ -v CI_LIB_DB ]; then
-        IFS=' ' read -r -a databases <<<"$CI_LIB_DB"
+        # Handle quoted database URLs more robustly
+        local db_list="$CI_LIB_DB"
+        db_list="${db_list//\"/}"
+
+        IFS=' ' read -r -a databases <<<"$db_list"
         local database=""
-        
+
         for db in "${databases[@]}"; do
+            [[ -z "$db" ]] && continue
+
             # Check for core, extra, or community databases
             if [[ "$db" == *"/core/os/"* ]] || [[ "$db" == *"/extra/os/"* ]] || [[ "$db" == *"/community/os/"* ]]; then
                 database="$db"
@@ -66,7 +72,10 @@ function generate_mirror_url() {
             # Extract base URL by removing /repo/os/arch/repo.db part
             local base_url="${database%/*/*/*/*}"
             mirror="$base_url/\$repo/os/\$arch"
-            echo "$mirror"
+            # Ensure clean output without any stray quotes or whitespace
+            mirror="${mirror//\"/}"
+            mirror="${mirror// /}"
+            printf '%s' "$mirror"
         else
             UTIL_PRINT_WARNING "No valid database (core, extra, community) found in CI_LIB_DB."
         fi
@@ -99,10 +108,24 @@ function generate_deptree() {
 }
 
 if [ "$COMMAND" == "schedule" ]; then
-    # Write dep tree to file so it can be transferred as file. 
+    # Write dep tree to file so it can be transferred as file.
     # This is necessary because the output of the function turned out too large for the command line.
     generate_deptree >.ci/deptree.txt
+
+    arch_mirror=$(generate_mirror_url)
+    if [[ -n "$arch_mirror" ]]; then
+        UTIL_PRINT_INFO "Passing arch mirror: $arch_mirror"
+        clean_mirror="${arch_mirror//\"/}"
+        clean_mirror="${clean_mirror// /}"
+        PARAMS+=("--arch-mirror=$clean_mirror")
+    fi
+
     for package in "${PACKAGES[@]}"; do
+        package="${package#"${package%%[![:space:]]*}"}"
+        package="${package%"${package##*[![:space:]]}"}"
+
+        [[ -z "$package" ]] && continue
+
         unset VARIABLES
         declare -A VARIABLES=()
         UTIL_READ_MANAGED_PACAKGE "$package" VARIABLES || true
@@ -113,15 +136,8 @@ if [ "$COMMAND" == "schedule" ]; then
         elif [ "$CI_DEFAULT_CLASS" != "" ]; then
             PACKAGE_PASSED_STRING+="/${CI_DEFAULT_CLASS}"
         fi
-        PARAMS+=("${PACKAGE_PASSED_STRING}")
+        PARAMS+=("$PACKAGE_PASSED_STRING")
     done
-
-    # Add the build repo to the parameters
-    arch_mirror=$(generate_mirror_url)
-    if [[ $arch_mirror != "" ]]; then
-        UTIL_PRINT_INFO "Passing arch mirror: $arch_mirror"
-        PARAMS+=("--arch-mirror=$arch_mirror")
-    fi
 elif [ "$COMMAND" == "auto-repo-remove" ]; then
     PARAMS+=("${PACKAGES[@]}")
 fi
