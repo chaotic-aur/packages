@@ -1,3 +1,0 @@
-[system76-acpi-dkms]
-source = "git"
-git = "https://github.com/pop-os/system76-acpi-dkms.git"
