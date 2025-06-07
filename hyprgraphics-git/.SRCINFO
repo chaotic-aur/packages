@@ -14,7 +14,7 @@ pkgbase = hyprgraphics-git
 	depends = hyprutils-git
 	depends = libjpeg
 	depends = libjxl
-	depends = libspng
+	depends = libpng
 	depends = libwebp
 	depends = pixman
 	provides = hyprgraphics=0.1.3

@@ -15,7 +15,7 @@ depends=(
   hyprutils-git
   libjpeg
   libjxl
-  libspng
+  libpng
   libwebp
   pixman
 )
