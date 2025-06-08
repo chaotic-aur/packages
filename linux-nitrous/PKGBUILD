@@ -12,15 +12,15 @@
 
 pkgbase=linux-nitrous
 _srcname=linux-nitrous
-pkgver=6.14.10
+pkgver=6.15.1
 pkgrel=1
 arch=('x86_64')
 url="https://gitlab.com/xdevs23/linux-nitrous"
 license=('GPL2')
 makedepends=(
-  'clang>=16'
-  'llvm>=16'
-  'lld>=16'
+  'clang>=19'
+  'llvm>=19'
+  'lld>=19'
   'bc' 'cpio' 'gettext' 'libelf'
   'pahole' 'perl' 'python' 'tar'
   'xz' 'graphviz' 'imagemagick' 'python-sphinx'
@@ -31,7 +31,7 @@ options=('!strip')
 source=('https://gitlab.com/xdevs23/linux-nitrous/-/archive/v'"$pkgver-$pkgrel"'/linux-nitrous-v'"$pkgver-$pkgrel"'.tar.gz'
   # standard config files for mkinitcpio ramdisk
   "${_srcname}.preset")
-sha256sums=('30d39868a8e32400268bdde412a2e5cf8b08777509886aafc00ae4af821474d3'
+sha256sums=('bc06fc7a61c98ea35fbc0413cee8b0adc24e6b8a2d54bf34c6d0699dcaca4f9a'
   '59cf1dfe08c144868ad87705dd62a0400921c042b1e12691e42cf214fe9a9402')
 
 _kernelname=${pkgbase#linux}
@@ -40,9 +40,6 @@ clang_major_ver() {
   clang --version | head -n1 | cut -d ' ' -f3 | cut -d '.' -f1
 }
 
-# "Modern performance" – modifies the config to enable
-# performance tuned to your specific machine (native-intel or native-amd)
-USE_MPERFORMANCE=${USE_MPERFORMANCE:=false}
 USE_CCACHE=${USE_CCACHE:=true}
 
 pkgver() {
@@ -71,23 +68,11 @@ build() {
   make LLVM=1 $_defconfig
   _handle_lsmod
 
-  if $USE_MPERFORMANCE; then
-    local cpu_vendor="$(lscpu | grep "Vendor ID" | head -n1 | cut -d ':' -f2 | awk '{ print $1 }')"
-    cpu_type=""
-    if [ "$cpu_vendor" == "GenuineIntel" ]; then
-      cpu_type="INTEL"
-    elif [ "$cpu_vendor" == "AuthenticAMD" ]; then
-      cpu_type="AMD"
-    fi
-    if [ -n "$cpu_type" ]; then
-      # Enable native compilation
-      sed -i -re "s/CONFIG_MSKYLAKEX=y/# CONFIG_MSKYLAKEX is not set/g" .config
-      sed -i -re 's/CONFIG_LOCALVERSION=.*/CONFIG_LOCALVERSION="-nitrous-mperformance"/g' .config
-      echo "CONFIG_MNATIVE_${cpu_type}=y" >> .config
-    fi
-  fi
-
   make -s kernelrelease > version
+
+  export KCPPFLAGS="-march=x86_64-v3"
+  export KCFLAGS="-march=x86-64-v3"
+  export KRUSTFLAGS="-Ctarget-cpu=x86_64-v3"
 
   makeflags="${MAKEFLAGS}"
   if [[ "$MAKEFLAGS" != *"-j"* ]]; then
@@ -102,7 +87,7 @@ build() {
 }
 
 _package() {
-  pkgdesc="Modified Linux kernel optimized for Skylake X and newer, compiled using clang"
+  pkgdesc="Modified Linux kernel optimized for x86_64-v3 and newer, compiled using clang"
   depends=('coreutils' 'kmod' 'initramfs')
   optdepends=(
     'wireless-regdb: to set the correct wireless channels of your country'
