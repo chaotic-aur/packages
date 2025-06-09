@@ -6,13 +6,13 @@
 
 pkgname=aws-cli-v2
 # https://github.com/aws/aws-cli/raw/v2/CHANGELOG.rst
-pkgver=2.27.26
+pkgver=2.27.31
 pkgrel=1
 pkgdesc='Unified command line interface for Amazon Web Services (version 2)'
 arch=(any)
 url='https://github.com/aws/aws-cli/tree/v2'
 license=("Apache-2.0")
-depends=(python python-awscrt python-certifi python-colorama python-cryptography python-dateutil
+depends=(python python-awscrt python-certifi python-colorama python-dateutil
   python-distro python-docutils python-jmespath python-prompt_toolkit python-ruamel-yaml
   python-urllib3)
 makedepends=(python-build python-wheel python-flit-core python-installer)
@@ -30,12 +30,12 @@ source=("https://awscli.amazonaws.com/awscli-$pkgver.tar.gz"{,.sig}
   botocore-2990-rebased.patch
   botocore-2551.patch
   prompt_toolkit.patch)
-sha256sums=('4ad172771e3613dc337bcdf9e8343c653876d9311ba9963edbfefd51b7d7468a'
+sha256sums=('1c0bc86c5ad0a5f3b230512c004ac82d1d21aa32d29ef8494f806bd38078c33b'
   'SKIP'
   '444f0d2eb314f07474ce752e02932140bb9b9fec15c79bafe567f62a42398e93'
   '893d61d7e958c3c02bfa1e03bf58f6f6abd98849d248cc661f1c56423df9f312'
   'e4729ea33f9d5939618ce227a8f47afe27e3fd79528caaca752c499321fd1098'
-  'b3442e645a983c1c2c99079a991421b356e9474f43d4ae35d43af5c7cf94e71e'
+  'e0cf52144da312228eee4de02d63ef4b8a0de4aca72d258783b7c826d1fd08a6'
   '1c16c82ffad39cf170e4673c8933b584162f206cb8d32c194795e5cf0e89cd69'
   '64d331c0b7e43834131c9fc549609a847faf96b0ae00c06f6e2d4ac7c8bb9089'
   '778c621885dae2218c840eec06a0e0294df7d1180dea12264b34a93994be7c0d'
