@@ -1,2 +1,2 @@
 REQ_ORIGIN=chaotic/CatBuilder
-REQ_REASON=depends
+REQ_REASON=depends # hotspot, pcsx2-git

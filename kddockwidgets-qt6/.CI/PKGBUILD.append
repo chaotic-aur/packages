@@ -1,20 +1,4 @@
 export CMAKE_GENERATOR='Ninja'
-
-depends=($(sed -E 's&\b\S*(gcc-libs|glibc|fmt|nlohmann-json)\S*\b&&g;s&>=\S+&&g' <<< "${depends[*]}"))
-
 makedepends+=('ninja')
 
-if [ $(vercmp "2.2.2" "$pkgver") -gt 0 ]; then
-  _commit='3401295e0db7b4dd20e237fd69fa15c1a50b830b'
-  _pkgsrc="KDDockWidgets-$_commit"
-  _pkgext="tar.gz"
-
-  pkgver=2.2.2
-  pkgrel=2
-  source[0]="$_pkgsrc.$_pkgext"::"https://github.com/KDAB/KDDockWidgets/archive/$_commit.$_pkgext"
-  b2sums[0]='70fb927ffa75391fb5294b11f1a98d9bd61891208e99ebf3088ce3a1658134f4947707643475c67b61e9725c1278778d465c5072e2cd31d42976e614f2f6e73a'
-
-  prepare() {
-    ln -sf "$_pkgsrc" "$_name-$pkgver"
-  }
-fi
+depends=($(sed -E 's&\b\S*(gcc-libs|glibc|fmt|nlohmann-json)\S*\b&&g;s&>=\S+&&g' <<< "${depends[*]}"))
