@@ -1,7 +1,7 @@
 pkgbase = google-cloud-cli
 	pkgdesc = A set of command-line tools for the Google Cloud Platform. Includes gcloud (with beta and alpha commands), gsutil, and bq.
 	pkgver = 525.0.0
-	pkgrel = 1
+	pkgrel = 2
 	url = https://cloud.google.com/cli/
 	install = google-cloud-cli.install
 	arch = x86_64
@@ -15,6 +15,8 @@ pkgbase = google-cloud-cli
 	options = !strip
 	options = staticlibs
 	options = !zipman
+	options = !debug
+	options = !lto
 	backup = etc/profile.d/google-cloud-cli.sh
 	source = google-cloud-cli.sh
 	source = google-cloud-cli.install
