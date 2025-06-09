@@ -2,7 +2,7 @@
 
 _pkgname="plutovg"
 pkgname="$_pkgname"
-pkgver=1.0.0
+pkgver=1.1.0
 pkgrel=1
 pkgdesc="Tiny 2D vector graphics library in C"
 url="https://github.com/sammycage/plutovg"
@@ -18,9 +18,11 @@ makedepends=(
   'ninja'
 )
 
+provides=('libplutovg.so')
+
 _pkgsrc="$_pkgname"
-source=("$_pkgname"::"git+$url.git#tag=v$pkgver")
-sha256sums=('SKIP')
+source=("$_pkgsrc"::"git+$url.git#tag=v$pkgver")
+sha256sums=('e83b72e54560680e6c5aa57b916495589351806164cd312620a4b8fbe78da988')
 
 build() {
   local _cmake_options=(
