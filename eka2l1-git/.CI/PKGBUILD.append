@@ -1,9 +1,13 @@
-export CFLAGS+=" -Wno-error=incompatible-pointer-types -Wno-error=int-conversion"
-export CXXFLAGS+=" -Wno-error=incompatible-pointer-types -Wno-error=int-conversion"
+unset install
 
 pkgdesc="Experimental Symbian OS emulator"
 license=('GPL-3.0-or-later')
 
-eval "$(declare -f prepare | head -n -1)
-  sed -i '1 i #include <algorithm>' src/emu/common/include/common/pystr.h
+makedepends=(${makedepends[@]//ccache*/})
+makedepends=(${makedepends[@]//cmake3*/cmake})
+
+eval "$(declare -f prepare | sed -E 's/(git submodule update)/\1 --depth 1/g' | head -n -1)
+  sed -E '/SET CMP[0-9]+/d' -i src/external/capstone/CMakeLists.txt
 }"
+
+eval "$(declare -f build | sed -E 's/cmake3\b/cmake -Wno-dev/g')"
