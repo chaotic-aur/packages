@@ -2,7 +2,7 @@
 
 _pkgname="plutosvg"
 pkgname="$_pkgname"
-pkgver=0.0.6
+pkgver=0.0.7
 pkgrel=1
 pkgdesc="Tiny SVG rendering library in C"
 url="https://github.com/sammycage/plutosvg"
@@ -11,7 +11,7 @@ arch=('x86_64')
 
 depends=(
   'freetype2'
-  'plutovg' # AUR
+  'libplutovg.so' # aur/plutovg
 )
 makedepends=(
   'cmake'
@@ -19,13 +19,11 @@ makedepends=(
   'ninja'
 )
 
+provides=('libplutosvg.so')
+
 _pkgsrc="$_pkgname"
 source=("$_pkgname"::"git+$url.git#tag=v$pkgver")
-sha256sums=('SKIP')
-
-prepare() {
-  sed -E 's&^(find_package ?\(plutovg).*$&\1 REQUIRED)&' -i "$_pkgsrc/CMakeLists.txt"
-}
+sha256sums=('ef0d243dd1ba49503df3e6fd72799b388ed6e4ffde63659e94036d6ec616e93c')
 
 build() {
   local _cmake_options=(
