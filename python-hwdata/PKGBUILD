@@ -1,6 +1,6 @@
 # Maintainer: Mark Wagie <mark dot wagie at proton dot me>
 pkgname=python-hwdata
-pkgver=2.4.2
+pkgver=2.4.3
 pkgrel=1
 pkgdesc="Python bindings to hwdata"
 arch=('any')
@@ -17,7 +17,7 @@ makedepends=(
   'python-wheel'
 )
 source=("https://github.com/xsuchy/python-hwdata/archive/refs/tags/$pkgname-$pkgver-1.tar.gz")
-sha256sums=('f17daaf2b7d13645e43d0bcaa7ab7ecda819f3a70e347cfd6ff9130609f9d9de')
+sha256sums=('f74bff7c42407413ed97a2f887496acfcc3b951aa480bfcd2857992bebeb007c')
 
 build() {
   cd "$pkgname-$pkgname-$pkgver-1"
