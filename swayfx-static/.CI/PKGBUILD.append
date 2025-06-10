@@ -1,0 +1,29 @@
+pkgname="swayfx-static"
+
+depends=(${depends[@]//*scenefx*/})
+
+provides=(${provides[@]//swayfx*} swayfx)
+conflicts=(${conflicts[@]//swayfx*} scenefx swayfx)
+
+options=(${options[@]/debug*/})
+options+=(!debug)
+
+source+=('git+https://github.com/wlrfx/scenefx')
+sha512sums+=('SKIP')
+
+_pkgsrc="swayfx-$pkgver"
+
+prepare() (
+  mkdir -pm755 "$_pkgsrc/subprojects"
+  ln -sfr "scenefx" "$_pkgsrc/subprojects/scenefx"
+)
+
+eval "$(declare -f build | sed -E 's&(arch-meson.*?) -D&\1 -D default_library=static -D&')"
+
+eval _orig_"$(declare -f package)"
+
+package() (
+  _orig_package
+  rm -rf "$pkgdir/usr/include"
+  rm -rf "$pkgdir/usr/lib"
+)
