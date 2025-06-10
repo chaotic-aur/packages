@@ -1,7 +1,7 @@
 # Maintainer: Erik Reider <erik.reider@protonmail.com>
 pkgname="swayfx"
 pkgver=0.5.1
-pkgrel=1
+pkgrel=3
 license=("MIT")
 pkgdesc="SwayFX: Sway, but with eye candy!"
 makedepends=(
@@ -22,9 +22,9 @@ depends=(
   "libxkbcommon.so"
   "pango"
   "pcre2"
-  "libscenefx-0.3.so"
+  "scenefx0.3"
   "ttf-font"
-  "libwlroots-0.18.so"
+  "wlroots0.18"
 )
 optdepends=(
   "brightnessctl: Brightness adjustment tool used in the default configuration"
