@@ -1,16 +1,19 @@
 pkgbase = packet
 	pkgdesc = A Quick Share client for Linux
-	pkgver = 0.4.0
+	pkgver = 0.5.0
 	pkgrel = 1
 	url = https://github.com/nozwock/packet
 	arch = x86_64
 	license = GPL-3.0-or-later
 	makedepends = blueprint-compiler
 	makedepends = cargo
+	makedepends = git
 	makedepends = meson
 	makedepends = protobuf
 	depends = libadwaita
-	source = packet-0.4.0.tar.gz::https://github.com/nozwock/packet/archive/refs/tags/0.4.0.tar.gz
-	sha256sums = 47d66e89a4e9ba30923b67d55e0ba9b5bd7db9fd8e4205407ea2e2bafe834390
+	optdepends = nautilus-python: Nautilus integration
+	optdepends = python-dbus: needed for Nautilus extension
+	source = git+https://github.com/nozwock/packet.git#tag=0.5.0
+	sha256sums = 08e98fffc593eb49c956709a08393a93d6147e24fdba7bab0eaf529f229e6d1b
 
 pkgname = packet

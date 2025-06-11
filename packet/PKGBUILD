@@ -1,6 +1,6 @@
 # Maintainer: Mark Wagie <mark dot wagie at proton dot me>
 pkgname=packet
-pkgver=0.4.0
+pkgver=0.5.0
 pkgrel=1
 pkgdesc="A Quick Share client for Linux"
 arch=('x86_64')
@@ -10,21 +10,29 @@ depends=('libadwaita')
 makedepends=(
   'blueprint-compiler'
   'cargo'
+  'git'
   'meson'
   'protobuf'
 )
-source=("$pkgname-$pkgver.tar.gz::$url/archive/refs/tags/$pkgver.tar.gz")
-sha256sums=('47d66e89a4e9ba30923b67d55e0ba9b5bd7db9fd8e4205407ea2e2bafe834390')
+optdepends=(
+  'nautilus-python: Nautilus integration'
+  'python-dbus: needed for Nautilus extension'
+)
+source=("git+https://github.com/nozwock/packet.git#tag=$pkgver")
+sha256sums=('08e98fffc593eb49c956709a08393a93d6147e24fdba7bab0eaf529f229e6d1b')
 
 prepare() {
-  cd "$pkgname-$pkgver"
+  cd "$pkgname"
   export RUSTUP_TOOLCHAIN=stable
   cargo fetch --target "$(rustc -vV | sed -n 's/host: //p')"
+
+  # Fix appstream release changelog
+  git cherry-pick -n dc5924c6e8d1ce83674b28dde1d93b1039cee2e6
 }
 
 build() {
   export RUSTUP_TOOLCHAIN=stable
-  arch-meson "$pkgname-$pkgver" build
+  arch-meson "$pkgname" build
   meson compile -C build
 }
 
@@ -34,4 +42,9 @@ check() {
 
 package() {
   meson install -C build --no-rebuild --destdir "$pkgdir"
+
+  # Symlink Nautilus extension to exension directory
+  install -d "$pkgdir/usr/share/nautilus-python/extensions"
+  ln -s "/usr/share/$pkgname/plugins/packet_nautilus.py" \
+    "$pkgdir/usr/share/nautilus-python/extensions/"
 }
