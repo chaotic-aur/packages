@@ -1,0 +1,125 @@
+# Maintainer: aur.chaotic.cx
+
+_pkgname="krita"
+pkgname="$_pkgname-qt6-git"
+pkgver=5.2.9.r2854.gba5dbd2
+pkgrel=1
+pkgdesc="Edit and paint images"
+url='https://invent.kde.org/graphics/krita'
+license=('GPL-3.0-only')
+arch=('x86_64')
+
+depends=(
+  'exiv2'
+  'fftw'
+  'fontconfig'
+  'freetype2'
+  'fribidi'
+  'gcc-libs'
+  'giflib'
+  'glibc'
+  'gsl'
+  'harfbuzz'
+  'imath'
+  'kcolorscheme'
+  'kcompletion'
+  'kconfig'
+  'kcoreaddons'
+  'kguiaddons'
+  'ki18n'
+  'kitemmodels'
+  'kitemviews'
+  'kwidgetsaddons'
+  'kwindowsystem'
+  'lcms2'
+  'libjpeg-turbo'
+  'libkdcraw'
+  'libpng'
+  'libtiff'
+  'libunibreak'
+  'libwebp'
+  'mlt'
+  'opencolorio'
+  'openexr'
+  'openjpeg2'
+  'qt6-base'
+  'qt6-svg'
+  'quazip-qt6'
+  'sdl2'
+  'zlib'
+)
+makedepends=(
+  'boost'
+  'eigen'
+  'extra-cmake-modules'
+  'git'
+  'immer'
+  'kdoctools'
+  'kseexpr-qt6' # aur/kseexpr-qt6-git
+  'lager'
+  'libheif'
+  'libjxl'
+  'libmypaint'
+  'ninja'
+  'poppler-qt6'
+  'python-pyqt6'
+  'qt6-tools'
+  'sip'
+  'vulkan-headers'
+  'xsimd'
+  'zug'
+)
+optdepends=(
+  'kimageformats: PSD support'
+  'krita-plugin-gmic: GMic plugin'
+  'kseexpr-qt6: SeExpr generator layer'
+  'libheif: HEIF filter'
+  'libjxl: JPEG-XL filter'
+  'libmypaint: support for MyPaint brushes'
+  'poppler-qt6: PDF filter'
+  'python-legacy-cgi: for the Python plugins'
+  'python-pyqt6: for the Python plugins'
+)
+
+provides=("$_pkgname=${pkgver%.g*}")
+conflicts=(
+  'calligra-krita'
+  'krita'
+  'krita-il10n'
+)
+
+_pkgsrc="$_pkgname"
+source=("$_pkgsrc"::"git+$url.git")
+sha256sums=('SKIP')
+
+pkgver() {
+  cd "$_pkgsrc"
+  local _tag _version _revision _hash
+  _tag=$(git tag | grep -Ev '[A-Za-z][A-Za-z]' | sed -E 's&([^0-9]*)(\S+)$&\2 \1\2&' | sort -rV | head -1)
+  _version=$(cut -f1 -d' ' <<< ${_tag:?})
+  _tag=$(cut -f2 -d' ' <<< ${_tag:?})
+  _revision=$(git rev-list --count --cherry-pick "$_tag"...HEAD)
+  _commit=$(git rev-parse --short=7 HEAD)
+  printf '%s.r%s.g%s' "${_version:?}" "${_revision:?}" "${_commit:?}"
+}
+
+build() {
+  local _cmake_options=(
+    -B build
+    -S "$_pkgsrc"
+    -G Ninja
+    -DCMAKE_BUILD_TYPE=None
+    -DCMAKE_INSTALL_PREFIX='/usr'
+    -DCMAKE_INSTALL_LIBDIR='lib'
+    -DBUILD_WITH_QT6=ON
+    -DBUILD_TESTING=$CHECKFUNC
+    -Wno-dev
+  )
+
+  cmake "${_cmake_options[@]}"
+  cmake --build build
+}
+
+package() {
+  DESTDIR="$pkgdir" cmake --install build
+}

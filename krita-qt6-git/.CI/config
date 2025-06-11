@@ -1,0 +1,2 @@
+CI_ON_TRIGGER=heavy
+CI_PKGBUILD_SOURCE=custom
