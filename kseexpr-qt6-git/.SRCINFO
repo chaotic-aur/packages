@@ -1,0 +1,19 @@
+pkgbase = kseexpr-qt6-git
+	pkgdesc = An embeddable expression evaluation engine (Krita fork)
+	pkgver = 6.0.0.0.r20.g871d4a3
+	pkgrel = 1
+	url = https://krita.org
+	arch = x86_64
+	license = GPL-3.0-or-later
+	makedepends = extra-cmake-modules
+	makedepends = qt6-tools
+	depends = gcc-libs
+	depends = glibc
+	depends = qt6-base
+	provides = kseexpr-qt6
+	conflicts = kseexpr-qt6
+	conflicts = kseexpr
+	source = git+https://invent.kde.org/graphics/kseexpr.git
+	sha256sums = SKIP
+
+pkgname = kseexpr-qt6-git

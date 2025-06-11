@@ -1,0 +1,4 @@
+export CMAKE_GENERATOR=Ninja
+makedepends+=('ninja')
+
+url="https://invent.kde.org/graphics/kseexpr"
