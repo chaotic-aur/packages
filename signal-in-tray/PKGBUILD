@@ -1,0 +1,38 @@
+# Maintainer: aur.chaotic.cx
+
+_pkgname="signal-in-tray"
+pkgname="$_pkgname"
+pkgver=1.0.1
+pkgrel=1
+pkgdesc='Start signal in background, in tray mode'
+url="https://github.com/chaotic-aur/packages/tree/main/signal-in-tray"
+license=('Unlicense')
+arch=('any')
+
+package() {
+  depends=(
+    'sh'
+    'signal-desktop'
+  )
+
+  install -Dm644 /dev/stdin "$pkgdir/usr/share/applications/$_pkgname.desktop" << END
+[Desktop Entry]
+Type=Application
+Name=Signal (Tray)
+GenericName=Messenger (Tray)
+Comment=Signal Private Messenger (Start in Tray)
+Icon=signal-desktop
+Exec=$_pkgname -- %u
+Terminal=false
+Categories=Network;InstantMessaging;
+StartupWMClass=signal
+MimeType=x-scheme-handler/sgnl;x-scheme-handler/signalcaptcha;
+Keywords=sgnl;chat;im;messaging;messenger;security;privat;
+X-GNOME-UsesNotifications=true
+END
+
+  install -Dm755 /dev/stdin "$pkgdir/usr/bin/$_pkgname" << END
+#!/usr/bin/env sh
+exec signal-desktop --start-in-tray "\$@"
+END
+}

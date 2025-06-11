@@ -1,0 +1,11 @@
+pkgbase = signal-in-tray
+	pkgdesc = Start signal in background, in tray mode
+	pkgver = 1.0.1
+	pkgrel = 1
+	url = https://github.com/chaotic-aur/packages/tree/main/signal-in-tray
+	arch = any
+	license = Unlicense
+
+pkgname = signal-in-tray
+	depends = sh
+	depends = signal-desktop
