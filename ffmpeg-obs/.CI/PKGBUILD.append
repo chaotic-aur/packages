@@ -1,5 +1,7 @@
 epoch=2
 
+pkgdesc="${pkgdesc%%.*}"
+
 provides=(
   ${provides[@]//ffmpeg*/}
   "ffmpeg=$epoch:$pkgver"
