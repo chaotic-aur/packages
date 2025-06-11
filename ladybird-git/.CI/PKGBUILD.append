@@ -1,3 +1,7 @@
 pkgdesc="Independent web browser in pre-alpha state"
 
+# keep default build flags
 options=('!debug' '!emptydirs' '!lto' '!staticlibs')
+
+# don't use upstream presets
+eval "$(declare -f build | sed -E 's&\S+preset\s+\S*&&')"
