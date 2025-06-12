@@ -1,6 +1,6 @@
 # Maintainer: Mark Wagie <mark dot wagie at proton dot me>
 pkgname=packet
-pkgver=0.5.0
+pkgver=0.5.1
 pkgrel=1
 pkgdesc="A Quick Share client for Linux"
 arch=('x86_64')
@@ -19,15 +19,12 @@ optdepends=(
   'python-dbus: needed for Nautilus extension'
 )
 source=("git+https://github.com/nozwock/packet.git#tag=$pkgver")
-sha256sums=('08e98fffc593eb49c956709a08393a93d6147e24fdba7bab0eaf529f229e6d1b')
+sha256sums=('e8f5780551719dbbe278cb246963cf9ae15f17ef0eba1fefd57e74074516356f')
 
 prepare() {
   cd "$pkgname"
   export RUSTUP_TOOLCHAIN=stable
   cargo fetch --target "$(rustc -vV | sed -n 's/host: //p')"
-
-  # Fix appstream release changelog
-  git cherry-pick -n dc5924c6e8d1ce83674b28dde1d93b1039cee2e6
 }
 
 build() {
