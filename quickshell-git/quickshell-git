@@ -5,11 +5,11 @@
 _pkgname="quickshell"
 pkgname="$_pkgname-git"
 pkgver=0.1.0.r0.g703a378
-pkgrel=2
+pkgrel=1
 pkgdesc="Simple and flexbile QtQuick based desktop shell toolkit"
 url='https://git.outfoxxed.me/quickshell/quickshell'
 license=('LGPL-3.0-only')
-arch=('x86_64')
+arch=('x86_64' 'aarch64')
 
 depends=(
   'jemalloc'
@@ -70,4 +70,5 @@ build() {
 
 package() {
   DESTDIR="$pkgdir" cmake --install build
+  install -Dm644 "$_pkgsrc/LICENSE" -t "$pkgdir/usr/share/licenses/$pkgname/"
 }
