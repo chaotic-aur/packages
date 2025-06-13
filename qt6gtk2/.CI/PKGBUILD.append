@@ -1,1 +1,15 @@
-eval pkgrel=$(pacman -Si ${depends[@]} | awk '/Version/{sum+=substr($0,match($0,/[^-]+$/))}END{print sum}')
+unset groups
+unset conflicts
+
+pkgrel=$(pacman -Si ${depends[@]} | awk '/Version/{sum+=substr($0,match($0,/[^-]+$/))}END{print sum}')
+
+license=('GPL-2.0-only')
+arch=('x86_64')
+
+eval _orig_"$(declare -f package | grep -Ev 'licenses|hook')"
+
+package() {
+  local _qt6_ver=$(LANG=C LC_ALL=C pacman -Si extra/qt6-base | grep -Pom1 '^Version\s+:\s+\K\S+(?=-[0-9])')
+  depends=(${depends[@]//qt6-base*/qt6-base=$_qt6_ver})
+  _orig_package
+}
