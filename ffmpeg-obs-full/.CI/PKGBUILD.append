@@ -1,0 +1,19 @@
+pkgname="ffmpeg-obs-full"
+
+epoch=2
+
+pkgdesc="${pkgdesc%%.*}"
+
+provides=(
+  ${provides[@]//ffmpeg*/}
+  "ffmpeg=$epoch:$pkgver"
+  "ffmpeg-full=$epoch:$pkgver"
+  "ffmpeg-obs=$epoch:$pkgver"
+)
+
+eval _orig_"$(declare -f package)"
+
+package() {
+  depends+=('libplacebo.so')
+  _orig_package
+}

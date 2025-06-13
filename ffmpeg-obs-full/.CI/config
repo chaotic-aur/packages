@@ -1,0 +1,4 @@
+CI_PACKAGE_BUMP=2:7.1.1-5/1
+CI_REBUILD_TRIGGERS=libplacebo
+CI_PKGBUILD_SOURCE=https://aur.archlinux.org/ffmpeg-obs.git
+BUILDER_CLASS=9
