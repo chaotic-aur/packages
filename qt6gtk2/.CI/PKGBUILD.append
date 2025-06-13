@@ -1,7 +1,9 @@
 unset groups
 unset conflicts
 
-pkgrel=$(pacman -Si ${depends[@]} | awk '/Version/{sum+=substr($0,match($0,/[^-]+$/))}END{print sum}')
+if (( ${pkgrel%.*} < 1 )); then
+  pkgrel=1
+fi
 
 license=('GPL-2.0-only')
 arch=('x86_64')
