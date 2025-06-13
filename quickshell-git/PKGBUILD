@@ -4,7 +4,7 @@
 
 _pkgname="quickshell"
 pkgname="$_pkgname-git"
-pkgver=0.1.0.r0.g703a378
+pkgver=0.1.0.r2.g517143a
 pkgrel=2
 pkgdesc="Simple and flexbile QtQuick based desktop shell toolkit"
 url='https://git.outfoxxed.me/quickshell/quickshell'
@@ -69,5 +69,11 @@ build() {
 }
 
 package() {
+  local i _ver
+  for i in qt6-base qt6-wayland; do
+    local _ver=$(LANG=C LC_ALL=C pacman -Si extra/$i | grep -Pom1 '^Version\s+:\s+\K\S+(?=-[0-9])')
+    [ -n "$_ver" ] && depends=(${depends[@]//$i*/$i=$_ver})
+  done
+
   DESTDIR="$pkgdir" cmake --install build
 }

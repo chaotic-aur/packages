@@ -1,7 +1,7 @@
 post_install() {
   cat << END
 
-quickshell-git is built by Chaotic AUR.
+This instance of quickshell-git is built by Chaotic AUR.
 
 To rule out problems with the build process,
 please report any issues with this package at:
