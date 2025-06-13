@@ -1,27 +1,32 @@
-options=(${options[@]/debug*/})
-options+=(!debug)
+depends=(${depends[@]//*scenefx*/})
 
 provides=(${provides[@]//swayfx*})
 conflicts=(${conflicts[@]//swayfx*})
 
-# advance commit for compatibility with scenefx 0.2
-if [ $(vercmp "$pkgver" 0.4.1) -lt 0 ]; then
-  : ${_commit=50d4cf45ab77ea1476860b993ed34bb32d3f434a}
+options=(${options[@]/debug*/})
+options+=(!debug)
 
-  pkgver=0.4.1
-  pkgrel=0
+source+=('git+https://github.com/wlrfx/scenefx')
+sha512sums+=('SKIP')
 
-  depends=(
-    ${depends[@]//*scenefx*/}
-    "libscenefx-0.2.so"
-  )
+_pkgsrc="swayfx-$pkgver"
 
-  _pkgsrc="swayfx-$_commit"
-  _pkgext="tar.gz"
-  source[0]="$_pkgsrc"::"https://github.com/WillPower3309/swayfx/archive/$_commit.$_pkgext"
-  sha512sums[0]='SKIP'
+prepare() (
+  mkdir -pm755 "$_pkgsrc/subprojects"
+  ln -sfr "scenefx" "$_pkgsrc/subprojects/scenefx"
+)
 
-  prepare() {
-    ln -sf "$_pkgsrc" "swayfx-$pkgver"
-  }
-fi
+eval "$(declare -f build | sed -E 's&(arch-meson.*?) -D&\1 -D default_library=static -D&')"
+
+eval _orig_"$(declare -f package)"
+
+package() {
+  (_orig_package)
+
+  conflicts+=('scenefx')
+  replaces=('swayfx-static')
+
+  # not needed
+  rm -rf "$pkgdir/usr/include"
+  rm -rf "$pkgdir/usr/lib"
+}
