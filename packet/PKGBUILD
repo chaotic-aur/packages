@@ -1,6 +1,6 @@
 # Maintainer: Mark Wagie <mark dot wagie at proton dot me>
 pkgname=packet
-pkgver=0.5.1
+pkgver=0.5.2
 pkgrel=1
 pkgdesc="A Quick Share client for Linux"
 arch=('x86_64')
@@ -19,7 +19,7 @@ optdepends=(
   'python-dbus: needed for Nautilus extension'
 )
 source=("git+https://github.com/nozwock/packet.git#tag=$pkgver")
-sha256sums=('e8f5780551719dbbe278cb246963cf9ae15f17ef0eba1fefd57e74074516356f')
+sha256sums=('cd9a3f02781ca27f82d7b2c46f6794912f72f96f3311ddf05da2e3bb92b8c6f7')
 
 prepare() {
   cd "$pkgname"
