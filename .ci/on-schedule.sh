@@ -189,7 +189,7 @@ function update-lib-bump() {
         UTIL_PRINT_INFO "$package: Bumping pkgrel of $package because of a detected library version change"
 
         local _PKGVER _BUMPCOUNT _PKGVER_IN_DB
-        _PKGVER_IN_DB="$(grep "^$package:" ".ci/version-state" | cut -d ":" -f 2 || true)"
+        _PKGVER_IN_DB="$(grep "^$package:" ".state/.version-state" | cut -d ":" -f 2 || true)"
 
         if [ -z "$_PKGVER_IN_DB" ]; then
             UTIL_PRINT_WARNING "$package: Could not find package version in the version-state file."
