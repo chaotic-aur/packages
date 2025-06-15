@@ -3,12 +3,14 @@
 # Contributor: rikki48 <xdxdxdxdlmao@mail.ru>
 
 ## options
+: ${_use_sodeps:=false}
+
 : ${_branch:=dev}
 
 _pkgname="ayugram-desktop"
 pkgname="$_pkgname-git"
-pkgver=5.14.3.r0.g3c7f3e8
-pkgrel=1
+pkgver=5.14.3.r3.g3be7930
+pkgrel=2
 pkgdesc="Desktop Telegram client with good customization and Ghost mode"
 url="https://github.com/AyuGram/AyuGramDesktop"
 license=('GPL-3.0-or-later')
@@ -248,6 +250,33 @@ build() {
 }
 
 package() {
+  if [[ "${_use_sodeps::1}" == "t" ]]; then
+    depends+=(
+      'libavcodec.so'
+      'libavfilter.so'
+      'libavformat.so'
+      'libavutil.so'
+      'libcrypto.so'
+      'libgio-2.0.so'
+      'libglib-2.0.so'
+      'libgobject-2.0.so'
+      'libjemalloc.so'
+      'libjpeg.so'
+      'liblz4.so'
+      'libopenal.so'
+      'libopenh264.so'
+      'libopus.so'
+      'libpipewire-0.3.so'
+      'libprotobuf-lite.so'
+      'libssl.so'
+      'libswresample.so'
+      'libswscale.so'
+      'libvpx.so'
+      'libxxhash.so'
+      'libz.so'
+    )
+  fi
+
   DESTDIR="$pkgdir" cmake --install build
 }
 
