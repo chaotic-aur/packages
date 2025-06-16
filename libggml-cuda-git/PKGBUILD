@@ -6,7 +6,7 @@
 
 _pkgname="libggml"
 pkgname="$_pkgname-cuda-git"
-pkgver=r2117.5592ffd
+pkgver=r2175.8cda0a3
 pkgrel=2
 pkgdesc="Tensor library for machine learning"
 url="https://github.com/ggml-org/ggml"
@@ -98,6 +98,10 @@ check() {
 
 package() {
   pkgdesc+=" with OpenBLAS + Vulkan + CUDA optimizations"
+  depends+=(
+    'nvidia-utils'
+    'vulkan-driver'
+  )
 
   for i in fakeinstall_*/usr/lib/glibc-hwcaps; do
     if [ -e "$i" ]; then

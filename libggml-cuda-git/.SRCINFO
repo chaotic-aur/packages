@@ -1,6 +1,6 @@
 pkgbase = libggml-cuda-git
 	pkgdesc = Tensor library for machine learning
-	pkgver = r2117.5592ffd
+	pkgver = r2175.8cda0a3
 	pkgrel = 2
 	url = https://github.com/ggml-org/ggml
 	arch = x86_64
@@ -13,10 +13,14 @@ pkgbase = libggml-cuda-git
 	makedepends = vulkan-headers
 	depends = openblas
 	depends = vulkan-icd-loader
-	provides = libggml=r2117
+	provides = libggml=r2175
 	conflicts = libggml
 	source = libggml::git+https://github.com/ggml-org/ggml.git
 	sha256sums = SKIP
 
 pkgname = libggml-cuda-git
 	pkgdesc = Tensor library for machine learning with OpenBLAS + Vulkan + CUDA optimizations
+	depends = openblas
+	depends = vulkan-icd-loader
+	depends = nvidia-utils
+	depends = vulkan-driver
