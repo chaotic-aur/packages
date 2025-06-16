@@ -6,8 +6,8 @@
 
 _pkgname="libggml"
 pkgname="$_pkgname-git"
-pkgver=r2112.7cd89f6
-pkgrel=1
+pkgver=r2175.8cda0a3
+pkgrel=2
 pkgdesc="Tensor library for machine learning"
 url="https://github.com/ggml-org/ggml"
 license=('MIT')
@@ -95,6 +95,7 @@ check() {
 
 package() {
   pkgdesc+=" with OpenBLAS + Vulkan optimizations"
+  depends+=('vulkan-driver')
 
   for i in fakeinstall_*/usr/lib/glibc-hwcaps; do
     if [ -e "$i" ]; then
