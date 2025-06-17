@@ -4,7 +4,7 @@
 
 _pkgname="vita3k"
 pkgname="$_pkgname-git"
-pkgver=r3785.36b220eab
+pkgver=r3803.8c71bdd0b
 pkgrel=1
 pkgdesc="Experimental PlayStation Vita emulator"
 url="https://github.com/Vita3K/Vita3K"
@@ -16,10 +16,8 @@ depends=(
   'sdl2'
 )
 makedepends=(
-  'clang'
   'cmake'
   'git'
-  'lld'
   'ninja'
 )
 optdepends=(
@@ -40,23 +38,16 @@ pkgver() {
 
 prepare() {
   cd "$_pkgsrc"
+  git rm -r external/sdl
+
   git submodule update --init --depth 1 --recursive
 
   # Needed to have correct title version
   git remote set-url origin "$url.git"
-
-  sed '1i #include <cstdint>' -i external/glslang/SPIRV/SpvBuilder.h
 }
 
 build() {
   export CMAKE_POLICY_VERSION_MINIMUM=3.5
-
-  export CC CXX
-  CC=clang
-  CXX=clang++
-
-  local _ldflags=(${LDFLAGS})
-  export LDFLAGS="${_ldflags[@]//*fuse-ld*/} -fuse-ld=lld"
 
   local _cmake_options=(
     -B build
