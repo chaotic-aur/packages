@@ -4,7 +4,7 @@
 pkgname=blockbench-bin
 _pkgname="${pkgname%-bin}"
 _pkgname_orig=Blockbench
-pkgver=4.12.4
+pkgver=4.12.5
 pkgrel=1
 pkgdesc='A low-poly 3D model editor'
 arch=(x86_64 armv7h)
@@ -43,7 +43,7 @@ provides=("${_pkgname}")
 conflicts=("${_pkgname}")
 options=(!debug)
 source=("https://github.com/JannisX11/blockbench/releases/download/v${pkgver}/Blockbench_${pkgver}.deb")
-sha256sums=('b382a138b89cb6a926aa13c807559a9edbb011a00dba2031e50f0e8fd3357e8a')
+sha256sums=('7d36221a406ff1cd01925c364dc7c1b9263dde085a96e4e11f55a94bb69046cd')
 
 package() {
   bsdtar -xf data.tar.xz -C "${pkgdir}/"
