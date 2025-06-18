@@ -18,7 +18,7 @@ pkgname=vmware-workstation
 pkgver=17.6.3
 _buildver=24583834
 _pkgver=${pkgver}_${_buildver}
-pkgrel=7
+pkgrel=8
 _tools_version=12.5.0-24276846
 _legacy_ver=17.5.2
 _legacy_buildver=23775571
@@ -61,6 +61,9 @@ backup=(
   'etc/vmware/config'
   'etc/conf.d/vmware'
 )
+
+DLAGENTS=("https::/usr/bin/curl -fLC - --connect-to softwareupdate-prod.broadcom.com:443:softwareupdate-prod.broadcom.com.cdn.cloudflare.net:443 --retry 3 --retry-delay 3 -o %o %u")
+
 source=(
   "https://softwareupdate-prod.broadcom.com/cds/vmw-desktop/ws/${pkgver}/${_buildver}/linux/core/VMware-Workstation-${_pkgver/_/-}.${CARCH}.bundle.tar"
   "https://softwareupdate-prod.broadcom.com/cds/vmw-desktop/ws/${_legacy_ver}/${_legacy_buildver}/linux/packages/vmware-tools-linux-${_legacy_tools_version/_/-}.${CARCH}.component.tar"
