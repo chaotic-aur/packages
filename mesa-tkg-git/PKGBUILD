@@ -79,7 +79,7 @@ else
   msg2 "ccache was not found and will not be used\n"
 fi
 
-if [ "$_no_lto" = "true" ]; then
+if [ "$_lto" != "true" ]; then
   _makepkg_options+=('!lto')
 fi
 
@@ -298,6 +298,12 @@ prepare() {
 
   cd "$srcdir"
 
+  if [ "$_compiler" = "clang" ]; then
+    echo "_compiler=clang" > "$_where"/frogminer
+  else
+    echo "_compiler=gcc" > "$_where"/frogminer
+  fi
+
   # although removing _build folder in build() function feels more natural,
   # that interferes with the spirit of makepkg --noextract
   if [ -d _build64 ] && [ "$_NUKR" != "false" ]; then
@@ -323,10 +329,15 @@ build() {
     export CPPFLAGS="${_custom_opt_flags}"
     export CXXFLAGS="${_custom_opt_flags}"
   fi
-  if [ "$_no_lto" == "true" ]; then
-    export _no_lto="-D b_lto=false"
+  if [ "$_lto" != "true" ]; then
+    export _lto="-D b_lto=false"
   else
-    export _no_lto=""
+    export _lto="-D b_lto=true"
+    if [ "$_compiler" != "clang" ]; then
+      warning "Enabling LTO on GCC is known to create issues with mesa. Consider using Clang instead of GCC."
+    fi
+    # With LTO, we'll hit `too many open files` if the limit is too low, so let's use some bif enough value for our current shell
+    ulimit -Sn 2048
   fi
 
   # Selector fixes
@@ -486,6 +497,8 @@ build() {
 
   # /Selector fixes
 
+  source "$_where"/frogminer
+
   if [ -n "${CUSTOM_GCC_PATH}" ] && [ "$_compiler" != "clang" ]; then
     export PATH=$(find "$CUSTOM_GCC_PATH/" -maxdepth 1 -printf "%p:" || (warning "Custom compiler path seems wrong.." && exit 1))${PATH}
     msg2 "CUSTOM_GCC_PATH = ${CUSTOM_GCC_PATH}"
@@ -525,7 +538,7 @@ build() {
     -D lmsensors=${_enabled_} \
     -D opengl=true \
     -D zstd=auto \
-    -D valgrind=${_enabled_} $_legacy_switches $_dri3 $_omx $_dri_inc $_microsoft_clc $_osmesa $_xvmc $_layers $_optional_codecs $_android_libbacktrace $_intel_rt $_galliumnine $_galliumxa $_sharedglapi $_galliumopencl $_mediafoundation $_rusticladditions $_no_lto $_additional_meson_flags $_additional_meson_flags_64
+    -D valgrind=${_enabled_} $_legacy_switches $_dri3 $_omx $_dri_inc $_microsoft_clc $_osmesa $_xvmc $_layers $_optional_codecs $_android_libbacktrace $_intel_rt $_galliumnine $_galliumxa $_sharedglapi $_galliumopencl $_mediafoundation $_rusticladditions $_lto $_additional_meson_flags $_additional_meson_flags_64
 
   meson configure _build64 --no-pager
 
@@ -554,11 +567,18 @@ build() {
       export CC="gcc -m32"
       export CXX="g++ -m32"
     fi
+
+    if [ "$_rusticl32_bypass" != "true" ]; then
+      _rusticl_32="false"
+    else
+      _rusticl_32="$_rusticl"
+      _crossfile_flag="--cross-file lib32"
+    fi
+
     export PKG_CONFIG=/usr/bin/i686-pc-linux-gnu-pkg-config
     export BINDGEN_EXTRA_CLANG_ARGS="--target=i686-unknown-linux-gnu"
 
-    arch-meson $_mesa_srcdir _build32 \
-      --cross-file lib32 \
+    arch-meson $_mesa_srcdir _build32 $_crossfile_flag \
       --native-file llvm32.native \
       --libdir=/usr/lib32 \
       --wrap-mode=nofallback \
@@ -569,7 +589,7 @@ build() {
       -D vulkan-drivers=${_vulkan_drivers} \
       -D egl=${_enabled_} \
       -D gallium-extra-hud=true \
-      -D gallium-rusticl=${_rusticl} \
+      -D gallium-rusticl=${_rusticl_32} \
       -D gallium-va=${_gallium_va} \
       -D gallium-vdpau=${_gallium_vdpau} \
       -D gbm=${_enabled_} \
@@ -580,9 +600,8 @@ build() {
       -D libunwind=${_disabled_} \
       -D llvm=${_enabled_} \
       -D lmsensors=${_enabled_} \
-      -D shared-glapi=${_enabled_} \
       -D zstd=auto \
-      -D valgrind=${_disabled_} $_legacy_switches $_dri3 $_omx_32 $_dri_inc $_microsoft_clc $_osmesa $_xvmc $_layers $_optional_codecs $_android_libbacktrace $_intel_rt_32 $_intel_clc_32 $_galliumnine $_galliumxa $_sharedglapi $_galliumopencl $_mediafoundation $_rusticladditions $_no_lto $_additional_meson_flags $_additional_meson_flags_32
+      -D valgrind=${_disabled_} $_legacy_switches $_dri3 $_omx_32 $_dri_inc $_microsoft_clc $_osmesa $_xvmc $_layers $_optional_codecs $_android_libbacktrace $_intel_rt_32 $_intel_clc_32 $_galliumnine $_galliumxa $_sharedglapi $_galliumopencl $_mediafoundation $_rusticladditions $_lto $_additional_meson_flags $_additional_meson_flags_32
 
     meson configure _build32 --no-pager
 
