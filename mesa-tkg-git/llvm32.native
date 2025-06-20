@@ -1,2 +1,3 @@
 [binaries]
 llvm-config = '/usr/bin/llvm-config32'
+rust = ['rustc', '--target=i686-unknown-linux-gnu']

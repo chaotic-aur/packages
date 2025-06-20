@@ -101,10 +101,10 @@ source=("$_sourceurl"
 )
 md5sums=('SKIP'
   '5c65a0fe315dd347e09b1f2826a1df5a'
-  '6b4a19068a323d7f90a3d3cd315ed1f9')
+  '722c7b0a4f7ace13d9009996615da938')
 sha512sums=('SKIP'
   '25da77914dded10c1f432ebcbf29941124138824ceecaf1367b3deedafaecabc082d463abcfa3d15abff59f177491472b505bcb5ba0c4a51bb6b93b4721a23c2'
-  'c7dbb390ebde291c517a854fcbe5166c24e95206f768cc9458ca896b2253aabd6df12a7becf831998721b2d622d0c02afdd8d519e77dea8e1d6807b35f0166fe')
+  '46874ef82f9794cfd4955ec1aa953b1a14848bfcf4019018e1932469cfc32ee7844d87dd5a798f6e0fca913ed95b1d6cc05b2d508d1c56d5122e37a872f237b3')
 
 function exit_cleanup {
   if [ "$pkgver" != "0" ]; then
@@ -337,7 +337,7 @@ build() {
       warning "Enabling LTO on GCC is known to create issues with mesa. Consider using Clang instead of GCC."
     fi
     # With LTO, we'll hit `too many open files` if the limit is too low, so let's use some bif enough value for our current shell
-    ulimit -Sn 2048
+    ulimit -Sn 4096
   fi
 
   # Selector fixes
@@ -561,6 +561,10 @@ build() {
   if [ "$_lib32" == "true" ]; then
     cd "$srcdir"
     if [ "$_compiler" = "clang" ]; then
+      if [ "$_rusticl32_bypass" = "true" ]; then
+        warning "LTO forcefully disabled on lib32 because _rusticl32_bypass=\"true\""
+        _lto="-D b_lto=false"
+      fi
       export CC="clang -m32"
       export CXX="clang++ -m32"
     else
@@ -570,6 +574,10 @@ build() {
 
     if [ "$_rusticl32_bypass" != "true" ]; then
       _rusticl_32="false"
+      _crossfile_flag="--native-file llvm32.native"
+      # lib32 nvk fails with native
+      warning "lib32 nvk forcefully disabled when using _rusticl32_bypass=\"false\""
+      _vulkan_drivers=$(echo $_vulkan_drivers | sed "s/,nouveau//g" | tr -s " ")
     else
       _rusticl_32="$_rusticl"
       _crossfile_flag="--cross-file lib32"
@@ -578,8 +586,8 @@ build() {
     export PKG_CONFIG=/usr/bin/i686-pc-linux-gnu-pkg-config
     export BINDGEN_EXTRA_CLANG_ARGS="--target=i686-unknown-linux-gnu"
 
-    arch-meson $_mesa_srcdir _build32 $_crossfile_flag \
-      --native-file llvm32.native \
+    arch-meson $_mesa_srcdir _build32 \
+      ${_crossfile_flag} \
       --libdir=/usr/lib32 \
       --wrap-mode=nofallback \
       --force-fallback-for=syn,paste,rustc-hash \
