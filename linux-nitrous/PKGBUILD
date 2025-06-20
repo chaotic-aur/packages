@@ -13,7 +13,7 @@
 pkgbase=linux-nitrous
 _srcname=linux-nitrous
 pkgver=6.15.3
-pkgrel=1
+pkgrel=2
 arch=('x86_64')
 url="https://gitlab.com/xdevs23/linux-nitrous"
 license=('GPL2')
@@ -31,7 +31,7 @@ options=('!strip')
 source=('https://gitlab.com/xdevs23/linux-nitrous/-/archive/v'"$pkgver-$pkgrel"'/linux-nitrous-v'"$pkgver-$pkgrel"'.tar.gz'
   # standard config files for mkinitcpio ramdisk
   "${_srcname}.preset")
-sha256sums=('acc43dc7eeb78a52f8696ae5995b0df74c44045c2684cae90cc9fc56f393e159'
+sha256sums=('08683a8a773288ee11eb28e6b97417620befb73c203bbe68d947c37c8eadffcb'
   '59cf1dfe08c144868ad87705dd62a0400921c042b1e12691e42cf214fe9a9402')
 
 _kernelname=${pkgbase#linux}
@@ -70,9 +70,9 @@ build() {
 
   make -s kernelrelease > version
 
-  export KCPPFLAGS="-march=x86_64-v3"
+  export KCPPFLAGS="-march=x86-64-v3"
   export KCFLAGS="-march=x86-64-v3"
-  export KRUSTFLAGS="-Ctarget-cpu=x86_64-v3"
+  export KRUSTFLAGS="-Ctarget-cpu=x86-64-v3"
 
   makeflags="${MAKEFLAGS}"
   if [[ "$MAKEFLAGS" != *"-j"* ]]; then
