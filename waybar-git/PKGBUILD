@@ -1,83 +1,98 @@
 # Maintainer: Alexis Rouillard <contact@arouillard.fr>
 
-pkgname=waybar-git
-pkgver=r2429.09142fa3
-pkgrel=1
-pkgdesc='Highly customizable Wayland bar for Sway and Wlroots based compositors (GIT)'
-arch=('x86_64')
-url='https://github.com/Alexays/Waybar/'
+## options
+: ${_use_sodeps:=false}
+
+_pkgname="waybar"
+pkgname="$_pkgname-git"
+pkgver=0.12.0.r68.gf8f795a
+pkgrel=2
+pkgdesc="Highly customizable Wayland bar for Sway and Wlroots based compositors"
+url='https://github.com/Alexays/Waybar'
 license=('MIT')
-provides=('waybar')
-conflicts=('waybar')
+arch=('x86_64')
+
 depends=(
-  'gtkmm3'
-  'libjsoncpp.so'
-  'libsigc++'
   'fmt'
-  'jack' 'libjack.so'
-  'wayland'
-  'libdate-tz.so'
-  'libspdlog.so'
   'gtk-layer-shell'
-  'libupower-glib.so'
-  'upower'
+  'gtkmm3'
+  'jack'
+  'jsoncpp'
+  'libdbusmenu-gtk3'
   'libevdev'
   'libinput'
-  'libpulse'
-  'libnl'
-  'libappindicator-gtk3'
-  'libdbusmenu-gtk3'
   'libmpdclient'
-  'libsndio.so'
-  'libxkbcommon'
+  'libnl'
+  'libpulse'
+  'libsigc++'
   'libwireplumber'
+  'libxkbcommon'
   'playerctl'
+  'sndio'
+  'spdlog'
+  'upower'
+  'wayland'
 )
 makedepends=(
-  'git'
-  'cmake'
   'catch2'
+  'cmake'
+  'git'
+  'glib2-devel' # gdbus-codegen
   'meson'
-  'scdoc' # For generating manpages
-  'wayland-protocols'
   'python-setuptools'
-  'glib2-devel'
-)
-backup=(
-  etc/xdg/waybar/config
-  etc/xdg/waybar/style.css
+  'scdoc' # to generate manpages
+  'wayland-protocols'
 )
 optdepends=(
   'otf-font-awesome: Icons in the default configuration'
 )
 
-source=("${pkgname}::git+https://github.com/Alexays/Waybar")
+provides=("$_pkgname")
+conflicts=("$_pkgname")
 
-sha1sums=('SKIP')
+backup=(
+  'etc/xdg/waybar/config.jsonc'
+  'etc/xdg/waybar/style.css'
+)
+
+_pkgsrc="$_pkgname"
+source=("$_pkgsrc"::"git+$url.git")
+sha256sums=('SKIP')
 
 pkgver() {
-  cd "${srcdir}/${pkgname}"
-  printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
-}
-
-prepare() {
-  cd "${srcdir}/${pkgname}"
+  cd "$_pkgsrc"
+  git describe --long --tags --abbrev=7 --exclude='*[a-zA-Z][a-zA-Z]*' \
+    | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
 }
 
 build() {
-  cd "${srcdir}/${pkgname}"
-  rm -rf "${srcdir}/build"
-  meson --prefix=/usr \
-    --buildtype=plain \
-    --auto-features=enabled \
-    -Dexperimental=true \
-    -Dcava=disabled \
-    -Dtests=disabled \
-    "${srcdir}/build"
-  ninja -C "${srcdir}/build"
+  local _meson_args=(
+    -Dexperimental=true
+    -Dcava=disabled
+    -Dtests=disabled
+  )
+
+  arch-meson "${_meson_args[@]}" "$_pkgsrc" build
+  meson compile -C build
 }
 
 package() {
-  DESTDIR="$pkgdir" ninja -C "${srcdir}/build" install
-  install -Dm644 "${srcdir}/${pkgname}/LICENSE" -t "$pkgdir/usr/share/licenses/$pkgname/"
+  if [[ "${_use_sodeps::1}" == "t" ]]; then
+    eval "depends+=(
+      'libatkmm-1.6.so'
+      'libcairomm-1.0.so'
+      'libfmt.so'
+      'libgtk-3.so'
+      'libjack.so'
+      'libjsoncpp.so'
+      'libpipewire-0.3.so'
+      'libsndio.so'
+      'libspdlog.so'
+      'libudev.so'
+      'libupower-glib.so'
+    )"
+  fi
+
+  meson install -C build --destdir "$pkgdir"
+  install -Dm644 "$_pkgsrc/LICENSE" -t "$pkgdir/usr/share/licenses/$pkgname/"
 }
