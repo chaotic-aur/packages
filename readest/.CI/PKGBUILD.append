@@ -1,0 +1,14 @@
+# not needed for stable packages
+unset provides
+unset conflicts
+
+# duplicates standard hooks
+unset install
+
+# not needed
+depends=(${depends[@]//desktop-file-utils/})
+depends=(${depends[@]//openssl/})
+depends=(${depends[@]//gst-plugins-good/})
+
+# simplify, shorten
+pkgdesc="Modern, feature-rich ebook reader, rewrite of foliate"
