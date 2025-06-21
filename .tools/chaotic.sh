@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
-# deps: aria2 getoptions trash-cli
+# deps: aria2 getoptions shfmt trash-cli
 
-VERSION="0.0.5"
+VERSION="0.0.6"
 
 if [ "${EUID:-$(id -u)}" -eq 0 ]; then
-  ecbo "Do not run as root user."
+  echo "Do not run as root user."
   exit 1
 fi
 
@@ -389,7 +389,7 @@ chaotic_trigger_rebuild() {
 
     if grep -qs '^CI_REBUILD_TRIGGERS=' "$_path/.CI/config"; then
       if ! grep -qs '^CI_REBUILD_TRIGGERS=.*'"$_trigger" "$_path/.CI/config"; then
-        sed -E -e 's&(CI_REBUILD_TRIGGERS=\S+)$&\1:'"$_trigger" -i "$_path/.CI/config"
+        sed -E -e 's&(CI_REBUILD_TRIGGERS=\S+)$&\1:'"${_trigger}&" -i "$_path/.CI/config"
       fi
     else
       sed -E -e 's&(CI_PKGBUILD_SOURCE=.*)$&CI_REBUILD_TRIGGERS='"$_trigger"'\n\1&' -i "$_path/.CI/config"
@@ -547,3 +547,4 @@ else
   usage
   exit 1
 fi
+
