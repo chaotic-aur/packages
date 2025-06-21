@@ -17,9 +17,15 @@ fetch_old_artifacts() {
     local all_artifacts=()
     local has_next_page=true
     local cursor=""
-    local page_size=20
+    local page_size=5  # Very small page size to avoid timeouts
+    local retry_count=0
+    local max_retries=3
+    local delay=1
+    local page_count=0
+    local max_pages=200  # Increased limit for large projects
     
-    while [ "$has_next_page" = true ]; do
+    while [ "$has_next_page" = true ] && [ $page_count -lt $max_pages ]; do
+        page_count=$((page_count + 1))
         local query_variables
         if [ -z "$cursor" ]; then
             query_variables="{
@@ -37,17 +43,38 @@ fetch_old_artifacts() {
         
         local response
         local curl_exit_code
-        response="$(curl --silent --fail-with-body "https://$CI_SERVER_HOST/api/graphql" --header "PRIVATE-TOKEN: ${ACCESS_TOKEN}" \
-             --header "Content-Type: application/json" --request POST \
-             --data "{
-                \"operationName\": \"getJobArtifacts\",
-                \"query\": \"query getJobArtifacts(\\\$projectPath: ID!, \\\$first: Int, \\\$after: String) { project(fullPath: \\\$projectPath) { jobs(withArtifacts: true, first: \\\$first, after: \\\$after) { pageInfo { hasNextPage endCursor } nodes { finishedAt, artifacts { nodes { id } } } } } }\",
-                \"variables\": $query_variables
-            }" 2>&1)"
-        curl_exit_code=$?
+        
+        # Retry loop for handling timeouts
+        while [ $retry_count -le $max_retries ]; do
+            response="$(curl --silent --fail-with-body --max-time 30 "https://$CI_SERVER_HOST/api/graphql" --header "PRIVATE-TOKEN: ${ACCESS_TOKEN}" \
+                 --header "Content-Type: application/json" --request POST \
+                 --data "{
+                    \"operationName\": \"getJobArtifacts\",
+                    \"query\": \"query getJobArtifacts(\\\$projectPath: ID!, \\\$first: Int, \\\$after: String) { project(fullPath: \\\$projectPath) { jobs(withArtifacts: true, first: \\\$first, after: \\\$after) { pageInfo { hasNextPage endCursor } nodes { finishedAt, artifacts { nodes { id } } } } } }\",
+                    \"variables\": $query_variables
+                }" 2>&1)"
+            curl_exit_code=$?
+            
+            if [ $curl_exit_code -eq 0 ]; then
+                break
+            elif [ $curl_exit_code -eq 22 ] && echo "$response" | grep -q "Request timed out"; then
+                retry_count=$((retry_count + 1))
+                if [ $retry_count -le $max_retries ]; then
+                    UTIL_PRINT_WARNING "Request timed out, retrying in ${delay}s (attempt $retry_count/$max_retries)..."
+                    sleep $delay
+                    delay=$((delay * 2))  # Exponential backoff
+                    continue
+                fi
+            fi
+            break
+        done
+        
+        # Reset retry count for next request
+        retry_count=0
+        delay=1
         
         if [ $curl_exit_code -ne 0 ]; then
-            UTIL_PRINT_ERROR "Failed to fetch artifacts from GitLab API (curl exit code: $curl_exit_code)"
+            UTIL_PRINT_ERROR "Failed to fetch artifacts from GitLab API after $max_retries retries (curl exit code: $curl_exit_code)"
             if [ -n "$response" ]; then
                 UTIL_PRINT_ERROR "Response: $response"
             fi
@@ -86,10 +113,25 @@ fetch_old_artifacts() {
         
         # Progress indicator - send to stderr so it's not captured by command substitution
         printf "." >&2
+        
+        # Show progress every 20 pages
+        if [ $((page_count % 20)) -eq 0 ]; then
+            printf " [%d artifacts found so far]\n" "${#all_artifacts[@]}" >&2
+        fi
+        
+        # Small delay between requests to avoid overwhelming the API
+        if [ "$has_next_page" = "true" ]; then
+            sleep 0.5
+        fi
     done
     
     # Add newline after progress dots
     printf "\n" >&2
+    
+    # Warn if we hit the page limit
+    if [ $page_count -ge $max_pages ]; then
+        UTIL_PRINT_WARNING "Reached maximum page limit ($max_pages). Some artifacts may not have been processed."
+    fi
     
     if [ ${#all_artifacts[@]} -eq 0 ]; then
         return 1
@@ -135,8 +177,14 @@ if [ $curl_exit_code -eq 0 ]; then
     fi
     
     # Extract deletion count if available
-    deleted_count=$(echo "$delete_response" | jq -r '.data.bulkDestroyJobArtifacts.destroyedCount // "unknown"' 2>/dev/null)
-    UTIL_PRINT_INFO "Successfully deleted $deleted_count artifacts."
+    deleted_count=$(echo "$delete_response" | jq -r '.data.bulkDestroyJobArtifacts.destroyedCount // 0' 2>/dev/null)
+    if [ "$deleted_count" != "0" ] && [ "$deleted_count" != "null" ]; then
+        UTIL_PRINT_INFO "Successfully deleted $deleted_count artifacts."
+    else
+        # Fallback to the number we attempted to delete
+        attempted_count=$(echo "$ARTIFACTS" | jq length)
+        UTIL_PRINT_INFO "Successfully submitted deletion request for $attempted_count artifacts."
+    fi
 else
     UTIL_PRINT_ERROR "Failed to delete artifacts (curl exit code: $curl_exit_code)"
     if [ -n "$delete_response" ]; then
