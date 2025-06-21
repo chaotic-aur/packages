@@ -3,7 +3,7 @@
 _pkgname="waydroid"
 pkgname="$_pkgname-alt"
 pkgver=1.5.2
-pkgrel=1
+pkgrel=3
 pkgdesc="A container-based Android system - with desktop menu creation disabled"
 url="https://github.com/waydroid/waydroid"
 license=('GPL-3.0-or-later')
@@ -67,7 +67,49 @@ package() {
 
   python -m compileall -f -p / -s "$pkgdir" "$pkgdir/"
 
-  rm -rf "$pkgdir/usr/share/applications/"
+  # relocate icon
+  install -Dm644 "$pkgdir"/usr/share/icons/hicolor/512x512/apps/waydroid.png "$pkgdir/usr/share/pixmaps/$_pkgname.png"
   rm -rf "$pkgdir/usr/share/icons/"
+
+  # replace launcher
+  rm -rf "$pkgdir"/usr/share/applications/*.desktop
+  install -Dm644 /dev/stdin "$pkgdir/usr/share/applications/waydroid-show.desktop" << END
+[Desktop Entry]
+Type=Application
+Name=${_pkgname^} (show-full-ui)
+Exec=waydroid-show
+Comment=${pkgdesc% - *}
+Icon=$_pkgname
+Categories=X-WayDroid-App;Utility;
+X-Purism-FormFactor=Workstation;Mobile;
+END
+
+  # script to show gui and stop session after gui closed
+  install -Dm755 /dev/stdin "$pkgdir/usr/bin/waydroid-show" << END
+#!/usr/bin/env bash
+
+if [ "\${EUID:-\$(id -u)}" -eq 0 ]; then
+  echo "Do not run as root user."
+  exit 1
+fi
+
+waydroid show-full-ui &
+
+while true; do
+  sleep 10
+  _session=\$(waydroid status | grep -m1 '^Session:')
+  _container=\$(waydroid status | grep -m1 '^Container:')
+  if grep -q RUN <<< "\$_session"; then
+    if grep -q STOP <<< "\$_container"; then
+      waydroid session stop
+      break
+    fi
+  else
+    break
+  fi
+done
+END
+
+  # unwanted
   rm -rf "$pkgdir/usr/share/metainfo/"
 }
