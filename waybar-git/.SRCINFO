@@ -1,7 +1,7 @@
 pkgbase = waybar-git
 	pkgdesc = Highly customizable Wayland bar for Sway and Wlroots based compositors
-	pkgver = 0.12.0.r68.gf8f795a
-	pkgrel = 2
+	pkgver = 0.12.0.r218.g4730fc4
+	pkgrel = 1
 	url = https://github.com/Alexays/Waybar
 	arch = x86_64
 	license = MIT
@@ -14,6 +14,7 @@ pkgbase = waybar-git
 	makedepends = scdoc
 	makedepends = wayland-protocols
 	depends = fmt
+	depends = gpsd
 	depends = gtk-layer-shell
 	depends = gtkmm3
 	depends = jack
@@ -33,7 +34,7 @@ pkgbase = waybar-git
 	depends = upower
 	depends = wayland
 	optdepends = otf-font-awesome: Icons in the default configuration
-	provides = waybar
+	provides = waybar=0.12.0.r218
 	conflicts = waybar
 	backup = etc/xdg/waybar/config.jsonc
 	backup = etc/xdg/waybar/style.css

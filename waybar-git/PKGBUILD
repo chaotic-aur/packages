@@ -3,10 +3,12 @@
 ## options
 : ${_use_sodeps:=false}
 
+: ${_with_cava:=false}
+
 _pkgname="waybar"
 pkgname="$_pkgname-git"
-pkgver=0.12.0.r68.gf8f795a
-pkgrel=2
+pkgver=0.12.0.r218.g4730fc4
+pkgrel=1
 pkgdesc="Highly customizable Wayland bar for Sway and Wlroots based compositors"
 url='https://github.com/Alexays/Waybar'
 license=('MIT')
@@ -14,6 +16,7 @@ arch=('x86_64')
 
 depends=(
   'fmt'
+  'gpsd'
   'gtk-layer-shell'
   'gtkmm3'
   'jack'
@@ -47,7 +50,11 @@ optdepends=(
   'otf-font-awesome: Icons in the default configuration'
 )
 
-provides=("$_pkgname")
+if [[ "${_with_cava::1}" == "t" ]]; then
+  depends+=('libcava') # AUR
+fi
+
+provides=("$_pkgname=${pkgver%.g*}")
 conflicts=("$_pkgname")
 
 backup=(
@@ -68,12 +75,22 @@ pkgver() {
 build() {
   local _meson_args=(
     -Dexperimental=true
-    -Dcava=disabled
-    -Dtests=disabled
   )
+
+  if [ "${_with_cava::1}" != "t" ]; then
+    _meson_args+=(-Dcava=disabled)
+  fi
+
+  if ((!"${CHECKFUNC:-0}")); then
+    _meson_args+=(-Dtests=disabled)
+  fi
 
   arch-meson "${_meson_args[@]}" "$_pkgsrc" build
   meson compile -C build
+}
+
+check() {
+  meson test -C build
 }
 
 package() {
