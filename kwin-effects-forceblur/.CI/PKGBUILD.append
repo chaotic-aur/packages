@@ -1,0 +1,2 @@
+depends+=('kcmutils' 'libepoxy')
+makedepends+=('kwin-x11' 'kwin')
