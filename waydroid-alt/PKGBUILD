@@ -3,7 +3,7 @@
 _pkgname="waydroid"
 pkgname="$_pkgname-alt"
 pkgver=1.5.3
-pkgrel=1
+pkgrel=2
 pkgdesc="A container-based Android system - with desktop menu creation disabled"
 url="https://github.com/waydroid/waydroid"
 license=('GPL-3.0-or-later')
@@ -80,6 +80,7 @@ Name=${_pkgname^} (show-full-ui)
 Exec=waydroid-show
 Comment=${pkgdesc% - *}
 Icon=$_pkgname
+StartupWMClass=Waydroid
 Categories=X-WayDroid-App;Utility;
 X-Purism-FormFactor=Workstation;Mobile;
 END
@@ -90,6 +91,12 @@ END
 
 if [ "\${EUID:-\$(id -u)}" -eq 0 ]; then
   echo "Do not run as root user."
+  exit 1
+fi
+
+_count=\$(pgrep -f 'bash \S+waydroid-show' | wc -l)
+if ((_count >2)); then
+  echo "waydroid-show is already running."
   exit 1
 fi
 
