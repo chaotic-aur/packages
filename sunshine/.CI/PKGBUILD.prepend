@@ -1,1 +1,2 @@
-_build_cuda=true
+_use_cuda=true
+_use_sodeps=true
