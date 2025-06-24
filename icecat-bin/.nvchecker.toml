@@ -1,4 +1,4 @@
 [icecat-bin]
 source = "regex"
-url = "https://git.savannah.gnu.org/cgit/gnuzilla.git"
+url = "https://icecatbrowser.org/all_downloads.html"
 regex = '([0-9]+\.[0-9]+\.[0-9]+)'

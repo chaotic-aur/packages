@@ -8,11 +8,11 @@
 : ${_rh_pkgrel:="1.rh1.fc42"}
 
 : ${_cksum_fed=}
-: ${_cksum_icb=b3e4ce0c16f8313c1a63057e5acb96fd73232976dee444cf210c7b28aa4ca028}
+: ${_cksum_icb=21cac460174e02ecfbdfeaeae199ebb33c441be27be165669a778a2a49c2ce51}
 
 _pkgname="icecat"
 pkgname="$_pkgname-bin"
-pkgver=115.24.0
+pkgver=128.9.0
 pkgrel=1
 pkgdesc="GNU version of the Firefox ESR browser"
 license=('MPL-2.0')
@@ -62,7 +62,7 @@ _source_fedora() {
 _source_icb() {
   url="https://icecatbrowser.org"
 
-  _dl_url="https://icecatbrowser.org/assets/icecat/$pkgver"
+  _dl_url="https://icecatbrowser.org/assets/icecat/${pkgver%.0}"
   _dl_file="icecat-$pkgver.en-US.linux-$CARCH.tar.bz2"
 
   noextract=("$_dl_file")
@@ -122,7 +122,7 @@ END
 package() {
   depends=(
     'alsa-lib'
-    'dbus-glib'
+    #'dbus-glib'
     'gtk3'
   )
 
