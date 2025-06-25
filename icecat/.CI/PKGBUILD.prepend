@@ -1,0 +1,19 @@
+# icecat build is lengthy and prone to failure.
+# cache is needed to save progress,
+# with eventual success after multiple attempts.
+
+_cleanup_all_but_latest() (
+  shopt -s nullglob
+  files=("$@")
+  (( ${#files[@]} > 1 )) || return 0
+  printf "%s\n" "${files[@]}" | sort -rV | tail -n +2 | xargs rm -f --
+)
+
+(
+  cd "$SRCDEST"
+  _cleanup_all_but_latest firefox-*.tar.zst
+  _cleanup_all_but_latest gnuzilla-*.tar.gz
+  _cleanup_all_but_latest icecat-*.tar.zst
+  _cleanup_all_but_latest icecat-*_prof-jarlog
+  _cleanup_all_but_latest icecat-*_prof-merged.profdata
+)
