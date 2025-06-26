@@ -5,17 +5,13 @@
 : ${_build_pgo_reuse:=try}
 : ${_build_pgo_xvfb:=false}
 
-: ${_ver_clang=}
-: ${RUSTUP_TOOLCHAIN:=stable}
-
 : ${_pkgrel:=1}
-
 : ${_cksum:=6979d506d7dba9644e285151f57dc682b4bfa771ae926a4762774f9972405c18}
 
 _pkgname="librewolf"
 pkgname="${_pkgname}"
 pkgver=139.0.1
-pkgrel=1
+pkgrel=2
 pkgdesc="A web browser focused on privacy, security, and freedom"
 url="https://codeberg.org/librewolf/source"
 arch=('x86_64')
@@ -27,7 +23,6 @@ depends=(
   gtk3
   libevent
   libjpeg
-  libpulse
   libvpx.so
   libwebp.so
   libxss
@@ -40,12 +35,9 @@ depends=(
   zlib
 )
 makedepends=(
-  "clang${_ver_clang:-}"
-  "lld${_ver_clang:-}"
-  "llvm${_ver_clang:-}"
-  "wasi-compiler-rt${_ver_clang:-}"
   cargo
   cbindgen
+  clang
   diffutils
   dump_syms
   git
@@ -53,6 +45,8 @@ makedepends=(
   inetutils
   jack
   jq
+  lld
+  llvm
   mercurial
   mesa
   nasm
@@ -60,6 +54,7 @@ makedepends=(
   python
   python-setuptools
   unzip
+  wasi-compiler-rt
   wasi-libc
   wasi-libc++
   wasi-libc++abi
@@ -83,7 +78,7 @@ if [[ "${_build_pgo::1}" == "t" ]]; then
     makedepends+=(
       weston
       xorg-xwayland
-      wlheadless-run # aur/xwayland-run-git
+      wlheadless-run # aur/xwayland-run
     )
   fi
 fi
@@ -135,6 +130,7 @@ mk_add_options MOZ_OBJDIR=${PWD@Q}/obj
 ac_add_options --prefix=/usr
 ac_add_options --enable-release
 ac_add_options --enable-hardening
+ac_add_options --enable-optimize
 ac_add_options --enable-rust-simd
 ac_add_options --enable-wasm-simd
 ac_add_options --enable-linker=lld
@@ -168,8 +164,6 @@ ac_add_options --enable-eme=widevine
 ac_add_options --enable-jack
 ac_add_options --enable-jxl
 ac_add_options --enable-proxy-bypass-protection
-ac_add_options --enable-pulseaudio
-ac_add_options --enable-raw
 ac_add_options --enable-sandbox
 ac_add_options --enable-unverified-updates
 ac_add_options --enable-webrtc
@@ -192,18 +186,12 @@ ac_add_options --enable-strip
 ac_add_options --enable-install-strip
 export STRIP_FLAGS="--strip-debug --strip-unneeded"
 
-# Optimization
-ac_add_options --enable-optimize
-ac_add_options --enable-lto=cross,full
-ac_add_options OPT_LEVEL="2"
-ac_add_options RUSTC_OPT_LEVEL="2"
-
 # Other
-export AR=llvm-ar${_ver_clang:+-$_ver_clang}
-export CC=clang${_ver_clang:+-$_ver_clang}
-export CXX=clang++${_ver_clang:+-$_ver_clang}
-export NM=llvm-nm${_ver_clang:+-$_ver_clang}
-export RANLIB=llvm-ranlib${_ver_clang:+-$_ver_clang}
+export AR=llvm-ar
+export CC=clang
+export CXX=clang++
+export NM=llvm-nm
+export RANLIB=llvm-ranlib
 END
 
   local src
@@ -220,10 +208,6 @@ END
 
 build() (
   cd "$_pkgsrc"
-
-  export PATH="/usr/lib/llvm${_ver_clang:-}/bin:$PATH"
-  export LD_LIBRARY_PATH=/usr/lib/llvm${_ver_clang:-}/lib
-  export RUSTUP_TOOLCHAIN
 
   export XDG_RUNTIME_DIR="${XDG_RUNTIME_DIR:-$srcdir/xdg-runtime}"
   [ ! -d "$XDG_RUNTIME_DIR" ] && install -dm700 "${XDG_RUNTIME_DIR:?}"
@@ -332,6 +316,7 @@ END
     if [[ -s merged.profdata ]]; then
       stat -c "Profile data found (%s bytes)" merged.profdata
       cat >> .mozconfig - << END
+ac_add_options --enable-lto=cross,full
 ac_add_options --enable-profile-use=cross
 ac_add_options --with-pgo-profile-path=${PWD@Q}/merged.profdata
 END
@@ -428,12 +413,6 @@ END
 
   # Replace duplicate binary
   ln -srf "$pkgdir/usr/bin/$_pkgname" "$pkgdir/usr/lib/$_pkgname/$_pkgname-bin"
-
-  # Use system certificates
-  local nssckbi="$pkgdir/usr/lib/$_pkgname/libnssckbi.so"
-  if [[ -e "$nssckbi" ]]; then
-    ln -srf "$pkgdir/usr/lib/libnssckbi.so" "$nssckbi"
-  fi
 
   # desktop file
   install -Dm644 ../$_pkgname.desktop \

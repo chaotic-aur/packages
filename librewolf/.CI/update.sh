@@ -9,7 +9,7 @@ _TAG=$(
     grep -Pom1 '(?<=/releases/)[0-9\.-]+(?=")'
 )
 
-if [ "${_TAG:?}" != "${_OLD_VERSION:?}" ]; then
+if [[ "${_TAG:?}" > "${_OLD_VERSION:?}" ]]; then
   _RESPONSE=$(curl -Ssf "https://gitlab.com/api/v4/projects/32320088/packages/generic/librewolf-source/${_TAG}/librewolf-${_TAG}.source.tar.gz.sha256sum")
 
   _SUM=$(
