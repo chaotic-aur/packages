@@ -10,11 +10,10 @@
 : ${_ver_clang=}
 : ${RUSTUP_TOOLCHAIN:=stable}
 
-## basic info
 _pkgname=firefox-nightly
 pkgname="$_pkgname"
-pkgver=136.0a1+20250118.09+hd71625119
-pkgrel=1
+pkgver=142.0a1+20250625.03+hf768d263e
+pkgrel=2
 pkgdesc="Fast, Private & Safe Web Browser"
 url="https://www.mozilla.org/firefox/channel/#nightly"
 license=('MPL-2.0')
@@ -26,7 +25,6 @@ depends=(
   gtk3
   libevent
   libjpeg
-  libpulse
   libvpx.so
   libwebp.so
   libxss
@@ -37,24 +35,22 @@ depends=(
   zlib
 )
 makedepends=(
-  "clang${_ver_clang:-}"
-  "lld${_ver_clang:-}"
-  "llvm${_ver_clang:-}"
-  "wasi-compiler-rt${_ver_clang:-}"
   cargo
   cbindgen
+  clang
   diffutils
   dump_syms
   imake
-  inetutils
   jack
+  lld
+  llvm
   mercurial
   mesa
   nasm
   nodejs
   python
-  #python-setuptools
   unzip
+  wasi-compiler-rt
   wasi-libc
   wasi-libc++
   wasi-libc++abi
@@ -105,19 +101,19 @@ _get_version_info() {
 }
 
 _source_main() {
-  _repo="mozilla-central"
+  _repo="https://hg.mozilla.org/mozilla-central"
 
   source=(
-    "hg+https://hg.mozilla.org/$_repo#revision=$_revision"
+    "hg+$_repo#revision=$_revision"
+    'firefox-nightly.svg'
     'firefox-nightly.desktop'
-    'identity-icons-brand.svg'
-    'firefox-install-dir.patch'
+    '0001-Install-under-remoting-name.patch'
   )
   sha256sums=(
     'SKIP'
-    '022e9329fdb4af6267ad32a1398a9ae94a90cbb1e80dcf63e8b19e95490e7a35'
     'a9b8b4a0a1f4a7b4af77d5fc70c2686d624038909263c795ecc81e0aec7711e9'
-    'c80937969086550237b0e89a02330d438ce17c3764e43cc5d030cb21c2abce5f'
+    '4304902899987928ea51b7020fb1298b01fa77e327ef66ab00b061f767042b9f'
+    '883ca2fa723a7572269d18559d5b82412782ad63e5dd3820eeb0540e3fe34314'
   )
 
   validpgpkeys=(
@@ -152,6 +148,7 @@ mk_add_options MOZ_OBJDIR=${PWD@Q}/obj
 ac_add_options --prefix=/usr
 ac_add_options --enable-release
 ac_add_options --enable-hardening
+ac_add_options --enable-optimize
 ac_add_options --enable-rust-simd
 ac_add_options --enable-wasm-simd
 ac_add_options --enable-linker=lld
@@ -167,7 +164,7 @@ ac_add_options --with-distribution-id=org.archlinux
 ac_add_options --with-unsigned-addon-scopes=app,system
 ac_add_options --allow-addon-sideload
 export MOZILLA_OFFICIAL=1
-export MOZ_APP_REMOTINGNAME=${_pkgname//-/}
+export MOZ_APP_REMOTINGNAME=$_pkgname
 export NIGHTLY_BUILD=1
 export MOZ_REQUIRE_SIGNING=
 
@@ -190,8 +187,6 @@ ac_add_options --enable-eme=widevine
 ac_add_options --enable-jack
 ac_add_options --enable-jxl
 ac_add_options --enable-proxy-bypass-protection
-ac_add_options --enable-pulseaudio
-ac_add_options --enable-raw
 ac_add_options --enable-sandbox
 ac_add_options --enable-unverified-updates
 ac_add_options --enable-webrtc
@@ -205,18 +200,12 @@ mk_add_options MOZ_DATA_REPORTING=0
 mk_add_options MOZ_SERVICES_HEALTHREPORT=0
 mk_add_options MOZ_TELEMETRY_REPORTING=0
 
-# Optimization
-ac_add_options --enable-optimize
-ac_add_options --enable-lto=cross,full
-ac_add_options OPT_LEVEL="2"
-ac_add_options RUSTC_OPT_LEVEL="2"
-
 # Other
-export AR=llvm-ar${_ver_clang:+-$_ver_clang}
-export CC=clang${_ver_clang:+-$_ver_clang}
-export CXX=clang++${_ver_clang:+-$_ver_clang}
-export NM=llvm-nm${_ver_clang:+-$_ver_clang}
-export RANLIB=llvm-ranlib${_ver_clang:+-$_ver_clang}
+export AR=llvm-ar
+export CC=clang
+export CXX=clang++
+export NM=llvm-nm
+export RANLIB=llvm-ranlib
 END
 
   local src
@@ -244,10 +233,12 @@ build() (
   export MACH_BUILD_PYTHON_NATIVE_PACKAGE_SOURCE=pip
   export MOZBUILD_STATE_PATH="$srcdir/mozbuild"
   export MOZ_BUILD_DATE="$(date -u${SOURCE_DATE_EPOCH:+d @$SOURCE_DATE_EPOCH} +%Y%m%d%H%M%S)"
-  export MOZ_NOSPAM=1
-
   export MOZ_ENABLE_FULL_SYMBOLS=1
+  export MOZ_NOSPAM=1
   export MOZ_SOURCE_REPO="$_repo"
+
+  # Work around https://bugzilla.mozilla.org/show_bug.cgi?id=1969383
+  export RUST_MIN_STACK=16777216
 
   # malloc_usable_size is used in various parts of the codebase
   CFLAGS="${CFLAGS/_FORTIFY_SOURCE=3/_FORTIFY_SOURCE=2}"
@@ -269,20 +260,22 @@ build() (
     if [[ "${_build_pgo_reuse::1}" == "t" ]]; then
       if [[ -s "$_old_profdata" ]]; then
         echo "Restoring old profile data."
-        cp --reflink=auto -f "$_old_profdata" merged.profdata
+        cp -f "$_old_profdata" merged.profdata
       fi
 
       if [[ -s "$_old_jarlog" ]]; then
         echo "Restoring old jar log."
-        cp --reflink=auto -f "$_old_jarlog" jarlog
+        cp -f "$_old_jarlog" jarlog
       fi
     fi
 
     # Make new profile
     if [[ "${_build_pgo_reuse::1}" != "t" ]] || [[ ! -s merged.profdata ]]; then
       echo "Building instrumented browser..."
-      cat > .mozconfig ../mozconfig
-      echo >> .mozconfig "ac_add_options --enable-profile-generate=cross"
+      cat > .mozconfig ../mozconfig - << END
+ac_add_options --enable-profile-generate=cross
+export MOZ_ENABLE_FULL_SYMBOLS=1
+END
       ./mach build --priority normal
 
       echo "Profiling instrumented browser..."
@@ -292,15 +285,6 @@ build() (
         LLVM_PROFDATA=llvm-profdata
         JARLOG_FILE="${PWD@Q}/jarlog"
         LIBGL_ALWAYS_SOFTWARE=true
-        MOZ_DISABLE_CONTENT_SANDBOX=1
-        MOZ_DISABLE_GMP_SANDBOX=1
-        MOZ_DISABLE_GPU_SANDBOX=1
-        MOZ_DISABLE_RDD_SANDBOX=1
-        MOZ_DISABLE_SOCKET_PROCESS_SANDBOX=1
-        MOZ_DISABLE_UTILITY_SANDBOX=1
-        MOZ_DISABLE_VR_SANDBOX=1
-        GTK_A11Y=none
-        NO_AT_BRIDGE=1
         dbus-run-session
       )
 
@@ -328,12 +312,13 @@ build() (
     if [[ -s merged.profdata ]]; then
       stat -c "Profile data found (%s bytes)" merged.profdata
       cat >> .mozconfig - << END
+ac_add_options --enable-lto=cross,full
 ac_add_options --enable-profile-use=cross
 ac_add_options --with-pgo-profile-path=${PWD@Q}/merged.profdata
 END
 
       # save profdata for reuse
-      cp --reflink=auto -f merged.profdata "$_old_profdata"
+      cp -f merged.profdata "$_old_profdata"
     else
       echo "Profile data not found."
     fi
@@ -345,7 +330,7 @@ ac_add_options --with-pgo-jarlog=${PWD@Q}/jarlog
 END
 
       # save jarlog for reuse
-      cp --reflink=auto -f jarlog "$_old_jarlog"
+      cp -f jarlog "$_old_jarlog"
     else
       echo "Jar log not found."
     fi
@@ -418,7 +403,7 @@ END
     "$pkgdir/usr/share/icons/hicolor/384x384/apps/$_pkgname.png"
   install -Dvm644 browser/branding/$theme/content/about-logo.svg \
     "$pkgdir/usr/share/icons/hicolor/scalable/apps/$_pkgname.svg"
-  install -Dvm644 ../identity-icons-brand.svg \
+  install -Dvm644 ../$_pkgname.svg \
     "$pkgdir/usr/share/icons/hicolor/symbolic/apps/$_pkgname-symbolic.svg"
 
   install -Dvm644 ../$_pkgname.desktop \
@@ -432,13 +417,7 @@ END
 
   # Replace duplicate binary with wrapper
   # https://bugzilla.mozilla.org/show_bug.cgi?id=658850
-  ln -srfv "$pkgdir/usr/bin/$_pkgname" "$pkgdir/usr/lib/$_pkgname/${_pkgname%-*}-bin"
-
-  # Use system certificates
-  local nssckbi="$pkgdir/usr/lib/$_pkgname/libnssckbi.so"
-  if [[ -e $nssckbi ]]; then
-    ln -srfv "$pkgdir/usr/lib/libnssckbi.so" "$nssckbi"
-  fi
+  ln -sfv "$_pkgname" "$pkgdir/usr/lib/$_pkgname/${_pkgname%-*}-bin"
 
   local sprovider="$pkgdir/usr/share/gnome-shell/search-providers/$_pkgname.search-provider.ini"
   install -Dvm644 /dev/stdin "$sprovider" << END

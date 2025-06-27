@@ -1,15 +1,18 @@
 From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
-From: "Jan Alexander Steffens (heftig)" <jan.steffens@gmail.com>
-Date: Wed, 10 Feb 2021 00:56:05 +0100
-Subject: [PATCH] Install as firefox-nightly
+From: "Jan Alexander Steffens (heftig)" <heftig@archlinux.org>
+Date: Fri, 27 Sep 2024 02:01:02 +0200
+Subject: [PATCH] Install under remoting name
 
+Also reverts https://phabricator.services.mozilla.com/D210285, which
+causes conflicts between the channels.
 ---
  config/baseconfig.mk                  | 2 +-
  toolkit/mozapps/installer/packager.mk | 4 ++--
- 2 files changed, 3 insertions(+), 3 deletions(-)
+ xpcom/glue/XREAppData.cpp             | 3 +--
+ 3 files changed, 4 insertions(+), 5 deletions(-)
 
 diff --git a/config/baseconfig.mk b/config/baseconfig.mk
-index 8f3e920516c7..38b1fd6a69ad 100644
+index 428beef48e14..13a609c1cfe9 100644
 --- a/config/baseconfig.mk
 +++ b/config/baseconfig.mk
 @@ -2,7 +2,7 @@
@@ -17,22 +20,36 @@ index 8f3e920516c7..38b1fd6a69ad 100644
  # We thus use INCLUDED_AUTOCONF_MK to enable/disable some parts depending
  # whether a normal build is happening or whether the check is running.
 -installdir = $(libdir)/$(MOZ_APP_NAME)
-+installdir = $(libdir)/$(MOZ_APP_NAME)-nightly
++installdir = $(libdir)/$(MOZ_APP_REMOTINGNAME)
  ifeq (.,$(DEPTH))
  DIST = dist
  else
 diff --git a/toolkit/mozapps/installer/packager.mk b/toolkit/mozapps/installer/packager.mk
-index a4b87438f15a..474c8db637f9 100644
+index 188ce9875ae8..f7e3d0ca1935 100644
 --- a/toolkit/mozapps/installer/packager.mk
 +++ b/toolkit/mozapps/installer/packager.mk
-@@ -155,8 +155,8 @@ endif
+@@ -168,8 +168,8 @@ endif
  	(cd $(DIST)/$(MOZ_PKG_DIR) && $(TAR) --exclude=precomplete $(TAR_CREATE_FLAGS) - .) | \
  	  (cd $(DESTDIR)$(installdir) && tar -xf -)
  	$(NSINSTALL) -D $(DESTDIR)$(bindir)
 -	$(RM) -f $(DESTDIR)$(bindir)/$(MOZ_APP_NAME)
 -	ln -s $(installdir)/$(MOZ_APP_NAME) $(DESTDIR)$(bindir)
-+	$(RM) -f $(DESTDIR)$(bindir)/$(MOZ_APP_NAME)-nightly
-+	ln -s $(installdir)/$(MOZ_APP_NAME) $(DESTDIR)$(bindir)/$(MOZ_APP_NAME)-nightly
++	$(RM) -f $(DESTDIR)$(bindir)/$(MOZ_APP_REMOTINGNAME)
++	ln -s $(installdir)/$(MOZ_APP_NAME) $(DESTDIR)$(bindir)/$(MOZ_APP_REMOTINGNAME)
  
  upload:
  	$(PYTHON3) -u $(MOZILLA_DIR)/build/upload.py --base-path $(DIST) $(UPLOAD_FILES)
+diff --git a/xpcom/glue/XREAppData.cpp b/xpcom/glue/XREAppData.cpp
+index 7757e6c66366..82084d3b5f82 100644
+--- a/xpcom/glue/XREAppData.cpp
++++ b/xpcom/glue/XREAppData.cpp
+@@ -52,8 +52,7 @@ void XREAppData::GetDBusAppName(nsACString& aName) const {
+   if (env) {
+     aName.Assign(env);
+   } else {
+-    aName.Assign(name);
+-    ToLowerCase(aName);
++    aName.Assign(remotingName);
+     SanitizeNameForDBus(aName);
+   }
+ }
