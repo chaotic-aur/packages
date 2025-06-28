@@ -1,0 +1,29 @@
+# Maintainer: Daniel Bermond <dbermond@archlinux.org>
+
+pkgname=igsc-legacy
+pkgver=0.9.3
+pkgrel=1
+pkgdesc='Intel graphics system controller firmware update library (legacy platforms)'
+arch=('x86_64')
+url='https://github.com/intel/igsc/'
+license=('Apache-2.0')
+depends=('intel-metee' 'systemd-libs')
+makedepends=('cmake' 'systemd')
+provides=("igsc=${pkgver}")
+conflicts=('igsc')
+source=("https://github.com/intel/igsc/archive/V${pkgver}/${pkgname}-${pkgver}.tar.gz")
+sha256sums=('e657553ebe3dbb7196012bd9a234382f9053522c377651400268ce45b2a9e43a')
+
+build() {
+  cmake -B build -S "igsc-${pkgver}" \
+    -G 'Unix Makefiles' \
+    -DCMAKE_BUILD_TYPE:STRING='None' \
+    -DCMAKE_INSTALL_PREFIX:PATH='/usr' \
+    -DENABLE_WERROR:BOOL='OFF' \
+    -Wno-dev
+  cmake --build build
+}
+
+package() {
+  DESTDIR="$pkgdir" cmake --install build
+}

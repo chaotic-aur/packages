@@ -1,0 +1,33 @@
+# Maintainer: Daniel Bermond <dbermond@archlinux.org>
+
+pkgname=intel-gmmlib-legacy
+pkgver=22.5.0
+pkgrel=2
+pkgdesc='Intel Graphics Memory Management Library (legacy platforms)'
+arch=('x86_64')
+url='https://github.com/intel/gmmlib/'
+license=('MIT')
+depends=('gcc-libs' 'glibc')
+makedepends=('cmake')
+provides=("intel-gmmlib=${pkgver}" 'gmmlib')
+conflicts=('intel-gmmlib' 'gmmlib')
+replaces=('gmmlib')
+options=('!emptydirs')
+source=("https://github.com/intel/gmmlib/archive/intel-gmmlib-${pkgver}/${pkgname}-${pkgver}.tar.gz")
+sha256sums=('a3f37dff076503b833ce2dc5c0f9cf854ad706c7857fa6a70972716342efe523')
+
+build() {
+  cmake -B build -S "gmmlib-intel-gmmlib-${pkgver}" \
+    -G 'Unix Makefiles' \
+    -DCMAKE_BUILD_TYPE:STRING='Release' \
+    -DCMAKE_INSTALL_PREFIX:PATH='/usr' \
+    -DCMAKE_POLICY_VERSION_MINIMUM:STRING='3.5.0' \
+    -DRUN_TEST_SUITE:BOOL='ON' \
+    -Wno-dev
+  cmake --build build
+}
+
+package() {
+  DESTDIR="$pkgdir" cmake --install build
+  install -D -m644 "gmmlib-intel-gmmlib-${pkgver}/LICENSE.md" -t "${pkgdir}/usr/share/licenses/${pkgname}"
+}

@@ -1,0 +1,20 @@
+pkgbase = intel-gmmlib-legacy
+	pkgdesc = Intel Graphics Memory Management Library (legacy platforms)
+	pkgver = 22.5.0
+	pkgrel = 2
+	url = https://github.com/intel/gmmlib/
+	arch = x86_64
+	license = MIT
+	makedepends = cmake
+	depends = gcc-libs
+	depends = glibc
+	provides = intel-gmmlib=22.5.0
+	provides = gmmlib
+	conflicts = intel-gmmlib
+	conflicts = gmmlib
+	replaces = gmmlib
+	options = !emptydirs
+	source = https://github.com/intel/gmmlib/archive/intel-gmmlib-22.5.0/intel-gmmlib-legacy-22.5.0.tar.gz
+	sha256sums = a3f37dff076503b833ce2dc5c0f9cf854ad706c7857fa6a70972716342efe523
+
+pkgname = intel-gmmlib-legacy

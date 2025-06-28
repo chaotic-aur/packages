@@ -1,0 +1,15 @@
+# prevent "Committer identity unknown"
+eval _orig_"$(declare -f prepare | sed -E -e 's&\bEMAIL=\S+&&g')"
+prepare() (
+  export GIT_COMMITTER_NAME="example"
+  export GIT_COMMITTER_EMAIL="example@example.com"
+  _orig_prepare
+)
+
+# prevent "Committer identity unknown"
+eval _orig_"$(declare -f build | sed -E -e 's&\bEMAIL=\S+&&g')"
+build() (
+  export GIT_COMMITTER_NAME="example"
+  export GIT_COMMITTER_EMAIL="example@example.com"
+  _orig_build
+)
