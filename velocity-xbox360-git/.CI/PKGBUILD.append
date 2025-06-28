@@ -1,0 +1,11 @@
+unset options
+
+pkgdesc="An Xbox 360 file browser and editor"
+url="https://github.com/hetelek/Velocity"
+license=('GPL-3.0-or-later')
+
+eval _orig_"$(declare -f prepare)"
+prepare() {
+  sed -e '/Version=/d' -i velocity.desktop
+  _orig_prepare
+}
