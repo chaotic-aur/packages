@@ -1,0 +1,19 @@
+_pkgsrc="$pkgname"
+
+eval _orig_"$(declare -f prepare)"
+
+prepare() {
+  sed -E -e 's/\bdeny\b/warn/' -i "$_pkgsrc/libsurfer/src/lib.rs"
+  sed -E \
+    -e 's/^lto = .*$/codegen-units = 16/' \
+    -e 's/^(opt-level) = .*$/\1 = 2/' \
+    -i "$_pkgsrc/Cargo.toml"
+  (_orig_prepare)
+}
+
+eval _orig_"$(declare -f check)"
+
+check() {
+  export RUST_BACKTRACE=1
+  _orig_check
+}
