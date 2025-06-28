@@ -1,0 +1,4 @@
+pkgdesc="${pkgdesc%.}"
+arch=('x86_64')
+
+depends+=('glibc')
