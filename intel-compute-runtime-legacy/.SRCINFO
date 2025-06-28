@@ -1,0 +1,30 @@
+pkgbase = intel-compute-runtime-legacy
+	pkgdesc = Intel Graphics Compute Runtime for oneAPI Level Zero and OpenCL Driver (legacy platforms)
+	pkgver = 24.35.30872.22
+	pkgrel = 4
+	url = https://github.com/intel/compute-runtime/
+	arch = x86_64
+	license = MIT
+	makedepends = cmake
+	makedepends = igsc-legacy
+	makedepends = libva
+	makedepends = level-zero-headers-legacy
+	depends = gcc-libs
+	depends = glibc
+	depends = intel-gmmlib-legacy
+	depends = intel-graphics-compiler-legacy
+	optdepends = libva: for cl_intel_va_api_media_sharing
+	optdepends = libdrm: for cl_intel_va_api_media_sharing
+	provides = intel-compute-runtime=24.35.30872.22
+	provides = opencl-driver
+	provides = level-zero-driver
+	conflicts = intel-compute-runtime
+	options = !lto
+	source = https://github.com/intel/compute-runtime/archive/24.35.30872.22/intel-compute-runtime-legacy-24.35.30872.22.tar.gz
+	source = 010-intel-compute-runtime-disable-werror.patch
+	source = 020-intel-compute-runtime-gcc15-fix.patch
+	sha256sums = 924781eba2268aaf3f2f5286006e219f8adff9b985a327ccf6acc39b7a00acc5
+	sha256sums = b98774fd019281d3a9bd6109d9fbaaae866e2ae4581397b582cdf454a29433e5
+	sha256sums = c0b9270af11ae418c98c54b91ee932de2040935a6649a8d4fcb5ff8c38b1f4ef
+
+pkgname = intel-compute-runtime-legacy
