@@ -1,3 +1,6 @@
+depends+=('java-runtime')
+makedepends+=('java-environment')
+
 _pkgsrc="code"
 
 pkgver() {
