@@ -1,8 +1,10 @@
-# Maintainer: aur.chaotic.cx
+# Maintainer:
+# Contributor: Nissar Chababy <funilrys at outlook dot com>
+# Contributor: Jeroen Bollen <jbinero at gmail dot comau>
 
 _pkgname="ckbcomp"
 pkgname="$_pkgname"
-pkgver=1.233
+pkgver=1.239
 pkgrel=1
 pkgdesc="Compile a XKB keyboard description to a keymap suitable for loadkeys or kbdcontrol"
 url="https://salsa.debian.org/installer-team/console-setup"
@@ -12,19 +14,8 @@ arch=('any')
 makedepends=('git')
 
 _pkgsrc="console-setup"
-source=("$_pkgsrc"::"git+$url.git")
-sha256sums=('SKIP')
-
-prepare() {
-  cd "$_pkgsrc"
-  _tag=$(git tag | grep -Ev '[A-Za-z]{2}' | sort -rV | head -1)
-  git -c advice.detachedHead=false checkout -f "$_tag"
-}
-
-pkgver() {
-  cd "$_pkgsrc"
-  git describe --tags
-}
+source=("$_pkgsrc"::"git+$url.git#commit=$pkgver")
+sha256sums=('eaa3804a3f3cc0bb826b6f457fd16988f2c914d047437245d7dbef5c87513f8e')
 
 package() {
   depends+=('perl')
