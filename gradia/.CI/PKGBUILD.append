@@ -1,0 +1,5 @@
+pkgdesc="Screenshot annotation tool"
+
+# useless to validate desktop, schema, and appstream
+unset checkdepends
+unset -f check
