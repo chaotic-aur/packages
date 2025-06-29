@@ -1,7 +1,12 @@
-_pkgsrc="nbtworkbench"
-
-pkgver() {
-  cd "$_pkgsrc"
-  git describe --long --tags --abbrev=7 --exclude='*[a-zA-Z][a-zA-Z]*' \
-    | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
+eval _orig_"$(declare -f prepare)"
+prepare() {
+  (
+    # switch to last working commit
+    cd "$_pkgsrc"
+    local _c1=$(git rev-parse HEAD)
+    if [[ "$_c1" == "1fabcd734d20cb0ff3761b7affe6abbab4fe92d8" ]]; then
+      git -c advice.detachedHead=false checkout -f 113a590b6d0285703518bccdf8ae207670251f3a
+    fi
+  )
+  _orig_prepare
 }
