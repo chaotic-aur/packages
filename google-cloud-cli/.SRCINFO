@@ -1,32 +1,56 @@
 pkgbase = google-cloud-cli
-	pkgdesc = A set of command-line tools for the Google Cloud Platform. Includes gcloud (with beta and alpha commands), gsutil, and bq.
+	pkgdesc = A core set of command-line tools for the Google Cloud Platform. Includes only gcloud core (with beta and alpha commands), gcloud-crc32c and man pages
 	pkgver = 528.0.0
-	pkgrel = 1
+	pkgrel = 3
 	url = https://cloud.google.com/cli/
-	install = google-cloud-cli.install
 	arch = x86_64
 	arch = aarch64
 	license = Apache-2.0
-	depends = python
-	optdepends = python-crcmod: [gsutil] verify the integrity of GCS object contents
-	provides = google-cloud-sdk
-	conflicts = google-cloud-sdk
-	replaces = google-cloud-sdk
+	makedepends = jq
+	depends = python>=3.9
 	options = !strip
 	options = staticlibs
 	options = !zipman
 	options = !debug
 	options = !lto
-	backup = etc/profile.d/google-cloud-cli.sh
 	source = google-cloud-cli.sh
 	source = google-cloud-cli.install
-	source = 0003-add-compdef-to-zsh-completion.patch
 	sha256sums = 6e88b535c020b0f28c986fdb66918f8c07e4d337e813b77ec2068068f03457f8
-	sha256sums = fdba342aecce102b85fd96f21205d7ee2f8043b4bb56cabf363375785e3d423c
-	sha256sums = c19dbe916e6fd18d9b17b3309ee60c5d389035c5520822d2c14c045d8b853924
+	sha256sums = 6ac95bcc5afa06e9c1e3bd402ecbe1a2092b963d70a8f314215dd4be27e16fc6
 	source_x86_64 = google-cloud-cli-528.0.0.orig_x86_64.tar.gz::https://dl.google.com/dl/cloudsdk/release/downloads/for_packagers/linux/google-cloud-cli_528.0.0.orig_amd64.tar.gz
 	sha256sums_x86_64 = 0eb967e6d906af8aee517561104899de81520a54d37421c715e94b13a176d3dc
 	source_aarch64 = google-cloud-cli-528.0.0.orig_aarch64.tar.gz::https://dl.google.com/dl/cloudsdk/release/downloads/for_packagers/linux/google-cloud-cli_528.0.0.orig_aarch64.tar.gz
 	sha256sums_aarch64 = 23d31bc8d0723fc9564b42e5a233dafa2462cca3c21a23834c541a58f2835e04
 
 pkgname = google-cloud-cli
+	install = google-cloud-cli.install
+	optdepends = google-cloud-cli-bq: BigQuery Command Line Tool
+	optdepends = google-cloud-cli-gsutil: Cloud Storage Command Line Tool. Not the recommended CLI for Cloud Storage
+	provides = google-cloud-sdk
+	provides = google-cloud-cli-alpha
+	provides = google-cloud-cli-beta
+	conflicts = google-cloud-sdk
+	replaces = google-cloud-sdk
+	backup = etc/profile.d/google-cloud-cli.sh
+
+pkgname = google-cloud-cli-bq
+	pkgdesc = BigQuery Command Line Tool
+	provides = google-cloud-cli-bq
+
+pkgname = google-cloud-cli-gsutil
+	pkgdesc = Cloud Storage Command Line Tool: gsutil is not the recommended CLI for Cloud Storage
+	depends = python>=3.9
+	depends = google-cloud-cli-bundled-python3-unix
+	optdepends = python-crcmod: verify the integrity of GCS object contents
+	provides = google-cloud-cli-gsutil
+	provides = gsutil
+	conflicts = gsutil
+	backup = etc/profile.d/google-cloud-cli-gsutil.sh
+
+pkgname = google-cloud-cli-bundled-python3-unix
+	pkgdesc = gcloud Bundled Python 3.12
+
+pkgname = google-cloud-cli-component-gke-gcloud-auth-plugin
+	pkgdesc = gke-gcloud-auth-plugin
+	provides = google-cloud-cli-gke-gcloud-auth-plugin
+	conflicts = google-cloud-cli-gke-gcloud-auth-plugin
