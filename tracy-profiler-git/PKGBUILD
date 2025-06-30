@@ -1,0 +1,137 @@
+# Maintainer: aur.chaotic.cx
+
+: ${_commit=}
+
+_pkgname="tracy-profiler"
+pkgname="$_pkgname-git"
+pkgver=0.12.2.r4.g7388a47
+pkgrel=1
+pkgdesc="Real-time, nanosecond resolution frame profiler"
+url="https://github.com/wolfpld/tracy"
+license=('BSD-3-Clause')
+arch=('x86_64')
+
+depends=(
+  'capstone'
+  'dbus'
+  'freetype2'
+  'glfw'
+  'libglvnd'
+  'libxkbcommon'
+  'wayland'
+)
+makedepends=(
+  'git'
+  'cmake'
+  'ninja'
+  'wayland-protocols'
+)
+optdepends=(
+  'xdg-desktop-portal: file dialogs'
+)
+
+options=('!lto')
+
+provides=('tracy' "$_pkgname")
+conflicts=('tracy' "$_pkgname")
+
+_pkgsrc="$_pkgname"
+source=("$_pkgsrc"::"git+$url.git${_commit:+#commit=$_commit}")
+sha256sums=('SKIP')
+
+prepare() {
+  ln -sf profiler "$_pkgsrc"/profiler_x11
+
+  # ensure march=native disabled
+  sed -e '/add_compile_options.*=native/d' -i "$_pkgsrc/cmake/config.cmake"
+
+  # fix for capstone
+  sed -E \
+    -e 's&\b(detail)\.aarch64\b\b&\1.arm64&g' \
+    -e 's&\bAARCH64_OP_IMM\b&ARM64_OP_IMM&g' \
+    -e 's&\bAARCH64_OP_MEM\b&ARM64_OP_MEM&g' \
+    -e 's&\bAARCH64_OP_REG\b&ARM64_OP_REG&g' \
+    -e 's&\bCS_ARCH_AARCH64\b&CS_ARCH_ARM64&g' \
+    -i "$_pkgsrc"/server/TracyWorker.cpp \
+    "$_pkgsrc"/profiler/src/profiler/TracySourceView.cpp
+}
+
+pkgver() {
+  cd "$_pkgsrc"
+  git describe --long --tags --abbrev=7 --exclude='*[a-zA-Z][a-zA-Z]*' \
+    | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
+}
+
+build() {
+  export CFLAGS+=' -DNDEBUG'
+  export CXXFLAGS+=' -DNDEBUG'
+
+  local _cmake_base=(
+    -G Ninja
+    -DCMAKE_BUILD_TYPE=None
+    -DCMAKE_INSTALL_PREFIX='/usr'
+    -Wno-dev
+  )
+
+  local _modules=(
+    "" # client library
+    capture
+    csvexport
+    import
+    profiler
+    profiler_x11
+    update
+  )
+
+  local i
+  for i in "${_modules[@]}"; do
+    printf "\n### Building %s...\n" "$i"
+    local _cmake_options=(
+      -B "build${i:+_$i}"
+      -S "$_pkgsrc${i:+/$i}"
+      ${_cmake_base[@]}
+    )
+    if [[ "$i" =~ x11 ]]; then
+      _cmake_options+=(-DLEGACY=ON)
+    fi
+    if [ -n "$i" ]; then
+      _cmake_options+=(
+        -DNO_ISA_EXTENSIONS=ON # don't use march=native
+        -DDOWNLOAD_CAPSTONE=OFF
+        -DBUILD_TESTING=$CHECKFUNC
+      )
+    fi
+
+    cmake "${_cmake_options[@]}"
+    cmake --build "build${i:+_$i}"
+  done
+}
+
+package() {
+  install -Dm644 build/libTracyClient.a $pkgdir/usr/lib/libTracyClient.a
+
+  install -Dm755 build_capture/tracy-capture -t "$pkgdir/usr/bin/"
+  install -Dm755 build_csvexport/tracy-csvexport -t "$pkgdir/usr/bin/"
+  install -Dm755 build_import/tracy-import-chrome -t "$pkgdir/usr/bin/"
+  install -Dm755 build_import/tracy-import-fuchsia -t "$pkgdir/usr/bin/"
+  install -Dm755 build_profiler/tracy-profiler -t "$pkgdir/usr/bin/"
+  install -Dm755 build_profiler_x11/tracy-profiler "$pkgdir/usr/bin/tracy-profiler-x11"
+  install -Dm755 build_update/tracy-update -t "$pkgdir/usr/bin/"
+
+  ln -sf tracy-profiler "$pkgdir/usr/bin/tracy"
+  ln -sf tracy-profiler-x11 "$pkgdir/usr/bin/tracy-x11"
+
+  mkdir -pm755 "$pkgdir"/usr/include/Tracy/client
+  mkdir -pm755 "$pkgdir"/usr/include/Tracy/common
+  mkdir -pm755 "$pkgdir"/usr/include/Tracy/tracy
+
+  cp -p "$_pkgsrc"/public/client/*.{h,hpp} "$pkgdir"/usr/include/Tracy/client/
+  cp -p "$_pkgsrc"/public/common/*.{h,hpp} "$pkgdir"/usr/include/Tracy/common/
+  cp -p "$_pkgsrc"/public/tracy/*.{h,hpp} "$pkgdir"/usr/include/Tracy/tracy/
+
+  install -Dm644 "$_pkgsrc"/icon/icon.svg "$pkgdir/usr/share/pixmaps/tracy.svg"
+  install -Dm644 "$_pkgsrc"/extra/desktop/tracy.desktop -t "$pkgdir/usr/share/applications/"
+  install -Dm644 "$_pkgsrc"/extra/desktop/application-tracy.xml -t "$pkgdir/usr/share/mime/packages/"
+
+  install -Dm644 "$_pkgsrc"/LICENSE -t "$pkgdir/usr/share/licenses/$pkgname/"
+}
