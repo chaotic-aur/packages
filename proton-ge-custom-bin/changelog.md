@@ -1,3 +1,13 @@
+## GE-Proton10-7
+
+- Re-added the PROTON_PREFER_SDL option. When this envvar is set steam input and hidraw are disabled so that SDL takes priority over controller support.
+
+## GE-Proton10-6
+
+The wine-wayland patches needed rebasing and needed force pushing due to a problem with a few commits in them noted by the author that can cause some crashing, making GE-Proton10-5 version invalid.
+
+The 10-5 release was reverted due to the force push per the request of the wine-wayland patch set author, thus the version bumped to 10-6. It's one of those view weird instances where you will see a version missing in the releases. (This also happened in the past with media foundation stuff that Valve yelled at me about). Oopsie.
+
 ## GE-Proton10-5
 
 Nothing too major here, mostly just an update to upstream's code since it's been about 30 days. 
