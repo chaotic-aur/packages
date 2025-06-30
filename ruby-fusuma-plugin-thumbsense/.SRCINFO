@@ -1,0 +1,17 @@
+pkgbase = ruby-fusuma-plugin-thumbsense
+	pkgdesc = Remapper from key to click only while tapping the touchpad.
+	pkgver = 0.9.0
+	pkgrel = 1
+	url = https://github.com/iberianpig/fusuma-plugin-thumbsense
+	arch = any
+	license = MIT
+	depends = ruby
+	depends = ruby-fusuma
+	depends = ruby-fusuma-plugin-remap
+	depends = ruby-fusuma-plugin-keypress
+	noextract = fusuma-plugin-thumbsense-0.9.0.gem
+	options = !emptydirs
+	source = https://rubygems.org/downloads/fusuma-plugin-thumbsense-0.9.0.gem
+	sha1sums = 7ee86473304e578a36f7e93c5edf99f63513df2f
+
+pkgname = ruby-fusuma-plugin-thumbsense

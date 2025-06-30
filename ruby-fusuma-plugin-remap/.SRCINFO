@@ -1,0 +1,17 @@
+pkgbase = ruby-fusuma-plugin-remap
+	pkgdesc = A Fusuma plugin for remapping keyboard events into virtual input devices.
+	pkgver = 0.9.0
+	pkgrel = 1
+	url = https://github.com/iberianpig/fusuma-plugin-remap
+	arch = any
+	license = MIT
+	depends = ruby
+	depends = ruby-fusuma
+	depends = ruby-msgpack
+	depends = ruby-ruinput
+	noextract = fusuma-plugin-remap-0.9.0.gem
+	options = !emptydirs
+	source = https://rubygems.org/downloads/fusuma-plugin-remap-0.9.0.gem
+	sha1sums = bde4a35cced58dcd58e3cf0480f72e827a27e254
+
+pkgname = ruby-fusuma-plugin-remap
