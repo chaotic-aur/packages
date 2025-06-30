@@ -1,0 +1,6 @@
+eval _orig_"$(declare -f package)"
+
+package() {
+  replaces=('sonyheadphonesclient-bin')
+  _orig_package
+}
