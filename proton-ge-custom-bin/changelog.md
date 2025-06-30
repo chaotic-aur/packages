@@ -1,3 +1,15 @@
+## GE-Proton10-5
+
+Nothing too major here, mostly just an update to upstream's code since it's been about 30 days. 
+
+- Wine-wayland patches have been updated/rebased, should fix some nvidia crashes, and no longer need this mesa patch: https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/34918
+- patches added to help with Wuthering Waves.
+- protonfixes updated
+- protonfix added for Artificial Academy 2
+- protonfix added for Persona 4 Arena Ultimax
+- protonfix added for Anno 1800 from Ubisoft Store
+- protonfix added for Anno 1800
+
 ## GE-Proton10-4
 
 Proton:
