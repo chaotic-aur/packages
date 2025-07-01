@@ -1,0 +1,4 @@
+unset epoch
+
+url="https://github.com/CountMurphy/QTalarm"
+license=('GPL-3.0-only')
