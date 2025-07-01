@@ -1,0 +1,22 @@
+pkgbase = dnslookup-git
+	pkgdesc = Simple command line utility to make DNS lookups to the specified server
+	pkgver = 1.11.1.r1.g9b93ddd
+	pkgrel = 1
+	epoch = 1
+	url = https://github.com/ameshkov/dnslookup
+	arch = i686
+	arch = x86_64
+	arch = aarch64
+	arch = armv7h
+	arch = mips
+	arch = mips64
+	license = MIT
+	makedepends = go
+	makedepends = git
+	depends = glibc
+	provides = dnslookup
+	conflicts = dnslookup
+	source = dnslookup-git::git+https://github.com/ameshkov/dnslookup
+	sha256sums = SKIP
+
+pkgname = dnslookup-git
