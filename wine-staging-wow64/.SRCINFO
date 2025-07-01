@@ -1,8 +1,0 @@
-pkgbase = wine-staging-wow64
-	pkgdesc = metapackage - migrate to extra/wine-staging
-	pkgver = 10.9
-	pkgrel = 3
-	arch = any
-
-pkgname = wine-staging-wow64
-	depends = wine-staging>=10.9
