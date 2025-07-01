@@ -1,0 +1,109 @@
+# Maintainer: aur.chaotic.cx
+
+_pkgname="lenovolegionlinux"
+pkgbase="$_pkgname-git"
+pkgver=0.0.20.r12.g6330a09
+pkgrel=1
+pkgdesc="Driver and tools for Lenovo Legion laptops to control fan, power, and other hardware"
+url="https://github.com/johnfanv2/LenovoLegionLinux"
+license=('GPL-2.0-only')
+arch=("x86_64")
+
+depends=(
+  'libinih'
+  'python'
+)
+makedepends=(
+  'git'
+  'python-build'
+  'python-installer'
+  'python-setuptools'
+  'python-wheel'
+)
+
+_pkgsrc="$_pkgname"
+source=("$_pkgsrc"::"git+$url.git")
+sha256sums=('SKIP')
+
+pkgver() {
+  cd "$_pkgsrc"
+  git describe --long --tags --abbrev=7 --exclude='*[a-zA-Z][a-zA-Z]*' \
+    | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
+}
+
+build() {
+  # update version strings
+  sed -E -e "s/(version) = _VERSION/\1 = ${pkgver%.r*}/g" -i "$_pkgsrc/python/legion_linux/setup.cfg"
+  sed -E -e 's&DKMS_VERSION&'"${pkgver}&" -i "$_pkgsrc/kernel_module/dkms.conf"
+
+  # python module
+  cd "$_pkgsrc/python/legion_linux"
+  python -m build --wheel --no-isolation
+
+  # legiond daemon
+  cd "$srcdir/$_pkgsrc/extra/service/legiond"
+  make
+}
+
+_package() {
+  pkgdesc='Tools for Lenovo Legion laptops to control fan, power, and other hardware'
+
+  depends+=(
+    'python-argcomplete'
+    'python-yaml'
+    'python-pyqt6'
+    'python-pillow'
+    'python-darkdetect'
+  )
+  optdepends=(
+    "lenovolegionlinux-dkms-git: DKMS module"
+  )
+
+  provides=("$_pkgname")
+  conflicts=("$_pkgname")
+
+  # python module
+  cd "$_pkgsrc/python/legion_linux"
+  python -m installer --destdir="$pkgdir" dist/*.whl
+
+  # systemd service
+  cd "$srcdir/$_pkgsrc/extra"
+  install -Dm664 service/*.{service,timer} -t "$pkgdir/usr/lib/systemd/system/"
+
+  # legiond daemon
+  install -Dm775 service/legiond/legiond -t "${pkgdir}/usr/bin/"
+  install -Dm775 service/legiond/legiond-ctl -t "${pkgdir}/usr/bin/"
+}
+
+_package_dkms() {
+  arch=('any')
+  pkgdesc='Kernel module for Lenovo Legion laptops to control fan, power, and other hardware'
+  depends=('bash' 'dkms')
+
+  provides=("$_pkgname-dkms")
+  conflicts=("$_pkgname-dkms")
+
+  local _files=(
+    Makefile
+    dkms.conf
+    issue-warning.sh
+    legion-laptop-unused-snippets.c
+    legion-laptop.c
+  )
+
+  local i
+  for i in "${_files[@]}"; do
+    install -Dm644 "$_pkgsrc/kernel_module/$i" -t "$pkgdir/usr/src/$_pkgname-$pkgver/"
+  done
+}
+
+pkgname=(
+  "$_pkgname-git"
+  "$_pkgname-dkms-git"
+)
+
+eval "package_${_pkgname}-git() {
+  $(declare -f _package | tail -n +3)"
+
+eval "package_${_pkgname}-dkms-git() {
+  $(declare -f _package_dkms | tail -n +3)"
