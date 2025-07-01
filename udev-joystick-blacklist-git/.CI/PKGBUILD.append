@@ -1,0 +1,12 @@
+license=('LicenseRef-PublicDomain')
+
+eval "package() {
+  install -Dm644 /dev/stdin \"\$pkgdir/usr/share/licenses/\$pkgname/LICENSE\" << END
+Public domain. Feel free to use this project for whatever purpose you want.
+
+Also, feel free to contribute to the project. And, if you have the knowledge and the skills, consider fixing this bug in the Linux kernel itself.
+
+There is no warranty implied by using this project. Use at your own risk.
+END
+
+  $(declare -f package | tail -n +3)"
