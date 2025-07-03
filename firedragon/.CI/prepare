@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+# disable lto
+sed -e '/ac_add_options --enable-lto/d' -i PKGBUILD
