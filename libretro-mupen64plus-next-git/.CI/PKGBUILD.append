@@ -1,0 +1,5 @@
+_pkgsrc="$_pkgname"
+
+prepare () {
+  sed '1i #include <cstdint>' -i "$_pkgsrc/GLideN64/src/GLideNHQ/TxHiResLoader.h"
+}
