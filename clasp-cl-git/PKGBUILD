@@ -1,14 +1,14 @@
 # Maintainer: Tarn W. Burton <twburton@gmail.com>
 pkgname=clasp-cl-git
-pkgver=2.7.0.r1.g2c780f035
+pkgver=2.7.0.r233.g9922fd978
 pkgrel=1
 pkgdesc="Bringing Common Lisp and C++ Together"
 arch=('x86_64')
 url="https://github.com/clasp-developers/clasp"
 license=('LGPL')
 options+=(!strip)
-depends=('boost' 'expat' 'fmt' 'gmp' 'libbsd' 'libedit' 'clang'
-  'libelf' 'libffi' 'llvm' 'ncurses' 'zlib')
+depends=('boost' 'expat' 'fmt' 'gmp' 'libbsd' 'libedit' 'clang19'
+  'libelf' 'libffi' 'llvm19' 'ncurses' 'zlib')
 makedepends=('git' 'sbcl' 'ninja' 'pkg-config')
 provides=('cclasp-boehm' 'common-lisp' 'clasp-cl')
 conflicts=('cando' 'cando-git' 'clasp-cl')
