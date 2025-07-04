@@ -1,7 +1,4 @@
 #!/usr/bin/env sh
 
-# disable system libraries
-sed -e '/ac_add_options --with-system/d' -i PKGBUILD
-
 # disable lto
 sed -e '/ac_add_options --enable-lto/d' -i PKGBUILD
