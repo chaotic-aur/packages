@@ -1,7 +1,7 @@
 pkgbase = libopensles-standalone-git
 	pkgdesc = A lightly patched version of Google's libOpenSLES implementation
 	pkgver = r280.605a83f
-	pkgrel = 1
+	pkgrel = 2
 	url = https://gitlab.com/android_translation_layer/libopensles-standalone
 	arch = x86_64
 	arch = aarch64
