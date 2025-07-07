@@ -34,5 +34,11 @@ pkgver() {
 
 package() {
   install -Dm755 "$_pkgsrc/app2unit" -t "$pkgdir/usr/bin/"
+  ln -sfvn "app2unit" "$pkgdir/usr/bin/app2unit-open"
+  ln -sfvn "app2unit" "$pkgdir/usr/bin/app2unit-open-scope"
+  ln -sfvn "app2unit" "$pkgdir/usr/bin/app2unit-open-service"
+  ln -sfvn "app2unit" "$pkgdir/usr/bin/app2unit-term"
+  ln -sfvn "app2unit" "$pkgdir/usr/bin/app2unit-term-scope"
+  ln -sfvn "app2unit" "$pkgdir/usr/bin/app2unit-term-service"
   install -Dm644 "$_pkgsrc/README.md" -t "$pkgdir/usr/share/doc/$_pkgname/"
 }
