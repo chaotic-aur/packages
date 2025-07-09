@@ -1,93 +1,53 @@
 # Maintainer:
 # Contributor: Figue <ffigue at gmail dot com>
 
-## options
-: ${_use_upstream:=icb} # fedora or icb
-
 : ${_install_path:=usr/lib}
-: ${_rh_pkgrel:="1.rh1.fc42"}
-
-: ${_cksum_fed=}
-: ${_cksum_icb=21cac460174e02ecfbdfeaeae199ebb33c441be27be165669a778a2a49c2ce51}
 
 _pkgname="icecat"
 pkgname="$_pkgname-bin"
-pkgver=128.9.0
+pkgver=128.12.0
 pkgrel=1
 pkgdesc="GNU version of the Firefox ESR browser"
+url="https://icecatbrowser.org"
 license=('MPL-2.0')
 arch=('x86_64')
 
-provides=("icecat=$pkgver")
-conflicts=('icecat')
+provides=("$_pkgname")
+conflicts=("$_pkgname")
 
 options=('!strip' '!debug')
 
-_source_fedora() {
-  url="https://koji.fedoraproject.org/koji/packageinfo?packageID=19055"
+_dl_url="https://icecatbrowser.org/assets/icecat/$pkgver"
+_dl_file="icecat-$pkgver.en-US.linux-$CARCH.tar.bz2"
 
-  _dl_url="https://kojipkgs.fedoraproject.org/packages/icecat/$pkgver/$_rh_pkgrel/$CARCH"
-  _dl_file="icecat-$pkgver-$_rh_pkgrel.$CARCH.rpm"
+noextract=("$_dl_file")
 
-  source=("$_dl_url/$_dl_file")
-  sha256sums=("${_cksum_fed:-SKIP}")
+source=("$_dl_url/$_dl_file")
+sha256sums=('c2458b74fa8f2dbb002232303fd68a9a1c4bb85c70a6cd797fa1cd2df6da7e0f')
 
-  _package() {
-    depends+=(
-      'libvpx'
-      'nspr'
-      'nss'
-    )
+package() {
+  depends=(
+    'alsa-lib'
+    'gtk3'
+  )
 
-    # main files
-    _path="$pkgdir/$_install_path"
-    mkdir -pm755 "$_path"
-    mv usr/lib64/icecat "$_path/"
+  # main files
+  _path="$pkgdir/$_install_path"
+  mkdir -pm755 "$_path"
+  bsdtar -C "$_path" -xf "$srcdir/$_dl_file"
 
-    # duplicate binary
-    ln -sf icecat-bin "$_path/$_pkgname/icecat"
+  # duplicate binary
+  ln -sf icecat-bin "$_path/$_pkgname/icecat"
 
-    # symlink
-    mkdir -pm755 "$pkgdir/usr/bin"
-    ln -sf "/$_install_path/$_pkgname/$_pkgname" "$pkgdir/usr/bin/$_pkgname"
+  # symlink
+  mkdir -pm755 "$pkgdir/usr/bin"
+  ln -sf "/$_install_path/$_pkgname/$_pkgname" "$pkgdir/usr/bin/$_pkgname"
 
-    # icon, launcher
-    _path="$pkgdir/usr/share"
-    mkdir -pm755 "$_path"
-    mv usr/share/icons "$_path/"
-    mv usr/share/applications "$_path/"
-  }
-}
+  # icon
+  install -Dm644 "$pkgdir/$_install_path/$_pkgname/browser/chrome/icons/default/default128.png" "$pkgdir/usr/share/pixmaps/$_pkgname.png"
 
-_source_icb() {
-  url="https://icecatbrowser.org"
-
-  _dl_url="https://icecatbrowser.org/assets/icecat/${pkgver%.0}"
-  _dl_file="icecat-$pkgver.en-US.linux-$CARCH.tar.bz2"
-
-  noextract=("$_dl_file")
-
-  source=("$_dl_url/$_dl_file")
-  sha256sums=("${_cksum_icb:-SKIP}")
-
-  _package() {
-    # main files
-    _path="$pkgdir/$_install_path"
-    mkdir -pm755 "$_path"
-    bsdtar -C "$_path" -xf "$srcdir/$_dl_file"
-
-    # duplicate binary
-    ln -sf icecat-bin "$_path/$_pkgname/icecat"
-
-    # symlink
-    mkdir -pm755 "$pkgdir/usr/bin"
-    ln -sf "/$_install_path/$_pkgname/$_pkgname" "$pkgdir/usr/bin/$_pkgname"
-
-    # icon
-    install -Dm644 "$pkgdir/$_install_path/$_pkgname/browser/chrome/icons/default/default128.png" "$pkgdir/usr/share/pixmaps/$_pkgname.png"
-
-    # launcher
-    install -Dm644 /dev/stdin "$pkgdir/usr/share/applications/$_pkgname.desktop" << END
+  # launcher
+  install -Dm644 /dev/stdin "$pkgdir/usr/share/applications/$_pkgname.desktop" << END
 [Desktop Entry]
 Name=IceCat
 GenericName=Web Browser
@@ -116,17 +76,6 @@ Exec=icecat --private-window %u
 Name=Safe Mode
 Exec=icecat -safe-mode %u
 END
-  }
-}
-
-package() {
-  depends=(
-    'alsa-lib'
-    #'dbus-glib'
-    'gtk3'
-  )
-
-  _package
 
   # disable auto-updates
   local _policies_json="$pkgdir/$_install_path/$_pkgname/distribution/policies.json"
@@ -166,9 +115,3 @@ END
   # permissions
   chmod -R u+rwX,go+rX,go-w "$pkgdir/"
 }
-
-if [[ "${_use_upstream::1}" == "f" ]]; then
-  _source_fedora
-else
-  _source_icb
-fi
