@@ -5,8 +5,8 @@
 # Contributor: Armin Schrenk <armin.schrenk@skymatic.de>
 
 pkgname=cryptomator
-pkgver=1.17.0 #Note: hyphens (-) must be replaced by underscores (_)
-pkgrel=2
+pkgver=1.17.1
+pkgrel=1
 pkgdesc="Multiplatform transparent client-side encryption of your files in the cloud."
 arch=('any')
 url="https://cryptomator.org/"
@@ -23,7 +23,7 @@ source_x86_64=("jdk-${_jdkver}.tar.gz::https://github.com/adoptium/temurin${_jdk
 source_aarch64=("jdk-${_jdkver}.tar.gz::https://github.com/adoptium/temurin${_jdkver:0:2}-binaries/releases/download/jdk-${_jdkver//\+/%2B}/OpenJDK${_jdkver:0:2}U-jdk_aarch64_linux_hotspot_${_jdkver//\+/_}.tar.gz"
   "openjfx-${_jfxver}.zip::https://download2.gluonhq.com/openjfx/${_jfxver}/openjfx-${_jfxver}_linux-aarch64_bin-jmods.zip")
 noextract=("jdk-${_jdkver}.tar.gz" "openjfx-${_jfxver}.zip")
-sha256sums=('a905e5c5f541fcf098e8b93e5baef21e2f8d1049311ba271ed697113ee61c2a5'
+sha256sums=('bd95fb4f5342f9fa770f74f14edeebf878d28587c25417bb1f052768408f95c7'
   'SKIP')
 sha256sums_x86_64=('78832cb5ea4074f2215cde0d01d6192d09c87636fc24b36647aea61fb23b8272'
   '425fac742b9fbd095b2ce868cff82d1024620f747c94a7144d0a4879e756146c')
