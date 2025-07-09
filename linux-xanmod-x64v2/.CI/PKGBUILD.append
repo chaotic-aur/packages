@@ -1,4 +1,7 @@
 _chaotic_prepare() {
+  # clear local version
+  scripts/config --set-str CONFIG_LOCALVERSION ""
+
   # set microarchitecture level, x86-64-v2
   scripts/config --set-val CONFIG_X86_64_VERSION 2
 }
