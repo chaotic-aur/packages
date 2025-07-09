@@ -1,0 +1,149 @@
+# Maintainer: aur.chaotic.cx
+
+_pkgname="borked3ds"
+pkgname="$_pkgname-git"
+pkgver=2025.03.11.r44.gcb35de6
+pkgrel=1
+pkgdesc="A 3DS emulator"
+url="https://github.com/Borked3DS/Borked3DS"
+license=("GPL-2.0-or-later")
+arch=('x86_64')
+
+depends=(
+  'openal'
+  'enet'
+  'libglvnd'
+  'libinih'
+  'libusb'
+  'qt6-multimedia'
+  'sdl2'
+  'soundtouch'
+  'spirv-tools'
+  'zstd'
+  'zydis'
+)
+makedepends=(
+  'catch2'
+  'cmake'
+  'doxygen'
+  'git'
+  'glslang'
+  'ninja'
+  'nlohmann-json'
+  'spirv-tools'
+  'vulkan-headers'
+)
+
+_makedepends=(
+)
+
+provides=("$_pkgname")
+conflicts=("$_pkgname")
+
+_pkgsrc="$_pkgname"
+source=("$_pkgsrc"::"git+$url.git")
+sha256sums=('SKIP')
+
+prepare() {
+  cd "$_pkgsrc"
+  git rm -r 'externals/SPIRV-Tools'
+  git rm -r 'externals/catch2'
+  git rm -r 'externals/enet'
+  git rm -r 'externals/glslang'
+  git rm -r 'externals/inih/inih'
+  git rm -r 'externals/oboe'
+  git rm -r 'externals/openal-soft'
+  git rm -r 'externals/sdl2/SDL'
+  git rm -r 'externals/soundtouch'
+  git rm -r 'externals/vulkan-headers'
+  git rm -r 'externals/zstd'
+  git submodule update --init --recursive --depth 1
+
+  # don't check for unwanted submodules
+  sed -e '/check_submodules_present()/d' -i CMakeLists.txt
+
+  # miscellaneous adjustments
+  sed -e '/SIMD_FLAGS/d' \
+    -e '/no-unused-command-line-argument/d' \
+    -i CMakeLists.txt
+
+  # fix version
+  local _pkgver _pkgrev
+  _pkgver=$(pkgver)
+  _pkgrev=$(git rev-parse --short=7 HEAD)
+  sed -E \
+    -e "s&@@BUILD_DATE&$(date -u --rfc-3339=date)&" \
+    -e "s&@BUILD_FULLNAME@&${_pkgver:?}&" \
+    -e "s&@GIT_BRANCH@&master&" \
+    -e "s&@GIT_DESC@&${_pkgrev:?}&" \
+    -e "s&@BUILD_VERSION@&${_pkgver%%.r*}&" \
+    -e "s&@GIT_REV@&$_pkgrev&" \
+    -e "s&@REPO_NAME@&${_pkgname^}&" \
+    -i "src/common/scm_rev.cpp.in"
+}
+
+pkgver() {
+  cd "$srcdir/$_pkgsrc"
+  git describe --long --tags --abbrev=7 --exclude='*[a-zA-Z][a-zA-Z]*' \
+    | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/[-,]/./g'
+}
+
+build() {
+  local _cxxflags=(${CXXFLAGS//_FORTIFY_SOURCE=?/_FORTIFY_SOURCE=2})
+  CXXFLAGS="${_cxxflags[@]}"
+
+  local _cmake_options=(
+    -B build
+    -S "$_pkgsrc"
+    -G Ninja
+    -DCMAKE_BUILD_TYPE=None
+    -DCMAKE_INSTALL_PREFIX='/usr'
+    -DCMAKE_SKIP_RPATH=ON
+    -DBORKED3DS_USE_PRECOMPILED_HEADERS=OFF
+    -DBORKED3DS_USE_EXTERNAL_VULKAN_SPIRV_TOOLS=OFF
+    -DBORKED3DS_WARNINGS_AS_ERRORS=OFF
+    -DENABLE_QT_TRANSLATION=OFF # translations have spurious errors
+    -DUSE_DISCORD_PRESENCE=ON
+    -DUSE_SYSTEM_BOOST=OFF
+    -DUSE_SYSTEM_CATCH2=ON
+    -DUSE_SYSTEM_ENET=ON
+    -DUSE_SYSTEM_FMT=OFF
+    -DUSE_SYSTEM_GLSLANG=ON
+    -DUSE_SYSTEM_INIH=ON
+    -DUSE_SYSTEM_JSON=ON
+    -DUSE_SYSTEM_LIBUSB=ON
+    -DUSE_SYSTEM_OPENAL=ON
+    -DUSE_SYSTEM_OPENSSL=ON
+    -DUSE_SYSTEM_SDL2=ON
+    -DUSE_SYSTEM_SOUNDTOUCH=ON
+    -DUSE_SYSTEM_VULKAN_HEADERS=ON
+    -DUSE_SYSTEM_ZSTD=ON
+    -DUSE_SYSTEM_XBYAK=OFF
+    -DUSE_SANITIZERS=OFF
+    -DBUILD_TESTING=$CHECKFUNC
+    -Wno-dev
+  )
+
+  cmake "${_cmake_options[@]}"
+  cmake --build build
+}
+
+package() {
+  depends+=(
+    'libINIReader.so'
+    'libZydis.so'
+    'libcrypto.so'
+    'libopenal.so'
+    'libssl.so'
+    'libusb-1.0.so'
+    'libzstd.so'
+  )
+
+  for i in "" "-cli" "-room"; do
+    install -Dm755 "build/bin/None/$_pkgname${i}" -t "$pkgdir/usr/bin/"
+  done
+
+  install -Dm644 "$_pkgsrc/dist/$_pkgname.svg" -t "$pkgdir/usr/share/pixmaps/"
+  install -Dm644 "$_pkgsrc/dist/$_pkgname.desktop" -t "$pkgdir/usr/share/applications/"
+  install -Dm644 "$_pkgsrc/dist/$_pkgname.6" -t "$pkgdir/usr/share/man/man6/"
+}
