@@ -5,13 +5,16 @@
 : ${_build_pgo_reuse:=try}
 : ${_build_pgo_xvfb:=false}
 
+: ${_build_lto:=false}
+: ${_build_system_libs:=true}
+
 : ${_pkgrel:=1}
 : ${_cksum:=8babfb102108305eaed98c49c7f97390b204b66f318ee437f41ae5b92e3f5053}
 
 _pkgname="librewolf"
 pkgname="${_pkgname}"
 pkgver=140.0.2
-pkgrel=1
+pkgrel=2
 pkgdesc="A web browser focused on privacy, security, and freedom"
 url="https://codeberg.org/librewolf/source"
 arch=('x86_64')
@@ -23,6 +26,7 @@ depends=(
   gtk3
   libevent
   libjpeg
+  libpulse
   libvpx.so
   libwebp.so
   libxss
@@ -30,7 +34,6 @@ depends=(
   mime-types
   nspr
   nss
-  pipewire
   ttf-font
   zlib
 )
@@ -77,7 +80,6 @@ if [[ "${_build_pgo::1}" == "t" ]]; then
   else
     makedepends+=(
       weston
-      xorg-xwayland
       wlheadless-run # aur/xwayland-run
     )
   fi
@@ -124,13 +126,11 @@ prepare() {
   cat > ../mozconfig << END
 ac_add_options --enable-application=browser
 ac_add_options --disable-artifact-builds
-
 mk_add_options MOZ_OBJDIR=${PWD@Q}/obj
 
 ac_add_options --prefix=/usr
 ac_add_options --enable-release
 ac_add_options --enable-hardening
-ac_add_options --enable-optimize
 ac_add_options --enable-rust-simd
 ac_add_options --enable-wasm-simd
 ac_add_options --enable-linker=lld
@@ -148,15 +148,6 @@ export MOZILLA_OFFICIAL=1
 export MOZ_APP_REMOTINGNAME=$_pkgname
 MOZ_REQUIRE_SIGNING=
 
-# System Libraries
-ac_add_options --with-system-jpeg
-ac_add_options --with-system-libevent
-ac_add_options --with-system-libvpx
-ac_add_options --with-system-nspr
-ac_add_options --with-system-nss
-ac_add_options --with-system-webp
-ac_add_options --with-system-zlib
-
 # Features
 ac_add_options --enable-alsa
 ac_add_options --enable-av1
@@ -164,6 +155,7 @@ ac_add_options --enable-eme=widevine
 ac_add_options --enable-jack
 ac_add_options --enable-jxl
 ac_add_options --enable-proxy-bypass-protection
+ac_add_options --enable-pulseaudio
 ac_add_options --enable-sandbox
 ac_add_options --enable-unverified-updates
 ac_add_options --enable-webrtc
@@ -186,6 +178,11 @@ ac_add_options --enable-strip
 ac_add_options --enable-install-strip
 export STRIP_FLAGS="--strip-debug --strip-unneeded"
 
+# Optimization
+ac_add_options --enable-optimize
+ac_add_options OPT_LEVEL="2"
+ac_add_options RUSTC_OPT_LEVEL="2"
+
 # Other
 export AR=llvm-ar
 export CC=clang
@@ -193,6 +190,24 @@ export CXX=clang++
 export NM=llvm-nm
 export RANLIB=llvm-ranlib
 END
+
+  if [[ "${_build_system_libs::1}" == "t" ]]; then
+    cat >> ../mozconfig << END
+ac_add_options --with-system-jpeg
+ac_add_options --with-system-libevent
+ac_add_options --with-system-libvpx
+ac_add_options --with-system-nspr
+ac_add_options --with-system-nss
+ac_add_options --with-system-webp
+ac_add_options --with-system-zlib
+END
+  fi
+
+  if [[ "${_build_lto::1}" == "t" ]]; then
+    cat >> ../mozconfig << END
+ac_add_options --enable-lto=cross,full
+END
+  fi
 
   local src
   for src in "${source[@]}"; do
@@ -208,6 +223,8 @@ END
 
 build() (
   cd "$_pkgsrc"
+
+  export RUSTUP_TOOLCHAIN=stable
 
   export XDG_RUNTIME_DIR="${XDG_RUNTIME_DIR:-$srcdir/xdg-runtime}"
   [ ! -d "$XDG_RUNTIME_DIR" ] && install -dm700 "${XDG_RUNTIME_DIR:?}"
@@ -260,12 +277,12 @@ build() (
     if [[ "${_build_pgo_reuse::1}" == "t" ]]; then
       if [[ -s "$_old_profdata" ]]; then
         echo "Restoring old profile data."
-        cp --reflink=auto -f "$_old_profdata" merged.profdata
+        cp -f "$_old_profdata" merged.profdata
       fi
 
       if [[ -s "$_old_jarlog" ]]; then
         echo "Restoring old jar log."
-        cp --reflink=auto -f "$_old_jarlog" jarlog
+        cp -f "$_old_jarlog" jarlog
       fi
     fi
 
@@ -280,7 +297,7 @@ build() (
 ac_add_options --enable-profile-generate=cross
 export MOZ_ENABLE_FULL_SYMBOLS=1
 END
-      ./mach build
+      ./mach build --priority normal
 
       echo "Profiling instrumented browser..."
       ./mach package
@@ -316,13 +333,12 @@ END
     if [[ -s merged.profdata ]]; then
       stat -c "Profile data found (%s bytes)" merged.profdata
       cat >> .mozconfig - << END
-ac_add_options --enable-lto=cross,full
 ac_add_options --enable-profile-use=cross
 ac_add_options --with-pgo-profile-path=${PWD@Q}/merged.profdata
 END
 
       # save profdata for reuse
-      cp --reflink=auto -f merged.profdata "$_old_profdata"
+      cp -f merged.profdata "$_old_profdata"
     else
       echo "Profile data not found."
     fi
@@ -334,7 +350,7 @@ ac_add_options --with-pgo-jarlog=${PWD@Q}/jarlog
 END
 
       # save jarlog for reuse
-      cp --reflink=auto -f jarlog "$_old_jarlog"
+      cp -f jarlog "$_old_jarlog"
     else
       echo "Jar log not found."
     fi
@@ -412,7 +428,7 @@ exec /usr/lib/$_pkgname/$_pkgname "\$@"
 END
 
   # Replace duplicate binary
-  ln -srf "$pkgdir/usr/bin/$_pkgname" "$pkgdir/usr/lib/$_pkgname/$_pkgname-bin"
+  ln -sf "$_pkgname" "$pkgdir/usr/lib/$_pkgname/$_pkgname-bin"
 
   # desktop file
   install -Dm644 ../$_pkgname.desktop \
