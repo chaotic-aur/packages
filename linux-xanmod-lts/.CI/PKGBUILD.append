@@ -1,0 +1,7 @@
+_chaotic_prepare() {
+  # clear local version
+  scripts/config --set-str CONFIG_LOCALVERSION ""
+}
+
+# inject _chaotic_prepare after copying default config
+eval "$(declare -f prepare | sed -E -e 's&^(\s*)(cp\b.*\bCONFIGS/.*)$&\1\2\n\1_chaotic_prepare&')"
