@@ -1,9 +1,8 @@
 # package options
-_microarchitecture=92
-_config=config_x86-64-v2
+_microarchitecture=0 # generic, x86-64-v#
 
 use_numa=y
-use_tracers=n
+use_tracers=y
 #_compiler=clang
 
 _compress_modules=y
