@@ -1,4 +1,0 @@
-depends=(
-  ${depends[@]//ffmpeg*/}
-  "ffmpeg"
-)
