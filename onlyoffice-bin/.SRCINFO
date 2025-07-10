@@ -1,7 +1,7 @@
 pkgbase = onlyoffice-bin
 	pkgdesc = An office suite that combines text, spreadsheet and presentation editors
-	pkgver = 9.0.0
-	pkgrel = 2
+	pkgver = 9.0.3
+	pkgrel = 1
 	url = https://www.onlyoffice.com/
 	arch = x86_64
 	license = AGPL-3.0-only
@@ -25,14 +25,14 @@ pkgbase = onlyoffice-bin
 	optdepends = ttf-ms-fonts: for Microsoft fonts
 	optdepends = gst-plugins-good: for playing embedded video files
 	optdepends = gst-libav: for playing embedded video files
-	provides = onlyoffice=9.0.0
+	provides = onlyoffice=9.0.3
 	conflicts = onlyoffice
-	noextract = onlyoffice-desktopeditors--9.0.0.deb
+	noextract = onlyoffice-desktopeditors--9.0.3.deb
 	options = !strip
 	options = !emptydirs
-	source = onlyoffice-desktopeditors--9.0.0.deb::https://github.com/ONLYOFFICE/DesktopEditors/releases/download/v9.0.0/onlyoffice-desktopeditors_amd64.deb
+	source = onlyoffice-desktopeditors--9.0.3.deb::https://github.com/ONLYOFFICE/DesktopEditors/releases/download/v9.0.3/onlyoffice-desktopeditors_amd64.deb
 	source = 010-onlyoffice-bin-fix-document-opening.patch
-	sha256sums = 9868c516eba994620d823b88107a0edc03b8a6992e9b59627e3e6e91b7d6592f
+	sha256sums = 2be5d07d9092f013ce52b861a605ce74ece06aaefa7ded9dd885831d2ab3f33a
 	sha256sums = 670de5f8b72679a54ff41a96ba1bdba9231a93260d1a8eaf304f66c8e40efdb7
 
 pkgname = onlyoffice-bin
