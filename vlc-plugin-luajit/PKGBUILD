@@ -1,0 +1,264 @@
+# Maintainer:
+
+: ${_commit:=9c4768291ee0ce8e29fdadf3e05cbde2714bbe0c} # 3.0.21-1
+
+_pkgname="vlc-plugin-luajit"
+pkgname="$_pkgname"
+pkgver=3.0.21
+pkgrel=1
+pkgdesc="Multi-platform MPEG, VCD/DVD, and DivX player"
+url="https://github.com/videolan/vlc"
+license=('GPL-2.0-or-later' 'LGPL-2.1-or-later')
+arch=('x86_64')
+
+makedepends=(
+  'git'
+  'lua51'
+  'luajit'
+  'meson'
+)
+
+options=('!emptydirs' '!lto')
+
+_pkgsrc="vlc.github"
+source=("$_pkgsrc"::"git+$url.git${_commit:+#commit=$_commit}")
+sha256sums=('SKIP')
+
+prepare() {
+  cd "$_pkgsrc"
+  ./bootstrap
+  autoreconf -vf
+
+  sed -e 's:truetype/ttf-dejavu:TTF:g' -i modules/visualization/projectm.cpp
+  sed -e 's|-Werror-implicit-function-declaration||g' \
+    -e 's|whoami|echo builduser|g' \
+    -e 's|hostname -f|echo arch|g' \
+    -i configure
+}
+
+build() {
+  export CFLAGS+=" -I/usr/include/samba-4.0 -ffat-lto-objects"
+  export CPPFLAGS+=" -I/usr/include/samba-4.0"
+  export CXXFLAGS="${CXXFLAGS/-Wp,-D_GLIBCXX_ASSERTIONS/} -std=c++17"
+
+  export LUAC=/usr/bin/luac5.1
+  export LUA_LIBS="$(pkg-config --libs luajit)"
+  export LUA_CFLAGS="$(pkg-config --cflags luajit)"
+
+  export RCC=/usr/lib/qt6/rcc
+  export QMAKE=/usr/bin/qmake6
+  export QTPATHS6="/usr/lib/qt6/bin/qtpaths6"
+
+  # gawk -v RS="### config-options ###\n" 'NR==2{print}' PKGBUILD | sort -t'-' -k'4' | xclip -sel clip
+  local _config_opts=(
+    --prefix=/usr
+    --sysconfdir=/etc
+    --libexecdir=/usr/lib
+    --with-kde-solid=/usr/share/solid/actions/
+    --with-gnu-ld
+
+    --disable-rpath
+    --disable-sse
+    --disable-avx
+
+    --enable-lua
+
+    ### config-options ###
+    --disable-a52
+    --disable-aa
+    --disable-alsa
+    --disable-amf-enhancer
+    --disable-amf-scaler
+    --disable-aom
+    --disable-archive
+    --disable-aribb25
+    --disable-aribsub
+    --disable-asdcp
+    --disable-avahi
+    --disable-avcodec
+    --disable-avformat
+    --disable-bluray
+    --disable-bpg
+    --disable-caca
+    --disable-chromaprint
+    --disable-chromecast
+    --disable-crystalhd
+    --disable-css
+    --disable-d3d11va
+    --disable-daala
+    --disable-dav1d
+    --disable-dc1394
+    --disable-dca
+    --disable-decklink
+    --disable-directx
+    --disable-dsm
+    --disable-dv1394
+    --disable-dvbpsi
+    --disable-dvdnav
+    --disable-dvdread
+    --disable-dxva2
+    --disable-evas
+    --disable-faad
+    --disable-fdkaac
+    --disable-flac
+    --disable-fluidlite
+    --disable-fluidsynth
+    --disable-fontconfig
+    --disable-freerdp
+    --disable-freetype
+    --disable-fribidi
+    --disable-gles2
+    --disable-gme
+    --disable-gnutls
+    --disable-goom
+    --disable-gst-decode
+    --disable-harfbuzz
+    --disable-jack
+    --disable-jpeg
+    --disable-kai
+    --disable-kate
+    --disable-kva
+    --disable-kwallet
+    --disable-libass
+    --disable-libcddb
+    --disable-libgcrypt
+    --disable-libmpeg2
+    --disable-libplacebo
+    --disable-libtar
+    --disable-libva
+    --disable-libxml2
+    --disable-linsys
+    --disable-lirc
+    --disable-live555
+    --disable-macosx
+    --disable-macosx-avfoundation
+    --disable-mad
+    --disable-matroska
+    --disable-merge-ffmpeg
+    --disable-mfx
+    --disable-microdns
+    --disable-minimal-macosx
+    --disable-mmal
+    --disable-mod
+    --disable-mpc
+    --disable-mpg123
+    --disable-mtp
+    --disable-ncurses
+    --disable-nfs
+    --disable-notify
+    --disable-ogg
+    --disable-oggspots
+    --disable-omxil
+    --disable-omxil-vout
+    --disable-opencv
+    --disable-opensles
+    --disable-opus
+    --disable-oss
+    --disable-osx-notifications
+    --disable-png
+    --disable-postproc
+    --disable-projectm
+    --disable-pulse
+    --disable-qt
+    --disable-realrtsp
+    --disable-rpi-omxil
+    --disable-samplerate
+    --disable-schroedinger
+    --disable-screen
+    --disable-sdl-image
+    --disable-secret
+    --disable-sftp
+    --disable-shine
+    --disable-shout
+    --disable-sid
+    --disable-skins2
+    --disable-smb2
+    --disable-smbclient
+    --disable-sndio
+    --disable-soxr
+    --disable-sparkle
+    --disable-spatialaudio
+    --disable-speex
+    --disable-srt
+    --disable-svg
+    --disable-svgdec
+    --disable-swscale
+    --disable-taglib
+    --disable-telx
+    --disable-theora
+    --disable-tiger
+    --disable-tizen-audio
+    --disable-tremor
+    --disable-twolame
+    --disable-udev
+    --disable-update-check
+    --disable-upnp
+    --disable-v4l2
+    --disable-vcd
+    --disable-vdpau
+    --disable-vlc
+    --disable-vnc
+    --disable-vorbis
+    --disable-vpx
+    --disable-vsxu
+    --disable-wasapi
+    --disable-wayland
+    --disable-wma-fixed
+    --disable-x262
+    --disable-x264
+    --disable-x26410b
+    --disable-x265
+    --disable-xcb
+    --disable-xvideo
+    --disable-zvbi
+    ### config-options ###
+  )
+
+  cd "$_pkgsrc"
+  ./configure "${_config_opts[@]}"
+
+  # prevent excessive overlinking due to libtool
+  sed -i -e 's/ -shared / -Wl,-O1,--as-needed\0/g' libtool
+
+  make
+
+  mkdir -p "$srcdir/fakeinstall"
+  make DESTDIR="$srcdir/fakeinstall" install
+}
+
+package() {
+  pkgdesc+=" - Lua scripting plugins (LuaJIT)"
+
+  depends=(
+    libvlc libvlccore.so
+    luajit
+  )
+  optdepends=(
+    'lua-socket: for http interface'
+  )
+
+  provides=(
+    'vlc-luajit'
+    'vlc-plugin-lua'
+  )
+  conflicts=(
+    'vlc-luajit'
+    'vlc-plugin-lua'
+  )
+  replaces=(
+    'vlc-luajit'
+  )
+
+  local _filelist=(
+    usr/lib/vlc/lua
+    usr/lib/vlc/plugins/lua
+    usr/share/doc/vlc/lua
+    usr/share/vlc/lua
+  )
+
+  local i
+  for i in "${_filelist[@]}"; do
+    mkdir -p "$pkgdir/$i"
+    mv "fakeinstall/$i"/* "$pkgdir/$i/"
+  done
+}
