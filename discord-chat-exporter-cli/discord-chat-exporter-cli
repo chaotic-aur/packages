@@ -1,2 +1,0 @@
-#!/usr/bin/env sh
-exec dotnet /usr/lib/discord-chat-exporter-cli/DiscordChatExporter.Cli.dll "${@}"
