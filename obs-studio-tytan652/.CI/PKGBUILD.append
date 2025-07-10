@@ -1,4 +1,4 @@
-makedepends=(${makedepends[@]/ffmpeg*/})
-makedepends+=('ffmpeg')
+depends=(${depends[@]//ffmpeg*/ffmpeg-obs})
+depends=(${depends[@]//vlc*/vlc-plugin-luajit})
 
 options=(${options[@]//*debug*/})
