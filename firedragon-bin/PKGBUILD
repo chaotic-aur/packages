@@ -3,27 +3,24 @@
 # Co-Maintainer: stefanwimmer128 <info at stefanwimmer128 dot xyz>
 
 _pkgname=firedragon
-_pkgver=11.13.3-1
-_pkgrel=1
+_pkgver=11.28.0-2
 
 pkgname=${_pkgname}-bin
-pkgver=${_pkgver%-*}
-pkgrel=${_pkgver#*-}.${_pkgrel}
+pkgver=${_pkgver//-/_}
+pkgrel=1
 epoch=1
 pkgdesc="Floorp fork build using custom branding and settings"
-url='https://garudalinux.org'
+url='https://firedragon.garudalinux.org'
 arch=('x86_64')
-license=('MPL2' 'Floorp Shared Source License')
+license=('MPL2')
 depends=(dbus
   dbus-glib
   ffmpeg
   gtk3
-  libpulse
   libxss
   libxt
   mime-types
   nss
-  pipewire
   ttf-font
   zlib)
 makedepends=()
@@ -31,7 +28,7 @@ optdepends=('hunspell-dictionary: Spell checking'
   'libnotify: Notification integration'
   'networkmanager: Location detection via available WiFi networks'
   'profile-sync-daemon: Load the browser profile into RAM'
-  'pulseaudio: Audio support'
+  'pulse-native-provider: Audio support'
   'searx: Searching the web using a locally running searX instance'
   'speech-dispatcher: Text-to-Speech'
   'whoogle: Searching the web using a locally running Whoogle instance'
@@ -45,13 +42,12 @@ options=(!debug
   !strip)
 backup=("usr/lib/${_pkgname}/${_pkgname}.cfg"
   "usr/lib/${_pkgname}/distribution/policies.json")
-source=(https://gitlab.com/api/v4/projects/55893651/packages/generic/firedragon/${_pkgver}/firedragon-v${_pkgver}.linux-x86_64.tar.bz2
+source=(https://gitlab.com/garuda-linux/firedragon/builder/-/releases/v${_pkgver}/downloads/firedragon-v${_pkgver}.linux-x86_64.tar.zst
   https://gitlab.com/garuda-linux/firedragon/settings/-/raw/master/firedragon.psd
-  "${_pkgname}.desktop")
-sha256sums=('a84539103b14cba394219173c2236e467d6eab275c72223216d37e542ec1f12d'
+  https://gitlab.com/garuda-linux/firedragon/settings/-/raw/master/firedragon.desktop)
+sha256sums=('381d4321b01f387fa605edaf483ae426b772220b05126f36abc51c7de35d0cdb'
   '61355930cc59813e7e610ffdab8a01e32be980fffe1dfd8f9654b8f8f9f7fdc0'
   '53d3e743f3750522318a786befa196237892c93f20571443fdf82a480e7f0560')
-install="${_pkgname}.install"
 
 package() {
   cd "${srcdir}/${_pkgname}"
