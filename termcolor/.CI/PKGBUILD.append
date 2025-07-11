@@ -1,0 +1,4 @@
+export CMAKE_POLICY_VERSION_MINIMUM=3.5
+
+export CMAKE_GENERATOR=Ninja
+makedepends+=('ninja')
