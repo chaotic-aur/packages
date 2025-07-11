@@ -1,0 +1,2 @@
+# avoid march=native
+_processor_opt=GENERIC_V1
