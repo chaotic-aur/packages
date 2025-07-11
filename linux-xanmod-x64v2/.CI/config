@@ -1,2 +1,3 @@
 CI_PACKAGE_BUMP=6.15.4-1/1
 CI_PKGBUILD_SOURCE=https://aur.archlinux.org/linux-xanmod.git
+BUILDER_CLASS=9
