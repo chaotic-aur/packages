@@ -1,0 +1,12 @@
+export CMAKE_POLICY_VERSION_MINIMUM=3.10
+
+export CMAKE_GENERATOR=Ninja
+makedepends+=('ninja')
+
+_pkgsrc="$pkgbase"
+
+eval _orig_"$(declare -f prepare)"
+prepare() {
+  (_orig_prepare)
+  sed '1i #include <cstdint>' -i "$_pkgsrc"/submodules/yaml-cpp/src/emitterutils.cpp
+}
