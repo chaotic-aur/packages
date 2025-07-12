@@ -9,8 +9,8 @@
 
 _pkgname="ayugram-desktop"
 pkgname="$_pkgname-git"
-pkgver=5.14.3.r3.g3be7930
-pkgrel=2
+pkgver=5.16.3.r1.gf56b5ea
+pkgrel=1
 pkgdesc="Desktop Telegram client with good customization and Ghost mode"
 url="https://github.com/AyuGram/AyuGramDesktop"
 license=('GPL-3.0-or-later')
@@ -20,9 +20,11 @@ depends=(
   ada
   ffmpeg
   hunspell
-  jemalloc
   kcoreaddons
+  libavif
   libdispatch
+  libheif
+  libjxl
   libpipewire
   libvpx
   libxcomposite
@@ -50,6 +52,7 @@ makedepends=(
   git
   glib2-devel
   gobject-introspection
+  jemalloc # gio error when absent
   libtg_owt
   microsoft-gsl
   mm-common
@@ -110,14 +113,12 @@ _source_ayugram() {
     'hamonikr.nimf'::'git+https://github.com/hamonikr/nimf.git'::'Telegram/ThirdParty/nimf'
     'hime-ime.hime'::'git+https://github.com/hime-ime/hime.git'::'Telegram/ThirdParty/hime'
     #'hunspell'::'git+https://github.com/hunspell/hunspell.git'::'Telegram/ThirdParty/hunspell'
-    #'jemalloc'::'git+https://github.com/jemalloc/jemalloc.git'::'Telegram/ThirdParty/jemalloc'
     #'kde.kcoreaddons'::'git+https://github.com/KDE/kcoreaddons.git'::'Telegram/ThirdParty/kcoreaddons'
-    #'kde.kimageformats'::'git+https://github.com/KDE/kimageformats.git'::'Telegram/ThirdParty/kimageformats'
+    'kde.kimageformats'::'git+https://github.com/KDE/kimageformats.git'::'Telegram/ThirdParty/kimageformats'
     #'lz4'::'git+https://github.com/lz4/lz4.git'::'Telegram/ThirdParty/lz4'
     'microsoft.gsl'::'git+https://github.com/Microsoft/GSL.git'::'Telegram/ThirdParty/GSL'
     'nayuki.qr-code-generator'::'git+https://github.com/nayuki/QR-Code-generator.git'::'Telegram/ThirdParty/QR'
     'tartanllama.expected'::'git+https://github.com/TartanLlama/expected.git'::'Telegram/ThirdParty/expected'
-    'telegramdesktop.libtgvoip'::'git+https://github.com/telegramdesktop/libtgvoip.git'::'Telegram/ThirdParty/libtgvoip'
     'telegrammessenger.tgcalls'::'git+https://github.com/TelegramMessenger/tgcalls.git'::'Telegram/ThirdParty/tgcalls'
   )
 
@@ -140,7 +141,6 @@ _source_ayugram() {
 _source_desktop_app_cmake_helpers() {
   local _sources_add=(
     'mnauw.cppgir'::'git+https://gitlab.com/mnauw/cppgir.git'::'external/glib/cppgir'
-    'yugr.implib.so'::'git+https://github.com/yugr/Implib.so.git'::'external/Implib.so'
   )
 
   local _p _idx _src _sm_prep _sm_func
@@ -251,7 +251,7 @@ build() {
 
 package() {
   if [[ "${_use_sodeps::1}" == "t" ]]; then
-    depends+=(
+    eval "depends+=(
       'libavcodec.so'
       'libavfilter.so'
       'libavformat.so'
@@ -260,7 +260,6 @@ package() {
       'libgio-2.0.so'
       'libglib-2.0.so'
       'libgobject-2.0.so'
-      'libjemalloc.so'
       'libjpeg.so'
       'liblz4.so'
       'libopenal.so'
@@ -274,7 +273,7 @@ package() {
       'libvpx.so'
       'libxxhash.so'
       'libz.so'
-    )
+    )"
   fi
 
   DESTDIR="$pkgdir" cmake --install build
