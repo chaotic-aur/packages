@@ -4,14 +4,14 @@ _pkgname=Vesktop
 pkgname=vesktop
 pkgdesc="A standalone Electron-based Discord app with Vencord & improved Linux support"
 pkgver=1.5.8
-pkgrel=1
+pkgrel=2
 
 arch=("x86_64" "aarch64")
 url="https://github.com/Vencord/Vesktop"
 license=('GPL-3.0-only')
 
 depends=('alsa-lib' 'gtk3' 'nss')
-makedepends=('pnpm' 'npm')
+makedepends=('pnpm' 'npm' 'nodejs-lts-jod')
 optdepends=(
   'libnotify: Notifications'
   'xdg-utils: Open links, files, etc'
