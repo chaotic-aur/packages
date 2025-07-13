@@ -242,7 +242,7 @@ function UTIL_FETCH_AUR_TIMESTAMPS() {
             API_URL=${API_URL//+/%2B}
 
             UTIL_PRINT_INFO "Fetching AUR timestamps for $((i + 1))/${#pkgbases[@]} packages..."
-            if response="$(curl -s "$API_URL")"; then
+            if response="$(curl -sf "$API_URL")"; then
                 local -a res_timestamps
                 mapfile -t res_timestamps <<<"$(jq -r '.results[].LastModified' <<<"$response")"
                 local -a res_pkgbases
@@ -252,6 +252,8 @@ function UTIL_FETCH_AUR_TIMESTAMPS() {
                 for j in "${!res_timestamps[@]}"; do
                     OUTPUT_ASSOC_ARRAY["${res_pkgbases[$j]}"]="${res_timestamps[$j]}"
                 done
+            else
+                UTIL_PRINT_ERROR "Failed to fetch AUR timestamps from $API_URL"
             fi
             API_URL="https://aur.archlinux.org/rpc/v5/info"
             first=1
@@ -335,7 +337,7 @@ function UTIL_PARSE_DATABASE() {
     while read -r pkgbase version; do
         # Skip empty lines
         [[ -n "$pkgbase" && -n "$version" ]] || continue
-        
+
         # Escape any dots in the package name since that breaks the code
         # because of an invalid arithmetic statement
         normalized_pkgbase=${pkgbase//./}
