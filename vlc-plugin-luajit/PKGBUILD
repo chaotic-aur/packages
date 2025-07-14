@@ -5,7 +5,7 @@
 _pkgname="vlc-plugin-luajit"
 pkgname="$_pkgname"
 pkgver=3.0.21
-pkgrel=1
+pkgrel=2
 pkgdesc="Multi-platform MPEG, VCD/DVD, and DivX player"
 url="https://github.com/videolan/vlc"
 license=('GPL-2.0-or-later' 'LGPL-2.1-or-later')
@@ -239,7 +239,7 @@ package() {
 
   provides=(
     'vlc-luajit'
-    'vlc-plugin-lua'
+    "vlc-plugin-lua=$pkgver"
   )
   conflicts=(
     'vlc-luajit'

@@ -1,7 +1,7 @@
 pkgbase = vlc-plugin-luajit
 	pkgdesc = Multi-platform MPEG, VCD/DVD, and DivX player
 	pkgver = 3.0.21
-	pkgrel = 1
+	pkgrel = 2
 	url = https://github.com/videolan/vlc
 	arch = x86_64
 	license = GPL-2.0-or-later
@@ -22,7 +22,7 @@ pkgname = vlc-plugin-luajit
 	depends = luajit
 	optdepends = lua-socket: for http interface
 	provides = vlc-luajit
-	provides = vlc-plugin-lua
+	provides = vlc-plugin-lua=3.0.21
 	conflicts = vlc-luajit
 	conflicts = vlc-plugin-lua
 	replaces = vlc-luajit
