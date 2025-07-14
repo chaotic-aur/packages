@@ -2,8 +2,6 @@ url="https://github.com/waydroid/waydroid"
 
 depends+=('python')
 
-install="waydroid.install"
-
 eval _orig_"$(declare -f package)"
 
 package() {
