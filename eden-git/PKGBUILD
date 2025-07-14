@@ -2,7 +2,7 @@
 
 _pkgname="eden"
 pkgname="$_pkgname-git"
-pkgver=0.0.2.r152.g2f42192
+pkgver=0.0.2.r171.g2e09201
 pkgrel=1
 pkgdesc="Yet another emulator fork"
 url="https://git.eden-emu.dev/eden-emu/eden"
@@ -10,12 +10,11 @@ license=('GPL-3.0-or-later')
 arch=('x86_64')
 
 depends=(
-  'libboost_context.so' # boost-libs
   'libfmt.so'
-  'libusb'
+  'qt6-5compat'
   'qt6-multimedia'
   'qt6-webengine'
-  'sdl2'
+  'wireless_tools'
 )
 makedepends=(
   'boost'
@@ -26,12 +25,8 @@ makedepends=(
   'ninja'
   'nlohmann-json'
   'qt6-tools'
-  'rapidjson'
-  'robin-map'
-  'stb'
   'vulkan-headers'
   'vulkan-utility-libraries'
-  'wireless_tools'
 )
 
 provides=("$_pkgname")
@@ -50,7 +45,6 @@ prepare() {
   git rm -r externals/Vulkan-Utility-Libraries
   git rm -r externals/libusb/libusb
   git rm -r externals/vcpkg
-
   git submodule update --init --recursive --depth=1
 }
 
