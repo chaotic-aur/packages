@@ -1,3 +1,0 @@
-#!/usr/bin/env sh
-
-sed -E -e 's&-x64v3&-avx&g' -i PKGBUILD
