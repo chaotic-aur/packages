@@ -1,4 +1,0 @@
-[ckb-next]
-source = "git"
-git = "https://github.com/ckb-next/ckb-next.git"
-prefix = "v"
