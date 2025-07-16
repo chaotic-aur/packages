@@ -2,43 +2,49 @@
 
 _pkgname="cemu"
 pkgname="$_pkgname-git"
-pkgver=2.6.r6.gc4eab08
-pkgrel=2
+pkgver=2.6.r65.g67de63b
+pkgrel=1
 pkgdesc="A Wii U emulator"
 url="https://github.com/cemu-project/Cemu"
 license=('MPL-2.0')
 arch=('x86_64')
 
 depends=(
-  'glib2'
   'glslang'
-  'gtk3'
   'libbluetooth.so'             # bluez-libs
   'libboost_program_options.so' # boost-libs
-  'libfmt.so'                   # fmt
-  'libspeexdsp.so'              # speexdsp
+  'libcrypto.so'                # openssl
+  'libcurl.so'
+  'libgdk-3.so'
+  'libgobject-2.0.so'
+  'libgtk-3.so'
+  'libhidapi-hidraw.so'
+  'libspeexdsp.so'       # speexdsp
+  'libssl.so'            # openssl
+  'libusb-1.0.so'        # libusb
+  'libwayland-client.so' # wayland
   'libx11'
+  'libz.so'        # zlib
   'libzarchive.so' # zarchive
   'libzip.so'      # libzip
-  'openssl'
+  'libzstd.so'     # zstd
   'pugixml'
   'sdl2'
-  'spirv-tools'
+  'wxwidgets-common'
   'wxwidgets-gtk3'
 )
 makedepends=(
-  'boost'
   'clang'
   'cmake'
   'git'
+  'ninja'
+
+  'boost'
+  'fmt'
   'glm'
   'glu'
-  'libgl'
-  'libpng'
   'nasm'
-  'ninja'
   'rapidjson'
-  'spirv-headers'
   'vulkan-headers'
   'wayland-protocols'
 
@@ -59,60 +65,22 @@ optdepends+=(
 provides=("$_pkgname=${pkgver%%.r*}")
 conflicts=("$_pkgname")
 
-_source_main() {
-  _pkgsrc="$_pkgname"
-  source=("$_pkgsrc"::"git+$url.git")
-  sha256sums=('SKIP')
-}
-
-_source_cemu() {
-  local _sources_add=(
-    #'exzap.zarchive'::'git+https://github.com/Exzap/ZArchive.git'
-    #'khronosgroup.vulkan-headers'::'git+https://github.com/KhronosGroup/Vulkan-Headers.git'
-    #'microsoft.vcpkg'::'git+https://github.com/microsoft/vcpkg.git'
-    'mozilla.cubeb'::'git+https://github.com/mozilla/cubeb.git'
-    'ocornut.imgui'::'git+https://github.com/ocornut/imgui.git'
-  )
-
-  local _p
-  for _p in ${_sources_add[@]}; do
-    source+=("$_p")
-    sha256sums+=('SKIP')
-  done
-
-  _prepare_cemu() (
-    cd "$srcdir/$_pkgsrc"
-    local _submodules=(
-      #'exzap.zarchive'::'dependencies/ZArchive'
-      #'khronosgroup.vulkan-headers'::'dependencies/Vulkan-Headers'
-      #'microsoft.vcpkg'::'dependencies/vcpkg'
-      'mozilla.cubeb'::'dependencies/cubeb'
-      'ocornut.imgui'::'dependencies/imgui'
-    )
-    _submodule_update
-  )
-}
-
-_source_main
-_source_cemu
+_pkgsrc="$_pkgname"
+source=("$_pkgsrc"::"git+$url.git")
+sha256sums=('SKIP')
 
 prepare() {
-  _submodule_update() {
-    local _module
-    for _module in "${_submodules[@]}"; do
-      git submodule init "${_module##*::}"
-      git submodule set-url "${_module##*::}" "$srcdir/${_module%%::*}"
-      git -c protocol.file.allow=always submodule update "${_module##*::}"
-    done
-  }
+  cd "$_pkgsrc"
+  git rm -r dependencies/ZArchive
+  git rm -r dependencies/Vulkan-Headers
+  git rm -r dependencies/vcpkg
+  git submodule update --init --recursive --depth 1
 
-  _run_if_exists _prepare_cemu
-
-  sed -e '/CMAKE_INTERPROCEDURAL_OPTIMIZATION/d' -i "$_pkgsrc/CMakeLists.txt"
-  sed -e '/FMT_HEADER_ONLY/d' -i "$_pkgsrc/src/Common/precompiled.h"
+  # let build system control LTO
+  sed -e '/CMAKE_INTERPROCEDURAL_OPTIMIZATION/d' -i CMakeLists.txt
 
   # fix share folder name
-  sed -e '/roamingPath = GetAppDataRoamingPath/s&"Cemu"&"cemu"&' -i "$_pkgsrc/src/gui/CemuApp.cpp"
+  sed -e '/roamingPath = GetAppDataRoamingPath/s&"Cemu"&"cemu"&' -i src/gui/wxgui/CemuApp.cpp
 }
 
 pkgver() {
@@ -121,7 +89,13 @@ pkgver() {
     | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
 }
 
-_build_cemu() (
+build() (
+  export CC CXX CFLAGS CXXFLAGS
+  CC=clang
+  CXX=clang++
+  CFLAGS+=' -DNDEBUG'
+  CXXFLAGS+=' -DNDEBUG'
+
   echo "Building cemu..."
   local _cmake_options=(
     -B build
@@ -139,23 +113,13 @@ _build_cemu() (
   cmake --build build
 )
 
-build() (
-  export CC CXX CFLAGS CXXFLAGS
-  CC=clang
-  CXX=clang++
-  CFLAGS+=' -DNDEBUG'
-  CXXFLAGS+=' -DNDEBUG'
-
-  _run_if_exists _build_cemu
-)
-
 package() {
   local _exec_name="Cemu_none"
 
   install -dm755 "$pkgdir/usr/bin"
   mv "$_pkgsrc/bin/$_exec_name" "$pkgdir/usr/bin/$_pkgname"
 
-  install -dm755 "$pkgdir/usr/share/$_pkgname"
+  mkdir -pm755 "$pkgdir/usr/share/$_pkgname"
   cp -a "$_pkgsrc"/bin/* "$pkgdir/usr/share/$_pkgname/"
 
   install -Dm644 "$_pkgsrc"/dist/linux/info.cemu.Cemu.png "$pkgdir/usr/share/pixmaps/$_pkgname.png"
@@ -175,10 +139,4 @@ MimeType=application/x-wii-u-rom;
 END
 
   chmod -R u+rwX,go+rX,go-w "$pkgdir/"
-}
-
-_run_if_exists() {
-  if declare -F "$1" > /dev/null; then
-    eval "$1"
-  fi
 }
