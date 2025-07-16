@@ -1,12 +1,13 @@
 pkgbase = obs-studio-stable
 	pkgdesc = Free, open source software for live streaming and recording - Browser enabled
-	pkgver = 31.0.1
+	pkgver = 31.1.1
 	pkgrel = 1
 	url = https://github.com/obsproject/obs-studio
 	arch = x86_64
 	license = GPL-2.0-or-later
 	makedepends = asio
 	makedepends = cmake
+	makedepends = extra-cmake-modules
 	makedepends = ffnvcodec-headers
 	makedepends = git
 	makedepends = libdatachannel
@@ -64,15 +65,11 @@ pkgbase = obs-studio-stable
 	optdepends = sndio: sndio input client
 	optdepends = v4l2loopback-dkms: virtual camera support
 	optdepends = vlc: VLC Media Source
-	provides = obs-studio=31.0.1
+	provides = obs-studio=31.1.1
 	conflicts = obs-studio
 	options = !debug
-	source = obs-studio::git+https://github.com/obsproject/obs-studio.git#tag=31.0.1
-	source = cef_binary_6533_linux_x86_64.tar.xz::https://cdn-fastly.obsproject.com/downloads//cef_binary_6533_linux_x86_64.tar.xz
-	source = obsproject.obs-browser::git+https://github.com/obsproject/obs-browser.git
-	source = obsproject.obs-websocket::git+https://github.com/obsproject/obs-websocket.git
-	sha256sums = SKIP
-	sha256sums = SKIP
+	source = obs-studio::git+https://github.com/obsproject/obs-studio.git#tag=31.1.1
+	source = cef_binary_6533_linux_x86_64_v3.tar.xz::https://cdn-fastly.obsproject.com/downloads//cef_binary_6533_linux_x86_64_v3.tar.xz
 	sha256sums = SKIP
 	sha256sums = SKIP
 
