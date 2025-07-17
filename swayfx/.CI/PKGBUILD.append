@@ -24,7 +24,6 @@ package() {
   (_orig_package)
 
   conflicts+=('scenefx')
-  replaces=('swayfx-static')
 
   # not needed
   rm -rf "$pkgdir/usr/include"
