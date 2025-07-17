@@ -1,9 +1,8 @@
 pkgbase = gimp-git
 	pkgdesc = GNU Image Manipulation Program
-	pkgver = 3.0.0.r9.g36d8a63
-	pkgrel = 2
+	pkgver = 3.1.2.r177.gf137337
+	pkgrel = 1
 	url = https://gitlab.gnome.org/GNOME/gimp
-	arch = i686
 	arch = x86_64
 	license = GPL-3.0-or-later
 	checkdepends = xorg-server-xvfb
@@ -42,7 +41,7 @@ pkgbase = gimp-git
 	depends = librsvg
 	depends = libwmf
 	depends = libxmu
-	depends = mypaint-brushes1
+	depends = mypaint-brushes
 	depends = openexr
 	depends = poppler-data
 	depends = poppler-glib
@@ -61,7 +60,7 @@ pkgbase = gimp-git
 	optdepends = libxpm: XPM support
 	optdepends = lua-lgi: LUA scripting support
 	optdepends = luajit: LUA scripting support
-	provides = gimp=3.0.0.r9.g36d8a63
+	provides = gimp=3.1.2.r177.gf137337
 	conflicts = gimp
 	source = gimp::git+https://gitlab.gnome.org/GNOME/gimp.git
 	source = gimp-data::git+https://gitlab.gnome.org/GNOME/gimp-data.git

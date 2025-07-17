@@ -2,12 +2,12 @@
 
 _pkgname="gimp"
 pkgname="$_pkgname-git"
-pkgver=3.0.0.r9.g36d8a63
-pkgrel=2
+pkgver=3.1.2.r177.gf137337
+pkgrel=1
 pkgdesc="GNU Image Manipulation Program"
 url="https://gitlab.gnome.org/GNOME/gimp"
 license=('GPL-3.0-or-later')
-arch=('i686' 'x86_64')
+arch=('x86_64')
 
 depends=(
   'appstream-glib'
@@ -21,7 +21,7 @@ depends=(
   'librsvg'
   'libwmf'
   'libxmu'
-  'mypaint-brushes1'
+  'mypaint-brushes'
   'openexr'
   'poppler-data'
   'poppler-glib'
@@ -139,7 +139,7 @@ package() {
       | sort -bur | head -1
   )
 
-  # .desktop
+  # launcher
   sed \
     -e 's/^\(Name.*\)/\1 (devel)/g' \
     -e 's/Icon=gimp/Icon=gimp-'"${_gimpver:?}"'/g' \
