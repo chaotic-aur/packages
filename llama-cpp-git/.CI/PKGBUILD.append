@@ -3,9 +3,7 @@ depends=(${depends[@]//libggml*/})
 makedepends+=('libggml-git')
 
 eval _orig_"$(declare -f package)"
-
 package() {
   depends+=('libggml')
-  replaces=('llama-cpp-x64v3-git')
   _orig_package
 }
