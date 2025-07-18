@@ -1,0 +1,18 @@
+pkgbase = python-scikit-commpy
+	pkgdesc = An open source toolkit implementing digital communications algorithms in Python
+	pkgver = 0.8.0
+	pkgrel = 1
+	url = https://github.com/veeresht/CommPy
+	arch = any
+	license = BSD
+	makedepends = python-setuptools
+	depends = python
+	depends = python-nose
+	depends = python-scipy
+	depends = python-numpy
+	depends = python-sympy
+	depends = python-matplotlib
+	source = python-scikit-commpy-0.8.0.tar.gz::https://github.com/veeresht/CommPy/archive/refs/tags/v0.8.0.tar.gz
+	sha256sums = 7b6b345009b2a7d9248a1e6de68898d67102727dac3c92863b00e925bdb46398
+
+pkgname = python-scikit-commpy
