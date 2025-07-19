@@ -1,472 +1,472 @@
 pkgbase = thunderbird-beta-i18n
 	pkgdesc = Language packs for Thunderbird Beta
-	pkgver = 140.0b3
+	pkgver = 141.0b4
 	pkgrel = 1
 	url = http://www.mozilla.com/
 	arch = any
 	license = MPL-2.0
 	license = GPL-2.0-only
 	license = LGPL-2.1-only
-	noextract = thunderbird-beta-i18n-140.0b3-af.xpi
-	noextract = thunderbird-beta-i18n-140.0b3-ar.xpi
-	noextract = thunderbird-beta-i18n-140.0b3-ast.xpi
-	noextract = thunderbird-beta-i18n-140.0b3-be.xpi
-	noextract = thunderbird-beta-i18n-140.0b3-bg.xpi
-	noextract = thunderbird-beta-i18n-140.0b3-br.xpi
-	noextract = thunderbird-beta-i18n-140.0b3-ca.xpi
-	noextract = thunderbird-beta-i18n-140.0b3-cak.xpi
-	noextract = thunderbird-beta-i18n-140.0b3-cs.xpi
-	noextract = thunderbird-beta-i18n-140.0b3-cy.xpi
-	noextract = thunderbird-beta-i18n-140.0b3-da.xpi
-	noextract = thunderbird-beta-i18n-140.0b3-de.xpi
-	noextract = thunderbird-beta-i18n-140.0b3-dsb.xpi
-	noextract = thunderbird-beta-i18n-140.0b3-el.xpi
-	noextract = thunderbird-beta-i18n-140.0b3-en-CA.xpi
-	noextract = thunderbird-beta-i18n-140.0b3-en-GB.xpi
-	noextract = thunderbird-beta-i18n-140.0b3-en-US.xpi
-	noextract = thunderbird-beta-i18n-140.0b3-es-AR.xpi
-	noextract = thunderbird-beta-i18n-140.0b3-es-ES.xpi
-	noextract = thunderbird-beta-i18n-140.0b3-es-MX.xpi
-	noextract = thunderbird-beta-i18n-140.0b3-et.xpi
-	noextract = thunderbird-beta-i18n-140.0b3-eu.xpi
-	noextract = thunderbird-beta-i18n-140.0b3-fi.xpi
-	noextract = thunderbird-beta-i18n-140.0b3-fr.xpi
-	noextract = thunderbird-beta-i18n-140.0b3-fy-NL.xpi
-	noextract = thunderbird-beta-i18n-140.0b3-ga-IE.xpi
-	noextract = thunderbird-beta-i18n-140.0b3-gd.xpi
-	noextract = thunderbird-beta-i18n-140.0b3-gl.xpi
-	noextract = thunderbird-beta-i18n-140.0b3-he.xpi
-	noextract = thunderbird-beta-i18n-140.0b3-hr.xpi
-	noextract = thunderbird-beta-i18n-140.0b3-hsb.xpi
-	noextract = thunderbird-beta-i18n-140.0b3-hu.xpi
-	noextract = thunderbird-beta-i18n-140.0b3-hy-AM.xpi
-	noextract = thunderbird-beta-i18n-140.0b3-id.xpi
-	noextract = thunderbird-beta-i18n-140.0b3-is.xpi
-	noextract = thunderbird-beta-i18n-140.0b3-it.xpi
-	noextract = thunderbird-beta-i18n-140.0b3-ja.xpi
-	noextract = thunderbird-beta-i18n-140.0b3-ka.xpi
-	noextract = thunderbird-beta-i18n-140.0b3-kab.xpi
-	noextract = thunderbird-beta-i18n-140.0b3-kk.xpi
-	noextract = thunderbird-beta-i18n-140.0b3-ko.xpi
-	noextract = thunderbird-beta-i18n-140.0b3-lt.xpi
-	noextract = thunderbird-beta-i18n-140.0b3-lv.xpi
-	noextract = thunderbird-beta-i18n-140.0b3-ms.xpi
-	noextract = thunderbird-beta-i18n-140.0b3-nb-NO.xpi
-	noextract = thunderbird-beta-i18n-140.0b3-nl.xpi
-	noextract = thunderbird-beta-i18n-140.0b3-nn-NO.xpi
-	noextract = thunderbird-beta-i18n-140.0b3-pa-IN.xpi
-	noextract = thunderbird-beta-i18n-140.0b3-pl.xpi
-	noextract = thunderbird-beta-i18n-140.0b3-pt-BR.xpi
-	noextract = thunderbird-beta-i18n-140.0b3-pt-PT.xpi
-	noextract = thunderbird-beta-i18n-140.0b3-rm.xpi
-	noextract = thunderbird-beta-i18n-140.0b3-ro.xpi
-	noextract = thunderbird-beta-i18n-140.0b3-ru.xpi
-	noextract = thunderbird-beta-i18n-140.0b3-sk.xpi
-	noextract = thunderbird-beta-i18n-140.0b3-sl.xpi
-	noextract = thunderbird-beta-i18n-140.0b3-sq.xpi
-	noextract = thunderbird-beta-i18n-140.0b3-sr.xpi
-	noextract = thunderbird-beta-i18n-140.0b3-sv-SE.xpi
-	noextract = thunderbird-beta-i18n-140.0b3-th.xpi
-	noextract = thunderbird-beta-i18n-140.0b3-tr.xpi
-	noextract = thunderbird-beta-i18n-140.0b3-uk.xpi
-	noextract = thunderbird-beta-i18n-140.0b3-uz.xpi
-	noextract = thunderbird-beta-i18n-140.0b3-vi.xpi
-	noextract = thunderbird-beta-i18n-140.0b3-zh-CN.xpi
-	noextract = thunderbird-beta-i18n-140.0b3-zh-TW.xpi
-	source = thunderbird-beta-i18n-140.0b3-af.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/140.0b3/linux-x86_64/xpi/af.xpi
-	source = thunderbird-beta-i18n-140.0b3-ar.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/140.0b3/linux-x86_64/xpi/ar.xpi
-	source = thunderbird-beta-i18n-140.0b3-ast.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/140.0b3/linux-x86_64/xpi/ast.xpi
-	source = thunderbird-beta-i18n-140.0b3-be.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/140.0b3/linux-x86_64/xpi/be.xpi
-	source = thunderbird-beta-i18n-140.0b3-bg.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/140.0b3/linux-x86_64/xpi/bg.xpi
-	source = thunderbird-beta-i18n-140.0b3-br.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/140.0b3/linux-x86_64/xpi/br.xpi
-	source = thunderbird-beta-i18n-140.0b3-ca.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/140.0b3/linux-x86_64/xpi/ca.xpi
-	source = thunderbird-beta-i18n-140.0b3-cak.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/140.0b3/linux-x86_64/xpi/cak.xpi
-	source = thunderbird-beta-i18n-140.0b3-cs.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/140.0b3/linux-x86_64/xpi/cs.xpi
-	source = thunderbird-beta-i18n-140.0b3-cy.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/140.0b3/linux-x86_64/xpi/cy.xpi
-	source = thunderbird-beta-i18n-140.0b3-da.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/140.0b3/linux-x86_64/xpi/da.xpi
-	source = thunderbird-beta-i18n-140.0b3-de.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/140.0b3/linux-x86_64/xpi/de.xpi
-	source = thunderbird-beta-i18n-140.0b3-dsb.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/140.0b3/linux-x86_64/xpi/dsb.xpi
-	source = thunderbird-beta-i18n-140.0b3-el.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/140.0b3/linux-x86_64/xpi/el.xpi
-	source = thunderbird-beta-i18n-140.0b3-en-CA.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/140.0b3/linux-x86_64/xpi/en-CA.xpi
-	source = thunderbird-beta-i18n-140.0b3-en-GB.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/140.0b3/linux-x86_64/xpi/en-GB.xpi
-	source = thunderbird-beta-i18n-140.0b3-en-US.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/140.0b3/linux-x86_64/xpi/en-US.xpi
-	source = thunderbird-beta-i18n-140.0b3-es-AR.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/140.0b3/linux-x86_64/xpi/es-AR.xpi
-	source = thunderbird-beta-i18n-140.0b3-es-ES.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/140.0b3/linux-x86_64/xpi/es-ES.xpi
-	source = thunderbird-beta-i18n-140.0b3-es-MX.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/140.0b3/linux-x86_64/xpi/es-MX.xpi
-	source = thunderbird-beta-i18n-140.0b3-et.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/140.0b3/linux-x86_64/xpi/et.xpi
-	source = thunderbird-beta-i18n-140.0b3-eu.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/140.0b3/linux-x86_64/xpi/eu.xpi
-	source = thunderbird-beta-i18n-140.0b3-fi.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/140.0b3/linux-x86_64/xpi/fi.xpi
-	source = thunderbird-beta-i18n-140.0b3-fr.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/140.0b3/linux-x86_64/xpi/fr.xpi
-	source = thunderbird-beta-i18n-140.0b3-fy-NL.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/140.0b3/linux-x86_64/xpi/fy-NL.xpi
-	source = thunderbird-beta-i18n-140.0b3-ga-IE.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/140.0b3/linux-x86_64/xpi/ga-IE.xpi
-	source = thunderbird-beta-i18n-140.0b3-gd.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/140.0b3/linux-x86_64/xpi/gd.xpi
-	source = thunderbird-beta-i18n-140.0b3-gl.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/140.0b3/linux-x86_64/xpi/gl.xpi
-	source = thunderbird-beta-i18n-140.0b3-he.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/140.0b3/linux-x86_64/xpi/he.xpi
-	source = thunderbird-beta-i18n-140.0b3-hr.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/140.0b3/linux-x86_64/xpi/hr.xpi
-	source = thunderbird-beta-i18n-140.0b3-hsb.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/140.0b3/linux-x86_64/xpi/hsb.xpi
-	source = thunderbird-beta-i18n-140.0b3-hu.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/140.0b3/linux-x86_64/xpi/hu.xpi
-	source = thunderbird-beta-i18n-140.0b3-hy-AM.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/140.0b3/linux-x86_64/xpi/hy-AM.xpi
-	source = thunderbird-beta-i18n-140.0b3-id.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/140.0b3/linux-x86_64/xpi/id.xpi
-	source = thunderbird-beta-i18n-140.0b3-is.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/140.0b3/linux-x86_64/xpi/is.xpi
-	source = thunderbird-beta-i18n-140.0b3-it.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/140.0b3/linux-x86_64/xpi/it.xpi
-	source = thunderbird-beta-i18n-140.0b3-ja.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/140.0b3/linux-x86_64/xpi/ja.xpi
-	source = thunderbird-beta-i18n-140.0b3-ka.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/140.0b3/linux-x86_64/xpi/ka.xpi
-	source = thunderbird-beta-i18n-140.0b3-kab.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/140.0b3/linux-x86_64/xpi/kab.xpi
-	source = thunderbird-beta-i18n-140.0b3-kk.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/140.0b3/linux-x86_64/xpi/kk.xpi
-	source = thunderbird-beta-i18n-140.0b3-ko.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/140.0b3/linux-x86_64/xpi/ko.xpi
-	source = thunderbird-beta-i18n-140.0b3-lt.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/140.0b3/linux-x86_64/xpi/lt.xpi
-	source = thunderbird-beta-i18n-140.0b3-lv.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/140.0b3/linux-x86_64/xpi/lv.xpi
-	source = thunderbird-beta-i18n-140.0b3-ms.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/140.0b3/linux-x86_64/xpi/ms.xpi
-	source = thunderbird-beta-i18n-140.0b3-nb-NO.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/140.0b3/linux-x86_64/xpi/nb-NO.xpi
-	source = thunderbird-beta-i18n-140.0b3-nl.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/140.0b3/linux-x86_64/xpi/nl.xpi
-	source = thunderbird-beta-i18n-140.0b3-nn-NO.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/140.0b3/linux-x86_64/xpi/nn-NO.xpi
-	source = thunderbird-beta-i18n-140.0b3-pa-IN.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/140.0b3/linux-x86_64/xpi/pa-IN.xpi
-	source = thunderbird-beta-i18n-140.0b3-pl.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/140.0b3/linux-x86_64/xpi/pl.xpi
-	source = thunderbird-beta-i18n-140.0b3-pt-BR.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/140.0b3/linux-x86_64/xpi/pt-BR.xpi
-	source = thunderbird-beta-i18n-140.0b3-pt-PT.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/140.0b3/linux-x86_64/xpi/pt-PT.xpi
-	source = thunderbird-beta-i18n-140.0b3-rm.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/140.0b3/linux-x86_64/xpi/rm.xpi
-	source = thunderbird-beta-i18n-140.0b3-ro.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/140.0b3/linux-x86_64/xpi/ro.xpi
-	source = thunderbird-beta-i18n-140.0b3-ru.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/140.0b3/linux-x86_64/xpi/ru.xpi
-	source = thunderbird-beta-i18n-140.0b3-sk.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/140.0b3/linux-x86_64/xpi/sk.xpi
-	source = thunderbird-beta-i18n-140.0b3-sl.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/140.0b3/linux-x86_64/xpi/sl.xpi
-	source = thunderbird-beta-i18n-140.0b3-sq.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/140.0b3/linux-x86_64/xpi/sq.xpi
-	source = thunderbird-beta-i18n-140.0b3-sr.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/140.0b3/linux-x86_64/xpi/sr.xpi
-	source = thunderbird-beta-i18n-140.0b3-sv-SE.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/140.0b3/linux-x86_64/xpi/sv-SE.xpi
-	source = thunderbird-beta-i18n-140.0b3-th.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/140.0b3/linux-x86_64/xpi/th.xpi
-	source = thunderbird-beta-i18n-140.0b3-tr.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/140.0b3/linux-x86_64/xpi/tr.xpi
-	source = thunderbird-beta-i18n-140.0b3-uk.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/140.0b3/linux-x86_64/xpi/uk.xpi
-	source = thunderbird-beta-i18n-140.0b3-uz.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/140.0b3/linux-x86_64/xpi/uz.xpi
-	source = thunderbird-beta-i18n-140.0b3-vi.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/140.0b3/linux-x86_64/xpi/vi.xpi
-	source = thunderbird-beta-i18n-140.0b3-zh-CN.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/140.0b3/linux-x86_64/xpi/zh-CN.xpi
-	source = thunderbird-beta-i18n-140.0b3-zh-TW.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/140.0b3/linux-x86_64/xpi/zh-TW.xpi
-	sha256sums = 8b9eeb6f7ca3d5e9e44c0544bad782d8417357f090c6dd3f32a2843626009557
-	sha256sums = a51804d7b18f3c510e2531abc527101b607712aab62304b29523dfd3ad6048a7
-	sha256sums = 15df0566542a3a04617a9c3a6ac58571bef24f9a9e71c84c72d24b53f32cd982
-	sha256sums = 115580448cb38acae417f16b426a5a2232a97ac725cda4b4c4bdf5a9f96181fd
-	sha256sums = 678ba1ecf46b2de5e1e1e7bca163664be98b25a34f58c40571fc2b9629552912
-	sha256sums = 7417c11f85edad504c5352fb2c6f64525a866bb61ff689c85b3aca70ae482e6f
-	sha256sums = e1c4cd9cbfec6934b1c9cb84ca3593bf19f1a15465ac66b23266d3f8e3932d64
-	sha256sums = 59f600d548c7df98b2740681f9fbb39d4decc29abc73ae18193cfb84c08f60d1
-	sha256sums = dc67d595dc462943b6e189f9297646dd2ad054885955d705f0cffa5bb1c69c4b
-	sha256sums = 294b961d40fa611ad57ef9cd043d79b17ba4851c96991ce8846394f44208e74c
-	sha256sums = df84b1e4af905022a5f045539c8292118e0a2ea431fcbac9d022116ca4ed4bae
-	sha256sums = 96ddab584f87e3de32a16972dd37322ec1336f7e106ea2cdfe399d5f41048823
-	sha256sums = 95c35702df75a465f79964a533489ecb0a20499c4ac72e2d31f37f35d487271e
-	sha256sums = bddecdde8982f05d6bb6da717660f44faabbcc8b361efac6e78c97f6510c6e53
-	sha256sums = c4ad3c5f31e3d5f4d62cbc64aa4c3d0177be4518ce550a3d79c32690caac0ab8
-	sha256sums = 4d97f34ef933d752950328b2dcd3bbe82257df930b13b6f039c0abcb9d05653b
-	sha256sums = 18021e04a2c8c51eb6c6f5aebc0e471ea0be5915951d32f8f9f82cab0bb9fccd
-	sha256sums = 2568917b015f3c174c988ae36f743ed70aa03d8b0f3dbcb9e1938e4db4822d94
-	sha256sums = 4fbcb481be500044d17e4aef003422015cc0c1186ea65d3c477cd76e747e5edf
-	sha256sums = ae9e43dd09a09c67e2f8a8b9a7659322a4ef95889a681189dac306497f8d6d32
-	sha256sums = 3e2979b31fe14d84a63cf5f6034dfb171aba7a0f029b74072485a9c50c1f6e1a
-	sha256sums = ba2e488823f5e3f2708050e3efa0d9b64a1375658d11c7bc39764f263712d44c
-	sha256sums = e828949b3945ee279ad11dc6b5fc4bef67dae150216e379e1a88575a4bffa35b
-	sha256sums = 30c0bd5f604b49dfc6fc89c3cf4ca2cc102a228e0d67cb96299cd5f2410af5c7
-	sha256sums = be6d25dad72435c4e649ea674dac7036db6f77ac1d731bf07c3a48ed68d68d07
-	sha256sums = 42bc9272062bb9901b65b41f30a7cb1b0b3be1f2e3e58add0d54e195527dbf94
-	sha256sums = 5e8e08317983f0b4e6dfd302bf0ee1954e58a844190f8020601e424e0467e337
-	sha256sums = 70a67c3c3b8236b671e21b31b10f2e4a1d75f73e6f2fe70aa19009e811044e88
-	sha256sums = 17c52d6f637a47b5a9ea93fd844aada7ddcaef0d05f90a46eabca32fd94459e0
-	sha256sums = 0ea90d12c0ee2f99d1c0341322555907bb0f382e2998ad532dcf023efd4b06a6
-	sha256sums = 82059c9d0453eef1d36af0ae5e8108eb05aa0e5639b31a11e039be67b59007b9
-	sha256sums = 4d6aa259d940c065ac1048c965f057af696cf56d28258bdba5826666533dfd3d
-	sha256sums = 0f992af2fc0f1cee48221a8469697d900d8ec72b5733130d4c06bedb34d76043
-	sha256sums = a8db1dc1d62ec41803d60a8e127648442338b955b62aa752810c5f06e8c991b9
-	sha256sums = 74a8c0b8cc190e53f6b581fad1966da4ecc7890a8387af65dcb193d658f3ece3
-	sha256sums = fc2a8e7b914b9221259dc887f7b568055e8135fda2a8a5a2b7189967c66993df
-	sha256sums = b334a116919514a95474d1e3604725ecaef85195279e91d8796be13781a6ad19
-	sha256sums = 726770a0731db6ecbc5c458cfbd783b09542ca1c82ea21fb371658a72a01c229
-	sha256sums = 9cf9999909fa91a8e57eb5a4fcb81b3b4fc6e40b5371efbcf081f0c8381b8e34
-	sha256sums = 88129af60435d0de8518976cac657dddd826d151ddc29b4974d471cc2320865a
-	sha256sums = cfe82a4a6bb0e61dfeced71b0a8bc5d0581e3acdfbf733f12a878e44a0474ed3
-	sha256sums = ad0b050fa4ac0ce4613f791a1d22b3f261e2fb970bf91ec095c74caf6acfe3fb
-	sha256sums = 490ac97ce4b3b155ca468afffd4aa6a1916e5835fa8a89ff92a7a52e66847857
-	sha256sums = b78d7a35fd2cbefee0a6785faf4c9be1881ed9699772006eb2d1a3bbcc2291ac
-	sha256sums = 853f9aff889e5eb5316762e0f9b5dff2d13e6df0f43b557d530a910e2ec0cf22
-	sha256sums = 46d929869b9e98f9c203a8d4bd74a8b18430ba3f7d83464a08d296d7e82ec880
-	sha256sums = d7561e486fbf13a91764bc600237b5b55e0e95d4c6a82c56be49b3d6d24092d8
-	sha256sums = 84e79b9479f324eff1abeb0671e87a002bbb9e698780e0dca9e17eea1ed9acec
-	sha256sums = f5837160f240596d66097ed2308775f16922e5b7e88b86c3ffd3282dda53db19
-	sha256sums = ea7854c508e404b0d92b58a89a1f7f74e8a99f64f6fd758dad7a5d4e4c350b25
-	sha256sums = f4b5f9d911f7b71405603bcad4db4566d1d107f5614faf17912f1f4bfcbdbd64
-	sha256sums = 7a0a37872da2ecf637a0d97f96e1704e973502b95f67b26af63b84c58c6d588a
-	sha256sums = a50c8c8b8945be1e269fa4b27ffe0f0e0053e642c5bab2a425612f04a4b5d7bd
-	sha256sums = 122ea36b8d6736f0316ebbe5270cb67c3bff1ea39cd6e06f22758c25a8d11dfa
-	sha256sums = 9c30d98959b75652dbda2fa0324789b73d15c4b4067a313ad7cca61e1a217764
-	sha256sums = 4343bbe99fb20eaea77e67ae203f3f04070412235941f8f5bd8259dfd9400994
-	sha256sums = 46321222732cb644f2104abf005b90da584aaceaf9a328ed779954ad9abcf6b6
-	sha256sums = eed1bded21994f939fc43d33f82d2034b5b29baa3f86cb153aed7e224765ace9
-	sha256sums = c8b428fd4fda4451f2ec6029853fe4c3c5ec16f5f8c391cc60cddbc634cbeb26
-	sha256sums = e66bedafd40b6c97bdb7ca6b5cc9da8f02a02554791bcedfe390fb2292ff2498
-	sha256sums = 9309eaf446b3935f9ba01928f444008b39a27934c43323b873b6c209a08a419e
-	sha256sums = 179cb0211f2f240bbdcd27bf2ba417a611256970bc647783a550bc7aa01c1776
-	sha256sums = 1f0f8a56d692a3ed980f76f5afedbff6edf2b57e7b28123f86d2b18c9543dd9d
-	sha256sums = ac255eeea61073e3e51f6d0db7869b0ef2b64150c29c9fbeb5387e8ebd0763b3
-	sha256sums = e6f0ec2989bd85dfcd7db49a38f396467804787c2b1d034c8d5e9040583ef903
-	sha256sums = a0522393b71a3f3bd6accc5f8c5c4f04eb1799869cb113920116d8d3bd0ecede
+	noextract = thunderbird-beta-i18n-141.0b4-af.xpi
+	noextract = thunderbird-beta-i18n-141.0b4-ar.xpi
+	noextract = thunderbird-beta-i18n-141.0b4-ast.xpi
+	noextract = thunderbird-beta-i18n-141.0b4-be.xpi
+	noextract = thunderbird-beta-i18n-141.0b4-bg.xpi
+	noextract = thunderbird-beta-i18n-141.0b4-br.xpi
+	noextract = thunderbird-beta-i18n-141.0b4-ca.xpi
+	noextract = thunderbird-beta-i18n-141.0b4-cak.xpi
+	noextract = thunderbird-beta-i18n-141.0b4-cs.xpi
+	noextract = thunderbird-beta-i18n-141.0b4-cy.xpi
+	noextract = thunderbird-beta-i18n-141.0b4-da.xpi
+	noextract = thunderbird-beta-i18n-141.0b4-de.xpi
+	noextract = thunderbird-beta-i18n-141.0b4-dsb.xpi
+	noextract = thunderbird-beta-i18n-141.0b4-el.xpi
+	noextract = thunderbird-beta-i18n-141.0b4-en-CA.xpi
+	noextract = thunderbird-beta-i18n-141.0b4-en-GB.xpi
+	noextract = thunderbird-beta-i18n-141.0b4-en-US.xpi
+	noextract = thunderbird-beta-i18n-141.0b4-es-AR.xpi
+	noextract = thunderbird-beta-i18n-141.0b4-es-ES.xpi
+	noextract = thunderbird-beta-i18n-141.0b4-es-MX.xpi
+	noextract = thunderbird-beta-i18n-141.0b4-et.xpi
+	noextract = thunderbird-beta-i18n-141.0b4-eu.xpi
+	noextract = thunderbird-beta-i18n-141.0b4-fi.xpi
+	noextract = thunderbird-beta-i18n-141.0b4-fr.xpi
+	noextract = thunderbird-beta-i18n-141.0b4-fy-NL.xpi
+	noextract = thunderbird-beta-i18n-141.0b4-ga-IE.xpi
+	noextract = thunderbird-beta-i18n-141.0b4-gd.xpi
+	noextract = thunderbird-beta-i18n-141.0b4-gl.xpi
+	noextract = thunderbird-beta-i18n-141.0b4-he.xpi
+	noextract = thunderbird-beta-i18n-141.0b4-hr.xpi
+	noextract = thunderbird-beta-i18n-141.0b4-hsb.xpi
+	noextract = thunderbird-beta-i18n-141.0b4-hu.xpi
+	noextract = thunderbird-beta-i18n-141.0b4-hy-AM.xpi
+	noextract = thunderbird-beta-i18n-141.0b4-id.xpi
+	noextract = thunderbird-beta-i18n-141.0b4-is.xpi
+	noextract = thunderbird-beta-i18n-141.0b4-it.xpi
+	noextract = thunderbird-beta-i18n-141.0b4-ja.xpi
+	noextract = thunderbird-beta-i18n-141.0b4-ka.xpi
+	noextract = thunderbird-beta-i18n-141.0b4-kab.xpi
+	noextract = thunderbird-beta-i18n-141.0b4-kk.xpi
+	noextract = thunderbird-beta-i18n-141.0b4-ko.xpi
+	noextract = thunderbird-beta-i18n-141.0b4-lt.xpi
+	noextract = thunderbird-beta-i18n-141.0b4-lv.xpi
+	noextract = thunderbird-beta-i18n-141.0b4-ms.xpi
+	noextract = thunderbird-beta-i18n-141.0b4-nb-NO.xpi
+	noextract = thunderbird-beta-i18n-141.0b4-nl.xpi
+	noextract = thunderbird-beta-i18n-141.0b4-nn-NO.xpi
+	noextract = thunderbird-beta-i18n-141.0b4-pa-IN.xpi
+	noextract = thunderbird-beta-i18n-141.0b4-pl.xpi
+	noextract = thunderbird-beta-i18n-141.0b4-pt-BR.xpi
+	noextract = thunderbird-beta-i18n-141.0b4-pt-PT.xpi
+	noextract = thunderbird-beta-i18n-141.0b4-rm.xpi
+	noextract = thunderbird-beta-i18n-141.0b4-ro.xpi
+	noextract = thunderbird-beta-i18n-141.0b4-ru.xpi
+	noextract = thunderbird-beta-i18n-141.0b4-sk.xpi
+	noextract = thunderbird-beta-i18n-141.0b4-sl.xpi
+	noextract = thunderbird-beta-i18n-141.0b4-sq.xpi
+	noextract = thunderbird-beta-i18n-141.0b4-sr.xpi
+	noextract = thunderbird-beta-i18n-141.0b4-sv-SE.xpi
+	noextract = thunderbird-beta-i18n-141.0b4-th.xpi
+	noextract = thunderbird-beta-i18n-141.0b4-tr.xpi
+	noextract = thunderbird-beta-i18n-141.0b4-uk.xpi
+	noextract = thunderbird-beta-i18n-141.0b4-uz.xpi
+	noextract = thunderbird-beta-i18n-141.0b4-vi.xpi
+	noextract = thunderbird-beta-i18n-141.0b4-zh-CN.xpi
+	noextract = thunderbird-beta-i18n-141.0b4-zh-TW.xpi
+	source = thunderbird-beta-i18n-141.0b4-af.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/141.0b4/linux-x86_64/xpi/af.xpi
+	source = thunderbird-beta-i18n-141.0b4-ar.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/141.0b4/linux-x86_64/xpi/ar.xpi
+	source = thunderbird-beta-i18n-141.0b4-ast.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/141.0b4/linux-x86_64/xpi/ast.xpi
+	source = thunderbird-beta-i18n-141.0b4-be.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/141.0b4/linux-x86_64/xpi/be.xpi
+	source = thunderbird-beta-i18n-141.0b4-bg.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/141.0b4/linux-x86_64/xpi/bg.xpi
+	source = thunderbird-beta-i18n-141.0b4-br.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/141.0b4/linux-x86_64/xpi/br.xpi
+	source = thunderbird-beta-i18n-141.0b4-ca.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/141.0b4/linux-x86_64/xpi/ca.xpi
+	source = thunderbird-beta-i18n-141.0b4-cak.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/141.0b4/linux-x86_64/xpi/cak.xpi
+	source = thunderbird-beta-i18n-141.0b4-cs.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/141.0b4/linux-x86_64/xpi/cs.xpi
+	source = thunderbird-beta-i18n-141.0b4-cy.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/141.0b4/linux-x86_64/xpi/cy.xpi
+	source = thunderbird-beta-i18n-141.0b4-da.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/141.0b4/linux-x86_64/xpi/da.xpi
+	source = thunderbird-beta-i18n-141.0b4-de.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/141.0b4/linux-x86_64/xpi/de.xpi
+	source = thunderbird-beta-i18n-141.0b4-dsb.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/141.0b4/linux-x86_64/xpi/dsb.xpi
+	source = thunderbird-beta-i18n-141.0b4-el.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/141.0b4/linux-x86_64/xpi/el.xpi
+	source = thunderbird-beta-i18n-141.0b4-en-CA.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/141.0b4/linux-x86_64/xpi/en-CA.xpi
+	source = thunderbird-beta-i18n-141.0b4-en-GB.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/141.0b4/linux-x86_64/xpi/en-GB.xpi
+	source = thunderbird-beta-i18n-141.0b4-en-US.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/141.0b4/linux-x86_64/xpi/en-US.xpi
+	source = thunderbird-beta-i18n-141.0b4-es-AR.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/141.0b4/linux-x86_64/xpi/es-AR.xpi
+	source = thunderbird-beta-i18n-141.0b4-es-ES.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/141.0b4/linux-x86_64/xpi/es-ES.xpi
+	source = thunderbird-beta-i18n-141.0b4-es-MX.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/141.0b4/linux-x86_64/xpi/es-MX.xpi
+	source = thunderbird-beta-i18n-141.0b4-et.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/141.0b4/linux-x86_64/xpi/et.xpi
+	source = thunderbird-beta-i18n-141.0b4-eu.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/141.0b4/linux-x86_64/xpi/eu.xpi
+	source = thunderbird-beta-i18n-141.0b4-fi.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/141.0b4/linux-x86_64/xpi/fi.xpi
+	source = thunderbird-beta-i18n-141.0b4-fr.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/141.0b4/linux-x86_64/xpi/fr.xpi
+	source = thunderbird-beta-i18n-141.0b4-fy-NL.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/141.0b4/linux-x86_64/xpi/fy-NL.xpi
+	source = thunderbird-beta-i18n-141.0b4-ga-IE.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/141.0b4/linux-x86_64/xpi/ga-IE.xpi
+	source = thunderbird-beta-i18n-141.0b4-gd.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/141.0b4/linux-x86_64/xpi/gd.xpi
+	source = thunderbird-beta-i18n-141.0b4-gl.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/141.0b4/linux-x86_64/xpi/gl.xpi
+	source = thunderbird-beta-i18n-141.0b4-he.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/141.0b4/linux-x86_64/xpi/he.xpi
+	source = thunderbird-beta-i18n-141.0b4-hr.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/141.0b4/linux-x86_64/xpi/hr.xpi
+	source = thunderbird-beta-i18n-141.0b4-hsb.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/141.0b4/linux-x86_64/xpi/hsb.xpi
+	source = thunderbird-beta-i18n-141.0b4-hu.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/141.0b4/linux-x86_64/xpi/hu.xpi
+	source = thunderbird-beta-i18n-141.0b4-hy-AM.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/141.0b4/linux-x86_64/xpi/hy-AM.xpi
+	source = thunderbird-beta-i18n-141.0b4-id.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/141.0b4/linux-x86_64/xpi/id.xpi
+	source = thunderbird-beta-i18n-141.0b4-is.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/141.0b4/linux-x86_64/xpi/is.xpi
+	source = thunderbird-beta-i18n-141.0b4-it.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/141.0b4/linux-x86_64/xpi/it.xpi
+	source = thunderbird-beta-i18n-141.0b4-ja.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/141.0b4/linux-x86_64/xpi/ja.xpi
+	source = thunderbird-beta-i18n-141.0b4-ka.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/141.0b4/linux-x86_64/xpi/ka.xpi
+	source = thunderbird-beta-i18n-141.0b4-kab.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/141.0b4/linux-x86_64/xpi/kab.xpi
+	source = thunderbird-beta-i18n-141.0b4-kk.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/141.0b4/linux-x86_64/xpi/kk.xpi
+	source = thunderbird-beta-i18n-141.0b4-ko.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/141.0b4/linux-x86_64/xpi/ko.xpi
+	source = thunderbird-beta-i18n-141.0b4-lt.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/141.0b4/linux-x86_64/xpi/lt.xpi
+	source = thunderbird-beta-i18n-141.0b4-lv.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/141.0b4/linux-x86_64/xpi/lv.xpi
+	source = thunderbird-beta-i18n-141.0b4-ms.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/141.0b4/linux-x86_64/xpi/ms.xpi
+	source = thunderbird-beta-i18n-141.0b4-nb-NO.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/141.0b4/linux-x86_64/xpi/nb-NO.xpi
+	source = thunderbird-beta-i18n-141.0b4-nl.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/141.0b4/linux-x86_64/xpi/nl.xpi
+	source = thunderbird-beta-i18n-141.0b4-nn-NO.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/141.0b4/linux-x86_64/xpi/nn-NO.xpi
+	source = thunderbird-beta-i18n-141.0b4-pa-IN.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/141.0b4/linux-x86_64/xpi/pa-IN.xpi
+	source = thunderbird-beta-i18n-141.0b4-pl.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/141.0b4/linux-x86_64/xpi/pl.xpi
+	source = thunderbird-beta-i18n-141.0b4-pt-BR.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/141.0b4/linux-x86_64/xpi/pt-BR.xpi
+	source = thunderbird-beta-i18n-141.0b4-pt-PT.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/141.0b4/linux-x86_64/xpi/pt-PT.xpi
+	source = thunderbird-beta-i18n-141.0b4-rm.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/141.0b4/linux-x86_64/xpi/rm.xpi
+	source = thunderbird-beta-i18n-141.0b4-ro.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/141.0b4/linux-x86_64/xpi/ro.xpi
+	source = thunderbird-beta-i18n-141.0b4-ru.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/141.0b4/linux-x86_64/xpi/ru.xpi
+	source = thunderbird-beta-i18n-141.0b4-sk.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/141.0b4/linux-x86_64/xpi/sk.xpi
+	source = thunderbird-beta-i18n-141.0b4-sl.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/141.0b4/linux-x86_64/xpi/sl.xpi
+	source = thunderbird-beta-i18n-141.0b4-sq.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/141.0b4/linux-x86_64/xpi/sq.xpi
+	source = thunderbird-beta-i18n-141.0b4-sr.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/141.0b4/linux-x86_64/xpi/sr.xpi
+	source = thunderbird-beta-i18n-141.0b4-sv-SE.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/141.0b4/linux-x86_64/xpi/sv-SE.xpi
+	source = thunderbird-beta-i18n-141.0b4-th.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/141.0b4/linux-x86_64/xpi/th.xpi
+	source = thunderbird-beta-i18n-141.0b4-tr.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/141.0b4/linux-x86_64/xpi/tr.xpi
+	source = thunderbird-beta-i18n-141.0b4-uk.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/141.0b4/linux-x86_64/xpi/uk.xpi
+	source = thunderbird-beta-i18n-141.0b4-uz.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/141.0b4/linux-x86_64/xpi/uz.xpi
+	source = thunderbird-beta-i18n-141.0b4-vi.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/141.0b4/linux-x86_64/xpi/vi.xpi
+	source = thunderbird-beta-i18n-141.0b4-zh-CN.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/141.0b4/linux-x86_64/xpi/zh-CN.xpi
+	source = thunderbird-beta-i18n-141.0b4-zh-TW.xpi::https://ftp.mozilla.org/pub/thunderbird/releases/141.0b4/linux-x86_64/xpi/zh-TW.xpi
+	sha256sums = 53c812dd61839186e40de9422fd6b9df3692877ce8847cbfa3479d64871c6933
+	sha256sums = a57031a1b5f44f97986f816473aea1a7fc96f3930df2a2b1548de8d525e0fcf7
+	sha256sums = badcd5e6d18f1196c719b6922b9365880cee22f6bf1028debb0ea0140af35e1c
+	sha256sums = dcc1cdb07b185ae3914b230a44830b0e22386165d7736e4fa241d24fe2b3f893
+	sha256sums = d499abfa42789b68441ac5f199a43e8400db52e36db21e0099f9d9e89b6ac4fc
+	sha256sums = 835a3b359fe6cd441b431b5d2b59e207740b23904927accd7c60dcf8c5cb120a
+	sha256sums = 13b49ae300003bce22b461613385d90c8244ea73b8ef584539791eb324613c6a
+	sha256sums = d7f9178ce204a48740f7c4bcd76701d751853ba9bb52dd3cbea43cbd60ac3fa7
+	sha256sums = fb90976ed8bf33bb56d4965185817f28583ca011617b091ba1e60bb665e83cd9
+	sha256sums = fe96bdf04e5a86f0e0d85b21941f3066a239963fe81d7c3f8f884e549dc60fc1
+	sha256sums = 282f914320497c938274c7298ba3535a5fb525f738bcddbb2cc753846a11b33e
+	sha256sums = 4508377347c09c7e80c3e2b17e9cc2644eed9054de83ee2fe8f52f7121b65d77
+	sha256sums = 149d6f50a51dfd267cce6bdbf5f9847967cad05ca16c067ae7f51ec575a73062
+	sha256sums = e579b6714316184ce42425c7332e36d30339d5b896871d158da6e0415ed993b3
+	sha256sums = af79aa9bde331a5914c45d8dc7ebcdc144a059bac88dc346ae681f8b0c988f24
+	sha256sums = 7bf3b1b18eadd259fa60f86d1b1953f02f49996cc48a1bd5be219ef2eddc12f4
+	sha256sums = e27afa112308bb8b6f3d317011f464374f51a7d1d568572d9db70195733e2c49
+	sha256sums = caa577dcb2f716b0d23562befbfa775f468df34a0da67637bc5ecc58654f6258
+	sha256sums = 55d8df31b0c5a776bc9f3b83b4db93230c261327e259e4a9c9f0b495cca4ea8e
+	sha256sums = 40f24621df72f3b157066a876e9a2eb2c703b49ccf3e2d1cc10510e0a8704b25
+	sha256sums = b040fc7561709cff7a29c5d76ebbfeab60f32a4cc048ba1811e53f6415b9117a
+	sha256sums = ce4511e2366291583e8f002c961d5c74b8a76698f0efc212f769f516c556c405
+	sha256sums = cbe7ce073943c9a5fe1688b06d3166cea3b5e33e1e6757beff78e329f2b91d5b
+	sha256sums = 5f1c1f8e34eefcd4795d776745a277d8a26f19b21810388ab593c7916918fec3
+	sha256sums = 34f6f6b317b8a3713b7c918049bd6eb893a515905a806bbd406b6bdd16a954b1
+	sha256sums = 000a6dc9393915388f838c83651268d5749841b34546c4f858f8b282164cd077
+	sha256sums = f29d8c71ef384ef58adea2c96c4d0b3ad681f15c76bc5ef998b6b98e60020995
+	sha256sums = 2eb67a33bc2d354c33a19c25f92b868460f1bc131050578b962a395c0880c878
+	sha256sums = 88faf3b2551685f7d2f1fa222a9dcefbe84dee0904f6da840b57a52c6f308402
+	sha256sums = f989fcbba6397e3f355904456e2c64dce0bde13d4b9346c85ca521b54938961a
+	sha256sums = 4dfd450afef100b559659386ddec01ff362cf2c9f1feb98c270227d45d99517d
+	sha256sums = 408fd28d33571701b4dcbf734ffb4d4d7dbccdc1ca335ac4fbda25c2a9d1a495
+	sha256sums = baa76419ebd12663f04c0524ab9259135132484c6217f048709393292b17e846
+	sha256sums = fb1e3cf3858a189f2e3cad42c3e06534e990ac5f9dd56f8be7e9f9b5026fc637
+	sha256sums = 7e2a0c7bb159dd928b535e0eefe703809023c7dd0d6f67c5a2d041b5014752b6
+	sha256sums = f3273b181959cdc9af54469978b3489fcf357573590bb6e2848064e0368443b2
+	sha256sums = f80d3f713c8bc46da634e9ecd995c962e21d9fefa48c7a3bd86ae9b6c1f8ea73
+	sha256sums = 44770042c1844eac1c17f278d8e968c65bdf21c6cfda7bd9e7d47da548e4ec72
+	sha256sums = 771866a28706208e31834d97b092c04d0a0f2a49bc105678e77df9abd12740af
+	sha256sums = 57728ee0389c4b83c5c2d548e4f330c1983d402030e932117d8367db4b705540
+	sha256sums = 0ba899a8bee89a0f4d8d53fda280546700cc63f31318d089eee05681821465e0
+	sha256sums = 6f2dbcb187f248c57ba025b66b44284b23404bd5278c02fb130b9a2cb94eb60b
+	sha256sums = 60d93e810a6cd4b858e6ed28298f48f42debcdce24df145036a73e982a0b26a7
+	sha256sums = 692eb9b71a74775cf275ec25a2628ea1812061a72eb3c2485a36ec48b6cfc514
+	sha256sums = 360e9dcf13fa2d5d6d5fba21af67c30e14397a46b18a70d2659035260c32e723
+	sha256sums = 3570e2d5249a5a99aa9be5200875335febe6fe06ea49be7b65b5cd88d318d332
+	sha256sums = 2758c5f403439aa99e54030d2f2c088386f37da1195017230fcf974d7ae2de17
+	sha256sums = 7a9efed32c3c3b24f187ae314b5aed1a76e83a779741105c03eb8c8af27d7361
+	sha256sums = 4d8e832ccf224abc4e820f5fb9af998d259423aa7879d3d5659619d7df768137
+	sha256sums = b6c7ce2be386ae1c747f2666be2c4e62ad424f394d6a39ee361281f2dbb1bca9
+	sha256sums = 7a266828ccd53921dd5da017953f84a185c72119393ef17e0403b77fa16d6b22
+	sha256sums = 133be4aa30feb6f1874c4662a78afadfa9a0a0f28fa9fce54def8c0a5f6c5068
+	sha256sums = 5ba93b3cd73dd22c6b0432aa44a1c66d7b175a5868211882b90487eb723ab067
+	sha256sums = 25c0bc33db15cb48a2325818d2e01915abe7c1f0548a51fc519aa1e5ffb30bb6
+	sha256sums = 8279f4844407cbae1f9a6b09ede6d6f5e51dacb3abdd81bc0a29fad787afa2d7
+	sha256sums = f75e9f6bd65bc3968d95cc9ffaf16cb5b0125e0b01e4b5e45f47f128334cf443
+	sha256sums = e428b4dc9e62d03ba5ee081338f1c6cd1345fe2d890da82bc0c23ab58cda2fdf
+	sha256sums = 997435dca5f21cbca2a3790a17da1783debf9ef4ca888126398cc72414dabab0
+	sha256sums = 34d865fc3f47ec399de29460d755c2caf1b55f2dcf839d75aa772b942b6202d4
+	sha256sums = f7af86236bd2097f7f7a2a97f2874ca8660810f48b1d80e69c45769e5a044d15
+	sha256sums = 3e7609dba7686b2c4eefeae0597ed5b68710608549791bdc8c2849d8c41f1d86
+	sha256sums = 70f6ea334a96b8d7ffa1a0f9ce77c4424c4ad6ec34d246d7c674575aaa7a1034
+	sha256sums = 501a895b14ac6745ed1925732ab589a61f3c26e76925b90f5ecdcab6d5cc97f7
+	sha256sums = c669b7d1429a696fae0ea5e2e59a2123ea49e0f164ae4f26f56566ea7c10a4f5
+	sha256sums = 69a5cc35953d4b8aacf8ecb34f277bcd064a68aee682bbd74a33a4a825ea69da
+	sha256sums = 721f3466027d214ef6b8fed50e2b01067700b65578ad8634b115149634fe0387
 
 pkgname = thunderbird-beta-i18n-af
 	pkgdesc = Afrikaans language pack for Thunderbird Beta
-	depends = thunderbird>=140.0b0
+	depends = thunderbird>=141.0b0
 
 pkgname = thunderbird-beta-i18n-ar
 	pkgdesc = Arabic language pack for Thunderbird Beta
-	depends = thunderbird>=140.0b0
+	depends = thunderbird>=141.0b0
 
 pkgname = thunderbird-beta-i18n-ast
 	pkgdesc = Asturian language pack for Thunderbird Beta
-	depends = thunderbird>=140.0b0
+	depends = thunderbird>=141.0b0
 
 pkgname = thunderbird-beta-i18n-be
 	pkgdesc = Belarusian language pack for Thunderbird Beta
-	depends = thunderbird>=140.0b0
+	depends = thunderbird>=141.0b0
 
 pkgname = thunderbird-beta-i18n-bg
 	pkgdesc = Bulgarian language pack for Thunderbird Beta
-	depends = thunderbird>=140.0b0
+	depends = thunderbird>=141.0b0
 
 pkgname = thunderbird-beta-i18n-br
 	pkgdesc = Breton language pack for Thunderbird Beta
-	depends = thunderbird>=140.0b0
+	depends = thunderbird>=141.0b0
 
 pkgname = thunderbird-beta-i18n-ca
 	pkgdesc = Catalan language pack for Thunderbird Beta
-	depends = thunderbird>=140.0b0
+	depends = thunderbird>=141.0b0
 
 pkgname = thunderbird-beta-i18n-cak
 	pkgdesc = Kaqchikel language pack for Thunderbird Beta
-	depends = thunderbird>=140.0b0
+	depends = thunderbird>=141.0b0
 
 pkgname = thunderbird-beta-i18n-cs
 	pkgdesc = Czech language pack for Thunderbird Beta
-	depends = thunderbird>=140.0b0
+	depends = thunderbird>=141.0b0
 
 pkgname = thunderbird-beta-i18n-cy
 	pkgdesc = Welsh language pack for Thunderbird Beta
-	depends = thunderbird>=140.0b0
+	depends = thunderbird>=141.0b0
 
 pkgname = thunderbird-beta-i18n-da
 	pkgdesc = Danish language pack for Thunderbird Beta
-	depends = thunderbird>=140.0b0
+	depends = thunderbird>=141.0b0
 
 pkgname = thunderbird-beta-i18n-de
 	pkgdesc = German language pack for Thunderbird Beta
-	depends = thunderbird>=140.0b0
+	depends = thunderbird>=141.0b0
 
 pkgname = thunderbird-beta-i18n-dsb
 	pkgdesc = Sorbian, Lower language pack for Thunderbird Beta
-	depends = thunderbird>=140.0b0
+	depends = thunderbird>=141.0b0
 
 pkgname = thunderbird-beta-i18n-el
 	pkgdesc = Greek language pack for Thunderbird Beta
-	depends = thunderbird>=140.0b0
+	depends = thunderbird>=141.0b0
 
 pkgname = thunderbird-beta-i18n-en-ca
 	pkgdesc = English (Canada) language pack for Thunderbird Beta
-	depends = thunderbird>=140.0b0
+	depends = thunderbird>=141.0b0
 
 pkgname = thunderbird-beta-i18n-en-gb
 	pkgdesc = English (Great Britain) language pack for Thunderbird Beta
-	depends = thunderbird>=140.0b0
+	depends = thunderbird>=141.0b0
 
 pkgname = thunderbird-beta-i18n-en-us
 	pkgdesc = English language pack for Thunderbird Beta
-	depends = thunderbird>=140.0b0
+	depends = thunderbird>=141.0b0
 
 pkgname = thunderbird-beta-i18n-es-ar
 	pkgdesc = Spanish (Argentina) language pack for Thunderbird Beta
-	depends = thunderbird>=140.0b0
+	depends = thunderbird>=141.0b0
 
 pkgname = thunderbird-beta-i18n-es-es
 	pkgdesc = Spanish (Spain) language pack for Thunderbird Beta
-	depends = thunderbird>=140.0b0
+	depends = thunderbird>=141.0b0
 
 pkgname = thunderbird-beta-i18n-es-mx
 	pkgdesc = Spanish (Mexico) language pack for Thunderbird Beta
-	depends = thunderbird>=140.0b0
+	depends = thunderbird>=141.0b0
 
 pkgname = thunderbird-beta-i18n-et
 	pkgdesc = Estonian language pack for Thunderbird Beta
-	depends = thunderbird>=140.0b0
+	depends = thunderbird>=141.0b0
 
 pkgname = thunderbird-beta-i18n-eu
 	pkgdesc = Basque language pack for Thunderbird Beta
-	depends = thunderbird>=140.0b0
+	depends = thunderbird>=141.0b0
 
 pkgname = thunderbird-beta-i18n-fi
 	pkgdesc = Finnish language pack for Thunderbird Beta
-	depends = thunderbird>=140.0b0
+	depends = thunderbird>=141.0b0
 
 pkgname = thunderbird-beta-i18n-fr
 	pkgdesc = French language pack for Thunderbird Beta
-	depends = thunderbird>=140.0b0
+	depends = thunderbird>=141.0b0
 
 pkgname = thunderbird-beta-i18n-fy-nl
 	pkgdesc = Frisian language pack for Thunderbird Beta
-	depends = thunderbird>=140.0b0
+	depends = thunderbird>=141.0b0
 
 pkgname = thunderbird-beta-i18n-ga-ie
 	pkgdesc = Irish language pack for Thunderbird Beta
-	depends = thunderbird>=140.0b0
+	depends = thunderbird>=141.0b0
 
 pkgname = thunderbird-beta-i18n-gd
 	pkgdesc = Gaelic, Scottish language pack for Thunderbird Beta
-	depends = thunderbird>=140.0b0
+	depends = thunderbird>=141.0b0
 
 pkgname = thunderbird-beta-i18n-gl
 	pkgdesc = Galician language pack for Thunderbird Beta
-	depends = thunderbird>=140.0b0
+	depends = thunderbird>=141.0b0
 
 pkgname = thunderbird-beta-i18n-he
 	pkgdesc = Hebrew language pack for Thunderbird Beta
-	depends = thunderbird>=140.0b0
+	depends = thunderbird>=141.0b0
 
 pkgname = thunderbird-beta-i18n-hr
 	pkgdesc = Croatian language pack for Thunderbird Beta
-	depends = thunderbird>=140.0b0
+	depends = thunderbird>=141.0b0
 
 pkgname = thunderbird-beta-i18n-hsb
 	pkgdesc = Sorbian, Upper language pack for Thunderbird Beta
-	depends = thunderbird>=140.0b0
+	depends = thunderbird>=141.0b0
 
 pkgname = thunderbird-beta-i18n-hu
 	pkgdesc = Hungarian language pack for Thunderbird Beta
-	depends = thunderbird>=140.0b0
+	depends = thunderbird>=141.0b0
 
 pkgname = thunderbird-beta-i18n-hy-am
 	pkgdesc = Armenian language pack for Thunderbird Beta
-	depends = thunderbird>=140.0b0
+	depends = thunderbird>=141.0b0
 
 pkgname = thunderbird-beta-i18n-id
 	pkgdesc = Indonesian language pack for Thunderbird Beta
-	depends = thunderbird>=140.0b0
+	depends = thunderbird>=141.0b0
 
 pkgname = thunderbird-beta-i18n-is
 	pkgdesc = Icelandic language pack for Thunderbird Beta
-	depends = thunderbird>=140.0b0
+	depends = thunderbird>=141.0b0
 
 pkgname = thunderbird-beta-i18n-it
 	pkgdesc = Italian language pack for Thunderbird Beta
-	depends = thunderbird>=140.0b0
+	depends = thunderbird>=141.0b0
 
 pkgname = thunderbird-beta-i18n-ja
 	pkgdesc = Japanese language pack for Thunderbird Beta
-	depends = thunderbird>=140.0b0
+	depends = thunderbird>=141.0b0
 
 pkgname = thunderbird-beta-i18n-ka
 	pkgdesc = Georgian language pack for Thunderbird Beta
-	depends = thunderbird>=140.0b0
+	depends = thunderbird>=141.0b0
 
 pkgname = thunderbird-beta-i18n-kab
 	pkgdesc = Kabyle language pack for Thunderbird Beta
-	depends = thunderbird>=140.0b0
+	depends = thunderbird>=141.0b0
 
 pkgname = thunderbird-beta-i18n-kk
 	pkgdesc = Kazakh language pack for Thunderbird Beta
-	depends = thunderbird>=140.0b0
+	depends = thunderbird>=141.0b0
 
 pkgname = thunderbird-beta-i18n-ko
 	pkgdesc = Korean language pack for Thunderbird Beta
-	depends = thunderbird>=140.0b0
+	depends = thunderbird>=141.0b0
 
 pkgname = thunderbird-beta-i18n-lt
 	pkgdesc = Lithuanian language pack for Thunderbird Beta
-	depends = thunderbird>=140.0b0
+	depends = thunderbird>=141.0b0
 
 pkgname = thunderbird-beta-i18n-lv
 	pkgdesc = Latvian language pack for Thunderbird Beta
-	depends = thunderbird>=140.0b0
+	depends = thunderbird>=141.0b0
 
 pkgname = thunderbird-beta-i18n-ms
 	pkgdesc = Malay language pack for Thunderbird Beta
-	depends = thunderbird>=140.0b0
+	depends = thunderbird>=141.0b0
 
 pkgname = thunderbird-beta-i18n-nb-no
 	pkgdesc = Norwegian Bokmål language pack for Thunderbird Beta
-	depends = thunderbird>=140.0b0
+	depends = thunderbird>=141.0b0
 
 pkgname = thunderbird-beta-i18n-nl
 	pkgdesc = Dutch language pack for Thunderbird Beta
-	depends = thunderbird>=140.0b0
+	depends = thunderbird>=141.0b0
 
 pkgname = thunderbird-beta-i18n-nn-no
 	pkgdesc = Norwegian Nynorsk language pack for Thunderbird Beta
-	depends = thunderbird>=140.0b0
+	depends = thunderbird>=141.0b0
 
 pkgname = thunderbird-beta-i18n-pa-in
 	pkgdesc = Punjabi language pack for Thunderbird Beta
-	depends = thunderbird>=140.0b0
+	depends = thunderbird>=141.0b0
 
 pkgname = thunderbird-beta-i18n-pl
 	pkgdesc = Polish language pack for Thunderbird Beta
-	depends = thunderbird>=140.0b0
+	depends = thunderbird>=141.0b0
 
 pkgname = thunderbird-beta-i18n-pt-br
 	pkgdesc = Portuguese (Brazil) language pack for Thunderbird Beta
-	depends = thunderbird>=140.0b0
+	depends = thunderbird>=141.0b0
 
 pkgname = thunderbird-beta-i18n-pt-pt
 	pkgdesc = Portuguese (Portugal) language pack for Thunderbird Beta
-	depends = thunderbird>=140.0b0
+	depends = thunderbird>=141.0b0
 
 pkgname = thunderbird-beta-i18n-rm
 	pkgdesc = Romansh language pack for Thunderbird Beta
-	depends = thunderbird>=140.0b0
+	depends = thunderbird>=141.0b0
 
 pkgname = thunderbird-beta-i18n-ro
 	pkgdesc = Romanian language pack for Thunderbird Beta
-	depends = thunderbird>=140.0b0
+	depends = thunderbird>=141.0b0
 
 pkgname = thunderbird-beta-i18n-ru
 	pkgdesc = Russian language pack for Thunderbird Beta
-	depends = thunderbird>=140.0b0
+	depends = thunderbird>=141.0b0
 
 pkgname = thunderbird-beta-i18n-sk
 	pkgdesc = Slovak language pack for Thunderbird Beta
-	depends = thunderbird>=140.0b0
+	depends = thunderbird>=141.0b0
 
 pkgname = thunderbird-beta-i18n-sl
 	pkgdesc = Slovenian language pack for Thunderbird Beta
-	depends = thunderbird>=140.0b0
+	depends = thunderbird>=141.0b0
 
 pkgname = thunderbird-beta-i18n-sq
 	pkgdesc = Albanian language pack for Thunderbird Beta
-	depends = thunderbird>=140.0b0
+	depends = thunderbird>=141.0b0
 
 pkgname = thunderbird-beta-i18n-sr
 	pkgdesc = Serbian language pack for Thunderbird Beta
-	depends = thunderbird>=140.0b0
+	depends = thunderbird>=141.0b0
 
 pkgname = thunderbird-beta-i18n-sv-se
 	pkgdesc = Swedish language pack for Thunderbird Beta
-	depends = thunderbird>=140.0b0
+	depends = thunderbird>=141.0b0
 
 pkgname = thunderbird-beta-i18n-th
 	pkgdesc = Thai language pack for Thunderbird Beta
-	depends = thunderbird>=140.0b0
+	depends = thunderbird>=141.0b0
 
 pkgname = thunderbird-beta-i18n-tr
 	pkgdesc = Turkish language pack for Thunderbird Beta
-	depends = thunderbird>=140.0b0
+	depends = thunderbird>=141.0b0
 
 pkgname = thunderbird-beta-i18n-uk
 	pkgdesc = Ukrainian language pack for Thunderbird Beta
-	depends = thunderbird>=140.0b0
+	depends = thunderbird>=141.0b0
 
 pkgname = thunderbird-beta-i18n-uz
 	pkgdesc = Uzbek language pack for Thunderbird Beta
-	depends = thunderbird>=140.0b0
+	depends = thunderbird>=141.0b0
 
 pkgname = thunderbird-beta-i18n-vi
 	pkgdesc = Vietnamese language pack for Thunderbird Beta
-	depends = thunderbird>=140.0b0
+	depends = thunderbird>=141.0b0
 
 pkgname = thunderbird-beta-i18n-zh-cn
 	pkgdesc = Chinese (China) language pack for Thunderbird Beta
-	depends = thunderbird>=140.0b0
+	depends = thunderbird>=141.0b0
 
 pkgname = thunderbird-beta-i18n-zh-tw
 	pkgdesc = Chinese (Taiwan) language pack for Thunderbird Beta
-	depends = thunderbird>=140.0b0
+	depends = thunderbird>=141.0b0
 
