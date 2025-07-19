@@ -1,0 +1,225 @@
+diff -rupN musikcube-3.0.4/src/musikcore/library/Indexer.cpp musikcube-3.0.4b/src/musikcore/library/Indexer.cpp
+--- musikcube-3.0.4/src/musikcore/library/Indexer.cpp	2024-07-14 15:37:30.000000000 -0400
++++ musikcube-3.0.4b/src/musikcore/library/Indexer.cpp	2025-07-18 23:21:21.797476477 -0400
+@@ -225,7 +225,7 @@ void Indexer::RemovePath(const std::stri
+     }
+ }
+ 
+-void Indexer::Synchronize(const SyncContext& context, asio::io_service* io) {
++void Indexer::Synchronize(const SyncContext& context, asio::io_context* io) {
+     LocalLibrary::CreateIndexes(this->dbConnection);
+ 
+     IndexerTrack::OnIndexerStarted(this->dbConnection);
+@@ -354,7 +354,7 @@ void Indexer::FinalizeSync(const SyncCon
+ }
+ 
+ void Indexer::ReadMetadataFromFile(
+-    asio::io_service* io,
++    asio::io_context* io,
+     const std::fs::path& file,
+     const std::string& pathId)
+ {
+@@ -457,7 +457,7 @@ inline void Indexer::IncrementTracksScan
+ }
+ 
+ void Indexer::SyncDirectory(
+-    asio::io_service* io,
++    asio::io_context* io,
+     const std::string &syncRoot,
+     const std::string &currentPath,
+     int64_t pathId)
+@@ -490,7 +490,7 @@ void Indexer::SyncDirectory(
+                     for (auto it : this->tagReaders) {
+                         if (it->CanRead(extension.c_str())) {
+                             if (io) {
+-                                io->post(std::bind(
++                                asio::post(*io, std::bind(
+                                     &Indexer::ReadMetadataFromFile,
+                                     this,
+                                     io,
+@@ -626,8 +626,8 @@ void Indexer::ThreadLoop() {
+             prefs::keys::IndexerThreadCount, DEFAULT_MAX_THREADS);
+ 
+         if (threadCount > 1) {
+-            asio::io_service io;
+-            asio::io_service::work work(io);
++            asio::io_context io;
++            auto work = asio::make_work_guard(io);
+             ThreadGroup threadGroup;
+ 
+             /* initialize the thread pool -- we'll use this to index tracks in parallel. */
+@@ -641,7 +641,7 @@ void Indexer::ThreadLoop() {
+ 
+             /* done with sync, remove all the threads in the pool to free resources. they'll
+             be re-created later if we index again. */
+-            io.post([&io]() {
++            asio::post(io, [&io]() {
+                 if (!io.stopped()) {
+                     musik::debug::info(TAG, "scan completed successfully");
+                     io.stop();
+diff -rupN musikcube-3.0.4/src/musikcore/library/Indexer.h musikcube-3.0.4b/src/musikcore/library/Indexer.h
+--- musikcube-3.0.4/src/musikcore/library/Indexer.h	2024-07-14 15:37:30.000000000 -0400
++++ musikcube-3.0.4b/src/musikcore/library/Indexer.h	2025-07-18 22:53:32.128542389 -0400
+@@ -45,7 +45,7 @@
+ 
+ #pragma warning(push, 0)
+ #include <sigslot/sigslot.h>
+-#include <asio/io_service.hpp>
++#include <asio/io_context.hpp>
+ #pragma warning(pop)
+ 
+ #include <filesystem>
+@@ -122,7 +122,7 @@ namespace musik { namespace core {
+ 
+             void ThreadLoop();
+ 
+-            void Synchronize(const SyncContext& context, asio::io_service* io);
++            void Synchronize(const SyncContext& context, asio::io_context* io);
+ 
+             void FinalizeSync(const SyncContext& context);
+ 
+@@ -145,13 +145,13 @@ namespace musik { namespace core {
+             void IncrementTracksScanned(int delta = 1);
+ 
+             void SyncDirectory(
+-                asio::io_service* io,
++                asio::io_context* io,
+                 const std::string& syncRoot,
+                 const std::string& currentPath,
+                 int64_t pathId);
+ 
+             void ReadMetadataFromFile(
+-                asio::io_service* io,
++                asio::io_context* io,
+                 const std::filesystem::path& path,
+                 const std::string& pathId);
+ 
+diff -rupN musikcube-3.0.4/src/musikcore/net/PiggyWebSocketClient.cpp musikcube-3.0.4b/src/musikcore/net/PiggyWebSocketClient.cpp
+--- musikcube-3.0.4/src/musikcore/net/PiggyWebSocketClient.cpp	2024-07-14 15:37:30.000000000 -0400
++++ musikcube-3.0.4b/src/musikcore/net/PiggyWebSocketClient.cpp	2025-07-18 23:02:43.836329798 -0400
+@@ -108,7 +108,7 @@ PiggyWebSocketClient::PiggyWebSocketClie
+ 
+ PiggyWebSocketClient::~PiggyWebSocketClient() {
+     this->Disconnect();
+-    /* need to ensure this is destroyed before the io_service, hence
++    /* need to ensure this is destroyed before the io_context, hence
+     wrapping it in a unique_ptr and explicitly resetting it here. */
+     this->rawClient.reset();
+     if (this->messageQueue) {
+@@ -181,11 +181,7 @@ void PiggyWebSocketClient::Reconnect() {
+     this->Disconnect();
+     this->uri = originalUri;
+ 
+-#if BOOST_VERSION < 106600
+-    io.reset();
+-#else
+     io.restart();
+-#endif
+ 
+     this->SetState(State::Connecting);
+ 
+diff -rupN musikcube-3.0.4/src/musikcore/net/PiggyWebSocketClient.h musikcube-3.0.4b/src/musikcore/net/PiggyWebSocketClient.h
+--- musikcube-3.0.4/src/musikcore/net/PiggyWebSocketClient.h	2024-07-14 15:37:30.000000000 -0400
++++ musikcube-3.0.4b/src/musikcore/net/PiggyWebSocketClient.h	2025-07-18 23:04:16.988108940 -0400
+@@ -104,7 +104,7 @@ namespace musik { namespace core { names
+             ClientPtr rawClient;
+             Connection connection;
+             std::string sessionId;
+-            asio::io_service io;
++            asio::io_context io;
+             std::unique_ptr<std::thread> thread;
+             mutable std::recursive_mutex mutex;
+             bool useTls{ false };
+diff -rupN musikcube-3.0.4/src/musikcore/net/RawWebSocketClient.cpp musikcube-3.0.4b/src/musikcore/net/RawWebSocketClient.cpp
+--- musikcube-3.0.4/src/musikcore/net/RawWebSocketClient.cpp	2024-07-14 15:37:30.000000000 -0400
++++ musikcube-3.0.4b/src/musikcore/net/RawWebSocketClient.cpp	2025-07-18 23:07:53.524754152 -0400
+@@ -56,7 +56,7 @@ static inline RawWebSocketClient::SslCon
+     return ctx;
+ }
+ 
+-RawWebSocketClient::RawWebSocketClient(asio::io_service& io) {
++RawWebSocketClient::RawWebSocketClient(asio::io_context& io) {
+     websocketpp::lib::error_code ec;
+ 
+     plainTextClient = std::make_unique<PlainTextClient>();
+diff -rupN musikcube-3.0.4/src/musikcore/net/RawWebSocketClient.h musikcube-3.0.4b/src/musikcore/net/RawWebSocketClient.h
+--- musikcube-3.0.4/src/musikcore/net/RawWebSocketClient.h	2024-07-14 15:37:30.000000000 -0400
++++ musikcube-3.0.4b/src/musikcore/net/RawWebSocketClient.h	2025-07-18 23:00:40.858607142 -0400
+@@ -74,7 +74,7 @@ namespace musik { namespace core { names
+                 TLS = 1
+             };
+ 
+-            RawWebSocketClient(asio::io_service& io);
++            RawWebSocketClient(asio::io_context& io);
+             RawWebSocketClient(const RawWebSocketClient&) = delete;
+             ~RawWebSocketClient();
+ 
+diff -rupN musikcube-3.0.4/src/musikcore/net/WebSocketClient.cpp musikcube-3.0.4b/src/musikcore/net/WebSocketClient.cpp
+--- musikcube-3.0.4/src/musikcore/net/WebSocketClient.cpp	2024-07-14 15:37:30.000000000 -0400
++++ musikcube-3.0.4b/src/musikcore/net/WebSocketClient.cpp	2025-07-18 23:06:50.131383347 -0400
+@@ -285,11 +285,7 @@ void WebSocketClient::Reconnect() {
+ 
+     this->Disconnect();
+ 
+-#if BOOST_VERSION < 106600
+-    io.reset();
+-#else
+     io.restart();
+-#endif
+ 
+     auto const prefs = Preferences::ForComponent(core::prefs::components::Settings);
+     auto const timeout = prefs->GetInt(core::prefs::keys::RemoteLibraryLatencyTimeoutMs, 5000);
+diff -rupN musikcube-3.0.4/src/musikcore/net/WebSocketClient.h musikcube-3.0.4b/src/musikcore/net/WebSocketClient.h
+--- musikcube-3.0.4/src/musikcore/net/WebSocketClient.h	2024-07-14 15:37:30.000000000 -0400
++++ musikcube-3.0.4b/src/musikcore/net/WebSocketClient.h	2025-07-18 23:24:37.264081647 -0400
+@@ -123,7 +123,7 @@ namespace musik { namespace core { names
+ 
+             ClientPtr rawClient;
+             Connection connection;
+-            asio::io_service io;
++            asio::io_context io;
+             std::unique_ptr<std::thread> thread;
+             mutable std::recursive_mutex mutex;
+             bool useTls{ false };
+diff -rupN musikcube-3.0.4/src/musikcore/pch.hpp musikcube-3.0.4b/src/musikcore/pch.hpp
+--- musikcube-3.0.4/src/musikcore/pch.hpp	2024-07-14 15:37:30.000000000 -0400
++++ musikcube-3.0.4b/src/musikcore/pch.hpp	2025-07-18 22:55:05.842888187 -0400
+@@ -40,7 +40,9 @@
+ #include <unordered_map>
+ #include <thread>
+ #include <filesystem>
+-
++#include <asio/io_context.hpp>
++#include <asio/post.hpp>
++#include <asio/executor_work_guard.hpp>
+ #include <cmath>
+ #include <string>
+ 
+@@ -179,4 +181,4 @@
+ #include <musikcore/support/PreferenceKeys.h>
+ #include <musikcore/support/Preferences.h>
+ #include <musikcore/utfutil.h>
+-#include <musikcore/sdk/version.h>
+\ No newline at end of file
++#include <musikcore/sdk/version.h>
+diff -rupN musikcube-3.0.4/src/plugins/httpdatastream/HttpDataStream.cpp musikcube-3.0.4b/src/plugins/httpdatastream/HttpDataStream.cpp
+--- musikcube-3.0.4/src/plugins/httpdatastream/HttpDataStream.cpp	2024-07-14 15:37:30.000000000 -0400
++++ musikcube-3.0.4b/src/plugins/httpdatastream/HttpDataStream.cpp	2025-07-18 22:58:07.946534303 -0400
+@@ -52,8 +52,8 @@
+ #include <atomic>
+ 
+ #pragma warning(push, 0)
+-#include <../../3rdparty/include/nlohmann/json.hpp>
+-#include <../../3rdparty/include/websocketpp/base64/base64.hpp>
++#include <nlohmann/json.hpp>
++#include <websocketpp/base64/base64.hpp>
+ #pragma warning(pop)
+ 
+ #ifdef WIN32
+@@ -597,4 +597,4 @@ int HttpDataStream::LegacyCurlTransferCa
+         (curl_off_t) upTotal,
+         (curl_off_t) upNow);
+ }
+-#endif
+\ No newline at end of file
++#endif

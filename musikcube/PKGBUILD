@@ -2,27 +2,42 @@
 
 pkgname=musikcube
 pkgver=3.0.4
-pkgrel=1
+pkgrel=2
 pkgdesc='A terminal-based cross-platform music player, audio engine, metadata indexer, and server'
 arch=('x86_64')
 url="https://github.com/clangen/${pkgname}"
 license=('BSD-3-Clause')
 depends=('faad2' 'libogg' 'libvorbis' 'flac' 'libmicrohttpd' 'lame' 'ncurses' 'libpipewire' 'pulse-native-provider' 'libpulse' 'libev' 'alsa-lib' 'curl' 'ffmpeg' 'taglib' 'libgme')
-makedepends=('asio' 'cmake' 'patchelf')
+makedepends=('asio' 'cmake' 'nlohmann-json' 'patchelf' 'websocketpp')
 optdepends=('libopenmpt: OpenMPT support')
-source=("${pkgname}-${pkgver}.tar.gz::${url}/archive/${pkgver}.tar.gz")
-sha256sums=('25bb95b8705d8c79bde447e7c7019372eea7eaed9d0268510278e7fcdb1378a5')
+source=("${pkgname}-${pkgver}.tar.gz::${url}/archive/${pkgver}.tar.gz"
+  "${pkgname}.patch")
+sha256sums=('25bb95b8705d8c79bde447e7c7019372eea7eaed9d0268510278e7fcdb1378a5'
+  '800794a649845585ed5216d368133445a3ee85ffc8ad1adfe21141fafbbc061a')
+
+prepare() {
+  cd "${srcdir}"
+
+  patch -p0 -i ${pkgname}.patch
+
+  rm -r "${pkgname}-${pkgver}"/src/3rdparty/include/nlohmann
+  rm -r "${pkgname}-${pkgver}"/src/3rdparty/include/websocketpp
+}
 
 build() {
-  cd "${pkgname}-${pkgver}"
+  local cmake_options=(
+    -B build
+    -S "${pkgname}-${pkgver}"
+    -W no-dev
+    -D CMAKE_BUILD_TYPE=Release
+    -D CMAKE_INSTALL_PREFIX=/usr
+  )
 
-  cmake -DCMAKE_INSTALL_PREFIX=/usr .
-  make
+  cmake "${cmake_options[@]}"
+  cmake --build build
 }
 
 package() {
-  cd "${pkgname}-${pkgver}"
-
-  make DESTDIR="${pkgdir}" install
-  install -Dm644 LICENSE.txt "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
+  DESTDIR="${pkgdir}" cmake --install build
+  install -Dm644 "${pkgname}-${pkgver}"/LICENSE.txt "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
 }
