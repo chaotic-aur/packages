@@ -1,0 +1,4 @@
+license=('AGPL-3.0-or-later')
+arch=('x86_64')
+
+depends=(${depends[@]//yarn-*/yarn})
