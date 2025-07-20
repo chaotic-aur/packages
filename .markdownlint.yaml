@@ -245,3 +245,6 @@ MD053:
   # Ignored definitions
   ignored_definitions:
     - "//"
+
+# MD059/descriptive-link-text - Link text should be descriptive
+MD059: false

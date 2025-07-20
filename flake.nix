@@ -5,7 +5,6 @@
     # Chaotic Nyx (binary cache)
     chaotic = {
       url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
-      inputs.fenix.follows = "";
       inputs.jovian.follows = "";
     };
 
@@ -87,11 +86,10 @@
                 devshell = {
                   name = "chaotic-devshell";
                   packages = with pkgs; [
-                    fuse-overlayfs
                     jq
                     podman
                     skopeo
-                  ];
+                  ] ++ (if pkgs.system == "aarch64-darwin" then [ ] else [ fuse-overlayfs ]);
                   startup = {
                     preCommitHooks.text = self.checks.${system}.pre-commit-check.shellHook;
                     chaoticEnv.text = ''
@@ -110,61 +108,64 @@
                     '';
                   };
                 };
-                commands = [
-                  {
-                    help = "Helper script for maintaining packages";
-                    name = "chaotic";
-                    command = chaotic;
-                    category = "Chaotic tools";
-                  }
-                  {
-                    help = "Chaotic Portable Builder for local builds";
-                    name = "cpb";
-                    package = cpb;
-                    category = "Chaotic tools";
-                  }
-                  {
-                    package = "actionlint";
-                    category = "Linters";
-                  }
-                  {
-                    package = "commitizen";
-                    category = "Linters";
-                  }
-                  {
-                    package = "editorconfig-checker";
-                    category = "Linters";
-                  }
-                  {
-                    package = "markdownlint-cli";
-                    category = "Linters";
-                  }
-                  {
-                    package = "nixpkgs-fmt";
-                    category = "Formatters";
-                  }
-                  {
-                    package = "nodePackages_latest.prettier";
-                    category = "Formatters";
-                  }
-                  {
-                    package = "pre-commit";
-                    category = "Linters";
-                  }
-                  {
-                    name = "shellcheck";
-                    package = "shellcheck";
-                    category = "Linters";
-                  }
-                  {
-                    package = "shfmt";
-                    category = "Formatters";
-                  }
-                  {
-                    package = "yamllint";
-                    category = "Linters";
-                  }
-                ];
+                commands =
+                  [
+                    {
+                      help = "Helper script for maintaining packages";
+                      name = "chaotic";
+                      command = chaotic;
+                      category = "Chaotic tools";
+                    }
+                    {
+                      package = "actionlint";
+                      category = "Linters";
+                    }
+                    {
+                      package = "commitizen";
+                      category = "Linters";
+                    }
+                    {
+                      package = "editorconfig-checker";
+                      category = "Linters";
+                    }
+                    {
+                      package = "markdownlint-cli";
+                      category = "Linters";
+                    }
+                    {
+                      package = "nixpkgs-fmt";
+                      category = "Formatters";
+                    }
+                    {
+                      package = "nodePackages_latest.prettier";
+                      category = "Formatters";
+                    }
+                    {
+                      package = "pre-commit";
+                      category = "Linters";
+                    }
+                    {
+                      name = "shellcheck";
+                      package = "shellcheck";
+                      category = "Linters";
+                    }
+                    {
+                      package = "shfmt";
+                      category = "Formatters";
+                    }
+                    {
+                      package = "yamllint";
+                      category = "Linters";
+                    }
+                  ]
+                  ++ (if pkgs.stdenv.isDarwin then [ ] else [
+                    {
+                      help = "Chaotic Portable Builder for local builds";
+                      name = "cpb";
+                      package = cpb;
+                      category = "Chaotic tools";
+                    }
+                  ]);
               };
             };
 
