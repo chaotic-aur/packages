@@ -17,13 +17,13 @@ fetch_old_artifacts() {
     local all_artifacts=()
     local has_next_page=true
     local cursor=""
-    local page_size=5  # Very small page size to avoid timeouts
+    local page_size=100
     local retry_count=0
     local max_retries=3
     local delay=1
     local page_count=0
-    local max_pages=200  # Increased limit for large projects
-    
+    local max_pages=50
+
     while [ "$has_next_page" = true ] && [ $page_count -lt $max_pages ]; do
         page_count=$((page_count + 1))
         local query_variables
@@ -86,6 +86,7 @@ fetch_old_artifacts() {
             local errors
             errors=$(echo "$response" | jq -r '.errors[].message' 2>/dev/null || echo "Unknown GraphQL error")
             UTIL_PRINT_ERROR "GraphQL API returned errors: $errors"
+            UTIL_PRINT_ERROR "Full response: $response"
             return 1
         fi
         
@@ -118,6 +119,12 @@ fetch_old_artifacts() {
         if [ $((page_count % 20)) -eq 0 ]; then
             printf " [%d artifacts found so far]\n" "${#all_artifacts[@]}" >&2
         fi
+
+        if [ ${#all_artifacts[@]} -ge 100 ]; then
+            UTIL_PRINT_INFO "Found 100 or more artifacts to delete. Stopping search." >&2
+            all_artifacts=("${all_artifacts[@]:0:100}") # Trim array to exactly 100
+            break
+        fi
         
         # Small delay between requests to avoid overwhelming the API
         if [ "$has_next_page" = "true" ]; then
@@ -129,7 +136,7 @@ fetch_old_artifacts() {
     printf "\n" >&2
     
     # Warn if we hit the page limit
-    if [ $page_count -ge $max_pages ]; then
+    if [ $page_count -ge $max_pages ] && [ ${#all_artifacts[@]} -lt 100 ]; then
         UTIL_PRINT_WARNING "Reached maximum page limit ($max_pages). Some artifacts may not have been processed."
     fi
     
@@ -172,6 +179,12 @@ if [ $curl_exit_code -eq 0 ]; then
     # Check for GraphQL errors in deletion response
     if echo "$delete_response" | jq -e '.errors' >/dev/null 2>&1; then
         delete_errors=$(echo "$delete_response" | jq -r '.errors[].message' 2>/dev/null || echo "Unknown GraphQL error")
+        UTIL_PRINT_ERROR "Failed to delete artifacts: $delete_errors"
+        exit 1
+    fi
+
+    if [ "$(echo "$delete_response" | jq -r '.data.bulkDestroyJobArtifacts.errors | length')" -gt 0 ]; then
+        delete_errors=$(echo "$delete_response" | jq -r '.data.bulkDestroyJobArtifacts.errors[]' 2>/dev/null || echo "Unknown GraphQL error")
         UTIL_PRINT_ERROR "Failed to delete artifacts: $delete_errors"
         exit 1
     fi
