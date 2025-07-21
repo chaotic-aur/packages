@@ -3,8 +3,8 @@
 # Contributor: Thomas Mudrunka <harvie@@email..cz>
 
 pkgname=figlet-fonts
-pkgver=1.0 #23.03.2014
-pkgrel=3
+pkgver=1.1 #23.03.2014
+pkgrel=1
 pkgdesc="Additional asciiart fonts for figlet"
 arch=('any')
 license=('GPL')
