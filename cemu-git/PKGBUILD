@@ -2,8 +2,8 @@
 
 _pkgname="cemu"
 pkgname="$_pkgname-git"
-pkgver=2.6.r65.g67de63b
-pkgrel=1
+pkgver=2.6.r70.g1ec8c71
+pkgrel=2
 pkgdesc="A Wii U emulator"
 url="https://github.com/cemu-project/Cemu"
 license=('MPL-2.0')
@@ -64,6 +64,8 @@ optdepends+=(
 
 provides=("$_pkgname=${pkgver%%.r*}")
 conflicts=("$_pkgname")
+
+options=('!lto')
 
 _pkgsrc="$_pkgname"
 source=("$_pkgsrc"::"git+$url.git")

@@ -1,7 +1,7 @@
 pkgbase = cemu-git
 	pkgdesc = A Wii U emulator
-	pkgver = 2.6.r65.g67de63b
-	pkgrel = 1
+	pkgver = 2.6.r70.g1ec8c71
+	pkgrel = 2
 	url = https://github.com/cemu-project/Cemu
 	arch = x86_64
 	license = MPL-2.0
@@ -50,6 +50,7 @@ pkgbase = cemu-git
 	optdepends = sndio: for sndio backend
 	provides = cemu=2.6
 	conflicts = cemu
+	options = !lto
 	source = cemu::git+https://github.com/cemu-project/Cemu.git
 	sha256sums = SKIP
 
