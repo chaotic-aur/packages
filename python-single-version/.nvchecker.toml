@@ -1,4 +1,0 @@
-[python-single-version]
-source = "git"
-git = "https://github.com/hongquan/single-version.git"
-prefix = "v"
