@@ -1,0 +1,27 @@
+pkgbase = luxtorpeda-git
+	pkgdesc = Steam Play compatibility tool to run games using native Linux engines
+	pkgver = 73.0.1.r9.g5e505fc
+	pkgrel = 1
+	url = https://github.com/luxtorpeda-dev/luxtorpeda
+	arch = x86_64
+	license = GPL-2.0-only
+	makedepends = clang
+	makedepends = git
+	makedepends = godot
+	makedepends = rust
+	makedepends = cmake
+	makedepends = godot-export-templates-linux
+	makedepends = zlib-ng
+	depends = bash
+	depends = bzip2
+	depends = xz
+	optdepends = steam: The Steam client
+	provides = luxtorpeda
+	conflicts = luxtorpeda
+	options = !lto
+	options = !strip
+	options = !debug
+	source = luxtorpeda::git+https://github.com/luxtorpeda-dev/luxtorpeda.git
+	sha256sums = SKIP
+
+pkgname = luxtorpeda-git
