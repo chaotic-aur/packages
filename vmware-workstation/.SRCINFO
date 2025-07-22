@@ -1,7 +1,7 @@
 pkgbase = vmware-workstation
 	pkgdesc = The industry standard for running multiple operating systems as virtual machines on a single Linux PC.
 	pkgver = 17.6.4
-	pkgrel = 1
+	pkgrel = 2
 	url = https://www.vmware.com/products/workstation-for-linux.html
 	install = vmware-workstation.install
 	arch = x86_64
@@ -32,7 +32,7 @@ pkgbase = vmware-workstation
 	options = !debug
 	backup = etc/vmware/config
 	backup = etc/conf.d/vmware
-	source = VMware-Workstation-17.6.4-24832109.x86_64.bundle::https://archive.org/download/vmware-workstation-full-17.6.4-24832109.x-86-64/VMware-Workstation-Full-17.6.4-24832109.x86_64.bundle
+	source = VMware-Workstation-17.6.4-24832109.x86_64.bundle::https://archive.org/download/vmware-workstation-full-17.6.4-24832109.x86_64/VMware-Workstation-Full-17.6.4-24832109.x86_64.bundle
 	source = https://softwareupdate-prod.broadcom.com/cds/vmw-desktop/ws/17.5.2/23775571/linux/packages/vmware-tools-linux-12.4.0-23259341.x86_64.component.tar
 	source = https://softwareupdate-prod.broadcom.com/cds/vmw-desktop/ws/17.5.2/23775571/linux/packages/vmware-tools-linuxPreGlibc25-12.4.0-23259341.x86_64.component.tar
 	source = https://softwareupdate-prod.broadcom.com/cds/vmw-desktop/ws/17.5.2/23775571/linux/packages/vmware-tools-netware-12.4.0-23259341.x86_64.component.tar

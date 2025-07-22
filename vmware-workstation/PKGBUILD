@@ -18,7 +18,7 @@ pkgname=vmware-workstation
 pkgver=17.6.4
 _buildver=24832109
 _pkgver=${pkgver}_${_buildver}
-pkgrel=1
+pkgrel=2
 _tools_version=12.5.0-24276846
 _legacy_cdn_ver=17.6.3
 _legacy_cdn_buildver=24583834
@@ -67,7 +67,7 @@ backup=(
 DLAGENTS=("https::/usr/bin/curl -fLC - --connect-to softwareupdate-prod.broadcom.com:443:softwareupdate-prod.broadcom.com.cdn.cloudflare.net:443 --retry 3 --retry-delay 3 -o %o %u")
 
 source=(
-  "VMware-Workstation-${pkgver}-${_buildver}.${CARCH}.bundle::https://archive.org/download/vmware-workstation-full-${pkgver}-${_buildver}.x-86-64/VMware-Workstation-Full-${pkgver}-${_buildver}.${CARCH}.bundle"
+  "VMware-Workstation-${pkgver}-${_buildver}.${CARCH}.bundle::https://archive.org/download/vmware-workstation-full-${pkgver}-${_buildver}.${CARCH}/VMware-Workstation-Full-${pkgver}-${_buildver}.${CARCH}.bundle"
   "https://softwareupdate-prod.broadcom.com/cds/vmw-desktop/ws/${_legacy_ver}/${_legacy_buildver}/linux/packages/vmware-tools-linux-${_legacy_tools_version/_/-}.${CARCH}.component.tar"
   "https://softwareupdate-prod.broadcom.com/cds/vmw-desktop/ws/${_legacy_ver}/${_legacy_buildver}/linux/packages/vmware-tools-linuxPreGlibc25-${_legacy_tools_version/_/-}.${CARCH}.component.tar"
   "https://softwareupdate-prod.broadcom.com/cds/vmw-desktop/ws/${_legacy_ver}/${_legacy_buildver}/linux/packages/vmware-tools-netware-${_legacy_tools_version/_/-}.${CARCH}.component.tar"
