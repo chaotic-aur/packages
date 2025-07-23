@@ -1,8 +1,8 @@
-# Maintainer: aur.chaotic.cx
+# Maintainer:
 
 _pkgname="gpu-screen-recorder-ui"
 pkgname="$_pkgname-git"
-pkgver=1.6.7.r8.ga0d1de5
+pkgver=1.7.1.r0.g2e0dc48
 pkgrel=1
 pkgdesc="A fullscreen overlay for gpu-screen-recorder, a shadowplay-like screen recorder"
 url="https://git.dec05eba.com/gpu-screen-recorder-ui"
@@ -56,6 +56,5 @@ package() {
     'gpu-screen-recorder'              # AUR
     'gpu-screen-recorder-notification' # AUR
   )
-  replaces=("$_pkgname")
   meson install -C build --destdir "$pkgdir"
 }

@@ -1,6 +1,6 @@
 pkgbase = gpu-screen-recorder-ui-git
 	pkgdesc = A fullscreen overlay for gpu-screen-recorder, a shadowplay-like screen recorder
-	pkgver = 1.6.7.r8.ga0d1de5
+	pkgver = 1.7.1.r0.g2e0dc48
 	pkgrel = 1
 	url = https://git.dec05eba.com/gpu-screen-recorder-ui
 	arch = x86_64
@@ -39,4 +39,3 @@ pkgname = gpu-screen-recorder-ui-git
 	depends = wayland
 	depends = gpu-screen-recorder
 	depends = gpu-screen-recorder-notification
-	replaces = gpu-screen-recorder-ui

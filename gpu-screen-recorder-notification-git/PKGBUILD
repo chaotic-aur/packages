@@ -1,4 +1,4 @@
-# Maintainer: aur.chaotic.cx
+# Maintainer:
 
 _pkgname="gpu-screen-recorder-notification"
 pkgname="$_pkgname-git"
@@ -45,6 +45,5 @@ check() {
 }
 
 package() {
-  replaces=("$_pkgname")
   meson install -C build --destdir "$pkgdir"
 }

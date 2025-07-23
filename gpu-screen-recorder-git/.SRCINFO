@@ -1,6 +1,6 @@
 pkgbase = gpu-screen-recorder-git
 	pkgdesc = A shadowplay-like screen recorder
-	pkgver = 5.6.1.r1.g469e234
+	pkgver = 5.6.3.r0.g53e879b
 	pkgrel = 1
 	url = https://git.dec05eba.com/gpu-screen-recorder
 	install = gpu-screen-recorder.install
@@ -36,4 +36,3 @@ pkgbase = gpu-screen-recorder-git
 	sha256sums = SKIP
 
 pkgname = gpu-screen-recorder-git
-	replaces = gpu-screen-recorder

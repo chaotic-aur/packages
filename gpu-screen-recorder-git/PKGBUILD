@@ -1,8 +1,8 @@
-# Maintainer: aur.chaotic.cx
+# Maintainer:
 
 _pkgname="gpu-screen-recorder"
 pkgname="$_pkgname-git"
-pkgver=5.6.1.r1.g469e234
+pkgver=5.6.3.r0.g53e879b
 pkgrel=1
 pkgdesc="A shadowplay-like screen recorder"
 arch=('x86_64')
@@ -64,6 +64,5 @@ check() {
 }
 
 package() {
-  replaces=("$_pkgname")
   meson install -C build --destdir "$pkgdir"
 }
