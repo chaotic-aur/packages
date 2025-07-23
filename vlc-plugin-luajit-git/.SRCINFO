@@ -1,6 +1,6 @@
 pkgbase = vlc-plugin-luajit-git
 	pkgdesc = Multi-platform MPEG, VCD/DVD, and DivX player
-	pkgver = 4.0.0.r34182.g39a4b41
+	pkgver = 4.0.0.r34284.gf4f3baf
 	pkgrel = 1
 	url = https://github.com/videolan/vlc
 	arch = x86_64

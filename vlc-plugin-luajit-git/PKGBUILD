@@ -2,7 +2,7 @@
 
 _pkgname="vlc-plugin-luajit"
 pkgname="$_pkgname-git"
-pkgver=4.0.0.r34182.g39a4b41
+pkgver=4.0.0.r34284.gf4f3baf
 pkgrel=1
 pkgdesc="Multi-platform MPEG, VCD/DVD, and DivX player"
 url="https://github.com/videolan/vlc"
