@@ -1,0 +1,103 @@
+# Maintainer: aur.chaotic.cx
+
+## options
+: ${_use_clang:=true}
+
+_pkgname="lsfg-vk"
+pkgname="$_pkgname-git"
+pkgver=r199.e67fcd3
+pkgrel=1
+pkgdesc="Lossless Scaling Frame Generation on Linux via Vulkan"
+url="https://github.com/PancakeTAS/lsfg-vk"
+license=('MIT')
+arch=('x86_64')
+
+depends=(
+  'gcc-libs'
+  'vulkan-icd-loader'
+)
+makedepends=(
+  'cmake'
+  'git'
+  'ninja'
+
+  'libglvnd'
+  'libx11'
+  'libxcursor'
+  'libxi'
+  'libxinerama'
+  'libxkbcommon'
+  'libxrandr'
+  'vulkan-headers'
+  'wayland'
+)
+
+if [[ "${_use_clang::1}" == "t" ]]; then
+  makedepends+=(
+    'clang'
+    'llvm'
+    'lld'
+  )
+fi
+
+provides=("$_pkgname")
+conflicts=("$_pkgname")
+
+options=('!lto' '!strip' '!debug')
+
+_pkgsrc="$_pkgname"
+source=("$_pkgsrc"::"git+$url.git")
+sha256sums=('SKIP')
+
+prepare() {
+  cd "$_pkgsrc"
+  git submodule update --init --recursive --depth 1
+
+  # don't force compiler
+  sed -E -e '/set\(CMAKE_C(XX)?_COMPILER/d' -i CMakeLists.txt
+
+  # disable LTO
+  sed -E -e 's&(INTERPROCEDURAL_OPTIMIZATION) ON&\1 OFF&' -i CMakeLists.txt
+
+  # fix path
+  sed -E -e '/library_path/s&"[^"]+",&"/usr/lib/liblsfg-vk.so",&' -i VkLayer_LS_frame_generation.json
+}
+
+pkgver() {
+  cd "$_pkgsrc"
+  printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+build() {
+  local _ldflags=(${LDFLAGS})
+  _ldflags=(${_ldflags[@]//*-z,now*/-Wl,-z,lazy})
+
+  if [[ "${_use_clang::1}" == "t" ]]; then
+    export CC=clang
+    export CXX=clang++
+
+    _ldflags=(${_ldflags[@]//*fuse-ld*/-fuse-ld=lld})
+  fi
+
+  export CFLAGS+=' -DNDEBUG'
+  export CXXFLAGS+=' -DNDEBUG'
+  export LDFLAGS="${_ldflags[*]}"
+
+  local _cmake_options=(
+    -B build
+    -S "$_pkgsrc"
+    -G Ninja
+    -DCMAKE_BUILD_TYPE=None
+    -DCMAKE_INSTALL_PREFIX='/usr'
+    -DBUILD_TESTING=OFF
+    -Wno-dev
+  )
+
+  cmake "${_cmake_options[@]}"
+  cmake --build build
+}
+
+package() {
+  DESTDIR="$pkgdir" cmake --install build
+  install -Dm644 "$_pkgsrc/LICENSE.md" "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+}
