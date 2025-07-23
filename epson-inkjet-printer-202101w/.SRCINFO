@@ -1,0 +1,14 @@
+pkgbase = epson-inkjet-printer-202101w
+	pkgdesc = Epson inkjet printer driver (L1210, L1250, L3200, L3210)
+	pkgver = 1.0.2
+	pkgrel = 2
+	url = https://download.ebz.epson.net/dsc/search/01/search/?OSC=LX
+	arch = x86_64
+	license = custom:Epson End User Software License Agreement
+	depends = epson-inkjet-printer-filter
+	depends = gcc-libs
+	depends = glibc
+	source = https://download3.ebz.epson.net/dsc/f/03/00/15/15/02/f5cba2761f2f501363cdbf7e1b9b9879b0715aa5/epson-inkjet-printer-202101w-1.0.2-1.src.rpm
+	sha256sums = 9f415fdb07e13ebb98873007d06ae1a58a6475d890deb918ba4bd9c9182b9f9e
+
+pkgname = epson-inkjet-printer-202101w
