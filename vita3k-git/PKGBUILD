@@ -5,7 +5,7 @@
 _pkgname="vita3k"
 pkgname="$_pkgname-git"
 pkgver=r3806.cf3d62732
-pkgrel=1
+pkgrel=2
 pkgdesc="Experimental PlayStation Vita emulator"
 url="https://github.com/Vita3K/Vita3K"
 license=('GPL-2.0-or-later')
@@ -53,6 +53,8 @@ optdepends=(
 
 provides=("$_pkgname")
 conflicts=("$_pkgname")
+
+options=('!lto')
 
 _pkgsrc="$_pkgname"
 source=("$_pkgsrc"::"git+$url.git")
