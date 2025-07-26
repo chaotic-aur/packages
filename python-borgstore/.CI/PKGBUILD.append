@@ -1,9 +1,0 @@
-url="https://github.com/borgbackup/borgstore"
-depends=(
-  'python'
-  ${depends[@]//python>*/}
-)
-makedepends+=(
-  'python-setuptools'
-  'python-setuptools-scm'
-)
