@@ -1,0 +1,21 @@
+pkgbase = profile-sync-daemon-git
+	pkgdesc = Symlinks and syncs browser profile dirs to RAM
+	pkgver = 6.50.r14.gbdea6f0
+	pkgrel = 1
+	url = https://github.com/graysky2/profile-sync-daemon
+	install = psd.install
+	arch = any
+	license = MIT
+	depends = git
+	depends = bash
+	depends = findutils
+	depends = procps-ng
+	depends = rsync
+	depends = systemd
+	optdepends = zsh-completions: for completion when using zsh
+	optdepends = fuse-overlayfs: for overlayfs mode
+	conflicts = profile-sync-daemon
+	source = git+https://github.com/graysky2/profile-sync-daemon.git#branch=master
+	b2sums = SKIP
+
+pkgname = profile-sync-daemon-git
