@@ -420,9 +420,9 @@ build() {
 
   # layer selector
   if (cd "$srcdir/$_mesa_srcdir" && git merge-base --is-ancestor 54fe5b0482df0f066384b274796d4081c2a1968c HEAD); then
-    _layers="-D vulkan-layers=device-select,overlay"
+    _layers="-D vulkan-layers=device-select,overlay,anti-lag"
   else
-    _layers="-D vulkan-overlay-layer=true -D vulkan-device-select-layer=true"
+    _layers="-D vulkan-overlay-layer=true -D vulkan-device-select-layer=true -D anti-lag=true"
   fi
 
   # intel_hasvk removal for legacy trees
@@ -675,6 +675,7 @@ package_lib32-mesa-tkg-git() {
   rm -rf "$pkgdir"/usr/share/drirc.d/
   rm -rf "$pkgdir"/usr/share/vulkan/explicit_layer.d/
   rm -rf "$pkgdir"/usr/share/vulkan/implicit_layer.d/VkLayer_MESA_device_select.json
+  rm -rf "$pkgdir"/usr/share/vulkan/implicit_layer.d/VkLayer_MESA_anti_lag.json
 
   # indirect rendering
   ln -s /usr/lib32/libGLX_mesa.so.0 "${pkgdir}/usr/lib32/libGLX_indirect.so.0"
