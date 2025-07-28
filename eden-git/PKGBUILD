@@ -2,7 +2,7 @@
 
 _pkgname="eden"
 pkgname="$_pkgname-git"
-pkgver=0.0.2.r171.g2e09201
+pkgver=0.0.2.r235.g896bfcd
 pkgrel=1
 pkgdesc="Yet another emulator fork"
 url="https://git.eden-emu.dev/eden-emu/eden"
@@ -40,7 +40,6 @@ sha256sums=('SKIP')
 
 prepare() {
   cd "$_pkgsrc"
-  git rm -r externals/SDL
   git rm -r externals/Vulkan-Headers
   git rm -r externals/Vulkan-Utility-Libraries
   git rm -r externals/libusb/libusb
