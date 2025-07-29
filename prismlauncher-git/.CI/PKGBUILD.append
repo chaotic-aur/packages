@@ -1,2 +1,20 @@
+url="https://github.com/PrismLauncher/PrismLauncher"
+
+export CMAKE_GENERATOR=Ninja
+makedepends+=('ninja')
+
 options=(${options[@]/debug*/})
 options+=(!debug)
+
+_pkgsrc="PrismLauncher"
+
+pkgver() {
+  cd "$_pkgsrc"
+  local _tmp _tag _version _revision _hash
+  _tmp=$(git tag | grep -Ev '[A-Za-z][A-Za-z]' | sed -E 's&([^0-9]*)(\S+)$&\2 \1\2&' | sort -rV | head -1)
+  _version=$(cut -f1 -d' ' <<< ${_tmp:?})
+  _tag=$(cut -f2 -d' ' <<< ${_tmp:?})
+  _revision=$(git rev-list --count --cherry-pick "$_tag"...HEAD)
+  _commit=$(git rev-parse --short=7 HEAD)
+  printf '%s.r%s.g%s' "${_version:?}" "${_revision:?}" "${_commit:?}"
+}
