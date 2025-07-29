@@ -1,6 +1,6 @@
 pkgbase = azahar-git
 	pkgdesc = A 3DS emulator
-	pkgver = 2122.1.r20.gf326e39
+	pkgver = 2122.1.r30.ga5aecf9
 	pkgrel = 1
 	url = https://github.com/azahar-emu/azahar
 	arch = x86_64
@@ -24,7 +24,6 @@ pkgbase = azahar-git
 	depends = libopenal.so
 	depends = libssl.so
 	depends = libusb-1.0.so
-	depends = libzstd.so
 	depends = qt6-base
 	depends = qt6-multimedia
 	depends = sdl2

@@ -2,7 +2,7 @@
 
 _pkgname="azahar"
 pkgname="$_pkgname-git"
-pkgver=2122.1.r20.gf326e39
+pkgver=2122.1.r30.ga5aecf9
 pkgrel=1
 pkgdesc="A 3DS emulator"
 url="https://github.com/azahar-emu/azahar"
@@ -17,8 +17,7 @@ depends=(
   'libfmt.so'                 # fmt
   'libopenal.so'              # openal
   'libssl.so'                 # openssl
-  'libusb-1.0.so'             #libusb
-  'libzstd.so'                # zstd
+  'libusb-1.0.so'             # libusb
   'qt6-base'
   'qt6-multimedia'
   'sdl2'
@@ -56,7 +55,6 @@ prepare() {
   git rm -r externals/openal-soft
   git rm -r externals/sdl2/SDL
   git rm -r externals/soundtouch
-  git rm -r externals/zstd
   git submodule update --init --recursive --depth=1
 
   # don't check for unwanted submodules
@@ -88,8 +86,6 @@ pkgver() {
 }
 
 build() {
-  # export CMAKE_POLICY_VERSION_MINIMUM=3.5
-
   export CC CXX CFLAGS CXXFLAGS LDFLAGS
   CC=clang
   CXX=clang++
@@ -129,7 +125,7 @@ build() {
     -DUSE_SYSTEM_VMA=OFF
     -DUSE_SYSTEM_VULKAN_HEADERS=OFF
     -DUSE_SYSTEM_XBYAK=OFF
-    -DUSE_SYSTEM_ZSTD=ON
+    -DUSE_SYSTEM_ZSTD=OFF
     -DUSE_SANITIZERS=OFF
     -DBUILD_TESTING=OFF
     -Wno-dev
