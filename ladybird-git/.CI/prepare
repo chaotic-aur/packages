@@ -44,4 +44,4 @@ _check_status() (
 )
 
 _check_rate 18 || return $?
-_check_status || return $?
+#_check_status || return $?
