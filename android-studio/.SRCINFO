@@ -1,6 +1,6 @@
 pkgbase = android-studio
 	pkgdesc = The official Android IDE (Stable branch)
-	pkgver = 2025.1.1.14
+	pkgver = 2025.1.2.11
 	pkgrel = 1
 	url = https://developer.android.com/
 	arch = i686
@@ -15,10 +15,10 @@ pkgbase = android-studio
 	optdepends = libgl: emulator support
 	optdepends = ncurses5-compat-libs: native debugger support
 	options = !strip
-	source = https://dl.google.com/dl/android/studio/ide-zips/2025.1.1.14/android-studio-2025.1.1.14-linux.tar.gz
+	source = https://dl.google.com/dl/android/studio/ide-zips/2025.1.2.11/android-studio-2025.1.2.11-linux.tar.gz
 	source = android-studio.desktop
 	source = license.html
-	sha256sums = ad364ebcb9752ea734cd73624e65683272c403058e1035b930983ccac8a2c81a
+	sha256sums = 8f3874c6b119538cdd96c7bcb65555feea81133e251f69365d21ddd77777be78
 	sha256sums = 73cd2dde1d0f99aaba5baad1e2b91c834edd5db3c817f6fb78868d102360d3c4
 	sha256sums = 9a7563f7fb88c9a83df6cee9731660dc73a039ab594747e9e774916275b2e23e
 
