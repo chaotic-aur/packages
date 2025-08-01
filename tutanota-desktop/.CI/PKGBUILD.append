@@ -1,0 +1,28 @@
+if [[ "$pkgver" < "299.250725.1" ]]; then
+  pkgver=299.250725.1
+  pkgrel=1
+
+  source[0]="git+https://github.com/tutao/tutanota.git#tag=$pkgname-release-$pkgver"
+  sha256sums[0]='42ba91bc97b349745137e74cdc83273fb025e803227d918dc0a0d4eff405cf0a'
+
+  eval _orig_"$(declare -f build)"
+  build() {
+    _retry "(_orig_build)"
+  }
+
+  _retry() {
+    local cmd="$1"
+    local max_attempts="${2:-3}"
+    local delay="${3:-3}"
+    local attempt=1
+
+    until eval "$cmd"; do
+      if ((++attempt > max_attempts)); then
+        echo "Max attempts ($max_attempts) reached. Command failed."
+        return 1
+      fi
+      echo "Attempt $((attempt - 1)) failed. Retrying in $delay seconds..."
+      sleep "$delay"
+    done
+  }
+fi
