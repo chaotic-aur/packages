@@ -1,4 +1,4 @@
-CI_PACKAGE_BUMP=2.42+r2+g3ec4dd77f648-1/1
+CI_PACKAGE_BUMP=2.42+r3+gbc13db739377-1/1
 CI_REBUILD_TRIGGERS=glibc
 CI_PKGBUILD_SOURCE=https://gitlab.archlinux.org/archlinux/packaging/packages/glibc.git
 BUILDER_CLASS=7

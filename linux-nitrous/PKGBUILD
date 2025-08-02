@@ -12,7 +12,7 @@
 
 pkgbase=linux-nitrous
 _srcname=linux-nitrous
-pkgver=6.15.8
+pkgver=6.15.9
 pkgrel=1
 arch=('x86_64')
 url="https://gitlab.com/xdevs23/linux-nitrous"
@@ -31,7 +31,7 @@ options=('!strip')
 source=('https://gitlab.com/xdevs23/linux-nitrous/-/archive/v'"$pkgver-$pkgrel"'/linux-nitrous-v'"$pkgver-$pkgrel"'.tar.gz'
   # standard config files for mkinitcpio ramdisk
   "${_srcname}.preset")
-sha256sums=('e3057320f9f47bf61297a974cdaf234eeff303193e10d528c52302bafbc85505'
+sha256sums=('088a0e49f71bb564d3ee611d45da58ffcac9aa3514e88c587dd9ece88126c4a1'
   '59cf1dfe08c144868ad87705dd62a0400921c042b1e12691e42cf214fe9a9402')
 
 _kernelname=${pkgbase#linux}

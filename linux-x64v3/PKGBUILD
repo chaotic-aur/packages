@@ -90,7 +90,7 @@ build() {
   cd $_srcname
   make all
   make -C tools/bpf/bpftool vmlinux.h feature-clang-bpf-co-re=1
-  make htmldocs
+  make htmldocs SPHINXOPTS=-QT
 }
 
 _package() {
