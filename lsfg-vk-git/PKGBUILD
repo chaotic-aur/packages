@@ -3,9 +3,14 @@
 ## options
 : ${_use_clang:=true}
 
+: ${CARGO_HOME:=$SRCDEST/cargo-home}
+: ${CARGO_TARGET_DIR:=target}
+: ${RUSTUP_TOOLCHAIN:=stable}
+export CARGO_HOME CARGO_TARGET_DIR RUSTUP_TOOLCHAIN
+
 _pkgname="lsfg-vk"
 pkgname="$_pkgname-git"
-pkgver=r199.e67fcd3
+pkgver=1.0.0.r0.g7113d7d
 pkgrel=1
 pkgdesc="Lossless Scaling Frame Generation on Linux via Vulkan"
 url="https://github.com/PancakeTAS/lsfg-vk"
@@ -13,8 +18,10 @@ license=('MIT')
 arch=('x86_64')
 
 depends=(
-  'gcc-libs'
   'vulkan-icd-loader'
+
+  ## GUI
+  'libadwaita'
 )
 makedepends=(
   'cmake'
@@ -30,6 +37,9 @@ makedepends=(
   'libxrandr'
   'vulkan-headers'
   'wayland'
+
+  ## GUI
+  'cargo'
 )
 
 if [[ "${_use_clang::1}" == "t" ]]; then
@@ -65,7 +75,8 @@ prepare() {
 
 pkgver() {
   cd "$_pkgsrc"
-  printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+  git describe --long --tags --abbrev=7 --exclude='*[a-zA-Z][a-zA-Z]*' \
+    | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
 }
 
 build() {
@@ -95,9 +106,33 @@ build() {
 
   cmake "${_cmake_options[@]}"
   cmake --build build
+
+  echo "Building Configuration GUI..."
+  cd "$_pkgsrc/ui"
+  cargo build --release --locked
 }
 
 package() {
   DESTDIR="$pkgdir" cmake --install build
+
+  # GUI
+  install -Dm755 "$_pkgsrc/ui/$CARGO_TARGET_DIR/release/lsfg-vk-ui" "$pkgdir/usr/bin/lsfg-vk-ui"
+  install -Dm644 "$_pkgsrc/ui/rsc/icon.png" "$pkgdir/usr/share/pixmaps/lsfg-vk-ui.png"
+  install -Dm644 /dev/stdin "$pkgdir/usr/share/applications/lsfg-vk-ui.desktop" << END
+[Desktop Entry]
+Type=Application
+Name=lsfg-vk Configuration
+Comment=Configuration editor for lsfg-vk
+Exec=lsfg-vk-ui %U
+Icon=lsfg-vk-ui
+Terminal=false
+Categories=GTK;Settings;
+Keywords=gaming;graphics;configuration;
+StartupNotify=true
+StartupWMClass=gay.pancake.lsfg-vk-ui
+MimeType=application/x-lsfg-profile;
+END
+
+  # license
   install -Dm644 "$_pkgsrc/LICENSE.md" "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
 }
