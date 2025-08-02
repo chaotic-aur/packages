@@ -1,10 +1,23 @@
+pkgdesc="A container-based Android system"
 url="https://github.com/waydroid/waydroid"
+license=('GPL-3.0-or-later')
 
-depends+=('python')
+unset install
 
 eval _orig_"$(declare -f package)"
-
 package() {
   _orig_package
+
+  # specify python version to prevent untracked pyc files
+  local _pyver_major _pyver_minor
+  _pyver_major=$(python -c 'import sys; print(sys.version_info.major)')
+  _pyver_minor=$(python -c 'import sys; print(sys.version_info.minor)')
+
+  eval "depends+=(
+    'python>=${_pyver_major}.${_pyver_minor}'
+    'python<${_pyver_major}.$((_pyver_minor + 1))'
+  )"
+
+  # generate pyc files
   python -m compileall -f -p / -s "$pkgdir" "$pkgdir/"
 }
