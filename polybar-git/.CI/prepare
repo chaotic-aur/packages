@@ -1,0 +1,2 @@
+# remove "|| exit" constructs
+sed -E -e 's& ?\|\|.*$&&' -i PKGBUILD
