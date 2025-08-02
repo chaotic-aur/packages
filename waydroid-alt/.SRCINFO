@@ -1,20 +1,20 @@
 pkgbase = waydroid-alt
 	pkgdesc = A container-based Android system - with desktop menu creation disabled
-	pkgver = 1.5.3
+	pkgver = 1.5.4
 	pkgrel = 2
 	url = https://github.com/waydroid/waydroid
 	arch = any
 	license = GPL-3.0-or-later
 	makedepends = git
+	makedepends = python
 	depends = dbus-python
 	depends = dnsmasq
 	depends = gtk3
 	depends = lxc
 	depends = nftables
-	depends = python
 	depends = python-gbinder
 	depends = python-gobject
-	provides = waydroid=1.5.3
+	provides = waydroid=1.5.4
 	conflicts = waydroid
 	source = waydroid::git+https://github.com/waydroid/waydroid.git
 	source = 0001-disable-launchers.patch

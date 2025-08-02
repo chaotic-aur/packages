@@ -3,7 +3,7 @@
 _pkgname="waydroid"
 pkgname="$_pkgname-alt"
 pkgver=1.5.4
-pkgrel=1
+pkgrel=2
 pkgdesc="A container-based Android system - with desktop menu creation disabled"
 url="https://github.com/waydroid/waydroid"
 license=('GPL-3.0-or-later')
@@ -15,12 +15,12 @@ depends=(
   'gtk3'
   'lxc'
   'nftables'
-  'python'
   'python-gbinder'
   'python-gobject'
 )
 makedepends=(
   'git'
+  'python'
 )
 
 provides=("$_pkgname=$pkgver")
@@ -62,9 +62,20 @@ pkgver() {
 }
 
 package() {
+  # specify python version to prevent untracked pyc files
+  local _pyver_major _pyver_minor
+  _pyver_major=$(python -c 'import sys; print(sys.version_info.major)')
+  _pyver_minor=$(python -c 'import sys; print(sys.version_info.minor)')
+
+  eval "depends+=(
+    'python>=${_pyver_major}.${_pyver_minor}'
+    'python<${_pyver_major}.$((_pyver_minor + 1))'
+  )"
+
   cd "$_pkgsrc"
   make install DESTDIR="$pkgdir" USE_NFTABLES=1
 
+  # create pyc files
   python -m compileall -f -p / -s "$pkgdir" "$pkgdir/"
 
   # relocate icon
