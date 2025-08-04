@@ -1,0 +1,17 @@
+install -Dm644 /dev/stdin postman-warning.install << 'END'
+ALL_OFF="$(tput sgr0)"
+YELLOW="${BOLD}$(tput setaf 3)"
+WHITE="${BOLD}$(tput setaf 7)"
+
+_eol_electron_warning() {
+  printf "${YELLOW}WARNING: ${WHITE}%s${ALL_OFF}\n" "Postman uses EOL version of Electron.  See https://endoflife.date/electron"
+}
+
+post_install() {
+  _eol_electron_warning
+}
+
+post_upgrade() {
+  _eol_electron_warning
+}
+END
