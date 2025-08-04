@@ -2,7 +2,7 @@
 
 _pkgname="eden"
 pkgname="$_pkgname-git"
-pkgver=0.0.2.r235.g896bfcd
+pkgver=0.0.2.r272.g9634342
 pkgrel=1
 pkgdesc="Yet another emulator fork"
 url="https://git.eden-emu.dev/eden-emu/eden"
@@ -11,10 +11,8 @@ arch=('x86_64')
 
 depends=(
   'libfmt.so'
-  'qt6-5compat'
   'qt6-multimedia'
   'qt6-webengine'
-  'wireless_tools'
 )
 makedepends=(
   'boost'
@@ -38,15 +36,6 @@ _pkgsrc="$_pkgname"
 source=("$_pkgsrc"::"git+$url.git")
 sha256sums=('SKIP')
 
-prepare() {
-  cd "$_pkgsrc"
-  git rm -r externals/Vulkan-Headers
-  git rm -r externals/Vulkan-Utility-Libraries
-  git rm -r externals/libusb/libusb
-  git rm -r externals/vcpkg
-  git submodule update --init --recursive --depth=1
-}
-
 pkgver() {
   cd "$_pkgsrc"
   local _tmp _tag _version _revision _hash
@@ -69,38 +58,32 @@ build() (
     -DCMAKE_BUILD_TYPE=None
     -DCMAKE_INSTALL_PREFIX="/usr"
 
-    -DENABLE_QT_TRANSLATION=OFF
-    -DYUZU_USE_QT_MULTIMEDIA=ON
-    -DYUZU_USE_QT_WEB_ENGINE=ON
-
+    -DENABLE_COMPATIBILITY_LIST_DOWNLOAD=ON
+    -DENABLE_QT_TRANSLATION=OFF # spurious errors
+    -DENABLE_WEB_SERVICE=ON
+    -DTITLE_BAR_FORMAT_IDLE="$_pkgname | ${pkgver} {}"
+    -DTITLE_BAR_FORMAT_RUNNING="$_pkgname | ${pkgver} {}"
+    -DUSE_DISCORD_PRESENCE=OFF
     -DYUZU_CHECK_SUBMODULES=OFF
-
-    -DYUZU_USE_BUNDLED_FFMPEG=ON
+    -DYUZU_CRASH_DUMPS=OFF
+    -DYUZU_DOWNLOAD_TIME_ZONE_DATA=ON
+    -DYUZU_ENABLE_COMPATIBILITY_REPORTING=OFF
+    -DYUZU_ENABLE_LTO=OFF
+    -DYUZU_ROOM=ON
+    -DYUZU_USE_BUNDLED_FFMPEG=OFF
     -DYUZU_USE_BUNDLED_QT=OFF
     -DYUZU_USE_BUNDLED_SDL2=OFF
     -DYUZU_USE_BUNDLED_VCPKG=OFF
-
     -DYUZU_USE_EXTERNAL_SDL2=OFF
     -DYUZU_USE_EXTERNAL_VULKAN_HEADERS=OFF
+    -DYUZU_USE_EXTERNAL_VULKAN_SPIRV_TOOLS=OFF
     -DYUZU_USE_EXTERNAL_VULKAN_UTILITY_LIBRARIES=OFF
-
-    -DENABLE_WEB_SERVICE=ON
-    -DUSE_DISCORD_PRESENCE=OFF
-    -DYUZU_DOWNLOAD_TIME_ZONE_DATA=ON
-
-    -DENABLE_COMPATIBILITY_LIST_DOWNLOAD=ON
-
-    -DTITLE_BAR_FORMAT_IDLE="$_pkgname | ${pkgver} {}"
-    -DTITLE_BAR_FORMAT_RUNNING="$_pkgname | ${pkgver} {}"
-
-    -DYUZU_ENABLE_COMPATIBILITY_REPORTING=OFF
-    -DYUZU_ROOM=ON
-
-    -DYUZU_ENABLE_LTO=ON
-    -DYUZU_CRASH_DUMPS=OFF
-    -DYUZU_TESTS=OFF
+    -DYUZU_USE_QT_MULTIMEDIA=ON
+    -DYUZU_USE_QT_WEB_ENGINE=ON
 
     -DUSE_SANITIZERS=OFF # cubeb
+    -DDYNARMIC_TESTS=OFF
+    -DYUZU_TESTS=OFF
     -Wno-dev
   )
 
@@ -110,5 +93,9 @@ build() (
 
 package() {
   DESTDIR="$pkgdir" cmake --install build
-  rm -rf "$pkgdir"/usr/lib/*.a
+
+  # unwanted
+  rm -rf "$pkgdir/usr/include"
+  rm -rf "$pkgdir/usr/lib/cmake"
+  rm -rf "$pkgdir/usr/lib"/*.a
 }
