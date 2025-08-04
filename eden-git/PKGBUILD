@@ -3,7 +3,7 @@
 _pkgname="eden"
 pkgname="$_pkgname-git"
 pkgver=0.0.2.r272.g9634342
-pkgrel=1
+pkgrel=2
 pkgdesc="Yet another emulator fork"
 url="https://git.eden-emu.dev/eden-emu/eden"
 license=('GPL-3.0-or-later')
@@ -11,7 +11,6 @@ arch=('x86_64')
 
 depends=(
   'libfmt.so'
-  'qt6-multimedia'
   'qt6-webengine'
 )
 makedepends=(
@@ -22,6 +21,7 @@ makedepends=(
   'nasm'
   'ninja'
   'nlohmann-json'
+  'qt6-multimedia'
   'qt6-tools'
   'vulkan-headers'
   'vulkan-utility-libraries'
@@ -84,6 +84,7 @@ build() (
     -DUSE_SANITIZERS=OFF # cubeb
     -DDYNARMIC_TESTS=OFF
     -DYUZU_TESTS=OFF
+    -DBUILD_TESTING=OFF
     -Wno-dev
   )
 
@@ -93,6 +94,7 @@ build() (
 
 package() {
   DESTDIR="$pkgdir" cmake --install build
+  install -Dm644 "$_pkgsrc/dist/72-yuzu-input.rules" "$pkgdir/usr/lib/udev/rules.d/72-eden-input.rules"
 
   # unwanted
   rm -rf "$pkgdir/usr/include"
