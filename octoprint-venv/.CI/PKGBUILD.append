@@ -1,9 +1,0 @@
-if [[ ! "$pkgver" > "1.11.2" ]]; then
-  pkgver=1.11.2
-  pkgrel=1
-
-  source[0]="https://github.com/OctoPrint/OctoPrint/releases/download/${pkgver}/OctoPrint-${pkgver}.source.tar.gz"
-  sha256sums[0]='0d0e19670ec98dbfca7a97edfc68a9d0ea3bc5c362ec25024dbc38ddead3be44'
-
-  eval "$(declare -f package | sed 's/OctoPrint-/octoprint-/')"
-fi
