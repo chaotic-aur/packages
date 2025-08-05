@@ -1,1 +1,0 @@
-eval "$(declare -f package | sed -E -e '/thinkpad_acpi\.conf/s&^(.*/thinkpad_acpi.conf).*$&\1 "$pkgdir/usr/lib/modprobe.d/thinkpad_acpi_thinkfan_ui.conf"&')"
