@@ -5,7 +5,7 @@
 
 pkgname=python-exifread
 _name="exifread"
-pkgver=3.3.1
+pkgver=3.4.0
 pkgrel=1
 pkgdesc="Python library to extract EXIF data from tiff and jpeg files"
 arch=('any')
@@ -14,8 +14,7 @@ license=('BSD')
 depends=('python')
 makedepends=('python-build' 'python-installer' 'python-setuptools')
 source=("https://files.pythonhosted.org/packages/source/${_name::1}/$_name/$_name-$pkgver.tar.gz")
-sha1sums=('4223ba050940b449b4be5b71e99723f7b87cef2b')
-sha256sums=('320d8596c1f674a1da2c10cf30408bb9675262c4c0181bebbd3570679d2f1340')
+sha256sums=('dc7f8da77396709ca414a0eee1c262902f713afc9c043baa8b82337d76306ffc')
 
 build() {
   cd "$_name-$pkgver"
