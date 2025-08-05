@@ -7,9 +7,14 @@
 ## options
 : ${_install_path:=usr/lib}
 
+: ${CARGO_HOME:=$SRCDEST/cargo-home}
+: ${FVM_CACHE_PATH:=$SRCDEST/fvm-cache}
+: ${RUSTUP_HOME:=$SRCDEST/rust-home}
+export CARGO_HOME FVM_CACHE_PATH RUSTUP_HOME
+
 _pkgname="localsend"
 pkgname="$_pkgname-git"
-pkgver=1.17.0.r18.g09b9482
+pkgver=1.17.0.r32.gf57cae5
 pkgrel=1
 pkgdesc="An open source cross-platform alternative to AirDrop"
 url="https://github.com/localsend/localsend"
@@ -48,12 +53,10 @@ pkgver() {
 
 prepare() {
   cd "$_pkgsrc"
-  sed -E -e 's&^channel = .*$&channel = "stable"&' -i app/rust-toolchain.toml
+  #sed -E -e 's&^channel = .*$&channel = "stable"&' -i app/rust-toolchain.toml
 }
 
 build() (
-  export FVM_CACHE_PATH="$SRCDEST/fvm-cache"
-
   export CXXFLAGS+=' -Wno-error=deprecated-declarations'
 
   cd "$_pkgsrc/app"
@@ -70,8 +73,8 @@ package() {
 
   # files
   install -Dm755 "localsend_app" "$pkgdir/$_install_path/$_pkgname/$_pkgname"
-  cp --reflink=auto -r lib/ "$pkgdir/$_install_path/$_pkgname/"
-  cp --reflink=auto -r data/ "$pkgdir/$_install_path/$_pkgname/"
+  cp -r lib/ "$pkgdir/$_install_path/$_pkgname/"
+  cp -r data/ "$pkgdir/$_install_path/$_pkgname/"
 
   # runpath
   patchelf --set-rpath '$ORIGIN/lib' "$pkgdir/$_install_path/$_pkgname/$_pkgname"
