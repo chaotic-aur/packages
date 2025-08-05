@@ -1,0 +1,13 @@
+_pkgsrc="VirtualBox-$_vboxver"
+
+options+=('!lto')
+
+eval _orig_"$(declare -f prepare)"
+prepare() {
+  (_orig_prepare)
+  sed -e '/^CC=/s&^.*$&CC="gcc -std=gnu17"&' \
+    -e '/^CXX=/s&^.*$&CXX="g++ -std=gnu++17"&' \
+    -i "$_pkgsrc/configure"
+}
+
+eval "$(declare -f build | sed -E -e 's&(--with-kvm)&\1 --disable-java&')"
