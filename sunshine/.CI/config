@@ -1,2 +1,0 @@
-CI_REBUILD_TRIGGERS=icu:miniupnpc
-CI_PKGBUILD_SOURCE=aur
