@@ -451,7 +451,7 @@ build() {
   fi
 
   # intel-clc cross compile fix
-  if (cd "$srcdir/$_mesa_srcdir" && git merge-base --is-ancestor 28c1053c07c177854520f6283fa665f17618adb5 HEAD); then
+  if (cd "$srcdir/$_mesa_srcdir" && git merge-base --is-ancestor 28c1053c07c177854520f6283fa665f17618adb5 HEAD && ! git merge-base --is-ancestor 2d691d7dd31463a9ec2d832a98164e0aa9225068 HEAD); then
     if [[ "$_lib32" == "true" ]]; then
       _intel_clc_32="-D intel-clc=system"
       # Workaround cross compilation error by using intel_clc binary from _build64
