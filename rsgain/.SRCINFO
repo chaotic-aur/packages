@@ -1,0 +1,19 @@
+pkgbase = rsgain
+	pkgdesc = ReplayGain 2.0 loudness normalizer
+	pkgver = 3.6
+	pkgrel = 1
+	url = https://github.com/complexlogic/rsgain
+	arch = x86_64
+	license = BSD-2-Clause
+	makedepends = cmake
+	depends = libebur128
+	depends = libavcodec.so
+	depends = libavformat.so
+	depends = libavutil.so
+	depends = libswresample.so
+	depends = libinih
+	depends = taglib
+	source = rsgain-3.6.tar.gz::https://github.com/complexlogic/rsgain/archive/refs/tags/v3.6.tar.gz
+	sha512sums = 375a9b7ffafa6e54c3ea390568b3b38fab5ac64e8d5449c16beaa5997a00e0be51ff7b83299986abc461ba43ccfac0c812d72ef5969b901a7461bf3d08f83219
+
+pkgname = rsgain
