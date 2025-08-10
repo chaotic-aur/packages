@@ -2,8 +2,8 @@
 
 _pkgname="zenergy"
 pkgname="$_pkgname-dkms-git"
-pkgver=r30.7c4e83d
-pkgrel=1
+pkgver=r31.f77293f
+pkgrel=3
 pkgdesc="Linux kernel driver for reading RAPL registers for AMD Zen CPUs"
 url="https://github.com/boukehaarsma23/zenergy"
 license=('GPL-2.0-only')
@@ -20,8 +20,14 @@ provides=("$_pkgname-dkms")
 conflicts=("$_pkgname-dkms")
 
 _pkgsrc="$_pkgname"
-source=("$_pkgsrc"::"git+$url.git")
-sha256sums=('SKIP')
+source=(
+  "$_pkgsrc"::"git+$url.git"
+  "PR18-linux-6.16.patch"::"https://github.com/BoukeHaarsma23/zenergy/pull/18.patch"
+)
+sha256sums=(
+  'SKIP'
+  '693d75019a890fbe6149803319869cc47658e72a25292b4aa546d411e1f1e09e'
+)
 
 pkgver() {
   cd "$_pkgsrc"
@@ -29,7 +35,9 @@ pkgver() {
 }
 
 prepare() {
-  sed -e "s/@VERSION@/$pkgver/" -i "$_pkgsrc/dkms.conf"
+  cd "$_pkgsrc"
+  patch -Np1 -F100 -i "$srcdir/PR18-linux-6.16.patch"
+  sed -e "s/@VERSION@/$pkgver/" -i dkms.conf
 }
 
 package() {
