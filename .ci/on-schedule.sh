@@ -188,30 +188,17 @@ function update-lib-bump() {
     if [ $bump -eq 1 ]; then
         UTIL_PRINT_INFO "$package: Bumping pkgrel of $package because of a detected library version change"
 
-        local _PKGVER _BUMPCOUNT _PKGVER_IN_DB
+        local _PKGVER_IN_DB _DB_BASE _DB_BUMP
         _PKGVER_IN_DB="$(grep "^$package:" ".state/.version-state" | cut -d ":" -f 2 || true)"
 
-        if [ -z "$_PKGVER_IN_DB" ]; then
+        if [[ "$_PKGVER_IN_DB" =~ ^([^-]+)-([^.]+)(?:\.([0-9]+))?$ ]]; then
+            _DB_BASE="${BASH_REMATCH[1]}-${BASH_REMATCH[2]}" # base: pkgver-pkgrel
+            _DB_BUMP=$((${BASH_REMATCH[3]:-0} + 1)) # bump
+        else
             UTIL_PRINT_WARNING "$package: Could not find package version in the version-state file."
             return 0
         fi
-
-        if [[ -v pkg_config[CI_PACKAGE_BUMP] ]]; then
-            _PKGVER="${pkg_config[CI_PACKAGE_BUMP]%%/*}"
-            _BUMPCOUNT="${pkg_config[CI_PACKAGE_BUMP]#*/}"
-
-            # If the version we except matches the version in the database
-            if [ "$(vercmp "${_PKGVER}" "${_PKGVER_IN_DB}")" = "0" ]; then
-                # Increment the bump count
-                _BUMPCOUNT=$((_BUMPCOUNT + 1))
-            else
-                # Otherwise, set the bump count to 1
-                _BUMPCOUNT=1
-            fi
-        else
-            _BUMPCOUNT=1
-        fi
-        pkg_config[CI_PACKAGE_BUMP]="$_PKGVER_IN_DB/$_BUMPCOUNT"
+        pkg_config[CI_PACKAGE_BUMP]="$_DB_BASE/$_DB_BUMP"
     fi
 }
 
