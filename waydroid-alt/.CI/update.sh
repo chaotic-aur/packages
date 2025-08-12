@@ -1,17 +1,28 @@
 #!/usr/bin/env bash
 
-eval "$(grep -Eo '^(url|pkgver|pkgrel)=\S+' PKGBUILD)"
-_OLD_VERSION="$pkgver"
+_update_package() {
+  local _OLD_VERSION _NEW_VERSION _RESPONSE
 
-_RESPONSE=$(curl -Ssf "$url/releases.atom")
-_TAG=$(
-  echo "${_RESPONSE:?}" |
-    grep -Pom1 '(?<=/releases/tag/)[0-9\.-]+(?=")'
-)
+  eval "$(grep -Eo '^(url|pkgver|pkgrel)=\S+' PKGBUILD)"
+  _OLD_VERSION="$pkgver"
 
-if [ "${_TAG:?}" != "${_OLD_VERSION:?}" ]; then
-  sed -E \
-    -e 's&^(pkgver)=.*$&\1='"${_TAG}&" \
-    -e 's&^(pkgrel)=.*$&\1=1&' \
-    -i "PKGBUILD"
-fi
+  _RESPONSE=$(curl -Ssf "$url/releases.atom")
+  _NEW_VERSION=$(
+    echo "${_RESPONSE:?}" |
+      grep -Pom1 '(?<=/releases/tag/)[0-9\.-]+(?=")'
+  )
+
+  if [[ "${_NEW_VERSION:?}" > "${_OLD_VERSION:?}" ]]; then
+    sed -E \
+      -e 's&^(pkgver)=.*$&\1='"${_NEW_VERSION}&" \
+      -e 's&^(pkgrel)=.*$&\1=1&' \
+      -i "PKGBUILD"
+
+    sed -E \
+      -e 's&^(pkgver)=.*$&\1 = '"${_NEW_VERSION}&" \
+      -e 's&^(pkgrel)=.*$&\1 = 1&' \
+      -i ".SRCINFO"
+  fi
+}
+_update_package
+unset -f _update_package
