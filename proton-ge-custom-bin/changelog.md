@@ -1,3 +1,43 @@
+## GE-Proton10-11
+
+- Fixed videos having wrong audio language in Back 4 Blood
+- Fixed Devil May Cry HD collection wmv playback not working when proton wine compiled with ffmpeg
+- Fixed video playback in Injustice 2
+- Possible other video playback regressions fixed that happened since proton 9->10 update.
+- farlight 84 patch added (yes, another one)
+- patch added that may give minor CPU performance improvement [Etaash-mathamsetty/wine-valve@6559c43](https://github.com/Etaash-mathamsetty/wine-valve/commit/6559c43fe15e55749aa1f39df98e97c24835b012)
+- patch added that may help with denuvo being triggered when changing proton versions [Etaash-mathamsetty/wine-valve@cd3efb2](https://github.com/Etaash-mathamsetty/wine-valve/commit/cd3efb2ade393776b40a5731eb8a81dec46e8b30)
+- protonfixes proton script import location moved to beginning of the protron script, should fix a bug with dll overrides not working properly (it was affecting things such as winetricks dotnet installs)
+- protonfixes added for EGS and standalone versions of guild wars 2 (thanks tvgold42)
+- protonfix added for EGS version of MudRunner (thanks loathingKernel)
+- wine updated to latest bleeding edge
+- vkd3d-proton updated to latest git
+- dxvk updated to latest git
+- build and proton changes imported from upstream
+
+## GE-Proton10-10
+
+- fixed issue with 32 bit applications needing wow64 when using ntsync, no longer need to enable wow64 for ntsync
+- ntsync now enabled by default, will be used if kernel supports it
+- sdl will automatically be used when wine-wayland is used (this is because steam input does not work yet on wine-wayland)
+- JacKeTUs gameinput stub patch added for for Le Mans Ultimate (https://github.com/JacKeTUs/wine/tree/lmu-d2d1-gameinput)
+- SteamDeck=0 input fix added for warframe, smite 2, summoner's war, summoner's war chronicles
+- SteamDeck=1 fix added for Mortal Kombat 1
+- dotnet8 protonfix added for Voice Attack 2
+- Removed deprecated core count limit for New World
+- Multiple fixes added for Darksiders
+- Darksiders GOG, EGS, and Amazon versions added to protonfixes
+- Protonfix added for Chronology
+- Protonfix added for Blood & Bacon
+- Protonfix added for JR East Train Simulator
+- Protonfix added for GOG version of DOOM 2016 (fixes black screen)
+- dxvk updated to latest git
+- dxvk-nvapi updated to latest git
+- vkd3d updated to latest git
+- vkd3d-proton updated to latest git
+- wine updated to latest bleeding edge
+- changes imported from upstream proton
+
 ## GE-Proton10-9
 
 - Added ntsync support:
