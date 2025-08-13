@@ -1,0 +1,17 @@
+pkgbase = recaf2-git
+	pkgdesc = A modern Java bytecode editor
+	pkgver = 2.21.14.r1.g1d16a27
+	pkgrel = 1
+	url = https://github.com/Col-E/Recaf
+	arch = any
+	license = MIT
+	makedepends = java-environment=24
+	makedepends = git
+	provides = recaf
+	conflicts = recaf
+	source = recaf::git+https://github.com/Col-E/Recaf.git#branch=archive_2_x
+	sha256sums = SKIP
+
+pkgname = recaf2-git
+	depends = java-runtime
+	depends = ttf-font
