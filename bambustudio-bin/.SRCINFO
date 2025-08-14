@@ -1,6 +1,6 @@
 pkgbase = bambustudio-bin
 	pkgdesc = PC Software for BambuLab's 3D printers
-	pkgver = 02.01.01.52
+	pkgver = 02.02.00.85
 	pkgrel = 1
 	url = https://github.com/bambulab/BambuStudio
 	arch = x86_64
@@ -21,11 +21,11 @@ pkgbase = bambustudio-bin
 	depends = gst-libav
 	conflicts = bambustudio
 	conflicts = bambustudio-git
-	source = bambustudio-02.01.01.52.AppImage::https://github.com/bambulab/BambuStudio/releases/download/v02.01.01.52/Bambu_Studio_linux_fedora-v02.01.01.52.AppImage
+	source = bambustudio-02.02.00.85.AppImage::https://github.com/bambulab/BambuStudio/releases/download/v02.02.00.85/Bambu_Studio_ubuntu-24.04_PR-7829.AppImage
 	source = BambuStudio.desktop
 	source = bambu-studio
-	md5sums = 316b6597db773b0cd876d1928b362db1
-	md5sums = c2729c29cbd01844507e1f0562762191
-	md5sums = 32b62c7c318962820a615c3ef3813935
+	sha256sums = 923d6f4f93d394cf126bf731c48165aa57b8a2e3d337f3a0a7c0d0f868db8343
+	sha256sums = SKIP
+	sha256sums = SKIP
 
 pkgname = bambustudio-bin
