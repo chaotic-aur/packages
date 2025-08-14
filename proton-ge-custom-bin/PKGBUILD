@@ -12,7 +12,7 @@
 pkgdesc='A fancy custom distribution of Valves Proton with various patches'
 pkgname=proton-ge-custom-bin
 pkgver=GE_Proton10_12
-pkgrel=1
+pkgrel=2
 epoch=1
 arch=('x86_64')
 license=('BSD' 'LGPL' 'zlib' 'MIT' 'MPL' 'custom')
@@ -27,7 +27,6 @@ depends=('python'
   'lib32-vkd3d'
   # libav support #
   'lib32-libva'
-  'ffmpeg4.4'
   'lib32-speex'
   'lib32-libtheora'
   'lib32-libvdpau'
