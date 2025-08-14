@@ -1,3 +1,11 @@
+## GE-Proton10-12
+
+Hotfix:
+
+- Fixed video playback in Ghostwire Tokyo
+- Fixed video playback in Castlevania Dominus Collection
+- Possibly other games fixed that use webm/vp8/vp9 video
+
 ## GE-Proton10-11
 
 - Fixed videos having wrong audio language in Back 4 Blood
