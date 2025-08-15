@@ -2,15 +2,15 @@
 # Contributor: Xyne <xyne at archlinux dot org>
 
 pkgname=bindfs
-pkgver=1.18.0
+pkgver=1.18.1
 pkgrel=1
 pkgdesc="A FUSE filesystem for mirroring a directory to another directory, similar to 'mount --bind', with permission settings."
 arch=('i686' 'x86_64' 'armv6h' 'armv6l' 'armv7h')
 url="http://bindfs.org/"
-license=('GPL')
+license=('GPL-2.0')
 depends=('fuse3')
 source=("http://bindfs.org/downloads/${pkgname}-${pkgver}.tar.gz")
-sha512sums=('c9e34da076434f7692338fe34bb57008bda07b76b46af9acbe0e8c766e058619e4d975232c985a5dad89c7370e1c55a3f435478a51b962d40b64e8e39b2b257a')
+sha512sums=('002c9fac3819a766689e2b323b6c1d351b33947ff5ff15f9634263f0ce1a257efc3833d330d26793f0291cf2750fbfdaca51aac297912d348c16f889eef27dfb')
 
 build() {
   cd "$srcdir/$pkgname-$pkgver"
