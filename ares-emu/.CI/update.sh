@@ -12,7 +12,7 @@ _update_package() {
       grep -Pom1 '(?<=/releases/tag/v)[0-9\.-]+(?=")'
   )
 
-  if [[ "${_NEW_VERSION:?}" ] > "${_OLD_VERSION:?}" ]]; then
+  if [[ "${_NEW_VERSION:?}" > "${_OLD_VERSION:?}" ]]; then
     sed -E \
       -e 's&^(pkgver)=.*$&\1='"${_NEW_VERSION:?}&" \
       -e 's&^(pkgrel)=.*$&\1=1&' \
