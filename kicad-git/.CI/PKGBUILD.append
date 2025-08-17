@@ -1,7 +1,6 @@
 url="https://gitlab.com/kicad/code/kicad"
-license=('GPL-3.0-or-later')
 
-depends+=('nng')
+depends+=('libspnav')
 makedepends+=('ninja')
 
 provides=("kicad=$pkgver")
