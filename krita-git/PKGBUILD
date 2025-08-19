@@ -1,8 +1,8 @@
 # Maintainer: aur.chaotic.cx
 
 _pkgname="krita"
-pkgname="$_pkgname-qt6-git"
-pkgver=5.2.9.r2854.gba5dbd2
+pkgname="$_pkgname-git"
+pkgver=5.2.11.r3123.g1c40376
 pkgrel=1
 pkgdesc="Edit and paint images"
 url='https://invent.kde.org/graphics/krita'
@@ -87,6 +87,7 @@ conflicts=(
   'krita'
   'krita-il10n'
 )
+replaces=('krita-qt6-git')
 
 _pkgsrc="$_pkgname"
 source=("$_pkgsrc"::"git+$url.git")
