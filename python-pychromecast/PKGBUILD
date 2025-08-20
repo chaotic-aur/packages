@@ -7,8 +7,8 @@
 
 pkgname=python-pychromecast
 _name=${pkgname#python-}
-pkgver=14.0.7
-pkgrel=3
+pkgver=14.0.9
+pkgrel=1
 pkgdesc="Library for Python 3 to communicate with the Google Chromecast"
 arch=('any')
 url="https://github.com/home-assistant-libs/pychromecast"
@@ -24,18 +24,11 @@ makedepends=(
   'python-setuptools'
   'python-wheel'
 )
-source=("$_name-$pkgver.tar.gz::$url/archive/refs/tags/$pkgver.tar.gz"
-  'setuptools.patch')
-sha256sums=('639c6da3ca1f9df1ccfb6b582ae8cd98b68a257dbadf392b5d4074cf09908688'
-  '79f888c45f746e38ce7d42b35dc471a7207e221d7f616e39973bf70003b27833')
+source=("$_name-$pkgver.tar.gz::$url/archive/refs/tags/$pkgver.tar.gz")
+sha256sums=('d5494eff226119d9a0c2fd4d9fbc7f1025cedb2e699047cc9a0ba76236bed64d')
 
 prepare() {
   cd "$_name-$pkgver"
-
-  # Update setuptools requirement from <78.0 to <81.0
-  # https://github.com/home-assistant-libs/pychromecast/pull/1056 (merged)
-  # https://github.com/home-assistant-libs/pychromecast/pull/1060 (merged)
-  patch -Np1 -i ../setuptools.patch
 }
 
 build() {
