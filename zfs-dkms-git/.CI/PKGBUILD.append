@@ -15,3 +15,5 @@ pkgver() {
   _hash=$(git rev-parse --short=7 HEAD)
   printf '%s.r%s.g%s' "${_version:?}" "${_revision:?}" "${_hash:?}"
 }
+
+eval "$(declare -f package | sed -E -e 's&=[^=:]*epoch[^:=]*:&=&')"
