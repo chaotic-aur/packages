@@ -1,0 +1,16 @@
+pkgbase = upscayl-models
+	pkgdesc = Image upscaling models for Upscayl
+	pkgver = 20220424
+	pkgrel = 2
+	url = https://github.com/xinntao/Real-ESRGAN
+	arch = x86_64
+	license = AGPL-3.0-only
+	optdepends = upscayl-ncnn: CLI to use the models
+	optdepends = upscayl-desktop: GUI frontend
+	provides = upscayl-models
+	options = !debug
+	options = !strip
+	source = https://github.com/xinntao/Real-ESRGAN/releases/download/v0.2.5.0/realesrgan-ncnn-vulkan-20220424-ubuntu.zip
+	sha256sums = SKIP
+
+pkgname = upscayl-models
