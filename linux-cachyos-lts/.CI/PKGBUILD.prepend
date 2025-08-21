@@ -1,3 +1,7 @@
 # avoid march=native
 _processor_opt=GENERIC_V1
 _use_auto_optimization=no
+
+# ensure clang/llvm/lto are not used
+# interferes with some -dkms packages
+_use_llvm_lto=none
