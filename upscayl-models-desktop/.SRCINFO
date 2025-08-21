@@ -1,0 +1,16 @@
+pkgbase = upscayl-models-desktop
+	pkgdesc = Image upscaling models for Upscayl Desktop
+	pkgver = 2.15.1
+	pkgrel = 2
+	url = https://github.com/upscayl/upscayl
+	arch = x86_64
+	license = AGPL-3.0-only
+	optdepends = upscayl-ncnn: CLI to use the models
+	optdepends = upscayl-desktop: GUI frontend
+	provides = upscayl-models
+	options = !debug
+	options = !strip
+	source = upscayl-2.15.1.tar.gz::https://github.com/upscayl/upscayl/archive/refs/tags/v2.15.1.tar.gz
+	sha256sums = 18bbc1d2b6a29050a606866940630158a019d78d15375d8546f91795ac9cbf7c
+
+pkgname = upscayl-models-desktop

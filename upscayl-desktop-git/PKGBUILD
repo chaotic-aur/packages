@@ -1,22 +1,23 @@
 # Maintainer: aur.chaotic.cx
 
-: ${_electron_dist=/usr/lib/electron}
+: ${_electron_version=}
+: ${_nodeversion=}
 
 _pkgname="upscayl"
 pkgname="$_pkgname-desktop-git"
-pkgver=2.15.1.r25.gf1da88f
-pkgrel=1
-pkgdesc="AI image upscaler frontend"
+pkgver=2.15.1.r40.ga3e9186
+pkgrel=2
+pkgdesc="AI image upscaler, desktop app"
 url="https://github.com/upscayl/upscayl"
 license=('AGPL-3.0-only')
 arch=('x86_64')
 
 depends=(
-  'electron'
+  "electron${_electron_version:-}"
 )
 makedepends=(
   'git'
-  'npm'
+  'nvm'
 )
 optdepends=(
   'vulkan-intel: Open-source Vulkan driver for Intel GPUs'
@@ -28,8 +29,51 @@ provides=("$_pkgname")
 conflicts=("$_pkgname")
 
 _pkgsrc="$_pkgname"
-source=("$_pkgsrc"::"git+$url.git")
-sha256sums=('SKIP')
+source=(
+  "$_pkgsrc"::"git+$url.git"
+  '0001-adjust-paths.patch'
+  '0002-exclude-backend.patch'
+)
+sha256sums=(
+  'SKIP'
+  'd9f2c3764995c56b943d2e5f466e41c5ccc42b8b1ecf5d02b18b2b7ae6d39f5d'
+  '15a0da5c464cc0514d75cc433333c3af55a66a9d20d751309dfc1343abcd2584'
+)
+
+_nvm_env() {
+  export HOME="$SRCDEST/node-home"
+  export NVM_DIR="$SRCDEST/node-nvm"
+
+  # set up nvm
+  source /usr/share/nvm/init-nvm.sh || [[ $? != 1 ]]
+  nvm install ${_nodeversion:-node}
+  nvm use ${_nodeversion:-node}
+}
+
+_electron_env() {
+  export SYSTEM_ELECTRON_VERSION=$(< "/usr/lib/electron${_electron_version:-}/version")
+  export ELECTRON_VERSION=${SYSTEM_ELECTRON_VERSION%%.*}
+}
+
+prepare() {
+  _electron_env
+
+  cd "$_pkgsrc"
+
+  # adjustments for packaging
+  patch -Np1 -F100 -i '../0001-adjust-paths.patch'
+  patch -Np1 -F100 -i '../0002-exclude-backend.patch'
+
+  # set electron version
+  sed -E \
+    -e 's&^(\s*)("electron"): "(.*)"(,?)$&\1\2: "'"$SYSTEM_ELECTRON_VERSION"'"\4&' \
+    -i package.json
+
+  # allow any npm version
+  sed -E \
+    -e 's&("npm"): \S+$&\1: ">=1.0.0"&' \
+    -i package.json
+}
 
 pkgver() {
   cd "$_pkgsrc"
@@ -37,34 +81,40 @@ pkgver() {
     | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
 }
 
-build() {
+build() (
+  _nvm_env
+  _electron_env
+
+  local _builder_options=(
+    -c.electronDist="'/usr/lib/electron${ELECTRON_VERSION:-}'"
+    -c.electronVersion=${SYSTEM_ELECTRON_VERSION}
+  )
+
   cd "$_pkgsrc"
-  NODE_ENV=development npm install
+  NODE_ENV=development npm install --no-audit --no-fund
   NODE_ENV=production npm run tsc
   NODE_ENV=production npm run build
-  NODE_ENV=production npm exec -c "electron-builder --linux dir -c.electronDist=${_electron_dist} -c.electronVersion=$(cat $_electron_dist/version)"
-
-  # remove prebuilt binary
-  rm -f dist/linux-*/resources/bin/upscayl-bin
-}
+  NODE_ENV=production npm exec -c "electron-builder --linux --dir --publish never ${_builder_options[@]}"
+)
 
 package() {
-  depends+=(
+  _electron_env
+
+  depends=(
+    "electron${ELECTRON_VERSION:-}"
+    'upscayl-models-desktop'
     'upscayl-ncnn'
   )
 
   # resources
-  install -Dm755 -d "$pkgdir/usr/lib/$_pkgname"
-  cp --reflink=auto -a "$_pkgsrc/dist/linux-"*/resources/* "$pkgdir/usr/lib/$_pkgname/"
-
-  # symlink upscayl-ncnn
-  ln -srf "$pkgdir/usr/lib/upscayl/upscayl" "$pkgdir/usr/lib/upscayl/bin/upscayl-bin"
+  local _src="$_pkgsrc/dist/linux-unpacked/resources"
+  local _dst="$pkgdir/usr/lib/$_pkgname"
+  mkdir -pm755 "$_dst"
+  rm -f "$_src/app-update.yml"
+  cp -a "$_src"/* "$_dst"
 
   # icon
   install -Dm644 "$_pkgsrc/build/icon.png" "$pkgdir/usr/share/pixmaps/$_pkgname.png"
-
-  # metainfo
-  install -Dm644 "$_pkgsrc/flatpak/org.upscayl.Upscayl.metainfo.xml" "$pkgdir/usr/share/metainfo/$_pkgname.metainfo.xml"
 
   # launcher
   install -Dm644 /dev/stdin "$pkgdir/usr/share/applications/$_pkgname.desktop" << END

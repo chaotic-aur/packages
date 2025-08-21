@@ -1,0 +1,23 @@
+--- a/package.json
++++ b/package.json
+@@ -81,20 +81,6 @@
+     ],
+     "extraFiles": [
+       {
+-        "from": "resources/${os}/bin",
+-        "to": "resources/bin",
+-        "filter": [
+-          "**/*"
+-        ]
+-      },
+-      {
+-        "from": "resources/models",
+-        "to": "resources/models",
+-        "filter": [
+-          "**/*"
+-        ]
+-      },
+-      {
+         "from": "resources/icons/128x128.png",
+         "to": "resources/128x128.png"
+       },

@@ -1,0 +1,30 @@
+# Maintainer: aur.chaotic.cx
+
+_pkgname="upscayl-models"
+pkgname="$_pkgname-desktop"
+pkgver=2.15.1
+pkgrel=2
+pkgdesc="Image upscaling models for Upscayl Desktop"
+url="https://github.com/upscayl/upscayl"
+license=('AGPL-3.0-only')
+arch=('x86_64')
+
+optdepends=(
+  'upscayl-ncnn: CLI to use the models'
+  'upscayl-desktop: GUI frontend'
+)
+
+provides=("$_pkgname") # no conflicts
+
+options=('!debug' '!strip')
+
+_pkgsrc="upscayl-$pkgver"
+_pkgext="tar.gz"
+source=("$_pkgsrc.$_pkgext"::"$url/archive/refs/tags/v${pkgver}.$_pkgext")
+sha256sums=('18bbc1d2b6a29050a606866940630158a019d78d15375d8546f91795ac9cbf7c')
+
+package() {
+  local _dst="$pkgdir/usr/lib/upscayl"
+  mkdir -pm755 "$_dst"
+  cp -a "$_pkgsrc/resources/models" "$_dst/"
+}

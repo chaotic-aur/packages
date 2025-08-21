@@ -1,0 +1,20 @@
+--- a/electron/utils/get-resource-paths.ts
++++ b/electron/utils/get-resource-paths.ts
+@@ -11,14 +11,10 @@
+  */
+ const appRootDir = app.getAppPath();
+ 
+-const binariesPath = isDev
+-  ? join(appRootDir, "resources", getPlatform()!, "bin")
+-  : join(dirname(appRootDir), "bin");
++const binariesPath = dirname(appRootDir);
+ 
+-const execPath = resolve(join(binariesPath, `./upscayl-bin`));
++const execPath = resolve(join(binariesPath, "./upscayl"));
+ 
+-const modelsPath = isDev
+-  ? resolve(join(appRootDir, "resources", "models"))
+-  : resolve(join(dirname(appRootDir), "models"));
++const modelsPath = resolve(join(dirname(appRootDir), "./models"));
+ 
+ export { execPath, modelsPath };
