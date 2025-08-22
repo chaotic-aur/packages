@@ -1,56 +1,60 @@
 # Maintainer: aur.chaotic.cx
 
-: ${_install_path:=usr/share}
-
 _pkgname="pixelorama"
 pkgname="$_pkgname"
-pkgver=1.1
-pkgrel=1
+pkgver=1.1.4
+pkgrel=2
 pkgdesc="A 2D sprite editor made with the Godot Engine"
 url="https://github.com/Orama-Interactive/Pixelorama"
 license=('MIT')
 arch=('any')
 
-depends=('godot')
-makedepends=('git')
+depends=(
+  'bash'
+  'godot-export-templates-linux' # use as runtime
+)
+makedepends=(
+  'git'
+)
 
-_pkgsrc="$_pkgname"
-source=("$_pkgsrc"::"git+$url.git")
+_pkgsrc="${pkgname^}-$pkgver"
+_pkgext="tar.gz"
+source=("${_pkgsrc,,}.$_pkgext"::"$url/archive/v$pkgver.$_pkgext")
 sha256sums=('SKIP')
 
-prepare() {
-  cd "$_pkgsrc"
-  local _tag=$(git tag | sort -rV | head -1)
-  git -c advice.detachedHead=false checkout -f "$_tag"
-}
-
-pkgver() {
-  cd "$_pkgsrc"
-  git describe --tag | sed -E 's/^[^0-9]+//'
-}
-
 build() {
+  local _template=$(find /usr/share/godot/export_templates -type f -name "linux_release.x86_64" -print -quit)
+
   cd "$_pkgsrc"
-  godot --export-pack "Linux 64-bit" "$_pkgname.pck" --display-driver headless
+  eval "$_template" --export-pack "Linux 64-bit" "$_pkgname.pck" --headless
 }
 
 package() {
+  local _template=$(find /usr/share/godot/export_templates -type f -name "linux_release.x86_64" -print -quit)
+
   cd "$_pkgsrc"
-  install -Dm755 "$_pkgname.pck" -t "$pkgdir/$_install_path/$_pkgname/"
 
-  cp -a pixelorama_data/{Brushes,Palettes,Patterns} "$pkgdir/$_install_path/$_pkgname/"
+  # godot pack
+  install -Dm644 "$_pkgname.pck" -t "$pkgdir/usr/share/$_pkgname/"
 
+  # resources
+  cp -a pixelorama_data/{Brushes,Palettes,Patterns} "$pkgdir/usr/share/$_pkgname/"
+
+  # icon
   install -Dm644 "assets/graphics/icons/icon.png" "$pkgdir/usr/share/pixmaps/$_pkgname.png"
 
+  # launcher
   install -Dm644 "Misc/Linux/com.orama_interactive.Pixelorama.desktop" "$pkgdir/usr/share/applications/$_pkgname.desktop"
 
-  install -Dm644 "LICENSE" -t "$pkgdir/usr/share/licenses/$pkgname/"
-
+  # script
   install -Dm755 /dev/stdin "${pkgdir}/usr/bin/$_pkgname" << END
-#!/usr/bin/env bash
-cd "/$_install_path/$_pkgname"
-exec godot --main-pack "$_pkgname.pck"
+#!/usr/bin/env sh
+exec "$_template" --main-pack "/usr/share/$_pkgname/$_pkgname.pck" "\$@"
 END
 
+  # license
+  install -Dm644 "LICENSE" -t "$pkgdir/usr/share/licenses/$pkgname/"
+
+  # permissions
   chmod -R u+rwX,go+rX,go-w "$pkgdir/"
 }
