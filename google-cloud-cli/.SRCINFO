@@ -1,7 +1,7 @@
 pkgbase = google-cloud-cli
 	pkgdesc = A core set of command-line tools for the Google Cloud Platform. Includes only gcloud core (with beta and alpha commands), gcloud-crc32c and man pages
 	pkgver = 535.0.0
-	pkgrel = 1
+	pkgrel = 2
 	url = https://cloud.google.com/cli/
 	arch = x86_64
 	arch = aarch64
@@ -48,6 +48,7 @@ pkgname = google-cloud-cli-gsutil
 
 pkgname = google-cloud-cli-bundled-python3-unix
 	pkgdesc = gcloud Bundled Python 3.12
+	arch = x86_64
 
 pkgname = google-cloud-cli-component-gke-gcloud-auth-plugin
 	pkgdesc = gke-gcloud-auth-plugin
