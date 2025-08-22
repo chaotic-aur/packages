@@ -15,6 +15,7 @@ makedepends=(
   'cmake'
   'git'
   'meson'
+  'python-distlib'
   'python-yaml'
   'vulkan-headers'
   'vulkan-icd-loader'
