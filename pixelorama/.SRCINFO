@@ -6,6 +6,7 @@ pkgbase = pixelorama
 	arch = any
 	license = MIT
 	makedepends = git
+	makedepends = godot
 	depends = bash
 	depends = godot-export-templates-linux
 	source = pixelorama-1.1.4.tar.gz::https://github.com/Orama-Interactive/Pixelorama/archive/v1.1.4.tar.gz

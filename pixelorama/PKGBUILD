@@ -15,6 +15,7 @@ depends=(
 )
 makedepends=(
   'git'
+  'godot'
 )
 
 _pkgsrc="${pkgname^}-$pkgver"
@@ -26,7 +27,7 @@ build() {
   local _template=$(find /usr/share/godot/export_templates -type f -name "linux_release.x86_64" -print -quit)
 
   cd "$_pkgsrc"
-  eval "$_template" --export-pack "Linux 64-bit" "$_pkgname.pck" --headless
+  godot --export-pack "Linux 64-bit" "$_pkgname.pck" --headless
 }
 
 package() {
