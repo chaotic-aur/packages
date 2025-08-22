@@ -1,7 +1,7 @@
 pkgbase = upscayl-desktop-git
 	pkgdesc = AI image upscaler, desktop app
 	pkgver = 2.15.1.r40.ga3e9186
-	pkgrel = 2
+	pkgrel = 3
 	url = https://github.com/upscayl/upscayl
 	arch = x86_64
 	license = AGPL-3.0-only

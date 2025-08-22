@@ -6,7 +6,7 @@
 _pkgname="upscayl"
 pkgname="$_pkgname-desktop-git"
 pkgver=2.15.1.r40.ga3e9186
-pkgrel=2
+pkgrel=3
 pkgdesc="AI image upscaler, desktop app"
 url="https://github.com/upscayl/upscayl"
 license=('AGPL-3.0-only')
@@ -154,7 +154,7 @@ export ELECTRON_IS_DEV
 : \${ELECTRON_FORCE_IS_PACKAGED:=true}
 export ELECTRON_FORCE_IS_PACKAGED
 
-exec /usr/bin/electron "\${flags[@]}" "/usr/lib/$_pkgname/app.asar" "\$@"
+exec "/usr/bin/electron${ELECTRON_VERSION:-}" "\${flags[@]}" "/usr/lib/$_pkgname/app.asar" "\$@"
 END
 
   # permissions
