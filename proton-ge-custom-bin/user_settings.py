@@ -93,6 +93,9 @@ user_settings = {
     #When this envvar is set steam input and hidraw are disabled so that SDL takes priority over controller support.
 #    "PROTON_PREFER_SDL": "1",
 
+    #Tells Proton to use the winegstreamer backend instead of winedmo. Winedmo was introduced in Proton 10. Useful for games that regressed from Proton 9 to Proton 10
+#   "PROTON_MEDIA_USE_GST"  "1",
+
     ###### DXVK flags ######
 
     #DXVK debug logging; none|error|warn|info|debug
