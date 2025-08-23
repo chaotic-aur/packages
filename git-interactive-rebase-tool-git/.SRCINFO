@@ -1,0 +1,14 @@
+pkgbase = git-interactive-rebase-tool-git
+	pkgdesc = Terminal-based sequence editor for git interactive rebase
+	pkgver = 2.4.1.r51.g4d16b29
+	pkgrel = 1
+	url = https://github.com/MitMaro/git-interactive-rebase-tool
+	arch = x86_64
+	license = GPL-3.0-only
+	makedepends = git
+	makedepends = cargo
+	depends = libgit2.so
+	source = git-interactive-rebase-tool::git+https://github.com/MitMaro/git-interactive-rebase-tool.git
+	sha256sums = SKIP
+
+pkgname = git-interactive-rebase-tool-git
