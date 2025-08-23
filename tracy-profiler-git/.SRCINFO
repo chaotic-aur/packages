@@ -1,6 +1,6 @@
 pkgbase = tracy-profiler-git
 	pkgdesc = Real-time, nanosecond resolution frame profiler
-	pkgver = 0.12.2.r4.g7388a47
+	pkgver = 0.12.2.r483.g69836f3
 	pkgrel = 1
 	url = https://github.com/wolfpld/tracy
 	arch = x86_64
@@ -15,6 +15,7 @@ pkgbase = tracy-profiler-git
 	depends = glfw
 	depends = libglvnd
 	depends = libxkbcommon
+	depends = pugixml
 	depends = wayland
 	optdepends = xdg-desktop-portal: file dialogs
 	provides = tracy

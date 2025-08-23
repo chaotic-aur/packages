@@ -4,7 +4,7 @@
 
 _pkgname="tracy-profiler"
 pkgname="$_pkgname-git"
-pkgver=0.12.2.r4.g7388a47
+pkgver=0.12.2.r483.g69836f3
 pkgrel=1
 pkgdesc="Real-time, nanosecond resolution frame profiler"
 url="https://github.com/wolfpld/tracy"
@@ -18,6 +18,7 @@ depends=(
   'glfw'
   'libglvnd'
   'libxkbcommon'
+  'pugixml'
   'wayland'
 )
 makedepends=(
