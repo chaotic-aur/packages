@@ -1,0 +1,51 @@
+# Maintainer: aur.chaotic.cx
+
+: ${_wlroots:=$(pacman -Sqs 'wlroots[0-9]\.[0-9][0-9]' | sort -rV | head -1)}
+
+_pkgname="wayback-x11"
+pkgname="$_pkgname-git"
+pkgver=0.2.r10.gcfb2e83
+pkgrel=1
+pkgdesc="An experimental X compatibility layer for Wayland"
+url="https://gitlab.freedesktop.org/wayback/wayback"
+license=('MIT')
+arch=('x86_64')
+
+depends=(
+  "$_wlroots"
+  'libxkbcommon'
+  'xorg-xwayland'
+)
+makedepends=(
+  'git'
+  'meson'
+  'scdoc' # generate man pages
+  'wayland-protocols'
+)
+
+provides=("$_pkgname")
+conflicts=("$_pkgname")
+
+_pkgsrc="$_pkgname"
+source=("$_pkgsrc"::"git+$url.git")
+sha256sums=('SKIP')
+
+pkgver() {
+  cd "$_pkgsrc"
+  git describe --long --tags --abbrev=7 --exclude='*[a-zA-Z][a-zA-Z]*' \
+    | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
+}
+
+build() {
+  arch-meson "$_pkgsrc" build
+  meson compile -C build
+}
+
+check() {
+  meson test -C build
+}
+
+package() {
+  meson install -C build --destdir "$pkgdir"
+  install -Dm644 "$_pkgsrc/LICENSE" -t "$pkgdir/usr/share/licenses/$pkgname/"
+}
