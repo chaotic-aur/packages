@@ -1,15 +1,15 @@
 # Maintainer: Lili1228 <aur at lili dot lgbt>
 pkgname=86box
 _pkgname=86Box
-pkgver=4.2.1
+pkgver=5.0
 pkgrel=1
 pkgdesc='An emulator for classic IBM PC clones'
 arch=('pentium4' 'x86_64' 'armv7h' 'aarch64')
 url='https://86box.net/'
 license=('GPL-2.0-or-later')
-depends=('fluidsynth' 'hicolor-icon-theme' 'libslirp' 'openal' 'qt6-base' 'rtmidi' 'sdl2'                                                                       # explicit
-  'freetype2' 'gcc-libs' 'glib2' 'glibc' 'libevdev' 'libglvnd' 'libpng' 'libx11' 'libxcb' 'libxext' 'libxi' 'libxkbcommon-x11' 'libxkbcommon' 'wayland' 'zlib') # implicit
-makedepends=('cmake>=3.21' 'extra-cmake-modules' 'ninja' 'qt6-tools' 'vde2')                                                                                    # vulkan-headers on qt5
+depends=('fluidsynth' 'hicolor-icon-theme' 'libserialport' 'libslirp' 'openal' 'qt6-base' 'rtmidi' 'sdl2'                                                                    # explicit
+  'freetype2' 'gcc-libs' 'glib2' 'glibc' 'libevdev' 'libglvnd' 'libpng' 'libsndfile' 'libx11' 'libxcb' 'libxext' 'libxi' 'libxkbcommon-x11' 'libxkbcommon' 'wayland' 'zlib') # implicit
+makedepends=('cmake>=3.21' 'extra-cmake-modules' 'ninja' 'qt6-tools' 'vde2' 'vulkan-headers')
 optdepends=(
   '86box-roms: ROM files'
   'discord-game-sdk: Discord Rich Presence'
@@ -19,7 +19,7 @@ options=('!buildflags')
 source=(
   "${pkgname}_$pkgver.tgz::https://github.com/${_pkgname}/${_pkgname}/archive/refs/tags/v${pkgver}.tar.gz"
 )
-sha512sums=('ed8e90f68318d163c39202479d654859d4d74b6fdffd47cfcba6b0393965265615aa008b02cfd04ac8cafc2f38cead53ed5d6071cabd4b96eba91ec805c5a2df')
+sha512sums=('e2ce22b856e995d3248a10e304ae091162747d79be821d9b74c7bd2b1f8a03061b07ff29dfa026650f28129538917b7548721e110a9a2fe387915c79684340cc')
 
 build() {
   case "$CARCH" in
@@ -49,6 +49,5 @@ package() {
   for i in 48x48 64x64 72x72 96x96 128x128 192x192 256x256 512x512; do
     install -Dm644 "$srcdir/$_pkgname-$pkgver/src/unix/assets/$i/net.86box.86Box.png" -t "$pkgdir/usr/share/icons/hicolor/$i/apps"
   done
-  mkdir "$pkgdir/usr/share/applications"
-  sed 's/^Exec.*/Exec=86Box -P .local\/share\/86Box/' "$srcdir/$_pkgname-$pkgver/src/unix/assets/net.86box.86Box.desktop" > "$pkgdir/usr/share/applications/net.86box.86Box.desktop"
+  install -Dm644 "$srcdir/$_pkgname-$pkgver/src/unix/assets/net.86box.86Box.desktop" "$pkgdir/usr/share/applications/net.86box.86Box.desktop"
 }
