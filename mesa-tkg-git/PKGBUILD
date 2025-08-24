@@ -65,9 +65,9 @@ if [ "$_lib32" == "true" ]; then
 fi
 
 depends=('libdrm' 'libxxf86vm' 'libxdamage' 'libxshmfence' 'libelf' 'libomxil-bellagio' 'libunwind'
-  'libglvnd' 'wayland' 'lm_sensors' 'libclc' 'glslang' 'zstd' 'vulkan-icd-loader')
+  'libglvnd' 'wayland' 'lm_sensors' 'libclc' 'glslang' 'zstd' 'vulkan-icd-loader' 'libdisplay-info')
 if [ "$_lib32" == "true" ]; then
-  depends+=('lib32-zstd' 'lib32-vulkan-icd-loader')
+  depends+=('lib32-zstd' 'lib32-vulkan-icd-loader' 'lib32-libdisplay-info')
 fi
 optdepends=('opengl-man-pages: for the OpenGL API man pages')
 
