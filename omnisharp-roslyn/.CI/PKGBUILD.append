@@ -1,0 +1,12 @@
+# prevent "unexpected logger failure"
+export TERM=dumb
+
+# adjust depends
+depends=(${depends[@]//dotnet*/})
+makedepends+=('dotnet-sdk-bin')
+
+eval _orig_"$(declare -f package)"
+package() {
+  depends+=('dotnet-runtime')
+  _orig_package
+}
