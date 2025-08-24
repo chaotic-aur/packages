@@ -1,0 +1,20 @@
+pkgbase = kontainer-git
+	pkgdesc = A KDE-based GUI to manage Distrobox containers
+	pkgver = 1.0.1.r139.g655cb82
+	pkgrel = 1
+	url = https://invent.kde.org/system/kontainer
+	arch = x86_64
+	license = GPL-2.0-or-later
+	makedepends = cmake
+	makedepends = extra-cmake-modules
+	makedepends = git
+	makedepends = ninja
+	depends = kcoreaddons
+	depends = ki18n
+	depends = kio
+	provides = kontainer
+	conflicts = kontainer
+	source = kontainer::git+https://invent.kde.org/system/kontainer.git
+	sha256sums = SKIP
+
+pkgname = kontainer-git
