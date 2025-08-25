@@ -1,0 +1,116 @@
+# Maintainer: aur.chaotic.cx
+
+_pkgname="wxwidgets"
+pkgname="$_pkgname-static"
+pkgver=3.3.1
+pkgrel=1
+pkgdesc="wxWidgets suite, static libs"
+url="https://github.com/wxWidgets/wxWidgets"
+license=('LicenseRef-wxWindows')
+arch=('x86_64')
+
+makedepends=(
+  #'gspell'
+  #'libmspack'
+  #'libnotify'
+  #'libwebp'
+  #'nanosvg'
+  #'webkit2gtk-4.1'
+  'cmake'
+  'git'
+  'gtk3'
+  'ninja'
+  'qt6-base'
+  'sdl2'
+)
+
+options=('!debug' '!lto')
+
+_pkgsrc="$_pkgname"
+source=("$_pkgsrc"::"git+$url.git#tag=v$pkgver")
+sha256sums=('SKIP')
+
+prepare() {
+  cd "$_pkgsrc"
+  git submodule update --init --recursive --depth 1
+
+  # wxWidgets/wxWidgets/issues: 25472, 25484
+  sed -E -e '/const QChar qChar\(key\);/s&key&static_cast<char16_t>(key)&' -i "src/qt/uiaction.cpp"
+}
+
+pkgver() {
+  cd "$_pkgsrc"
+  git describe --tags --match='v[0-9]*' --exclude='*[a-zA-Z][a-zA-Z]*' \
+    | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
+}
+
+_build_base() {
+  echo "Build WxBASE"
+  _cmake_base=(
+    -B build-base
+    -DwxUSE_GUI=OFF
+  )
+
+  cmake "${_cmake_options[@]}" "${_cmake_base[@]}"
+  cmake --build build-base
+}
+
+_build_gtk3() {
+  echo "Build WxGTK3"
+  _cmake_gtk3=(
+    -B build-gtk3
+    -DwxBUILD_TOOLKIT=gtk3
+    -DwxUSE_AUTOID_MANAGEMENT=ON
+    -DwxUSE_DETECT_SM=ON
+    -DwxUSE_GTKPRINT=ON
+    -DwxUSE_MEDIACTRL=OFF
+  )
+
+  cmake "${_cmake_options[@]}" "${_cmake_gtk3[@]}"
+  cmake --build build-gtk3
+}
+
+_build_qt6() {
+  echo "Build WxQT6"
+  _cmake_qt6=(
+    -B build-qt6
+    -DQT_VERSION_MAJOR=6
+    -DwxBUILD_TOOLKIT=qt
+    -DwxUSE_AUTOID_MANAGEMENT=ON
+    -DwxUSE_DETECT_SM=ON
+    -DwxUSE_MEDIACTRL=OFF
+  )
+
+  cmake "${_cmake_options[@]}" "${_cmake_qt6[@]}"
+  cmake --build build-qt6
+}
+
+build() {
+  local _cmake_options=(
+    -S "$_pkgsrc"
+    -G Ninja
+    -DCMAKE_BUILD_TYPE=None
+    -DCMAKE_INSTALL_PREFIX='/usr'
+    -DwxBUILD_SHARED=OFF
+    -DwxUSE_EXPAT=sys
+    -DwxUSE_LIBJPEG=sys
+    -DwxUSE_LIBLZMA=sys
+    -DwxUSE_LIBMSPACK=ON
+    -DwxUSE_LIBPNG=sys
+    -DwxUSE_LIBSDL=ON
+    -DwxUSE_LIBTIFF=sys
+    -DwxUSE_NANOSVG=sys
+    -DwxUSE_OPENGL=ON
+    -DwxUSE_PRIVATE_FONTS=ON
+    -DwxUSE_REGEX=sys
+    -DwxUSE_ZLIB=sys
+    -Wno-dev
+  )
+
+  _build_gtk3
+}
+
+package() {
+  DESTDIR="$pkgdir" cmake --install build-gtk3
+  install -Dm644 "$_pkgsrc/docs/licence.txt" "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+}

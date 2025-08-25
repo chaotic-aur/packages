@@ -1,0 +1,19 @@
+pkgbase = wxwidgets-static
+	pkgdesc = wxWidgets suite, static libs
+	pkgver = 3.3.1
+	pkgrel = 1
+	url = https://github.com/wxWidgets/wxWidgets
+	arch = x86_64
+	license = LicenseRef-wxWindows
+	makedepends = cmake
+	makedepends = git
+	makedepends = gtk3
+	makedepends = ninja
+	makedepends = qt6-base
+	makedepends = sdl2
+	options = !debug
+	options = !lto
+	source = wxwidgets::git+https://github.com/wxWidgets/wxWidgets.git#tag=v3.3.1
+	sha256sums = SKIP
+
+pkgname = wxwidgets-static
