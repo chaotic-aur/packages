@@ -2,7 +2,7 @@
 
 _pkgname="gimp"
 pkgname="$_pkgname-git"
-pkgver=3.1.2.r177.gf137337
+pkgver=3.1.2.r600.gde2b54f
 pkgrel=1
 pkgdesc="GNU Image Manipulation Program"
 url="https://gitlab.gnome.org/GNOME/gimp"
@@ -10,7 +10,7 @@ license=('GPL-3.0-or-later')
 arch=('x86_64')
 
 depends=(
-  'appstream-glib'
+  'appstream'
   'babl'
   'cairo'
   'cfitsio'
@@ -88,7 +88,7 @@ sha256sums=(
 
 pkgver() {
   cd "$_pkgsrc"
-  git describe --long --tags --abbrev=7 \
+  git describe --long --tags --abbrev=7 --match="GIMP_*" --exclude='GIMP_*[a-zA-Z][a-zA-Z]*' \
     | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/_RC/RC/;s/[-_]/./g'
 }
 
