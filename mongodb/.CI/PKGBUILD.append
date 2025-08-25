@@ -1,0 +1,9 @@
+url="https://github.com/mongodb/mongo"
+
+_pkgsrc="mongo-r${pkgver}"
+
+eval _orig_"$(declare -f prepare)"
+prepare() {
+  sed -E -e 's&scons copy&scons&' -i mongodb-8.0.13-skip-reqs-check.patch
+  (_orig_prepare)
+}
