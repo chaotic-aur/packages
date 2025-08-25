@@ -1,0 +1,13 @@
+options=('!strip' '!debug')
+
+_pkgsrc="Colloid-icon-theme"
+
+eval _orig_"$(declare -f prepare)"
+prepare() {
+  pushd "$_pkgsrc"
+  local _latest=$(git tag | sort -rV | head -1)
+  git -c advice.detachedHead=false checkout -f "$_latest"
+  popd
+
+  (_orig_prepare)
+}
