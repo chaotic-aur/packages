@@ -10,44 +10,48 @@
 #
 
 pkgname=zfs-dkms-git
-pkgver=2.3.99.r437.g8170eb6ebc
+pkgver=2.4.99.r2.gb6bd3228bb
 pkgrel=1
 epoch=2
-pkgdesc="Kernel modules for the Zettabyte File System."
+pkgdesc='Kernel modules for the Zettabyte File System.'
 arch=('any')
-url="https://zfsonlinux.org/"
-license=('CDDL')
+url='https://zfsonlinux.org/'
+license=('LicenseRef-CDDL')
 groups=('zfs-git')
 makedepends=('git')
-provides=("ZFS-MODULE=${pkgver}" "SPL-MODULE=${pkgver}")
-# ambiguous, provided for backwards compat, pls don't use
-provides+=('zfs')
-provides+=("zfs-dkms=${pkgver}")
+provides=(
+  "ZFS-MODULE=${pkgver}"
+  "SPL-MODULE=${pkgver}"
+  "zfs-dkms=${pkgver}"
+)
 conflicts=('zfs-dkms')
-source=("git+https://github.com/openzfs/zfs.git"
-  "0001-only-build-the-module-in-dkms.conf.patch")
+source=(
+  'git+https://github.com/openzfs/zfs.git'
+  '0001-only-build-the-module-in-dkms.conf.patch'
+  '0002-only-build-the-module-in-configure.ac.patch'
+)
 sha256sums=('SKIP'
-  '3e742db489eec60dbabb52178f590b96e29b166f359fc2167e188eeabceb0921')
+  '3e742db489eec60dbabb52178f590b96e29b166f359fc2167e188eeabceb0921'
+  '20704bcdc1fb9ec4ff6b0f308e994b3757e2b3cd327e3adddc432921a11af34f')
 b2sums=('SKIP'
-  '62ea720676e0cbf096d8c5f3b944d77ce6f3f54f55e221f80afd00061d577b5dea177150cfc785bb91586f93e1b3eb500661b38bb4d2cba26e8929b245957ee3')
+  '62ea720676e0cbf096d8c5f3b944d77ce6f3f54f55e221f80afd00061d577b5dea177150cfc785bb91586f93e1b3eb500661b38bb4d2cba26e8929b245957ee3'
+  'b14e3634bed825f7bd24ceee3435ac2673bdd13abca74647252827ffd6fc22329a7f191d8de04c85eaf43dfbcb968952e1f3af7d0b1d04563a8877e756f6dfd2')
 
 pkgver() {
-  cd zfs
-
-  git describe --long | sed 's/^zfs-//;s/-rc/rc/;s/\([^-]*-g\)/r\1/;s/-/./g'
+  git -C zfs describe --long | sed 's/^zfs-//;s/-rc/rc/;s/\([^-]*-g\)/r\1/;s/-/./g'
 }
 
 prepare() {
   cd zfs
 
-  patch -p1 -i ../0001-only-build-the-module-in-dkms.conf.patch
-
-  # remove unneeded sections from module build
-  sed -ri "/AC_CONFIG_FILES/,/]\)/{
-/AC_CONFIG_FILES/n
-/]\)/n
-/^\s*(module\/.*|zfs.release|Makefile)/!d
-}" configure.ac
+  local src
+  for src in "${source[@]}"; do
+    src="${src%%::*}"
+    src="${src##*/}"
+    [[ $src = *.patch ]] || continue
+    echo "Applying patch $src..."
+    patch -Np1 < "../$src"
+  done
 
   ./autogen.sh
 }
@@ -56,6 +60,7 @@ build() {
   cd zfs
 
   ./scripts/dkms.mkconf -n zfs -v ${pkgver} -f dkms.conf
+
   # update metadata
   ./scripts/make_gitrev.sh include/zfs_gitrev.h
   _meta_release=${pkgver#*.r}
@@ -63,7 +68,10 @@ build() {
 }
 
 package() {
-  depends=("zfs-utils-git=${epoch}:${pkgver}" 'dkms')
+  depends=(
+    'dkms'
+    "zfs-utils-git=${epoch}:${pkgver}"
+  )
 
   cd zfs
 
@@ -71,5 +79,8 @@ package() {
   install -d "${dkmsdir}"/{config,scripts}
   cp -a configure dkms.conf Makefile.in META zfs_config.h.in zfs.release.in include/ module/ "${dkmsdir}"/
   cp config/compile config/config.* config/missing config/*sh "${dkmsdir}"/config/
-  cp scripts/dkms.postbuild "${dkmsdir}"/scripts/
+  cp scripts/dkms.postbuild scripts/objtool-wrapper.in "${dkmsdir}"/scripts/
+
+  # Install the license
+  install -Dm644 LICENSE -t "${pkgdir}/usr/share/licenses/${pkgname}"
 }
