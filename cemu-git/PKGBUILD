@@ -2,8 +2,8 @@
 
 _pkgname="cemu"
 pkgname="$_pkgname-git"
-pkgver=2.6.r70.g1ec8c71
-pkgrel=2
+pkgver=2.6.r80.gde4bf7c
+pkgrel=1
 pkgdesc="A Wii U emulator"
 url="https://github.com/cemu-project/Cemu"
 license=('MPL-2.0')
@@ -19,6 +19,7 @@ depends=(
   'libgobject-2.0.so'
   'libgtk-3.so'
   'libhidapi-hidraw.so'
+  'libsm'
   'libspeexdsp.so'       # speexdsp
   'libssl.so'            # openssl
   'libusb-1.0.so'        # libusb
@@ -30,8 +31,6 @@ depends=(
   'libzstd.so'     # zstd
   'pugixml'
   'sdl2'
-  'wxwidgets-common'
-  'wxwidgets-gtk3'
 )
 makedepends=(
   'clang'
@@ -47,6 +46,7 @@ makedepends=(
   'rapidjson'
   'vulkan-headers'
   'wayland-protocols'
+  'wxwidgets-static' # chaotic-aur
 
   # cubeb, no sound if not present
   'alsa-lib'
@@ -62,7 +62,7 @@ optdepends+=(
   'sndio: for sndio backend'
 )
 
-provides=("$_pkgname=${pkgver%%.r*}")
+provides=("$_pkgname")
 conflicts=("$_pkgname")
 
 options=('!lto')
@@ -83,10 +83,25 @@ prepare() {
 
   # fix share folder name
   sed -e '/roamingPath = GetAppDataRoamingPath/s&"Cemu"&"cemu"&' -i src/gui/wxgui/CemuApp.cpp
+
+  # set version
+  local _pkgver _major _minor _patch
+  _pkgver=$(pkgver)
+  if [[ "$_pkgver" =~ ^([0-9]+)\.([0-9]+)\.r([0-9]+) ]]; then
+    _major="${BASH_REMATCH[1]}"
+    _minor="${BASH_REMATCH[2]}"
+    _patch="${BASH_REMATCH[3]}"
+  fi
+
+  sed -E \
+    -e '/set\(EMULATOR_VERSION_MAJOR/s&^.*$&set(EMULATOR_VERSION_MAJOR "'"${_major}"'")&' \
+    -e '/set\(EMULATOR_VERSION_MINOR/s&^.*$&set(EMULATOR_VERSION_MINOR "'"${_minor}"'")&' \
+    -e '/set\(EMULATOR_VERSION_PATCH/s&^.*$&set(EMULATOR_VERSION_PATCH "'"${_patch#r}"'")&' \
+    -i CMakeLists.txt
 }
 
 pkgver() {
-  cd "$_pkgsrc"
+  cd "$srcdir/$_pkgsrc"
   git describe --long --tags --abbrev=7 --exclude='*[a-zA-Z][a-zA-Z]*' \
     | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
 }
