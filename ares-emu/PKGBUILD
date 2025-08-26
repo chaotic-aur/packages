@@ -2,8 +2,8 @@
 
 _pkgname="ares-emu"
 pkgname="$_pkgname"
-pkgver=145
-pkgrel=2
+pkgver=146
+pkgrel=1
 pkgdesc="Multi-system emulator focused on accuracy and preservation"
 url="https://github.com/ares-emulator/ares"
 license=("ISC")
