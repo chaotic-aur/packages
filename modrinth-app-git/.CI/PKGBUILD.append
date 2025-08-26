@@ -10,8 +10,12 @@ pkgver() {
 }
 
 eval _orig_"$(declare -f prepare)"
+eval _orig_"$(declare -f build)"
 
-prepare() {
+unset -f prepare
+
+build() {
   sed -E '/\.patch"/d' -i "$_pkgsrc/package.json"
   (_orig_prepare)
+  (_orig_build)
 }
