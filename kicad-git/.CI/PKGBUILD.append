@@ -1,9 +1,12 @@
 url="https://gitlab.com/kicad/code/kicad"
 
-depends+=('libspnav')
+depends+=(
+  'libspnav'
+  'poppler-glib'
+)
 makedepends+=('ninja')
 
-provides=("kicad=$pkgver")
+provides=("kicad")
 conflicts=("kicad")
 
 unset install
@@ -15,7 +18,7 @@ pkgver() {
 }
 
 build() {
-  export CXXFLAGS+=" -fno-strict-aliasing"
+  export CXXFLAGS+=" -fno-strict-aliasing -std=gnu++17"
   export LDFLAGS+=" -Wl,--copy-dt-needed-entries"
 
   local _cmake_options=(
@@ -27,6 +30,7 @@ build() {
     -DCMAKE_INSTALL_LIBDIR='lib'
     -DKICAD_UPDATE_CHECK=OFF
     -DKICAD_USE_EGL=ON
+    -DKICAD_USE_PCH=OFF
     -DBUILD_TESTING=OFF
     -Wno-dev
   )

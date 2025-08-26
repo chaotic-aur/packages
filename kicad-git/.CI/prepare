@@ -19,19 +19,19 @@ _check_rate() {
 _check_status() (
   local _url_repo _url_ci _commit _response _status _msg_err _success_ci
   _url_repo="https://gitlab.com/kicad/code/kicad"
-  _commit=$(git ls-remote "$_url_repo.git" HEAD 2>/dev/null | grep -m1 -oP '\w+(?=\t\w)')
+  _commit=$(git ls-remote "$_url_repo.git" HEAD 2> /dev/null | grep -m1 -oP '\w+(?=\t\w)')
   _url_ci="$_url_repo/-/commit/$_commit/pipelines.json"
   _response=$(curl -Ssf "$_url_ci")
 
-  _status=$(grep -Eom1 '"details":{"status":{"icon":"[a-z_]+"' <<<"$_response")
+  _status=$(grep -Eom1 '"details":{"status":{"icon":"[a-z_]+"' <<< "$_response")
 
-  if grep -qo status_success <<<"$_status"; then
+  if grep -qo status_success <<< "$_status"; then
     _msg_err="Check-in status: Success."
     _success_ci=true
-  elif grep -qo status_failed <<<"$_status"; then
+  elif grep -qo status_failed <<< "$_status"; then
     _msg_err="Check-in status: Failed."
     _success_ci=false
-  elif grep -qo status_running <<<"$_status"; then
+  elif grep -qo status_running <<< "$_status"; then
     _msg_err="Check-in status: Incomplete."
     _success_ci=false
   else
@@ -47,5 +47,5 @@ _check_status() (
   fi
 )
 
-_check_rate 18 || return $?
-_check_status || return $?
+_check_rate 24 || return $?
+#_check_status || return $?
