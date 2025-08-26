@@ -13,16 +13,13 @@ _update_package() {
       | sed -E -e 's&-&.&g'
   )
 
-  if [[ "${_NEW_VERSION:?}" > "${_OLD_VERSION:?}" ]]; then
+  if (($(vercmp "${_NEW_VERSION:?}" "${_OLD_VERSION:?}") > 0)); then
     sed -E \
       -e 's&^(pkgver)=.*$&\1='"${_NEW_VERSION}&" \
       -e 's&^(pkgrel)=.*$&\1=1&' \
       -i "PKGBUILD"
 
-    sed -E \
-      -e 's&^(pkgver)=.*$&\1 = '"${_NEW_VERSION}&" \
-      -e 's&^(pkgrel)=.*$&\1 = 1&' \
-      -i ".SRCINFO"
+    makepkg --printsrcinfo > .SRCINFO
   fi
 }
 _update_package
