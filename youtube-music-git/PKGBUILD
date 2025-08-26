@@ -1,81 +1,139 @@
-# Maintainer: Mark Wagie <mark dot wagie at proton dot me>
-pkgname=youtube-music-git
-pkgver=3.10.0.r2.g5925b76
+# Maintainer: aur.chaotic.cx
+
+## options
+: ${_electron_version=}
+: ${_nodeversion=}
+: ${_install_path:=usr/share}
+
+_pkgname="youtube-music"
+pkgname="$_pkgname-git"
+pkgver=3.10.0.r126.g94b789a
 pkgrel=1
-_nodeversion=22
-_electronversion=38
-pkgdesc="YouTube Music Desktop App bundled with custom plugins (and built-in ad blocker / downloader)"
-arch=('x86_64')
-url="https://th-ch.github.io/youtube-music"
+pkgdesc="Unofficial desktop app for YouTube Music"
+url="https://github.com/th-ch/youtube-music"
 license=('MIT')
+arch=('x86_64')
+
 depends=(
-  "electron${_electronversion}"
+  "electron${_electron_version:-}"
   'libsecret'
 )
 makedepends=(
   'git'
   'nvm'
-  'pnpm'
 )
-provides=("${pkgname%-git}")
-conflicts=("${pkgname%-git}")
-install="${pkgname%-git}.install"
-source=('git+https://github.com/th-ch/youtube-music.git'
-  "${pkgname%-git}.sh"
-  "${pkgname%-git}.desktop")
-sha256sums=('SKIP'
-  'e00aee0592b3b759fc055815c75326063348bcdf6e05b7632396592b05614637'
-  '534337968b3443ff2911a951f8ec6a777cad22a270826dfbe61b0caf2741c654')
 
-pkgver() {
-  cd "${pkgname%-git}"
-  git describe --long --tags --abbrev=7 | sed 's/^v//;s/\([^-]*-g\)/r\1/;s/-/./g'
+provides=("$_pkgname")
+conflicts=("$_pkgname")
+
+_pkgsrc="$_pkgname"
+source=("$_pkgsrc"::"git+$url.git")
+sha256sums=('SKIP')
+
+_nvm_env() {
+  export HOME="$SRCDEST/node-home"
+  export NVM_DIR="$SRCDEST/node-nvm"
+
+  # set up nvm
+  source /usr/share/nvm/init-nvm.sh || [[ $? != 1 ]]
+  nvm install ${_nodeversion:-node}
+  nvm use ${_nodeversion:-node}
 }
 
-_ensure_local_nvm() {
-  # let's be sure we are starting clean
-  which nvm > /dev/null 2>&1 && nvm deactivate && nvm unload
-  export NVM_DIR="${srcdir}/.nvm"
-
-  # The init script returns 3 if version specified
-  # in ./.nvmrc is not (yet) installed in $NVM_DIR
-  # but nvm itself still gets loaded ok
-  source /usr/share/nvm/init-nvm.sh || [[ $? != 1 ]]
+_electron_env() {
+  export SYSTEM_ELECTRON_VERSION=$(< "/usr/lib/electron${_electron_version:-}/version")
+  export ELECTRON_VERSION=${SYSTEM_ELECTRON_VERSION%%.*}
 }
 
 prepare() {
-  cd "${pkgname%-git}"
-  _ensure_local_nvm
-  nvm install "${_nodeversion}"
+  _electron_env
 
-  sed -i "s|@ELECTRONVERSION@|${_electronversion}|" "$srcdir/${pkgname%-git}.sh"
+  # set electron version
+  sed -E \
+    -e 's&^(\s*)"(electron)": "(.*)"(,?)$&\1"\2": "'"$SYSTEM_ELECTRON_VERSION"'"\4&' \
+    -i "$_pkgsrc/package.json"
+
+  # allow any npm/node version
+  sed -E \
+    -e 's&^(\s*)"(npm|node|pnpm)": "(.*)"(,?)$&\1"\2": ">=1.0.0"\4&' \
+    -i "$_pkgsrc/package.json"
 }
 
-build() {
+pkgver() {
   cd "${pkgname%-git}"
-  export PNPM_HOME="$srcdir/pnpm-home"
+  git describe --long --tags --abbrev=7 --exclude='*[a-zA-Z][a-zA-Z]*' \
+    | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
+}
+
+build() (
+  _nvm_env
+  _electron_env
+
   export ELECTRON_SKIP_BINARY_DOWNLOAD=1
-  electronDist="/usr/lib/electron${_electronversion}"
-  electronVer="$(sed s/^v// /usr/lib/electron${_electronversion}/version)"
-  _ensure_local_nvm
-  pnpm install --frozen-lockfile
+
+  local _builder_options=(
+    -c.electronDist="'/usr/lib/electron${ELECTRON_VERSION:-}'"
+    -c.electronVersion=${SYSTEM_ELECTRON_VERSION}
+  )
+
+  cd "$_pkgsrc"
+  npm install --no-audit --no-fund -g pnpm
+  pnpm set config audit false
+  pnpm set config fund false
+  pnpm update
+  pnpm install
   pnpm clean
   pnpm build
-  pnpm electron-builder --linux dir \
-    ${dist} -c.electronDist=${electronDist} -c.electronVersion=${electronVer}
-}
+  pnpm exec sh -c "electron-builder --linux --dir --publish never ${_builder_options[@]}"
+)
 
 package() {
-  cd "${pkgname%-git}"
-  install -Dm644 pack/linux-unpacked/resources/app.asar -t "$pkgdir/usr/lib/${pkgname%-git}/"
-  cp -r pack/linux-unpacked/resources/app.asar.unpacked "$pkgdir/usr/lib/${pkgname%-git}"
+  _electron_env
+  depends=("electron${ELECTRON_VERSION:-}")
 
-  install -Dm755 "$srcdir/${pkgname%-git}.sh" "$pkgdir/usr/bin/${pkgname%-git}"
-  install -Dm644 "$srcdir/${pkgname%-git}.desktop" -t "$pkgdir/usr/share/applications/"
-  install -Dm644 license -t "$pkgdir/usr/share/licenses/${pkgname%-git}/"
+  install -Dm644 "$_pkgsrc/pack/linux-unpacked/resources/app.asar" -t "$pkgdir/$_install_path/$_pkgname/"
+  cp -r "$_pkgsrc/pack/linux-unpacked/resources/app.asar.unpacked" "$pkgdir/$_install_path/$_pkgname/"
 
-  for i in 16 24 32 48 64 128 256 512 1024; do
-    install -Dm644 "assets/generated/icons/png/${i}x${i}.png" \
-      "$pkgdir/usr/share/icons/hicolor/${i}x${i}/apps/${pkgname%-git}.png"
-  done
+  install -Dm644 "$_pkgsrc/assets/generated/icons/png/1024x1024.png" "$pkgdir/usr/share/pixmaps/$_pkgname.png"
+  install -Dm644 "$_pkgsrc/license" -t "$pkgdir/usr/share/licenses/$pkgname/"
+
+  install -Dm644 /dev/stdin "$pkgdir/usr/share/applications/$_pkgname.desktop" << END
+[Desktop Entry]
+Type=Application
+Name=YouTube Music
+Exec=$_pkgname
+Icon=$_pkgname
+Comment=$_pkgdesc
+Terminal=false
+StartupWMClass=com.github.th_ch.youtube_music
+Categories=AudioVideo;
+END
+
+  install -Dm755 /dev/stdin "$pkgdir/usr/bin/$_pkgname" << END
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+name=$_pkgname
+flags_file="\${XDG_CONFIG_HOME:-\$HOME/.config}/\${name}-flags.conf"
+
+lines=()
+if [[ -f "\${flags_file}" ]]; then
+  mapfile -t lines < "\${flags_file}"
+fi
+
+flags=()
+for line in "\${lines[@]}"; do
+  if [[ ! "\${line}" =~ ^[[:space:]]*#.* ]] && [[ -n "\${line}" ]]; then
+    flags+=("\${line}")
+  fi
+done
+
+: \${ELECTRON_IS_DEV:=0}
+export ELECTRON_IS_DEV
+: \${ELECTRON_FORCE_IS_PACKAGED:=true}
+export ELECTRON_FORCE_IS_PACKAGED
+
+exec electron${ELECTRON_VERSION:-} "\${flags[@]}" "/$_install_path/$_pkgname/app.asar" "\$@"
+END
 }
