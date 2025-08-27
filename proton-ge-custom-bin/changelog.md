@@ -1,3 +1,49 @@
+## GE-Proton10-14
+
+- fixed launch crash regression in Age of Empires 4
+- fixed UE4SS mod failure regression in Wuchang: Fallen Feathers
+- fixed Impetus Repository menu video playback crash in Wuchang: Fallen Feathers
+- fixed Black Desert settings not saving regression
+- fixed menu and mouse focus regression in Dead by Daylight with wine-wayland
+- fixed wine-wayland crashes in Warhammer 40k: Darktide
+- fixed lost mouse focus in Teardown with wine-wayland
+- fixed broken menus in Outer-wilds with wine-wayland
+- fixed mouse click crash in Halo:MCC with wine-wayland
+- fixed broken raw input in Overkill withn wine-wayland
+- fixed system mouse cursor shape crash in wine-wayland in multiple games -- fixes P-Organ crash in Lies of P
+- fixed WAYLANDDRV_PRIMARY_MONITOR not being respected withn wine-wayland
+- fixed controller input in Dragon Age Inquisition (NOTE: YOU HAVE TO GO IN-GAME AND CHANGE CONTROLS FROM M+K TO CONTROLLER)
+- fixed video playback intro crash in Assassin's Creed Syndicate
+- fixed video playback in Life Makover
+- fixed video playback in Ark: Survival Evolved
+- removed no longer required cursor force grab protonfix for helldivers 2
+- add protonfix for Two Worlds: Epic Edition
+- add protonfix for GOG Two Worlds: Epic Edition
+- add protonfix for ubisoft assassins creed syndicate
+- fixed github actions release build not providing .tar.zst file.
+
+## GE-Proton10-13
+
+- intro video playback fixed in Resident Evil 7
+- intro video playback fixed in Resident Evil 8
+- Upside down cinema video playback fixed in Sky: Children of the Light
+- Upside down video playback fixed in Akiba's Trip: Undead & Undressed
+- protonfix added to restore sound in One Piece Pirate Warriors
+- protonfix added to fix 40k Dawn of War Definitive Edition multiplayer
+- protonfix added for GOG version of 40k Dawn of War Definitive Edition
+- wine-wayland em-10 patches updated and rebased
+- wine updated to latest bleeding edge
+- dxvk updated to latest git
+- vkd3d-proton updated to latest git
+- upstream proton fixes imported
+- Two new environment variable options added:
+
+1. PROTON_MEDIA_USE_GST=1 will tell proton to use the winegstreamer backend instead of the default winedmo backend (the winedmo backend was introduced in Proton 10 and is the current preferred video playback method). This can be useful for games with videos that may have worked in Proton 9 but regressed in Proton 10.
+2. PROTON_GST_VIDEO_ORIENTATION=<orientation> can be any of the following: vertical-flip, horizontal-flip, rotate-180, automatic. This is useful if some games have videos that are upside down or otherwise not oriented correctly.
+
+    Example usage: PROTON_GST_VIDEO_ORIENTATION=vertical-flip. If you set PROTON_GST_VIDEO_ORIENTATION it will also automatically force the winegstreamer backend to be used, as manual orientation is not possible with winedmo.
+
+
 ## GE-Proton10-12
 
 Hotfix:
