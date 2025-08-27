@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=ntsc-rs
+GenericName=ntsc-rs
+Comment=A video effect which emulates NTSC and VHS video artifacts.
+Exec=ntsc-rs-gui
+Icon=ntsc-rs
+Terminal=false
+Categories=AudioVideo;AudioVideoEditing;Video;Player;TV;
+Keywords=vhs;ntsc;media;video;audio;tv;
+StartupNotify=true
