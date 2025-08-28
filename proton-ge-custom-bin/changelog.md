@@ -1,3 +1,8 @@
+## GE-Proton10-15
+
+- fixed opening hang in crosscode
+- fixed video playback in fable: the lost chapters
+
 ## GE-Proton10-14
 
 - fixed launch crash regression in Age of Empires 4
@@ -42,7 +47,6 @@
 2. PROTON_GST_VIDEO_ORIENTATION=<orientation> can be any of the following: vertical-flip, horizontal-flip, rotate-180, automatic. This is useful if some games have videos that are upside down or otherwise not oriented correctly.
 
     Example usage: PROTON_GST_VIDEO_ORIENTATION=vertical-flip. If you set PROTON_GST_VIDEO_ORIENTATION it will also automatically force the winegstreamer backend to be used, as manual orientation is not possible with winedmo.
-
 
 ## GE-Proton10-12
 
