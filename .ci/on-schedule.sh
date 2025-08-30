@@ -385,7 +385,7 @@ function update_vcs() {
     local -n VARIABLES_UPDATE_VCS=${1:-VARIABLES}
     local pkgbase="${VARIABLES_UPDATE_VCS[PKGBASE]}"
 
-    # Check if pkgbase ends with -git or if CI_GIT_COMMIT is set
+    # Check if pkgbase ends with -git or if CI_FORCE_VCS is set
     if [[ "$pkgbase" != *-git ]] && [[ "${VARIABLES[CI_FORCE_VCS]:-false}" != "true" ]]; then
         return 0
     fi
@@ -481,15 +481,18 @@ if [ ${#MODIFIED_PACKAGES[@]} -ne 0 ]; then
     .ci/manage-aur.sh "${MODIFIED_PACKAGES[@]}"
 fi
 
+git_push_args=()
+for branch in "${DELETE_BRANCHES[@]}"; do
+    git_push_args+=(":$branch")
+done
+[ -v GITLAB_CI ] && git_push_args+=("-o" "ci.skip")
+
 if [ "$COMMIT" == "true" ]; then
     git add .ci/aur-state
     generate-commit ".final"
 
     git tag -f scheduled
-    git_push_args=()
-    for branch in "${DELETE_BRANCHES[@]}"; do
-        git_push_args+=(":$branch")
-    done
-    [ -v GITLAB_CI ] && git_push_args+=("-o" "ci.skip")
     git push --atomic origin HEAD:main +state +refs/tags/scheduled "${git_push_args[@]}"
+else
+    git push --atomic origin +state "${git_push_args[@]}"
 fi
