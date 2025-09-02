@@ -3,6 +3,7 @@ url="https://gitlab.com/kicad/code/kicad"
 depends+=(
   'libspnav'
   'poppler-glib'
+  'webkit2gtk-4.1'
 )
 makedepends+=('ninja')
 

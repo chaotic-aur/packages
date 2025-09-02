@@ -32,8 +32,13 @@ _check_status() (
     _msg_err="Check-in status: Failed."
     _success_ci=false
   elif grep -qo status_running <<< "$_status"; then
-    _msg_err="Check-in status: Incomplete."
-    _success_ci=false
+    if grep -Eom1 '"status_success"' <<< "$_response"; then
+      _msg_err="Check-in status: Incomplete with success."
+      _success_ci=true
+    else
+      _msg_err="Check-in status: Incomplete with no success."
+      _success_ci=false
+    fi
   else
     _msg_err="Check-in status: Unknown."
     _success_ci=false
@@ -48,4 +53,4 @@ _check_status() (
 )
 
 _check_rate 24 || return $?
-#_check_status || return $?
+_check_status || return $?
