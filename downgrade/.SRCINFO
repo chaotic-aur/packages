@@ -1,6 +1,6 @@
 pkgbase = downgrade
 	pkgdesc = Bash script for downgrading one or more packages to a version in your cache or the A.L.A.
-	pkgver = 11.5.3
+	pkgver = 11.5.4
 	pkgrel = 1
 	url = https://github.com/archlinux-downgrade/downgrade
 	arch = any
@@ -9,7 +9,7 @@ pkgbase = downgrade
 	depends = fzf
 	optdepends = sudo: for installation via sudo
 	backup = etc/xdg/downgrade/downgrade.conf
-	source = https://github.com/archlinux-downgrade/downgrade/releases/download/v11.5.3/downgrade-11.5.3.tar.gz
-	md5sums = 0746000d1de6211926fe4aa80cab7821
+	source = https://github.com/archlinux-downgrade/downgrade/releases/download/v11.5.4/downgrade-11.5.4.tar.gz
+	md5sums = 0bcb97290595ffcab8c9dba5cb1bec10
 
 pkgname = downgrade
