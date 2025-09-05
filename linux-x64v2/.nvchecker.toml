@@ -1,7 +1,6 @@
 [linux]
-source = "github"
-github = "archlinux/linux"
-use_max_tag = true
+source = "git"
+git = "https://github.com/archlinux/linux.git"
 include_regex = 'v\d+(\.\d+)*-arch\d+'
 from_pattern = '-([a-z])'
 to_pattern = '.\1'
