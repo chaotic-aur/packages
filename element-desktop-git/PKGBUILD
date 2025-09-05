@@ -7,12 +7,12 @@
 _electron=electron
 pkgbase=element-desktop-git
 pkgname=(element-web-git element-desktop-git)
-pkgver=1.11.74.r13.g43fa2e533f
+pkgver=1.11.110.r74.gef3b9eb9e4
 pkgrel=1
 pkgdesc="Glossy Matrix collaboration client — "
 arch=(x86_64)
 url="https://element.io"
-license=(Apache)
+license=('Apache-2.0')
 makedepends=(npm git yarn python python-setuptools rust tcl ${_electron} nodejs sqlcipher libxcrypt-compat)
 provides=("${pkgname%-git}")
 conflicts=("${pkgname%-git}")
@@ -58,11 +58,13 @@ build() {
   yarn --offline build
 
   cd ../element-desktop
-  yarn run build:native
-  yarn run build
+  yarn run build:ts
+  yarn run build:res
+  yarn run electron-builder --publish=never
 }
 
 package_element-web-git() {
+  url='https://github.com/vector-im/element-web'
   pkgdesc+="web version."
   #replaces=(riot-web vector-web)
   provides=(element-web)
@@ -79,6 +81,7 @@ package_element-web-git() {
 }
 
 package_element-desktop-git() {
+  url='https://github.com/vector-im/element-desktop'
   pkgdesc+="desktop version."
   #replaces=(riot-desktop)
   depends=("element-web-git=${pkgver}" ${_electron} libsecret)
@@ -104,7 +107,4 @@ package_element-desktop-git() {
 
   # Icons
   install -Dm644 ../element-web/res/themes/element/img/logos/element-logo.svg "${pkgdir}"/usr/share/icons/hicolor/scalable/apps/io.element.Element.svg
-  for i in 16 24 48 64 96 128 256 512; do
-    install -Dm644 build/icons/${i}x${i}.png "${pkgdir}"/usr/share/icons/hicolor/${i}x${i}/apps/io.element.Element.png
-  done
 }
