@@ -1,7 +1,6 @@
 pkgbase = zoom
-	pkgdesc = Video Conferencing and Web Conferencing Service
-	pkgver = 6.5.11
-	pkgrel = 2
+	pkgver = 6.5.11.4015
+	pkgrel = 1
 	url = https://zoom.us/
 	arch = x86_64
 	license = LicenseRef-zoom
@@ -14,10 +13,7 @@ pkgbase = zoom
 	sha512sums = c150fa1469b9f1bec922a2b47a89a9ebab322427303d37936b364c8b21f2f281debbaa265f52458ea8642df16f49790f8d82fbcbb7c7e947a331f8f91a85e302
 
 pkgname = zoom
-	depends = zoom-libs-bin
-
-pkgname = zoom-libs-bin
-	pkgdesc = Official runtimes for Zoom Workspace client
+	pkgdesc = Video Conferencing and Web Conferencing Service
 	depends = fontconfig
 	depends = glib2
 	depends = libpulse
@@ -43,13 +39,12 @@ pkgname = zoom-libs-bin
 	depends = dbus
 	depends = libdrm
 	depends = gtk3
-	depends = qt5-webengine
-	depends = qt5-remoteobjects
 	optdepends = picom: needed by some window managers for screen sharing
 	optdepends = ibus: remote control
+	replaces = zoom-libs-bin
 
-pkgname = zoom-libs
-	pkgdesc = Native runtimes for Zoom Workspace client
+pkgname = zoom-native
+	pkgdesc = Zoom Workspace with native runtimes
 	depends = ocl-icd
 	depends = mpg123
 	depends = libxtst
@@ -70,5 +65,5 @@ pkgname = zoom-libs
 	optdepends = qt5-remoteobjects
 	optdepends = ffmpeg
 	optdepends = vulkan-icd-loader
-	provides = zoom-libs-bin
-	conflicts = zoom-libs-bin
+	optdepends = chromium
+	replaces = zoom-libs
