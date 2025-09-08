@@ -1,8 +1,9 @@
+license=('GPL-3.0-or-later')
+
+provides=("bubblejail=${pkgver%%.r*}")
+
 source+=("0096-expandvars-0.patch"::"https://github.com/igo95862/bubblejail/pull/96.diff")
 md5sums+=('SKIP')
-
-license=('GPL-3.0-or-later')
-provides=("bubblejail=${pkgver%%.r*}")
 
 pkgver() {
   cd "$pkgname"
@@ -11,18 +12,35 @@ pkgver() {
     | sed -E 's/^[^0-9]+//;s/([^-]*-g)/r\1/;s/-/./g'
 }
 
-eval _orig_"$(declare -f prepare)"
+_pkgsrc="$pkgname"
 
 prepare() {
-  patch -d "$pkgname" -Np1 -F100 -i "$srcdir/0096-expandvars-0.patch"
+  cd "$_pkgsrc"
+  git submodule update --init --recursive --depth=1
 
+  patch -Np1 -F100 -i "$srcdir/0096-expandvars-0.patch"
+
+  # change notification priority
   sed -E \
     -e '/urgency/d' \
     -e '/critical/d' \
-    -i "$pkgname/src/bubblejail/bubblejail_cli.py"
+    -i "src/bubblejail/bubblejail_cli.py"
 
+  # enable advanced features
   sed -E -e 's@^(\s+display_in_gui) = False$@\1 = True@' \
-    -i "$pkgname/src/bubblejail/services.py"
+    -i "src/bubblejail/services.py"
+}
 
-  _orig_prepare
+build() {
+  local opts=(
+    -Dversion_display="'AUR-git $pkgver'"
+    -Duse-vendored-python-lxns=enabled
+  )
+
+  arch-meson "${opts[@]}" "$_pkgsrc" build
+  meson compile -C build
+}
+
+package() {
+  DESTDIR="$pkgdir" meson install -C build
 }
