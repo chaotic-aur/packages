@@ -15,13 +15,21 @@ prepare() {
   cd "$pkgname"
   patch -Np1 -F100 -i "$srcdir/0096-expandvars-0.patch"
 
-  sed -E -e '/--urgency.*critical/d' \
+  # change notification priority
+  sed -E \
+    -e '/--urgency/d' \
+    -e '/critical/d' \
     -i "src/bubblejail/bubblejail_cli.py"
+
+  # enable advanced features
+  sed -E -e 's@^(\s+display_in_gui) = False$@\1 = True@' \
+    -i "src/bubblejail/services.py"
 }
 
 build() {
   local opts=(
-    -Dversion_display="'AUR-git $pkgver'"
+    -Dversion_display="'AUR $pkgver'"
+    -Duse-vendored-python-lxns=enabled
   )
 
   arch-meson "${opts[@]}" "$pkgname" build
