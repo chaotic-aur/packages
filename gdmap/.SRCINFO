@@ -1,0 +1,22 @@
+pkgbase = gdmap
+	pkgdesc = Tool to inspect the used space of folders.
+	pkgver = 1.3.1+1
+	pkgrel = 1
+	url = https://gitlab.com/sjohannes/gdmap
+	arch = x86_64
+	license = GPL-2.0-or-later
+	makedepends = meson
+	makedepends = ninja
+	makedepends = gettext
+	depends = libxml2
+	depends = glibc
+	depends = cairo
+	depends = glib2
+	depends = gdk-pixbuf2
+	depends = gtk3
+	source = http://deb.debian.org/debian/pool/main/g/gdmap/gdmap_1.3.1.orig.tar.bz2
+	source = http://deb.debian.org/debian/pool/main/g/gdmap/gdmap_1.3.1-1.debian.tar.xz
+	sha256sums = 3d71e829b88d4bb84f639ee65de8595d422ec55d8e65d0cb9d5a63a75218ac74
+	sha256sums = cb519386880d601594d694a9796798816991118dbf1c307776e1be332e52e611
+
+pkgname = gdmap
