@@ -1,0 +1,18 @@
+pkgbase = nbfc-linux
+	pkgdesc = Lightweight C port of NoteBook FanControl (no Mono required)
+	pkgver = 0.3.19
+	pkgrel = 1
+	url = https://github.com/nbfc-linux/nbfc-linux
+	arch = i686
+	arch = x86_64
+	license = GPL-3.0-only
+	makedepends = curl
+	makedepends = openssl
+	depends = curl
+	depends = openssl
+	provides = nbfc
+	conflicts = nbfc
+	source = nbfc-linux-0.3.19.tar.gz::https://github.com/nbfc-linux/nbfc-linux/archive/refs/tags/0.3.19.tar.gz
+	sha256sums = b36f5851100bb3493a7c2957b58acd0e163a7781431c386ccd3b3de9318c6223
+
+pkgname = nbfc-linux
