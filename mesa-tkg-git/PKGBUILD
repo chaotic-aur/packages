@@ -362,11 +362,13 @@ build() {
   fi
 
   # gallium_vdpau requires either r300, r600, radeonsi or nouveau
-  if [[ $_gallium_drivers != *r300* ]] && [[ $_gallium_drivers != *r600* ]] && [[ $_gallium_drivers != *radeonsi* ]] && [[ $_gallium_drivers != *nouveau* ]]; then
-    warning "Gallium VDPAU disabled (gallium driver r300, r600, radeonsi or nouveau required)"
-    _gallium_vdpau="${_disabled_}"
-  else
-    _gallium_vdpau="${_enabled_}"
+  if (cd "$srcdir/$_mesa_srcdir" && ! git merge-base --is-ancestor 4b54277d2e9420e37cdce98b3a09e6cecf87300d HEAD); then
+    if [[ $_gallium_drivers != *r300* ]] && [[ $_gallium_drivers != *r600* ]] && [[ $_gallium_drivers != *radeonsi* ]] && [[ $_gallium_drivers != *nouveau* ]]; then
+      warning "Gallium VDPAU disabled (gallium driver r300, r600, radeonsi or nouveau required)"
+      _gallium_vdpau="-D gallium-vdpau=${_disabled_}"
+    else
+      _gallium_vdpau="-D gallium-vdpau=${_enabled_}"
+    fi
   fi
 
   # gallium_va requires either r600, radeonsi or nouveau
@@ -535,7 +537,6 @@ build() {
     -D gallium-extra-hud=true \
     -D gallium-rusticl=${_rusticl} \
     -D gallium-va=${_gallium_va} \
-    -D gallium-vdpau=${_gallium_vdpau} \
     -D gbm=${_enabled_} \
     -D gles1=${_disabled_} \
     -D gles2=${_enabled_} \
@@ -546,7 +547,7 @@ build() {
     -D lmsensors=${_enabled_} \
     -D opengl=true \
     -D zstd=auto \
-    -D valgrind=${_enabled_} $_legacy_switches $_dri3 $_omx $_dri_inc $_microsoft_clc $_osmesa $_xvmc $_layers $_optional_codecs $_android_libbacktrace $_intel_rt $_galliumnine $_galliumxa $_sharedglapi $_galliumopencl $_mediafoundation $_rusticladditions $_lto $_additional_meson_flags $_additional_meson_flags_64
+    -D valgrind=${_enabled_} $_legacy_switches $_dri3 $_omx $_dri_inc $_microsoft_clc $_osmesa $_xvmc $_layers $_optional_codecs $_android_libbacktrace $_intel_rt $_galliumnine $_galliumxa $_sharedglapi $_galliumopencl $_gallium_vdpau $_mediafoundation $_rusticladditions $_lto $_additional_meson_flags $_additional_meson_flags_64
 
   meson configure _build64 --no-pager
 
@@ -607,7 +608,6 @@ build() {
       -D gallium-extra-hud=true \
       -D gallium-rusticl=${_rusticl_32} \
       -D gallium-va=${_gallium_va} \
-      -D gallium-vdpau=${_gallium_vdpau} \
       -D gbm=${_enabled_} \
       -D gles1=${_disabled_} \
       -D gles2=${_enabled_} \
@@ -617,7 +617,7 @@ build() {
       -D llvm=${_enabled_} \
       -D lmsensors=${_enabled_} \
       -D zstd=auto \
-      -D valgrind=${_disabled_} $_legacy_switches $_dri3 $_omx_32 $_dri_inc $_microsoft_clc $_osmesa $_xvmc $_layers $_optional_codecs $_android_libbacktrace $_intel_rt_32 $_intel_clc_32 $_galliumnine $_galliumxa $_sharedglapi $_galliumopencl $_mediafoundation $_rusticladditions $_lto $_additional_meson_flags $_additional_meson_flags_32
+      -D valgrind=${_disabled_} $_legacy_switches $_dri3 $_omx_32 $_dri_inc $_microsoft_clc $_osmesa $_xvmc $_layers $_optional_codecs $_android_libbacktrace $_intel_rt_32 $_intel_clc_32 $_galliumnine $_galliumxa $_sharedglapi $_galliumopencl $_gallium_vdpau $_mediafoundation $_rusticladditions $_lto $_additional_meson_flags $_additional_meson_flags_32
 
     meson configure _build32 --no-pager
 
