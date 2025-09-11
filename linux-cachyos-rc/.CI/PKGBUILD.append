@@ -1,0 +1,6 @@
+# workaround for sums mismatch
+# from _use_llvm_lto=none
+unset b2sums
+for i in "${source[@]}"; do
+  b2sums+=('SKIP')
+done
