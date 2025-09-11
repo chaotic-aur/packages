@@ -1,0 +1,21 @@
+pkgbase = onagre-git
+	pkgdesc = A general purpose application launcher for X and wayland inspired by rofi/wofi and alfred
+	pkgver = 1.0.0_alpha.0.r172.ga7628b1
+	pkgrel = 2
+	url = https://github.com/oknozor/onagre
+	arch = x86_64
+	license = MIT
+	makedepends = cargo
+	makedepends = git
+	depends = fontconfig
+	depends = freetype2
+	depends = libxkbcommon
+	depends = pop-launcher
+	optdepends = libqalculate: calculator and unit conversion support
+	optdepends = vulkan-radeon: icon support for AMD GPUs
+	provides = onagre
+	conflicts = onagre
+	source = onagre::git+https://github.com/oknozor/onagre
+	sha1sums = SKIP
+
+pkgname = onagre-git
