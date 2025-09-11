@@ -4,7 +4,7 @@ pkgbase = xpadneo-dkms-git
 	pkgrel = 1
 	url = https://github.com/atar-axis/xpadneo
 	arch = any
-	license = GPL-3.0-only
+	license = GPL-3.0-or-later
 	makedepends = git
 	depends = dkms
 	depends = bluez
@@ -12,6 +12,6 @@ pkgbase = xpadneo-dkms-git
 	provides = xpadneo-dkms
 	conflicts = xpadneo-dkms
 	source = xpadneo::git+https://github.com/atar-axis/xpadneo.git
-	sha256sums = SKIP
+	b2sums = SKIP
 
 pkgname = xpadneo-dkms-git

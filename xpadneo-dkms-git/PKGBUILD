@@ -1,68 +1,52 @@
-# Maintainer:
+# Maintainer: Eduard T <edu4rdshl@protonmail.com>
 # Contributor: Joel Grunbaum <joel@joelg.net>
 # Contributer: Yangtse Su <i@yangtse.me>
 
-_pkgname="xpadneo-dkms"
-pkgname="$_pkgname-git"
+_pkgname="xpadneo"
+_dkmsname="hid-${_pkgname}"
+pkgname="$_pkgname-dkms-git"
 pkgver=0.9.r226.ga16acb0
 pkgrel=1
 pkgdesc="Advanced Linux Driver for Xbox One Wireless Gamepad"
 url="https://github.com/atar-axis/xpadneo"
-license=('GPL-3.0-only')
+license=('GPL-3.0-or-later')
 arch=('any')
-
-depends=(
-  'dkms'
-  'bluez'
-  'bluez-utils'
-)
-makedepends=(
-  'git'
-)
-
-conflicts=("$_pkgname")
-provides=("$_pkgname")
-
-_pkgsrc="xpadneo"
-source=("$_pkgsrc"::"git+$url.git")
-sha256sums=('SKIP')
+depends=('dkms' 'bluez' 'bluez-utils')
+makedepends=('git')
+conflicts=("${pkgname%-git}")
+provides=("${pkgname%-git}")
+source=("$_pkgname"::"git+$url.git")
+b2sums=('SKIP')
 
 prepare() {
-  local VERSION="$(pkgver)"
+  cd "${_pkgname}/${_dkmsname}"
 
-  cd "$_pkgsrc/hid-xpadneo"
   sed -E \
     -e '/^CLEAN/d' \
     -e '/^POST_INSTALL/d' \
     -e '/^POST_REMOVE/d' \
-    -e 's/@DO_NOT_CHANGE@/'"${VERSION}"'/g' \
+    -e 's/@DO_NOT_CHANGE@/'"v${pkgver}"'/g' \
     dkms.conf.in > dkms.conf
 
   rm -f dkms.post_*
 }
 
 pkgver() (
-  cd "$srcdir/$_pkgsrc"
+  cd "${_pkgname}"
+
   git describe --long --tags --abbrev=7 | sed 's/^v//;s/\([^-]*-g\)/r\1/;s/-/./g'
 )
 
 package() {
-  _files=(
-    Makefile
-    dkms.conf
-    src/*.c
-    src/*.h
-    src/Makefile
-    src/xpadneo/*.c
-  )
+  cd "${_pkgname}/${_dkmsname}"
 
-  cd "$_pkgsrc/hid-xpadneo"
-  for i in "${_files[@]}"; do
-    [ -f "$i" ] && install -Dm644 "$i" -t "$pkgdir/usr/src/hid-xpadneo-$pkgver/${i%/*}/"
-  done
+  install -d "${pkgdir}/usr/src/${_dkmsname}-v${pkgver}/src"
 
-  install -Dm644 etc-modprobe.d/xpadneo.conf -t "$pkgdir/usr/lib/modprobe.d/"
-  install -Dm644 -t "$pkgdir/usr/lib/udev/rules.d/" \
-    etc-udev-rules.d/60-xpadneo.rules \
-    etc-udev-rules.d/70-xpadneo-disable-hidraw.rules
+  # Module source
+  cp -a src/* "${pkgdir}/usr/src/${_dkmsname}-v${pkgver}/src"
+  # DKMS files
+  install -Dm0644 -t "${pkgdir}/usr/src/${_dkmsname}-v${pkgver}" Makefile dkms.conf
+  # Module dependencies
+  install -Dm0644 -t "${pkgdir}/usr/lib/modprobe.d" etc-modprobe.d/*
+  install -Dm0644 -t "${pkgdir}/usr/lib/udev/rules.d" etc-udev-rules.d/*
 }
