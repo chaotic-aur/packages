@@ -12,7 +12,7 @@
 pkgdesc='A fancy custom distribution of Valves Proton with various patches'
 pkgname=proton-ge-custom-bin
 pkgver=GE_Proton10_15
-pkgrel=1
+pkgrel=2
 epoch=1
 arch=('x86_64')
 license=('BSD' 'LGPL' 'zlib' 'MIT' 'MPL' 'custom')
@@ -64,7 +64,7 @@ _srcdir=${_pkgver}
 ## paths and files
 _protondir=usr/share/steam/compatibilitytools.d/${_pkgname}
 _licensedir=usr/share/licenses/${pkgname}
-_execfile=usr/bin/proton
+_execfile=usr/bin/proton-ge
 _protoncfg=${_protondir}/user_settings.py
 
 ## user edited files to backup
