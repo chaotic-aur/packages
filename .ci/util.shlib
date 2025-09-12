@@ -312,7 +312,10 @@ function UTIL_LOAD_CUSTOM_HOOK() {
             PACKAGE="${1##*/}" source "${2#${1}/}"
         ) || {
             UTIL_PRINT_ERROR "Custom hook failed: $2"
+            return 1
         }
+    else
+        return 1
     fi
 }
 

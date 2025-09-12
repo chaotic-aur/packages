@@ -199,6 +199,7 @@ function update-lib-bump() {
             return 0
         fi
         pkg_config[CI_PACKAGE_BUMP]="$_DB_BASE/$_DB_BUMP"
+        pkg_config[CI_ANY_UPDATE]=true
     fi
 }
 
@@ -282,6 +283,7 @@ function update_via_git() {
         # Rsync: delete files in the destination that are not in the source. Exclude deleting .CI, exclude copying .git
         # shellcheck disable=SC2046
         rsync -a --delete $(UTIL_GET_EXCLUDE_LIST "--exclude") "$TMPDIR/aur-pulls/$pkgbase/" "$pkgbase/"
+        VARIABLES_VIA_GIT[CI_ANY_UPDATE]=true
     fi
 }
 
@@ -339,6 +341,7 @@ function update_from_gitlab_tag() {
 
     shfmt -w "$pkgbase/PKGBUILD"
 
+    VARIABLES_UPDATE_FROM_GITLAB_TAG[CI_ANY_UPDATE]=true
     gawk -i inplace -f .ci/awk/update-pkgbuild.awk -v TARGET_VERSION="$VERSION" -v BASE_URL="$BASE_URL" -v TARGET_URL="${BASE_URL}/\${_commit}/${PROJECT_NAME}-\${_commit}.tar.gz" -v COMMIT="$COMMIT" "$pkgbase/PKGBUILD"
     gawk -i inplace -f .ci/awk/update-srcinfo.awk -v TARGET_VERSION="$VERSION" -v BASE_URL="$BASE_URL" -v TARGET_URL="${BASE_URL}/${COMMIT}/${PROJECT_NAME}-${COMMIT}.tar.gz" "$pkgbase/.SRCINFO"
 }
@@ -406,9 +409,11 @@ function update_vcs() {
         local CI_GIT_COMMIT="${VARIABLES_UPDATE_VCS[CI_GIT_COMMIT]}"
         if [ "$CI_GIT_COMMIT" != "$_NEWEST_COMMIT" ]; then
             UTIL_UPDATE_VCS_COMMIT VARIABLES_UPDATE_VCS "$_NEWEST_COMMIT"
+            VARIABLES_UPDATE_VCS[CI_ANY_UPDATE]=true
         fi
     else
         UTIL_UPDATE_VCS_COMMIT VARIABLES_UPDATE_VCS "$_NEWEST_COMMIT"
+        VARIABLES_UPDATE_VCS[CI_ANY_UPDATE]=true
     fi
 }
 
@@ -434,8 +439,12 @@ for package in "${PACKAGES[@]}"; do
     update_pkgbuild VARIABLES
     update_vcs VARIABLES
     update-lib-bump VARIABLES
-    UTIL_LOAD_CUSTOM_HOOK "./${package}" "./${package}/.CI/update.sh" || true
+    UTIL_LOAD_CUSTOM_HOOK "./${package}" "./${package}/.CI/update.sh" && VARIABLES[CI_ANY_UPDATE]=true || true
     UTIL_WRITE_MANAGED_PACKAGE "$package" VARIABLES
+
+    if [ "${VARIABLES[CI_ANY_UPDATE]:-false}" != "true" ]; then
+        continue
+    fi
 
     if ! git diff --exit-code --quiet -- "$package"; then
         # shellcheck disable=SC2102
