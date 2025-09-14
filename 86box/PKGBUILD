@@ -1,7 +1,7 @@
 # Maintainer: Lili1228 <aur at lili dot lgbt>
 pkgname=86box
 _pkgname=86Box
-pkgver=5.0
+pkgver=5.1
 pkgrel=1
 pkgdesc='An emulator for classic IBM PC clones'
 arch=('pentium4' 'x86_64' 'armv7h' 'aarch64')
@@ -13,13 +13,14 @@ makedepends=('cmake>=3.21' 'extra-cmake-modules' 'ninja' 'qt6-tools' 'vde2' 'vul
 optdepends=(
   '86box-roms: ROM files'
   'discord-game-sdk: Discord Rich Presence'
+  'ghostscript: Printing with Generic PostScript Printer'
   'libpcap: Networking not limited to TCP/IP'
 )
 options=('!buildflags')
 source=(
   "${pkgname}_$pkgver.tgz::https://github.com/${_pkgname}/${_pkgname}/archive/refs/tags/v${pkgver}.tar.gz"
 )
-sha512sums=('e2ce22b856e995d3248a10e304ae091162747d79be821d9b74c7bd2b1f8a03061b07ff29dfa026650f28129538917b7548721e110a9a2fe387915c79684340cc')
+sha512sums=('5c68a21621da58a37a5e9f8199b2cabf0b3483303a44a53221c746f76a80d248d26b56499b771bd18670a16c3942ed6f3f92db95211a37677bda19becb75f70b')
 
 build() {
   case "$CARCH" in

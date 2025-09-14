@@ -1,6 +1,6 @@
 pkgbase = 86box
 	pkgdesc = An emulator for classic IBM PC clones
-	pkgver = 5.0
+	pkgver = 5.1
 	pkgrel = 1
 	url = https://86box.net/
 	arch = pentium4
@@ -40,9 +40,10 @@ pkgbase = 86box
 	depends = zlib
 	optdepends = 86box-roms: ROM files
 	optdepends = discord-game-sdk: Discord Rich Presence
+	optdepends = ghostscript: Printing with Generic PostScript Printer
 	optdepends = libpcap: Networking not limited to TCP/IP
 	options = !buildflags
-	source = 86box_5.0.tgz::https://github.com/86Box/86Box/archive/refs/tags/v5.0.tar.gz
-	sha512sums = e2ce22b856e995d3248a10e304ae091162747d79be821d9b74c7bd2b1f8a03061b07ff29dfa026650f28129538917b7548721e110a9a2fe387915c79684340cc
+	source = 86box_5.1.tgz::https://github.com/86Box/86Box/archive/refs/tags/v5.1.tar.gz
+	sha512sums = 5c68a21621da58a37a5e9f8199b2cabf0b3483303a44a53221c746f76a80d248d26b56499b771bd18670a16c3942ed6f3f92db95211a37677bda19becb75f70b
 
 pkgname = 86box
