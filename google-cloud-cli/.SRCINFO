@@ -1,6 +1,6 @@
 pkgbase = google-cloud-cli
 	pkgdesc = A core set of command-line tools for the Google Cloud Platform. Includes only gcloud core (with beta and alpha commands), gcloud-crc32c and man pages
-	pkgver = 538.0.0
+	pkgver = 539.0.0
 	pkgrel = 1
 	url = https://cloud.google.com/cli/
 	arch = x86_64
@@ -17,10 +17,10 @@ pkgbase = google-cloud-cli
 	source = google-cloud-cli.install
 	sha256sums = 6e88b535c020b0f28c986fdb66918f8c07e4d337e813b77ec2068068f03457f8
 	sha256sums = 6ac95bcc5afa06e9c1e3bd402ecbe1a2092b963d70a8f314215dd4be27e16fc6
-	source_x86_64 = google-cloud-cli-538.0.0.orig_x86_64.tar.gz::https://dl.google.com/dl/cloudsdk/release/downloads/for_packagers/linux/google-cloud-cli_538.0.0.orig_amd64.tar.gz
-	sha256sums_x86_64 = 19251c923e7e2d27efbfefbf2c901707b0fc463a314cf698ac1f346279fbafb8
-	source_aarch64 = google-cloud-cli-538.0.0.orig_aarch64.tar.gz::https://dl.google.com/dl/cloudsdk/release/downloads/for_packagers/linux/google-cloud-cli_538.0.0.orig_aarch64.tar.gz
-	sha256sums_aarch64 = 76668bfadd6c5052f958a199530bd25b965a990213e113782641b06a45c9adc5
+	source_x86_64 = google-cloud-cli-539.0.0.orig_x86_64.tar.gz::https://dl.google.com/dl/cloudsdk/release/downloads/for_packagers/linux/google-cloud-cli_539.0.0.orig_amd64.tar.gz
+	sha256sums_x86_64 = ffe96b99f785313a03e37f2844f745fb726ddab7df298f079216f59c5da66a2f
+	source_aarch64 = google-cloud-cli-539.0.0.orig_aarch64.tar.gz::https://dl.google.com/dl/cloudsdk/release/downloads/for_packagers/linux/google-cloud-cli_539.0.0.orig_aarch64.tar.gz
+	sha256sums_aarch64 = e878a3e536963470f7109718aac1d160add897770d4dad64f84d8b4f491c6826
 
 pkgname = google-cloud-cli
 	install = google-cloud-cli.install
