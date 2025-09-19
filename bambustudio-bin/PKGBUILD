@@ -2,13 +2,13 @@
 # Contributor: George Woodall <georgewoodall82@gmail.com>
 pkgname=bambustudio-bin
 pkgver=02.02.02.56
-pkgrel=1
+pkgrel=2
 pkgdesc="PC Software for BambuLab's 3D printers"
 arch=("x86_64")
 url="https://github.com/bambulab/BambuStudio"
 license=('AGPL3')
 conflicts=('bambustudio' 'bambustudio-git' 'squashfuse')
-depends=('mesa' 'glu' 'cairo' 'gtk3' 'libsoup' 'webkit2gtk' 'gstreamer' 'openvdb' 'wayland' 'wayland-protocols' 'libxkbcommon' 'gst-libav')
+depends=('mesa' 'glu' 'cairo' 'gtk3' 'libsoup' 'webkit2gtk' 'gstreamer' 'openvdb' 'wayland' 'wayland-protocols' 'libxkbcommon' 'gst-libav' 'webkit2gtk-4.1')
 makedepends=('fuse2' 'patchelf')
 # Thanks so much for generating random image names Bambu, much appreciated, keeps you on your toes or something I guess...
 source=("bambustudio-${pkgver}.AppImage::https://github.com/bambulab/BambuStudio/releases/download/v${pkgver}/Bambu_Studio_ubuntu-24.04_PR-8184.AppImage"
