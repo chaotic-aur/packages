@@ -1,4 +1,4 @@
-[logseq-desktop-bin]
+[logseq-desktop]
 source = "git"
 git = "https://github.com/logseq/logseq.git"
 prefix = "v"
