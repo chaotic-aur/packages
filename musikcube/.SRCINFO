@@ -1,7 +1,7 @@
 pkgbase = musikcube
 	pkgdesc = A terminal-based cross-platform music player, audio engine, metadata indexer, and server
-	pkgver = 3.0.4
-	pkgrel = 2
+	pkgver = 3.0.5
+	pkgrel = 1
 	url = https://github.com/clangen/musikcube
 	arch = x86_64
 	license = BSD-3-Clause
@@ -27,9 +27,7 @@ pkgbase = musikcube
 	depends = taglib
 	depends = libgme
 	optdepends = libopenmpt: OpenMPT support
-	source = musikcube-3.0.4.tar.gz::https://github.com/clangen/musikcube/archive/3.0.4.tar.gz
-	source = musikcube.patch
-	sha256sums = 25bb95b8705d8c79bde447e7c7019372eea7eaed9d0268510278e7fcdb1378a5
-	sha256sums = 800794a649845585ed5216d368133445a3ee85ffc8ad1adfe21141fafbbc061a
+	source = musikcube-3.0.5.tar.gz::https://github.com/clangen/musikcube/archive/3.0.5.tar.gz
+	sha256sums = 708292a583bb5072a8dbb14e408c2a1f61de9b8c9786d4e53b3e69bef5dad8c5
 
 pkgname = musikcube
