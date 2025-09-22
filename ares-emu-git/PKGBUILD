@@ -1,18 +1,8 @@
 # Maintainer: aur.chaotic.cx
 
-## options
-: ${_build_level:=3}
-: ${_build_git:=true}
-
-unset _pkgtype
-[[ "${_build_level::1}" == "2" ]] && _pkgtype+="-x64v2"
-[[ "${_build_level::1}" == "3" ]] && _pkgtype+="-avx"
-[[ "${_build_level::1}" == "4" ]] && _pkgtype+="-x64v4"
-[[ "${_build_git::1}" == "t" ]] && _pkgtype+="-git"
-
 _pkgname="ares-emu"
-pkgname="$_pkgname${_pkgtype:-}"
-pkgver=144.r0.g728105b
+pkgname="$_pkgname-git"
+pkgver=146.r121.g9e4a00b
 pkgrel=1
 pkgdesc="Multi-system emulator focused on accuracy and preservation"
 url="https://github.com/ares-emulator/ares"
@@ -68,27 +58,12 @@ prepare() {
 }
 
 build() (
-  export CC CXX CFLAGS CXXFLAGS LDFLAGS
+  export CC CXX LDFLAGS
   CC=clang
   CXX=clang++
 
   local _ldflags=(${LDFLAGS})
   LDFLAGS="${_ldflags[@]//*fuse-ld*/} -fuse-ld=lld"
-
-  if [[ ${_build_level::1} =~ ^[2-4]$ ]]; then
-    local _cflags _cxxflags
-    _cflags=(
-      -march=x86-64-v3 -O3
-      $(sed -E -e 's&-(march|mtune)=\S+\b&&g' -e 's&-O[0-9]+\b&&g' <<< ${CFLAGS})
-    )
-    _cxxflags=(
-      -march=x86-64-v3 -O3
-      $(sed -E -e 's&-(march|mtune)=\S+\b&&g' -e 's&-O[0-9]+\b&&g' <<< ${CXXFLAGS})
-    )
-
-    CFLAGS="${_cflags[@]}"
-    CXXFLAGS="${_cxxflags[@]}"
-  fi
 
   local _cmake_options=(
     -B build
@@ -96,12 +71,14 @@ build() (
     -G Ninja
     -DCMAKE_BUILD_TYPE=None
     -DCMAKE_INSTALL_PREFIX='/usr'
+    -DCMAKE_CXX_STANDARD=20
+    -DBUILD_TESTING=OFF
+    -Wno-dev
+
     -DARES_BUNDLE_SHADERS=OFF
     -DARES_SKIP_DEPS=ON
     -DARES_VERSION="$pkgver"
     -DARES_VERSION_CANONICAL="${pkgver%%.r*}"
-    -DBUILD_TESTING=OFF
-    -Wno-dev
   )
 
   cmake "${_cmake_options[@]}"
@@ -115,5 +92,5 @@ package() {
   )
 
   DESTDIR="$pkgdir" cmake --install build
-  install -Dm644 "$_pkgsrc/LICENSE" -t "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+  install -Dm644 "$_pkgsrc/LICENSE" -t "$pkgdir/usr/share/licenses/$pkgname/"
 }
