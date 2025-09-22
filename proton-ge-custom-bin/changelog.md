@@ -1,3 +1,17 @@
+## GE-Proton10-16
+
+- wine updated to latest bleeding-edge
+- dxvk updated to latest git
+- vkd3d-proton updated to latest git
+- vkd3d updated to latest git
+- dxvk-nvapi updated to latest git
+- proton build updated to use latest sdk (steam runtime)
+- protonfixes: fix added for ue4ss mod for stellar blade
+- added patch to workaround star citizen "unsupported os" popup
+- etaash (em-10/wine-wayland) patches updated and rebased
+
+Nothing major this release, just the regular updating + rebasing ontop of upstream.
+
 ## GE-Proton10-15
 
 - fixed opening hang in crosscode
