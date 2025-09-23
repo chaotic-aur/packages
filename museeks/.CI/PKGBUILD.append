@@ -1,1 +1,3 @@
+makedepends=(${makedepends[@]//rust*/} rustup)
+
 options=('!lto')
