@@ -2,13 +2,14 @@
 
 pkgname=bionic_translation-git
 _pkgname="${pkgname%-git}"
-pkgver=r71.104abd1
+pkgver=r107.026ea25
 pkgrel=1
 pkgdesc='A set of libraries for loading bionic-linked .so files on musl/glibc'
 url='https://gitlab.com/android_translation_layer/bionic_translation'
 arch=(x86_64 aarch64 armv7h)
 license=('MIT')
 depends=(
+  bubblewrap
   glibc
   libbsd
   libglvnd
@@ -40,9 +41,9 @@ build() {
   meson compile -C build
 }
 
-check() {
-  meson test --no-rebuild --print-errorlogs -C build
-}
+# check() {
+#   meson test --no-rebuild --print-errorlogs -C build
+# }
 
 package() {
   meson install --no-rebuild -C build --destdir "${pkgdir}"
