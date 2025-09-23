@@ -3,7 +3,7 @@
 pkgname=android_translation_layer-git
 _pkgname="${pkgname%-git}"
 _pkgname="${_pkgname//-/_}"
-pkgver=r639.9b6c8db
+pkgver=r932.9de91586
 pkgrel=1
 pkgdesc='A translation layer for running Android apps on a Linux system'
 url='https://gitlab.com/android_translation_layer/android_translation_layer'
@@ -20,6 +20,7 @@ depends=(
   glibc
   graphene
   gtk4
+  gtk4-layer-shell
   java-runtime
   libglvnd
   libgudev
@@ -32,6 +33,7 @@ depends=(
   webkitgtk-6.0
 )
 makedepends=(
+  cmake
   git
   glib2-devel
   java-runtime-common
