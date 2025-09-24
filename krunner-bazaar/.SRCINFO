@@ -1,0 +1,19 @@
+pkgbase = krunner-bazaar
+	pkgdesc = KRunner plugin for bazaar
+	pkgver = 1.2.1
+	pkgrel = 2
+	url = https://github.com/ublue-os/krunner-bazaar
+	arch = x86_64
+	license = Apache-2.0
+	makedepends = cmake
+	makedepends = extra-cmake-modules
+	makedepends = git
+	depends = qt6-base
+	depends = krunner
+	depends = ki18n
+	depends = kcoreaddons
+	optdepends = bazaar: install if not using the flatpak version
+	source = https://github.com/ublue-os/krunner-bazaar/archive/refs/tags/v1.2.1.tar.gz
+	sha256sums = ceef3e7641985af7cafe21fbaa03a3ca6d5d4436f9f8f7cc1f3e64b099791f3b
+
+pkgname = krunner-bazaar
