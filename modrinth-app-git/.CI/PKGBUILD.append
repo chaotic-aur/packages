@@ -1,5 +1,4 @@
-depends+=('java-runtime')
-makedepends+=('java-environment')
+makedepends=(${makedepends[@]//java-environment*/java-environment<=24})
 
 _pkgsrc="code"
 
@@ -15,7 +14,9 @@ eval _orig_"$(declare -f build)"
 unset -f prepare
 
 build() {
-  sed -E '/\.patch"/d' -i "$_pkgsrc/package.json"
   (_orig_prepare)
+
+  rm -rf "$_pkgsrc/.cargo"
+
   (_orig_build)
 }
