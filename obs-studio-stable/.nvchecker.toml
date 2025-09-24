@@ -1,3 +1,0 @@
-[obs-studio-stable]
-source = "git"
-git = "https://github.com/obsproject/obs-studio.git"
