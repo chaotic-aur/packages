@@ -7,10 +7,10 @@
 
 _pkgname="youtube-music"
 pkgname="$_pkgname-git"
-pkgver=3.10.0.r126.g94b789a
+pkgver=3.11.0.r55.g345c2e5
 pkgrel=1
 pkgdesc="Unofficial desktop app for YouTube Music"
-url="https://github.com/th-ch/youtube-music"
+url="https://github.com/ytmd-devs/ytmd"
 license=('MIT')
 arch=('x86_64')
 
@@ -94,7 +94,8 @@ package() {
   install -Dm644 "$_pkgsrc/pack/linux-unpacked/resources/app.asar" -t "$pkgdir/$_install_path/$_pkgname/"
   cp -r "$_pkgsrc/pack/linux-unpacked/resources/app.asar.unpacked" "$pkgdir/$_install_path/$_pkgname/"
 
-  install -Dm644 "$_pkgsrc/assets/generated/icons/png/1024x1024.png" "$pkgdir/usr/share/pixmaps/$_pkgname.png"
+  install -Dm644 "$_pkgsrc/docs/favicon/favicon_144.png" "$pkgdir/usr/share/pixmaps/$_pkgname.png"
+
   install -Dm644 "$_pkgsrc/license" -t "$pkgdir/usr/share/licenses/$pkgname/"
 
   install -Dm644 /dev/stdin "$pkgdir/usr/share/applications/$_pkgname.desktop" << END

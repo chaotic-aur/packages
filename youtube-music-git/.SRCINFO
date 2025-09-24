@@ -1,8 +1,8 @@
 pkgbase = youtube-music-git
 	pkgdesc = Unofficial desktop app for YouTube Music
-	pkgver = 3.10.0.r126.g94b789a
+	pkgver = 3.11.0.r55.g345c2e5
 	pkgrel = 1
-	url = https://github.com/th-ch/youtube-music
+	url = https://github.com/ytmd-devs/ytmd
 	arch = x86_64
 	license = MIT
 	makedepends = git
@@ -11,7 +11,7 @@ pkgbase = youtube-music-git
 	depends = libsecret
 	provides = youtube-music
 	conflicts = youtube-music
-	source = youtube-music::git+https://github.com/th-ch/youtube-music.git
+	source = youtube-music::git+https://github.com/ytmd-devs/ytmd.git
 	sha256sums = SKIP
 
 pkgname = youtube-music-git
