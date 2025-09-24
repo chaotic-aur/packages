@@ -2,15 +2,17 @@
 
 _pkgname="eden"
 pkgname="$_pkgname-git"
-pkgver=0.0.2.r272.g9634342
-pkgrel=2
+pkgver=0.0.2.r438.g3e299dc
+pkgrel=1
 pkgdesc="Yet another emulator fork"
 url="https://git.eden-emu.dev/eden-emu/eden"
 license=('GPL-3.0-or-later')
 arch=('x86_64')
 
 depends=(
+  'enet'
   'libfmt.so'
+  'mbedtls'
   'qt6-webengine'
 )
 makedepends=(
@@ -23,6 +25,7 @@ makedepends=(
   'nlohmann-json'
   'qt6-multimedia'
   'qt6-tools'
+  'spirv-headers'
   'vulkan-headers'
   'vulkan-utility-libraries'
 )
@@ -64,7 +67,6 @@ build() (
     -DTITLE_BAR_FORMAT_IDLE="$_pkgname | ${pkgver} {}"
     -DTITLE_BAR_FORMAT_RUNNING="$_pkgname | ${pkgver} {}"
     -DUSE_DISCORD_PRESENCE=OFF
-    -DYUZU_CHECK_SUBMODULES=OFF
     -DYUZU_CRASH_DUMPS=OFF
     -DYUZU_DOWNLOAD_TIME_ZONE_DATA=ON
     -DYUZU_ENABLE_COMPATIBILITY_REPORTING=OFF
@@ -73,13 +75,11 @@ build() (
     -DYUZU_USE_BUNDLED_FFMPEG=OFF
     -DYUZU_USE_BUNDLED_QT=OFF
     -DYUZU_USE_BUNDLED_SDL2=OFF
-    -DYUZU_USE_BUNDLED_VCPKG=OFF
+    -DYUZU_USE_EXTERNAL_FFMPEG=OFF
     -DYUZU_USE_EXTERNAL_SDL2=OFF
-    -DYUZU_USE_EXTERNAL_VULKAN_HEADERS=OFF
-    -DYUZU_USE_EXTERNAL_VULKAN_SPIRV_TOOLS=OFF
-    -DYUZU_USE_EXTERNAL_VULKAN_UTILITY_LIBRARIES=OFF
     -DYUZU_USE_QT_MULTIMEDIA=ON
     -DYUZU_USE_QT_WEB_ENGINE=ON
+    -Dhttplib_FORCE_BUNDLED=ON
 
     -DUSE_SANITIZERS=OFF # cubeb
     -DDYNARMIC_TESTS=OFF
@@ -95,9 +95,4 @@ build() (
 package() {
   DESTDIR="$pkgdir" cmake --install build
   install -Dm644 "$_pkgsrc/dist/72-yuzu-input.rules" "$pkgdir/usr/lib/udev/rules.d/72-eden-input.rules"
-
-  # unwanted
-  rm -rf "$pkgdir/usr/include"
-  rm -rf "$pkgdir/usr/lib/cmake"
-  rm -rf "$pkgdir/usr/lib"/*.a
 }
