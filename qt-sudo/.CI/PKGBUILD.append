@@ -1,4 +1,0 @@
-optdepends=(
-  'opendoas: privilege elevation'
-  'sudo: privilege elevation'
-)
