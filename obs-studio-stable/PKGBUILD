@@ -10,7 +10,7 @@
 _pkgname="obs-studio"
 pkgname="$_pkgname-stable"
 pkgver=32.0.0
-pkgrel=1
+pkgrel=2
 pkgdesc="Free, open source software for live streaming and recording - Browser enabled"
 url="https://github.com/obsproject/obs-studio"
 license=("GPL-2.0-or-later")
@@ -76,6 +76,8 @@ fi
 provides=("$_pkgname=${pkgver%%.r*}")
 conflicts=("$_pkgname")
 
+options=('!strip')
+
 _source_main() {
   _pkgsrc="$_pkgname"
   source=("$_pkgsrc"::"git+$url.git#tag=$pkgver")
@@ -89,23 +91,6 @@ _source_cef() {
     'libxrandr'
     'nspr'
     'nss'
-  )
-
-  makedepends+=(
-    'alsa-lib'
-    'dbus'
-    'expat'
-    'glib2'
-    'libcups'
-    'libdrm'
-    'libx11'
-    'libxcb'
-    'libxcomposite'
-    'libxext'
-    'libxfixes'
-    'libxkbcommon'
-    'mesa'
-    'wayland'
   )
 
   _cef_src="cef_binary_${_cef_branch}_linux_${CARCH}"
@@ -126,21 +111,11 @@ prepare() {
   git submodule update --init --recursive --depth 1
 }
 
-_build_cef() (
-  local _cmake_options=(
-    -S "$_cef_src"
-    -B "$_cef_src"
-    -G Ninja
-    -DCMAKE_BUILD_TYPE=Release
-    -DPROJECT_ARCH=$CARCH
-    -Wno-dev
-  )
+build() (
+  export CFLAGS CXXFLAGS
+  CFLAGS="${CFLAGS/_FORTIFY_SOURCE=?/_FORTIFY_SOURCE=2}"
+  CXXFLAGS="${CXXFLAGS/_FORTIFY_SOURCE=?/_FORTIFY_SOURCE=2}"
 
-  cmake "${_cmake_options[@]}"
-  cmake --build "$_cef_src"
-)
-
-_build_obs_studio() (
   local _cmake_options=(
     -B build
     -S "$_pkgsrc"
@@ -167,15 +142,6 @@ _build_obs_studio() (
 
   cmake "${_cmake_options[@]}"
   cmake --build build
-)
-
-build() (
-  export CFLAGS CXXFLAGS
-  CFLAGS="${CFLAGS/_FORTIFY_SOURCE=?/_FORTIFY_SOURCE=2}"
-  CXXFLAGS="${CXXFLAGS/_FORTIFY_SOURCE=?/_FORTIFY_SOURCE=2}"
-
-  _build_cef
-  _build_obs_studio
 )
 
 package() {

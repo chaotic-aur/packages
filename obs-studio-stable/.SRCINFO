@@ -1,7 +1,7 @@
 pkgbase = obs-studio-stable
 	pkgdesc = Free, open source software for live streaming and recording - Browser enabled
 	pkgver = 32.0.0
-	pkgrel = 1
+	pkgrel = 2
 	url = https://github.com/obsproject/obs-studio
 	arch = x86_64
 	license = GPL-2.0-or-later
@@ -25,20 +25,6 @@ pkgbase = obs-studio-stable
 	makedepends = websocketpp
 	makedepends = x264
 	makedepends = xdg-desktop-portal
-	makedepends = alsa-lib
-	makedepends = dbus
-	makedepends = expat
-	makedepends = glib2
-	makedepends = libcups
-	makedepends = libdrm
-	makedepends = libx11
-	makedepends = libxcb
-	makedepends = libxcomposite
-	makedepends = libxext
-	makedepends = libxfixes
-	makedepends = libxkbcommon
-	makedepends = mesa
-	makedepends = wayland
 	depends = curl
 	depends = ffmpeg
 	depends = jack
@@ -69,6 +55,7 @@ pkgbase = obs-studio-stable
 	optdepends = vlc: VLC Media Source
 	provides = obs-studio=32.0.0
 	conflicts = obs-studio
+	options = !strip
 	source = obs-studio::git+https://github.com/obsproject/obs-studio.git#tag=32.0.0
 	source = cef_binary_6533_linux_x86_64_v6.tar.xz::https://cdn-fastly.obsproject.com/downloads/cef_binary_6533_linux_x86_64_v6.tar.xz
 	sha256sums = SKIP
