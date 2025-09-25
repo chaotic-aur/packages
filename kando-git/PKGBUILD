@@ -7,7 +7,7 @@
 
 _pkgname="kando"
 pkgname="$_pkgname-git"
-pkgver=2.0.0.r133.g5104b58
+pkgver=2.0.0.r154.g5cb27d2
 pkgrel=1
 pkgdesc="Customizable desktop pie menu"
 url="https://github.com/kando-menu/kando"

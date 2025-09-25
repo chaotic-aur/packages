@@ -1,6 +1,6 @@
 pkgbase = kando-git
 	pkgdesc = Customizable desktop pie menu
-	pkgver = 2.0.0.r133.g5104b58
+	pkgver = 2.0.0.r154.g5cb27d2
 	pkgrel = 1
 	url = https://github.com/kando-menu/kando
 	arch = any
