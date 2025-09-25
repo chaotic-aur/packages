@@ -1,3 +1,7 @@
+## GE-Proton10-17
+
+- Just a hotfix/refresh release, updates dxvk and other main components, fixes warframe crash and probably a few others.
+
 ## GE-Proton10-16
 
 - wine updated to latest bleeding-edge

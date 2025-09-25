@@ -1,6 +1,6 @@
 pkgbase = proton-ge-custom-bin
 	pkgdesc = A fancy custom distribution of Valves Proton with various patches
-	pkgver = GE_Proton10_16
+	pkgver = GE_Proton10_17
 	pkgrel = 1
 	epoch = 1
 	url = https://github.com/GloriousEggroll/proton-ge-custom
@@ -41,17 +41,17 @@ pkgbase = proton-ge-custom-bin
 	optdepends = wine: support for 32bit prefixes
 	optdepends = xboxdrv: gamepad driver service
 	provides = proton
-	provides = proton-ge-custom=GE.Proton10_16
+	provides = proton-ge-custom=GE.Proton10_17
 	conflicts = proton-ge-custom
 	options = !strip
 	options = emptydirs
 	backup = usr/share/steam/compatibilitytools.d/proton-ge-custom/user_settings.py
-	source = GE-Proton10-16_1.tar.gz::https://github.com/GloriousEggroll/proton-ge-custom/releases/download/GE-Proton10-16/GE-Proton10-16.tar.gz
+	source = GE-Proton10-17_1.tar.gz::https://github.com/GloriousEggroll/proton-ge-custom/releases/download/GE-Proton10-17/GE-Proton10-17.tar.gz
 	source = user_settings.py
 	source = launcher.sh
 	source = proton-ge-custom-bin.conf
 	source = pam_limits.conf
-	sha512sums = fc33d71b29b9840c15ed0c34259ec852ad06f76bc3589ddfd49344aff93c6daf45a2ea028f9d0a8dd9f369fecccc8e88d920d262f8b6545cded65566e1c28f9d
+	sha512sums = d21bd48479ab35213a7bf5b7eb87d0f156da16891cdc6bed3665e268811304c20cc9834ff901b9d4e31abc6d10bf6b8066276d32f7c487607270a3a9f975ae2c
 	sha512sums = 09b6523516b07ec40b895867ef3cdb5dfb1eda6b188d0edf0acea9c3141583f43b2b5c1a396f4d52eb2ddb3ae6f111b4a7bc6409c003f09ff8c505b81f2a7297
 	sha512sums = 78ede6d50f9c43407da511c8b37dcf60aae2ddbd461c0081f0d0ce3de08ace3a84dee86e9253acbac829b47c5818ef4e1a354ccb05feaa9853ce279dc3f903fd
 	sha512sums = ac2bd634838ffe6b90f2637e229013f0993fc1013271dbeefd216dc262a8bb79e4a5ce15a75cbfcb0c3b521d32f4ebe1ed25a6b066b99cc327b60bd6d7212e6f
