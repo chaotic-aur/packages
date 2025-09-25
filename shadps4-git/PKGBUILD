@@ -3,10 +3,13 @@
 ## options
 : ${_use_clang:=false}
 
+: ${_build_qt:=true}
+: ${_build_sdl:=true}
+
 _pkgname="shadps4"
 pkgname="$_pkgname-git"
-pkgver=0.10.0.r94.g26a92d9
-pkgrel=2
+pkgver=0.11.0.r19.g98ceb6e
+pkgrel=1
 pkgdesc="PlayStation 4 emulator"
 url="https://github.com/shadps4-emu/shadPS4"
 license=('GPL-2.0-or-later')
@@ -134,31 +137,39 @@ build() (
     -Wno-dev
   )
 
-  echo "Building with SDL CLI..."
-  local _cmake_sdl=(
-    -B build_sdl
-    -DENABLE_QT_GUI=OFF
-    "${_cmake_options[@]}"
-  )
+  if [[ "${_build_qt::1}" == "t" ]]; then
+    echo "Building Qt GUI..."
+    local _cmake_qt=(
+      -B build_qt
+      -DENABLE_QT_GUI=ON
+      "${_cmake_options[@]}"
+    )
 
-  cmake "${_cmake_sdl[@]}"
-  cmake --build build_sdl
+    cmake "${_cmake_qt[@]}"
+    cmake --build build_qt
+  fi
 
-  echo "Building with Qt GUI..."
-  local _cmake_qt=(
-    -B build_qt
-    -DENABLE_QT_GUI=ON
-    "${_cmake_options[@]}"
-  )
+  if [[ "${_build_sdl::1}" == "t" ]]; then
+    echo "Building SDL CLI..."
+    local _cmake_sdl=(
+      -B build_sdl
+      -DENABLE_QT_GUI=OFF
+      "${_cmake_options[@]}"
+    )
 
-  cmake "${_cmake_qt[@]}"
-  cmake --build build_qt
+    cmake "${_cmake_sdl[@]}"
+    cmake --build build_sdl
+  fi
 )
 
 package() {
-  install -Dm755 build_sdl/shadps4 "$pkgdir/usr/bin/${_pkgname}-sdl"
+  if [[ "${_build_qt::1}" == "t" ]]; then
+    install -Dm755 build_qt/shadps4 "$pkgdir/usr/bin/$_pkgname"
+  fi
 
-  install -Dm755 build_qt/shadps4 "$pkgdir/usr/bin/$_pkgname"
+  if [[ "${_build_sdl::1}" == "t" ]]; then
+    install -Dm755 build_sdl/shadps4 "$pkgdir/usr/bin/${_pkgname}-sdl"
+  fi
 
   install -Dm644 "$_pkgsrc/src/images/shadps4.svg" "$pkgdir/usr/share/pixmaps/$_pkgname.svg"
 
