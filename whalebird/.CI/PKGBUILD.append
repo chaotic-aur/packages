@@ -1,7 +1,9 @@
 pkgdesc="${pkgdesc% }"
 url="https://github.com/h3poteto/whalebird-desktop"
 license=('GPL-3.0-only')
+
 depends=(${depends[0]//>=*/})
+makedepends+=('npm')
 
 unset provides
 unset conflicts
