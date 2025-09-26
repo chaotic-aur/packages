@@ -14,32 +14,34 @@ _securityver=2
 _updatever=9
 pkgver=${_majorver}.${_minorver}.${_securityver}.u${_updatever}
 # pkgver=${_majorver}.u${_updatever}
-pkgrel=1
+pkgrel=2
 _git_tag=jdk-${_majorver}.${_minorver}.${_securityver}+${_updatever}
 # _git_tag=jdk-${_majorver}+${_updatever}
 arch=('x86_64')
 url='https://openjdk.java.net/'
 license=('LicenseRef-Java')
 makedepends=('java-environment=21' 'cpio' 'unzip' 'zip' 'libelf' 'libcups' 'libx11'
-             'libxrender' 'libxtst' 'libxt' 'libxext' 'libxrandr' 'alsa-lib' 'pandoc'
-             'graphviz' 'freetype2' 'libjpeg-turbo' 'giflib' 'libpng' 'lcms2'
-             'libnet' 'bash' 'harfbuzz' 'gcc-libs' 'glibc')
+  'libxrender' 'libxtst' 'libxt' 'libxext' 'libxrandr' 'alsa-lib' 'pandoc'
+  'graphviz' 'freetype2' 'libjpeg-turbo' 'giflib' 'libpng' 'lcms2'
+  'libnet' 'bash' 'harfbuzz' 'gcc-libs' 'glibc')
 optdepends=(
   'gvfs: open links e.g. hyperlinks'
 )
 source=(https://github.com/openjdk/jdk${_majorver}u/archive/${_git_tag}.tar.gz
-        freedesktop-java.desktop
-        freedesktop-jconsole.desktop
-        freedesktop-jshell.desktop)
+  freedesktop-java.desktop
+  freedesktop-jconsole.desktop
+  freedesktop-jshell.desktop
+  'https://github.com/openjdk/jdk25u/commit/38bb8adf4f632b08af15f2d8530b35f05f86a020.patch')
 sha256sums=('f3bc990ed34dd0c9a1467640a9c654df4375ff948e854038b913abec12be6179'
-            '228fb453e6c652baad71abf734430cda08c287cb8df935ad3ad6d2e9346c7fdf'
-            'ed9e43756f450ca01647c495070044276ee9fa7810eb90c99d7e2a29c4a61ef2'
-            '93697b752739c1f233cf98f3fa3b945fc775de4d40a31dd21afccda7d0c9d01e')
+  '228fb453e6c652baad71abf734430cda08c287cb8df935ad3ad6d2e9346c7fdf'
+  'ed9e43756f450ca01647c495070044276ee9fa7810eb90c99d7e2a29c4a61ef2'
+  '93697b752739c1f233cf98f3fa3b945fc775de4d40a31dd21afccda7d0c9d01e'
+  'a3698606cd871bd9a2b2fa1cd62eb18d27394ee536747334818502e21d41823c')
 options=(!lto)
 
 case "${CARCH}" in
-  x86_64) _JARCH='x86_64';;
-  i686)   _JARCH='x86';;
+  x86_64) _JARCH='x86_64' ;;
+  i686) _JARCH='x86' ;;
 esac
 
 _jvmdir=/usr/lib/jvm/java-${_majorver}-openjdk
@@ -47,13 +49,18 @@ _jdkdir=jdk${_majorver}u-${_git_tag//+/-}
 _imgdir=${_jdkdir}/build/linux-${_JARCH}-server-release/images
 
 _nonheadless=(lib/libawt_xawt.so
-              lib/libjawt.so
-              lib/libjsound.so
-              lib/libsplashscreen.so)
+  lib/libjawt.so
+  lib/libjsound.so
+  lib/libsplashscreen.so)
 
 _commondeps=('java-runtime-common>=3' 'ca-certificates-utils' 'nss' 'libjpeg-turbo' 'libjpeg.so'
-           'lcms2' 'liblcms2.so' 'libnet' 'freetype2' 'libfreetype.so' 'harfbuzz' 'libharfbuzz.so'
-           'glibc' 'gcc-libs')
+  'lcms2' 'liblcms2.so' 'libnet' 'freetype2' 'libfreetype.so' 'harfbuzz' 'libharfbuzz.so'
+  'glibc' 'gcc-libs')
+
+prepare() {
+  cd ${_jdkdir}
+  patch -p1 -i "${srcdir}/38bb8adf4f632b08af15f2d8530b35f05f86a020.patch"
+}
 
 build() {
   cd ${_jdkdir}
@@ -73,8 +80,8 @@ build() {
   local _LDFLAGS=${LDFLAGS}
   if [[ ${CARCH} = i686 ]]; then
     echo "Removing '-fno-plt' from CFLAGS and CXXFLAGS to prevent build fail with this architecture"
-    _CFLAGS=${CFLAGS/-fno-plt/}
-    _CXXFLAGS=${CXXFLAGS/-fno-plt/}
+    _CFLAGS=${_CFLAGS/-fno-plt/}
+    _CXXFLAGS=${_CXXFLAGS/-fno-plt/}
   fi
 
   # TODO: Should be rechecked for the next releases
@@ -82,8 +89,8 @@ build() {
   # /usr/bin/ld: /build/java-openjdk/src/jdk17u-jdk-17.0.3-2/build/linux-x86_64-server-release/hotspot/variant-server/libjvm/objs/zPhysicalMemory.o: in function `ZList<ZMemory>::~ZList()':
   # /build/java-openjdk/src/jdk17u-jdk-17.0.3-2/src/hotspot/share/gc/z/zList.hpp:54: undefined reference to `ZListNode<ZMemory>::~ZListNode()'
   # collect2: error: ld returned 1 exit status
-  _CFLAGS=${CFLAGS/-fexceptions/}
-  _CXXFLAGS=${CXXFLAGS/-fexceptions/}
+  _CFLAGS=${_CFLAGS/-fexceptions/}
+  _CXXFLAGS=${_CXXFLAGS/-fexceptions/}
 
   # CFLAGS, CXXFLAGS and LDFLAGS are ignored as shown by a warning
   # in the output of ./configure unless used like such:
@@ -100,7 +107,6 @@ build() {
   else
     jvm_features="zgc,shenandoahgc"
   fi
-
 
   bash configure \
     --with-version-build="${_updatever}" \
@@ -122,7 +128,7 @@ build() {
     --disable-warnings-as-errors \
     --with-vendor-name="Arch Linux" \
     ${NUM_PROC_OPT}
-    #--disable-javac-server
+  #--disable-javac-server
 
   make images legacy-jre-image docs
 
@@ -143,19 +149,19 @@ package_jre22-openjdk-headless() {
   provides=("java-runtime-headless=${_majorver}" "java-runtime-headless-openjdk=${_majorver}" "jre${_majorver}-openjdk-headless=${pkgver}-${pkgrel}")
   conflicts=("jdk-openjdk" "jre-openjdk")
   backup=(etc/${pkgbase}/logging.properties
-          etc/${pkgbase}/management/jmxremote.access
-          etc/${pkgbase}/management/jmxremote.password.template
-          etc/${pkgbase}/management/management.properties
-          etc/${pkgbase}/net.properties
-          etc/${pkgbase}/security/java.policy
-          etc/${pkgbase}/security/java.security
-          etc/${pkgbase}/security/policy/README.txt
-          etc/${pkgbase}/security/policy/limited/default_US_export.policy
-          etc/${pkgbase}/security/policy/limited/default_local.policy
-          etc/${pkgbase}/security/policy/limited/exempt_local.policy
-          etc/${pkgbase}/security/policy/unlimited/default_US_export.policy
-          etc/${pkgbase}/security/policy/unlimited/default_local.policy
-          etc/${pkgbase}/sound.properties)
+    etc/${pkgbase}/management/jmxremote.access
+    etc/${pkgbase}/management/jmxremote.password.template
+    etc/${pkgbase}/management/management.properties
+    etc/${pkgbase}/net.properties
+    etc/${pkgbase}/security/java.policy
+    etc/${pkgbase}/security/java.security
+    etc/${pkgbase}/security/policy/README.txt
+    etc/${pkgbase}/security/policy/limited/default_US_export.policy
+    etc/${pkgbase}/security/policy/limited/default_local.policy
+    etc/${pkgbase}/security/policy/limited/exempt_local.policy
+    etc/${pkgbase}/security/policy/unlimited/default_US_export.policy
+    etc/${pkgbase}/security/policy/unlimited/default_local.policy
+    etc/${pkgbase}/sound.properties)
   install=install_jre-openjdk-headless.sh
 
   cd ${_imgdir}/jre
@@ -197,24 +203,24 @@ package_jre22-openjdk() {
   pkgdesc="OpenJDK Java ${_majorver} full runtime environment"
   depends=("${_commondeps[@]}" 'giflib' 'libgif.so' 'libpng')
   optdepends=('alsa-lib: for basic sound support'
-              'gtk3: for the Gtk+ 3 look and feel - desktop usage')
+    'gtk3: for the Gtk+ 3 look and feel - desktop usage')
   provides=("java-runtime=${_majorver}" "java-runtime-openjdk=${_majorver}" "jre${_majorver}-openjdk=${pkgver}-${pkgrel}"
-            "java-runtime-headless=${_majorver}" "java-runtime-headless-openjdk=${_majorver}" "jre${_majorver}-openjdk-headless=${pkgver}-${pkgrel}")
+    "java-runtime-headless=${_majorver}" "java-runtime-headless-openjdk=${_majorver}" "jre${_majorver}-openjdk-headless=${pkgver}-${pkgrel}")
   conflicts=("jdk-openjdk" "jre-openjdk-headless")
   backup=(etc/${pkgbase}/logging.properties
-          etc/${pkgbase}/management/jmxremote.access
-          etc/${pkgbase}/management/jmxremote.password.template
-          etc/${pkgbase}/management/management.properties
-          etc/${pkgbase}/net.properties
-          etc/${pkgbase}/security/java.policy
-          etc/${pkgbase}/security/java.security
-          etc/${pkgbase}/security/policy/README.txt
-          etc/${pkgbase}/security/policy/limited/default_US_export.policy
-          etc/${pkgbase}/security/policy/limited/default_local.policy
-          etc/${pkgbase}/security/policy/limited/exempt_local.policy
-          etc/${pkgbase}/security/policy/unlimited/default_US_export.policy
-          etc/${pkgbase}/security/policy/unlimited/default_local.policy
-          etc/${pkgbase}/sound.properties)
+    etc/${pkgbase}/management/jmxremote.access
+    etc/${pkgbase}/management/jmxremote.password.template
+    etc/${pkgbase}/management/management.properties
+    etc/${pkgbase}/net.properties
+    etc/${pkgbase}/security/java.policy
+    etc/${pkgbase}/security/java.security
+    etc/${pkgbase}/security/policy/README.txt
+    etc/${pkgbase}/security/policy/limited/default_US_export.policy
+    etc/${pkgbase}/security/policy/limited/default_local.policy
+    etc/${pkgbase}/security/policy/limited/exempt_local.policy
+    etc/${pkgbase}/security/policy/unlimited/default_US_export.policy
+    etc/${pkgbase}/security/policy/unlimited/default_local.policy
+    etc/${pkgbase}/sound.properties)
   install=install_jre-openjdk.sh
 
   cd ${_imgdir}/jre
@@ -262,43 +268,42 @@ package_jre22-openjdk() {
 package_jdk22-openjdk() {
   pkgdesc="OpenJDK Java ${_majorver} development kit"
   depends=("${_commondeps[@]}" 'java-environment-common=3'
-           'hicolor-icon-theme' 'libelf' 'libgif.so' 'libpng'
-           'ca-certificates-utils' 'nss' 'libjpeg-turbo' 'libjpeg.so'
-           'lcms2' 'liblcms2.so' 'libnet' 'freetype2' 'libfreetype.so' 'harfbuzz'
-           'libharfbuzz.so')
+    'hicolor-icon-theme' 'libelf' 'libgif.so' 'libpng'
+    'ca-certificates-utils' 'nss' 'libjpeg-turbo' 'libjpeg.so'
+    'lcms2' 'liblcms2.so' 'libnet' 'freetype2' 'libfreetype.so' 'harfbuzz'
+    'libharfbuzz.so')
   optdepends=('java-rhino: for some JavaScript support'
-              'alsa-lib: for basic sound support'
-              'gtk3: for the Gtk+ 3 look and feel - desktop usage')
+    'alsa-lib: for basic sound support'
+    'gtk3: for the Gtk+ 3 look and feel - desktop usage')
   provides=("java-environment=${_majorver}" "java-environment-openjdk=${_majorver}" "jdk${_majorver}-openjdk=${pkgver}-${pkgrel}"
-            "java-runtime=${_majorver}" "java-runtime-openjdk=${_majorver}" "jre${_majorver}-openjdk=${pkgver}-${pkgrel}"
-            "java-runtime-headless=${_majorver}" "java-runtime-headless-openjdk=${_majorver}" "jre${_majorver}-openjdk-headless=${pkgver}-${pkgrel}")
+    "java-runtime=${_majorver}" "java-runtime-openjdk=${_majorver}" "jre${_majorver}-openjdk=${pkgver}-${pkgrel}"
+    "java-runtime-headless=${_majorver}" "java-runtime-headless-openjdk=${_majorver}" "jre${_majorver}-openjdk-headless=${pkgver}-${pkgrel}")
   conflicts=("jre-openjdk" "jre-openjdk-headless")
   backup=(etc/${pkgbase}/logging.properties
-          etc/${pkgbase}/management/jmxremote.access
-          etc/${pkgbase}/management/jmxremote.password.template
-          etc/${pkgbase}/management/management.properties
-          etc/${pkgbase}/net.properties
-          etc/${pkgbase}/security/java.policy
-          etc/${pkgbase}/security/java.security
-          etc/${pkgbase}/security/policy/README.txt
-          etc/${pkgbase}/security/policy/limited/default_US_export.policy
-          etc/${pkgbase}/security/policy/limited/default_local.policy
-          etc/${pkgbase}/security/policy/limited/exempt_local.policy
-          etc/${pkgbase}/security/policy/unlimited/default_US_export.policy
-          etc/${pkgbase}/security/policy/unlimited/default_local.policy
-          etc/${pkgbase}/sound.properties)
+    etc/${pkgbase}/management/jmxremote.access
+    etc/${pkgbase}/management/jmxremote.password.template
+    etc/${pkgbase}/management/management.properties
+    etc/${pkgbase}/net.properties
+    etc/${pkgbase}/security/java.policy
+    etc/${pkgbase}/security/java.security
+    etc/${pkgbase}/security/policy/README.txt
+    etc/${pkgbase}/security/policy/limited/default_US_export.policy
+    etc/${pkgbase}/security/policy/limited/default_local.policy
+    etc/${pkgbase}/security/policy/limited/exempt_local.policy
+    etc/${pkgbase}/security/policy/unlimited/default_US_export.policy
+    etc/${pkgbase}/security/policy/unlimited/default_local.policy
+    etc/${pkgbase}/sound.properties)
   install=install_jdk-openjdk.sh
 
   cd ${_imgdir}/jdk
 
   install -dm 755 "${pkgdir}${_jvmdir}"
 
-  cp -a bin demo include jmods lib release\
-    "${pkgdir}${_jvmdir}"
+  cp -a bin demo include jmods lib release "${pkgdir}${_jvmdir}"
 
   rm "${pkgdir}${_jvmdir}/lib/src.zip"
 
-    # Conf
+  # Conf
   install -dm 755 "${pkgdir}/etc"
   cp -r conf "${pkgdir}/etc/${pkgbase}"
   ln -s /etc/${pkgbase} "${pkgdir}/${_jvmdir}/conf"
