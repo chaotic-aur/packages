@@ -14,11 +14,9 @@ _update_package() {
 
   if (($(vercmp "${_NEW_VERSION:?}" "${_OLD_VERSION:?}") > 0)); then
     sed -E \
-      -e 's&^(pkgver)=.*$&\1='"${_NEW_VERSION}&" \
-      -e 's&^(pkgrel)=.*$&\1=1&' \
-      -i "PKGBUILD"
-
-    makepkg --printsrcinfo > .SRCINFO
+      -e 's&^(\s*pkgver\s*=\s*).*$&\1'"${_NEW_VERSION}&" \
+      -e 's&^(\s*pkgrel\s*=\s*).*$&\11&' \
+      -i "PKGBUILD" ".SRCINFO"
   fi
 }
 _update_package
