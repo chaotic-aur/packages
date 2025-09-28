@@ -1,7 +1,7 @@
 pkgbase = ayugram-desktop-git
 	pkgdesc = Desktop Telegram client with good customization and Ghost mode
-	pkgver = 5.16.3.r1.gf56b5ea
-	pkgrel = 1
+	pkgver = 5.16.4.r10.g5b7926c
+	pkgrel = 2
 	url = https://github.com/AyuGram/AyuGramDesktop
 	arch = x86_64
 	arch = aarch64
@@ -86,6 +86,8 @@ pkgbase = ayugram-desktop-git
 	source = telegrammessenger.tgcalls::git+https://github.com/TelegramMessenger/tgcalls.git
 	source = mnauw.cppgir::git+https://gitlab.com/mnauw/cppgir.git
 	source = martinmoene.expected-lite::git+https://github.com/martinmoene/expected-lite.git
+	source = 0001-glib2.86-354be0d.patch::https://gitlab.archlinux.org/archlinux/packaging/packages/telegram-desktop/-/raw/354be0d07b11404572577b40914f67adac3de49f/glib2.86.patch
+	source = 0002-ffmpeg-8-354be0d.patch::https://gitlab.archlinux.org/archlinux/packaging/packages/telegram-desktop/-/raw/354be0d07b11404572577b40914f67adac3de49f/0001-Fix-compatibility-with-ffmpeg-8.patch
 	sha256sums = SKIP
 	sha256sums = SKIP
 	sha256sums = SKIP
@@ -116,5 +118,7 @@ pkgbase = ayugram-desktop-git
 	sha256sums = SKIP
 	sha256sums = SKIP
 	sha256sums = SKIP
+	sha256sums = 57b855e701ed29da039431b2688082e6885c368e20dd38bbedffe1633e5efeda
+	sha256sums = d44a47b0dda36762090bbfcbb8e402d7308f3646d99a882b7d5fc3c18cc63540
 
 pkgname = ayugram-desktop-git

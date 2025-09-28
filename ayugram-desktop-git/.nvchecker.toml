@@ -1,4 +1,0 @@
-[ayugram-desktop-git]
-source = "git"
-git = "https://github.com/AyuGram/AyuGramDesktop.git"
-prefix = "v"
