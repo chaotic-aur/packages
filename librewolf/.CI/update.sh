@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
 
-_update_package() {
-  local _OLD_VERSION _NEW_VERSION _RESPONSE _SUM
-
-  eval "$(grep -Eo '^(url|pkgver|pkgrel)=\S+' PKGBUILD)"
+_update_package() (
+  eval "$(grep -Eo '^(url|pkgver|pkgrel|.*cksum:?)=\S+' PKGBUILD)"
   _OLD_VERSION="$pkgver-$pkgrel"
 
   _RESPONSE=$(curl -Ssf "$url/releases.atom")
@@ -27,8 +25,12 @@ _update_package() {
       -e 's&^(pkgrel)=.*$&\1='"${_NEW_VERSION##*-}&" \
       -i "PKGBUILD"
 
-    makepkg --printsrcinfo > .SRCINFO
+    sed -E \
+      -e "s@${_cksum}@${_SUM##*-}@" \
+      -e 's@^(\s*pkgver\s*=\s*).*$@\1'"${_NEW_VERSION%%-*}@" \
+      -e 's@^(\s*pkgrel\s*=\s*).*$@\1'"${_NEW_VERSION##*-}@" \
+      -i ".SRCINFO"
   fi
-}
+)
 _update_package
 unset -f _update_package
