@@ -1,7 +1,0 @@
-(
-  # cleanup cache
-  cd "$SRCDEST"
-  for i in *; do
-    [[ -e "$i" && ! "$i" == "$_pkgsrc" ]] && rm -rf "$i"
-  done
-)
