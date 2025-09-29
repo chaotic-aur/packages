@@ -1,16 +1,8 @@
 # Maintainer: aur.chaotic.cx
 
-## options
-if [ -z "$_srcinfo" ] && [ -z "$_pkgver" ]; then
-  : ${_autoupdate:=true}
-fi
-
-: ${_fvm_version:=3.24.3}
-
-## basic info
 _pkgname="nyrna"
 pkgname="$_pkgname"
-pkgver=2.24.0
+pkgver=2.25.0
 pkgrel=1
 pkgdesc='Suspend games and applications at any time and resume whenever you wish'
 url="https://github.com/Merrit/nyrna"
@@ -35,12 +27,10 @@ makedepends=(
   'ninja'
 )
 
-_source_main() {
-  _pkgsrc="$_pkgname-$_pkgver"
-  _pkgext="tar.gz"
-  source=("$_pkgsrc.$_pkgext::https://github.com/Merrit/nyrna/archive/refs/tags/v$_pkgver.$_pkgext")
-  sha256sums=('SKIP')
-}
+_pkgsrc="$_pkgname-$pkgver"
+_pkgext="tar.gz"
+source=("$_pkgsrc.$_pkgext::https://github.com/Merrit/nyrna/archive/refs/tags/v$pkgver.$_pkgext")
+sha256sums=('SKIP')
 
 prepare() {
   sed -i 's/\-Werror//g' "$_pkgsrc/linux/CMakeLists.txt"
@@ -50,8 +40,11 @@ build() {
   export FVM_CACHE_PATH="$SRCDEST/fvm-cache"
 
   cd "$_pkgsrc"
-  fvm install $_fvm_version
-  fvm global $_fvm_version
+  local _ver_series=$(grep -Pom1 '^\s*flutter: "[^0-9]*\K[0-9]+\.[0-9]+' pubspec.lock)
+  local _ver_latest=$(fvm releases | grep -Po "${_ver_series//./\.}\.[0-9]+" | tail -1)
+
+  fvm install "${_ver_latest}"
+  fvm use "${_ver_latest}" --force
 
   fvm flutter --disable-analytics
   #fvm flutter pub upgrade --major-versions
@@ -73,32 +66,3 @@ package() {
   install -Dm644 "$srcdir/$pkgname-$pkgver/packaging/linux/codes.merritt.Nyrna.desktop" "$pkgdir/usr/share/applications/codes.merritt.Nyrna.desktop"
   install -Dm644 "$srcdir/$pkgname-$pkgver/assets/icons/codes.merritt.Nyrna.png" "$pkgdir/usr/share/pixmaps/codes.merritt.Nyrna.png"
 }
-
-_update_version() {
-  : ${_pkgver:=${pkgver%%.r*}}
-
-  if [[ "${_autoupdate::1}" != "t" ]]; then
-    return
-  fi
-
-  local _response=$(curl -Ssf "$url/releases.atom")
-  local _tag=$(
-    printf '%s' "$_response" \
-      | grep '"https://.*/releases/tag/.*"' \
-      | sed -E 's@^.*/releases/tag/(.*)".*$@\1@' \
-      | grep -Ev '[a-z]{2}' | sort -rV | head -1
-  )
-  local _pkgver_new="${_tag#v}"
-
-  # update _pkgver
-  if [ "$_pkgver" != "${_pkgver_new:?}" ]; then
-    _pkgver="${_pkgver_new:?}"
-  fi
-
-  pkgver() {
-    echo "${_pkgver:?}"
-  }
-}
-
-_update_version
-_source_main
