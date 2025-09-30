@@ -1,5 +1,5 @@
 # Maintainer: xiota
-# Maintainer: alba4k <blaskoazzolaaaron@gmail.com>
+# Maintainer: alba4k <blaskoazzolaaaron[at]gmail.com>
 # Contributor: ThatOneCalculator <kainoa@t1c.dev>
 
 _pkgname="hyprpaper"

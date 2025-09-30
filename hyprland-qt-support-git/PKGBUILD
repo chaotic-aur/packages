@@ -1,4 +1,4 @@
-# Maintainer: alba4k <blaskoazzolaaaron@gmail.com>
+# Maintainer: alba4k <blaskoazzolaaaron[at]gmail.com>
 
 _pkgname="hyprland-qt-support"
 pkgname="$_pkgname-git"

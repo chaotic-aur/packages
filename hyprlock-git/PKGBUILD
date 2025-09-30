@@ -1,8 +1,8 @@
-# Maintainer: alba4k <blaskoazzolaaaron@gmail.com>
+# Maintainer: alba4k <blaskoazzolaaaron[at]gmail.com>
 
 _pkgname="hyprlock"
 pkgname="$_pkgname-git"
-pkgver=0.8.0.r1.g71d35aa
+pkgver=0.9.1.r1.g347e05a
 pkgrel=1
 pkgdesc="Hyprland's GPU-accelerated screen locking utility"
 arch=('x86_64' 'aarch64')

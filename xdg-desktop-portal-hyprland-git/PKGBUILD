@@ -1,4 +1,4 @@
-# Maintainer: alba4k <blaskoazzolaaaron@gmail.com>
+# Maintainer: alba4k <blaskoazzolaaaron[at]gmail.com>
 # Contributor: ThatOneCalculator <kainoa at t1c dot dev>
 
 _pkgname="xdg-desktop-portal-hyprland"

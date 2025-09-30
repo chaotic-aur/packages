@@ -1,5 +1,5 @@
 # Maintainer: imnotpolar
-# Maintainer: alba4k <blaskoazzolaaaron@gmail.com>
+# Maintainer: alba4k <blaskoazzolaaaron[at]gmail.com>
 # Contributor: éclairevoyant
 # Contributor: ThatOneCalculator <kainoa at t1c dot dev>
 

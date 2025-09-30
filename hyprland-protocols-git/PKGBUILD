@@ -1,5 +1,5 @@
 # Maintainer: TheK0tYaRa
-# Maintainer: alba4k <blaskoazzolaaaron@gmail.com>
+# Maintainer: alba4k <blaskoazzolaaaron[at]gmail.com>
 # Inspired by: FabioLolix, éclairevoyant, ThatOneCalculator <kainoa at t1c dot dev>
 
 _pkgname="hyprland-protocols"

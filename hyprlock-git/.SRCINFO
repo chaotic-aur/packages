@@ -1,6 +1,6 @@
 pkgbase = hyprlock-git
 	pkgdesc = Hyprland's GPU-accelerated screen locking utility
-	pkgver = 0.8.0.r1.g71d35aa
+	pkgver = 0.9.1.r1.g347e05a
 	pkgrel = 1
 	url = https://github.com/hyprwm/hyprlock
 	arch = x86_64
@@ -22,7 +22,7 @@ pkgbase = hyprlock-git
 	depends = pam
 	depends = pango
 	depends = wayland
-	provides = hyprlock=0.8.0
+	provides = hyprlock=0.9.1
 	conflicts = hyprlock
 	backup = etc/pam.d/hyprlock
 	source = hyprlock::git+https://github.com/hyprwm/hyprlock.git

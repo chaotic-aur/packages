@@ -1,5 +1,5 @@
 # Maintainer: zjeffer
-# Maintainer: alba4k <blaskoazzolaaaron@gmail.com>
+# Maintainer: alba4k <blaskoazzolaaaron[at]gmail.com>
 
 _pkgname="hyprlang"
 pkgname="$_pkgname-git"

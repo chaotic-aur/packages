@@ -1,5 +1,5 @@
 # Maintainer: dawfukfr <dawfukfr@gmail.com>
-# Maintainer: alba4k <blaskoazzolaaaron@gmail.com>
+# Maintainer: alba4k <blaskoazzolaaaron[at]gmail.com>
 # Contributor: Caleb Maclennan <caleb@alerque.com>
 
 _pkgname="aquamarine"

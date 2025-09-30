@@ -1,4 +1,4 @@
-# Maintainer: alba4k <blaskoazzolaaaron@gmail.com>
+# Maintainer: alba4k <blaskoazzolaaaron[at]gmail.com>
 
 _pkgname="hyprutils"
 pkgname="$_pkgname-git"
