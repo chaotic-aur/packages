@@ -1,4 +1,0 @@
-[zenmap]
-source = "pacman"
-pacman = "nmap"
-strip_release = "true"
