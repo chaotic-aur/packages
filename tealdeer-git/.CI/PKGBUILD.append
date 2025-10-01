@@ -1,0 +1,26 @@
+license=('Apache-2.0' 'MIT')
+
+provides+=("$_name")
+conflicts+=("$_name")
+
+options=('!lto' '!emptydirs')
+
+_pkgsrc="$_name"
+
+eval "package() {
+  cd \"\$_pkgsrc\"
+  depends+=('gcc-libs')
+  $(declare -f package  | tail -n +4)"
+
+pkgver() {
+  cd "$_pkgsrc"
+  git describe --long --tags --abbrev=7 --exclude='*[a-zA-Z][a-zA-Z]*' \
+    | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
+}
+
+build() {
+  cd "$_pkgsrc"
+  local _pkgver=$(git describe --long --tags --abbrev=7 --exclude='*[a-zA-Z][a-zA-Z]*' | sed -E 's/^[^0-9]*//')
+  sed -E 's/^(version) = ".*"/\1 = "'${_pkgver}'"/' -i Cargo.toml
+  cargo build --release
+}
