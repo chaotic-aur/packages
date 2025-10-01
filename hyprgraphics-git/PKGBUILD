@@ -16,6 +16,7 @@ depends=(
   libjpeg
   libjxl
   libpng
+  librsvg
   libwebp
   pango
   pixman
