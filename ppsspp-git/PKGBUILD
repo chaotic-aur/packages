@@ -1,27 +1,9 @@
 # Maintainer: aur.chaotic.cx
 
-## links:
-# https://www.ppsspp.org/
-# https://github.com/hrydgard/ppsspp
-
-## options
-: ${_use_clang:=false}
-
-: ${_build_ffmpeg:=false}
-
-: ${_build_level:=1}
-: ${_build_git:=true}
-
-unset _pkgtype
-[[ "${_build_level::1}" == "2" ]] && _pkgtype+="-x64v2"
-[[ "${_build_level::1}" == "3" ]] && _pkgtype+="-x64v3"
-[[ "${_build_level::1}" == "4" ]] && _pkgtype+="-x64v4"
-[[ "${_build_git::1}" == "t" ]] && _pkgtype+='-git'
-
 _pkgname="ppsspp"
-pkgname="${_pkgname}${_pkgtype:-}"
-pkgver=1.18.1.r1849.gc26e9e1
-pkgrel=1
+pkgname="${_pkgname}-git"
+pkgver=1.19.3.r733.g2f4b1ad
+pkgrel=2
 pkgdesc='PSP emulator written in C++'
 url="https://github.com/hrydgard/ppsspp"
 license=('GPL-2.0-or-later')
@@ -29,23 +11,18 @@ arch=('x86_64' 'x86_64_v2' 'x86_64_v3' 'x86_64_v4')
 
 depends=(
   glew
+  libglvnd
   libzip
   sdl2
   sdl2_ttf
   snappy
 )
 makedepends=(
-  clang
   cmake
   git
-  lld
   ninja
   python
 )
-
-if [ "${_build_ffmpeg::1}" != "t" ]; then
-  depends+=('ffmpeg')
-fi
 
 provides=(
   "ppsspp=${pkgver%%.r*}"
@@ -56,7 +33,7 @@ conflicts=(
   "ppsspp-assets"
 )
 
-options=(!lto)
+options=('!lto')
 
 _pkgsrc="ppsspp"
 source=("git+https://github.com/hrydgard/ppsspp.git")
@@ -71,100 +48,56 @@ pkgver() {
 prepare() {
   cd "$_pkgsrc"
 
-  if [ "${_build_ffmpeg::1}" != "t" ]; then
-    git rm -r ffmpeg
-  fi
-
-  git rm -r ext/zstd
   git rm -r SDL/macOS
   git rm -r pspautotests
 
   git submodule update --init --recursive --depth=1
-
-  sed -e '1i #include <cstdint>' -i ext/glslang/SPIRV/SpvBuilder.h
 }
 
 build() {
-  if [[ "${_use_clang::1}" == "t" ]]; then
-    export CC CXX LDFLAGS
-    CC=clang
-    CXX=clang++
-
-    local _ldflags=(${LDFLAGS})
-    LDFLAGS="${_ldflags[@]//*fuse-ld*/} -fuse-ld=lld"
-  fi
-
-  if [[ ${_build_level::1} =~ ^[2-4]$ ]]; then
-    export CFLAGS CXXFLAGS
-    local _cflags _cxxflags
-    _cflags=(
-      -march=x86-64-v${_build_level::1} -O3
-      $(sed -E -e 's&-(march|mtune)=\S+\b&&g' -e 's&-O[0-9]+\b&&g' <<< "${CFLAGS}")
-    )
-    CFLAGS="${_cflags[@]}"
-
-    _cxxflags=(
-      -march=x86-64-v${_build_level::1} -O3
-      $(sed -E -e 's&-(march|mtune)=\S+\b&&g' -e 's&-O[0-9]+\b&&g' <<< "${CXXFLAGS}")
-    )
-    CXXFLAGS="${_cxxflags[@]}"
-  fi
-
   local _cmake_options=(
+    -B build
     -S "$_pkgsrc"
     -G Ninja
     -DCMAKE_BUILD_TYPE=None
     -DCMAKE_SKIP_RPATH=ON
+    -DHEADLESS=OFF
     -DOpenGL_GL_PREFERENCE=GLVND
-    -DUSE_SYSTEM_MINIUPNPC=OFF
+    -DUSE_SYSTEM_FFMPEG=OFF
+    -DUSE_SYSTEM_LIBPNG=ON
+    -DUSE_SYSTEM_LIBSDL2=ON
     -DUSE_SYSTEM_LIBZIP=ON
+    -DUSE_SYSTEM_MINIUPNPC=OFF
     -DUSE_SYSTEM_SNAPPY=ON
     -DUSE_SYSTEM_ZSTD=ON
+    -DUSING_QT_UI=OFF
+    -DUNITTEST=OFF
     -DBUILD_TESTING=OFF
     -Wno-dev
   )
 
-  if [[ "${_build_ffmpeg::1}" == "t" ]]; then
-    # Rebuild ffmpeg locally
-    (
-      cd ppsspp/ffmpeg
-      ./linux_x86-64.sh
-    )
-    _cmake_options+=(-DUSE_SYSTEM_FFMPEG=OFF)
-  else
-    _cmake_options+=(-DUSE_SYSTEM_FFMPEG=ON)
-  fi
-
-  local _cmake_sdl=(
-    -B build-sdl
-    -DHEADLESS=ON
-    -DUSING_QT_UI=OFF
-  )
-
-  cmake "${_cmake_options[@]}" "${_cmake_sdl[@]}"
-  cmake --build build-sdl
+  cmake "${_cmake_options[@]}"
+  cmake --build build
 }
 
 package() {
-  local _assets="build-sdl"
+  local _assets="build"
   install -Dm755 "$_assets/PPSSPPSDL" -t "$pkgdir/usr/bin/"
-  install -Dm755 "$_assets/PPSSPPHeadless" -t "$pkgdir/usr/bin/"
 
   ln -sf PPSSPPSDL "$pkgdir/usr/bin/ppsspp-sdl"
-  ln -sf PPSSPPHeadless "$pkgdir/usr/bin/ppsspp-headless"
 
   mkdir -pm755 "$pkgdir/usr/share/ppsspp"
   cp -a "$_assets/assets" "$pkgdir/usr/share/ppsspp/"
 
-  install -Dm644 ppsspp/icons/icon-512.svg "$pkgdir/usr/share/pixmaps/ppsspp.svg"
+  install -Dm644 ppsspp/icons/icon-512.svg "$pkgdir/usr/share/pixmaps/$_pkgname.svg"
 
   install -Dm644 /dev/stdin "$pkgdir/usr/share/applications/ppsspp-sdl.desktop" << END
 [Desktop Entry]
 Type=Application
-Name=PPSSPP (SDL)
+Name=PPSSPP
 Comment=$pkgdesc
 Exec=PPSSPPSDL %f
-Icon=ppsspp
+Icon=$_pkgname
 Terminal=false
 StartupNotify=true
 Categories=Game;

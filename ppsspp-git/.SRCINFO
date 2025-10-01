@@ -1,27 +1,25 @@
 pkgbase = ppsspp-git
 	pkgdesc = PSP emulator written in C++
-	pkgver = 1.18.1.r1849.gc26e9e1
-	pkgrel = 1
+	pkgver = 1.19.3.r733.g2f4b1ad
+	pkgrel = 2
 	url = https://github.com/hrydgard/ppsspp
 	arch = x86_64
 	arch = x86_64_v2
 	arch = x86_64_v3
 	arch = x86_64_v4
 	license = GPL-2.0-or-later
-	makedepends = clang
 	makedepends = cmake
 	makedepends = git
-	makedepends = lld
 	makedepends = ninja
 	makedepends = python
 	depends = glew
+	depends = libglvnd
 	depends = libzip
 	depends = sdl2
 	depends = sdl2_ttf
 	depends = snappy
-	depends = ffmpeg
-	provides = ppsspp=1.18.1
-	provides = ppsspp-assets=1.18.1
+	provides = ppsspp=1.19.3
+	provides = ppsspp-assets=1.19.3
 	conflicts = ppsspp
 	conflicts = ppsspp-assets
 	options = !lto
