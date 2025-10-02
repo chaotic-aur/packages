@@ -1,0 +1,67 @@
+# Maintainer: aur.chaotic.cx
+
+_pkgname="kissfft"
+pkgname="$_pkgname-git"
+pkgver=131.1.0.r16.g7bce415
+pkgrel=1
+pkgdesc='A Fast Fourier Transform (FFT) library'
+url='https://github.com/mborgerding/kissfft'
+license=('BSD-3-Clause')
+arch=('x86_64')
+
+depends=(
+  'gcc-libs'
+)
+makedepends=(
+  'cmake'
+  'fftw'
+  'git'
+  'libpng'
+  'ninja'
+  'python'
+)
+
+provides=("$_pkgname")
+conflicts=("$_pkgname")
+
+_pkgsrc="$_pkgname"
+source=("$_pkgsrc"::"git+$url.git")
+sha256sums=('SKIP')
+
+pkgver() {
+  cd "$_pkgsrc"
+  git describe --long --tags --abbrev=7 --exclude='*[a-zA-Z][a-zA-Z]*' \
+    | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
+}
+
+build() {
+  local i j _cmake_options
+  for i in ON OFF; do
+    for j in float double int16_t int32_t simd; do
+      _cmake_options=(
+        -B build
+        -S "$_pkgsrc"
+        -G Ninja
+        -DCMAKE_BUILD_TYPE=None
+        -DCMAKE_INSTALL_PREFIX='/usr'
+        -DKISSFFT_OPENMP=$i
+        -DKISSFFT_DATATYPE=$j
+        -DKISSFFT_STATIC=OFF
+        -DKISSFFT_TEST=OFF
+        -DKISSFFT_TOOLS=OFF
+        -DKISSFFT_USE_ALLOCA=OFF
+        -Wno-dev
+      )
+
+      cmake "${_cmake_options[@]}"
+      cmake --build build
+      DESTDIR="fakeinstall" cmake --install build
+      mv build "build-$j"
+    done
+  done
+}
+
+package() {
+  mv fakeinstall/* "$pkgdir/"
+  install -Dm644 "$_pkgsrc/COPYING" "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+}
