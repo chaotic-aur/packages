@@ -1,8 +1,8 @@
 # Maintainer: TNE <tne [at) garudalinux org>
 
 pkgname=sddm-theme-sweet-git
-pkgver=r1.4d7516c
-pkgrel=1
+pkgver=r2.a283203
+pkgrel=2
 pkgdesc="Sweet Qt6/plasma6 SDDM theme"
 arch=('any')
 url="https://gitlab.com/garuda-linux/themes-and-settings/artwork/sddm-sweet"
@@ -18,7 +18,7 @@ pkgver() {
 
 package() {
   mkdir -p $pkgdir/usr/share/sddm/themes
-  mv $srcdir/sddm-sweet/Sweet $pkgdir/usr/share/sddm/themes/Sweet
+  mv $srcdir/sddm-sweet/Sweet $pkgdir/usr/share/sddm/themes/Sweet6
 
   depends=('kvantum'
                      'candy-icons-git'
