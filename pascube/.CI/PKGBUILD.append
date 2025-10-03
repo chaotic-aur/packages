@@ -1,0 +1,19 @@
+depends+=('hicolor-icon-theme')
+makedepends+=('xmlstarlet')
+
+_pkgsrc="$_srcdir"
+prepare() {
+  # modify compiler options
+  local _packets=($(find -type f -name "*.lp[ik]"))
+  for i in ${_packets[@]}; do
+    xmlstarlet ed -L \
+      -d "/CONFIG/CompilerOptions/Other" \
+      -s "/CONFIG/CompilerOptions" -t elem -n Other -v "" \
+      -s "/CONFIG/CompilerOptions/Other" -t elem -n CustomOptions -v "" \
+      -i "/CONFIG/CompilerOptions/Other/CustomOptions" -t attr -n Value -v "-O3 -Sa -CX -XX -k--sort-common -k--as-needed -k-z -krelro -k-z -know" \
+      "$i"
+  done
+
+  # make build directory
+  mkdir -p "$_pkgsrc/build"  
+}
