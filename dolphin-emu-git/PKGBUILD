@@ -4,8 +4,8 @@
 
 _pkgname="dolphin-emu"
 pkgname="$_pkgname-git"
-pkgver=2509.r92.ge1c7734
-pkgrel=1
+pkgver=2509.r119.g72f854d
+pkgrel=2
 pkgdesc='A Gamecube and Wii emulator'
 url="https://github.com/dolphin-emu/dolphin"
 license=('GPL-2.0-or-later')
@@ -15,14 +15,17 @@ depends=(
   'alsa-lib'
   'bluez-libs'
   'bzip2'
-  'ffmpeg'
   'hidapi'
+  'libavcodec.so'  # ffmpeg
+  'libavformat.so' # ffmpeg
+  'libavutil.so'   # ffmpeg
   'libevdev'
   'libfmt.so'
   'libgl'
   'liblzma.so'
   'libpulse'
   'libspng'
+  'libswscale.so' # ffmpeg
   'libudev.so'
   'libusb'
   'libx11'
