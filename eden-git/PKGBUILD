@@ -2,8 +2,8 @@
 
 _pkgname="eden"
 pkgname="$_pkgname-git"
-pkgver=0.0.2.r457.g0201669
-pkgrel=1
+pkgver=0.0.2.r491.g83730cd
+pkgrel=2
 pkgdesc="Yet another emulator fork"
 url="https://git.eden-emu.dev/eden-emu/eden"
 license=('GPL-3.0-or-later')
@@ -11,9 +11,12 @@ arch=('x86_64')
 
 depends=(
   'enet'
-  'libfmt.so'
+  'libfmt.so' # fmt
   'mbedtls'
   'qt6-webengine'
+  'libavcodec.so' # ffmpeg
+  'libavutil.so'  # ffmpeg
+  'libopus.so'    # opus
 )
 makedepends=(
   'boost'
