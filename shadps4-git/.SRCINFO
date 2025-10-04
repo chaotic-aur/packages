@@ -1,12 +1,9 @@
 pkgbase = shadps4-git
 	pkgdesc = PlayStation 4 emulator
-	pkgver = 0.11.0.r19.g98ceb6e
-	pkgrel = 1
+	pkgver = 0.11.0.r47.g5fedf9d
+	pkgrel = 2
 	url = https://github.com/shadps4-emu/shadPS4
 	arch = x86_64
-	arch = x86_64_v2
-	arch = x86_64_v3
-	arch = x86_64_v4
 	license = GPL-2.0-or-later
 	makedepends = boost
 	makedepends = cmake
