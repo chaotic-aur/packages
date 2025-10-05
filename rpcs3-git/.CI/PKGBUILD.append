@@ -1,6 +1,0 @@
-eval _orig_"$(declare -f package)"
-
-package() {
-  replaces=('rpcs3-avx-git')
-  _orig_package
-}

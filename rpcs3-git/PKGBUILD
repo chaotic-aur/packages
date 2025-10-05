@@ -2,7 +2,7 @@
 
 _pkgname="rpcs3"
 pkgname="$_pkgname-git"
-pkgver=0.0.36.r223.g64a3e50
+pkgver=0.0.38.r8.g48bf30a
 pkgrel=1
 pkgdesc="PlayStation 3 emulator"
 url="https://github.com/RPCS3/rpcs3"
@@ -10,9 +10,13 @@ license=('GPL-2.0-only')
 arch=('x86_64')
 
 depends=(
-  'ffmpeg'
   'flatbuffers'
   'glew'
+  'libavcodec.so'    # ffmpeg
+  'libavformat.so'   # ffmpeg
+  'libavutil.so'     # ffmpeg
+  'libswresample.so' # ffmpeg
+  'libswscale.so'    # ffmpeg
   'openal'
   'opencv'
   'pugixml'
@@ -25,6 +29,7 @@ makedepends=(
   'clang'
   'cmake'
   'git'
+  'glslang'
   'lld'
   'llvm'
   'ninja'
@@ -44,8 +49,14 @@ conflicts=("$_pkgname")
 options=('!lto')
 
 _pkgsrc="$_pkgname"
-source=("$_pkgsrc"::"git+https://github.com/RPCS3/rpcs3.git")
-sha256sums=('SKIP')
+source=(
+  "$_pkgsrc"::"git+https://github.com/RPCS3/rpcs3.git"
+  "0001-fix-ffmpeg-8.0.patch"
+)
+sha256sums=(
+  'SKIP'
+  'SKIP'
+)
 
 prepare() {
   cd "$_pkgsrc"
@@ -77,12 +88,15 @@ prepare() {
     -i "rpcs3/Emu/Cell/Modules/cellMic.cpp" \
     "rpcs3/Emu/Cell/Modules/cellMic.h" \
     "rpcs3/rpcs3qt/microphone_creator.cpp"
+
+  # based on PR17017
+  patch -Np1 -F100 -i ../0001-fix-ffmpeg-8.0.patch
 }
 
 pkgver() {
   cd "$_pkgsrc"
   local _tag _version _revision _hash
-  _tag=$(git tag -l 'v[0-9]*' | grep -Ev '[A-Za-z][A-Za-z]' | sort -rV | head -1)
+  _tag=$(git tag -l 'v[0-9].[0-9].[0-9][0-9]' | sort -rV | head -1)
   _version="${_tag#v}"
   _revision=$(git rev-list --count --cherry-pick "$_tag"...HEAD)
   _hash=$(git rev-parse --short=7 HEAD)
@@ -90,29 +104,32 @@ pkgver() {
 }
 
 build() (
-  export CMAKE_POLICY_VERSION_MINIMUM=3.5
-
   local _cmake_options=(
     -B build
     -S "$_pkgsrc"
     -G Ninja
     -DCMAKE_BUILD_TYPE=None
     -DCMAKE_INSTALL_PREFIX='/usr'
-    -DUSE_NATIVE_INSTRUCTIONS=OFF
+    -DBUILD_TESTING=OFF
+    -Wno-dev
+
     -DBUILD_LLVM=OFF
+    -DUSE_NATIVE_INSTRUCTIONS=OFF
+    -DUSE_SANITIZERS=OFF # cubeb
     -DUSE_SDL=ON
+
+    -DUSE_SYSTEM_CUBEB=OFF
     -DUSE_SYSTEM_CURL=ON
     -DUSE_SYSTEM_FFMPEG=ON
     -DUSE_SYSTEM_FLATBUFFERS=ON
+    -DUSE_SYSTEM_GLSLANG=ON
     -DUSE_SYSTEM_LIBPNG=ON
     -DUSE_SYSTEM_OPENCV=ON
     -DUSE_SYSTEM_PUGIXML=ON
     -DUSE_SYSTEM_SDL=ON
     -DUSE_SYSTEM_WOLFSSL=OFF
     -DUSE_SYSTEM_ZLIB=ON
-    -DUSE_SANITIZERS=OFF # cubeb
-    -DBUILD_TESTING=OFF
-    -Wno-dev
+    -DUSE_SYSTEM_ZSTD=ON
   )
 
   cmake "${_cmake_options[@]}"
