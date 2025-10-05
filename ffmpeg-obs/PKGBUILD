@@ -52,7 +52,7 @@ fi
 
 pkgname=ffmpeg-obs
 pkgver=8.0
-pkgrel=1
+pkgrel=3
 pkgdesc='Complete solution to record, convert and stream audio and video with fixes for OBS Studio. And various options in the PKGBUILD'
 arch=('x86_64' 'aarch64')
 url=https://ffmpeg.org/
@@ -67,9 +67,9 @@ _libjxlver=0.11.0
 _libplacebover=7.351
 _libristver=0.2.7
 _libtheoraver=1.2
-_libvpxver=1.15
+_libvpxver=1.15.2
 _libxml2ver=2.14
-_rav1ever=0.7.1
+_rav1ever=0.8.1
 _rubberbandver=4
 _srtver=1.5
 _svtav1ver=3
@@ -453,8 +453,8 @@ prepare() {
   if [[ $FFMPEG_OBS_SVT == 'ON' ]]; then
     rm -f libavcodec/libsvt_{hevc,vp9}.c
     patch -Np1 -i "${srcdir}/010-ffmpeg-add-svt-hevc.patch"
-    patch -Np1 -i "${srcdir}/030-ffmpeg-add-svt-hevc-docs-g${_svt_hevc_ver:0:7}.patch"
-    patch -Np1 -i "${srcdir}/031-ffmpeg-add-svt-vp9.patch"
+    patch -Np1 -i "${srcdir}/020-ffmpeg-add-svt-hevc-docs-g${_svt_hevc_ver:0:7}.patch"
+    patch -Np1 -i "${srcdir}/030-ffmpeg-add-svt-vp9.patch"
   fi
 
   if [[ $FFMPEG_OBS_CUDA == 'ON' ]]; then
@@ -487,6 +487,7 @@ prepare() {
   fi
 
   if [[ $FFMPEG_OBS_FULL == 'ON' ]]; then
+    patch -d "${srcdir}/whisper.cpp-${_whispercpp_ver}"-Np1 -i "${srcdir}/060-ffmpeg-whisper.cpp-fix-pkgconfig.patch"
     sed -i 's|in->pts, 0|in->pts|g' libavcodec/lcevcdec.c libavfilter/vf_lcevc.c
   fi
 }
@@ -503,7 +504,7 @@ build() {
       -DWHISPER_BUILD_EXAMPLES:BOOL='OFF' \
       -DWHISPER_BUILD_TESTS:BOOL='OFF' \
       -Wno-dev
-    + cmake --build build/whisper.cpp --target install
+    cmake --build build/whisper.cpp --target install
   fi
 
   cd ffmpeg-src
