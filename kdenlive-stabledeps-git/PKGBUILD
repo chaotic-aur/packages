@@ -2,7 +2,7 @@
 
 _pkgname="kdenlive"
 pkgname="$_pkgname-stabledeps-git"
-pkgver=24.08.2.r372.g1bc5b7c
+pkgver=25.08.1.r338.gc376564
 pkgrel=1
 pkgdesc='A non-linear video editor for Linux using the MLT video framework'
 url='https://invent.kde.org/multimedia/kdenlive'
@@ -10,6 +10,8 @@ license=('GPL-2.0-or-later')
 arch=('x86_64')
 
 depends=(
+  ffmpeg
+  frei0r-plugins
   karchive
   kbookmarks
   kcodecs
@@ -33,7 +35,9 @@ depends=(
   kwidgetsaddons
   kxmlgui
   mlt
+  opentimelineio
   purpose
+  qqc2-desktop-style
   qt6-base
   qt6-declarative
   qt6-multimedia
@@ -45,6 +49,7 @@ makedepends=(
   doxygen
   extra-cmake-modules
   git
+  imath
   kdoctools
   ninja
   qt6-tools
@@ -52,17 +57,20 @@ makedepends=(
 optdepends=(
   'bigsh0t: VR360 effects'
   'dvgrab: for firewire capture'
-  'ffmpeg: for FFmpeg plugin'
   'kimageformats: support for dds, xcf, exr, psd, and more image formats'
-  'mediainfo: for technical clip information'
   'noise-suppression-for-voice: noise suppression effect'
   'opencv: for motion tracking'
   'opentimelineio: timeline export/import'
   'plasma-desktop: theme configuration'
-  'python: for scripts'
+  'python-openai-whisper: speech to text (Whisper engine)'
+  'python-srt_equalizer: speech to text (Whisper engine)'
+  'python-vosk: speech to text (VOSK engine)'
   'qt6-imageformats: support for tiff, webp, and more image formats'
   'recordmydesktop: for screen capture'
 )
+
+provides=("$_pkgname")
+conflicts=("$_pkgname")
 
 _pkgsrc="$_pkgname"
 source=("$_pkgsrc"::"git+https://invent.kde.org/multimedia/kdenlive.git")
