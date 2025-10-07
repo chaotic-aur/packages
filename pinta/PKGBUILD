@@ -1,7 +1,7 @@
 # Maintainer: Rafael Baboni Dominiquini <rafaeldominiquini at gmail dot com>
 
 pkgname=pinta
-pkgver=3.0.3
+pkgver=3.0.4
 pkgrel=1
 pkgdesc="Drawing/editing program modeled after Paint.NET. It's goal is to provide a simplified alternative to GIMP for casual users"
 arch=(any)
@@ -12,7 +12,7 @@ makedepends=(pkgconf autoconf-archive intltool dotnet-sdk dotnet-runtime dotnet-
 provides=($pkgname)
 conflicts=($pkgname-git)
 source=("Pinta-${pkgver}.tar.gz::https://github.com/PintaProject/Pinta/archive/refs/tags/${pkgver}.tar.gz")
-sha256sums=('c95c7cab3a27e5f0cdadb512a2e4673faaa7f192f875e2339ce09381a78de331')
+sha256sums=('3472ef6b7307ec3942d3cefb299649f0b01e69fc951f6f0b04fbd6c083f770c4')
 
 prepare() {
   cd "${srcdir}/Pinta-${pkgver}"
