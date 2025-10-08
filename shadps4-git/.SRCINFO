@@ -1,7 +1,7 @@
 pkgbase = shadps4-git
 	pkgdesc = PlayStation 4 emulator
-	pkgver = 0.11.0.r47.g5fedf9d
-	pkgrel = 2
+	pkgver = 0.11.0.r60.g109b239
+	pkgrel = 1
 	url = https://github.com/shadps4-emu/shadPS4
 	arch = x86_64
 	license = GPL-2.0-or-later
@@ -35,6 +35,8 @@ pkgbase = shadps4-git
 	conflicts = shadps4
 	options = !lto
 	source = shadps4::git+https://github.com/shadps4-emu/shadPS4.git
+	source = 0001-PR3719-fix-fmt-12.patch::https://github.com/shadps4-emu/shadPS4/pull/3719.diff
 	sha256sums = SKIP
+	sha256sums = e9185f253805876458f33c6485e7330957746916dbef187ce60e8fbaacf3606f
 
 pkgname = shadps4-git
