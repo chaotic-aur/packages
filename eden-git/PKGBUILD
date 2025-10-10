@@ -2,8 +2,8 @@
 
 _pkgname="eden"
 pkgname="$_pkgname-git"
-pkgver=0.0.2.r491.g83730cd
-pkgrel=2
+pkgver=0.0.3.r128.g3656253
+pkgrel=1
 pkgdesc="Yet another emulator fork"
 url="https://git.eden-emu.dev/eden-emu/eden"
 license=('GPL-3.0-or-later')
@@ -45,7 +45,7 @@ sha256sums=('SKIP')
 pkgver() {
   cd "$_pkgsrc"
   local _tmp _tag _version _revision _hash
-  _tmp=$(git tag -l '[0-9]*' | sed -E 's&([^0-9]*)([0-9\.]+)(\S*)$&\2 \1\2\3&' | sort -rV | head -1)
+  _tmp=$(git tag | grep -Ev '[A-Za-z][A-Za-z]' | sed -E 's&([^0-9]*)(\S+)$&\2 \1\2&' | sort -rV | head -1)
   _version=$(cut -f1 -d' ' <<< ${_tmp:?})
   _tag=$(cut -f2 -d' ' <<< ${_tmp:?})
   _revision=$(git rev-list --count --cherry-pick "$_tag"...HEAD)

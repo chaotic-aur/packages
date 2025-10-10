@@ -1,7 +1,7 @@
 pkgbase = eden-git
 	pkgdesc = Yet another emulator fork
-	pkgver = 0.0.2.r491.g83730cd
-	pkgrel = 2
+	pkgver = 0.0.3.r128.g3656253
+	pkgrel = 1
 	url = https://git.eden-emu.dev/eden-emu/eden
 	arch = x86_64
 	license = GPL-3.0-or-later
