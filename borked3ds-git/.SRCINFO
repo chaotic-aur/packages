@@ -1,7 +1,7 @@
 pkgbase = borked3ds-git
 	pkgdesc = A 3DS emulator
 	pkgver = 2025.03.11.r44.gcb35de6
-	pkgrel = 1
+	pkgrel = 2
 	url = https://github.com/Borked3DS/Borked3DS
 	arch = x86_64
 	license = GPL-2.0-or-later

@@ -3,7 +3,7 @@
 _pkgname="borked3ds"
 pkgname="$_pkgname-git"
 pkgver=2025.03.11.r44.gcb35de6
-pkgrel=1
+pkgrel=2
 pkgdesc="A 3DS emulator"
 url="https://github.com/Borked3DS/Borked3DS"
 license=("GPL-2.0-or-later")
@@ -34,9 +34,6 @@ makedepends=(
   'vulkan-headers'
 )
 
-_makedepends=(
-)
-
 provides=("$_pkgname")
 conflicts=("$_pkgname")
 
@@ -46,6 +43,7 @@ sha256sums=('SKIP')
 
 prepare() {
   cd "$_pkgsrc"
+  git rm -r 'externals/MoltenVK'
   git rm -r 'externals/SPIRV-Tools'
   git rm -r 'externals/catch2'
   git rm -r 'externals/enet'
@@ -57,10 +55,22 @@ prepare() {
   git rm -r 'externals/soundtouch'
   git rm -r 'externals/vulkan-headers'
   git rm -r 'externals/zstd'
-  git submodule update --init --recursive --depth 1
+  git submodule update --init --depth 1
+  git -C externals/sirit submodule update --init --depth 1
+  git -C externals/dynarmic submodule update --init --depth 1
+  git -C externals/teakra submodule update --init --depth 1
+  git -C externals/discord-rpc submodule update --init --depth 1
 
   # don't check for unwanted submodules
   sed -e '/check_submodules_present()/d' -i CMakeLists.txt
+
+  # fix missing PkgConfig
+  sed -e '1i find_package(PkgConfig REQUIRED)' -i externals/CMakeLists.txt
+
+  # fix for Qt 6.10
+  sed -E -e '/COMPONENTS/s&\b(Widgets)\b&\1 GuiPrivate&' -i CMakeLists.txt
+  sed -E -e '$ a target_link_libraries(borked3ds-qt PRIVATE Qt6::GuiPrivate)' \
+    -i src/borked3ds_qt/CMakeLists.txt
 
   # miscellaneous adjustments
   sed -e '/SIMD_FLAGS/d' \
