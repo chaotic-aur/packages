@@ -8,8 +8,8 @@
 
 _pkgname="shadps4"
 pkgname="$_pkgname-git"
-pkgver=0.11.0.r60.g109b239
-pkgrel=1
+pkgver=0.11.0.r62.g999960a
+pkgrel=2
 pkgdesc="PlayStation 4 emulator"
 url="https://github.com/shadps4-emu/shadPS4"
 license=('GPL-2.0-or-later')
@@ -44,6 +44,7 @@ makedepends=(
   'spirv-headers'
   'stb'
   'toml11'
+  'vulkan-headers'
 )
 
 if [[ "${_use_clang::1}" == "t" ]]; then
@@ -59,14 +60,8 @@ provides=("$_pkgname")
 conflicts=("$_pkgname")
 
 _pkgsrc="$_pkgname"
-source=(
-  "$_pkgsrc"::"git+$url.git"
-  "0001-PR3719-fix-fmt-12.patch"::"https://github.com/shadps4-emu/shadPS4/pull/3719.diff"
-)
-sha256sums=(
-  'SKIP'
-  'e9185f253805876458f33c6485e7330957746916dbef187ce60e8fbaacf3606f'
-)
+source=("$_pkgsrc"::"git+$url.git")
+sha256sums=('SKIP')
 
 prepare() {
   cd "$_pkgsrc"
@@ -84,6 +79,7 @@ prepare() {
   git rm -r externals/robin-map
   git rm -r externals/sdl3
   git rm -r externals/toml11
+  git rm -r externals/vulkan-headers
   git rm -r externals/xxhash
   git rm -r externals/zlib-ng
   git submodule update --init --recursive --depth 1
@@ -98,6 +94,9 @@ prepare() {
       patch -Np1 -F100 -i "${srcdir:?}/$src" || true
     fi
   done
+
+  # allow any version
+  sed -E -e '/find_package/s&(glslang) \S+ (CONFIG)&\1 \2&' -i CMakeLists.txt
 
   # respect system build flags
   sed -E -e '/march/d' -i CMakeLists.txt
