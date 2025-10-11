@@ -2,7 +2,7 @@
 
 _pkgname="rpcs3"
 pkgname="$_pkgname-git"
-pkgver=0.0.38.r8.g48bf30a
+pkgver=0.0.38.r15.g9e49b91
 pkgrel=1
 pkgdesc="PlayStation 3 emulator"
 url="https://github.com/RPCS3/rpcs3"
@@ -90,7 +90,10 @@ prepare() {
     "rpcs3/rpcs3qt/microphone_creator.cpp"
 
   # based on PR17017
-  patch -Np1 -F100 -i ../0001-fix-ffmpeg-8.0.patch
+  patch -Np1 -F100 -i ../0001-fix-ffmpeg-8.0.patch || true
+
+  # fix for Qt 6.10
+  sed -E -e '/(COMPONENTS|INTERFACE)/s&\b(Qt6::)?(Widgets)\b&\1\2 \1GuiPrivate&' -i "3rdparty/qt6.cmake"
 }
 
 pkgver() {
