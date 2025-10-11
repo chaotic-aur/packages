@@ -4,7 +4,7 @@
 
 _pkgname="quickshell"
 pkgname="$_pkgname-git"
-pkgver=0.2.0.r3.gf7597cd
+pkgver=0.2.0.r26.g3e32ae5
 pkgrel=2
 pkgdesc="Simple and flexbile QtQuick based desktop shell toolkit"
 url='https://git.outfoxxed.me/quickshell/quickshell'
@@ -22,7 +22,6 @@ depends=(
   'qt6-base'
   'qt6-declarative'
   'qt6-svg'
-  'qt6-wayland'
   'wayland'
 )
 makedepends=(
@@ -70,8 +69,8 @@ build() {
 
 package() {
   local i _ver
-  for i in qt6-base qt6-wayland; do
-    local _ver=$(LANG=C LC_ALL=C pacman -Si extra/$i | grep -Pom1 '^Version\s+:\s+\K\S+(?=-[0-9])')
+  for i in qt6-base; do
+    local _ver=$(LC_ALL=C pacman -Si extra/$i | grep -Pom1 '^Version\s+:\s+\K\S+(?=-[0-9])')
     [ -n "$_ver" ] && depends=(${depends[@]//$i*/$i=$_ver})
   done
 
