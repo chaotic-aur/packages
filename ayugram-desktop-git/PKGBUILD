@@ -10,8 +10,8 @@
 
 _pkgname="ayugram-desktop"
 pkgname="$_pkgname-git"
-pkgver=5.16.4.r370.g2ee8fe5
-pkgrel=1
+pkgver=5.16.4.r377.ge2d772d
+pkgrel=2
 pkgdesc="Desktop Telegram client with good customization and Ghost mode"
 url="https://github.com/AyuGram/AyuGramDesktop"
 license=('GPL-3.0-or-later')
@@ -55,6 +55,7 @@ makedepends=(
   git
   glib2-devel
   gobject-introspection
+  gperf    # for tdlib
   jemalloc # gio error when absent
   libtg_owt
   ninja
@@ -69,100 +70,46 @@ optdepends=(
 provides=("$_pkgname")
 conflicts=("$_pkgname")
 
-_source_ayugram() {
-  _pkgsrc="$_pkgname"
-  source=("$_pkgsrc"::"git+$url.git${_commit:+#commit=$_commit}${_commit:-${_branch:+#branch=$_branch}}")
-  sha256sums=('SKIP')
-
-  _prepare_ayugram() (
-    echo "Preparing ayugram..."
-    cd "$_pkgsrc"
-    git rm -r 'Telegram/ThirdParty/dispatch'
-    git rm -r 'Telegram/ThirdParty/range-v3'
-    git rm -r 'Telegram/ThirdParty/hunspell'
-    git rm -r 'Telegram/ThirdParty/kcoreaddons'
-    git rm -r 'Telegram/ThirdParty/lz4'
-    git submodule update --init --recursive --depth=1
-
-    local src
-    for src in "${source[@]}"; do
-      src="${src%%::*}"
-      src="${src##*/}"
-      src="${src%.zst}"
-      if [[ $src == *.patch ]]; then
-        printf '\nApplying patch: %s\n' "$src"
-        patch -Np1 -F100 -i "${srcdir:?}/$src"
-      fi
-    done
-  )
-
-  _build_ayugram() (
-    echo "Building ayugram..."
-    local _cmake_options=(
-      -B build
-      -S "$_pkgsrc"
-      -G Ninja
-      -DCMAKE_BUILD_TYPE=None
-      -DCMAKE_INSTALL_PREFIX=/usr
-      -DCMAKE_PREFIX_PATH="$srcdir/deps/usr"
-      -DDESKTOP_APP_DISABLE_AUTOUPDATE=ON
-      -DTDESKTOP_API_TEST=ON
-      -DTDESKTOP_API_ID=611335
-      -DTDESKTOP_API_HASH=d524b414d21f4d37f08684c1df41ac9c
-      -DDESKTOP_APP_USE_PACKAGED_FONTS=OFF
-      -Wno-dev
-    )
-
-    cmake "${_cmake_options[@]}"
-    cmake --build build
-  )
-}
-
-_source_tdlib() {
-  makedepends+=('gperf')
-
-  _pkgsrc_tdlib="telegram-tdlib"
-  source+=("$_pkgsrc_tdlib"::"git+https://github.com/tdlib/td.git")
-  sha256sums+=('SKIP')
-
-  _build_tde2e() (
-    echo "Building tde2e..."
-    local _cmake_tde2e=(
-      -B "build_tde2e"
-      -S "$_pkgsrc_tdlib"
-      -G Ninja
-      -DCMAKE_BUILD_TYPE=None
-      -DCMAKE_INSTALL_PREFIX=/usr
-      -DTD_E2E_ONLY=ON
-      -DBUILD_SHARED_LIBS=OFF
-      -DBUILD_TESTING=OFF
-      -Wno-dev
-    )
-
-    cmake "${_cmake_tde2e[@]}"
-    cmake --build "build_tde2e"
-    DESTDIR="$srcdir/deps" cmake --install "build_tde2e"
-  )
-}
-
-_source_patches() {
-  local _patch_commit="354be0d07b11404572577b40914f67adac3de49f"
-  source+=(
-    "0001-glib2.86-${_patch_commit::7}.patch"::"https://gitlab.archlinux.org/archlinux/packaging/packages/telegram-desktop/-/raw/${_patch_commit}/glib2.86.patch"
-    "0002-ffmpeg-8-${_patch_commit::7}.patch"::"https://gitlab.archlinux.org/archlinux/packaging/packages/telegram-desktop/-/raw/${_patch_commit}/0001-Fix-compatibility-with-ffmpeg-8.patch"
-  )
-  sha256sums+=(
-    '57b855e701ed29da039431b2688082e6885c368e20dd38bbedffe1633e5efeda'
-    'd44a47b0dda36762090bbfcbb8e402d7308f3646d99a882b7d5fc3c18cc63540'
-  )
-}
-
-_source_ayugram
-_source_tdlib
-_source_patches
+_pkgsrc="$_pkgname"
+_pkgsrc_tdlib="telegram-tdlib"
+_patch_commit="354be0d07b11404572577b40914f67adac3de49f"
+source=(
+  "$_pkgsrc"::"git+$url.git${_commit:+#commit=$_commit}${_commit:-${_branch:+#branch=$_branch}}"
+  "$_pkgsrc_tdlib"::"git+https://github.com/tdlib/td.git"
+  "0001-glib2.86-${_patch_commit::7}.patch"::"https://gitlab.archlinux.org/archlinux/packaging/packages/telegram-desktop/-/raw/${_patch_commit}/glib2.86.patch"
+  "0002-ffmpeg-8-${_patch_commit::7}.patch"::"https://gitlab.archlinux.org/archlinux/packaging/packages/telegram-desktop/-/raw/${_patch_commit}/0001-Fix-compatibility-with-ffmpeg-8.patch"
+  "0003-fix-qt-6.10-tdesktop.patch"::"https://github.com/telegramdesktop/tdesktop/commit/28d19a99.patch"
+)
+sha256sums=(
+  'SKIP'
+  'SKIP'
+  '57b855e701ed29da039431b2688082e6885c368e20dd38bbedffe1633e5efeda'
+  'd44a47b0dda36762090bbfcbb8e402d7308f3646d99a882b7d5fc3c18cc63540'
+  'e3aabdf4942f1e22819dffe4eb481ca0d7e32cfbed9443120c2d29f3abf07971'
+)
 
 prepare() {
-  _prepare_ayugram
+  cd "$_pkgsrc"
+  git rm -r 'Telegram/ThirdParty/dispatch'
+  git rm -r 'Telegram/ThirdParty/range-v3'
+  git rm -r 'Telegram/ThirdParty/hunspell'
+  git rm -r 'Telegram/ThirdParty/kcoreaddons'
+  git rm -r 'Telegram/ThirdParty/lz4'
+  git submodule update --init --recursive --depth=1
+
+  local src
+  for src in "${source[@]}"; do
+    src="${src%%::*}"
+    src="${src##*/}"
+    src="${src%.zst}"
+    if [[ $src == *.patch ]]; then
+      printf '\nApplying patch: %s\n' "$src"
+      patch -Np1 -F100 -i "${srcdir:?}/$src" || true
+    fi
+  done
+
+  # Fix for Qt 6.10
+  sed -e '1i find_package(Qt${QT_VERSION_MAJOR} COMPONENTS GuiPrivate WidgetsPrivate REQUIRED)' -i cmake/external/qt/CMakeLists.txt
 }
 
 pkgver() {
@@ -172,8 +119,41 @@ pkgver() {
 }
 
 build() {
-  _build_tde2e
-  _build_ayugram
+  echo "Building tde2e..."
+  local _cmake_tde2e=(
+    -B "build_tde2e"
+    -S "$_pkgsrc_tdlib"
+    -G Ninja
+    -DCMAKE_BUILD_TYPE=None
+    -DCMAKE_INSTALL_PREFIX=/usr
+    -DTD_E2E_ONLY=ON
+    -DBUILD_SHARED_LIBS=OFF
+    -DBUILD_TESTING=OFF
+    -Wno-dev
+  )
+
+  cmake "${_cmake_tde2e[@]}"
+  cmake --build "build_tde2e"
+  DESTDIR="$srcdir/deps" cmake --install "build_tde2e"
+
+  echo "Building ayugram..."
+  local _cmake_options=(
+    -B build
+    -S "$_pkgsrc"
+    -G Ninja
+    -DCMAKE_BUILD_TYPE=None
+    -DCMAKE_INSTALL_PREFIX=/usr
+    -DCMAKE_PREFIX_PATH="$srcdir/deps/usr"
+    -DDESKTOP_APP_DISABLE_AUTOUPDATE=ON
+    -DTDESKTOP_API_TEST=ON
+    -DTDESKTOP_API_ID=611335
+    -DTDESKTOP_API_HASH=d524b414d21f4d37f08684c1df41ac9c
+    -DDESKTOP_APP_USE_PACKAGED_FONTS=OFF
+    -Wno-dev
+  )
+
+  cmake "${_cmake_options[@]}"
+  cmake --build build
 }
 
 package() {
@@ -187,7 +167,10 @@ package() {
       'libgio-2.0.so'
       'libglib-2.0.so'
       'libgobject-2.0.so'
+      'libheif.so'
       'libjpeg.so'
+      'libjxl.so'
+      'libjxl_threads.so'
       'liblz4.so'
       'libopenal.so'
       'libopenh264.so'
@@ -198,6 +181,7 @@ package() {
       'libswresample.so'
       'libswscale.so'
       'libvpx.so'
+      'libxkbcommon.so'
       'libxxhash.so'
       'libz.so'
     )"
