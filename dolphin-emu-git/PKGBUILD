@@ -4,8 +4,8 @@
 
 _pkgname="dolphin-emu"
 pkgname="$_pkgname-git"
-pkgver=2509.r119.g72f854d
-pkgrel=2
+pkgver=2509.r167.g8323c21
+pkgrel=1
 pkgdesc='A Gamecube and Wii emulator'
 url="https://github.com/dolphin-emu/dolphin"
 license=('GPL-2.0-or-later')
@@ -97,6 +97,11 @@ prepare() {
 
   # Delete gcc specific options
   sed '/_ARCHIVE_/d' -i CMakeLists.txt
+
+  # Fix for Qt 6.10
+  sed -E -e '/COMPONENTS/s&\b(Widgets)\b&\1 GuiPrivate&' \
+    -e '$ a target_link_libraries(dolphin-emu PRIVATE Qt6::GuiPrivate)' \
+    -i Source/Core/DolphinQt/CMakeLists.txt
 }
 
 pkgver() {
