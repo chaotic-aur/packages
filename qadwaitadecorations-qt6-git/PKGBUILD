@@ -1,0 +1,60 @@
+# Maintainer: aur.chaotic.cx
+
+_pkgname=qadwaitadecorations
+pkgname="$_pkgname-qt6-git"
+pkgver=0.1.7.r0.g074d556
+pkgrel=2
+pkgdesc="Qt6 decoration plugin implementing Adwaita-like client-side decorations"
+url="https://github.com/FedoraQt/QAdwaitaDecorations"
+license=('LGPL2.1-or-later')
+arch=('x86_64')
+
+depends=(
+  'qt6-wayland'
+  'qt6-svg'
+)
+makedepends=(
+  'cmake'
+  'git'
+  'ninja'
+)
+
+provides=("$_pkgname-qt6")
+conflicts=("$_pkgname-qt6")
+
+_pkgsrc="$_pkgname"
+source=("$_pkgsrc"::"git+$url.git")
+sha256sums=('SKIP')
+
+prepare() {
+  cd "$_pkgsrc"
+
+  # fix for Qt 6.10
+  sed -E -e 's&\b(Core)\b&\1 GuiPrivate WaylandClientPrivate&' -i CMakeLists.txt
+  sed -E -e 's&setMouseCursor&applyCursor&g' -i src/qadwaitadecorations.cpp
+}
+
+pkgver() {
+  cd "$_pkgsrc"
+  git describe --long --tags --abbrev=7 --exclude='*[a-zA-Z][a-zA-Z]*' \
+    | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
+}
+
+build() {
+  local _cmake_options=(
+    -B build
+    -S "$_pkgsrc"
+    -G Ninja
+    -DCMAKE_BUILD_TYPE=None
+    -DCMAKE_INSTALL_PREFIX='/usr'
+    -DUSE_QT6=true
+    -Wno-dev
+  )
+
+  cmake "${_cmake_options[@]}"
+  cmake --build build
+}
+
+package() {
+  DESTDIR="$pkgdir" cmake --install build
+}
