@@ -1,3 +1,0 @@
-eval "package() {
-  replaces=('google-gemini-cli')
-  $(declare -f package | tail -n +3)"
