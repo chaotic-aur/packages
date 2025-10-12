@@ -1,29 +1,52 @@
-# Maintainer: marco.rubin@protonmail.com
+# Maintainer: aur.chaotic.cx
 
-_name=KDDockWidgets
-pkgname=kddockwidgets-qt6
-pkgver=2.2.5
+_pkgname=kddockwidgets
+pkgname="$_pkgname-qt6"
+pkgver=2.3.0
 pkgrel=1
 pkgdesc="KDAB's Dock Widget Framework for Qt 6"
-arch=('x86_64')
 url="https://github.com/KDAB/KDDockWidgets"
-license=('GPL-2.0-only OR GPL-3.0-only')
-depends=(gcc-libs glibc 'fmt>=11' nlohmann-json 'qt6-base>=6.2.0' qt6-declarative 'spdlog>=1.8.0')
-makedepends=('cmake>=3.15' 'qt6-tools>=6.6.2')
-source=("$url/archive/v$pkgver.tar.gz")
-b2sums=('b938cf5d70b9ffaa43e21f7d6748552d9d8ded3c1eb4d7b7b71884bfe6ca925e8991a5eb566f51ed12a461f937372b0be9b2cc2588063ae93658a026ac6402ab')
+license=('GPL-3.0-only')
+arch=('x86_64')
+
+depends=(
+  'qt6-base'
+  'qt6-declarative'
+)
+makedepends=(
+  'cmake'
+  'git'
+  'ninja'
+  'qt6-tools'
+)
+
+provides=("$_pkgname=${pkgver%%.g*}")
+conflicts=("$_pkgname")
+
+_pkgsrc="KDDockWidgets-$pkgver"
+_pkgext="tar.gz"
+source=("$_pkgname-$pkgver.$_pkgext"::"$url/archive/v$pkgver.tar.gz")
+sha256sums=('SKIP')
 
 build() {
-  cd $_name-$pkgver
-  cmake -DCMAKE_BUILD_TYPE=Release \
-    -DCMAKE_INSTALL_PREFIX=/usr \
-    -DKDDockWidgets_FRONTENDS='qtwidgets;qtquick' \
-    -DKDDockWidgets_QT6=true \
-    .
-  cmake --build .
+  local _cmake_options=(
+    -B build
+    -S "$_pkgsrc"
+    -G Ninja
+    -DCMAKE_BUILD_TYPE=None
+    -DCMAKE_INSTALL_PREFIX='/usr'
+    -DKDDockWidgets_EXAMPLES=OFF
+    -DKDDockWidgets_FRONTENDS='qtwidgets;qtquick'
+    -DKDDockWidgets_NO_SPDLOG=ON
+    -DKDDockWidgets_QT6=ON
+    -DKDDockWidgets_X11EXTRAS=OFF
+    -Wno-dev
+  )
+
+  cmake "${_cmake_options[@]}"
+  cmake --build build
 }
 
 package() {
-  cd $_name-$pkgver
-  DESTDIR="$pkgdir" cmake --install .
+  DESTDIR="$pkgdir" cmake --install build
 }
