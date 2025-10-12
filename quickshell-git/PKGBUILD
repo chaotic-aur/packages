@@ -4,8 +4,8 @@
 
 _pkgname="quickshell"
 pkgname="$_pkgname-git"
-pkgver=0.2.0.r26.g3e32ae5
-pkgrel=2
+pkgver=0.2.1.r13.gc9d3ffb
+pkgrel=1
 pkgdesc="Simple and flexbile QtQuick based desktop shell toolkit"
 url='https://git.outfoxxed.me/quickshell/quickshell'
 license=('LGPL-3.0-only')
@@ -33,7 +33,7 @@ makedepends=(
   'wayland-protocols'
 )
 
-provides=("$_pkgname=${pkgver%.g*}")
+provides=("$_pkgname")
 conflicts=("$_pkgname")
 
 install="$_pkgname.install"
@@ -42,11 +42,16 @@ _pkgsrc="$_pkgname"
 source=("$_pkgsrc"::"git+$url.git")
 sha256sums=('SKIP')
 
-pkgver() {
+pkgver() (
   cd "$_pkgsrc"
-  git describe --long --tags --abbrev=7 --exclude='*[a-zA-Z][a-zA-Z]*' \
-    | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
-}
+  local _tmp _tag _version _revision _hash
+  _tmp=$(git tag | grep -Ev '[A-Za-z][A-Za-z]' | sed -E 's&([^0-9]*)(\S+)$&\2 \1\2&' | sort -rV | head -1)
+  _version=$(cut -f1 -d' ' <<< ${_tmp:?})
+  _tag=$(cut -f2 -d' ' <<< ${_tmp:?})
+  _revision=$(git rev-list --count --cherry-pick "$_tag"...HEAD)
+  _commit=$(git rev-parse --short=7 HEAD)
+  printf '%s.r%s.g%s' "${_version:?}" "${_revision:?}" "${_commit:?}"
+)
 
 build() {
   local _cmake_options=(
