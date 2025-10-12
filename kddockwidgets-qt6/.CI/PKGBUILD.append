@@ -1,4 +1,0 @@
-export CMAKE_GENERATOR='Ninja'
-makedepends+=('ninja')
-
-depends=($(sed -E 's&\b\S*(gcc-libs|glibc|fmt|nlohmann-json)\S*\b&&g;s&>=\S+&&g' <<< "${depends[*]}"))
