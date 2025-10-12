@@ -1,2 +1,0 @@
-CI_REBUILD_TRIGGERS=qt5-wayland:qt6-wayland
-CI_PKGBUILD_SOURCE=aur
