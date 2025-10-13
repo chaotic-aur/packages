@@ -1,3 +1,11 @@
+## GE-Proton10-19
+
+HOTFIX:
+
+- Added missing quotation in build patch script that caused patches to not apply properly (or at all.. oops)
+- Added quartz patch to allow clannad opening movie to play (untested) #283
+- Reverted commits 582a46656d04cbefd4eb60b9eda9d263315377d5 and c771b8b6f01c2f3b1f88cf1ceb0ed8802a79e98a from em-10 to allow Warhammer Darktide launcher to work again (#305)
+
 ## GE-Proton10-18
 
 Proton (upstream):
