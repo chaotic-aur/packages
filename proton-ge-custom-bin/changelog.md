@@ -1,3 +1,37 @@
+## GE-Proton10-18
+
+Proton (upstream):
+
+- dxvk updated to latest git
+- vkd3d-proton/vkd3d updated to latest git
+- wine updated to latest bleeding-edge
+- dxvk-nvapi updated to latest git
+- proton script game fixes imported from upstream
+- vrclient fixes imported from upstream
+- wineopenxr fixes imported from upstream
+- makefile.in build fixes imported from upstream
+
+Proton(em-10/wine-wayland)
+
+- imported fsr4 fixes/updates from em-10
+- imported wine-wayland (and additional) patches from em-10
+- imported imported ntsync ubisoft connect fix from em-10
+- imported x11 locale enablement patches/files
+- fixed issue with Wine-wayland driver causes the game screen to not fit the screen size when size chosen larger than screen size.
+
+Proton(GE):
+
+- enabled wine writecopy option for ea/ubisoft/battlenet launchers
+
+Protonfixes:
+
+- fixed issue with wine mono not getting removed fully (dotnet40+ should install now via winetricks)
+- fixed protonfix issue where it would quit instead of trying to create parent directory for config if it doesnt exist.
+- reverted a change that made vcrun2022 install instead of vcrun2019, which can lead to some games breaking
+-added fix for blue protocol star resonance videos to work
+- Fix Battle Engine Aquila overlapping sound
+Company of Heroes 2 and Company of Heroes 3 Mp Desync fix
+
 ## GE-Proton10-17
 
 - Just a hotfix/refresh release, updates dxvk and other main components, fixes warframe crash and probably a few others.
