@@ -2,8 +2,8 @@
 
 _pkgname="citron"
 pkgname="$_pkgname-git"
-pkgver=0.7.1.r27.g39451af
-pkgrel=2
+pkgver=0.8.0.r8.gc15b651
+pkgrel=1
 pkgdesc="Yet another emulator fork"
 url="https://git.citron-emu.org/citron/emulator"
 license=('GPL-3.0-or-later')
@@ -52,16 +52,14 @@ prepare() {
   git rm -r externals/SDL
   git rm -r externals/libusb/libusb
   git rm -r externals/vcpkg
-
   git submodule update --init --recursive --depth=1
-
-  # fix for boost 1.88
-  sed -E -e 's|#include *<boost/process/async_pipe.hpp>|#include <boost/process/v1/async_pipe.hpp>|g' \
-    -e 's&\bboost::process::async_pipe\b&boost::process::v1::async_pipe&g' \
-    -i src/core/debugger/debugger.cpp
 
   # prevent unnecessary errors
   find src -name "CMakeLists.txt" -exec sed -E '/Werror=/d' -i {} \;
+
+  # fix for Qt 6.10
+  sed -e '$a find_package(Qt6 REQUIRED COMPONENTS GuiPrivate)\ntarget_link_libraries(citron PRIVATE Qt6::GuiPrivate)' \
+    -i src/citron/CMakeLists.txt
 }
 
 pkgver() {
@@ -102,7 +100,6 @@ build() (
     -DCITRON_USE_QT_MULTIMEDIA=ON
     -DCITRON_USE_QT_WEB_ENGINE=ON
     -DENABLE_COMPATIBILITY_LIST_DOWNLOAD=ON
-    -DENABLE_QT6=ON
     -DENABLE_QT_TRANSLATION=OFF
     -DENABLE_WEB_SERVICE=ON
     -DTITLE_BAR_FORMAT_IDLE="citron | ${pkgver} {}"
