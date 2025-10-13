@@ -1,0 +1,8 @@
+url="https://github.com/elastic/elasticsearch"
+license=('LicenseRef-Elastic-2.0')
+
+eval "$(
+  declare -f package \
+    | sed -e '/SNAPSHOT/i mkdir -pm755 "${pkgdir}/usr/share/elasticsearch"' \
+    | sed -e '/SNAPSHOT/s&^.*$&bsdtar -C "${pkgdir}/usr/share/elasticsearch" --strip-components 1 -xf "${srcdir}/${pkgname}-${pkgver}/distribution/archives/linux-tar/build/distributions/elasticsearch-${pkgver}-SNAPSHOT-linux-x86_64.tar.gz"&'
+)"
