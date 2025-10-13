@@ -4,10 +4,10 @@
 
 _pkgname="quickshell"
 pkgname="$_pkgname-git"
-pkgver=0.2.1.r13.gc9d3ffb
-pkgrel=1
-pkgdesc="Simple and flexbile QtQuick based desktop shell toolkit"
-url='https://git.outfoxxed.me/quickshell/quickshell'
+pkgver=0.2.1.r16.g0085881
+pkgrel=2
+pkgdesc="Flexible toolkit for making desktop shells with QtQuick"
+url="https://git.outfoxxed.me/quickshell/quickshell"
 license=('LGPL-3.0-only')
 arch=('x86_64')
 

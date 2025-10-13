@@ -1,7 +1,7 @@
 pkgbase = quickshell-git
-	pkgdesc = Simple and flexbile QtQuick based desktop shell toolkit
-	pkgver = 0.2.1.r13.gc9d3ffb
-	pkgrel = 1
+	pkgdesc = Flexible toolkit for making desktop shells with QtQuick
+	pkgver = 0.2.1.r16.g0085881
+	pkgrel = 2
 	url = https://git.outfoxxed.me/quickshell/quickshell
 	install = quickshell.install
 	arch = x86_64
