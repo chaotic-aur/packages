@@ -1,3 +1,16 @@
+## GE-Proton10-20
+
+HOTFIX:
+
+- removed unnecessary webview2 patch (fixes Forza Horizon 5 login never opening)
+- added workaround to allow darkwinter software region version of Girls Frontline 2: Exilium to work
+
+About webview2 patches:
+
+Originally in wine 9 a stub was introduced which fixes/allows webview2 to install properly. This fixed webview2 installation for vermintide 2 as well as the Haoplay version of Girls Frontline 2: Exilium. Unfortunately the Haoplay version requires additional missing functionality in wine to work properly (it currently is still broken), so supplementary webview2 patches were added which were proposed to upstream wine for a merge request (separate from the original stub that was accepted). The additional patches were not accepted, and in addition, broke the login prompt for Forza Horizon 5. Additionally they did not help with getting the Haoplay version of Girls frontline 2: Exilium to work, therefore there is no point in keeping them.
+
+As of now without the supplemental patches FH5 login and the Darkwinter Software version of Girls Frontline 2: Exilium are working. The difference between the Darkwinter Software version and the Haoplay version is only in region coverage. Darkwinter Software covers North America, Australia, New Zealand, and Ireland, while Haoplay covers most European countries and the United Kingdom, Japan, South Korea, and Taiwan
+
 ## GE-Proton10-19
 
 HOTFIX:
