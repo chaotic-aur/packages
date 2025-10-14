@@ -8,17 +8,18 @@ _update_package() {
 
   _RESPONSE=$(curl -Ssf "$url/releases.atom")
   _NEW_VERSION=$(
-    echo "${_RESPONSE:?}" \
-      | grep -Pom1 '(?<=/releases/tag/)[0-9\.-]+(?=")'
+    grep -Pom1 '(?<=/releases/tag/)[0-9\.-]+(?=")' <<< "${_RESPONSE:?}"
   )
 
   if (($(vercmp "${_NEW_VERSION:?}" "${_OLD_VERSION:?}") > 0)); then
     sed -E \
-      -e 's&^(pkgver)=.*$&\1='"${_NEW_VERSION}&" \
-      -e 's&^(pkgrel)=.*$&\1=1&' \
-      -i "PKGBUILD"
+      -e 's&^(\s*pkgver\s*=\s*).*$&\1'"${_NEW_VERSION}&" \
+      -e 's&^(\s*pkgrel\s*=\s*).*$&\11&' \
+      -i "PKGBUILD" ".SRCINFO"
 
-    makepkg --printsrcinfo > .SRCINFO
+    sed -E \
+      -e '/source = /s&'"${_OLD_VERSION}&${_NEW_VERSION}&g" \
+      -i ".SRCINFO"
   fi
 }
 _update_package

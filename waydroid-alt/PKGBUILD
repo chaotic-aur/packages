@@ -3,7 +3,7 @@
 _pkgname="waydroid"
 pkgname="$_pkgname-alt"
 pkgver=1.5.4
-pkgrel=2
+pkgrel=3
 pkgdesc="A container-based Android system - with desktop menu creation disabled"
 url="https://github.com/waydroid/waydroid"
 license=('GPL-3.0-or-later')
@@ -82,8 +82,9 @@ package() {
   install -Dm644 "$pkgdir"/usr/share/icons/hicolor/512x512/apps/waydroid.png "$pkgdir/usr/share/pixmaps/$_pkgname.png"
   rm -rf "$pkgdir/usr/share/icons/"
 
-  # replace launcher
+  # launchers
   rm -rf "$pkgdir"/usr/share/applications/*.desktop
+
   install -Dm644 /dev/stdin "$pkgdir/usr/share/applications/waydroid-show.desktop" << END
 [Desktop Entry]
 Type=Application
@@ -94,6 +95,15 @@ Icon=$_pkgname
 StartupWMClass=Waydroid
 Categories=X-WayDroid-App;Utility;
 X-Purism-FormFactor=Workstation;Mobile;
+Actions=StopSession;StopContainer;
+
+[Desktop Action StopSession]
+Name=Stop Waydroid Session
+Exec=waydroid session stop
+
+[Desktop Action StopContainer]
+Name=Stop Waydroid Container
+Exec=systemctl stop waydroid-container.service
 END
 
   # script to show gui and stop session after gui closed
