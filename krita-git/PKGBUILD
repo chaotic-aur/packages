@@ -2,10 +2,10 @@
 
 _pkgname="krita"
 pkgname="$_pkgname-git"
-pkgver=5.2.11.r3123.g1c40376
+pkgver=5.2.13.r3412.ge23e6d1
 pkgrel=1
 pkgdesc="Edit and paint images"
-url='https://invent.kde.org/graphics/krita'
+url="https://invent.kde.org/graphics/krita"
 license=('GPL-3.0-only')
 arch=('x86_64')
 
@@ -82,16 +82,19 @@ optdepends=(
 )
 
 provides=("$_pkgname=${pkgver%.g*}")
-conflicts=(
-  'calligra-krita'
-  'krita'
-  'krita-il10n'
-)
-replaces=('krita-qt6-git')
+conflicts=("$_pkgname")
 
 _pkgsrc="$_pkgname"
 source=("$_pkgsrc"::"git+$url.git")
 sha256sums=('SKIP')
+
+prepare() {
+  cd "$_pkgsrc"
+
+  # fix for Qt 6.10
+  sed -E -e 's&\b(Gui)\b&\1 GuiPrivate WaylandClientPrivate&' -i CMakeLists.txt
+  sed -E -e 's&\b(Qt::WaylandClient)\b&\1 \1Private&' -i plugins/platforms/wayland/CMakeLists.txt
+}
 
 pkgver() {
   cd "$_pkgsrc"

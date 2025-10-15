@@ -1,6 +1,6 @@
 pkgbase = krita-git
 	pkgdesc = Edit and paint images
-	pkgver = 5.2.11.r3123.g1c40376
+	pkgver = 5.2.13.r3412.ge23e6d1
 	pkgrel = 1
 	url = https://invent.kde.org/graphics/krita
 	arch = x86_64
@@ -70,11 +70,8 @@ pkgbase = krita-git
 	optdepends = poppler-qt6: PDF filter
 	optdepends = python-legacy-cgi: for the Python plugins
 	optdepends = python-pyqt6: for the Python plugins
-	provides = krita=5.2.11.r3123
-	conflicts = calligra-krita
+	provides = krita=5.2.13.r3412
 	conflicts = krita
-	conflicts = krita-il10n
-	replaces = krita-qt6-git
 	source = krita::git+https://invent.kde.org/graphics/krita.git
 	sha256sums = SKIP
 
