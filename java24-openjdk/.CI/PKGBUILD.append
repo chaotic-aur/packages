@@ -1,0 +1,7 @@
+pkgname=(
+  jdk24-openjdk
+  jre24-openjdk
+  jre24-openjdk-headless
+)
+
+makedepends=(${makedepends[@]//java-environment*/java-environment=23})
