@@ -5,3 +5,7 @@ makedepends+=('skia-static')
 
 # keep default build flags
 options=('!debug' '!emptydirs' '!lto' '!staticlibs')
+
+# disable cpptrace
+depends=(${depends[@]//cpptrace*/})
+eval "$(declare -f build | sed -E -e 's&(-DCMAKE_BUILD_TYPE)&-DLADYBIRD_ENABLE_CPPTRACE=OFF \1&')"
