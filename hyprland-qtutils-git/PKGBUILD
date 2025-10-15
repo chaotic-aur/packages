@@ -10,9 +10,12 @@ url="https://github.com/hyprwm/hyprland-qtutils"
 license=('BSD-3-Clause')
 
 depends=(
-  hyprland-qt-support-git
+  gcc-libs
+  glibc
   hyprutils-git
-  qt6-wayland
+  hyprland-qt-support
+  qt6-base
+  qt6-declarative
 )
 makedepends=(
   cmake

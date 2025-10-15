@@ -9,9 +9,12 @@ pkgbase = hyprland-qtutils-git
 	makedepends = cmake
 	makedepends = git
 	makedepends = ninja
-	depends = hyprland-qt-support-git
+	depends = gcc-libs
+	depends = glibc
 	depends = hyprutils-git
-	depends = qt6-wayland
+	depends = hyprland-qt-support
+	depends = qt6-base
+	depends = qt6-declarative
 	provides = hyprland-qtutils=0.1.3
 	conflicts = hyprland-qtutils
 	source = hyprland-qtutils::git+https://github.com/hyprwm/hyprland-qtutils.git
