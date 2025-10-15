@@ -1,3 +1,4 @@
+pkgname=(processing)
 url="https://github.com/processing/processing4"
 
 license=(
@@ -7,11 +8,11 @@ license=(
 
 makedepends+=('xdg-utils')
 
-eval _orig_"$(declare -f package)"
+eval _orig_"$(declare -f package_processing)"
 
-package() {
+package_processing() {
   # needs to be present to be removed later
   install -Dm644 /dev/null "$pkgdir/usr/share/applications/mimeinfo.cache"
 
-  _orig_package
+  _orig_package_processing
 }
