@@ -4,12 +4,12 @@
 
 _pkgname="dolphin-emu"
 pkgname="$_pkgname-git"
-pkgver=2509.r167.g8323c21
+pkgver=2509.r188.ge8d9c12
 pkgrel=1
-pkgdesc='A Gamecube and Wii emulator'
+pkgdesc="A Gamecube and Wii emulator"
 url="https://github.com/dolphin-emu/dolphin"
 license=('GPL-2.0-or-later')
-arch=('x86_64' 'x86_64_v2' 'x86_64_v3' 'x86_64_v4')
+arch=('x86_64')
 
 depends=(
   'alsa-lib'
@@ -92,8 +92,7 @@ prepare() {
   git rm -r 'Externals/lz4/lz4'
   git rm -r 'Externals/miniupnpc/miniupnp'
   git rm -r 'Externals/spirv_cross/SPIRV-Cross'
-
-  git submodule update --init --recursive --depth 1
+  git submodule update --init --depth=1
 
   # Delete gcc specific options
   sed '/_ARCHIVE_/d' -i CMakeLists.txt
@@ -111,7 +110,7 @@ pkgver() {
 
 build() (
   export CC CXX CFLAGS CXXFLAGS LDFLAGS
-  local _pkgver _cmake_options _ldflags _cflags _cxxflags
+  local _pkgver _cmake_options
 
   # Fix version string
   _pkgver=$(pkgver)
@@ -149,9 +148,7 @@ END
   if [[ "${_build_clang::1}" == "t" ]]; then
     CC=clang
     CXX=clang++
-
-    _ldflags=(${LDFLAGS})
-    LDFLAGS="${_ldflags[@]//*fuse-ld*/} -fuse-ld=lld"
+    LDFLAGS="$(sed -E -e 's/\S*fuse-ld\S*//g' <<< "$LDFLAGS") -fuse-ld=lld"
 
     _cmake_options+=(
       -DCMAKE_INTERPROCEDURAL_OPTIMIZATION=ON
