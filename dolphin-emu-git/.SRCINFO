@@ -1,12 +1,13 @@
 pkgbase = dolphin-emu-git
 	pkgdesc = A Gamecube and Wii emulator
-	pkgver = 2509.r188.ge8d9c12
+	pkgver = 2509.r202.ga2913ab
 	pkgrel = 1
 	url = https://github.com/dolphin-emu/dolphin
 	arch = x86_64
 	license = GPL-2.0-or-later
 	makedepends = cmake
 	makedepends = git
+	makedepends = glslang
 	makedepends = ninja
 	makedepends = python
 	makedepends = vulkan-headers

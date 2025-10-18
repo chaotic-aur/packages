@@ -4,7 +4,7 @@
 
 _pkgname="dolphin-emu"
 pkgname="$_pkgname-git"
-pkgver=2509.r188.ge8d9c12
+pkgver=2509.r202.ga2913ab
 pkgrel=1
 pkgdesc="A Gamecube and Wii emulator"
 url="https://github.com/dolphin-emu/dolphin"
@@ -44,6 +44,7 @@ depends=(
 makedepends=(
   'cmake'
   'git'
+  'glslang'
   'ninja'
   'python'
   'vulkan-headers'
@@ -84,6 +85,7 @@ prepare() {
   git rm -r 'Externals/Vulkan-Headers'
   git rm -r 'Externals/curl/curl'
   git rm -r 'Externals/fmt/fmt'
+  git rm -r 'Externals/glslang/glslang'
   git rm -r 'Externals/gtest'
   git rm -r 'Externals/hidapi/hidapi-src'
   git rm -r 'Externals/libadrenotools'
@@ -101,6 +103,9 @@ prepare() {
   sed -E -e '/COMPONENTS/s&\b(Widgets)\b&\1 GuiPrivate&' \
     -e '$ a target_link_libraries(dolphin-emu PRIVATE Qt6::GuiPrivate)' \
     -i Source/Core/DolphinQt/CMakeLists.txt
+
+  # Fix for glslang 16
+  sed -E -e '/dolphin_find_optional_system_library\(glslang/s&[0-9\.]+&&g' -i CMakeLists.txt
 }
 
 pkgver() {
