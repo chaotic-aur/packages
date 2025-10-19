@@ -1,69 +1,142 @@
-# Maintainer: Jefferson Gonzalez <jgmdev@gmail.com>
+# Maintainer: aur.chaotic.cx
 
-pkgname=gpt4all-chat-git
-_gitname=gpt4all
-pkgver=3.3.0.r22.g767189d
+: ${_install_path:=usr/lib}
+
+_pkgname="gpt4all-chat"
+pkgname="$_pkgname-git"
+pkgver=3.10.0.r4.gb666d16
 pkgrel=1
-pkgdesc="Cross platform Qt based GUI for GPT4All versions"
-arch=('x86_64')
+pkgdesc="Qt-based frontend to run LLMs locally"
 url="https://github.com/nomic-ai/gpt4all"
 license=('MIT')
-makedepends=('cmake' 'git' 'vulkan-tools' 'shaderc' 'qt6-tools')
+arch=('x86_64')
+
 depends=(
-  'qt6-base' 'qt6-httpserver' 'qt6-declarative' 'qt6-svg'
-  'qt6-webengine' 'qt6-shadertools' 'qt6-5compat' 'qt6-wayland'
-  'python'
+  'qt6-base'
+  'qt6-declarative'
+  'qt6-httpserver'
+  'qt6-svg'
+  'libfmt.so'
+  'qt6-webengine'
 )
-conflicts=('gpt4all-chat')
-provides=('gpt4all-chat')
+makedepends=(
+  'cmake'
+  'git'
+  'ninja'
+  'patchelf'
+  'qt6-tools'
+  'vulkan-headers'
+)
+optdepends=(
+  'gpt4all-chat-data: embedding model for LocalDocs'
+)
+
+provides=("$_pkgname")
+conflicts=("$_pkgname")
+
+_pkgsrc="$_pkgname"
 source=(
-  "${_gitname}::git+https://github.com/nomic-ai/gpt4all.git"
-  "gpt4all-chat.desktop"
-  "gpt4all-chat.sh"
+  "$_pkgsrc"::"git+$url.git"
+  '0001-embedding-model-no-dl.patch'
 )
 sha256sums=(
   'SKIP'
-  '16cd7d32166c493b1028c3e5c6a8437d3d81315c92076f5a94240e509a93a271'
-  'c8b8b5ab8b0badd9f74210fb26181b9fef48741e14256e3494cbbc46c8f98d9f'
+  'b320bf086e77839d2efb6e697fed674581934605c5e5161fac5ef512ee4ce44c'
 )
 
 pkgver() {
-  cd "${srcdir}/${_gitname}"
-  echo "$(git describe --long --tags --abbrev=7 --exclude='*[a-zA-Z][a-zA-Z]*' | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g')"
+  cd "$_pkgsrc"
+  git describe --long --tags --abbrev=7 --exclude='*[a-zA-Z][a-zA-Z]*' \
+    | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
 }
 
 prepare() {
-  cd "${srcdir}/${_gitname}"
-  git submodule update --init --recursive
-  mkdir -p gpt4all-chat/build
+  cd "$_pkgsrc"
+  git rm -r gpt4all-chat/deps/fmt
+  git submodule update --init --recursive --depth=1
+
+  # disable embedding model download
+  patch -Np1 -F100 -i ../0001-embedding-model-no-dl.patch
+
+  # use system fmt
+  sed -E -e '/add_subdirectory\(fmt/s&^.*$&find_package(fmt)&' -i gpt4all-chat/deps/CMakeLists.txt
+
+  # fix for Qt 6.10
+  sed -E -e '/COMPONENTS/s&\b(Gui)\b&\1 \1Private&' -i gpt4all-chat/deps/QXlsx/QXlsx/CMakeLists.txt
+
+  # remove duplicate declarations
+  sed -E -e '/^extern /d' -i gpt4all-backend/deps/llama.cpp-mainline/ggml/src/kompute/external/bin/xxd.c
+
+  # fix vulkan
+  sed -E \
+    -e 's&\bvk::(DynamicLoader)\b&vk::detail::\1&g' \
+    -e 's&\bvk::(DispatchLoaderDynamic)\b&vk::detail::\1&g' \
+    -i gpt4all-backend/deps/llama.cpp-mainline/ggml/src/kompute/src/Manager.cpp \
+    gpt4all-backend/deps/llama.cpp-mainline/ggml/src/kompute/src/include/kompute/Manager.hpp
 }
 
 build() {
-  cd "${srcdir}/${_gitname}/gpt4all-chat/build"
-  cmake \
-    -DCMAKE_INSTALL_PREFIX=/opt/gpt4all-chat \
-    -DCMAKE_BUILD_TYPE=Release \
-    -DKOMPUTE_OPT_DISABLE_VULKAN_VERSION_CHECK=ON \
-    -DLLMODEL_CUDA=OFF \
-    -DCMAKE_CXX_FLAGS="-Wno-dangling-reference" \
-    ..
-  make
+  local _cmake_options=(
+    -B build
+    -S "$_pkgsrc/gpt4all-chat"
+    -G Ninja
+    -DCMAKE_BUILD_TYPE=None
+    -DCMAKE_INSTALL_PREFIX='/usr'
+    -DBUILD_TESTING=OFF
+    -Wno-dev
+
+    -DKOMPUTE_OPT_BUILD_SHADERS=ON
+    -DKOMPUTE_OPT_DISABLE_VULKAN_VERSION_CHECK=ON
+    -DKOMPUTE_OPT_USE_BUILT_IN_FMT=OFF
+    -DKOMPUTE_OPT_USE_BUILT_IN_SPDLOG=OFF
+    -DKOMPUTE_OPT_USE_BUILT_IN_VULKAN_HEADER=OFF
+    -DKOMPUTE_OPT_USE_SPDLOG=OFF
+    -DLLMODEL_CUDA=OFF
+  )
+
+  cmake "${_cmake_options[@]}"
+  cmake --build build
+  DESTDIR="fakeinstall" cmake --install build
 }
 
 package() {
-  cd "${srcdir}/${_gitname}/gpt4all-chat/build"
+  # Note: install manually to prevent unwanted includes, static libs, etc
 
-  DESTDIR="${pkgdir}" make install
+  # binary
+  install -Dm755 fakeinstall/usr/bin/chat -t "$pkgdir/$_install_path/$_pkgname/"
 
-  mv "${pkgdir}/opt/gpt4all-chat/bin/chat" "${pkgdir}/opt/gpt4all-chat/bin/gpt4all-chat"
+  # libraries
+  chmod a-x fakeinstall/usr/lib/*.so*
+  cp -a fakeinstall/usr/lib/*.so* "$pkgdir/$_install_path/$_pkgname/"
 
-  mkdir -p "${pkgdir}/usr/bin"
-  mkdir -p "${pkgdir}/usr/share/applications"
-  mkdir -p "${pkgdir}/usr/share/icons/hicolor/scalable/apps"
+  # rpath
+  patchelf --set-rpath '$ORIGIN' "$pkgdir/$_install_path/$_pkgname"/*
 
-  cp "${srcdir}/gpt4all-chat.sh" "${pkgdir}/usr/bin/gpt4all-chat"
-  chmod 0755 "${pkgdir}/usr/bin/gpt4all-chat"
+  # icon
+  install -Dm644 "$_pkgsrc/gpt4all-chat/icons/gpt4all.svg" "$pkgdir/usr/share/pixmaps/$_pkgname.svg"
 
-  cp "${srcdir}/gpt4all-chat.desktop" "${pkgdir}/usr/share/applications/"
-  cp "../icons/gpt4all.svg" "${pkgdir}/usr/share/icons/hicolor/scalable/apps/gpt4all-chat.svg"
+  # license
+  install -Dm644 "$_pkgsrc/LICENSE.txt" "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+
+  # launcher
+  install -Dm644 /dev/stdin "$pkgdir/usr/share/applications/$_pkgname.desktop" << END
+[Desktop Entry]
+Type=Application
+Name=GPT4All Chat
+GenericName=GPT4All Chat
+Comment=$pkgdesc
+Exec=$_pkgname
+Icon=$_pkgname
+StartupWMClass=gpt4all-chat
+Terminal=false
+StartupNotify=true
+Categories=Office;InstantMessaging;
+Keywords=chat;gpt;ai;
+END
+
+  # script
+  install -Dm755 /dev/stdin "$pkgdir/usr/bin/$_pkgname" << END
+#!/usr/bin/env sh
+exec "/$_install_path/$_pkgname/chat" "\$@"
+END
 }

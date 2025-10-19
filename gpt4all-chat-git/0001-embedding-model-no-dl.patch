@@ -1,0 +1,44 @@
+diff --git a/gpt4all-chat/CMakeLists.txt b/gpt4all-chat/CMakeLists.txt
+index af958afd..159eb91a 100644
+--- a/gpt4all-chat/CMakeLists.txt
++++ b/gpt4all-chat/CMakeLists.txt
+@@ -202,12 +202,7 @@ set(LOCAL_EMBEDDING_MODEL_MD5 "a5401e7f7e46ed9fcaed5b60a281d547")
+ set(LOCAL_EMBEDDING_MODEL_PATH "${CMAKE_BINARY_DIR}/resources/${LOCAL_EMBEDDING_MODEL}")
+ set(LOCAL_EMBEDDING_MODEL_URL "https://gpt4all.io/models/gguf/${LOCAL_EMBEDDING_MODEL}")
+ message(STATUS "Downloading embedding model from ${LOCAL_EMBEDDING_MODEL_URL} ...")
+-file(DOWNLOAD
+-    "${LOCAL_EMBEDDING_MODEL_URL}"
+-    "${LOCAL_EMBEDDING_MODEL_PATH}"
+-    EXPECTED_HASH "MD5=${LOCAL_EMBEDDING_MODEL_MD5}"
+-)
+-message(STATUS "Embedding model downloaded to ${LOCAL_EMBEDDING_MODEL_PATH}")
++
+ if (APPLE)
+     list(APPEND CHAT_EXE_RESOURCES "${LOCAL_EMBEDDING_MODEL_PATH}")
+ endif()
+@@ -554,12 +549,6 @@ if (NOT GPT4ALL_USING_QTPDF)
+     endif()
+ endif()
+ 
+-if (NOT APPLE)
+-    install(FILES "${LOCAL_EMBEDDING_MODEL_PATH}"
+-            DESTINATION resources
+-            COMPONENT ${COMPONENT_NAME_MAIN})
+-endif()
+-
+ if (CMAKE_SYSTEM_NAME MATCHES Linux)
+     find_program(LINUXDEPLOYQT linuxdeployqt HINTS "$ENV{HOME}/dev/linuxdeployqt/build/tools/linuxdeployqt" "$ENV{HOME}/project/linuxdeployqt/bin")
+     configure_file("${CMAKE_CURRENT_SOURCE_DIR}/cmake/deploy-qt-linux.cmake.in"
+diff --git a/gpt4all-chat/src/embllm.cpp b/gpt4all-chat/src/embllm.cpp
+index 964ab7b7..8a714e5d 100644
+--- a/gpt4all-chat/src/embllm.cpp
++++ b/gpt4all-chat/src/embllm.cpp
+@@ -79,7 +79,7 @@ bool EmbeddingLLMWorker::loadModel()
+ #ifdef Q_OS_DARWIN
+     static const QString embPathFmt = u"%1/../Resources/%2"_s;
+ #else
+-    static const QString embPathFmt = u"%1/../resources/%2"_s;
++    static const QString embPathFmt = u"%1/%2"_s;
+ #endif
+ 
+     QString filePath = embPathFmt.arg(QCoreApplication::applicationDirPath(), LOCAL_EMBEDDING_MODEL);
