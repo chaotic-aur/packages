@@ -18,7 +18,7 @@ pkgname=vmware-workstation
 pkgver=25H2
 _buildver=24995812
 _pkgver=${pkgver}_${_buildver}
-pkgrel=2
+pkgrel=3
 pkgdesc='The industry standard for running multiple operating systems as virtual machines on a single Linux PC.'
 arch=(x86_64)
 url='https://www.vmware.com/products/workstation-for-linux.html'
@@ -375,6 +375,10 @@ package() {
     -e "s/@PKGNAME@/$pkgname/g" \
     -e "s/@PKGVER@/$_pkgver/g" \
     -i "$dkms_dir/dkms.conf"
+
+  for module in vmmon vmnet; do
+    tar -xf "vmware-vmx/lib/modules/source/$module.tar" -C "$dkms_dir"
+  done
 
   rm -r "$pkgdir/usr/lib/vmware/modules/source"
 
