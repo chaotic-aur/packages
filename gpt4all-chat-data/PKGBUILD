@@ -1,0 +1,28 @@
+# Maintainer: aur.chaotic.cx
+
+: ${_install_path:=usr/lib}
+: ${_gpt4all_version:=3.10.0}
+
+_pkgname="gpt4all-chat"
+pkgname="$_pkgname-data"
+pkgver=1.5
+pkgrel=1
+pkgdesc="Embedding model for LocalDocs"
+url="https://github.com/nomic-ai/gpt4all"
+license=('MIT')
+arch=('any')
+
+: ${_model:=nomic-embed-text-v${pkgver}.f16.gguf}
+source=(
+  "$_model"::"https://gpt4all.io/models/gguf/$_model"
+  "$_pkgname-LICENSE-$_gpt4all_version.txt"::"https://github.com/nomic-ai/gpt4all/raw/refs/tags/v$_gpt4all_version/LICENSE.txt"
+)
+sha256sums=(
+  'f7af6f66802f4df86eda10fe9bbcfc75c39562bed48ef6ace719a251cf1c2fdb'
+  'e06bec576945c1ab4cca000d6b2fe35987c2267a0eaf292bc58bd16a54000e1b'
+)
+
+package() {
+  install -Dm644 "$_model" -t "$pkgdir/$_install_path/$_pkgname/"
+  install -Dm644 "$_pkgname-LICENSE-$_gpt4all_version.txt" "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+}

@@ -1,0 +1,13 @@
+pkgbase = gpt4all-chat-data
+	pkgdesc = Embedding model for LocalDocs
+	pkgver = 1.5
+	pkgrel = 1
+	url = https://github.com/nomic-ai/gpt4all
+	arch = any
+	license = MIT
+	source = nomic-embed-text-v1.5.f16.gguf::https://gpt4all.io/models/gguf/nomic-embed-text-v1.5.f16.gguf
+	source = gpt4all-chat-LICENSE-3.10.0.txt::https://github.com/nomic-ai/gpt4all/raw/refs/tags/v3.10.0/LICENSE.txt
+	sha256sums = f7af6f66802f4df86eda10fe9bbcfc75c39562bed48ef6ace719a251cf1c2fdb
+	sha256sums = e06bec576945c1ab4cca000d6b2fe35987c2267a0eaf292bc58bd16a54000e1b
+
+pkgname = gpt4all-chat-data
