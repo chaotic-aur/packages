@@ -1,3 +1,13 @@
+## GE-Proton10-21
+
+- wine updated to bleeding edge
+- dxvk updated to latest git
+- vkd3d-proton updated to latest git
+- wine-wayland/em-10 patches updated
+- fixed news not loading in black desert online (revert GL/VK patch in em-10)
+- hotfix added for blue protocol player count crash (https://gitlab.winehq.org/wine/wine/-/merge_requests/9218)
+- re-added accidentally removed wine writecopy options for battlenet. uplay, ea app
+
 ## GE-Proton10-20
 
 HOTFIX:
