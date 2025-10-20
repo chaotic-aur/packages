@@ -1,6 +1,6 @@
 pkgbase = android-sdk-build-tools
 	pkgdesc = Build-Tools for Google Android SDK (aapt, aidl, dexdump, dx, llvm-rs-cc)
-	pkgver = r35.0.1
+	pkgver = r36.1
 	pkgrel = 1
 	url = https://developer.android.com/studio/releases/build-tools
 	arch = x86_64
@@ -12,10 +12,12 @@ pkgbase = android-sdk-build-tools
 	optdepends = lib32-zlib
 	optdepends = java-runtime
 	optdepends = ncurses5-compat-libs: necessary to run bcc_compat and llvm-rs-cc
+	provides = zipalign
+	conflicts = zipalign
 	options = !strip
-	source = https://dl.google.com/android/repository/build-tools_r35.0.1_linux.zip
+	source = https://dl.google.com/android/repository/build-tools_r36.1_linux.zip
 	source = package.xml
-	sha512sums = 284a8a6ec4d99343aaab35c97dba82f8598924bfe95e143ea58eb58fec302cc77b868505531d2dbc73bc816acb5853d8de7f97d7dab9aecde53e8b280bd13be5
+	sha512sums = 32a1eea273980a96745ae5e0b141720e5f91c6c6f83f42da4244fad36025d7750521fdf678a7d332afe5946057b498264343c2533ba524967d84347af9cd7ce5
 	sha512sums = 501211771b02940010420a4003b8396d3d6599fb339c2f64959335ab1c3cf615811cc62acaa093c9f4e14bbc019a9e493835573a5136383617d8b5184509d3f8
 
 pkgname = android-sdk-build-tools
