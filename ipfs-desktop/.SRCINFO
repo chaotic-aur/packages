@@ -2,6 +2,7 @@ pkgbase = ipfs-desktop
 	pkgdesc = Desktop client for the InterPlanetary File System
 	pkgver = 0.45.0
 	pkgrel = 1
+	epoch = 1
 	url = https://github.com/ipfs/ipfs-desktop
 	install = ipfs-desktop.install
 	arch = x86_64
