@@ -2,7 +2,7 @@
 
 _pkgname="cemu"
 pkgname="$_pkgname-git"
-pkgver=2.6.r88.gd54fb0b
+pkgver=2.6.r89.gef1c836
 pkgrel=2
 pkgdesc="A Wii U emulator"
 url="https://github.com/cemu-project/Cemu"
@@ -132,12 +132,10 @@ build() (
 
 package() {
   local _exec_name="Cemu_none"
-
-  install -dm755 "$pkgdir/usr/bin"
-  mv "$_pkgsrc/bin/$_exec_name" "$pkgdir/usr/bin/$_pkgname"
+  install -Dm755 "$_pkgsrc/bin/$_exec_name" "$pkgdir/usr/bin/$_pkgname"
 
   mkdir -pm755 "$pkgdir/usr/share/$_pkgname"
-  cp -a "$_pkgsrc"/bin/* "$pkgdir/usr/share/$_pkgname/"
+  cp -r "$_pkgsrc"/bin/{gameProfiles,resources} "$pkgdir/usr/share/$_pkgname/"
 
   install -Dm644 "$_pkgsrc"/dist/linux/info.cemu.Cemu.png "$pkgdir/usr/share/pixmaps/$_pkgname.png"
 
@@ -154,6 +152,4 @@ Categories=Game;Emulator;
 Keywords=Nintendo;
 MimeType=application/x-wii-u-rom;
 END
-
-  chmod -R u+rwX,go+rX,go-w "$pkgdir/"
 }

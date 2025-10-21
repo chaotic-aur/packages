@@ -2,8 +2,8 @@
 
 _pkgname="citron"
 pkgname="$_pkgname-git"
-pkgver=0.8.0.r8.gc15b651
-pkgrel=1
+pkgver=0.8.0.r28.gb85fd5f
+pkgrel=2
 pkgdesc="Yet another emulator fork"
 url="https://git.citron-emu.org/citron/emulator"
 license=('GPL-3.0-or-later')
@@ -58,7 +58,8 @@ prepare() {
   find src -name "CMakeLists.txt" -exec sed -E '/Werror=/d' -i {} \;
 
   # fix for Qt 6.10
-  sed -e '$a find_package(Qt6 REQUIRED COMPONENTS GuiPrivate)\ntarget_link_libraries(citron PRIVATE Qt6::GuiPrivate)' \
+  sed -e '$a find_package(Qt6 REQUIRED COMPONENTS GuiPrivate)' \
+    -e '$a target_link_libraries(citron PRIVATE Qt6::GuiPrivate)' \
     -i src/citron/CMakeLists.txt
 }
 

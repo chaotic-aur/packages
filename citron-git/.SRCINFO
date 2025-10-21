@@ -1,7 +1,7 @@
 pkgbase = citron-git
 	pkgdesc = Yet another emulator fork
-	pkgver = 0.8.0.r8.gc15b651
-	pkgrel = 1
+	pkgver = 0.8.0.r28.gb85fd5f
+	pkgrel = 2
 	url = https://git.citron-emu.org/citron/emulator
 	arch = x86_64
 	license = GPL-3.0-or-later
