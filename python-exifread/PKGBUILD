@@ -1,3 +1,4 @@
+# Maintainer:
 # Contributor: nblock <nblock [/at\] archlinux DOT us>
 # Contributor: Simon Chabot <simon dot chabot at etu dot utc dot fr>
 # Contributor: Christopher Loen <christopherloen at gmail dot com>
@@ -5,7 +6,7 @@
 
 pkgname=python-exifread
 _name="exifread"
-pkgver=3.4.0
+pkgver=3.5.1
 pkgrel=1
 pkgdesc="Python library to extract EXIF data from tiff and jpeg files"
 arch=('any')
@@ -14,7 +15,7 @@ license=('BSD')
 depends=('python')
 makedepends=('python-build' 'python-installer' 'python-setuptools')
 source=("https://files.pythonhosted.org/packages/source/${_name::1}/$_name/$_name-$pkgver.tar.gz")
-sha256sums=('dc7f8da77396709ca414a0eee1c262902f713afc9c043baa8b82337d76306ffc')
+sha256sums=('9f998f80d3062741c976dfc4fd033424bc40932937994e4d2181eb70c4b6aedd')
 
 build() {
   cd "$_name-$pkgver"
