@@ -2,8 +2,8 @@
 
 _pkgname="azahar"
 pkgname="$_pkgname-git"
-pkgver=2122.1.r30.ga5aecf9
-pkgrel=1
+pkgver=2123.3.r13.g068fec0
+pkgrel=2
 pkgdesc="A 3DS emulator"
 url="https://github.com/azahar-emu/azahar"
 license=("GPL-2.0-or-later")
@@ -73,6 +73,11 @@ prepare() {
     -e "s&@GIT_REV@&$_pkgrev&" \
     -e "s&@REPO_NAME@&${_pkgname^}&" \
     -i src/common/scm_rev.cpp.in
+
+  # fix for Qt 6.10
+  sed -e '1i find_package(Qt6 REQUIRED COMPONENTS GuiPrivate)' \
+    -e '$a target_link_libraries(citra_qt PRIVATE Qt6::GuiPrivate)' \
+    -i src/citra_qt/CMakeLists.txt
 }
 
 pkgver() {
