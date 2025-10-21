@@ -4,15 +4,23 @@ makedepends+=('ninja')
 depends+=(
   'libFLAC++.so'
   'libFLAC.so'
+  'libboost_chrono.so'
+  'libboost_filesystem.so'
+  'libboost_process.so'
+  'libboost_program_options.so'
+  'libfmt.so'
 )
 
 check() {
+  local _jobs=$(grep -Pom1 -- '-j\K[0-9]+' <<< "$MAKEFLAGS")
   local _test_opts=(
     --test-dir build
     --output-on-failure
-    --parallel $(nproc)
+    --parallel ${_jobs:-}
     --verbose
-    -E 'end_to_end|mutating_and_error_ops|categorize'
+
+    # some tests fail in docker
+    -E 'categorize|dwarfs_automount|dwarfs_fsname_and_subtype|end_to_end|huge_holes_fuse|mutating_and_error_ops|random_large_files|random_small_files_fuse|timestamps_fuse'
   )
   ctest "${_test_opts[@]}"
 }
