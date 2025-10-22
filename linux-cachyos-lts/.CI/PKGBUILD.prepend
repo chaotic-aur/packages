@@ -2,10 +2,6 @@
 _processor_opt=GENERIC_V1
 _use_auto_optimization=no
 
-# ensure clang/llvm/lto are not used
-# interferes with some -dkms packages
-_use_llvm_lto=none
-
 # prevent package renaming
 _use_lto_suffix=no
 _use_gcc_suffix=no
