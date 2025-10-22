@@ -1,0 +1,90 @@
+# Maintainer: aur.chaotic.cx
+
+_pkgname="vcmi"
+pkgname="$_pkgname-git"
+pkgver=1.6.8.r1804.g6407d9c
+pkgrel=1
+pkgdesc="Open-source game engine for Heroes of Might and Magic III"
+arch=('x86_64')
+url="https://github.com/vcmi/vcmi"
+license=(
+  'GPL-2.0-or-later' # program
+  'CC-BY-SA-4.0'     # assets
+)
+
+depends=(
+  'libavcodec.so'               # ffmpeg
+  'libavformat.so'              # ffmpeg
+  'libavutil.so'                # ffmpeg
+  'libboost_filesystem.so'      # boost-libs
+  'libboost_locale.so'          # boost-libs
+  'libboost_program_options.so' # boost-libs
+  'libswresample.so'            # ffmpeg
+  'libswscale.so'               # ffmpeg
+  'luajit'
+  'minizip'
+  'onetbb'
+  'qt6-base'
+  'qt6-svg'
+  'sdl2'
+  'sdl2_image'
+  'sdl2_mixer'
+  'sdl2_ttf'
+)
+makedepends=(
+  'boost'
+  'cmake'
+  'git'
+  'ninja'
+  'qt6-tools'
+)
+optdepends=(
+  'innoextract: required by vcmibuilder'
+  'unshield: required by vcmibuilder'
+  'unzip: required by vcmibuilder'
+)
+
+_pkgsrc="$_pkgname"
+source=("$_pkgsrc"::"git+$url.git")
+sha256sums=('SKIP')
+
+prepare() {
+  cd "$_pkgsrc"
+  git submodule update --init --recursive --depth=1
+
+  # force Qt6
+  sed -e 's/Qt6 Qt5/Qt6/' CMakeLists.txt
+
+  # fix Boost 1.89
+  sed -E -e 's&(return) boost::to_string(.*);$&\1 \2.str();&' -i scripting/erm/ERMInterpreter.cpp
+}
+
+pkgver() {
+  cd "$_pkgsrc"
+  git describe --long --tags --abbrev=7 --exclude='*[a-zA-Z][a-zA-Z]*' \
+    | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
+}
+
+build() {
+  local _cmake_options=(
+    -B build
+    -S "$_pkgsrc"
+    -G Ninja
+    -DCMAKE_BUILD_TYPE=None
+    -DCMAKE_INSTALL_PREFIX='/usr'
+    -Wno-dev
+
+    -DENABLE_ERM=ON
+    -DENABLE_INNOEXTRACT=OFF
+    -DENABLE_LUA=ON
+    -DENABLE_TEST=$CHECKFUNC
+    -DFORCE_BUNDLED_FL=ON
+  )
+
+  cmake "${_cmake_options[@]}"
+  cmake --build build
+}
+
+package() {
+  DESTDIR="$pkgdir" cmake --install build
+}
