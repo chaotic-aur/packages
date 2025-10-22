@@ -1,0 +1,4 @@
+[ipfs-desktop]
+source = "git"
+git = "https://github.com/ipfs/ipfs-desktop.git"
+prefix = "v"
