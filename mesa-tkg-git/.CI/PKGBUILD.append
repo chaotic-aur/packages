@@ -3,3 +3,15 @@ export CXXFLAGS+=" -g1"
 
 url="${_mesa_source%.git}"
 license=('MIT' 'BSD-3-Clause' 'SGI-B-2.0')
+
+_llvm_ver_maj=$(LC_ALL=C pacman -Si extra/llvm | grep -Pom1 '^Version\s+:\s+\K[0-9]+')
+
+eval "package_mesa-tkg-git() {
+  _llvm='llvm-libs<$((_llvm_ver_maj + 1)).0.0 clang<$((_llvm_ver_maj + 1)).0.0 libdisplay-info'
+  $(declare -f package_mesa-tkg-git | tail -n +2)
+}"
+
+eval "package_lib32-mesa-tkg-git() {
+  _llvm='lib32-llvm-libs<$((_llvm_ver_maj + 1)).0.0 lib32-clang<$((_llvm_ver_maj + 1)).0.0 lib32-libdisplay-info'
+  $(declare -f package_lib32-mesa-tkg-git | tail -n +2)
+}"

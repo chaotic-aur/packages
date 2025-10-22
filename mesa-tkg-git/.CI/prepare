@@ -1,3 +1,2 @@
 #!/usr/bin/env sh
 echo '_user_patches_no_confirm="true"' >> customization.cfg
-echo '_compiler="clang"' >> customization.cfg
