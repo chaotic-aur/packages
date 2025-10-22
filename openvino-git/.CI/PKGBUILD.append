@@ -6,3 +6,11 @@ url="https://github.com/openvinotoolkit/openvino"
 pkgdesc="${pkgdesc% (*}"
 
 eval "$(declare -f build | sed -E "s&-G 'Unix Makefiles'&&g")"
+
+eval _orig_"$(declare -f prepare)"
+prepare() {
+  # fix patch
+  sed -E -e 's&DEFINED &&' -i "${srcdir}/040-openvino-fix-version-check.patch"
+
+  _orig_prepare
+}
