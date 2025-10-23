@@ -1,7 +1,7 @@
 pkgbase = obs-studio-stable
 	pkgdesc = Free, open source software for live streaming and recording - Browser enabled
-	pkgver = 32.0.1
-	pkgrel = 3
+	pkgver = 32.0.2
+	pkgrel = 1
 	url = https://github.com/obsproject/obs-studio
 	arch = x86_64
 	license = GPL-2.0-or-later
@@ -57,7 +57,7 @@ pkgbase = obs-studio-stable
 	conflicts = obs-studio
 	options = !lto
 	options = !strip
-	source = obs-studio::git+https://github.com/obsproject/obs-studio.git#tag=32.0.1
+	source = obs-studio::git+https://github.com/obsproject/obs-studio.git#tag=32.0.2
 	source = cef_binary_6533_linux_x86_64_v6.tar.xz::https://cdn-fastly.obsproject.com/downloads/cef_binary_6533_linux_x86_64_v6.tar.xz
 	sha256sums = SKIP
 	sha256sums = 7963335519a19ccdc5233f7334c5ab023026e2f3e9a0cc417007c09d86608146
