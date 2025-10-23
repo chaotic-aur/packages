@@ -3,11 +3,11 @@
 # Maintainer: William Horvath <william at horvath dot blog>
 
 pkgname=llvm-mingw
-pkgver=21.1.3+20251007
+pkgver=21.1.4+20251021
 pkgrel=1
 
 # This controls the version we will pull.
-_tag="20251007"
+_tag="20251021"
 
 # When updating, needs to be manually changed to the mingw_commit echoed during prepare().
 mingw_commit="a0fd21158e9f3d625dd6d682443bf9c905ff5e01"
@@ -66,8 +66,8 @@ source=(
   "llvm-project-${pkgver%'+'"$_tag"}.tar.gz::https://github.com/llvm/llvm-project/archive/refs/tags/llvmorg-${pkgver%'+'"$_tag"}.tar.gz"
   "mingw-w64-g${mingw_commit:0:6}.tar.gz::https://github.com/mingw-w64/mingw-w64/archive/${mingw_commit}.tar.gz"
 )
-sha256sums=('a9f683e08fc5c0c24c67f6beb3a4db74b65b942d79e9d8b4ef6da3ad13bc8df8'
-  '5bc91fe86bafebc64189465faca1ff35626dcb1b8539a14ae2ec07834c3e8e95'
+sha256sums=('f8e078554dea3d33ffdfd6cc2e615a69f5a7d6c52c001dcce2be0b4027b09905'
+  '3a0921d78be74302cb054da1dad59e706814d8fed3a6ac9b532e935825a0715c'
   'a883b5ec72a4d0d7523c1fbf6c18b434e5add65a0600bbdc9637e6870b7a9d4e')
 
 pkgver() {
