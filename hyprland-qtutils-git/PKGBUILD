@@ -13,7 +13,7 @@ depends=(
   gcc-libs
   glibc
   hyprutils-git
-  hyprland-qt-support
+  hyprland-qt-support-git
   qt6-base
   qt6-declarative
 )

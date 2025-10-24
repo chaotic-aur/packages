@@ -12,7 +12,7 @@ pkgbase = hyprland-qtutils-git
 	depends = gcc-libs
 	depends = glibc
 	depends = hyprutils-git
-	depends = hyprland-qt-support
+	depends = hyprland-qt-support-git
 	depends = qt6-base
 	depends = qt6-declarative
 	provides = hyprland-qtutils=0.1.3
