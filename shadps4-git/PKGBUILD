@@ -8,8 +8,8 @@
 
 _pkgname="shadps4"
 pkgname="$_pkgname-git"
-pkgver=0.11.0.r62.g999960a
-pkgrel=2
+pkgver=0.11.0.r71.g6bd74ef
+pkgrel=1
 pkgdesc="PlayStation 4 emulator"
 url="https://github.com/shadps4-emu/shadPS4"
 license=('GPL-2.0-or-later')
@@ -44,7 +44,6 @@ makedepends=(
   'spirv-headers'
   'stb'
   'toml11'
-  'vulkan-headers'
 )
 
 if [[ "${_use_clang::1}" == "t" ]]; then
@@ -65,9 +64,6 @@ sha256sums=('SKIP')
 
 prepare() {
   cd "$_pkgsrc"
-  git rm -r externals/MoltenVK/MoltenVK
-  git rm -r externals/MoltenVK/SPIRV-Cross
-  git rm -r externals/MoltenVK/cereal
   git rm -r externals/date
   git rm -r externals/ext-boost
   git rm -r externals/ffmpeg-core
@@ -79,7 +75,6 @@ prepare() {
   git rm -r externals/robin-map
   git rm -r externals/sdl3
   git rm -r externals/toml11
-  git rm -r externals/vulkan-headers
   git rm -r externals/xxhash
   git rm -r externals/zlib-ng
   git submodule update --init --recursive --depth 1
