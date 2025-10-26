@@ -1,11 +1,9 @@
 pkgbase = 86box
 	pkgdesc = An emulator for classic IBM PC clones
-	pkgver = 5.1
-	pkgrel = 2
+	pkgver = 5.2
+	pkgrel = 1
 	url = https://86box.net/
-	arch = pentium4
 	arch = x86_64
-	arch = armv7h
 	arch = aarch64
 	license = GPL-2.0-or-later
 	makedepends = cmake>=3.21
@@ -43,9 +41,7 @@ pkgbase = 86box
 	optdepends = ghostscript: Printing with Generic PostScript Printer
 	optdepends = libpcap: Networking not limited to TCP/IP
 	options = !buildflags
-	source = 86box_5.1.tgz::https://github.com/86Box/86Box/archive/refs/tags/v5.1.tar.gz
-	source = https://github.com/86Box/86Box/commit/3f61475d9ae0574efd81ccb924e970f7d7476374.patch
-	sha512sums = 5c68a21621da58a37a5e9f8199b2cabf0b3483303a44a53221c746f76a80d248d26b56499b771bd18670a16c3942ed6f3f92db95211a37677bda19becb75f70b
-	sha512sums = c8a818eebfe2875a452f71a5d9224d2a11a40b1285d0ae1e1ace3387f1539be502d143cb02c30f0dd38bca3684e3c2158dae1c6865c7fc24df52a07929a75cc0
+	source = 86box_5.2.tgz::https://github.com/86Box/86Box/archive/refs/tags/v5.2.tar.gz
+	sha512sums = 0e8352645823ef156fe9458d2adff652aab2cdc0cae7a05102f93fb46d779b057f4aeddc0ae4e3eaf768d1c0f71435159dd1c4016308ad59f7e5f9801caac791
 
 pkgname = 86box
