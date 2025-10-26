@@ -255,16 +255,19 @@ function update_via_git() {
     set -euo pipefail
     local -n VARIABLES_VIA_GIT=${1:-VARIABLES}
     local git_url="${2:-}"
-    local is_aur="${3:-false}"
+    local branch="${3:-}"
     local pkgbase="${VARIABLES_VIA_GIT[PKGBASE]}"
 
     for i in {1..2}; do
-        if [ "$is_aur" == "true" ] && git clone --branch "$pkgbase" --single-branch https://github.com/archlinux/aur.git "$TMPDIR/aur-pulls/$pkgbase" 2>/dev/null; then
+        local clone_args=("-q" "--depth=1" "$git_url" "$TMPDIR/aur-pulls/$pkgbase")
+        if [ -n "$branch" ]; then
+            clone_args=("-q" "--depth=1" "--branch" "$branch" "--single-branch" "$git_url" "$TMPDIR/aur-pulls/$pkgbase")
+        fi
+        
+        if git clone "${clone_args[@]}" 2>/dev/null; then
             break
         fi
-        if [ "$is_aur" != "true" ] && git clone -q --depth=1 "$git_url" "$TMPDIR/aur-pulls/$pkgbase" 2>/dev/null; then
-            break
-        fi
+        
         if [ "$i" -ne 2 ]; then
             UTIL_PRINT_WARNING "$pkgbase: Failed to clone $git_url. Retrying in 30 seconds."
             sleep 30
@@ -372,6 +375,8 @@ function update_pkgbuild() {
     elif [[ "$PKGBUILD_SOURCE" != aur ]]; then
         update_via_git VARIABLES_UPDATE_PKGBUILD "$PKGBUILD_SOURCE"
     else
+        local git_url="https://github.com/archlinux/aur.git"
+
         # Fetch from optimized AUR RPC call
         if ! [ -v "AUR_TIMESTAMPS[$pkgbase]" ]; then
             UTIL_PRINT_WARNING "Could not find $pkgbase in cached AUR timestamps."
@@ -382,7 +387,7 @@ function update_pkgbuild() {
         if ((NEW_TIMESTAMP <= LAST_AUR_TIMESTAMP)); then
             return 0
         fi
-        http_proxy="$CI_AUR_PROXY" https_proxy="$CI_AUR_PROXY" update_via_git VARIABLES_UPDATE_PKGBUILD "$git_url" true
+        http_proxy="$CI_AUR_PROXY" https_proxy="$CI_AUR_PROXY" update_via_git VARIABLES_UPDATE_PKGBUILD "$git_url" "$pkgbase"
     fi
 }
 
