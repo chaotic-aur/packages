@@ -5,6 +5,12 @@ set -euo pipefail
 # shellcheck source=./util.shlib
 source .ci/util.shlib
 
+# Check if AUR port 22 is working and abort if not. I'm too tired of this bringing down the CI pipelines
+if ! nc -z aur.archlinux.org 22; then
+    UTIL_PRINT_ERROR "Cannot reach AUR via SSH on port 22, skipping!"
+    exit 0
+fi
+
 # Set up required environment
 [[ -v "TMPDIR" ]] || TMPDIR="/tmp"
 mkdir -p "$TMPDIR/aur-push"
