@@ -1,10 +1,10 @@
 # Maintainer: Lili1228 <aur at lili dot lgbt>
 pkgname=86box
 _pkgname=86Box
-pkgver=5.2
-pkgrel=1
+pkgver=5.1
+pkgrel=2
 pkgdesc='An emulator for classic IBM PC clones'
-arch=('x86_64' 'aarch64') # use 5.1-2 for pentium4 and armv7h
+arch=('pentium4' 'x86_64' 'armv7h' 'aarch64')
 url='https://86box.net/'
 license=('GPL-2.0-or-later')
 depends=('fluidsynth' 'hicolor-icon-theme' 'libserialport' 'libslirp' 'openal' 'qt6-base' 'rtmidi' 'sdl2'                                                                    # explicit
@@ -19,13 +19,26 @@ optdepends=(
 options=('!buildflags')
 source=(
   "${pkgname}_$pkgver.tgz::https://github.com/${_pkgname}/${_pkgname}/archive/refs/tags/v${pkgver}.tar.gz"
+  https://github.com/86Box/86Box/commit/3f61475d9ae0574efd81ccb924e970f7d7476374.patch # fix building with Qt 6.10
 )
 sha512sums=(
-  0e8352645823ef156fe9458d2adff652aab2cdc0cae7a05102f93fb46d779b057f4aeddc0ae4e3eaf768d1c0f71435159dd1c4016308ad59f7e5f9801caac791
+  5c68a21621da58a37a5e9f8199b2cabf0b3483303a44a53221c746f76a80d248d26b56499b771bd18670a16c3942ed6f3f92db95211a37677bda19becb75f70b
+  c8a818eebfe2875a452f71a5d9224d2a11a40b1285d0ae1e1ace3387f1539be502d143cb02c30f0dd38bca3684e3c2158dae1c6865c7fc24df52a07929a75cc0
 )
 
+prepare() {
+  cd "$srcdir/$_pkgname-$pkgver"
+  patch -p1 -i ../3f61475d9ae0574efd81ccb924e970f7d7476374.patch
+}
+
 build() {
-  LDFLAGS='-z now -z shstk' cmake -S"$_pkgname-$pkgver" -Bbuild --preset regular --toolchain "cmake/flags-gcc-${CARCH}.cmake" -DCMAKE_INSTALL_PREFIX=/usr -DUSE_QT6=on
+  case "$CARCH" in
+    pentium4) _TOOLCHAIN=cmake/flags-gcc-i686.cmake ;;
+    x86_64) _TOOLCHAIN=cmake/flags-gcc-x86_64.cmake ;;
+    armv7h) _TOOLCHAIN=cmake/flags-gcc-armv7.cmake ;;
+    aarch64) _TOOLCHAIN=cmake/flags-gcc-aarch64.cmake ;;
+  esac
+  LDFLAGS='-z now -z shstk' cmake -S"$_pkgname-$pkgver" -Bbuild --preset regular --toolchain "$_TOOLCHAIN" -DCMAKE_INSTALL_PREFIX=/usr -DUSE_QT6=on
   cmake --build build
 }
 
