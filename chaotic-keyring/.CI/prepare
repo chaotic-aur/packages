@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# needs to be built manually
+return "$CI_CODE_SKIP"
