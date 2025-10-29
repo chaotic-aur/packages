@@ -1,5 +1,0 @@
-[gtkglext]
-source = "regex"
-regex = "([\\d.]+\\.\\d+).tar.gz"
-url = "https://download.gnome.org/sources/gtkglext/1.2/"
-
