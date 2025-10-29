@@ -1,6 +1,6 @@
 pkgbase = easyeffects-git
 	pkgdesc = Audio Effects for PipeWire applications
-	pkgver = 7.1.7.r937.gad1ae4dd7
+	pkgver = 7.1.7.r1478.g0c61490fe
 	pkgrel = 1
 	url = https://github.com/wwmm/easyeffects
 	arch = x86_64
@@ -10,7 +10,7 @@ pkgbase = easyeffects-git
 	arch = armv7h
 	arch = aarch64
 	license = GPL-3.0-only
-	makedepends = appstream-glib
+	makedepends = appstream
 	makedepends = cmake
 	makedepends = extra-cmake-modules
 	makedepends = git
