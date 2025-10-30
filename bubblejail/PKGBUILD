@@ -1,7 +1,7 @@
 # Maintainer: aur.chaotic.cx
 
 _pkgname="bubblejail"
-pkgname="$_pkgname-git"
+pkgname="$_pkgname"
 pkgver=0.10.1
 pkgrel=2
 pkgdesc="Bubblewrap based sandboxing utility"
@@ -70,7 +70,7 @@ build() {
     -Duse-vendored-python-lxns=enabled
   )
 
-  arch-meson "${opts[@]}" "$pkgname" build
+  arch-meson "${opts[@]}" "$_pkgsrc" build
   meson compile -C build
 }
 

@@ -1,4 +1,4 @@
-pkgbase = bubblejail-git
+pkgbase = bubblejail
 	pkgdesc = Bubblewrap based sandboxing utility
 	pkgver = 0.10.1
 	pkgrel = 2
@@ -30,4 +30,4 @@ pkgbase = bubblejail-git
 	sha256sums = SKIP
 	sha256sums = SKIP
 
-pkgname = bubblejail-git
+pkgname = bubblejail
