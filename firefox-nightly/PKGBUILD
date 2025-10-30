@@ -1,19 +1,19 @@
 # Maintainer: aur.chaotic.cx
 
 ## options
-: ${_build_pgo:=true}
-: ${_build_pgo_reuse:=try}
-: ${_build_pgo_xvfb:=false}
+: ${_build_pgo:=true}      # profile-guided optimization; ~20% better benchmarks, 3x build time
+: ${_build_pgo_reuse:=try} # reuse previously generated profile
+: ${_build_pgo_xvfb:=true} # use xfvb for profiling, otherwise xwayland-run
+
+: ${_build_lto:=false}        # link-time optimization; may cause spurious errors
+: ${_build_system_libs:=true} # use system libraries, reduces build time
 
 : ${_build_symbols:=false}
 
-: ${_ver_clang=}
-: ${RUSTUP_TOOLCHAIN:=stable}
-
 _pkgname=firefox-nightly
 pkgname="$_pkgname"
-pkgver=142.0a1+20250625.03+hf768d263e
-pkgrel=2
+pkgver=146.0a1+20251029.09+h127c786d5
+pkgrel=1
 pkgdesc="Fast, Private & Safe Web Browser"
 url="https://www.mozilla.org/firefox/channel/#nightly"
 license=('MPL-2.0')
@@ -88,43 +88,41 @@ options=(
 )
 
 _get_version_info() {
-  local _info_url="https://archive.mozilla.org/pub/firefox/nightly/latest-mozilla-central"
-  local _filename=$(
+  local _info_url _filename _response
+  _info_url="https://archive.mozilla.org/pub/firefox/nightly/latest-mozilla-central"
+  _filename=$(
     curl -Ssf "$_info_url/" | grep linux-x86_64\.txt \
       | sed -E 's&^.*href=".*/(firefox-.*\.linux-x86_64\.txt)".*$&\1&' \
       | sort -rV | head -1
   )
-  local _response=$(curl -Ssf "$_info_url/$_filename")
+  _response=$(curl -Ssf "$_info_url/$_filename")
+
   _version=$(printf '%s' "$_filename" | sed -E 's&^firefox-([0-9]+\.[0-9].*)\.en-US\.linux-x86_64\.txt$&\1&')
   _date=$(printf '%s' "$_response" | head -1 | sed -E 's&^([0-9]{8})([0-9]*)$&\1.\2&')
   _revision=$(printf '%s' "$_response" | tail -1 | sed -E 's&^.*/rev/([a-f0-9]+)$&\1&')
 }
-
-_source_main() {
-  _repo="https://hg.mozilla.org/mozilla-central"
-
-  source=(
-    "hg+$_repo#revision=$_revision"
-    'firefox-nightly.svg'
-    'firefox-nightly.desktop'
-    '0001-Install-under-remoting-name.patch'
-  )
-  sha256sums=(
-    'SKIP'
-    'a9b8b4a0a1f4a7b4af77d5fc70c2686d624038909263c795ecc81e0aec7711e9'
-    '4304902899987928ea51b7020fb1298b01fa77e327ef66ab00b061f767042b9f'
-    '883ca2fa723a7572269d18559d5b82412782ad63e5dd3820eeb0540e3fe34314'
-  )
-
-  validpgpkeys=(
-    # Mozilla Software Releases <release@mozilla.com>
-    # https://blog.mozilla.org/security/2023/05/11/updated-gpg-key-for-signing-firefox-releases/
-    14F26682D0916CDD81E37B6D61B7B526D98F0353
-  )
-}
-
 _get_version_info
-_source_main
+
+_repo="https://hg.mozilla.org/mozilla-central"
+
+source=(
+  "hg+$_repo#revision=$_revision"
+  'firefox-nightly.svg'
+  'firefox-nightly.desktop'
+  '0001-Install-under-remoting-name.patch'
+)
+sha256sums=(
+  'SKIP'
+  'a9b8b4a0a1f4a7b4af77d5fc70c2686d624038909263c795ecc81e0aec7711e9'
+  '4304902899987928ea51b7020fb1298b01fa77e327ef66ab00b061f767042b9f'
+  '883ca2fa723a7572269d18559d5b82412782ad63e5dd3820eeb0540e3fe34314'
+)
+
+validpgpkeys=(
+  # Mozilla Software Releases <release@mozilla.com>
+  # https://blog.mozilla.org/security/2023/05/11/updated-gpg-key-for-signing-firefox-releases/
+  14F26682D0916CDD81E37B6D61B7B526D98F0353
+)
 
 pkgver() {
   # set by _get_version_info
@@ -133,7 +131,6 @@ pkgver() {
 
 prepare() {
   mkdir -p mozbuild
-  cd "${_repo##*/}"
 
   # Google API keys (see http://www.chromium.org/developers/how-tos/api-keys)
   # Note: These are for Arch Linux use ONLY. For your own distribution, please
@@ -141,9 +138,9 @@ prepare() {
   # more information.
   echo -n "AIzaSyDwr302FpOSkGRpLlUpPThNTDPbXcIn_FM" > google-api-key
 
-  cat > ../mozconfig << END
+  cat > mozconfig << END
 ac_add_options --enable-application=browser
-mk_add_options MOZ_OBJDIR=${PWD@Q}/obj
+mk_add_options MOZ_OBJDIR="$srcdir/obj"
 
 ac_add_options --prefix=/usr
 ac_add_options --enable-release
@@ -169,15 +166,8 @@ export NIGHTLY_BUILD=1
 export MOZ_REQUIRE_SIGNING=
 
 # Keys
-ac_add_options --with-google-location-service-api-keyfile=${PWD@Q}/google-api-key
-ac_add_options --with-google-safebrowsing-api-keyfile=${PWD@Q}/google-api-key
-
-# System Libraries
-ac_add_options --with-system-jpeg
-ac_add_options --with-system-libevent
-ac_add_options --with-system-libvpx
-ac_add_options --with-system-webp
-ac_add_options --with-system-zlib
+ac_add_options --with-google-location-service-api-keyfile="$srcdir/google-api-key"
+ac_add_options --with-google-safebrowsing-api-keyfile="$srcdir/google-api-key"
 
 # Features
 ac_add_options --enable-alsa
@@ -208,6 +198,22 @@ export NM=llvm-nm
 export RANLIB=llvm-ranlib
 END
 
+  if [[ "${_build_system_libs::1}" == "t" ]]; then
+    cat >> mozconfig << END
+ac_add_options --with-system-jpeg
+ac_add_options --with-system-libevent
+ac_add_options --with-system-libvpx
+ac_add_options --with-system-webp
+ac_add_options --with-system-zlib
+END
+  fi
+
+  if [[ "${_build_lto::1}" == "t" ]]; then
+    cat >> mozconfig << END
+ac_add_options --enable-lto=cross,full
+END
+  fi
+
   local src
   for src in "${source[@]}"; do
     src="${src%%::*}"
@@ -215,30 +221,27 @@ END
     src="${src%.zst}"
     if [[ $src == *.patch ]]; then
       printf '\nApplying patch: %s\n' "$src"
-      patch -Np1 -F100 -i "${srcdir:?}/$src"
+      patch -d "${_repo##*/}" -Np1 -F100 -i "${srcdir:?}/$src"
     fi
   done
 }
 
 build() (
-  cd "${_repo##*/}"
-
-  export PATH="/usr/lib/llvm${_ver_clang:-}/bin:$PATH"
-  export LD_LIBRARY_PATH=/usr/lib/llvm${_ver_clang:-}/lib
-  export RUSTUP_TOOLCHAIN
+  export RUSTUP_TOOLCHAIN=stable
 
   export XDG_RUNTIME_DIR="${XDG_RUNTIME_DIR:-$srcdir/xdg-runtime}"
-  [ ! -d "$XDG_RUNTIME_DIR" ] && install -dm700 "${XDG_RUNTIME_DIR:?}"
+  [ ! -d "$XDG_RUNTIME_DIR" ] && mkdir -pm700 "${XDG_RUNTIME_DIR:?}"
 
   export MACH_BUILD_PYTHON_NATIVE_PACKAGE_SOURCE=pip
   export MOZBUILD_STATE_PATH="$srcdir/mozbuild"
   export MOZ_BUILD_DATE="$(date -u${SOURCE_DATE_EPOCH:+d @$SOURCE_DATE_EPOCH} +%Y%m%d%H%M%S)"
-  export MOZ_ENABLE_FULL_SYMBOLS=1
   export MOZ_NOSPAM=1
-  export MOZ_SOURCE_REPO="$_repo"
 
   # Work around https://bugzilla.mozilla.org/show_bug.cgi?id=1969383
   export RUST_MIN_STACK=16777216
+
+  export MOZ_ENABLE_FULL_SYMBOLS=1
+  export MOZ_SOURCE_REPO="$_repo"
 
   # malloc_usable_size is used in various parts of the codebase
   CFLAGS="${CFLAGS/_FORTIFY_SOURCE=3/_FORTIFY_SOURCE=2}"
@@ -250,6 +253,8 @@ build() (
 
   # LTO/PGO needs more open files
   ulimit -n 4096
+
+  cd "${_repo##*/}"
 
   # Do 3-tier PGO
   if [[ "${_build_pgo::1}" == "t" ]]; then
@@ -283,7 +288,7 @@ END
 
       local _headless_env=(
         LLVM_PROFDATA=llvm-profdata
-        JARLOG_FILE="${PWD@Q}/jarlog"
+        JARLOG_FILE=${PWD@Q}/jarlog
         LIBGL_ALWAYS_SOFTWARE=true
         dbus-run-session
       )
@@ -305,42 +310,38 @@ END
       echo "Removing instrumented browser..."
       ./mach clobber objdir
     fi
+  fi
 
-    echo "Building optimized browser..."
-    cat > .mozconfig ../mozconfig
+  # Prepare to rebuild
+  cat > .mozconfig ../mozconfig
 
-    if [[ -s merged.profdata ]]; then
-      stat -c "Profile data found (%s bytes)" merged.profdata
-      cat >> .mozconfig - << END
-ac_add_options --enable-lto=cross,full
+  if [[ -s merged.profdata ]]; then
+    stat -c "Profile data found (%s bytes)" merged.profdata
+    cat >> .mozconfig - << END
 ac_add_options --enable-profile-use=cross
 ac_add_options --with-pgo-profile-path=${PWD@Q}/merged.profdata
 END
 
-      # save profdata for reuse
-      cp -f merged.profdata "$_old_profdata"
-    else
-      echo "Profile data not found."
-    fi
+    # save profdata for reuse
+    cp -f merged.profdata "$_old_profdata"
+  else
+    echo "Profile data not found."
+  fi
 
-    if [[ -s jarlog ]]; then
-      stat -c "Jar log found (%s bytes)" jarlog
-      cat >> .mozconfig - << END
+  if [[ -s jarlog ]]; then
+    stat -c "Jar log found (%s bytes)" jarlog
+    cat >> .mozconfig - << END
 ac_add_options --with-pgo-jarlog=${PWD@Q}/jarlog
 END
 
-      # save jarlog for reuse
-      cp -f jarlog "$_old_jarlog"
-    else
-      echo "Jar log not found."
-    fi
-
-    ./mach build --priority normal
+    # save jarlog for reuse
+    cp -f jarlog "$_old_jarlog"
   else
-    echo "Building browser..."
-    cat > .mozconfig ../mozconfig
-    ./mach build --priority normal
+    echo "Jar log not found."
   fi
+
+  echo "Building browser..."
+  ./mach build --priority normal
 
   if [[ "${_build_symbols::1}" == "t" ]]; then
     echo "Building symbol archive..."

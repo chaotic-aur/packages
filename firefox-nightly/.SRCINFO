@@ -1,7 +1,7 @@
 pkgbase = firefox-nightly
 	pkgdesc = Fast, Private & Safe Web Browser
-	pkgver = 142.0a1+20250625.03+hf768d263e
-	pkgrel = 2
+	pkgver = 146.0a1+20251029.09+h127c786d5
+	pkgrel = 1
 	url = https://www.mozilla.org/firefox/channel/#nightly
 	arch = x86_64
 	license = MPL-2.0
@@ -26,9 +26,7 @@ pkgbase = firefox-nightly
 	makedepends = wasi-libc++abi
 	makedepends = yasm
 	makedepends = zip
-	makedepends = weston
-	makedepends = xorg-xwayland
-	makedepends = wlheadless-run
+	makedepends = xorg-server-xvfb
 	depends = dbus
 	depends = ffmpeg
 	depends = gtk3
@@ -52,7 +50,7 @@ pkgbase = firefox-nightly
 	options = !lto
 	options = !makeflags
 	options = !strip
-	source = hg+https://hg.mozilla.org/mozilla-central#revision=f0c5045b9e8ac11e1c0b8927ccbb69430fab1fc8
+	source = hg+https://hg.mozilla.org/mozilla-central#revision=16e503f4b888d7d0bc063ec86439d2d7b1c5efd4
 	source = firefox-nightly.svg
 	source = firefox-nightly.desktop
 	source = 0001-Install-under-remoting-name.patch
