@@ -1,0 +1,6 @@
+unset conflicts
+
+makedepends+=('git')
+
+# remove -bin suffix
+optdepends=("${optdepends[@]//-bin:/:}")
