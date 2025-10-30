@@ -1,52 +1,76 @@
-# Maintainer: igo95862 at yandex dot ru
-pkgname=bubblejail
+# Maintainer: aur.chaotic.cx
+
+_pkgname="bubblejail"
+pkgname="$_pkgname-git"
 pkgver=0.10.1
-pkgrel=1
+pkgrel=2
 pkgdesc="Bubblewrap based sandboxing utility"
-arch=('x86_64')
 url="https://github.com/igo95862/bubblejail"
 license=('GPL-3.0-or-later')
+arch=('x86_64')
+
 depends=(
-  'python'
-  'python-pyxdg'
   'bubblewrap'
-  'python-tomli-w'
-  'python-cattrs'
-  'xdg-dbus-proxy'
-  'hicolor-icon-theme'
-  'python-pyqt6'
   'desktop-file-utils'
+  'hicolor-icon-theme'
   'libnotify'
+  'python'
+  'python-cattrs'
+  'python-pyqt6'
+  'python-pyxdg'
+  'python-tomli-w'
+  'xdg-dbus-proxy'
+)
+makedepends=(
+  'git'
+  'meson'
+  'python-jinja'
+  'scdoc'
+
+  # For python-lxns
+  'linux-headers'
 )
 optdepends=(
   'bash-completion: completions for bash shell'
   'fish: completions for fish shell'
   'slirp4netns: Namespaced networking stack'
 )
-makedepends=(
-  'meson'
-  'python-jinja'
-  'scdoc'
-  # For python-lxns
-  'gcc'
-  'linux-headers'
-)
+
+provides=("$_pkgname")
+conflicts=("$_pkgname")
+
+_pkgsrc="$_pkgname"
 source=(
-  "$url/releases/download/$pkgver/bubblejail-$pkgver.tar.xz"
-  "$url/releases/download/$pkgver/bubblejail-$pkgver.tar.xz.sig"
+  "$_pkgsrc"::"git+$url.git#tag=$pkgver"
+  "0096-expandvars-0.patch"::"https://github.com/igo95862/bubblejail/pull/96.diff"
 )
-# To get the valid GPG key
-# gpg --keyserver https://keys.mailvelope.com/ --search-keys 5A3D06576A6A67443DFBE856F1A55E62951B2143
-# Alternative if the above keyserver does not work
-# curl -s 'https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x5a3d06576a6a67443dfbe856f1a55e62951b2143' | gpg --import
-validpgpkeys=('5A3D06576A6A67443DFBE856F1A55E62951B2143')
-sha512sums=('9fc7ef12f64e89a1670d4356a7150a528ab441955500f80a30d0518b500eb2ce9a60c9a2b787813960a976ee64c36bf192ba003745d727336741436a68d4ff39'
-  'SKIP')
+sha256sums=(
+  'SKIP'
+  'SKIP'
+)
+
+prepare() {
+  cd "$_pkgsrc"
+  patch -Np1 -F100 -i "$srcdir/0096-expandvars-0.patch"
+
+  # change notification priority
+  sed -E \
+    -e '/--urgency/d' \
+    -e '/critical/d' \
+    -i "src/bubblejail/bubblejail_cli.py"
+
+  # enable extra features
+  sed -E -e '/flags\s?=\s?ServiceFlags.(EXPERIMENTAL|NO_GUI)/d' \
+    -i "src/bubblejail/services.py"
+}
 
 build() {
-  arch-meson "${srcdir}/${pkgname}-${pkgver}" build \
-    -Duse-vendored-python-lxns=enabled \
-    --wipe
+  local opts=(
+    -Dversion_display="'AUR $pkgver'"
+    -Duse-vendored-python-lxns=enabled
+  )
+
+  arch-meson "${opts[@]}" "$pkgname" build
   meson compile -C build
 }
 
