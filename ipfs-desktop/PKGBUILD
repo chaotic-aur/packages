@@ -7,7 +7,7 @@
 
 _pkgname="ipfs-desktop"
 pkgname="$_pkgname"
-pkgver=0.46.0
+pkgver=0.46.1
 pkgrel=1
 pkgdesc="Desktop client for the InterPlanetary File System"
 url="https://github.com/ipfs/ipfs-desktop"
