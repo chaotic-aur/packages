@@ -1,0 +1,125 @@
+# Maintainer: aur.chaotic.cx
+
+_pkgname="shadps4-qtlauncher"
+pkgname="$_pkgname-git"
+pkgver=0.0.0.r143.g55bb7f7
+pkgrel=1
+pkgdesc="Qt-based launcher for shadps4 emulator"
+url="https://github.com/shadps4-emu/shadps4-qtlauncher"
+license=('GPL-2.0-or-later')
+arch=('x86_64')
+
+depends=(
+  #'hicolor-icon-theme'
+  'libfmt.so'
+  'pugixml'
+  'qt6-base'
+  'qt6-multimedia'
+  'sdl3'
+)
+makedepends=(
+  'cmake'
+  'git'
+  'ninja'
+  'nlohmann-json'
+  'qt6-tools'
+  'toml11'
+)
+
+provides=("$_pkgname")
+conflicts=("$_pkgname")
+
+_pkgsrc="$_pkgname"
+source=("$_pkgsrc"::"git+$url.git")
+sha256sums=('SKIP')
+
+pkgver() (
+  cd "$srcdir/$_pkgsrc"
+  git describe --long --tags --abbrev=7 --exclude='*[a-zA-Z][a-zA-Z]*' \
+    | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
+)
+
+prepare() {
+  cd "$_pkgsrc"
+  git rm -r externals/MoltenVK
+  git rm -r externals/fmt
+  git rm -r externals/json
+  git rm -r externals/pugixml
+  git rm -r externals/sdl3
+  git rm -r externals/toml11
+  #git rm -r externals/volk
+  #git rm -r externals/vulkan-headers
+  git submodule update --init --recursive --depth=1
+
+  # tag initial commit
+  git tag 0.0.0 87b22dc8822bab605df75f5b20ddc4d1e0787a45 || true
+
+  # fix nlohmann-json
+  sed -E -e '/nlohmann_json/i find_package(nlohmann_json)' -i CMakeLists.txt
+  sed -E -e '/add_subdirectory\(json\)/d' -i externals/CMakeLists.txt
+
+  # respect system build flags
+  sed -E -e '/march/d' -i CMakeLists.txt
+
+  # set version info
+  local _pkgver=$(pkgver)
+
+  sed -E -e 's&@APP_IS_RELEASE@&true&' \
+    -e 's&@APP_VERSION@&'"${_pkgver:?}&" \
+    -i src/common/scm_rev.cpp.in
+
+  sed -E -e 's&(fmt::format)\("(shadPS4QtLauncher) v[^"]+"&\1("\2 {}"&' \
+    -i src/qt_gui/main_window.cpp
+
+  # set default executable
+  sed '/vm_versionSelected/s&""&"/usr/bin/shadps4"&' -i src/qt_gui/gui_settings.h
+
+  # this is an unofficial build
+  # hide links to prevent issue reports to upstream
+  sed -E \
+    -e '/^\s*preloadImages\(\);.*$/i     ui->image_1->setVisible(false);' \
+    -e '/^\s*preloadImages\(\);.*$/i     ui->image_2->setVisible(false);' \
+    -e '/^\s*preloadImages\(\);.*$/i     ui->image_3->setVisible(false);' \
+    -e '/^\s*preloadImages\(\);.*$/i     ui->image_4->setVisible(false);' \
+    -e '/^\s*preloadImages\(\);.*$/i     ui->image_5->setVisible(false);' \
+    -e '/^\s*preloadImages\(\);.*$/d' \
+    -i src/qt_gui/about_dialog.cpp
+}
+
+build() {
+  local _cmake_options=(
+    -B build
+    -S "$_pkgsrc"
+    -G Ninja
+    -DCMAKE_BUILD_TYPE=None
+    -DCMAKE_INSTALL_PREFIX='/usr'
+    -DCMAKE_SKIP_RPATH=ON
+    -DBUILD_TESTING=$CHECKFUNC
+    -Wno-dev
+
+    -DENABLE_UPDATER=OFF
+  )
+  cmake "${_cmake_options[@]}"
+  cmake --build build
+}
+
+package() {
+  local _exec_name="shadps4-qt"
+
+  install -Dm755 build/shadPS4QtLauncher "$pkgdir/usr/bin/$_exec_name"
+
+  install -Dm644 "$_pkgsrc"/src/images/shadps4.png "$pkgdir/usr/share/pixmaps/$_exec_name.png"
+
+  install -Dm644 /dev/stdin "$pkgdir/usr/share/applications/$_exec_name.desktop" << END
+[Desktop Entry]
+Type=Application
+Name=shadPS4 (Qt)
+Comment=$pkgdesc
+TryExec=$_exec_name
+Exec=$_exec_name
+Icon=$_exec_name
+Terminal=false
+Categories=Game;Emulator;
+StartupWMClass=shadPS4QtLauncher;
+END
+}
