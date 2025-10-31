@@ -3,12 +3,9 @@
 ## options
 : ${_use_clang:=false}
 
-: ${_build_qt:=true}
-: ${_build_sdl:=true}
-
 _pkgname="shadps4"
 pkgname="$_pkgname-git"
-pkgver=0.11.0.r71.g6bd74ef
+pkgver=0.12.0.r6.g430f2e4
 pkgrel=1
 pkgdesc="PlayStation 4 emulator"
 url="https://github.com/shadps4-emu/shadPS4"
@@ -29,7 +26,6 @@ depends=(
   'libxxhash.so'     # xxhash
   'libz.so'          # zlib
   'pugixml'
-  'qt6-multimedia'
   'sdl3'
 )
 makedepends=(
@@ -38,12 +34,11 @@ makedepends=(
   'git'
   'half'
   'ninja'
-  'qt6-tools'
-  'rapidjson'
   'robin-map'
   'spirv-headers'
-  'stb'
+  #'stb'
   'toml11'
+  'nlohmann-json'
 )
 
 if [[ "${_use_clang::1}" == "t" ]]; then
@@ -64,31 +59,34 @@ sha256sums=('SKIP')
 
 prepare() {
   cd "$_pkgsrc"
+  git rm -r externals/MoltenVK
   git rm -r externals/date
   git rm -r externals/ext-boost
   git rm -r externals/ffmpeg-core
   git rm -r externals/fmt
   git rm -r externals/glslang
   git rm -r externals/half
+  git rm -r externals/json
   git rm -r externals/libpng
   git rm -r externals/pugixml
   git rm -r externals/robin-map
   git rm -r externals/sdl3
   git rm -r externals/toml11
+  #git rm -r externals/tracy
   git rm -r externals/xxhash
   git rm -r externals/zlib-ng
   git submodule update --init --recursive --depth 1
 
-  local src
-  for src in "${source[@]}"; do
-    src="${src%%::*}"
-    src="${src##*/}"
-    src="${src%.zst}"
-    if [[ $src == *.patch ]]; then
-      printf '\nApplying patch: %s\n' "$src"
-      patch -Np1 -F100 -i "${srcdir:?}/$src" || true
-    fi
-  done
+  # remove vendored modules
+  sed -E -e '/add_subdirectory/s&^.*\b(ext-boost)\b.*&&' \
+    -i externals/CMakeLists.txt
+
+  # disable tracy
+  sed -E -e 's&if\s*\(CMAKE_BUILD_TYPE STREQUAL "Release"\)&if (TRUE)&' -i externals/CMakeLists.txt
+
+  # fix nlohmann-json
+  sed -E -e '/nlohmann_json/i find_package(nlohmann_json)' -i CMakeLists.txt
+  sed -E -e '/add_subdirectory\(json\)/d' -i externals/CMakeLists.txt
 
   # allow any version
   sed -E -e '/find_package/s&(glslang) \S+ (CONFIG)&\1 \2&' -i CMakeLists.txt
@@ -97,100 +95,55 @@ prepare() {
   sed -E -e '/march/d' -i CMakeLists.txt
 
   # set version info
-  local _pkgver=$(cd "$srcdir" && pkgver)
+  local _pkgver=$(pkgver)
 
   sed -E -e 's&@APP_IS_RELEASE@&true&' \
     -e 's&@APP_VERSION@&'"${_pkgver:?}&" \
     -i src/common/scm_rev.cpp.in
 
   sed -E -e 's&(fmt::format)\("shadPS4 v&\1("shadPS4 &' \
-    -i src/emulator.cpp src/qt_gui/main_window.cpp
-
-  # this is an unofficial build
-  # hide links to prevent issue reports to upstream
-  sed -E \
-    -e '/^\s*preloadImages\(\);.*$/i     ui->image_1->setVisible(false);' \
-    -e '/^\s*preloadImages\(\);.*$/i     ui->image_2->setVisible(false);' \
-    -e '/^\s*preloadImages\(\);.*$/i     ui->image_3->setVisible(false);' \
-    -e '/^\s*preloadImages\(\);.*$/i     ui->image_4->setVisible(false);' \
-    -e '/^\s*preloadImages\(\);.*$/i     ui->image_5->setVisible(false);' \
-    -e '/^\s*preloadImages\(\);.*$/d' \
-    -i src/qt_gui/about_dialog.cpp
+    -i src/emulator.cpp
 }
 
-pkgver() {
+_prepare() (
   cd "$_pkgsrc"
+)
+
+pkgver() (
+  cd "$srcdir/$_pkgsrc"
   git describe --long --tags --abbrev=7 --exclude='*[a-zA-Z][a-zA-Z]*' \
     | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
-}
+)
 
 build() (
+  _prepare
+
   if [[ "${_use_clang::1}" == "t" ]]; then
     export CC CXX LDFLAGS
     CC=clang
     CXX=clang++
-
-    local _ldflags=(${LDFLAGS})
-    LDFLAGS="${_ldflags[@]//*fuse-ld*/} -fuse-ld=lld"
+    LDFLAGS="$(sed -E -e 's&\S*fuse-ld\S*&&g' -e 's&\s+& &g' <<< "$LDFLAGS") -fuse-ld=lld"
   fi
 
   local _cmake_options=(
+    -B build
     -S "$_pkgsrc"
     -G Ninja
     -DCMAKE_BUILD_TYPE=None
     -DCMAKE_INSTALL_PREFIX='/usr'
     -DCMAKE_SKIP_RPATH=ON
-    -DENABLE_UPDATER=OFF
-    -DSIRIT_USE_SYSTEM_SPIRV_HEADERS=ON
     -DBUILD_TESTING=OFF
     -Wno-dev
+
+    -DTRACY_ENABLE=OFF
+    -DENABLE_UPDATER=OFF
+    -DSIRIT_USE_SYSTEM_SPIRV_HEADERS=ON
   )
 
-  if [[ "${_build_qt::1}" == "t" ]]; then
-    echo "Building Qt GUI..."
-    local _cmake_qt=(
-      -B build_qt
-      -DENABLE_QT_GUI=ON
-      "${_cmake_options[@]}"
-    )
-
-    cmake "${_cmake_qt[@]}"
-    cmake --build build_qt
-  fi
-
-  if [[ "${_build_sdl::1}" == "t" ]]; then
-    echo "Building SDL CLI..."
-    local _cmake_sdl=(
-      -B build_sdl
-      -DENABLE_QT_GUI=OFF
-      "${_cmake_options[@]}"
-    )
-
-    cmake "${_cmake_sdl[@]}"
-    cmake --build build_sdl
-  fi
+  cmake "${_cmake_options[@]}"
+  cmake --build build
 )
 
 package() {
-  if [[ "${_build_qt::1}" == "t" ]]; then
-    install -Dm755 build_qt/shadps4 "$pkgdir/usr/bin/$_pkgname"
-  fi
-
-  if [[ "${_build_sdl::1}" == "t" ]]; then
-    install -Dm755 build_sdl/shadps4 "$pkgdir/usr/bin/${_pkgname}-sdl"
-  fi
-
-  install -Dm644 "$_pkgsrc/src/images/shadps4.svg" "$pkgdir/usr/share/pixmaps/$_pkgname.svg"
-
-  install -Dm644 /dev/stdin "$pkgdir/usr/share/applications/$_pkgname.desktop" << END
-[Desktop Entry]
-Type=Application
-Name=shadPS4
-Comment=$pkgdesc
-Exec=$_pkgname
-Icon=$_pkgname
-Terminal=false
-Categories=Game;Emulator;
-StartupWMClass=shadps4;
-END
+  install -Dm755 build/shadps4 "$pkgdir/usr/bin/${_pkgname}"
 }
