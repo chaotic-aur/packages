@@ -1,6 +1,6 @@
 pkgbase = ipfs-desktop
 	pkgdesc = Desktop client for the InterPlanetary File System
-	pkgver = 0.46.1
+	pkgver = 0.46.2
 	pkgrel = 1
 	url = https://github.com/ipfs/ipfs-desktop
 	arch = x86_64
@@ -8,7 +8,7 @@ pkgbase = ipfs-desktop
 	makedepends = libicns
 	makedepends = nvm
 	depends = electron
-	source = ipfs-desktop-0.46.1.tar.gz::https://github.com/ipfs/ipfs-desktop/archive/refs/tags/v0.46.1.tar.gz
+	source = ipfs-desktop-0.46.2.tar.gz::https://github.com/ipfs/ipfs-desktop/archive/refs/tags/v0.46.2.tar.gz
 	sha256sums = SKIP
 
 pkgname = ipfs-desktop
