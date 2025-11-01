@@ -14,7 +14,7 @@
 _pkgname="librewolf"
 pkgname="${_pkgname}"
 pkgver=144.0.2
-pkgrel=1
+pkgrel=2
 pkgdesc="A web browser focused on privacy, security, and freedom"
 url="https://codeberg.org/librewolf/source"
 arch=('x86_64')
@@ -22,7 +22,7 @@ license=('MPL-2.0')
 
 depends=(
   dbus
-  ffmpeg
+  ffmpeg4.4
   gtk3
   libevent
   libjpeg
@@ -98,22 +98,18 @@ backup=(
   'usr/lib/librewolf/distribution/policies.json'
 )
 
-_source_main() {
-  local _url_dl="https://gitlab.com/api/v4/projects/32320088/packages/generic/librewolf-source"
-  local _pkgext="tar.gz"
+local _url_dl="https://gitlab.com/api/v4/projects/32320088/packages/generic/librewolf-source"
+local _pkgext="tar.gz"
 
-  _pkgsrc="$_pkgname-$pkgver-$_pkgrel"
-  source=(
-    "$_pkgsrc.$_pkgext"::"$_url_dl/$pkgver-$_pkgrel/$_pkgsrc.source.$_pkgext"
-    "$_pkgname.desktop"
-  )
-  sha256sums=(
-    "${_cksum:?}"
-    '7d01d317b7db7416783febc18ee1237ade2ec86c1567e2c2dd628a94cbf2f25d'
-  )
-}
-
-_source_main
+_pkgsrc="$_pkgname-$pkgver-$_pkgrel"
+source=(
+  "$_pkgsrc.$_pkgext"::"$_url_dl/$pkgver-$_pkgrel/$_pkgsrc.source.$_pkgext"
+  "$_pkgname.desktop"
+)
+sha256sums=(
+  "${_cksum:?}"
+  '7d01d317b7db7416783febc18ee1237ade2ec86c1567e2c2dd628a94cbf2f25d'
+)
 
 prepare() {
   mkdir -p mozbuild
@@ -222,8 +218,6 @@ END
 }
 
 build() (
-  cd "$_pkgsrc"
-
   export RUSTUP_TOOLCHAIN=stable
 
   export XDG_RUNTIME_DIR="${XDG_RUNTIME_DIR:-$srcdir/xdg-runtime}"
@@ -244,6 +238,8 @@ build() (
 
   # LTO/PGO needs more open files
   ulimit -n 4096
+
+  cd "$_pkgsrc"
 
   # Do 3-tier PGO
   if [[ "${_build_pgo::1}" == "t" ]]; then
@@ -326,45 +322,42 @@ END
       echo "Removing instrumented browser..."
       ./mach clobber objdir
     fi
+  fi
 
-    echo "Building optimized browser..."
-    cat > .mozconfig ../mozconfig
+  echo "Building browser..."
+  cat > .mozconfig ../mozconfig
 
-    if [[ -s merged.profdata ]]; then
-      stat -c "Profile data found (%s bytes)" merged.profdata
-      cat >> .mozconfig - << END
+  if [[ -s merged.profdata ]]; then
+    stat -c "Profile data found (%s bytes)" merged.profdata
+    cat >> .mozconfig - << END
 ac_add_options --enable-profile-use=cross
 ac_add_options --with-pgo-profile-path=${PWD@Q}/merged.profdata
 END
 
-      # save profdata for reuse
-      cp -f merged.profdata "$_old_profdata"
-    else
-      echo "Profile data not found."
-    fi
+    # save profdata for reuse
+    cp -f merged.profdata "$_old_profdata"
+  else
+    echo "Profile data not found."
+  fi
 
-    if [[ -s jarlog ]]; then
-      stat -c "Jar log found (%s bytes)" jarlog
-      cat >> .mozconfig - << END
+  if [[ -s jarlog ]]; then
+    stat -c "Jar log found (%s bytes)" jarlog
+    cat >> .mozconfig - << END
 ac_add_options --with-pgo-jarlog=${PWD@Q}/jarlog
 END
 
-      # save jarlog for reuse
-      cp -f jarlog "$_old_jarlog"
-    else
-      echo "Jar log not found."
-    fi
-
-    # reenable ublock-origin
-    cp "$srcdir/policies.json" "lw/policies.json"
-
-    ./mach build --priority normal
+    # save jarlog for reuse
+    cp -f jarlog "$_old_jarlog"
   else
-    echo "Building browser..."
-    cat > .mozconfig ../mozconfig
-
-    ./mach build --priority normal
+    echo "Jar log not found."
   fi
+
+  # reenable ublock-origin
+  if [ -f "$srcdir/policies.json" ]; then
+    cp "$srcdir/policies.json" "lw/policies.json"
+  fi
+
+  ./mach build --priority normal
 )
 
 package() {

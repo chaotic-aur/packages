@@ -2,6 +2,7 @@
 
 _update_package() (
   eval "$(grep -Eo '^(url|pkgver|pkgrel|.*cksum:?)=\S+' PKGBUILD)"
+  eval "$(grep -E '^: \${_pkgrel' PKGBUILD)"
   _OLD_VERSION="$pkgver-$pkgrel"
 
   _RESPONSE=$(curl -Ssf "$url/releases.atom")
@@ -29,6 +30,7 @@ _update_package() (
       -e "s@${_cksum}@${_SUM##*-}@" \
       -e 's@^(\s*pkgver\s*=\s*).*$@\1'"${_NEW_VERSION%%-*}@" \
       -e 's@^(\s*pkgrel\s*=\s*).*$@\1'"${_NEW_VERSION##*-}@" \
+      -e '/source = /s&'"${_OLD_VERSION%-*}-${_pkgrel:-1}&${_NEW_VERSION}&g" \
       -i ".SRCINFO"
   fi
 )
