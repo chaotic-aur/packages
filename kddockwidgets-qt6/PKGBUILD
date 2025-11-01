@@ -2,7 +2,7 @@
 
 _pkgname=kddockwidgets
 pkgname="$_pkgname-qt6"
-pkgver=2.3.0
+pkgver=2.4.0
 pkgrel=1
 pkgdesc="KDAB's Dock Widget Framework for Qt 6"
 url="https://github.com/KDAB/KDDockWidgets"
