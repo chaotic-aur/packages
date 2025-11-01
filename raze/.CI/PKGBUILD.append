@@ -1,0 +1,21 @@
+license=(
+  'LicenseRef-BuildEngine'
+  'GPL-2.0-only'
+)
+
+# build with ninja
+export CMAKE_GENERATOR=Ninja
+makedepends+=('ninja')
+
+eval "$(declare -f build | sed -E -e '/\bmake -C build\b/c cmake --build build')"
+
+# fix build
+export CFLAGS+=" -std=gnu99"
+export CXXFLAGS+=" -std=gnu++11"
+
+# fix missing header
+_pkgsrc="Raze"
+prepare() {
+  cd "$_pkgsrc"
+  sed -e '1i #include <cstdint>' -i libraries/ZWidget/include/zwidget/window/window.h
+}
