@@ -15,7 +15,7 @@ source=("git+${url}.git#commit=${_commit}")
 sha256sums=('cc1102889a4f6732afb7a82871effe9aab2c304d3335162e7c092470ce918c8c')
 
 package() {
-  _move=(actions apps devices index.theme mimetypes places preferences)
+  _move=(actions apps devices index.theme mimetypes places preferences status)
 
   install -d "${pkgdir}/usr/share/icons/BeautyLine"
 
