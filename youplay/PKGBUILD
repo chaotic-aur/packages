@@ -1,20 +1,9 @@
 # Maintainer: aur.chaotic.cx
 
-## options
-if [ -z "$_srcinfo" ] && [ -z "$_pkgver" ]; then
-  : ${_autoupdate:=true}
-fi
-
 : ${_build_gui:=qt6}
 
-: ${_build_git:=false}
-
-unset _pkgtype
-[[ "${_build_git::1}" == "t" ]] && _pkgtype+="-git"
-
-## basic info
 _pkgname="youplay"
-pkgname="$_pkgname${_pkgtype:-}"
+pkgname="$_pkgname"
 pkgver=0.46
 pkgrel=1
 pkgdesc="Search, download and play music from YouTube"
@@ -32,28 +21,10 @@ conflicts=(
   'youplay-qt6'
 )
 
-_source_stable() {
-  _pkgsrc="$_pkgname"
-  _pkgext="tar.gz"
-  source=("$_pkgname-$_pkgver.$_pkgext"::"$url/archive/v$_pkgver.$_pkgext")
-  sha256sums=('SKIP')
-}
-
-_source_git() {
-  provides+=("$_pkgname=${pkgver%%.r*}")
-  conflicts+=("$_pkgname")
-
-  _pkgsrc="$_pkgname"
-  source=("$_pkgsrc"::"git+$url.git")
-  sha256sums=('SKIP')
-
-  pkgver() {
-    cd "$_pkgsrc"
-
-    git describe --long --tags --abbrev=7 --exclude='*[a-zA-Z][a-zA-Z]*' \
-      | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
-  }
-}
+_pkgsrc="$_pkgname"
+_pkgext="tar.gz"
+source=("$_pkgname-$pkgver.$_pkgext"::"$url/archive/v$pkgver.$_pkgext")
+sha256sums=('SKIP')
 
 package() {
   depends+=(
@@ -118,35 +89,3 @@ Categories=Utility;Music
 Keywords=Multimedia;Music;Youtube
 END
 }
-
-_update_version() {
-  : ${_pkgver:=${pkgver%%.r*}}
-
-  if [[ "${_autoupdate::1}" != "t" ]]; then
-    return
-  fi
-
-  local _response _tag _pkgver_new
-  _response=$(curl -Ssf "$url/releases")
-  _tag=$(
-    printf '%s' "$_response" \
-      | grep -Pom1 "(?<=/youplay/src/tag/)[v0-9\.]+(?=\")"
-  )
-  _pkgver_new="${_tag#v}"
-
-  # update _pkgver
-  if [ "$_pkgver" != "${_pkgver_new:?}" ]; then
-    _pkgver="${_pkgver_new:?}"
-  fi
-
-  pkgver() {
-    echo "${_pkgver:?}"
-  }
-}
-
-if [ "${_build_git::1}" != "t" ]; then
-  _update_version
-  _source_stable
-else
-  _source_git
-fi
