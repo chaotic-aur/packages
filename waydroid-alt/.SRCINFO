@@ -1,7 +1,7 @@
 pkgbase = waydroid-alt
 	pkgdesc = A container-based Android system - with desktop menu creation disabled
 	pkgver = 1.5.4
-	pkgrel = 3
+	pkgrel = 4
 	url = https://github.com/waydroid/waydroid
 	arch = any
 	license = GPL-3.0-or-later

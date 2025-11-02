@@ -3,7 +3,7 @@
 _pkgname="waydroid"
 pkgname="$_pkgname-alt"
 pkgver=1.5.4
-pkgrel=3
+pkgrel=4
 pkgdesc="A container-based Android system - with desktop menu creation disabled"
 url="https://github.com/waydroid/waydroid"
 license=('GPL-3.0-or-later')
@@ -77,6 +77,8 @@ package() {
 
   # create pyc files
   python -m compileall -f -p / -s "$pkgdir" "$pkgdir/"
+  python -O -m compileall -f -p / -s "$pkgdir" "$pkgdir/"
+  python -OO -m compileall -f -p / -s "$pkgdir" "$pkgdir/"
 
   # relocate icon
   install -Dm644 "$pkgdir"/usr/share/icons/hicolor/512x512/apps/waydroid.png "$pkgdir/usr/share/pixmaps/$_pkgname.png"
@@ -93,7 +95,7 @@ Exec=waydroid-show
 Comment=${pkgdesc% - *}
 Icon=$_pkgname
 StartupWMClass=Waydroid
-Categories=X-WayDroid-App;Utility;
+Categories=Utility;
 X-Purism-FormFactor=Workstation;Mobile;
 Actions=StopSession;StopContainer;
 
