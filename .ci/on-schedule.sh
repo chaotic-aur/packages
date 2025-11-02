@@ -457,31 +457,39 @@ function format_maintainers() {
 # Stores formatted maintainer info in VARIABLES array for later use
 function check_maintainer_trust() {
   set -euo pipefail
+  set -x
   local package="$1"
   local -n pkg_vars=${2:-VARIABLES}
 
   # Only check if package is from AUR
   if ! [ -v "pkg_vars[CI_PKGBUILD_SOURCE]" ] || [ "${pkg_vars[CI_PKGBUILD_SOURCE]}" != "aur" ]; then
+    set +x
     return 0
   fi
 
   # Only check if we have maintainer info
   if ! [ -v "AUR_MAINTAINERS[$package]" ]; then
+    UTIL_PRINT_WARNING "Could not find $package in cached AUR maintainers."
+    set +x
     return 0
   fi
 
   local untrusted_maintainers
-  untrusted_maintainers=$(UTIL_SET_MAINTAINER_STRATEGY pkg_vars "${AUR_MAINTAINERS[$package]}")
+  untrusted_maintainers=$(UTIL_SET_MAINTAINER_STRATEGY VARIABLES "${AUR_MAINTAINERS[$package]}")
 
   # Store formatted maintainer info in VARIABLES for later use
-  if [[ -v pkg_vars[CI_MAINTAINER_TRUSTED] ]] && [ "${pkg_vars[CI_MAINTAINER_TRUSTED]}" == "true" ]; then
-    pkg_vars[CI_MAINTAINER_FORMATTED]=$(format_maintainers "${AUR_MAINTAINERS[$package]}")
+  if [ "${VARIABLES[CI_MAINTAINER_TRUSTED]:-false}" == "true" ]; then
+    VARIABLES[CI_MAINTAINER_FORMATTED]=$(format_maintainers "${AUR_MAINTAINERS[$package]}")
+    UTIL_PRINT_INFO "$package: All maintainers are trusted: ${VARIABLES[CI_MAINTAINER_FORMATTED]}"
   else
     # Store untrusted maintainers if any
     if [ -n "$untrusted_maintainers" ]; then
-      pkg_vars[CI_MAINTAINER_FORMATTED]=$(format_maintainers "$untrusted_maintainers")
+      VARIABLES[CI_MAINTAINER_FORMATTED]=$(format_maintainers "$untrusted_maintainers")
+      UTIL_PRINT_INFO "$package: Untrusted maintainers detected: ${VARIABLES[CI_MAINTAINER_FORMATTED]}"
     fi
   fi
+
+  set +x
 }
 
 # Create .state and .newstate worktrees
@@ -503,11 +511,6 @@ for package in "${PACKAGES[@]}"; do
   unset VARIABLES
   declare -A VARIABLES=()
   UTIL_READ_MANAGED_PACAKGE "$package" VARIABLES || true
-
-  if [ -v CI_HUMAN_REVIEW ] && [ "$CI_HUMAN_REVIEW" == "true" ]; then
-    check_maintainer_trust "$package" VARIABLES
-  fi
-
   update_pkgbuild VARIABLES
   update_vcs VARIABLES
   update-lib-bump VARIABLES
@@ -518,6 +521,8 @@ for package in "${PACKAGES[@]}"; do
     continue
   fi
 
+  check_maintainer_trust "$package" VARIABLES
+
   if ! git diff --exit-code --quiet -- "$package"; then
     # shellcheck disable=SC2102
     if [[ -v VARIABLES[CI_REQUIRES_REVIEW] ]] && [ "${VARIABLES[CI_REQUIRES_REVIEW]}" == "true" ]; then
@@ -527,7 +532,7 @@ for package in "${PACKAGES[@]}"; do
       fi
 
       # If maintainer is trusted, skip PR creation and apply update directly
-      if [[ -v VARIABLES[CI_MAINTAINER_TRUSTED] ]] && [ "${VARIABLES[CI_MAINTAINER_TRUSTED]}" == "true" ]; then
+      if [ "${VARIABLES[CI_MAINTAINER_TRUSTED]:-false}" == "true" ]; then
         UTIL_PRINT_INFO "$package: Skipping PR creation due to trusted maintainer(s)$maintainer_info"
         git add "$package"
         generate-commit "$package"
