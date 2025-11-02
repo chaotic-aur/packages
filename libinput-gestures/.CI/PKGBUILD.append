@@ -1,0 +1,16 @@
+pkgname="$_pkgname"
+
+eval _orig_"$(declare -f prepare)"
+
+prepare() {
+  pushd "$_pkgsrc"
+  _pkgver=$(git tag | sort -rV | head -1)
+  git checkout -f "$_pkgver"
+  popd
+
+  _orig_prepare
+}
+
+pkgver() {
+  echo "${_pkgver:?}"
+}
