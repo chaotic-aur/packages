@@ -480,7 +480,7 @@ function check_maintainer_trust() {
         local maintainer_count
         IFS=',' read -ra tmp_array <<<"${AUR_MAINTAINERS[$package]}"
         maintainer_count=${#tmp_array[@]}
-        
+
         if [ "$maintainer_count" -eq 1 ]; then
             UTIL_PRINT_INFO "$package: Maintainer '$all_formatted' is trusted. Updates will be applied directly."
         fi
@@ -492,7 +492,7 @@ function check_maintainer_trust() {
             local untrusted_count
             IFS=',' read -ra tmp_array <<<"$untrusted_maintainers"
             untrusted_count=${#tmp_array[@]}
-            
+
             if [ "$untrusted_count" -eq 1 ]; then
                 UTIL_PRINT_INFO "$package: Maintainer '$formatted_untrusted' is not trusted. Major updates will require human review."
             else
@@ -522,7 +522,7 @@ for package in "${PACKAGES[@]}"; do
     declare -A VARIABLES=()
     UTIL_READ_MANAGED_PACAKGE "$package" VARIABLES || true
 
-    if [[ -v VARIABLES[CI_HUMAN_REVIEW] ]] && [ "${VARIABLES[CI_HUMAN_REVIEW]}" == "true" ]; then
+    if [ -v CI_HUMAN_REVIEW ] && [ "$CI_HUMAN_REVIEW" == "true" ]; then
         check_maintainer_trust "$package" VARIABLES
     fi
 
