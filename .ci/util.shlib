@@ -210,12 +210,13 @@ function UTIL_UPDATE_VCS_COMMIT() {
 
 # $1: Output associative array
 # $2: array of pkgbases on AUR
-function UTIL_FETCH_AUR_TIMESTAMPS() {
+function UTIL_FETCH_AUR_INFO() {
     set -euo pipefail
-    local -n OUTPUT_ASSOC_ARRAY=$1
+    local -n OUTPUT_ASSOC_TIMESTAMP_ARRAY=$1
+    local -n OUTPUT_ASSOC_MAINTAINER_ARRAY=$2
     local pkgbases=()
 
-    read -ra pkgbases <<<"$2"
+    read -ra pkgbases <<<"$3"
 
     # Check size of array
     if [ ${#pkgbases[@]} -eq 0 ]; then
@@ -247,10 +248,13 @@ function UTIL_FETCH_AUR_TIMESTAMPS() {
                 mapfile -t res_timestamps <<<"$(jq -r '.results[].LastModified' <<<"$response")"
                 local -a res_pkgbases
                 mapfile -t res_pkgbases <<<"$(jq -r '.results[].PackageBase' <<<"$response")"
+                local -a res_maintainers
+                mapfile -t res_maintainers < <(jq -r '.results[] | (.Maintainer // "unknown") as $m | ((.CoMaintainers // []) | join(",")) as $c | if $c != "" then "\($m),\($c)" else $m end' <<<"$response")
 
                 # Loop through timestamps and pkgbases and add them to the associative array
                 for j in "${!res_timestamps[@]}"; do
-                    OUTPUT_ASSOC_ARRAY["${res_pkgbases[$j]}"]="${res_timestamps[$j]}"
+                    OUTPUT_ASSOC_TIMESTAMP_ARRAY["${res_pkgbases[$j]}"]="${res_timestamps[$j]}"
+                    OUTPUT_ASSOC_MAINTAINER_ARRAY["${res_pkgbases[$j]}"]="${res_maintainers[$j]}"
                 done
             else
                 UTIL_PRINT_ERROR "Failed to fetch AUR timestamps from $API_URL"
@@ -309,7 +313,8 @@ function UTIL_LOAD_CUSTOM_HOOK() {
     if [[ -f "$2" ]] && [ -d "$1" ]; then
         (
             cd "$1" || return 1
-            PACKAGE="${1##*/}" source "${2#${1}/}"
+            # shellcheck source=/dev/null
+            PACKAGE="${1##*/}" source "${2#"${1}"/}"
         ) || {
             UTIL_PRINT_ERROR "Custom hook failed: $2"
             return 1
@@ -382,5 +387,86 @@ function UTIL_CHECK_STATE_DIFF() {
         fi
     else
         return 0
+    fi
+}
+
+# Check if ALL maintainers are in the trusted list
+# $1: Maintainer username(s) - can be a single name or comma-separated list
+# Returns 0 only if ALL maintainers are trusted (AND logic)
+function UTIL_IS_TRUSTED_MAINTAINER() {
+    set -euo pipefail
+    local maintainers="$1"
+
+    # Handle empty/null cases - no maintainers = not trusted
+    if [ -z "$maintainers" ] || [ "$maintainers" == "null" ] || [ "$maintainers" == "unknown" ]; then
+        return 1
+    fi
+    if [ ! -f ".ci/aur-maintainers" ]; then
+        return 1
+    fi
+
+    local IFS=','
+    local -a maintainer_list
+    read -ra maintainer_list <<<"$maintainers"
+
+    for m in "${maintainer_list[@]}"; do
+        m=$(echo "$m" | xargs)
+        [ -z "$m" ] && continue
+
+        if ! grep -i "^${m}$" .ci/aur-maintainers >/dev/null 2>&1; then
+            return 1
+        fi
+    done
+
+    # All maintainers are trusted
+    return 0
+}
+
+# Set maintainer strategy in VARIABLES array and return untrusted maintainers
+# $1: VARIABLES array name
+# $2: Maintainer username(s) - can be a single name or comma-separated list
+# Returns: comma-separated list of untrusted maintainers (empty if all trusted)
+function UTIL_SET_MAINTAINER_STRATEGY() {
+    set -euo pipefail
+    local -n pkg_config=${1:-VARIABLES}
+    local maintainers="${2:-}"
+    local -a untrusted_maintainers=()
+
+    pkg_config[CI_MAINTAINER_KNOWN]=true
+
+    # Handle empty/null cases
+    if [ -z "$maintainers" ] || [ "$maintainers" == "null" ] || [ "$maintainers" == "unknown" ]; then
+        pkg_config[CI_MAINTAINER_TRUSTED]=false
+        printf ""
+        return 0
+    fi
+
+    if [ ! -f ".ci/aur-maintainers" ]; then
+        pkg_config[CI_MAINTAINER_TRUSTED]=false
+        printf ""
+        return 0
+    fi
+
+    local IFS=','
+    local -a maintainer_list
+    read -ra maintainer_list <<<"$maintainers"
+
+    for m in "${maintainer_list[@]}"; do
+        m=$(echo "$m" | xargs)
+        [ -z "$m" ] && continue
+
+        if ! grep -i "^${m}$" .ci/aur-maintainers >/dev/null 2>&1; then
+            untrusted_maintainers+=("$m")
+        fi
+    done
+
+    if [ ${#untrusted_maintainers[@]} -eq 0 ]; then
+        # All maintainers are trusted
+        pkg_config[CI_MAINTAINER_TRUSTED]=true
+        printf ""
+    else
+        # At least one maintainer is not trusted
+        pkg_config[CI_MAINTAINER_TRUSTED]=false
+        printf "%s" "$(printf '%s,' "${untrusted_maintainers[@]}" | sed 's/,$//')"
     fi
 }

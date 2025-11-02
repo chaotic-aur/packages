@@ -51,9 +51,9 @@ fi
 
 PACKAGES=()
 declare -A AUR_TIMESTAMPS
+declare -A AUR_MAINTAINERS
 LAST_AUR_TIMESTAMP=0
 MODIFIED_PACKAGES=()
-# shellcheck disable=SC2034
 declare -A CHANGED_LIBS=()
 DELETE_BRANCHES=()
 UTIL_GET_PACKAGES PACKAGES
@@ -72,11 +72,14 @@ function manage_state() {
 }
 
 # Loop through all packages to do optimized aur RPC calls
-# $1 = Output associative array
-function collect_aur_timestamps() {
+# $1 = Output associative timestamp array
+# $2 = Output associative maintainers array
+function collect_aur_info() {
     set -euo pipefail
     # shellcheck disable=SC2034
     local -n collect_aur_timestamps_output=$1
+    # shellcheck disable=SC2034
+    local -n collect_aur_maintainers_output=$2
     local AUR_PACKAGES=()
 
     if [ -f .ci/aur-state ]; then
@@ -98,7 +101,7 @@ function collect_aur_timestamps() {
     done
 
     # Get all timestamps from AUR
-    http_proxy="$CI_AUR_PROXY" https_proxy="$CI_AUR_PROXY" UTIL_FETCH_AUR_TIMESTAMPS collect_aur_timestamps_output "${AUR_PACKAGES[*]}"
+    http_proxy="$CI_AUR_PROXY" https_proxy="$CI_AUR_PROXY" UTIL_FETCH_AUR_INFO collect_aur_timestamps_output collect_aur_maintainers_output "${AUR_PACKAGES[*]}"
 }
 
 function collect_changed_libs() {
@@ -263,11 +266,11 @@ function update_via_git() {
         if [ -n "$branch" ]; then
             clone_args=("-q" "--depth=1" "--branch" "$branch" "--single-branch" "$git_url" "$TMPDIR/aur-pulls/$pkgbase")
         fi
-        
+
         if git clone "${clone_args[@]}" 2>/dev/null; then
             break
         fi
-        
+
         if [ "$i" -ne 2 ]; then
             UTIL_PRINT_WARNING "$pkgbase: Failed to clone $git_url. Retrying in 30 seconds."
             sleep 30
@@ -282,7 +285,6 @@ function update_via_git() {
 
     # We always run shfmt on the PKGBUILD. Two runs of shfmt on the same file should not change anything
     shfmt -w "$TMPDIR/aur-pulls/$pkgbase/PKGBUILD"
-
     if package_changed "$TMPDIR/aur-pulls/$pkgbase" "$pkgbase"; then
         if [ -v CI_HUMAN_REVIEW ] && [ "$CI_HUMAN_REVIEW" == "true" ] && package_major_change "$TMPDIR/aur-pulls/$pkgbase" "$pkgbase"; then
             UTIL_PRINT_INFO "$pkgbase: Major change detected."
@@ -425,11 +427,86 @@ function update_vcs() {
     fi
 }
 
+# Format maintainer names for display
+# $1: maintainer string (comma-separated list)
+# Returns formatted string like "maintainer1" or "maintainer1, maintainer2"
+function format_maintainers() {
+    set -euo pipefail
+    local maintainers="$1"
+    local -a maintainer_list
+
+    IFS=',' read -ra maintainer_list <<<"$maintainers"
+
+    # Remove leading/trailing whitespace from each maintainer
+    for i in "${!maintainer_list[@]}"; do
+        maintainer_list[$i]=$(echo "${maintainer_list[$i]}" | xargs)
+    done
+
+    if [ ${#maintainer_list[@]} -eq 1 ]; then
+        printf "%s" "${maintainer_list[0]}"
+    elif [ ${#maintainer_list[@]} -eq 2 ]; then
+        printf "%s, %s" "${maintainer_list[0]}" "${maintainer_list[1]}"
+    else
+        printf "%s" "$(printf '%s, ' "${maintainer_list[@]}" | sed 's/, $//')"
+    fi
+}
+
+# Check maintainer trust level for AUR packages
+# $1: package name
+# $2: VARIABLES array name
+function check_maintainer_trust() {
+    set -euo pipefail
+    local package="$1"
+    local -n pkg_vars=${2:-VARIABLES}
+
+    # Only check if package is from AUR
+    if ! [ -v "pkg_vars[CI_PKGBUILD_SOURCE]" ] || [ "${pkg_vars[CI_PKGBUILD_SOURCE]}" != "aur" ]; then
+        set +x
+        return 0
+    fi
+
+    # Only check if we have maintainer info
+    if ! [ -v "AUR_MAINTAINERS[$package]" ]; then
+        set +x
+        return 0
+    fi
+
+    local untrusted_maintainers
+    untrusted_maintainers=$(UTIL_SET_MAINTAINER_STRATEGY pkg_vars "${AUR_MAINTAINERS[$package]}")
+
+    if [[ -v pkg_vars[CI_MAINTAINER_TRUSTED] ]] && [ "${pkg_vars[CI_MAINTAINER_TRUSTED]}" == "true" ]; then
+        local all_formatted
+        all_formatted=$(format_maintainers "${AUR_MAINTAINERS[$package]}")
+        local maintainer_count
+        IFS=',' read -ra tmp_array <<<"${AUR_MAINTAINERS[$package]}"
+        maintainer_count=${#tmp_array[@]}
+        
+        if [ "$maintainer_count" -eq 1 ]; then
+            UTIL_PRINT_INFO "$package: Maintainer '$all_formatted' is trusted. Updates will be applied directly."
+        fi
+    else
+        # Only print untrusted maintainers
+        if [ -n "$untrusted_maintainers" ]; then
+            local formatted_untrusted
+            formatted_untrusted=$(format_maintainers "$untrusted_maintainers")
+            local untrusted_count
+            IFS=',' read -ra tmp_array <<<"$untrusted_maintainers"
+            untrusted_count=${#tmp_array[@]}
+            
+            if [ "$untrusted_count" -eq 1 ]; then
+                UTIL_PRINT_INFO "$package: Maintainer '$formatted_untrusted' is not trusted. Major updates will require human review."
+            else
+                UTIL_PRINT_INFO "$package: Maintainers '$formatted_untrusted' are not trusted. Major updates will require human review."
+            fi
+        fi
+    fi
+}
+
 # Create .state and .newstate worktrees
 manage_state
 
-# Collect last modified timestamps from AUR in an efficient way
-collect_aur_timestamps AUR_TIMESTAMPS
+# Collect last modified timestamps and maintainer information from AUR in an efficient way
+collect_aur_info AUR_TIMESTAMPS AUR_MAINTAINERS
 
 # Parse database files for library version changes
 collect_changed_libs CHANGED_LIBS
@@ -444,6 +521,11 @@ for package in "${PACKAGES[@]}"; do
     unset VARIABLES
     declare -A VARIABLES=()
     UTIL_READ_MANAGED_PACAKGE "$package" VARIABLES || true
+
+    if [[ -v VARIABLES[CI_HUMAN_REVIEW] ]] && [ "${VARIABLES[CI_HUMAN_REVIEW]}" == "true" ]; then
+        check_maintainer_trust "$package" VARIABLES
+    fi
+
     update_pkgbuild VARIABLES
     update_vcs VARIABLES
     update-lib-bump VARIABLES
@@ -457,12 +539,21 @@ for package in "${PACKAGES[@]}"; do
     if ! git diff --exit-code --quiet -- "$package"; then
         # shellcheck disable=SC2102
         if [[ -v VARIABLES[CI_REQUIRES_REVIEW] ]] && [ "${VARIABLES[CI_REQUIRES_REVIEW]}" == "true" ]; then
-            if [ "$COMMIT" == "false" ]; then
-                .ci/create-pr.sh "$package" false
+            # If maintainer is trusted, skip PR creation and apply update directly
+            if [[ -v VARIABLES[CI_MAINTAINER_TRUSTED] ]] && [ "${VARIABLES[CI_MAINTAINER_TRUSTED]}" == "true" ]; then
+                UTIL_PRINT_INFO "$package: Skipping PR creation for $package due to trusted maintainer."
+                git add "$package"
+                generate-commit "$package"
+                MODIFIED_PACKAGES+=("$package")
             else
-                # If we already made a commit, we should go one commit further back to avoid merge conflicts
-                # This is because there is a very high chance this current commit will be amended
-                .ci/create-pr.sh "$package" true
+                UTIL_PRINT_INFO "$package: Creating PR for review for $package due to untrusted maintainer."
+                if [ "$COMMIT" == "false" ]; then
+                    .ci/create-pr.sh "$package" false
+                else
+                    # If we already made a commit, we should go one commit further back to avoid merge conflicts
+                    # This is because there is a very high chance this current commit will be amended
+                    .ci/create-pr.sh "$package" true
+                fi
             fi
         else
             git add "$package"
