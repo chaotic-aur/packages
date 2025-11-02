@@ -1,10 +1,15 @@
 # List of trusted AUR maintainers
 # Add one maintainer username per line
 # Packages maintained by these users will be automatically updated without requiring a PR
+1Password
+a2n
+alerque
 arcanis
 BachoSeven
+brave
 chaotic-aur
 D3vil0p3r
+dcelasun
 dr460nf1r3
 Edu4rdSHL
 FabioLolix
@@ -12,13 +17,22 @@ fabiscafe
 FGD
 figue
 garudalinux
+Gigas002
 gromit
+IslandC0der
+jguer
+jonathon
 kode54
 lilac
 LinusDierheimer
+lsf
 luisbocanegra
 Morganamilo
 Muflone
+ptr1337
+Rustmilian
+sir_lucjan
+sl1pkn07
 SolarAquarion
 thotypous
 TNE
