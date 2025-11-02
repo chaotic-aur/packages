@@ -13,8 +13,8 @@ source .ci/util.shlib
 UTIL_READ_CONFIG_FILE
 
 if [ "$PACKAGES" == "all" ]; then
-    .ci/schedule-packages.sh schedule all
-    exit 0
+  .ci/schedule-packages.sh schedule all
+  exit 0
 fi
 
 declare -a FINAL=()
