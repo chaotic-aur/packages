@@ -48,17 +48,21 @@ function create_gitlab_pr() {
 	\"allow_collaboration\": true,
 	\"subscribed\" : false,
 	\"approvals_before_merge\": \"1\",
-	\"title\": \"chore($pkgbase): PKGBUILD modified [deploy $pkgbase]\",
+	\"title\": \"chore($pkgbase): PKGBUILD modified\",
 	\"description\": \"A recent update of this package requires human review! Please check whether any potentially dangerous changes were made.\",
 	\"labels\": \"ci,human-review,update\"
 	}"
 
   # No MR found, let's create a new one
   if [ "$_MR_EXISTS" == 0 ]; then
-    curl --fail-with-body -s -X POST "https://gitlab.com/api/v4/projects/${CI_PROJECT_ID}/merge_requests" \
+    if curl --fail-with-body -s -X POST "https://gitlab.com/api/v4/projects/${CI_PROJECT_ID}/merge_requests" \
       --header "PRIVATE-TOKEN:${ACCESS_TOKEN}" \
       --header "Content-Type: application/json" \
-      --data "${BODY}" && UTIL_PRINT_INFO "$pkgbase: Created merge request." || UTIL_PRINT_ERROR "$pkgbase: Failed to create merge request."
+      --data "${BODY}" >/dev/null 2>&1; then
+      UTIL_PRINT_INFO "$pkgbase: Created merge request."
+    else
+      UTIL_PRINT_ERROR "$pkgbase: Failed to create merge request."
+    fi
   else
     UTIL_PRINT_INFO "$pkgbase: No new merge request opened due to an already existing MR."
   fi
@@ -98,18 +102,22 @@ function create_github_pr() {
 	\"head\": \"${branch}\",
 	\"base\": \"${target_branch}\",
 	\"maintainer_can_modify\": true,
-	\"title\": \"chore($pkgbase): PKGBUILD modified [deploy $pkgbase]\",
+	\"title\": \"chore($pkgbase): PKGBUILD modified\",
 	\"body\": \"A recent update of this package requires human review! Please check whether any potentially dangerous changes were made.\"
 	}"
 
   # No MR found, let's create a new one
   if [ "$_MR_EXISTS" == 0 ]; then
     # PR doesn't exist, create a new one
-    curl --fail-with-body -s -X POST "$GITHUB_API_URL/repos/$GITHUB_REPOSITORY/pulls" \
+    if curl --fail-with-body -s -X POST "$GITHUB_API_URL/repos/$GITHUB_REPOSITORY/pulls" \
       -H "Accept: application/vnd.github+json" \
       -H "X-GitHub-Api-Version: 2022-11-28" \
       -H "Authorization: token ${ACCESS_TOKEN}" \
-      --data "${BODY}" && UTIL_PRINT_INFO "$pkgbase: Created pull request." || UTIL_PRINT_ERROR "$pkgbase Failed to create pull request."
+      --data "${BODY}" >/dev/null 2>&1; then
+      UTIL_PRINT_INFO "$pkgbase: Created pull request."
+    else
+      UTIL_PRINT_ERROR "$pkgbase: Failed to create pull request."
+    fi
   else
     UTIL_PRINT_INFO "$pkgbase: No new pull request opened due to an already existing MR."
   fi

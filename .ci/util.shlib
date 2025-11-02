@@ -425,7 +425,7 @@ function UTIL_IS_TRUSTED_MAINTAINER() {
 # Set maintainer strategy in VARIABLES array and return untrusted maintainers
 # $1: VARIABLES array name
 # $2: Maintainer username(s) - can be a single name or comma-separated list
-# Returns: comma-separated list of untrusted maintainers (empty if all trusted)
+# Sets: CI_MAINTAINER_TRUSTED (true/false), CI_MAINTAINER_UNTRUSTED (comma-separated list)
 function UTIL_SET_MAINTAINER_STRATEGY() {
     set -euo pipefail
     local -n pkg_config=${1:-VARIABLES}
@@ -437,13 +437,13 @@ function UTIL_SET_MAINTAINER_STRATEGY() {
     # Handle empty/null cases
     if [ -z "$maintainers" ] || [ "$maintainers" == "null" ] || [ "$maintainers" == "unknown" ]; then
         pkg_config[CI_MAINTAINER_TRUSTED]=false
-        printf ""
+        pkg_config[CI_MAINTAINER_UNTRUSTED]=""
         return 0
     fi
 
     if [ ! -f ".ci/aur-maintainers" ]; then
         pkg_config[CI_MAINTAINER_TRUSTED]=false
-        printf ""
+        pkg_config[CI_MAINTAINER_UNTRUSTED]=""
         return 0
     fi
 
@@ -461,12 +461,10 @@ function UTIL_SET_MAINTAINER_STRATEGY() {
     done
 
     if [ ${#untrusted_maintainers[@]} -eq 0 ]; then
-        # All maintainers are trusted
         pkg_config[CI_MAINTAINER_TRUSTED]=true
-        printf ""
+        pkg_config[CI_MAINTAINER_UNTRUSTED]=""
     else
-        # At least one maintainer is not trusted
         pkg_config[CI_MAINTAINER_TRUSTED]=false
-        printf "%s" "$(printf '%s,' "${untrusted_maintainers[@]}" | sed 's/,$//')"
+        pkg_config[CI_MAINTAINER_UNTRUSTED]="$(printf '%s,' "${untrusted_maintainers[@]}" | sed 's/,$//')"
     fi
 }
