@@ -23,4 +23,6 @@ package() {
   ln -sf "/opt/Super Productivity/${_pkgname}" "${pkgdir}/usr/bin/${_pkgname}"
   install -Dm644 -t "${pkgdir}/usr/share/licenses/${pkgname}" \
     "${pkgdir}/opt/Super Productivity/"{'LICENSE.electron.txt','LICENSES.chromium.html'}
+
+  echo this is a change requiring review
 }

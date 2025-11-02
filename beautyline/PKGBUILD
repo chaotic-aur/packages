@@ -1,7 +1,7 @@
 # Maintainer: dr460nf1r3 <dr460nf1r3 at garudalinux dot org>
 
 pkgname=beautyline
-pkgver=20251102
+pkgver=20251100
 _commit=c7e1e76e73717e788152c276c9a853f1ed9ec807
 pkgrel=1
 epoch=1
