@@ -191,9 +191,9 @@ function update-lib-bump() {
         local _PKGVER_IN_DB _DB_BASE _DB_BUMP
         _PKGVER_IN_DB="$(grep "^$package:" ".state/.version-state" | cut -d ":" -f 2 || true)"
 
-        if [[ "$_PKGVER_IN_DB" =~ ^([^-]+)-([^.]+)(?:\.([0-9]+))?$ ]]; then
+        if [[ "$_PKGVER_IN_DB" =~ ^(.+)-([0-9]+)(\.([0-9]+))?$ ]]; then
             _DB_BASE="${BASH_REMATCH[1]}-${BASH_REMATCH[2]}" # base: pkgver-pkgrel
-            _DB_BUMP=$((${BASH_REMATCH[3]:-0} + 1)) # bump
+            _DB_BUMP=$((${BASH_REMATCH[4]:-0} + 1)) # bump
         else
             UTIL_PRINT_WARNING "$package: Could not find package version in the version-state file."
             return 0
