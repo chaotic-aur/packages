@@ -1,3 +1,17 @@
+## GE-Proton10-25
+
+- fixed video playback in nioh 2
+- fixed broken texture regression in older WoW clients (used in private servers) + rockster launcher
+- fixed broken video playback regression in some visual novels
+- fixed wrong version number in proton script
+- protonfix added for ff14 launcher not working with winewayland
+- protonfix added for genshin impact non-steam version game open crash
+- protonfix added for soulbringer (all versions)
+- wine updated to latest bleeding edge
+- dxvk updated to latest git
+- vkd3d-proton updated to latest git
+- em-10/wine-wayland patches updated
+
 ## GE-Proton10-24
 
 HOTFIX:
