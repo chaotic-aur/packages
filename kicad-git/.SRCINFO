@@ -1,6 +1,6 @@
 pkgbase = kicad-git
 	pkgdesc = Electronic schematic and printed circuit board (PCB) design tools
-	pkgver = 9.0.0.rc1.r499.gf665760a8e
+	pkgver = 9.99.0.r3989.gc6d70fa3bb
 	pkgrel = 1
 	url = https://kicad.org/
 	install = kicad.install
@@ -28,6 +28,7 @@ pkgbase = kicad-git
 	depends = protobuf
 	depends = zstd
 	depends = nng
+	depends = libspnav
 	optdepends = kicad-library: for footprints
 	provides = kicad
 	conflicts = kicad
