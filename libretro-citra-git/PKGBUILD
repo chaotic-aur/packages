@@ -1,0 +1,124 @@
+# Maintainer: aur.chaotic.cx
+
+_pkgname="libretro-citra"
+pkgname="$_pkgname-git"
+pkgver=r10167.5263fae
+pkgrel=1
+pkgdesc="Nintendo 3DS core"
+url="https://github.com/libretro/citra"
+license=('GPL-2.0-or-later')
+arch=('x86_64')
+
+groups=('libretro')
+
+depends=(
+  'crypto++'
+  'enet'
+  'glslang'
+  'libretro-core-info'
+  'openssl'
+  'soundtouch'
+  'zstd'
+)
+makedepends=(
+  'catch2'
+  'cmake'
+  'ffmpeg4.4'
+  'git'
+  'glslang'
+  'libinih'
+  'libusb'
+  'libyuv'
+  'ninja'
+  'nlohmann-json'
+  'spirv-headers'
+)
+
+provides=("$_pkgname")
+conflicts=("$_pkgname")
+
+_pkgsrc="$_pkgname"
+source=("$_pkgsrc"::"git+$url.git")
+sha256sums=('SKIP')
+
+pkgver() {
+  cd "$_pkgsrc"
+  printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short=7 HEAD)"
+}
+
+prepare() {
+  cd "$_pkgsrc"
+  git rm -r externals/catch2
+  git rm -r externals/cryptopp
+  git rm -r externals/enet
+  git rm -r externals/glslang
+  git rm -r externals/inih/inih
+  git rm -r externals/libressl
+  git rm -r externals/libusb/libusb
+  git rm -r externals/libyuv
+  git rm -r externals/openal-soft
+  git rm -r externals/sdl2/SDL
+  git rm -r externals/soundtouch
+  git rm -r externals/zstd
+  git submodule update --init --recursive --depth=1
+
+  sed -e '/check_submodules_present()/d' \
+    -e '/cmake-modules/a include(FindPkgConfig)' \
+    -i CMakeLists.txt
+
+  sed -i 's/robin_map/tsl::&/' src/citra_libretro/CMakeLists.txt
+  sed -i '/gamemode\.h/i #include "common/assert.h"' src/common/linux/gamemode.cpp
+}
+
+build() {
+  (
+    cd "$_pkgsrc"
+  )
+
+  export CXXFLAGS="${CXXFLAGS//_FORTIFY_SOURCE=?/_FORTIFY_SOURCE=2}"
+
+  local _cmake_options=(
+    -B build
+    -S "$_pkgsrc"
+    -G Ninja
+    -DCMAKE_BUILD_TYPE=None
+    -DCMAKE_INCLUDE_PATH="/usr/include/ffmpeg4.4"
+    -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+    -Wno-dev
+
+    -DCITRA_ENABLE_BUNDLE_TARGET=OFF
+    -DCITRA_USE_PRECOMPILED_HEADERS=OFF
+    -DCITRA_WARNINGS_AS_ERRORS=OFF
+    -DENABLE_DEDICATED_ROOM=OFF
+    -DENABLE_LIBUSB=OFF
+    -DENABLE_OPENAL=OFF # too many errors
+    -DENABLE_QT=OFF
+    -DENABLE_SCRIPTING=OFF
+    -DENABLE_SDL2=OFF
+    -DENABLE_TESTS=OFF
+    -DENABLE_WEB_SERVICE=OFF
+    -DSIRIT_USE_SYSTEM_SPIRV_HEADERS=ON
+    -DUSE_SYSTEM_BOOST=OFF
+    -DUSE_SYSTEM_CATCH2=ON
+    -DUSE_SYSTEM_CRYPTOPP=ON
+    -DUSE_SYSTEM_CUBEB=OFF
+    -DUSE_SYSTEM_ENET=ON
+    -DUSE_SYSTEM_FFMPEG_HEADERS=ON
+    -DUSE_SYSTEM_FMT=OFF
+    -DUSE_SYSTEM_GLSLANG=ON
+    -DUSE_SYSTEM_INIH=ON
+    -DUSE_SYSTEM_JSON=ON
+    -DUSE_SYSTEM_LIBUSB=ON
+    -DUSE_SYSTEM_OPENSSL=ON
+    -DUSE_SYSTEM_VMA=OFF
+    -DUSE_SYSTEM_ZSTD=ON
+    -DUSE_SYSTEM_SOUNDTOUCH=ON
+  )
+
+  cmake "${_cmake_options[@]}"
+  cmake --build build
+}
+
+package() {
+  install -Dm644 build/citra_libretro.so -t "$pkgdir/usr/lib/libretro/"
+}
