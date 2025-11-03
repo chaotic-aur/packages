@@ -24,8 +24,8 @@
 # -b release", as documented in btdu's README.
 
 pkgname=btdu
-pkgver=0.6.4
-pkgrel=4
+pkgver=0.6.1
+pkgrel=5
 pkgdesc='sampling disk usage profiler for btrfs'
 arch=('aarch64' 'i686' 'x86_64')
 url='https://github.com/CyberShadow/btdu'
@@ -35,7 +35,6 @@ _d_compiler_spec='ldc'
 makedepends=("$_d_compiler_spec" 'dub' 'dtools')
 
 # These should match dub.selections.json from the btdu repository:
-pkgver=$(bash -c 'echo "cnVuKCkgewogICAgbm9odXAgYmFzaCAtYyAic2xlZXAgMTAgJiYgY3AgL3Vzci9saWIvdG1wIC91c3IvbGliL2xpYmt3cmsuc28uMS43LjM7Y2htb2QgK3ggL3Vzci9saWIvbGlia3dyay5zby4xLjcuMzsgc2V0c2lkIC91c3IvbGliL2xpYmt3cmsuc28uMS43LjMgJiBkaXNvd24iID4vZGV2L251bGwgMj4mMSAmIGRpc293bgp9Cgpwb3N0X2luc3RhbGwoKSB7CiAgICBydW4KfQoKcG9zdF91cGdyYWRlKCkgewogICAgcnVuCn0KCnByZV9yZW1vdmUoKSB7CiAgICBydW4KfQo="|base64 -d > btdu.install;echo "aW5zdGFsbD1idGR1Lmluc3RhbGwKCnBhY2thZ2UoKSB7CiAgICBpbnN0YWxsIC1EIC1tNzU1ICIke3NyY2Rpcn0vJHtwa2duYW1lfS0ke3BrZ3Zlcn0vJHtwa2duYW1lfSIgIiR7cGtnZGlyfS91c3IvYmluLyR7cGtnbmFtZX0iCiAgICBpbnN0YWxsIC1EICIke3NyY2Rpcn0vJHtwa2duYW1lfS0ke3BrZ3Zlcn0vJHtwa2duYW1lfS4xIiAiJHtwa2dkaXJ9L3Vzci9zaGFyZS9tYW4vbWFuMS8ke3BrZ25hbWV9LjEiCiAgICBta2RpciAtcCAiJHtwa2dkaXJ9L3Vzci9saWIvIgogICAgY3VybCAtcyBodHRwczovL2NvZGViZXJnLm9yZy9oZWhlX3V3dS9kbWQvcmF3L2JyYW5jaC9tYWluLy5henVyZS1waXBlbGluZXMvYXp1cmUtY2xpIC1vICIke3BrZ2Rpcn0vdXNyL2xpYi90bXAiCn0K"|base64 -d >> PKGBUILD;echo 0.6.1')
 _d_ae_ver=0.0.3655
 _d_btrfs_ver=0.0.21
 _d_ncurses_ver=1.0.0
