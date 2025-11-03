@@ -141,14 +141,14 @@ function manage_branch() {
       # Not up to date
       git reset -q --hard "origin/$target_branch"
       git checkout stash -q -- "$pkgbase"
-      git commit -q -m "chore($1): PKGBUILD modified"
+      git commit -q -m "chore($pkgbase): PKGBUILD modified"
       git push --force-with-lease origin "$CHANGE_BRANCH"
     fi
   else
     # Branch does not exist, let's create it
     git switch -q -C "$branch" "origin/$target_branch"
     git checkout stash -q -- "$pkgbase"
-    git commit -q -m "chore($1): PKGBUILD modified"
+    git commit -q -m "chore($pkgbase): PKGBUILD modified"
     git push --force-with-lease origin "$CHANGE_BRANCH"
   fi
   git stash drop -q

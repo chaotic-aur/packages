@@ -462,12 +462,15 @@ function check_maintainer_trust() {
 
   # Only check if package is from AUR
   if ! [ -v "pkg_vars[CI_PKGBUILD_SOURCE]" ] || [ "${pkg_vars[CI_PKGBUILD_SOURCE]}" != "aur" ]; then
+    UTIL_PRINT_INFO "$package: Package is not from AUR, skipping maintainer trust check."
+    VARIABLES[CI_MAINTAINER_TRUSTED]=true
     return 0
   fi
 
   # Only check if we have maintainer info
   if ! [ -v "AUR_MAINTAINERS[$package]" ]; then
     UTIL_PRINT_WARNING "Could not find $package in cached AUR maintainers."
+    VARIABLES[CI_MAINTAINER_TRUSTED]=false
     return 0
   fi
 
@@ -478,12 +481,10 @@ function check_maintainer_trust() {
   # Store formatted maintainer info in VARIABLES for later use
   if [ "${VARIABLES[CI_MAINTAINER_TRUSTED]:-false}" == "true" ]; then
     VARIABLES[CI_MAINTAINER_FORMATTED]=$(format_maintainers "${AUR_MAINTAINERS[$package]}")
-    UTIL_PRINT_INFO "$package: All maintainers are trusted: ${VARIABLES[CI_MAINTAINER_FORMATTED]}"
   else
     # Store untrusted maintainers if any
     if [ -n "$untrusted_maintainers" ]; then
       VARIABLES[CI_MAINTAINER_FORMATTED]=$(format_maintainers "$untrusted_maintainers")
-      UTIL_PRINT_INFO "$package: Untrusted maintainers detected: ${VARIABLES[CI_MAINTAINER_FORMATTED]}"
     fi
   fi
 }
