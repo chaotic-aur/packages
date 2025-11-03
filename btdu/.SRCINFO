@@ -1,7 +1,7 @@
 pkgbase = btdu
 	pkgdesc = sampling disk usage profiler for btrfs
 	pkgver = 0.6.1
-	pkgrel = 2
+	pkgrel = 3
 	url = https://github.com/CyberShadow/btdu
 	arch = aarch64
 	arch = i686
