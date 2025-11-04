@@ -47,7 +47,6 @@ function create_gitlab_pr() {
 	\"force_remove_source_branch\": false,
 	\"allow_collaboration\": true,
 	\"subscribed\" : false,
-	\"approvals_before_merge\": \"1\",
 	\"title\": \"chore($pkgbase): PKGBUILD modified\",
 	\"description\": \"A recent update of this package requires human review! Please check whether any potentially dangerous changes were made.\",
 	\"labels\": \"ci,human-review,update\"
