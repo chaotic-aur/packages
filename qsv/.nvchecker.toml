@@ -1,4 +1,0 @@
-[qsv]
-source = "github"
-github = "jqnatividad/qsv"
-use_max_tag = true
