@@ -1,7 +1,7 @@
 pkgbase = airgeddon
 	pkgdesc = Multi-use bash script for Linux systems to audit wireless networks
-	pkgver = 11.52
-	pkgrel = 1
+	pkgver = 11.60
+	pkgrel = 2
 	url = https://github.com/v1s1t0r1sh3r3/airgeddon
 	arch = any
 	license = GPL-3.0-only
@@ -33,6 +33,7 @@ pkgbase = airgeddon
 	optdepends = hcxdumptool: Small tool to capture packets from wlan devices
 	optdepends = hcxtools: Small set of tools convert packets from captures for the use with latest hashcat or John the Ripper
 	optdepends = hostapd: IEEE 802.11 AP, IEEE 802.1X/WPA/WPA2/EAP/RADIUS Authenticator
+	optdepends = hostapd-mana-git: IEEE 802.11 AP, IEEE 802.1X/WPA/WPA2/EAP/RADIUS Authenticator with Mana patches
 	optdepends = hostapd-wpe: Modified hostapd to facilitate AP impersonation attacks
 	optdepends = john: John the Ripper password cracker
 	optdepends = iptables: Linux kernel packet control tool
@@ -51,7 +52,7 @@ pkgbase = airgeddon
 	optdepends = wireshark-cli: Network traffic and protocol analyzer/sniffer CLI tools
 	optdepends = xorg-xdpyinfo: Display information utility for X
 	optdepends = xorg-xset: User preference utility for X
-	source = airgeddon-11.52.tar.gz::https://github.com/v1s1t0r1sh3r3/airgeddon/archive/refs/tags/v11.52.tar.gz
-	sha256sums = ac52879487cb66ee65ea3fae1d237cdc793abffddda73aec4b4c69d4fc6ad482
+	source = airgeddon-11.60.tar.gz::https://github.com/v1s1t0r1sh3r3/airgeddon/archive/refs/tags/v11.60.tar.gz
+	sha256sums = f4bac3d19641581dddc37f3275a8e2293e1ed3eb1921ea69e5feedb34533a73c
 
 pkgname = airgeddon
