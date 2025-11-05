@@ -2,6 +2,7 @@ BUILD_REPO=chaotic-aur
 CI_CODE_SKIP=123
 CI_DEFAULT_CLASS=5
 CI_HUMAN_REVIEW=true
+CI_HUMAN_REVIEW_ASSIGNEE="20097372"
 CI_LIB_DB="https://arch.mirror.constant.com/core/os/x86_64/core.db https://arch.mirror.constant.com/extra/os/x86_64/extra.db https://builds.garudalinux.org/repos/chaotic-aur/x86_64/chaotic-aur.db"
 CI_MANAGE_AUR=true
 CI_REBUILD_BLACKLIST="glibc:gcc-libs"
