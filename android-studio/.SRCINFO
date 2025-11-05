@@ -15,10 +15,10 @@ pkgbase = android-studio
 	optdepends = libgl: emulator support
 	optdepends = ncurses5-compat-libs: native debugger support
 	options = !strip
-	source = https://dl.google.com/dl/android/studio/ide-zips/2025.1.4.8/android-studio-2025.1.4.8-linux.tar.gz
+	source = https://dl.google.com/dl/android/studio/ide-zips/2025.2.1.7/android-studio-2025.2.1.7-linux.tar.gz
 	source = android-studio.desktop
 	source = license.html
-	sha256sums = ce747356d52a36b2e6a4b61df5af7a8c587ce67f8480eb1db5e54bab19ccbdf3
+	sha256sums = 16af1fa02d746e4c182d8852ff3859bba5c182768efeacfa18a8b81d65e78cb1
 	sha256sums = 73cd2dde1d0f99aaba5baad1e2b91c834edd5db3c817f6fb78868d102360d3c4
 	sha256sums = 9a7563f7fb88c9a83df6cee9731660dc73a039ab594747e9e774916275b2e23e
 
