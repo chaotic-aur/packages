@@ -3,6 +3,7 @@ set -euo pipefail
 
 # $1: pkgbase
 # $2: Go one commit further back
+# $3: Assign to GitLab user id
 
 # shellcheck source=./util.shlib
 source .ci/util.shlib
@@ -15,11 +16,12 @@ fi
 # $1: pkgbase
 # $2: branch
 # $3: target branch
+# $4: assign_to_id (optional)
 function create_gitlab_pr() {
   local pkgbase="$1"
   local branch="$2"
   local target_branch="$3"
-  local assign_to_id="$4"
+  local assign_to_id="${4:-}"  # Default to empty string if not provided
 
   # Taken from https://about.gitlab.com/2017/09/05/how-to-automatically-create-a-new-mr-on-gitlab-with-gitlab-ci/
   # Require a list of all the merge request and take a look if there is already
@@ -39,26 +41,48 @@ function create_gitlab_pr() {
   fi
 
   # The description of our new MR, we want to remove the branch after the MR has
-  # been closed
-  BODY="{
-	\"project_id\": ${CI_PROJECT_ID},
-	\"source_branch\": \"${branch}\",
-	\"target_branch\": \"${target_branch}\",
-	\"remove_source_branch\": true,
-	\"force_remove_source_branch\": false,
-	\"allow_collaboration\": true,
-	\"subscribed\" : false,
-	\"title\": \"chore($pkgbase): PKGBUILD modified\",
-	\"description\": \"A recent update of this package requires human review! Please check whether any potentially dangerous changes were made.\",
-	\"labels\": \"ci,human-review,update\""
-
+  # been closed.
   if [ -n "${assign_to_id}" ]; then
-    BODY="${BODY},
-	\"assignee_ids\": [${assign_to_id}]"
+    BODY=$(jq -n \
+      --arg project_id "$CI_PROJECT_ID" \
+      --arg source_branch "$branch" \
+      --arg target_branch "$target_branch" \
+      --arg title "chore($pkgbase): PKGBUILD modified" \
+      --arg description "A recent update of this package requires human review! Please check whether any potentially dangerous changes were made." \
+      --arg assignee_id "$assign_to_id" \
+      '{
+        project_id: ($project_id | tonumber),
+        source_branch: $source_branch,
+        target_branch: $target_branch,
+        remove_source_branch: true,
+        force_remove_source_branch: false,
+        allow_collaboration: true,
+        subscribed: false,
+        title: $title,
+        description: $description,
+        labels: "ci,human-review,update",
+        assignee_ids: [($assignee_id | tonumber)]
+      }')
+  else
+    BODY=$(jq -n \
+      --arg project_id "$CI_PROJECT_ID" \
+      --arg source_branch "$branch" \
+      --arg target_branch "$target_branch" \
+      --arg title "chore($pkgbase): PKGBUILD modified" \
+      --arg description "A recent update of this package requires human review! Please check whether any potentially dangerous changes were made." \
+      '{
+        project_id: ($project_id | tonumber),
+        source_branch: $source_branch,
+        target_branch: $target_branch,
+        remove_source_branch: true,
+        force_remove_source_branch: false,
+        allow_collaboration: true,
+        subscribed: false,
+        title: $title,
+        description: $description,
+        labels: "ci,human-review,update"
+      }')
   fi
-
-  BODY="${BODY}
-	}"
 
   # No MR found, let's create a new one
   if [ "$_MR_EXISTS" == 0 ]; then
@@ -103,15 +127,19 @@ function create_github_pr() {
     _MR_EXISTS=1
   fi
 
-  # The description of our new MR, we want to remove the branch after the MR has
-  # been closed
-  BODY="{
-	\"head\": \"${branch}\",
-	\"base\": \"${target_branch}\",
-	\"maintainer_can_modify\": true,
-	\"title\": \"chore($pkgbase): PKGBUILD modified\",
-	\"body\": \"A recent update of this package requires human review! Please check whether any potentially dangerous changes were made.\"
-	}"
+  # The description of our new PR, we want to allow maintainer modifications.
+  BODY=$(jq -n \
+    --arg head "$branch" \
+    --arg base "$target_branch" \
+    --arg title "chore($pkgbase): PKGBUILD modified" \
+    --arg body "A recent update of this package requires human review! Please check whether any potentially dangerous changes were made." \
+    '{
+      head: $head,
+      base: $base,
+      maintainer_can_modify: true,
+      title: $title,
+      body: $body
+    }')
 
   # No MR found, let's create a new one
   if [ "$_MR_EXISTS" == 0 ]; then
@@ -162,7 +190,10 @@ function manage_branch() {
 }
 
 PKGBASE="$1"
-ASSIGN_TO_ID="$2:-}"
+
+ASSIGN_TO_ID="${CI_HUMAN_REVIEW_ASSIGNEE:-}"
+ASSIGN_TO_ID="${ASSIGN_TO_ID%\"}"  # Remove trailing quote
+ASSIGN_TO_ID="${ASSIGN_TO_ID#\"}"  # Remove leading quote
 
 if [ -v CI_COMMIT_REF_NAME ]; then
   TARGET_BRANCH="$CI_COMMIT_REF_NAME"
