@@ -538,11 +538,11 @@ for package in "${PACKAGES[@]}"; do
       else
         UTIL_PRINT_INFO "$package: Creating PR for review due to untrusted maintainer(s)$maintainer_info"
         if [ "$COMMIT" == "false" ]; then
-          .ci/create-pr.sh "$package" false
+          .ci/create-pr.sh "$package" false "$CI_HUMAN_REVIEW_ASSIGNEE"
         else
           # If we already made a commit, we should go one commit further back to avoid merge conflicts
           # This is because there is a very high chance this current commit will be amended
-          .ci/create-pr.sh "$package" true
+          .ci/create-pr.sh "$package" true "$CI_HUMAN_REVIEW_ASSIGNEE"
         fi
       fi
     else

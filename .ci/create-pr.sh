@@ -19,6 +19,7 @@ function create_gitlab_pr() {
   local pkgbase="$1"
   local branch="$2"
   local target_branch="$3"
+  local assign_to_id="$4"
 
   # Taken from https://about.gitlab.com/2017/09/05/how-to-automatically-create-a-new-mr-on-gitlab-with-gitlab-ci/
   # Require a list of all the merge request and take a look if there is already
@@ -49,7 +50,14 @@ function create_gitlab_pr() {
 	\"subscribed\" : false,
 	\"title\": \"chore($pkgbase): PKGBUILD modified\",
 	\"description\": \"A recent update of this package requires human review! Please check whether any potentially dangerous changes were made.\",
-	\"labels\": \"ci,human-review,update\"
+	\"labels\": \"ci,human-review,update\""
+
+  if [ -n "${assign_to_id}" ]; then
+    BODY="${BODY},
+	\"assignee_ids\": [${assign_to_id}]"
+  fi
+
+  BODY="${BODY}
 	}"
 
   # No MR found, let's create a new one
@@ -154,6 +162,7 @@ function manage_branch() {
 }
 
 PKGBASE="$1"
+ASSIGN_TO_ID="$2:-}"
 
 if [ -v CI_COMMIT_REF_NAME ]; then
   TARGET_BRANCH="$CI_COMMIT_REF_NAME"
@@ -175,9 +184,9 @@ fi
 manage_branch "$CHANGE_BRANCH" "$TARGET_BRANCH" "$PKGBASE"
 
 if [ -v GITLAB_CI ]; then
-  create_gitlab_pr "$PKGBASE" "$CHANGE_BRANCH" "$TARGET_BRANCH"
+  create_gitlab_pr "$PKGBASE" "$CHANGE_BRANCH" "$TARGET_BRANCH" "${ASSIGN_TO_ID:-}"
 elif [ -v GITHUB_ACTIONS ]; then
-  create_github_pr "$PKGBASE" "$CHANGE_BRANCH" "$TARGET_BRANCH"
+  create_github_pr "$PKGBASE" "$CHANGE_BRANCH" "$TARGET_BRANCH" "${ASSIGN_TO_ID:-}"
 else
   UTIL_PRINT_WARNING "Pull request creation is only supported on GitLab CI/GitHub Actions. Please disable CI_HUMAN_REVIEW."
   exit 0

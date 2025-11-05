@@ -10,6 +10,7 @@ declare -A KNOWN_CONFIG_LIST=([BUILD_REPO]="chaotic-aur"
     [CI_CODE_SKIP]=123
     [CI_DEFAULT_CLASS]=""
     [CI_HUMAN_REVIEW]="false"
+    [CI_HUMAN_REVIEW_ASSIGNEE]=""
     [CI_LIB_DB]=""
     [CI_MANAGE_AUR]="false"
     [CI_REBUILD_BLACKLIST]=""
