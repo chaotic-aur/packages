@@ -3,17 +3,17 @@
 # Maintainer: William Horvath <william at horvath dot blog>
 
 pkgname=llvm-mingw
-pkgver=21.1.4+20251021
+pkgver=21.1.5+20251104
 pkgrel=1
 
 # This controls the version we will pull.
-_tag="20251021"
+_tag="20251104"
 
 # When updating, needs to be manually changed to the mingw_commit echoed during prepare().
-mingw_commit="a0fd21158e9f3d625dd6d682443bf9c905ff5e01"
+mingw_commit="287a0d4d478e3575d082ba37ce4dcba86524fc9e"
 
-pkgdesc="A self-contained LLVM/Clang/LLD based mingw-w64 toolchain for i686 and x86_64 targets"
-arch=('x86_64')
+pkgdesc="A self-contained LLVM/Clang/LLD based mingw-w64 toolchain targeting i686, x86-64, armv7, and aarch64"
+arch=('any')
 url="https://github.com/mstorsjo/${pkgname}"
 license=(
   'LicenseRef-custom'
@@ -66,9 +66,9 @@ source=(
   "llvm-project-${pkgver%'+'"$_tag"}.tar.gz::https://github.com/llvm/llvm-project/archive/refs/tags/llvmorg-${pkgver%'+'"$_tag"}.tar.gz"
   "mingw-w64-g${mingw_commit:0:6}.tar.gz::https://github.com/mingw-w64/mingw-w64/archive/${mingw_commit}.tar.gz"
 )
-sha256sums=('f8e078554dea3d33ffdfd6cc2e615a69f5a7d6c52c001dcce2be0b4027b09905'
-  '3a0921d78be74302cb054da1dad59e706814d8fed3a6ac9b532e935825a0715c'
-  'a883b5ec72a4d0d7523c1fbf6c18b434e5add65a0600bbdc9637e6870b7a9d4e')
+sha256sums=('72766001a3ad1c36f740a364aaa0841d67f9faef09dba6fe6b28138b46c3e76c'
+  '297b35033b84da7c1214b05f901e154c1d7febe8fe51ecdbf27b0d0f9531902f'
+  'b6674a0f64963043f4ca6d4e8195773dfdd9c2c78f8a884d0325c6ccb1d48fb4')
 
 pkgver() {
   # This looks to be where the maintainer (Martin Storsjö) does version bumps
@@ -101,8 +101,8 @@ build() {
   export DISPLAY=
   export WAYLAND_DISPLAY=
 
-  # Configure to build only i686 and x86_64 targets (default builds i686, x86_64, armv7, aarch64)
-  export TOOLCHAIN_ARCHS="i686 x86_64"
+  # Configure target architectures
+  export TOOLCHAIN_ARCHS="i686 x86_64 armv7 aarch64"
 
   # Flags from GH Actions workflow
   export LLVM_CMAKEFLAGS="-DLLVM_ENABLE_BINDINGS=OFF -DLLVM_ENABLE_LIBXML2=OFF -DLLVM_ENABLE_TERMINFO=OFF -DLLDB_ENABLE_PYTHON=OFF"
