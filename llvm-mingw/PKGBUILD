@@ -13,7 +13,7 @@ _tag="20251104"
 mingw_commit="287a0d4d478e3575d082ba37ce4dcba86524fc9e"
 
 pkgdesc="A self-contained LLVM/Clang/LLD based mingw-w64 toolchain targeting i686, x86-64, armv7, and aarch64"
-arch=('any')
+arch=('x86_64')
 url="https://github.com/mstorsjo/${pkgname}"
 license=(
   'LicenseRef-custom'
