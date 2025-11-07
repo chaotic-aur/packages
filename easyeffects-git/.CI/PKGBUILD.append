@@ -1,3 +1,5 @@
+depends+=('qt6-webengine')
+
 _pkgsrc="${pkgname%%-git}"
 
 pkgver() (
