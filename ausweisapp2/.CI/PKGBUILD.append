@@ -1,0 +1,4 @@
+url="https://github.com/Governikus/AusweisApp2"
+license=('EUPL-1.2')
+
+depends=(${depends[@]//http-parser/})
