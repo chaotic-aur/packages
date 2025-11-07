@@ -1,7 +1,7 @@
 pkgbase = blockbench-git
 	pkgdesc = A low-poly 3D model editor (git version)
-	pkgver = 4.11.2.r1.g0dc5a949
-	pkgrel = 2
+	pkgver = 5.0.3.r1.g796597fd
+	pkgrel = 1
 	url = https://github.com/JannisX11/blockbench
 	arch = x86_64
 	arch = aarch64
@@ -10,7 +10,6 @@ pkgbase = blockbench-git
 	makedepends = npm
 	depends = electron
 	depends = bash
-	depends = giblib
 	depends = glibc
 	depends = imlib2
 	depends = libx11
