@@ -264,8 +264,22 @@ function package_major_change() {
   local pkgrelRegex='^pkgrel *= *[a-zA-Z0-9_.-]+[[:space:]]*$'
   local sumsArrayStartRegex='^(sha(1|224|256|384|512)|md5|b2)sums(_(x86_64|i686|aarch64|armv7h))? *= *\((.*)$'
 
-  while read newFileLine <&3 && read oldFileLine <&4; do
-    # Compare file line by line
+  # Compare file line by line
+  while true; do
+    local newFileLineCode=0 oldFileLineCode=0
+    read newFileLine <&3 || newFileLineCode=$?
+    read oldFileLine <&4 || oldFileLineCode=$?
+
+    if [[ $newFileLineCode -ne $oldFileLineCode ]]; then
+      # One file ended before the other, major change
+      return 0
+    fi
+
+    if [[ $newFileLineCode -ne 0 ]]; then
+      # Both files ended, done checking
+      break
+    fi
+
 
     if [[ "$newFileLine" =~ $sumsArrayStartRegex ]] && [[ "$inSums" == false ]]; then
       inSums=true
