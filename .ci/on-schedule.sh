@@ -262,17 +262,17 @@ function package_major_change() {
 
   local pkgverRegex='^_?pkgver *= *[a-zA-Z0-9_.-]+[[:space:]]*$'
   local pkgrelRegex='^pkgrel *= *[a-zA-Z0-9_.-]+[[:space:]]*$'
-  local sumsArrayStartRegex='^(sha(1|224|256|384|512)|md5|b2)sums *= *\((.*)$'
+  local sumsArrayStartRegex='^(sha(1|224|256|384|512)|md5|b2)sums(_(x86_64|i686|aarch64|armv7h))? *= *\((.*)$'
 
   while read newFileLine <&3 && read oldFileLine <&4; do
     # Compare file line by line
 
     if [[ "$newFileLine" =~ $sumsArrayStartRegex ]] && [[ "$inSums" == false ]]; then
       inSums=true
-      newFileLine="${BASH_REMATCH[3]}"
+      newFileLine="${BASH_REMATCH[5]}"
       # Old file also has to be checked. Is this also the start of the sums array?
       if [[ "$oldFileLine" =~ $sumsArrayStartRegex ]]; then
-        oldFileLine="${BASH_REMATCH[3]}"
+        oldFileLine="${BASH_REMATCH[5]}"
       else
         # Old file does not have sums array start where new file has it. Major change.
         return 0
