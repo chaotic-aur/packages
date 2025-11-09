@@ -1,0 +1,5 @@
+provides+=('hyprland-qtutils-git')
+conflicts+=('hyprland-qtutils-git')
+
+# update .CI/config when replaces is removed
+replaces=('hyprland-qtutils-git')
