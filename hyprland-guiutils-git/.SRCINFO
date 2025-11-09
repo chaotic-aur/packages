@@ -15,9 +15,9 @@ pkgbase = hyprland-guiutils-git
 	depends = libdrm
 	depends = pixman
 	provides = hyprland-guiutils=0.1.0
+	provides = hyprland-qtutils-git
 	conflicts = hyprland-guiutils
-	replaces = hyprland-qtutils
-	replaces = hyprland-qtutils-git
+	conflicts = hyprland-qtutils-git
 	source = hyprland-guiutils::git+https://github.com/hyprwm/hyprland-guiutils.git
 	sha256sums = SKIP
 

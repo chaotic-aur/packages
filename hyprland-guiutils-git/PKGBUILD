@@ -22,9 +22,8 @@ makedepends=(
   ninja
 )
 
-provides=("$_pkgname=${pkgver%%.r*}")
-conflicts=("$_pkgname")
-replaces=('hyprland-qtutils' 'hyprland-qtutils-git')
+provides=("$_pkgname=${pkgver%%.r*}" "hyprland-qtutils-git")
+conflicts=("$_pkgname" "hyprland-qtutils-git")
 
 _pkgsrc=$_pkgname
 source=("$_pkgsrc::git+$url.git")
