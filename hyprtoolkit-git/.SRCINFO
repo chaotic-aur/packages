@@ -1,0 +1,30 @@
+pkgbase = hyprtoolkit-git
+	pkgdesc = A modern C++ Wayland-native GUI toolkit
+	pkgver = r97.f3e4245
+	pkgrel = 1
+	url = https://github.com/hyprwm/hyprtoolkit
+	arch = x86_64
+	arch = aarch64
+	license = BSD-3-Clause
+	makedepends = cmake
+	makedepends = git
+	makedepends = ninja
+	depends = aquamarine-git
+	depends = egl-gbm
+	depends = iniparser
+	depends = hyprgraphics-git
+	depends = hyprlang-git
+	depends = hyprutils-git
+	depends = hyprwayland-scanner-git
+	depends = libdrm
+	depends = libxkbcommon
+	depends = pango
+	depends = pixman
+	depends = wayland
+	provides = hyprtoolkit=r97.f3e4245
+	provides = libhyprtoolkit.so
+	conflicts = hyprtoolkit
+	source = hyprtoolkit::git+https://github.com/hyprwm/hyprtoolkit.git
+	sha256sums = SKIP
+
+pkgname = hyprtoolkit-git

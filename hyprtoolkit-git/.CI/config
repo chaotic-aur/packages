@@ -1,0 +1,2 @@
+CI_REBUILD_TRIGGERS=aquamarine-git
+CI_PKGBUILD_SOURCE=aur
