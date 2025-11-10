@@ -1,7 +1,7 @@
 pkgbase = zoom
 	pkgdesc = Video Conferencing and Web Conferencing Service
 	pkgver = 6.6.6
-	pkgrel = 1
+	pkgrel = 2
 	url = https://zoom.us/
 	arch = x86_64
 	license = LicenseRef-zoom
@@ -30,6 +30,7 @@ pkgbase = zoom
 	depends = dbus
 	depends = libdrm
 	depends = gtk3
+	depends = xcb-util-wm
 	optdepends = pulseaudio-alsa: audio via PulseAudio
 	optdepends = ibus: remote control
 	optdepends = picom: extra compositor needed by some window managers for screen sharing
