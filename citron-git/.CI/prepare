@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+_check_speed() {
+  local url=$(grep -Pom1 "^url=[\"']?\K[^\s\"']+" PKGBUILD)
+
+  echo "Rebuilds temporarily suspended because of poor server performance."
+  curl --connect-timeout 10 --max-time 15 -o /dev/null -s -w "> Time: %{time_total}s\n> Speed: %{speed_download} bytes/s\n" "$url"
+
+  return $CI_CODE_SKIP
+}
+_check_speed || return $?
