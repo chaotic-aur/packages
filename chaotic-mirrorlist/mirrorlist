@@ -1,10 +1,10 @@
+# Automatic per-country routing of the mirrors below.
+Server = https://geo-mirror.chaotic.cx/$repo/$arch
+
 ## Special CDN mirror (delayed syncing, expect some (safe to ignore) amount of 404s)
 # Globally
 # * By: Garuda Linux donators, hosted on Cloudflare R2
 Server = https://cdn-mirror.chaotic.cx/$repo/$arch
-
-# Automatic per-country routing of the mirrors below.
-Server = https://geo-mirror.chaotic.cx/$repo/$arch
 
 ## Regular mirrors (close to instant to one minute sync delay)
 # Brazil
@@ -23,10 +23,6 @@ Server = https://de-2-mirror.chaotic.cx/$repo/$arch
 # * By: redgloboli
 Server = https://de-4-mirror.chaotic.cx/$repo/$arch
 
-# France
-# * By Yael (Marseille)
-Server = https://fr-mirror.chaotic.cx/$repo/$arch
-
 # Great Britain
 # * By: Wilbur <github.com/ThisCatLikesCrypto>
 Server = https://gb-mirror.chaotic.cx/$repo/$arch
@@ -43,7 +39,11 @@ Server = https://in-2-mirror.chaotic.cx/$repo/$arch
 # * By Albony (Chennai)
 Server = https://in-4-mirror.chaotic.cx/$repo/$arch
 
-# Korea
+# Singapore
+# * By freedif.org (City state)
+Server = https://sg-mirror.chaotic.cx/$repo/$arch
+
+# South Korea
 # * By: <t.me/silent_heigou> (Seoul)
 Server = https://kr-mirror.chaotic.cx/$repo/$arch
 
