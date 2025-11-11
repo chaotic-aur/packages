@@ -644,7 +644,7 @@ for package in "${PACKAGES[@]}"; do
           .ci/create-pr.sh "$package" true "$CI_HUMAN_REVIEW_ASSIGNEE"
         fi
         # Prevent from dropping into the normal update flow, since we already created the PR
-        return
+        continue
       fi
     fi
 
