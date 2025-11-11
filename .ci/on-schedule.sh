@@ -280,7 +280,6 @@ function package_major_change() {
       break
     fi
 
-
     if [[ "$newFileLine" =~ $sumsArrayStartRegex ]] && [[ "$inSums" == false ]]; then
       inSums=true
       newFileLine="${BASH_REMATCH[5]}"
@@ -623,10 +622,9 @@ for package in "${PACKAGES[@]}"; do
 
 
   if ! git diff --exit-code --quiet -- "$package"; then
-    check_maintainer_trust "$package" VARIABLES
-
     # shellcheck disable=SC2102
     if [[ -v VARIABLES[CI_REQUIRES_REVIEW] ]] && [ "${VARIABLES[CI_REQUIRES_REVIEW]}" == "true" ]; then
+      check_maintainer_trust "$package" VARIABLES
       maintainer_info=""
       if [[ -v VARIABLES[CI_MAINTAINER_FORMATTED] ]]; then
         maintainer_info=" ${VARIABLES[CI_MAINTAINER_FORMATTED]}"
@@ -635,9 +633,7 @@ for package in "${PACKAGES[@]}"; do
       # If maintainer is trusted, skip PR creation and apply update directly
       if [ "${VARIABLES[CI_MAINTAINER_TRUSTED]:-false}" == "true" ]; then
         UTIL_PRINT_INFO "$package: Skipping PR creation due to trusted maintainer(s)$maintainer_info"
-        git add "$package"
-        generate-commit "$package"
-        MODIFIED_PACKAGES+=("$package")
+        # Drop back to normal update flow
       else
         UTIL_PRINT_INFO "$package: Creating PR for review due to untrusted maintainer(s)$maintainer_info"
         if [ "$COMMIT" == "false" ]; then
@@ -647,22 +643,25 @@ for package in "${PACKAGES[@]}"; do
           # This is because there is a very high chance this current commit will be amended
           .ci/create-pr.sh "$package" true "$CI_HUMAN_REVIEW_ASSIGNEE"
         fi
+        # Prevent from dropping into the normal update flow, since we already created the PR
+        return
       fi
+    fi
+
+    # Normal update flow
+    git add "$package"
+    generate-commit "$package"
+
+    # We don't want to schedule packages that have a specific trigger to prevent
+    # large packages getting scheduled too often and wasting resources (e.g. llvm-git)
+    if [[ -v "VARIABLES[CI_ON_TRIGGER]" ]]; then
+      UTIL_PRINT_INFO "Will not schedule $package because it has trigger ${VARIABLES[CI_ON_TRIGGER]} set."
     else
-      git add "$package"
-      generate-commit "$package"
+      MODIFIED_PACKAGES+=("$package")
+    fi
 
-      # We don't want to schedule packages that have a specific trigger to prevent
-      # large packages getting scheduled too often and wasting resources (e.g. llvm-git)
-      if [[ -v "VARIABLES[CI_ON_TRIGGER]" ]]; then
-        UTIL_PRINT_INFO "Will not schedule $package because it has trigger ${VARIABLES[CI_ON_TRIGGER]} set."
-      else
-        MODIFIED_PACKAGES+=("$package")
-      fi
-
-      if [ -v CI_HUMAN_REVIEW ] && [ "$CI_HUMAN_REVIEW" == "true" ] && git show-ref --quiet "origin/update-$package"; then
-        DELETE_BRANCHES+=("update-$package")
-      fi
+    if [ -v CI_HUMAN_REVIEW ] && [ "$CI_HUMAN_REVIEW" == "true" ] && git show-ref --quiet "origin/update-$package"; then
+      DELETE_BRANCHES+=("update-$package")
     fi
   # We also need to check the worktree for changes, because we might have an updated git hash
   elif ! UTIL_CHECK_STATE_DIFF "$package"; then
