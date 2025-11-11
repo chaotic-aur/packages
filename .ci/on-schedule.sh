@@ -620,7 +620,6 @@ for package in "${PACKAGES[@]}"; do
     continue
   fi
 
-
   if ! git diff --exit-code --quiet -- "$package"; then
     # shellcheck disable=SC2102
     if [[ -v VARIABLES[CI_REQUIRES_REVIEW] ]] && [ "${VARIABLES[CI_REQUIRES_REVIEW]}" == "true" ]; then

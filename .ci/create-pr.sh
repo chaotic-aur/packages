@@ -170,6 +170,7 @@ function manage_branch() {
   if git show-ref --quiet "origin/$branch"; then
     git switch -q "$branch"
     git checkout -q stash -- "$pkgbase"
+    git add "$pkgbase"
     # Branch already exists, let's see if it's up to date
     # Also check if previous parent commit is no longer ancestor of target_branch
     if ! git diff --staged --exit-code --quiet || ! git merge-base --is-ancestor HEAD^ "origin/$target_branch"; then
