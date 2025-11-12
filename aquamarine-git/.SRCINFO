@@ -26,6 +26,7 @@ pkgbase = aquamarine-git
 	depends = wayland
 	depends = wayland-protocols
 	provides = aquamarine=0.8.0
+	provides = libaquamarine.so
 	conflicts = aquamarine
 	source = aquamarine::git+https://github.com/hyprwm/aquamarine.git
 	sha256sums = SKIP
