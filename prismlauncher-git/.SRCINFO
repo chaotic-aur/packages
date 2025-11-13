@@ -1,6 +1,6 @@
 pkgbase = prismlauncher-git
 	pkgdesc = Minecraft launcher with ability to manage multiple instances
-	pkgver = 8.0.r1447.g1d9508c26
+	pkgver = 8.0.r2682.gb5964b0c3
 	pkgrel = 1
 	url = https://prismlauncher.org
 	arch = i686
@@ -20,6 +20,7 @@ pkgbase = prismlauncher-git
 	depends = hicolor-icon-theme
 	depends = java-runtime=17
 	depends = libgl
+	depends = qrencode
 	depends = qt6-5compat
 	depends = qt6-base
 	depends = qt6-imageformats
