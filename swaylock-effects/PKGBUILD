@@ -1,4 +1,4 @@
-# Maintainer: itsme <mymail@ishere.ru>
+# Maintainer: Sergey Kanafyev <sergeykanafyev@gmail.com>
 
 pkgname=swaylock-effects
 pkgver=1.7.0.0
