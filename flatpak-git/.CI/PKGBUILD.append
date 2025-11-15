@@ -1,0 +1,9 @@
+pkgdesc="Linux application sandboxing and distribution framework (formerly xdg-app)"
+license=('LGPL-2.1-or-later')
+
+_pkgsrc="flatpak"
+pkgver() {
+  cd "$_pkgsrc"
+  git describe --long --tags --abbrev=7 --exclude='*[a-zA-Z][a-zA-Z]*' \
+    | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
+}
