@@ -5,7 +5,7 @@
 
 _pkgname="shadps4"
 pkgname="$_pkgname-git"
-pkgver=0.12.0.r6.g430f2e4
+pkgver=0.12.5.r12.gaa5c045
 pkgrel=1
 pkgdesc="PlayStation 4 emulator"
 url="https://github.com/shadps4-emu/shadPS4"
@@ -26,7 +26,6 @@ depends=(
   'libxxhash.so'     # xxhash
   'libz.so'          # zlib
   'pugixml'
-  'sdl3'
 )
 makedepends=(
   'boost'
@@ -34,11 +33,11 @@ makedepends=(
   'git'
   'half'
   'ninja'
+  'nlohmann-json'
   'robin-map'
   'spirv-headers'
-  #'stb'
+  'stb'
   'toml11'
-  'nlohmann-json'
 )
 
 if [[ "${_use_clang::1}" == "t" ]]; then
@@ -70,9 +69,8 @@ prepare() {
   git rm -r externals/libpng
   git rm -r externals/pugixml
   git rm -r externals/robin-map
-  git rm -r externals/sdl3
+  git rm -r externals/stb
   git rm -r externals/toml11
-  #git rm -r externals/tracy
   git rm -r externals/xxhash
   git rm -r externals/zlib-ng
   git submodule update --init --recursive --depth 1
@@ -105,10 +103,6 @@ prepare() {
     -i src/emulator.cpp
 }
 
-_prepare() (
-  cd "$_pkgsrc"
-)
-
 pkgver() (
   cd "$srcdir/$_pkgsrc"
   git describe --long --tags --abbrev=7 --exclude='*[a-zA-Z][a-zA-Z]*' \
@@ -116,14 +110,15 @@ pkgver() (
 )
 
 build() (
-  _prepare
-
   if [[ "${_use_clang::1}" == "t" ]]; then
     export CC CXX LDFLAGS
     CC=clang
     CXX=clang++
     LDFLAGS="$(sed -E -e 's&\S*fuse-ld\S*&&g' -e 's&\s+& &g' <<< "$LDFLAGS") -fuse-ld=lld"
   fi
+
+  export CFLAGS+=" -DNDEBUG"
+  export CXXFLAGS+=" -DNDEBUG"
 
   local _cmake_options=(
     -B build
@@ -138,6 +133,10 @@ build() (
     -DTRACY_ENABLE=OFF
     -DENABLE_UPDATER=OFF
     -DSIRIT_USE_SYSTEM_SPIRV_HEADERS=ON
+
+    # force vendored sdl3
+    # ffmpeg -> sdl2-compat -> sdl3
+    -DCMAKE_DISABLE_FIND_PACKAGE_SDL3=ON
   )
 
   cmake "${_cmake_options[@]}"
