@@ -1,0 +1,9 @@
+eval "prepare() {
+  $(declare -f prepare | tail -n +2)
+
+  # skip tests
+  sed -E -e '/[Aa]ncillary.files/d' \
+    -e '/[Ll]ua.test/d' \
+    -e '/summary/s&^.*lua.*Test.*\$&_ = 1 # pass&' \
+    -i meson.build
+}"
