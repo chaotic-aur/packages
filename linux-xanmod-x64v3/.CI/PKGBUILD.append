@@ -1,0 +1,10 @@
+_chaotic_prepare() {
+  # clear local version
+  scripts/config --set-str CONFIG_LOCALVERSION ""
+
+  # set microarchitecture level, x86-64-v3
+  scripts/config --set-val CONFIG_X86_64_VERSION 3
+}
+
+# inject _chaotic_prepare after copying default config
+eval "$(declare -f prepare | sed -E -e 's&^(\s*)(cp\b.*\bCONFIGS/x86_64/.*)$&\1\2\n\1_chaotic_prepare&')"
