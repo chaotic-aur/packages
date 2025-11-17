@@ -7,7 +7,7 @@
 
 _pkgname="thorium-reader"
 pkgname="$_pkgname-git"
-pkgver=3.1.1.r153.gdf65bbf
+pkgver=3.2.2.r167.g63fc4b6
 pkgrel=1
 pkgdesc="Cross-platform desktop reading app based on the Readium Desktop toolkit"
 url="https://github.com/edrlab/thorium-reader"
@@ -32,6 +32,7 @@ sha256sums=('SKIP')
 _nvm_env() {
   export HOME="$SRCDEST/node-home"
   export NVM_DIR="$SRCDEST/node-nvm"
+  export NODE_OPTIONS="--localstorage-file='$srcdir/localstorage.json'"
 
   # set up nvm
   source /usr/share/nvm/init-nvm.sh || [[ $? != 1 ]]
@@ -40,6 +41,7 @@ _nvm_env() {
 }
 
 _electron_env() {
+  export ELECTRON_SKIP_BINARY_DOWNLOAD=1
   export SYSTEM_ELECTRON_VERSION=$(< "/usr/lib/electron${_electron_version:-}/version")
   export ELECTRON_VERSION=${SYSTEM_ELECTRON_VERSION%%.*}
 }
@@ -84,10 +86,6 @@ build() (
 )
 
 package() {
-  if [ "${_install_path::1}" = "/" ] || [ "$_install_path" = "usr/lib" ]; then
-    _install_path="usr/share"
-  fi
-
   _electron_env
 
   depends=("electron${ELECTRON_VERSION:-}")
