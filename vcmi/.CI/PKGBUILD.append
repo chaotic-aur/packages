@@ -1,3 +1,11 @@
 depends=(${depends[@]//fuzzylite*/})
+depends=(${depends[@]//luajit*/})
+depends=(${depends[@]//libxkbcommon*/})
 
-eval "$(declare -f build | sed 's&(FORCE_BUNDLED_FL)=\S+&\1=ON&')"
+if ! [[ "${depends[*]}" =~ minizip ]]; then
+  depends+=('minizip')
+fi
+
+unset install
+
+eval "$(declare -f build | sed -E -e 's&(FORCE_BUNDLED_FL|ENABLE_INNOEXTRACT)=\S+&\1=ON&g')"
