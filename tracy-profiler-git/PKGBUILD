@@ -4,7 +4,7 @@
 
 _pkgname="tracy-profiler"
 pkgname="$_pkgname-git"
-pkgver=0.12.2.r483.g69836f3
+pkgver=0.13.0.r16.ga11c3d4
 pkgrel=1
 pkgdesc="Real-time, nanosecond resolution frame profiler"
 url="https://github.com/wolfpld/tracy"
@@ -22,12 +22,14 @@ depends=(
   'wayland'
 )
 makedepends=(
-  'git'
   'cmake'
+  'git'
+  'libxrandr'
   'ninja'
   'wayland-protocols'
 )
 optdepends=(
+  'libxrandr: for legacy X11 profiler'
   'xdg-desktop-portal: file dialogs'
 )
 
@@ -41,7 +43,26 @@ source=("$_pkgsrc"::"git+$url.git${_commit:+#commit=$_commit}")
 sha256sums=('SKIP')
 
 prepare() {
+  # prepare legacy module
   ln -sf profiler "$_pkgsrc"/profiler_x11
+
+  # fix legacy module x11 + xrandr linking
+  cat >> "$_pkgsrc"/profiler_x11/CMakeLists.txt << 'END'
+if(LEGACY)
+    find_package(X11 REQUIRED)
+    find_package(PkgConfig REQUIRED)
+    pkg_check_modules(XRANDR REQUIRED xrandr)
+
+    target_link_libraries(${PROJECT_NAME} PRIVATE ${X11_LIBRARIES} ${XRANDR_LIBRARIES})
+
+    if(X11_INCLUDE_DIR)
+        target_include_directories(${PROJECT_NAME} PRIVATE ${X11_INCLUDE_DIR})
+    endif()
+    if(XRANDR_INCLUDE_DIRS)
+        target_include_directories(${PROJECT_NAME} PRIVATE ${XRANDR_INCLUDE_DIRS})
+    endif()
+endif()
+END
 
   # ensure march=native disabled
   sed -e '/add_compile_options.*=native/d' -i "$_pkgsrc/cmake/config.cmake"
