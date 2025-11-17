@@ -2,8 +2,8 @@
 
 _pkgname="vcmi"
 pkgname="$_pkgname-git"
-pkgver=1.6.8.r1804.g6407d9c
-pkgrel=1
+pkgver=1.6.8.r2004.gce95236
+pkgrel=2
 pkgdesc="Open-source game engine for Heroes of Might and Magic III"
 arch=('x86_64')
 url="https://github.com/vcmi/vcmi"
@@ -54,9 +54,6 @@ prepare() {
 
   # force Qt6
   sed -e 's/Qt6 Qt5/Qt6/' CMakeLists.txt
-
-  # fix Boost 1.89
-  sed -E -e 's&(return) boost::to_string(.*);$&\1 \2.str();&' -i scripting/erm/ERMInterpreter.cpp
 }
 
 pkgver() {
@@ -75,7 +72,7 @@ build() {
     -Wno-dev
 
     -DENABLE_ERM=ON
-    -DENABLE_INNOEXTRACT=OFF
+    -DENABLE_INNOEXTRACT=ON
     -DENABLE_LUA=ON
     -DENABLE_TEST=$CHECKFUNC
     -DFORCE_BUNDLED_FL=ON
