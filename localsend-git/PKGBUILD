@@ -1,9 +1,5 @@
 # Maintainer: aur.chaotic.cx
 
-## links
-# https://localsend.org/
-# https://github.com/localsend/localsend
-
 ## options
 : ${_install_path:=usr/lib}
 
@@ -12,9 +8,11 @@
 : ${RUSTUP_HOME:=$SRCDEST/rust-home}
 export CARGO_HOME FVM_CACHE_PATH RUSTUP_HOME
 
+#: ${_commit=574a54a} # last working
+
 _pkgname="localsend"
 pkgname="$_pkgname-git"
-pkgver=1.17.0.r32.gf57cae5
+pkgver=1.17.0.r84.gc2792af
 pkgrel=1
 pkgdesc="An open source cross-platform alternative to AirDrop"
 url="https://github.com/localsend/localsend"
@@ -27,7 +25,7 @@ depends=(
 makedepends=(
   'clang'
   'cmake'
-  'fvm' # AUR
+  'fvm'
   'git'
   'lld'
   'llvm'
@@ -36,24 +34,27 @@ makedepends=(
   'rustup'
 )
 
-conflicts=("$_pkgname=${pkgver%%.r*}")
+conflicts=("$_pkgname")
 provides=("$_pkgname")
 
 options=('!lto')
 
 _pkgsrc="$_pkgname"
-source=("$_pkgsrc"::"git+$url.git")
+source=("$_pkgsrc"::"git+$url.git${commit:+#commit=$_commit}")
 sha256sums=('SKIP')
+
+prepare() {
+  cd "$_pkgsrc"
+  #sed -E 's&^(channel) = .*$&\1 = "stable"&' -i app/rust-toolchain.toml
+
+  git -c user.name="x" -c user.email="a@b.c" \
+    revert f9aa78366988a56baf1acb6083cf4e5807fe9e8b --no-edit
+}
 
 pkgver() {
   cd "$_pkgsrc"
   git describe --long --tags --abbrev=7 --exclude='*[a-zA-Z][a-zA-Z]*' \
     | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
-}
-
-prepare() {
-  cd "$_pkgsrc"
-  #sed -E -e 's&^channel = .*$&channel = "stable"&' -i app/rust-toolchain.toml
 }
 
 build() (
