@@ -1,3 +1,0 @@
-#!/usr/bin/env sh
-
-sed -E 's&::git-lfs\+&::git+&g' -i PKGBUILD
