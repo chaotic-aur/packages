@@ -37,6 +37,7 @@ depends=(
   libxkbcommon
   libxrender
   mesa
+  muparser
   opengl-driver
   pango
   pixman
