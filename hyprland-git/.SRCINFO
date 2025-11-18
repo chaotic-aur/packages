@@ -38,6 +38,7 @@ pkgbase = hyprland-git
 	depends = libxkbcommon
 	depends = libxrender
 	depends = mesa
+	depends = muparser
 	depends = opengl-driver
 	depends = pango
 	depends = pixman
