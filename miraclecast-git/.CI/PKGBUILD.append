@@ -1,0 +1,2 @@
+pkgdesc="Implementation of the Miracast Wi‑Fi Display protocol"
+license=('LGPL-2.1-or-later')
