@@ -1,5 +1,5 @@
 CI_ON_TRIGGER=daily
 BUILDER_CACHE_SOURCES=true
-CI_PACKAGE_BUMP=26.0.0_devel.214621.1889f1a779f-1/1
+CI_PACKAGE_BUMP=26.0.0_devel.214927.b0047be0c25-1/1
 CI_REBUILD_TRIGGERS=libxml2:libdisplay-info
 CI_PKGBUILD_SOURCE=https://github.com/Frogging-Family/mesa-git.git
