@@ -32,7 +32,6 @@ on-schedule:
   image: alpine:latest
   script:
     - .ci/on-schedule.sh
-    - .ci/gitlab-clean.sh # Clean old artifacts
   artifacts:
     paths:
       - .ci/deptree.txt
