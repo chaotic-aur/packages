@@ -1,0 +1,84 @@
+# Maintainer: aur.chaotic.cx
+
+_pkgname="pgmodeler"
+pkgname="$_pkgname"
+pkgver=1.2.2
+pkgrel=2
+pkgdesc="An open source CASE tool for modeling PostgreSQL databases"
+url="https://github.com/pgmodeler/pgmodeler"
+license=('GPL-3.0-only')
+arch=('x86_64')
+
+depends=(
+  'qt6-svg'
+  'postgresql-libs'
+  'libxml2'
+)
+makedepends=(
+  'imagemagick'
+)
+
+_pkgsrc="$pkgname-$pkgver"
+_pkgext="tar.gz"
+source=("$pkgname-$pkgver.$_pkgext"::"$url/archive/v${pkgver}.$_pkgext")
+sha256sums=('SKIP')
+
+prepare() {
+  # normalize icon sizes
+  local _magick_opts=(
+    -filter Lanczos
+    -resize 256x256
+    -define png:compression-filter=0
+    -define png:compression-level=9
+    -define png:compression-strategy=0
+  )
+
+  cd "$_pkgsrc"
+  for i in assets/conf/*.png; do
+    magick "$i" "${_magick_opts[@]}" png:"$(basename "$i")"
+  done
+}
+
+build() {
+  cd "$_pkgsrc"
+  local _config=(
+    CONFIG+=release
+    PREFIX=/usr
+    CONFDIR=/etc/pgmodeler
+    PRIVATEBINDIR=/usr/bin
+    DOCDIR=/usr/share/doc/pgmodeler
+    SAMPLESDIR=/usr/share/doc/pgmodeler
+    DEFINES+=NO_UPDATE_CHECK
+    pgmodeler.pro
+  )
+
+  qmake6 "${_config[@]}"
+  make
+}
+
+package() {
+  cd "$_pkgsrc"
+  make INSTALL_ROOT="$pkgdir" install
+
+  install -Dm644 "pgmodeler_logo.png" "$pkgdir/usr/share/icons/hicolor/256x256/apps/pgmodeler.png"
+  install -Dm644 "pgmodeler_dbm.png" "$pkgdir/usr/share/icons/hicolor/256x256/mimetypes/pgmodeler-dbm.png"
+  install -Dm644 "pgmodeler_sch.png" "$pkgdir/usr/share/icons/hicolor/256x256/mimetypes/pgmodeler_sch.png"
+
+  install -Dm644 "pgmodeler.appdata.xml" "$pkgdir/usr/share/metainfo/pgmodeler.appdata.xml"
+
+  install -Dm644 /dev/stdin "$pkgdir/usr/share/mime/packages/pgmodeler.xml" << END
+<?xml version="1.0" encoding="UTF-8"?>
+<mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
+    <mime-type type="application/x-dbm">
+        <sub-class-of type="application/xml"/>
+        <comment>pgModeler database model</comment>
+        <comment xml:lang="de">pgModeler Datenbankmodell</comment>
+        <icon name="pgmodeler-dbm"/>
+        <glob pattern="*.dbm"/>
+    </mime-type>
+</mime-info>
+END
+
+  # prevent error when opening plugin directory
+  install -Dm644 /dev/null "$pkgdir/usr/lib/pgmodeler/plugins/.folder"
+}
