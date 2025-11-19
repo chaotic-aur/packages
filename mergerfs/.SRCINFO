@@ -1,12 +1,12 @@
 pkgbase = mergerfs
 	pkgdesc = Featureful union filesystem. Combines directories from various filesystems into a storage pool
-	pkgver = 2.41.0
+	pkgver = 2.41.1
 	pkgrel = 1
 	url = https://github.com/trapexit/mergerfs
 	arch = x86_64
 	license = ISC
 	optdepends = mergerfs-tools-git: manage data in a pool
-	source = mergerfs-2.41.0.tar.gz::https://github.com/trapexit/mergerfs/archive/refs/tags/2.41.0.tar.gz
-	sha256sums = 663c358cc48b097cf5268e618096dd8cbde8d71e9e5c382ae33473befe607a52
+	source = mergerfs-2.41.1.tar.gz::https://github.com/trapexit/mergerfs/archive/refs/tags/2.41.1.tar.gz
+	sha256sums = 033dd23bef6c87dd7be8776a2ece6f20120cd3ece1feb1fbad6ba54785854aba
 
 pkgname = mergerfs

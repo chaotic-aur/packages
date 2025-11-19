@@ -2,7 +2,7 @@
 # Contributor: Oliver Rümpelein <arch@pheerai.de>
 
 pkgname=mergerfs
-pkgver=2.41.0
+pkgver=2.41.1
 pkgrel=1
 pkgdesc='Featureful union filesystem. Combines directories from various filesystems into a storage pool'
 arch=(x86_64)
@@ -11,7 +11,7 @@ license=(ISC)
 #optdepends=('mergerfs-tools: manage data in a pool')
 optdepends=('mergerfs-tools-git: manage data in a pool')
 source=("$pkgname-$pkgver.tar.gz::$url/archive/refs/tags/$pkgver.tar.gz")
-sha256sums=('663c358cc48b097cf5268e618096dd8cbde8d71e9e5c382ae33473befe607a52')
+sha256sums=('033dd23bef6c87dd7be8776a2ece6f20120cd3ece1feb1fbad6ba54785854aba')
 
 prepare() {
   #echo -n "$pkgver" >$pkgname-$pkgver/VERSION
