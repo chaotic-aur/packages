@@ -12,7 +12,7 @@ export CARGO_HOME FVM_CACHE_PATH RUSTUP_HOME
 
 _pkgname="localsend"
 pkgname="$_pkgname-git"
-pkgver=1.17.0.r84.gc2792af
+pkgver=1.17.0.r86.g914422a
 pkgrel=1
 pkgdesc="An open source cross-platform alternative to AirDrop"
 url="https://github.com/localsend/localsend"
@@ -47,8 +47,9 @@ prepare() {
   cd "$_pkgsrc"
   #sed -E 's&^(channel) = .*$&\1 = "stable"&' -i app/rust-toolchain.toml
 
-  git -c user.name="x" -c user.email="a@b.c" \
-    revert f9aa78366988a56baf1acb6083cf4e5807fe9e8b --no-edit
+  local _git=(git -c user.name="x" -c user.email="a@b.c")
+  "${_git[@]}" revert 5ac1e66026835c73b1c91ab4e29c591ae779f9ca --no-edit # feat: prepare v2 http server
+  "${_git[@]}" revert f9aa78366988a56baf1acb6083cf4e5807fe9e8b --no-edit # refactor: http module
 }
 
 pkgver() {
