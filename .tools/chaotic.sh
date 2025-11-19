@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # deps: aria2 getoptions shfmt trash-cli
 
-VERSION="0.0.6"
+VERSION="0.0.7"
 
 if [ "${EUID:-$(id -u)}" -eq 0 ]; then
   echo "Do not run as root user."
@@ -21,6 +21,7 @@ _working_dir="/tmp"
 _build_dir_remote="build"
 
 _user="\$USER"
+_port=210
 
 _filter_list=(
   # required
@@ -47,6 +48,8 @@ parser_definition() {
   flag ADD -a --add -- "[package-list] - add or update packages"
   flag BUMP -b --bump -- "[package-list] - bump pkgrel of packages"
   flag DROP -d --drop -- "[package-list] - drop packages"
+
+  flag SKIP_AUR --skip-aur -- "download from github mirror"
 
   flag TRIGGER_REBUILD --trigger-rebuild --tr -- "[trigger-package] [package-list] - add rebuild trigger to packages"
   flag TRIGGER_PIPELINE --trigger-pipeline --tp -- "[trigger-name] [package-list] - add pipeline trigger to packages"
@@ -168,10 +171,10 @@ chaotic_check() (
 chaotic_list() (
   cd "${_output_dir:?}"
 
-  cat <<< "$_packages_arch" > "packages-arch.txt"
-  cat <<< "$_packages_chaotic" > "packages-chaotic.txt"
+  printf '%s\n' "$_packages_arch" > "packages-arch.txt"
+  printf '%s\n' "$_packages_chaotic" > "packages-chaotic.txt"
 
-  cat <<< "$_packages_aur" > "packages-aur.txt"
+  printf '%s\n' "$_packages_aur" > "packages-aur.txt"
 )
 
 chaotic_proc_path_pkg() {
@@ -299,26 +302,49 @@ END
     if ! grep -q 'CI_PKGBUILD_SOURCE=custom' "$_path/.CI/config"; then
       local _tmpname="tmp-$RANDOM"
 
-      >&2 echo "# info: clearing destination directory"
-      for i in "$_path"/* "$_path"/.*; do
-        if [ -e "$i" ] && [ "$i" != "$_path/.CI" ]; then
-          trash -f "$i"
-        fi
-      done
-
       if grep -q 'CI_PKGBUILD_SOURCE=https' "$_path/.CI/config"; then
         >&2 echo "# info: cloning git repo"
         _repo=$(grep -Eo -m1 'https://\S+' "$_path/.CI/config")
         git clone --depth=1 "$_repo" "$_path/$_tmpname"
       else
         >&2 echo "# info: downloading aur snapshot"
-        aria2c "https://aur.archlinux.org/cgit/aur.git/snapshot/${_pkg:?}.tar.gz" -o "$_path/$_tmpname.tar.gz"
-        mkdir -p "$_path/$_tmpname" && bsdtar -C "$_path/$_tmpname" --strip-components=1 -xf "$_path/$_tmpname.tar.gz"
+
+        local _pkg_url_bases=(
+          "https://aur.archlinux.org/cgit/aur.git/snapshot"
+          "https://github.com/archlinux/aur/archive/refs/heads"
+        )
+
+        for _pkg_url_base in "${_pkg_url_bases[@]}"; do
+          if [[ "${SKIP_AUR:-0}" -ne 0 && "${_pkg_url_base}" =~ aur\.archlinux\.org ]]; then
+            continue
+          else
+            if aria2c --timeout=10 --max-tries=1 "${_pkg_url_base}/${_pkg:?}.tar.gz" -o "$_path/$_tmpname.tar.gz"; then
+                mkdir -p "$_path/$_tmpname" && bsdtar -C "$_path/$_tmpname" --strip-components=1 -xf "$_path/$_tmpname.tar.gz"
+                break
+            elif [[ "${SKIP_AUR:-0}" -eq 0 && "${_pkg_url_base}" =~ aur\.archlinux\.org ]]; then
+              >&2 echo "# warning: AUR snapshot failed, falling back to GitHub"
+              SKIP_AUR=1
+            fi
+          fi
+        done
       fi
 
-      >&2 echo "# info: moving package files"
-      mv "$_path/$_tmpname"/* "$_path/$_tmpname"/.* "$_path/"
-      trash -f "$_path"/.git* "$_path/$_tmpname" "$_path/$_tmpname.tar.gz"
+      if [[ -f "$_path/$_tmpname/.git/config" || -f "$_path/$_tmpname/PKGBUILD" ]]; then
+        >&2 echo "# info: clearing destination directory"
+        for i in "$_path"/* "$_path"/.*; do
+          if [[ -e "$i" && "$i" != "$_path/.CI" && "$i" !=  "$_path/$_tmpname" ]]; then
+            trash -f "$i"
+          fi
+        done
+
+        >&2 echo "# info: moving package files"
+        mv "$_path/$_tmpname"/* "$_path/$_tmpname"/.* "$_path/"
+      else
+        >&2 echo "# error: download failed"
+      fi
+
+      >&2 echo "# info: removing temporary files"
+      trash -f "$_path"/.git* "$_path/$_tmpname"*
 
       >&2 echo "# info: running shfmt"
       shfmt -w "$_path"/PKGBUILD
@@ -502,8 +528,6 @@ elif [ "$LIST" = 1 ]; then
 elif [ "$_SSH" = 1 ]; then
   if [ -n "$1" ]; then
     _port="$1"
-  else
-    _port=400
   fi
 
   _cmd=(ssh -p "$_port" $_user@builds.garudalinux.org)
@@ -514,13 +538,13 @@ elif [ "$RSYNC" = 1 ]; then
     >&2 echo "Error: Missing filename"
     exit 1
   elif [ "${1::2}" = "./" ]; then
-    _cmd=(scp -P 400 $_user@builds.garudalinux.org:"/home/$_user/$_build_dir_remote/${1:2}" .)
+    _cmd=(scp -P $_port $_user@builds.garudalinux.org:"/home/$_user/$_build_dir_remote/${1:2}" .)
   elif [ "${1::6}" = "/repo/" ]; then
-    _cmd=(scp -P 400 $_user@builds.garudalinux.org:"/home/$_user/$_build_dir_remote/${1:1}" .)
+    _cmd=(scp -P $_port $_user@builds.garudalinux.org:"/home/$_user/$_build_dir_remote/${1:1}" .)
   elif [ "${1::1}" = "/" ]; then
-    _cmd=(scp -P 400 $_user@builds.garudalinux.org:"$1" .)
+    _cmd=(scp -P $_port $_user@builds.garudalinux.org:"$1" .)
   else
-    _cmd=(scp -P 400 $_user@builds.garudalinux.org:"/home/$_user/$_build_dir_remote/repo/builder/x86_64/$1" .)
+    _cmd=(scp -P $_port $_user@builds.garudalinux.org:"/home/$_user/$_build_dir_remote/repo/builder/x86_64/$1" .)
   fi
 
   echo "${_cmd[*]}"
