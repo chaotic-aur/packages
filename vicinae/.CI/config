@@ -1,0 +1,2 @@
+CI_REBUILD_TRIGGERS=abseil-cpp:protobuf:qt6-base
+CI_PKGBUILD_SOURCE=custom

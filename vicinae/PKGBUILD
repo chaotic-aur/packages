@@ -1,0 +1,54 @@
+# Maintainer: aur.chaotic.cx
+
+_pkgname="vicinae"
+pkgname="$_pkgname"
+pkgver=0.16.8
+pkgrel=1
+pkgdesc="A focused launcher for your desktop"
+url="https://github.com/vicinaehq/vicinae"
+license=('GPL-3.0-or-later')
+arch=('x86_64')
+
+depends=(
+  'abseil-cpp'
+  'cmark-gfm'
+  'layer-shell-qt'
+  'libcrypto.so'   # openssl
+  'libprotobuf.so' # protobuf
+  'libqalculate'
+  'libwayland-client.so' # wayland
+  'minizip'
+  'nodejs' # for extensions
+  'qt6-base'
+  'qt6-svg'
+  'qtkeychain-qt6'
+)
+makedepends=(
+  'cmake'
+  'ninja'
+  'npm'
+  'rapidfuzz-cpp'
+)
+
+_pkgsrc="$_pkgname-$pkgver"
+_pkgext="tar.gz"
+source=("$_pkgsrc.$_pkgext"::"$url/archive/refs/tags/v$pkgver.$_pkgext")
+sha256sums=('SKIP')
+
+build() {
+  local _cmake_options=(
+    -B build
+    -S "$_pkgsrc"
+    -G Ninja
+    -DCMAKE_BUILD_TYPE=None
+    -DCMAKE_INSTALL_PREFIX='/usr'
+    -Wno-dev
+  )
+
+  cmake "${_cmake_options[@]}"
+  cmake --build build
+}
+
+package() {
+  DESTDIR="$pkgdir" cmake --install build
+}

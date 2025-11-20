@@ -1,0 +1,27 @@
+pkgbase = vicinae
+	pkgdesc = A focused launcher for your desktop
+	pkgver = 0.16.8
+	pkgrel = 1
+	url = https://github.com/vicinaehq/vicinae
+	arch = x86_64
+	license = GPL-3.0-or-later
+	makedepends = cmake
+	makedepends = ninja
+	makedepends = npm
+	makedepends = rapidfuzz-cpp
+	depends = abseil-cpp
+	depends = cmark-gfm
+	depends = layer-shell-qt
+	depends = libcrypto.so
+	depends = libprotobuf.so
+	depends = libqalculate
+	depends = libwayland-client.so
+	depends = minizip
+	depends = nodejs
+	depends = qt6-base
+	depends = qt6-svg
+	depends = qtkeychain-qt6
+	source = vicinae-0.16.8.tar.gz::https://github.com/vicinaehq/vicinae/archive/refs/tags/v0.16.8.tar.gz
+	sha256sums = SKIP
+
+pkgname = vicinae
