@@ -2,7 +2,7 @@
 
 _pkgname="freecad"
 pkgname="$_pkgname-git"
-pkgver=1.0.2.r5104.g280addd
+pkgver=1.0.2.r5251.gdeab0ab
 pkgrel=1
 pkgdesc="A general purpose 3D CAD modeler"
 url="https://github.com/FreeCAD/FreeCAD"
@@ -51,6 +51,7 @@ makedepends=(
   'ninja'
   'nlohmann-json'
   'pybind11'
+  'swig'
 )
 optdepends=(
   'openscad: OpenSCAD support'
@@ -61,6 +62,8 @@ optdepends=(
 
 provides=("$_pkgname")
 conflicts=("$_pkgname")
+
+options=('!lto')
 
 _pkgsrc="$_pkgname"
 source=("$_pkgsrc"::"git+$url.git")
@@ -96,17 +99,19 @@ build() {
     -DCMAKE_INSTALL_DATADIR=/usr/share/freecad
     -DCMAKE_INSTALL_DATAROOTDIR=/usr/share
     -DCMAKE_INSTALL_DOCDIR=/usr/share/freecad/doc
-    -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+    -DBUILD_TESTING=OFF
+    -Wno-dev
+
     -DBUILD_DESIGNER_PLUGIN=ON
+    -DBUILD_ENABLE_CXX_STD=C++17
     -DBUILD_FLAT_MESH=ON
+    -DENABLE_DEVELOPER_TESTS=OFF
     -DFREECAD_QT_VERSION=6
     -DFREECAD_USE_EXTERNAL_PIVY=ON
     -DFREECAD_USE_PCL=OFF
     -DFREECAD_USE_QT_FILEDIALOG=ON
     -DINSTALL_TO_SITEPACKAGES=ON
-    -DENABLE_DEVELOPER_TESTS=OFF
-    -DBUILD_TESTING=OFF
-    -Wno-dev
+    -DPYTHON_EXECUTABLE=/usr/bin/python
   )
 
   cmake "${_cmake_options[@]}"

@@ -1,6 +1,6 @@
 pkgbase = freecad-git
 	pkgdesc = A general purpose 3D CAD modeler
-	pkgver = 1.0.2.r5104.g280addd
+	pkgver = 1.0.2.r5251.gdeab0ab
 	pkgrel = 1
 	url = https://github.com/FreeCAD/FreeCAD
 	arch = x86_64
@@ -13,6 +13,7 @@ pkgbase = freecad-git
 	makedepends = ninja
 	makedepends = nlohmann-json
 	makedepends = pybind11
+	makedepends = swig
 	depends = coin
 	depends = hicolor-icon-theme
 	depends = libGL.so
@@ -50,6 +51,7 @@ pkgbase = freecad-git
 	optdepends = calculix-ccx: FEM solver backend
 	provides = freecad
 	conflicts = freecad
+	options = !lto
 	source = freecad::git+https://github.com/FreeCAD/FreeCAD.git
 	sha256sums = SKIP
 
