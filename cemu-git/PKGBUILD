@@ -2,8 +2,8 @@
 
 _pkgname="cemu"
 pkgname="$_pkgname-git"
-pkgver=2.6.r89.gef1c836
-pkgrel=2
+pkgver=2.6.r94.g1382ee0
+pkgrel=1
 pkgdesc="A Wii U emulator"
 url="https://github.com/cemu-project/Cemu"
 license=('MPL-2.0')
@@ -98,6 +98,12 @@ prepare() {
     -e '/set\(EMULATOR_VERSION_MINOR/s&^.*$&set(EMULATOR_VERSION_MINOR "'"${_minor}"'")&' \
     -e '/set\(EMULATOR_VERSION_PATCH/s&^.*$&set(EMULATOR_VERSION_PATCH "'"${_patch#r}"'")&' \
     -i CMakeLists.txt
+
+  # fix for zstd
+  cat >> src/Cafe/CMakeLists.txt << END
+find_package(zstd REQUIRED)
+target_link_libraries(CemuCafe PRIVATE zstd::libzstd)
+END
 }
 
 pkgver() {
