@@ -1,8 +1,8 @@
-# Maintainer: aur.chaotic.cx
+# Maintainer:
 
 _pkgname="skyemu"
 pkgname="$_pkgname-git"
-pkgver=4.r3.g18aeeb8
+pkgver=4.r8.g246ba26
 pkgrel=2
 pkgdesc="An emulator for GB, GBC, GBA, and DS"
 url="https://github.com/skylersaleh/SkyEmu"
@@ -11,6 +11,7 @@ arch=('x86_64')
 
 depends=(
   'alsa-lib'
+  'hicolor-icon-theme'
   'libglvnd'
   'libxcursor'
   'libxi'
@@ -56,7 +57,7 @@ build() {
 package() {
   install -Dm755 build/bin/SkyEmu "$pkgdir/usr/bin/$_pkgname"
 
-  install -Dm644 "$_pkgsrc/src/resources/icons/favicon_package/android-chrome-512x512.png" "$pkgdir/usr/share/pixmaps/$_pkgname.png"
+  install -Dm644 "$_pkgsrc/src/resources/icons/favicon_package/android-chrome-512x512.png" "$pkgdir/usr/share/icons/hicolor/512x512/apps/$_pkgname.png"
 
   install -Dm644 "$_pkgsrc/LICENSE" -t "$pkgdir/usr/share/licenses/$pkgname/"
 
