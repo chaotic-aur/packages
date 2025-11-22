@@ -1,0 +1,5 @@
+url="https://github.com/haiwen/seadrive-gui"
+license=('Apache-2.0')
+
+depends+=('qt6-5compat')
+makedepends+=('git')
