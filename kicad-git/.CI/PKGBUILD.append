@@ -29,11 +29,14 @@ build() {
     -DCMAKE_BUILD_TYPE=None
     -DCMAKE_INSTALL_PREFIX='/usr'
     -DCMAKE_INSTALL_LIBDIR='lib'
+    -DBUILD_TESTING=OFF
+    -Wno-dev
+
+    -DKICAD_BUILD_QA_TESTS=OFF
+    -DKICAD_SPICE_QA=OFF
     -DKICAD_UPDATE_CHECK=OFF
     -DKICAD_USE_EGL=ON
     -DKICAD_USE_PCH=OFF
-    -DBUILD_TESTING=OFF
-    -Wno-dev
   )
 
   cmake "${_cmake_options[@]}"
