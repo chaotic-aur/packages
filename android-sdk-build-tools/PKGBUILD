@@ -1,4 +1,5 @@
 # Maintainer: Amin Vakil <info AT aminvakil DOT com>
+# Contributor: Martchus <martchus ät gmx dot net>
 # Contributor: xgdgsc <xgdgsc @t gmail dot com>
 # Contributor: mynacol <dc07d át mynacol dót xyz>
 
@@ -8,9 +9,10 @@ _major=36
 _minor=1
 _micro=0
 _ver=36.1
+_ver_install=$_ver.$_micro
 _displayversion=36
 pkgver=r36.1
-pkgrel=1
+pkgrel=2
 _sdk=android-sdk
 _android=android-16
 
@@ -35,11 +37,11 @@ package() {
 
   install -d usr/share/licenses/$pkgname/
   ln -s /opt/$_sdk/build-tools/$_ver/NOTICE.txt usr/share/licenses/$pkgname/NOTICE.txt
-  sed -i "s/@major@/$_major/g;s/@minor@/$_minor/g;s/@micro@/$_micro/g;s/@displayv@/$_displayversion/g;s/@pathv@/$_ver/g" "$srcdir/package.xml"
-  install -Dm644 "${srcdir}/package.xml" opt/$_sdk/build-tools/$_ver/package.xml
-  ln -s /opt/$_sdk/build-tools/$_ver/package.xml usr/share/licenses/$pkgname/package.xml
+  sed -i "s/@major@/$_major/g;s/@minor@/$_minor/g;s/@micro@/$_micro/g;s/@displayv@/$_ver_install/g;s/@pathv@/$_ver_install/g" "$srcdir/package.xml"
+  install -Dm644 "${srcdir}/package.xml" opt/$_sdk/build-tools/$_ver_install/package.xml
+  ln -s /opt/$_sdk/build-tools/$_ver_install/package.xml usr/share/licenses/$pkgname/package.xml
 
-  target="opt/$_sdk/build-tools/$_ver"
+  target="opt/$_sdk/build-tools/$_ver_install"
   mkdir -p "$target"
   cp -r "$srcdir/$_android/"* "$target"
   chmod +Xr -R "$target"
