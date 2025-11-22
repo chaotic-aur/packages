@@ -34,7 +34,7 @@ source=(
 )
 sha256sums=(
   'SKIP'
-  '6049aa934f07183d597b1eb8e9ea8b6fadc8ada31768e0f9260f2dbdb9735413'
+  'e161c641aa02c2c3e3fbf8b9883abd46cf325eece2f572862f6abcde097081fe'
   '64d66c53c4e9cd7eb71dd692811b5e6b43163c0a6d78c0afa833a5b344949ff0'
 )
 
@@ -76,9 +76,7 @@ package() {
   make install DESTDIR="$pkgdir" USE_NFTABLES=1
 
   # create pyc files
-  python -m compileall -f -p / -s "$pkgdir" "$pkgdir/"
-  python -O -m compileall -f -p / -s "$pkgdir" "$pkgdir/"
-  python -OO -m compileall -f -p / -s "$pkgdir" "$pkgdir/"
+  python -m compileall -o0 -o1 -f -p / -s "$pkgdir" "$pkgdir/"
 
   # relocate icon
   install -Dm644 "$pkgdir"/usr/share/icons/hicolor/512x512/apps/waydroid.png "$pkgdir/usr/share/pixmaps/$_pkgname.png"

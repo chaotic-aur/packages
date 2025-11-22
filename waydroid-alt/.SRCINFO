@@ -14,13 +14,13 @@ pkgbase = waydroid-alt
 	depends = nftables
 	depends = python-gbinder
 	depends = python-gobject
-	provides = waydroid=1.5.4
+	provides = waydroid=1.6.0
 	conflicts = waydroid
 	source = waydroid::git+https://github.com/waydroid/waydroid.git
 	source = 0001-disable-launchers.patch
 	source = 0002-add-show-command.patch
 	sha256sums = SKIP
-	sha256sums = 6049aa934f07183d597b1eb8e9ea8b6fadc8ada31768e0f9260f2dbdb9735413
+	sha256sums = e161c641aa02c2c3e3fbf8b9883abd46cf325eece2f572862f6abcde097081fe
 	sha256sums = 64d66c53c4e9cd7eb71dd692811b5e6b43163c0a6d78c0afa833a5b344949ff0
 
 pkgname = waydroid-alt
