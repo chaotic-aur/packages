@@ -2,15 +2,23 @@
 
 pkgname=bootc
 pkgver=1.10.0
-pkgrel=2
+pkgrel=3
 pkgdesc='Boot and upgrade via container images'
 url='https://github.com/bootc-dev/bootc'
 license=('Apache-2.0 OR MIT')
-makedepends=('cargo')
+makedepends=(
+  cargo
+  go-md2man
+)
 depends=(
-  gcc
+  bash
+  gcc-libs
+  glib2
   glibc
+  openssl
   ostree
+  zlib
+  zstd
 )
 arch=('x86_64')
 source=("https://github.com/bootc-dev/bootc/releases/download/v$pkgver/bootc-$pkgver.tar.zstd")
@@ -25,6 +33,7 @@ build() {
   export CARGO_TARGET_DIR=target
   cd $pkgname-$pkgver
   cargo build --frozen --release
+  cargo run --frozen --package xtask -- manpages
 }
 
 check() {
@@ -33,14 +42,15 @@ check() {
 }
 
 package() {
-  install -o root -g root -m 755 -d $pkgdir/usr/bin
-  install -o root -g root -m 755 -t $pkgdir/usr/bin $pkgname-$pkgver/target/release/bootc
-  install -o root -g root -m 755 -t $pkgdir/usr/bin $pkgname-$pkgver/target/release/bootc-initramfs-setup
+  # TODO: leave just else branch after 1.11.0 is released
+  if grep -q install-initramfs-dracut $pkgname-$pkgver/Makefile; then
+    make -C $pkgname-$pkgver DESTDIR=$pkgdir install-all install-initramfs-dracut
+  else
+    make -C $pkgname-$pkgver DESTDIR=$pkgdir install-all
+  fi
 
-  install -o root -g root -m 755 -d $pkgdir/usr/share/doc/$pkgname
-  install -o root -g root -m 644 -t $pkgdir/usr/share/doc/$pkgname $pkgname-$pkgver/README.md
+  install -m 644 -t $pkgdir/usr/share/doc/$pkgname -D $pkgname-$pkgver/README.md
 
-  install -o root -g root -m 755 -d $pkgdir/usr/share/licenses/$pkgname
-  install -o root -g root -m 644 -t $pkgdir/usr/share/licenses/$pkgname $pkgname-$pkgver/LICENSE-APACHE
-  install -o root -g root -m 644 -t $pkgdir/usr/share/licenses/$pkgname $pkgname-$pkgver/LICENSE-MIT
+  install -m 644 -t $pkgdir/usr/share/licenses/$pkgname -D $pkgname-$pkgver/LICENSE-APACHE
+  install -m 644 -t $pkgdir/usr/share/licenses/$pkgname -D $pkgname-$pkgver/LICENSE-MIT
 }
