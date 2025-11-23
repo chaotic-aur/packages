@@ -10,7 +10,7 @@ pkgver='1.2.74.477'
 
 epoch=1
 _commit=g3be53afe
-pkgrel=2
+pkgrel=3
 pkgdesc='A proprietary music streaming service'
 arch=('x86_64')
 license=('custom')
@@ -44,8 +44,8 @@ sha512sums=('c002c778dd98d3c9425de921a69c630bbab8f6fd5a4b2edd1ac04d76f10a57c92f2
   'SKIP')
 
 # Import key with:
-# curl -sS https://download.spotify.com/debian/pubkey_C85668DF69375001.gpg | gpg --import -
-validpgpkeys=('B420FD3777CCE3A7F0076B55C85668DF69375001') # Spotify Public Repository Signing Key <tux@spotify.com>
+# curl -sS https://download.spotify.com/debian/pubkey_5384CE82BA52C83A.gpg | gpg --import -
+validpgpkeys=('E1096BCBFF6D418796DE78515384CE82BA52C83A') # Spotify Public Repository Signing Key <tux@spotify.com>
 # Old Keys:
 # 63CBEEC9006602088F9B19326224F9941A8AA6D1
 # E27409F51D1B66337F2D2F417A3A762FAFD4A51F
@@ -53,6 +53,7 @@ validpgpkeys=('B420FD3777CCE3A7F0076B55C85668DF69375001') # Spotify Public Repos
 # 8FD3D9A8D3800305A9FFF259D1742AD60D811D58
 # 931FF8E79F0876134EDDBDCCA87FF9DF48BF1C90
 # 2EBF997C15BDA244B6EBF5D84773BD5E130D1D45
+# B420FD3777CCE3A7F0076B55C85668DF69375001
 
 prepare() {
   # Validate hashes from the PGP signed "Release" file
