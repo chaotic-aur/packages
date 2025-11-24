@@ -1,0 +1,14 @@
+pkgbase = zoltan
+	pkgdesc = Parallel Partitioning, Load Balancing and Data-Management Services
+	pkgver = 3.901
+	pkgrel = 1
+	url = https://github.com/sandialabs/zoltan
+	arch = x86_64
+	license = LGPL
+	depends = scotch
+	depends = parmetis
+	conflicts = trilinos
+	source = https://github.com/sandialabs/zoltan/archive/v3.901.tar.gz
+	sha512sums = e7c1e65abb0592cd16c0a8c5d4b98dc14001ed0a3169a66ed5cc28dbe621fefd9da7d05a584337d546301201a4b128233e659baa7c5c00ba5b92109cb0217306
+
+pkgname = zoltan

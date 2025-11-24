@@ -1,0 +1,4 @@
+url="https://github.com/KarypisLab/METIS"
+license=('Apache-2.0')
+
+unset install

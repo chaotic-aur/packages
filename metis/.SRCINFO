@@ -1,0 +1,15 @@
+pkgbase = metis
+	pkgdesc = Serial Graph Partitioning and Fill-reducing Matrix Ordering
+	pkgver = 5.2.1
+	pkgrel = 3
+	url = https://github.com/KarypisLab/METIS
+	arch = x86_64
+	license = Apache
+	makedepends = cmake
+	depends = glibc
+	depends = gklib
+	options = docs
+	source = METIS-5.2.1.tar.gz::https://github.com/KarypisLab/METIS/archive/v5.2.1.tar.gz
+	sha512sums = 69127b7a777f9ba14cf399a7122000af9d6094a5f44be600a28384cfc0495c024fb0c6eab37c4473a5763ec1077cd9f30d9bcbb3c952462f6c9ead31c6b9e790
+
+pkgname = metis
