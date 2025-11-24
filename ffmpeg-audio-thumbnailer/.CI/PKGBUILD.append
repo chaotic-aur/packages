@@ -1,0 +1,5 @@
+pkgdesc="Lightweight video thumbnailer that can be used by file managers"
+license=('GPL-3.0-or-later')
+
+unset provides
+unset conflicts
