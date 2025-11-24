@@ -1,34 +1,43 @@
-# Maintainer: John Gleezowood <psyrccio@gmail.com>
-# Contributor: Christopher Arndt <aur -at- chrisarndt -dot- de>
-# Maintainer: Clarence <xjh.azzbcc@gmail.com>
-_pkgname=ocenaudio
+# Maintainer: aur.chaotic.cx
+
+_pkgname="ocenaudio"
 pkgname="$_pkgname-bin"
-pkgver=3.15.3
+pkgver=3.16.4
 pkgrel=1
-pkgdesc="Cross-platform, easy to use, fast and functional audio editor"
-arch=('x86_64')
+pkgdesc="A fast, easy to use audio editor"
 url="https://www.ocenaudio.com/"
-license=('custom')
-depends=('hicolor-icon-theme' 'jack' 'libpulse' 'qt6-base')
+license=('LicenseRef-Ocenaudio')
+arch=('x86_64')
+
+depends=(
+  'hicolor-icon-theme'
+  'jack'
+  'libpulse'
+  'qt6-base'
+)
+
 provides=("$_pkgname")
 conflicts=("$_pkgname")
-sha256sums=('171683159f4d17c9d42703c00d1af501f455358f489c4f5e96d90e22eb7d79dd')
-source=("${_pkgname}-${pkgver}_x86_64.tar.zst::https://www.ocenaudio.com/downloads/index.php/ocenaudio_archlinux.pkg.tar.zst?version=v${pkgver}")
 
-build() {
-  echo "ocenaudio "$pkgver
-}
+options=('!debug' '!strip')
+
+source=("${_pkgname}_${pkgver}_x86_64.tar.zst"::"https://www.ocenaudio.com/downloads/index.php/ocenaudio_archlinux.pkg.tar.zst?version=v${pkgver}")
+sha256sums=('SKIP')
 
 package() {
-  cp -rnf ${srcdir}/* ${pkgdir}/
-  rm -f ${pkgdir}/${_pkgname}-${pkgver}_x86_64.tar.zst
-  install -dm755 "${pkgdir}/usr/bin"
-  install -dm755 "${pkgdir}/usr/share/licenses"
-  install -Dm644 "${pkgdir}/opt/$_pkgname/bin/ocenaudio_license.txt" \
-    "$pkgdir/usr/share/licenses/$pkgname/LICENSE.txt"
+  # files
+  mkdir -pm755 "$pkgdir"/{opt,usr/bin}
+  cp -r opt/ocenaudio "$pkgdir/opt/"
+  cp -r usr/share "$pkgdir/usr/"
 
-  ln -sf "/opt/$_pkgname/bin/${_pkgname}" "${pkgdir}/usr/bin"
-  sed -i 's|^Exec=/opt/ocenaudio/bin|Exec=/usr/bin|' "$pkgdir/usr/share/applications/ocenaudio.desktop"
+  # fixes
+  chmod ugo-x "$pkgdir"/opt/ocenaudio/lib/*
+  find "$pkgdir"/opt/ocenaudio/lib -type f -exec patchelf --set-rpath '$ORIGIN' {} \;
 
-  rm -f "${pkgdir}/opt/$_pkgname/bin/ocenaudio_license.txt"
+  # symlink
+  ln -sf "/opt/ocenaudio/bin/ocenaudio" "$pkgdir/usr/bin/$_pkgname"
+
+  # license
+  install -Dm644 opt/ocenaudio/bin/ocenaudio_license.txt "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+  rm -f "$pkgdir/opt/ocenaudio/bin/ocenaudio_license.txt"
 }

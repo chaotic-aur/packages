@@ -1,0 +1,5 @@
+[ocenaudio-bin]
+source = "httpheader"
+url = "https://www.ocenaudio.com/downloads/index.php/ocenaudio_archlinux.pkg.tar.zst"
+header = "Content-Disposition"
+regex = 'filename="ocenaudio_archlinux_([0-9\.]+).pkg.tar.zst'
