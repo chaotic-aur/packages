@@ -1,0 +1,2 @@
+depends=('fontconfig' 'zlib')
+eval "$(declare -f build | sed -E -e 's&(--self-contained) false&\1 true&')"
