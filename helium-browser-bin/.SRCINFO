@@ -1,0 +1,49 @@
+# Maintainer: Sam Sinclair <sam at playleft dot com>
+# Contributor: Pujan Modha <pujan.pm@hotmail.com>
+# Contributor: init_harsh
+# /*
+#  * SPDX-FileCopyrightText: 2025 Arch Linux Contributors
+#  *
+#  * SPDX-License-Identifier: 0BSD
+#  */
+pkgbase = helium-browser-bin
+	pkgdesc = Private, fast, and honest web browser based on Chromium
+	pkgver = 0.6.7.1
+	pkgrel = 1
+	url = https://github.com/imputnet/helium-linux
+	arch = x86_64
+	arch = aarch64
+	license = GPL-3.0-only AND BSD-3-Clause
+	depends = gtk3
+	depends = nss
+	depends = alsa-lib
+	depends = xdg-utils
+	depends = libxss
+	depends = libcups
+	depends = libgcrypt
+	depends = ttf-liberation
+	depends = systemd
+	depends = dbus
+	depends = libpulse
+	depends = pciutils
+	depends = libva
+	depends = libffi
+	depends = desktop-file-utils
+	depends = hicolor-icon-theme
+	optdepends = pipewire: WebRTC desktop sharing under Wayland
+	optdepends = kdialog: support for native dialogs in Plasma
+	optdepends = gtk4: for --gtk-version=4 (GTK4 IME might work better on Wayland)
+	optdepends = org.freedesktop.secrets: password storage backend on GNOME / Xfce
+	optdepends = kwallet: support for storing passwords in KWallet on Plasma
+	optdepends = upower: Battery Status API support
+	options = strip
+	source_x86_64 = helium-0.6.7.1-x86_64_linux.tar.xz::https://github.com/imputnet/helium-linux/releases/download/0.6.7.1/helium-0.6.7.1-x86_64_linux.tar.xz
+	source_x86_64 = LICENSE.ungoogled_chromium::https://raw.githubusercontent.com/imputnet/helium-linux/0.6.7.1/LICENSE.ungoogled_chromium
+	sha256sums_x86_64 = 541db5f2f398ffdb48f7b621c7630d94d3dbe3a8c91effc5a98f7ab496a89011
+	sha256sums_x86_64 = 9539b394e4179952698894bd62ef6566b6804ab0ff360dcf3a511cfaf7f78c4d
+	source_aarch64 = helium-0.6.7.1-arm64_linux.tar.xz::https://github.com/imputnet/helium-linux/releases/download/0.6.7.1/helium-0.6.7.1-arm64_linux.tar.xz
+	source_aarch64 = LICENSE.ungoogled_chromium::https://raw.githubusercontent.com/imputnet/helium-linux/0.6.7.1/LICENSE.ungoogled_chromium
+	sha256sums_aarch64 = 480a5cdc24ab626e8c49182ab494bb21c914549ba859e50c5201b1aa029a9018
+	sha256sums_aarch64 = 9539b394e4179952698894bd62ef6566b6804ab0ff360dcf3a511cfaf7f78c4d
+
+pkgname = helium-browser-bin
