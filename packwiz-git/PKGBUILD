@@ -3,15 +3,15 @@
 # Contributor: Lgmrszd <lgmrszd at gmail dot com>
 
 pkgname=packwiz-git
-_pkgname="${pkgname%-git}"
-pkgver=r369.0626c00
-pkgrel=2
-pkgdesc="A command line tool for creating minecraft modpacks."
+_pkgname=${pkgname%-git}
+pkgver=r383.52b1230
+pkgrel=1
+pkgdesc='A command line tool for creating minecraft modpacks.'
 arch=(x86_64)
 url='https://packwiz.infra.link'
 license=('MIT')
-depends=('glibc')
-makedepends=('git' 'go')
+depends=(glibc)
+makedepends=(git go)
 provides=("${_pkgname}")
 conflicts=("${_pkgname}")
 source=('git+https://github.com/packwiz/packwiz.git')
@@ -26,7 +26,7 @@ pkgver() {
 prepare() {
   cd "${_pkgname}"
 
-  mkdir -p "completions"
+  mkdir -p 'completions'
 
   export GOPATH="${srcdir}"
   export GOFLAGS="-modcacherw"
@@ -36,23 +36,17 @@ prepare() {
 build() {
   cd "${_pkgname}"
 
-  export CGO_CPPFLAGS="${CPPFLAGS}"
-  export CGO_CFLAGS="${CFLAGS}"
-  export CGO_CXXFLAGS="${CXXFLAGS}"
-  export CGO_LDFLAGS="${LDFLAGS}"
+  export _LDFLAGS="${_LDFLAGS} -compressdwarf=false"
+  export _LDFLAGS="${_LDFLAGS} -linkmode=external"
+  export _LDFLAGS="${_LDFLAGS} -extldflags \"${LDFLAGS}\""
   export GOPATH="${srcdir}"
-  export GOFLAGS="\
+
+  go build \
     -buildmode=pie \
     -mod=readonly \
     -modcacherw \
     -trimpath \
-  "
-  local _ld_flags=" \
-    -compressdwarf=false \
-    -linkmode=external \
-  "
-  go build \
-    -ldflags "${_ldflags}" \
+    -ldflags "${_LDFLAGS}" \
     -o "${_pkgname}"
 
   ./packwiz completion bash > completions/packwiz.bash
