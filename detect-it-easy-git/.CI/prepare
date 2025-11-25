@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+_check_rate() {
+  local _package _rate _date_build _epoch_build _epoch_now _epoch_diff
+
+  _package="chaotic-aur/detect-it-easy-git"
+  _rate="$((3600 * ${1}))" # hours
+  _date_build="$(LANG=C LC_ALL=C pacman -Si "$_package" | grep -Pom1 '^Build Date\s+:\s+\K\S.*\S$')"
+  _epoch_build=$(\date '+%s' -d "$_date_build")
+  _epoch_now=$(\date '+%s')
+  _epoch_diff="$((_epoch_now - _epoch_build))"
+
+  if [[ "$_epoch_diff" -lt "$_rate" ]]; then
+    echo "Heavy package.  Skipping build."
+    echo "> Last built $((_epoch_diff / 3600)) hours ago."
+    return $CI_CODE_SKIP
+  fi
+}
+
+_check_rate 24 || return $?

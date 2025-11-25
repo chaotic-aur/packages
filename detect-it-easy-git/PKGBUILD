@@ -1,0 +1,106 @@
+# Maintainer: aur.chaotic.cx
+
+_pkgname="detect-it-easy"
+pkgname="$_pkgname-git"
+pkgver=3.10.r3523.gd40baa1
+pkgrel=1
+pkgdesc="Program to determine types of files"
+url="https://github.com/horsicq/DIE-engine"
+license=('MIT')
+arch=('x86_64')
+
+depends=(
+  'hicolor-icon-theme'
+  'qt6-5compat'
+  'qt6-base'
+  'qt6-declarative'
+  'qt6-svg'
+)
+makedepends=(
+  'git'
+  'qt6-tools'
+)
+
+provides=("$_pkgname")
+conflicts=("$_pkgname")
+
+_pkgsrc="DIE-engine"
+source=("$_pkgsrc"::"git+$url.git")
+sha512sums=('SKIP')
+
+prepare() {
+  cd "$_pkgsrc"
+  git submodule update --init --recursive --depth=1
+}
+
+pkgver() {
+  cd "$_pkgsrc"
+  git describe --long --tags --abbrev=7 --exclude='*[a-zA-Z]*' \
+    | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
+}
+
+build() {
+  cd "$_pkgsrc"
+  echo -e "==> Building detect-it-easy"
+
+  # update makefiles
+  find . -type f -name "*.pro" -execdir qmake6 PREFIX=/usr {} \;
+
+  local _subdirs=(
+    build_libs
+    gui_source
+    console_source
+    lite_source
+  )
+
+  for _subdir in ${_subdirs[@]}; do
+    pushd "$_subdir" > /dev/null
+    echo -e "==> ==> Building $_subdir"
+    qmake6 PREFIX=/usr "$_subdir.pro"
+    make
+    popd > /dev/null
+  done
+
+  echo -e "==> ==> Running Qt's Linguist tool chain for gui_source"
+  cd gui_source
+  /usr/lib/qt6/bin/lupdate gui_source_tr.pro
+  /usr/lib/qt6/bin/lrelease gui_source_tr.pro
+}
+
+package() {
+  cd "$_pkgsrc"
+
+  echo -e "==> Creating the package base"
+  install -d "$pkgdir"/{opt/"${_pkgname}",usr/bin,usr/share/icons}
+  install -d "$pkgdir/opt/${_pkgname}"/{lang,qss,info,db,signatures,images,yara_rules}
+
+  echo -e "==> Copying the package binaries"
+  install -Dm755 build/release/die -t "$pkgdir"/opt/"${_pkgname}"
+  install -Dm755 build/release/diec -t "$pkgdir"/opt/"${_pkgname}"
+  install -Dm755 build/release/diel -t "$pkgdir"/opt/"${_pkgname}"
+
+  echo -e "==> Copying the package files"
+  install -Dm644 gui_source/translation/* -t "$pkgdir"/opt/"${_pkgname}"/lang
+  install -Dm644 XStyles/qss/* -t "$pkgdir"/opt/"${_pkgname}"/qss
+  cp -r XInfoDB/info/* -t "$pkgdir"/opt/"${_pkgname}"/info/
+  cp -r Detect-It-Easy/db/* -t "$pkgdir"/opt/"${_pkgname}"/db/
+  cp -r XYara/yara_rules/* -t "$pkgdir"/opt/"${_pkgname}"/yara_rules/
+  install -Dm644 signatures/crypto.db -t "$pkgdir"/opt/"${_pkgname}"/signatures
+  cp -r images/* -t "$pkgdir"/opt/"${_pkgname}"/images/
+
+  echo -e "==> Setting up /usr/bin launchers"
+  ln -s /opt/"${_pkgname}"/die "$pkgdir"/usr/bin/die
+  ln -s /opt/"${_pkgname}"/diec "$pkgdir"/usr/bin/diec
+  ln -s /opt/"${_pkgname}"/diel "$pkgdir"/usr/bin/diel
+
+  echo -e "==> Setting up desktop icons"
+  cp -r LINUX/hicolor "$pkgdir"/usr/share/icons
+
+  echo -e "==> Setting up desktop shortcuts"
+  install -Dm644 LINUX/io.github.horsicq.detect-it-easy.desktop -t "$pkgdir"/usr/share/applications
+
+  echo -e "==> Setting up metainfo file"
+  install -Dm644 LINUX/io.github.horsicq.detect-it-easy.metainfo.xml -t "$pkgdir"/usr/share/metainfo
+
+  install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+}
