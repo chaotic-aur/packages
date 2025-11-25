@@ -1,0 +1,9 @@
+export CMAKE_GENERATOR=Ninja
+makedepends+=('ninja')
+
+depends+=('hicolor-icon-theme')
+
+pkgdesc="High-performance QuakeSpasm fork"
+license=('GPL-2.0-only')
+
+eval "$(declare -f package | sed -E -e 's&i in [0-9\ ]+;&i in 512&')"
