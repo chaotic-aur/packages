@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+_check_gitmodules() {
+  local url _url _gitmodules failed line suburl http_code
+  eval "$(grep -Eo '^(url)=\S+' PKGBUILD)"
+  _url="$url/raw/refs/heads/master/.gitmodules"
+  _gitmodules=$(curl -s -L "$_url")
+
+  echo ">>> Checking Git submodules from $url"
+
+  failed=0
+  while read -r line; do
+    suburl=$(echo "$line" | awk -F'= ' '{print $2}')
+    http_code=$(curl -s -o /dev/null -w "%{http_code}" -L "$suburl")
+    if [ "$http_code" -eq 200 ]; then
+      echo "[OK]    $suburl"
+    else
+      echo "[FAIL]  $suburl (HTTP $http_code)"
+      failed=1
+    fi
+  done < <(echo "$_gitmodules" | grep -E "url\s*=")
+
+  if [ $failed -ne 0 ]; then
+    echo ">>> Skipping build: one or more submodules are not accessible"
+    return "$CI_CODE_SKIP"
+  fi
+
+  echo ">>> Successfully verified all submodules"
+}
+_check_gitmodules || return $?
