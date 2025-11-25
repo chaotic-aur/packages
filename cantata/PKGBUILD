@@ -1,0 +1,57 @@
+# Maintainer: Fabio 'Lolix' Loli <fabio.loli@disroot.org> -> https://github.com/FabioLolix
+# Contributor: Antonio Rojas <arojas@archlinux.org>
+# Contributor: Federico Cinelli <cinelli@aur.archlinux.org>
+# Contributor: Andrea Scarpino <andrea@archlinux.org>
+# Contributor: Mcder3 <mcder3[at]gmail[dot]com>
+# Contributor: MisterFred <mister.fred[at]free[dot]fr>
+
+pkgname=cantata
+pkgver=3.3.1
+pkgrel=2
+pkgdesc="Qt6 graphical client for Music Player Daemon (MPD), nullobsi fork"
+arch=(x86_64 i686 aarch64 armv7h)
+url="https://github.com/nullobsi/cantata"
+license=(GPL-3.0-or-later)
+depends=(qt6-base
+  qt6-multimedia
+  qt6-svg
+  libcdio-paranoia
+  libmtp
+  libmusicbrainz5
+  libcddb
+  taglib
+  libebur128
+  media-player-info
+  mpg123
+  #taglib-extras
+  udisks2
+  ffmpeg
+
+  avahi gcc-libs zlib glibc
+)
+makedepends=(git cmake qt6-tools)
+optdepends=('perl-uri: Dynamic playlist'
+  'mpd: Playback')
+source=("cantata-nullobsi::git+https://github.com/nullobsi/cantata.git#tag=v${pkgver}")
+sha256sums=('c282fd13610e6521696a9caaa5772952b16a9ff2a64192fdc379d9074ebdb96c')
+
+build() {
+  CXXFLAGS+=" -Wno-error=unused-result -Wno-error=deprecated-declarations -Wno-unused-result"
+
+  local _flags=(
+    -DBUNDLED_FONTAWESOME=ON
+    -DQT_DIR=/usr/lib/cmake/Qt6
+    -DCMAKE_INSTALL_LIBEXECDIR=/usr/lib
+  )
+
+  cmake -B build -S "cantata-nullobsi" -Wno-dev \
+    -DCMAKE_BUILD_TYPE=None \
+    -DCMAKE_INSTALL_PREFIX=/usr \
+    "${_flags[@]}"
+
+  cmake --build build
+}
+
+package() {
+  DESTDIR="${pkgdir}" cmake --install build
+}
