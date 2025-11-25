@@ -2,7 +2,7 @@
 
 _pkgname="gimp"
 pkgname="$_pkgname-git"
-pkgver=3.1.2.r600.gde2b54f
+pkgver=3.1.4.r707.g93a7e92
 pkgrel=1
 pkgdesc="GNU Image Manipulation Program"
 url="https://gitlab.gnome.org/GNOME/gimp"
@@ -14,6 +14,7 @@ depends=(
   'babl'
   'cairo'
   'cfitsio'
+  'ffmpeg' # gegl
   'gegl'
   'lcms2'
   'libgexiv2'
@@ -26,6 +27,7 @@ depends=(
   'poppler-data'
   'poppler-glib'
   'python-gobject'
+  'sdl2' # gegl
 )
 makedepends=(
   'aalib'
@@ -36,6 +38,7 @@ makedepends=(
   'gjs'
   'glib-networking'
   'glib2-devel'
+  'glibc-locales' # prevent setlocale() failed
   'gobject-introspection'
   'intltool'
   'iso-codes'
@@ -44,11 +47,12 @@ makedepends=(
   'libwebp'
   'libxpm'
   'libxslt'
-  'lua-lgi'
+  'lua51-lgi'
   'luajit'
   'meson'
   'python-gobject'
   'python-packaging'
+  'qoi'
   'vala'
   'webkit2gtk'
   'zlib'
