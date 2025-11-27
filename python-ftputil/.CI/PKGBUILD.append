@@ -1,0 +1,4 @@
+unset changelog
+unset -f check
+
+license=('BSD-3-Clause')
