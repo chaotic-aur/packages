@@ -3,21 +3,11 @@ unset epoch
 url="https://github.com/gnif/LookingGlass"
 license=('GPL-2.0-or-later')
 
-_count=0
-for i in "${source[@]}"; do
-  if [[ "$i" =~ \.patch$ ]]; then
-    unset source[$_count]
-    unset sha512sums[$_count]
-  else
-    _count=$((_count + 1))
-  fi
-done
+makedepends+=('libdecor')
 
-eval _orig_"$(declare -f prepare)"
+eval "$(declare -f build | sed -E 's&(-DCMAKE_INSTALL_PREFIX=)&-DOPTIMIZE_FOR_NATIVE=OFF -DENABLE_LIBDECOR=ON \1&')"
 
-prepare() {
-  touch empty.patch
-  _orig_prepare
-}
-
-eval $(declare -f build | sed -E 's&(-DCMAKE_INSTALL_PREFIX=)&-DOPTIMIZE_FOR_NATIVE=OFF \1&')
+eval "package_looking-glass-git() {
+  $(declare -f package_looking-glass-git | tail -n +2)
+  depends+=('libdecor')
+}"
