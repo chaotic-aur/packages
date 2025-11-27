@@ -1,0 +1,18 @@
+pkgbase = gtklock-dpms-module
+	pkgdesc = GtkLock module which blanks monitors after idle
+	pkgver = 4.0.0
+	pkgrel = 1
+	url = https://git.sr.ht/~aperezdc/gtklock-dpms-module
+	arch = x86_64
+	license = GPL-3.0-only
+	makedepends = gtk3
+	makedepends = meson
+	makedepends = ninja
+	makedepends = wlr-protocols
+	makedepends = wayland
+	depends = gtklock>=4.0
+	depends = gtklock<5
+	source = https://git.sr.ht/~aperezdc/gtklock-dpms-module/refs/download/v4.0.0/gtklock-dpms-module-4.0.0.tar.lz
+	sha256sums = 2e715e2b0346be223c24fecc3083fbaf2e323bc8f2abfa3e2bf9c74ebc2fd5f7
+
+pkgname = gtklock-dpms-module
