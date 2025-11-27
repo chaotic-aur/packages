@@ -1,0 +1,4 @@
+pkgdesc="Frontend for browsing and launching games from your multi-platform collection"
+url="https://gitlab.com/es-de/emulationstation-de"
+
+eval "$(declare -f build | sed -E -e '/make /s& -j\S+&&')"
