@@ -1,0 +1,4 @@
+[halloy]
+source = "git"
+git = "https://github.com/squidowl/halloy.git"
+include_regex = "\\d+\\.\\d+"
