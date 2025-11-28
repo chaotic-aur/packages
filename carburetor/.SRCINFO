@@ -1,0 +1,19 @@
+pkgbase = carburetor
+	pkgdesc = Graphical settings app for tractor in GTK
+	pkgver = 5.1.1
+	pkgrel = 1
+	url = https://framagit.org/tractor/carburetor
+	arch = any
+	license = GPL-3.0-or-later
+	makedepends = meson
+	depends = python
+	depends = python-gobject
+	depends = python-pycountry
+	depends = gtk4
+	depends = glib2
+	depends = libadwaita
+	depends = tractor
+	source = carburetor-5.1.1.tar.gz::https://framagit.org/tractor/carburetor/-/archive/5.1.1/carburetor-5.1.1.tar.gz
+	sha256sums = f747846b275bcef8dd8559d10d4a65c101fb998a37ef4beae51fe7a4c27613e3
+
+pkgname = carburetor
