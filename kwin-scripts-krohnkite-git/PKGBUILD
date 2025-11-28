@@ -4,8 +4,8 @@
 _gitname="krohnkite"
 _pkgname="kwin-scripts-$_gitname"
 pkgname="$_pkgname-git"
-pkgver=0.9.8.5.r5.gd7a5e3f
-pkgrel=1
+pkgver=0.9.9.2.r51.g47193bb
+pkgrel=2
 pkgdesc="A dynamic tiling extension for KWin"
 url="https://github.com/anametologin/krohnkite"
 license=('MIT')
@@ -29,26 +29,22 @@ pkgver() {
 }
 
 build() {
-  mkdir -p pkg
   cd "$_pkgsrc"
+  mkdir -p pkg
 
   # krohnkite.js
   tsc
-  install -Dm644 krohnkite.js ../pkg/contents/code/script.js
+  install -Dm644 krohnkite.js pkg/contents/code/script.js
 
   # metadata.json
-  install -Dm644 res/metadata.json ../pkg/metadata.json
   sed -E -e 's&\$VER&'${pkgver}'&' \
     -e 's&\$REV&'${pkgver}'&' \
-    -i ../pkg/metadata.json
+    res/metadata.json > pkg/metadata.json
 
   # other files
-  install -Dm644 res/main.js ../pkg/contents/code/main.js
-  install -Dm644 res/config.xml ../pkg/contents/config/main.xml
-  install -Dm644 res/config.ui ../pkg/contents/ui/config.ui
-  install -Dm644 res/main.qml ../pkg/contents/ui/main.qml
-  install -Dm644 res/popup.qml ../pkg/contents/ui/popup.qml
-  install -Dm644 res/shortcuts.qml ../pkg/contents/ui/shortcuts.qml
+  install -Dm644 res/*.js -t pkg/contents/code/
+  install -Dm644 res/*.xml -t pkg/contents/config/
+  install -Dm644 res/*.{qml,ui} -t pkg/contents/ui/
 }
 
 package() {
@@ -56,8 +52,8 @@ package() {
     'kwin'
   )
 
-  install -dm755 "$pkgdir/usr/share/kwin/scripts/$_gitname"
-  cp -ra "pkg/." "$pkgdir/usr/share/kwin/scripts/$_gitname/"
+  mkdir -pm755 "$pkgdir/usr/share/kwin/scripts/$_gitname"
+  cp -r "$_pkgsrc"/pkg/. "$pkgdir/usr/share/kwin/scripts/$_gitname/"
 
-  install -Dm644 "$srcdir/$_pkgsrc/LICENSE" -t "$pkgdir/usr/share/licenses/$pkgname/"
+  install -Dm644 "$_pkgsrc/LICENSE" -t "$pkgdir/usr/share/licenses/$pkgname/"
 }
