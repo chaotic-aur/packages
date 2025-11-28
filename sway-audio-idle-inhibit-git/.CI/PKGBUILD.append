@@ -1,0 +1,15 @@
+unset -f prepare
+unset optdepends
+
+url="https://github.com/ErikReider/SwayAudioIdleInhibit"
+license=('GPL-3.0-only')
+
+provides=('sway-audio-idle-inhibit')
+conflicts=('sway-audio-idle-inhibit')
+
+_pkgsrc="$_pkgfoldername"
+pkgver() {
+  cd "$_pkgsrc"
+  git describe --long --tags --abbrev=7 --exclude='*[a-zA-Z][a-zA-Z]*' \
+    | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
+}
