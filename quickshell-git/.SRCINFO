@@ -1,0 +1,9 @@
+pkgbase = quickshell-git
+	pkgdesc = metapackage - migrate to quickshell
+	pkgver = 6
+	pkgrel = 6
+	epoch = 6
+	arch = any
+
+pkgname = quickshell-git
+	depends = quickshell
