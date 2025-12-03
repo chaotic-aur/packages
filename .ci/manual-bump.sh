@@ -24,12 +24,15 @@ fi
 # Manage the .state worktree to confine the state of packages to a separate branch
 # The goal is to keep the commit history clean
 function manage_state() {
+  git fetch origin state 2>/dev/null || true
+
   if git show-ref --quiet "origin/state"; then
     git worktree add .state origin/state --detach -q
+    git worktree add .newstate origin/state -q
   else
     mkdir .state
+    git worktree add .newstate -B state --orphan -q
   fi
-  git worktree add .newstate -B state --orphan -q
 }
 
 function collect_changed_libs() {
