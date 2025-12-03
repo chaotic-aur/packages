@@ -10,6 +10,10 @@ UTIL_READ_CONFIG_FILE
 
 export TMPDIR="${TMPDIR:-/tmp}"
 
+# Set git identity for commits
+git config --global user.name "$GIT_AUTHOR_NAME" 2>/dev/null || true
+git config --global user.email "$GIT_AUTHOR_EMAIL" 2>/dev/null || true
+
 if [ "$PACKAGES" == "all" ]; then
   PACKAGES_LIST=()
   UTIL_GET_PACKAGES PACKAGES_LIST
@@ -67,16 +71,14 @@ function force_bump() {
     current_version="$(grep "^$package:" ".newstate/.version-state" | cut -d ":" -f 2 || true)"
 
     if [ -n "$current_version" ]; then
-      # Parse pkgver-pkgrel from current_version
-      if [[ "$current_version" =~ ^(.+)-([0-9]+)$ ]]; then
-        local base_version="${BASH_REMATCH[1]}-${BASH_REMATCH[2]}"
-        local bump_number=1
-
-        # Check if already has a bump
-        if [[ "$current_version" =~ ^(.+)-([0-9]+)\.([0-9]+)$ ]]; then
-          base_version="${BASH_REMATCH[1]}-${BASH_REMATCH[2]}"
-          bump_number=$((${BASH_REMATCH[3]} + 1))
-        fi
+      # Parse pkgver-pkgrel.bumped format
+      # Examples: 1.0-1, 1.0-1.5, 1.0rc-1.8
+      if [[ "$current_version" =~ ^(.+)-([0-9]+)(\.([0-9]+))?$ ]]; then
+        local pkgver="${BASH_REMATCH[1]}"
+        local pkgrel="${BASH_REMATCH[2]}"
+        local current_bump="${BASH_REMATCH[4]:-0}"
+        local base_version="$pkgver-$pkgrel"
+        local bump_number=$((current_bump + 1))
 
         VARIABLES[CI_PACKAGE_BUMP]="$base_version/$bump_number"
         UTIL_PRINT_INFO "$package: Forcing pkgrel bump to $base_version/$bump_number"
