@@ -53,7 +53,21 @@ manual-schedule:
     expire_in: 1 hour
   resource_group: chaotic
   rules:
-    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_PIPELINE_SOURCE == "web" && $PACKAGES != null
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_PIPELINE_SOURCE == "web" && $PACKAGES != null && $BUMP_PACKAGES == null
+
+manual-bump:
+  stage: process
+  image: alpine:latest
+  script:
+    - .ci/manual-bump.sh
+  artifacts:
+    paths:
+      - .ci/deptree.txt
+      - .ci/schedule-params.txt
+    expire_in: 1 hour
+  resource_group: chaotic
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_PIPELINE_SOURCE == "web" && $PACKAGES != null && $BUMP_PACKAGES
 
 do-schedule:
   stage: schedule
