@@ -1,0 +1,20 @@
+pkgbase = hyprwire-git
+	pkgdesc = A fast and consistent wire protocol for IPC
+	pkgver = 0.1.0.r0.g6a2a10b
+	pkgrel = 1
+	url = https://github.com/hyprwm/hyprwire
+	arch = x86_64
+	arch = aarch64
+	license = BSD-3-Clause
+	makedepends = cmake
+	makedepends = git
+	makedepends = ninja
+	depends = hyprutils-git
+	depends = pugixml
+	depends = libffi
+	provides = hyprwire=0.1.0
+	conflicts = hyprwire
+	source = hyprwire::git+https://github.com/hyprwm/hyprwire.git
+	sha256sums = SKIP
+
+pkgname = hyprwire-git
