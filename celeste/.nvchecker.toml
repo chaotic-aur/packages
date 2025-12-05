@@ -1,4 +1,0 @@
-[celeste]
-source = "git"
-git = "https://github.com/hwittenborn/celeste.git"
-prefix = "v"
