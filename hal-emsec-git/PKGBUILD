@@ -4,7 +4,7 @@
 
 _pkgname="hal-emsec"
 pkgname="$_pkgname-git"
-pkgver=4.4.1.r302.g9900bf1
+pkgver=4.5.0.r38.g2d0e2fd
 pkgrel=1
 pkgdesc='Hardware Analyzer for Hardware Reversing from emsec'
 url="https://github.com/emsec/hal"
@@ -43,8 +43,10 @@ _source_main() {
 
 _source_patch() {
   source+=(
+    'fix-igraph-calls.patch'
   )
   sha256sums+=(
+    '7f5bce57a8ef4a045a8feaa446ff76daf964428c435ca0655485d6a5c5debbe5'
   )
 }
 

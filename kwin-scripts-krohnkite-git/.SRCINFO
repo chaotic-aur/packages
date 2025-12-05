@@ -1,6 +1,6 @@
 pkgbase = kwin-scripts-krohnkite-git
 	pkgdesc = A dynamic tiling extension for KWin
-	pkgver = 0.9.9.2.r51.g47193bb
+	pkgver = 0.9.9.2.r53.g400ab3b
 	pkgrel = 2
 	url = https://github.com/anametologin/krohnkite
 	arch = any

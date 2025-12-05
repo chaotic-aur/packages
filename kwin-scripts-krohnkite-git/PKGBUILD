@@ -4,7 +4,7 @@
 _gitname="krohnkite"
 _pkgname="kwin-scripts-$_gitname"
 pkgname="$_pkgname-git"
-pkgver=0.9.9.2.r51.g47193bb
+pkgver=0.9.9.2.r53.g400ab3b
 pkgrel=2
 pkgdesc="A dynamic tiling extension for KWin"
 url="https://github.com/anametologin/krohnkite"
@@ -41,9 +41,11 @@ build() {
     -e 's&\$REV&'${pkgver}'&' \
     res/metadata.json > pkg/metadata.json
 
+  # config
+  install -Dm644 res/config.xml pkg/contents/config/main.xml
+
   # other files
   install -Dm644 res/*.js -t pkg/contents/code/
-  install -Dm644 res/*.xml -t pkg/contents/config/
   install -Dm644 res/*.{qml,ui} -t pkg/contents/ui/
 }
 
