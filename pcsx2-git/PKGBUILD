@@ -2,7 +2,7 @@
 
 _pkgname="pcsx2"
 pkgname="$_pkgname-git"
-pkgver=2.5.333.r0.g7942ee4
+pkgver=2.5.350.r0.ge9977f2
 pkgrel=2
 pkgdesc="PlayStation 2 emulator"
 url="https://github.com/PCSX2/pcsx2"
@@ -36,6 +36,13 @@ makedepends=(
   ## pcsx2
   shaderc
   qt6-tools
+
+  # cubeb, no sound if not present
+  alsa-lib
+  jack
+  libpulse
+  sndio
+  speexdsp
 
   # patches
   7zip
@@ -102,6 +109,7 @@ build() (
     -DPACKAGE_MODE=ON
     -DUSE_ASAN=OFF
     -DUSE_BACKTRACE=OFF
+    -DUSE_SANITIZERS=OFF # cubeb
     -DUSE_VULKAN=ON
     -DWAYLAND_API=ON
     -DX11_API=ON
