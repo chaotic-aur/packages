@@ -8,7 +8,7 @@
 #  */
 pkgbase = helium-browser-bin
 	pkgdesc = Private, fast, and honest web browser based on Chromium
-	pkgver = 0.6.9.1
+	pkgver = 0.7.1.1
 	pkgrel = 1
 	url = https://github.com/imputnet/helium-linux
 	arch = x86_64
@@ -37,13 +37,13 @@ pkgbase = helium-browser-bin
 	optdepends = kwallet: support for storing passwords in KWallet on Plasma
 	optdepends = upower: Battery Status API support
 	options = strip
-	source_x86_64 = helium-0.6.9.1-x86_64_linux.tar.xz::https://github.com/imputnet/helium-linux/releases/download/0.6.9.1/helium-0.6.9.1-x86_64_linux.tar.xz
-	source_x86_64 = LICENSE.ungoogled_chromium::https://raw.githubusercontent.com/imputnet/helium-linux/0.6.9.1/LICENSE.ungoogled_chromium
-	sha256sums_x86_64 = 0cb709084084e7259cc19b91c0d26cdeafacaab65b4dba2e185e5b0d32056163
+	source_x86_64 = helium-0.7.1.1-x86_64_linux.tar.xz::https://github.com/imputnet/helium-linux/releases/download/0.7.1.1/helium-0.7.1.1-x86_64_linux.tar.xz
+	source_x86_64 = LICENSE.ungoogled_chromium::https://raw.githubusercontent.com/imputnet/helium-linux/0.7.1.1/LICENSE.ungoogled_chromium
+	sha256sums_x86_64 = f18cc1310c38719508d35ceba88f4f3db200f430bd73a7f13be9b281d04695fb
 	sha256sums_x86_64 = 9539b394e4179952698894bd62ef6566b6804ab0ff360dcf3a511cfaf7f78c4d
-	source_aarch64 = helium-0.6.9.1-arm64_linux.tar.xz::https://github.com/imputnet/helium-linux/releases/download/0.6.9.1/helium-0.6.9.1-arm64_linux.tar.xz
-	source_aarch64 = LICENSE.ungoogled_chromium::https://raw.githubusercontent.com/imputnet/helium-linux/0.6.9.1/LICENSE.ungoogled_chromium
-	sha256sums_aarch64 = 7385c7beae87eb445fa02872add00319e6b3674871b7bd86a191380346f0ccd5
+	source_aarch64 = helium-0.7.1.1-arm64_linux.tar.xz::https://github.com/imputnet/helium-linux/releases/download/0.7.1.1/helium-0.7.1.1-arm64_linux.tar.xz
+	source_aarch64 = LICENSE.ungoogled_chromium::https://raw.githubusercontent.com/imputnet/helium-linux/0.7.1.1/LICENSE.ungoogled_chromium
+	sha256sums_aarch64 = 07b5fe7f4703378c741fb7131acd91b53db0a408dd3b7421df9fef3c8c8e2fc9
 	sha256sums_aarch64 = 9539b394e4179952698894bd62ef6566b6804ab0ff360dcf3a511cfaf7f78c4d
 
 pkgname = helium-browser-bin
