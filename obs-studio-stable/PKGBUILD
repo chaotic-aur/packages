@@ -5,7 +5,7 @@
 
 _pkgname="obs-studio"
 pkgname="$_pkgname-stable"
-pkgver=32.0.2
+pkgver=32.0.3
 pkgrel=1
 pkgdesc="Free, open source software for live streaming and recording - Browser enabled"
 url="https://github.com/obsproject/obs-studio"
