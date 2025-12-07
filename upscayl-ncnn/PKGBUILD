@@ -2,8 +2,8 @@
 
 _pkgname="upscayl-ncnn"
 pkgname="$_pkgname"
-pkgver=20240601.103425
-pkgrel=2
+pkgver=20251207.174704
+pkgrel=1
 pkgdesc="AI image upscaler, command-line based on Real-ESRGAN NCNN"
 url="https://github.com/upscayl/upscayl-ncnn"
 license=('AGPL-3.0-only')
