@@ -4,7 +4,7 @@
 
 _pkgname="hyprland-protocols"
 pkgname="$_pkgname-git"
-pkgver=0.6.4.r0.g3a5c2bd
+pkgver=0.7.0.r1.g3f3860b
 pkgrel=1
 pkgdesc="Wayland protocol extensions for Hyprland"
 arch=('x86_64' 'aarch64')
@@ -30,17 +30,19 @@ pkgver() {
 }
 
 build() {
-  cd $_pkgsrc
-
-  meson setup build \
-    --prefix=/usr \
-    --libexecdir=lib \
-    --buildtype=plain
-
-  meson compile -C build
+  local cmake_options=(
+    -B build
+    -S "$_pkgsrc"
+    -G Ninja
+    -W no-dev
+    -D CMAKE_BUILD_TYPE=None
+    -D CMAKE_INSTALL_PREFIX=/usr
+  )
+  cmake "${cmake_options[@]}"
+  cmake --build build
 }
 
 package() {
-  meson install -C "$_pkgsrc/build" --destdir "$pkgdir"
+  DESTDIR="$pkgdir" cmake --install build
   install -Dm644 "$_pkgsrc/LICENSE" -t "$pkgdir/usr/share/licenses/$pkgname/"
 }
