@@ -2,7 +2,7 @@
 
 pkgname=pinta
 pkgver=3.0.5
-pkgrel=1
+pkgrel=2
 pkgdesc="Drawing/editing program modeled after Paint.NET. It's goal is to provide a simplified alternative to GIMP for casual users"
 arch=(any)
 url="https://pinta-project.com"
@@ -23,7 +23,7 @@ prepare() {
     [ ! "$file" == "$newname" ] && mv "$file" "$newname"
   done
 
-  sed -i 's/net8.0/net9.0/g' Directory.Build.props
+  sed -i 's/net8.0/net10.0/g' Directory.Build.props
   sed -i 's/StartupWMClass=Pinta/StartupWMClass=com.github.PintaProject.Pinta/g' xdg/pinta.desktop.in
 
   ./autogen.sh --prefix=/usr --sysconfdir=/etc --localstatedir=/var
