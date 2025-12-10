@@ -6,8 +6,8 @@
 # Contributor: MisterFred <mister.fred[at]free[dot]fr>
 
 pkgname=cantata
-pkgver=3.3.1
-pkgrel=2
+pkgver=3.4.0
+pkgrel=1
 pkgdesc="Qt6 graphical client for Music Player Daemon (MPD), nullobsi fork"
 arch=(x86_64 i686 aarch64 armv7h)
 url="https://github.com/nullobsi/cantata"
@@ -26,6 +26,8 @@ depends=(qt6-base
   #taglib-extras
   udisks2
   ffmpeg
+  kitemviews
+  karchive
 
   avahi gcc-libs zlib glibc
 )
@@ -33,10 +35,10 @@ makedepends=(git cmake qt6-tools)
 optdepends=('perl-uri: Dynamic playlist'
   'mpd: Playback')
 source=("cantata-nullobsi::git+https://github.com/nullobsi/cantata.git#tag=v${pkgver}")
-sha256sums=('c282fd13610e6521696a9caaa5772952b16a9ff2a64192fdc379d9074ebdb96c')
+sha256sums=('0d178d7bb46ee720abc4de57d80786809d6b74391624a4d5c8c71793953b0f9e')
 
 build() {
-  CXXFLAGS+=" -Wno-error=unused-result -Wno-error=deprecated-declarations -Wno-unused-result"
+  #CXXFLAGS+=" -Wno-error=unused-result -Wno-error=deprecated-declarations -Wno-unused-result"
 
   local _flags=(
     -DBUNDLED_FONTAWESOME=ON
