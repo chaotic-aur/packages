@@ -12,7 +12,7 @@ url="https://github.com/hyprwm/hyprland-protocols"
 license=('BSD-3-Clause')
 
 makedepends=(
-  meson
+  cmake
   git
   ninja
 )
