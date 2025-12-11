@@ -6,7 +6,7 @@ pkgbase = hyprland-protocols-git
 	arch = x86_64
 	arch = aarch64
 	license = BSD-3-Clause
-	makedepends = meson
+	makedepends = cmake
 	makedepends = git
 	makedepends = ninja
 	provides = hyprland-protocols=0.7.0
