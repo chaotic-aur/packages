@@ -1,5 +1,7 @@
 url="https://github.com/searxng/searxng"
 
+depends+=('python-yaml')
+
 _pkgsrc="searxng"
 pkgver() {
   cd "$_pkgsrc"
