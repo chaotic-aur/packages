@@ -1,3 +1,5 @@
 pkgver=${_pkgver%.*}
 
+options=('!debug' '!strip')
+
 export KCFLAGS="-march=x86-64-v2 -O3"

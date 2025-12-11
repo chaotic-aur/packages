@@ -1,3 +1,5 @@
 pkgver=${_pkgver%.*}
 
+options=('!debug' '!strip')
+
 export KCFLAGS="-march=znver3 -O3"
