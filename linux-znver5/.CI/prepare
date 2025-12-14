@@ -3,9 +3,26 @@
 # mangle replaces directive
 sed -E -e 's&^(\s*)(replaces\+?=)&\1 _ignore_\2&g' -i PKGBUILD
 
-# strip modules
+# strip modules, tools, vmlinux
 sed -E \
   -e '/modules_install/s&make&ZSTD_CLEVEL=19 make INSTALL_MOD_STRIP=1&' \
+  -e '/^ *find "\$builddir"/a\
+    echo "Stripping build tools..."\
+    local file\
+    while read -rd "" file; do\
+      case "$(file -Sib "$file")" in\
+        application/x-sharedlib\\;*) # Libraries (.so)\
+          strip -v $STRIP_SHARED "$file" ;;\
+        application/x-archive\\;*) # Libraries (.a)\
+          strip -v $STRIP_STATIC "$file" ;;\
+        application/x-executable\\;*) # Binaries\
+          strip -v $STRIP_BINARIES "$file" ;;\
+        application/x-pie-  executable\\;*) # Relocatable binaries\
+          strip -v $STRIP_SHARED "$file" ;;\
+      esac\
+    done < <(find "$builddir" -type f -perm -u+x ! -name vmlinux -print0)\
+    echo "Stripping vmlinux..."\
+    strip -v $STRIP_STATIC "$builddir/vmlinux"' \
   -i PKGBUILD
 
 # don't make -docs
