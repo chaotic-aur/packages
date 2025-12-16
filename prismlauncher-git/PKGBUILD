@@ -8,7 +8,7 @@
 
 pkgname=prismlauncher-git
 _pkgname=${pkgname%-git}
-pkgver=8.0.r2682.gb5964b0c3
+pkgver=10.0.0.pre1.r0.gfc3c5cba3
 pkgrel=1
 pkgdesc='Minecraft launcher with ability to manage multiple instances'
 arch=(i686 x86_64 aarch64)
@@ -20,14 +20,14 @@ depends=(
   glibc
   hicolor-icon-theme
   java-runtime=17
+  libarchive
   libgl
   qrencode
-  qt6-5compat
   qt6-base
   qt6-imageformats
   qt6-networkauth
   qt6-svg
-  quazip-qt6
+  qt6-wayland
   tomlplusplus
   zlib
 )
@@ -37,7 +37,6 @@ makedepends=(
   cmake
   extra-cmake-modules
   gamemode
-  ghc-filesystem
   git
   jdk17-openjdk
   scdoc
@@ -49,6 +48,7 @@ optdepends=(
   'xorg-xrandr: for older minecraft versions'
   'java-runtime=8: for older minecraft versions'
   'flite: minecraft voice narration'
+  'gamemode: to optimize gameplay'
 )
 source=(
   'git+https://github.com/PrismLauncher/PrismLauncher.git'
@@ -71,13 +71,8 @@ prepare() {
   cd "PrismLauncher"
 
   git submodule init
-  git config submodule.libraries/cmark.active false
-  git config submodule.libraries/extra-cmake-modules.active false
-  git config submodule.libraries/filesystem.active false
   git config submodule.libraries/libnbtplusplus.url "${srcdir}/libnbtplusplus"
-  git config submodule.libraries/quazip.active false
-  git config submodule.libraries/tomlplusplus.active false
-  git config submodule.libraries/zlib.active false
+  git config submodule.flatpak/shared-modules.active false
   git -c protocol.file.allow=always submodule update
 }
 
