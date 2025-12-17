@@ -7,7 +7,7 @@
 # or use: $ curl -sSf https://dl.google.com/linux/chrome/deb/dists/stable/main/binary-amd64/Packages | grep -A1 "Package: google-chrome-stable" | awk '/Version/{print $2}' | cut -d '-' -f1
 
 pkgname=google-chrome
-pkgver=143.0.7499.109
+pkgver=143.0.7499.146
 pkgrel=1
 pkgdesc="The popular web browser by Google (Stable Channel)"
 arch=('x86_64')
@@ -35,7 +35,7 @@ _channel=stable
 source=("https://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-${_channel}/google-chrome-${_channel}_${pkgver}-1_amd64.deb"
   'eula_text.html'
   "google-chrome-$_channel.sh")
-sha512sums=('eebc808aedd6b2a63a70874ab1dba74c52821753692ba8adbae6f98ee6ee8c943d2099091b41a0c13a59f92360cb6ec93134fc10849ac3c7bb34feb4a3ef8e6d'
+sha512sums=('5e248643fe10c7179160330e21d51bcc384bc6472f7e355091eb7220f53f8905ccfa3e9321b1be7248bd29693b023c0c0dd9990376999d94d9187549925a7668'
   'a225555c06b7c32f9f2657004558e3f996c981481dbb0d3cd79b1d59fa3f05d591af88399422d3ab29d9446c103e98d567aeafe061d9550817ab6e7eb0498396'
   'de02b498a4b5b93e21622c8dba57befe795d733a04656be911cc38e28bfef0e20470450f44be523bbde8d4de28f79c10434846ca01fc2a2f4e67707b79332f94')
 
