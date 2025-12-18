@@ -235,7 +235,8 @@ fi
 if [ "$_build_nvidia_open" = "yes" ]; then
   source+=("https://download.nvidia.com/XFree86/${_nv_open_pkg%"-$_nv_ver"}/${_nv_open_pkg}.tar.xz"
     "${_patchsource}/misc/nvidia/0001-Enable-atomic-kernel-modesetting-by-default.patch"
-    "${_patchsource}/misc/nvidia/0002-Add-IBT-support.patch")
+    "${_patchsource}/misc/nvidia/0002-Add-IBT-support.patch"
+    "${_patchsource}/misc/nvidia/0003-Fix-compile-for-6.19.patch")
 fi
 
 # Use generated AutoFDO Profile
@@ -514,6 +515,7 @@ prepare() {
   if [ "$_build_nvidia_open" = "yes" ]; then
     patch -Np1 -i "${srcdir}/0001-Enable-atomic-kernel-modesetting-by-default.patch" -d "${srcdir}/${_nv_open_pkg}/kernel-open"
     patch -Np1 -i "${srcdir}/0002-Add-IBT-support.patch" -d "${srcdir}/${_nv_open_pkg}/"
+    patch -Np1 -i "${srcdir}/0003-Fix-compile-for-6.19.patch" -d "${srcdir}/${_nv_open_pkg}/"
   fi
 }
 
@@ -731,25 +733,6 @@ _package-zfs() {
   _sign_modules "${modulesdir}"
   find "$pkgdir" -name '*.ko' -exec zstd --rm -19 -T0 {} +
   #  sed -i -e "s/EXTRAMODULES='.*'/EXTRAMODULES='${pkgver}-${pkgbase}'/" "$startdir/zfs.install"
-}
-
-_package-nvidia() {
-  pkgdesc="nvidia module of ${_nv_ver} driver for the ${pkgbase} kernel"
-  depends=("$pkgbase=$_kernver" "nvidia-utils=${_nv_ver}" "libglvnd")
-  provides=('NVIDIA-MODULE')
-  conflicts=("$pkgbase-nvidia-open")
-  license=('custom')
-
-  cd "$_srcname"
-  local modulesdir="$pkgdir/usr/lib/modules/$(< version)/extramodules"
-
-  cd "${srcdir}/${_nv_pkg}"
-  install -dm755 "${modulesdir}"
-  install -m644 kernel/*.ko "${modulesdir}"
-  install -Dt "$pkgdir/usr/share/licenses/${pkgname}" -m644 LICENSE
-
-  _sign_modules "${modulesdir}"
-  find "$pkgdir" -name '*.ko' -exec zstd --rm -19 -T0 {} +
 }
 
 _package-nvidia-open() {
