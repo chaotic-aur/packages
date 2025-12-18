@@ -18,7 +18,6 @@
 : "${_use_gcc_suffix:=yes}"
 : "${_use_kcfi:=no}"
 : "${_build_zfs:=no}"
-: "${_build_nvidia:=no}"
 : "${_build_nvidia_open:=no}"
 : "${_build_debug:=no}"
 : "${_autofdo:=no}"
