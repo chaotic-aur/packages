@@ -4,10 +4,10 @@
 _gitname="krohnkite"
 _pkgname="kwin-scripts-$_gitname"
 pkgname="$_pkgname-git"
-pkgver=0.9.9.2.r53.g400ab3b
+pkgver=0.9.9.2.r57.g39486c4
 pkgrel=2
 pkgdesc="A dynamic tiling extension for KWin"
-url="https://github.com/anametologin/krohnkite"
+url="https://codeberg.org/anametologin/Krohnkite"
 license=('MIT')
 arch=('any')
 
@@ -19,7 +19,7 @@ makedepends=(
 provides=("$_pkgname")
 conflicts=("$_pkgname")
 
-_pkgsrc="anametologin.krohnkite"
+_pkgsrc="codeberg.krohnkite"
 source=("$_pkgsrc"::"git+$url.git")
 sha256sums=('SKIP')
 
