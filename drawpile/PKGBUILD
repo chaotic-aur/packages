@@ -2,17 +2,18 @@
 
 _pkgname='drawpile'
 pkgname="$_pkgname"
-pkgver=2.2.2
-pkgrel=2
+pkgver=2.3.0
+pkgrel=1
 pkgdesc="Collaborative drawing program specially made for use with pen tablets"
 url="https://github.com/drawpile/Drawpile"
 license=('GPL-3.0-or-later')
 arch=('x86_64')
 
 depends=(
+  'libzip'
   'qt6-multimedia'
   'qt6-svg'
-  'libzip'
+  'qt6-websockets'
 )
 makedepends=(
   'cargo'
@@ -24,18 +25,14 @@ makedepends=(
 )
 
 _pkgsrc="$_pkgname"
-source=("$_pkgsrc"::"git+$url.git")
+source=("$_pkgsrc"::"git+$url.git#tag=$pkgver")
 sha256sums=('SKIP')
 
 prepare() {
   cd "$_pkgsrc"
-  _tag=$(git tag | grep -Ev '[A-Za-z]{2}' | sort -rV | head -1)
-  git -c advice.detachedHead=false checkout -f "$_tag"
-}
 
-pkgver() {
-  cd "$_pkgsrc"
-  git describe --tags
+  # fix for Qt 6.2.0
+  sed -E -e 's&\.arg\((e->buttons\(\))\)&.arg(\1.toInt())&' -i src/desktop/widgets/tablettest.cpp
 }
 
 build() {
