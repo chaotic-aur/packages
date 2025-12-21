@@ -86,6 +86,8 @@
                 devshell = {
                   name = "chaotic-devshell";
                   packages = with pkgs; [
+                    aria2
+                    getoptions
                     jq
                     podman
                     skopeo
