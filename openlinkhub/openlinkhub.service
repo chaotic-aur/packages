@@ -1,0 +1,14 @@
+[Unit]
+Description=Open source interface for iCUE LINK System Hub, Corsair AIOs and Hubs
+
+[Service]
+User=openlinkhub
+Group=openlinkhub
+WorkingDirectory=/var/lib/openlinkhub
+ExecStart=/usr/bin/openlinkhub
+ExecReload=/bin/kill -s HUP $MAINPID
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
