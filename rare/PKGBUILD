@@ -1,7 +1,7 @@
 # Maintainer: Dummerle
 
 pkgname=rare
-pkgver=1.11.3
+pkgver=1.12.0
 pkgrel=1
 pkgdesc="Open source alternative for Epic Games Launcher, using Legendary"
 arch=('any')
@@ -13,7 +13,7 @@ depends=(
   python-qtawesome
   python-orjson
   python-vdf
-  legendary
+  legendary-rare
 )
 makedepends=(
   git
