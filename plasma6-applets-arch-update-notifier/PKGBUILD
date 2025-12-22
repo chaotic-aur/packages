@@ -1,11 +1,11 @@
 # Maintainer: Bouteiller a2n Alan <a2n.dev@pm.me>
 
-_tag=afd1fc5a8e79f80be23952194d8ffd3c33d62ebf
+_tag=4642f9395c26dc87d8a0459c0e9c2bc7ea19e8bb
 _plasmoidName="a2n.archupdate.plasmoid"
 _souceName="archupdate"
 
 pkgname="plasma6-applets-arch-update-notifier"
-pkgver=6.3.2.r0.gcb8f18e
+pkgver=6.4.1.r0.g4642f93
 pkgrel=1
 pkgdesc="KDE plasmoid that lets you know when arch updates are required. Takes all repo's into account (core, extra, aur, ...)."
 arch=("any")
