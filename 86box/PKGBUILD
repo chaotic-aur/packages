@@ -1,12 +1,12 @@
 # Maintainer: Lili1228 <aur at lili dot lgbt>
 pkgname=86box
 _pkgname=86Box
-pkgver=5.2
+pkgver=5.3
 pkgrel=1
 pkgdesc='An emulator for classic IBM PC clones'
 arch=('x86_64' 'aarch64') # use 5.1-2 for pentium4 and armv7h
 url='https://86box.net/'
-license=('GPL-2.0-or-later')
+license=('GPL-2.0-or-later' 'CC-BY-4.0')
 depends=('fluidsynth' 'hicolor-icon-theme' 'libserialport' 'libslirp' 'openal' 'qt6-base' 'rtmidi' 'sdl2'                                                                    # explicit
   'freetype2' 'gcc-libs' 'glib2' 'glibc' 'libevdev' 'libglvnd' 'libpng' 'libsndfile' 'libx11' 'libxcb' 'libxext' 'libxi' 'libxkbcommon-x11' 'libxkbcommon' 'wayland' 'zlib') # implicit
 makedepends=('cmake>=3.21' 'extra-cmake-modules' 'ninja' 'qt6-tools' 'vde2' 'vulkan-headers')
@@ -19,9 +19,12 @@ optdepends=(
 options=('!buildflags')
 source=(
   "${pkgname}_$pkgver.tgz::https://github.com/${_pkgname}/${_pkgname}/archive/refs/tags/v${pkgver}.tar.gz"
+  "${pkgname}_assets_$pkgver.tgz::https://github.com/${_pkgname}/assets/archive/refs/tags/v${pkgver}.tar.gz"
+
 )
 sha512sums=(
-  0e8352645823ef156fe9458d2adff652aab2cdc0cae7a05102f93fb46d779b057f4aeddc0ae4e3eaf768d1c0f71435159dd1c4016308ad59f7e5f9801caac791
+  120fbf7544cc91dd9f7b75027cd6219084aa71e97e8ef2ad105ac8ccc7bea2a9290c2d124461da0192c3000c0459fe65c1fd361342de33b06c80616592f52f84
+  51899a76b87daf057e9f2178fe73e14f527a758dce4e355cdfb6e3158f5cf670764713c9cce717e7e91bafc414da05ae6880a8405933bb421d0a658a81dabc5d
 )
 
 build() {
@@ -35,4 +38,6 @@ package() {
     install -Dm644 "$srcdir/$_pkgname-$pkgver/src/unix/assets/$i/net.86box.86Box.png" -t "$pkgdir/usr/share/icons/hicolor/$i/apps"
   done
   install -Dm644 "$srcdir/$_pkgname-$pkgver/src/unix/assets/net.86box.86Box.desktop" "$pkgdir/usr/share/applications/net.86box.86Box.desktop"
+  install -d "$pkgdir/usr/share/86Box/assets"
+  cp -a "$srcdir/assets-${pkgver}/sounds" "$pkgdir/usr/share/86Box/assets"
 }
