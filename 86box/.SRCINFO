@@ -1,7 +1,7 @@
 pkgbase = 86box
 	pkgdesc = An emulator for classic IBM PC clones
 	pkgver = 5.3
-	pkgrel = 1
+	pkgrel = 2
 	url = https://86box.net/
 	arch = x86_64
 	arch = aarch64
@@ -44,7 +44,9 @@ pkgbase = 86box
 	options = !buildflags
 	source = 86box_5.3.tgz::https://github.com/86Box/86Box/archive/refs/tags/v5.3.tar.gz
 	source = 86box_assets_5.3.tgz::https://github.com/86Box/assets/archive/refs/tags/v5.3.tar.gz
+	source = 0092ce15de3efac108b961882f870a8c05e8c38f.patch
 	sha512sums = 120fbf7544cc91dd9f7b75027cd6219084aa71e97e8ef2ad105ac8ccc7bea2a9290c2d124461da0192c3000c0459fe65c1fd361342de33b06c80616592f52f84
 	sha512sums = 51899a76b87daf057e9f2178fe73e14f527a758dce4e355cdfb6e3158f5cf670764713c9cce717e7e91bafc414da05ae6880a8405933bb421d0a658a81dabc5d
+	sha512sums = c4bd507283bdd9b5628fde4d2dab90b5459d1353cf8babbf18bcd3780c884ac2b83aa9f403d413fbd4bd348c61c7f690c6d019e306ec45efd7b8387eafc3bf70
 
 pkgname = 86box
