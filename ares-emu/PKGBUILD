@@ -2,7 +2,7 @@
 
 _pkgname="ares-emu"
 pkgname="$_pkgname"
-pkgver=146
+pkgver=147
 pkgrel=1
 pkgdesc="Multi-system emulator focused on accuracy and preservation"
 url="https://github.com/ares-emulator/ares"
