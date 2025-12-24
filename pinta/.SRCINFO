@@ -1,7 +1,7 @@
 pkgbase = pinta
 	pkgdesc = Drawing/editing program modeled after Paint.NET. It's goal is to provide a simplified alternative to GIMP for casual users
-	pkgver = 3.0.5
-	pkgrel = 2
+	pkgver = 3.1
+	pkgrel = 1
 	url = https://pinta-project.com
 	arch = any
 	license = MIT
@@ -21,7 +21,7 @@ pkgbase = pinta
 	depends = webp-pixbuf-loader
 	provides = pinta
 	conflicts = pinta-git
-	source = Pinta-3.0.5.tar.gz::https://github.com/PintaProject/Pinta/archive/refs/tags/3.0.5.tar.gz
-	sha256sums = 05bcb451c3c567210f47e66fd9f3908332eeeb0c1409f10f7f2c1847aca28b10
+	source = Pinta-3.1.tar.gz::https://github.com/PintaProject/Pinta/archive/refs/tags/3.1.tar.gz
+	sha256sums = e4352c839d49fa5c3ceeddf2a9e92c54cec330ceaa2c485385384ad1b171a32a
 
 pkgname = pinta
