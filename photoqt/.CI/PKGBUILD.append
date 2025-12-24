@@ -1,0 +1,9 @@
+unset provides
+unset conflicts
+
+url="https://gitlab.com/lspies/photoqt"
+
+depends=(${depends[@]//libsai*})
+
+eval "prepare() {
+$(declare -f prepare | sed -E -e 's&(-DWITH_LIBSAI)=\S+&\1=OFF&' | tail +3)"
