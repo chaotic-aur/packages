@@ -1,12 +1,9 @@
 pkgbase = ares-emu-git
 	pkgdesc = Multi-system emulator focused on accuracy and preservation
-	pkgver = 146.r121.g9e4a00b
+	pkgver = 147.r1.gadfc78f
 	pkgrel = 1
 	url = https://github.com/ares-emulator/ares
 	arch = x86_64
-	arch = x86_64_v2
-	arch = x86_64_v3
-	arch = x86_64_v4
 	license = ISC
 	makedepends = clang
 	makedepends = cmake
@@ -23,7 +20,7 @@ pkgbase = ares-emu-git
 	depends = libudev.so
 	depends = openal
 	depends = sdl3
-	provides = ares-emu=146
+	provides = ares-emu
 	conflicts = ares-emu
 	source = ares-emu::git+https://github.com/ares-emulator/ares.git
 	sha256sums = SKIP

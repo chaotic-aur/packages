@@ -49,7 +49,7 @@ prepare() {
 }
 
 build() (
-  export CC CXX CFLAGS CXXFLAGS LDFLAGS
+  export CC CXX LDFLAGS
   CC=clang
   CXX=clang++
 
@@ -62,12 +62,14 @@ build() (
     -G Ninja
     -DCMAKE_BUILD_TYPE=None
     -DCMAKE_INSTALL_PREFIX='/usr'
+    -DCMAKE_CXX_STANDARD=20
+    -DBUILD_TESTING=OFF
+    -Wno-dev
+
     -DARES_BUNDLE_SHADERS=OFF
     -DARES_SKIP_DEPS=ON
     -DARES_VERSION="$pkgver"
     -DARES_VERSION_CANONICAL="${pkgver%%.r*}"
-    -DBUILD_TESTING=OFF
-    -Wno-dev
   )
 
   cmake "${_cmake_options[@]}"
@@ -81,5 +83,5 @@ package() {
   )
 
   DESTDIR="$pkgdir" cmake --install build
-  install -Dm644 "$_pkgsrc/LICENSE" -t "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+  install -Dm644 "$_pkgsrc/LICENSE" -t "$pkgdir/usr/share/licenses/$pkgname/"
 }

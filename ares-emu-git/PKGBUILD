@@ -2,12 +2,12 @@
 
 _pkgname="ares-emu"
 pkgname="$_pkgname-git"
-pkgver=146.r121.g9e4a00b
+pkgver=147.r1.gadfc78f
 pkgrel=1
 pkgdesc="Multi-system emulator focused on accuracy and preservation"
 url="https://github.com/ares-emulator/ares"
 license=("ISC")
-arch=('x86_64' 'x86_64_v2' 'x86_64_v3' 'x86_64_v4')
+arch=('x86_64')
 
 depends=(
   'gtk3'
@@ -29,7 +29,7 @@ makedepends=(
   'ninja'
 )
 
-provides=("$_pkgname=${pkgver%%.r*}")
+provides=("$_pkgname")
 conflicts=("$_pkgname")
 
 _pkgsrc="$_pkgname"
