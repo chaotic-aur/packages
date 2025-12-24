@@ -2,8 +2,8 @@
 
 _pkgname="vcmi"
 pkgname="$_pkgname-git"
-pkgver=1.6.8.r2004.gce95236
-pkgrel=2
+pkgver=1.7.0.r4.gd5dd35e
+pkgrel=1
 pkgdesc="Open-source game engine for Heroes of Might and Magic III"
 arch=('x86_64')
 url="https://github.com/vcmi/vcmi"
@@ -19,11 +19,13 @@ depends=(
   'libboost_filesystem.so'      # boost-libs
   'libboost_locale.so'          # boost-libs
   'libboost_program_options.so' # boost-libs
-  'libswresample.so'            # ffmpeg
-  'libswscale.so'               # ffmpeg
+  'libsquish'
+  'libswresample.so' # ffmpeg
+  'libswscale.so'    # ffmpeg
   'luajit'
   'minizip'
   'onetbb'
+  'onnxruntime'
   'qt6-base'
   'qt6-svg'
   'sdl2'
