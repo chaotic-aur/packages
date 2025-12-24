@@ -5,7 +5,7 @@
 
 _pkgname="shadps4"
 pkgname="$_pkgname-git"
-pkgver=0.12.5.r12.gaa5c045
+pkgver=0.12.5.r50.g05f14e3
 pkgrel=1
 pkgdesc="PlayStation 4 emulator"
 url="https://github.com/shadps4-emu/shadPS4"
@@ -38,6 +38,12 @@ makedepends=(
   'spirv-headers'
   'stb'
   'toml11'
+
+  ## sdl3
+  'libxi'
+  'libxrandr'
+  'libxss'
+  'libxtst'
 )
 
 if [[ "${_use_clang::1}" == "t" ]]; then
