@@ -2,7 +2,7 @@
 
 _pkgname="freecad"
 pkgname="$_pkgname-git"
-pkgver=1.0.2.r5251.gdeab0ab
+pkgver=1.0.2.r5680.g4fe0dff
 pkgrel=1
 pkgdesc="A general purpose 3D CAD modeler"
 url="https://github.com/FreeCAD/FreeCAD"
@@ -51,6 +51,7 @@ makedepends=(
   'ninja'
   'nlohmann-json'
   'pybind11'
+  'python-lark-parser'
   'swig'
 )
 optdepends=(
