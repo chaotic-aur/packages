@@ -1,54 +1,26 @@
 # Maintainer: aur.chaotic.cx
 
-## options
-: ${_use_clang:=true}
-
-: ${CARGO_HOME:=$SRCDEST/cargo-home}
-: ${CARGO_TARGET_DIR:=target}
-: ${RUSTUP_TOOLCHAIN:=stable}
-export CARGO_HOME CARGO_TARGET_DIR RUSTUP_TOOLCHAIN
-
 _pkgname="lsfg-vk"
 pkgname="$_pkgname-git"
-pkgver=1.0.0.r0.g7113d7d
+pkgver=1.0.0.r124.g6d2ed64
 pkgrel=1
 pkgdesc="Lossless Scaling Frame Generation on Linux via Vulkan"
 url="https://github.com/PancakeTAS/lsfg-vk"
-license=('MIT')
+license=('GPL-3.0-or-later')
 arch=('x86_64')
 
 depends=(
+  'hicolor-icon-theme'
+  'qt6-base'
+  'qt6-declarative'
   'vulkan-icd-loader'
-
-  ## GUI
-  'libadwaita'
 )
 makedepends=(
   'cmake'
   'git'
   'ninja'
-
-  'libglvnd'
-  'libx11'
-  'libxcursor'
-  'libxi'
-  'libxinerama'
-  'libxkbcommon'
-  'libxrandr'
   'vulkan-headers'
-  'wayland'
-
-  ## GUI
-  'cargo'
 )
-
-if [[ "${_use_clang::1}" == "t" ]]; then
-  makedepends+=(
-    'clang'
-    'llvm'
-    'lld'
-  )
-fi
 
 provides=("$_pkgname")
 conflicts=("$_pkgname")
@@ -59,20 +31,6 @@ _pkgsrc="$_pkgname"
 source=("$_pkgsrc"::"git+$url.git")
 sha256sums=('SKIP')
 
-prepare() {
-  cd "$_pkgsrc"
-  git submodule update --init --recursive --depth 1
-
-  # don't force compiler
-  sed -E -e '/set\(CMAKE_C(XX)?_COMPILER/d' -i CMakeLists.txt
-
-  # disable LTO
-  sed -E -e 's&(INTERPROCEDURAL_OPTIMIZATION) ON&\1 OFF&' -i CMakeLists.txt
-
-  # fix path
-  sed -E -e '/library_path/s&"[^"]+",&"/usr/lib/liblsfg-vk.so",&' -i VkLayer_LS_frame_generation.json
-}
-
 pkgver() {
   cd "$_pkgsrc"
   git describe --long --tags --abbrev=7 --exclude='*[a-zA-Z][a-zA-Z]*' \
@@ -80,44 +38,31 @@ pkgver() {
 }
 
 build() {
-  local _ldflags=(${LDFLAGS})
-  _ldflags=(${_ldflags[@]//*-z,now*/-Wl,-z,lazy})
-
-  if [[ "${_use_clang::1}" == "t" ]]; then
-    export CC=clang
-    export CXX=clang++
-
-    _ldflags=(${_ldflags[@]//*fuse-ld*/-fuse-ld=lld})
-  fi
-
-  export CFLAGS+=' -DNDEBUG'
-  export CXXFLAGS+=' -DNDEBUG'
-  export LDFLAGS="${_ldflags[*]}"
-
   local _cmake_options=(
     -B build
     -S "$_pkgsrc"
     -G Ninja
     -DCMAKE_BUILD_TYPE=None
     -DCMAKE_INSTALL_PREFIX='/usr'
-    -DBUILD_TESTING=OFF
     -Wno-dev
+
+    -DLSFGVK_BUILD_VK_LAYER=ON
+    -DLSFGVK_BUILD_UI=ON
+    -DLSFGVK_BUILD_CLI=ON
+    -DLSFGVK_INSTALL_DEVELOP=OFF
+    -DLSFGVK_INSTALL_XDG_FILES=OFF
+    -DLSFGVK_LAYER_LIBRARY_PATH="/usr/lib/liblsfg-vk-layer.so"
   )
 
   cmake "${_cmake_options[@]}"
   cmake --build build
-
-  echo "Building Configuration GUI..."
-  cd "$_pkgsrc/ui"
-  cargo build --release --locked
 }
 
 package() {
   DESTDIR="$pkgdir" cmake --install build
 
-  # GUI
-  install -Dm755 "$_pkgsrc/ui/$CARGO_TARGET_DIR/release/lsfg-vk-ui" "$pkgdir/usr/bin/lsfg-vk-ui"
-  install -Dm644 "$_pkgsrc/ui/rsc/icon.png" "$pkgdir/usr/share/pixmaps/lsfg-vk-ui.png"
+  install -Dm644 "$_pkgsrc/lsfg-vk-ui/rsc/gay.pancake.lsfg-vk-ui.png" "$pkgdir/usr/share/icons/hicolor/256x256/apps/lsfg-vk-ui.png"
+
   install -Dm644 /dev/stdin "$pkgdir/usr/share/applications/lsfg-vk-ui.desktop" << END
 [Desktop Entry]
 Type=Application
@@ -126,13 +71,10 @@ Comment=Configuration editor for lsfg-vk
 Exec=lsfg-vk-ui %U
 Icon=lsfg-vk-ui
 Terminal=false
-Categories=GTK;Settings;
+Categories=Settings;
 Keywords=gaming;graphics;configuration;
 StartupNotify=true
 StartupWMClass=gay.pancake.lsfg-vk-ui
 MimeType=application/x-lsfg-profile;
 END
-
-  # license
-  install -Dm644 "$_pkgsrc/LICENSE.md" "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
 }
