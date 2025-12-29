@@ -2,7 +2,7 @@
 
 _pkgname="waydroid"
 pkgname="$_pkgname-alt"
-pkgver=1.6.0
+pkgver=1.6.1
 pkgrel=1
 pkgdesc="A container-based Android system - with desktop menu creation disabled"
 url="https://github.com/waydroid/waydroid"
