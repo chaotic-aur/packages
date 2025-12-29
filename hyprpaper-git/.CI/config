@@ -1,3 +1,3 @@
-CI_PACKAGE_BUMP=0.7.6.r4.g4d775be-1/2
+CI_PACKAGE_BUMP=0.7.6.r4.g4d775be-1/3
 CI_REBUILD_TRIGGERS=hyprgraphics-git:hyprlang-git
 CI_PKGBUILD_SOURCE=aur
