@@ -10,7 +10,7 @@ _pkgname="helium"
 pkgname="${_pkgname}-browser-bin"
 _binaryname="helium-browser"
 pkgver=0.7.7.1
-pkgrel=1
+pkgrel=2
 pkgdesc="Private, fast, and honest web browser based on Chromium"
 arch=('x86_64' 'aarch64')
 url="https://github.com/imputnet/helium-linux"
@@ -25,6 +25,7 @@ optdepends=('pipewire: WebRTC desktop sharing under Wayland'
   'org.freedesktop.secrets: password storage backend on GNOME / Xfce'
   'kwallet: support for storing passwords in KWallet on Plasma'
   'upower: Battery Status API support')
+source=($_binaryname.sh)
 source_x86_64=(
   "${_pkgname}-${pkgver}-x86_64_linux.tar.xz::https://github.com/imputnet/helium-linux/releases/download/${pkgver}/${_pkgname}-${pkgver}-x86_64_linux.tar.xz"
   "LICENSE.ungoogled_chromium::https://raw.githubusercontent.com/imputnet/helium-linux/${pkgver}/LICENSE.ungoogled_chromium"
@@ -33,7 +34,7 @@ source_aarch64=(
   "${_pkgname}-${pkgver}-arm64_linux.tar.xz::https://github.com/imputnet/helium-linux/releases/download/${pkgver}/${_pkgname}-${pkgver}-arm64_linux.tar.xz"
   "LICENSE.ungoogled_chromium::https://raw.githubusercontent.com/imputnet/helium-linux/${pkgver}/LICENSE.ungoogled_chromium"
 )
-
+sha256sums=('09a0456f032b9a2cbfea73eb93356d6a1faceb2a11b608b560e00efa9e8bf78c')
 sha256sums_x86_64=('698f46c080cf4dcb249b9e4d96e4b2c640870ba76b77a05d05a358661af39511'
   '9539b394e4179952698894bd62ef6566b6804ab0ff360dcf3a511cfaf7f78c4d')
 sha256sums_aarch64=('efa849d7dfdb1f3744d7ffe478617d8a66243073b2e951e9039e9bc44920c200'
@@ -54,12 +55,11 @@ package() {
   _archdir="${_pkgname}-${pkgver}-$([[ $CARCH == "aarch64" ]] && echo "arm64" || echo "x86_64")_linux"
   install -dm755 "${pkgdir}/opt/${pkgname}"
   cp -a "${srcdir}/${_archdir}/"* "${pkgdir}/opt/${pkgname}/"
-  # Disable user-local desktop generation in chrome-wrapper
-  sed -i 's/exists_desktop_file || generate_desktop_file/true/' \
-    "$pkgdir/opt/${pkgname}/chrome-wrapper"
+  # Install a simple wrapper
+  install -Dm755 "$_binaryname.sh" "$pkgdir/usr/bin/helium-browser"
   # Install proper desktop file
   install -Dm644 "${srcdir}/${_archdir}/helium.desktop" \
-    "${pkgdir}/usr/share/applications/${_binaryname}.desktop"
+    "${pkgdir}/usr/share/applications/${_pkgname}.desktop"
   # Install icon for desktop file
   install -Dm644 "${pkgdir}/opt/${pkgname}/product_logo_256.png" \
     "${pkgdir}/usr/share/pixmaps/${_binaryname}.png"
@@ -68,59 +68,4 @@ package() {
   # Install Ungoogled Chromium license
   install -Dm644 "${srcdir}/LICENSE.ungoogled_chromium" \
     "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE.ungoogled_chromium"
-  # Install a simple wrapper
-  install -dm755 "${pkgdir}/usr/bin"
-  cat > "${pkgdir}/usr/bin/${_binaryname}" << 'EOF'
-#!/bin/bash
-# Fails on errors or unreadable commands
-set -euo pipefail
-
-XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-"$HOME/.config"}"
-
-SYS_CONF="/etc/helium-browser-flags.conf"
-USR_CONF="${XDG_CONFIG_HOME}/helium-browser-flags.conf"
-
-FLAGS=()
-
-append_flags_file() {
-  local file="$1"
-  [[ -r "$file" ]] || return 0
-  local line safe_line
-  # Filter comments & blank lines
-  while IFS= read -r line; do
-    [[ "$line" =~ ^[[:space:]]*(#|$) ]] && continue
-    # Sanitise: block command substitution; prevent $VAR and ~ expansion
-    case "$line" in
-      *'$('*|*'`'*)
-        echo "Warning: ignoring unsafe line in $file: $line" >&2
-        continue
-        ;;
-    esac
-    # Disable globbing during eval
-    set -f
-    # Prevent $VAR and ~ expansion while allowing eval to parse quotes & escapes
-    safe_line=${line//$/\\$}
-    safe_line=${safe_line//~/\\~}
-    eval "set -- $safe_line"
-    # Enable globbing for rest of the script
-    set +f
-    for token in "$@"; do
-      FLAGS+=("$token")
-    done
-  done < "$file"
-}
-
-append_flags_file "$SYS_CONF"
-append_flags_file "$USR_CONF"
-
-# Add environment var $HELIUM_USER_FLAGS
-if [[ -n "${HELIUM_USER_FLAGS:-}" ]]; then
-  # Split env contents on whitespace; users can quote if needed.
-  read -r -a ENV_FLAGS <<< "$HELIUM_USER_FLAGS"
-  FLAGS+=("${ENV_FLAGS[@]}")
-fi
-
-exec /opt/helium-browser-bin/chrome-wrapper "${FLAGS[@]}" "$@"
-EOF
-  chmod 755 "${pkgdir}/usr/bin/${_binaryname}"
 }
