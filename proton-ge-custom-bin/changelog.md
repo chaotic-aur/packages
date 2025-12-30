@@ -1,51 +1,77 @@
+## GE-Proton10-27
+
+- wine updated to latest bleeding-edge
+- dxvk updated to latest git
+- dxvk-nvapi updated to latest git
+- vkd3d-proton updated to latest git
+- vkd3d updated to latest git
+- winewayland/em-10 patches updated + rebased
+- wine staging patches rebased
+- a status window has been added which now shows when protonfixes are being applied
+- a protonfix has been added that allows heroes of newerth reborn to work again using GAMEID=umu-heroesofnewerthreborn
+- starcitizen protonfixes updated
+- Update fix for Angelic Chaos: RE-BOOT!
+- added protonfix for rocket league in-game voice
+- added protonfix for sword of the stars
+- added eac workaround so the first descendant no longer requires disconnecting network
+- added winetricks patch so xalia temporarily disables while dotnet installers are running, preventing popup spam
+- updated protonfix for space engineers
+- updated protonfix for Full Metal Daemon Muramasa
+- added protonfix for escape from tarkov (game still does not allow online play)
+- added NOSTEAM=1 capability for escape from tarkov so users who own the steam version can also use it for the non-steam version.
+
+Known issue: Blade & Soul NEO no longer launches (it's also broken in upstream proton-experimental)
+
 ## GE-Proton10-26
 
 Github workflows:
 
-    fixup automatic building and attachment of GE-Proton release tarballs.
+- fixup automatic building and attachment of GE-Proton release tarballs.
 
 Proton:
 
-    changes imported for upstream proton
-    changes imported for upstream build environment
-    changes imported for upstream lsteamclient
-    changes imported for upstream steamvr
-    FEX now builds as part of proton as per upstream changes
-    wine-wayland/em-10 patches rebased
-    wine-staging patches rebased
-    SDL dummy controller will no longer be active when steam input is inactive (such as when wine-wayland is enabled, in which case steam input doesn't work)
-    ffxvi (16) crash with wayland enabled fixed
-    DLSS Scaling now available
-    add PROTON_DLSS_INDICATOR to enable DLSS hud
-    add PROTON_FSR4_INDICATOR to show FSR4 watermark
-    docs: Update Readme for scaling _UPGRADE variables:
+- changes imported for upstream proton
+- changes imported for upstream build environment
+- changes imported for upstream lsteamclient
+- changes imported for upstream steamvr
+- FEX now builds as part of proton as per upstream changes
+- wine-wayland/em-10 patches rebased
+- wine-staging patches rebased
+- SDL dummy controller will no longer be active when steam input is inactive (such as when wine-wayland is enabled, in which case steam input doesn't work)
+- ffxvi (16) crash with wayland enabled fixed
+- DLSS Scaling now available
+- add PROTON_DLSS_INDICATOR to enable DLSS hud
+- add PROTON_FSR4_INDICATOR to show FSR4 watermark
+- docs: Update Readme for scaling _UPGRADE variables:
 
+```
 fsr4	PROTON_FSR4_UPGRADE	Automatically download amdxcffx64.dll and upgrade games with FSR 3.1 to use FSR 4. Version to download can be specified by supplying it as a value, like so PROTON_FSR4_UPGRADE="4.0.1", instead of 1. Downloads version 4.0.2 of the required DLL by default. This option also disables AMD Anti-Lag 2 currently due to various issues.
 
 fsr4hud	PROTON_FSR4_INDICATOR	Enable the FSR4 watermark at the top left portion of the screen.
 
 fsr4rdna3	PROTON_FSR4_RDNA3_UPGRADE	Identical to PROTON_FSR4_UPGRADE but for RDNA3 GPUs. Enables some required compatibility options and downloads version 4.0.0 of the DLL by default.
 
-fsr3	PROTON_FSR3_UPGRADE	
+fsr3	PROTON_FSR3_UPGRADE
 
 dlss	PROTON_DLSS_UPGRADE	Automatically download and use newer versions of nvngx_dlss(d|g).dll DLLs. Version to download can be specified by supplying it as a value, like so PROTON_DLSS_UPGRADE="310.2", instead of 1, to download version 310.2.1.0. This option also sets DXVK_NVAPI_DRS_SETTINGS to use the latest preset. If you provide your own config for it through this environment variable, your configuration is going to be applied..
 
 dlsshud	PROTON_DLSS_INDICATOR	Enable the DLSS overlay at the bottom left portion of the screen. This is exactly the same as FSR4_WATERMARK=1
 
 xess	PROTON_XESS_UPGRADE
+```
 
 Protonfixes:
 
-    yet another fix for space engineers
-    fix for the outer worlds 2
-    ntsync disabled for SOMA
-    upscaler download handler utility added
-    Check if a directory is readable before attempting to map it.
-    fix for Zeit 2 added
-    fixes added for Death end re;Quest series from GOG
-    Add fix for "They Are Billions" crash when using Russian localization
-    Add fix for "Not For Broadcast" and "Not For Broadcast: Prologue"
-    Fix CEF issues in Duet Night Abyss
+- yet another fix for space engineers
+- fix for the outer worlds 2
+- ntsync disabled for SOMA
+- upscaler download handler utility added
+- Check if a directory is readable before attempting to map it.
+- fix for Zeit 2 added
+- fixes added for Death end re;Quest series from GOG
+- Add fix for "They Are Billions" crash when using Russian localization
+- Add fix for "Not For Broadcast" and "Not For Broadcast: Prologue"
+- Fix CEF issues in Duet Night Abyss
 
 ## GE-Proton10-25
 
@@ -70,7 +96,7 @@ HOTFIX:
 - wine updated to latest bleeding edge
 - dxvk updated to latest git
 - vkd3d-proton updated to latest git
-- vkd3d updated to latest git 
+- vkd3d updated to latest git
 
 ## GE-Proton10-23
 
@@ -278,7 +304,7 @@ Hotfix:
 ```
 Enable with PROTON_USE_NTSYNC=1
 
-NOTES: 
+NOTES:
 1. Your kernel must be patched with ntsync patches. If your system does not have /dev/ntsync then your kernel does not have the patches required to use ntsync.
 2. Some applications, mostly 32 bit, may also need PROTON_USE_WOW64=1 when using ntsync
 ```
@@ -313,7 +339,7 @@ The 10-5 release was reverted due to the force push per the request of the wine-
 
 ## GE-Proton10-5
 
-Nothing too major here, mostly just an update to upstream's code since it's been about 30 days. 
+Nothing too major here, mostly just an update to upstream's code since it's been about 30 days.
 
 - Wine-wayland patches have been updated/rebased, should fix some nvidia crashes, and no longer need this mesa patch: https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/34918
 - patches added to help with Wuthering Waves.
@@ -391,7 +417,7 @@ Protonfixes:
 
 Info regarding Wine-Wayland:
 
-YMMV (Your mileage may vary). Most games that utilizes DXVK or VKD3D should be fine. Games that have native Vulkan or OpenGL  are a coin toss. Most launchers should also be fine (Again huge thanks to Etaash, he's been hammering out a lot off the Wine-Wayland bug fixes, including one that was critical for OpenGL and launcher rendering).  If a game or launcher isn't working, please DON'T come bugging us to fix it. Officially we're with Valve on this -- it's not supported. It's there for people to use/try/test out because it's a wanted feature, that's the extent of it. 
+YMMV (Your mileage may vary). Most games that utilizes DXVK or VKD3D should be fine. Games that have native Vulkan or OpenGL  are a coin toss. Most launchers should also be fine (Again huge thanks to Etaash, he's been hammering out a lot off the Wine-Wayland bug fixes, including one that was critical for OpenGL and launcher rendering).  If a game or launcher isn't working, please DON'T come bugging us to fix it. Officially we're with Valve on this -- it's not supported. It's there for people to use/try/test out because it's a wanted feature, that's the extent of it.
 
 New option for using Wine-Wayland:
 
