@@ -1,11 +1,17 @@
+unset install
+
+# remove unnecessary depends
 depends=(${depends[@]//fuzzylite*/})
 depends=(${depends[@]//luajit*/})
 depends=(${depends[@]//libxkbcommon*/})
 
+# add missing depends
 if ! [[ "${depends[*]}" =~ minizip ]]; then
   depends+=('minizip')
 fi
 
-unset install
+if ! [[ "${depends[*]}" =~ qt6-svg ]]; then
+  depends+=('qt6-svg')
+fi
 
 eval "$(declare -f build | sed -E -e 's&(FORCE_BUNDLED_FL|ENABLE_INNOEXTRACT)=\S+&\1=ON&g')"
