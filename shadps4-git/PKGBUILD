@@ -5,7 +5,7 @@
 
 _pkgname="shadps4"
 pkgname="$_pkgname-git"
-pkgver=0.12.5.r50.g05f14e3
+pkgver=0.13.0.r3.g954cc77
 pkgrel=1
 pkgdesc="PlayStation 4 emulator"
 url="https://github.com/shadps4-emu/shadPS4"
@@ -81,13 +81,6 @@ prepare() {
   git rm -r externals/zlib-ng
   git submodule update --init --recursive --depth 1
 
-  # remove vendored modules
-  sed -E -e '/add_subdirectory/s&^.*\b(ext-boost)\b.*&&' \
-    -i externals/CMakeLists.txt
-
-  # disable tracy
-  sed -E -e 's&if\s*\(CMAKE_BUILD_TYPE STREQUAL "Release"\)&if (TRUE)&' -i externals/CMakeLists.txt
-
   # fix nlohmann-json
   sed -E -e '/nlohmann_json/i find_package(nlohmann_json)' -i CMakeLists.txt
   sed -E -e '/add_subdirectory\(json\)/d' -i externals/CMakeLists.txt
@@ -115,16 +108,13 @@ pkgver() (
     | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
 )
 
-build() (
+build() {
   if [[ "${_use_clang::1}" == "t" ]]; then
     export CC CXX LDFLAGS
     CC=clang
     CXX=clang++
     LDFLAGS="$(sed -E -e 's&\S*fuse-ld\S*&&g' -e 's&\s+& &g' <<< "$LDFLAGS") -fuse-ld=lld"
   fi
-
-  export CFLAGS+=" -DNDEBUG"
-  export CXXFLAGS+=" -DNDEBUG"
 
   local _cmake_options=(
     -B build
@@ -139,15 +129,11 @@ build() (
     -DTRACY_ENABLE=OFF
     -DENABLE_UPDATER=OFF
     -DSIRIT_USE_SYSTEM_SPIRV_HEADERS=ON
-
-    # force vendored sdl3
-    # ffmpeg -> sdl2-compat -> sdl3
-    -DCMAKE_DISABLE_FIND_PACKAGE_SDL3=ON
   )
 
   cmake "${_cmake_options[@]}"
   cmake --build build
-)
+}
 
 package() {
   install -Dm755 build/shadps4 "$pkgdir/usr/bin/${_pkgname}"
