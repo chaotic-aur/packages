@@ -2,7 +2,7 @@
 
 _pkgname="pixelorama"
 pkgname="$_pkgname"
-pkgver=1.1.7
+pkgver=1.1.8
 pkgrel=1
 pkgdesc="A 2D sprite editor made with the Godot Engine"
 url="https://github.com/Orama-Interactive/Pixelorama"
