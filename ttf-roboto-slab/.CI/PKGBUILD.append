@@ -1,0 +1,3 @@
+unset epoch
+pkgdesc="A slab‑serif companion to the Roboto font family"
+license=('Apache-2.0')
