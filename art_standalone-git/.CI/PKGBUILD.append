@@ -1,4 +1,0 @@
-depends=(
-  ${depends[@]//bionic_translation*/bionic_translation-git}
-  libpng
-)
