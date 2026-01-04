@@ -27,8 +27,12 @@ function manage_state() {
   git fetch origin state 2>/dev/null || true
 
   if git show-ref --quiet "origin/state"; then
+    # Create local state branch tracking origin/state if it doesn't exist
+    if ! git show-ref --quiet "refs/heads/state"; then
+      git branch state origin/state
+    fi
     git worktree add .state origin/state --detach -q
-    git worktree add .newstate origin/state -q
+    git worktree add .newstate state -q
   else
     mkdir .state
     git worktree add .newstate -B state --orphan -q
@@ -68,6 +72,9 @@ function force_bump() {
   declare -A VARIABLES=()
   UTIL_READ_MANAGED_PACAKGE "$package" VARIABLES || true
 
+  # Force writing config even if it didn't exist
+  unset 'VARIABLES[CI_NO_CONFIG]'
+
   # Get current version from the updated version-state
   if [ -f .newstate/.version-state ]; then
     local current_version
@@ -82,6 +89,17 @@ function force_bump() {
         local current_bump="${BASH_REMATCH[4]:-0}"
         local base_version="$pkgver-$pkgrel"
         local bump_number=$((current_bump + 1))
+
+        # If the config already has a bump for this version, increment it further
+        if [ -v "VARIABLES[CI_PACKAGE_BUMP]" ]; then
+          if [[ "${VARIABLES[CI_PACKAGE_BUMP]}" =~ ^(.+)/([0-9]+)$ ]]; then
+            local existing_base="${BASH_REMATCH[1]}"
+            local existing_bump="${BASH_REMATCH[2]}"
+            if [ "$existing_base" == "$base_version" ]; then
+              bump_number=$((existing_bump > current_bump ? existing_bump + 1 : current_bump + 1))
+            fi
+          fi
+        fi
 
         VARIABLES[CI_PACKAGE_BUMP]="$base_version/$bump_number"
         UTIL_PRINT_INFO "$package: Forcing pkgrel bump to $base_version/$bump_number"
@@ -113,11 +131,10 @@ MODIFIED_PACKAGES=()
 
 for package in "${PACKAGES_LIST[@]}"; do
   if force_bump "$package"; then
-    # Check if package directory has changes (e.g., .CI/config was updated)
-    if ! git diff --exit-code --quiet -- "$package"; then
-      git add "$package"
-      MODIFIED_PACKAGES+=("$package")
-    fi
+    git add "$package"
+    MODIFIED_PACKAGES+=("$package")
+  else
+    UTIL_PRINT_WARNING "$package: force_bump failed"
   fi
 done
 
@@ -147,4 +164,4 @@ git -C .newstate add -A
 git -C .newstate commit -q -m "chore(state): manual bump" --allow-empty
 
 # Push changes
-git push origin state
+git push --atomic origin HEAD:main +state
