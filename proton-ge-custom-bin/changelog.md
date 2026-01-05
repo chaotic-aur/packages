@@ -1,3 +1,69 @@
+## GE-Proton10-28
+
+proton:
+
+- import upstream changes to proton
+- update wine bleeding edge
+- update dxvk latest git
+- update vkd3d-proton latest git
+- update vkd3d latest git
+- update dxvk-nvapi latest git
+- rebase em10/wine-wayland patches
+- fixed World of Tanks mods not loading
+- fixed World of Tanks language change causing loading hang/crash
+- fixed Blade & Soul Neo crash
+- Added patch for Winealsa fix for games that only allow spatial audio (thanks Vyroliean):
+
+```
+Problem:
+
+Wine converts spatial and serves it as channel-based stream of 12 channels (in case of GTA and Forza), and then winepulse sends enough metadata for the sound server to apply downmixing. In case of winealsa, it doesn't send the metadata, and in case of stereo, only provides audio to front left and front right skipping FC/LFE/etc. Because of that, the audio is incomplete. As we can't force the correct amount of channels with WINEALSA_CHANNELS variable, I had to code a downmixer.
+
+Patched resolution:
+
+I have implemented the downmixer in the driver itself, and I fully adhered to pipewire downmixer's logic, so the formulas are the same as in pipewire. Pipewire does not downmix top speaker and instead discards them, so this is what I also did in my downmixer. In-game testing shows that the top channels are indeed discarded, because when I tried adding them to winealsa, I could hear more audio coming out compared to winepulse (such as a helicopter above of me).
+
+Because the downmixer made winealsa sound identical to winepulse in these spatial scenarios I even considered even turning it on by default, whether you have WINEALSA_CHANNELS in use or not, and to not block creating a stream with more channels than imposed by the variable. However, more testing had shown that the best way to approach it would likely be to give the user more choice, even if it requires more manual setup.
+
+If we compare sound from downmixed GTA (does not matter winepulse or winealsa, both sound the same, it's related to spatial translation in wine) to Windows, there are noticeable differences. If you were to honk in a car in first person, the audio comes out dominantly out of the left channel on Linux, while it's properly centered on Windows. Because of that, I think it makes more sense to default to channel-based whenever possible so the game can give properly mixed audio, and fall back to downmixing spatial externally if that fails. Though in the case of GTA setting the game flag for disabling spatial results in much worse results than downmixing, I believe it would be the opposite for games that explicitly allow channel-based audio and don't throw errors (like Forza).
+
+This is why I created another variable WINEALSA_SPATIAL, which allows stream creation with more channels than WINEALSA_CHANNELS cap, and then these channels are downmixed.
+
+The behavior of the driver only changes if the variables are active.
+
+Usage:
+
+Put these arguments in steam launch options with %command% at the end, or use your game launcher's method of adding new env vars:
+
+WINEDLLOVERRIDES="winepulse.drv=d" WINEALSA_CHANNELS=2
+For Stereo: Use 2
+
+For 5.1 Surround: Use 6
+
+For 7.1 Surround: Use 8
+
+UPDATE: since version 10-28, if you get a spatial audio initialization error, you can add the third variable:
+
+WINEALSA_SPATIAL=1
+
+Latency can be controlled with a combination of editing quant in pipewire-pulse (it still uses pipewire-pulse because it loads as a pulseaudio alsa plug-in) and using PULSE_LATENCY_MSEC variable. You can check if winealsa and selected quant works in pw-top, it shows as ALSA plug-in [wine64-preloader].
+```
+
+Reddit post for more details:
+https://www.reddit.com/r/linux_gaming/comments/1pt63sb/psa_geproton_1027_added_winealsa_channels_env/
+
+protonfixes:
+
+- added fixes for ghostwire tokyo video playback + egs version
+- added fixes for Duet Night Abyss egs version (game anticheat still seems problematic)
+- added fixes for Duet Night Abyss steam version (game anticheat still seems problematic)
+- added fixes for Duet Night Abyss standalone version (game anticheat still seems problematic)
+- added fixes for broken textures in Legendary
+- added fixes for Fallen Enchantress: Legendary Heroes
+- added fixes for Sorcerer King
+- added fixes for PAIcom
+- removed disabling of uplay overlay on previous existing protonfixes (it works now)
+
 ## GE-Proton10-27
 
 - wine updated to latest bleeding-edge
