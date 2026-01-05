@@ -1,6 +1,6 @@
 pkgbase = zoom
 	pkgdesc = Video Conferencing and Web Conferencing Service
-	pkgver = 6.7.0
+	pkgver = 6.7.2
 	pkgrel = 1
 	url = https://zoom.us/
 	arch = x86_64
@@ -40,7 +40,7 @@ pkgbase = zoom
 	replaces = zoom-libs-bin
 	replaces = zoom-libs
 	options = !strip
-	source = zoom-6.7.0.6313_orig_x86_64.pkg.tar.xz::https://zoom.us/client/6.7.0.6313/zoom_x86_64.pkg.tar.xz
-	sha512sums = a857e60b49ad97e6b4967945c96ac6905c07a0dad3f185e8b5f8f34a7b3d8c1e9cc796f52e19a5e2415263150cfae7fe70377d3166f3319f2ed73f33c24b181e
+	source = zoom-6.7.2.6498_orig_x86_64.pkg.tar.xz::https://zoom.us/client/6.7.2.6498/zoom_x86_64.pkg.tar.xz
+	sha512sums = b13a8a7c65588907e05ad08944577024920b1b81526c54a7ebfb885957a13c5fc9b0f4738a68f3fb3e134c4cd37a2eaf4879b5390681bc3ac8cb8df5fcff9e0a
 
 pkgname = zoom
