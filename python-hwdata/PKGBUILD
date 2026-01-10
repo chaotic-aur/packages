@@ -1,4 +1,5 @@
-# Maintainer: Mark Wagie <mark dot wagie at proton dot me>
+# Maintainer:
+# Contributor: Mark Wagie <mark dot wagie at proton dot me>
 pkgname=python-hwdata
 pkgver=2.4.3
 pkgrel=1
