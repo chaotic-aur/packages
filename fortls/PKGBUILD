@@ -15,14 +15,14 @@ source=("https://pypi.io/packages/source/f/${pkgname}/${pkgname}-${pkgver}.tar.g
 sha256sums=('b43b2b8cbd447ae848c63b8f008c2df96fd48c3a967b33f6ed64b3421496883b')
 
 build() {
-    cd "$pkgname-$pkgver"
-    python -m build --wheel --no-isolation
+  cd "$pkgname-$pkgver"
+  python -m build --wheel --no-isolation
 }
 
 package() {
-    cd "$pkgname-$pkgver"
-    python -m installer --destdir="$pkgdir" dist/*.whl
+  cd "$pkgname-$pkgver"
+  python -m installer --destdir="$pkgdir" dist/*.whl
 
-    # License
-    install -Dm644 LICENSE "$pkgdir"/usr/share/licenses/$pkgname/LICENSE
+  # License
+  install -Dm644 LICENSE "$pkgdir"/usr/share/licenses/$pkgname/LICENSE
 }
