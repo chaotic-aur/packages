@@ -1,0 +1,13 @@
+if [ $(vercmp 0.20.0-1 $pkgver-$pkgrel) -gt 0 ]; then
+  unset -f check
+
+  pkgver=0.20.0
+  pkgrel=1
+
+  makedepends+=('python-setuptools-scm')
+
+  _pkgsrc="$pkgname-$pkgver"
+  _pkgext="tar.gz"
+  source=("$_pkgsrc.$_pkgext"::"$url/archive/refs/tags/$pkgver.$_pkgext")
+  sha256sums=('fd1f5aa07501516720bfaa3f7cbcb7170a0b944d3f49ee107caf0fa56d056d9c')
+fi
