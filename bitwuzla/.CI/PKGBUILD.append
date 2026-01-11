@@ -1,0 +1,10 @@
+pkgname=("bitwuzla")
+pkgdesc"SMT solver for bit‑vectors, floats, arrays, and uninterpreted functions"
+url="https://github.com/bitwuzla/bitwuzla"
+
+eval "$(declare -f build | sed -E -e 's&--(testing|docs)&--no-\1&g')"
+
+eval "$(declare -f package_bitwuzla | grep -Ev '(CONTRIBUTING|NEWS)')"
+
+unset -f check
+unset -f package_bitwuzla-docs
