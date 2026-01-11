@@ -1,7 +1,0 @@
-pkgbase = python-csxcad-git
-	pkgdesc = metapackage - pending deletion
-	pkgver = 1
-	pkgrel = 1
-	arch = any
-
-pkgname = python_csxcad_git
