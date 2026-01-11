@@ -1,0 +1,7 @@
+pkgbase = python-openems-git
+	pkgdesc = metapackage - pending deletion
+	pkgver = 1
+	pkgrel = 1
+	arch = any
+
+pkgname = python_openems_git
