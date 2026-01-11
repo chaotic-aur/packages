@@ -1,4 +1,0 @@
-[hardinfo2]
-source = "git"
-git = "https://github.com/hardinfo2/hardinfo2.git"
-prefix = "release-"
