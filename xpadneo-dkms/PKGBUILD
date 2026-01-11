@@ -15,9 +15,9 @@ url='https://github.com/atar-axis/xpadneo'
 license=('GPL-3.0-or-later')
 depends=('dkms' 'bluez' 'bluez-utils')
 source=("xpadneo-v${pkgver}.tar.gz::${url}/archive/v${pkgver}.tar.gz"
-        '0001-drop-etc-files.patch')
+  '0001-drop-etc-files.patch')
 b2sums=('1cddb91cdd4b055fda5c09112af5441da621c07b14f61a0094cbfffa9a7b746491bff6ea0858a28b1e91a204af2822d005a28ed3b1354b6a367a3eee0fc7250c'
-        '72d59fc99c8fdd66b3b6bfa45a302114e54e7d1621addde8086723a7c18a6ecc080da7497ac7d43de19c460424a05bba35c51ea0d92cf86498fe9223aceba453')
+  '72d59fc99c8fdd66b3b6bfa45a302114e54e7d1621addde8086723a7c18a6ecc080da7497ac7d43de19c460424a05bba35c51ea0d92cf86498fe9223aceba453')
 
 prepare() {
   cd "xpadneo-${pkgver}/hid-xpadneo"
