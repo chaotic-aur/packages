@@ -1,0 +1,8 @@
+# fix for libalpm 16
+if [ $(vercmp 11.7.4-99 $pkgver-$pkgrel) -gt 0 ]; then
+  eval "$(declare -f _prepare_libpamac | head -n -2)
+      git -c advice.detachedHead=false checkout -f c7efe923f980a3f5966f376bd6d6e6146539a970
+      git describe --tags --long
+    )
+  }"
+fi
