@@ -1,6 +1,6 @@
 pkgbase = librewolf
 	pkgdesc = A web browser focused on privacy, security, and freedom
-	pkgver = 146.0.1
+	pkgver = 147.0
 	pkgrel = 1
 	url = https://codeberg.org/librewolf/source
 	arch = x86_64
@@ -58,9 +58,9 @@ pkgbase = librewolf
 	options = !strip
 	backup = usr/lib/librewolf/librewolf.cfg
 	backup = usr/lib/librewolf/distribution/policies.json
-	source = librewolf-146.0.1-1.tar.gz::https://gitlab.com/api/v4/projects/32320088/packages/generic/librewolf-source/146.0.1-1/librewolf-146.0.1-1.source.tar.gz
+	source = librewolf-147.0-1.tar.gz::https://gitlab.com/api/v4/projects/32320088/packages/generic/librewolf-source/147.0-1/librewolf-147.0-1.source.tar.gz
 	source = librewolf.desktop
-	sha256sums = f872b12327543e1e454f9a50be9a7675450aed3e04cc87e1a8c7fb4f235c2bf7
+	sha256sums = 
 	sha256sums = 7d01d317b7db7416783febc18ee1237ade2ec86c1567e2c2dd628a94cbf2f25d
 
 pkgname = librewolf

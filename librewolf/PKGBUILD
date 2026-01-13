@@ -9,11 +9,11 @@
 : ${_build_system_libs:=true}
 
 : ${_pkgrel:=1}
-: ${_cksum:=f872b12327543e1e454f9a50be9a7675450aed3e04cc87e1a8c7fb4f235c2bf7}
+: ${_cksum:=}
 
 _pkgname="librewolf"
 pkgname="${_pkgname}"
-pkgver=146.0.1
+pkgver=147.0
 pkgrel=1
 pkgdesc="A web browser focused on privacy, security, and freedom"
 url="https://codeberg.org/librewolf/source"
