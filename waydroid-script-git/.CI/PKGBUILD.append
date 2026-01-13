@@ -1,7 +1,9 @@
 unset epoch
 
 for i in "${depends[@]}"; do
-  [ "$i" != "python" ] && _deps_old+=("$i")
+  if ! [[ "$i" =~ ^python([^-].*)?$ ]]; then
+    _deps_old+=("$i")
+  fi
 done
 
 eval _orig_"$(declare -f package)"
