@@ -1,0 +1,6 @@
+unset changelog
+unset install
+
+export RUSTFLAGS="-C opt-level=2 -C codegen-units=16 -C lto=off"
+
+options=('!lto')
