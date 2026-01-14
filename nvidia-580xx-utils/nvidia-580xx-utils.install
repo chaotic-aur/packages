@@ -11,12 +11,12 @@ post_install() {
 post_upgrade() {
   # Only enable the services for the 560.35.03-16 version
   # This avoids, that the services are automatically enabled in every upgrade
-  if (($(vercmp $2 560.35.03-16) < 0)); then
+  if (( $(vercmp $2 560.35.03-16) < 0)); then
     for service in nvidia-resume nvidia-hibernate nvidia-suspend; do
-      if ! systemctl is-enabled --quiet $service; then
-        echo "Enabling $service..."
-        systemctl enable $service
-      fi
+        if ! systemctl is-enabled --quiet $service; then
+            echo "Enabling $service..."
+            systemctl enable $service
+        fi
     done
   fi
 }
