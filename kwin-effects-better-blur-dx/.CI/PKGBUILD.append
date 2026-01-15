@@ -1,0 +1,4 @@
+unset replaces
+
+provides=("kwin-effects-forceblur")
+conflicts=("kwin-effects-forceblur")
