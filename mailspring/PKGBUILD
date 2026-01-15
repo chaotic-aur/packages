@@ -6,8 +6,8 @@
 
 _pkgname="mailspring"
 pkgname="$_pkgname"
-pkgver=1.16.0
-pkgrel=3
+pkgver=1.17.0
+pkgrel=1
 pkgdesc="A beautiful and fast mail client"
 url="https://github.com/Foundry376/Mailspring"
 license=('GPL-3.0-only')
