@@ -1,34 +1,10 @@
 pkgdesc="Original Xbox emulator"
 url="https://github.com/xemu-project/xemu"
 
-depends=(
-  'gtk3'
-  'libepoxy'
-  'libpcap'
-  'libsamplerate'
-  'libslirp'
-  'sdl2'
-  'xxhash'
-)
-
-makedepends=(
-  'cmake'
-  'git'
-  'meson'
-  'python-distlib'
-  'python-yaml'
-  'vulkan-headers'
-  'vulkan-icd-loader'
-)
-
 _pkgsrc="$_pkgname"
 
-prepare() {
-  mkdir -p build
+pkgver() {
   cd "$_pkgsrc"
-  python scripts/gen-license.py > XEMU_LICENSE
+  git describe --long --tags --abbrev=7 --exclude='*[a-zA-Z][a-zA-Z]*' \
+    | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
 }
-
-eval "$(declare -f build | sed -E 's&\S*disable-download\S*&&')"
-
-eval "$(declare -f package | sed -E '/depends[+=]/d')"
