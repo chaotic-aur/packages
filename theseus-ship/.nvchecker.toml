@@ -1,5 +1,0 @@
-[theseus-ship]
-source = "github"
-github = "winft/theseus-ship"
-prefix = "v"
-use_latest_release = "true"
