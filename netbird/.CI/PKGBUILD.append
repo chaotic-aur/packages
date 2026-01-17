@@ -1,0 +1,10 @@
+url="https://github.com/netbirdio/netbird"
+
+makedepends+=(
+  libglvnd
+  libx11
+  libxcursor
+  libxi
+  libxinerama
+  libxrandr
+)
