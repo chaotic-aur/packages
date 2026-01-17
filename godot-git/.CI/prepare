@@ -1,5 +1,23 @@
 #!/usr/bin/env bash
 
+_check_bump() {
+  local url pkgver pkgrel _pkgver
+
+  eval "$(grep -Eo '^(url|pkgver|pkgrel)=\S+' PKGBUILD)"
+  _pkgver=$(LC_ALL=C pacman -Si chaotic-aur/godot-git | grep -Pom1 '^Version\s+:\s+\K\S+')
+
+  CI_PACKAGE_BUMP="$_pkgver"
+  eval "$(grep -Eom1 '^CI_PACKAGE_BUMP=\S+$' .CI/config | sed 's&/&.&g')"
+
+  if [ $(vercmp "${pkgver:-0}-${pkgrel:-0}" "${_pkgver:-a}") -gt 0 ]; then
+    echo "New PKGBUILD.  ${pkgver}-${pkgrel} > $_pkgver"
+  elif [ $(vercmp "$CI_PACKAGE_BUMP" "${_pkgver:-a}") -gt 0 ]; then
+    echo "Bumped.  $CI_PACKAGE_BUMP >= $_pkgver"
+  else
+    return 2
+  fi
+}
+
 _check_status() (
   local _url_repo _url_ci _commit _response _msg_err _success_ci
   _url_repo="https://github.com/godotengine/godot"
@@ -27,4 +45,4 @@ _check_status() (
   fi
 )
 
-_check_status || return $?
+(_check_bump || _check_status) || return $?
