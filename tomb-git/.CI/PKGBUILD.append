@@ -1,0 +1,4 @@
+arch=('x86_64')
+
+eval "$(declare -f package_tomb-kdf-git | sed -e '/arch=/d')"
+eval "$(declare -f package_tomb-cloak-git | sed -E -e 's&^(\{)\s*$&\1\narch=('any')&')"
