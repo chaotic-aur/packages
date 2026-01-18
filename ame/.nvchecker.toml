@@ -1,4 +1,0 @@
-[ame]
-source = "git"
-git = "https://gitlab.com/crystal-linux/software/amethyst.git"
-prefix = "v"
