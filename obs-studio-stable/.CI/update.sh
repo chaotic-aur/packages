@@ -18,7 +18,7 @@ _update_package() {
       -i "PKGBUILD" ".SRCINFO"
 
     sed -E \
-      -e '/source = /s&'"${_OLD_VERSION}&${_NEW_VERSION}&g" \
+      -e '/(source|provides) = /s&'"${_OLD_VERSION}&${_NEW_VERSION}&g" \
       -i ".SRCINFO"
   fi
 }
