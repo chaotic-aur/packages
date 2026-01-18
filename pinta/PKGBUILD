@@ -2,7 +2,7 @@
 
 pkgname=pinta
 pkgver=3.1.1
-pkgrel=1
+pkgrel=2
 pkgdesc="Drawing/editing program modeled after Paint.NET. It's goal is to provide a simplified alternative to GIMP for casual users"
 arch=(any)
 url="https://pinta-project.com"
@@ -38,6 +38,8 @@ package() {
   cd "${srcdir}/Pinta-${pkgver}"
 
   make DESTDIR="${pkgdir}" install
+
+  chmod -v 755 "${pkgdir}/usr/lib/pinta/"*.dll
 
   install -Dm644 -t "${pkgdir}/usr/share/doc/${pkgname}/" *.md
   install -Dm644 -t "${pkgdir}/usr/share/licenses/${pkgname}/" LICENSE*.txt
