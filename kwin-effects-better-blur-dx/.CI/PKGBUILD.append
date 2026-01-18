@@ -1,3 +1,0 @@
-unset replaces
-
-conflicts=("kwin-effects-forceblur")
