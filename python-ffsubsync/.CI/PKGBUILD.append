@@ -1,0 +1,3 @@
+license=('MIT')
+
+eval "$(declare -f package | sed -E -e 's&--compile\S+&&')"
