@@ -1,0 +1,12 @@
+pkgbase = libtree
+	pkgdesc = ldd as a tree
+	pkgver = 3.1.1
+	pkgrel = 1
+	url = https://github.com/haampie/libtree
+	arch = x86_64
+	license = MIT
+	depends = gcc-libs
+	source = libtree-3.1.1.tar.gz::https://github.com/haampie/libtree/archive/v3.1.1.tar.gz
+	sha256sums = 6148436f54296945d22420254dd78e1829d60124bb2f5b9881320a6550f73f5c
+
+pkgname = libtree
