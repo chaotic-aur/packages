@@ -1,9 +1,10 @@
 pkgbase = tomb-git
 	pkgdesc = simple tool to manage encrypted storage
-	pkgver = 2.11.r76.g586b5cb
+	pkgver = 2.13.r17.g648b008
 	pkgrel = 1
 	url = https://www.dyne.org/software/tomb/
-	arch = any
+	arch = i686
+	arch = x86_64
 	license = GPL-3.0-only
 	makedepends = git
 	makedepends = libgcrypt
@@ -15,6 +16,7 @@ pkgbase = tomb-git
 	sha256sums = 69cf2daa7971f1cac76574e3988ebf285f8a900c46b0f1493066f037917a4d38
 
 pkgname = tomb-git
+	arch = any
 	depends = cryptsetup
 	depends = gnupg
 	depends = inetutils
@@ -32,14 +34,13 @@ pkgname = tomb-git
 
 pkgname = tomb-kdf-git
 	pkgdesc = Crypto Undertaker extensions to improve password security
-	arch = i686
-	arch = x86_64
 	depends = libgcrypt
 	provides = tomb-kdf
 	conflicts = tomb-kdf
 
 pkgname = tomb-cloak-git
 	pkgdesc = Crypto Undertaker extension for steganography
+	arch = any
 	depends = python
 	provides = tomb-cloak
 	conflicts = tomb-cloak

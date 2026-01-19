@@ -7,10 +7,10 @@
 _name=tomb
 pkgbase="${_name}-git"
 pkgname=("${_name}-git" "${_name}-kdf-git" "${_name}-cloak-git")
-pkgver=2.11.r76.g586b5cb
+pkgver=2.13.r17.g648b008
 pkgrel=1
 pkgdesc="simple tool to manage encrypted storage"
-arch=('any')
+arch=('i686' 'x86_64')
 url="https://www.dyne.org/software/tomb/"
 license=('GPL-3.0-only')
 makedepends=('git' 'libgcrypt')
@@ -32,6 +32,7 @@ build() {
 }
 
 package_tomb-git() {
+  arch=('any')
   depends=('cryptsetup' 'gnupg' 'inetutils' 'sudo' 'zsh' 'e2fsprogs')
   optdepends=('lsof: allows the operation slam'
     'steghide: steganography'
@@ -53,7 +54,6 @@ package_tomb-git() {
 
 package_tomb-kdf-git() {
   pkgdesc="Crypto Undertaker extensions to improve password security"
-  arch=('i686' 'x86_64')
   depends=('libgcrypt')
   conflicts=("${_name}-kdf")
   provides=("${_name}-kdf")
@@ -64,6 +64,7 @@ package_tomb-kdf-git() {
 
 package_tomb-cloak-git() {
   pkgdesc="Crypto Undertaker extension for steganography"
+  arch=('any')
   depends=('python')
   conflicts=("${_name}-cloak")
   provides=("${_name}-cloak")
