@@ -8,7 +8,7 @@
 
 pkgname=prismlauncher-git
 _pkgname=${pkgname%-git}
-pkgver=10.0.0.pre1.r0.gfc3c5cba3
+pkgver=10.0.0.pre1.r203.gef747055a
 pkgrel=1
 pkgdesc='Minecraft launcher with ability to manage multiple instances'
 arch=(i686 x86_64 aarch64)
@@ -85,6 +85,9 @@ build() {
     -DLauncher_BUILD_PLATFORM="archlinux" \
     -DLauncher_APP_BINARY_NAME="${_pkgname}" \
     -DLauncher_QT_VERSION_MAJOR="6" \
+    -DLauncher_ENABLE_JAVA_DOWNLOADER=ON \
+    -DCMAKE_C_FLAGS="$CFLAGS -DNDEBUG" \
+    -DCMAKE_CXX_FLAGS="$CXXFLAGS -DNDEBUG" \
     -Wno-dev
   cmake --build build
 }
