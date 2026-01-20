@@ -1,0 +1,22 @@
+export RUSTFLAGS="-C opt-level=2 -C codegen-units=16 -C lto=off"
+
+url="https://github.com/sinelaw/fresh"
+
+unset provides
+unset conflicts
+
+options=('!lto')
+
+# not needed
+eval "$(declare -f package | grep -Ev 'share/(doc|licenses)')"
+
+# fix build
+eval "_orig_$(declare -f prepare)"
+unset prepare
+
+eval "_orig_$(declare -f build | sed 's&--frozen&&')"
+
+build() {
+  (_orig_prepare)
+  (_orig_build)
+}
