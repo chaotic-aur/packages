@@ -1,6 +1,6 @@
 pkgbase = plasma6-applets-arch-update-notifier
 	pkgdesc = KDE plasmoid that lets you know when arch updates are required. Takes all repo's into account (core, extra, aur, ...).
-	pkgver = 6.4.1.r0.g4642f93
+	pkgver = 6.4.3.r0.g46126e6
 	pkgrel = 2
 	url = https://github.com/bouteillerAlan/archupdate
 	arch = any
@@ -11,7 +11,7 @@ pkgbase = plasma6-applets-arch-update-notifier
 	optdepends = yay: default aur helper
 	optdepends = konsole: default terminal for update action
 	optdepends = paru: other aur support
-	source = git+https://github.com/bouteillerAlan/archupdate.git#tag=dd60ba7cb32ad2fa31f8bb2f346e03628c415a56?signed
+	source = git+https://github.com/bouteillerAlan/archupdate.git#tag=b84acda24025dd6799ebef3603f2aadfdc68b74c?signed
 	validpgpkeys = 6A2ECC8A396F8A943A109A1E0F11C2A6BF79111E
 	sha256sums = SKIP
 
