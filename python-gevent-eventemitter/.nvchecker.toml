@@ -1,4 +1,0 @@
-[python-gevent-eventemitter]
-source = "git"
-git = "https://github.com/rossengeorgiev/gevent-eventemitter.git"
-prefix = "v"
