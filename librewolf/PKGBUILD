@@ -9,7 +9,7 @@
 : ${_build_system_libs:=true}
 
 : ${_pkgrel:=3}
-: ${_cksum:=}
+: ${_cksum:=ec53e549d9165772bec73d127564098055c414bdab05261e282bfb7d9ba1c1f5}
 
 _pkgname="librewolf"
 pkgname="${_pkgname}"
@@ -98,7 +98,7 @@ backup=(
   'usr/lib/librewolf/distribution/policies.json'
 )
 
-local _url_dl="https://gitlab.com/api/v4/projects/32320088/packages/generic/librewolf-source"
+local _url_dl="https://codeberg.org/api/packages/librewolf/generic/librewolf-source"
 local _pkgext="tar.gz"
 
 _pkgsrc="$_pkgname-$pkgver-$_pkgrel"

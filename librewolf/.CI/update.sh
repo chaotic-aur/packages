@@ -12,8 +12,7 @@ _update_package() (
   )
 
   if (($(vercmp "${_NEW_VERSION:?}" "${_OLD_VERSION:?}") > 0)); then
-    _RESPONSE=$(curl -Ssf "https://gitlab.com/api/v4/projects/32320088/packages/generic/librewolf-source/${_NEW_VERSION}/librewolf-${_NEW_VERSION}.source.tar.gz.sha256sum")
-
+    _RESPONSE=$(curl -Ssf "https://codeberg.org/api/packages/librewolf/generic/librewolf-source/${_NEW_VERSION}/librewolf-${_NEW_VERSION}.source.tar.gz.sha256sum")
     _SUM=$(
       echo "${_RESPONSE:?}" \
         | cut -d' ' -f1
