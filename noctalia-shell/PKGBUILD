@@ -1,7 +1,7 @@
 # Maintainer: Kevin <github@kev314.dev>
 # Co-Maintainer: Lysec <itslysec@gmail.com>
 pkgname=noctalia-shell
-pkgver=4.1.1
+pkgver=4.2.1
 pkgrel=1
 pkgdesc="A sleek and minimal desktop shell thoughtfully crafted for Wayland, built with Quickshell."
 arch=('any')
@@ -14,10 +14,10 @@ depends=(
   'brightnessctl'
   'ffmpeg'
   'qt6-multimedia'
+  'python'
 )
 optdepends=(
   'cliphist: For clipboard history support'
-  'matugen: Material You color scheme generation'
   'cava: Audio visualizer component'
   'wlsunset: For supporting NightLight'
   'power-profiles-daemon: For power profile management'
@@ -26,7 +26,7 @@ optdepends=(
 conflicts=('noctalia-shell-git')
 install="${pkgname}.install"
 source=("git+$url.git#tag=v$pkgver")
-sha256sums=('a19d2f34509855cf3ff052046e2c0147f21affc7c16a89eec1b9674119da9902')
+sha256sums=('840008bf675b1251fa3bfa3ef43fdfcd7b6e3902e01c9223cf3e5ee32a55e792')
 
 package() {
   cd "$srcdir/$pkgname"
