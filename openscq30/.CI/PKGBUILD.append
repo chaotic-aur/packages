@@ -1,0 +1,7 @@
+unset -f check
+
+export CARGO_PROFILE_RELEASE_LTO=false
+export CARGO_PROFILE_RELEASE_CODEGEN_UNITS=$((n > 16 ? n : 16))
+
+depends+=('libxkbcommon')
+options=('!lto')
