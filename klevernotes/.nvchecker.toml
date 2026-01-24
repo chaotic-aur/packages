@@ -1,4 +1,0 @@
-[klevernotes]
-source = "git"
-git = "https://invent.kde.org/office/klevernotes"
-prefix = "v"
