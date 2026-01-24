@@ -3,7 +3,7 @@
 _pkgname=Vesktop
 pkgname=vesktop
 pkgdesc="A standalone Electron-based Discord app with Vencord & improved Linux support"
-pkgver=1.6.3
+pkgver=1.6.4
 pkgrel=1
 
 arch=("x86_64" "aarch64")
@@ -19,7 +19,7 @@ optdepends=(
 
 source=("$_pkgname-$pkgver.tar.gz::https://github.com/Vencord/Vesktop/archive/v${pkgver}.tar.gz" "vesktop.desktop" "vesktop.sh")
 
-sha256sums=('19f131dcfaa48df02268bbda538389c7e1ce63c80420fa617089a83253dba702'
+sha256sums=('afd5837f884b29db08285a0167ca16a2ebe86747a7496d7590423c575dac6569'
   '98fa8f661b065c2d825e24f0055a40ae01d58d23628ad7ebf6914296209dd43c'
   '506c246328af639d6f6a3e52215c7b34af2a6df11d195de6f57a8bbee750cce9')
 
@@ -37,7 +37,13 @@ package() {
   install -d "$pkgdir/usr/lib/$pkgname"
   install -d "$pkgdir/usr/bin"
 
-  cp -R "dist/linux-unpacked/." "$pkgdir/usr/lib/$pkgname"
+  # change folder to copy per arch
+  case "${CARCH}" in
+    "aarch64") folder="linux-arm64-unpacked" ;;
+    *) folder="linux-unpacked" ;;
+  esac
+
+  cp -R "dist/${folder}/." "$pkgdir/usr/lib/$pkgname"
 
   install -Dm644 "../vesktop.desktop" "$pkgdir/usr/share/applications/vesktop.desktop"         # Install desktop entry
   install -Dm644 "LICENSE" "$pkgdir/usr/share/licenses/$pkgname/LICENSE"                       # Install license
