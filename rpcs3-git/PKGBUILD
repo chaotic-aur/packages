@@ -2,7 +2,7 @@
 
 _pkgname="rpcs3"
 pkgname="$_pkgname-git"
-pkgver=0.0.38.r15.g9e49b91
+pkgver=0.0.39.r133.gd854ff0
 pkgrel=1
 pkgdesc="PlayStation 3 emulator"
 url="https://github.com/RPCS3/rpcs3"
@@ -10,14 +10,13 @@ license=('GPL-2.0-only')
 arch=('x86_64')
 
 depends=(
-  'flatbuffers'
-  'glew'
+  'libGLEW.so'       # glew
   'libavcodec.so'    # ffmpeg
   'libavformat.so'   # ffmpeg
   'libavutil.so'     # ffmpeg
+  'libopenal.so'     # openal
   'libswresample.so' # ffmpeg
   'libswscale.so'    # ffmpeg
-  'openal'
   'opencv'
   'pugixml'
   'qt6-multimedia'
@@ -49,14 +48,8 @@ conflicts=("$_pkgname")
 options=('!lto')
 
 _pkgsrc="$_pkgname"
-source=(
-  "$_pkgsrc"::"git+https://github.com/RPCS3/rpcs3.git"
-  "0001-fix-ffmpeg-8.0.patch"
-)
-sha256sums=(
-  'SKIP'
-  'SKIP'
-)
+source=("$_pkgsrc"::"git+https://github.com/RPCS3/rpcs3.git")
+sha256sums=('SKIP')
 
 prepare() {
   cd "$_pkgsrc"
@@ -65,7 +58,6 @@ prepare() {
   git rm -r '3rdparty/OpenAL/openal-soft'
   git rm -r '3rdparty/curl/curl'
   git rm -r '3rdparty/ffmpeg'
-  git rm -r '3rdparty/flatbuffers'
   git rm -r '3rdparty/libpng/libpng'
   git rm -r '3rdparty/libsdl-org/SDL'
   git rm -r '3rdparty/llvm/llvm'
@@ -88,9 +80,6 @@ prepare() {
     -i "rpcs3/Emu/Cell/Modules/cellMic.cpp" \
     "rpcs3/Emu/Cell/Modules/cellMic.h" \
     "rpcs3/rpcs3qt/microphone_creator.cpp"
-
-  # based on PR17017
-  patch -Np1 -F100 -i ../0001-fix-ffmpeg-8.0.patch || true
 
   # fix for Qt 6.10
   sed -E -e '/(COMPONENTS|INTERFACE)/s&\b(Qt6::)?(Widgets)\b&\1\2 \1GuiPrivate&' -i "3rdparty/qt6.cmake"
@@ -124,7 +113,6 @@ build() (
     -DUSE_SYSTEM_CUBEB=OFF
     -DUSE_SYSTEM_CURL=ON
     -DUSE_SYSTEM_FFMPEG=ON
-    -DUSE_SYSTEM_FLATBUFFERS=ON
     -DUSE_SYSTEM_GLSLANG=ON
     -DUSE_SYSTEM_LIBPNG=ON
     -DUSE_SYSTEM_OPENCV=ON
