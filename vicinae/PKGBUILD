@@ -2,7 +2,7 @@
 
 _pkgname="vicinae"
 pkgname="$_pkgname"
-pkgver=0.19.1
+pkgver=0.19.2
 pkgrel=1
 pkgdesc="A focused launcher for your desktop"
 url="https://github.com/vicinaehq/vicinae"
