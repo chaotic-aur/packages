@@ -1,0 +1,7 @@
+[proton-ge-custom-bin]
+source = "git"
+git = "https://github.com/GloriousEggroll/proton-ge-custom.git"
+use_max_tag = true
+include_regex = "^GE-Proton\\d+-\\d+$"
+from_pattern = "^GE-Proton(\\d+)-(\\d+)$"
+to_pattern = "GE_Proton\\1_\\2"

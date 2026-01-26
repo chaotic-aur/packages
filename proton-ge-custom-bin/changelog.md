@@ -1,3 +1,29 @@
+## GE-Proton10-29
+
+Proton:
+- wine updated to latest bleeding edge
+- dxvk updated to latest git
+- dxvk-nvapi updated to latest git
+- vkd3d updated to latest git
+- vkd3d-proton updated to latest git
+- FEX updated to upstream version
+- vrclient upstream changes imported
+- wineopenxr upstream changes imported
+- make + Makefile upstream changes imported
+- zst build result removed as it is no longer used/needed (originally built for umu)
+
+Protonfixes:
+- build fixed to allow aarch64 compilation
+- controller fix for ds4 in bioshock 2 remastered/classic
+- controller fix for ds4 in dragons dogma: dark arisen
+- gamedrive option enabled and libglesv2 disabled under wayland for duet night abyss
+- [upscalers: add support for upgrading libxess_dx11.dll](https://github.com/Open-Wine-Components/umu-protonfixes/commit/10a391844dad175b50a1f1140aa5f4882951b5f8)
+- fix added for Dark Earth save game error
+- remove incorrect GTA IV fix for Independence FM.  Game works fine without it when using supported audio formats. https://github.com/Open-Wine-Components/umu-protonfixes/commit/2a348a2ed328221a22a143b72e9d4da0267356c8
+
+Patches:
+- em-10/wine-wayland patches updated
+
 ## GE-Proton10-28
 
 proton:
