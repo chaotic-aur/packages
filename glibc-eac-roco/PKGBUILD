@@ -10,7 +10,7 @@ pkgbase=glibc
 pkgname=(glibc lib32-glibc glibc-locales)
 pkgver=2.42+r51+gcbf39c26b258
 _commit=cbf39c26b25801e9bc88499b4fd361ac172d4125
-pkgrel=1
+pkgrel=2
 arch=(x86_64)
 url='https://www.gnu.org/software/libc'
 license=(GPL-2.0-or-later LGPL-2.1-or-later)
@@ -82,7 +82,6 @@ build() {
       --libdir=/usr/lib \
       --libexecdir=/usr/lib \
       --enable-cet \
-      --enable-sframe \
       "${_configure_flags[@]}"
 
     make -O
