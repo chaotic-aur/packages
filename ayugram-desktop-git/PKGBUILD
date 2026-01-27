@@ -10,8 +10,8 @@
 
 _pkgname="ayugram-desktop"
 pkgname="$_pkgname-git"
-pkgver=5.16.4.r377.ge2d772d
-pkgrel=2
+pkgver=6.3.10.r3.g1f6806d
+pkgrel=1
 pkgdesc="Desktop Telegram client with good customization and Ghost mode"
 url="https://github.com/AyuGram/AyuGramDesktop"
 license=('GPL-3.0-or-later')
@@ -76,16 +76,10 @@ _patch_commit="354be0d07b11404572577b40914f67adac3de49f"
 source=(
   "$_pkgsrc"::"git+$url.git${_commit:+#commit=$_commit}${_commit:-${_branch:+#branch=$_branch}}"
   "$_pkgsrc_tdlib"::"git+https://github.com/tdlib/td.git"
-  "0001-glib2.86-${_patch_commit::7}.patch"::"https://gitlab.archlinux.org/archlinux/packaging/packages/telegram-desktop/-/raw/${_patch_commit}/glib2.86.patch"
-  "0002-ffmpeg-8-${_patch_commit::7}.patch"::"https://gitlab.archlinux.org/archlinux/packaging/packages/telegram-desktop/-/raw/${_patch_commit}/0001-Fix-compatibility-with-ffmpeg-8.patch"
-  "0003-fix-qt-6.10-tdesktop.patch"::"https://github.com/telegramdesktop/tdesktop/commit/28d19a99.patch"
 )
 sha256sums=(
   'SKIP'
   'SKIP'
-  '57b855e701ed29da039431b2688082e6885c368e20dd38bbedffe1633e5efeda'
-  'd44a47b0dda36762090bbfcbb8e402d7308f3646d99a882b7d5fc3c18cc63540'
-  'e3aabdf4942f1e22819dffe4eb481ca0d7e32cfbed9443120c2d29f3abf07971'
 )
 
 prepare() {
@@ -107,9 +101,6 @@ prepare() {
       patch -Np1 -F100 -i "${srcdir:?}/$src" || true
     fi
   done
-
-  # Fix for Qt 6.10
-  sed -e '1i find_package(Qt${QT_VERSION_MAJOR} COMPONENTS GuiPrivate WidgetsPrivate REQUIRED)' -i cmake/external/qt/CMakeLists.txt
 }
 
 pkgver() {
