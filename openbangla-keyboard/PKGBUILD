@@ -5,7 +5,7 @@
 
 pkgname="openbangla-keyboard"
 pkgver="2.0.0"
-pkgrel=8
+pkgrel=9
 pkgdesc="An OpenSource, Unicode compliant Bengali Input Method"
 arch=('x86_64')
 url="http://openbangla.github.io"
@@ -39,7 +39,8 @@ build() {
     -DCMAKE_BUILD_TYPE=None \
     -DCMAKE_SKIP_INSTALL_RPATH=YES \
     -DCMAKE_SKIP_RPATH=YES \
-    -DCMAKE_INSTALL_PREFIX=/usr
+    -DCMAKE_INSTALL_PREFIX=/usr \
+    -DCMAKE_POLICY_VERSION_MINIMUM=3.5
   #	-DBIN_DIR:PATH=/usr/bin \
   #	-DLIBEXECDIR:PATH="/usr/lib/$pkgname"
   make -C build
