@@ -2,7 +2,7 @@
 
 _pkgname="gimp"
 pkgname="$_pkgname-git"
-pkgver=3.1.4.r707.g93a7e92
+pkgver=3.1.4.r1123.g691cc71
 pkgrel=1
 pkgdesc="GNU Image Manipulation Program"
 url="https://gitlab.gnome.org/GNOME/gimp"
@@ -32,6 +32,7 @@ depends=(
 makedepends=(
   'aalib'
   'alsa-lib'
+  'bash-completion'
   'curl'
   'ghostscript'
   'git'
