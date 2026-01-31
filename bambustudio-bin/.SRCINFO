@@ -1,6 +1,6 @@
 pkgbase = bambustudio-bin
 	pkgdesc = PC Software for BambuLab's 3D printers
-	pkgver = 02.05.00.65
+	pkgver = 02.05.00.67
 	pkgrel = 1
 	url = https://github.com/bambulab/BambuStudio
 	arch = x86_64
@@ -18,14 +18,14 @@ pkgbase = bambustudio-bin
 	depends = wayland-protocols
 	depends = libxkbcommon
 	depends = gst-libav
-	depends = webkit2gtk-4.1
+	depends = webkit2gtk
 	conflicts = bambustudio
 	conflicts = bambustudio-git
 	conflicts = squashfuse
-	source = bambustudio-02.05.00.65.AppImage::https://github.com/bambulab/BambuStudio/releases/download/v02.05.00.65/Bambu_Studio_linux_fedora-v02.05.00.64.AppImage
+	source = bambustudio-02.05.00.67.AppImage::https://github.com/bambulab/BambuStudio/releases/download/v02.05.00.67/Bambu_Studio_linux_fedora-v02.05.00.66.AppImage
 	source = BambuStudio.desktop
 	source = bambu-studio
-	sha256sums = f64cc931c0f49ee0acb1f8b9577e49f47d7c0a892120625deafdf0afdf5b2bd3
+	sha256sums = c9dbabc1a1b1dfe01f03ae28635399ed7dd1a0b8ea6d9732bf2d91a39381b0ad
 	sha256sums = SKIP
 	sha256sums = SKIP
 
