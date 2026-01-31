@@ -3,8 +3,8 @@
 # Contributor: Sotirios M. Roussis (xToNouSou) <xtonousou@gmail.com>
 
 pkgname=airgeddon
-pkgver=11.60
-pkgrel=2
+pkgver=11.61
+pkgrel=1
 pkgdesc='Multi-use bash script for Linux systems to audit wireless networks'
 url='https://github.com/v1s1t0r1sh3r3/airgeddon'
 arch=('any')
@@ -44,6 +44,7 @@ optdepends=(
   'pixiewps: Offline bruteforce of the WPS pin exploiting the low or non-existing entropy of some APs'
   'reaver: Brute force attack against Wifi Protected Setup'
   'rfkill: Tool for enabling and disabling wireless devices'
+  'sox: sound alerts for Evil Twin'
   'systemd: System and service manager'
   'tcpdump: A powerful command-line packet analyzer'
   'usbutils: USB Device Utilities'
@@ -54,7 +55,7 @@ optdepends=(
 )
 makedepends=('binutils')
 source=(${pkgname}-${pkgver}.tar.gz::${url}/archive/refs/tags/v${pkgver}.tar.gz)
-sha256sums=('f4bac3d19641581dddc37f3275a8e2293e1ed3eb1921ea69e5feedb34533a73c')
+sha256sums=('5e7ba6d42f8e5b46980dd1e6a81fcde7203c49ef3a9421e63c6166bcb73f4f56')
 
 prepare() {
   cd ${pkgname}-${pkgver}
