@@ -1,0 +1,2 @@
+# Including readme in packages is useless, 99.99% of time.
+eval "$(declare -f package | sed -E -e '/usr\/share\/doc\//d')"
