@@ -1,34 +1,21 @@
 # Maintainer: aur.chaotic.cx
 
-## links
-# https://stockfishchess.org/
-# https://github.com/official-stockfish/Stockfish
-
-## options
-if [ -z "$_srcinfo" ] && [ -z "$_pkgver" ]; then
-  : ${_autoupdate:=true}
-fi
-
 : ${_build_clang:=true}
 
 : ${_build_pgo:=true}
 
-: ${_build_avx:=false}
-: ${_build_git:=true}
-
-unset _pkgtype
-[[ "${_build_avx::1}" == "t" ]] && _pkgtype+="-avx"
-[[ "${_build_git::1}" == "t" ]] && _pkgtype+="-git"
-
 _pkgname=stockfish
-pkgname="$_pkgname${_pkgtype:-}"
-pkgver=17.1.r0.g03e2748
-pkgrel=2
+pkgname="$_pkgname-git"
+pkgver=18.r0.gcb3d4ee
+pkgrel=1
 pkgdesc="A strong UCI chess engine"
 url="https://github.com/official-stockfish/Stockfish"
 license=('GPL-3.0-only')
 arch=('x86_64')
 
+depends=(
+  'gcc-libs'
+)
 makedepends=(
   'git'
 )
@@ -44,32 +31,17 @@ if [[ "${_build_clang::1}" == "t" ]]; then
   )
 fi
 
-_source_stable() {
-  _update_version
+provides=("$_pkgname")
+conflicts=("$_pkgname")
 
-  _pkgsrc="Stockfish-sf_$_pkgver"
-  source+=("$_pkgname-$_pkgver.zip"::"$url/archive/sf_$_pkgver.zip")
-  sha256sums+=('SKIP')
+_pkgsrc="$_pkgname"
+source=("$_pkgsrc"::"git+$url.git")
+sha256sums=('SKIP')
 
-  pkgver() {
-    echo "${_pkgver:?}"
-  }
-}
-
-_source_git() {
-  provides+=(stockfish="${pkgver%%.r*}")
-  conflicts+=(stockfish)
-
-  _pkgsrc="$_pkgname"
-  source+=("$_pkgsrc"::"git+$url.git")
-  sha256sums+=('SKIP')
-
-  pkgver() {
-    cd "$_pkgsrc"
-
-    git describe --long --tags --abbrev=7 --match="sf_[0-9]*" \
-      | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
-  }
+pkgver() {
+  cd "$_pkgsrc"
+  git describe --long --tags --abbrev=7 --match="sf_[0-9]*" \
+    | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
 }
 
 prepare() {
@@ -85,11 +57,6 @@ prepare() {
 }
 
 build() {
-  if [ "${_build_avx::1}" == "t" ]; then
-    export CFLAGS="$(echo "$CFLAGS" | sed -E 's@(\s*-(march|mtune)=\S+\s*)@ @g;s@\s*-O[0-9]\s*@ @g;s@\s+@ @g') -march=x86-64-v3 -mtune=generic -O3"
-    export CXXFLAGS="$(echo "$CXXFLAGS" | sed -E 's@(\s*-(march|mtune)=\S+\s*)@ @g;s@\s*-O[0-9]\s*@ @g;s@\s+@ @g') -march=x86-64-v3 -mtune=generic -O3"
-  fi
-
   # aur/stockfish, aur/stockfish-git, and upstream stockfish build scripts
   # detect and force-enable cpu features, ignoring user CFLAGS and CXXFLAGS,
   # producing binaries that are unusable on some computers.
@@ -155,31 +122,3 @@ package() {
   cd "$_pkgsrc/src"
   make PREFIX="$pkgdir/usr" install
 }
-
-_update_version() {
-  : ${_pkgver:=${pkgver%%.r*}}
-
-  if [[ "${_autoupdate::1}" != "t" ]]; then
-    return
-  fi
-
-  local _response=$(curl -Ssf "$url/releases.atom")
-  local _tag=$(
-    printf '%s' "$_response" \
-      | grep '/releases/tag/sf_[0-9]' \
-      | sed -E 's@^.*/releases/tag/(.*)".*$@\1@' \
-      | sort -rV | head -1
-  )
-  local _pkgver_new="${_tag#sf_}"
-
-  # update _pkgver
-  if [ "$_pkgver" != "${_pkgver_new:?}" ]; then
-    _pkgver="${_pkgver_new:?}"
-  fi
-}
-
-if [ "${_build_git::1}" != "t" ]; then
-  _source_stable
-else
-  _source_git
-fi
