@@ -1,4 +1,0 @@
-depends+=(
-  'libfmt.so'
-  'libspdlog.so'
-)
