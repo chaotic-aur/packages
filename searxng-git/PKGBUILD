@@ -2,13 +2,13 @@
 
 pkgname=searxng-git
 _pkgname=searxng
-pkgver=r9110.3f91ac4
+pkgver=r9201.ad42b55
 pkgrel=1
 pkgdesc="A privacy-respecting, hackable metasearch engine"
 arch=('any')
 url="https://searxng.github.io/searxng/"
 license=('AGPL-3.0-or-later')
-makedepends=('openssl' 'git' 'python-build' 'python-wheel' 'python-setuptools' 'python-msgspec')
+makedepends=('openssl' 'git' 'python-build' 'python-wheel' 'python-setuptools' 'python-msgspec' 'python-yaml')
 depends=('valkey')
 provides=('searxng')
 conflicts=('searx' 'searx-git')
