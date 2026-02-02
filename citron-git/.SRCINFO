@@ -1,6 +1,6 @@
 pkgbase = citron-git
 	pkgdesc = Yet another emulator fork
-	pkgver = 0.11.0.r8.ga1b317a
+	pkgver = 2026.02.1.r0.g544456b
 	pkgrel = 1
 	url = https://git.citron-emu.org/citron/emulator
 	arch = x86_64
@@ -26,6 +26,7 @@ pkgbase = citron-git
 	depends = libusb
 	depends = openal
 	depends = qt6-multimedia
+	depends = qt6-svg
 	depends = qt6-webengine
 	depends = sdl2
 	provides = citron
