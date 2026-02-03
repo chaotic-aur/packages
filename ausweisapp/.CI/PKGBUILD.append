@@ -1,0 +1,10 @@
+url="https://github.com/Governikus/AusweisApp"
+license=('EUPL-1.2')
+
+# unnecessary depends
+depends=(${depends[@]//http-parser/})
+
+# remove someday
+provides=('ausweisapp2')
+conflicts=('ausweisapp2')
+replaces=('ausweisapp2')
