@@ -9,3 +9,19 @@ options=('!debug' '!emptydirs' '!lto' '!staticlibs')
 # disable cpptrace
 depends=(${depends[@]//cpptrace*/})
 eval "$(declare -f build | sed -E -e 's&(-DCMAKE_BUILD_TYPE)&-DLADYBIRD_ENABLE_CPPTRACE=OFF \1&')"
+
+# prevent march=native
+if declare -F prepare >/dev/null; then
+  eval "_orig_$(declare -f prepare)"
+else
+  _orig_prepare() {
+    :
+  }
+fi
+
+_pkgsrc="ladybird"
+prepare() {
+  (_orig_prepare)
+
+  sed -e '/march=/d' -i "$_pkgsrc"/Meta/CMake/common_compile_options.cmake
+}
