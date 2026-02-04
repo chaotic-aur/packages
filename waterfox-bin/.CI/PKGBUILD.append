@@ -1,0 +1,9 @@
+if [ $(vercmp 6.6.8-1 $pkgver-$pkgrel) -gt 0 ]; then
+  pkgver=6.6.8
+  pkgrel=1
+
+  _pkgsrc="$pkgname-$pkgver"
+  _pkgext="tar.gz"
+  source[0]="https://cdn.waterfox.com/waterfox/releases/6.6.8/Linux_x86_64/waterfox-6.6.8.tar.bz2"
+  sha512sums[0]='0951435539c1a07d7a33657917ea51431bf9be75b00005a100a54aa2f067ff5718d0fc6ee974d00fdf1f8e1c87030b030d43452457d2315f2fdf9d8b6797e28c'
+fi
