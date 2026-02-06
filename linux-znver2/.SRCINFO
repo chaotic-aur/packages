@@ -61,6 +61,7 @@ pkgname = linux
 pkgname = linux-headers
 	pkgdesc = Headers and scripts for building modules for the Linux kernel
 	depends = pahole
+	provides = LINUX-HEADERS
 
 pkgname = linux-docs
 	pkgdesc = Documentation for the Linux kernel
