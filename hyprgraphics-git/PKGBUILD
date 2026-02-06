@@ -2,7 +2,7 @@
 
 _pkgname="hyprgraphics"
 pkgname="$_pkgname-git"
-pkgver=0.1.5.r2.g157cc52
+pkgver=0.5.0.r3.g13c5366
 pkgrel=1
 pkgdesc="Hyprland graphics / resource utilities"
 arch=('x86_64' 'aarch64')
@@ -13,6 +13,7 @@ depends=(
   cairo
   file
   hyprutils-git
+  libgl
   libjpeg
   libjxl
   libpng
