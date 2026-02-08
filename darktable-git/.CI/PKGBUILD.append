@@ -1,0 +1,7 @@
+unset install
+
+pkgdesc="Utility to organize and develop raw images"
+url="https://github.com/darktable-org/darktable"
+license=('GPL-3.0-or-later')
+
+depends+=('potrace')
