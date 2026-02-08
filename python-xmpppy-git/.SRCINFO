@@ -6,8 +6,8 @@ pkgbase = python-xmpppy-git
 	arch = any
 	license = GPL3
 	makedepends = git
+	makedepends = python-setuptools
 	depends = python
-	depends = python-setuptools
 	provides = python-xmpppy=0.6.2.r0.gef1cbd6
 	conflicts = xmpppy
 	conflicts = python-xmpppy
