@@ -2,18 +2,18 @@
 
 pkgname=gamescope-session-git
 _gitdir=gamescope-session
-pkgver=r231.127f432
+pkgver=r339.b5c2d0d
 pkgrel=1
 pkgdesc="Common gamescope session files"
 arch=('any')
-url="https://github.com/ChimeraOS/gamescope-session"
+url="https://github.com/OpenGamingCollective/${_gitdir}"
 license=('MIT')
 groups=()
 depends=('gamescope')
 makedepends=('git')
 optdepends=('mangohud: for performance overlay')
 install=gamescope-session.install
-source=("${_gitdir}::git+https://github.com/ChimeraOS/${_gitdir}.git")
+source=("${_gitdir}::git+${url}.git")
 md5sums=('SKIP')
 
 pkgver() {
