@@ -13,7 +13,10 @@ pkgver() {
 }
 
 build() {
-  arch-meson "$_pkgsrc" build
+  # build scripts assume inside source tree
+  cd "$_pkgsrc"
+
+  arch-meson build
   meson compile -C build
 
   # prevent I/O error
