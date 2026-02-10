@@ -1,0 +1,21 @@
+export CMAKE_GENERATOR=Ninja
+makedepends+=('ninja')
+
+# remove fmt, rapidyaml
+makedepends=(${makedepends[@]//fmt*/})
+makedepends=(${makedepends[@]//rapidyaml*/})
+
+_pkgsrc="$_pkgname"
+
+eval "_orig_$(declare -f prepare | grep -Ev '(fmt|rapidyaml|USE_SYSTEM_LIBS)')"
+
+prepare() {
+  (_orig_prepare)
+  cd "$_pkgsrc"
+  git -c protocol.file.allow=always submodule update --init --depth=1
+  git -C 3rdparty/fmt submodule update --init --depth=1
+  git -C 3rdparty/rapidyaml/rapidyaml submodule update --init --depth=1
+  git -C 3rdparty/rapidyaml/rapidyaml/ext/c4core submodule update --init --recursive --depth=1
+}
+
+eval "$(declare -f package | sed -E -e '/depends\+?=/d')"
