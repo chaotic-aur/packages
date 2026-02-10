@@ -1,18 +1,22 @@
-# Maintainer: aur.chaotic.cx
+# Maintainer:
+# Contributor: Ivan Gabaldon <aur[at]inetol.net>
+# Contributor: archlinuxbits <archlinuxbits at proton.me>
 
-## links
-# https://www.tradingview.com/desktop/
+: ${_electron_version=38}
 
 _pkgname="tradingview"
-_snapname="tradingview"
 pkgname="$_pkgname"
-pkgver=2.9.5
+pkgver=3.0.0
 pkgrel=2
 pkgdesc='Charting platform for traders and investors'
 arch=('x86_64')
-url="https://snapcraft.io/$_snapname"
+url="https://www.tradingview.com/desktop/"
 license=('LicenseRef-TradingView')
 
+depends=(
+  "electron${_electron_version}"
+  'libsecret'
+)
 makedepends=(
   'html-xml-utils'
   'sha3sum'
@@ -20,131 +24,74 @@ makedepends=(
   'w3m'
 )
 
-_source_main() {
-  source=("$_filename"::"$_dl_url")
-  sha256sums=('SKIP')
-}
+options=('!debug' '!strip')
 
 _terms_of_use="$_pkgname-eula"
+_pkgsrc="$_pkgname-$pkgver"
+source=(
+  "$_pkgsrc.snap"::"https://api.snapcraft.io/api/v1/snaps/download/nJdITJ6ZJxdvfu8Ch7n5kH5P99ClzBYV_69.snap"
+  "$_terms_of_use.html"::"https://www.tradingview.com/policies/"
+)
+sha256sums=(
+  '27f706e1ae40e80d7750b77a4893fc20bec2e4e9059e5985a29f78ae75563ce0'
+  'SKIP'
+)
 
 prepare() {
-  # check upstream sha3-384sum
-  printf '%s  %s' "$_cksum" "$_filename" | sha3-384sum -c
-
-  # download tradingview policies/eula
-  curl --no-progress-meter \
-    -o "$_terms_of_use-1.html" \
-    "https://www.tradingview.com/policies/"
-
-  hxextract .tv-policies "$_terms_of_use-1.html" \
+  hxextract .tv-policies "$_terms_of_use.html" \
     1> "$_terms_of_use-2.html" \
     2> /dev/null
 
   w3m -O UTF-8 -cols 80 -dump "$_terms_of_use-2.html" > "$_terms_of_use.txt"
 
   # unpack
-  mkdir -p "$_pkgname-$_pkgver"
-  unsquashfs -q -n -f -d "$_pkgname-$_pkgver/" "$_filename"
-
-  mv "$_pkgname-$_pkgver/meta/gui/$_snapname.desktop" "$srcdir/$_pkgname.desktop"
-  sed \
-    -e 's@${SNAP}/meta/gui/icon.png@'"${_pkgname}"'@g' \
-    -e 's@^Comment=.*$@@g' \
-    -e 's@^Categories=Finance;$@Categories=Office;Finance;@g' \
-    -i "$srcdir/$_pkgname.desktop"
-
-  mv "$_pkgname-$_pkgver/meta/gui/icon.png" "$srcdir"
-  rm -r "$_pkgname-$_pkgver/"{data-dir/,gnome-platform/,lib/,meta/,scripts/,usr/,*.sh}
+  mkdir -p "$_pkgsrc"
+  unsquashfs -q -n -f -d "$_pkgsrc/" "$_pkgsrc.snap"
 }
 
 package() {
-  depends+=(
-    'alsa-lib'
-    'at-spi2-core'
-    'bash'
-    'cairo'
-    'dbus'
-    'expat'
-    'gcc-libs'
-    'glib2'
-    'glibc'
-    'gtk3'
-    'hicolor-icon-theme'
-    'libcups'
-    'libdrm'
-    'libsecret'
-    'libx11'
-    'libxcb'
-    'libxcomposite'
-    'libxdamage'
-    'libxext'
-    'libxfixes'
-    'libxkbcommon'
-    'libxrandr'
-    'mesa'
-    'nspr'
-    'nss'
-    'pango'
-    'wayland'
-  )
+  # asar
+  mkdir -pm755 "$pkgdir/usr/lib/$_pkgname"
+  cp -r "$_pkgsrc/resources/"* "$pkgdir/usr/lib/$_pkgname/"
 
-  # opt
-  install -d "$pkgdir/opt/$_pkgname"
-  cp -r "$srcdir/$_pkgname-$pkgver/"* "$pkgdir/opt/$_pkgname"
+  # launcher
+  sed -E -e '/^Comment=/d' \
+    -e 's&^(Icon)=.*$&\1='"$_pkgname&" \
+    -e 's&^(Categories)=(Finance;)$&\1=Office;\2&' \
+    -i "$_pkgsrc/meta/gui/$_pkgname.desktop"
 
-  # symlink binary
-  install -d "$pkgdir/usr/bin"
-  ln -s "/opt/$_pkgname/$_pkgname" "$pkgdir/usr/bin/$_pkgname"
+  install -Dm644 "$_pkgsrc/meta/gui/$_pkgname.desktop" -t "$pkgdir/usr/share/applications/"
 
-  # icons
-  install -Dm644 "$srcdir/icon.png" "$pkgdir/usr/share/pixmaps/$_pkgname.png"
-  install -Dm644 "$srcdir/$_pkgname.desktop" "$pkgdir/usr/share/applications/$_pkgname.desktop"
+  # icon
+  install -Dm644 "$_pkgsrc/meta/gui/icon.png" "$pkgdir/usr/share/icons/hicolor/512x512/apps/$_pkgname.png"
 
-  # license/eula
-  install -Dm644 "$_terms_of_use.txt" -t "$pkgdir/usr/share/licenses/$pkgname"
-}
+  # license
+  install -Dm644 "$_terms_of_use.txt" -t "$pkgdir/usr/share/licenses/$pkgname/"
 
-_update_version() {
-  : ${_pkgver:=${pkgver%%.r*}}
+  # script
+  install -Dm755 /dev/stdin "$pkgdir/usr/bin/$_pkgname" << END
+#!/usr/bin/env bash
 
-  _response=$(
-    curl -H 'Snap-Device-Series: 16' --no-progress-meter "http://api.snapcraft.io/v2/snaps/info/$_snapname" \
-      | sed 's@,@,\n@g'
-  )
+name=$_pkgname
+flags_file="\${XDG_CONFIG_HOME:-\$HOME/.config}/\${name}-flags.conf"
 
-  _dl_url=$(
-    printf '%s' "$_response" \
-      | grep '"url"' \
-      | sed -E 's@^"url":"(https:.*\.snap)".*$@\1@' \
-      | head -1
-  )
+lines=()
+if [[ -f "\${flags_file}" ]]; then
+  mapfile -t lines < "\${flags_file}"
+fi
 
-  _pkgver_new=$(
-    printf '%s' "$_response" \
-      | grep '"version"' \
-      | sed -E 's@^"version":"([0-9]+\.[0-9]+\.[0-9]+)".*$@\1@' \
-      | head -1
-  )
-
-  # sha3-384 checksum
-  _cksum=$(
-    printf '%s' "$_response" \
-      | grep '"sha3-384"' \
-      | sed -E 's@^"sha3-384":"([a-f0-9]+)".*$@\1@' \
-      | head -1
-  )
-
-  _filename="$_pkgname-${_pkgver_new:?}.snap"
-
-  # update _pkgver
-  if [ "$_pkgver" != "${_pkgver_new:?}" ]; then
-    _pkgver="${_pkgver_new:?}"
+flags=()
+for line in "\${lines[@]}"; do
+  if [[ ! "\${line}" =~ ^[[:space:]]*#.* ]] && [[ -n "\${line}" ]]; then
+    flags+=("\${line}")
   fi
+done
 
-  pkgver() {
-    printf '%s' "${_pkgver:?}"
-  }
+: \${ELECTRON_IS_DEV:=0}
+export ELECTRON_IS_DEV
+: \${ELECTRON_FORCE_IS_PACKAGED:=true}
+export ELECTRON_FORCE_IS_PACKAGED
+
+exec electron${_electron_version} "\${flags[@]}" "/usr/lib/$_pkgname/app.asar" "\$@"
+END
 }
-
-_update_version
-_source_main
