@@ -1,125 +1,100 @@
-# Maintainer: aur.chaotic.cx
+# Maintainer: @RubenKelevra
+# Contributor: Alex Henrie <alexhenrie24@gmail.com>
 
-## options
-: ${_electron_version=}
-: ${_nodeversion=}
-: ${_install_path:=usr/lib}
+_electron_pkg=electron39
 
-_pkgname="ipfs-desktop"
-pkgname="$_pkgname"
+_archive_extension="tar.gz"
+
+pkgname=ipfs-desktop
 pkgver=0.47.0
-pkgrel=1
+pkgrel=2
+epoch=1
 pkgdesc="Desktop client for the InterPlanetary File System"
-url="https://github.com/ipfs/ipfs-desktop"
-license=('MIT')
-arch=('x86_64')
-
+arch=(x86_64)
+url="https://github.com/ipfs/$pkgname"
+license=(MIT)
 depends=(
-  "electron${_electron_version:-}"
+  "$_electron_pkg"
 )
 makedepends=(
-  'libicns'
-  'nvm'
+  nodejs
+  npm
 )
 
+source=(
+  "$pkgname-$pkgver.$_archive_extension::$url/archive/refs/tags/v$pkgver.$_archive_extension"
+  "$pkgname.desktop"
+  "$pkgname-startup.sh"
+)
+b2sums=('e32ddb5a86147e9fbeb45093a1d72d4f4e85a63c93a99c785d24f24f2f9c06229c1ea14c81f34f7560a5c1d022b5fe294e227f310f10e9832788c6d85f52dfd7'
+  '849d57fd59653ed0c6eca01769ad12a01f37f6a5316f1a83c0bf7cae576074b978e3ca555d50a56114d177e5fe4817338106698716f054a3e18ae1c81d7a8785'
+  '2d7bfa3be33c0199cbe18889e477dc0c207c52d801f52a8b24ae09646f9bb3bf77046d1137dedc08d1481a6995071c4a480bf3884123d356fcd8af69fbfb554f')
+
 _pkgsrc="$pkgname-$pkgver"
-_pkgext="tar.gz"
-source=("$_pkgsrc.$_pkgext"::"$url/archive/refs/tags/v$pkgver.$_pkgext")
-sha256sums=('SKIP')
-
-_nvm_env() {
-  export HOME="$SRCDEST/node-home"
-  export NVM_DIR="$SRCDEST/node-nvm"
-
-  # set up nvm
-  source /usr/share/nvm/init-nvm.sh || [[ $? != 1 ]]
-  nvm install ${_nodeversion:-node}
-  nvm use ${_nodeversion:-node}
-}
 
 _electron_env() {
-  export SYSTEM_ELECTRON_VERSION=$(< "/usr/lib/electron${_electron_version:-}/version")
-  export ELECTRON_VERSION=${SYSTEM_ELECTRON_VERSION%%.*}
+  export SYSTEM_ELECTRON_VERSION=$(< "/usr/lib/${_electron_pkg}/version")
 }
 
-prepare() {
-  _electron_env
+_warn_if_electron_outdated() {
+  local _installed _latest_local _vf _v
 
-  # set electron version
-  sed -E \
-    -e 's&^(\s*)("electron"): "(.*)"(,?)$&\1\2: "'"$SYSTEM_ELECTRON_VERSION"'"\4&' \
-    -i "$_pkgsrc/package.json"
+  [[ -r "/usr/lib/${_electron_pkg}/version" ]] || return 0
+  _installed=$(< "/usr/lib/${_electron_pkg}/version")
+  _latest_local=$_installed
 
-  # extract icons
-  icns2png -x "$_pkgsrc"/assets/build/icon.icns
+  shopt -s nullglob
+  for _vf in /usr/lib/electron*/version; do
+    _v=$(< "$_vf")
+    if [[ "$(printf '%s\n%s\n' "$_latest_local" "$_v" | sort -V | tail -n1)" != "$_latest_local" ]]; then
+      _latest_local=$_v
+    fi
+  done
+  shopt -u nullglob
+
+  if [[ $_installed != "$_latest_local" ]]; then
+    echo "==> WARNING: Packaging uses not the latest major version of electron installed. ${_electron_pkg} ${_installed} is used, but a newer local Electron version (${_latest_local}) is available on the system." >&2
+  fi
 }
 
-build() (
-  _nvm_env
+build() {
+  _warn_if_electron_outdated
   _electron_env
 
   local _builder_options=(
-    -c.electronDist="'/usr/lib/electron${ELECTRON_VERSION:-}'"
-    -c.electronVersion=${SYSTEM_ELECTRON_VERSION}
+    "-c.electronDist=/usr/lib/${_electron_pkg}"
+    "-c.electronVersion=${SYSTEM_ELECTRON_VERSION}"
   )
 
   cd "$_pkgsrc"
-  npm install --no-audit --no-fund
+  npm ci --no-audit --no-fund
   npm run build
-  npm exec -c "electron-builder --linux --dir --publish never ${_builder_options[@]}"
-)
+  npm exec -- electron-builder --linux --dir --publish never "${_builder_options[@]}"
+}
 
 package() {
   _electron_env
 
-  depends=("electron${ELECTRON_VERSION:-}")
+  depends=("$_electron_pkg")
 
-  mkdir -pm755 "$pkgdir/$_install_path/$_pkgname"
-  cp -a "$_pkgsrc/dist/linux-unpacked/resources"/* -t "$pkgdir/$_install_path/$_pkgname/"
+  mkdir -pm755 "$pkgdir/usr/lib/$pkgname"
+  cp -a "$_pkgsrc/dist/linux-unpacked/resources"/* -t "$pkgdir/usr/lib/$pkgname/"
+  rm -f \
+    "$pkgdir/usr/lib/$pkgname/app.asar.unpacked/node_modules/kubo/tsconfig.json"
+  rm -f \
+    "$pkgdir/usr/lib/$pkgname/app.asar.unpacked/node_modules/kubo/LICENSE" \
+    "$pkgdir/usr/lib/$pkgname/app.asar.unpacked/node_modules/kubo/kubo/README.md" \
+    "$pkgdir/usr/lib/$pkgname/app.asar.unpacked/node_modules/kubo/kubo/build-log" \
+    "$pkgdir/usr/lib/$pkgname/app.asar.unpacked/node_modules/kubo/kubo/install.sh" \
+    "$pkgdir/usr/lib/$pkgname/app.asar.unpacked/node_modules/kubo/kubo/LICENSE" \
+    "$pkgdir/usr/lib/$pkgname/app.asar.unpacked/node_modules/kubo/kubo/LICENSE-APACHE" \
+    "$pkgdir/usr/lib/$pkgname/app.asar.unpacked/node_modules/kubo/kubo/LICENSE-MIT"
 
-  install -Dm644 "icon_256x256x32.png" "$pkgdir/usr/share/pixmaps/$_pkgname.png"
-
+  install -Dm644 "$_pkgsrc/assets/webui/ipfs-logo-512-ice.png" "$pkgdir/usr/share/pixmaps/$pkgname.png"
   install -Dm644 "$_pkgsrc/LICENSE" -t "$pkgdir/usr/share/licenses/$pkgname"
 
-  install -Dm755 /dev/stdin "$pkgdir/usr/bin/$_pkgname" << END
-#!/usr/bin/env bash
-
-name=$_pkgname
-flags_file="\${XDG_CONFIG_HOME:-\$HOME/.config}/\${name}-flags.conf"
-
-lines=()
-if [[ -f "\${flags_file}" ]]; then
-  mapfile -t lines < "\${flags_file}"
-fi
-
-flags=()
-for line in "\${lines[@]}"; do
-  if [[ ! "\${line}" =~ ^[[:space:]]*#.* ]] && [[ -n "\${line}" ]]; then
-    flags+=("\${line}")
-  fi
-done
-
-: \${ELECTRON_IS_DEV:=0}
-export ELECTRON_IS_DEV
-: \${ELECTRON_FORCE_IS_PACKAGED:=true}
-export ELECTRON_FORCE_IS_PACKAGED
-
-exec electron${ELECTRON_VERSION:-} "\${flags[@]}" "/$_install_path/$_pkgname/app.asar" "\$@"
-END
-
-  install -Dm644 /dev/stdin "$pkgdir/usr/share/applications/$_pkgname.desktop" << END
-[Desktop Entry]
-Type=Application
-Name=IPFS Desktop
-Comment=$pkgdesc
-Exec=$_pkgname %u
-Icon=$_pkgname
-Terminal=false
-StartupNotify=true
-Categories=Network;FileTransfer;P2P;
-MimeType=x-scheme-handler/ipfs;x-scheme-handler/ipns;
-StartupWMClass=IPFS Desktop
-END
+  install -Dm755 "$srcdir/ipfs-desktop-startup.sh" "$pkgdir/usr/bin/$pkgname"
+  install -Dm644 "$srcdir/ipfs-desktop.desktop" "$pkgdir/usr/share/applications/$pkgname.desktop"
 
   chmod -R u+rwX,go+rX,go-w "$pkgdir/"
 }
