@@ -1,6 +1,6 @@
 pkgbase = google-chrome
 	pkgdesc = The popular web browser by Google (Stable Channel)
-	pkgver = 144.0.7559.132
+	pkgver = 145.0.7632.45
 	pkgrel = 1
 	url = https://www.google.com/chrome
 	install = google-chrome.install
@@ -20,10 +20,10 @@ pkgbase = google-chrome
 	optdepends = kwallet: for storing passwords in KWallet
 	options = !emptydirs
 	options = !strip
-	source = https://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_144.0.7559.132-1_amd64.deb
+	source = https://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_145.0.7632.45-1_amd64.deb
 	source = eula_text.html
 	source = google-chrome-stable.sh
-	sha512sums = 5e0b5b9e16471fc1da53e971f485d70c3ddec8a1d6ec0b0438adfb07eaa0771589c3702c4aeb3cde3b07f886dfc255223affe19a3820b722dc51a24216434205
+	sha512sums = c116ab90125b0e8cee84a72084fc286aef0f95e9a75e5856ee1f59ddcc2cc04b2f1d654ca6c996f25d19ad8a54a8ed375a65dd31f170d03c628a00c56769c7bf
 	sha512sums = a225555c06b7c32f9f2657004558e3f996c981481dbb0d3cd79b1d59fa3f05d591af88399422d3ab29d9446c103e98d567aeafe061d9550817ab6e7eb0498396
 	sha512sums = de02b498a4b5b93e21622c8dba57befe795d733a04656be911cc38e28bfef0e20470450f44be523bbde8d4de28f79c10434846ca01fc2a2f4e67707b79332f94
 
