@@ -2,12 +2,6 @@
   description = "Chaotic 4.0 flake ❄️";
 
   inputs = {
-    # Chaotic Nyx (binary cache)
-    chaotic = {
-      url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
-      inputs.jovian.follows = "";
-    };
-
     # Local debug builds using infra 4.0 code
     chaotic-portable-builder = {
       owner = "garuda-linux";
@@ -26,12 +20,12 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
 
     # The single source of truth
-    nixpkgs.follows = "chaotic/nixpkgs";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     # Easy linting for PKGBUILDs and other things inside the devshell
     pre-commit-hooks = {
       url = "github:cachix/pre-commit-hooks.nix";
-      inputs.nixpkgs.follows = "chaotic/nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
   outputs =
