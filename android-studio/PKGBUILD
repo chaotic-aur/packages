@@ -10,7 +10,8 @@
 # Maintainer: Kordian Bruck <k@bruck.me>
 
 pkgname=android-studio
-pkgver=2025.2.3.9
+pkgver=2025.3.1.8
+_vername="panda1-patch1"
 pkgrel=1
 pkgdesc="The official Android IDE (Stable branch)"
 arch=('i686' 'x86_64')
@@ -22,10 +23,10 @@ optdepends=('gtk2: GTK+ look and feel'
   'libgl: emulator support'
   'ncurses5-compat-libs: native debugger support')
 options=('!strip')
-source=("https://dl.google.com/dl/android/studio/ide-zips/$pkgver/android-studio-$pkgver-linux.tar.gz"
+source=("https://dl.google.com/dl/android/studio/ide-zips/$pkgver/android-studio-$_vername-linux.tar.gz"
   "$pkgname.desktop"
   "license.html")
-sha256sums=('986ea6cacb36da723f2c8550cccd7d8cd3e8b8b7bb2446d3a8bf39bbaf91abc1'
+sha256sums=('678b8495f6368938927a8c8cc1a82484dd47e3640b77ec8b9983dc95722cda42'
   '73cd2dde1d0f99aaba5baad1e2b91c834edd5db3c817f6fb78868d102360d3c4'
   '9a7563f7fb88c9a83df6cee9731660dc73a039ab594747e9e774916275b2e23e')
 
