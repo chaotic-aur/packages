@@ -1,15 +1,8 @@
-epoch=2
-
 pkgdesc="${pkgdesc%%.*}"
+
+depends+=('libplacebo.so')
 
 provides=(
   ${provides[@]//ffmpeg*/}
-  "ffmpeg=$epoch:$pkgver"
+  "ffmpeg=2:$pkgver"
 )
-
-eval _orig_"$(declare -f package)"
-
-package() {
-  depends+=('libplacebo.so')
-  _orig_package
-}
