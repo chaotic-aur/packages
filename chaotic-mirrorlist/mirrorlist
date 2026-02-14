@@ -11,6 +11,10 @@ Server = https://cdn-mirror.chaotic.cx/$repo/$arch
 # * By: Universidade Federal de São Carlos (São Carlos)
 Server = https://br-mirror.chaotic.cx/$repo/$arch
 
+# Canada
+# * By: All Things Linux
+Server = https://ca-mirror.chaotic.cx/$repo/$arch
+
 # Chile
 # * By Jonathan Gutiérrez
 Server = https://cl-mirror.chaotic.cx/$repo/$arch
