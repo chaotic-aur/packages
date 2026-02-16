@@ -1,3 +1,36 @@
+## GE-Proton10-32
+
+HOTFIX:
+ - Forgot to update protonfix to enable gstreamer for Akiba's Trip (Undead & Undressed) -- fixed now so voice and background music actually work (as well as video playback and menu sounds which worked in the previous fix). As mentioned in 10-31 game should be fully functional now.
+
+## GE-Proton10-31
+
+HOTFIX:
+- reverted/disabled winewayland systray icon patch introduced in 10-30 (it caused a lot of breakage in multiple games, as well as breaking in gamescope session on steam deck. no bueno.)
+- fixed video playback regression introduced in 10-29 (fixes video playback in Nioh 3 and a few other games)
+- fixed Warhammer 40k Darktide crashing on opening (issue introduced in 10-29)
+ 
+Fixes:
+- fixed Arknights Endfield anti-cheat triggering if wayland wasn't enabled
+- fixed Duet Night Abyss launch crash & login window not showing on new install
+- fixed Akiba's trip cutscenes + audio + voice audio (game fully works now)
+- fixed Warhammer 40k Vermintide 2 EAC failing file validation when running the game from the launcher (holy butts 6+ year old bug)
+- added protonfix for Warhammer 40k Darktide to skip the launcher -- this prevents a bug where sometimes the game would launch as an audio-only background process when run from the launcher.
+
+## GE-Proton10-30
+
+- add upstream patches for Arknights Endfield
+- add pending upstream patch to allow proper placement of systray icons when winewayland is enabled
+- import upstream changes to fix EA games
+- updated em10/wine-wayland patches
+- add changes to allow compiling on aarch64 (yes, proton-ge works on aarch64/ARM! -- still very WIP, YMMV)
+
+Notes regarding aarch64(ARM):
+- currently needs unreleased version of umu-launcher in order to use, as currently there is no aarch64 version of steam client. the umu-launcher changes will be pushed soon.
+- 32 bit games are hit or miss from my limited testing
+- gog installers need X87ReducedPrecision changed to 0 in Config.json for FEX (inside the Proton version's folder) to allow them to run
+- must stress/reiterate YMMV -- your mileage may vary. The upstream work with proton/fex is NOT something we are involved in. If it works then great, if it doesn't -- don't ask us. It's WIP on Valve's side.
+
 ## GE-Proton10-29
 
 Proton:
