@@ -1,0 +1,5 @@
+depends=(
+  'clamav'
+  'hicolor-icon-theme'
+  'qt6-base'
+)
