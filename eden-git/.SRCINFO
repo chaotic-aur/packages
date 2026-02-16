@@ -1,7 +1,7 @@
 pkgbase = eden-git
 	pkgdesc = Yet another emulator fork
-	pkgver = 0.1.1.r80.g19e2dba
-	pkgrel = 2
+	pkgver = 0.1.1.r88.g50ec089
+	pkgrel = 1
 	url = https://git.eden-emu.dev/eden-emu/eden
 	arch = x86_64
 	license = GPL-3.0-or-later
@@ -9,6 +9,7 @@ pkgbase = eden-git
 	makedepends = cmake
 	makedepends = git
 	makedepends = glslang
+	makedepends = llvm
 	makedepends = nasm
 	makedepends = ninja
 	makedepends = nlohmann-json
