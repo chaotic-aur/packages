@@ -17,6 +17,7 @@ depends=(
   'libfmt.so'           # fmt
   'libopus.so'          # opus
   'mbedtls'
+  'qt6-charts'
   'qt6-webengine'
   'quazip-qt6'
 )

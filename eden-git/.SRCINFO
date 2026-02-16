@@ -24,6 +24,7 @@ pkgbase = eden-git
 	depends = libfmt.so
 	depends = libopus.so
 	depends = mbedtls
+	depends = qt6-charts
 	depends = qt6-webengine
 	depends = quazip-qt6
 	provides = eden
