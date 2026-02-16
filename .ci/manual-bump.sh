@@ -21,32 +21,13 @@ else
   IFS=':' read -r -a PACKAGES_LIST <<<"$PACKAGES"
 fi
 
-# Manage the .state worktree to confine the state of packages to a separate branch
-# The goal is to keep the commit history clean
-function manage_state() {
-  git fetch origin state 2>/dev/null || true
-
-  if git show-ref --quiet "origin/state"; then
-    # Create local state branch tracking origin/state if it doesn't exist
-    if ! git show-ref --quiet "refs/heads/state"; then
-      git branch state origin/state
-    fi
-    git worktree add .state origin/state --detach -q
-    git worktree add .newstate state -q
-  else
-    mkdir .state
-    git worktree add .newstate -B state --orphan -q
-  fi
-}
-
-function collect_changed_libs() {
+function collect_versions() {
   set -euo pipefail
+
+  local DEST_FILE="$1"
 
   if [ -z "$CI_LIB_DB" ]; then
     return 0
-  fi
-  if [ ! -f .state/.version-state ]; then
-    touch .state/.version-state
   fi
 
   IFS=' ' read -r -a link_array <<<"${CI_LIB_DB//\"/}"
@@ -61,13 +42,14 @@ function collect_changed_libs() {
   # Sort versions file in-place because comm requires it
   sort -o "${_TEMP_LIB}/version-state"{,}
 
-  mv "${_TEMP_LIB}/version-state" .newstate/.version-state
+  dd if="${_TEMP_LIB}/version-state" of="${DEST_FILE}"
   rm -rf "$_TEMP_LIB"
 }
 
 # Force bump a package by incrementing pkgrel
 function force_bump() {
-  local package="$1"
+  local versions_file="$1"
+  local package="$2"
   unset VARIABLES
   declare -A VARIABLES=()
   UTIL_READ_MANAGED_PACAKGE "$package" VARIABLES || true
@@ -75,10 +57,10 @@ function force_bump() {
   # Force writing config even if it didn't exist
   unset 'VARIABLES[CI_NO_CONFIG]'
 
-  # Get current version from the updated version-state
-  if [ -f .newstate/.version-state ]; then
+  # Get current version from the versions file
+  if [ -f "${versions_file}" ]; then
     local current_version
-    current_version="$(grep "^$package:" ".newstate/.version-state" | cut -d ":" -f 2 || true)"
+    current_version="$(grep "^$package:" "${versions_file}" | cut -d ":" -f 2 || true)"
 
     if [ -n "$current_version" ]; then
       # Parse pkgver-pkgrel.bumped format
@@ -112,7 +94,7 @@ function force_bump() {
       return 1
     fi
   else
-    UTIL_PRINT_WARNING "$package: No version-state file found"
+    UTIL_PRINT_WARNING "$package: No versions file found"
     return 1
   fi
 
@@ -121,16 +103,14 @@ function force_bump() {
   return 0
 }
 
-# Create .state and .newstate worktrees
-manage_state
-
+TEMP_VERSIONS="$(mktemp)"
 # Parse database files for current package versions
-collect_changed_libs
+collect_versions "${TEMP_VERSIONS}"
 
 MODIFIED_PACKAGES=()
 
 for package in "${PACKAGES_LIST[@]}"; do
-  if force_bump "$package"; then
+  if force_bump "$TEMP_VERSIONS" "$package"; then
     git add "$package"
     MODIFIED_PACKAGES+=("$package")
   else
@@ -147,21 +127,8 @@ if [ ${#MODIFIED_PACKAGES[@]} -ne 0 ]; then
     COMMIT_MESSAGE="chore(bump): bump packages (${#MODIFIED_PACKAGES[@]})"
   fi
 
-  if [ -v GITLAB_CI ]; then
-    COMMIT_MESSAGE+=" [skip ci]"
-  fi
-
   git commit -q -m "$COMMIT_MESSAGE"
 fi
 
-if [ ${#MODIFIED_PACKAGES[@]} -ne 0 ]; then
-  .ci/schedule-packages.sh schedule "${MODIFIED_PACKAGES[@]}"
-  .ci/manage-aur.sh "${MODIFIED_PACKAGES[@]}"
-fi
-
-# Commit state changes
-git -C .newstate add -A
-git -C .newstate commit -q -m "chore(state): manual bump" --allow-empty
-
 # Push changes
-git push --atomic origin HEAD:main +state
+git push origin HEAD:main
