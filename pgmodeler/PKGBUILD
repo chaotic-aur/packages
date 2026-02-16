@@ -2,10 +2,10 @@
 
 _pkgname="pgmodeler"
 pkgname="$_pkgname"
-pkgver=1.2.2
-pkgrel=2
+pkgver=1.2.3
+pkgrel=1
 pkgdesc="An open source CASE tool for modeling PostgreSQL databases"
-url="https://github.com/pgmodeler/pgmodeler"
+url="https://github.com/nullptrlabs/pgmodeler"
 license=('GPL-3.0-only')
 arch=('x86_64')
 
