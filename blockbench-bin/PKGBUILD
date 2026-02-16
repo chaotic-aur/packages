@@ -4,7 +4,7 @@
 pkgname=blockbench-bin
 _pkgname="${pkgname%-bin}"
 _pkgname_orig=Blockbench
-pkgver=5.0.5
+pkgver=5.0.7
 pkgrel=1
 pkgdesc='A low-poly 3D model editor'
 arch=(x86_64 armv7h)
@@ -42,7 +42,7 @@ provides=("${_pkgname}")
 conflicts=("${_pkgname}")
 options=(!debug)
 source=("https://github.com/JannisX11/blockbench/releases/download/v${pkgver}/Blockbench_${pkgver}.deb")
-sha256sums=('788934b7f6a76d22acb3a6d8d4309e5871ed37789ded5389755501c9ecefe808')
+sha256sums=('5b80aa0eb259aec37a767d741b6fa8f37c22d952cc209eca58a174cd9657546c')
 
 package() {
   bsdtar -xf data.tar.xz -C "${pkgdir}/"
@@ -50,7 +50,7 @@ package() {
   mv "${pkgdir}/opt/${_pkgname_orig}" "${pkgdir}/opt/${_pkgname}"
   gzip -d "${pkgdir}/usr/share/doc/${_pkgname}/changelog.gz"
 
-  sed -i "s:/opt/${_pkgname_orig}:/opt/${_pkgname}:" "${pkgdir}/usr/share/applications/${_pkgname}.desktop"
+  sed -i "s:/opt/${_pkgname_orig}:/opt/${_pkgname}:" "${pkgdir}/usr/share/applications/${_pkgname_orig}.desktop"
 
   mkdir -p "${pkgdir}/usr/bin"
   ln -s "/opt/${_pkgname}/${_pkgname}" "${pkgdir}/usr/bin/${_pkgname}"
