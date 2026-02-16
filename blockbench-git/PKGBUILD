@@ -3,7 +3,7 @@
 
 pkgname=blockbench-git
 _pkgname="${pkgname%-git}"
-pkgver=5.0.3.r1.g796597fd
+pkgver=5.0.7.r2.gc183c8e7
 pkgrel=1
 pkgdesc='A low-poly 3D model editor (git version)'
 arch=(x86_64 aarch64)
@@ -44,7 +44,7 @@ build() {
   _electronDist=/usr/lib/${_electron}
   _electronVersion=$(cat ${_electronDist}/version)
 
-  npm run publish-linux -- --linux --x64 --dir -c.electronDist=${_electronDist} -c.electronVersion="${_electronVersion}"
+  npm run publish-linux -- --linux --x64 --dir
 }
 
 package() {
