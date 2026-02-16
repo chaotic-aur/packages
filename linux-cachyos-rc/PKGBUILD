@@ -116,6 +116,10 @@
 # Use this only if you have Turing+ GPU
 : "${_build_nvidia_open:=no}"
 
+# Builds the r8125 module and package it into its own package
+# Replaces requirement for r8125-dkms
+: "${_build_r8125:=no}"
+
 # Build a debug package with non-stripped vmlinux
 : "${_build_debug:=no}"
 
@@ -251,6 +255,10 @@ fi
 if [ "$_propeller" = "yes" ] && [ "$_propeller_profiles" = "yes" ]; then
   source+=(propeller_cc_profile.txt
     propeller_ld_profile.txt)
+fi
+
+if [ "$_build_r8125" = "yes" ]; then
+  source+=("git+https://github.com/aravance/r8125.git")
 fi
 
 ## List of CachyOS schedulers
@@ -528,8 +536,15 @@ _sign_modules() {
   local sign_cert="${srcdir}/${_srcname}/certs/signing_key.x509"
   local hash_algo="$(grep -Po 'CONFIG_MODULE_SIG_HASH="\K[^"]*' "${srcdir}/${_srcname}/.config")"
 
-  find "$1" -type f -name '*.ko' -print -exec \
-    "${sign_script}" "${hash_algo}" "${sign_key}" "${sign_cert}" '{}' \;
+  if [ "$_use_llvm_lto" != "none" ]; then
+    local strip_bin="llvm-strip"
+  else
+    local strip_bin="strip"
+  fi
+
+  find "$1" -type f -name '*.ko' -print \
+    -exec "${strip_bin}" --strip-debug '{}' \; \
+    -exec "${sign_script}" "${hash_algo}" "${sign_key}" "${sign_cert}" '{}' \;
 }
 
 build() {
@@ -566,6 +581,11 @@ build() {
       --with-udevdir=/lib/udev --libexecdir=/usr/lib/zfs --with-config=kernel \
       --with-linux="${srcdir}/$_srcname"
     make "${BUILD_FLAGS[@]}"
+  fi
+
+  if [ "$_build_r8125" = "yes" ]; then
+    cd "${srcdir}/r8125"
+    make "${BUILD_FLAGS[@]}" KERNELDIR="$srcdir/$_srcname" modules
   fi
 
 }
@@ -753,11 +773,32 @@ _package-nvidia-open() {
   find "$pkgdir" -name '*.ko' -exec zstd --rm -19 -T0 {} +
 }
 
+_package-r8125() {
+  pkgdesc="r8125 modules for the $pkgbase kernel"
+  depends=("$pkgbase=$_kernver")
+  license=('GPL-2.0-only')
+
+  cd "$_srcname"
+  local modulesdir="$pkgdir/usr/lib/modules/$(< version)/extramodules"
+
+  cd "${srcdir}/r8125"
+  install -dm755 "${modulesdir}"
+  install -m644 src/*.ko "${modulesdir}"
+
+  _sign_modules "${modulesdir}"
+  find "$pkgdir" -name '*.ko' -exec zstd --rm -19 -T0 {} +
+
+  # Blacklist r8169 so that r8125 is used instead
+  install -dm755 "${pkgdir}/usr/lib/modprobe.d"
+  echo "blacklist r8169" > "${pkgdir}/usr/lib/modprobe.d/r8125.conf"
+}
+
 pkgname=("$pkgbase")
 [ "$_build_debug" = "yes" ] && pkgname+=("$pkgbase-dbg")
 pkgname+=("$pkgbase-headers")
 [ "$_build_zfs" = "yes" ] && pkgname+=("$pkgbase-zfs")
 [ "$_build_nvidia_open" = "yes" ] && pkgname+=("$pkgbase-nvidia-open")
+[ "$_build_r8125" = "yes" ] && pkgname+=("$pkgbase-r8125")
 for _p in "${pkgname[@]}"; do
   eval "package_$_p() {
     $(declare -f "_package${_p#$pkgbase}")
@@ -767,6 +808,6 @@ done
 
 b2sums=('2c7ae476c66a4bf7df5175f548b091c786f00e06f4745dce657d4c417d9fb92625a8e022b4e62c99bd5d435b2eef1b040ea23963439cab5a95e0063aa92a916f'
   '823b738621a81fa74ed94795004c19ca9e3a17c77ba18f7d83ac3801c2688725c3d8576c83cee99d42e178b95f54c8b4932b321cb15c8209ea965d914600b488'
-  'e9b4af27934459052ee06ecda0eff9c960d2878431a24a50199973449211febdd2b1e4518114a69f00f7505b9a6d8de28fb5772d35d9db9ea4ffda4e60304cdc'
+  '8b65a9bc99ba9578a2ada61b036b0f78fa49152c726145a30159ec21de46be5c22697c37fb00c874b25648ead309ad08ffb071ec3d237ab1024ec01e34e0ceba'
   'ea26c88950fc06b6ffab93b30e3beacc7d26571a70262334ca8b001dc7899bf96b47d703fbaa7f4e47765c3dafccc23c58a4d4da2169b8ee50012afcb7a1dd96'
   '226c64dd989ec0c4c444d048707e5d56be4a7ffa59ada31f197015c65a87e7935c8a0a1d6a9d35947e60f90505e5cffb3df9824aec71b2f188bcaa2e89403e0b')
