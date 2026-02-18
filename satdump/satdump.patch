@@ -1,6 +1,6 @@
 diff -rupN SatDump-1.2.2/plugins/inmarsat_support/aero/libacars/list.c SatDump-1.2.2b/plugins/inmarsat_support/aero/libacars/list.c
 --- SatDump-1.2.2/plugins/inmarsat_support/aero/libacars/list.c	2024-11-29 07:58:19.000000000 -0500
-+++ SatDump-1.2.2b/plugins/inmarsat_support/aero/libacars/list.c	2025-05-18 11:52:09.870677811 -0400
++++ SatDump-1.2.2b/plugins/inmarsat_support/aero/libacars/list.c	2026-02-17 17:44:46.196037348 -0500
 @@ -36,14 +36,14 @@ size_t la_list_length(la_list const *l)
  	return len;
  }
@@ -29,7 +29,7 @@ diff -rupN SatDump-1.2.2/plugins/inmarsat_support/aero/libacars/list.c SatDump-1
  	}
 diff -rupN SatDump-1.2.2/plugins/inmarsat_support/aero/libacars/list.h SatDump-1.2.2b/plugins/inmarsat_support/aero/libacars/list.h
 --- SatDump-1.2.2/plugins/inmarsat_support/aero/libacars/list.h	2024-11-29 07:58:19.000000000 -0500
-+++ SatDump-1.2.2b/plugins/inmarsat_support/aero/libacars/list.h	2025-05-18 11:52:09.871279212 -0400
++++ SatDump-1.2.2b/plugins/inmarsat_support/aero/libacars/list.h	2026-02-17 17:44:46.196435018 -0500
 @@ -22,10 +22,10 @@ struct la_list {
  la_list *la_list_next(la_list const *l);
  la_list *la_list_append(la_list *l, void *data);
@@ -44,9 +44,25 @@ diff -rupN SatDump-1.2.2/plugins/inmarsat_support/aero/libacars/list.h SatDump-1
  
  #ifdef __cplusplus
  }
+diff -rupN SatDump-1.2.2/src-core/common/calibration.h SatDump-1.2.2b/src-core/common/calibration.h
+--- SatDump-1.2.2/src-core/common/calibration.h	2024-11-29 07:58:19.000000000 -0500
++++ SatDump-1.2.2b/src-core/common/calibration.h	2026-02-17 17:45:12.531108023 -0500
+@@ -3,9 +3,9 @@
+ #include <math.h>
+ #include <map>
+ 
+-#define c1 1.1910427e-05
+-#define c2 1.4387752
+-#define e_num 2.7182818
++constexpr double c1 = 1.1910427e-05;
++constexpr double c2 = 1.4387752;
++constexpr double e_num = 2.7182818;
+ 
+ double temperature_to_radiance(double t, double v);
+ 
 diff -rupN SatDump-1.2.2/src-core/libs/sol2/sol.hpp SatDump-1.2.2b/src-core/libs/sol2/sol.hpp
 --- SatDump-1.2.2/src-core/libs/sol2/sol.hpp	2024-11-29 07:58:19.000000000 -0500
-+++ SatDump-1.2.2b/src-core/libs/sol2/sol.hpp	2025-05-18 11:52:09.980519343 -0400
++++ SatDump-1.2.2b/src-core/libs/sol2/sol.hpp	2026-02-17 17:44:46.199173573 -0500
 @@ -6747,13 +6747,13 @@ namespace sol {
  		/// one.
  		///

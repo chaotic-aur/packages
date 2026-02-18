@@ -2,7 +2,7 @@
 
 pkgname=satdump
 pkgver=1.2.2
-pkgrel=3
+pkgrel=4
 pkgdesc='A generic satellite processing software'
 arch=('x86_64')
 license=('GPL-3.0-only')
@@ -13,7 +13,7 @@ source=("${pkgname}-${pkgver}.tar.gz::${url}/archive/${pkgver}.tar.gz"
   "${pkgname}.patch")
 optdepends=('limesuite' 'bladerf')
 sha256sums=('2ab7c6126e426ad79972b274cc380c0bb04c9e755d746d67f3af92c1dd569209'
-  '7656e9c4be11925a27430542a2c35c7c4cd84957969050f337b0cb0473258610')
+  '8f639d1c03d748e3eca65e6e89f77e490139f45d3da8d2ee1acc7aa6b5098e26')
 
 prepare() {
   cd "${srcdir}"
