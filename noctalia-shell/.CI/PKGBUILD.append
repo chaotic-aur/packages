@@ -1,2 +1,4 @@
 unset conflicts
 unset install
+
+depends=(${depends[@]//quickshell*} 'quickshell')
