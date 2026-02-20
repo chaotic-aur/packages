@@ -2,7 +2,7 @@
 
 _pkgname="ocenaudio"
 pkgname="$_pkgname-bin"
-pkgver=3.17.1
+pkgver=3.17.2
 pkgrel=1
 pkgdesc="A fast, easy to use audio editor"
 url="https://www.ocenaudio.com/"

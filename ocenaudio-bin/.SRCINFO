@@ -1,6 +1,6 @@
 pkgbase = ocenaudio-bin
 	pkgdesc = A fast, easy to use audio editor
-	pkgver = 3.17.1
+	pkgver = 3.17.2
 	pkgrel = 1
 	url = https://www.ocenaudio.com/
 	arch = x86_64
@@ -13,7 +13,7 @@ pkgbase = ocenaudio-bin
 	conflicts = ocenaudio
 	options = !debug
 	options = !strip
-	source = ocenaudio_3.17.1_x86_64.tar.zst::https://www.ocenaudio.com/downloads/index.php/ocenaudio_archlinux.pkg.tar.zst?version=v3.17.1
+	source = ocenaudio_3.17.2_x86_64.tar.zst::https://www.ocenaudio.com/downloads/index.php/ocenaudio_archlinux.pkg.tar.zst?version=v3.17.2
 	sha256sums = SKIP
 
 pkgname = ocenaudio-bin
