@@ -54,11 +54,11 @@ _htmldocs_enable=
 _major=6.18
 _srcname=linux-${_major}
 _lqxpatchname=liquorix-package
-_lqxpatchrel=12
+_lqxpatchrel=14
 _lqxpatchver=${_lqxpatchname}-${_major}-${_lqxpatchrel}
 pkgbase=linux-lqx
-pkgver=6.18.10.lqx1
-pkgrel=2
+pkgver=6.18.13.lqx1
+pkgrel=3
 pkgdesc='Linux Liquorix'
 url='https://liquorix.net/'
 arch=(x86_64)
@@ -106,7 +106,7 @@ validpgpkeys=(
 )
 sha512sums=('88599ffdec96d150c1feb9b261ba93bb0301a9d0e1ad6bef7aeab1f5372cbfc57d8b43c7e902bd8f76921d1dbd8189663c142ea869e51d0e2b483b150ee00fe0'
   'SKIP'
-  '7e7a5e971fa89314a8d8236ae91920ef5874e6fe02199a104903b20bb3131f55cdd09f480aaac749e574952b6829462368180de89546b35420459f59588a577d')
+  'e8bbf6028de12cfaf6a581ec4f072ca0a6e75ea484a9a25e515285e713ae8ca5a186464fc77cd93f3e29fe22c0d87a9cce17bd0a061a50a0a40c03d853521b0d')
 
 export KBUILD_BUILD_HOST=archlinux
 export KBUILD_BUILD_USER=$pkgbase
@@ -242,9 +242,8 @@ _package() {
   optdepends=('wireless-regdb: to set the correct wireless channels of your country'
     'linux-firmware: firmware images needed for some devices'
     'sof-firmware: firmware images needed for Sound Open Firmware capable devices'
-    'modprobed-db: Keeps track of EVERY kernel module that has ever been probed - useful for those of us who make localmodconfig'
-    'uksmd: Userspace KSM helper daemon')
-  provides=(VIRTUALBOX-GUEST-MODULES WIREGUARD-MODULE UKSMD-BUILTIN VHBA-MODULE)
+    'modprobed-db: Keeps track of EVERY kernel module that has ever been probed - useful for those of us who make localmodconfig')
+  provides=(KSMBD-MODULE NTSYNC-MODULE VIRTUALBOX-GUEST-MODULES WIREGUARD-MODULE VHBA-MODULE)
 
   cd $_srcname
   local modulesdir="$pkgdir/usr/lib/modules/$(< version)"
@@ -268,6 +267,7 @@ _package() {
 _package-headers() {
   pkgdesc="Headers and scripts for building modules for the $pkgdesc kernel"
   depends=('linux-lqx' 'pahole')
+  provides=(LINUX-HEADERS)
 
   cd $_srcname
   local builddir="$pkgdir/usr/lib/modules/$(< version)/build"
@@ -278,6 +278,7 @@ _package-headers() {
   install -Dt "$builddir/kernel" -m644 kernel/Makefile
   install -Dt "$builddir/arch/x86" -m644 arch/x86/Makefile
   cp -t "$builddir" -a scripts
+  ln -srt "$builddir" "$builddir/scripts/gdb/vmlinux-gdb.py"
 
   # required when STACK_VALIDATION is enabled
   install -Dt "$builddir/tools/objtool" tools/objtool/objtool
@@ -307,6 +308,14 @@ _package-headers() {
 
   echo "Installing KConfig files..."
   find . -name 'Kconfig*' -exec install -Dm644 {} "$builddir/{}" \;
+
+  echo "Installing Rust files... (if they exist)"
+  install -Dt "$builddir/rust" -m644 rust/*.rmeta || true
+  install -Dt "$builddir/rust" rust/*.so || true
+
+  echo "Installing unstripped VDSO..."
+  make INSTALL_MOD_PATH="$pkgdir/usr" vdso_install \
+    link= # Suppress build-id symlinks
 
   echo "Removing unneeded architectures..."
   local arch
