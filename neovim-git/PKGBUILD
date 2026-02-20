@@ -8,7 +8,7 @@
 
 _pkgname=neovim
 pkgname="$_pkgname-git"
-pkgver=0.11.0.r1727.g524cdd35c2
+pkgver=0.12.0.r2374.g94c21c22dc
 pkgrel=1
 pkgdesc='Fork of Vim aiming to improve user experience, plugins, and GUIs'
 arch=(i686 x86_64 armv7h armv6h aarch64)
@@ -22,20 +22,12 @@ depends=(
   'lua51-lpeg'
   'luajit'
   'msgpack-c'
-  'tree-sitter-c'
-  'tree-sitter-lua'
-  'tree-sitter-markdown'
-  'tree-sitter-query'
-  'tree-sitter-vimdoc'
-  'tree-sitter-vim'
   'tree-sitter>=0.22.2'
   'unibilium'
 )
 makedepends=('cmake' 'git' 'ninja' 'unzip')
 optdepends=(
   'python-pynvim: for Python plugin support (see :help python)'
-  'tree-sitter-bash: tree-sitter parser for bash'
-  'tree-sitter-python: tree-sitter parser for python'
   'xclip: for clipboard support on X11 (or xsel) (see :help clipboard)'
   'xsel: for clipboard support on X11 (or xclip) (see :help clipboard)'
   'wl-clipboard: for clipboard support on wayland (see :help clipboard)'
