@@ -1,7 +1,7 @@
 pkgbase = linux-lqx
 	pkgdesc = Linux Liquorix
-	pkgver = 6.18.10.lqx1
-	pkgrel = 2
+	pkgver = 6.18.13.lqx1
+	pkgrel = 3
 	url = https://liquorix.net/
 	arch = x86_64
 	license = GPL-2.0-only
@@ -23,12 +23,12 @@ pkgbase = linux-lqx
 	options = !strip
 	source = https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.18.tar.xz
 	source = https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.18.tar.sign
-	source = https://github.com/damentz/liquorix-package/archive/6.18-12.tar.gz
+	source = https://github.com/damentz/liquorix-package/archive/6.18-14.tar.gz
 	validpgpkeys = ABAF11C65A2970B130ABE3C479BE3E4300411886
 	validpgpkeys = 647F28654894E3BD457199BE38DBBDC86092693E
 	sha512sums = 88599ffdec96d150c1feb9b261ba93bb0301a9d0e1ad6bef7aeab1f5372cbfc57d8b43c7e902bd8f76921d1dbd8189663c142ea869e51d0e2b483b150ee00fe0
 	sha512sums = SKIP
-	sha512sums = 7e7a5e971fa89314a8d8236ae91920ef5874e6fe02199a104903b20bb3131f55cdd09f480aaac749e574952b6829462368180de89546b35420459f59588a577d
+	sha512sums = e8bbf6028de12cfaf6a581ec4f072ca0a6e75ea484a9a25e515285e713ae8ca5a186464fc77cd93f3e29fe22c0d87a9cce17bd0a061a50a0a40c03d853521b0d
 
 pkgname = linux-lqx
 	pkgdesc = The Linux Liquorix kernel and modules
@@ -39,16 +39,17 @@ pkgname = linux-lqx
 	optdepends = linux-firmware: firmware images needed for some devices
 	optdepends = sof-firmware: firmware images needed for Sound Open Firmware capable devices
 	optdepends = modprobed-db: Keeps track of EVERY kernel module that has ever been probed - useful for those of us who make localmodconfig
-	optdepends = uksmd: Userspace KSM helper daemon
+	provides = KSMBD-MODULE
+	provides = NTSYNC-MODULE
 	provides = VIRTUALBOX-GUEST-MODULES
 	provides = WIREGUARD-MODULE
-	provides = UKSMD-BUILTIN
 	provides = VHBA-MODULE
 
 pkgname = linux-lqx-headers
 	pkgdesc = Headers and scripts for building modules for the Linux Liquorix kernel
 	depends = linux-lqx
 	depends = pahole
+	provides = LINUX-HEADERS
 
 pkgname = linux-lqx-docs
 	pkgdesc = Documentation for the Linux Liquorix kernel
