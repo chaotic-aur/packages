@@ -6,9 +6,9 @@ spec:
       options: ['None', 'Bump Packages', 'Schedule Packages', 'Run Schedule']
       default: 'None'
     packages:
-      description: 'A comma seperated list of packages'
+      description: 'A colon-separated list of packages'
       type: string
-      regex: ^(?:[^\s,]+(?:,[^\s,]+)*)?$
+      regex: ^(?:[^\s:]+(?::[^\s:]+)*)?$
       rules:
         - if: $[[ inputs.operation ]] == 'Bump Packages' || $[[ inputs.operation ]] == 'Schedule Packages'
           default: null
