@@ -3,7 +3,7 @@
 
 _pkgname="openlinkhub"
 pkgname="$_pkgname"
-pkgver=0.7.8
+pkgver=0.7.9
 pkgrel=1
 pkgdesc="Open source Linux interface for iCUE LINK Hub and other Corsair AIOs, Hubs."
 url="https://github.com/jurkovic-nikola/OpenLinkHub"
