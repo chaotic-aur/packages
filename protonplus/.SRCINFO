@@ -1,7 +1,7 @@
 pkgbase = protonplus
 	pkgdesc = A simple Wine and Proton-based compatiblity tools manager for GNOME
 	pkgver = 0.5.16
-	pkgrel = 1
+	pkgrel = 2
 	url = https://github.com/Vysp3r/ProtonPlus
 	arch = x86_64
 	license = GPL-3.0-or-later
