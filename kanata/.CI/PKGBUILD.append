@@ -1,0 +1,5 @@
+export RUSTFLAGS="-C opt-level=2 -C codegen-units=16 -C lto=off"
+
+depends+=('libgcc')
+
+options=('!lto')
