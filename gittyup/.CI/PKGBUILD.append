@@ -1,5 +1,9 @@
-eval _orig_"$(declare -f check)"
+# libgnome-keyring deprecated
+unset optdepends
+makedepends=(${makedepends[@]//libgnome-keyring*/})
 
+# ignore check failures
+eval _orig_"$(declare -f check)"
 check() {
   _orig_check || true
 }
