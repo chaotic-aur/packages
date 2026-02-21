@@ -11,7 +11,7 @@ UTIL_READ_CONFIG_FILE
 export TMPDIR="${TMPDIR:-/tmp}"
 
 # Special case: We are told to trigger a specific trigger
-if [ -v TRIGGER ]; then
+if [ -v TRIGGER ] && [[ "$TRIGGER" != "" ]]; then
   PACKAGES=()
   TO_BUILD=()
   UTIL_GET_PACKAGES PACKAGES
