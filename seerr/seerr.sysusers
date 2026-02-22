@@ -1,0 +1,3 @@
+u seerr - "Seerr Daemon" /var/lib/seerr
+g media
+m seerr media
