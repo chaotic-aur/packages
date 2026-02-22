@@ -1,6 +1,6 @@
 pkgbase = waydroid-alt
 	pkgdesc = A container-based Android system - with desktop menu creation disabled
-	pkgver = 1.6.1
+	pkgver = 1.6.2
 	pkgrel = 1
 	url = https://github.com/waydroid/waydroid
 	arch = any
