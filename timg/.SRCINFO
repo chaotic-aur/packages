@@ -1,0 +1,25 @@
+pkgbase = timg
+	pkgdesc = Terminal Image and Video Viewer
+	pkgver = 1.6.3
+	pkgrel = 2
+	url = https://github.com/hzeller/timg
+	arch = any
+	license = GPL2
+	makedepends = cmake
+	makedepends = pkgconf
+	makedepends = git
+	makedepends = gcc
+	depends = libwebp
+	depends = libjpeg-turbo
+	depends = libexif
+	depends = graphicsmagick
+	depends = ffmpeg
+	depends = openslide
+	depends = libsixel
+	depends = libdeflate
+	depends = librsvg
+	depends = poppler-glib
+	source = timg-1.6.3.tar.gz::https://github.com/hzeller/timg/archive/v1.6.3.tar.gz
+	sha256sums = 59c908867f18c81106385a43065c232e63236e120d5b2596b179ce56340d7b01
+
+pkgname = timg
