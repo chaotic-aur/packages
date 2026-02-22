@@ -1,13 +1,1 @@
-url="https://github.com/BrowserWorks/Waterfox"
-
 replaces=('waterfox-bin')
-
-if [ $(vercmp 6.6.8-1 $pkgver-$pkgrel) -gt 0 ]; then
-  pkgver=6.6.8
-  pkgrel=1
-
-  _pkgsrc="$pkgname-$pkgver"
-  _pkgext="tar.gz"
-  source[0]="https://github.com/BrowserWorks/waterfox/archive/refs/tags/$pkgver.$_pkgext"
-  sha256sums[0]='93e7dd08a973430c956726d97f077362ca647ec1ae3f0516a71eb5aa1e449146'
-fi
