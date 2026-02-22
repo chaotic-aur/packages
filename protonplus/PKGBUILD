@@ -1,8 +1,8 @@
 # Maintainer: Mark Wagie <mark dot wagie at proton dot me>
 pkgname=protonplus
-pkgver=0.5.16
-pkgrel=2
-pkgdesc="A simple Wine and Proton-based compatiblity tools manager for GNOME"
+pkgver=0.5.17
+pkgrel=1
+pkgdesc="A modern compatibility tools manager"
 arch=('x86_64')
 url="https://github.com/Vysp3r/ProtonPlus"
 license=('GPL-3.0-or-later')
@@ -20,16 +20,7 @@ makedepends=(
 )
 checkdepends=('appstream-glib')
 source=("$pkgname-$pkgver.tar.gz::$url/archive/refs/tags/v$pkgver.tar.gz")
-sha256sums=('2ed82b873b154033b4790a496887bf7098dfea1dfa3253827aad1879de82db4a')
-
-prepare() {
-  cd "ProtonPlus-$pkgver"
-
-  # Fix Lutris install directory
-  # https://github.com/Vysp3r/ProtonPlus/issues/820
-  # https://github.com/Vysp3r/ProtonPlus/pull/822
-  sed -i 's|runners/proton|runners/wine|g' data/runners.json
-}
+sha256sums=('0f19f254cc207c706e8f06cea07fdb47240529d6152c9d489b25bf76e7a71cda')
 
 build() {
   arch-meson "ProtonPlus-$pkgver" build
