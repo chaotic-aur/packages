@@ -469,3 +469,69 @@ function UTIL_SET_MAINTAINER_STRATEGY() {
         pkg_config[CI_MAINTAINER_UNTRUSTED]="$(printf '%s,' "${untrusted_maintainers[@]}" | sed 's/,$//')"
     fi
 }
+
+# Set git identity for commits
+function UTIL_SET_GIT_IDENTITY() {
+    set -euo pipefail
+
+    git config --global user.name "$GIT_AUTHOR_NAME" 2>/dev/null
+    git config --global user.email "$GIT_AUTHOR_EMAIL" 2>/dev/null
+
+    # Silence some very insane log spam. Main is set by default and the silenced
+    # message is declared as hint.
+    git config --global init.defaultBranch "main"
+}
+
+function UTIL_SETUP_CLONE() {
+    mkdir -p "$TMPDIR/aur-pulls"
+    if [ -f "./.editorconfig" ]; then
+        cp "./.editorconfig" "$TMPDIR/aur-pulls/.editorconfig"
+    fi
+}
+
+# Clone a package from a git URL. Formats PKGBUILD automatically. UTIL_SETUP_CLONE MUST be run before this function.
+# $1: Output path variable name
+# $2: pkgbase
+# $3: git URL
+# $4: branch (optional)
+function UTIL_CLONE_PACKAGE() {
+    set -euo pipefail
+    local -n OUTPUT_PATH=$1
+    local pkgbase="$2"
+    local git_url="$3"
+    local branch="${4:-}"
+
+    local output="$TMPDIR/aur-pulls/${pkgbase}"
+
+    for i in {1..2}; do
+        local clone_args=("-q" "--depth=1" "$git_url" "$output")
+        if [ -n "$branch" ]; then
+            clone_args=("-q" "--depth=1" "--branch" "$branch" "--single-branch" "$git_url" "$output")
+        fi
+
+        if git clone "${clone_args[@]}" 2>/dev/null; then
+            break
+        fi
+
+        if [ "$i" -ne 2 ]; then
+            UTIL_PRINT_WARNING "$pkgbase: Failed to clone $git_url. Retrying in 30 seconds."
+            sleep 30
+        else
+            return 1
+        fi
+    done
+
+    # We always run shfmt on the PKGBUILD. Two runs of shfmt on the same file should not change anything
+    shfmt -w "$output/PKGBUILD"
+
+    OUTPUT_PATH="$output"
+}
+
+# $1: Output array name
+# $2: String to split into array by colon
+function UTIL_PARSE_PACKAGELIST() {
+    local -n output_array=${1}
+    local input_string="$2"
+
+    IFS=':' read -r -a output_array <<<"$input_string"
+}

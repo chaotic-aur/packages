@@ -10,15 +10,13 @@ UTIL_READ_CONFIG_FILE
 
 export TMPDIR="${TMPDIR:-/tmp}"
 
-# Set git identity for commits
-git config --global user.name "$GIT_AUTHOR_NAME" 2>/dev/null || true
-git config --global user.email "$GIT_AUTHOR_EMAIL" 2>/dev/null || true
+UTIL_SET_GIT_IDENTITY
 
+PACKAGES_LIST=()
 if [ "$PACKAGES" == "all" ]; then
-  PACKAGES_LIST=()
   UTIL_GET_PACKAGES PACKAGES_LIST
 else
-  IFS=':' read -r -a PACKAGES_LIST <<<"$PACKAGES"
+  UTIL_PARSE_PACKAGELIST PACKAGES_LIST "$PACKAGES"
 fi
 
 function collect_versions() {
@@ -110,7 +108,7 @@ collect_versions "${TEMP_VERSIONS}"
 MODIFIED_PACKAGES=()
 
 for package in "${PACKAGES_LIST[@]}"; do
-  if force_bump "$TEMP_VERSIONS" "$package"; then
+  if [[ -d "$package" ]] && force_bump "$TEMP_VERSIONS" "$package"; then
     git add "$package"
     MODIFIED_PACKAGES+=("$package")
   else

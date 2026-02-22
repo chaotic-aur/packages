@@ -3,19 +3,45 @@ spec:
     operation:
       description: 'Operation to perform'
       type: string
-      options: ['None', 'Bump Packages', 'Schedule Packages', 'Run Schedule']
+      options: ['None', 'Bump Packages', 'Schedule Packages', 'Run Schedule', 'Drop Packages', 'Add Packages']
       default: 'None'
     packages:
       description: 'A colon-separated list of packages'
       type: string
-      regex: ^(?:[^\s:]+(?::[^\s:]+)*)?$
+      regex: '^(?:[\w@.+\-]+(?::[\w@.+\-]+)*)?$'
       rules:
-        - if: $[[ inputs.operation ]] == 'Bump Packages' || $[[ inputs.operation ]] == 'Schedule Packages'
+        - if: $[[ inputs.operation ]] == 'Bump Packages' || $[[ inputs.operation ]] == 'Schedule Packages' || $[[ inputs.operation ]] == 'Drop Packages'
           default: null
     trigger:
       description: 'Which schedule to trigger'
       rules:
         - if: $[[ inputs.operation ]] == 'Run Schedule'
+          default: null
+    add_packages:
+      description: 'A space-separated list of packages+package sources in pkgbase/source format. Example: paru/aur'
+      type: string
+      regex: '^([\w@.+\-]+/(aur|(https?|git)://\S+)(\s[\w@.+\-]+/(aur|(https?|git)://\S+))*)?$'
+      rules:
+        - if: $[[ inputs.operation ]] == 'Add Packages'
+          default: null
+    request_origin:
+      description: 'Where and who requested this package? Example: github/5678,chaotic/xiota,forum/tne'
+      type: string
+      rules:
+        - if: $[[ inputs.operation ]] == 'Add Packages'
+          default: null
+    request_reason:
+      description: 'Why is this package being added?'
+      type: string
+      rules:
+        - if: $[[ inputs.operation ]] == 'Add Packages'
+          options: ['request', 'depends', 'depends:optional', 'depends:make', 'depends:check', 'other']
+          default: 'request'
+    custom_request_reason:
+      description: 'Overwrites request_reason'
+      type: string
+      rules:
+        - if: $[[ inputs.operation ]] == 'Add Packages'
           default: null
 
 ---
@@ -82,14 +108,33 @@ manual-bump:
   image: alpine:latest
   script:
     - .ci/manual-bump.sh
-  artifacts:
-    paths:
-      - .ci/deptree.txt
-      - .ci/schedule-params.txt
-    expire_in: 1 hour
   resource_group: chaotic
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && "$[[ inputs.operation ]]" == 'Bump Packages' && "$[[ inputs.packages ]]" != ""
+
+manual-drop:
+  stage: process
+  image: alpine:latest
+  script:
+    - .ci/manual-drop.sh
+  resource_group: chaotic
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && "$[[ inputs.operation ]]" == 'Drop Packages' && "$[[ inputs.packages ]]" != ""
+
+manual-add:
+  stage: process
+  image: alpine:latest
+  script:
+    - REQUEST_REASON=${CUSTOM_REQUEST_REASON:-$REQUEST_REASON}
+    - .ci/manual-add.sh
+  resource_group: chaotic
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && "$[[ inputs.operation ]]" == 'Add Packages' && "$[[ inputs.add_packages ]]" != ""
+  variables:
+    ADD_PACKAGES: $[[ inputs.add_packages ]]
+    REQUEST_ORIGIN: $[[ inputs.request_origin ]]
+    REQUEST_REASON: $[[ inputs.request_reason ]]
+    CUSTOM_REQUEST_REASON: $[[ inputs.custom_request_reason ]]
 
 do-schedule:
   stage: schedule
@@ -107,4 +152,4 @@ do-schedule:
         if [[ -v PARAMS_AUTOREPOREMOVE ]]; then /entry_point.sh "${PARAMS_AUTOREPOREMOVE[@]}"; fi;
       fi
   rules:
-    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && "$[[ inputs.operation ]]" != 'Bump Packages'
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && ($CI_PIPELINE_SOURCE == "push" || "$[[ inputs.operation ]]" == 'Schedule Packages' || "$[[ inputs.operation ]]" == 'Run Schedule')

@@ -18,5 +18,5 @@ if [ "$PACKAGES" == "all" ]; then
 fi
 
 declare -a FINAL=()
-IFS=':' read -r -a FINAL <<<"$PACKAGES"
+UTIL_PARSE_PACKAGELIST FINAL "$PACKAGES"
 .ci/schedule-packages.sh schedule "${FINAL[@]}"

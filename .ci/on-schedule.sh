@@ -32,12 +32,7 @@ if [ -v TRIGGER ] && [[ "$TRIGGER" != "" ]]; then
   exit 0
 fi
 
-git config --global user.name "$GIT_AUTHOR_NAME"
-git config --global user.email "$GIT_AUTHOR_EMAIL"
-
-# Silence some very insane log spam. Master is set by default and the silenced
-# message is declared as hint.
-git config --global init.defaultBranch "master"
+UTIL_SET_GIT_IDENTITY
 
 if [ -v TEMPLATE_ENABLE_UPDATES ] && [ "$TEMPLATE_ENABLE_UPDATES" == "true" ]; then
   { .ci/update-template.sh && UTIL_PRINT_INFO "Updated CI template." && exit 0; } || true
@@ -180,7 +175,7 @@ function update-lib-bump() {
   fi
 
   # Split the string on : into an array
-  IFS=':' read -r -a LIBS <<<"${pkg_config[CI_REBUILD_TRIGGERS]}"
+  UTIL_PARSE_PACKAGELIST LIBS "${pkg_config[CI_REBUILD_TRIGGERS]}"
   for library in "${LIBS[@]}"; do
     if [[ -v CHANGED_LIBS["$library"] ]]; then
       bump=1
@@ -349,6 +344,7 @@ function package_major_change() {
 
 # $1: VARIABLES
 # $2: git URL
+# $3: branch
 function update_via_git() {
   set -euo pipefail
   local -n VARIABLES_VIA_GIT=${1:-VARIABLES}
@@ -356,34 +352,17 @@ function update_via_git() {
   local branch="${3:-}"
   local pkgbase="${VARIABLES_VIA_GIT[PKGBASE]}"
 
-  for i in {1..2}; do
-    local clone_args=("-q" "--depth=1" "$git_url" "$TMPDIR/aur-pulls/$pkgbase")
-    if [ -n "$branch" ]; then
-      clone_args=("-q" "--depth=1" "--branch" "$branch" "--single-branch" "$git_url" "$TMPDIR/aur-pulls/$pkgbase")
-    fi
+  local pkgbuild_path=""
 
-    if git clone "${clone_args[@]}" 2>/dev/null; then
-      break
-    fi
-
-    if [ "$i" -ne 2 ]; then
-      UTIL_PRINT_WARNING "$pkgbase: Failed to clone $git_url. Retrying in 30 seconds."
-      sleep 30
-    else
-      # Give up
-      false
-    fi
-  done
+  UTIL_CLONE_PACKAGE pkgbuild_path "$pkgbase" "$git_url" "${branch:-}"
 
   # Ratelimits
   sleep "$CI_CLONE_DELAY"
 
-  # We always run shfmt on the PKGBUILD. Two runs of shfmt on the same file should not change anything
-  shfmt -w "$TMPDIR/aur-pulls/$pkgbase/PKGBUILD"
-  if package_changed "$TMPDIR/aur-pulls/$pkgbase" "$pkgbase"; then
+  if package_changed "$pkgbuild_path" "$pkgbase"; then
     if [ -v CI_HUMAN_REVIEW ] && [ "$CI_HUMAN_REVIEW" == "true" ]; then
       local package_major_change_output
-      if ! package_major_change_output="$(package_major_change "$TMPDIR/aur-pulls/$pkgbase" "$pkgbase")"; then
+      if ! package_major_change_output="$(package_major_change "$pkgbuild_path" "$pkgbase")"; then
         UTIL_PRINT_ERROR "$pkgbase: Error running major change check."
         return
       fi
@@ -394,7 +373,7 @@ function update_via_git() {
     fi
     # Rsync: delete files in the destination that are not in the source. Exclude deleting .CI, exclude copying .git
     # shellcheck disable=SC2046
-    rsync -a --delete $(UTIL_GET_EXCLUDE_LIST "--exclude") "$TMPDIR/aur-pulls/$pkgbase/" "$pkgbase/"
+    rsync -a --delete $(UTIL_GET_EXCLUDE_LIST "--exclude") "$pkgbuild_path/" "$pkgbase/"
     VARIABLES_VIA_GIT[CI_ANY_UPDATE]=true
   fi
 }
@@ -600,10 +579,7 @@ collect_aur_info AUR_TIMESTAMPS AUR_MAINTAINERS
 # Parse database files for library version changes
 collect_changed_libs CHANGED_LIBS
 
-mkdir "$TMPDIR/aur-pulls"
-if [ -f "./.editorconfig" ]; then
-  cp "./.editorconfig" "$TMPDIR/aur-pulls/.editorconfig"
-fi
+UTIL_SETUP_CLONE
 
 # Loop through all packages to check if they need to be updated
 for package in "${PACKAGES[@]}"; do
