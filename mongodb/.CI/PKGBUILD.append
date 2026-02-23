@@ -1,1 +1,10 @@
 url="https://github.com/mongodb/mongo"
+
+# build with extra/gcc
+depends=(
+  ${depends[@]//gcc*/}
+  gcc-libs
+)
+makedepends=(${makedepends[@]//gcc*/})
+
+eval "$(declare -f build | sed -e '/export [AC]/d')"
