@@ -1,11 +1,10 @@
-# Maintainer: aur.chaotic.cx
-
-export CMAKE_POLICY_VERSION_MINIMUM=3.5
+# Maintainer:
+# Contributor: Maarten Baert <maarten-baert@hotmail.com>
 
 _pkgname="simplescreenrecorder"
-pkgname="$_pkgname-qt6-git"
-pkgver=0.4.4.r57.gc50e83e
-pkgrel=2
+pkgname="$_pkgname-git"
+pkgver=0.4.4.r76.gd790385
+pkgrel=1
 pkgdesc="A feature-rich screen recorder that supports X11 and OpenGL"
 url="https://github.com/MaartenBaert/ssr"
 license=("GPL-3.0-or-later")
