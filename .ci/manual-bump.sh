@@ -119,13 +119,18 @@ done
 # Commit package changes if any
 if [ ${#MODIFIED_PACKAGES[@]} -ne 0 ]; then
   COMMIT_MESSAGE=""
-  if ((${#MODIFIED_PACKAGES[@]} == 1)); then
-    COMMIT_MESSAGE="chore(bump): bump ${MODIFIED_PACKAGES[0]}"
-  else
-    COMMIT_MESSAGE="chore(bump): bump packages (${#MODIFIED_PACKAGES[@]})"
+  COMMIT_DESCRIPTION=""
+  {
+    read -r COMMIT_MESSAGE
+    read -r COMMIT_DESCRIPTION
+  } < <(UTIL_COMMIT_MESSAGE MODIFIED_PACKAGES "chore(bump)" "bumped")
+
+  commit_args=("-q" "-m" "$COMMIT_MESSAGE")
+  if [[ -n "$COMMIT_DESCRIPTION" ]]; then
+    commit_args+=("-m" "$COMMIT_DESCRIPTION")
   fi
 
-  git commit -q -m "$COMMIT_MESSAGE"
+  git commit "${commit_args[@]}"
 fi
 
 # Push changes

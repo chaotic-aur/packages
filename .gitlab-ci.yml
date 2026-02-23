@@ -35,8 +35,8 @@ spec:
       type: string
       rules:
         - if: $[[ inputs.operation ]] == 'Add Packages'
-          options: ['request', 'depends', 'depends:optional', 'depends:make', 'depends:check']
-          default: 'request'
+          options: ['unset', 'request', 'depends', 'depends:optional', 'depends:make', 'depends:check']
+          default: 'unset'
     custom_request_reason:
       description: 'Overwrites request_reason'
       type: string

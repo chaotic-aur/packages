@@ -47,7 +47,7 @@ function create_gitlab_pr() {
       --arg project_id "$CI_PROJECT_ID" \
       --arg source_branch "$branch" \
       --arg target_branch "$target_branch" \
-      --arg title "chore($pkgbase): PKGBUILD modified" \
+      --arg title "chore(update): $pkgbase" \
       --arg description "A recent update of this package requires human review! Please check whether any potentially dangerous changes were made." \
       --arg assignee_id "$assign_to_id" \
       '{
@@ -68,7 +68,7 @@ function create_gitlab_pr() {
       --arg project_id "$CI_PROJECT_ID" \
       --arg source_branch "$branch" \
       --arg target_branch "$target_branch" \
-      --arg title "chore($pkgbase): PKGBUILD modified" \
+      --arg title "chore(update): $pkgbase" \
       --arg description "A recent update of this package requires human review! Please check whether any potentially dangerous changes were made." \
       '{
         project_id: ($project_id | tonumber),
@@ -131,7 +131,7 @@ function create_github_pr() {
   BODY=$(jq -n \
     --arg head "$branch" \
     --arg base "$target_branch" \
-    --arg title "chore($pkgbase): PKGBUILD modified" \
+    --arg title "chore(update): $pkgbase" \
     --arg body "A recent update of this package requires human review! Please check whether any potentially dangerous changes were made." \
     '{
       head: $head,
@@ -178,7 +178,7 @@ function manage_branch() {
       git reset -q --hard "origin/$target_branch"
       git checkout stash -q -- "$pkgbase"
       git add "$pkgbase"
-      git commit -q -m "chore($pkgbase): PKGBUILD modified"
+      git commit -q -m "chore(update): $pkgbase"
       git push --force-with-lease origin "$CHANGE_BRANCH"
     fi
   else
@@ -186,7 +186,7 @@ function manage_branch() {
     git switch -q -C "$branch" "origin/$target_branch"
     git checkout stash -q -- "$pkgbase"
     git add "$pkgbase"
-    git commit -q -m "chore($pkgbase): PKGBUILD modified"
+    git commit -q -m "chore(update): $pkgbase"
     git push --force-with-lease origin "$CHANGE_BRANCH"
   fi
   git stash drop -q

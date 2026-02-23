@@ -132,37 +132,38 @@ function collect_changed_libs() {
 }
 
 function generate-commit() {
-  set -euo pipefail
-
-  local COMMIT_MESSAGE
-  if ((${#COMMIT_MESSAGE_PACKAGES[@]} > 0)) && ((${#COMMIT_MESSAGE_PACKAGES[@]} < 4)); then
-    local packages="$(printf "%s, " "${COMMIT_MESSAGE_PACKAGES[@]}")"
-    COMMIT_MESSAGE="chore(update): ${packages%, }"
-  elif ((${#COMMIT_MESSAGE_PACKAGES[@]} > 3)); then
-    COMMIT_MESSAGE="chore(update): update packages (${#COMMIT_MESSAGE_PACKAGES[@]})"
-  else
-    COMMIT_MESSAGE="chore(update): update packages"
-  fi
-
-  if [ -v GITHUB_ACTIONS ]; then
-    COMMIT_MESSAGE+=" [skip ci]"
-  fi
-  if [ "$1" == ".final" ]; then
-    local COMMIT_DESCRIPTION=""
-    if ((${#COMMIT_MESSAGE_PACKAGES[@]} > 3)); then
-      local packages="$(printf "%s, " "${COMMIT_MESSAGE_PACKAGES[@]}")"
-      COMMIT_DESCRIPTION+="changed: ${packages%, }"
-    fi
-    git commit -q --amend -m "$COMMIT_MESSAGE" -m "$COMMIT_DESCRIPTION"
-  else
+  if [[ "$1" != ".final" ]]; then
     COMMIT_MESSAGE_PACKAGES+=("$1")
-    if [ "$COMMIT" == "false" ]; then
+    if [[ "$COMMIT" == "false" ]]; then
       COMMIT=true
-      git commit -q -m "$COMMIT_MESSAGE"
     else
       git commit -q --amend --no-edit
+      return
     fi
   fi
+
+  local COMMIT_MESSAGE COMMIT_DESCRIPTION
+  {
+    read -r COMMIT_MESSAGE
+    read -r COMMIT_DESCRIPTION
+  } < <(UTIL_COMMIT_MESSAGE COMMIT_MESSAGE_PACKAGES "chore(update)" "changed")
+
+  if [[ -v GITHUB_ACTIONS ]]; then
+    COMMIT_MESSAGE+=" [skip ci]"
+  fi
+
+  local commit_args=("-q")
+  if [[ "$1" == ".final" ]]; then
+    commit_args+=("--amend")
+  fi
+
+  commit_args+=("-m" "$COMMIT_MESSAGE")
+
+  if [[ -n "$COMMIT_DESCRIPTION" ]]; then
+    commit_args+=("-m" "$COMMIT_DESCRIPTION")
+  fi
+
+  git commit "${commit_args[@]}"
 }
 
 function update-lib-bump() {

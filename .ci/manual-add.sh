@@ -60,7 +60,7 @@ for package_string in "${PACKAGES_LIST[@]}"; do
             if [ -v REQUEST_ORIGIN ] && [ -n "$REQUEST_ORIGIN" ]; then
                 echo "REQ_ORIGIN=$REQUEST_ORIGIN" >"$pkgbase/.CI/info"
             fi
-            if [ -v REQUEST_REASON ] && [ -n "$REQUEST_REASON" ]; then
+            if [ -v REQUEST_REASON ] && [ -n "$REQUEST_REASON" ] && [ "$REQUEST_REASON" != "unset" ]; then
                 echo "REQ_REASON=$REQUEST_REASON" >>"$pkgbase/.CI/info"
             fi
 
@@ -74,13 +74,18 @@ if [ ${#MODIFIED_PACKAGES[@]} -ne 0 ]; then
   git add "${MODIFIED_PACKAGES[@]}"
 
   COMMIT_MESSAGE=""
-  if ((${#MODIFIED_PACKAGES[@]} == 1)); then
-    COMMIT_MESSAGE="feat(add): add ${MODIFIED_PACKAGES[0]}"
-  else
-    COMMIT_MESSAGE="feat(add): add packages (${#MODIFIED_PACKAGES[@]})"
+  COMMIT_DESCRIPTION=""
+  {
+    read -r COMMIT_MESSAGE
+    read -r COMMIT_DESCRIPTION
+  } < <(UTIL_COMMIT_MESSAGE MODIFIED_PACKAGES "feat(add)" "added")
+
+  commit_args=("-q" "-m" "$COMMIT_MESSAGE")
+  if [[ -n "$COMMIT_DESCRIPTION" ]]; then
+    commit_args+=("-m" "$COMMIT_DESCRIPTION")
   fi
 
-  git commit -q -m "$COMMIT_MESSAGE"
+  git commit "${commit_args[@]}"
 fi
 
 # Push changes

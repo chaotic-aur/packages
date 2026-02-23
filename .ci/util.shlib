@@ -535,3 +535,35 @@ function UTIL_PARSE_PACKAGELIST() {
 
     IFS=':' read -r -a output_array <<<"$input_string"
 }
+
+# $1: Package array name
+# $2: action text
+# $3: description prefix
+function UTIL_COMMIT_MESSAGE() {
+    local -n package_array=$1
+    local action=$2
+    local desc_prefix=$3
+
+    local message="${action}: "
+    local description=""
+
+    if [[ ${#package_array[@]} -eq 0 ]]; then
+        echo "${message}update packages"
+        echo ""
+        return
+    fi
+
+    local packages
+    printf -v packages "%s, " "${package_array[@]}"
+    packages="${packages%, }"
+
+    if [[ ${#package_array[@]} -gt 4 ]]; then
+        message+="packages (${#package_array[@]})"
+        description="${desc_prefix}: ${packages}"
+    else
+        message+="${packages}"
+    fi
+
+    echo "$message"
+    echo "$description"
+}
