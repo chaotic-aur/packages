@@ -34,7 +34,7 @@ if [ ${#MODIFIED_PACKAGES[@]} -ne 0 ]; then
   {
     read -r COMMIT_MESSAGE
     read -r COMMIT_DESCRIPTION
-  } < <(UTIL_COMMIT_MESSAGE MODIFIED_PACKAGES "chore(drop)!" "dropped")
+  } < <(UTIL_COMMIT_MESSAGE MODIFIED_PACKAGES "chore(drop)" "dropped")
 
   commit_args=("-q" "-m" "$COMMIT_MESSAGE")
   if [[ -n "$COMMIT_DESCRIPTION" ]]; then
