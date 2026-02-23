@@ -57,6 +57,10 @@ Server = https://es-mirror.chaotic.cx/$repo/$arch
 # * By: Ícar <t.me/IcarNS>
 Server = https://es-2-mirror.chaotic.cx/$repo/$arch
 
+# Sweden
+# * By: Academic Computer Club in Umeå (accum.se)
+Server = https://se-mirror.chaotic.cx/$repo/$arch
+
 # United States
 # * By: Technetium1 <github.com/Technetium1>
 Server = https://us-mi-mirror.chaotic.cx/$repo/$arch
