@@ -1,4 +1,7 @@
+pkgname=("wayland-git") # no docs package
 pkgdesc="A computer display server protocol"
+
+makedepends+=('mdbook')
 
 _pkgsrc="wayland"
 pkgver() {
