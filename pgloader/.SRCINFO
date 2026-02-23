@@ -1,0 +1,23 @@
+pkgbase = pgloader
+	pkgdesc = A data loading tool for PostgreSQL, using the COPY command.
+	pkgver = 3.6.10
+	pkgrel = 2
+	url = http://pgloader.io/
+	arch = x86_64
+	license = custom:PostgreSQL
+	makedepends = sbcl>=1.2.5
+	makedepends = gawk
+	makedepends = curl
+	makedepends = quicklisp
+	makedepends = sqlite
+	makedepends = unzip
+	depends = freetds
+	depends = zlib
+	options = !strip
+	options = !makeflags
+	source = https://github.com/dimitri/pgloader/archive/v3.6.10.tar.gz
+	source = LICENSE
+	sha256sums = 1ff25d5cebca58f095ad8eacf5f5a89e8b4b43d78fc307bc00044016095ef46c
+	sha256sums = b34067e89373e1a47367b454862f43061ad1680542b39b6d95ed29c354473e15
+
+pkgname = pgloader

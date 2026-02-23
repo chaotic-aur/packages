@@ -1,0 +1,5 @@
+url="https://github.com/dimitri/pgloader"
+
+license=('PostgreSQL')
+
+depends+=('zstd')
