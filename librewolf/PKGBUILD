@@ -12,8 +12,8 @@
 
 _pkgname="librewolf"
 pkgname="${_pkgname}"
-pkgver=147.0.4
-pkgrel=2
+pkgver=148.0
+pkgrel=1
 pkgdesc="A web browser focused on privacy, security, and freedom"
 url="https://codeberg.org/librewolf/source"
 arch=('x86_64')
@@ -108,7 +108,7 @@ source=(
   '0004-Fix-sandbox-to-build-with-glibc-2.43.patch'
 )
 sha256sums=(
-  '44f291b45211f50a5accfcd5d2a4a219ff3e4a7ad5e4115201c0a5ed5c80a45e' # update-cksum
+  '2a81eeabb4589621ebd6a12ad07b060fccdf1faee9b6026587d1921a742864e1' # update-cksum
   '1534094c1539a1a92fff3b5dd12f19d8a096723f32dbaf1efd72fe7646b0387f'
   'c2aaff2a743c738edbf02d7be816c30fe3a5acb2d3dcb7a3906357a9f2ed438f'
   '8d2182ae8660474ac567482fe6658af77f3b402314e361c846528ae171586245'

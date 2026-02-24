@@ -12,8 +12,8 @@
 
 _pkgname="waterfox"
 pkgname="$_pkgname"
-pkgver=6.6.8
-pkgrel=2
+pkgver=6.6.9
+pkgrel=1
 pkgdesc="Fork of Mozilla Firefox featuring some privacy, usability, and speed enhancements"
 url="https://github.com/BrowserWorks/waterfox"
 license=('MPL-2.0')
