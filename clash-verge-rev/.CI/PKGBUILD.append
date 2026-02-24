@@ -1,0 +1,14 @@
+export RUSTFLAGS="-C opt-level=2 -C codegen-units=16 -C lto=off"
+options=('!lto')
+
+eval "$(declare -f _build_service | sed -e 's&--frozen&&')"
+
+eval "$(declare -f _prepare_service | sed -e 's&--locked&&')"
+
+eval "_orig_$(declare -f prepare | sed -e 's&--locked&&' )"
+prepare() {
+  # prevent 404
+  sed -e '/version\.txt/s&download/Prerelease-Alpha&latest/download&' -i "$pkgname-$pkgver"/scripts/prebuild.mjs
+
+  _orig_prepare
+}

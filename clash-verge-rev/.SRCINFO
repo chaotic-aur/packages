@@ -1,0 +1,26 @@
+pkgbase = clash-verge-rev
+	pkgdesc = Continuation of Clash Verge | A Clash Meta GUI based on Tauri
+	pkgver = 2.4.6
+	pkgrel = 1
+	url = https://github.com/clash-verge-rev/clash-verge-rev
+	arch = x86_64
+	arch = i686
+	arch = aarch64
+	arch = armv7h
+	license = GPL-3.0-or-later
+	makedepends = pnpm
+	makedepends = cargo
+	makedepends = jq
+	makedepends = moreutils
+	depends = webkit2gtk-4.1
+	depends = gtk3
+	depends = libayatana-appindicator
+	depends = mihomo
+	provides = clash-verge
+	conflicts = clash-verge
+	source = clash-verge-rev-2.4.6.tar.gz::https://github.com/clash-verge-rev/clash-verge-rev/archive/refs/tags/v2.4.6.tar.gz
+	source = clash-verge-service-ipc.tar.gz::https://github.com/clash-verge-rev/clash-verge-service-ipc/archive/refs/tags/x86_64-unknown-linux-gnu.tar.gz
+	sha512sums = aed1c5a8636c93c049480a225ac5f2bbe02fb77c8569ef572d0c6af71297d3f3485a83767361de0927345b1141ce98027f046bba6266854dfb07398cee960567
+	sha512sums = fccbc1a25697e60cdb190593266f7f68295f15d6524c016cf7837ea20ed54d66226c3eef5366d7ce58145de0d93ca05184db643dac53eab6f3bc988be888b244
+
+pkgname = clash-verge-rev
