@@ -11,7 +11,7 @@
 _pkgname="ayugram-desktop"
 pkgname="$_pkgname-git"
 pkgver=6.3.10.r3.g1f6806d
-pkgrel=1
+pkgrel=2
 pkgdesc="Desktop Telegram client with good customization and Ghost mode"
 url="https://github.com/AyuGram/AyuGramDesktop"
 license=('GPL-3.0-or-later')
@@ -70,9 +70,10 @@ optdepends=(
 provides=("$_pkgname")
 conflicts=("$_pkgname")
 
+options=('!lto')
+
 _pkgsrc="$_pkgname"
 _pkgsrc_tdlib="telegram-tdlib"
-_patch_commit="354be0d07b11404572577b40914f67adac3de49f"
 source=(
   "$_pkgsrc"::"git+$url.git${_commit:+#commit=$_commit}${_commit:-${_branch:+#branch=$_branch}}"
   "$_pkgsrc_tdlib"::"git+https://github.com/tdlib/td.git"
@@ -101,6 +102,10 @@ prepare() {
       patch -Np1 -F100 -i "${srcdir:?}/$src" || true
     fi
   done
+
+  # fix minizip headers
+  sed -E -e 's&#include <((un)?zip\.h)>&#include <minizip/\1>&g' \
+    -i Telegram/lib_base/base/zlib_help.h
 }
 
 pkgver() {
