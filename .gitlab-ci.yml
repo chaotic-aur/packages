@@ -99,7 +99,6 @@ manual-schedule:
       - .ci/deptree.txt
       - .ci/schedule-params.txt
     expire_in: 1 hour
-  resource_group: chaotic
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && "$[[ inputs.operation ]]" == 'Schedule Packages' && "$[[ inputs.packages ]]" != ""
 

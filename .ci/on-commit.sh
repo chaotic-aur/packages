@@ -45,7 +45,7 @@ function parse_commit_messages() {
   for i in "${!COMMIT_MESSAGES[@]}"; do
     local message="${COMMIT_MESSAGES[$i]}"
     local commit="${COMMITS[$i]}"
-    local regex="\[deploy ([a-z0-9_ -]+)\]"
+    local regex="\[deploy ([[:alnum:]_@.+-]+)\]"
     if [[ "$message" =~ $regex ]]; then
       local potential_packages
       mapfile -t potential_packages <<<"${BASH_REMATCH[1]}"
@@ -82,7 +82,7 @@ function parse_changed_files() {
     fi
 
     # Extract the root folder of the changed file
-    if [[ "$file" =~ ^([a-z0-9\._-]+)/ ]]; then
+    if [[ "$file" =~ ^([[:alnum:]_@.+-]+)/ ]]; then
       local folder="${BASH_REMATCH[1]}"
       if [ -d "$folder" ]; then
         CHANGED_ROOT_FOLDERS["$folder"]=1
