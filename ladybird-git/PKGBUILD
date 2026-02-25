@@ -4,7 +4,7 @@
 # Contributor: Brian <brain@derelict.garden>
 
 pkgname=ladybird-git
-pkgver=r74110.488fd52039a
+pkgver=r75467.3a5a6b741df
 pkgrel=1
 pkgdesc='Truly independent web browser'
 arch=(x86_64)
@@ -49,6 +49,11 @@ sha256sums=(
   'SKIP'
 )
 
+#ENABLE_RUST=YES # Uncomment to build rust components
+if [ "${ENABLE_RUST:-NO}" = "YES" ]; then
+  makedepends+=(cargo)
+fi
+
 pkgver() {
   cd ladybird
   printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
@@ -62,6 +67,7 @@ build() {
   cmake \
     -B build \
     -S ladybird \
+    -DENABLE_RUST="${ENABLE_RUST}" \
     -DBUILD_SHARED_LIBS=OFF \
     -DLADYBIRD_CACHE_DIR=Build/caches \
     -DCMAKE_BUILD_TYPE=Release \
@@ -95,4 +101,13 @@ package() {
 
   install -Dm644 ladybird/LICENSE -t "${pkgdir}/opt/ladybird/usr/share/licenses/${pkgname}/"
   install -Dm644 "${pkgdir}/opt/ladybird/${RELATIVE_DESKTOP_FILE_PATH}" "${pkgdir}/${RELATIVE_DESKTOP_FILE_PATH}"
+
+  # Links
+  mkdir -p "${pkgdir}/usr/bin" "${pkgdir}/usr/share/licenses" "${pkgdir}/usr/share/metainfo" "${pkgdir}/usr/share/icons/hicolor/scalable/apps" "${pkgdir}/usr/share/icons/hicolor/128x128/apps" "${pkgdir}/usr/share/icons/hicolor/48x48/apps"
+  ln -s /opt/ladybird/usr/bin/Ladybird "${pkgdir}/usr/bin/Ladybird"
+  ln -s /opt/ladybird/usr/share/licenses/ladybird-git "${pkgdir}/usr/share/licenses/ladybird-git"
+  ln -s /opt/ladybird/usr/share/metainfo/org.ladybird.Ladybird.metainfo.xml "${pkgdir}/usr/share/metainfo/org.ladybird.Ladybird.metainfo.xml"
+  ln -s /opt/ladybird/usr/share/icons/hicolor/scalable/apps/org.ladybird.Ladybird.svg "${pkgdir}/usr/share/icons/hicolor/scalable/apps/org.ladybird.Ladybird.svg"
+  ln -s /opt/ladybird/usr/share/Lagom/icons/128x128/app-browser.png "${pkgdir}/usr/share/icons/hicolor/128x128/apps/org.ladybird.Ladybird.png"
+  ln -s /opt/ladybird/usr/share/Lagom/icons/48x48/app-browser.png "${pkgdir}/usr/share/icons/hicolor/48x48/apps/org.ladybird.Ladybird.png"
 }

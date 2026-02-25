@@ -1,4 +1,5 @@
 unset conflicts
 unset install
 
+# TODO: consider drop if quickshell depends not resolved by next release
 depends=(${depends[@]//quickshell*} 'quickshell')

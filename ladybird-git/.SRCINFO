@@ -1,6 +1,6 @@
 pkgbase = ladybird-git
 	pkgdesc = Truly independent web browser
-	pkgver = r74110.488fd52039a
+	pkgver = r75467.3a5a6b741df
 	pkgrel = 1
 	url = https://github.com/LadybirdBrowser/ladybird
 	arch = x86_64

@@ -1,0 +1,5 @@
+unset provides
+unset conflicts
+unset replaces
+
+unset changelog
