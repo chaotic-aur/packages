@@ -1,6 +1,6 @@
 pkgbase = llvm-mingw
 	pkgdesc = A self-contained LLVM/Clang/LLD based mingw-w64 toolchain targeting i686, x86-64, armv7, and aarch64
-	pkgver = 21.1.8+20251216
+	pkgver = 22.1.0+20260224
 	pkgrel = 1
 	url = https://github.com/mstorsjo/llvm-mingw
 	arch = x86_64
@@ -45,11 +45,11 @@ pkgbase = llvm-mingw
 	options = staticlibs
 	options = !buildflags
 	options = !emptydirs
-	source = llvm-mingw-20251216.tar.gz::https://github.com/mstorsjo/llvm-mingw/archive/refs/tags/20251216.tar.gz
-	source = llvm-project-21.1.8.tar.gz::https://github.com/llvm/llvm-project/archive/refs/tags/llvmorg-21.1.8.tar.gz
-	source = mingw-w64-gc4ae0f.tar.gz::https://github.com/mingw-w64/mingw-w64/archive/c4ae0f47b9adf0b6b91dcc906f5b1fbfe342bb42.tar.gz
-	sha256sums = 326980d3a7a57fd1a47d7e81bf52c02ffadb0f67730fa92e358092c26bf6c6ac
-	sha256sums = 7ba3f2a8d8fda88be18a31d011e8195d3b7f87f9fa92b20c94cba2d7f65b0e3f
-	sha256sums = c082d51c83af9e38bcf11bd1521502afa9a792fc9a9c75182fa78a7be6cd35e1
+	source = llvm-mingw-20260224.tar.gz::https://github.com/mstorsjo/llvm-mingw/archive/refs/tags/20260224.tar.gz
+	source = llvm-project-22.1.0.tar.gz::https://github.com/llvm/llvm-project/archive/refs/tags/llvmorg-22.1.0.tar.gz
+	source = mingw-w64-g43f264.tar.gz::https://github.com/mingw-w64/mingw-w64/archive/43f2643cbde20aff1c4b89a98c78d0b4b0fe90c2.tar.gz
+	sha256sums = e64db689400e51fd57fb43741f6d204c037c1e6ccd544690f7fc030dc6c4955a
+	sha256sums = 933765a1c2cd518d95a9033a92d88d7109a79aefa4609247c31f28b8bc8dd96e
+	sha256sums = bbffb8e3d757aeb2786ba8555ee0b6dd2c65a8f2c1fc8a31b18909fbb516e161
 
 pkgname = llvm-mingw
