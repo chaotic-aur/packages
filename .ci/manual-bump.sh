@@ -58,7 +58,7 @@ function force_bump() {
   # Get current version from the versions file
   if [ -f "${versions_file}" ]; then
     local current_version
-    current_version="$(grep "^$package:" "${versions_file}" | cut -d ":" -f 2 || true)"
+    current_version="$(grep -m1 "^$package:" "${versions_file}" | cut -d ":" -f 2 || true)"
 
     if [ -n "$current_version" ]; then
       # Parse pkgver-pkgrel.bumped format
