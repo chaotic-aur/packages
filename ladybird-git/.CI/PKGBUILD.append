@@ -1,7 +1,6 @@
 pkgdesc="Independent web browser in pre-alpha state"
 
-depends=(${depends[@]//skia*/})
-makedepends+=('skia-static')
+depends+=('libfmt.so')
 
 # keep default build flags
 options=('!debug' '!emptydirs' '!lto' '!staticlibs')
