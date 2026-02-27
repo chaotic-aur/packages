@@ -2,7 +2,7 @@
 
 _pkgname="nyrna"
 pkgname="$_pkgname"
-pkgver=2.26.0
+pkgver=2.26.1
 pkgrel=1
 pkgdesc='Suspend games and applications at any time and resume whenever you wish'
 url="https://github.com/Merrit/nyrna"
