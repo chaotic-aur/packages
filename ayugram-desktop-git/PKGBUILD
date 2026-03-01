@@ -11,7 +11,7 @@
 _pkgname="ayugram-desktop"
 pkgname="$_pkgname-git"
 pkgver=6.3.10.r3.g1f6806d
-pkgrel=2
+pkgrel=3
 pkgdesc="Desktop Telegram client with good customization and Ghost mode"
 url="https://github.com/AyuGram/AyuGramDesktop"
 license=('GPL-3.0-or-later')
@@ -141,7 +141,6 @@ build() {
     -DCMAKE_INSTALL_PREFIX=/usr
     -DCMAKE_PREFIX_PATH="$srcdir/deps/usr"
     -DDESKTOP_APP_DISABLE_AUTOUPDATE=ON
-    -DTDESKTOP_API_TEST=ON
     -DTDESKTOP_API_ID=611335
     -DTDESKTOP_API_HASH=d524b414d21f4d37f08684c1df41ac9c
     -DDESKTOP_APP_USE_PACKAGED_FONTS=OFF
