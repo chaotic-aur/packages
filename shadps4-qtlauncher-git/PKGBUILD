@@ -2,7 +2,7 @@
 
 _pkgname="shadps4-qtlauncher"
 pkgname="$_pkgname-git"
-pkgver=0.0.0.r143.g55bb7f7
+pkgver=0.0.0.r211.g7177dc2
 pkgrel=1
 pkgdesc="Qt-based launcher for shadps4 emulator"
 url="https://github.com/shadps4-emu/shadps4-qtlauncher"
@@ -10,7 +10,7 @@ license=('GPL-2.0-or-later')
 arch=('x86_64')
 
 depends=(
-  #'hicolor-icon-theme'
+  'hicolor-icon-theme'
   'libfmt.so'
   'pugixml'
   'qt6-base'
@@ -24,6 +24,7 @@ makedepends=(
   'nlohmann-json'
   'qt6-tools'
   'toml11'
+  'vulkan-headers'
 )
 
 provides=("$_pkgname")
@@ -44,11 +45,9 @@ prepare() {
   git rm -r externals/MoltenVK
   git rm -r externals/fmt
   git rm -r externals/json
-  git rm -r externals/pugixml
   git rm -r externals/sdl3
   git rm -r externals/toml11
-  #git rm -r externals/volk
-  #git rm -r externals/vulkan-headers
+  git rm -r externals/vulkan-headers
   git submodule update --init --recursive --depth=1
 
   # tag initial commit
@@ -108,7 +107,7 @@ package() {
 
   install -Dm755 build/shadPS4QtLauncher "$pkgdir/usr/bin/$_exec_name"
 
-  install -Dm644 "$_pkgsrc"/src/images/shadps4.png "$pkgdir/usr/share/pixmaps/$_exec_name.png"
+  install -Dm644 "$_pkgsrc"/src/images/shadps4.png "$pkgdir/usr/share/icons/hicolor/512x512/apps/$_exec_name.png"
 
   install -Dm644 /dev/stdin "$pkgdir/usr/share/applications/$_exec_name.desktop" << END
 [Desktop Entry]
