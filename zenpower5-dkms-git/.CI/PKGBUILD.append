@@ -1,0 +1,7 @@
+unset epoch
+unset install
+
+pkgdesc="Linux kernel driver for reading sensors for AMD Zen family CPUs"
+
+provides=('zenpower' 'zenpower5-dkms')
+conflicts=('zenpower' 'zenpower5-dkms')
