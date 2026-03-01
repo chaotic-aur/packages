@@ -20,11 +20,14 @@ depends=(
   'minizip'
   'nodejs' # for extensions
   'qt6-base'
+  'qt6-declarative'
   'qt6-svg'
   'qtkeychain-qt6'
+  'syntax-highlighting'
 )
 makedepends=(
   'cmake'
+  'glaze'
   'ninja'
   'npm'
   'rapidfuzz-cpp'
@@ -43,6 +46,8 @@ build() {
     -DCMAKE_BUILD_TYPE=None
     -DCMAKE_INSTALL_PREFIX='/usr'
     -Wno-dev
+
+    -DUSE_SYSTEM_GLAZE=ON
   )
 
   cmake "${_cmake_options[@]}"

@@ -1,3 +1,2 @@
-CI_PACKAGE_BUMP=0.19.3-1/1
 CI_REBUILD_TRIGGERS=abseil-cpp:protobuf:qt6-base
 CI_PKGBUILD_SOURCE=custom

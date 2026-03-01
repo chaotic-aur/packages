@@ -8,7 +8,7 @@ _update_package() {
 
   _RESPONSE=$(curl -Ssf "$url/releases.atom")
   _NEW_VERSION=$(
-    grep -Pom1 '(?<=/releases/tag/v?)[0-9\.-]+(?=")' <<< "${_RESPONSE:?}"
+    grep -Pom1 '(/releases/tag/[^0-9]*)\K[0-9\.-]+(?=")' <<< "${_RESPONSE:?}"
   )
 
   if (($(vercmp "${_NEW_VERSION:?}" "${_OLD_VERSION:?}") > 0)); then
