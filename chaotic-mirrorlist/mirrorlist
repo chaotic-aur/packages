@@ -21,6 +21,10 @@ Server = https://cl-mirror.chaotic.cx/$repo/$arch
 # * By Jonathan Gutiérrez
 Server = https://cl-2-mirror.chaotic.cx/$repo/$arch
 
+# Columbia
+# * By: Eduard Tolosa
+Server = https://co-mirror.chaotic.cx/$repo/$arch
+
 # Germany
 # * By: Nico
 Server = https://de-2-mirror.chaotic.cx/$repo/$arch
