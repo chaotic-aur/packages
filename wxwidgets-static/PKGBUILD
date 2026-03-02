@@ -2,7 +2,7 @@
 
 _pkgname="wxwidgets"
 pkgname="$_pkgname-static"
-pkgver=3.3.1
+pkgver=3.3.2
 pkgrel=1
 pkgdesc="wxWidgets suite, static libs"
 url="https://github.com/wxWidgets/wxWidgets"
