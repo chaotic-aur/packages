@@ -1,0 +1,5 @@
+unset provides
+unset conflicts
+
+depends=(${depends[@]//gcc-libs/})
+depends=(${depends[@]//glibc/})
