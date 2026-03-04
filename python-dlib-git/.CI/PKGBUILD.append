@@ -1,0 +1,5 @@
+_pkgsrc="$_pkgname"
+prepare() {
+  cd "$_pkgsrc"
+  sed -e 's&if(test_for_avx_worked)&if(false)&' -i dlib/cmake_utils/check_if_avx_instructions_executable_on_host.cmake
+}
