@@ -1,7 +1,8 @@
 unset -f check
 
+_nproc=$(nproc)
 export CARGO_PROFILE_RELEASE_LTO=false
-export CARGO_PROFILE_RELEASE_CODEGEN_UNITS=$((n > 16 ? n : 16))
+export CARGO_PROFILE_RELEASE_CODEGEN_UNITS=$((_nproc > 16 ? _nproc : 16))
 
 depends+=('libxkbcommon')
 options=('!lto')
