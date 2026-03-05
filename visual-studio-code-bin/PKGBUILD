@@ -2,7 +2,7 @@
 
 pkgname=visual-studio-code-bin
 _pkgname=visual-studio-code
-pkgver=1.109.5
+pkgver=1.110.0
 pkgrel=1
 pkgdesc="Visual Studio Code (vscode): Editor for building and debugging modern web and cloud applications (official binary version)"
 arch=('x86_64' 'aarch64' 'armv7h')
@@ -22,9 +22,9 @@ optdepends=('glib2: Needed for move to trash functionality'
   'org.freedesktop.secrets: Needed for settings sync'
   # See https://github.com/MicrosoftDocs/live-share/issues/4650
   'icu69: Needed for live share')
-source=(code-${pkgver}.desktop.in::https://raw.githubusercontent.com/microsoft/vscode/${pkgver}/resources/linux/code.desktop
-  code-${pkgver}-url-handler.desktop.in::https://raw.githubusercontent.com/microsoft/vscode/${pkgver}/resources/linux/code-url-handler.desktop
-  code-${pkgver}-workspace.xml.in::https://raw.githubusercontent.com/microsoft/vscode/${pkgver}/resources/linux/code-workspace.xml
+source=(code-${pkgver}.desktop.in::https://raw.githubusercontent.com/microsoft/vscode/${pkgver%.0}/resources/linux/code.desktop
+  code-${pkgver}-url-handler.desktop.in::https://raw.githubusercontent.com/microsoft/vscode/${pkgver%.0}/resources/linux/code-url-handler.desktop
+  code-${pkgver}-workspace.xml.in::https://raw.githubusercontent.com/microsoft/vscode/${pkgver%.0}/resources/linux/code-workspace.xml
   ${_pkgname}-bin.sh)
 source_x86_64=(code_x64_${pkgver}.tar.gz::https://update.code.visualstudio.com/${pkgver}/linux-x64/stable)
 source_aarch64=(code_arm64_${pkgver}.tar.gz::https://update.code.visualstudio.com/${pkgver}/linux-arm64/stable)
@@ -34,9 +34,9 @@ sha256sums=('2f1782b30c4e040efff655fd9cf477930c5a0c81ddae27749b0cbb922c1d248e'
   'c361efa7e02fcad759ed80d2fbab67877f33219b981578af6fffaf18aeb12d9b'
   '3af748dd6578a1775e8eb7248ba397b7e11840df2ea6ee234ff76fee3dc306cf'
   '8257a5ad82fa1f7dec11dfa064217b80df4cfec24f50cec7ca0ad62cf8295bfe')
-sha256sums_x86_64=('70160103c0dda50f651a37ee27a65a9a64a6938734cf1a0bcd49d83612bdb1a7')
-sha256sums_aarch64=('9e772a3469ce0ce82eeba8e9ee893fb296e52d2974899d653c9aab9120e77080')
-sha256sums_armv7h=('2393e1cb5798fa8600541925bed52576461b9a025460206bee10062319cd4ef0')
+sha256sums_x86_64=('a3f8ef5dea57b0ad7316d193632aa39c330f9e516d577d33994ca35ffc1b714f')
+sha256sums_aarch64=('c50066e334b10c67800aaf3fc6422f25b16b5b4bc8060223fd357854487494ef')
+sha256sums_armv7h=('b389913411b8f8acb6b1a2e0deb6d9f915003fbf8b758aa27186f970c740922c')
 
 _set_meta_info() {
   sed 's/@@NAME_LONG@@/Visual Studio Code/g' "$1" \
