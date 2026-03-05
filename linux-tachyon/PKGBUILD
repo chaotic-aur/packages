@@ -188,9 +188,9 @@
 
 # Kernel version
 _kernel_major=6.19
-_kernel_minor=2
+_kernel_minor=6
 # Tachyon patches version
-_tachyon=6.19.2-1596
+_tachyon=6.19.6-1597
 # kernel_compiler_patch version
 _kernelcompilerpatch="20250818.2"
 # kernel_compiler_patch name
@@ -222,7 +222,7 @@ source=(
 sha256sums=(
   "303079a8250b8f381f82b03f90463d12ac98d4f6b149b761ea75af1323521357"
   "SKIP"
-  "ee81001444af138067da8a368ebd7da5a7f2cc258d5e45db7ac9e212c471620c"
+  "cb25f2161e2eed431e4d91eab65747cb1e626da6c2c1e6aa054025086d32da42"
   "SKIP"
   "326701c512295d50b7ee5b281287959b0e318bba8fed7abe746099e5b658849a"
 )
@@ -439,6 +439,12 @@ _update_defconfig() {
   scripts/config -e EDAC_AMD64 \
     -e EDAC_IGEN6
 
+  # Google's BBRv3 TCP algo
+  scripts/config -e TCP_CONG_BBR \
+    -e NET_SCH_FQ \
+    --set-str DEFAULT_TCP_CONG bbr \
+    --set-str DEFAULT_NET_SCH fq
+
   # Enable LLVM compilation
   [ -n "${_use_llvm_lto}" ] && scripts/config -d LTO_NONE \
     -e LTO \
@@ -580,7 +586,8 @@ _package() {
 
   # Install modules
   # We specify DEPMOD=/doesnt/exist here to suppress depmod
-  ZSTD_CLEVEL=19 make ${BUILD_FLAGS[*]} INSTALL_MOD_PATH="${pkgdir}/usr" \
+  # Silence this make call as it's just a compress + move operation
+  ZSTD_CLEVEL=3 make -s ${BUILD_FLAGS[*]} INSTALL_MOD_PATH="${pkgdir}/usr" \
     INSTALL_MOD_STRIP=1 DEPMOD=/doesnt/exist modules_install
 
   # Remove build directory
