@@ -1,0 +1,7 @@
+unset install
+
+license=('LGPL-2.1-or-later')
+
+options+=('!emptydirs')
+
+eval "$(declare -f build | sed -E -e 's&\b(configure)\b&\1 --disable-selinux-support&')"
