@@ -1,0 +1,4 @@
+url="https://gitlab.freedesktop.org/realmd/realmd"
+license=('LGPL-2.1-or-later')
+
+eval "$(declare -f build | sed -E -e 's&\b(configure)\b&\1 --libexecdir=/usr/lib/realmd&')"
