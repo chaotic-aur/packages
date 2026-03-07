@@ -1,3 +1,22 @@
+## 1.0.2 - 2026-03-06
+
+To commemorate GitHub Copilot CLI reaching general availability last week, we're incrementing the major version to 1.0!
+
+- Type 'exit' as a bare command to close the CLI
+- Ask_user form now submits with Enter key and allows custom responses in enum fields
+- Support 'command' field as cross-platform alias for bash/powershell in hook configs
+- Hook configurations now accept timeout as alias for timeoutSec
+- Fix handling of meta with control keys (including shift+enter from /terminal-setup)
+
+## 0.0.423 - 2026-03-06
+
+- Users are prompted for shell commands with potentially dangerous expansion or substitution use cases, additional guardrails for malicious exploits
+- Block /share gist for EMU and GHE Cloud users with clear error messaging
+- Elicitation enum and boolean fields now require Enter to confirm a selection, with a ✓ indicator for confirmed values vs ❯ for the browsing cursor
+- MCP servers can now request users to visit a URL for out-of-band interactions such as OAuth flows or API key entry
+- Improve explore agent precision and large repository support with better context sharing
+- Diff mode displays cleanly on Windows with CRLF line endings
+
 ## 0.0.422 - 2026-03-05
 
 - Display request ID in authentication and authorization error messages to aid troubleshooting
