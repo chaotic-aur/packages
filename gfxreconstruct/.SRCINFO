@@ -1,0 +1,32 @@
+pkgbase = gfxreconstruct
+	pkgdesc = Graphics API Capture and Replay Tools for Reconstructing Graphics Application Behavior
+	pkgver = 1.4.321.0
+	pkgrel = 1
+	url = https://github.com/LunarG/gfxreconstruct
+	arch = x86_64
+	arch = aarch64
+	license = MIT
+	makedepends = cmake
+	makedepends = git
+	makedepends = ninja
+	makedepends = xcb-util-keysyms
+	makedepends = libx11
+	makedepends = libxcb
+	makedepends = wayland
+	makedepends = libxrandr
+	depends = python
+	depends = zlib
+	depends = lz4
+	depends = zstd
+	depends = gcc-libs
+	depends = glibc
+	source = git+https://github.com/LunarG/gfxreconstruct.git#tag=vulkan-sdk-1.4.321.0
+	source = git+https://github.com/KhronosGroup/Vulkan-Headers.git
+	source = git+https://github.com/KhronosGroup/SPIRV-Headers.git
+	source = git+https://github.com/KhronosGroup/SPIRV-Reflect.git
+	sha256sums = fd6877a0de9ec7f76a7bf15ce574c962206218a5a1954ce9ab760c61f2342d58
+	sha256sums = SKIP
+	sha256sums = SKIP
+	sha256sums = SKIP
+
+pkgname = gfxreconstruct
