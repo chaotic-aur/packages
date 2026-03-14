@@ -1,0 +1,18 @@
+pkgbase = ruby-tty-screen
+	pkgdesc = Terminal screen detection
+	pkgver = 0.8.2
+	pkgrel = 2
+	url = https://github.com/piotrmurach/tty-screen
+	arch = any
+	license = MIT
+	checkdepends = ruby-bundler
+	checkdepends = ruby-rake
+	checkdepends = ruby-rspec
+	makedepends = rubygems
+	makedepends = ruby-rdoc
+	depends = ruby
+	options = !emptydirs
+	source = https://github.com/piotrmurach/tty-screen/archive/v0.8.2.tar.gz
+	sha256sums = ee2d8cd8fce43c8653a5db13657f04b22ee0d32d75e0c83bf0df6245f130090b
+
+pkgname = ruby-tty-screen
