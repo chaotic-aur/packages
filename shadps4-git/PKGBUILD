@@ -5,12 +5,12 @@
 
 _pkgname="shadps4"
 pkgname="$_pkgname-git"
-pkgver=0.14.0.r33.g4a37051
+pkgver=0.15.0.r7.g2ca3429
 pkgrel=1
-pkgdesc="PlayStation 4 emulator"
+pkgdesc="Sony PlayStation 4 emulator"
 url="https://github.com/shadps4-emu/shadPS4"
 license=('GPL-2.0-or-later')
-arch=('x86_64')
+arch=('aarch64' 'x86_64')
 
 depends=(
   'glslang'
@@ -54,7 +54,7 @@ if [[ "${_use_clang::1}" == "t" ]]; then
   )
 fi
 
-options=('!lto')
+options=('!debug' '!lto' '!strip')
 
 provides=("$_pkgname")
 conflicts=("$_pkgname")
