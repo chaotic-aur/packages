@@ -1,3 +1,36 @@
+## GE-Proton10-33
+
+Proton:
+- wine bleeding-edge updated
+- dxvk updated
+- vkd3d-proton updated
+- vkd3d updated
+- dxvk-nvapi updated
+- fex updated
+- pulled in upstream misc proton script fixes
+- pulled in upstream steam_helper fixes
+
+Patches:
+- **NEW:** Added new wineopenvr patches to allow VR to work outside of steam for non-steam games (examples such as GOG version of ProjectWingman, Overload, Star Citizen). Compatibility tested using Meta Quest 3 with WiVRn. To use, setup WiVRn, then launch games with the additional environment variables WiVRn instructs. Tested flatpak system and user modes as well as standalone package install.
+- **NEW:** Rebased em10/wine-wayland patches, should have some new dead-key fixes.
+- Patch added to fix Star Citizen EAC warning popup
+- More winepulse patches from Vyrolian
+- **NEW:** Added new umu.exe that works the same way steam.exe does -- this is used now instead of the standard wine start.exe, it should help some 3rd party launchers work better by making them run the same way steam runs them.
+
+Protonfixes:
+- [add vcrun2022 to fix star citizen 3221225477 code error](https://github.com/Open-Wine-Components/umu-protonfixes/commit/b99bf1cff471afeed8243b409e8bf29d5b246217)
+- [upscalers: add version 4.0.3 of amdxcffx64.dll](https://github.com/Open-Wine-Components/umu-protonfixes/commit/39beb967188c7340fe04eb583fbf6a154a9d2732)
+- [upscalers: add v4.1.0 amdxcffx64.dll](https://github.com/Open-Wine-Components/umu-protonfixes/commit/472788398c45054921ce61036c70bf675d500078)
+- [fix: Assetto Corsa CM missing dotnet 4.8 prompts](https://github.com/Open-Wine-Components/umu-protonfixes/commit/cddcb606e2b64fa6842eec17b030a7a3773656f8)
+- [utilities: keep DXVK_FRAME_RATE and VKD3D_FRAME_RATE in the proton environment](https://github.com/Open-Wine-Components/umu-protonfixes/commit/f46cb38dd344899857531749e4d8d1b3d7be398f)
+- [upscalers: add url check and automatic fallback for amdxcffx64.dll](https://github.com/Open-Wine-Components/umu-protonfixes/commit/3cf49178e9187c8fa536a062024d6d8ab3a2d3f1)
+- [Do not show the zenity dialog when running the winetricks gui](https://github.com/Open-Wine-Components/umu-protonfixes/commit/82058b41327a5fa8931d901d7b94315c6addbcdb)
+- [Add demo save import for Planet Crafter](https://github.com/Open-Wine-Components/umu-protonfixes/commit/144dc40240af2877dcb1e466821ec332491815df)
+- [fix: add early stage fixes to run when the module is imported](https://github.com/Open-Wine-Components/umu-protonfixes/commit/eee5639f89578c165669ce226a9f906695e3242e)
+- [utils: do not try to access g_session when in {del,set}_environment if it's not instantiated](https://github.com/Open-Wine-Components/umu-protonfixes/commit/ba466c91e2aee6060799912c40ac43c631bae203)
+- [gamefix: set gamedrive early for Duet Night Abyss](https://github.com/Open-Wine-Components/umu-protonfixes/commit/b637cbc3e9adbbd1754152a3a7cdaa057b9a6b63)
+- [gamefixes: set game drive for Zenless Zone Zero early](https://github.com/Open-Wine-Components/umu-protonfixes/commit/41d641542e502134e1eefee93e4548c5c5f30139)
+
 ## GE-Proton10-32
 
 HOTFIX:
