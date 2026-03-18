@@ -2,7 +2,7 @@
 
 _pkgname="krita"
 pkgname="$_pkgname-git"
-pkgver=5.2.13.r3412.ge23e6d1
+pkgver=6.0.0.r137.gb7e0175
 pkgrel=1
 pkgdesc="Edit and paint images"
 url="https://invent.kde.org/graphics/krita"
@@ -88,17 +88,9 @@ _pkgsrc="$_pkgname"
 source=("$_pkgsrc"::"git+$url.git")
 sha256sums=('SKIP')
 
-prepare() {
-  cd "$_pkgsrc"
-
-  # fix for Qt 6.10
-  sed -E -e 's&\b(Gui)\b&\1 GuiPrivate WaylandClientPrivate&' -i CMakeLists.txt
-  sed -E -e 's&\b(Qt::WaylandClient)\b&\1 \1Private&' -i plugins/platforms/wayland/CMakeLists.txt
-}
-
 pkgver() {
   cd "$_pkgsrc"
-  local _tag _version _revision _hash
+  local _tag _version _revision _commit
   _tag=$(git tag | grep -Ev '[A-Za-z][A-Za-z]' | sed -E 's&([^0-9]*)(\S+)$&\2 \1\2&' | sort -rV | head -1)
   _version=$(cut -f1 -d' ' <<< ${_tag:?})
   _tag=$(cut -f2 -d' ' <<< ${_tag:?})
@@ -115,6 +107,7 @@ build() {
     -DCMAKE_BUILD_TYPE=None
     -DCMAKE_INSTALL_PREFIX='/usr'
     -DCMAKE_INSTALL_LIBDIR='lib'
+    -DALLOW_UNSTABLE=QT6
     -DBUILD_WITH_QT6=ON
     -DBUILD_TESTING=$CHECKFUNC
     -Wno-dev
