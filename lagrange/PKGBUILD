@@ -2,7 +2,7 @@
 
 pkgname=lagrange
 pkgrel=1
-pkgver=1.19.4
+pkgver=1.20.1
 pkgdesc="Beautiful Gemini Client"
 url="https://git.skyjake.fi/skyjake/lagrange"
 arch=('x86_64' 'i686' 'aarch64' 'armv7h')
@@ -10,6 +10,7 @@ license=("BSD")
 install="$pkgname.install"
 source=(
   "https://git.skyjake.fi/skyjake/$pkgname/releases/download/v$pkgver/lagrange-$pkgver.tar.gz"
+  fix-build.patch
 )
 
 depends=(
@@ -32,11 +33,16 @@ optdepends=(
   "libjxl: JPEG XL image decoding"
 )
 
+prepare() {
+  patch -d "$pkgname-$pkgver/lib/the_Foundation" -Np1 -i ../../../fix-build.patch
+}
+
 build() {
   cmake -B build -S "$pkgname-${pkgver}" \
     -DCMAKE_INSTALL_PREFIX='/usr' \
     -DENABLE_KERNING=OFF \
     -DTFDN_ENABLE_WARN_ERROR=OFF \
+    -DCMAKE_BUILD_TYPE=Release \
     -Wno-dev
   make -C build
 }
@@ -48,4 +54,5 @@ package() {
   make DESTDIR="$pkgdir" install
 }
 
-sha256sums=('a51e7519f0dfa2cfc2918d6b498a6aca6a966702ae0f8d2c94f02f4287b2ffd7')
+sha256sums=('cd5f37f0db5790d9e02bd15b251998d28e8520985fcfc3b6dc54e3c975cdb970'
+  '7afe6818c841d44899b41873d7279b96e4dbebc6825495229c51de25aef1894f')
