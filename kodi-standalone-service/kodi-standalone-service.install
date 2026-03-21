@@ -1,0 +1,16 @@
+post_remove() {
+  echo "--> Optionally remove /var/lib/kodi/ if you wish to remove all data too."
+}
+
+post_install() {
+  echo "--> Optionally create /etc/conf.d/kodi-standalone if you need to pass"
+  echo "--> any environment variables to the service."
+}
+
+pre_upgrade() {
+  if (( $(vercmp $2 2.0-1) < 0 )); then
+    userdel kodi 2>/dev/null
+  fi  
+}
+
+# vim:set ts=2 sw=2 et:
