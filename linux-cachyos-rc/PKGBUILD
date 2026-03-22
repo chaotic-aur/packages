@@ -244,7 +244,10 @@ fi
 if [ "$_build_nvidia_open" = "yes" ]; then
   source+=("https://download.nvidia.com/XFree86/${_nv_open_pkg%"-$_nv_ver"}/${_nv_open_pkg}.tar.xz"
     "${_patchsource}/misc/nvidia/0002-Add-IBT-support.patch"
-    "${_patchsource}/misc/nvidia/0004-HACK-kernel-open-Makefile-Remove-PAHOLE_VARIABLE.patch")
+    "${_patchsource}/misc/nvidia/0004-HACK-kernel-open-Makefile-Remove-PAHOLE_VARIABLE.patch"
+    "${_patchsource}/misc/nvidia/0003-fix-dsc-correct-RC-parameter-tables-to-match-VESA-DS.patch"
+    "${_patchsource}/misc/nvidia/0004-fix-dsc-use-bits_per_component-for-flatnessDetThresh.patch"
+    "${_patchsource}/misc/nvidia/0005-fix-dp-add-Bigscreen-Beyond-VR-headset-to-WAR-databa.patch")
 fi
 
 # Use generated AutoFDO Profile
@@ -295,15 +298,17 @@ prepare() {
   echo "${pkgbase#linux}" > localversion.20-pkgname
 
   local src
-  for src in "${source[@]}"; do
-    src="${src%%::*}"
-    # Skip nvidia patches
-    [[ "$src" == "${_patchsource}"/misc/nvidia/*.patch ]] && continue
-    src="${src##*/}"
+  for patch in "${source[@]}"; do
+    patch="${patch%%::*}"
+    src="${patch##*/}"
     src="${src%.zst}"
     [[ $src = *.patch ]] || continue
     echo "Applying patch $src..."
-    patch -Np1 < "../$src"
+    if [[ "$patch" == "${_patchsource}"/misc/nvidia/* ]]; then
+      patch -Np1 -d "${srcdir}/${_nv_open_pkg}" < "../$src"
+    else
+      patch -Np1 < "../$src"
+    fi
   done
 
   echo "Setting config..."
@@ -522,11 +527,6 @@ prepare() {
   echo "Save configuration for later reuse..."
   local basedir="$(dirname "$(readlink "${srcdir}/config")")"
   cat .config > "${basedir}/config-${pkgver}-${pkgrel}${pkgbase#linux}"
-
-  if [ "$_build_nvidia_open" = "yes" ]; then
-    patch -Np1 -i "${srcdir}/0002-Add-IBT-support.patch" -d "${srcdir}/${_nv_open_pkg}/"
-    patch -Np1 -i "${srcdir}/0004-HACK-kernel-open-Makefile-Remove-PAHOLE_VARIABLE.patch" -d "${srcdir}/${_nv_open_pkg}/"
-  fi
 }
 
 _sign_modules() {
