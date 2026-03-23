@@ -2,8 +2,8 @@
 
 _pkgname="bubblejail"
 pkgname="$_pkgname"
-pkgver=0.10.1
-pkgrel=2
+pkgver=0.10.2
+pkgrel=1
 pkgdesc="Bubblewrap based sandboxing utility"
 url="https://github.com/igo95862/bubblejail"
 license=('GPL-3.0-or-later')
