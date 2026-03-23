@@ -1,3 +1,33 @@
+## GE-Proton10-34
+
+Proton:
+- update latest wine bleeding-edge
+- update latest dxvk
+- update latest dxvk-nvapi
+- update latest vkd3d-proton
+- update latest vkd3d
+- update latest FEX
+- import proton script game fixes from upstream
+- import aarch64 build changes from upstream
+
+Protonfixes:
+- added protonfix for god of war ragnarok playstation sdk error
+- added protonfix to disable hidraw and enable sdl for gta v
+- added protonfix for GOG version of Oddworld: Stranger's Wrath HD
+- added protonfix for cpu topology for Assassin's Creed 1
+
+Patches:
+-  [patches: Enable .exe dynamic relocation](https://github.com/GloriousEggroll/proton-ge-custom/commit/860ddcbc565d64690b167bf1589d3b5db3e78d70). For XIV specifically, this fixes issues with low address space being filled up by everyone and everything and, as a result, some plugins failing to apply their hooks and leaving the game in an unstable state.
+
+New Features:
+- [add new PROTON_WAYLAND_MONITOR to allow easier setting of WAYLANDDRV_PRIMARY_MONITOR](https://github.com/GloriousEggroll/proton-ge-custom/commit/d59cc0ef7a4d0e5ff1acf94bd1de2c1f4b8ea12b)
+- [attempt to detect and set primary monitor if wayland is enabled and no primary is set](https://github.com/GloriousEggroll/proton-ge-custom/commit/77e95deba45fb9c08a61196a372e5a8f3b9ac080)
+
+  How these work:
+  You can now specify something like PROTON_WAYLAND_MONITOR=HDMI-A-1 to specify which monitor the wine-wayland driver uses when enabling wayland. Previously you could already do this using WAYLANDDRV_PRIMARY_MONITOR, but it wasn't documented. PROTON_WAYLAND_MONITOR is now an easier to remember envvar for setting that value. Additionally by default if no WAYLANDDRV_PRIMARY_MONITOR is set when enabling wine-wayland, GE-Proton will now attempt to use xrandr to detect the default primary monitor set by the desktop environment, and if found, display on that monitor, just like xwayland does.
+  
+  
+
 ## GE-Proton10-33
 
 Proton:
