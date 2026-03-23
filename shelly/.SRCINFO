@@ -1,11 +1,12 @@
 pkgbase = shelly
 	pkgdesc = Shelly: A Modern Arch Package Manager
 	pkgver = 2.0.4
-	pkgrel = 1
+	pkgrel = 2
 	url = https://github.com/ZoeyErinBauer/Shelly-ALPM
 	arch = x86_64
 	license = GPL-3.0-only
 	makedepends = dotnet-sdk-10.0
+	makedepends = clang
 	depends = pacman
 	depends = gtk4
 	depends = glib2
