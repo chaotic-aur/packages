@@ -1,6 +1,6 @@
 pkgbase = blockbench-bin
 	pkgdesc = A low-poly 3D model editor
-	pkgver = 5.0.7
+	pkgver = 5.1.0
 	pkgrel = 1
 	url = https://blockbench.net
 	arch = x86_64
@@ -35,7 +35,7 @@ pkgbase = blockbench-bin
 	provides = blockbench
 	conflicts = blockbench
 	options = !debug
-	source = https://github.com/JannisX11/blockbench/releases/download/v5.0.7/Blockbench_5.0.7.deb
-	sha256sums = 5b80aa0eb259aec37a767d741b6fa8f37c22d952cc209eca58a174cd9657546c
+	source = https://github.com/JannisX11/blockbench/releases/download/v5.1.0/Blockbench_5.1.0.deb
+	sha256sums = 3fe0ab56e5ce41934b55a62dec32814f3dd37d8b9785ddec621892897e6b3afc
 
 pkgname = blockbench-bin
