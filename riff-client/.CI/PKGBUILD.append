@@ -1,0 +1,4 @@
+local _units=$(OMP_NUM_THREADS=16 nproc --all)
+export RUSTFLAGS="-C opt-level=2 -C codegen-units=$_units -C lto=off"
+
+options=('!lto')
