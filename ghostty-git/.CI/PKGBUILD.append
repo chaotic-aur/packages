@@ -1,0 +1,1 @@
+eval "$(declare -f package_ghostty-terminfo-git | sed -E -e 's&(terminfo)/\*&\1/x&')"
