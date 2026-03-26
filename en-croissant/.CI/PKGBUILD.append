@@ -1,0 +1,5 @@
+unset provides
+unset conflicts
+
+# don't package unnecessary files
+declare -f package | sed -E -e '/echo/d' -e '/\/licenses\//d' -e '/\/doc\//d'
