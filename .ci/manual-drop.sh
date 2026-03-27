@@ -18,6 +18,7 @@ UTIL_PARSE_PACKAGELIST PACKAGES_LIST "$PACKAGES"
 MODIFIED_PACKAGES=()
 
 for package in "${PACKAGES_LIST[@]}"; do
+  package="${package%%/*}"
   if [ -d "${package}" ]; then
     UTIL_PRINT_INFO "Dropping package ${package}..."
     git rm -r "${package}"

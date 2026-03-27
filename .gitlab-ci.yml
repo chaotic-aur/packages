@@ -6,9 +6,9 @@ spec:
       options: ['None', 'Bump Packages', 'Schedule Packages', 'Run Schedule', 'Drop Packages', 'Add Packages']
       default: 'None'
     packages:
-      description: 'A colon-separated list of packages'
+      description: 'A colon-separated list of packages. Optional builder classes can be passed per-package using a slash: pkgbase/custom_builder'
       type: string
-      regex: '^(?:[\w@.+\-]+(?::[\w@.+\-]+)*)?$'
+      regex: '^(?:[\w@.+\-/]+(?::[\w@.+\-/]+)*)?$'
       rules:
         - if: $[[ inputs.operation ]] == 'Bump Packages' || $[[ inputs.operation ]] == 'Schedule Packages' || $[[ inputs.operation ]] == 'Drop Packages'
           default: null

@@ -108,6 +108,7 @@ collect_versions "${TEMP_VERSIONS}"
 MODIFIED_PACKAGES=()
 
 for package in "${PACKAGES_LIST[@]}"; do
+  package="${package%%/*}"
   if [[ -d "$package" ]] && force_bump "$TEMP_VERSIONS" "$package"; then
     git add "$package"
     MODIFIED_PACKAGES+=("$package")

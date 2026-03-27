@@ -126,12 +126,20 @@ if [ "$COMMAND" == "schedule" ]; then
 
     [[ -z "$package" ]] && continue
 
+    pkg_name="${package%%/*}"
+    custom_builder="${package#*/}"
+    if [[ "$custom_builder" == "$package" ]]; then
+      custom_builder=""
+    fi
+
     unset VARIABLES
     declare -A VARIABLES=()
-    UTIL_READ_MANAGED_PACAKGE "$package" VARIABLES || true
-    PACKAGE_PASSED_STRING="$package"
+    UTIL_READ_MANAGED_PACAKGE "$pkg_name" VARIABLES || true
+    PACKAGE_PASSED_STRING="$pkg_name"
     # Append the build class (e.g. a package that requires a lot of compute resources will be class 2)
-    if [ -v "VARIABLES[BUILDER_CLASS]" ]; then
+    if [[ -n "$custom_builder" ]]; then
+      PACKAGE_PASSED_STRING+="/${custom_builder}"
+    elif [ -v "VARIABLES[BUILDER_CLASS]" ]; then
       PACKAGE_PASSED_STRING+="/${VARIABLES[BUILDER_CLASS]}"
     elif [ "$CI_DEFAULT_CLASS" != "" ]; then
       PACKAGE_PASSED_STRING+="/${CI_DEFAULT_CLASS}"
