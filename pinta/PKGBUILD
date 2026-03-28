@@ -2,15 +2,19 @@
 
 pkgname=pinta
 pkgver=3.1.1
-pkgrel=2
+pkgrel=3
 pkgdesc="Drawing/editing program modeled after Paint.NET. It's goal is to provide a simplified alternative to GIMP for casual users"
-arch=(any)
+
+arch=('x86_64')
+license=('MIT')
 url="https://pinta-project.com"
-license=(MIT)
-depends=(dotnet-runtime dotnet-host libadwaita hicolor-icon-theme webp-pixbuf-loader)
-makedepends=(pkgconf autoconf-archive intltool dotnet-sdk dotnet-runtime dotnet-host dotnet-targeting-pack gtk4 perl)
+
+makedepends=('pkgconf' 'autoconf-archive' 'intltool' 'dotnet-sdk' 'dotnet-runtime' 'dotnet-host' 'dotnet-targeting-pack' 'gtk4' 'perl')
+depends=('dotnet-runtime' 'dotnet-host' 'libadwaita' 'hicolor-icon-theme' 'webp-pixbuf-loader')
+
 provides=($pkgname)
 conflicts=($pkgname-git)
+
 source=("Pinta-${pkgver}.tar.gz::https://github.com/PintaProject/Pinta/archive/refs/tags/${pkgver}.tar.gz")
 sha256sums=('284feb187646d24e2d0449308352bc3588c159dc374365185432008873868371')
 
@@ -30,6 +34,8 @@ prepare() {
 
 build() {
   cd "${srcdir}/Pinta-${pkgver}"
+
+  sed -i -r 's|^(PINTA_BUILD_OPTS\s=\s.*)|\1 -p:RuntimeIdentifier=linux-x64|g' Makefile
 
   make
 }
