@@ -1,7 +1,7 @@
 pkgbase = android-sdk-build-tools
 	pkgdesc = Build-Tools for Google Android SDK (aapt, aidl, dexdump, dx, llvm-rs-cc)
-	pkgver = r36.1
-	pkgrel = 2
+	pkgver = r37.0.0
+	pkgrel = 1
 	url = https://developer.android.com/studio/releases/build-tools
 	arch = x86_64
 	license = custom
@@ -15,9 +15,9 @@ pkgbase = android-sdk-build-tools
 	provides = zipalign
 	conflicts = zipalign
 	options = !strip
-	source = https://dl.google.com/android/repository/build-tools_r36.1_linux.zip
+	source = https://dl.google.com/android/repository/build-tools_r37_linux.zip
 	source = package.xml
-	sha512sums = 32a1eea273980a96745ae5e0b141720e5f91c6c6f83f42da4244fad36025d7750521fdf678a7d332afe5946057b498264343c2533ba524967d84347af9cd7ce5
+	sha512sums = 0c1735b91da1088d824243bef3f5c070ee4d0b9ccc50d2c20d0c5afdeab41a0fd71f785b98d60579091bb48d1a703f9f5ea6775bab4781de51a9df570b9dba98
 	sha512sums = 501211771b02940010420a4003b8396d3d6599fb339c2f64959335ab1c3cf615811cc62acaa093c9f4e14bbc019a9e493835573a5136383617d8b5184509d3f8
 
 pkgname = android-sdk-build-tools
