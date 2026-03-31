@@ -49,6 +49,7 @@ depends=(
 )
 makedepends=(
   boost
+  boost-libs
   cmake
   extra-cmake-modules
   fmt
