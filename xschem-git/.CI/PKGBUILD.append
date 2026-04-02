@@ -1,0 +1,7 @@
+pkgdesc="Schematic editor VLSI/ASIC/analog custom designs"
+url="https://codeberg.org/stef_xschem/xschem"
+
+provides=("xschem")
+conflicts=("xschem")
+
+source[0]="$_pkgname"::"git+$url.git"
