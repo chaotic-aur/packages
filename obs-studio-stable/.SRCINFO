@@ -1,6 +1,6 @@
 pkgbase = obs-studio-stable
 	pkgdesc = Free, open source software for live streaming and recording - Browser enabled
-	pkgver = 32.1.0
+	pkgver = 32.1.1
 	pkgrel = 1
 	url = https://github.com/obsproject/obs-studio
 	arch = x86_64
@@ -53,11 +53,11 @@ pkgbase = obs-studio-stable
 	optdepends = sndio: sndio input client
 	optdepends = v4l2loopback-dkms: virtual camera support
 	optdepends = vlc: VLC Media Source
-	provides = obs-studio=32.1.0
+	provides = obs-studio=32.1.1
 	conflicts = obs-studio
 	options = !lto
 	options = !strip
-	source = obs-studio::git+https://github.com/obsproject/obs-studio.git#tag=32.1.0
+	source = obs-studio::git+https://github.com/obsproject/obs-studio.git#tag=32.1.1
 	source = cef_binary_6533_linux_x86_64_v6.tar.xz::https://cdn-fastly.obsproject.com/downloads/cef_binary_6533_linux_x86_64_v6.tar.xz
 	sha256sums = SKIP
 	sha256sums = 7963335519a19ccdc5233f7334c5ab023026e2f3e9a0cc417007c09d86608146
