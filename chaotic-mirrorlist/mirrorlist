@@ -1,76 +1,349 @@
-# Automatic per-country routing of the mirrors below.
+# Mirrorlist for Chaotic-AUR (https://aur.chaotic.cx/)
+
+# This file contains 3 different types of mirrors:
+# 1. Virtual mirrors: These mirrors do not refer to any specific mirror or region of the world
+#   * geo-mirror.chaotic.cx: Automatically routes to the geographically closest up-to-date mirror based on IP address.
+#   * random-mirror.chaotic.cx: Automatically routes to a random (but semi-persistent) up-to-date mirror.
+# 2. Country mirrors: Any requests made to these mirrors will be routed to an up-to-date mirror located in the specific country.
+#   * If your machine is located in the same country as the country mirror in question, the closest mirror in that country will be used.
+#   * If your machine is located in a different country than the country mirror, a random (but semi-persistent) mirror in that country will be used.
+#   * Common format: [country code]-mirror.chaotic.cx
+# 3. Regular mirrors: These refer to specific mirrors and do not automatically route to any other mirror.
+#   * If the mirror is out of date or offline, the mirror will return an appropriate error code. Pacman will skip it automatically.
+#   * Common format: [country code]-[number]-mirror.chaotic.cx (but there are exceptions to this format)
+
+# Most of these mirrors are disabled by default. The topmost mirror will be the default mirror. The rest will be fallbacks.
+# Uncomment+move the mirrors to your desire. By default, geo-mirror, cdn-mirror and a few country mirrors are enabled,
+# to allow for a reasonable number of fallbacks while keeping the defaults short. Have fun!
+
+## Geo mirror (virtual)
+# Automatic routing to the geographically closest mirror (default)
 Server = https://geo-mirror.chaotic.cx/$repo/$arch
 
-## Special CDN mirror (delayed syncing, expect some (safe to ignore) amount of 404s)
-# Globally
+## CDN mirror (regular)
+# Global
 # * By: Garuda Linux donators, hosted on Cloudflare R2
 Server = https://cdn-mirror.chaotic.cx/$repo/$arch
 
-## Regular mirrors (close to instant to one minute sync delay)
-# Brazil
-# * By: Universidade Federal de São Carlos (São Carlos)
+
+## --- Country mirrors ---
+
+# Argentina (AR)
+#Server = https://ar-mirror.chaotic.cx/$repo/$arch
+
+# Australia (AU)
+#Server = https://au-mirror.chaotic.cx/$repo/$arch
+
+# Brazil (BR)
 Server = https://br-mirror.chaotic.cx/$repo/$arch
 
-# Canada
-# * By: All Things Linux
-Server = https://ca-mirror.chaotic.cx/$repo/$arch
+# Canada (CA)
+#Server = https://ca-mirror.chaotic.cx/$repo/$arch
 
-# Chile
-# * By Jonathan Gutiérrez
-Server = https://cl-mirror.chaotic.cx/$repo/$arch
-# * By Jonathan Gutiérrez
-Server = https://cl-2-mirror.chaotic.cx/$repo/$arch
+# Chile (CL)
+#Server = https://cl-mirror.chaotic.cx/$repo/$arch
 
-# Colombia
-# * By: Eduard Tolosa
-Server = https://co-mirror.chaotic.cx/$repo/$arch
+# Colombia (CO)
+#Server = https://co-mirror.chaotic.cx/$repo/$arch
 
-# Germany
-# * By: Nico
-Server = https://de-2-mirror.chaotic.cx/$repo/$arch
-# * By: redgloboli
-Server = https://de-4-mirror.chaotic.cx/$repo/$arch
+# France (FR)
+#Server = https://fr-mirror.chaotic.cx/$repo/$arch
 
-# Great Britain
-# * By: Wilbur <github.com/ThisCatLikesCrypto>
-Server = https://gb-mirror.chaotic.cx/$repo/$arch
+# Germany (DE)
+Server = https://de-mirror.chaotic.cx/$repo/$arch
 
-# Greece
-# * By: vmmaniac <github.com/vmmaniac>
-Server = https://gr-mirror.chaotic.cx/$repo/$arch
+# Greece (GR)
+#Server = https://gr-mirror.chaotic.cx/$repo/$arch
 
-# India
-# * By Naman (Kaithal)
+# Hong Kong (HK)
+#Server = https://hk-mirror.chaotic.cx/$repo/$arch
+
+# India (IN)
 Server = https://in-mirror.chaotic.cx/$repo/$arch
-# * By Albony <https://albony.xyz/>
-Server = https://in-2-mirror.chaotic.cx/$repo/$arch
-# * By Albony (Chennai)
-Server = https://in-4-mirror.chaotic.cx/$repo/$arch
 
-# Singapore
-# * By freedif.org (City state)
-Server = https://sg-mirror.chaotic.cx/$repo/$arch
+# Indonesia (ID)
+#Server = https://id-mirror.chaotic.cx/$repo/$arch
 
-# South Korea
+# Israel (IL)
+#Server = https://il-mirror.chaotic.cx/$repo/$arch
+
+# Italy (IT)
+#Server = https://it-mirror.chaotic.cx/$repo/$arch
+
+# Japan (JP)
+#Server = https://jp-mirror.chaotic.cx/$repo/$arch
+
+# Mexico (MX)
+#Server = https://mx-mirror.chaotic.cx/$repo/$arch
+
+# Netherlands (NL)
+#Server = https://nl-mirror.chaotic.cx/$repo/$arch
+
+# New Zealand (NZ)
+#Server = https://nz-mirror.chaotic.cx/$repo/$arch
+
+# Nigeria (NG)
+#Server = https://ng-mirror.chaotic.cx/$repo/$arch
+
+# Peru (PE)
+#Server = https://pe-mirror.chaotic.cx/$repo/$arch
+
+# Poland (PL)
+#Server = https://pl-mirror.chaotic.cx/$repo/$arch
+
+# Russia (RU)
+#Server = https://ru-mirror.chaotic.cx/$repo/$arch
+
+# Saudi Arabia (SA)
+#Server = https://sa-mirror.chaotic.cx/$repo/$arch
+
+# Singapore (SG)
+#Server = https://sg-mirror.chaotic.cx/$repo/$arch
+
+# South Africa (ZA)
+#Server = https://za-mirror.chaotic.cx/$repo/$arch
+
+# South Korea (KR)
+#Server = https://kr-mirror.chaotic.cx/$repo/$arch
+
+# Spain (ES)
+#Server = https://es-mirror.chaotic.cx/$repo/$arch
+
+# Sweden (SE)
+#Server = https://se-mirror.chaotic.cx/$repo/$arch
+
+# Switzerland (CH)
+#Server = https://ch-mirror.chaotic.cx/$repo/$arch
+
+# Taiwan (TW)
+#Server = https://tw-mirror.chaotic.cx/$repo/$arch
+
+# Thailand (TH)
+#Server = https://th-mirror.chaotic.cx/$repo/$arch
+
+# United Arab Emirates (AE)
+#Server = https://ae-mirror.chaotic.cx/$repo/$arch
+
+# United Kingdom (GB)
+#Server = https://gb-mirror.chaotic.cx/$repo/$arch
+
+# United States of America (US)
+Server = https://us-mirror.chaotic.cx/$repo/$arch
+
+# Vietnam (VN)
+#Server = https://vn-mirror.chaotic.cx/$repo/$arch
+
+
+## --- Regular mirrors ---
+
+# Argentina (AR)
+# * By: a0xz
+#Server = https://ar-1-mirror.chaotic.cx/$repo/$arch
+
+# Australia (AU)
+# * By: a0xz
+#Server = https://au-1-mirror.chaotic.cx/$repo/$arch
+# * By: a0xz
+#Server = https://au-2-mirror.chaotic.cx/$repo/$arch
+# * By: a0xz
+#Server = https://au-3-mirror.chaotic.cx/$repo/$arch
+
+# Brazil (BR)
+# * By: Universidade Federal de São Carlos (São Carlos)
+#Server = https://br-1-mirror.chaotic.cx/$repo/$arch
+# * By: a0xz
+#Server = https://br-2-mirror.chaotic.cx/$repo/$arch
+# * By: a0xz
+#Server = https://br-3-mirror.chaotic.cx/$repo/$arch
+# * By: a0xz
+#Server = https://br-4-mirror.chaotic.cx/$repo/$arch
+# * By: a0xz
+#Server = https://br-5-mirror.chaotic.cx/$repo/$arch
+
+# Canada (CA)
+# * By: All Things Linux
+#Server = https://ca-1-mirror.chaotic.cx/$repo/$arch
+# * By: a0xz
+#Server = https://ca-2-mirror.chaotic.cx/$repo/$arch
+# * By: a0xz
+#Server = https://ca-3-mirror.chaotic.cx/$repo/$arch
+# * By: a0xz
+#Server = https://ca-4-mirror.chaotic.cx/$repo/$arch
+
+# Chile (CL)
+# * By: Jonathan Gutiérrez
+#Server = https://cl-1-mirror.chaotic.cx/$repo/$arch
+# * By: Jonathan Gutiérrez
+#Server = https://cl-2-mirror.chaotic.cx/$repo/$arch
+# * By: a0xz
+#Server = https://cl-3-mirror.chaotic.cx/$repo/$arch
+
+# Colombia (CO)
+# * By: Eduard Tolosa
+#Server = https://co-1-mirror.chaotic.cx/$repo/$arch
+
+# France (FR)
+# * By: a0xz
+#Server = https://fr-1-mirror.chaotic.cx/$repo/$arch
+# * By: a0xz
+#Server = https://fr-2-mirror.chaotic.cx/$repo/$arch
+
+# Germany (DE)
+# * By: Nico
+#Server = https://de-2-mirror.chaotic.cx/$repo/$arch
+# * By: redgloboli
+#Server = https://de-4-mirror.chaotic.cx/$repo/$arch
+# * By: a0xz
+#Server = https://de-1-mirror.chaotic.cx/$repo/$arch
+
+# Greece (GR)
+# * By: vmmaniac <github.com/vmmaniac>
+#Server = https://gr-1-mirror.chaotic.cx/$repo/$arch
+
+# Hong Kong (HK)
+# * By: a0xz
+#Server = https://hk-1-mirror.chaotic.cx/$repo/$arch
+
+# India (IN)
+# * By: Albony <https://albony.xyz/>
+#Server = https://in-2-mirror.chaotic.cx/$repo/$arch
+# * By: a0xz
+#Server = https://in-3-mirror.chaotic.cx/$repo/$arch
+# * By: Albony (Chennai)
+#Server = https://in-4-mirror.chaotic.cx/$repo/$arch
+# * By: a0xz
+#Server = https://in-5-mirror.chaotic.cx/$repo/$arch
+
+# Indonesia (ID)
+# * By: a0xz
+#Server = https://id-1-mirror.chaotic.cx/$repo/$arch
+
+# Israel (IL)
+# * By: a0xz
+#Server = https://il-1-mirror.chaotic.cx/$repo/$arch
+
+# Italy (IT)
+# * By: a0xz
+#Server = https://it-1-mirror.chaotic.cx/$repo/$arch
+
+# Japan (JP)
+# * By: a0xz
+#Server = https://jp-1-mirror.chaotic.cx/$repo/$arch
+# * By: a0xz
+#Server = https://jp-2-mirror.chaotic.cx/$repo/$arch
+
+# Mexico (MX)
+# * By: a0xz
+#Server = https://mx-1-mirror.chaotic.cx/$repo/$arch
+# * By: a0xz
+#Server = https://mx-2-mirror.chaotic.cx/$repo/$arch
+
+# Netherlands (NL)
+# * By: a0xz
+#Server = https://nl-1-mirror.chaotic.cx/$repo/$arch
+
+# New Zealand (NZ)
+# * By: a0xz
+#Server = https://nz-1-mirror.chaotic.cx/$repo/$arch
+
+# Nigeria (NG)
+# * By: a0xz
+#Server = https://ng-1-mirror.chaotic.cx/$repo/$arch
+
+# Peru (PE)
+# * By: a0xz
+#Server = https://pe-1-mirror.chaotic.cx/$repo/$arch
+
+# Poland (PL)
+# * By: a0xz
+#Server = https://pl-1-mirror.chaotic.cx/$repo/$arch
+
+# Russia (RU)
+# * By: Котпро203
+#Server = https://ru-1-mirror.chaotic.cx/$repo/$arch
+
+# Saudi Arabia (SA)
+# * By: a0xz
+#Server = https://sa-1-mirror.chaotic.cx/$repo/$arch
+
+# Singapore (SG)
+# * By: freedif.org (City state)
+#Server = https://sg-1-mirror.chaotic.cx/$repo/$arch
+# * By: a0xz
+#Server = https://sg-2-mirror.chaotic.cx/$repo/$arch
+
+# South Africa (ZA)
+# * By: a0xz
+#Server = https://za-1-mirror.chaotic.cx/$repo/$arch
+
+# South Korea (KR)
 # * By: <t.me/silent_heigou> (Seoul)
-Server = https://kr-mirror.chaotic.cx/$repo/$arch
+#Server = https://kr-1-mirror.chaotic.cx/$repo/$arch
+# * By: a0xz
+#Server = https://kr-2-mirror.chaotic.cx/$repo/$arch
+# * By: a0xz
+#Server = https://kr-3-mirror.chaotic.cx/$repo/$arch
 
-# Spain
+# Spain (ES)
 # * By: JKANetwork
-Server = https://es-mirror.chaotic.cx/$repo/$arch
+#Server = https://es-1-mirror.chaotic.cx/$repo/$arch
 # * By: Ícar <t.me/IcarNS>
-Server = https://es-2-mirror.chaotic.cx/$repo/$arch
+#Server = https://es-2-mirror.chaotic.cx/$repo/$arch
+# * By: a0xz
+#Server = https://es-3-mirror.chaotic.cx/$repo/$arch
 
-# Sweden
+# Sweden (SE)
 # * By: Academic Computer Club in Umeå (accum.se)
-Server = https://se-mirror.chaotic.cx/$repo/$arch
+#Server = https://se-1-mirror.chaotic.cx/$repo/$arch
+# * By: a0xz
+#Server = https://se-2-mirror.chaotic.cx/$repo/$arch
 
-# United States
+# Switzerland (CH)
+# * By: a0xz
+#Server = https://ch-1-mirror.chaotic.cx/$repo/$arch
+
+# Taiwan (TW)
+# * By: a0xz
+#Server = https://tw-1-mirror.chaotic.cx/$repo/$arch
+
+# Thailand (TH)
+# * By: a0xz
+#Server = https://th-1-mirror.chaotic.cx/$repo/$arch
+
+# United Arab Emirates (AE)
+# * By: a0xz
+#Server = https://ae-1-mirror.chaotic.cx/$repo/$arch
+# * By: a0xz
+#Server = https://ae-2-mirror.chaotic.cx/$repo/$arch
+
+# United Kingdom (GB)
+# * By: Wilbur <github.com/ThisCatLikesCrypto>
+#Server = https://gb-1-mirror.chaotic.cx/$repo/$arch
+# * By: a0xz
+#Server = https://gb-2-mirror.chaotic.cx/$repo/$arch
+# * By: a0xz
+#Server = https://gb-3-mirror.chaotic.cx/$repo/$arch
+
+# United States of America (US)
 # * By: Technetium1 <github.com/Technetium1>
-Server = https://us-mi-mirror.chaotic.cx/$repo/$arch
+#Server = https://us-mi-mirror.chaotic.cx/$repo/$arch
 # * By: ash <t.me/the_ashh>
-Server = https://us-ut-mirror.chaotic.cx/$repo/$arch
+#Server = https://us-ut-mirror.chaotic.cx/$repo/$arch
+# * By: a0xz
+#Server = https://us-hi-mirror.chaotic.cx/$repo/$arch
+# * By: a0xz
+#Server = https://us-nv-mirror.chaotic.cx/$repo/$arch
+# * By: a0xz
+#Server = https://us-fl-mirror.chaotic.cx/$repo/$arch
+# * By: a0xz
+#Server = https://us-ny-mirror.chaotic.cx/$repo/$arch
+# * By: a0xz
+#Server = https://us-az-mirror.chaotic.cx/$repo/$arch
+# * By: a0xz
+#Server = https://us-or-mirror.chaotic.cx/$repo/$arch
+# * By: a0xz
+#Server = https://us-ca-mirror.chaotic.cx/$repo/$arch
 
-# Vietnam
+# Vietnam (VN)
 # * By: <t.me/meowice>
-Server = https://vn-mirror.chaotic.cx/$repo/$arch
+#Server = https://vn-1-mirror.chaotic.cx/$repo/$arch
