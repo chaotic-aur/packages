@@ -1,11 +1,11 @@
-# Maintainer:
+# Maintainer: aur.chaotic.cx
 
-: ${_commit:=9c4768291ee0ce8e29fdadf3e05cbde2714bbe0c} # 3.0.21-1
+: ${_tag:=3.0.22}
 
 _pkgname="vlc-plugin-luajit"
 pkgname="$_pkgname"
-pkgver=3.0.21
-pkgrel=2
+pkgver=3.0.22
+pkgrel=3
 pkgdesc="Multi-platform MPEG, VCD/DVD, and DivX player"
 url="https://github.com/videolan/vlc"
 license=('GPL-2.0-or-later' 'LGPL-2.1-or-later')
@@ -21,7 +21,7 @@ makedepends=(
 options=('!emptydirs' '!lto')
 
 _pkgsrc="vlc.github"
-source=("$_pkgsrc"::"git+$url.git${_commit:+#commit=$_commit}")
+source=("$_pkgsrc"::"git+$url.git#tag=$_tag")
 sha256sums=('SKIP')
 
 prepare() {
