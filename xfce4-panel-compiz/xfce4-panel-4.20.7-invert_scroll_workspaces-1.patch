@@ -1,0 +1,163 @@
+diff -Naur xfce4-panel-4.20.7-orig/common/resources/pager-dialog.glade xfce4-panel-4.20.7/common/resources/pager-dialog.glade
+--- xfce4-panel-4.20.7-orig/common/resources/pager-dialog.glade	2025-05-21 18:57:53.000000000 +0200
++++ xfce4-panel-4.20.7/common/resources/pager-dialog.glade	2026-04-04 19:28:20.533083447 +0200
+@@ -190,6 +190,20 @@
+               </packing>
+             </child>
+             <child>
++              <object class="GtkSwitch" id="workspace-invert-scrolling">
++                <property name="visible">True</property>
++                <property name="can-focus">True</property>
++                <property name="halign">end</property>
++                <property name="valign">center</property>
++                <property name="sensitive" bind-source="workspace-scrolling"
++                          bind-property="active" bind-flags="G_BINDING_SYNC_CREATE"/>
++              </object>
++              <packing>
++                <property name="left-attach">1</property>
++                <property name="top-attach">5</property>
++              </packing>
++            </child>
++            <child>
+               <object class="GtkLabel" id="numbering-label">
+                 <property name="visible">True</property>
+                 <property name="can-focus">False</property>
+@@ -220,7 +234,7 @@
+                 <property name="visible">True</property>
+                 <property name="sensitive" bind-source="workspace-scrolling" bind-property="active" bind-flags="sync-create">False</property>
+                 <property name="can-focus">False</property>
+-                <property name="margin-left">12</property>
++                <property name="margin-left">24</property>
+                 <property name="label" translatable="yes">Wrap around workspaces</property>
+                 <property name="xalign">0</property>
+               </object>
+@@ -230,6 +244,21 @@
+               </packing>
+             </child>
+             <child>
++              <object class="GtkLabel" id="workspace-invert-scrolling-label">
++                <property name="visible">True</property>
++                <property name="can-focus">False</property>
++                <property name="margin-left">24</property>
++                <property name="label" translatable="yes">Invert mouse wheel workspace switching direction</property>
++                <property name="xalign">0</property>
++                <property name="sensitive" bind-source="workspace-scrolling"
++                          bind-property="active" bind-flags="G_BINDING_SYNC_CREATE"/>
++              </object>
++              <packing>
++                <property name="left-attach">0</property>
++                <property name="top-attach">5</property>
++              </packing>
++            </child>
++            <child>
+               <object class="GtkBox">
+                 <property name="visible">True</property>
+                 <property name="can-focus">False</property>
+diff -Naur xfce4-panel-4.20.7-orig/plugins/pager/pager.c xfce4-panel-4.20.7/plugins/pager/pager.c
+--- xfce4-panel-4.20.7-orig/plugins/pager/pager.c	2026-04-04 19:28:03.967113971 +0200
++++ xfce4-panel-4.20.7/plugins/pager/pager.c	2026-04-04 19:28:20.533232166 +0200
+@@ -127,6 +127,7 @@
+ 
+   /* settings */
+   guint scrolling : 1;
++  guint invert_scrolling : 1;
+   guint wrap_workspaces : 1;
+   guint miniature_view : 1;
+   guint rows;
+@@ -142,6 +143,7 @@
+ {
+   PROP_0,
+   PROP_WORKSPACE_SCROLLING,
++  PROP_INVERT_WORKSPACE_SCROLLING,
+   PROP_WRAP_WORKSPACES,
+   PROP_MINIATURE_VIEW,
+   PROP_ROWS,
+@@ -196,6 +198,13 @@
+                                                          G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
+ 
+   g_object_class_install_property (gobject_class,
++                                   PROP_INVERT_WORKSPACE_SCROLLING,
++                                   g_param_spec_boolean ("workspace-invert-scrolling",
++                                                         NULL, NULL,
++                                                         TRUE,
++                                                         G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
++
++  g_object_class_install_property (gobject_class,
+                                    PROP_MINIATURE_VIEW,
+                                    g_param_spec_boolean ("miniature-view",
+                                                          NULL, NULL,
+@@ -226,6 +235,7 @@
+ 
+   plugin->xfw_screen = NULL;
+   plugin->scrolling = TRUE;
++  plugin->invert_scrolling = FALSE;
+   plugin->wrap_workspaces = FALSE;
+   plugin->miniature_view = WINDOWING_IS_X11 ();
+   plugin->numbering = FALSE;
+@@ -265,6 +275,10 @@
+       g_value_set_boolean (value, plugin->scrolling);
+       break;
+ 
++    case PROP_INVERT_WORKSPACE_SCROLLING:
++      g_value_set_boolean (value, plugin->invert_scrolling);
++      break;
++
+     case PROP_WRAP_WORKSPACES:
+       g_value_set_boolean (value, plugin->wrap_workspaces);
+       break;
+@@ -304,6 +318,10 @@
+       plugin->scrolling = g_value_get_boolean (value);
+       break;
+ 
++    case PROP_INVERT_WORKSPACE_SCROLLING:
++      plugin->invert_scrolling = g_value_get_boolean (value);
++      break;
++
+     case PROP_WRAP_WORKSPACES:
+       plugin->wrap_workspaces = g_value_get_boolean (value);
+       break;
+@@ -481,9 +499,9 @@
+ 
+           if (scrolling_direction == GDK_SCROLL_UP
+             || scrolling_direction == GDK_SCROLL_LEFT)
+-            scroll_direction = -1;
++            scroll_direction = (plugin->invert_scrolling ? +1 : -1);
+           else
+-            scroll_direction = 1;
++            scroll_direction = (plugin->invert_scrolling ? -1 : +1);
+ 
+           /* Viewportscroll is only in x-direction */
+           viewport_x = viewport_x + (scroll_direction * screen_width);
+@@ -516,9 +534,9 @@
+       /* Real workspaces */
+       if (scrolling_direction == GDK_SCROLL_UP
+         || scrolling_direction == GDK_SCROLL_LEFT)
+-        active_n--;
++        active_n = active_n + (plugin->invert_scrolling ? +1 : -1);
+       else
+-        active_n++;
++        active_n = active_n + (plugin->invert_scrolling ? -1 : +1);
+ 
+       if (plugin->wrap_workspaces)
+         {
+@@ -761,6 +779,7 @@
+   GtkWidget *mi, *image;
+   const PanelProperty properties[] = {
+     { "workspace-scrolling", G_TYPE_BOOLEAN },
++    { "workspace-invert-scrolling", G_TYPE_BOOLEAN },
+     { "wrap-workspaces", G_TYPE_BOOLEAN },
+     { "miniature-view", G_TYPE_BOOLEAN },
+     { "rows", G_TYPE_UINT },
+@@ -981,6 +1000,12 @@
+                           G_OBJECT (object), "active",
+                           G_BINDING_SYNC_CREATE | G_BINDING_BIDIRECTIONAL);
+ 
++  object = gtk_builder_get_object (builder, "workspace-invert-scrolling");
++  panel_return_if_fail (GTK_IS_SWITCH (object));
++  g_object_bind_property (G_OBJECT (plugin), "workspace-invert-scrolling",
++                          G_OBJECT (object), "active",
++                          G_BINDING_SYNC_CREATE | G_BINDING_BIDIRECTIONAL);
++
+   /* signals to monitor number of workspace changes */
+   g_object_set_data (G_OBJECT (builder), "panel-plugin", panel_plugin);
+   g_object_weak_ref (G_OBJECT (builder), pager_plugin_configure_destroyed, plugin);
