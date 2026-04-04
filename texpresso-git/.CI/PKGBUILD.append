@@ -1,0 +1,13 @@
+unset -f check
+
+# no more tectonic
+unset source[1]
+unset sha256sums[1]
+
+_pkgsrc="$_pkgname"
+prepare() {
+  cd "$_pkgsrc"
+  sed -i -e 's/fPIC"/fPIC -Wl,-z,now"/' Makefile
+}
+
+eval "$(declare -f package | sed -e 's&{,-tonic}&&')"
