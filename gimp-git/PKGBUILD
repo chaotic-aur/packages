@@ -2,7 +2,7 @@
 
 _pkgname="gimp"
 pkgname="$_pkgname-git"
-pkgver=3.1.4.r1123.g691cc71
+pkgver=3.2.2.r138.gb41deb1
 pkgrel=1
 pkgdesc="GNU Image Manipulation Program"
 url="https://gitlab.gnome.org/GNOME/gimp"
@@ -51,7 +51,7 @@ makedepends=(
   'lua51-lgi'
   'luajit'
   'meson'
-  'python-gobject'
+  'python-cairo'
   'python-packaging'
   'qoi'
   'vala'
