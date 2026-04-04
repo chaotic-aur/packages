@@ -1,15 +1,17 @@
-# Maintainer: Jack Chen <redchenjs@live.com>
+# Maintainer: M. Damian "G'lek" Mulligan <glek (at) glektarssza (dot) com>
+# Contributor: Jack Chen <redchenjs@live.com>
 
 pkgname=upd72020x-fw
-pkgver=1.0.0
-pkgrel=3
+pkgver=1.1.0
+pkgrel=2
 epoch=1
 pkgdesc="Renesas uPD720201 / uPD720202 USB 3.0 chipsets firmware"
 arch=('any')
-url="https://github.com/denisandroid/uPD72020x-Firmware"
+url="https://git.disroot.org/glektarssza/aur-upd72020x-fw"
 license=('custom')
+_tarballver=1.0.0
 source=(
-  "uPD72020x-Firmware-$pkgver.tar.gz::https://web.archive.org/web/20240316231746if_/https://codeload.github.com/denisandroid/uPD72020x-Firmware/tar.gz/refs/tags/$pkgver"
+  "uPD72020x-Firmware-$_tarballver.tar.gz::https://git.disroot.org/glektarssza/aur-upd72020x-fw/releases/download/v1.0.0-3/uPD72020x-Firmware-$_tarballver.tar.gz"
   "remove.hook"
 )
 sha512sums=(
@@ -18,8 +20,8 @@ sha512sums=(
 )
 
 package() {
-  install -Dm644 "uPD72020x-Firmware-$pkgver/UPDATE.mem" "$pkgdir/usr/lib/firmware/renesas_usb_fw.mem"
-  install -Dm644 "uPD72020x-Firmware-$pkgver/License.rtf" "$pkgdir/usr/share/licenses/$pkgname/LICENSE.rtf"
+  install -Dm644 "uPD72020x-Firmware-$_tarballver/UPDATE.mem" "$pkgdir/usr/lib/firmware/renesas_usb_fw.mem"
+  install -Dm644 "uPD72020x-Firmware-$_tarballver/License.rtf" "$pkgdir/usr/share/licenses/$pkgname/LICENSE.rtf"
 
   # firmware install & remove hooks
   install -Dm644 /dev/null "$pkgdir/usr/lib/initcpio/hooks/$pkgname"
