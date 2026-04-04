@@ -8,6 +8,8 @@
 : ${_build_lto:=false}
 : ${_build_system_libs:=true}
 
+: ${_llvm_ver=21}
+
 : ${_pkgrel:=1}
 
 _pkgname="waterfox"
@@ -37,17 +39,18 @@ depends=(
   zlib
 )
 makedepends=(
+  "clang${_llvm_ver:-}"
+  "lld${_llvm_ver:-}"
+  "llvm${_llvm_ver:-}"
+  "wasi-compiler-rt${_llvm_ver:-}"
   cargo
   cbindgen
-  clang
   diffutils
   dump_syms
   git
   imake
   inetutils
   jack
-  lld
-  llvm
   mercurial
   mesa
   nasm
@@ -55,7 +58,6 @@ makedepends=(
   python
   python-setuptools
   unzip
-  wasi-compiler-rt
   wasi-libc
   wasi-libc++
   wasi-libc++abi
@@ -217,15 +219,13 @@ END
   for src in "${source[@]}"; do
     src="${src%%::*}"
     src="${src##*/}"
+    src="${src%.xz}"
     src="${src%.zst}"
     if [[ $src == *.patch ]]; then
       printf '\nApplying patch: %s\n' "$src"
       patch -Np1 -F100 -i "${srcdir:?}/$src"
     fi
   done
-
-  # fix wasm triplet
-  sed -E -e '/split_triplet/s&"wasm32-wasi"&"wasm32-wasip1"&' -i build/moz.configure/toolchain.configure
 }
 
 build() (
@@ -238,6 +238,8 @@ build() (
   export MOZBUILD_STATE_PATH="$srcdir/mozbuild"
   export MOZ_BUILD_DATE="$(date -u${SOURCE_DATE_EPOCH:+d @$SOURCE_DATE_EPOCH} +%Y%m%d%H%M%S)"
   export MOZ_NOSPAM=1
+
+  export PATH="${_llvm_ver:+/usr/lib/llvm${_llvm_ver}/bin/:}$PATH"
 
   # malloc_usable_size is used in various parts of the codebase
   CFLAGS="${CFLAGS/_FORTIFY_SOURCE=3/_FORTIFY_SOURCE=2}"
