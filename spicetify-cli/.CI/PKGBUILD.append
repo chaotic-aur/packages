@@ -1,0 +1,9 @@
+unset -f check
+
+if [ $(vercmp 2.43.1 ${pkgver:-0}) -gt 0 ]; then
+  pkgver=2.43.1
+  pkgrel=1
+
+  source=("spicetify-cli-${pkgver}.tar.gz::${url}/archive/v${pkgver}.tar.gz")
+  sha256sums=('f7f577c90e9b6e502ab05891f83f657038beded57bd6d09ab4421f87bc2542dd')
+fi
