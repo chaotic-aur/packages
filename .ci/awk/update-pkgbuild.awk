@@ -50,6 +50,11 @@ function update_source(source) {
     }
 }
 
+/^\s*pkgrel *=/ {
+    print "pkgrel=1"
+    next
+}
+
 /^\s*_commit *=/ {
     next
 }

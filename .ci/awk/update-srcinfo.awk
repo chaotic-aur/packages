@@ -14,6 +14,11 @@ BEGIN {
         next
     }
 }
+
+/^\tpkgrel = / {
+    print "\tpkgrel = 1"
+    next
+}
 /^\tsource = / {
     if (!ignore_source) {
         # name-ver.tar.gz::https://gitlab.com/-/archive/name/name-version.tar.gz
