@@ -1,5 +1,0 @@
-[wf-shell]
-source = 'github'
-github = 'WayfireWM/wf-shell'
-use_latest_release = true
-prefix = 'v'
