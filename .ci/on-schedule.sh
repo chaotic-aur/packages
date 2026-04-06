@@ -509,6 +509,81 @@ function update_vcs() {
   fi
 }
 
+function update_nvchecker() {
+  set -euo pipefail
+  local -n VARIABLES_UPDATE_NVCHECKER=${1:-VARIABLES}
+  local pkgbase="${VARIABLES_UPDATE_NVCHECKER[PKGBASE]}"
+  local config_file="${pkgbase}/nvchecker.toml"
+
+  if [[ "${VARIABLES_UPDATE_NVCHECKER[CI_NVCHECKER]:-false}" != "true" ]]; then
+    return 0
+  fi
+  if [ ! -f "$config_file" ] && [ -f "${pkgbase}/.nvchecker.toml" ]; then
+    config_file="${pkgbase}/.nvchecker.toml"
+  fi
+  if [ ! -f "$config_file" ]; then
+    UTIL_PRINT_WARNING "$pkgbase: CI_NVCHECKER is enabled but neither nvchecker.toml nor .nvchecker.toml exists."
+    return 0
+  fi
+
+  local json_output exit_code
+  json_output=$(nvchecker --file "$config_file" --logger=json 2>/dev/null)
+  exit_code=$?
+
+  if [ "$exit_code" -ne 0 ] && [ "$exit_code" -ne 3 ]; then
+    UTIL_PRINT_WARNING "$pkgbase: nvchecker failed to execute (exit code $exit_code)."
+    return 0
+  fi
+  if [ "$exit_code" -eq 3 ]; then
+    UTIL_PRINT_WARNING "$pkgbase: nvchecker reported failures while checking updates."
+  fi
+
+  local version
+  version=$(jq -r 'select(.event == "updated") | .version' <<<"$json_output" 2>/dev/null || true)
+  [ -z "$version" ] && return 0
+
+  local revision
+  revision=$(jq -r 'select(.event == "updated") | .revision // ""' <<<"$json_output" 2>/dev/null || true)
+
+  UTIL_PRINT_INFO "$pkgbase: nvchecker detected update to $version."
+
+  local old_version=""
+  if [ -f "$pkgbase/PKGBUILD" ]; then
+    old_version="$(gawk -f .ci/awk/get-pkgver-from-pkgbuild.awk "$pkgbase/PKGBUILD" || true)"
+  fi
+
+  local target_version="$version"
+  local stripped=""
+  if [[ "$version" =~ ^v(.+)$ ]]; then
+    stripped="${BASH_REMATCH[1]}"
+  fi
+  if [ -n "$stripped" ] && [ -n "$old_version" ] && [[ ! "$old_version" =~ ^v ]]; then
+    target_version="$stripped"
+  fi
+
+  if [ -f "$pkgbase/PKGBUILD" ]; then
+    gawk -i inplace -f .ci/awk/update-pkgbuild-nvchecker.awk \
+      -v TARGET_VERSION="$target_version" \
+      -v TARGET_REVISION="$revision" \
+      -v OLD_VERSION="$old_version" \
+      "$pkgbase/PKGBUILD"
+  fi
+
+  if [ -f "$pkgbase/.SRCINFO" ]; then
+    gawk -i inplace -f .ci/awk/update-srcinfo-nvchecker.awk \
+      -v TARGET_VERSION="$target_version" \
+      -v OLD_VERSION="$old_version" \
+      "$pkgbase/.SRCINFO"
+  fi
+
+  VARIABLES_UPDATE_NVCHECKER[CI_ANY_UPDATE]=true
+  if [ "${CI_NVCHECKER_REVIEW:-false}" == "true" ]; then
+    VARIABLES_UPDATE_NVCHECKER[CI_REQUIRES_REVIEW]=true
+    VARIABLES_UPDATE_NVCHECKER[CI_NVCHECKER_REVIEW_REQUIRED]=true
+  fi
+  return 0
+}
+
 # Format maintainer names for display
 # $1: maintainer string (comma-separated list)
 # Returns formatted string like "maintainer1" or "maintainer1, maintainer2"
@@ -587,9 +662,22 @@ for package in "${PACKAGES[@]}"; do
   unset VARIABLES
   declare -A VARIABLES=()
   UTIL_READ_MANAGED_PACAKGE "$package" VARIABLES || true
-  update_pkgbuild VARIABLES
-  update_vcs VARIABLES
-  update-lib-bump VARIABLES
+
+  if [[ "${VARIABLES[CI_NVCHECKER]:-false}" == "true" ]]; then
+    update_nvchecker VARIABLES
+
+    # If nvchecker did not update anything, continue with the regular update chain.
+    if [ "${VARIABLES[CI_ANY_UPDATE]:-false}" != "true" ]; then
+      update_pkgbuild VARIABLES
+      update_vcs VARIABLES
+      update-lib-bump VARIABLES
+    fi
+  else
+    update_pkgbuild VARIABLES
+    update_vcs VARIABLES
+    update-lib-bump VARIABLES
+  fi
+
   UTIL_LOAD_CUSTOM_HOOK "./${package}" "./${package}/.CI/update.sh" && VARIABLES[CI_ANY_UPDATE]=true || true
   UTIL_WRITE_MANAGED_PACKAGE "$package" VARIABLES
 
@@ -600,6 +688,16 @@ for package in "${PACKAGES[@]}"; do
   if ! git diff --exit-code --quiet -- "$package"; then
     # shellcheck disable=SC2102
     if [[ -v VARIABLES[CI_REQUIRES_REVIEW] ]] && [ "${VARIABLES[CI_REQUIRES_REVIEW]}" == "true" ]; then
+      if [[ -v VARIABLES[CI_NVCHECKER_REVIEW_REQUIRED] ]] && [ "${VARIABLES[CI_NVCHECKER_REVIEW_REQUIRED]}" == "true" ]; then
+        UTIL_PRINT_INFO "$package: Creating PR for review due to CI_NVCHECKER_REVIEW."
+        if [ "$COMMIT" == "false" ]; then
+          .ci/create-pr.sh "$package" false "$CI_HUMAN_REVIEW_ASSIGNEE" nvchecker
+        else
+          .ci/create-pr.sh "$package" true "$CI_HUMAN_REVIEW_ASSIGNEE" nvchecker
+        fi
+        continue
+      fi
+
       check_maintainer_trust "$package" VARIABLES
       maintainer_info=""
       if [[ -v VARIABLES[CI_MAINTAINER_FORMATTED] ]]; then
