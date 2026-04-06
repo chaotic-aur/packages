@@ -28,9 +28,6 @@ Server = https://cdn-mirror.chaotic.cx/$repo/$arch
 
 ## --- Country mirrors ---
 
-# Argentina (AR)
-#Server = https://ar-mirror.chaotic.cx/$repo/$arch
-
 # Australia (AU)
 #Server = https://au-mirror.chaotic.cx/$repo/$arch
 
@@ -55,14 +52,8 @@ Server = https://de-mirror.chaotic.cx/$repo/$arch
 # Greece (GR)
 #Server = https://gr-mirror.chaotic.cx/$repo/$arch
 
-# Hong Kong (HK)
-#Server = https://hk-mirror.chaotic.cx/$repo/$arch
-
 # India (IN)
 Server = https://in-mirror.chaotic.cx/$repo/$arch
-
-# Indonesia (ID)
-#Server = https://id-mirror.chaotic.cx/$repo/$arch
 
 # Israel (IL)
 #Server = https://il-mirror.chaotic.cx/$repo/$arch
@@ -78,18 +69,6 @@ Server = https://in-mirror.chaotic.cx/$repo/$arch
 
 # Netherlands (NL)
 #Server = https://nl-mirror.chaotic.cx/$repo/$arch
-
-# New Zealand (NZ)
-#Server = https://nz-mirror.chaotic.cx/$repo/$arch
-
-# Nigeria (NG)
-#Server = https://ng-mirror.chaotic.cx/$repo/$arch
-
-# Peru (PE)
-#Server = https://pe-mirror.chaotic.cx/$repo/$arch
-
-# Poland (PL)
-#Server = https://pl-mirror.chaotic.cx/$repo/$arch
 
 # Russia (RU)
 #Server = https://ru-mirror.chaotic.cx/$repo/$arch
@@ -115,12 +94,6 @@ Server = https://in-mirror.chaotic.cx/$repo/$arch
 # Switzerland (CH)
 #Server = https://ch-mirror.chaotic.cx/$repo/$arch
 
-# Taiwan (TW)
-#Server = https://tw-mirror.chaotic.cx/$repo/$arch
-
-# Thailand (TH)
-#Server = https://th-mirror.chaotic.cx/$repo/$arch
-
 # United Arab Emirates (AE)
 #Server = https://ae-mirror.chaotic.cx/$repo/$arch
 
@@ -136,17 +109,11 @@ Server = https://us-mirror.chaotic.cx/$repo/$arch
 
 ## --- Regular mirrors ---
 
-# Argentina (AR)
-# * By: a0xz
-#Server = https://ar-1-mirror.chaotic.cx/$repo/$arch
-
 # Australia (AU)
 # * By: a0xz
 #Server = https://au-1-mirror.chaotic.cx/$repo/$arch
 # * By: a0xz
 #Server = https://au-2-mirror.chaotic.cx/$repo/$arch
-# * By: a0xz
-#Server = https://au-3-mirror.chaotic.cx/$repo/$arch
 
 # Brazil (BR)
 # * By: Universidade Federal de São Carlos (São Carlos)
@@ -163,8 +130,6 @@ Server = https://us-mirror.chaotic.cx/$repo/$arch
 # Canada (CA)
 # * By: All Things Linux
 #Server = https://ca-1-mirror.chaotic.cx/$repo/$arch
-# * By: a0xz
-#Server = https://ca-2-mirror.chaotic.cx/$repo/$arch
 # * By: a0xz
 #Server = https://ca-3-mirror.chaotic.cx/$repo/$arch
 # * By: a0xz
@@ -200,10 +165,6 @@ Server = https://us-mirror.chaotic.cx/$repo/$arch
 # * By: vmmaniac <github.com/vmmaniac>
 #Server = https://gr-1-mirror.chaotic.cx/$repo/$arch
 
-# Hong Kong (HK)
-# * By: a0xz
-#Server = https://hk-1-mirror.chaotic.cx/$repo/$arch
-
 # India (IN)
 # * By: Albony <https://albony.xyz/>
 #Server = https://in-2-mirror.chaotic.cx/$repo/$arch
@@ -213,10 +174,6 @@ Server = https://us-mirror.chaotic.cx/$repo/$arch
 #Server = https://in-4-mirror.chaotic.cx/$repo/$arch
 # * By: a0xz
 #Server = https://in-5-mirror.chaotic.cx/$repo/$arch
-
-# Indonesia (ID)
-# * By: a0xz
-#Server = https://id-1-mirror.chaotic.cx/$repo/$arch
 
 # Israel (IL)
 # * By: a0xz
@@ -242,22 +199,6 @@ Server = https://us-mirror.chaotic.cx/$repo/$arch
 # * By: a0xz
 #Server = https://nl-1-mirror.chaotic.cx/$repo/$arch
 
-# New Zealand (NZ)
-# * By: a0xz
-#Server = https://nz-1-mirror.chaotic.cx/$repo/$arch
-
-# Nigeria (NG)
-# * By: a0xz
-#Server = https://ng-1-mirror.chaotic.cx/$repo/$arch
-
-# Peru (PE)
-# * By: a0xz
-#Server = https://pe-1-mirror.chaotic.cx/$repo/$arch
-
-# Poland (PL)
-# * By: a0xz
-#Server = https://pl-1-mirror.chaotic.cx/$repo/$arch
-
 # Russia (RU)
 # * By: Котпро203
 #Server = https://ru-1-mirror.chaotic.cx/$repo/$arch
@@ -269,8 +210,6 @@ Server = https://us-mirror.chaotic.cx/$repo/$arch
 # Singapore (SG)
 # * By: freedif.org (City state)
 #Server = https://sg-1-mirror.chaotic.cx/$repo/$arch
-# * By: a0xz
-#Server = https://sg-2-mirror.chaotic.cx/$repo/$arch
 
 # South Africa (ZA)
 # * By: a0xz
@@ -302,14 +241,6 @@ Server = https://us-mirror.chaotic.cx/$repo/$arch
 # * By: a0xz
 #Server = https://ch-1-mirror.chaotic.cx/$repo/$arch
 
-# Taiwan (TW)
-# * By: a0xz
-#Server = https://tw-1-mirror.chaotic.cx/$repo/$arch
-
-# Thailand (TH)
-# * By: a0xz
-#Server = https://th-1-mirror.chaotic.cx/$repo/$arch
-
 # United Arab Emirates (AE)
 # * By: a0xz
 #Server = https://ae-1-mirror.chaotic.cx/$repo/$arch
@@ -330,17 +261,7 @@ Server = https://us-mirror.chaotic.cx/$repo/$arch
 # * By: ash <t.me/the_ashh>
 #Server = https://us-ut-mirror.chaotic.cx/$repo/$arch
 # * By: a0xz
-#Server = https://us-hi-mirror.chaotic.cx/$repo/$arch
-# * By: a0xz
-#Server = https://us-nv-mirror.chaotic.cx/$repo/$arch
-# * By: a0xz
-#Server = https://us-fl-mirror.chaotic.cx/$repo/$arch
-# * By: a0xz
-#Server = https://us-ny-mirror.chaotic.cx/$repo/$arch
-# * By: a0xz
 #Server = https://us-az-mirror.chaotic.cx/$repo/$arch
-# * By: a0xz
-#Server = https://us-or-mirror.chaotic.cx/$repo/$arch
 # * By: a0xz
 #Server = https://us-ca-mirror.chaotic.cx/$repo/$arch
 
