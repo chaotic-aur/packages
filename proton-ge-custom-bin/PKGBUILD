@@ -21,8 +21,8 @@ provides=('proton' "proton-ge-custom=${pkgver/_/.}")
 conflicts=('proton-ge-custom')
 
 ## dependencies
-depends=('python'
-  'vulkan-icd-loader'
+depends=('python')
+optdepends=('vulkan-icd-loader'
   'lib32-openal'
   'lib32-vkd3d'
   # libav support #
@@ -39,10 +39,11 @@ depends=('python'
   'lib32-libgudev'
   'lib32-mpg123'
   'libsoup'
-  # other #
+  # other libs #
   'lib32-openssl'
-  'lib32-libusb')
-optdepends=('kdialog: KDE splash dialog support'
+  'lib32-libusb'
+  # other #
+  'kdialog: KDE splash dialog support'
   'zenity: GNOME splash dialog support'
   'python-kivy: splash dialog support (big picture mode)'
   'steam: use proton with steam like intended'
