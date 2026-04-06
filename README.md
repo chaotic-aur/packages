@@ -307,6 +307,10 @@ processes with.
 - `CI_MANAGE_AUR`: By setting this variable to `true`, the CI will update the corresponding AUR repository at the end of
   a
   pipeline run if changes occur (omitting CI-related files)
+- `CI_NVCHECKER`: Set to `true` to enable automatic version checking via nvchecker. Requires a `.nvchecker.toml` or
+  `nvchecker.toml` config file in the package directory.
+- `CI_NVCHECKER_REVIEW`: Set to `true` to create PRs for nvchecker-triggered updates (requires `CI_NVCHECKER` and
+  `CI_HUMAN_REVIEW` to be enabled). Defaults to `true` in the global CI config.
 - `CI_PACKAGE_BUMP`: Controls package bumps for all packages which don't have `CI_MANAGE_AUR` set to `true`. The format
   this needs
   to follow is either `1:1.2.3-1/1` (full current version and bump count after the slash) or `1.2.3` (full current
@@ -336,6 +340,42 @@ processes with.
   month, which is important in case packages are getting removed or the source changes.
 - `BUILDER_EXTRA_TIMEOUT`: If set, will multiply the global `BUILDER_TIMEOUT` value with the given multiplier.
   If e.g., the default timeout value of `3600` is used, setting this to `2` would increase the build timeout to `7200`.
+
+### nvchecker Integration
+
+nvchecker can automatically detect and update packages when upstream releases new versions. This is useful for
+packages that aren't git-based but have versioned releases.
+
+#### Setup
+
+1. Create a `.nvchecker.toml` or `nvchecker.toml` file in the package directory
+2. Add `CI_NVCHECKER=true` to the package's `.CI/config`
+
+#### Sample Configuration
+
+```toml
+[plasma6-wallpapers-blurredwallpaper]
+source = "github"
+github = "bouteillerAlan/blurredwallpaper"
+use_latest_release = true
+```
+
+#### Configuration Options
+
+- `source`: Source type (`github`, `gitlab`, `aur`, `http`, etc.)
+- `github`/`gitlab`: Repository in format `owner/repo`
+- `use_latest_release`: Use the latest GitHub/GitLab release tag
+- `regex`: Custom regex to extract version from source
+- For full options, see [nvchecker documentation](https://nvchecker.readthedocs.io/en/latest/usage.html#configuration-files)
+
+#### Workflow
+
+When nvchecker detects an update:
+
+1. Updates `pkgver` in PKGBUILD and `.SRCINFO`
+2. Creates a PR with `ci,human-review,update,nvchecker` labels for review
+3. Human review must approve before the package is rebuilt
+4. Pushes back to AUR when `CI_MANAGE_AUR=true` and chaotic-aur maintainer is added to co-maintainers
 
 ### Known state variables
 
