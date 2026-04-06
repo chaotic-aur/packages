@@ -1,5 +1,0 @@
-[wcm]
-source = 'github'
-github = 'WayfireWM/wcm'
-use_latest_release = true
-prefix = 'v'
