@@ -1,49 +1,64 @@
 spec:
   inputs:
     operation:
-      description: 'Operation to perform'
+      description: "Operation to perform"
       type: string
-      options: ['None', 'Bump Packages', 'Schedule Packages', 'Run Schedule', 'Drop Packages', 'Add Packages']
-      default: 'None'
+      options:
+        [
+          "None",
+          "Bump Packages",
+          "Schedule Packages",
+          "Run Schedule",
+          "Drop Packages",
+          "Add Packages",
+        ]
+      default: "None"
     packages:
-      description: 'A colon-separated list of packages. Optional builder classes can be passed per-package using a slash: pkgbase/custom_builder'
+      description: "A colon-separated list of packages. Optional builder classes can be passed per-package using a slash: pkgbase/custom_builder"
       type: string
       regex: '^(?:[\w@.+\-/]+(?::[\w@.+\-/]+)*)?$'
       rules:
         - if: $[[ inputs.operation ]] == 'Bump Packages' || $[[ inputs.operation ]] == 'Schedule Packages' || $[[ inputs.operation ]] == 'Drop Packages'
           default: null
     trigger:
-      description: 'Which schedule to trigger'
+      description: "Which schedule to trigger"
       rules:
         - if: $[[ inputs.operation ]] == 'Run Schedule'
           default: null
     add_packages:
-      description: 'A space-separated list of packages+package sources in pkgbase/source format. Example: paru/aur'
+      description: "A space-separated list of packages+package sources in pkgbase/source format. Example: paru/aur"
       type: string
       regex: '^([\w@.+\-]+/(aur|(https?|git)://\S+)(\s[\w@.+\-]+/(aur|(https?|git)://\S+))*)?$'
       rules:
         - if: $[[ inputs.operation ]] == 'Add Packages'
           default: null
     request_origin:
-      description: 'Where and who requested this package? Example: github/5678,chaotic/xiota,forum/tne'
+      description: "Where and who requested this package? Example: github/5678,chaotic/xiota,forum/tne"
       type: string
       rules:
         - if: $[[ inputs.operation ]] == 'Add Packages'
           default: null
     request_reason:
-      description: 'Why is this package being added?'
+      description: "Why is this package being added?"
       type: string
       rules:
         - if: $[[ inputs.operation ]] == 'Add Packages'
-          options: ['unset', 'request', 'depends', 'depends:optional', 'depends:make', 'depends:check']
-          default: 'unset'
+          options:
+            [
+              "unset",
+              "request",
+              "depends",
+              "depends:optional",
+              "depends:make",
+              "depends:check",
+            ]
+          default: "unset"
     custom_request_reason:
-      description: 'Overwrites request_reason'
+      description: "Overwrites request_reason"
       type: string
       rules:
         - if: $[[ inputs.operation ]] == 'Add Packages'
           default: null
-
 ---
 stages: [process, schedule]
 
@@ -54,7 +69,7 @@ variables:
 
 default:
   before_script:
-    - apk add --no-cache --upgrade git bash findutils grep curl jq shfmt rsync diffutils gawk openssh tar zstd pacman
+    - apk add --no-cache --upgrade git bash findutils grep curl jq shfmt rsync diffutils gawk openssh tar zstd pacman nvchecker
     - git remote set-url origin $REPO_URL
     - git fetch --tags --all --depth 20
 
