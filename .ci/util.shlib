@@ -472,6 +472,37 @@ function UTIL_SET_MAINTAINER_STRATEGY() {
 }
 
 # Set git identity for commits
+# Update checksums of a PKGBUILD and regenerate .SRCINFO
+# $1: pkgbase
+function UTIL_UPDATE_CHECKSUMS() {
+    set -euo pipefail
+    local pkgbase="$1"
+
+    UTIL_PRINT_INFO "$pkgbase: Updating checksums..."
+    local TEMP_DIR
+    TEMP_DIR=$(mktemp -d)
+    cp "$pkgbase/PKGBUILD" "$TEMP_DIR/"
+    chown -R nobody "$TEMP_DIR"
+
+    local sumtypes="md5|sha1|sha224|sha256|sha384|sha512|b2"
+    local newsums
+    if ! newsums=$(cd "$TEMP_DIR" && sudo -u nobody makepkg -g 2>/dev/null); then
+        UTIL_PRINT_WARNING "$pkgbase: Failed to generate new checksums."
+    else
+        gawk -i inplace -f .ci/awk/update-sums.awk \
+            -v sumtypes="$sumtypes" \
+            -v newsums="$newsums" \
+            "$pkgbase/PKGBUILD"
+    fi
+
+    if [ -f "$pkgbase/.SRCINFO" ]; then
+        cp "$pkgbase/PKGBUILD" "$TEMP_DIR/"
+        chown nobody "$TEMP_DIR/PKGBUILD"
+        sudo -u nobody bash -c "cd $TEMP_DIR && makepkg --printsrcinfo" >"$pkgbase/.SRCINFO"
+    fi
+    rm -rf "$TEMP_DIR"
+}
+
 function UTIL_SET_GIT_IDENTITY() {
     set -euo pipefail
 

@@ -567,13 +567,8 @@ function update_nvchecker() {
       -v TARGET_REVISION="$revision" \
       -v OLD_VERSION="$old_version" \
       "$pkgbase/PKGBUILD"
-  fi
 
-  if [ -f "$pkgbase/.SRCINFO" ]; then
-    gawk -i inplace -f .ci/awk/update-srcinfo-nvchecker.awk \
-      -v TARGET_VERSION="$target_version" \
-      -v OLD_VERSION="$old_version" \
-      "$pkgbase/.SRCINFO"
+    UTIL_UPDATE_CHECKSUMS "$pkgbase"
   fi
 
   VARIABLES_UPDATE_NVCHECKER[CI_ANY_UPDATE]=true
