@@ -518,6 +518,13 @@ function update_nvchecker() {
   if [[ "${VARIABLES_UPDATE_NVCHECKER[CI_NVCHECKER]:-false}" != "true" ]]; then
     return 0
   fi
+
+  local pkgbuild_source="${VARIABLES_UPDATE_NVCHECKER[CI_PKGBUILD_SOURCE]:-}"
+  if [ -n "$pkgbuild_source" ] && [ "$pkgbuild_source" != "custom" ]; then
+    UTIL_PRINT_WARNING "$pkgbase: CI_NVCHECKER is enabled but CI_PKGBUILD_SOURCE='$pkgbuild_source' is not custom. Skipping nvchecker."
+    return 0
+  fi
+
   if [ ! -f "$config_file" ] && [ -f "${pkgbase}/.nvchecker.toml" ]; then
     config_file="${pkgbase}/.nvchecker.toml"
   fi
@@ -548,17 +555,16 @@ function update_nvchecker() {
   UTIL_PRINT_INFO "$pkgbase: nvchecker detected update to $version."
 
   local old_version=""
-  if [ -f "$pkgbase/PKGBUILD" ]; then
+  if [ -f "$pkgbase/.SRCINFO" ]; then
+    old_version="$(grep -m 1 -oP '\tpkgver\s=\s\K.*$' "$pkgbase/.SRCINFO" || true)"
+  fi
+  if [ -z "$old_version" ] && [ -f "$pkgbase/PKGBUILD" ]; then
     old_version="$(gawk -f .ci/awk/get-pkgver-from-pkgbuild.awk "$pkgbase/PKGBUILD" || true)"
   fi
 
-  local target_version="$version"
-  local stripped=""
-  if [[ "$version" =~ ^v(.+)$ ]]; then
-    stripped="${BASH_REMATCH[1]}"
-  fi
-  if [ -n "$stripped" ] && [ -n "$old_version" ] && [[ ! "$old_version" =~ ^v ]]; then
-    target_version="$stripped"
+  local target_version="${version#v}"
+  if [ -n "$old_version" ] && [ "${old_version#v}" = "$target_version" ]; then
+    return 0
   fi
 
   if [ -f "$pkgbase/PKGBUILD" ]; then
@@ -661,12 +667,9 @@ for package in "${PACKAGES[@]}"; do
   if [[ "${VARIABLES[CI_NVCHECKER]:-false}" == "true" ]]; then
     update_nvchecker VARIABLES
 
-    # If nvchecker did not update anything, continue with the regular update chain.
-    if [ "${VARIABLES[CI_ANY_UPDATE]:-false}" != "true" ]; then
-      update_pkgbuild VARIABLES
-      update_vcs VARIABLES
-      update-lib-bump VARIABLES
-    fi
+    # Packages using nvchecker should not run update_pkgbuild.
+    update_vcs VARIABLES
+    update-lib-bump VARIABLES
   else
     update_pkgbuild VARIABLES
     update_vcs VARIABLES
