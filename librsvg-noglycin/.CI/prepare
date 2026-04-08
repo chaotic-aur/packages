@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+# disable install script
+cp /dev/null librsvg-noglycin.install
+sed -e '/install=/d' -i PKGBUILD
