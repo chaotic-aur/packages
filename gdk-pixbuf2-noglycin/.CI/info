@@ -1,0 +1,2 @@
+REQ_ORIGIN=github/4197
+REQ_REASON=depends:make # libavif-noglycin libheif-noglycin libjxl-noglycin librsvg-noglycin

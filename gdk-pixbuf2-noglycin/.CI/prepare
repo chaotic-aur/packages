@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# remove unnecessary functions
+sed -e '/^_update_cache() {$/,$d' -i gdk-pixbuf2-noglycin.install
