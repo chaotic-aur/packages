@@ -8,7 +8,7 @@
 
 pkgname=prismlauncher-git
 _pkgname=${pkgname%-git}
-pkgver=10.0.0.pre1.r203.gef747055a
+pkgver=11.0.0.pre2.r2.g194b72f18
 pkgrel=1
 pkgdesc='Minecraft launcher with ability to manage multiple instances'
 arch=(i686 x86_64 aarch64)
@@ -40,6 +40,7 @@ makedepends=(
   git
   jdk17-openjdk
   scdoc
+  vulkan-headers
 )
 optdepends=(
   'glfw: to use system GLFW libraries'
