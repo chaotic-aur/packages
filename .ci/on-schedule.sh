@@ -518,6 +518,11 @@ function update_nvchecker() {
   if [[ "${VARIABLES_UPDATE_NVCHECKER[CI_NVCHECKER]:-false}" != "true" ]]; then
     return 0
   fi
+
+  if [[ "${VARIABLES_UPDATE_NVCHECKER[CI_PKGBUILD_SOURCE]:-}" != "custom" ]]; then
+    UTIL_PRINT_WARNING "$pkgbase: CI_NVCHECKER is enabled but CI_PKGBUILD_SOURCE is not set to 'custom'"
+  fi
+
   if [ ! -f "$config_file" ] && [ -f "${pkgbase}/.nvchecker.toml" ]; then
     config_file="${pkgbase}/.nvchecker.toml"
   fi
@@ -547,29 +552,30 @@ function update_nvchecker() {
 
   UTIL_PRINT_INFO "$pkgbase: nvchecker detected update to $version."
 
+  if [ ! -f "$pkgbase/PKGBUILD" ]; then
+    return 0
+  fi
+
   local old_version=""
-  if [ -f "$pkgbase/PKGBUILD" ]; then
+  if [ -f "$pkgbase/.SRCINFO" ]; then
+    old_version="$(grep -m 1 -oP '\tpkgver\s=\s\K.*$' "$pkgbase/.SRCINFO" || true)"
+  fi
+  if [ -z "$old_version" ]; then
     old_version="$(gawk -f .ci/awk/get-pkgver-from-pkgbuild.awk "$pkgbase/PKGBUILD" || true)"
   fi
 
-  local target_version="$version"
-  local stripped=""
-  if [[ "$version" =~ ^v(.+)$ ]]; then
-    stripped="${BASH_REMATCH[1]}"
-  fi
-  if [ -n "$stripped" ] && [ -n "$old_version" ] && [[ ! "$old_version" =~ ^v ]]; then
-    target_version="$stripped"
+  local target_version="${version#v}"
+  if [ -n "$old_version" ] && [ "${old_version#v}" = "$target_version" ]; then
+    return 0
   fi
 
-  if [ -f "$pkgbase/PKGBUILD" ]; then
-    gawk -i inplace -f .ci/awk/update-pkgbuild-nvchecker.awk \
-      -v TARGET_VERSION="$target_version" \
-      -v TARGET_REVISION="$revision" \
-      -v OLD_VERSION="$old_version" \
-      "$pkgbase/PKGBUILD"
+  gawk -i inplace -f .ci/awk/update-pkgbuild-nvchecker.awk \
+    -v TARGET_VERSION="$target_version" \
+    -v TARGET_REVISION="$revision" \
+    -v OLD_VERSION="$old_version" \
+    "$pkgbase/PKGBUILD"
 
-    UTIL_UPDATE_CHECKSUMS "$pkgbase"
-  fi
+  UTIL_UPDATE_CHECKSUMS "$pkgbase"
 
   VARIABLES_UPDATE_NVCHECKER[CI_ANY_UPDATE]=true
   if [ "${CI_NVCHECKER_REVIEW:-false}" == "true" ]; then
@@ -660,18 +666,12 @@ for package in "${PACKAGES[@]}"; do
 
   if [[ "${VARIABLES[CI_NVCHECKER]:-false}" == "true" ]]; then
     update_nvchecker VARIABLES
-
-    # If nvchecker did not update anything, continue with the regular update chain.
-    if [ "${VARIABLES[CI_ANY_UPDATE]:-false}" != "true" ]; then
-      update_pkgbuild VARIABLES
-      update_vcs VARIABLES
-      update-lib-bump VARIABLES
-    fi
   else
     update_pkgbuild VARIABLES
-    update_vcs VARIABLES
-    update-lib-bump VARIABLES
   fi
+
+  update_vcs VARIABLES
+  update-lib-bump VARIABLES
 
   UTIL_LOAD_CUSTOM_HOOK "./${package}" "./${package}/.CI/update.sh" && VARIABLES[CI_ANY_UPDATE]=true || true
   UTIL_WRITE_MANAGED_PACKAGE "$package" VARIABLES

@@ -481,7 +481,7 @@ function UTIL_UPDATE_CHECKSUMS() {
     UTIL_PRINT_INFO "$pkgbase: Updating checksums..."
     local TEMP_DIR
     TEMP_DIR=$(mktemp -d)
-    cp "$pkgbase/PKGBUILD" "$TEMP_DIR/"
+    cp -a "$pkgbase/." "$TEMP_DIR/"
     chown -R nobody "$TEMP_DIR"
 
     local sumtypes="md5|sha1|sha224|sha256|sha384|sha512|b2"
@@ -496,8 +496,9 @@ function UTIL_UPDATE_CHECKSUMS() {
     fi
 
     if [ -f "$pkgbase/.SRCINFO" ]; then
-        cp "$pkgbase/PKGBUILD" "$TEMP_DIR/"
+        cp "$pkgbase/PKGBUILD" "$TEMP_DIR/PKGBUILD"
         chown nobody "$TEMP_DIR/PKGBUILD"
+        # shellcheck disable=SC2024
         sudo -u nobody bash -c "cd $TEMP_DIR && makepkg --printsrcinfo" >"$pkgbase/.SRCINFO"
     fi
     rm -rf "$TEMP_DIR"
