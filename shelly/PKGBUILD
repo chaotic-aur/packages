@@ -1,7 +1,7 @@
 # Maintainer: Zoey Bauer <zoey.erin.bauer@gmail.com>
 # Maintainer: Caroline Snyder <hirpeng@gmail.com>
 pkgname=shelly
-pkgver=2.0.8
+pkgver=2.0.9
 pkgrel=1
 pkgdesc="Shelly: A Modern Arch Package Manager"
 arch=('x86_64')
@@ -31,7 +31,7 @@ makedepends=('dotnet-sdk-10.0' 'clang')
 # Source tarball from GitHub release
 source=("${pkgname}-${pkgver}.tar.gz::https://github.com/ZoeyErinBauer/Shelly-ALPM/archive/v${pkgver}.tar.gz")
 
-sha256sums=('088d2ad65215962945aed2789e0f0dbaa0d74458ca524fb7bce716428ef157c5')
+sha256sums=('1fee6d95dd90b2c1633bcb576623833f76885fbacd1e6940fd075c2a9aabb17c')
 
 build() {
   cd "$srcdir/Shelly-ALPM-${pkgver}"
@@ -87,7 +87,7 @@ EOF
 Name=Shelly Notifications
 Comment=Notification service for Shelly package manager
 Exec=/usr/bin/shelly-notifications
-Icon=shelly
+Icon=shelly-tray
 Type=Application
 Categories=System;Utility;
 Terminal=false
@@ -96,6 +96,8 @@ EOF
 
   # Install icon
   install -Dm644 Shelly.Gtk/Assets/shellylogo.png "$pkgdir/usr/share/icons/hicolor/256x256/apps/shelly.png"
+  install -Dm644 Shelly.Gtk/Assets/shellylogo-tray.png "$pkgdir/usr/share/icons/hicolor/256x256/apps/shelly-tray.png"
+  install -Dm644 Shelly.Gtk/Assets/shellylogo-update.png "$pkgdir/usr/share/icons/hicolor/256x256/apps/shelly-update.png"
   install -Dm644 Shelly.Gtk/Assets/svg/flatpak-symbolic.svg "$pkgdir/usr/share/icons/hicolor/symbolic/apps/flatpak-symbolic.svg"
   install -Dm644 Shelly.Gtk/Assets/svg/arch-symbolic.svg "$pkgdir/usr/share/icons/hicolor/symbolic/apps/arch-symbolic.svg"
 

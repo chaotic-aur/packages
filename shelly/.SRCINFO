@@ -1,6 +1,6 @@
 pkgbase = shelly
 	pkgdesc = Shelly: A Modern Arch Package Manager
-	pkgver = 2.0.8
+	pkgver = 2.0.9
 	pkgrel = 1
 	url = https://github.com/ZoeyErinBauer/Shelly-ALPM
 	arch = x86_64
@@ -23,7 +23,7 @@ pkgbase = shelly
 	provides = shelly
 	conflicts = shelly-git
 	conflicts = shelly-bin
-	source = shelly-2.0.8.tar.gz::https://github.com/ZoeyErinBauer/Shelly-ALPM/archive/v2.0.8.tar.gz
-	sha256sums = 088d2ad65215962945aed2789e0f0dbaa0d74458ca524fb7bce716428ef157c5
+	source = shelly-2.0.9.tar.gz::https://github.com/ZoeyErinBauer/Shelly-ALPM/archive/v2.0.9.tar.gz
+	sha256sums = 1fee6d95dd90b2c1633bcb576623833f76885fbacd1e6940fd075c2a9aabb17c
 
 pkgname = shelly
