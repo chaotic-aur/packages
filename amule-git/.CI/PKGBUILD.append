@@ -1,8 +1,12 @@
-export CMAKE_POLICY_VERSION_MINIMUM=3.5
-
 export CMAKE_GENERATOR=Ninja
 makedepends+=('ninja')
 
 url="https://github.com/amule-project/amule"
 
 license=('GPL-2.0-or-later')
+
+eval "$(
+  declare -f prepare \
+    | sed '/amule-specify_cmake3\.5\.patch/d' \
+    | sed '/amule-boost1\.89\.patch/d'
+)"
