@@ -2,13 +2,13 @@
 
 pkgname=satdump
 pkgver=1.2.2
-pkgrel=4
+pkgrel=5
 pkgdesc='A generic satellite processing software'
 arch=('x86_64')
 license=('GPL-3.0-only')
 url='https://github.com/SatDump/SatDump'
 depends=('airspy' 'fftw' 'glfw' 'hackrf' 'jemalloc' 'libad9361' 'libpng' 'libvolk' 'nng' 'ocl-icd' 'portaudio' 'rtl-sdr' 'zenity' 'zstd')
-makedepends=('boost' 'cmake' 'opencl-headers')
+makedepends=('boost' 'cmake' 'opencl-headers' 'lua54')
 source=("${pkgname}-${pkgver}.tar.gz::${url}/archive/${pkgver}.tar.gz"
   "${pkgname}.patch")
 optdepends=('limesuite' 'bladerf')
@@ -31,7 +31,7 @@ build() {
   )
 
   cmake "${cmake_options[@]}"
-  cmake --build build
+  CPATH=/usr/include/lua5.4:$CPATH cmake --build build
 }
 
 package() {

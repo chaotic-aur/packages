@@ -1,13 +1,14 @@
 pkgbase = satdump
 	pkgdesc = A generic satellite processing software
 	pkgver = 1.2.2
-	pkgrel = 4
+	pkgrel = 5
 	url = https://github.com/SatDump/SatDump
 	arch = x86_64
 	license = GPL-3.0-only
 	makedepends = boost
 	makedepends = cmake
 	makedepends = opencl-headers
+	makedepends = lua54
 	depends = airspy
 	depends = fftw
 	depends = glfw
