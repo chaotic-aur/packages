@@ -1,0 +1,22 @@
+pkgbase = mesen-ce-git
+	pkgdesc = Multi-system emulator (NES, SNES, GB, GBA, PCE, SMS/GG, WS)
+	pkgver = r3573.85cb76e9
+	pkgrel = 1
+	url = https://github.com/nesdev-org/MesenCE
+	arch = x86_64
+	license = GPL3
+	makedepends = dotnet-sdk-8.0
+	makedepends = git
+	makedepends = zip
+	makedepends = clang
+	makedepends = coreutils
+	depends = libevdev
+	depends = sdl2
+	provides = mesen-ce
+	conflicts = mesen-ce
+	options = !strip
+	options = !debug
+	source = mesen-ce::git+https://github.com/nesdev-org/MesenCE.git
+	sha256sums = SKIP
+
+pkgname = mesen-ce-git
