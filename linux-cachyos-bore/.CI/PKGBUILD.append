@@ -1,0 +1,12 @@
+# workaround for sums mismatch
+unset b2sums
+for i in "${source[@]}"; do
+  b2sums+=('SKIP')
+done
+
+# prevent timeout while waiting for user input
+eval "$( declare -f prepare \
+    | sed -E \
+    -e 's&^(\s*)[^#]*\bmake\b(.*)\bconfig\b.*$&&' \
+    -e 's&^(\s*)([^#]*\bmake\b(.*)\bprepare\b.*)$&\1make "${BUILD_FLAGS[@]}" olddefconfig\n\1\2&'
+)"

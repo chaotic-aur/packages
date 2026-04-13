@@ -1,0 +1,6 @@
+# avoid march=native
+_processor_opt=GENERIC_V1
+
+# prevent package renaming
+_use_lto_suffix=no
+_use_gcc_suffix=no
