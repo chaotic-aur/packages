@@ -222,17 +222,13 @@ fi
 ## List of CachyOS schedulers
 case "$_cpusched" in
   cachyos | bore | rt-bore | hardened) # CachyOS Scheduler (BORE)
-    source+=("${_patchsource}/sched/0001-bore-cachy.patch")
-    ;;&
+    source+=("${_patchsource}/sched/0001-bore-cachy.patch") ;;&
   bmq) ## Project C Scheduler
-    source+=("${_patchsource}/sched/0001-prjc-cachy.patch")
-    ;;
+    source+=("${_patchsource}/sched/0001-prjc-cachy.patch") ;;
   hardened) ## Hardened Patches
-    source+=("${_patchsource}/misc/0001-hardened.patch")
-    ;;
+    source+=("${_patchsource}/misc/0001-hardened.patch") ;;
   rt | rt-bore) ## RT patches
-    source+=("${_patchsource}/misc/0001-rt-i915.patch")
-    ;;
+    source+=("${_patchsource}/misc/0001-rt-i915.patch") ;;
 esac
 
 export KBUILD_BUILD_HOST=cachyos
@@ -643,17 +639,13 @@ _package-headers() {
   while read -rd '' file; do
     case "$(file -Sib "$file")" in
       application/x-sharedlib\;*) # Libraries (.so)
-        strip -v $STRIP_SHARED "$file"
-        ;;
+        strip -v $STRIP_SHARED "$file" ;;
       application/x-archive\;*) # Libraries (.a)
-        strip -v $STRIP_STATIC "$file"
-        ;;
+        strip -v $STRIP_STATIC "$file" ;;
       application/x-executable\;*) # Binaries
-        strip -v $STRIP_BINARIES "$file"
-        ;;
+        strip -v $STRIP_BINARIES "$file" ;;
       application/x-pie-executable\;*) # Relocatable binaries
-        strip -v $STRIP_SHARED "$file"
-        ;;
+        strip -v $STRIP_SHARED "$file" ;;
     esac
   done < <(find "$builddir" -type f -perm -u+x ! -name vmlinux -print0)
 
