@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+
+sed -E -e 's&(pkgdesc=".*)\..*"&\1"&' -i PKGBUILD
