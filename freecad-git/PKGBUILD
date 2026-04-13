@@ -2,7 +2,7 @@
 
 _pkgname="freecad"
 pkgname="$_pkgname-git"
-pkgver=1.0.2.r5680.g4fe0dff
+pkgver=1.1.0.r1745.g8a0d1f5
 pkgrel=1
 pkgdesc="A general purpose 3D CAD modeler"
 url="https://github.com/FreeCAD/FreeCAD"
@@ -46,6 +46,7 @@ makedepends=(
   'boost'
   'cmake'
   'eigen'
+  'fast_float'
   'git'
   'glew'
   'ninja'

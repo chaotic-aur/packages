@@ -1,6 +1,6 @@
 pkgbase = freecad-git
 	pkgdesc = A general purpose 3D CAD modeler
-	pkgver = 1.0.2.r5680.g4fe0dff
+	pkgver = 1.1.0.r1745.g8a0d1f5
 	pkgrel = 1
 	url = https://github.com/FreeCAD/FreeCAD
 	arch = x86_64
@@ -8,6 +8,7 @@ pkgbase = freecad-git
 	makedepends = boost
 	makedepends = cmake
 	makedepends = eigen
+	makedepends = fast_float
 	makedepends = git
 	makedepends = glew
 	makedepends = ninja
