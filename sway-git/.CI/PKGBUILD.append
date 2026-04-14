@@ -46,10 +46,13 @@ eval _orig_"$(declare -f prepare)"
 
 prepare() (
   local pkgver=$(pkgver)
-  install -dm755 "$_pkgsrc/subprojects"
-  ln -sfr "wlroots" "$_pkgsrc/subprojects/wlroots"
+  mkdir -pm755 "$_pkgsrc/subprojects"
+  ln -sf "$srcdir/wlroots" "$_pkgsrc/subprojects/wlroots"
   ln -sf "$_pkgsrc" "$pkgname-$pkgver"
   ln -sf "$_pkgsrc" "$pkgname"
+
+  # fix missing header
+  sed '1i #include <stdio.h>' -i wlroots/test/test_box.c
 
   _orig_prepare
 )
