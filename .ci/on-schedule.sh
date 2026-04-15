@@ -197,6 +197,13 @@ function update-lib-bump() {
       UTIL_PRINT_WARNING "$package: Could not find package version in the version-state file."
       return 0
     fi
+
+    if [[ -v pkg_config[CI_PACKAGE_BUMP] ]] && [[ "${pkg_config[CI_PACKAGE_BUMP]}" =~ ^(.+)/([0-9]+)$ ]]; then
+      if [[ "${BASH_REMATCH[1]}" == "$_DB_BASE" ]] && [ "${BASH_REMATCH[2]}" -ge "$_DB_BUMP" ]; then
+        _DB_BUMP=$((${BASH_REMATCH[2]} + 1))
+      fi
+    fi
+
     pkg_config[CI_PACKAGE_BUMP]="$_DB_BASE/$_DB_BUMP"
     pkg_config[CI_ANY_UPDATE]=true
   fi
