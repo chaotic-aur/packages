@@ -1,20 +1,20 @@
-export CMAKE_POLICY_VERSION_MINIMUM=3.5
+export CFLAGS+=" -Wno-error"
 
 _pkgsrc="$_pkgname"
-pkgver() {
+pkgver() (
   cd "$_pkgsrc"
-  local _tag _version _revision _hash
-  _tag=$(git tag -l '[0-9]*' | grep -Ev '[a-z][a-z]' | sort -rV | head -1)
-  _version="${_tag:?}"
+  local _tmp _tag _version _revision _commit
+  _tmp=$(git tag | grep -Ev '[A-Za-z][A-Za-z]' | sed -E 's&([^0-9]*)(\S+)$&\2 \1\2&' | sort -rV | head -1)
+  _version=$(cut -f1 -d' ' <<< ${_tmp:?})
+  _tag=$(cut -f2 -d' ' <<< ${_tmp:?})
   _revision=$(git rev-list --count --cherry-pick "$_tag"...HEAD)
-  _hash=$(git rev-parse --short=7 HEAD)
-  printf '%s.r%s.g%s' "${_version:?}" "${_revision:?}" "${_hash:?}"
-}
+  _commit=$(git rev-parse --short=7 HEAD)
+  printf '%s.r%s.g%s' "${_version:?}" "${_revision:?}" "${_commit:?}"
+)
 
 eval _orig_"$(declare -f package | sed '/chmod/d')"
 
 package() {
   _orig_package
-
   chmod -R u+rwX,go+rX,go-w "$pkgdir/"
 }
