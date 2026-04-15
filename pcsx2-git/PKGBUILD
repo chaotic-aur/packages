@@ -2,8 +2,8 @@
 
 _pkgname="pcsx2"
 pkgname="$_pkgname-git"
-pkgver=2.7.132.r0.gb7fa45e
-pkgrel=2
+pkgver=2.7.263.r0.g420f417
+pkgrel=1
 pkgdesc="PlayStation 2 emulator"
 url="https://github.com/PCSX2/pcsx2"
 license=('GPL-3.0-or-later')
@@ -20,6 +20,7 @@ depends=(
   plutovg  # AUR
   qt6-base
   qt6-svg
+  rapidyaml # AUR
   sdl3
   shaderc
 )

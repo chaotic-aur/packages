@@ -1,7 +1,7 @@
 pkgbase = pcsx2-git
 	pkgdesc = PlayStation 2 emulator
-	pkgver = 2.7.132.r0.gb7fa45e
-	pkgrel = 2
+	pkgver = 2.7.263.r0.g420f417
+	pkgrel = 1
 	url = https://github.com/PCSX2/pcsx2
 	install = pcsx2.install
 	arch = x86_64
@@ -30,6 +30,7 @@ pkgbase = pcsx2-git
 	depends = plutovg
 	depends = qt6-base
 	depends = qt6-svg
+	depends = rapidyaml
 	depends = sdl3
 	depends = shaderc
 	optdepends = alsa-utils: Sound player for RetroAchievements
