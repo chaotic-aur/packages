@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+# disallow exit command
+sed -E -e 's&\|\|\s*exit.*$&&g' -i PKGBUILD
