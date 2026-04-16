@@ -1,0 +1,1 @@
+depends=("${depends[@]/p7zip/7zip}")
