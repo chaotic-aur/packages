@@ -1,0 +1,35 @@
+pkgbase = amiberry
+	pkgdesc = Optimized Amiga emulator
+	pkgver = 8.1.5
+	pkgrel = 1
+	url = https://github.com/BlitterStudio/amiberry
+	arch = x86_64
+	license = GPL-3.0-only
+	makedepends = glibc
+	makedepends = git
+	makedepends = cmake
+	makedepends = ninja
+	depends = curl
+	depends = flac
+	depends = sdl3
+	depends = sdl3_image
+	depends = sdl3_ttf
+	depends = mpg123
+	depends = libmpeg2
+	depends = libserialport
+	depends = portmidi
+	depends = hicolor-icon-theme
+	depends = enet
+	depends = libpcap
+	depends = tinyxml2
+	depends = nlohmann-json
+	depends = zlib
+	depends = libpng
+	depends = libglvnd
+	provides = amiberry=8.1.5
+	conflicts = amiberry-git
+	conflicts = amiberry-lite
+	source = amiberry::git+https://github.com/BlitterStudio/amiberry.git#tag=v8.1.5
+	sha256sums = 179c600e45081238223c540bf437e748d52ac0dfcc34c12a51aa8c84757a91b1
+
+pkgname = amiberry
