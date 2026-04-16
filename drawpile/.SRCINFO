@@ -1,7 +1,7 @@
 pkgbase = drawpile
 	pkgdesc = Collaborative drawing program specially made for use with pen tablets
 	pkgver = 2.3.0
-	pkgrel = 1
+	pkgrel = 2
 	url = https://github.com/drawpile/Drawpile
 	arch = x86_64
 	license = GPL-3.0-or-later
@@ -15,10 +15,10 @@ pkgbase = drawpile
 	depends = qt6-multimedia
 	depends = qt6-svg
 	depends = qt6-websockets
+	conflicts = drawpile-client
+	conflicts = drawpile-server
+	conflicts = drawpile-tools
 	source = drawpile::git+https://github.com/drawpile/Drawpile.git#tag=2.3.0
 	sha256sums = SKIP
 
 pkgname = drawpile
-	replaces = drawpile-client
-	replaces = drawpile-server
-	replaces = drawpile-tools

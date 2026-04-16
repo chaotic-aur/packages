@@ -3,7 +3,7 @@
 _pkgname='drawpile'
 pkgname="$_pkgname"
 pkgver=2.3.0
-pkgrel=1
+pkgrel=2
 pkgdesc="Collaborative drawing program specially made for use with pen tablets"
 url="https://github.com/drawpile/Drawpile"
 license=('GPL-3.0-or-later')
@@ -24,6 +24,12 @@ makedepends=(
   'qt6-tools'
 )
 
+conflicts=(
+  drawpile-client
+  drawpile-server
+  drawpile-tools
+)
+
 _pkgsrc="$_pkgname"
 source=("$_pkgsrc"::"git+$url.git#tag=$pkgver")
 sha256sums=('SKIP')
@@ -42,6 +48,8 @@ build() {
     -G Ninja
     -DCMAKE_BUILD_TYPE=Release
     -DCMAKE_INSTALL_PREFIX='/usr'
+    -Wno-dev
+
     -DBUILTINSERVER=ON
     -DCLIENT=ON
     -DCMAKE_EXPORT_COMPILE_COMMANDS=OFF
@@ -52,7 +60,6 @@ build() {
     -DSOURCE_ASSETS=OFF
     -DTESTS=OFF
     -DTOOLS=ON
-    -Wno-dev
   )
 
   cmake "${_cmake_options[@]}"
@@ -60,11 +67,5 @@ build() {
 }
 
 package() {
-  replaces=(
-    drawpile-client
-    drawpile-server
-    drawpile-tools
-  )
-
   DESTDIR="$pkgdir" cmake --install build
 }
