@@ -1,4 +1,14 @@
 unset checkdepends
 unset -f check
 
+unset epoch
+
 url="https://github.com/andyholmes/valent"
+
+# fatal: expected 'packfile'
+unset source[1]
+unset sha256sums[1]
+prepare() {
+  cd "${pkgname%-git}"
+  git submodule update --init --depth=1
+}
