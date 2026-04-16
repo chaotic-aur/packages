@@ -54,10 +54,10 @@ _htmldocs_enable=
 _major=6.19
 _srcname=linux-${_major}
 _lqxpatchname=liquorix-package
-_lqxpatchrel=8
+_lqxpatchrel=9
 _lqxpatchver=${_lqxpatchname}-${_major}-${_lqxpatchrel}
 pkgbase=linux-lqx
-pkgver=6.19.11.lqx2
+pkgver=6.19.12.lqx1
 pkgrel=1
 pkgdesc='Linux Liquorix'
 url='https://liquorix.net/'
@@ -106,7 +106,7 @@ validpgpkeys=(
 )
 sha512sums=('01b29c7f4e5bc0c9802794c2cd027fece825f90417be229a71e60eefce530010d5d301749c54ae744e9d4a483518e769e2bb7e6e9209687681ad7fff11c3ed86'
   'SKIP'
-  '025e9a685ee8270f46d990c64726ee966de6a31b5f734e1278c5f0e05920a930b8b0ab04bc377da071271d93fb0edbceb3dc7285f350e820ee6c355d53ecd615')
+  'c8b4303dbb6c3381fa88834a0d04e176a59ed71aa79d145cec473eed320a9332a64783bee913274e40fd5fe4869066f8a007c233c765e60a958880d769cf2e6d')
 
 export KBUILD_BUILD_HOST=archlinux
 export KBUILD_BUILD_USER=$pkgbase
@@ -339,13 +339,17 @@ _package-headers() {
   while read -rd '' file; do
     case "$(file -Sib "$file")" in
       application/x-sharedlib\;*) # Libraries (.so)
-        strip -v $STRIP_SHARED "$file" ;;
+        strip -v $STRIP_SHARED "$file"
+        ;;
       application/x-archive\;*) # Libraries (.a)
-        strip -v $STRIP_STATIC "$file" ;;
+        strip -v $STRIP_STATIC "$file"
+        ;;
       application/x-executable\;*) # Binaries
-        strip -v $STRIP_BINARIES "$file" ;;
+        strip -v $STRIP_BINARIES "$file"
+        ;;
       application/x-pie-executable\;*) # Relocatable binaries
-        strip -v $STRIP_SHARED "$file" ;;
+        strip -v $STRIP_SHARED "$file"
+        ;;
     esac
   done < <(find "$builddir" -type f -perm -u+x ! -name vmlinux -print0)
 
