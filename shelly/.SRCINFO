@@ -1,6 +1,6 @@
 pkgbase = shelly
 	pkgdesc = Shelly: A Modern Arch Package Manager
-	pkgver = 2.0.10
+	pkgver = 2.1.0
 	pkgrel = 1
 	url = https://github.com/ZoeyErinBauer/Shelly-ALPM
 	arch = x86_64
@@ -17,13 +17,14 @@ pkgbase = shelly
 	depends = hicolor-icon-theme
 	depends = dbus
 	depends = glibc
+	depends = libarchive
 	optdepends = flatpak: For supporting flatpak implementation.
 	optdepends = archlinux-appstream-data: package icons and metadata
 	optdepends = fish: Fish shell completions
 	provides = shelly
 	conflicts = shelly-git
 	conflicts = shelly-bin
-	source = shelly-2.0.10.tar.gz::https://github.com/ZoeyErinBauer/Shelly-ALPM/archive/v2.0.10.tar.gz
-	sha256sums = c2c74fafd3fcfc502d6737adea4cbb1e1cd678ddf4980e0f282132567095200d
+	source = shelly-2.1.0.tar.gz::https://github.com/ZoeyErinBauer/Shelly-ALPM/archive/v2.1.0.tar.gz
+	sha256sums = 48b3419600f50293d13e177ad9e42f9b4ea326469b02fcec6cbf73ee9cbe59f0
 
 pkgname = shelly
