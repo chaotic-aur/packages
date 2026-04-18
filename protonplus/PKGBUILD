@@ -1,6 +1,6 @@
 # Maintainer: Mark Wagie <mark dot wagie at proton dot me>
 pkgname=protonplus
-pkgver=0.5.19
+pkgver=0.5.20
 pkgrel=1
 pkgdesc="A modern compatibility tools manager"
 arch=('x86_64')
@@ -20,7 +20,7 @@ makedepends=(
 )
 checkdepends=('appstream-glib')
 source=("$pkgname-$pkgver.tar.gz::$url/archive/refs/tags/v$pkgver.tar.gz")
-sha256sums=('46d196aa0fc59dffd29dd1391ae4f7a308a57d9690e0d0df7d68102bc505789c')
+sha256sums=('824c7918636f2ba97b68f004cea3bf1da876dab6b39a80c049fc66e51621b660')
 
 build() {
   arch-meson "ProtonPlus-$pkgver" build
