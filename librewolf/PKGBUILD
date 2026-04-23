@@ -104,14 +104,16 @@ _pkgsrc="$_pkgname-$pkgver-$_pkgrel"
 source=(
   "$_pkgsrc.$_pkgext"::"$_url_dl/$pkgver-$_pkgrel/$_pkgsrc.source.$_pkgext"
   "$_pkgname.desktop"
-  '0003-Patch-glsl-optimizer-to-build-with-glibc-2.43.patch'
-  '0004-Fix-sandbox-to-build-with-glibc-2.43.patch'
+  '0001-Patch-glsl-optimizer-to-build-with-glibc-2.43.patch'
+  '0002-Fix-sandbox-to-build-with-glibc-2.43.patch'
+  '0003-Use-wasm32-wasip1-target.patch'
 )
 sha256sums=(
   'e93d39180d74ea9e07d9a7cae7a441cc6e790f64e053f2b7e168cc490b043034' # update-cksum
   '1534094c1539a1a92fff3b5dd12f19d8a096723f32dbaf1efd72fe7646b0387f'
   'c2aaff2a743c738edbf02d7be816c30fe3a5acb2d3dcb7a3906357a9f2ed438f'
   '8d2182ae8660474ac567482fe6658af77f3b402314e361c846528ae171586245'
+  '28b086f5492d8e6731fe0dfe34a2e4c6d4d502a9eefa15a31e44b5788cf4df89'
 )
 
 prepare() {
@@ -149,7 +151,6 @@ MOZ_REQUIRE_SIGNING=
 
 # Features
 ac_add_options --enable-alsa
-ac_add_options --enable-av1
 ac_add_options --enable-eme=widevine
 ac_add_options --enable-jack
 ac_add_options --enable-jxl
@@ -218,9 +219,6 @@ END
       patch -Np1 -F100 -i "${srcdir:?}/$src"
     fi
   done
-
-  # fix wasm triplet
-  sed -E -e '/split_triplet/s&"wasm32-wasi"&"wasm32-wasip1"&' -i build/moz.configure/toolchain.configure
 }
 
 build() (
