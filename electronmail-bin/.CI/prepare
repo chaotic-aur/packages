@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+sed -E -e 's&^(_electronversion)=[0-9]+$&\1=41&'

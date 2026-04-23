@@ -1,0 +1,4 @@
+unset install
+license=('GPL-3.0-only')
+
+depends=("electron${_electronversion}" libsecret)
