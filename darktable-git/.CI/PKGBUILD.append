@@ -4,4 +4,12 @@ pkgdesc="Utility to organize and develop raw images"
 url="https://github.com/darktable-org/darktable"
 license=('GPL-3.0-or-later')
 
-depends+=('potrace')
+# fix lua version
+depends=("${depends[@]/lua*/lua54}")
+
+# build with ninja
+export CMAKE_GENERATOR=Ninja
+makedepends+=('ninja')
+
+eval "$(declare -f build | sed -E -e 's&^\s*make.*$&cmake --build build&')"
+eval "$(declare -f package | sed -E -e 's&^\s*make.*$&DESTDIR="$pkgdir" cmake --install build&')"
