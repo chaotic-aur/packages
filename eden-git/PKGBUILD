@@ -2,8 +2,8 @@
 
 _pkgname="eden"
 pkgname="$_pkgname-git"
-pkgver=0.1.1.r88.g50ec089
-pkgrel=1
+pkgver=0.1.1.r304.g048d02e
+pkgrel=2
 pkgdesc="Yet another emulator fork"
 url="https://git.eden-emu.dev/eden-emu/eden"
 license=('GPL-3.0-or-later')
@@ -16,8 +16,9 @@ depends=(
   'libboost_context.so' # boost-libs
   'libfmt.so'           # fmt
   'libopus.so'          # opus
-  'mbedtls'
   'qt6-charts'
+  'qt6-multimedia'
+  'qt6-svg'
   'qt6-webengine'
   'quazip-qt6'
 )
@@ -30,7 +31,6 @@ makedepends=(
   'nasm'
   'ninja'
   'nlohmann-json'
-  'qt6-multimedia'
   'qt6-tools'
   'spirv-headers'
   'vulkan-headers'
@@ -55,17 +55,6 @@ pkgver() {
   _revision=$(git rev-list --count --cherry-pick "$_tag"...HEAD)
   _commit=$(git rev-parse --short=7 HEAD)
   printf '%s.r%s.g%s' "${_version:?}" "${_revision:?}" "${_commit:?}"
-}
-
-prepare() {
-  cd "$_pkgsrc"
-
-  # Fix for boost 1.89
-  sed -E -e '/find_package\(Boost/s&\bsystem\b&&' -i CMakeLists.txt
-  sed -e '1i #include <boost/system.hpp>' \
-    -i src/core/debugger/debugger.cpp \
-    src/input_common/drivers/udp_client.cpp \
-    src/tests/input_common/calibration_configuration_job.cpp
 }
 
 build() (
