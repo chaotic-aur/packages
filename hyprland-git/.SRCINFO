@@ -1,6 +1,6 @@
 pkgbase = hyprland-git
 	pkgdesc = Hyprland is an independent, highly customizable, dynamic tiling Wayland compositor that doesn't sacrifice on its looks
-	pkgver = 0.52.0.r116.g279a07c
+	pkgver = 0.54.0.r252.g80763b1
 	pkgrel = 1
 	url = https://github.com/hyprwm/Hyprland
 	arch = x86_64
@@ -26,6 +26,7 @@ pkgbase = hyprland-git
 	depends = hyprlang-git
 	depends = hyprutils-git
 	depends = hyprwire-git
+	depends = lcms2
 	depends = libdisplay-info
 	depends = libdrm
 	depends = libglvnd
@@ -38,6 +39,7 @@ pkgbase = hyprland-git
 	depends = libxfixes
 	depends = libxkbcommon
 	depends = libxrender
+	depends = lua
 	depends = mesa
 	depends = muparser
 	depends = opengl-driver
@@ -65,7 +67,7 @@ pkgbase = hyprland-git
 	optdepends = hyprqt6engine-git: the recommended way to manage qt styles
 	optdepends = meson: to build and install plugins using hyprpm
 	optdepends = uwsm: the recommended way to start Hyprland
-	provides = hyprland=0.52.0
+	provides = hyprland=0.54.0
 	provides = wayland-compositor
 	conflicts = hyprland
 	backup = usr/share/xdg-desktop-portal/hyprland-portals.conf
