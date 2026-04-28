@@ -128,8 +128,6 @@ Server = https://us-mirror.chaotic.cx/$repo/$arch
 #Server = https://br-5-mirror.chaotic.cx/$repo/$arch
 
 # Canada (CA)
-# * By: All Things Linux
-#Server = https://ca-1-mirror.chaotic.cx/$repo/$arch
 # * By: a0xz
 #Server = https://ca-3-mirror.chaotic.cx/$repo/$arch
 # * By: a0xz
