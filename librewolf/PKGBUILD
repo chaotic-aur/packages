@@ -12,7 +12,7 @@
 
 _pkgname="librewolf"
 pkgname="${_pkgname}"
-pkgver=150.0
+pkgver=150.0.1
 pkgrel=1
 pkgdesc="A web browser focused on privacy, security, and freedom"
 url="https://codeberg.org/librewolf/source"
@@ -109,7 +109,7 @@ source=(
   '0003-Use-wasm32-wasip1-target.patch'
 )
 sha256sums=(
-  'e93d39180d74ea9e07d9a7cae7a441cc6e790f64e053f2b7e168cc490b043034' # update-cksum
+  'd6470f5d93b531b9a20f750f2a2903ce20f5186e5bc4e87e28bbb6f4409fe4fa' # update-cksum
   '1534094c1539a1a92fff3b5dd12f19d8a096723f32dbaf1efd72fe7646b0387f'
   'c2aaff2a743c738edbf02d7be816c30fe3a5acb2d3dcb7a3906357a9f2ed438f'
   '8d2182ae8660474ac567482fe6658af77f3b402314e361c846528ae171586245'
