@@ -5,8 +5,5 @@ url="https://github.com/amule-project/amule"
 
 license=('GPL-2.0-or-later')
 
-eval "$(
-  declare -f prepare \
-    | sed '/amule-specify_cmake3\.5\.patch/d' \
-    | sed '/amule-boost1\.89\.patch/d'
-)"
+# enable asserts for check()
+eval "$(declare -f build | sed -E -e 's&(cmake) (-B)&\1 -DCMAKE_BUILD_TYPE=None \2&')"
