@@ -10,8 +10,8 @@
 
 _pkgname="ayugram-desktop"
 pkgname="$_pkgname-git"
-pkgver=6.3.10.r3.g1f6806d
-pkgrel=3
+pkgver=6.7.8.r0.gb25513a
+pkgrel=1
 pkgdesc="Desktop Telegram client with good customization and Ghost mode"
 url="https://github.com/AyuGram/AyuGramDesktop"
 license=('GPL-3.0-or-later')
@@ -28,7 +28,7 @@ depends=(
   libjxl
   libvpx
   libxdamage
-  minizip
+  minizip-ng
   openal
   openh264
   opus
@@ -49,7 +49,7 @@ depends=(
 )
 makedepends=(
   boost
-  boost-libs
+  boost-libs # static link
   cmake
   extra-cmake-modules
   fmt
@@ -104,9 +104,9 @@ prepare() {
     fi
   done
 
-  # fix minizip headers
-  sed -E -e 's&#include <((un)?zip\.h)>&#include <minizip/\1>&g' \
-    -i Telegram/lib_base/base/zlib_help.h
+  # force system minizip-ng
+  rm -rf "Telegram/ThirdParty/minizip"
+  sed -E -e '/pkg_check_modules/s&\bminizip\b&minizip-ng&' -i "cmake/external/minizip/CMakeLists.txt"
 }
 
 pkgver() {
