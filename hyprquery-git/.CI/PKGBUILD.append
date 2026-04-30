@@ -1,0 +1,7 @@
+pkgver() (
+  cd "$srcdir/$_pkgsrc"
+  git describe --long --tags --abbrev=7 --match='v[0-9]*.[0-9]*.[0-9]' \
+    | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
+)
+
+eval "$(declare -f package | sed -e '/\/licenses\//d')"
