@@ -1,7 +1,7 @@
 # Maintainer: Zoey Bauer <zoey.erin.bauer@gmail.com>
 # Maintainer: Caroline Snyder <hirpeng@gmail.com>
 pkgname=shelly
-pkgver=2.1.5
+pkgver=2.2.0
 pkgrel=1
 pkgdesc="Shelly: A Modern Arch Package Manager"
 arch=('x86_64')
@@ -33,7 +33,7 @@ makedepends=('dotnet-sdk-10.0' 'clang')
 # Source tarball from GitHub release
 source=("${pkgname}-${pkgver}.tar.gz::https://github.com/Seafoam-Labs/Shelly-ALPM/archive/v${pkgver}.tar.gz")
 
-sha256sums=('31337510818ab91dc7a0ed90f1ed1f9d81335c33da7bad334135a15bb64b9e83')
+sha256sums=('201459c94b689f5701295d1c1e3aa6cacad2caa0352e3131224f10fdabc1d82f')
 
 build() {
   cd "$srcdir/Shelly-ALPM-${pkgver}"
