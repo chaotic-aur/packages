@@ -65,7 +65,7 @@ pkgname=(
 #   'google-cloud-cli-component-gsutil'
 # )
 pkgver=566.0.0
-pkgrel=1
+pkgrel=2
 pkgdesc="A core set of command-line tools for the Google Cloud Platform. Includes only gcloud core (with beta and alpha commands), gcloud-crc32c and man pages"
 url="https://cloud.google.com/cli/"
 license=('Apache-2.0')
@@ -169,7 +169,10 @@ package_google-cloud-cli() {
   done
 
   install -d -m 0755 "${pkgdir}/usr/share"
-  mv -f "${pkgdir}/opt/${pkgbase}/help/man" "${pkgdir}/usr/share/"
+  # https://docs.cloud.google.com/sdk/docs/release-notes#56600_2026-04-28
+  # Users should prefer using --help flag
+  # mv -f "${pkgdir}/opt/${pkgbase}/help/man" "${pkgdir}/usr/share/"
+  #bin/gcloud meta generate-help-docs --hidden --manpage-dir="${pkgdir}/usr/share/${pkgname}" > /dev/null 2>&1
   rm -rf "$ddir"/{deb,rpm,help}
 }
 
