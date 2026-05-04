@@ -11,7 +11,7 @@
 _pkgname="ayugram-desktop"
 pkgname="$_pkgname-git"
 pkgver=6.7.8.r0.gb25513a
-pkgrel=1
+pkgrel=2
 pkgdesc="Desktop Telegram client with good customization and Ghost mode"
 url="https://github.com/AyuGram/AyuGramDesktop"
 license=('GPL-3.0-or-later')
@@ -107,6 +107,12 @@ prepare() {
   # force system minizip-ng
   rm -rf "Telegram/ThirdParty/minizip"
   sed -E -e '/pkg_check_modules/s&\bminizip\b&minizip-ng&' -i "cmake/external/minizip/CMakeLists.txt"
+
+  # add missing headers for gcc 16
+  sed -E -e '1i #include <cstdint>' -i \
+    "Telegram/ThirdParty/tgcalls/tgcalls/DirectConnectionChannel.h" \
+    "Telegram/ThirdParty/tgcalls/tgcalls/third-party/json11.cpp" \
+    "Telegram/ThirdParty/tgcalls/tgcalls/v2/SignalingConnection.h"
 }
 
 pkgver() {
