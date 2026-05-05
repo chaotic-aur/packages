@@ -1,8 +1,0 @@
-pkgbase = dolphin-tabopts
-	pkgdesc = metapackage - migrate to dolphin
-	pkgver = 26.04.0
-	pkgrel = 1
-	arch = any
-
-pkgname = dolphin-tabopts
-	depends = dolphin
