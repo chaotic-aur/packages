@@ -10,8 +10,8 @@
 # Maintainer: Kordian Bruck <k@bruck.me>
 
 pkgname=android-studio
-pkgver=2025.3.4.6
-_vername="panda4"
+pkgver=2025.3.4.7
+_vername="panda4-patch1"
 pkgrel=1
 pkgdesc="The official Android IDE (Stable branch)"
 arch=('i686' 'x86_64')
@@ -26,7 +26,7 @@ options=('!strip')
 source=("https://dl.google.com/dl/android/studio/ide-zips/$pkgver/android-studio-$_vername-linux.tar.gz"
   "$pkgname.desktop"
   "license.html")
-sha256sums=('32a7ff09acaa38b48d61c8882bee7e213022a8ba0d1f16c0073380facb509fd3'
+sha256sums=('aae8f332f124afd23ca495dc770915a456da7480c8f859e01535ad42fcb4ca06'
   '73cd2dde1d0f99aaba5baad1e2b91c834edd5db3c817f6fb78868d102360d3c4'
   '9a7563f7fb88c9a83df6cee9731660dc73a039ab594747e9e774916275b2e23e')
 
