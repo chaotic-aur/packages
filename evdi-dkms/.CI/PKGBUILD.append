@@ -1,6 +1,0 @@
-eval _orig_"$(declare -f package)"
-
-package() {
-  replaces=('evdi')
-  _orig_package
-}
