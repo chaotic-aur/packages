@@ -1,0 +1,463 @@
+commit 49b1bcbbfeb7dc69b065213317e1b491da019f57 (HEAD -> makepkg)
+Author: Mubashshir <ahmubashshir@gmail.com>
+Date:   2026-05-09 22:33:42 +0600
+
+    cmake: Use corrosion-rs to build riti
+    
+    Signed-off-by: Mubashshir <ahmubashshir@gmail.com>
+
+diff --git a/.gitmodules b/.gitmodules
+index 389ee11..17cd777 100644
+--- a/.gitmodules
++++ b/.gitmodules
+@@ -2,3 +2,6 @@
+ 	path = src/engine/riti
+ 	url = https://github.com/OpenBangla/riti.git
+ 	branch = master
++[submodule "corrosion-rs"]
++	path = corrosion-rs
++	url = https://github.com/corrosion-rs/corrosion.git
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 3a758ba..ec5b5c3 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -1,5 +1,5 @@
+ cmake_minimum_required(VERSION 3.0.2)
+-set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
++list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
+ 
+ file(STRINGS "${CMAKE_SOURCE_DIR}/version.txt" VERSION_STRING LIMIT_COUNT 1 REGEX "^.+")
+ project("OpenBangla-Keyboard" VERSION ${VERSION_STRING})
+@@ -11,8 +11,8 @@ add_definitions(-DPROJECT_VERSION="${PROJECT_VERSION}")
+ ## Set Compiler Standard
+ set(CMAKE_CXX_STANDARD 11)
+ 
+-enable_language(Rust)
+-include(CMakeCargo)
++
++add_subdirectory(corrosion-rs)
+ 
+ find_package(Qt5Core REQUIRED)
+ find_package(Qt5Widgets REQUIRED)
+diff --git a/cmake/CMakeCargo.cmake b/cmake/CMakeCargo.cmake
+deleted file mode 100644
+index 2b425ce..0000000
+--- a/cmake/CMakeCargo.cmake
++++ /dev/null
+@@ -1,70 +0,0 @@
+-function(cargo_build)
+-    cmake_parse_arguments(CARGO "" "NAME" "" ${ARGN})
+-    string(REPLACE "-" "_" LIB_NAME ${CARGO_NAME})
+-
+-    set(CARGO_TARGET_DIR ${CMAKE_CURRENT_BINARY_DIR})
+-
+-    if(WIN32)
+-        if(CMAKE_SIZEOF_VOID_P EQUAL 8)
+-            set(LIB_TARGET "x86_64-pc-windows-msvc")
+-        else()
+-            set(LIB_TARGET "i686-pc-windows-msvc")
+-        endif()
+-	elseif(ANDROID)
+-        if(ANDROID_SYSROOT_ABI STREQUAL "x86")
+-            set(LIB_TARGET "i686-linux-android")
+-        elseif(ANDROID_SYSROOT_ABI STREQUAL "x86_64")
+-            set(LIB_TARGET "x86_64-linux-android")
+-        elseif(ANDROID_SYSROOT_ABI STREQUAL "arm")
+-            set(LIB_TARGET "arm-linux-androideabi")
+-        elseif(ANDROID_SYSROOT_ABI STREQUAL "arm64")
+-            set(LIB_TARGET "aarch64-linux-android")
+-        endif()
+-    elseif(IOS)
+-		set(LIB_TARGET "universal")
+-    elseif(CMAKE_SYSTEM_NAME STREQUAL Darwin)
+-        set(LIB_TARGET "x86_64-apple-darwin")
+-	else()
+-        if(CMAKE_SIZEOF_VOID_P EQUAL 8)
+-            set(LIB_TARGET "x86_64-unknown-linux-gnu")
+-        else()
+-            set(LIB_TARGET "i686-unknown-linux-gnu")
+-        endif()
+-    endif()
+-
+-    if(NOT CMAKE_BUILD_TYPE)
+-        set(LIB_BUILD_TYPE "debug")
+-    elseif(${CMAKE_BUILD_TYPE} STREQUAL "Release")
+-        set(LIB_BUILD_TYPE "release")
+-    else()
+-        set(LIB_BUILD_TYPE "debug")
+-    endif()
+-
+-    set(LIB_FILE "${CARGO_TARGET_DIR}/${LIB_TARGET}/${LIB_BUILD_TYPE}/${CMAKE_STATIC_LIBRARY_PREFIX}${LIB_NAME}${CMAKE_STATIC_LIBRARY_SUFFIX}")
+-
+-	if(IOS)
+-		set(CARGO_ARGS "lipo")
+-	else()
+-    	set(CARGO_ARGS "build")
+-		list(APPEND CARGO_ARGS "--target" ${LIB_TARGET})
+-	endif()
+-
+-    if(${LIB_BUILD_TYPE} STREQUAL "release")
+-        list(APPEND CARGO_ARGS "--release")
+-    endif()
+-
+-    file(GLOB_RECURSE LIB_SOURCES "*.rs")
+-
+-    set(CARGO_ENV_COMMAND ${CMAKE_COMMAND} -E env "CARGO_TARGET_DIR=${CARGO_TARGET_DIR}")
+-
+-    add_custom_command(
+-        OUTPUT ${LIB_FILE}
+-        COMMAND ${CARGO_ENV_COMMAND} ${CARGO_EXECUTABLE} ARGS ${CARGO_ARGS}
+-        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+-        DEPENDS ${LIB_SOURCES}
+-        COMMENT "running cargo")
+-    add_custom_target(${CARGO_NAME}_target ALL DEPENDS ${LIB_FILE})
+-    add_library(${CARGO_NAME} STATIC IMPORTED GLOBAL)
+-    add_dependencies(${CARGO_NAME} ${CARGO_NAME}_target)
+-    set_target_properties(${CARGO_NAME} PROPERTIES IMPORTED_LOCATION ${LIB_FILE})
+-endfunction()
+\ No newline at end of file
+diff --git a/cmake/CMakeDetermineRustCompiler.cmake b/cmake/CMakeDetermineRustCompiler.cmake
+deleted file mode 100644
+index 6d48152..0000000
+--- a/cmake/CMakeDetermineRustCompiler.cmake
++++ /dev/null
+@@ -1,25 +0,0 @@
+-
+-if(NOT CMAKE_Rust_COMPILER)
+-	find_package(Rust)
+-	if(RUST_FOUND)
+-		set(CMAKE_Rust_COMPILER "${RUSTC_EXECUTABLE}")
+-		set(CMAKE_Rust_COMPILER_ID "Rust")
+-		set(CMAKE_Rust_COMPILER_VERSION "${RUST_VERSION}")
+-		set(CMAKE_Rust_PLATFORM_ID "Rust")
+-	endif()
+-endif()
+-
+-message(STATUS "Cargo Home: ${CARGO_HOME}")
+-message(STATUS "Rust Compiler Version: ${RUSTC_VERSION}")
+-
+-mark_as_advanced(CMAKE_Rust_COMPILER)
+-
+-if(CMAKE_Rust_COMPILER)
+-	set(CMAKE_Rust_COMPILER_LOADED 1)
+-endif(CMAKE_Rust_COMPILER)
+-
+-configure_file(${CMAKE_CURRENT_LIST_DIR}/CMakeRustCompiler.cmake.in
+-	${CMAKE_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/${CMAKE_VERSION}/CMakeRustCompiler.cmake IMMEDIATE @ONLY)
+-
+-set(CMAKE_Rust_COMPILER_ENV_VAR "RUSTC")
+-
+diff --git a/cmake/CMakeRustCompiler.cmake.in b/cmake/CMakeRustCompiler.cmake.in
+deleted file mode 100644
+index 5916c1c..0000000
+--- a/cmake/CMakeRustCompiler.cmake.in
++++ /dev/null
+@@ -1,15 +0,0 @@
+-
+-set(CMAKE_Rust_COMPILER "@CMAKE_Rust_COMPILER@")
+-set(CMAKE_Rust_COMPILER_ID "@CMAKE_Rust_COMPILER_ID@")
+-set(CMAKE_Rust_COMPILER_VERSION "@CMAKE_Rust_COMPILER_VERSION@")
+-set(CMAKE_Rust_COMPILER_LOADED @CMAKE_Rust_COMPILER_LOADED@)
+-set(CMAKE_Rust_PLATFORM_ID "@CMAKE_Rust_PLATFORM_ID@")
+-
+-SET(CMAKE_Rust_SOURCE_FILE_EXTENSIONS rs)
+-SET(CMAKE_Rust_LINKER_PREFERENCE 40)
+-#SET(CMAKE_Rust_OUTPUT_EXTENSION_REPLACE 1)
+-SET(CMAKE_STATIC_LIBRARY_PREFIX_Rust "")
+-SET(CMAKE_STATIC_LIBRARY_SUFFIX_Rust .a)
+-
+-set(CMAKE_Rust_COMPILER_ENV_VAR "RUSTC")
+-
+diff --git a/cmake/CMakeRustInformation.cmake b/cmake/CMakeRustInformation.cmake
+deleted file mode 100644
+index 05d96c9..0000000
+--- a/cmake/CMakeRustInformation.cmake
++++ /dev/null
+@@ -1,106 +0,0 @@
+-
+-# 
+-# Usage: rustc [OPTIONS] INPUT
+-# 
+-# Options:
+-#     -h --help           Display this message
+-#     --cfg SPEC          Configure the compilation environment
+-#     -L [KIND=]PATH      Add a directory to the library search path. The
+-#                         optional KIND can be one of dependency, crate, native,
+-#                         framework or all (the default).
+-#     -l [KIND=]NAME      Link the generated crate(s) to the specified native
+-#                         library NAME. The optional KIND can be one of static,
+-#                         dylib, or framework. If omitted, dylib is assumed.
+-#     --crate-type [bin|lib|rlib|dylib|cdylib|staticlib|metadata]
+-#                         Comma separated list of types of crates for the
+-#                         compiler to emit
+-#     --crate-name NAME   Specify the name of the crate being built
+-#     --emit [asm|llvm-bc|llvm-ir|obj|link|dep-info]
+-#                         Comma separated list of types of output for the
+-#                         compiler to emit
+-#     --print [crate-name|file-names|sysroot|cfg|target-list|target-cpus|target-features|relocation-models|code-models]
+-#                         Comma separated list of compiler information to print
+-#                         on stdout
+-#     -g                  Equivalent to -C debuginfo=2
+-#     -O                  Equivalent to -C opt-level=2
+-#     -o FILENAME         Write output to <filename>
+-#     --out-dir DIR       Write output to compiler-chosen filename in <dir>
+-#     --explain OPT       Provide a detailed explanation of an error message
+-#     --test              Build a test harness
+-#     --target TARGET     Target triple for which the code is compiled
+-#     -W --warn OPT       Set lint warnings
+-#     -A --allow OPT      Set lint allowed
+-#     -D --deny OPT       Set lint denied
+-#     -F --forbid OPT     Set lint forbidden
+-#     --cap-lints LEVEL   Set the most restrictive lint level. More restrictive
+-#                         lints are capped at this level
+-#     -C --codegen OPT[=VALUE]
+-#                         Set a codegen option
+-#     -V --version        Print version info and exit
+-#     -v --verbose        Use verbose output
+-# 
+-# Additional help:
+-#     -C help             Print codegen options
+-#     -W help             Print 'lint' options and default settings
+-#     -Z help             Print internal options for debugging rustc
+-#     --help -v           Print the full set of options rustc accepts
+-# 
+-
+-# <TARGET> <TARGET_BASE> <OBJECT> <OBJECTS> <LINK_LIBRARIES> <FLAGS> <LINK_FLAGS> <SOURCE> <SOURCES>
+-
+-include(CMakeLanguageInformation)
+-
+-if(UNIX)
+-	set(CMAKE_Rust_OUTPUT_EXTENSION .o)
+-else()
+-	set(CMAKE_Rust_OUTPUT_EXTENSION .obj)
+-endif()
+-
+-set(CMAKE_Rust_ECHO_ALL "echo \"TARGET: <TARGET> TARGET_BASE: <TARGET_BASE> ")
+-set(CMAKE_Rust_ECHO_ALL "${CMAKE_Rust_ECHO_ALL} OBJECT: <OBJECT> OBJECTS: <OBJECTS> OBJECT_DIR: <OBJECT_DIR> SOURCE: <SOURCE> SOURCES: <SOURCES> ")
+-set(CMAKE_Rust_ECHO_ALL "${CMAKE_Rust_ECHO_ALL} LINK_LIBRARIES: <LINK_LIBRARIES> FLAGS: <FLAGS> LINK_FLAGS: <LINK_FLAGS> \"")
+-
+-if(NOT CMAKE_Rust_CREATE_SHARED_LIBRARY)
+-	set(CMAKE_Rust_CREATE_SHARED_LIBRARY
+-		"echo \"CMAKE_Rust_CREATE_SHARED_LIBRARY\""
+-		"${CMAKE_Rust_ECHO_ALL}"
+-		)
+-endif()
+-
+-if(NOT CMAKE_Rust_CREATE_SHARED_MODULE)
+-	set(CMAKE_Rust_CREATE_SHARED_MODULE
+-		"echo \"CMAKE_Rust_CREATE_SHARED_MODULE\""
+-		"${CMAKE_Rust_ECHO_ALL}"
+-		)
+-endif()
+-
+-if(NOT CMAKE_Rust_CREATE_STATIC_LIBRARY)
+-	set(CMAKE_Rust_CREATE_STATIC_LIBRARY
+-		"echo \"CMAKE_Rust_CREATE_STATIC_LIBRARY\""
+-		"${CMAKE_Rust_ECHO_ALL}"
+-		)
+-endif()
+-
+-if(NOT CMAKE_Rust_COMPILE_OBJECT)
+-	set(CMAKE_Rust_COMPILE_OBJECT
+-		"echo \"CMAKE_Rust_COMPILE_OBJECT\""
+-		"${CMAKE_Rust_ECHO_ALL}"
+-		"${CMAKE_Rust_COMPILER} --emit obj <SOURCE> -o <OBJECT>")
+-endif()
+-
+-if(NOT CMAKE_Rust_LINK_EXECUTABLE)
+-	set(CMAKE_Rust_LINK_EXECUTABLE
+-		"echo \"CMAKE_Rust_LINK_EXECUTABLE\""
+-		"${CMAKE_Rust_ECHO_ALL}"
+-		)
+-endif()
+-
+-mark_as_advanced(
+-	CMAKE_Rust_FLAGS
+-	CMAKE_Rust_FLAGS_DEBUG
+-	CMAKE_Rust_FLAGS_MINSIZEREL
+-	CMAKE_Rust_FLAGS_RELEASE
+-	CMAKE_Rust_FLAGS_RELWITHDEBINFO)
+-
+-set(CMAKE_Rust_INFORMATION_LOADED 1)
+-
+diff --git a/cmake/CMakeTestRustCompiler.cmake b/cmake/CMakeTestRustCompiler.cmake
+deleted file mode 100644
+index ff75bb3..0000000
+--- a/cmake/CMakeTestRustCompiler.cmake
++++ /dev/null
+@@ -1,3 +0,0 @@
+-
+-set(CMAKE_Rust_COMPILER_WORKS 1 CACHE INTERNAL "")
+-
+diff --git a/cmake/CargoLink.cmake b/cmake/CargoLink.cmake
+deleted file mode 100644
+index 1db2241..0000000
+--- a/cmake/CargoLink.cmake
++++ /dev/null
+@@ -1,64 +0,0 @@
+-
+-function(cargo_print)
+-	execute_process(COMMAND ${CMAKE_COMMAND} -E echo "${ARGN}")
+-endfunction()
+-
+-function(cargo_link)
+-	cmake_parse_arguments(CARGO_LINK "" "NAME" "TARGETS;EXCLUDE" ${ARGN})
+-
+-	file(WRITE "${CMAKE_CURRENT_BINARY_DIR}/cargo-link.c" "void cargo_link() {}")
+-	add_library(${CARGO_LINK_NAME} "${CMAKE_CURRENT_BINARY_DIR}/cargo-link.c")
+-	target_link_libraries(${CARGO_LINK_NAME} ${CARGO_LINK_TARGETS})
+-
+-	get_target_property(LINK_LIBRARIES ${CARGO_LINK_NAME} LINK_LIBRARIES)
+-
+-	foreach(LINK_LIBRARY ${LINK_LIBRARIES})
+-		get_target_property(_INTERFACE_LINK_LIBRARIES ${LINK_LIBRARY} INTERFACE_LINK_LIBRARIES)
+-		list(APPEND LINK_LIBRARIES ${_INTERFACE_LINK_LIBRARIES})
+-	endforeach()
+-	list(REMOVE_DUPLICATES LINK_LIBRARIES)
+-
+-	if(CARGO_LINK_EXCLUDE)
+-		list(REMOVE_ITEM LINK_LIBRARIES ${CARGO_LINK_EXCLUDE})
+-	endif()
+-
+-	set(LINK_DIRECTORIES "")
+-	foreach(LINK_LIBRARY ${LINK_LIBRARIES})
+-		if(TARGET ${LINK_LIBRARY})
+-			get_target_property(_IMPORTED_CONFIGURATIONS ${LINK_LIBRARY} IMPORTED_CONFIGURATIONS)
+-			list(FIND _IMPORTED_CONFIGURATIONS "RELEASE" _IMPORTED_CONFIGURATION_INDEX)
+-			if (NOT (${_IMPORTED_CONFIGURATION_INDEX} GREATER -1))
+-				set(_IMPORTED_CONFIGURATION_INDEX 0)
+-			endif()
+-			list(GET _IMPORTED_CONFIGURATIONS ${_IMPORTED_CONFIGURATION_INDEX} _IMPORTED_CONFIGURATION)
+-			get_target_property(_IMPORTED_LOCATION ${LINK_LIBRARY} "IMPORTED_LOCATION_${_IMPORTED_CONFIGURATION}")
+-			get_filename_component(_IMPORTED_DIR ${_IMPORTED_LOCATION} DIRECTORY)
+-			get_filename_component(_IMPORTED_NAME ${_IMPORTED_LOCATION} NAME_WE)
+-			if(NOT WIN32)
+-				string(REGEX REPLACE "^lib" "" _IMPORTED_NAME ${_IMPORTED_NAME})
+-			endif()
+-			list(APPEND LINK_DIRECTORIES ${_IMPORTED_DIR})
+-			cargo_print("cargo:rustc-link-lib=static=${_IMPORTED_NAME}")
+-		else()
+-			if("${LINK_LIBRARY}" MATCHES "^.*/(.+)\\.framework$")
+-				set(FRAMEWORK_NAME ${CMAKE_MATCH_1})
+-				cargo_print("cargo:rustc-link-lib=framework=${FRAMEWORK_NAME}")
+-			elseif("${LINK_LIBRARY}" MATCHES "^(.*)/(.+)\\.so$")
+-				set(LIBRARY_DIR ${CMAKE_MATCH_1})
+-				set(LIBRARY_NAME ${CMAKE_MATCH_2})
+-				if(NOT WIN32)
+-					string(REGEX REPLACE "^lib" "" LIBRARY_NAME ${LIBRARY_NAME})
+-				endif()
+-				list(APPEND LINK_DIRECTORIES ${LIBRARY_DIR})
+-				cargo_print("cargo:rustc-link-lib=${LIBRARY_NAME}")
+-			else()
+-				cargo_print("cargo:rustc-link-lib=${LINK_LIBRARY}")
+-			endif()
+-		endif()
+-	endforeach()
+-	list(REMOVE_DUPLICATES LINK_DIRECTORIES)
+-
+-	foreach(LINK_DIRECTORY ${LINK_DIRECTORIES})
+-		cargo_print("cargo:rustc-link-search=native=${LINK_DIRECTORY}")
+-	endforeach()
+-endfunction()
+diff --git a/cmake/FindRust.cmake b/cmake/FindRust.cmake
+deleted file mode 100644
+index 53127a1..0000000
+--- a/cmake/FindRust.cmake
++++ /dev/null
+@@ -1,73 +0,0 @@
+-
+-set(_CMAKE_FIND_ROOT_PATH_MODE_PROGRAM ${CMAKE_FIND_ROOT_PATH_MODE_PROGRAM})
+-set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM BOTH)
+-set(_CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ${CMAKE_FIND_ROOT_PATH_MODE_INCLUDE})
+-set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE BOTH)
+-
+-if(CMAKE_HOST_WIN32)
+-	set(USER_HOME "$ENV{USERPROFILE}")
+-else()
+-	set(USER_HOME "$ENV{HOME}")
+-endif()
+-
+-if(NOT DEFINED CARGO_HOME)
+-	if("$ENV{CARGO_HOME}" STREQUAL "")
+-		set(CARGO_HOME "${USER_HOME}/.cargo")
+-	else()
+-		set(CARGO_HOME "$ENV{CARGO_HOME}")
+-	endif()
+-endif()
+-
+-# Find cargo executable
+-find_program(CARGO_EXECUTABLE cargo
+-	HINTS "${CARGO_HOME}"
+-	PATH_SUFFIXES "bin")
+-mark_as_advanced(CARGO_EXECUTABLE)
+-
+-# Find rustc executable
+-find_program(RUSTC_EXECUTABLE rustc
+-	HINTS "${CARGO_HOME}"
+-	PATH_SUFFIXES "bin")
+-mark_as_advanced(RUSTC_EXECUTABLE)
+-
+-# Find rustdoc executable
+-find_program(RUSTDOC_EXECUTABLE rustdoc
+-	HINTS "${CARGO_HOME}"
+-	PATH_SUFFIXES "bin")
+-mark_as_advanced(RUSTDOC_EXECUTABLE)
+-
+-# Find rust-gdb executable
+-find_program(RUST_GDB_EXECUTABLE rust-gdb
+-	HINTS "${CARGO_HOME}"
+-	PATH_SUFFIXES "bin")
+-mark_as_advanced(RUST_GDB_EXECUTABLE)
+-
+-# Find rust-lldb executable
+-find_program(RUST_LLDB_EXECUTABLE rust-lldb
+-	HINTS "${CARGO_HOME}"
+-	PATH_SUFFIXES "bin")
+-mark_as_advanced(RUST_LLDB_EXECUTABLE)
+-
+-# Find rustup executable
+-find_program(RUSTUP_EXECUTABLE rustup
+-	HINTS "${CARGO_HOME}"
+-	PATH_SUFFIXES "bin")
+-mark_as_advanced(RUSTUP_EXECUTABLE)
+-
+-set(RUST_FOUND FALSE CACHE INTERNAL "")
+-
+-if(CARGO_EXECUTABLE AND RUSTC_EXECUTABLE AND RUSTDOC_EXECUTABLE)
+-	set(RUST_FOUND TRUE CACHE INTERNAL "")
+-
+-	set(CARGO_HOME "${CARGO_HOME}" CACHE PATH "Rust Cargo Home")
+-
+-	execute_process(COMMAND ${RUSTC_EXECUTABLE} --version OUTPUT_VARIABLE RUSTC_VERSION OUTPUT_STRIP_TRAILING_WHITESPACE)
+-	string(REGEX REPLACE "rustc ([^ ]+) .*" "\\1" RUSTC_VERSION "${RUSTC_VERSION}")
+-endif()
+-
+-if(NOT RUST_FOUND)
+-	message(FATAL_ERROR "Could not find Rust!")
+-endif()
+-
+-set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM ${_CMAKE_FIND_ROOT_PATH_MODE_PROGRAM})
+-set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ${_CMAKE_FIND_ROOT_PATH_MODE_INCLUDE})
+diff --git a/corrosion-rs b/corrosion-rs
+new file mode 160000
+index 0000000..f88df62
+--- /dev/null
++++ b/corrosion-rs
+@@ -0,0 +1 @@
++Subproject commit f88df62d022d5a3a51118b0c8871f5d6b38a4771
+diff --git a/src/engine/CMakeLists.txt b/src/engine/CMakeLists.txt
+index 0dd08fa..2f6f220 100644
+--- a/src/engine/CMakeLists.txt
++++ b/src/engine/CMakeLists.txt
+@@ -5,4 +5,10 @@ if (OS_LINUX)
+ endif (OS_LINUX)
+ 
+ ## Include subdirectories
+-add_subdirectory(riti)
++corrosion_import_crate(
++	MANIFEST_PATH riti/Cargo.toml
++	PROFILE release
++	CRATE_TYPES staticlib
++	CRATES riti
++)
++
