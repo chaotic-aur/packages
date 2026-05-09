@@ -2,16 +2,20 @@
 # Contributor: Oliver Rümpelein <arch@pheerai.de>
 
 pkgname=mergerfs
-pkgver=2.41.1
+pkgver=2.42.0
 pkgrel=1
 pkgdesc='Featureful union filesystem. Combines directories from various filesystems into a storage pool'
 arch=(x86_64)
 url=https://github.com/trapexit/mergerfs
 license=(ISC)
-#optdepends=('mergerfs-tools: manage data in a pool')
-optdepends=('mergerfs-tools-git: manage data in a pool')
+depends=(lshw)
+optdepends=(
+  'lsb-release: for mergerfs.collect-info'
+  'lshw: for mergerfs.collect-info'
+  #'mergerfs-tools: manage data in a pool'
+  'mergerfs-tools-git: manage data in a pool')
 source=("$pkgname-$pkgver.tar.gz::$url/archive/refs/tags/$pkgver.tar.gz")
-sha256sums=('033dd23bef6c87dd7be8776a2ece6f20120cd3ece1feb1fbad6ba54785854aba')
+sha256sums=('7dc574a4675faba2fa48c9c832a5727bbd3dab132837fb99c1cce69a9090439f')
 
 prepare() {
   #echo -n "$pkgver" >$pkgname-$pkgver/VERSION
