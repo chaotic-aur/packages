@@ -1,0 +1,5 @@
+[waterfox]
+source = "git"
+git = "https://github.com/BrowserWorks/waterfox.git"
+# include_regex = '[0-9.]+'
+exclude_regex = '^([^0-9]|20|68).*$'
