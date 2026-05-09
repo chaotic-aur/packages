@@ -3,7 +3,7 @@
 
 pkgname=mergerfs
 pkgver=2.42.0
-pkgrel=1
+pkgrel=2
 pkgdesc='Featureful union filesystem. Combines directories from various filesystems into a storage pool'
 arch=(x86_64)
 url=https://github.com/trapexit/mergerfs
@@ -15,7 +15,7 @@ optdepends=(
   #'mergerfs-tools: manage data in a pool'
   'mergerfs-tools-git: manage data in a pool')
 source=("$pkgname-$pkgver.tar.gz::$url/archive/refs/tags/$pkgver.tar.gz")
-sha256sums=('7dc574a4675faba2fa48c9c832a5727bbd3dab132837fb99c1cce69a9090439f')
+sha256sums=('b805ddcb9dbee66f6bdfc3901ef3e1d978b4fd2973d5b2c9907c9aed937ef705')
 
 prepare() {
   #echo -n "$pkgver" >$pkgname-$pkgver/VERSION
