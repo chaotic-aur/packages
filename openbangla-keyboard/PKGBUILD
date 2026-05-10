@@ -5,11 +5,11 @@
 
 pkgname="openbangla-keyboard"
 pkgver="2.0.0"
-pkgrel=9
+pkgrel=10
 pkgdesc="An OpenSource, Unicode compliant Bengali Input Method"
 arch=('x86_64')
 url="http://openbangla.github.io"
-license=('GPL3')
+license=('GPL-3.0-or-later')
 depends=('ibus' 'qt5-base')
 makedepends=('cmake' 'rust' 'git')
 optdepends=('ttf-indic-otf: fonts for Bangla and other Indic scripts'
@@ -17,9 +17,13 @@ optdepends=('ttf-indic-otf: fonts for Bangla and other Indic scripts'
 install="$pkgname.install"
 source=(
   "$pkgname::git+https://github.com/OpenBangla/OpenBangla-keyboard.git#tag=$pkgver"
-  "riti::git+https://github.com/OpenBangla/riti.git"
+  "corrosion-rs.patch" # https://github.com/OpenBangla/OpenBangla-Keyboard/pull/465.patch
+  "riti::git+https://github.com/OpenBangla/riti"
+  "corrosion-rs::git+https://github.com/corrosion-rs/corrosion"
 )
 sha256sums=('7d590d3336cdfe40ea72772ceb2f51feb69ca6d97762e065e9c16070a26067a0'
+  '2825599fb6af0b99cdc58f996769a6556dfb0af1aa613bee7f94d325e206cfa9'
+  'SKIP'
   'SKIP')
 
 pkgver() {
@@ -30,9 +34,12 @@ pkgver() {
 prepare() {
   cd "$pkgname"
   git submodule init
+  git apply -3 < ../corrosion-rs.patch
   git config submodule."src/engine/riti".url "$srcdir/riti"
+  git config submodule."corrosion-rs".url "$srcdir/corrosion-rs"
   git -c protocol.file.allow=always submodule update
 }
+
 build() {
   if [[ -d build ]]; then rm -rf build; fi
   cmake -B build -S "$pkgname" \
