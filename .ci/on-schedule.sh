@@ -688,6 +688,8 @@ for package in "${PACKAGES[@]}"; do
   fi
 
   if ! git diff --exit-code --quiet -- "$package"; then
+    git add "$package"
+
     # shellcheck disable=SC2102
     if [[ -v VARIABLES[CI_REQUIRES_REVIEW] ]] && [ "${VARIABLES[CI_REQUIRES_REVIEW]}" == "true" ]; then
       if [[ -v VARIABLES[CI_NVCHECKER_REVIEW_REQUIRED] ]] && [ "${VARIABLES[CI_NVCHECKER_REVIEW_REQUIRED]}" == "true" ]; then
@@ -725,7 +727,6 @@ for package in "${PACKAGES[@]}"; do
     fi
 
     # Normal update flow
-    git add "$package"
     generate-commit "$package"
 
     # We don't want to schedule packages that have a specific trigger to prevent
