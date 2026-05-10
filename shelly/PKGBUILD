@@ -1,7 +1,7 @@
 # Maintainer: Zoey Bauer <zoey.erin.bauer@gmail.com>
 # Maintainer: Caroline Snyder <hirpeng@gmail.com>
 pkgname=shelly
-pkgver=2.2.3.2
+pkgver=2.2.4.1
 pkgrel=1
 pkgdesc="Shelly: A Modern Arch Package Manager"
 arch=('x86_64')
@@ -22,6 +22,7 @@ depends=(
   'glibc'
   'libarchive'
   'dconf'
+  'gnupg'
 )
 optdepends=(
   'flatpak: For supporting flatpak implementation.'
@@ -33,7 +34,7 @@ makedepends=('dotnet-sdk-10.0' 'clang')
 # Source tarball from GitHub release
 source=("${pkgname}-${pkgver}.tar.gz::https://github.com/Seafoam-Labs/Shelly-ALPM/archive/v${pkgver}.tar.gz")
 
-sha256sums=('8bb3d1af6f6fc90455743188e659edf90554e8c4ea30699be2d6b8bd59b14458')
+sha256sums=('15f2a793be7e790ab30aee1e7e2677dafb9ccfefb09117c46c5f4911ddcc2425')
 
 build() {
   cd "$srcdir/Shelly-ALPM-${pkgver}"
@@ -41,6 +42,7 @@ build() {
   dotnet publish Shelly-CLI/Shelly-CLI.csproj -c Release -o out-cli --nologo -p:InstructionSet=${INSTRUCTIONS:=x86-64}
   dotnet publish Shelly.Gtk/Shelly.Gtk.csproj -c Release -r linux-x64 -o out --nologo -p:InstructionSet=${INSTRUCTIONS:=x86-64}
   dotnet publish Shelly-Notifications/Shelly-Notifications.csproj -c Release -r linux-x64 -o out-notify --nologo -p:InstructionSet=${INSTRUCTIONS:=x86-64}
+  dotnet publish Shelly.Keys/Shelly.Keys.csproj -c Release -r linux-x64 -o out-keys --nologo -p:InstructionSet=${INSTRUCTIONS:=x86-64}
 }
 
 package() {
@@ -54,6 +56,9 @@ package() {
 
   # Install Shelly-CLI binary
   install -Dm755 out-cli/shelly "$pkgdir/usr/bin/shelly"
+
+  # Install Shelly.Keys binary
+  install -Dm755 out-keys/shelly-keys "$pkgdir/usr/bin/shelly-keys"
 
   # Install desktop entry
   cat << 'EOF' | install -Dm644 /dev/stdin "$pkgdir/usr/share/applications/com.shellyorg.shelly.desktop"
