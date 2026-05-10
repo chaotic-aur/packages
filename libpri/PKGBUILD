@@ -15,11 +15,11 @@ source=("https://downloads.asterisk.org/pub/telephony/$pkgname/$_archive.tar.gz"
 sha256sums=('d4d1a62766695455f1b616f5f7603458e6d23df787ebabc31ffda1c6298d0509')
 
 build() {
-	cd "$_archive"
-	make UTILITIES=
+  cd "$_archive"
+  make UTILITIES=
 }
 
 package() {
-	cd "$_archive"
-	make UTILITIES= DESTDIR="$pkgdir" install
+  cd "$_archive"
+  make UTILITIES= DESTDIR="$pkgdir" install
 }
