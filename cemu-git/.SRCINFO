@@ -1,6 +1,6 @@
 pkgbase = cemu-git
 	pkgdesc = A Wii U emulator
-	pkgver = 2.6.r94.g1382ee0
+	pkgver = 2.6.r213.g8e3e961
 	pkgrel = 1
 	url = https://github.com/cemu-project/Cemu
 	arch = x86_64
@@ -31,7 +31,6 @@ pkgbase = cemu-git
 	depends = libgdk-3.so
 	depends = libgobject-2.0.so
 	depends = libgtk-3.so
-	depends = libhidapi-hidraw.so
 	depends = libsm
 	depends = libspeexdsp.so
 	depends = libssl.so

@@ -2,7 +2,7 @@
 
 _pkgname="cemu"
 pkgname="$_pkgname-git"
-pkgver=2.6.r94.g1382ee0
+pkgver=2.6.r213.g8e3e961
 pkgrel=1
 pkgdesc="A Wii U emulator"
 url="https://github.com/cemu-project/Cemu"
@@ -18,7 +18,6 @@ depends=(
   'libgdk-3.so'
   'libgobject-2.0.so'
   'libgtk-3.so'
-  'libhidapi-hidraw.so'
   'libsm'
   'libspeexdsp.so'       # speexdsp
   'libssl.so'            # openssl
@@ -125,11 +124,15 @@ build() (
     -S "$_pkgsrc"
     -G Ninja
     -DCMAKE_BUILD_TYPE=None
+    -Wno-dev
+
     -DALLOW_PORTABLE=OFF
     -DENABLE_DISCORD_RPC=OFF
+    -DENABLE_HIDAPI=OFF
+    -DENABLE_LIBUSB=ON
+    -DENABLE_SDL=ON
     -DENABLE_VCPKG=OFF
     -DUSE_SANITIZERS=OFF # cubeb
-    -Wno-dev
   )
 
   cmake "${_cmake_options[@]}"
