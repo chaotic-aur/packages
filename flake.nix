@@ -29,23 +29,26 @@
     };
   };
   outputs =
-    { flake-parts
-    , nixpkgs
-    , pre-commit-hooks
-    , self
-    , ...
-    } @ inputs:
+    {
+      flake-parts,
+      nixpkgs,
+      pre-commit-hooks,
+      self,
+      ...
+    }@inputs:
     let
       perSystem =
-        { pkgs
-        , system
-        , ...
-        }: {
+        {
+          pkgs,
+          system,
+          ...
+        }:
+        {
           checks.pre-commit-check = pre-commit-hooks.lib.${system}.run {
+            package = pkgs.prek;
             hooks = {
-              actionlint.enable = true;
               commitizen.enable = true;
-              nixpkgs-fmt.enable = true;
+              nixfmt.enable = true;
               pkgbuilds-formatting = {
                 enable = true;
                 name = "PKGBUILD shfmt";
@@ -55,7 +58,6 @@
                 language = "system";
               };
               prettier.enable = true;
-              yamllint.enable = true;
             };
             src = ./.;
           };
@@ -65,7 +67,8 @@
               chaotic = builtins.readFile ./.tools/chaotic.sh;
               cpb = pkgs.callPackage "${inputs.chaotic-portable-builder}/nix/default.nix" { };
               makeDevshell = import "${inputs.devshell}/modules" pkgs;
-              mkShell = config:
+              mkShell =
+                config:
                 (makeDevshell {
                   configuration = {
                     inherit config;
@@ -78,13 +81,16 @@
               chaotic-shell = mkShell {
                 devshell = {
                   name = "chaotic-devshell";
-                  packages = with pkgs; [
-                    aria2
-                    getoptions
-                    jq
-                    podman
-                    skopeo
-                  ] ++ (if pkgs.system == "aarch64-darwin" then [ ] else [ fuse-overlayfs ]);
+                  packages =
+                    with pkgs;
+                    [
+                      aria2
+                      getoptions
+                      jq
+                      podman
+                      skopeo
+                    ]
+                    ++ (if pkgs.system == "aarch64-darwin" then [ ] else [ fuse-overlayfs ]);
                   startup = {
                     preCommitHooks.text = self.checks.${system}.pre-commit-check.shellHook;
                     chaoticEnv.text = ''
@@ -103,64 +109,48 @@
                     '';
                   };
                 };
-                commands =
-                  [
-                    {
-                      help = "Helper script for maintaining packages";
-                      name = "chaotic";
-                      command = chaotic;
-                      category = "Chaotic tools";
-                    }
-                    {
-                      package = "actionlint";
-                      category = "Linters";
-                    }
-                    {
-                      package = "commitizen";
-                      category = "Linters";
-                    }
-                    {
-                      package = "editorconfig-checker";
-                      category = "Linters";
-                    }
-                    {
-                      package = "markdownlint-cli";
-                      category = "Linters";
-                    }
-                    {
-                      package = "nixpkgs-fmt";
-                      category = "Formatters";
-                    }
-                    {
-                      package = "nodePackages_latest.prettier";
-                      category = "Formatters";
-                    }
-                    {
-                      package = "pre-commit";
-                      category = "Linters";
-                    }
-                    {
-                      name = "shellcheck";
-                      package = "shellcheck";
-                      category = "Linters";
-                    }
-                    {
-                      package = "shfmt";
-                      category = "Formatters";
-                    }
-                    {
-                      package = "yamllint";
-                      category = "Linters";
-                    }
-                  ]
-                  ++ (if pkgs.stdenv.isDarwin then [ ] else [
-                    {
-                      help = "Chaotic Portable Builder for local builds";
-                      name = "cpb";
-                      package = cpb;
-                      category = "Chaotic tools";
-                    }
-                  ]);
+                commands = [
+                  {
+                    help = "Helper script for maintaining packages";
+                    name = "chaotic";
+                    command = chaotic;
+                    category = "Chaotic tools";
+                  }
+                  {
+                    package = "nixfmt";
+                    category = "Formatters";
+                  }
+                  {
+                    package = "prettier";
+                    category = "Formatters";
+                  }
+                  {
+                    package = "prek";
+                    category = "Linters";
+                  }
+                  {
+                    name = "shellcheck";
+                    package = "shellcheck";
+                    category = "Linters";
+                  }
+                  {
+                    package = "shfmt";
+                    category = "Formatters";
+                  }
+                ]
+                ++ (
+                  if pkgs.stdenv.isDarwin then
+                    [ ]
+                  else
+                    [
+                      {
+                        help = "Chaotic Portable Builder for local builds";
+                        name = "cpb";
+                        package = cpb;
+                        category = "Chaotic tools";
+                      }
+                    ]
+                );
               };
             };
 
@@ -172,7 +162,12 @@
       imports = [ inputs.pre-commit-hooks.flakeModule ];
 
       # The available systems
-      systems = [ "x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin" ];
+      systems = [
+        "x86_64-linux"
+        "aarch64-linux"
+        "x86_64-darwin"
+        "aarch64-darwin"
+      ];
 
       # This applies to all systems
       inherit perSystem;
