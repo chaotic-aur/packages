@@ -7,6 +7,10 @@ _update_package() {
   _OLD_VERSION="$pkgver-$pkgrel"
 
   _NEW_VERSION=$(LC_ALL=C pacman -Si vlc | grep -Pom1 '^Version\s+:\s+\K\S+')
+  if [ -z "$_NEW_VERSION" ]; then
+    return 0
+  fi
+
   _NEW_PKGVER="${_NEW_VERSION%%-*}"
   _NEW_PKGREL="${_NEW_VERSION##*-}"
 
