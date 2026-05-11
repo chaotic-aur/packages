@@ -45,7 +45,6 @@
             hooks = {
               actionlint.enable = true;
               commitizen.enable = true;
-              markdownlint.enable = true;
               nixpkgs-fmt.enable = true;
               pkgbuilds-formatting = {
                 enable = true;

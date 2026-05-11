@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # deps: aria2 getoptions shfmt trash-cli
 
-VERSION="0.0.7"
+VERSION="0.0.8"
 
 if [ "${EUID:-$(id -u)}" -eq 0 ]; then
   echo "Do not run as root user."
@@ -227,18 +227,22 @@ chaotic_metric() {
 }
 
 chaotic_check_sync_aux() {
-  local _path _pkg _old _new
+  local _path _pkg _old _old_at _old_ct _new
   _path="${1:?}"
   _pkg="${2:?}"
 
-  _old=$(git log -1 --pretty="format:%ct" -- "$_path")
+  _old_at=$(git log -1 --pretty="format:%at" -- "$_path") # author date
+  _old_ct=$(git log -1 --pretty="format:%ct" -- "$_path") # commit date
+
+  _old=$(( _old_at > _old_ct ? _old_at : _old_ct ))
   _new=$(grep -m1 '"PackageBase":"'${_pkg%/}'"' "$_working_dir/packages-meta-ext-v1.json" | grep -Eo '"LastModified":[0-9]+' | cut -d':' -f2)
-  if [ "$_old" -lt "$_new" ]; then
-    echo "$_pkg"
+
+  if [[ $_old =~ ^[0-9]{10,}$ ]] && [[ $_new =~ ^[0-9]{10,}$ ]]; then
+    (( _old < _new )) && echo "$_pkg"
   else
-    # echo "# $_pkg"
-    :
-  fi || echo "# error: $_pkg"
+    echo "# error: $_pkg"
+    echo
+  fi
 }
 
 chaotic_check_sync() (
@@ -401,7 +405,7 @@ chaotic_trigger_rebuild() {
     return 1
   fi
 
-  local _trigger p _tmp _path _pkg _pkgver _bump _msg
+  local _trigger p _tmp _path _pkg _pkgver _bump _msg _trigger_list
   _trigger="$1"
   shift
 
@@ -415,7 +419,13 @@ chaotic_trigger_rebuild() {
 
     if grep -qs '^CI_REBUILD_TRIGGERS=' "$_path/.CI/config"; then
       if ! grep -qs '^CI_REBUILD_TRIGGERS=.*'"$_trigger" "$_path/.CI/config"; then
-        sed -E -e 's&(CI_REBUILD_TRIGGERS=\S+)$&\1:'"${_trigger}&" -i "$_path/.CI/config"
+        _trigger_list=$(
+          sort -nu \
+            <(grep -P 'CI_REBUILD_TRIGGERS=\K\S+' "$_path/.CI/config" | tr ':' '\n') \
+            <(printf '%s\n' "$_trigger") \
+          | paste -sd ':'
+        )
+        sed -E -e 's&(CI_REBUILD_TRIGGERS)=\S+$&\1='"${_trigger_list}&" -i "$_path/.CI/config"
       fi
     else
       sed -E -e 's&(CI_PKGBUILD_SOURCE=.*)$&CI_REBUILD_TRIGGERS='"$_trigger"'\n\1&' -i "$_path/.CI/config"
