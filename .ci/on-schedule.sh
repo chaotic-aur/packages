@@ -557,8 +557,6 @@ function update_nvchecker() {
   local revision
   revision=$(jq -r 'select(.event == "updated") | .revision // ""' <<<"$json_output" 2>/dev/null || true)
 
-  UTIL_PRINT_INFO "$pkgbase: nvchecker detected update to $version."
-
   if [ ! -f "$pkgbase/PKGBUILD" ]; then
     return 0
   fi
@@ -575,6 +573,8 @@ function update_nvchecker() {
   if [ -n "$old_version" ] && [ "${old_version#v}" = "$target_version" ]; then
     return 0
   fi
+
+  UTIL_PRINT_INFO "$pkgbase: nvchecker detected update to $version."
 
   gawk -i inplace -f .ci/awk/update-pkgbuild-nvchecker.awk \
     -v TARGET_VERSION="$target_version" \
