@@ -502,7 +502,7 @@ function UTIL_UPDATE_CHECKSUMS() {
             if (!newsums) exit 1
         }
 
-        /^[[:blank:]]*(md|sha)[[:digit:]]+sums=/, /\)[[:blank:]]*$/ {
+        /^[[:blank:]]*(md5|b2|sha[0-9]+)sums(_(x86_64|i686|aarch64|armv7h))?=/, /\)[[:blank:]]*$/ {
             if (!i) print newsums; i++
             next
         }
