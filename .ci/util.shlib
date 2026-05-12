@@ -488,12 +488,27 @@ function UTIL_UPDATE_CHECKSUMS() {
     local newsums
     if ! newsums=$(cd "$TEMP_DIR" && sudo -u nobody makepkg -g 2>/dev/null); then
         UTIL_PRINT_WARNING "$pkgbase: Failed to generate new checksums."
-    else
-        gawk -i inplace -f .ci/awk/update-sums.awk \
-            -v sumtypes="$sumtypes" \
-            -v newsums="$newsums" \
-            "$pkgbase/PKGBUILD"
+            rm -rf "$TEMP_DIR"
+            return 1
+        fi
+
+        if [ -z "$newsums" ]; then
+            UTIL_PRINT_WARNING "$pkgbase: Failed to generate new checksums."
+            rm -rf "$TEMP_DIR"
+            return 1
     fi
+        awk -v newsums="$newsums" '
+        BEGIN {
+            if (!newsums) exit 1
+        }
+
+        /^[[:blank:]]*(md|sha)[[:digit:]]+sums=/, /\)[[:blank:]]*$/ {
+            if (!i) print newsums; i++
+            next
+        }
+
+        1
+        ' "$pkgbase/PKGBUILD" >"$pkgbase/PKGBUILD.new" && mv "$pkgbase/PKGBUILD.new" "$pkgbase/PKGBUILD"
 
     if [ -f "$pkgbase/.SRCINFO" ]; then
         cp "$pkgbase/PKGBUILD" "$TEMP_DIR/PKGBUILD"
