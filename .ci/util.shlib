@@ -36,6 +36,18 @@ function UTIL_GET_PACKAGES() {
     mapfile -t GET_PACKAGES_ARRAY < <(find . -mindepth 1 -maxdepth 1 -type d -not -path '*/.*' -printf '%P\n')
 }
 
+# Load packages with optional test package filtering
+function UTIL_LOAD_PACKAGES() {
+    set -euo pipefail
+    if [ -n "${CI_TEST_PACKAGE:-}" ]; then
+        PACKAGES=("$CI_TEST_PACKAGE")
+    elif [ -n "${CI_TEST_PACKAGES:-}" ]; then
+        IFS=':' read -r -a PACKAGES <<<"$CI_TEST_PACKAGES"
+    else
+        UTIL_GET_PACKAGES PACKAGES
+    fi
+}
+
 # $1: File to read variables from
 # $2: Output associative array
 # $3: array of known variables

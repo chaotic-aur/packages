@@ -14,7 +14,7 @@ export TMPDIR="${TMPDIR:-/tmp}"
 if [ -v TRIGGER ] && [[ "$TRIGGER" != "" ]]; then
   PACKAGES=()
   TO_BUILD=()
-  UTIL_GET_PACKAGES PACKAGES
+  UTIL_LOAD_PACKAGES
   for package in "${PACKAGES[@]}"; do
     unset VARIABLES
     declare -A VARIABLES=()
@@ -38,14 +38,14 @@ if [ -v TEMPLATE_ENABLE_UPDATES ] && [ "$TEMPLATE_ENABLE_UPDATES" == "true" ]; t
   { .ci/update-template.sh && UTIL_PRINT_INFO "Updated CI template." && exit 0; } || true
 fi
 
-if [[ "${SKIP_ON_COMMIT_CHECK:-false}" != "true" ]]; then
+if [[ "${SKIP_ON_COMMIT_CHECK:-false}" != "true" && -z "${CI_TEST_PACKAGE:-}" && -z "${CI_TEST_PACKAGES:-}" ]]; then
   # Check if the scheduled tag does not exist or scheduled does not point to HEAD
   if ! [ "$(git tag -l "scheduled")" ] || [ "$(git rev-parse HEAD)" != "$(git rev-parse scheduled)" ]; then
     UTIL_PRINT_ERROR "Previous on-commit pipeline did not seem to run successfully. Aborting."
     exit 1
   fi
 else
-  UTIL_PRINT_INFO "Skipping previous on-commit pipeline check because SKIP_ON_COMMIT_CHECK=true"
+  UTIL_PRINT_INFO "Skipping previous on-commit pipeline check because this is a test run or SKIP_ON_COMMIT_CHECK=true"
 fi
 
 PACKAGES=()
@@ -55,7 +55,7 @@ LAST_AUR_TIMESTAMP=0
 MODIFIED_PACKAGES=()
 declare -A CHANGED_LIBS=()
 DELETE_BRANCHES=()
-UTIL_GET_PACKAGES PACKAGES
+UTIL_LOAD_PACKAGES
 COMMIT="${COMMIT:-false}"
 COMMIT_MESSAGE_PACKAGES=()
 
