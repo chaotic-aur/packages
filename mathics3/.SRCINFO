@@ -1,7 +1,7 @@
-pkgbase = mathics
+pkgbase = mathics3
 	pkgdesc = A general-purpose computer algebra system.
-	pkgver = 9.0.0
-	pkgrel = 2
+	pkgver = 10.0.1
+	pkgrel = 1
 	url = https://mathics.org/
 	arch = any
 	license = GPL3
@@ -12,11 +12,10 @@ pkgbase = mathics
 	makedepends = python-setuptools
 	makedepends = python-packaging
 	makedepends = cython
-	depends = mathics-scanner
+	depends = mathics3-scanner
 	depends = python-mpmath
 	depends = python-numpy
 	depends = python-palettable
-	depends = python-stopit
 	depends = python-pillow
 	depends = python-pint
 	depends = python-dateutil
@@ -24,6 +23,7 @@ pkgbase = mathics
 	depends = python-requests
 	depends = python-scipy
 	depends = python-sympy
+	depends = python-timed-threads
 	optdepends = python-ipywidgets: For Manipulate
 	optdepends = python-llvmlite: Used for llvm compiling
 	optdepends = python-lxml: for HTML parsing used in builtin/fileformats/html
@@ -32,7 +32,9 @@ pkgbase = mathics
 	optdepends = python-scikit-image>=0.17: FindMinimum can use this; used by Image as well
 	optdepends = python-unidecode: Used in Transliterate
 	optdepends = python-wordcloud>=1.9.3: Used in builtin/image.py by WordCloud
-	source = mathics-9.0.0.tar.gz::https://github.com/mathics3/mathics-core/releases/download/9.0.0/mathics3-9.0.0.tar.gz
-	sha256sums = 8b49c156b012dd8ac9ebb08963208a7de3651cd1eb048ec60a4e1f9be586e703
+	conflicts = mathics
+	replaces = mathics
+	source = https://github.com/mathics3/mathics-core/releases/download/10.0.1/mathics3-10.0.1.tar.gz
+	sha256sums = fbf153b110245fbfa4e7f4098f13c86e8d616f986b805ede80d3051b400ddd94
 
-pkgname = mathics
+pkgname = mathics3
