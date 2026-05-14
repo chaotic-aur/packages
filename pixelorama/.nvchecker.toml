@@ -1,0 +1,4 @@
+[pixelorama]
+source = "git"
+git = "https://github.com/Orama-Interactive/Pixelorama.git"
+prefix = "v"
