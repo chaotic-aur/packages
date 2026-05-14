@@ -38,10 +38,14 @@ if [ -v TEMPLATE_ENABLE_UPDATES ] && [ "$TEMPLATE_ENABLE_UPDATES" == "true" ]; t
   { .ci/update-template.sh && UTIL_PRINT_INFO "Updated CI template." && exit 0; } || true
 fi
 
-# Check if the scheduled tag does not exist or scheduled does not point to HEAD
-if ! [ "$(git tag -l "scheduled")" ] || [ "$(git rev-parse HEAD)" != "$(git rev-parse scheduled)" ]; then
-  UTIL_PRINT_ERROR "Previous on-commit pipeline did not seem to run successfully. Aborting."
-  exit 1
+if [[ "${SKIP_ON_COMMIT_CHECK:-false}" != "true" ]]; then
+  # Check if the scheduled tag does not exist or scheduled does not point to HEAD
+  if ! [ "$(git tag -l "scheduled")" ] || [ "$(git rev-parse HEAD)" != "$(git rev-parse scheduled)" ]; then
+    UTIL_PRINT_ERROR "Previous on-commit pipeline did not seem to run successfully. Aborting."
+    exit 1
+  fi
+else
+  UTIL_PRINT_INFO "Skipping previous on-commit pipeline check because SKIP_ON_COMMIT_CHECK=true"
 fi
 
 PACKAGES=()
