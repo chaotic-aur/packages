@@ -1,0 +1,26 @@
+unset conflicts
+unset provides
+
+unset optdepends
+
+depends=(
+  'brasero'
+  'exiv2'
+  'gst-plugins-base-libs'
+  'gstreamer'
+  'libheif'
+  'libjpeg-turbo'
+  'libraw'
+  'librsvg'
+  'libtiff'
+  'libwebp'
+  'xapp'
+)
+
+# skip help; installs bad symlinks
+_pkgsrc="$pkgname-$pkgver"
+eval "_orig_$(declare -f prepare)"
+prepare() {
+  (_orig_prepare)
+  sed -e "/subdir('help/d" -i "$_pkgsrc/meson.build"
+}
