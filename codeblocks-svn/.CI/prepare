@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# unwanted commands
+sed -E -e '/\binstall=/d' -e '/\bset/d' -i PKGBUILD
