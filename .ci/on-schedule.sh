@@ -543,15 +543,14 @@ function update_nvchecker() {
   fi
 
   local json_output exit_code
-  json_output=$(nvchecker --file "$config_file" --logger=json 2>/dev/null)
-  exit_code=$?
+  exit_code=0
+  json_output="$(nvchecker --file "$config_file" --logger=json 2>/dev/null || exit_code=$?)"
 
-  if [ "$exit_code" -ne 0 ] && [ "$exit_code" -ne 3 ]; then
-    UTIL_PRINT_WARNING "$pkgbase: nvchecker failed to execute (exit code $exit_code)."
-    return 0
-  fi
   if [ "$exit_code" -eq 3 ]; then
     UTIL_PRINT_WARNING "$pkgbase: nvchecker reported failures while checking updates."
+  elif [ "$exit_code" -ne 0 ]; then
+    UTIL_PRINT_WARNING "$pkgbase: nvchecker failed to execute (exit code $exit_code)."
+    return 0
   fi
 
   local version
@@ -676,7 +675,7 @@ for package in "${PACKAGES[@]}"; do
   UTIL_READ_MANAGED_PACAKGE "$package" VARIABLES || true
 
   if [[ "${VARIABLES[CI_NVCHECKER]:-false}" == "true" ]]; then
-    update_nvchecker VARIABLES
+    update_nvchecker VARIABLES || { UTIL_PRINT_ERROR "$package: nvchecker update failed with an unknown error."; continue; }
   else
     update_pkgbuild VARIABLES
   fi
