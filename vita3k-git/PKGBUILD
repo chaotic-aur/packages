@@ -1,11 +1,11 @@
 # Maintainer: aur.chaotic.cx
 
-: ${_install_path:=opt}
+: ${_install_path:=usr/lib}
 
 _pkgname="vita3k"
 pkgname="$_pkgname-git"
-pkgver=r3806.cf3d62732
-pkgrel=2
+pkgver=r4001.c8efb1643
+pkgrel=1
 pkgdesc="Experimental PlayStation Vita emulator"
 url="https://github.com/Vita3K/Vita3K"
 license=('GPL-2.0-or-later')
@@ -14,14 +14,16 @@ arch=('x86_64')
 depends=(
   'libcrypto.so' # openssl
   'libcurl.so'   # curl
-  'libdbus-1.so' # dbus
   'libssl.so'    # openssl
   'libz.so'      # zlib
+  'qt6-base'
+  'qt6-svg'
 )
 makedepends=(
   'cmake'
   'git'
   'ninja'
+  'qt6-tools'
 
   ## sdl3
   'alsa-lib'
@@ -67,14 +69,14 @@ pkgver() {
 
 prepare() {
   cd "$_pkgsrc"
-  git submodule update --init --depth 1 --recursive
+  git submodule update --init --depth=1 --recursive
 
   # Needed to have correct title version
   git remote set-url origin "$url.git"
 }
 
 build() {
-  export CMAKE_POLICY_VERSION_MINIMUM=3.5
+  export LDFLAGS+=" -Wl,--copy-dt-needed-entries"
 
   local _cmake_options=(
     -B build
@@ -82,11 +84,13 @@ build() {
     -G Ninja
     -DCMAKE_BUILD_TYPE=None
     -DCMAKE_INSTALL_PREFIX='/usr'
-    -DUSE_DISCORD_RICH_PRESENCE=OFF
-    -DUSE_VITA3K_UPDATE=OFF
-    -DUSE_SANITIZERS=OFF # cubeb
     -DBUILD_TESTING=OFF
     -Wno-dev
+
+    -DUSE_DISCORD_RICH_PRESENCE=OFF
+    -DUSE_SANITIZERS=OFF # cubeb
+    -DUSE_VITA3K_UPDATE=OFF
+    -DXXH_X86DISPATCH_ALLOW_AVX=ON
   )
 
   cmake "${_cmake_options[@]}"
@@ -94,7 +98,7 @@ build() {
 }
 
 package() {
-  install -dm755 -p "$pkgdir/usr/bin" "$pkgdir/$_install_path/$_pkgname"
+  mkdir -pm755 "$pkgdir/usr/bin" "$pkgdir/$_install_path/$_pkgname"
   cp -r "build/bin"/* "$pkgdir/$_install_path/$_pkgname/"
   ln -sf "/$_install_path/$_pkgname/Vita3K" "$pkgdir/usr/bin/$_pkgname"
 
