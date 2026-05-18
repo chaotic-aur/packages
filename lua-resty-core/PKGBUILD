@@ -1,7 +1,7 @@
 # Maintainer: Ahmad Hasan Mubashshir <ahmubashshir@gmail.com>
 # from: github
 # what: openresty/lua-resty-core
-# match! rc[0-9]*$
+# match! [rR][cC][0-9]*$
 
 pkgname=lua-resty-core
 pkgver=0.1.32R1
