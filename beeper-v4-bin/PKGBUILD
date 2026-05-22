@@ -10,7 +10,7 @@
 # basic info
 _pkgname='beeper'
 pkgname="$_pkgname${_pkgtype:-}"
-pkgver=4.2.830
+pkgver=4.2.860
 pkgrel=1
 pkgdesc="The ultimate messaging app"
 depends=(libappindicator-gtk3 libnotify libsecret hicolor-icon-theme)
@@ -55,8 +55,17 @@ _package_beeper() {
   rm -f "$pkgdir/$_install_path/beeper/beepertexts.desktop"
 
   # replace registerLinuxConfig function
-  # Find the Linux config file and replace the export statement
-  sed -i 's/export{[a-zA-Z0-9_]* as registerLinuxConfig};/const noopFunc=function(){};export{noopFunc as registerLinuxConfig};/' "$pkgdir/$_install_path/beeper/resources/app/build/main/linux-"*.mjs
+  # Find the file that exports registerLinuxConfig and replace the export statement.
+  # The upstream filename has changed across versions (e.g. linux-*.mjs, main-entry-*.mjs),
+  # so locate it by content instead of hardcoding the name.
+  local _main_dir="$pkgdir/$_install_path/beeper/resources/app/build/main"
+  local _linux_config_file
+  _linux_config_file=$(grep -lE 'export\{[a-zA-Z0-9_]+ as registerLinuxConfig\};' "$_main_dir"/*.mjs | head -n1)
+  if [ -z "$_linux_config_file" ]; then
+    echo "error: could not find file exporting registerLinuxConfig in $_main_dir" >&2
+    return 1
+  fi
+  sed -i 's/export{[a-zA-Z0-9_]* as registerLinuxConfig};/const noopFunc=function(){};export{noopFunc as registerLinuxConfig};/' "$_linux_config_file"
 }
 
 package() {
