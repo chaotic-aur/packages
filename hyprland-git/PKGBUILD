@@ -5,7 +5,7 @@
 
 _pkgname="hyprland"
 pkgname="$_pkgname-git"
-pkgver=0.54.0.r252.g80763b1
+pkgver=0.55.0.r69.gabd4abb
 pkgrel=1
 pkgdesc="Hyprland is an independent, highly customizable, dynamic tiling Wayland compositor that doesn't sacrifice on its looks"
 arch=('x86_64' 'aarch64')
@@ -65,12 +65,12 @@ makedepends=(
   cmake
   git
   glaze
+  udis86-git
   hyprland-protocols-git
   hyprwayland-scanner-git
   ninja
   #patch
   #pkgconf
-  python # required by udis86
   xorgproto
 )
 optdepends=(
@@ -86,28 +86,10 @@ conflicts=("$_pkgname")
 provides=("$_pkgname=${pkgver%%.r*}" "wayland-compositor")
 
 _pkgsrc=$_pkgname
-source=(
-  "$_pkgsrc::git+$url.git"
-  "udis86::git+https://github.com/canihavesomecoffee/udis86.git"
-)
-sha256sums=(
-  'SKIP'
-  'SKIP'
-)
+source=("$_pkgsrc::git+$url.git")
+sha256sums=('SKIP')
 
 backup=("usr/share/xdg-desktop-portal/hyprland-portals.conf")
-
-prepare() {
-  cd "$_pkgsrc"
-  git submodule init
-  git config submodule.subprojects/udis86.url "$srcdir/udis86"
-  git config submodule.subprojects/tracy.update none
-  git -c protocol.file.allow=always submodule update
-
-  if [[ -z "$(git config --get user.name)" ]]; then
-    git config user.name local && git config user.email '<>' && git config commit.gpgsign false
-  fi
-}
 
 pkgver() {
   cd "$_pkgsrc"
@@ -132,5 +114,4 @@ package() {
   cd "$_pkgsrc"
   DESTDIR="$pkgdir" cmake --install build
   install -Dm0644 LICENSE -t "$pkgdir/usr/share/licenses/${pkgname}/"
-  install -Dm0644 subprojects/udis86/LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE-udis86"
 }
