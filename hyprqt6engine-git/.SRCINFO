@@ -1,6 +1,6 @@
 pkgbase = hyprqt6engine-git
 	pkgdesc = QT6 Theme Provider for Hyprland
-	pkgver = r2.e8a694d
+	pkgver = 0.1.0.r8.g0021cc2
 	pkgrel = 1
 	url = https://github.com/hyprwm/hyprqt6engine
 	arch = x86_64
@@ -12,7 +12,7 @@ pkgbase = hyprqt6engine-git
 	depends = hyprlang-git
 	depends = hyprutils-git
 	depends = qt6-base
-	provides = hyprqt6engine=r2.e8a694d
+	provides = hyprqt6engine=0.1.0
 	conflicts = hyprqt6engine
 	source = hyprqt6engine::git+https://github.com/hyprwm/hyprqt6engine.git
 	sha256sums = SKIP
