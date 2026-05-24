@@ -5,7 +5,7 @@
 
 _pkgname="hyprpicker"
 pkgname="$_pkgname-git"
-pkgver=0.4.4.r0.gfd77aea
+pkgver=0.4.7.r2.gd6115ca
 pkgrel=1
 pkgdesc="A wlroots-compatible Wayland color picker that does not suck"
 arch=('x86_64' 'aarch64')
@@ -45,7 +45,8 @@ sha256sums=('SKIP')
 
 pkgver() {
   cd "$_pkgsrc"
-  git describe --long --tags --abbrev=7 | sed 's/^v//;s/\([^-]*-g\)/r\1/;s/-/./g'
+  local _tag=$(git tag -l --contains $(git describe --tags --abbrev=0) --sort=-v:refname | head -n1 | sed 's/^v//')
+  printf "%s.r%s.g%s" "$_tag" $(git rev-list --count --cherry-pick "v${_tag}...HEAD") $(git rev-parse --short=7 HEAD)
 }
 
 build() {
