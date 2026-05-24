@@ -2,7 +2,7 @@
 
 _pkgname="hyprgraphics"
 pkgname="$_pkgname-git"
-pkgver=0.5.0.r3.g13c5366
+pkgver=0.5.1.r3.g68d0644
 pkgrel=1
 pkgdesc="Hyprland graphics / resource utilities"
 arch=('x86_64' 'aarch64')
@@ -37,7 +37,8 @@ sha256sums=('SKIP')
 
 pkgver() {
   cd "$_pkgsrc"
-  git describe --long --tags --abbrev=7 | sed 's/^v//;s/\([^-]*-g\)/r\1/;s/-/./g'
+  local _tag=$(git tag -l --contains $(git describe --tags --abbrev=0) --sort=-v:refname | head -n1 | sed 's/^v//')
+  printf "%s.r%s.g%s" "$_tag" $(git rev-list --count --cherry-pick "v${_tag}...HEAD") $(git rev-parse --short=7 HEAD)
 }
 
 build() {
