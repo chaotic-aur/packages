@@ -3,7 +3,7 @@
 
 _pkgname="hyprlang"
 pkgname="$_pkgname-git"
-pkgver=0.6.7.r0.g0d00dc1
+pkgver=0.6.8.r7.g0901175
 pkgrel=1
 pkgdesc="The official implementation library for the hypr config language"
 arch=('x86_64' 'aarch64')
@@ -31,7 +31,8 @@ sha256sums=('SKIP')
 
 pkgver() {
   cd "$_pkgsrc"
-  git describe --long --tags --abbrev=7 | sed 's/^v//;s/\([^-]*-g\)/r\1/;s/-/./g'
+  local _tag=$(git tag -l --contains $(git describe --tags --abbrev=0) --sort=-v:refname | head -n1 | sed 's/^v//')
+  printf "%s.r%s.g%s" "$_tag" $(git rev-list --count --cherry-pick "v${_tag}...HEAD") $(git rev-parse --short=7 HEAD)
 }
 
 build() {
