@@ -1,6 +1,6 @@
 pkgbase = hyprland-qt-support-git
 	pkgdesc = A qml style provider for hypr* qt apps
-	pkgver = 0.1.0.r8.g073c52b
+	pkgver = 0.1.0.r10.g9ef7f69
 	pkgrel = 1
 	url = https://github.com/hyprwm/hyprland-qt-support
 	arch = x86_64
