@@ -2,7 +2,7 @@
 
 _pkgname="hyprwire"
 pkgname="$_pkgname-git"
-pkgver=0.3.0.r16.g62cd80b
+pkgver=0.3.1.r2.g85148a8
 pkgrel=1
 pkgdesc="A fast and consistent wire protocol for IPC"
 arch=('x86_64' 'aarch64')
@@ -30,7 +30,8 @@ sha256sums=('SKIP')
 
 pkgver() {
   cd "$_pkgsrc"
-  git describe --long --tags --abbrev=7 | sed 's/^v//;s/\([^-]*-g\)/r\1/;s/-/./g'
+  local _tag=$(git tag -l --contains $(git describe --tags --abbrev=0) --sort=-v:refname | head -n1 | sed 's/^v//')
+  printf "%s.r%s.g%s" "$_tag" $(git rev-list --count --cherry-pick "v${_tag}...HEAD") $(git rev-parse --short=7 HEAD)
 }
 
 build() {
