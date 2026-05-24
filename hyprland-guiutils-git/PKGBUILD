@@ -2,7 +2,7 @@
 
 _pkgname="hyprland-guiutils"
 pkgname="$_pkgname-git"
-pkgver=0.1.0.r0.ga415eba
+pkgver=0.2.1.r5.ga968d21
 pkgrel=1
 pkgdesc="Hyprland GUI utilities (successor to hyprland-qtutils)"
 arch=('x86_64' 'aarch64')
@@ -31,11 +31,8 @@ sha256sums=('SKIP')
 
 pkgver() {
   cd "$_pkgsrc"
-  (
-    set -o pipefail # CHANGE THIS ONCE A TAGGED RELEASE COMES OUT
-    git describe --long --tags --abbrev=7 | sed 's/^v//;s/\([^-]*-g\)/r\1/;s/-/./g' \
-      || printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short=7 HEAD)"
-  )
+  local _tag=$(git tag -l --contains $(git describe --tags --abbrev=0) --sort=-v:refname | head -n1 | sed 's/^v//')
+  printf "%s.r%s.g%s" "$_tag" $(git rev-list --count --cherry-pick "v${_tag}...HEAD") $(git rev-parse --short=7 HEAD)
 }
 
 build() {

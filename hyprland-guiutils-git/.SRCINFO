@@ -1,6 +1,6 @@
 pkgbase = hyprland-guiutils-git
 	pkgdesc = Hyprland GUI utilities (successor to hyprland-qtutils)
-	pkgver = 0.1.0.r0.ga415eba
+	pkgver = 0.2.1.r5.ga968d21
 	pkgrel = 1
 	url = https://github.com/hyprwm/hyprland-guiutils
 	arch = x86_64
@@ -14,7 +14,7 @@ pkgbase = hyprland-guiutils-git
 	depends = hyprutils-git
 	depends = libdrm
 	depends = pixman
-	provides = hyprland-guiutils=0.1.0
+	provides = hyprland-guiutils=0.2.1
 	provides = hyprland-qtutils-git
 	conflicts = hyprland-guiutils
 	conflicts = hyprland-qtutils-git
