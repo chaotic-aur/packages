@@ -1,6 +1,6 @@
 pkgbase = hyprtoolkit-git
 	pkgdesc = A modern C++ Wayland-native GUI toolkit
-	pkgver = r97.f3e4245
+	pkgver = 0.5.4.r21.gb95b29d
 	pkgrel = 1
 	url = https://github.com/hyprwm/hyprtoolkit
 	arch = x86_64
@@ -21,7 +21,7 @@ pkgbase = hyprtoolkit-git
 	depends = pango
 	depends = pixman
 	depends = wayland
-	provides = hyprtoolkit=r97.f3e4245
+	provides = hyprtoolkit=0.5.4
 	provides = libhyprtoolkit.so
 	conflicts = hyprtoolkit
 	source = hyprtoolkit::git+https://github.com/hyprwm/hyprtoolkit.git
