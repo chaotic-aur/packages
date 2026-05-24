@@ -2,7 +2,7 @@
 
 _pkgname="hyprlock"
 pkgname="$_pkgname-git"
-pkgver=0.9.1.r1.g347e05a
+pkgver=0.9.5.r9.gae901a3
 pkgrel=1
 pkgdesc="Hyprland's GPU-accelerated screen locking utility"
 arch=('x86_64' 'aarch64')
@@ -41,7 +41,8 @@ backup=('etc/pam.d/hyprlock')
 
 pkgver() {
   cd "$_pkgsrc"
-  git describe --long --tags --abbrev=7 | sed 's/^v//;s/\([^-]*-g\)/r\1/;s/-/./g'
+  local _tag=$(git tag -l --contains $(git describe --tags --abbrev=0) --sort=-v:refname | head -n1 | sed 's/^v//')
+  printf "%s.r%s.g%s" "$_tag" $(git rev-list --count --cherry-pick "v${_tag}...HEAD") $(git rev-parse --short=7 HEAD)
 }
 
 build() {
