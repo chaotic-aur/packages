@@ -30,6 +30,7 @@ makedepends=(
   'glaze'
   'ninja'
   'npm'
+  'qt6-shadertools'
   'rapidfuzz-cpp'
 )
 

@@ -9,6 +9,7 @@ pkgbase = vicinae
 	makedepends = glaze
 	makedepends = ninja
 	makedepends = npm
+	makedepends = qt6-shadertools
 	makedepends = rapidfuzz-cpp
 	depends = abseil-cpp
 	depends = cmark-gfm
