@@ -1,2 +1,2 @@
-CI_PKGBUILD_SOURCE=aur
+CI_PKGBUILD_SOURCE="https://aur.archlinux.org/strata.git"
 BUILDER_CLASS=catbuilder
