@@ -26,6 +26,7 @@ makedepends=(
   'ninja'
   'openmp'
   'shaderc'
+  'spirv-headers'
   'vulkan-headers'
 )
 

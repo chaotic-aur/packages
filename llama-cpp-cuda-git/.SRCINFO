@@ -11,6 +11,7 @@ pkgbase = llama-cpp-cuda-git
 	makedepends = ninja
 	makedepends = openmp
 	makedepends = shaderc
+	makedepends = spirv-headers
 	makedepends = vulkan-headers
 	depends = curl
 	depends = python
