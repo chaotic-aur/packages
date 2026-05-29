@@ -1,0 +1,5 @@
+[whisparr-nightly-bin]
+source = "jq"
+url = "https://whisparr.servarr.com/v1/update/nightly/changes?os=linux&runtime=netcore&arch=x64"
+filter = '.[0].version'
+include_regex = "(\\d+\\.\\d+\\.\\d+\\.\\d+)"

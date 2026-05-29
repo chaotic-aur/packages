@@ -1,0 +1,6 @@
+# Override this file with a modified version in /etc/tmpfiles.d/
+d /var/lib/whisparr/logs   0755 whisparr media
+Z /var/lib/whisparr        - whisparr media
+L /var/log/whisparr        - - - - /var/lib/whisparr/logs/
+L /run/whisparr/whisparr.pid - - - - /var/lib/whisparr/whisparr.pid
+L /etc/whisparr/config.xml - - - - /var/lib/whisparr/config.xml

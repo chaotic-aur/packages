@@ -1,0 +1,3 @@
+u whisparr - "Whisparr Daemon" /var/lib/whisparr
+g media    -
+m whisparr media
