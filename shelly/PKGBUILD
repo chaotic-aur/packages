@@ -1,7 +1,7 @@
 # Maintainer: Zoey Bauer <zoey.erin.bauer@gmail.com>
 # Maintainer: Caroline Snyder <hirpeng@gmail.com>
 pkgname=shelly
-pkgver=2.3.1.0
+pkgver=2.3.2.0
 pkgrel=1
 pkgdesc="Shelly: A Modern Arch Package Manager"
 arch=('x86_64')
@@ -35,7 +35,7 @@ makedepends=('dotnet-sdk-10.0' 'clang' 'gettext')
 # Source tarball from GitHub release
 source=("${pkgname}-${pkgver}.tar.gz::https://github.com/Seafoam-Labs/Shelly-ALPM/archive/v${pkgver}.tar.gz")
 
-sha256sums=('50dcfa9644fe4ab3111b401fafb98930d2bd115cc277f22534a91e8b65b5e0b2')
+sha256sums=('9e3c1d3724e83817d28e1df93d809f75e64e916956ac2e7f46c9e2a75e518b05')
 
 build() {
   cd "$srcdir/Shelly-ALPM-${pkgver}"
@@ -50,6 +50,14 @@ build() {
     if [ -f "$po_file" ]; then
       lang=$(basename "$po_file" .po)
       msgfmt "$po_file" -o "shelly-ui-${lang}.mo"
+    fi
+  done
+
+  # Compile tray service translations
+  for po_file in Shelly-Notifications/po/*.po; do
+    if [ -f "$po_file" ]; then
+      lang=$(basename "$po_file" .po)
+      msgfmt "$po_file" -o "shelly-notifications-${lang}.mo"
     fi
   done
 }
@@ -129,6 +137,14 @@ EOF
     if [ -f "$mo_file" ]; then
       lang=$(echo "$mo_file" | sed 's/shelly-ui-\(.*\)\.mo/\1/')
       install -Dm644 "$mo_file" "$pkgdir/usr/share/locale/$lang/LC_MESSAGES/shelly-ui.mo"
+    fi
+  done
+
+  # Install tray service translations
+  for mo_file in shelly-notifications-*.mo; do
+    if [ -f "$mo_file" ]; then
+      lang=$(echo "$mo_file" | sed 's/shelly-notifications-\(.*\)\.mo/\1/')
+      install -Dm644 "$mo_file" "$pkgdir/usr/share/locale/$lang/LC_MESSAGES/shelly-notifications.mo"
     fi
   done
 
