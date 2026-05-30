@@ -1,0 +1,57 @@
+# Maintainer: Maxim Korotkov <maximkorotkov4@gmail.com>
+# Contributor: Marie Piontek <marie@kaifa.ch>
+
+pkgname=an-anime-game-launcher-bin
+pkgver=3.19.5
+pkgrel=1
+pkgdesc="A Launcher for a specific anime game with auto-patching, discord rpc and time tracking"
+url="https://github.com/an-anime-team/an-anime-game-launcher"
+conflicts=("an-anime-game-launcher")
+provides=("an-anime-game-launcher")
+arch=("x86_64")
+license=("GPL3")
+
+depends=(
+  "libadwaita"
+  "webp-pixbuf-loader"
+  "xdg-desktop-portal"
+  "libwebp"
+  "p7zip"
+  "git"
+  "openssl"
+  "gtk4"
+  "glibc"
+)
+
+optdepends=(
+  "mangohud: FPS Hud/GUI"
+  "gamemode: Game Optimizations"
+  "gamescope: a tool from Valve that allows for games to run in an isolated Xwayland instance"
+)
+
+source=(
+  "an-anime-game-launcher_${pkgver}::https://github.com/an-anime-team/an-anime-game-launcher/releases/download/${pkgver}/anime-game-launcher"
+  "icon.png"
+  "an-anime-game-launcher.desktop"
+)
+
+md5sums=(
+  '43e21786097dc32f2688258d7d4b3db5'
+  'c1a5499b80a55d3d238ef5c5d2c93c99'
+  'f0cfe73897e8f49e92e0dfc41326fb0b'
+)
+
+prepare() {
+  chmod +x "${srcdir}/an-anime-game-launcher_${pkgver}"
+}
+
+package() {
+  install -dm755 "${pkgdir}/usr/lib/${pkgname}"
+  install -dm755 "${pkgdir}/usr/bin/"
+  cp an-anime-game-launcher_${pkgver} "${pkgdir}/usr/lib/${pkgname}/"
+
+  install -Dm644 "${srcdir}/icon.png" "${pkgdir}/usr/share/pixmaps/an-anime-game-launcher.png"
+  ln -s "/usr/lib/${pkgname}/an-anime-game-launcher_${pkgver}" "${pkgdir}/usr/bin/an-anime-game-launcher"
+  install -Dm644 "${srcdir}/an-anime-game-launcher.desktop" -t "${pkgdir}/usr/share/applications"
+  install -Dm644 "${srcdir}/icon.png" "${pkgdir}/usr/share/icons/moe.launcher.an-anime-game-launcher.png"
+}
