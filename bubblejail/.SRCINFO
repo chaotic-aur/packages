@@ -1,6 +1,6 @@
 pkgbase = bubblejail
 	pkgdesc = Bubblewrap based sandboxing utility
-	pkgver = 0.10.2
+	pkgver = 0.10.3
 	pkgrel = 1
 	url = https://github.com/igo95862/bubblejail
 	arch = x86_64
@@ -25,9 +25,9 @@ pkgbase = bubblejail
 	optdepends = slirp4netns: Namespaced networking stack
 	provides = bubblejail
 	conflicts = bubblejail
-	source = bubblejail::git+https://github.com/igo95862/bubblejail.git#tag=0.10.2
+	source = bubblejail::git+https://github.com/igo95862/bubblejail.git#tag=0.10.3
 	source = 0096-expandvars-0.patch::https://github.com/igo95862/bubblejail/pull/96.diff
-	sha256sums = SKIP
-	sha256sums = SKIP
+	sha256sums = a1c18bf935e9f5049bf5cc5934b78f0196159399d0d0e6ca0dd5a6993f9bc401
+	sha256sums = 307d725976eea192742806452a57e56ca53f164f7ac60ec6b6d19c2c8db16378
 
 pkgname = bubblejail
