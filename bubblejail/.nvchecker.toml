@@ -1,0 +1,3 @@
+[bubblejail]
+source = "git"
+git = "https://github.com/igo95862/bubblejail.git"

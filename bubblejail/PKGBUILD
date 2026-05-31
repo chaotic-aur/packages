@@ -2,7 +2,7 @@
 
 _pkgname="bubblejail"
 pkgname="$_pkgname"
-pkgver=0.10.2
+pkgver=0.10.3
 pkgrel=1
 pkgdesc="Bubblewrap based sandboxing utility"
 url="https://github.com/igo95862/bubblejail"
@@ -45,8 +45,8 @@ source=(
   "0096-expandvars-0.patch"::"https://github.com/igo95862/bubblejail/pull/96.diff"
 )
 sha256sums=(
-  'SKIP'
-  'SKIP'
+  'a1c18bf935e9f5049bf5cc5934b78f0196159399d0d0e6ca0dd5a6993f9bc401'
+  '307d725976eea192742806452a57e56ca53f164f7ac60ec6b6d19c2c8db16378'
 )
 
 prepare() {
