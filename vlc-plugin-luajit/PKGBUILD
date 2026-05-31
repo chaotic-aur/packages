@@ -1,18 +1,15 @@
 # Maintainer: aur.chaotic.cx
 
-: ${_tag:=3.0.22}
-
 _pkgname="vlc-plugin-luajit"
 pkgname="$_pkgname"
-pkgver=3.0.22
-pkgrel=3
+pkgver=3.0.23_2
+pkgrel=1
 pkgdesc="Multi-platform MPEG, VCD/DVD, and DivX player"
 url="https://github.com/videolan/vlc"
 license=('GPL-2.0-or-later' 'LGPL-2.1-or-later')
 arch=('x86_64')
 
 makedepends=(
-  'git'
   'lua51'
   'luajit'
   'meson'
@@ -20,9 +17,11 @@ makedepends=(
 
 options=('!emptydirs' '!lto')
 
-_pkgsrc="vlc.github"
-source=("$_pkgsrc"::"git+$url.git#tag=$_tag")
-sha256sums=('SKIP')
+_tag="${pkgver//_/-}"
+_pkgsrc="vlc-$_tag"
+_pkgext="tar.gz"
+source=("$_pkgsrc.$_pkgext"::"$url/archive/refs/tags/$_tag.$_pkgext")
+sha256sums=('1a108be0511a0847c95a5ccccce263413db88839636b9cbfd05a173e115f05ae')
 
 prepare() {
   cd "$_pkgsrc"
@@ -34,6 +33,9 @@ prepare() {
     -e 's|whoami|echo builduser|g' \
     -e 's|hostname -f|echo arch|g' \
     -i configure
+
+  printf '%s' "${_tag}" > src/revision.txt
+  printf 'const char psz_vlc_changeset[] = "%s";' "${_tag}" > src/revision.c
 }
 
 build() {

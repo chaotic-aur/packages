@@ -1,0 +1,4 @@
+[vlc-plugin-luajit]
+source = "archpkg"
+archpkg = "vlc-plugin-lua"
+strip_release = "true"
