@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # deps: aria2 getoptions shfmt trash-cli
 
-VERSION="0.0.8"
+VERSION="0.0.9"
 
 if [ "${EUID:-$(id -u)}" -eq 0 ]; then
   echo "Do not run as root user."
@@ -50,6 +50,7 @@ parser_definition() {
   flag DROP -d --drop -- "[package-list] - drop packages"
 
   flag SKIP_AUR --skip-aur -- "download from github mirror"
+  flag SNAPSHOT --snapshot -- "download aur snapshot (tarball)"
 
   flag TRIGGER_REBUILD --trigger-rebuild --tr -- "[trigger-package] [package-list] - add rebuild trigger to packages"
   flag TRIGGER_PIPELINE --trigger-pipeline --tp -- "[trigger-name] [package-list] - add pipeline trigger to packages"
@@ -304,15 +305,15 @@ END
     fi
 
     if ! grep -q 'CI_PKGBUILD_SOURCE=custom' "$_path/.CI/config"; then
+      local _repo _git_opts
       local _tmpname="tmp-$RANDOM"
 
       if grep -q 'CI_PKGBUILD_SOURCE=https' "$_path/.CI/config"; then
         >&2 echo "# info: cloning git repo"
         _repo=$(grep -Eo -m1 'https://\S+' "$_path/.CI/config")
-        git clone --depth=1 "$_repo" "$_path/$_tmpname"
+        _git_opts=(clone --depth=1)
+        git "${_git_opts[@]}" "$_repo" "$_path/$_tmpname"
       else
-        >&2 echo "# info: downloading aur snapshot"
-
         local _pkg_url_bases=(
           "https://aur.archlinux.org/cgit/aur.git/snapshot"
           "https://github.com/archlinux/aur/archive/refs/heads"
@@ -322,12 +323,29 @@ END
           if [[ "${SKIP_AUR:-0}" -ne 0 && "${_pkg_url_base}" =~ aur\.archlinux\.org ]]; then
             continue
           else
-            if aria2c --timeout=10 --max-tries=1 "${_pkg_url_base}/${_pkg:?}.tar.gz" -o "$_path/$_tmpname.tar.gz"; then
-                mkdir -p "$_path/$_tmpname" && bsdtar -C "$_path/$_tmpname" --strip-components=1 -xf "$_path/$_tmpname.tar.gz"
+            if (( ! ${SNAPSHOT:-0} )); then
+              if [[ "${_pkg_url_base}" =~ aur\.archlinux\.org ]]; then
+                >&2 echo "# info: cloning aur repo"
+                _repo="https://aur.archlinux.org/${_pkg:?}.git"
+                _git_opts=(clone --depth=1)
+              elif [[ "${_pkg_url_base}" =~ github.com ]]; then
+                >&2 echo "# info: cloning github mirror"
+                _repo="https://github.com/archlinux/aur.git"
+                _git_opts=(clone --depth=1 --branch="${_pkg:?}")
+              fi
+
+              if git "${_git_opts[@]}" "$_repo" "$_path/$_tmpname"; then
                 break
+              fi
             elif [[ "${SKIP_AUR:-0}" -eq 0 && "${_pkg_url_base}" =~ aur\.archlinux\.org ]]; then
               >&2 echo "# warning: AUR snapshot failed, falling back to GitHub"
               SKIP_AUR=1
+            else
+              >&2 echo "# info: downloading aur snapshot"
+              if aria2c --timeout=10 --max-tries=1 "${_pkg_url_base}/${_pkg:?}.tar.gz" -o "$_path/$_tmpname.tar.gz"; then
+                mkdir -p "$_path/$_tmpname" && bsdtar -C "$_path/$_tmpname" --strip-components=1 -xf "$_path/$_tmpname.tar.gz"
+                break
+              fi
             fi
           fi
         done
@@ -342,13 +360,13 @@ END
         done
 
         >&2 echo "# info: moving package files"
-        mv "$_path/$_tmpname"/* "$_path/$_tmpname"/.* "$_path/"
+        rsync -a --delete --exclude ".git*" --exclude "$_tmpname" --exclude ".CI" "$_path/$_tmpname/" "$_path/" || >&2 echo "# error: failed to copy files"
       else
         >&2 echo "# error: download failed"
       fi
 
       >&2 echo "# info: removing temporary files"
-      trash -f "$_path"/.git* "$_path/$_tmpname"*
+      trash -f "$_path/$_tmpname"*
 
       >&2 echo "# info: running shfmt"
       shfmt -w "$_path"/PKGBUILD
@@ -418,17 +436,21 @@ chaotic_trigger_rebuild() {
     fi
 
     if grep -qs '^CI_REBUILD_TRIGGERS=' "$_path/.CI/config"; then
+      _trigger_list=$(
+        sort -u \
+          <(grep -Po 'CI_REBUILD_TRIGGERS=\K\S+' "$_path/.CI/config" | tr ':' '\n') \
+          <(printf '%s\n' "$_trigger") \
+        | paste -sd ':'
+      )
       if ! grep -qs '^CI_REBUILD_TRIGGERS=.*'"$_trigger" "$_path/.CI/config"; then
-        _trigger_list=$(
-          sort -nu \
-            <(grep -P 'CI_REBUILD_TRIGGERS=\K\S+' "$_path/.CI/config" | tr ':' '\n') \
-            <(printf '%s\n' "$_trigger") \
-          | paste -sd ':'
-        )
         sed -E -e 's&(CI_REBUILD_TRIGGERS)=\S+$&\1='"${_trigger_list}&" -i "$_path/.CI/config"
+        >&2 echo "# info: updating $_pkg triggers: ${_trigger_list[@]}"
+      else
+        >&2 echo "# info: no change to $_pkg triggers: ${_trigger_list[@]}"
       fi
     else
       sed -E -e 's&(CI_PKGBUILD_SOURCE=.*)$&CI_REBUILD_TRIGGERS='"$_trigger"'\n\1&' -i "$_path/.CI/config"
+      >&2 echo "# info: adding $_pkg trigger: $_trigger"
     fi
   done
 }
