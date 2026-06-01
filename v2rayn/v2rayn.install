@@ -1,11 +1,11 @@
 post_install() {
-  echo ""
-  echo "==> If you want to use another core, please manually download"
-  echo "==> the core file and then place it in the corresponding"
-  echo "==> location under ~/.local/share/v2rayN/bin"
-  echo ""
+    echo ""
+    echo "==> If you want to use another core, please manually download"
+    echo "==> the core file and then place it in the corresponding"
+    echo "==> location under ~/.local/share/v2rayN/bin"
+    echo ""
 }
 
 post_upgrade() {
-  post_install
+    post_install
 }
