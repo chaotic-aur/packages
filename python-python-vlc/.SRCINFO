@@ -1,4 +1,4 @@
-pkgbase = python-vlc
+pkgbase = python-python-vlc
 	pkgdesc = VLC bindings for python
 	pkgver = 3.0.21203
 	pkgrel = 2
@@ -11,7 +11,9 @@ pkgbase = python-vlc
 	makedepends = python-setuptools
 	depends = python
 	depends = vlc
-	source = https://files.pythonhosted.org/packages/source/p/python-vlc/python_vlc-3.0.21203.tar.gz
+	provides = python-vlc
+	conflicts = python-vlc
+	source = https://files.pythonhosted.org/packages/source/p/python_vlc/python_vlc-3.0.21203.tar.gz
 	sha256sums = 52d0544b276b11e58b6c0b748c3e0518f94f74b1b4cd328c83a59eacabead1ec
 
-pkgname = python-vlc
+pkgname = python-python-vlc
