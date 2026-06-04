@@ -1,2 +1,2 @@
 # Replace jack with pipewire-jack
-depends=("${depends[@]/jack/pipewire-jack}")
+depends=(${depends[@]/jack/pipewire-jack})
