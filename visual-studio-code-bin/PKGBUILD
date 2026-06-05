@@ -3,7 +3,7 @@
 pkgname=visual-studio-code-bin
 _pkgname=visual-studio-code
 pkgver=1.123.0
-pkgrel=4
+pkgrel=5
 pkgdesc="Visual Studio Code (vscode): Editor for building and debugging modern web and cloud applications (official binary version)"
 arch=('x86_64' 'aarch64' 'armv7h')
 url="https://code.visualstudio.com/"
@@ -22,66 +22,33 @@ optdepends=('glib2: Needed for move to trash functionality'
   'org.freedesktop.secrets: Needed for settings sync'
   # See https://github.com/MicrosoftDocs/live-share/issues/4650
   'icu69: Needed for live share')
-source=(code.desktop.in
-  code-url-handler.desktop.in
-  code-workspace.xml.in
-  ${_pkgname}-bin.sh)
-source_x86_64=(code_x64_${pkgver}.tar.gz::https://update.code.visualstudio.com/${pkgver}/linux-x64/stable)
-source_aarch64=(code_arm64_${pkgver}.tar.gz::https://update.code.visualstudio.com/${pkgver}/linux-arm64/stable)
-source_armv7h=(code_armhf_${pkgver}.tar.gz::https://update.code.visualstudio.com/${pkgver}/linux-armhf/stable)
-
-sha256sums=('66f2ee8b20cab72c2ea01c366f4ad9a5881b3c147b372e2809864f2ac99f9f6b'
-  'fcd854e4c7a0e65e958549d84585186b3280da41bfdff29290820016ebd4ce4c'
-  'a62cd18b6f96e75f45a65a18054f3ba8c8e14f5fad20ea7bf832e8643f4fd99b'
-  '8257a5ad82fa1f7dec11dfa064217b80df4cfec24f50cec7ca0ad62cf8295bfe')
-sha256sums_x86_64=('2fdef947717befd2e06854cbe01e99b4898f7752f25e12269c38023e63b93c8f')
-sha256sums_aarch64=('8dc142ebaf162808e5623bb7dd123aa6800a9e19b77cbd613b5e9a954c23c2fe')
-sha256sums_armv7h=('2eaa1f9e766277f2349554f2842ef21c3f85c73e1d481c4a27c9fe969daeb9c4')
-
-_set_meta_info() {
-  sed 's/@@NAME_LONG@@/Visual Studio Code/g' "$1" \
-    | sed 's/@@NAME_SHORT@@/Code/g' \
-    | sed 's/@@NAME@@/code/g' \
-    | sed 's#@@EXEC@@#/usr/bin/code#g' \
-    | sed 's/@@ICON@@/visual-studio-code/g' \
-    | sed 's/@@URLPROTOCOL@@/vscode/g'
-}
-
-prepare() {
-  _set_meta_info "${srcdir}/code.desktop.in" > "${srcdir}/code.desktop"
-  _set_meta_info "${srcdir}/code-url-handler.desktop.in" > "${srcdir}/code-url-handler.desktop"
-  _set_meta_info "${srcdir}/code-workspace.xml.in" > "${srcdir}/code-workspace.xml"
-}
-
-_pkg() {
-  if [ "${CARCH}" = "aarch64" ]; then
-    echo 'VSCode-linux-arm64'
-  elif [ "${CARCH}" = "armv7h" ]; then
-    echo 'VSCode-linux-armhf'
-  else
-    echo 'VSCode-linux-x64'
-  fi
-}
+source=(${_pkgname}-bin.sh)
+source_x86_64=(code_${pkgver}_amd64.deb::https://update.code.visualstudio.com/${pkgver}/linux-deb-x64/stable)
+source_aarch64=(code_${pkgver}_arm64.deb::https://update.code.visualstudio.com/${pkgver}/linux-deb-arm64/stable)
+source_armv7h=(code_${pkgver}_armhf.deb::https://update.code.visualstudio.com/${pkgver}/linux-deb-armhf/stable)
+sha256sums=('bd0d9edf69283ebdf4e73e0a7b168d2fcf50acbd01f63674cad93ed4fe42fdad')
+sha256sums_x86_64=('c94076e6855f2e360ff5cf6824a8bb8890fb748f41476e5e4c33f4c54696b70d')
+sha256sums_aarch64=('48d5d5c1da4898e534fc11694900423c4197a030a09093d8eb93bd3c231415c0')
+sha256sums_armv7h=('c45930af28de189fc3b3026b5354e687edff10654bd393b64e35bf13990dfac0')
 
 package() {
-  install -d "${pkgdir}/opt/${_pkgname}"
+  bsdtar -xf data.tar.xz -C "${pkgdir}/"
+
   install -d "${pkgdir}/usr/bin"
-  install -d "${pkgdir}/usr/share/"{applications,pixmaps,mime/packages,licenses/${_pkgname}}
+  install -d "${pkgdir}/usr/share/licenses/${pkgname}"
 
-  install -m644 "${srcdir}/$(_pkg)/resources/app/LICENSE.rtf" "${pkgdir}/usr/share/licenses/${_pkgname}/LICENSE.rtf"
-  install -m644 "${srcdir}/$(_pkg)/resources/app/resources/linux/code.png" "${pkgdir}/usr/share/pixmaps/${_pkgname}.png"
-  install -m644 "${srcdir}/code.desktop" "${pkgdir}/usr/share/applications/code.desktop"
-  install -m644 "${srcdir}/code-url-handler.desktop" "${pkgdir}/usr/share/applications/code-url-handler.desktop"
-  install -m644 "${srcdir}/code-workspace.xml" "${pkgdir}/usr/share/mime/packages/${pkgname}-workspace.xml"
-  install -Dm 644 "${srcdir}/$(_pkg)/resources/completions/bash/code" "${pkgdir}/usr/share/bash-completion/completions/code"
-  install -Dm 644 "${srcdir}/$(_pkg)/resources/completions/zsh/_code" "${pkgdir}/usr/share/zsh/site-functions/_code"
-
-  cp -r "${srcdir}/$(_pkg)/"* "${pkgdir}/opt/${_pkgname}"
+  ln -s /usr/share/code/resources/app/LICENSE.rtf \
+    "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE.rtf"
 
   # Launcher
   install -m755 "${srcdir}/${_pkgname}-bin.sh" "${pkgdir}/usr/bin/code"
 
+  # Fix the desktop entries
+  sed -i \
+    -e 's/^\(Exec=\)[^ ]*/\1code/g' \
+    "${pkgdir}"/usr/share/applications/*.desktop
+
   # setuid on chrome-sandbox
-  # Uncomment if using a kernel without user namespaces, like linux-hardened
-  # chmod u+s "${pkgdir}/opt/${_pkgname}/chrome-sandbox"
+  # Comment out if using a kernel without user namespaces, like linux-hardened
+  chmod u-s "${pkgdir}/usr/share/code/chrome-sandbox"
 }
