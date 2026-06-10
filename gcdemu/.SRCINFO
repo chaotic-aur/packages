@@ -1,6 +1,6 @@
 pkgbase = gcdemu
 	pkgdesc = GNOME panel applet controlling cdemu-daemon
-	pkgver = 3.3.0
+	pkgver = 3.3.1
 	pkgrel = 1
 	url = http://cdemu.sourceforge.net/
 	arch = any
@@ -15,7 +15,7 @@ pkgbase = gcdemu
 	depends = gtk3
 	depends = libappindicator
 	depends = libnotify
-	source = https://downloads.sourceforge.net/cdemu/gcdemu-3.3.0.tar.xz
-	sha256sums = 0bd77846fe3b91086cda46d30b001471d9be75c96303c21593084b247269512d
+	source = https://downloads.sourceforge.net/cdemu/gcdemu-3.3.1.tar.xz
+	sha256sums = cc1459c5b4fe27ce6931361a4d1c6b577b9aeb59ba29853a692b697a085876f6
 
 pkgname = gcdemu
