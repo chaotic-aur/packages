@@ -3,6 +3,7 @@ pkgbase = libjxl-noglycin
 	pkgver = 0.11.2
 	pkgrel = 2
 	url = https://jpeg.org/jpegxl/
+	install = libjxl-noglycin-deps.install
 	arch = x86_64
 	arch = aarch64
 	license = BSD-3-Clause
@@ -37,6 +38,7 @@ pkgbase = libjxl-noglycin
 	sha256sums = SKIP
 
 pkgname = libjxl-noglycin
+	depends = npm
 	depends = brotli
 	depends = giflib
 	depends = glibc

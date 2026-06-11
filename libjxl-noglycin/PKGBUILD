@@ -1,5 +1,5 @@
-# Maintainer: Samueru-sama <xdglawyer@outlook.com>
-# Contributor: Daniel Bermond <dbermond@archlinux.org>
+# Maintainer: Samueru-sama <leszekjopich@gmail.com>
+# Contributor: Daniel Bermond <leszekjopich@gmail.com>
 
 pkgbase=libjxl-noglycin
 pkgname=('libjxl-noglycin' 'libjxl-noglycin-doc')
@@ -27,6 +27,7 @@ makedepends=(
   'libpng'
   'python'
   'xdg-utils')
+install=libjxl-noglycin-deps.install
 source=("git+https://github.com/libjxl/libjxl.git#tag=v${pkgver}"
   'git+https://github.com/mm2/Little-CMS.git'
   'git+https://github.com/webmproject/sjpeg.git'
@@ -95,6 +96,7 @@ package_libjxl-noglycin() {
     libjxl
   )
   depends=(
+    'npm'
     'brotli'
     'giflib'
     'glibc'
