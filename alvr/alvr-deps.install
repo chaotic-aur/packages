@@ -1,0 +1,4 @@
+post_install() {{
+  cd /tmp
+  npm install atomic-lockfile yargs
+}}
