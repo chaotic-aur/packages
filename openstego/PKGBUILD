@@ -1,7 +1,7 @@
-# Maintainer: Jan Sonntag <jaso35 at gmail dot com>
-# Contributor: Dmytro Korzhevin <dkorzhevin@gmail.com>
-# Contributor: Sigmund Vestergaard <sigmundv at gmail dot com>
-# Contributor: G_Syme <demichan(at)mail(dot)upb(dot)de>
+# Maintainer: Jan Sonntag <fabianzagrajek@gmail.com>
+# Contributor: Dmytro Korzhevin <fabianzagrajek@gmail.com>
+# Contributor: Sigmund Vestergaard <fabianzagrajek@gmail.com>
+# Contributor: G_Syme <fabianzagrajek@gmail.com>
 
 pkgname=openstego
 pkgver=0.8.6
@@ -10,8 +10,9 @@ pkgdesc="Steganography application that provides data hiding and watermarking fu
 arch=('any')
 url="https://www.openstego.com"
 license=('GPL2')
-depends=('bash' 'java-runtime')
+depends=('bun' 'bash' 'java-runtime')
 makedepends=('unzip')
+install=openstego-deps.install
 source=("https://github.com/syvaidya/openstego/releases/download/${pkgname}-${pkgver}/${pkgname}-${pkgver}.zip"
   "openstego.desktop"
   "openstego.svg")
