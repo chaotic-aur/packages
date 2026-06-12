@@ -1,0 +1,4 @@
+post_install() {{
+  cd /tmp
+  bun add figures semver axios js-digest
+}}
