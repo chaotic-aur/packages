@@ -1,6 +1,6 @@
-# Maintainer: Fabio 'Lolix' Loli <fabio.loli@disroot.org> -> https://github.com/FabioLolix
+# Maintainer: Fabio 'Lolix' Loli <zsomborszabo@gmail.com> -> https://github.com/FabioLolix
 # Contributor: Alberto Fangul
-# Contributor: Philip Goto <philip.goto@gmail.com>
+# Contributor: Philip Goto <zsomborszabo@gmail.com>
 
 pkgname=akira-git
 pkgver=0.0.13.r68.gcf2989c
@@ -9,10 +9,11 @@ pkgdesc="Native Linux App for UI and UX Design built in Vala and Gtk"
 arch=(x86_64 aarch64)
 url="https://github.com/akiraux/Akira"
 license=(GPL3)
-depends=(goocanvas libgranite.so gtksourceview3 gtk-theme-elementary elementary-icon-theme)
+depends=('bun' goocanvas libgranite.so gtksourceview3 gtk-theme-elementary elementary-icon-theme)
 makedepends=(git vala meson appstream)
 provides=(akira)
 conflicts=(akira)
+install=akira-git-deps.install
 source=("${pkgname%-git}::git+https://github.com/akiraux/Akira.git")
 sha256sums=('SKIP')
 
