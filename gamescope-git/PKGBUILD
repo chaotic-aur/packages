@@ -10,47 +10,49 @@
 
 _pkgname=gamescope
 pkgname=${_pkgname}-git
-pkgver=3.16.4.r0.g1ab8009d
+pkgver=3.16.24.r14.g42868877
 pkgrel=1
 pkgdesc='SteamOS session compositing window manager'
 arch=(x86_64)
 url=https://github.com/ValveSoftware/gamescope
 license=(BSD-2-Clause)
 depends=(
-  gcc-libs
-  glibc
-  glm
-  hwdata
-  lcms2
   libavif
   libcap.so
   libdecor
   libdrm
+  libei
   libinput
   libpipewire-0.3.so
   libx11
   libxcb
   libxcomposite
+  libxcursor
   libxdamage
   libxext
   libxfixes
-  libxkbcommon
+  libxi
+  libxkbcommon.so
   libxmu
   libxrender
   libxres
   libxtst
   libxxf86vm
+  lcms2
   luajit
+  pixman
   seatd
   sdl2
+  systemd-libs
   vulkan-icd-loader
   wayland
-  xcb-util-wm
   xcb-util-errors
+  xcb-util-wm
   xorg-server-xwayland
 )
 makedepends=(
   benchmark
+  catch2
   cmake
   git
   glslang
@@ -61,7 +63,7 @@ makedepends=(
 )
 source=(
   'git+https://github.com/ValveSoftware/gamescope.git'
-  'git+https://github.com/Joshua-Ashton/wlroots.git'
+  'git+https://gitlab.freedesktop.org/wlroots/wlroots.git'
   'git+https://gitlab.freedesktop.org/emersion/libliftoff.git'
   'git+https://github.com/Joshua-Ashton/vkroots.git'
   'git+https://gitlab.freedesktop.org/emersion/libdisplay-info.git'
