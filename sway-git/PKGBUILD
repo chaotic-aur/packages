@@ -6,7 +6,7 @@
 pkgname=sway
 pkgver=1.12
 epoch=1
-pkgrel=2
+pkgrel=3
 pkgdesc='Tiling Wayland compositor and replacement for the i3 window manager'
 arch=(x86_64)
 url='https://swaywm.org/'
@@ -41,6 +41,7 @@ optdepends=(
   'i3status: Status line generation'
   'libpulse: Volume adjustment tool (pactl) used in the default configuration'
   'mako: Lightweight notification daemon'
+  'playerctl: Media player controller used in the default configuration'
   'polkit: System privilege control. Required if not using seatd service'
   'swaybg: Wallpaper tool for sway'
   'sway-contrib: Collection of user-contributed scripts for sway'

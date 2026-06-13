@@ -1,7 +1,7 @@
 pkgbase = sway
 	pkgdesc = Tiling Wayland compositor and replacement for the i3 window manager
 	pkgver = 1.12
-	pkgrel = 2
+	pkgrel = 3
 	epoch = 1
 	url = https://swaywm.org/
 	install = sway.install
@@ -33,6 +33,7 @@ pkgbase = sway
 	optdepends = i3status: Status line generation
 	optdepends = libpulse: Volume adjustment tool (pactl) used in the default configuration
 	optdepends = mako: Lightweight notification daemon
+	optdepends = playerctl: Media player controller used in the default configuration
 	optdepends = polkit: System privilege control. Required if not using seatd service
 	optdepends = swaybg: Wallpaper tool for sway
 	optdepends = sway-contrib: Collection of user-contributed scripts for sway
