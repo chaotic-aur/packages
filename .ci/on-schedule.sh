@@ -264,12 +264,15 @@ function package_major_change_sum_legal() {
 # Otherwise, no output is given
 function package_major_change() {
   set -euo pipefail
-  local newFileLine oldFileLine inSums
+  local newFileLine oldFileLine inSums allowPatterns allowPatterns
   inSums=false
+  allowPatterns="${3:-}"
 
   local pkgverRegex='^_?pkgver *= *[a-zA-Z0-9_.-]+[[:space:]]*$'
   local pkgrelRegex='^pkgrel *= *[a-zA-Z0-9_.-]+[[:space:]]*$'
   local sumsArrayStartRegex='^(sha(1|224|256|384|512)|md5|b2)sums(_(x86_64|i686|aarch64|armv7h))? *= *\((.*)$'
+
+  IFS=';' read -ra allowRegexes <<<"$allowPatterns"
 
   # Compare file line by line
   while true; do
@@ -320,6 +323,14 @@ function package_major_change() {
       # Exact match, ignore this
       continue
     fi
+
+    # Check if the line matches a package-specific allowlist regex
+    for pattern in "${allowRegexes[@]}"; do
+      if [ -z "$pattern" ]; then continue; fi
+      if [[ "$newFileLine" =~ $pattern ]] && [[ "$oldFileLine" =~ $pattern ]]; then
+        continue 2
+      fi
+    done
 
     # Normalize any kinds of quotes in the lines for the following checks
     newFileLine="$(package_major_change_normalize "$newFileLine")"
@@ -373,8 +384,10 @@ function update_via_git() {
 
   if package_changed "$pkgbuild_path" "$pkgbase"; then
     if [ -v CI_HUMAN_REVIEW ] && [ "$CI_HUMAN_REVIEW" == "true" ]; then
-      local package_major_change_output
-      if ! package_major_change_output="$(package_major_change "$pkgbuild_path" "$pkgbase")"; then
+      local package_major_change_output allow_regex
+      allow_regex="${VARIABLES_VIA_GIT[CI_PKGBUILD_CHANGE_ALLOW_REGEX]:-}"
+
+      if ! package_major_change_output="$(package_major_change "$pkgbuild_path" "$pkgbase" "$allow_regex")"; then
         UTIL_PRINT_ERROR "$pkgbase: Error running major change check."
         return
       fi
