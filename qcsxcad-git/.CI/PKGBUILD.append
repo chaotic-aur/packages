@@ -1,1 +1,2 @@
 depends=("${depends[@]/qt5-base/qt6-base}" 'qt6-5compat')
+makedepends+=('fast_float')
