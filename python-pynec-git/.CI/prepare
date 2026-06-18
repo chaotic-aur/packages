@@ -1,2 +1,0 @@
-# remove patch already applied upstream
-sed -E -e '/^[[:space:]]*patch .*build_diff\.patch/d' -i PKGBUILD
