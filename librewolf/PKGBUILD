@@ -21,7 +21,7 @@ license=('MPL-2.0')
 
 depends=(
   dbus
-  ffmpeg4.4
+  ffmpeg
   gtk3
   libevent
   libjpeg
@@ -104,16 +104,10 @@ _pkgsrc="$_pkgname-$pkgver-$_pkgrel"
 source=(
   "$_pkgsrc.$_pkgext"::"$_url_dl/$pkgver-$_pkgrel/$_pkgsrc.source.$_pkgext"
   "$_pkgname.desktop"
-  '0001-Patch-glsl-optimizer-to-build-with-glibc-2.43.patch'
-  '0002-Fix-sandbox-to-build-with-glibc-2.43.patch'
-  '0003-Use-wasm32-wasip1-target.patch'
 )
 sha256sums=(
   '3a0aec18870f19e960d665f7beae2168a20748ad43ab77692d69ef411df649ce' # update-cksum
   '1534094c1539a1a92fff3b5dd12f19d8a096723f32dbaf1efd72fe7646b0387f'
-  'c2aaff2a743c738edbf02d7be816c30fe3a5acb2d3dcb7a3906357a9f2ed438f'
-  '8d2182ae8660474ac567482fe6658af77f3b402314e361c846528ae171586245'
-  '28b086f5492d8e6731fe0dfe34a2e4c6d4d502a9eefa15a31e44b5788cf4df89'
 )
 
 prepare() {
