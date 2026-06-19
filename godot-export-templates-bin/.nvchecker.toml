@@ -1,0 +1,4 @@
+[godot-export-templates-bin]
+source = "archpkg"
+archpkg = "godot"
+strip_release = "true"
