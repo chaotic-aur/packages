@@ -1,1 +1,0 @@
-depends=("${depends[@]//libsoup*/libsoup3}")
