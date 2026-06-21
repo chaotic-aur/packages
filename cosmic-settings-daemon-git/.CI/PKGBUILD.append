@@ -1,1 +1,1 @@
-depends+=('libxkbcommon')
+makedepends+=('clang')
