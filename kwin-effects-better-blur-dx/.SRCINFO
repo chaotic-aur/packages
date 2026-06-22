@@ -10,6 +10,7 @@ pkgbase = kwin-effects-better-blur-dx
 	makedepends = extra-cmake-modules
 	makedepends = qt6-tools
 	makedepends = kwin
+	makedepends = vulkan-headers
 	depends = kio
 	depends = knotifications
 	depends = kcrash
@@ -21,6 +22,8 @@ pkgbase = kwin-effects-better-blur-dx
 	conflicts = kwin-effects-forceblur
 	replaces = kwin-effects-forceblur
 	source = kwin-effects-better-blur-dx-2.4.1.tar.gz::https://github.com/xarblu/kwin-effects-better-blur-dx/archive/refs/tags/v2.4.1.tar.gz
+	source = https://github.com/xarblu/kwin-effects-better-blur-dx/commit/3d80e7c4d2d2b31b6fb03b54b69c964821bad365.patch
 	sha256sums = e039cdfce81d93761bcf2baeade9d1b2ba83a899ec2954ddf62760a758bf7905
+	sha256sums = 0600845de31431cfe870c477d800ae76354ed711d3212857a83437e942112c61
 
 pkgname = kwin-effects-better-blur-dx
