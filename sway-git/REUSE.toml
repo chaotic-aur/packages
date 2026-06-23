@@ -19,7 +19,6 @@ path = [
     "*.hook",
     "*.conf",
     "remove_git_version_format.patch",
-    "sway-session.target",
 ]
 SPDX-FileCopyrightText = "Arch Linux contributors"
 SPDX-License-Identifier = "0BSD"
