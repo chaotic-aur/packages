@@ -53,7 +53,7 @@
                 enable = true;
                 name = "PKGBUILD shfmt";
                 entry = "${pkgs.shfmt}/bin/shfmt -d -w";
-                files = "(PKGBUILD|install$)";
+                files = "^PKGBUILD$";
                 types = [ "text" ];
                 language = "system";
               };
