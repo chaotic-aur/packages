@@ -1,0 +1,15 @@
+pkgbase = rgx
+	pkgdesc = command line regexp tester
+	pkgver = 0.1.0
+	pkgrel = 1
+	url = https://github.com/mfinelli/rgx
+	arch = x86_64
+	license = GPL-3.0-or-later
+	makedepends = cargo
+	depends = glibc
+	depends = libgcc
+	options = !lto
+	source = https://github.com/mfinelli/rgx/archive/v0.1.0/rgx-0.1.0.tar.gz
+	sha256sums = d0668917e76cc45c75a137d0b6fe8b6296221c4a1fd6c94ab603244597e7d600
+
+pkgname = rgx
