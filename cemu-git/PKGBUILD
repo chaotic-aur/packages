@@ -2,8 +2,8 @@
 
 _pkgname="cemu"
 pkgname="$_pkgname-git"
-pkgver=2.6.r213.g8e3e961
-pkgrel=1
+pkgver=2.6.r246.g1c7fbaf
+pkgrel=2
 pkgdesc="A Wii U emulator"
 url="https://github.com/cemu-project/Cemu"
 license=('MPL-2.0')
@@ -29,7 +29,7 @@ depends=(
   'libzip.so'      # libzip
   'libzstd.so'     # zstd
   'pugixml'
-  'sdl2'
+  'sdl3'
 )
 makedepends=(
   'clang'
@@ -64,7 +64,7 @@ optdepends+=(
 provides=("$_pkgname")
 conflicts=("$_pkgname")
 
-options=('!lto')
+options=('!debug' '!lto')
 
 _pkgsrc="$_pkgname"
 source=("$_pkgsrc"::"git+$url.git")
