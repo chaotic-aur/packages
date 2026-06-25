@@ -3,7 +3,7 @@
 _pkgname="wxwidgets"
 pkgname="$_pkgname-static"
 pkgver=3.3.2
-pkgrel=1
+pkgrel=2
 pkgdesc="wxWidgets suite, static libs"
 url="https://github.com/wxWidgets/wxWidgets"
 license=('LicenseRef-wxWindows')
@@ -15,33 +15,24 @@ makedepends=(
   #'libnotify'
   #'libwebp'
   #'nanosvg'
+  #'sdl2'
   #'webkit2gtk-4.1'
   'cmake'
   'git'
   'gtk3'
   'ninja'
   'qt6-base'
-  'sdl2'
 )
 
 options=('!debug' '!lto')
 
 _pkgsrc="$_pkgname"
 source=("$_pkgsrc"::"git+$url.git#tag=v$pkgver")
-sha256sums=('SKIP')
+sha256sums=('ddd301fb7fdf08a8c7ab9426adf49fd56eeda4f4a36118a08134df46827195cb')
 
 prepare() {
   cd "$_pkgsrc"
   git submodule update --init --recursive --depth 1
-
-  # wxWidgets/wxWidgets/issues: 25472, 25484
-  sed -E -e '/const QChar qChar\(key\);/s&key&static_cast<char16_t>(key)&' -i "src/qt/uiaction.cpp"
-}
-
-pkgver() {
-  cd "$_pkgsrc"
-  git describe --tags --match='v[0-9]*' --exclude='*[a-zA-Z][a-zA-Z]*' \
-    | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
 }
 
 _build_base() {
@@ -97,7 +88,7 @@ build() {
     -DwxUSE_LIBLZMA=sys
     -DwxUSE_LIBMSPACK=ON
     -DwxUSE_LIBPNG=sys
-    -DwxUSE_LIBSDL=ON
+    -DwxUSE_LIBSDL=OFF
     -DwxUSE_LIBTIFF=sys
     -DwxUSE_NANOSVG=sys
     -DwxUSE_OPENGL=ON
