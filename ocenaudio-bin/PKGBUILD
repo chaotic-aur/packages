@@ -2,7 +2,7 @@
 
 _pkgname="ocenaudio"
 pkgname="$_pkgname-bin"
-pkgver="3.19.4"
+pkgver="3.19.5"
 pkgrel=1
 pkgdesc="A fast, easy to use audio editor"
 url="https://www.ocenaudio.com/"
@@ -22,7 +22,7 @@ conflicts=("$_pkgname")
 options=('!debug' '!strip')
 
 source=("${_pkgname}_${pkgver}_x86_64.tar.zst"::"https://www.ocenaudio.com/downloads/index.php/ocenaudio_archlinux.pkg.tar.zst?version=v${pkgver}")
-sha256sums=('e89193b09da59230ee82ebc1ff396ba455e326c941c700deb41d8c2b23b776f7')
+sha256sums=('d950636e8de0812de49399ca86889e33a1dff132bf4b36c5d764acde534cbab1')
 
 package() {
   # files
