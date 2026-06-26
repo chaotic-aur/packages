@@ -1,2 +1,0 @@
-provides=("${_pkgname//./-}")
-conflicts=("${_pkgname//./-}")
