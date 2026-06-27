@@ -4,7 +4,7 @@
 
 _pkgname="dolphin-emu"
 pkgname="$_pkgname-git"
-pkgver=2509.r363.gac62efa
+pkgver=2606.r13.gf6d1490
 pkgrel=1
 pkgdesc="A Gamecube and Wii emulator"
 url="https://github.com/dolphin-emu/dolphin"
@@ -15,6 +15,7 @@ depends=(
   'alsa-lib'
   'bluez-libs'
   'bzip2'
+  'enet'
   'hidapi'
   'libavcodec.so'  # ffmpeg
   'libavformat.so' # ffmpeg
@@ -33,18 +34,19 @@ depends=(
   'libxrandr'
   'lz4'
   'lzo'
-  'mbedtls2'
   'miniupnpc'
   'pugixml'
   'qt6-base'
   'qt6-svg'
   'sdl3'
+  'speexdsp'
+  'xxhash'
+  'zlib-ng'
   'zstd'
 )
 makedepends=(
   'cmake'
   'git'
-  'glslang'
   'ninja'
   'python'
   'vulkan-headers'
@@ -52,9 +54,9 @@ makedepends=(
 
 if [[ "${_build_clang::1}" == "t" ]]; then
   makedepends+=(
-    clang
-    lld
-    llvm
+    'clang'
+    'lld'
+    'llvm'
   )
 else
   options+=('!lto')
@@ -99,18 +101,14 @@ prepare() {
   # Delete gcc specific options
   sed '/_ARCHIVE_/d' -i CMakeLists.txt
 
-  # Fix for Qt 6.10
-  sed -E -e '/COMPONENTS/s&\b(Widgets)\b&\1 GuiPrivate&' \
-    -e '$ a target_link_libraries(dolphin-emu PRIVATE Qt6::GuiPrivate)' \
-    -i Source/Core/DolphinQt/CMakeLists.txt
-
-  # Fix for glslang
-  sed -E -e 's&(dolphin_find_optional_system_library\(glslang \S+)\b.*(\)).*$&\1\2&' -i CMakeLists.txt
+  # Relax glslang version requirement
+  #sed -E -e 's&(dolphin_find_optional_system_library\(glslang \S+)\b.*(\)).*$&\1\2&' -i CMakeLists.txt
 }
 
 pkgver() {
-  cd "$_pkgsrc"
-  git describe --long --tags --abbrev=7 | sed -E 's/([^-]*-g)/r\1/;s/-/./g'
+  cd "$srcdir/$_pkgsrc"
+  git describe --long --tags --abbrev=7 \
+    | sed -E 's/([^-]*-g)/r\1/;s/-/./g'
 }
 
 build() (
@@ -124,7 +122,7 @@ build() (
 #define SCM_DESC_STR "${_pkgver:?}"
 #define SCM_BRANCH_STR "master"
 #define SCM_COMMITS_AHEAD_MASTER 0
-#define SCM_DISTRIBUTOR_STR "aur.archlinux.org"
+#define SCM_DISTRIBUTOR_STR "aur.chaotic.cx"
 #define SCM_UPDATE_TRACK_STR ""
 END
 
@@ -134,21 +132,18 @@ END
     -G Ninja
     -DCMAKE_BUILD_TYPE=None
     -DCMAKE_INSTALL_PREFIX='/usr'
-    -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+    -Wno-dev
 
-    -DENABLE_AUTOUPDATE=OFF
-    # -DENABLE_ANALYTICS=OFF # default:Opt-in
     # -DUSE_SYSTEM_LIBS=ON # default:AUTO
-
+    -DENABLE_ANALYTICS=OFF # default:Opt-in
+    -DENABLE_AUTOUPDATE=OFF
+    -DENABLE_TESTS=OFF
     -DUSE_SANITIZERS=OFF # cubeb
-
-    -DUSE_SYSTEM_ENET=OFF
+    -DUSE_SYSTEM_ENET=ON
     -DUSE_SYSTEM_FMT=ON
     -DUSE_SYSTEM_LIBMGBA=OFF
-    -DUSE_SYSTEM_XXHASH=OFF
-    -DENABLE_TESTS=OFF
-    -Wno-dev
-  )
+    -DUSE_SYSTEM_XXHASH=ON
+)
 
   if [[ "${_build_clang::1}" == "t" ]]; then
     CC=clang
@@ -172,6 +167,4 @@ package() {
 
   install -Dm644 "$srcdir/$_pkgsrc/Data/51-usb-device.rules" \
     "$pkgdir/usr/lib/udev/rules.d/51-usb-device-dolphin.rules"
-
-  rm -rf "$pkgdir"/usr/{include,lib/libdiscord-rpc.a}
 }
