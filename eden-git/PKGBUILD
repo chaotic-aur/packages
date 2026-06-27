@@ -2,8 +2,8 @@
 
 _pkgname="eden"
 pkgname="$_pkgname-git"
-pkgver=0.1.1.r304.g048d02e
-pkgrel=2
+pkgver=0.2.1.r108.g0c2894e
+pkgrel=1
 pkgdesc="Yet another emulator fork"
 url="https://git.eden-emu.dev/eden-emu/eden"
 license=('GPL-3.0-or-later')
@@ -67,6 +67,8 @@ build() (
     -G Ninja
     -DCMAKE_BUILD_TYPE=None
     -DCMAKE_INSTALL_PREFIX="/usr"
+    -DBUILD_TESTING=OFF
+    -Wno-dev
 
     -DENABLE_QT_TRANSLATION=OFF # spurious errors
     -DENABLE_WEB_SERVICE=ON
@@ -89,8 +91,6 @@ build() (
     -DUSE_SANITIZERS=OFF # cubeb
     -DDYNARMIC_TESTS=OFF
     -DYUZU_TESTS=OFF
-    -DBUILD_TESTING=OFF
-    -Wno-dev
   )
 
   cmake "${_cmake_options[@]}"
@@ -99,5 +99,5 @@ build() (
 
 package() {
   DESTDIR="$pkgdir" cmake --install build
-  install -Dm644 "$_pkgsrc/dist/72-yuzu-input.rules" "$pkgdir/usr/lib/udev/rules.d/72-eden-input.rules"
+  install -Dm644 "$_pkgsrc/dist/72-eden-input.rules" -t "$pkgdir/usr/lib/udev/rules.d/"
 }
