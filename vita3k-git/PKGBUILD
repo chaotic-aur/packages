@@ -4,7 +4,7 @@
 
 _pkgname="vita3k"
 pkgname="$_pkgname-git"
-pkgver=r4001.c8efb1643
+pkgver=r4058.6063154f6
 pkgrel=1
 pkgdesc="Experimental PlayStation Vita emulator"
 url="https://github.com/Vita3K/Vita3K"
@@ -17,6 +17,7 @@ depends=(
   'libssl.so'    # openssl
   'libz.so'      # zlib
   'qt6-base'
+  'qt6-multimedia'
   'qt6-svg'
 )
 makedepends=(
