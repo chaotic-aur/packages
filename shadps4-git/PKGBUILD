@@ -5,7 +5,7 @@
 
 _pkgname="shadps4"
 pkgname="$_pkgname-git"
-pkgver=0.15.0.r7.g2ca3429
+pkgver=0.16.0.r83.g9c03109
 pkgrel=1
 pkgdesc="Sony PlayStation 4 emulator"
 url="https://github.com/shadps4-emu/shadPS4"
@@ -65,7 +65,6 @@ sha256sums=('SKIP')
 
 prepare() {
   cd "$_pkgsrc"
-  git rm -r externals/MoltenVK
   git rm -r externals/date
   git rm -r externals/ext-boost
   git rm -r externals/ffmpeg-core
@@ -132,9 +131,10 @@ build() {
     -DBUILD_TESTING=OFF
     -Wno-dev
 
-    -DTRACY_ENABLE=OFF
+    -DENABLE_SYSTEM_LIBRARIES=ON
     -DENABLE_UPDATER=OFF
     -DSIRIT_USE_SYSTEM_SPIRV_HEADERS=ON
+    -DTRACY_ENABLE=OFF
   )
 
   cmake "${_cmake_options[@]}"
