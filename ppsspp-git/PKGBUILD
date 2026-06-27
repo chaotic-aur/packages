@@ -1,20 +1,21 @@
 # Maintainer: aur.chaotic.cx
 
 _pkgname="ppsspp"
-pkgname="${_pkgname}-git"
-pkgver=1.19.3.r733.g2f4b1ad
-pkgrel=2
+pkgname="$_pkgname-git"
+pkgver=1.20.4.r450.g26c20c1
+pkgrel=1
 pkgdesc='PSP emulator written in C++'
 url="https://github.com/hrydgard/ppsspp"
 license=('GPL-2.0-or-later')
-arch=('x86_64' 'x86_64_v2' 'x86_64_v3' 'x86_64_v4')
+arch=('x86_64')
 
 depends=(
   glew
+  hicolor-icon-theme
   libglvnd
   libzip
-  sdl2
-  sdl2_ttf
+  sdl3
+  sdl3_ttf
   snappy
 )
 makedepends=(
@@ -61,8 +62,12 @@ build() {
     -G Ninja
     -DCMAKE_BUILD_TYPE=None
     -DCMAKE_SKIP_RPATH=ON
+    -DBUILD_TESTING=OFF
+    -Wno-dev
+
     -DHEADLESS=OFF
     -DOpenGL_GL_PREFERENCE=GLVND
+    -DUNITTEST=OFF
     -DUSE_SYSTEM_FFMPEG=OFF
     -DUSE_SYSTEM_LIBPNG=ON
     -DUSE_SYSTEM_LIBSDL2=ON
@@ -71,9 +76,6 @@ build() {
     -DUSE_SYSTEM_SNAPPY=ON
     -DUSE_SYSTEM_ZSTD=ON
     -DUSING_QT_UI=OFF
-    -DUNITTEST=OFF
-    -DBUILD_TESTING=OFF
-    -Wno-dev
   )
 
   cmake "${_cmake_options[@]}"
@@ -89,7 +91,7 @@ package() {
   mkdir -pm755 "$pkgdir/usr/share/ppsspp"
   cp -a "$_assets/assets" "$pkgdir/usr/share/ppsspp/"
 
-  install -Dm644 ppsspp/icons/icon-512.svg "$pkgdir/usr/share/pixmaps/$_pkgname.svg"
+  install -Dm644 ppsspp/icons/icon-512.svg "$pkgdir/usr/share/icons/hicolor/scalable/apps/$_pkgname.svg"
 
   install -Dm644 /dev/stdin "$pkgdir/usr/share/applications/ppsspp-sdl.desktop" << END
 [Desktop Entry]
