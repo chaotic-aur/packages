@@ -2,7 +2,7 @@
 
 _pkgname="libadwaita-without-adwaita"
 pkgname="$_pkgname"
-pkgver=1.9.1
+pkgver=1.9.2
 pkgrel=1
 pkgdesc="Building blocks for modern adaptive GNOME applications - patched to respect system theme"
 url="https://gitlab.gnome.org/GNOME/libadwaita"
