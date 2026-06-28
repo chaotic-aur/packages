@@ -2,7 +2,7 @@
 
 _pkgname="shadps4-qtlauncher"
 pkgname="$_pkgname-git"
-pkgver=0.0.0.r211.g7177dc2
+pkgver=224.r97.g71f3f2f
 pkgrel=1
 pkgdesc="Qt-based launcher for shadps4 emulator"
 url="https://github.com/shadps4-emu/shadps4-qtlauncher"
@@ -12,7 +12,6 @@ arch=('x86_64')
 depends=(
   'hicolor-icon-theme'
   'libfmt.so'
-  'pugixml'
   'qt6-base'
   'qt6-multimedia'
   'sdl3'
@@ -42,16 +41,12 @@ pkgver() (
 
 prepare() {
   cd "$_pkgsrc"
-  git rm -r externals/MoltenVK
   git rm -r externals/fmt
   git rm -r externals/json
   git rm -r externals/sdl3
   git rm -r externals/toml11
   git rm -r externals/vulkan-headers
   git submodule update --init --recursive --depth=1
-
-  # tag initial commit
-  git tag 0.0.0 87b22dc8822bab605df75f5b20ddc4d1e0787a45 || true
 
   # fix nlohmann-json
   sed -E -e '/nlohmann_json/i find_package(nlohmann_json)' -i CMakeLists.txt
