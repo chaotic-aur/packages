@@ -37,6 +37,7 @@ pkgbase = zoom
 	optdepends = xcompmgr: extra compositor needed by some window managers for screen sharing
 	optdepends = qt5-webengine: fallback for bundled qt
 	optdepends = qt5-remoteobjects: fallback for bundled qt
+	optdepends = noto-fonts-emoji: emojis
 	replaces = zoom-libs-bin
 	replaces = zoom-libs
 	options = !strip
