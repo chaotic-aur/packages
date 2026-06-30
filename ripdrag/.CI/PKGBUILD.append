@@ -1,0 +1,9 @@
+unset conflicts provides
+
+url="https://github.com/nik012003/ripdrag"
+license=('GPL-3.0-only')
+
+depends=(${depends[@]//gcc-libs/})
+
+# unnecessary files
+eval "$(declare -f package | sed -E '/share\/(doc|licenses)/d')"
