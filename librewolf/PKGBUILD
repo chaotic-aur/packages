@@ -13,7 +13,7 @@
 _pkgname="librewolf"
 pkgname="${_pkgname}"
 pkgver=152.0.4
-pkgrel=1
+pkgrel=2
 pkgdesc="A web browser focused on privacy, security, and freedom"
 url="https://codeberg.org/librewolf/source"
 arch=('x86_64')
@@ -24,10 +24,10 @@ depends=(
   ffmpeg
   gtk3
   libevent
-  libjpeg
+  libjpeg.so # libjpeg-turbo
   libpulse
-  libvpx.so
-  libwebp.so
+  libvpx.so  # libvpx
+  libwebp.so # libwebp
   libxss
   libxt
   mime-types

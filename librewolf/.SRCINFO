@@ -1,7 +1,7 @@
 pkgbase = librewolf
 	pkgdesc = A web browser focused on privacy, security, and freedom
 	pkgver = 152.0.4
-	pkgrel = 1
+	pkgrel = 2
 	url = https://codeberg.org/librewolf/source
 	arch = x86_64
 	license = MPL-2.0
@@ -35,7 +35,7 @@ pkgbase = librewolf
 	depends = ffmpeg
 	depends = gtk3
 	depends = libevent
-	depends = libjpeg
+	depends = libjpeg.so
 	depends = libpulse
 	depends = libvpx.so
 	depends = libwebp.so
