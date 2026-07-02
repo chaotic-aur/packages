@@ -1,3 +1,7 @@
 #!/usr/bin/env sh
 
-sed -E -e 's&(pkgdesc=".*)\..*"&\1"&' -i PKGBUILD
+sed -E \
+  -e 's&(pkgdesc=".*)\."&\1"&' \
+  -e 's&(pkgdesc=".*)\..*"&\1"&' \
+  -e 's&(\s)(libjpeg)(\s)&\1\2-turbo\3&' \
+  -i PKGBUILD
