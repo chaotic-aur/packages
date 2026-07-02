@@ -1,6 +1,6 @@
 pkgbase = gimp-git
 	pkgdesc = GNU Image Manipulation Program
-	pkgver = 3.2.2.r138.gb41deb1
+	pkgver = 3.2.4.r948.gc199760
 	pkgrel = 1
 	url = https://gitlab.gnome.org/GNOME/gimp
 	arch = x86_64
@@ -31,7 +31,7 @@ pkgbase = gimp-git
 	makedepends = python-packaging
 	makedepends = qoi
 	makedepends = vala
-	makedepends = webkit2gtk
+	makedepends = webkit2gtk-4.1
 	makedepends = zlib
 	depends = appstream
 	depends = babl
@@ -65,7 +65,7 @@ pkgbase = gimp-git
 	optdepends = libxpm: XPM support
 	optdepends = lua-lgi: LUA scripting support
 	optdepends = luajit: LUA scripting support
-	provides = gimp=3.2.2.r138.gb41deb1
+	provides = gimp=3.2.4.r948.gc199760
 	conflicts = gimp
 	source = gimp::git+https://gitlab.gnome.org/GNOME/gimp.git
 	source = gimp-data::git+https://gitlab.gnome.org/GNOME/gimp-data.git
