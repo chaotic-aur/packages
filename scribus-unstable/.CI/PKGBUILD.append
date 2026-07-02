@@ -1,11 +1,26 @@
 license=('GPL-2.0-or-later')
 
+# Update depends
+depends=(${depends[@]//libjpeg*/libjpeg-turbo})
+
+depends=(${depends[@]//boost-libs*/})
+makedepends=(${makedepends[@]//boost*/})
+
+depends=(${depends[@]//qt6-tools*/})
+makedepends+=('qt6-tools')
+
+# Build faster
+export CMAKE_GENERATOR=Ninja
+makedepends+=('ninja')
+
 # Ensure Qt6
 eval "$(declare -f build | sed -E -e 's&(-DCMAKE_INSTALL_PREFIX)&-DQT_VERSION_MAJOR=6 \1&')"
 
-# Fix for Qt 6.10
-_pkgsrc="$_pkgname-$pkgver"
-prepare() {
-  cd "$_pkgsrc"
-  sed -E -e 's&\b(Qt\S*::)?(Gui)\b&\1\2 \1\2Private&' -i scribus/third_party/Qt-Advanced-Docking-System/src/CMakeLists.txt
+# Remove unwanted files
+eval "_orig_$(declare -f package)"
+package() {
+  _orig_package
+
+  # non-standard directory
+  rm -rf "$pkgdir"/usr/license/
 }
