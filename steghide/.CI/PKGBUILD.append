@@ -1,0 +1,2 @@
+depends=(${depends[@]//gcc-libs*/})
+depends=(${depends[@]//libjpeg*/libjpeg.so})

@@ -3,6 +3,10 @@ license=(
   'GPL-2.0-only'
 )
 
+depends=(${depends[@]//libgl*/})
+depends=(${depends[@]//libjpeg*/})
+depends=(${depends[@]//libwebp*/})
+
 # build with ninja
 export CMAKE_GENERATOR=Ninja
 makedepends+=('ninja')

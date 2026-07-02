@@ -1,4 +1,6 @@
 license=('Apache-2.0')
 
+depends=(${depends[@]//libjpeg*/libjpeg.so})
+
 provides=('libpdfium')
 conflicts=('libpdfium')
