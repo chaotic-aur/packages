@@ -1,0 +1,4 @@
+unset install
+
+url="https://github.com/Ulauncher/Ulauncher"
+license=('GPL-3.0-only')
