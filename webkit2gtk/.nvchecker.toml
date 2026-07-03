@@ -1,5 +1,0 @@
-[webkit2gtk]
-source = "git"
-git = "https://github.com/WebKit/WebKit"
-include_regex = 'webkitgtk-2\.50\.\d+'
-prefix = "webkitgtk-"
