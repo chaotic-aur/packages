@@ -58,7 +58,7 @@ _lqxpatchrel=18
 _lqxpatchver=${_lqxpatchname}-${_major}-${_lqxpatchrel}
 pkgbase=linux-lqx
 pkgver=7.0.14.lqx2
-pkgrel=1
+pkgrel=2
 pkgdesc='Linux Liquorix'
 url='https://liquorix.net/'
 arch=(x86_64)
@@ -97,8 +97,8 @@ options=(
 #_lucjanpath="https://raw.githubusercontent.com/sirlucjan/kernel-patches/master/${_major}"
 _lucjanpath="https://gitlab.com/sirlucjan/kernel-patches/raw/master/${_major}"
 
-source=("https://cdn.kernel.org/pub/linux/kernel/v7.x/${_srcname}.tar.xz"
-  "https://cdn.kernel.org/pub/linux/kernel/v7.x/${_srcname}.tar.sign"
+source=("https://liquorix.net/${_srcname}.tar.xz"
+  "https://liquorix.net/${_srcname}.tar.sign"
   "https://github.com/damentz/${_lqxpatchname}/archive/${_major}-${_lqxpatchrel}.tar.gz")
 validpgpkeys=(
   'ABAF11C65A2970B130ABE3C479BE3E4300411886' # Linus Torvalds
