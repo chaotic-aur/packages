@@ -1,7 +1,7 @@
 pkgbase = freecad-git
 	pkgdesc = A general purpose 3D CAD modeler
-	pkgver = 1.1.0.r1745.g8a0d1f5
-	pkgrel = 1
+	pkgver = 1.1.1.r2864.g0c59126
+	pkgrel = 2
 	url = https://github.com/FreeCAD/FreeCAD
 	arch = x86_64
 	license = LGPL-2.1-or-later

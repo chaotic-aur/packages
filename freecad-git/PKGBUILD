@@ -2,8 +2,8 @@
 
 _pkgname="freecad"
 pkgname="$_pkgname-git"
-pkgver=1.1.0.r1745.g8a0d1f5
-pkgrel=1
+pkgver=1.1.1.r2864.g0c59126
+pkgrel=2
 pkgdesc="A general purpose 3D CAD modeler"
 url="https://github.com/FreeCAD/FreeCAD"
 license=('LGPL-2.1-or-later')
@@ -109,7 +109,8 @@ build() {
     -DBUILD_FLAT_MESH=ON
     -DENABLE_DEVELOPER_TESTS=OFF
     -DFREECAD_QT_VERSION=6
-    -DFREECAD_USE_EXTERNAL_PIVY=ON
+    -DFREECAD_USE_EXTERNAL_COIN_PIVY=ON
+    -DFREECAD_USE_EXTERNAL_JSON=ON
     -DFREECAD_USE_PCL=OFF
     -DFREECAD_USE_QT_FILEDIALOG=ON
     -DINSTALL_TO_SITEPACKAGES=ON
