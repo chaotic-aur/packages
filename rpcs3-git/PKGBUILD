@@ -2,8 +2,8 @@
 
 _pkgname="rpcs3"
 pkgname="$_pkgname-git"
-pkgver=0.0.39.r133.gd854ff0
-pkgrel=1
+pkgver=0.0.41.r128.gd87cf99
+pkgrel=2
 pkgdesc="PlayStation 3 emulator"
 url="https://github.com/RPCS3/rpcs3"
 license=('GPL-2.0-only')
@@ -17,7 +17,6 @@ depends=(
   'libopenal.so'     # openal
   'libswresample.so' # ffmpeg
   'libswscale.so'    # ffmpeg
-  'opencv'
   'pugixml'
   'qt6-multimedia'
   'qt6-svg'
@@ -61,7 +60,6 @@ prepare() {
   git rm -r '3rdparty/libpng/libpng'
   git rm -r '3rdparty/libsdl-org/SDL'
   git rm -r '3rdparty/llvm/llvm'
-  git rm -r '3rdparty/opencv/opencv'
   git rm -r '3rdparty/pugixml'
   git rm -r '3rdparty/zlib/zlib'
 
@@ -80,9 +78,6 @@ prepare() {
     -i "rpcs3/Emu/Cell/Modules/cellMic.cpp" \
     "rpcs3/Emu/Cell/Modules/cellMic.h" \
     "rpcs3/rpcs3qt/microphone_creator.cpp"
-
-  # fix for Qt 6.10
-  sed -E -e '/(COMPONENTS|INTERFACE)/s&\b(Qt6::)?(Widgets)\b&\1\2 \1GuiPrivate&' -i "3rdparty/qt6.cmake"
 }
 
 pkgver() {
@@ -115,7 +110,7 @@ build() (
     -DUSE_SYSTEM_FFMPEG=ON
     -DUSE_SYSTEM_GLSLANG=ON
     -DUSE_SYSTEM_LIBPNG=ON
-    -DUSE_SYSTEM_OPENCV=ON
+    -DUSE_SYSTEM_OPENCV=OFF
     -DUSE_SYSTEM_PUGIXML=ON
     -DUSE_SYSTEM_SDL=ON
     -DUSE_SYSTEM_WOLFSSL=OFF
