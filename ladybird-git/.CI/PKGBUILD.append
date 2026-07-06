@@ -2,6 +2,14 @@ pkgdesc="Independent web browser in pre-alpha state"
 
 depends+=('libfmt.so')
 
+# headers only
+depends=(${depends[@]//vulkan-memory-allocator*/})
+makedepends+=('vulkan-memory-allocator')
+
+# static wuffs
+depends=(${depends[@]//wuffs-lib*/})
+makedepends+=('wuffs-static-git')
+
 # keep default build flags
 options=('!debug' '!emptydirs' '!lto' '!staticlibs')
 
