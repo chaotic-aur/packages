@@ -1,0 +1,60 @@
+# Maintainer: aur.chaotic.cx
+
+_pkgname="wuffs"
+pkgname="$_pkgname-static-git"
+pkgdesc="Wrangling Untrusted File Formats Safely"
+pkgver=0.3.3.r568.g9c6d1da
+pkgrel=1
+url="https://github.com/google/wuffs"
+license=(
+  "Apache-2.0"
+  "MIT"
+)
+arch=('x86_64')
+
+makedepends=(
+  'clang'
+  'git'
+  'go'
+
+  'giflib'
+  'libdeflate'
+  'libjpeg-turbo'
+  'libpng'
+  'libwebp'
+)
+
+_pkgsrc="$_pkgname"
+source=("$_pkgsrc::git+$url.git")
+sha256sums=('SKIP')
+
+pkgver() {
+  cd "$_pkgsrc"
+  git describe --long --tags --abbrev=7 --exclude='*[a-zA-Z][a-zA-Z]*' \
+    | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
+}
+
+build() {
+  export GOPATH="${srcdir}/go"
+  export GOBIN="${GOPATH}/bin"
+  export PATH="$PATH:$GOBIN"
+
+  cd "$_pkgsrc"
+  go install github.com/google/wuffs/cmd/...
+
+  wuffs help gen
+  wuffs help genlib
+
+  wuffs gen
+  wuffs genlib -skipgen
+  wuffs test -skipgen -mimic
+  ./build-fuzz.sh
+}
+
+package() {
+  cd "$_pkgsrc"
+  install -vDm644 release/c/*.c gen/c/*.c -t "$pkgdir/usr/include/"
+  install -vDm644 release/c/*.c gen/c/*.c -t "$pkgdir/usr/include/wuffs/"
+  install -vDm644 gen/lib/c/gcc-static/libwuffs.a -t "$pkgdir/usr/lib/"
+  install -vDm644 LICENSE -t "${pkgdir}/usr/share/licenses/$pkgname/"
+}
