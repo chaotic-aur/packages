@@ -1,0 +1,15 @@
+unset changelog
+
+license=('LicenseRef-DisplayLink')
+
+depends=(${depends[@]//evdi*/evdi-dkms})
+
+makedepends+=('patchelf')
+
+eval "package() {
+  # don't install redundant file
+  $(declare -f package | sed '/EULA/d' | tail +2)
+
+  # fix insecure runpath
+  patchelf --set-rpath '\$ORIGIN' \"\$COREDIR/DisplayLinkManager\"
+}"
