@@ -1,0 +1,7 @@
+export CMAKE_GENERATOR=Ninja
+makedepends+=('ninja')
+
+export CXXFLAGS+=" -I/usr/include/opencv4"
+depends=(${depends[@]//opencv*/opencv4})
+
+depends=(${depends[@]//gcc-libs*/})
