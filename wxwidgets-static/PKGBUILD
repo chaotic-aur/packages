@@ -2,7 +2,7 @@
 
 _pkgname="wxwidgets"
 pkgname="$_pkgname-static"
-pkgver="3.3.3"
+pkgver="3.3.3.1"
 pkgrel=1
 pkgdesc="wxWidgets suite, static libs"
 url="https://github.com/wxWidgets/wxWidgets"
@@ -28,7 +28,7 @@ options=('!debug' '!lto')
 
 _pkgsrc="$_pkgname"
 source=("$_pkgsrc"::"git+$url.git#tag=v$pkgver")
-sha256sums=('1a488f75a8df38b378658b40003dc670e3c8e99e6d98ca31e0b9519f4d3cbf08')
+sha256sums=('5f1a964cb33609bd042bf3afaf07825f35ffe1e9ffd63ec1e95d7c726ed102c1')
 
 prepare() {
   cd "$_pkgsrc"
