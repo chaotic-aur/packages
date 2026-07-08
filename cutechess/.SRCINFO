@@ -1,0 +1,18 @@
+pkgbase = cutechess
+	pkgdesc = Tools for working with chess engines
+	pkgver = 1.5.1
+	pkgrel = 1
+	url = https://github.com/cutechess/cutechess
+	arch = x86_64
+	license = GPL-3.0-or-later
+	makedepends = cmake
+	makedepends = doxygen
+	makedepends = ninja
+	depends = hicolor-icon-theme
+	depends = qt6-5compat
+	depends = qt6-base
+	depends = qt6-svg
+	source = cutechess-1.5.1.tar.gz::https://github.com/cutechess/cutechess/archive/refs/tags/v1.5.1.tar.gz
+	sha256sums = 063f94f8a421952487cc49acddd218962c3881bfdf0219ad8f159954678fb375
+
+pkgname = cutechess
