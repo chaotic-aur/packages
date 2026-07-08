@@ -12,8 +12,8 @@
 
 _pkgname="librewolf"
 pkgname="${_pkgname}"
-pkgver=152.0.4
-pkgrel=2
+pkgver=152.0.5
+pkgrel=1
 pkgdesc="A web browser focused on privacy, security, and freedom"
 url="https://codeberg.org/librewolf/source"
 arch=('x86_64')
@@ -106,7 +106,7 @@ source=(
   "$_pkgname.desktop"
 )
 sha256sums=(
-  'fa21c6183109971401eea879b706281064228c9d72dddcbb8103d8da756862bd' # update-cksum
+  'ad6f5fabd4279e5d52dd77e0e2ee5d36c0346b260db6001486cea9e4d565da01' # update-cksum
   '1534094c1539a1a92fff3b5dd12f19d8a096723f32dbaf1efd72fe7646b0387f'
 )
 
