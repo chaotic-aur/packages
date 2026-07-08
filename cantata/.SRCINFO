@@ -1,7 +1,7 @@
 pkgbase = cantata
 	pkgdesc = Qt6 graphical client for Music Player Daemon (MPD), nullobsi fork
-	pkgver = 3.4.0
-	pkgrel = 2
+	pkgver = 3.5.0
+	pkgrel = 1
 	url = https://github.com/nullobsi/cantata
 	arch = x86_64
 	arch = i686
@@ -32,7 +32,7 @@ pkgbase = cantata
 	depends = glibc
 	optdepends = perl-uri: Dynamic playlist
 	optdepends = mpd: Playback
-	source = cantata-nullobsi::git+https://github.com/nullobsi/cantata.git#tag=v3.4.0
-	sha256sums = 0d178d7bb46ee720abc4de57d80786809d6b74391624a4d5c8c71793953b0f9e
+	source = cantata-nullobsi::git+https://github.com/nullobsi/cantata.git#tag=v3.5.0
+	sha256sums = 6749737052092d2d058e98d8c7be4dd441ae807354921b62ba55ac89f96a8a03
 
 pkgname = cantata

@@ -6,8 +6,8 @@
 # Contributor: MisterFred <mister.fred[at]free[dot]fr>
 
 pkgname=cantata
-pkgver=3.4.0
-pkgrel=2
+pkgver=3.5.0
+pkgrel=1
 pkgdesc="Qt6 graphical client for Music Player Daemon (MPD), nullobsi fork"
 arch=(x86_64 i686 aarch64 armv7h)
 url="https://github.com/nullobsi/cantata"
@@ -35,7 +35,7 @@ makedepends=(git cmake qt6-tools)
 optdepends=('perl-uri: Dynamic playlist'
   'mpd: Playback')
 source=("cantata-nullobsi::git+https://github.com/nullobsi/cantata.git#tag=v${pkgver}")
-sha256sums=('0d178d7bb46ee720abc4de57d80786809d6b74391624a4d5c8c71793953b0f9e')
+sha256sums=('6749737052092d2d058e98d8c7be4dd441ae807354921b62ba55ac89f96a8a03')
 
 build() {
   local _flags=(
