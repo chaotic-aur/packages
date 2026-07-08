@@ -1,0 +1,117 @@
+# Maintainer: aur.chaotic.cx
+
+: ${_branch:=canary_experimental}
+
+_pkgname="xenia"
+pkgname="$_pkgname-canary-git"
+pkgver=r8596.d119505
+pkgrel=1
+pkgdesc="An experimental emulator for the Xbox 360"
+url="https://github.com/xenia-canary/xenia-canary"
+license=('BSD-3-Clause')
+arch=('x86_64')
+
+depends=(
+  'alsa-lib'
+  'gtk3'
+  'hicolor-icon-theme'
+  'sdl2'
+)
+makedepends=(
+  'clang'
+  'cmake'
+  'git'
+  'glslang'
+  'lld'
+  'ninja'
+  'python'
+)
+
+provides=("$_pkgname")
+conflicts=("$_pkgname")
+
+options=('!lto')
+
+_pkgsrc="xenia-canary"
+source=(
+  "$_pkgsrc"::"git+$url.git#branch=$_branch"
+)
+sha256sums=(
+  'SKIP'
+)
+
+pkgver() {
+  cd "$_pkgsrc"
+  printf "r%s.%s" \
+    "$(git rev-list --count HEAD)" \
+    "$(git rev-parse --short=7 HEAD)"
+}
+
+prepare() {
+  cd "$_pkgsrc"
+  git submodule update --init --depth=1
+
+  # don't override build system
+  sed -e '/flto=/d' -e '/-O3/d' -i CMakeLists.txt
+}
+
+build() {
+  local _cflags=(
+    -Wno-error=unused-result
+  )
+
+  export CC CXX CXXFLAGS
+  CC=clang
+  CXX=clang++
+  CFLAGS+=" ${_cflags[*]}"
+  CXXFLAGS+=" ${_cflags[*]}"
+
+  local _cmake_options=(
+    -B build
+    -S "$_pkgsrc"
+    -G Ninja
+    -DCMAKE_BUILD_TYPE=Release
+    -Wno-dev
+
+    -DXENIA_BUILD_TESTS=$CHECKFUNC
+  )
+
+  cmake "${_cmake_options[@]}"
+
+  cat /dev/stdin > "build/version.h" << END
+#ifndef GENERATED_VERSION_H_
+#define GENERATED_VERSION_H_
+#define XE_BUILD_BRANCH "${_branch}"
+#define XE_BUILD_COMMIT "${_pkgver##*.}"
+#define XE_BUILD_COMMIT_SHORT "${_pkgver##*.}"
+#define XE_BUILD_DATE __DATE__
+#endif
+END
+
+  cmake --build build
+}
+
+check() {
+  build/bin/Linux/xenia-base-tests || true
+}
+
+package() {
+  install -Dm755 build/bin/Linux/xenia_canary "$pkgdir/usr/bin/$_pkgname"
+
+  cd "$_pkgsrc"
+
+  install -Dm644 LICENSE -t "$pkgdir/usr/share/licenses/$pkgname/"
+
+  install -Dm644 assets/icon/512.png "$pkgdir/usr/share/icons/hicolor/512x512/apps/$_pkgname.png"
+
+  install -Dm644 /dev/stdin "$pkgdir/usr/share/applications/$_pkgname.desktop" << END
+[Desktop Entry]
+Type=Application
+Name=Xenia
+GenericName=Xbox 360 Emulator
+Comment=$pkgdesc
+Exec=$_pkgname
+Icon=$_pkgname
+Categories=Game;Emulator;
+END
+}
