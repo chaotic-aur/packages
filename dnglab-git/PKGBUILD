@@ -1,0 +1,57 @@
+# Maintainer: aur.chaotic.cx
+
+: ${CARGO_HOME:=$SRCDEST/cargo-home}
+: ${CARGO_TARGET_DIR:=target}
+: ${RUSTUP_TOOLCHAIN:=stable}
+export CARGO_HOME CARGO_TARGET_DIR RUSTUP_TOOLCHAIN
+
+_pkgname="dnglab"
+pkgname="$_pkgname-git"
+pkgver=0.7.2
+pkgrel=1
+pkgdesc="Camera RAW to DNG file format converter"
+url="https://github.com/dnglab/dnglab"
+license=('LGPL-2.1-only')
+arch=('x86_64')
+
+depends=('libgcc')
+makedepends=(
+  'cargo'
+  'git'
+)
+
+_pkgsrc="$_pkgname"
+source=("$_pkgsrc"::"git+$url.git")
+sha256sums=('SKIP')
+
+prepare() {
+  cd "$_pkgsrc"
+  cargo fetch --locked --target host-tuple
+}
+
+build() {
+local _units=$(($(nproc) > 16 ? $(nproc) : 16))
+export CARGO_PROFILE_RELEASE_LTO=false
+export CARGO_PROFILE_RELEASE_CODEGEN_UNITS=$_units
+
+  cd "$_pkgsrc"
+  cargo build --frozen --release
+}
+
+check() {
+  cd "$_pkgsrc"
+  cargo test --all --release --frozen
+}
+
+package() {
+  cd "$_pkgsrc"
+  install -Dm755 "$CARGO_TARGET_DIR/release/dnglab" -t "$pkgdir/usr/bin/"
+  install -Dm644 bin/dnglab/manpages/*.1 -t "$pkgdir/usr/share/man/man1/"
+
+  install -Dm644 bin/dnglab/completions/dnglab.bash \
+    "$pkgdir/usr/share/bash-completion/completions/dnglab"
+  install -Dm644 bin/dnglab/completions/dnglab.fish \
+    "$pkgdir/usr/share/fish/vendor_completions.d/dnglab.fish"
+  install -Dm644 bin/dnglab/completions/_dnglab \
+    "$pkgdir/usr/share/zsh/site_functions/_dnglab"
+}
