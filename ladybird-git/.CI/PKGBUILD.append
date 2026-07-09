@@ -2,6 +2,9 @@ pkgdesc="Independent web browser in pre-alpha state"
 
 depends+=('libfmt.so')
 
+# extra/opendht contains simdutf
+depends=(${depends[@]//simdutf*/opendht})
+
 # headers only
 depends=(${depends[@]//vulkan-memory-allocator*/})
 makedepends+=('vulkan-memory-allocator')
@@ -11,8 +14,10 @@ depends=(${depends[@]//wuffs-lib*/})
 makedepends+=('wuffs-static-git')
 
 # keep default build flags
-options=('!debug' '!emptydirs' '!lto' '!staticlibs')
+options=(${options[@]//*buildflags*})
 
-# disable cpptrace
-depends=(${depends[@]//cpptrace*/})
-eval "$(declare -f build | sed -E -e 's&(-DCMAKE_BUILD_TYPE)&-DLADYBIRD_ENABLE_CPPTRACE=OFF \1&')"
+# optional: disable cpptrace
+_disable_cpptrace() {
+  depends=(${depends[@]//cpptrace*/})
+  eval "$(declare -f build | sed -E -e 's&(-DCMAKE_BUILD_TYPE)&-DLADYBIRD_ENABLE_CPPTRACE=OFF \1&')"
+}
