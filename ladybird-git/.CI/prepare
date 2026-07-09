@@ -44,20 +44,24 @@ _check_status() (
 )
 
 _check_update() {
-  local url pkgver pkgrel _pkgver_new _pkgver_old
+  local url pkgver pkgrel _pkgver_new _pkgver_old _pkgver_force
   eval "$(grep -E -e '^(url|pkgver|pkgrel)=' PKGBUILD)"
 
   _pkgver_new="$pkgver-$pkgrel"
 
   _pkgver_old=$(LANG=C LC_ALL=C pacman -Si chaotic-aur/ladybird-git | grep -Pom1 '^Version\s+:\s+\K\S+')
 
-  if [ $(vercmp "$_pkgver_old" "${_pkgver_new:?}") -ge 0 ]; then
-    echo "Skipping build.  $_pkgver_old >= $_pkgver_new"
-    return "$CI_CODE_SKIP"
+  _pkgver_force="${1}"
+
+  if [ ! $(vercmp "${_pkgver_force:-r0}" "$_pkgver_old") -gt 0 ]; then  
+    if [ $(vercmp "$_pkgver_old" "${_pkgver_new:?}") -ge 0 ]; then
+      echo "Skipping build.  $_pkgver_old >= $_pkgver_new"
+      return "$CI_CODE_SKIP"
+    fi
   fi
 }
 
-if _check_update > /dev/null; then
+if _check_update r80140 > /dev/null; then
   echo "New version detected. Forcing build."
 else
   _check_rate 18 || return $?
