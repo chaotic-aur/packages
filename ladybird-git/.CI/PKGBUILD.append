@@ -2,8 +2,8 @@ pkgdesc="Independent web browser in pre-alpha state"
 
 depends+=('libfmt.so')
 
-# extra/opendht contains simdutf
-depends=(${depends[@]//simdutf*/opendht})
+# extra/simdutf
+depends=(${depends[@]//simdutf*/simdutf})
 
 # headers only
 depends=(${depends[@]//vulkan-memory-allocator*/})
