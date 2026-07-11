@@ -4,7 +4,7 @@
 
 _pkgname="xenia"
 pkgname="$_pkgname-canary-git"
-pkgver=r8596.d119505
+pkgver=r8599.22d91c8
 pkgrel=1
 pkgdesc="An experimental emulator for the Xbox 360"
 url="https://github.com/xenia-canary/xenia-canary"
@@ -91,8 +91,9 @@ END
   cmake --build build
 }
 
-check() {
+_check() {
   build/bin/Linux/xenia-base-tests || true
+  build/bin/Linux/xenia-cpu-ppc-tests || true
 }
 
 package() {
