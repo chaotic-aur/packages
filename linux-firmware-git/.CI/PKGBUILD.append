@@ -1,2 +1,6 @@
 # -j flag causes error
 unset MAKEFLAGS
+
+# fix license paths
+eval "$(declare -f package_linux-firmware-git | sed -E -e '/licenses.* LICEN\*/s&LICEN&LICENSES/&')"
+eval "$(declare -f package_amd-ucode-git | sed -E -e '/licenses/s&/(LICENSE\.)&/LICENSES/\1&')"
