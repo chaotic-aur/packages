@@ -1,0 +1,10 @@
+export CMAKE_GENERATOR=Ninja
+makedepends+=('ninja')
+
+license=('LGPL-3.0-or-later')
+
+# disable -qt5 version
+pkgname=('efibooteditor')
+depends=(${depends[@]//qt5*/})
+makedepends=(${makedepends[@]//qt5*/})
+eval "$(declare -f build | sed -e '/qt5/d')"
