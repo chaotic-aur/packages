@@ -1,5 +1,0 @@
-license=('GPL-3.0-only')
-
-# use qt6
-depends=(f3 qt6-base)
-eval "$(declare -f build | sed -E -e 's&\bqmake\b&qmake6&')"
