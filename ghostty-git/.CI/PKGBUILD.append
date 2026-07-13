@@ -1,1 +1,30 @@
+# prevent conflict with ncurses
 eval "$(declare -f package_ghostty-terminfo-git | sed -E -e 's&(terminfo)/\*&\1/x&')"
+
+# use zvm
+makedepends=(${makedepends[@]//zig*/zvm})
+
+_pkgsrc="$_pkgbase"
+_zig_setup() {
+  export ZVM_PATH="$SRCDEST/zvm-data"
+
+  local _zigver _zigpath _target
+  _zigver="$(grep -Po '\.minimum_zig_version = "\K[0-9.]+' "$_pkgsrc/build.zig.zon")"
+  _zigpath="$ZVM_PATH/${_zigver:?zig version not found}"
+
+  [ ! -e "$_zigpath" ] && zvm install "$_zigver"
+  export PATH="$_zigpath:$PATH"
+}
+
+eval "_orig_$(declare -f prepare)"
+prepare() {
+  _zig_setup
+  _orig_prepare
+}
+
+eval "_orig_$(declare -f build | sed -E -e 's&--system \S+&&')"
+build() {
+  export ZIG_GLOBAL_CACHE_DIR="$srcdir/zig-global-cache/"
+  _zig_setup
+  _orig_build
+}
