@@ -2,7 +2,7 @@
 
 pkgbase=linux
 pkgver=7.1.3.arch1
-pkgrel=2
+pkgrel=3
 pkgdesc='Linux'
 url='https://github.com/archlinux/linux'
 arch=(
