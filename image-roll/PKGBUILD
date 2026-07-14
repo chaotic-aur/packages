@@ -1,63 +1,43 @@
 # Maintainer: aur.chaotic.cx
 
+: ${CARGO_HOME:=$SRCDEST/cargo-home}
+: ${CARGO_TARGET_DIR:=target}
+: ${RUSTUP_TOOLCHAIN:=stable}
+export CARGO_HOME CARGO_TARGET_DIR RUSTUP_TOOLCHAIN
+
 _pkgname="image-roll"
 pkgname="$_pkgname"
 pkgver=2.1.0
-pkgrel=2
+pkgrel=3
 pkgdesc="GTK image viewer with basic image manipulation tools"
 url="https://github.com/weclaw1/image-roll"
 license=('MIT')
 arch=('x86_64')
 
-  depends=(
-    gtk4
-  )
-  makedepends=(
-    cargo
-    git
-  )
+depends=('gtk4')
+makedepends=('cargo')
 
-_source_main() {
-  _pkgsrc="$_pkgname"
-  source+=("$_pkgsrc"::"git+$url.git#tag=${_pkgver:?}")
-  sha256sums+=('SKIP')
-}
-
-_rust_env() {
-  : ${CARGO_HOME:=$SRCDEST/cargo-home}
-  export CARGO_HOME
-  export RUSTUP_TOOLCHAIN=stable
-  export CARGO_TARGET_DIR=target
-}
+_pkgsrc="$_pkgname-$pkgver"
+_pkgext="tar.gz"
+source=("$_pkgsrc.$_pkgext"::"$url/archive/refs/tags/$pkgver.$_pkgext")
+sha256sums=('9fa8be6a0404d98a692d0dbb7f5b70f3f438db1ac8b8b90e2f1f0efd3e3e659f')
 
 prepare() {
-  _rust_env
-
   cd "$_pkgsrc"
-  cargo fetch --locked --target "$CARCH-unknown-linux-gnu"
-}
-
-pkgver() {
-  echo "${_pkgver:?}"
+  cargo fetch --locked --target host-tuple
 }
 
 build() {
-  _rust_env
-
   cd "$_pkgsrc"
   cargo build --release --frozen --all-features
 }
 
 check() {
-  _rust_env
-
   cd "$_pkgsrc"
   cargo test --tests -- --skip current_file || true
 }
 
 package() {
-  _rust_env
-
   cd "$_pkgsrc"
   install -Dm755 "$CARGO_TARGET_DIR/release/image-roll" -t "$pkgdir/usr/bin/"
 
@@ -70,29 +50,3 @@ package() {
 
   install -Dm644 LICENSE -t "$pkgdir/usr/share/licenses/$pkgname/"
 }
-
-_update_version() {
-  : ${_pkgver:=${pkgver%%.r*}}
-
-  if [[ x"${_autoupdate::1}" != "xt" ]]; then
-    return
-  fi
-
-  _repo="${url#*//*/}"
-  _response=$(curl "https://api.github.com/repos/${_repo:?}/tags" -s)
-
-  _get() {
-    printf '%s' "$_response" \
-      | awk -F '"' '/"'"$1"'":/{print $4}' \
-      | sed 's@^.*[a-z-].*$@@' | sort -rV | head -1
-  }
-  _pkgver_new=$(_get name)
-
-  # update pkgver
-  if [ x"$_pkgver" != x"${_pkgver_new:?}" ]; then
-    _pkgver="${_pkgver_new:?}"
-  fi
-}
-
-_update_version
-_source_main

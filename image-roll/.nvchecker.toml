@@ -1,0 +1,3 @@
+[image-roll]
+source = "git"
+git = "https://github.com/weclaw1/image-roll.git"
