@@ -1,13 +1,11 @@
+_units=$(($(nproc) > 16 ? $(nproc) : 16))
+export CARGO_PROFILE_RELEASE_LTO=false
+export CARGO_PROFILE_RELEASE_CODEGEN_UNITS=$_units
+
 license=('GPL-2.0-or-later')
 depends=(
-  'gcc-libs'
   'openssl'
   'zlib'
 )
 
-_pkgsrc="${pkgname%-git}"
-
-check() {
-  cd "$_pkgsrc"
-  cargo test
-}
+eval "$(declare -f check | sed -e 's&--frozen&&')"

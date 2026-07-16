@@ -1,3 +1,1 @@
-CI_ON_TRIGGER=daily
-CI_PACKAGE_BUMP=24.8.0.r173.gb8d1936e-1/2
-CI_PKGBUILD_SOURCE=https://aur.archlinux.org/conserve-git.git
+CI_PKGBUILD_SOURCE=aur
