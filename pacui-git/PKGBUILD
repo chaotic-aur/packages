@@ -1,0 +1,57 @@
+# Maintainer: aur.chaotic.cx
+
+_pkgname="pacui"
+pkgname="$_pkgname-git"
+pkgver=r1303.a8fdf7f
+pkgrel=1
+pkgdesc="A text-based frontend for pacman, AUR, Flatpak, and Snap"
+url="https://codeberg.org/excalibur1234/pacui"
+license=('GPL-3.0-only')
+arch=('any')
+
+depends=(
+  'expac'
+  'fzf'
+  'jq'
+  'less'
+  'pacman-contrib'
+  'sudo'
+)
+makedepends=(
+  'git'
+)
+optdepends=(
+  'downgrade: For "downgrade" option'
+  'reflector: For Arch Linux mirror support'
+
+  'flatpak: For Flatpak support'
+  'snapd: For Snap support'
+
+  'aurman: AUR support'
+  'pacaur: AUR support'
+  'pakku: AUR support'
+  'pamac: AUR support'
+  'paru: AUR support'
+  'pikaur: AUR support'
+  'trizen: AUR support'
+  'yay: AUR support'
+
+  'fwupd: For firmware update'
+)
+
+provides=("$_pkgname")
+conflicts=("$_pkgname")
+replaces=("$_pkgname")
+
+_pkgsrc="$_pkgname.codeberg"
+source=("$_pkgsrc"::"git+$url.git")
+sha256sums=('SKIP')
+
+pkgver() {
+  cd "$_pkgsrc"
+  printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short=7 HEAD)"
+}
+
+package() {
+  install -Dm755 "$_pkgsrc/pacui" -t "$pkgdir/usr/bin/"
+}
