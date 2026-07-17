@@ -1,0 +1,11 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Name=Space Station 14
+Version=<VERSION>
+Type=Application
+Icon=spacestation14
+Comment=Space Station 14 Launcher
+Categories=Game;
+Keywords=game;gaming;launcher;multiplayer;ss14
+Terminal=false
+Exec=env ss14.launcher %u
