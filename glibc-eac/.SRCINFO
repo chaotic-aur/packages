@@ -17,6 +17,14 @@ pkgbase = glibc
 	source = lib32-glibc.conf
 	source = sdt.h
 	source = sdt-config.h
+	source = 10-glibc-locale-gen.hook
+	source = 10-glibc-remove-locale-archive.hook
+	source = 11-glibc-ldconfig.hook
+	source = 11-glibc-remove-ldconfig-cache.hook
+	source = 12-glibc-iconvconfig.hook
+	source = 12-glibc-remove-iconvconfig-cache.hook
+	source = 12-lib32-glibc-iconvconfig.hook
+	source = 12-lib32-glibc-remove-iconvconfig-cache.hook
 	validpgpkeys = 7273542B39962DF7B299931416792B4EA25340F8
 	validpgpkeys = BC7C7372637EC10C57D7AA6579C43DFBF1CF2187
 	b2sums = be5904c09dde9fb0aac81b2c28e1f59dbd4a8e1abcf4016c812726d77aab7409a46ccd2059486a1063e19907d0e4f920dce8d136c9229fbc91b752b0489a3c2e
@@ -25,11 +33,18 @@ pkgbase = glibc
 	b2sums = 7c265e6d36a5c0dff127093580827d15519b6c7205c2e1300e82f0fb5b9dd00b6accb40c56581f18179c4fbbc95bd2bf1b900ace867a83accde0969f7b609f8a
 	b2sums = a6a5e2f2a627cc0d13d11a82458cfd0aa75ec1c5a3c7647e5d5a3bb1d4c0770887a3909bfda1236803d5bc9801bfd6251e13483e9adf797e4725332cd0d91a0e
 	b2sums = 214e995e84b342fe7b2a7704ce011b7c7fc74c2971f98eeb3b4e677b99c860addc0a7d91b8dc0f0b8be7537782ee331999e02ba48f4ccc1c331b60f27d715678
+	b2sums = 88b36b26d8ee8ac0d2034106d3ba9595296e6d474d5b892f165701865ff790515f979693897b6c23bb421e7e091b3e7367ec1065a7e9dbaab3b0546e1b037009
+	b2sums = 9aea685518e63377b745c83ce51c36434f2a3c181440d108ecad915ec6162087302710c1bd95a1097af4ad66468a7fae485881fb030bc2dd886882864b36bdfe
+	b2sums = 13bab5a9c018a6e274663f36f4ac1c02742fd25bc805465be74b35181beab044a0e8c00d00c7fff6cb50587fd399c8c8740246987088dd1c18c0f2a5d2638636
+	b2sums = c18f52b188ecde915a0d3b69fd87391fdf4a8800a3cd5332456f3009d5c1161944d7ab10a7f2a68fb0b035b69ae1576cb80c1a81ce94ae410066ad19f3d5c196
+	b2sums = 16f0d3cf85b4ade01dc07279ed3132ea882d160741f092d654a28e8e5e0aaa85f4341a49e01289e1ab3a1f363816dcad8c0e1c859ddf4e0825728c5f4a830112
+	b2sums = 18e7636d0e499cdd2b671e59c0f4401e519ad52deeb53b229c3e455b98943d88e071fdeecede333ec8ec4fea74ea2707571b3fef46f2983cb1a0a291ebd9e530
+	b2sums = c97be8aceab4aa26eb576525aab17387b201c9c02795f27685f621c60ee9b3cb925284a23e6136e0154e1487d6e2e3c8fdb28b008808fb088b07481e5023a94b
+	b2sums = a1fab95d29ab078c21e17c01106296d1258d135cdb03b1d8da336dd59d71443a73a8ea66888a7c1a27d2b95b4364029fa9b33bf6ef0e63bfafd295492c01dc56
 	makedepends_x86_64 = lib32-gcc-libs
 
 pkgname = glibc
 	pkgdesc = GNU C Library
-	install = glibc.install
 	depends = linux-api-headers>=4.10
 	depends = tzdata
 	depends = filesystem
@@ -40,7 +55,6 @@ pkgname = glibc
 
 pkgname = lib32-glibc
 	pkgdesc = GNU C Library (32-bit)
-	install = lib32-glibc.install
 	arch = x86_64
 	depends = glibc=2.43+r37+gfdf10644d6ee
 	options = staticlibs
