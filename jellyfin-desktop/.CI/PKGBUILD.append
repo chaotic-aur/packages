@@ -1,5 +1,0 @@
-license=('GPL-2.0-only')
-
-provides=('jellyfin-media-player')
-conflicts=('jellyfin-media-player')
-replaces=('jellyfin-media-player' 'jellyfin-media-player-git')
