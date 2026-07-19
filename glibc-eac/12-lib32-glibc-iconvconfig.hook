@@ -19,6 +19,6 @@ Type = Path
 
 [Action]
 Depends = glibc
-Description = Creating 32bit inconv module configuration cache...
+Description = Creating 32bit iconv module configuration cache...
 Exec = /usr/bin/iconvconfig --nostdlib --output=/usr/lib32/gconv/gconv-modules.cache /usr/lib32/gconv
 When = PostTransaction

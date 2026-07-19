@@ -5,6 +5,6 @@ Type = Package
 
 [Action]
 Depends = coreutils
-Description = Removing 32bit inconv module configuration cache...
+Description = Removing 32bit iconv module configuration cache...
 Exec = /usr/bin/rm --force /usr/lib32/gconv/gconv-modules.cache
 When = PreTransaction

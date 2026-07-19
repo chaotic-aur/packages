@@ -19,6 +19,6 @@ Type = Path
 
 [Action]
 Depends = glibc
-Description = Creating inconv module configuration cache...
+Description = Creating iconv module configuration cache...
 Exec = /usr/bin/iconvconfig
 When = PostTransaction
