@@ -1,0 +1,2 @@
+replaces+=(proton-ge-custom-bin proton-ge-custom)
+conflicts+=(proton-ge-custom-rtsp-bin proton-ge-custom-bin proton-ge-custom)
