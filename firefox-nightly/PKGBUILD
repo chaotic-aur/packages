@@ -1,18 +1,18 @@
 # Maintainer: aur.chaotic.cx
 
 ## options
-: ${_build_pgo:=true}      # profile-guided optimization; ~20% better benchmarks, 3x build time
+: ${_build_pgo:=false}     # profile-guided optimization; ~20% better benchmarks, 3x build time
 : ${_build_pgo_reuse:=try} # reuse previously generated profile
 : ${_build_pgo_xvfb:=true} # use xfvb for profiling, otherwise xwayland-run
 
 : ${_build_lto:=false}        # link-time optimization; may cause spurious errors
 : ${_build_system_libs:=true} # use system libraries, reduces build time
 
-: ${_build_symbols:=false}
+: ${_build_limit_cores:=true} # detect usable cores for parallelism, limited by RAM
 
 _pkgname=firefox-nightly
 pkgname="$_pkgname"
-pkgver=146.0a1+20251029.09+h127c786d5
+pkgver=154.0a1+20260719.21+h377d3fc52
 pkgrel=1
 pkgdesc="Fast, Private & Safe Web Browser"
 url="https://www.mozilla.org/firefox/channel/#nightly"
@@ -23,16 +23,10 @@ depends=(
   dbus
   ffmpeg
   gtk3
-  libevent
-  libjpeg
-  libvpx.so
-  libwebp.so
   libxss
   libxt
   mime-types
-  pipewire
   ttf-font
-  zlib
 )
 makedepends=(
   cargo
@@ -65,6 +59,21 @@ optdepends=(
   'xdg-desktop-portal: Screensharing with Wayland'
 )
 
+if [[ "${_build_system_libs::1}" == "t" ]]; then
+  depends+=(
+    libffi.so          # libffi
+    libjpeg.so         # libjpeg-turbo
+    libpipewire-0.3.so # libpipewire
+    libpixman-1.so     # pixman
+    libvpx.so          # libvpx
+    libwebp.so         # libwebp
+    libwebpdemux.so    # libwebp
+    libz.so            # zlib
+    nspr
+    nss
+  )
+fi
+
 if [[ "${_build_pgo::1}" == "t" ]]; then
   if [[ "${_build_pgo_xvfb::1}" == "t" ]]; then
     makedepends+=(
@@ -88,6 +97,8 @@ options=(
 )
 
 _get_version_info() {
+  [[ -n "$_pkgver" ]] && return
+
   local _info_url _filename _response
   _info_url="https://archive.mozilla.org/pub/firefox/nightly/latest-mozilla-central"
   _filename=$(
@@ -100,33 +111,28 @@ _get_version_info() {
   _version=$(printf '%s' "$_filename" | sed -E 's&^firefox-([0-9]+\.[0-9].*)\.en-US\.linux-x86_64\.txt$&\1&')
   _date=$(printf '%s' "$_response" | head -1 | sed -E 's&^([0-9]{8})([0-9]*)$&\1.\2&')
   _revision=$(printf '%s' "$_response" | tail -1 | sed -E 's&^.*/rev/([a-f0-9]+)$&\1&')
+
+  _pkgver="${_version:?}+${_date::11}+h${_revision::9}"
 }
 _get_version_info
 
-_repo="https://hg.mozilla.org/mozilla-central"
-
+_pkgsrc="mozilla-central-${_revision:?}"
 source=(
-  "hg+$_repo#revision=$_revision"
-  'firefox-nightly.svg'
+  "mozilla-central-$_pkgver.zip"::"https://hg.mozilla.org/mozilla-central/archive/$_revision.zip"
+  'firefox-nightly-symbolic.svg'
   'firefox-nightly.desktop'
   '0001-Install-under-remoting-name.patch'
 )
 sha256sums=(
   'SKIP'
-  'a9b8b4a0a1f4a7b4af77d5fc70c2686d624038909263c795ecc81e0aec7711e9'
+  'cb00ea359d6daf37900102307be4f515f1b7ef9c98825c64cc55bb562449d0d8'
   '4304902899987928ea51b7020fb1298b01fa77e327ef66ab00b061f767042b9f'
   '883ca2fa723a7572269d18559d5b82412782ad63e5dd3820eeb0540e3fe34314'
 )
 
-validpgpkeys=(
-  # Mozilla Software Releases <release@mozilla.com>
-  # https://blog.mozilla.org/security/2023/05/11/updated-gpg-key-for-signing-firefox-releases/
-  14F26682D0916CDD81E37B6D61B7B526D98F0353
-)
-
 pkgver() {
   # set by _get_version_info
-  printf '%s+%s+h%s' "${_version:?}" "${_date::11}" "${_revision::9}"
+  echo "$_pkgver"
 }
 
 prepare() {
@@ -145,11 +151,9 @@ mk_add_options MOZ_OBJDIR="$srcdir/obj"
 ac_add_options --prefix=/usr
 ac_add_options --enable-release
 ac_add_options --enable-hardening
-ac_add_options --enable-optimize
 ac_add_options --enable-rust-simd
 ac_add_options --enable-wasm-simd
 ac_add_options --enable-linker=lld
-ac_add_options --disable-install-strip
 ac_add_options --disable-elf-hack
 ac_add_options --disable-bootstrap
 ac_add_options --with-wasi-sysroot=/usr/share/wasi-sysroot
@@ -171,7 +175,6 @@ ac_add_options --with-google-safebrowsing-api-keyfile="$srcdir/google-api-key"
 
 # Features
 ac_add_options --enable-alsa
-ac_add_options --enable-av1
 ac_add_options --enable-crashreporter
 ac_add_options --enable-eme=widevine
 ac_add_options --enable-jack
@@ -190,6 +193,19 @@ mk_add_options MOZ_DATA_REPORTING=0
 mk_add_options MOZ_SERVICES_HEALTHREPORT=0
 mk_add_options MOZ_TELEMETRY_REPORTING=0
 
+# Debugging
+ac_add_options --disable-debug
+ac_add_options --disable-debug-symbols
+ac_add_options --disable-debug-js-modules
+ac_add_options --enable-strip
+ac_add_options --enable-install-strip
+export STRIP_FLAGS="--strip-debug --strip-unneeded"
+
+# Optimization
+ac_add_options --enable-optimize
+ac_add_options OPT_LEVEL="2"
+ac_add_options RUSTC_OPT_LEVEL="2"
+
 # Other
 export AR=llvm-ar
 export CC=clang
@@ -200,9 +216,19 @@ END
 
   if [[ "${_build_system_libs::1}" == "t" ]]; then
     cat >> mozconfig << END
+# ac_add_options --with-system-av1
+# ac_add_options --with-system-icu
+# ac_add_options --with-system-libevent
+# ac_add_options --with-system-png
+ac_add_options --with-system-ffi
+ac_add_options --with-system-gbm
 ac_add_options --with-system-jpeg
-ac_add_options --with-system-libevent
+ac_add_options --with-system-libdrm
 ac_add_options --with-system-libvpx
+ac_add_options --with-system-nspr
+ac_add_options --with-system-nss
+ac_add_options --with-system-pipewire
+ac_add_options --with-system-pixman
 ac_add_options --with-system-webp
 ac_add_options --with-system-zlib
 END
@@ -214,6 +240,30 @@ ac_add_options --enable-lto=cross,full
 END
   fi
 
+  # build paralleism
+  local _mem _nproc _cores
+  _mem=$(grep -Pom1 '^MemFree.*\b\K[0-9]+' /proc/meminfo)
+  _nproc=$(nproc)
+
+  if [[ "${_build_limit_cores::1}" == "t" ]]; then
+    # calculate core availability based on free RAM and CPU count
+    _cores=$((_mem / (1024 * 1024) < _nproc ? _mem / (1024 * 1024) : _nproc))
+    _cores=$((_cores < 1 ? 1 : _cores))
+  elif ((${_build_limit_cores:-0} > 0)); then
+    # user-specified, capped by CPU count
+    _cores=$((_build_limit_cores > _nproc ? _nproc : _build_limit_cores))
+  fi
+
+  if [ -n "${_cores:-}" ]; then
+    printf '\nFree RAM: %s\nCores: %s\nUsing: %s\n\n' "$((_mem / (1024 * 1024)))" "$_nproc" "$_cores"
+    cat >> mozconfig << END
+mk_add_options MOZ_PARALLEL_BUILD=${_cores}
+END
+  else
+    printf '\nFree RAM: %s\nCores: %s\nUsing: auto\n\n' "$((_mem / (1024 * 1024)))" "$_nproc"
+  fi
+
+  # apply patches
   local src
   for src in "${source[@]}"; do
     src="${src%%::*}"
@@ -221,7 +271,7 @@ END
     src="${src%.zst}"
     if [[ $src == *.patch ]]; then
       printf '\nApplying patch: %s\n' "$src"
-      patch -d "${_repo##*/}" -Np1 -F100 -i "${srcdir:?}/$src"
+      patch -d "$_pkgsrc" -Np1 -F100 -i "${srcdir:?}/$src"
     fi
   done
 }
@@ -241,7 +291,6 @@ build() (
   export RUST_MIN_STACK=16777216
 
   export MOZ_ENABLE_FULL_SYMBOLS=1
-  export MOZ_SOURCE_REPO="$_repo"
 
   # malloc_usable_size is used in various parts of the codebase
   CFLAGS="${CFLAGS/_FORTIFY_SOURCE=3/_FORTIFY_SOURCE=2}"
@@ -254,7 +303,7 @@ build() (
   # LTO/PGO needs more open files
   ulimit -n 4096
 
-  cd "${_repo##*/}"
+  cd "$_pkgsrc"
 
   # Do 3-tier PGO
   if [[ "${_build_pgo::1}" == "t" ]]; then
@@ -342,15 +391,10 @@ END
 
   echo "Building browser..."
   ./mach build --priority normal
-
-  if [[ "${_build_symbols::1}" == "t" ]]; then
-    echo "Building symbol archive..."
-    ./mach buildsymbols
-  fi
 )
 
 package() {
-  cd "${_repo##*/}"
+  cd "$_pkgsrc"
   DESTDIR="$pkgdir" ./mach install
 
   local vendorjs="$pkgdir/usr/lib/$_pkgname/browser/defaults/preferences/vendor.js"
@@ -398,17 +442,12 @@ END
     install -Dvm644 browser/branding/$theme/default$i.png \
       "$pkgdir/usr/share/icons/hicolor/${i}x${i}/apps/$_pkgname.png"
   done
-  install -Dvm644 browser/branding/$theme/content/about-logo.png \
-    "$pkgdir/usr/share/icons/hicolor/192x192/apps/$_pkgname.png"
-  install -Dvm644 browser/branding/$theme/content/about-logo@2x.png \
-    "$pkgdir/usr/share/icons/hicolor/384x384/apps/$_pkgname.png"
-  install -Dvm644 browser/branding/$theme/content/about-logo.svg \
-    "$pkgdir/usr/share/icons/hicolor/scalable/apps/$_pkgname.svg"
-  install -Dvm644 ../$_pkgname.svg \
-    "$pkgdir/usr/share/icons/hicolor/symbolic/apps/$_pkgname-symbolic.svg"
+  install -Dvm644 browser/branding/$theme/content/about-logo.png "$pkgdir/usr/share/icons/hicolor/192x192/apps/$_pkgname.png"
+  install -Dvm644 browser/branding/$theme/content/about-logo@2x.png "$pkgdir/usr/share/icons/hicolor/384x384/apps/$_pkgname.png"
+  install -Dvm644 browser/branding/$theme/content/about-logo.svg "$pkgdir/usr/share/icons/hicolor/scalable/apps/$_pkgname.svg"
+  install -Dvm644 ../$_pkgname-symbolic.svg "$pkgdir/usr/share/icons/hicolor/symbolic/apps/$_pkgname-symbolic.svg"
 
-  install -Dvm644 ../$_pkgname.desktop \
-    "$pkgdir/usr/share/applications/$_pkgname.desktop"
+  install -Dvm644 ../$_pkgname.desktop "$pkgdir/usr/share/applications/$_pkgname.desktop"
 
   # Install a wrapper to avoid confusion about binary path
   install -Dvm755 /dev/stdin "$pkgdir/usr/bin/$_pkgname" << END
@@ -428,14 +467,4 @@ BusName=org.mozilla.${_pkgname//-/_}.SearchProvider
 ObjectPath=/org/mozilla/${_pkgname//-/_}/SearchProvider
 Version=2
 END
-
-  # Package debug symbols for upload
-  if [[ "${_build_symbols::1}" == "t" ]]; then
-    export SOCORRO_SYMBOL_UPLOAD_TOKEN_FILE="$startdir/.crash-stats-api.token"
-    if [[ -f $SOCORRO_SYMBOL_UPLOAD_TOKEN_FILE ]]; then
-      make -C obj uploadsymbols
-    else
-      cp -fvt "$startdir" obj/dist/*crashreporter-symbols.zip
-    fi
-  fi
 }
