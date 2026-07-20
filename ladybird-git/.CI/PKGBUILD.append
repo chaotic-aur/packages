@@ -2,6 +2,18 @@ pkgdesc="Independent web browser in pre-alpha state"
 
 depends+=('libfmt.so')
 
+# fails to build with GCC 16.1.1
+makedepends+=('clang' 'lld')
+
+export CC=clang
+export CXX=clang++
+export LDFLAGS+=" -fuse-ld=lld"
+
+_units=$(($(nproc) > 16 ? $(nproc) : 16))
+export CARGO_PROFILE_RELEASE_LTO=false
+export CARGO_PROFILE_RELEASE_CODEGEN_UNITS=$_units
+export RUSTFLAGS="-C opt-level=2 -C codegen-units=$_units -C lto=off -Clink-arg=-fuse-ld=lld"
+
 # extra/simdutf
 depends=(${depends[@]//simdutf*/simdutf})
 
