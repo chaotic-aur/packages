@@ -1,9 +1,9 @@
 # Maintainer: Jonas Geiler <aur@jonasgeiler.com>
 # Maintainer: SoftExpert <softexpert at gmail dot com>
 pkgname=yaak
-# renovate: datasource=github-releases depName=getyaak/app
-pkgver=2026.3.1
-pkgrel=1
+# renovate: datasource=github-releases depName=mountain-loop/yaak
+pkgver=2026.5.0
+pkgrel=2
 pkgdesc='Fast, offline and Git-friendly API client for HTTP, GraphQL, WebSockets, SSE, and gRPC'
 arch=(aarch64 armv7h i686 pentium4 x86_64)
 url='https://yaak.app/'
@@ -14,14 +14,14 @@ depends=(
   cairo
   dbus
   fontconfig
-  gcc-libs
   gdk-pixbuf2
   glib2
   glibc
   gtk3
   hicolor-icon-theme
+  libgcc
   libsoup3
-  pango
+  libstdc++
   webkit2gtk-4.1
   xz
   zlib
@@ -51,17 +51,18 @@ options=(
   !emptydirs # Remove empty directories from package because why not
 )
 source=("yaak::git+https://github.com/mountain-loop/yaak.git#tag=v${pkgver}")
-b2sums=('0398303364d940912ebe10e0aa755ac312189cbbd4bc33f1e9cca393596caddf04af8bb5f0fdcc61b7cf666fc7f602a044c18e1863dcf5cd92901899dceeef89')
+b2sums=('0eff369f36f89a7c868963f01e5b8ba9eac5a1038b97473af0f438de267ba8ddf76f44714feb092b7ef36fd4b30c61552e3ac3b379d6a45f5cbfd466f81088ed')
 
 build() {
   export YAAK_VERSION="${pkgver}"
-  export TAURI_APP_PATH="${srcdir}/yaak/crates-tauri/"
   export CI=true
 
   cd "${srcdir}/yaak/"
   npm ci
   npm run replace-version
-  npm run tauri build -- --bundles deb
+
+  cd "${srcdir}/yaak/crates-tauri/yaak-app-client/"
+  node ../../node_modules/@tauri-apps/cli/tauri.js build --bundles deb
 
   sed -e 's|Name=yaak|Name=Yaak|' \
     -e '$aGenericName=API Client' \
@@ -75,4 +76,9 @@ package() {
   install -Dm644 \
     "${srcdir}/yaak/LICENSE" \
     "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
+
+  # Alias old binary name (yaak-app)
+  ln -sr \
+    "${pkgdir}/usr/bin/yaak-app-client" \
+    "${pkgdir}/usr/bin/yaak-app"
 }
