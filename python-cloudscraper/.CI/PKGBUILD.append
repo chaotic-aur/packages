@@ -1,0 +1,27 @@
+if [ $(vercmp 3.0.0 "${pkgver:0}") -gt 0 ]; then
+  pkgver=3.0.0
+  pkgrel=1
+
+  _commit=9ea528a8675f1bebd49ff853d142e94988a95178
+  source=("$pkgname-$_commit.tar.gz::$url/archive/$_commit.tar.gz")
+  sha256sums=('9407631f3b8ac7eec4f707e44756cc413f5c25c4aa0dc7ec418af2b5a25e96da')
+
+  _archive="$_name-$_commit"
+
+  depends+=('nodejs')
+  checkdepends=(${checkdepends[@]//python-js2py})
+  unset optdepends
+
+  prepare() {
+    sed -E -e '/interpreter/s&js2py&nodejs&g' -i "$_archive/cloudscraper/__init__.py"
+  }
+
+  check() {
+    local _test_opts=(
+      --deselect tests/test_modern.py::TestCloudScraper::test_403_handling
+    )
+
+    cd "$_archive"
+    pytest "${_test_opts[@]}"
+  }
+fi
