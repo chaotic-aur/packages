@@ -1,1 +1,8 @@
-license=('GPL-3.0-only')
+makedepends=(${makedepends[@]//dotnet-sdk-*/dotnet-sdk})
+
+# fix disable shortcut patch
+eval "_orig_$(declare -f prepare | sed -E -e 's&\b(patch)\b&\1 -F100&')"
+prepare() {
+  sed -E -e '/Reactive/s&(public)&\1 partial&' -e 's&Reactive&ObservableProperty&' -i mesen-disable-shortcut-creation.patch
+  _orig_prepare
+}
