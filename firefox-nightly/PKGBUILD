@@ -1,7 +1,7 @@
 # Maintainer: aur.chaotic.cx
 
 ## options
-: ${_build_pgo:=false}     # profile-guided optimization; ~20% better benchmarks, 3x build time
+: ${_build_pgo:=true}      # profile-guided optimization; ~20% better benchmarks, 3x build time
 : ${_build_pgo_reuse:=try} # reuse previously generated profile
 : ${_build_pgo_xvfb:=true} # use xfvb for profiling, otherwise xwayland-run
 
@@ -12,12 +12,12 @@
 
 _pkgname=firefox-nightly
 pkgname="$_pkgname"
-pkgver=154.0a1+20260719.21+h377d3fc52
+pkgver=155.0a1+20260722.10+h33e6285c7
 pkgrel=1
 pkgdesc="Fast, Private & Safe Web Browser"
 url="https://www.mozilla.org/firefox/channel/#nightly"
 license=('MPL-2.0')
-arch=(x86_64)
+arch=('x86_64')
 
 depends=(
   dbus
@@ -102,23 +102,27 @@ _get_version_info() {
   local _info_url _filename _response
   _info_url="https://archive.mozilla.org/pub/firefox/nightly/latest-mozilla-central"
   _filename=$(
-    curl -Ssf "$_info_url/" | grep linux-x86_64\.txt \
-      | sed -E 's&^.*href=".*/(firefox-.*\.linux-x86_64\.txt)".*$&\1&' \
+    curl -Ssf "$_info_url/" \
+      | grep -Po '>\Kfirefox-\S+\.linux-x86_64\.txt(?=<)' \
       | sort -rV | head -1
   )
   _response=$(curl -Ssf "$_info_url/$_filename")
 
-  _version=$(printf '%s' "$_filename" | sed -E 's&^firefox-([0-9]+\.[0-9].*)\.en-US\.linux-x86_64\.txt$&\1&')
-  _date=$(printf '%s' "$_response" | head -1 | sed -E 's&^([0-9]{8})([0-9]*)$&\1.\2&')
-  _revision=$(printf '%s' "$_response" | tail -1 | sed -E 's&^.*/rev/([a-f0-9]+)$&\1&')
-
+  _version=$(grep -Pom1 'firefox-\K\S+(?=\.en-US)' <<< "$_filename")
+  _date=$(sed -E 's&^([0-9]{8})([0-9]*)$&\1.\2&' <<< "$_response" | head -1)
+  _revision=$(grep -Pom1 '/rev/\K[a-f0-9]{40}' <<< "$_response")
   _pkgver="${_version:?}+${_date::11}+h${_revision::9}"
+
+  _commit=$(
+    curl -Ssf "https://hg-edge.mozilla.org/mozilla-central/rev/$_revision" \
+      | grep -Po 'github.com/\S+/\K[a-f0-9]{40}'
+  )
 }
 _get_version_info
 
-_pkgsrc="mozilla-central-${_revision:?}"
+_pkgsrc="firefox-${_commit:?}"
 source=(
-  "mozilla-central-$_pkgver.zip"::"https://hg.mozilla.org/mozilla-central/archive/$_revision.zip"
+  "firefox-$_pkgver.tar.gz"::"https://github.com/mozilla-firefox/firefox/archive/$_commit.tar.gz"
   'firefox-nightly-symbolic.svg'
   'firefox-nightly.desktop'
   '0001-Install-under-remoting-name.patch'
