@@ -1,2 +1,2 @@
 REQ_ORIGIN=chaotic/xiota # manage aur
-REQ_REASON=depends:make # gyroflow-git, nomacs, obs-backgroundremoval, siril-git
+REQ_REASON=depends:make # gyroflow-git, obs-backgroundremoval, siril-git
