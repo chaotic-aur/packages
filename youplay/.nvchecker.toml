@@ -1,0 +1,5 @@
+[youplay]
+source = "git"
+git = "https://codeberg.org/ralfhersel/youplay.git"
+include_regex = 'v[0-9.]+'
+prefix = "v"

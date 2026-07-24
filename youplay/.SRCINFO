@@ -1,7 +1,7 @@
 pkgbase = youplay
 	pkgdesc = Search, download and play music from YouTube
 	pkgver = 0.46
-	pkgrel = 1
+	pkgrel = 2
 	url = https://codeberg.org/ralfhersel/youplay
 	arch = any
 	license = GPL-3.0-only
@@ -12,7 +12,7 @@ pkgbase = youplay
 	conflicts = youplay-pyqt6
 	conflicts = youplay-qt6
 	source = youplay-0.46.tar.gz::https://codeberg.org/ralfhersel/youplay/archive/v0.46.tar.gz
-	sha256sums = SKIP
+	sha256sums = 290a14888c5f0ff056c841097a721d29bebaae225c5d560052717ed876396bcb
 
 pkgname = youplay
 	depends = ffmpeg

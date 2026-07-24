@@ -5,7 +5,7 @@
 _pkgname="youplay"
 pkgname="$_pkgname"
 pkgver=0.46
-pkgrel=1
+pkgrel=2
 pkgdesc="Search, download and play music from YouTube"
 url="https://codeberg.org/ralfhersel/youplay"
 license=('GPL-3.0-only')
@@ -24,7 +24,7 @@ conflicts=(
 _pkgsrc="$_pkgname"
 _pkgext="tar.gz"
 source=("$_pkgname-$pkgver.$_pkgext"::"$url/archive/v$pkgver.$_pkgext")
-sha256sums=('SKIP')
+sha256sums=('290a14888c5f0ff056c841097a721d29bebaae225c5d560052717ed876396bcb')
 
 package() {
   depends+=(
