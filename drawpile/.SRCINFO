@@ -19,6 +19,6 @@ pkgbase = drawpile
 	conflicts = drawpile-server
 	conflicts = drawpile-tools
 	source = drawpile::git+https://github.com/drawpile/Drawpile.git#tag=2.3.0
-	sha256sums = SKIP
+	sha256sums = 8f018c99b19621ce1639af3c808c8012916ad02e291e215c99fb482e9c3f78f5
 
 pkgname = drawpile

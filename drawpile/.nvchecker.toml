@@ -1,0 +1,4 @@
+[drawpile]
+source = "git"
+git = "https://github.com/drawpile/Drawpile.git"
+include_regex = '[0-9.]+'

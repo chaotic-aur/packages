@@ -32,7 +32,7 @@ conflicts=(
 
 _pkgsrc="$_pkgname"
 source=("$_pkgsrc"::"git+$url.git#tag=$pkgver")
-sha256sums=('SKIP')
+sha256sums=('8f018c99b19621ce1639af3c808c8012916ad02e291e215c99fb482e9c3f78f5')
 
 prepare() {
   cd "$_pkgsrc"
@@ -48,7 +48,7 @@ build() {
     -G Ninja
     -DCMAKE_BUILD_TYPE=Release
     -DCMAKE_INSTALL_PREFIX='/usr'
-    -Wno-dev
+    -Wno-author
 
     -DBUILTINSERVER=ON
     -DCLIENT=ON
