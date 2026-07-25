@@ -1,0 +1,9 @@
+unset options
+
+pkgdesc="${pkgdesc% (*}"
+arch=('any')
+
+depends=("${_electron}")
+
+# ignore if directory doesn't exist
+eval "$(declare -f package | sed -e '/app\.asar\.unpacked/s&$& || true&')"
