@@ -1,13 +1,5 @@
-export CMAKE_POLICY_VERSION_MINIMUM=3.5
-
 url="https://github.com/LMMS/lmms"
 license=('GPL-2.0-or-later')
-
-depends=(
-  ${depends[@]//sdl*/}
-  'qt5-svg'
-  'sdl2'
-)
 
 _pkgsrc="lmms"
 pkgver() {
