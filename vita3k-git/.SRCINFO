@@ -1,12 +1,14 @@
 pkgbase = vita3k-git
 	pkgdesc = Experimental PlayStation Vita emulator
-	pkgver = r4058.6063154f6
+	pkgver = r4066.5ded8c78f
 	pkgrel = 1
 	url = https://github.com/Vita3K/Vita3K
 	arch = x86_64
 	license = GPL-2.0-or-later
+	makedepends = clang
 	makedepends = cmake
 	makedepends = git
+	makedepends = lld
 	makedepends = ninja
 	makedepends = qt6-tools
 	makedepends = alsa-lib
@@ -43,6 +45,8 @@ pkgbase = vita3k-git
 	conflicts = vita3k
 	options = !lto
 	source = vita3k::git+https://github.com/Vita3K/Vita3K.git
+	source = 0001-disable_startup_update_check.patch
 	sha256sums = SKIP
+	sha256sums = 4c1ed321e11f5b8ca22ba9af5c8ed3daefdd00d64d1c01b2a58ec5eb2286a38c
 
 pkgname = vita3k-git

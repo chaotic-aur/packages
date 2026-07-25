@@ -4,7 +4,7 @@
 
 _pkgname="vita3k"
 pkgname="$_pkgname-git"
-pkgver=r4058.6063154f6
+pkgver=r4066.5ded8c78f
 pkgrel=1
 pkgdesc="Experimental PlayStation Vita emulator"
 url="https://github.com/Vita3K/Vita3K"
@@ -21,8 +21,10 @@ depends=(
   'qt6-svg'
 )
 makedepends=(
+  'clang'
   'cmake'
   'git'
+  'lld'
   'ninja'
   'qt6-tools'
 
@@ -60,8 +62,14 @@ conflicts=("$_pkgname")
 options=('!lto')
 
 _pkgsrc="$_pkgname"
-source=("$_pkgsrc"::"git+$url.git")
-sha256sums=('SKIP')
+source=(
+  "$_pkgsrc"::"git+$url.git"
+  '0001-disable_startup_update_check.patch'
+)
+sha256sums=(
+  'SKIP'
+  '4c1ed321e11f5b8ca22ba9af5c8ed3daefdd00d64d1c01b2a58ec5eb2286a38c'
+)
 
 pkgver() {
   cd "$_pkgsrc"
@@ -72,12 +80,25 @@ prepare() {
   cd "$_pkgsrc"
   git submodule update --init --depth=1 --recursive
 
+  local src
+  for src in "${source[@]}"; do
+    src="${src%%::*}"
+    src="${src##*/}"
+    src="${src%.zst}"
+    if [[ $src == *.patch ]]; then
+      printf '\nApplying patch: %s\n' "$src"
+      patch -Np1 -F100 -i "${srcdir:?}/$src"
+    fi
+  done
+
   # Needed to have correct title version
   git remote set-url origin "$url.git"
 }
 
 build() {
-  export LDFLAGS+=" -Wl,--copy-dt-needed-entries"
+  export CC=clang
+  export CXX=clang++
+  export LDFLAGS+=" -fuse-ld=lld"
 
   local _cmake_options=(
     -B build
@@ -86,11 +107,10 @@ build() {
     -DCMAKE_BUILD_TYPE=None
     -DCMAKE_INSTALL_PREFIX='/usr'
     -DBUILD_TESTING=OFF
-    -Wno-dev
+    -Wno-author
 
     -DUSE_DISCORD_RICH_PRESENCE=OFF
     -DUSE_SANITIZERS=OFF # cubeb
-    -DUSE_VITA3K_UPDATE=OFF
     -DXXH_X86DISPATCH_ALLOW_AVX=ON
   )
 
@@ -103,17 +123,9 @@ package() {
   cp -r "build/bin"/* "$pkgdir/$_install_path/$_pkgname/"
   ln -sf "/$_install_path/$_pkgname/Vita3K" "$pkgdir/usr/bin/$_pkgname"
 
-  install -Dm644 "$_pkgsrc/data/image/icon.png" "$pkgdir/usr/share/pixmaps/$_pkgname.png"
+  install -Dm644 "build/bin/org.vita3k.vita3k.metainfo.xml" -t "$pkgdir/usr/share/metadata/"
 
-  install -Dm644 /dev/stdin "$pkgdir/usr/share/applications/$_pkgname.desktop" << END
-[Desktop Entry]
-Type=Application
-Name=Vita3K
-GenericName=PlayStation Vita Emulator
-Icon=$_pkgname
-Exec=$_pkgname
-Comment=$pkgdesc
-Categories=Game;Emulator;
-Terminal=false
-END
+  install -Dm644 "$_pkgsrc/dist/image/org.vita3k.vita3k.svg" -t "$pkgdir/usr/share/icons/hicolor/scalable/apps/"
+
+  install -Dm644 "$_pkgsrc/dist/linux/org.vita3k.vita3k.desktop" -t "$pkgdir/usr/share/applications/"
 }

@@ -1,0 +1,41 @@
+diff --git a/vita3k/config/include/config/config.h b/vita3k/config/include/config/config.h
+index 16cb52280..f3ec48773 100644
+--- a/vita3k/config/include/config/config.h
++++ b/vita3k/config/include/config/config.h
+@@ -191,8 +191,8 @@ using PhysicalKeyCode = input::PhysicalKeyCode;
+     code(std::string, "user-lang", std::string{}, user_lang)                                            \
+     code(bool, "show-welcome", true, show_welcome)                                                      \
+     code(bool, "warn-missing-firmware", true, warn_missing_firmware)                                    \
+-    code(bool, "check-for-updates", true, check_for_updates)                                            \
+-    code(int, "check-for-updates-mode", static_cast<int>(UPDATE_STARTUP_PROMPT), check_for_updates_mode)\
++    code(bool, "check-for-updates", false, check_for_updates)                                            \
++    code(int, "check-for-updates-mode", static_cast<int>(UPDATE_STARTUP_OFF), check_for_updates_mode)\
+     code(int, "file-loading-delay", 0, file_loading_delay)                                              \
+     code(bool, "shader-cache", true, shader_cache)                                                      \
+     code(bool, "spirv-shader", false, spirv_shader)                                                     \
+diff --git a/vita3k/gui-qt/src/main_window.cpp b/vita3k/gui-qt/src/main_window.cpp
+index beb788a3e..3dc47d05f 100644
+--- a/vita3k/gui-qt/src/main_window.cpp
++++ b/vita3k/gui-qt/src/main_window.cpp
+@@ -549,7 +549,7 @@ void MainWindow::initialize() {
+         welcome.exec();
+     }
+ 
+-    if (m_update_manager) {
++    if (false) {
+         const auto startup_mode = static_cast<UpdateStartupMode>(emuenv.cfg.check_for_updates_mode);
+         if (startup_mode != UPDATE_STARTUP_OFF) {
+             QTimer::singleShot(0, this, [this, startup_mode]() {
+diff --git a/vita3k/gui-qt/src/settings_dialog.cpp b/vita3k/gui-qt/src/settings_dialog.cpp
+index eeef2da4f..151581808 100644
+--- a/vita3k/gui-qt/src/settings_dialog.cpp
++++ b/vita3k/gui-qt/src/settings_dialog.cpp
+@@ -98,6 +98,8 @@ SettingsDialog::SettingsDialog(EmuEnvState &emuenv,
+     , m_initial_tab(initial_tab)
+     , m_ui(std::make_unique<Ui::vita3k_settings_dialog>()) {
+     m_ui->setupUi(this);
++    m_ui->label_check_for_updates_mode->setVisible(false);
++    m_ui->check_for_updates_mode->setVisible(false);
+     setWindowModality(Qt::NonModal);
+     setWindowFlag(Qt::Window, true);
+     setWindowFlag(Qt::WindowSystemMenuHint, true);
