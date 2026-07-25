@@ -1,9 +1,11 @@
 # Maintainer: aur.chaotic.cx
 
+: ${_install_path:=usr/lib}
+
 _pkgname="nyrna"
 pkgname="$_pkgname"
 pkgver=2.27.2
-pkgrel=1
+pkgrel=2
 pkgdesc='Suspend games and applications at any time and resume whenever you wish'
 url="https://github.com/Merrit/nyrna"
 license=('GPL-3.0-or-later')
@@ -20,17 +22,18 @@ depends=(
 makedepends=(
   'clang'
   'cmake'
-  'fvm' # AUR
+  'fvm'
   'git'
   'lld'
   'llvm'
   'ninja'
+  'patchelf'
 )
 
 _pkgsrc="$_pkgname-$pkgver"
 _pkgext="tar.gz"
-source=("$_pkgsrc.$_pkgext::https://github.com/Merrit/nyrna/archive/refs/tags/v$pkgver.$_pkgext")
-sha256sums=('SKIP')
+source=("$_pkgsrc.$_pkgext"::"https://github.com/Merrit/nyrna/archive/refs/tags/v$pkgver.$_pkgext")
+sha256sums=('85849f51aad90fb8f17ea73ba9863d173d6c9fb4d25b09d1be5de8cd408ef790')
 
 prepare() {
   sed -i 's/\-Werror//g' "$_pkgsrc/linux/CMakeLists.txt"
@@ -55,14 +58,23 @@ build() {
 }
 
 package() {
-  install -dm755 "$pkgdir/opt/$pkgname"
-  cp -r "$srcdir/$pkgname-$pkgver/build/linux/x64/release/bundle/data" "$pkgdir/opt/$pkgname"
-  cp -r "$srcdir/$pkgname-$pkgver/build/linux/x64/release/bundle/lib" "$pkgdir/opt/$pkgname"
-  install -Dm755 "$srcdir/$pkgname-$pkgver/build/linux/x64/release/bundle/$pkgname" "$pkgdir/opt/$pkgname"
+  cd "$_pkgsrc"
 
-  install -dm755 "$pkgdir/usr/bin/"
-  ln -s "/opt/$pkgname/$pkgname" "$pkgdir/usr/bin/$pkgname"
+  # files
+  install -Dm755 "build/linux/x64/release/bundle/$_pkgname" -t "$pkgdir/$_install_path/$_pkgname/"
+  cp -r "build/linux/x64/release/bundle/data" "$pkgdir/$_install_path/$_pkgname/"
+  cp -r "build/linux/x64/release/bundle/lib" "$pkgdir/$_install_path/$_pkgname/"
 
-  install -Dm644 "$srcdir/$pkgname-$pkgver/packaging/linux/codes.merritt.Nyrna.desktop" "$pkgdir/usr/share/applications/codes.merritt.Nyrna.desktop"
-  install -Dm644 "$srcdir/$pkgname-$pkgver/assets/icons/codes.merritt.Nyrna.png" "$pkgdir/usr/share/pixmaps/codes.merritt.Nyrna.png"
+  # symlink
+  mkdir -pm755 "$pkgdir/usr/bin/"
+  ln -s "/$_install_path/$_pkgname/$_pkgname" "$pkgdir/usr/bin/$_pkgname"
+
+  # launcher
+  install -Dm644 "packaging/linux/codes.merritt.Nyrna.desktop" -t "$pkgdir/usr/share/applications/"
+
+  # icon
+  install -Dm644 "assets/icons/codes.merritt.Nyrna.svg" -t "$pkgdir/usr/share/icons/hicolor/scalable/apps/"
+
+  # fix insecure rpath
+  find "$pkgdir/$_install_path/$_pkgname/lib" -type f -name "*.so" -exec patchelf --set-rpath '$ORIGIN' {} \;
 }
