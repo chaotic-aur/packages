@@ -1,7 +1,7 @@
 # Maintainer: Joan Bruguera Micó <joanbrugueram@gmail.com>
 pkgname=nix-user-chroot
 pkgver=2.1.1
-pkgrel=1
+pkgrel=2
 pkgdesc="Run and install nix as user without root permissions."
 url="https://github.com/nix-community/nix-user-chroot"
 arch=(x86_64)
@@ -27,11 +27,12 @@ check() {
   fi
 
   # The tests require NIX_USER_CHROOT_TEST_BUSYBOX to be set
-  NIX_USER_CHROOT_TEST_BUSYBOX=$(which busybox) cargo test --release --locked
+  NIX_USER_CHROOT_TEST_BUSYBOX=$(command -v busybox) cargo test --release --locked
 }
 
 package() {
   cd $pkgname-$pkgver
   install -Dt "$pkgdir/usr/bin" target/release/nix-user-chroot
   install -Dt "$pkgdir/usr/share/doc/$pkgname" -m644 README.md
+  install -Dt "$pkgdir/usr/share/licenses/$pkgname" -m644 LICENSE
 }
