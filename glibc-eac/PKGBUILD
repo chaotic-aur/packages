@@ -8,8 +8,8 @@
 
 pkgbase=glibc
 pkgname=(glibc lib32-glibc glibc-locales)
-pkgver=2.43+r37+gfdf10644d6ee
-_commit=fdf10644d6ee345c7b5277c3fa009c1bedb92d60
+pkgver=2.44+r3+g0b05bc142249
+_commit=0b05bc142249ac47e72be5cad5c37f33f4bb68d4
 pkgrel=1
 arch=(x86_64 aarch64)
 url='https://www.gnu.org/software/libc'
@@ -39,7 +39,7 @@ source=(
 )
 validpgpkeys=(7273542B39962DF7B299931416792B4EA25340F8 # Carlos O'Donell
   BC7C7372637EC10C57D7AA6579C43DFBF1CF2187)            # Siddhesh Poyarekar
-b2sums=('be5904c09dde9fb0aac81b2c28e1f59dbd4a8e1abcf4016c812726d77aab7409a46ccd2059486a1063e19907d0e4f920dce8d136c9229fbc91b752b0489a3c2e'
+b2sums=('43cfed60ea2fd6f560be0dc0cea5fce8accaa8dde30f80a9c5a0cb57f82968e7c59dae21520c2a9eca9097e75a28af57e5a988c5e47889cb90e3d4831821bf83'
   'c859bf2dfd361754c9e3bbd89f10de31f8e81fd95dc67b77d10cb44e23834b096ba3caa65fbc1bd655a8696c6450dfd5a096c476b3abf5c7e125123f97ae1a72'
   'bdc313a77d7158768b06864fdee6419b25f9eda5b942a394713bf61e289a37993d003c779761be4a70d9febeee2377ba2912f459e879801e3d80f4d0550a2592'
   '7c265e6d36a5c0dff127093580827d15519b6c7205c2e1300e82f0fb5b9dd00b6accb40c56581f18179c4fbbc95bd2bf1b900ace867a83accde0969f7b609f8a'
@@ -89,7 +89,6 @@ build() {
   # locale-gen segfaults without this on glibc 2.42
   if [[ ${CARCH} = "aarch64" ]]; then
     CFLAGS=${CFLAGS/-fno-plt/}
-    _configure_flags+=(--enable-memory-tagging)
   fi
 
   (
@@ -162,6 +161,9 @@ check() (
   # The following tests fail due to restrictions in the Arch build system
   # The correct fix is to add the following to the systemd-nspawn call:
   # --system-call-filter="@clock @memlock @pkey"
+  _skip_test tst-ldconfig-cache elf/Makefile
+  _skip_test tst-pthread-gdb-attach nptl/Makefile
+  _skip_test tst-pthread-gdb-attach-static nptl/Makefile
   _skip_test test-errno-linux sysdeps/unix/sysv/linux/Makefile
   _skip_test tst-mlock2 sysdeps/unix/sysv/linux/Makefile
   _skip_test tst-ntp_gettime sysdeps/unix/sysv/linux/Makefile
