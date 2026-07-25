@@ -1,7 +1,7 @@
 pkgbase = pgmodeler
 	pkgdesc = An open source CASE tool for modeling PostgreSQL databases
 	pkgver = 1.2.3
-	pkgrel = 1
+	pkgrel = 2
 	url = https://github.com/nullptrlabs/pgmodeler
 	arch = x86_64
 	license = GPL-3.0-only
@@ -10,6 +10,6 @@ pkgbase = pgmodeler
 	depends = postgresql-libs
 	depends = libxml2
 	source = pgmodeler-1.2.3.tar.gz::https://github.com/nullptrlabs/pgmodeler/archive/v1.2.3.tar.gz
-	sha256sums = SKIP
+	sha256sums = 862a8caf8d3822b62bc584ed17ba53d1a61733b92d3d5ba29e1be47eadf8f061
 
 pkgname = pgmodeler
