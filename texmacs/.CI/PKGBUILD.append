@@ -1,0 +1,15 @@
+export CMAKE_GENERATOR=Ninja
+makedepends+=('ninja')
+
+depends=(${depends[@]//qt5*/})
+depends=(${depends[@]//libxext*/})
+depends+=(
+  'hicolor-icon-theme'
+  'python-lxml'
+  'python-sympy'
+  'qt6-base'
+  'qt6-svg'
+)
+makedepends+=('qt6-5compat')
+
+eval "$(declare -f build | sed -E -e 's&(-DCMAKE_BUILD_TYPE=None)&\1 -DTEXMACS_GUI=Qt6&')"
