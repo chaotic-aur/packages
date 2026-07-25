@@ -115,9 +115,9 @@ prepare() {
     -i frontend/cmake/os-freebsd.cmake frontend/cmake/os-linux.cmake
 
   sed -e '/GuiPrivate/d' \
-    -i frontend/plugins/aja-output-ui/CMakeLists.txt \
-    frontend/plugins/decklink-output-ui/CMakeLists.txt \
-    frontend/plugins/frontend-tools/CMakeLists.txt
+    -i plugins/aja-output-ui/CMakeLists.txt \
+    plugins/decklink-output-ui/CMakeLists.txt \
+    plugins/frontend-tools/CMakeLists.txt
 }
 
 build() (
