@@ -3,7 +3,7 @@
 _pkgname="smenu"
 pkgname="$_pkgname"
 pkgver=1.5.0
-pkgrel=1
+pkgrel=2
 pkgdesc="A powerful and versatile selection tool for interactive or scripting use"
 arch=('x86_64')
 url="https://github.com/p-gen/smenu"
@@ -13,7 +13,7 @@ depends=('ncurses')
 _pkgsrc="$pkgname-$pkgver"
 _pkgext="tar.gz"
 source=("$_pkgsrc.$_pkgext"::"$url/archive/v$pkgver.$_pkgext")
-sha256sums=('SKIP')
+sha256sums=('4903990aa870ced8bea48963a5430af170ad2ba3ffc0d3418fd78970fc470a3c')
 
 build() {
   cd "$_pkgsrc"
