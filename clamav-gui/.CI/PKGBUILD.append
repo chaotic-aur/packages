@@ -1,5 +1,12 @@
+export CMAKE_GENERATOR=Ninja
+
 depends=(
   'clamav'
   'hicolor-icon-theme'
   'qt6-base'
+)
+makedepends=(
+  'cmake'
+  'ninja'
+  'qt6-tools'
 )
