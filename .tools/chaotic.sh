@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # deps: aria2 getoptions shfmt trash-cli
 
-VERSION="0.0.9"
+VERSION="0.0.10"
 
 if [ "${EUID:-$(id -u)}" -eq 0 ]; then
   echo "Do not run as root user."
@@ -61,6 +61,9 @@ parser_definition() {
   param ISSUE -n --issue -- "github issue number"
 
   flag CHECKSYNC --check-sync --cs -- "[package-list] - check package sync with aur"
+  flag NVCHECKER --check-nvchecker --cn -- "[package-list] - check custom packages for updates with nvchecker"
+  flag CHECKORPHAN --check-orphan --co -- "[package-list] - check whether packages are orphaned"
+  flag CHECKOUTDATED --check-outdated --ood -- "[package-list] - check whether packages are orphaned"
 
   flag CHECK -c --check -- "create lists of broken/missing *packages*"
   flag CHECKBASE --check-base -- "create list of broken/missing *pkgbases*"
@@ -235,24 +238,58 @@ chaotic_check_sync_aux() {
   _old_at=$(git log -1 --pretty="format:%at" -- "$_path") # author date
   _old_ct=$(git log -1 --pretty="format:%ct" -- "$_path") # commit date
 
-  _old=$(( _old_at > _old_ct ? _old_at : _old_ct ))
-  _new=$(grep -m1 '"PackageBase":"'${_pkg%/}'"' "$_working_dir/packages-meta-ext-v1.json" | grep -Eo '"LastModified":[0-9]+' | cut -d':' -f2)
+  _old=$((_old_at > _old_ct ? _old_at : _old_ct))
+  _new=$(
+    grep -m1 "$(printf '"PackageBase":"%s"' "${_pkg%/}")" "$_working_dir/packages-meta-ext-v1.json" \
+      | grep -Eo '"LastModified":[0-9]+' \
+      | cut -d':' -f2
+  )
 
   if [[ $_old =~ ^[0-9]{10,}$ ]] && [[ $_new =~ ^[0-9]{10,}$ ]]; then
-    (( _old < _new )) && echo "$_pkg"
+    ((_old < _new)) && echo "$_pkg"
   else
     echo "# error: $_pkg"
     echo
   fi
 }
 
-chaotic_check_sync() (
+chaotic_check_orphan_aux() {
+  local _path _pkg _old _old_at _old_ct _new
+  _path="${1:?}"
+  _pkg="${2:?}"
+
+  if grep -q 'CI_PKGBUILD_SOURCE=aur' "$_path/.CI/config"; then
+    if grep -qm1 "$(printf '"PackageBase":"%s".*"Maintainer":null' "${_pkg%/}")" "$_working_dir/packages-meta-ext-v1.json"; then
+      echo "${_pkg%/}"
+    fi
+  fi
+}
+
+chaotic_check_outdated_aux() {
+  local _path _pkg _old _old_at _old_ct _new
+  _path="${1:?}"
+  _pkg="${2:?}"
+
+  if grep -q 'CI_PKGBUILD_SOURCE=aur' "$_path/.CI/config"; then
+    if grep -Eqm1 "$(printf '"PackageBase":"%s".*"OutOfDate":[0-9]+' "${_pkg%/}")" "$_working_dir/packages-meta-ext-v1.json"; then
+      echo "${_pkg%/}"
+    fi
+  fi
+}
+
+chaotic_check_packages() (
   if [ $# -eq 0 ] || [ -z "$1" ]; then
+    >&2 echo "# error: missing function name"
+    return 1
+  fi
+
+  if [ $# -eq 0 ] || [ -z "$2" ]; then
     >&2 echo "# error: missing package name"
     return 1
   fi
 
-  export -f chaotic_check_sync_aux
+  local _aux_function="$1"
+  export -f "$_aux_function"
   export _working_dir
 
   local p _tmp _path _pkg
@@ -267,9 +304,34 @@ chaotic_check_sync() (
     [ ! -f "$_path/.CI/config" ] && continue
 
     if grep -q 'CI_PKGBUILD_SOURCE=aur' "$_path/.CI/config"; then
-      printf 'chaotic_check_sync_aux "%s" "%s"\n' "$_path" "$_pkg"
+      printf '%s "%s" "%s"\n' "$_aux_function" "$_path" "$_pkg"
     fi
   done | parallel -j $((2 * $(nproc)))
+)
+
+chaotic_check_nvchecker() (
+  if [ $# -eq 0 ] || [ -z "$1" ]; then
+    >&2 echo "# error: missing package name"
+    return 1
+  fi
+
+  local p _tmp _path _pkg
+  for p in "$@"; do
+    if _tmp="$(chaotic_proc_path_pkg "$p")"; then
+      _path="${_tmp%%::*}"
+      _pkg="${_tmp##*::}"
+    else
+      continue
+    fi
+
+    [ ! -f "$_path/.CI/config" ] && continue
+
+    if grep -q 'CI_PKGBUILD_SOURCE=custom' "$_path/.CI/config"; then
+      if grep -q 'CI_NVCHECKER=true' "$_path/.CI/config"; then
+        pkgctl version check "$_path"
+      fi
+    fi
+  done
 )
 
 chaotic_add() (
@@ -323,7 +385,7 @@ END
           if [[ "${SKIP_AUR:-0}" -ne 0 && "${_pkg_url_base}" =~ aur\.archlinux\.org ]]; then
             continue
           else
-            if (( ! ${SNAPSHOT:-0} )); then
+            if ((!${SNAPSHOT:-0})); then
               if [[ "${_pkg_url_base}" =~ aur\.archlinux\.org ]]; then
                 >&2 echo "# info: cloning aur repo"
                 _repo="https://aur.archlinux.org/${_pkg:?}.git"
@@ -354,7 +416,7 @@ END
       if [[ -f "$_path/$_tmpname/.git/config" || -f "$_path/$_tmpname/PKGBUILD" ]]; then
         >&2 echo "# info: clearing destination directory"
         for i in "$_path"/* "$_path"/.*; do
-          if [[ -e "$i" && "$i" != "$_path/.CI" && "$i" !=  "$_path/$_tmpname" ]]; then
+          if [[ -e "$i" && "$i" != "$_path/.CI" && "$i" != "$_path/$_tmpname" ]]; then
             trash -f "$i"
           fi
         done
@@ -440,13 +502,13 @@ chaotic_trigger_rebuild() {
         sort -u \
           <(grep -Po 'CI_REBUILD_TRIGGERS=\K\S+' "$_path/.CI/config" | tr ':' '\n') \
           <(printf '%s\n' "$_trigger") \
-        | paste -sd ':'
+          | paste -sd ':'
       )
       if ! grep -qs '^CI_REBUILD_TRIGGERS=.*'"$_trigger" "$_path/.CI/config"; then
         sed -E -e 's&(CI_REBUILD_TRIGGERS)=\S+$&\1='"${_trigger_list}&" -i "$_path/.CI/config"
-        >&2 echo "# info: updating $_pkg triggers: ${_trigger_list[@]}"
+        >&2 echo "# info: updating $_pkg triggers: $_trigger_list"
       else
-        >&2 echo "# info: no change to $_pkg triggers: ${_trigger_list[@]}"
+        >&2 echo "# info: no change to $_pkg triggers: $_trigger_list"
       fi
     else
       sed -E -e 's&(CI_PKGBUILD_SOURCE=.*)$&CI_REBUILD_TRIGGERS='"$_trigger"'\n\1&' -i "$_path/.CI/config"
@@ -553,7 +615,15 @@ elif [ "$CHECKBASE" = 1 ]; then
   chaotic_check
 elif [ "$CHECKSYNC" = 1 ]; then
   chaotic_prepare_meta
-  chaotic_check_sync "$@"
+  chaotic_check_packages chaotic_check_sync_aux "$@"
+elif [ "$NVCHECKER" = 1 ]; then
+  chaotic_check_nvchecker "$@"
+elif [ "$CHECKORPHAN" = 1 ]; then
+  chaotic_prepare_meta
+  chaotic_check_packages chaotic_check_orphan_aux "$@"
+elif [ "$CHECKOUTDATED" = 1 ]; then
+  chaotic_prepare_meta
+  chaotic_check_packages chaotic_check_outdated_aux "$@"
 elif [ "$LIST" = 1 ]; then
   chaotic_prepare_packages
   chaotic_list
