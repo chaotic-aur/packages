@@ -1,0 +1,18 @@
+export CMAKE_GENERATOR=Ninja
+makedepends+=('ninja')
+
+url="https://github.com/dragotin/pdfquirk"
+license=('GPL-3.0-or-later')
+
+depends=(${depends[@]//qt6-tools/qt6-base})
+makedepends+=('qt6-tools' 'qt6-declarative')
+
+provides=('pdfquirk')
+conflicts=('pdfquirk')
+
+_pkgsrc="${pkgname/-git/}"
+pkgver() {
+  cd "$_pkgsrc"
+  git describe --long --tags --abbrev=7 --exclude='*[a-zA-Z][a-zA-Z]*' \
+    | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
+}
