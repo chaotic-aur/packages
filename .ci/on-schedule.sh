@@ -264,7 +264,7 @@ function package_major_change_sum_legal() {
 # Otherwise, no output is given
 function package_major_change() {
   set -euo pipefail
-  local newFileLine oldFileLine inSums allowPatterns allowPatterns
+  local newFileLine oldFileLine inSums allowPatterns allowRegexes
   inSums=false
   allowPatterns="${3:-}"
 
@@ -598,7 +598,11 @@ function update_nvchecker() {
     -v OLD_VERSION="$old_version" \
     "$pkgbase/PKGBUILD"
 
-  UTIL_UPDATE_CHECKSUMS "$pkgbase"
+  if ! UTIL_UPDATE_CHECKSUMS "$pkgbase"; then
+    UTIL_PRINT_WARNING "$pkgbase: Checksum update failed. Reverting changes."
+    git checkout -- "$pkgbase"
+    return 0
+  fi
 
   VARIABLES_UPDATE_NVCHECKER[CI_ANY_UPDATE]=true
   if [ "${CI_NVCHECKER_REVIEW:-false}" == "true" ]; then

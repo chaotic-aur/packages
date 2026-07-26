@@ -43,7 +43,7 @@ function update_source(source) {
 # Handle pkgver
 /^\s*pkgver *=/ {
     if (!is_source && !ignore_pkgver) {
-        print "pkgver=" "\"" TARGET_VERSION "\""
+        print "pkgver=" TARGET_VERSION
         ignore_pkgver = 1
         next_is_commit = 1
         next

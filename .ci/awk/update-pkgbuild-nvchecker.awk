@@ -31,7 +31,7 @@ function replace_old_version(line,    result) {
 }
 
 /^[[:space:]]*pkgver[[:space:]]*=/ {
-    print "pkgver=\"" TARGET_VERSION "\""
+    print "pkgver=" TARGET_VERSION
     next
 }
 
