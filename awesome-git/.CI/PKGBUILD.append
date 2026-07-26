@@ -1,3 +1,10 @@
+url="https://github.com/awesomeWM/awesome"
+license=('GPL-2.0-or-later')
+
+# keep using lua 5.4 for now
+_LUA_VER=5.4
+depends=(${depends[@]//lua*} lua54 lua54-lgi)
+
 _pkgsrc="$pkgname"
 pkgver() {
   cd "$_pkgsrc"
