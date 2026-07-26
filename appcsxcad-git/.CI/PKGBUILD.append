@@ -1,2 +1,0 @@
-depends=("${depends[@]/qt5-base/qt6-base}")
-makedepends+=('fast_float')
