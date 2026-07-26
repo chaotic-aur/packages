@@ -86,7 +86,7 @@ build() {
   # actual builds (support is built-in via --enable-fortify-source).
   CFLAGS=${CFLAGS/-Wp,-D_FORTIFY_SOURCE=3/}
 
-  # locale-gen segfaults without this on glibc 2.42
+  # ldconfig segfaults without this on glibc 2.44
   if [[ ${CARCH} = "aarch64" ]]; then
     CFLAGS=${CFLAGS/-fno-plt/}
   fi
