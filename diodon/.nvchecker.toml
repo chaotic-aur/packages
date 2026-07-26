@@ -1,0 +1,4 @@
+[diodon]
+source = "git"
+git = "https://github.com/diodon-dev/diodon.git"
+include_regex = '[0-9.]+'
