@@ -1,3 +1,3 @@
-CI_PACKAGE_BUMP=0.56.0.r17.g62d890e-1/1
+CI_PACKAGE_BUMP=0.56.0.r25.gd8dc503-1/1
 CI_REBUILD_TRIGGERS=hyprland-guiutils-git:libdisplay-info
 CI_PKGBUILD_SOURCE=aur
