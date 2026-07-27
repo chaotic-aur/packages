@@ -3,7 +3,7 @@
 _pkgname="vicinae"
 pkgname="$_pkgname"
 pkgver=0.24.0
-pkgrel=1
+pkgrel=2
 pkgdesc="A focused launcher for your desktop"
 url="https://github.com/vicinaehq/vicinae"
 license=('GPL-3.0-or-later')
@@ -31,6 +31,7 @@ makedepends=(
   'ninja'
   'npm'
   'qt6-shadertools'
+  'qt6-tools'
   'rapidfuzz-cpp'
 )
 
