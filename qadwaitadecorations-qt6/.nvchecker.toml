@@ -1,0 +1,4 @@
+[qadwaitadecorations-qt6]
+source = "git"
+git = "https://github.com/FedoraQt/QAdwaitaDecorations.git"
+include_regex = '[0-9.]+'

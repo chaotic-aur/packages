@@ -1,0 +1,40 @@
+diff --git a/README.md b/README.md
+index c8ece6c..8f045cf 100644
+--- a/README.md
++++ b/README.md
+@@ -23,6 +23,11 @@ It can be used by setting the QT_WAYLAND_DECORATION environment variable:
+ export QT_WAYLAND_DECORATION=adwaita
+ ```
+ 
++Newer version of Qt6 includes an implementation of this plugin. To force decorations from this plugin, set the QT_WAYLAND_DECORATION environment variable to the following value:
++```
++export QT_WAYLAND_DECORATION=qadwaitadecorations
++```
++
+ ## License
+ The code is under [LGPL 2.1](https://www.gnu.org/licenses/old-licenses/lgpl-2.1.en.html) with the "or any later version" clause.
+ 
+diff --git a/src/qadwaitadecorations.json b/src/qadwaitadecorations.json
+index 243abeb..62d8027 100644
+--- a/src/qadwaitadecorations.json
++++ b/src/qadwaitadecorations.json
+@@ -1,5 +1,5 @@
+ {
+-    "Keys": [ "adwaita", "gnome" ]
++    "Keys": [ "adwaita", "gnome", "qadwaitadecorations" ]
+ }
+ 
+ 
+diff --git a/src/qadwaitadecorationsplugin.cpp b/src/qadwaitadecorationsplugin.cpp
+index 8b624ab..07c152f 100644
+--- a/src/qadwaitadecorationsplugin.cpp
++++ b/src/qadwaitadecorationsplugin.cpp
+@@ -24,7 +24,7 @@ QWaylandAbstractDecoration *QAdwaitaDecorationsPlugin::create(const QString &sys
+                                                               const QStringList &paramList)
+ {
+     Q_UNUSED(paramList)
+-    if (system == "adwaita" || system == "gnome")
++    if (system == "adwaita" || system == "gnome" || system == "qadwaitadecorations")
+         return new QAdwaitaDecorations();
+     return nullptr;
+ }

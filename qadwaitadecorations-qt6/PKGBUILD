@@ -3,15 +3,16 @@
 _pkgname=qadwaitadecorations
 pkgname="$_pkgname-qt6"
 pkgver=0.1.7
-pkgrel=2
+pkgrel=3
 pkgdesc="Qt6 decoration plugin implementing Adwaita-like client-side decorations"
 url="https://github.com/FedoraQt/QAdwaitaDecorations"
-license=('LGPL2.1-or-later')
+license=('LGPL-2.1-or-later')
 arch=('x86_64')
 
 depends=(
-  'qt6-wayland'
+  'qt6-base'
   'qt6-svg'
+  'qt6-wayland'
 )
 makedepends=(
   'cmake'
@@ -20,15 +21,28 @@ makedepends=(
 
 _pkgsrc="QAdwaitaDecorations-$pkgver"
 _pkgext="tar.gz"
-source=("$_pkgname-$pkgver.$_pkgext"::"$url/archive/refs/tags/$pkgver.$_pkgext")
-sha256sums=('SKIP')
+source=(
+  "$_pkgname-$pkgver.$_pkgext"::"$url/archive/refs/tags/$pkgver.$_pkgext"
+  '0001-fix_qt6.patch'
+  '0002-env_qadwaitadecorations.patch'
+)
+sha256sums=(
+  '6cd96efca241a4b60fb6bf449c64dbad713b223c36e003ae89f45e34739d56d1'
+  '3cc69318c433214cdb0b4624ac28d26be3a8dc3eb79c5fe8e3b3c75b2880c890'
+  '661177263225f5d1fe278b540aeb5d969a3da65c9c457f2adb67fa820d310f68'
+)
 
 prepare() {
-  cd "$_pkgsrc"
-
-  # fix for Qt 6.10
-  sed -E -e 's&\b(Core)\b&\1 GuiPrivate WaylandClientPrivate&' -i CMakeLists.txt
-  sed -E -e 's&setMouseCursor&applyCursor&g' -i src/qadwaitadecorations.cpp
+  local src
+  for src in "${source[@]}"; do
+    src="${src%%::*}"
+    src="${src##*/}"
+    src="${src%.zst}"
+    if [[ $src == *.patch ]]; then
+      printf '\nApplying patch: %s\n' "$src"
+      patch -d "$_pkgsrc" -Np1 -F100 -i "${srcdir:?}/$src"
+    fi
+  done
 }
 
 build() {
@@ -39,7 +53,7 @@ build() {
     -DCMAKE_BUILD_TYPE=None
     -DCMAKE_INSTALL_PREFIX='/usr'
     -DUSE_QT6=true
-    -Wno-dev
+    -Wno-author
   )
 
   cmake "${_cmake_options[@]}"
