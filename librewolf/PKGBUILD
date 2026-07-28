@@ -10,12 +10,12 @@
 
 : ${_build_limit_cores:=true} # detect usable cores for parallelism, limited by RAM
 
-: ${_pkgrel:=3}
+: ${_pkgrel:=1}
 
 _pkgname="librewolf"
 pkgname="$_pkgname"
-pkgver=153.0
-pkgrel=3
+pkgver=153.0.1
+pkgrel=1
 pkgdesc="A web browser focused on privacy, security, and freedom"
 url="https://codeberg.org/librewolf/source"
 arch=('x86_64')
@@ -115,7 +115,7 @@ source=(
   "$_pkgname.desktop"
 )
 sha256sums=(
-  '48ace24a1d6af6c65e3a663402e7b0af154ff7206ab76fbe5c08311a745e39e3' # update-cksum
+  '4c0c110b08b71375db967ebab583ad03d9d659fe1f4a42e14f9f4dbbf8e04c9d' # update-cksum
   '1534094c1539a1a92fff3b5dd12f19d8a096723f32dbaf1efd72fe7646b0387f'
 )
 
