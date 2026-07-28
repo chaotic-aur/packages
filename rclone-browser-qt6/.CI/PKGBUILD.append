@@ -1,0 +1,2 @@
+provides=(rclone-browser)
+conflicts=(rclone-browser)
