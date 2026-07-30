@@ -1,5 +1,0 @@
-unset provides
-unset conflicts
-
-pkgdesc="Simple image editor written in Gtk# for drawing and painting"
-url="https://github.com/PintaProject/Pinta"

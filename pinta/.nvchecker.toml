@@ -1,4 +1,0 @@
-["pinta"]
-source = "github"
-github = "PintaProject/Pinta"
-use_latest_release = true
