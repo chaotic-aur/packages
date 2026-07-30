@@ -1,0 +1,1 @@
+depends=(${depends[@]//python-pyqt*/python-pyqt6})
