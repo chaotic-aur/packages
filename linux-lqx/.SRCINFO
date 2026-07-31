@@ -1,7 +1,7 @@
 pkgbase = linux-lqx
 	pkgdesc = Linux Liquorix
 	pkgver = 7.1.5.lqx1
-	pkgrel = 1
+	pkgrel = 3
 	url = https://liquorix.net/
 	arch = x86_64
 	license = GPL-2.0-only
@@ -32,6 +32,7 @@ pkgbase = linux-lqx
 
 pkgname = linux-lqx
 	pkgdesc = The Linux Liquorix kernel and modules
+	install = linux-lqx.install
 	depends = coreutils
 	depends = kmod
 	depends = initramfs
