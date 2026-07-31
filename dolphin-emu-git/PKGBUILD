@@ -4,7 +4,7 @@
 
 _pkgname="dolphin-emu"
 pkgname="$_pkgname-git"
-pkgver=2606.r13.gf6d1490
+pkgver=2606.r263.gf1b4345
 pkgrel=1
 pkgdesc="A Gamecube and Wii emulator"
 url="https://github.com/dolphin-emu/dolphin"
@@ -97,12 +97,6 @@ prepare() {
   git rm -r 'Externals/miniupnpc/miniupnp'
   git rm -r 'Externals/spirv_cross/SPIRV-Cross'
   git submodule update --init --depth=1
-
-  # Delete gcc specific options
-  sed '/_ARCHIVE_/d' -i CMakeLists.txt
-
-  # Relax glslang version requirement
-  #sed -E -e 's&(dolphin_find_optional_system_library\(glslang \S+)\b.*(\)).*$&\1\2&' -i CMakeLists.txt
 }
 
 pkgver() {
@@ -132,7 +126,7 @@ END
     -G Ninja
     -DCMAKE_BUILD_TYPE=None
     -DCMAKE_INSTALL_PREFIX='/usr'
-    -Wno-dev
+    -Wno-author
 
     # -DUSE_SYSTEM_LIBS=ON # default:AUTO
     -DENABLE_ANALYTICS=OFF # default:Opt-in
@@ -143,7 +137,7 @@ END
     -DUSE_SYSTEM_FMT=ON
     -DUSE_SYSTEM_LIBMGBA=OFF
     -DUSE_SYSTEM_XXHASH=ON
-)
+  )
 
   if [[ "${_build_clang::1}" == "t" ]]; then
     CC=clang
