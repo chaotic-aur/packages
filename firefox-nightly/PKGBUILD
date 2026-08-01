@@ -1,7 +1,7 @@
 # Maintainer: aur.chaotic.cx
 
 ## options
-: ${_build_pgo:=true}      # profile-guided optimization; ~20% better benchmarks, 3x build time
+: ${_build_pgo:=false}     # profile-guided optimization; ~20% better benchmarks, 3x build time
 : ${_build_pgo_reuse:=try} # reuse previously generated profile
 : ${_build_pgo_xvfb:=true} # use xfvb for profiling, otherwise xwayland-run
 
@@ -12,10 +12,10 @@
 
 _pkgname=firefox-nightly
 pkgname="$_pkgname"
-pkgver=155.0a1+20260722.10+h33e6285c7
+pkgver=155.0a1+20260801.09+h2336731ab
 pkgrel=1
 pkgdesc="Fast, Private & Safe Web Browser"
-url="https://www.mozilla.org/firefox/channel/#nightly"
+url="https://www.firefox.com/channel/desktop/#nightly"
 license=('MPL-2.0')
 arch=('x86_64')
 
@@ -115,7 +115,7 @@ _get_version_info() {
 
   _commit=$(
     curl -Ssf "https://hg-edge.mozilla.org/mozilla-central/rev/$_revision" \
-      | grep -Po 'github.com/\S+/\K[a-f0-9]{40}'
+      | grep -Pom1 'git commit.*github.com/\S+/\K[a-f0-9]{40}'
   )
 }
 _get_version_info
