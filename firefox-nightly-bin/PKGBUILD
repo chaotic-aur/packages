@@ -1,0 +1,146 @@
+# Maintainer: aur.chaotic.cx
+
+: ${_install_path:=usr/lib}
+
+_pkgname=firefox-nightly
+pkgname="$_pkgname-bin"
+pkgver=155.0a1+20260801.09+h2336731ab
+pkgrel=1
+pkgdesc="Fast, Private & Safe Web Browser"
+url="https://www.firefox.com/channel/desktop/#nightly"
+license=('MPL-2.0')
+arch=('x86_64')
+
+depends=(
+  bash
+  dbus
+  glib2
+  hicolor-icon-theme
+)
+optdepends=(
+  'hunspell-dictionary: Spell checking'
+  'libnotify: Notification integration'
+  'networkmanager: Location detection via available WiFi networks'
+  'speech-dispatcher: Text-to-Speech'
+  'xdg-desktop-portal: Screensharing with Wayland'
+)
+
+provides=("$_pkgname")
+conflicts=("$_pkgname")
+
+options=('!debug' '!strip')
+
+_get_version_info() {
+  [[ -n "$_pkgver" ]] && return
+
+  local _info_url _filename _response
+  _info_url="https://archive.mozilla.org/pub/firefox/nightly/latest-mozilla-central"
+  _filename=$(
+    curl -Ssf "$_info_url/" \
+      | grep -Po '>\Kfirefox-\S+\.linux-x86_64\.txt(?=<)' \
+      | sort -rV | head -1
+  )
+  _response=$(curl -Ssf "$_info_url/$_filename")
+
+  _version=$(grep -Pom1 'firefox-\K\S+(?=\.en-US)' <<< "$_filename")
+  _date=$(sed -E 's&^([0-9]{8})([0-9]*)$&\1.\2&' <<< "$_response" | head -1)
+  _revision=$(grep -Pom1 '/rev/\K[a-f0-9]{40}' <<< "$_response")
+  _pkgver="${_version:?}+${_date::11}+h${_revision::9}"
+
+  _commit=$(
+    curl -Ssf "https://hg-edge.mozilla.org/mozilla-central/rev/$_revision" \
+      | grep -Po 'github.com/\S+/\K[a-f0-9]{40}'
+  )
+
+  _bin_url="$_info_url/${_filename%.txt}.tar.xz"
+}
+_get_version_info
+
+_pkgsrc="firefox"
+source=(
+  "firefox-$_pkgver.tar.xz"::"$_bin_url"{,asc}
+  'firefox-nightly-symbolic.svg'
+  'firefox-nightly.desktop'
+)
+sha256sums=(
+  'SKIP'
+  'SKIP'
+  'cb00ea359d6daf37900102307be4f515f1b7ef9c98825c64cc55bb562449d0d8'
+  '4304902899987928ea51b7020fb1298b01fa77e327ef66ab00b061f767042b9f'
+)
+
+pkgver() {
+  # set by _get_version_info
+  echo "$_pkgver"
+}
+
+validpgpkeys=('14F26682D0916CDD81E37B6D61B7B526D98F0353') # Mozilla’s GnuPG release key
+
+package() {
+  # program files
+  mkdir -pm755 "$pkgdir/${_install_path}"
+  cp -r "$_pkgsrc" "$pkgdir/$_install_path/$_pkgname"
+
+  # wrapper
+  install -Dm755 /dev/stdin "$pkgdir/usr/bin/$_pkgname" << END
+#!/bin/sh
+exec "/$_install_path/$_pkgname/firefox" "\$@"
+END
+
+  # icons
+  install -Dm644 "$_pkgsrc/browser/chrome/icons/default/default128.png" "$pkgdir/usr/share/icons/hicolor/128x128/apps/$_pkgname.png"
+  install -Dm644 "$_pkgname-symbolic.svg" "$pkgdir/usr/share/icons/hicolor/symbolic/apps/$_pkgname-symbolic.svg"
+
+  # launcher
+  install -Dm644 "$_pkgname.desktop" -t "$pkgdir/usr/share/applications/"
+
+  # unwanted
+  rm -rf "$pkgdir/$_install_path/$_pkgname"/icons
+  rm -rf "$pkgdir/$_install_path/$_pkgname"/update*
+
+  # config files
+  local _path="$pkgdir/$_install_path/$_pkgname/distribution/policies.json"
+  install -Dm644 /dev/stdin "$_path" << END
+{
+  "policies": {
+    "DisableAppUpdate": true
+  }
+}
+END
+
+  _path="$pkgdir/$_install_path/$_pkgname/browser/defaults/preferences/vendor.js"
+  install -Dm644 /dev/stdin "$_path" << END
+// Use LANG environment variable to choose locale
+pref("intl.locale.requested", "");
+
+// Use system-provided dictionaries
+pref("spellchecker.dictionary_path", "/usr/share/hunspell");
+
+// Disable default browser checking.
+pref("browser.shell.checkDefaultBrowser", false);
+
+// Don't disable extensions in the application directory
+pref("extensions.autoDisableScopes", 11);
+
+// Enable GNOME Shell search provider
+pref("browser.gnome-search-provider.enabled", true);
+
+// Enable JPEG XL images
+pref("image.jxl.enabled", true);
+
+// Prevent about:config warning
+pref("browser.aboutConfig.showWarning", false);
+
+// Prevent telemetry notification
+pref("services.settings.main.search-telemetry-v2.last_check", $(date +%s));
+END
+
+  local _path="$pkgdir/usr/share/gnome-shell/search-providers/$_pkgname.search-provider.ini"
+  install -Dm644 /dev/stdin "$_path" << END
+[Shell Search Provider]
+DesktopId=$_pkgname.desktop
+BusName=org.mozilla.${_pkgname//-/_}.SearchProvider
+ObjectPath=/org/mozilla/${_pkgname//-/_}/SearchProvider
+Version=2
+END
+}
