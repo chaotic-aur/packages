@@ -5,8 +5,8 @@
 
 _pkgname="shadps4"
 pkgname="$_pkgname-git"
-pkgver=0.16.0.r83.g9c03109
-pkgrel=2
+pkgver=0.17.0.r5.g65c9463
+pkgrel=1
 pkgdesc="Sony PlayStation 4 emulator"
 url="https://github.com/shadps4-emu/shadPS4"
 license=('GPL-2.0-or-later')
@@ -17,6 +17,8 @@ depends=(
   'libavformat.so'   # ffmpeg
   'libavutil.so'     # ffmpeg
   'libfmt.so'        # fmt
+  'libfreetype.so'   # freetype2
+  'libminiupnpc.so'  # miniupnpc
   'libpng16.so'      # libpng
   'libswresample.so' # ffmpeg
   'libswscale.so'    # ffmpeg
@@ -24,6 +26,8 @@ depends=(
   'libuuid.so'       # util-linux-libs
   'libxxhash.so'     # xxhash
   'libz.so'          # zlib
+  'libzarchive.so'   # zarchive
+  'libzstd.so'       # zstd
   'miniz'
   'pugixml'
   'sdl3'
@@ -37,6 +41,7 @@ makedepends=(
   'nlohmann-json'
   'robin-map'
   'spirv-headers'
+  'vulkan-headers'
   'stb'
   'toml11'
 )
@@ -63,18 +68,23 @@ prepare() {
   git rm -r externals/ext-boost
   git rm -r externals/ffmpeg-core
   git rm -r externals/fmt
+  git rm -r externals/freetype
   git rm -r externals/glslang
   git rm -r externals/half
   git rm -r externals/json
   git rm -r externals/libpng
+  git rm -r externals/miniupnp
   git rm -r externals/miniz
   git rm -r externals/pugixml
   git rm -r externals/robin-map
   git rm -r externals/sdl3
   git rm -r externals/stb
   git rm -r externals/toml11
+  git rm -r externals/vulkan-headers
   git rm -r externals/xxhash
+  git rm -r externals/zarchive
   git rm -r externals/zlib-ng
+  git rm -r externals/zstd
   git submodule update --init --recursive --depth 1
 
   # revert pull/4322; selects wrong gpu device
