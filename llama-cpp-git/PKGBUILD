@@ -2,43 +2,30 @@
 
 _pkgname="llama-cpp"
 pkgname="$_pkgname-git"
-pkgver=b5529.r1.g6385b84
-pkgrel=2
-pkgdesc="Port of Facebook's LLaMA model in C/C++"
+pkgver=b10234.r1.g221f0f6
+pkgrel=1
+pkgdesc="LLM inference in C/C++"
 url="https://github.com/ggml-org/llama.cpp"
 license=('MIT')
 arch=('x86_64')
 
 depends=(
-  'curl'
-  'libggml'
-  'python'
-  'python-numpy'
-  'python-sentencepiece' # aur/sentencepiece
+  'ggml'
+  'openssl'
 )
 makedepends=(
   'cmake'
   'git'
   'ninja'
+  'npm'
 )
 
-provides=(
-  "$_pkgname"
-  "${_pkgname//-/.}"
-)
-conflicts=(
-  "$_pkgname"
-  "${_pkgname//-/.}"
-)
+provides=("$_pkgname")
+conflicts=("$_pkgname")
 
 _pkgsrc="$_pkgname"
 source=("$_pkgsrc"::"git+$url.git")
 sha256sums=('SKIP')
-
-prepare() {
-  cd "$_pkgsrc"
-  git submodule update --init --recursive --depth=1
-}
 
 pkgver() {
   cd "$_pkgsrc"
@@ -53,53 +40,26 @@ build() (
     -G Ninja
     -DCMAKE_BUILD_TYPE=None
     -DCMAKE_INSTALL_PREFIX='/usr'
-    -DLLAMA_BUILD_COMMON=ON
-    -DLLAMA_BUILD_EXAMPLES=OFF
-    -DLLAMA_BUILD_SERVER=ON
-    -DLLAMA_BUILD_TESTS=${CHECKFUNC}
-    -DLLAMA_BUILD_TOOLS=ON
-    -DLLAMA_CURL=ON
-    -DLLAMA_USE_SYSTEM_GGML=ON
     -DBUILD_SHARED_LIBS=ON
-    -Wno-dev
+    -Wno-author
+
+    -DLLAMA_BUILD_APP=OFF
+    -DLLAMA_BUILD_EXAMPLES=ON
+    -DLLAMA_BUILD_SERVER=ON
+    -DLLAMA_BUILD_TESTS=OFF
+    -DLLAMA_BUILD_TOOLS=ON
+    -DLLAMA_BUILD_UI=ON
+    -DLLAMA_USE_SYSTEM_GGML=ON
+
   )
   cmake "${_cmake_options[@]}"
   cmake --build build
 )
 
-check() {
-  ctest --test-dir build --output-on-failure --verbose --timeout 900 || :
-}
-
 package() {
-  backup=("etc/conf.d/$_pkgname")
-
   DESTDIR="$pkgdir" cmake --install build
-
-  install -Dm644 /dev/stdin "$pkgdir/etc/conf.d/$_pkgname" << END
-LLAMA_ARGS=""
-END
-
-  install -Dm644 /dev/stdin "$pkgdir/usr/lib/systemd/system/$_pkgname.service" << END
-[Unit]
-Description=$_pkgname Server
-After=syslog.target network.target local-fs.target remote-fs.target nss-lookup.target
-
-[Service]
-Type=simple
-EnvironmentFile=/etc/conf.d/$_pkgname
-ExecStart=/usr/bin/llama-server \$LLAMA_ARGS
-ExecReload=/bin/kill -s HUP \$MAINPID
-Restart=on-failure
-
-[Install]
-WantedBy=multi-user.target
-END
-
   install -Dm644 "$_pkgsrc/LICENSE" -t "$pkgdir/usr/share/licenses/$pkgname/"
 
   # unwanted files
   rm -rf "$pkgdir/usr/bin"/test*
-  rm -rf "$pkgdir/usr/include"
-  rm -rf "$pkgdir/usr/lib"/{cmake,pkgconfig}
 }
