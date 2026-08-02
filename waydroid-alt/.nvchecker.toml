@@ -1,0 +1,4 @@
+[waydroid-alt]
+source = "git"
+git = "https://github.com/waydroid/waydroid.git"
+include_regex = '[0-9.]+'

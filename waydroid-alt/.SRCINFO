@@ -1,25 +1,27 @@
 pkgbase = waydroid-alt
 	pkgdesc = A container-based Android system - with desktop menu creation disabled
 	pkgver = 1.6.3
-	pkgrel = 1
+	pkgrel = 2
 	url = https://github.com/waydroid/waydroid
 	arch = any
 	license = GPL-3.0-or-later
 	makedepends = git
-	makedepends = python
 	depends = dbus-python
 	depends = dnsmasq
 	depends = gtk3
 	depends = lxc
 	depends = nftables
+	depends = pulse-native-provider
+	depends = python
+	depends = python-dbus
 	depends = python-gbinder
 	depends = python-gobject
-	provides = waydroid=1.6.0
+	provides = waydroid=1.6.3
 	conflicts = waydroid
-	source = waydroid::git+https://github.com/waydroid/waydroid.git
+	source = waydroid::git+https://github.com/waydroid/waydroid.git#tag=1.6.3
 	source = 0001-disable-launchers.patch
 	source = 0002-add-show-command.patch
-	sha256sums = SKIP
+	sha256sums = 7a769457d08f3d12694a4c02c3fb4888b6537c68f0b5ad8be461f16f73b4bfa6
 	sha256sums = e161c641aa02c2c3e3fbf8b9883abd46cf325eece2f572862f6abcde097081fe
 	sha256sums = 64d66c53c4e9cd7eb71dd692811b5e6b43163c0a6d78c0afa833a5b344949ff0
 

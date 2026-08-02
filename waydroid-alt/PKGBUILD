@@ -3,7 +3,7 @@
 _pkgname="waydroid"
 pkgname="$_pkgname-alt"
 pkgver=1.6.3
-pkgrel=1
+pkgrel=2
 pkgdesc="A container-based Android system - with desktop menu creation disabled"
 url="https://github.com/waydroid/waydroid"
 license=('GPL-3.0-or-later')
@@ -15,12 +15,14 @@ depends=(
   'gtk3'
   'lxc'
   'nftables'
+  'pulse-native-provider'
+  'python'
+  'python-dbus'
   'python-gbinder'
   'python-gobject'
 )
 makedepends=(
   'git'
-  'python'
 )
 
 provides=("$_pkgname=$pkgver")
@@ -28,22 +30,17 @@ conflicts=("$_pkgname")
 
 _pkgsrc="$_pkgname"
 source=(
-  "$_pkgsrc"::"git+$url.git"
+  "$_pkgsrc"::"git+$url.git#tag=$pkgver"
   '0001-disable-launchers.patch'
   '0002-add-show-command.patch'
 )
 sha256sums=(
-  'SKIP'
+  '7a769457d08f3d12694a4c02c3fb4888b6537c68f0b5ad8be461f16f73b4bfa6'
   'e161c641aa02c2c3e3fbf8b9883abd46cf325eece2f572862f6abcde097081fe'
   '64d66c53c4e9cd7eb71dd692811b5e6b43163c0a6d78c0afa833a5b344949ff0'
 )
 
 prepare() {
-  cd "$_pkgsrc"
-  local _tag
-  _tag=$(git tag -l '[0-9]*' | grep -Ev '[A-Za-z][A-Za-z]' | sort -rV | head -1)
-  git -c advice.detachedHead=false checkout -f "${_tag:?}"
-
   local src
   for src in "${source[@]}"; do
     src="${src%%::*}"
@@ -51,14 +48,9 @@ prepare() {
     src="${src%.zst}"
     if [[ $src == *.patch ]]; then
       printf '\nApplying patch: %s\n' "$src"
-      patch -Np1 -F100 -i "${srcdir:?}/$src"
+      patch -d "$_pkgsrc" -Np1 -F100 -i "${srcdir:?}/$src"
     fi
   done
-}
-
-pkgver() {
-  cd "$_pkgsrc"
-  git describe --tags | sed 's/^[0-9]+//'
 }
 
 package() {
@@ -77,10 +69,6 @@ package() {
 
   # create pyc files
   python -m compileall -o0 -o1 -f -p / -s "$pkgdir" "$pkgdir/"
-
-  # relocate icon
-  install -Dm644 "$pkgdir"/usr/share/icons/hicolor/512x512/apps/waydroid.png "$pkgdir/usr/share/pixmaps/$_pkgname.png"
-  rm -rf "$pkgdir/usr/share/icons/"
 
   # launchers
   rm -rf "$pkgdir"/usr/share/applications/*.desktop
