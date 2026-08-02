@@ -1,6 +1,6 @@
 pkgbase = whisper-cpp-git
 	pkgdesc = Port of OpenAI's Whisper model in C/C++
-	pkgver = 1.7.5.r285.g1f5fdbe
+	pkgver = 1.9.1.r158.g2ca53bb
 	pkgrel = 2
 	url = https://github.com/ggml-org/whisper.cpp
 	arch = x86_64
@@ -8,11 +8,10 @@ pkgbase = whisper-cpp-git
 	makedepends = cmake
 	makedepends = git
 	makedepends = ninja
-	depends = libggml
+	depends = ffmpeg
+	depends = ggml
 	provides = whisper-cpp
-	provides = whisper.cpp
 	conflicts = whisper-cpp
-	conflicts = whisper.cpp
 	source = whisper-cpp::git+https://github.com/ggml-org/whisper.cpp.git
 	sha256sums = SKIP
 

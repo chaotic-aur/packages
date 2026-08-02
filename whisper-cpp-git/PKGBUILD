@@ -2,7 +2,7 @@
 
 _pkgname="whisper-cpp"
 pkgname="$_pkgname-git"
-pkgver=1.7.5.r285.g1f5fdbe
+pkgver=1.9.1.r158.g2ca53bb
 pkgrel=2
 pkgdesc="Port of OpenAI's Whisper model in C/C++"
 url="https://github.com/ggml-org/whisper.cpp"
@@ -10,7 +10,8 @@ license=('MIT')
 arch=('x86_64')
 
 depends=(
-  'libggml'
+  'ffmpeg'
+  'ggml'
 )
 makedepends=(
   'cmake'
@@ -18,14 +19,8 @@ makedepends=(
   'ninja'
 )
 
-provides=(
-  "$_pkgname"
-  "${_pkgname//-/.}"
-)
-conflicts=(
-  "$_pkgname"
-  "${_pkgname//-/.}"
-)
+provides=("$_pkgname")
+conflicts=("$_pkgname")
 
 _pkgsrc="$_pkgname"
 source=("$_pkgsrc"::"git+$url.git")
@@ -44,9 +39,14 @@ build() (
     -G Ninja
     -DCMAKE_BUILD_TYPE=None
     -DCMAKE_INSTALL_PREFIX='/usr'
-    -DWHISPER_USE_SYSTEM_GGML=ON
     -DBUILD_SHARED_LIBS=OFF
-    -Wno-dev
+    -Wno-author
+
+    -DWHISPER_BUILD_EXAMPLES=ON
+    -DWHISPER_BUILD_SERVER=ON
+    -DWHISPER_BUILD_TESTS=OFF
+    -DWHISPER_COMMON_FFMPEG=ON
+    -DWHISPER_USE_SYSTEM_GGML=ON
   )
 
   cmake "${_cmake_options[@]}"
@@ -56,7 +56,4 @@ build() (
 package() {
   DESTDIR="$pkgdir" cmake --install build
   install -Dm644 "$_pkgsrc/LICENSE" -t "$pkgdir/usr/share/licenses/$pkgname/"
-
-  # unwanted files
-  rm -rf "$pkgdir/usr"/{include,lib}
 }
