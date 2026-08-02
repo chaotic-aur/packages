@@ -1,6 +1,6 @@
 pkgbase = shadps4-qtlauncher-git
 	pkgdesc = Qt-based launcher for shadps4 emulator
-	pkgver = 224.r97.g71f3f2f
+	pkgver = r334.ed013e9
 	pkgrel = 1
 	url = https://github.com/shadps4-emu/shadps4-qtlauncher
 	arch = x86_64
@@ -14,6 +14,7 @@ pkgbase = shadps4-qtlauncher-git
 	makedepends = vulkan-headers
 	depends = hicolor-icon-theme
 	depends = libfmt.so
+	depends = libzarchive.so
 	depends = qt6-base
 	depends = qt6-multimedia
 	depends = sdl3

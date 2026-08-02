@@ -2,7 +2,7 @@
 
 _pkgname="shadps4-qtlauncher"
 pkgname="$_pkgname-git"
-pkgver=224.r97.g71f3f2f
+pkgver=r334.ed013e9
 pkgrel=1
 pkgdesc="Qt-based launcher for shadps4 emulator"
 url="https://github.com/shadps4-emu/shadps4-qtlauncher"
@@ -12,6 +12,7 @@ arch=('x86_64')
 depends=(
   'hicolor-icon-theme'
   'libfmt.so'
+  'libzarchive.so' # zarchive
   'qt6-base'
   'qt6-multimedia'
   'sdl3'
@@ -35,8 +36,7 @@ sha256sums=('SKIP')
 
 pkgver() (
   cd "$srcdir/$_pkgsrc"
-  git describe --long --tags --abbrev=7 --exclude='*[a-zA-Z][a-zA-Z]*' \
-    | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
+  printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short=7 HEAD)"
 )
 
 prepare() {
@@ -46,7 +46,35 @@ prepare() {
   git rm -r externals/sdl3
   git rm -r externals/toml11
   git rm -r externals/vulkan-headers
+  git rm -r externals/zarchive
+  git rm -r externals/zstd
   git submodule update --init --recursive --depth=1
+
+  # set location of cmake modules
+  sed -e '1i list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")' -i CMakeLists.txt
+
+  # fix zarchive/zstd
+  sed -E -e '/add_subdirectory\(externals/i find_package(ZArchive MODULE)' -i CMakeLists.txt
+
+  sed -E \
+    -e '/TARGET/s& zarchive\)& ZArchive::zarchive)&' \
+    -e '/add_subdirectory\(zstd/d' \
+    -i externals/CMakeLists.txt
+
+  install -Dm644 /dev/stdin cmake/FindZArchive.cmake << END
+find_package(PkgConfig QUIET)
+pkg_search_module(ZARCHIVE QUIET IMPORTED_TARGET zarchive)
+
+include(FindPackageHandleStandardArgs)
+find_package_handle_standard_args(ZArchive
+    REQUIRED_VARS ZARCHIVE_LINK_LIBRARIES
+    VERSION_VAR ZARCHIVE_VERSION
+)
+
+if (ZArchive_FOUND AND NOT TARGET ZArchive::zarchive)
+    add_library(ZArchive::zarchive ALIAS PkgConfig::ZARCHIVE)
+endif()
+END
 
   # fix nlohmann-json
   sed -E -e '/nlohmann_json/i find_package(nlohmann_json)' -i CMakeLists.txt
@@ -58,8 +86,7 @@ prepare() {
   # set version info
   local _pkgver=$(pkgver)
 
-  sed -E -e 's&@APP_IS_RELEASE@&true&' \
-    -e 's&@APP_VERSION@&'"${_pkgver:?}&" \
+  sed -E -e 's&@APP_VERSION@&'"${_pkgver:?}&" \
     -i src/common/scm_rev.cpp.in
 
   sed -E -e 's&(fmt::format)\("(shadPS4QtLauncher) v[^"]+"&\1("\2 {}"&' \
