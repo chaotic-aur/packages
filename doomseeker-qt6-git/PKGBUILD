@@ -2,18 +2,18 @@
 
 _pkgname="doomseeker"
 pkgname="$_pkgname-qt6-git"
-pkgver=1.5.1.r6.gebf8a09
+pkgver=1.5.3.r2.g459199b
 pkgrel=1
 pkgdesc="A cross-platform Doom server browser"
-url="https://bitbucket.org/Doomseeker/doomseeker.git"
+url="https://github.com/DoomseekerTeam/Doomseeker"
 license=("LGPL-2.1-or-later")
 arch=('x86_64')
 
 depends=(
-  'zlib'
   'bzip2'
   'qt6-base'
   'qt6-multimedia'
+  'zlib'
 )
 makedepends=(
   'cmake'
@@ -22,9 +22,9 @@ makedepends=(
   'qt6-tools'
 )
 optdepends=(
-  'zandronum: GZDoom fork supporting client/server multiplayer'
-  'odamex: Classic client/server multiplayer fork'
   'chocolate-doom: Doom source port accurately reproducing the original DOS versions of Doom'
+  'odamex: Classic client/server multiplayer fork'
+  'zandronum: GZDoom fork supporting client/server multiplayer'
 )
 
 provides=("$_pkgname")
