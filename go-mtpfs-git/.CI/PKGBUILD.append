@@ -1,0 +1,10 @@
+license=('BSD‑3‑Clause')
+
+provides=('go-mtpfs')
+conflicts=('go-mtpfs')
+
+_pkgsrc="go-mtpfs"
+pkgver() {
+  cd "$_pkgsrc"
+  printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short=7 HEAD)"
+}
