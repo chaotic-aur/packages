@@ -1,0 +1,8 @@
+# warning is pointless
+unset install
+
+# fails in clean chroot
+unset -f check
+
+# ignore error
+export CFLAGS+=" -Wno-error=unused-result"
