@@ -1,5 +1,8 @@
 pkgdesc="Unofficial manager for the Samsung Galaxy Buds, Buds+, Buds Live and Buds Pro"
 
+depends=(${depends[@]//gcc-libs*/})
+makedepends=(${makedepends[@]//dotnet-sdk*/dotnet-sdk-bin})
+
 provides=("$_pkgname")
 conflicts=("$_pkgname")
 
