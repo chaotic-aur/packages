@@ -1,0 +1,8 @@
+pkgdesc="Friendship management tool for VRChat"
+
+depends=(${depends[@]//electron*/})
+depends=(${depends[@]//dotnet-runtime*/dotnet-runtime})
+makedepends=(${makedepends[@]//dotnet-sdk*/dotnet-sdk})
+
+provides=('vrcx')
+conflicts=('vrcx')
