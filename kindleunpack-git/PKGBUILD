@@ -1,10 +1,10 @@
 # Maintainer: aur.chaotic.cx
 
 _pkgname="kindleunpack"
-pkgname="${_pkgname}-git"
-pkgver=0.83.r10.g7fe6f80
-pkgrel=1
-pkgdesc='Extract text, images, and metadata from Kindle and Mobi files'
+pkgname="$_pkgname-git"
+pkgver=0.84.r0.gbf0ca6e
+pkgrel=2
+pkgdesc="Extract text, images, and metadata from Kindle and Mobi files"
 url="https://github.com/kevinhendricks/KindleUnpack"
 license=('GPL-3.0-only')
 arch=('any')
@@ -21,13 +21,13 @@ makedepends=(
   'python-wheel'
 )
 
-provides=("$_pkgname=${pkgver%%.r*}")
+provides=("$_pkgname")
 conflicts=("$_pkgname")
 
 _pkgsrc="$_pkgname"
 source=(
   "$_pkgname"::"git+$url.git"
-  "Installing-with-setuptools.diff"
+  "Installing-with-setuptools.patch"
 )
 sha256sums=(
   'SKIP'
@@ -35,14 +35,22 @@ sha256sums=(
 )
 
 prepare() {
-  cd "$_pkgsrc"
-  patch -Np1 -i ../Installing-with-setuptools.diff
+  local src
+  for src in "${source[@]}"; do
+    src="${src%%::*}"
+    src="${src##*/}"
+    src="${src%.zst}"
+    if [[ $src == *.patch ]]; then
+      printf '\nApplying patch: %s\n' "$src"
+      patch -d "$_pkgsrc" -Np1 -F100 -i "${srcdir:?}/$src"
+    fi
+  done
 }
 
 pkgver() {
   cd "$_pkgsrc"
-  git describe --long --tags --abbrev=7 --exclude='*[a-zA-Z][a-zA-Z]*' --exclude='*[a-z]' --exclude='*.*' \
-    | sed -E 's/^v([0-9])([0-9])/\1.\2/;s/([^-]*-g)/r\1/;s/-/./g'
+  git describe --long --tags --abbrev=7 --match='v[0-9][0-9][0-9]' \
+    | sed -E 's/^[^0-9]*([0-9])([0-9])/\1.\2/;s/([^-]*-g)/r\1/;s/-/./g'
 }
 
 build() {
