@@ -1,17 +1,18 @@
 pkgbase = findex-git
-	pkgdesc = Highly customizable finder with high performance. Written in Rust and uses GTK
-	pkgver = 0.8.3
+	pkgdesc = A customizable, high-performance finder
+	pkgver = 0.8.3.r4.gdc7aa2f
 	pkgrel = 1
 	url = https://github.com/mdgaziur/findex
-	install = post_install.install
 	arch = x86_64
-	license = GPL3
-	makedepends = rustup
+	license = GPL-3.0-only
+	makedepends = cargo
+	makedepends = git
 	depends = gtk3
 	depends = libkeybinder3
 	provides = findex
 	conflicts = findex
-	source = git+https://github.com/mdgaziur/findex
-	md5sums = SKIP
+	options = !lto
+	source = findex::git+https://github.com/mdgaziur/findex.git#branch=development
+	sha256sums = SKIP
 
 pkgname = findex-git

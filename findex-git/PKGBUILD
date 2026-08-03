@@ -1,48 +1,65 @@
-# Maintainer: MD Gaziur Rahman Noor <mdgaziurrahmannoor@gmail.com>
-pkgname=findex-git
-_pkgname=findex
-pkgver=0.8.3
-pkgver() {
-  cd findex
-  git describe --tags | sed -r 's/-([0-9,a-g,A-G]{7}.*)//' | sed 's/-/./' | sed -e "s/^v//"
-}
+# Maintainer: aur.chaotic.cx
+
+: ${CARGO_HOME:=$SRCDEST/cargo-home}
+: ${CARGO_TARGET_DIR:=target}
+: ${RUSTUP_TOOLCHAIN:=stable}
+export CARGO_HOME CARGO_TARGET_DIR RUSTUP_TOOLCHAIN
+
+_pkgname="findex"
+pkgname="$_pkgname-git"
+pkgver=0.8.3.r4.gdc7aa2f
 pkgrel=1
-epoch=
-pkgdesc="Highly customizable finder with high performance. Written in Rust and uses GTK"
-arch=('x86_64')
+pkgdesc="A customizable, high-performance finder"
 url="https://github.com/mdgaziur/findex"
-license=('GPL3')
-groups=()
-depends=("gtk3" "libkeybinder3")
-makedepends=("rustup")
-checkdepends=()
-optdepends=()
-provides=("findex")
-conflicts=("findex")
-replaces=()
-backup=()
-options=()
-install=post_install.install
-changelog=
-source=("git+https://github.com/mdgaziur/findex")
-noextract=()
-md5sums=(SKIP)
-validpgpkeys=()
+license=('GPL-3.0-only')
+arch=('x86_64')
+
+depends=(
+  'gtk3'
+  'libkeybinder3'
+)
+makedepends=(
+  'cargo'
+  'git'
+)
+
+provides=("$_pkgname")
+conflicts=("$_pkgname")
+
+options=('!lto')
+
+_pkgsrc="$_pkgname"
+source=("$_pkgsrc"::"git+$url.git#branch=development")
+sha256sums=('SKIP')
+
+prepare() {
+  cd "$_pkgsrc"
+  cargo fetch --locked --target host-tuple
+
+  #fix default css path
+  local _regex=$(printf 's&/opt/findex/&/usr/share/%s/&g' "$_pkgname")
+  sed -E -e "$_regex" -i "crates/findex/src/gui/css.rs"
+}
+
+pkgver() {
+  cd "$_pkgsrc"
+  git describe --long --tags --abbrev=7 --exclude='*[a-zA-Z][a-zA-Z]*' \
+    | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
+}
 
 build() {
-  cd $_pkgname
-  git checkout development
+  local _units=$(($(nproc) > 16 ? $(nproc) : 16))
+  export CARGO_PROFILE_RELEASE_LTO=false
+  export CARGO_PROFILE_RELEASE_CODEGEN_UNITS=$_units
 
-  rustup default stable
-
+  cd "$_pkgsrc"
   cargo build --release
 }
 
 package() {
-  cd "$_pkgname"
-
-  install -Dm755 target/release/findex "${pkgdir}/usr/bin/${_pkgname}"
-  install -Dm755 target/release/findex-daemon "${pkgdir}/usr/bin/${_pkgname}-daemon"
-  install -Dm644 css/style.css "${pkgdir}/opt/findex"
-  install -Dm644 LICENSE "${pkgdir}/usr/share/licenses/${_pkgname}/LICENSE"
+  cd "$_pkgsrc"
+  install -Dm755 "$CARGO_TARGET_DIR/release/findex" "$pkgdir/usr/bin/$_pkgname"
+  install -Dm755 "$CARGO_TARGET_DIR/release/findex-daemon" "$pkgdir/usr/bin/$_pkgname-daemon"
+  install -Dm644 css/style.css -t "$pkgdir/usr/share/$_pkgname/"
+  install -Dm644 LICENSE -t "$pkgdir/usr/share/licenses/$_pkgname/"
 }
