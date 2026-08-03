@@ -1,0 +1,22 @@
+# convenience
+_pkgname="waybar-module-pacman-updates"
+_pkgsrc="waybar-module-pacman-updates"
+
+# fixes
+provides=("$_pkgname")
+conflicts=("$_pkgname")
+
+# prevent pinned commit
+source=("git+$url.git")
+
+# compile faster
+_units=$(($(nproc) > 16 ? $(nproc) : 16))
+export CARGO_PROFILE_RELEASE_LTO=false
+export CARGO_PROFILE_RELEASE_CODEGEN_UNITS=$_units
+
+# fix pkgver
+pkgver() {
+  cd "$_pkgsrc"
+  git describe --long --tags --abbrev=7 --exclude='*[a-zA-Z][a-zA-Z]*' \
+    | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
+}
