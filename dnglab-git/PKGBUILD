@@ -7,7 +7,7 @@ export CARGO_HOME CARGO_TARGET_DIR RUSTUP_TOOLCHAIN
 
 _pkgname="dnglab"
 pkgname="$_pkgname-git"
-pkgver=0.7.2
+pkgver=0.7.2.r92.gab646bc
 pkgrel=1
 pkgdesc="Camera RAW to DNG file format converter"
 url="https://github.com/dnglab/dnglab"
@@ -20,6 +20,11 @@ makedepends=(
   'git'
 )
 
+provides=("$_pkgname")
+conflicts=("$_pkgname")
+
+options=('!lto')
+
 _pkgsrc="$_pkgname"
 source=("$_pkgsrc"::"git+$url.git")
 sha256sums=('SKIP')
@@ -29,10 +34,16 @@ prepare() {
   cargo fetch --locked --target host-tuple
 }
 
+pkgver() {
+  cd "$_pkgsrc"
+  git describe --long --tags --abbrev=7 --exclude='*[a-zA-Z][a-zA-Z]*' \
+    | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
+}
+
 build() {
-local _units=$(($(nproc) > 16 ? $(nproc) : 16))
-export CARGO_PROFILE_RELEASE_LTO=false
-export CARGO_PROFILE_RELEASE_CODEGEN_UNITS=$_units
+  local _units=$(($(nproc) > 16 ? $(nproc) : 16))
+  export CARGO_PROFILE_RELEASE_LTO=false
+  export CARGO_PROFILE_RELEASE_CODEGEN_UNITS=$_units
 
   cd "$_pkgsrc"
   cargo build --frozen --release
