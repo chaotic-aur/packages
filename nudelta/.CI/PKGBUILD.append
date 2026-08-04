@@ -1,12 +1,23 @@
-export CMAKE_POLICY_VERSION_MINIMUM=3.10
+# nitpicks
+depends=(${depends[@]//gcc-libs*/})
 
+# compile faster
 export CMAKE_GENERATOR=Ninja
 makedepends+=('ninja')
 
-_pkgsrc="$pkgbase"
+# fixes
+eval "$(declare -f package \
+  | sed -E -e '/install/s&/pkgnbame&pkgname&g' \
+  | sed -E -e '/pkgname-cli/s&(pkgname) &\1-cli &'
+)"
 
-eval _orig_"$(declare -f prepare)"
-prepare() {
-  (_orig_prepare)
-  sed '1i #include <cstdint>' -i "$_pkgsrc"/submodules/yaml-cpp/src/emitterutils.cpp
-}
+# bump
+if [[ "$(vercmp 0.10.0-1 "$pkgver-$pkgrel")" -gt 0 ]]; then
+  pkgver=0.10.0
+  pkgrel=1
+
+  makedepends+=('ruby')
+
+  source=("git+$url.git#tag=${pkgver}")
+  sha256sums=('81a53819a1b04f1c6d21658d6dd88c13e9249a860e99e6227a4d78e30e932555')
+fi
