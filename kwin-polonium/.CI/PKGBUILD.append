@@ -1,0 +1,18 @@
+url="https://github.com/zeroxoneafour/polonium"
+pkgdesc="A tiling window manager for KWin"
+
+# compile faster
+_units=$(($(nproc) > 16 ? $(nproc) : 16))
+export CARGO_PROFILE_RELEASE_LTO=false
+export CARGO_PROFILE_RELEASE_CODEGEN_UNITS=$_units
+
+options=('!lto')
+
+# fix sums
+if [[ "$pkgver-$pkgrel" == "1.2.1-1" ]]; then
+  unset sha1sums
+  sha256sums=(
+    '385477e7cc8200506cdc551444c3fb04d3d1a13511c6109acec50ec94ea592a6'
+    '08fc1226ad329d4c03c2f5842e9986ba929358639bfae30800ecea944874a74d'
+  )
+fi
