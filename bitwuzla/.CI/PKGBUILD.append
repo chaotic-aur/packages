@@ -1,10 +1,16 @@
-pkgname=("bitwuzla")
-pkgdesc"SMT solver for bit‑vectors, floats, arrays, and uninterpreted functions"
+# metadata
+pkgdesc="SMT solver for bit‑vectors, floats, arrays, and uninterpreted functions"
 url="https://github.com/bitwuzla/bitwuzla"
 
-eval "$(declare -f build | sed -E -e 's&--(testing|docs)&--no-\1&g')"
-
-eval "$(declare -f package_bitwuzla | grep -Ev '(CONTRIBUTING|NEWS)')"
-
-unset -f check
+# disable docs subpackage
 unset -f package_bitwuzla-docs
+pkgname=("bitwuzla")
+makedepends=(${makedepends[@]//python-sphinx*/})
+eval "$(declare -f build | sed -E -e 's&--docs&&g')"
+
+# disable check
+makedepends=(${makedepends[@]//python-pytest*/})
+eval "$(declare -f build | sed -E -e 's&--testing&&g')"
+
+# remove extraneous files
+eval "$(declare -f package_bitwuzla | grep -Ev '(CONTRIBUTING|NEWS)')"
