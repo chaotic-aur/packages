@@ -1,11 +1,13 @@
 pkgbase = detect-it-easy-git
 	pkgdesc = Program to determine types of files
-	pkgver = 3.10.r3523.gd40baa1
+	pkgver = 3.21.r400.gab0ea3e
 	pkgrel = 1
 	url = https://github.com/horsicq/DIE-engine
 	arch = x86_64
 	license = MIT
+	makedepends = cmake
 	makedepends = git
+	makedepends = ninja
 	makedepends = qt6-tools
 	depends = hicolor-icon-theme
 	depends = qt6-5compat
@@ -14,6 +16,8 @@ pkgbase = detect-it-easy-git
 	depends = qt6-svg
 	provides = detect-it-easy
 	conflicts = detect-it-easy
+	options = !docs
+	options = !lto
 	source = DIE-engine::git+https://github.com/horsicq/DIE-engine.git
 	sha512sums = SKIP
 
