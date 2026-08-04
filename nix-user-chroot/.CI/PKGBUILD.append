@@ -1,0 +1,2 @@
+# no point, will fail
+unset -f check
