@@ -1,0 +1,9 @@
+url="https://github.com/Noah-Arcouette/imd"
+
+_pkgsrc="imd"
+pkgver() {
+  cd "$_pkgsrc"
+  git tag -f 2.6 0c559d02488dbd69218f8211a4ac21b309f7793f
+  git describe --long --tags --abbrev=7 --exclude='*[a-zA-Z][a-zA-Z]*' \
+    | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
+}
