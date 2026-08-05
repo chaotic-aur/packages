@@ -1,25 +1,15 @@
 # Maintainer: aur.chaotic.cx
 
-## links
-# https://www.zrythm.org
-# https://gitlab.zrythm.org/zrythm/zrythm
-
-: ${_pkgver:=1.0.0}
-
 _pkgname="zrythm"
 pkgname="$_pkgname"
-pkgver=${_pkgver//-/.}
-pkgrel=2
+pkgver=1.0.0
+pkgrel=3
 pkgdesc='Highly automated and intuitive digital audio workstation'
 url="https://gitlab.zrythm.org/zrythm/zrythm"
 license=('AGPL-3.0-or-later')
 arch=('x86_64')
 
 depends=(
-  'appstream'
-  'breeze-icons'
-  'carla>=2.5.9.r303' # AUR
-  'chromaprint'
   'dconf'
   'fftw'
   'fluidsynth'
@@ -27,32 +17,24 @@ depends=(
   'graphviz'
   'gtk4'
   'gtksourceview5'
-  'guile'
-  'json-glib'
   'libadwaita'
-  'libaudec' # AUR
   'libbacktrace'
   'libcyaml'
-  'libepoxy'
   'libpanel'
-  'libxinerama'
+  'libsoxr'
   'libxrandr'
-  'lilv'
-  'lsp-dsp-lib' # AUR
-  'pcre'
-  'portaudio'
-  'qt5-base'
-  'reproc' # AUR
   'rtaudio'
   'rtmidi'
   'rubberband'
   'sdl2'
-  'serd'
-  'sratom'
   'vamp-plugin-sdk'
   'xxhash'
   'yyjson'
   'zix'
+
+  # AUR
+  'carla>=2.5.10.r498'
+  'lsp-dsp-lib'
 )
 makedepends=(
   'boost'
@@ -60,6 +42,7 @@ makedepends=(
   'git'
   'glib2-devel'
   'help2man'
+  'lilv' # lv2apply is not installed
   'meson'
   'ruby-sass'
   'sassc'
@@ -68,41 +51,28 @@ optdepends=(
   'realtime-privileges: allow memory locking'
 )
 
-_pkgsrc="$_pkgname-$_pkgver"
+_pkgsrc="$_pkgname-$pkgver"
 _pkgext="tar.xz"
-source=(
-  "https://www.zrythm.org/releases/$_pkgsrc.$_pkgext"{,.asc}
-  "git+https://github.com/drobilla/zix.git"
-)
-sha256sums=(
-  'd143a0a17066b50db8a6db875d2699c9e5b70f1bbe18db00fee034840144fede'
-  'SKIP'
-  'SKIP'
-)
-validpgpkeys=(
-  '48132384AD3DF7D86E254B83022EAE42313D70F3' # Alexandros Theodotou <alex@zrythm.org>
-)
-
-prepare() {
-  cd "$_pkgsrc"
-
-  # use our local clones
-  sed -i "s|https://github.com/drobilla/zix|$srcdir/zix|" "subprojects/zix.wrap"
-  meson subprojects download zix
-}
+source=("https://www.zrythm.org/releases/$_pkgsrc.$_pkgext")
+sha256sums=('d143a0a17066b50db8a6db875d2699c9e5b70f1bbe18db00fee034840144fede')
 
 build() {
   local _meson_args=(
-    --wrap-mode=nofallback
-    --force-fallback-for=zix-0
+    -Dcarla=enabled
+    -Dcarla_binaries_dir=/usr/lib/carla
+    -Dcompletions=true
+    -Dgraphviz=enabled
+    -Dopus=true
+    -Dportaudio=enabled
+    -Drtaudio=enabled
+    -Drtmidi=enabled
+    -Dsdl=enabled
+    -Dsoundio=disabled
+
+    -Dcheck_updates=false
     -Ddebug=false
     -Dmanpage=true
-    -Dcheck_updates=false
-    -Dcarla_binaries_dir=/usr/lib/carla
-    -Dportaudio=enabled
-    -Drtmidi=enabled
-    -Drtaudio=enabled
-    -Dsdl=enabled
+    -Dstatic_deps=false
   )
 
   arch-meson "${_meson_args[@]}" "$_pkgsrc" build

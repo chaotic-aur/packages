@@ -1,4 +1,5 @@
 [zrythm]
 source = "git"
 git = "https://gitlab.zrythm.org/zrythm/zrythm.git"
+include_regex = 'v[0-9.]+'
 prefix = "v"
