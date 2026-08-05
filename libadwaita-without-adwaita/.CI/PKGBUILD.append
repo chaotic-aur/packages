@@ -4,6 +4,17 @@ unset epoch
 pkgdesc="Building blocks for modern adaptive GNOME applications - patched to respect system theme"
 url="https://gitlab.gnome.org/GNOME/libadwaita"
 
+# bump
+if [[ "$(vercmp 1.9.3-1 "$pkgver-$pkgrel")" -gt 0 ]]; then
+  _pkgver=1.9.3
+  pkgrel=2
+
+  source[0]="${source[0]//$pkgver/$_pkgver}"
+  sha256sums[0]='3e4cf25e389a81ad2b73b6f43721b268acd77e393090af06e4dc477c4b39c523'
+
+  pkgver="$_pkgver"
+fi
+
 # account for epoch
 provides=("libadwaita=1:$pkgver" 'libadwaita-1.so')
 conflicts=('libadwaita')
