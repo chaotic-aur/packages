@@ -1,0 +1,41 @@
+pkgbase = monado-git
+	pkgdesc = The open source OpenXR runtime.
+	pkgver = 25.0.0.r227.g0d513229f
+	pkgrel = 1
+	url = https://monado.dev
+	install = monado.install
+	arch = i686
+	arch = x86_64
+	license = BSL-1.0
+	makedepends = eigen
+	makedepends = ninja
+	makedepends = shaderc
+	makedepends = cmake
+	makedepends = git
+	makedepends = vulkan-headers
+	makedepends = python
+	makedepends = wayland-protocols
+	depends = openxr
+	depends = vulkan-icd-loader
+	depends = libgl
+	depends = wayland
+	depends = xr-hardware
+	depends = libcap
+	depends = libbsd
+	depends = libdrm
+	depends = openvr
+	optdepends = libuvc: optical tracking support (must be present at build time)
+	optdepends = opencv: optical tracking support (must be present at build time)
+	optdepends = onnxruntime: optical hand tracking support (must be present at build time)
+	optdepends = librealsense: intel realsense camera support (must be present at build time)
+	optdepends = libsurvive-git: lighthouse positional tracking support (must be present at build time)
+	optdepends = openhmd: additional hardware support (Oculus Rift, Nolo) (must be present at build time)
+	optdepends = basalt-monado-git: experimental SLAM tracking through basalt
+	optdepends = percetto: tracing support for performance debugging (must be present at build time)
+	provides = openxr-runtime
+	provides = monado=25.0.0.r227.g0d513229f
+	conflicts = monado
+	source = monado::git+https://gitlab.freedesktop.org/monado/monado.git#branch=main
+	md5sums = SKIP
+
+pkgname = monado-git
