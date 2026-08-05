@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+# decouple pkgrel
+sed -E -e 's&(pkgrel)&_\1&g;s&(pkgrel=\S+)&\1\n\1&' -i PKGBUILD
