@@ -2,6 +2,7 @@ unset epoch
 unset changelog
 unset groups
 
+# metadata
 url="https://github.com/falkTX/Carla"
 license=('GPL-2.0-or-later')
 
@@ -10,6 +11,14 @@ provides=(
   ${provides[@]//${_pkgname}*/}
 )
 
+# missing deps
+depends+=('sdl2')
+
+# unused deps
+depends=(${depends[@]//gcc-libs/})
+eval "$(declare -f package | sed -E -e 's&lib(asound|freetype)\.so&&g')"
+
+# fix pkgver
 _pkgsrc="$_pkgname"
 pkgver() {
   cd "$_pkgsrc"
@@ -20,3 +29,26 @@ pkgver() {
   _hash=$(git rev-parse --short=7 HEAD)
   printf '%s.r%s.g%s' "${_version:?}" "${_revision:?}" "${_hash:?}"
 }
+
+# switch to qt6
+depends=(${depends[@]//python-pyqt5*/python-pyqt6})
+depends=(
+  ${depends[@]//qt5-*/}
+  'qt6-base'
+  'qt6-svg'
+)
+makedepends=(
+  ${makedepends[@]//qt5*/}
+  'qt6-tools'
+)
+
+eval "$(
+  declare -f build \
+    | sed -E -e 's&(DEFAULT_QT)=\S+&\1=6&g' \
+      -e 's&(HAVE_QT4=false)&\1 HAVE_QT5=false&g'
+)"
+eval "$(
+  declare -f package \
+    | sed -E -e 's&(DEFAULT_QT)=\S+&\1=6&g' \
+      -e 's&(HAVE_QT4=false)&\1 HAVE_QT5=false&g'
+)"
