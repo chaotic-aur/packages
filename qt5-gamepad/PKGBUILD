@@ -21,7 +21,7 @@ sha256sums=('fe3fa73276ee7089f44c48058a3750402cdcc5b1f3b359a281fef13e265d1c24')
 
 pkgver() {
   cd kde-$_pkgfqn
-  echo "$_basever+kde+r"$(git rev-list --count v$_basever-lts-lgpl..$_commit) | sed -e 's|+kde+r0||'
+  echo "$_basever+kde+r"`git rev-list --count v$_basever-lts-lgpl..$_commit` | sed -e 's|+kde+r0||'
 }
 
 prepare() {

@@ -41,7 +41,7 @@ package() {
   sha1sum "${srcdir}/oh-my-pi/packages/coding-agent/dist/omp"
   install -Dm755 "${srcdir}/oh-my-pi/packages/coding-agent/dist/omp" "${pkgdir}/usr/bin/omp"
   sha1sum "${pkgdir}/usr/bin/omp"
-#  for _f in "oh-my-pi/src/oh-my-pi/packages/natives/native/pi_natives"*.node; do
-#    [[ -f "$_f" ]] && install -Dm755 "$_f" "${pkgdir}/usr/bin/$(basename "$_f")"
-#  done
+  #  for _f in "oh-my-pi/src/oh-my-pi/packages/natives/native/pi_natives"*.node; do
+  #    [[ -f "$_f" ]] && install -Dm755 "$_f" "${pkgdir}/usr/bin/$(basename "$_f")"
+  #  done
 }
