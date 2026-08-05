@@ -1,19 +1,17 @@
 pkgbase = ocenaudio-bin
 	pkgdesc = A fast, easy to use audio editor
-	pkgver = 3.20.1
+	pkgver = 3.20.2
 	pkgrel = 1
 	url = https://www.ocenaudio.com/
 	arch = x86_64
 	license = LicenseRef-Ocenaudio
+	depends = glibc
 	depends = hicolor-icon-theme
-	depends = jack
-	depends = libpulse
-	depends = qt6-base
 	provides = ocenaudio
 	conflicts = ocenaudio
 	options = !debug
 	options = !strip
-	source = ocenaudio_3.20.1_x86_64.tar.zst::https://www.ocenaudio.com/downloads/index.php/ocenaudio_archlinux.pkg.tar.zst?version=v3.20.1
-	sha256sums = 5023e9a7ab244b212ca9f19d4516486f09f3b7fca8ee86c9bbbc3cedadd63b79
+	source = ocenaudio_3.20.2_x86_64.tar.zst::https://www.ocenaudio.com/downloads/index.php/ocenaudio_archlinux.pkg.tar.zst?version=v3.20.2
+	sha256sums = fe275c88fc348166a1a19e5dadc0a2d68be7876c887665ba94bda90767c9d13f
 
 pkgname = ocenaudio-bin
