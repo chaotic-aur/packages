@@ -12,7 +12,7 @@
 
 _pkgname=firefox-nightly
 pkgname="$_pkgname"
-pkgver=155.0a1+20260801.09+h2336731ab
+pkgver=155.0a1+20260805.22+hbb3ac5a21
 pkgrel=1
 pkgdesc="Fast, Private & Safe Web Browser"
 url="https://www.firefox.com/channel/desktop/#nightly"
@@ -69,8 +69,6 @@ if [[ "${_build_system_libs::1}" == "t" ]]; then
     libwebp.so         # libwebp
     libwebpdemux.so    # libwebp
     libz.so            # zlib
-    nspr
-    nss
   )
 fi
 
@@ -223,14 +221,14 @@ END
 # ac_add_options --with-system-av1
 # ac_add_options --with-system-icu
 # ac_add_options --with-system-libevent
+# ac_add_options --with-system-nspr
+# ac_add_options --with-system-nss
 # ac_add_options --with-system-png
 ac_add_options --with-system-ffi
 ac_add_options --with-system-gbm
 ac_add_options --with-system-jpeg
 ac_add_options --with-system-libdrm
 ac_add_options --with-system-libvpx
-ac_add_options --with-system-nspr
-ac_add_options --with-system-nss
 ac_add_options --with-system-pipewire
 ac_add_options --with-system-pixman
 ac_add_options --with-system-webp
