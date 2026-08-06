@@ -1,0 +1,2 @@
+export CMAKE_GENERATOR=Ninja
+makedepends+=('ninja')
