@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+# mangle install directive
+sed -E -e 's&^(\s*)(install\+?=)&\1 _ignore_\2&g' -i PKGBUILD
+
+# gcc-libs is deprecated
+sed -E -e 's&\S+gcc-libs\S+&&g' -i PKGBUILD
