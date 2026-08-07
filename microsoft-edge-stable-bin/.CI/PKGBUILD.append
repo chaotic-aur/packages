@@ -1,0 +1,17 @@
+_bump() {
+  local _new_ver="${1%%-*}"
+  local _new_rel="${1##*-}"
+  local _new_hash="${2:?}"
+
+  local _sumtype=$(grep -Pom1 '\S+sums' PKGBUILD)
+  local _old_source=$(grep -Pom1 'source = \K\S+$' .SRCINFO)
+
+  if [ "$(vercmp "${_new_ver:?}-${_new_rel:-1}" "$pkgver-$pkgrel")" -gt 0 ]; then
+    source[0]="${_old_source//$pkgver/$_new_ver}"
+    eval "${_sumtype}[0]='${_new_hash}'"
+
+    pkgver="$_new_ver"
+    pkgrel="${_new_rel:-1}"
+  fi
+}
+_bump 151.0.4129.72-1 babd5ea470a86c84615e23a7d5aaf4e1be6811b3af1229bc234d78bdc6b4f55a
