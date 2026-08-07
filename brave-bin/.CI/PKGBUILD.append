@@ -1,0 +1,20 @@
+_bump() {
+  local _new_ver="${1%%-*}"
+  local _new_rel="${1##*-}"
+  local _new_hash="${2:?}"
+  local _type="${3:-}"
+
+  local _sumtype=$(grep -Pom1 "\\S+sums${_type:+_$_type}" PKGBUILD)
+  local _old_source=$(grep -Pom1 "source${_type:+_$_type} = \\K\\S+\$" .SRCINFO)
+
+  if [ "$(vercmp "${_new_ver:?}-${_new_rel:-1}" "$pkgver-$pkgrel")" -gt 0 ]; then
+    eval "source${_type:+_$_type}[0]='${_old_source//$pkgver/$_new_ver}'"
+    eval "${_sumtype}[0]='${_new_hash}'"
+
+    noextract=(${noextract[@]//$pkgver/$_new_ver})
+
+    pkgver="$_new_ver"
+    pkgrel="${_new_rel:-1}"
+  fi
+}
+_bump 1.93.134-1 f4e933b8e13149b87f6bed8789174745809e79301eb33fab0d643b848a9fde6f x86_64
