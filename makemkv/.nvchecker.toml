@@ -1,4 +1,0 @@
-[makemkv]
-source = "regex"
-url = "https://forum.makemkv.com/forum/viewtopic.php?f=3&t=224"
-regex = "makemkv-bin-(\\d\\.\\d+\\.\\d+)\\.tar\\.gz"
