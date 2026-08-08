@@ -14,6 +14,6 @@ pkgbase = intel-sde
 	options = !debug
 	options = !strip
 	source = https://downloadmirror.intel.com/924984/sde-external-10.13.1-2026-07-28-lin.tar.xz
-	sha256sums = 94e97d623fec54385686e1e7ba65ebc9941748c05ee451423948334892bf2b50
+	sha256sums = 
 
 pkgname = intel-sde
