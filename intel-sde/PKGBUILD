@@ -29,7 +29,7 @@ options=('!debug' '!strip')
 _pkgsrc="sde-external-${_pkgver##*::}-lin"
 _pkgext="tar.xz"
 source=("https://downloadmirror.intel.com/${_pkgver%%::*}/$_pkgsrc.$_pkgext")
-sha256sums=('')
+sha256sums=('94e97d623fec54385686e1e7ba65ebc9941748c05ee451423948334892bf2b50')
 
 package() {
   mkdir -pm755 "$pkgdir/opt/$_pkgname"
