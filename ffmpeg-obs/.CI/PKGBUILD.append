@@ -1,8 +1,31 @@
 pkgdesc="${pkgdesc%%.*}"
 
+depends=(${depends[@]//<*/})
+depends=(${depends[@]//>*/})
+depends=(${depends[@]//=*/})
 depends+=('libplacebo.so')
 
-provides=(
-  ${provides[@]//ffmpeg*/}
-  "ffmpeg=2:$pkgver"
-)
+provides=(${provides[@]//ffmpeg*/})
+provides+=("ffmpeg=2:$pkgver")
+
+_bump() {
+  local _new_ver="${1%%-*}"
+  local _new_rel="${1##*-}"
+  local _new_hash="${2:?}"
+  local _type="${3:-}"
+
+  local _sumtype=$(grep -Pom1 "\\S+sums${_type:+_$_type}" PKGBUILD)
+  local _old_source=$(grep -Pom1 "source${_type:+_$_type} = \\K\\S+\$" .SRCINFO)
+
+  if [ "$(vercmp "${_new_ver:?}-${_new_rel:-1}" "$pkgver-$pkgrel")" -gt 0 ]; then
+    local _regex=$(printf 's&%s&%s&g;s&#tag=\S+$&#tag=n%s&' "$pkgver" "$_new_ver" "$_new_ver")
+    eval "source${_type:+_$_type}[0]='$(sed -E -e "${_regex:?}" <<< "${_old_source:?}")'"
+    eval "${_sumtype}[0]='${_new_hash}'"
+
+    _args=(${_args[@]//--enable-libglslang/})
+
+    pkgver="$_new_ver"
+    pkgrel="${_new_rel:-1}"
+  fi
+}
+_bump 9.0-1 e8ac4e24aedf43918513e26332d0e96e0eaa581558e79d6be6c2f2b03a87f5b4
