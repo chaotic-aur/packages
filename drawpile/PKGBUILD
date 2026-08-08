@@ -3,14 +3,23 @@
 _pkgname='drawpile'
 pkgname="$_pkgname"
 pkgver=2.3.0
-pkgrel=2
+pkgrel=3
 pkgdesc="Collaborative drawing program specially made for use with pen tablets"
 url="https://github.com/drawpile/Drawpile"
 license=('GPL-3.0-or-later')
 arch=('x86_64')
 
 depends=(
-  'libzip'
+  'libavcodec.so'  # ffmpeg
+  'libavfilter.so' # ffmpeg
+  'libavformat.so' # ffmpeg
+  'libavutil.so'   # ffmpeg
+  'libsodium.so'   # libsodium
+  'libswscale.so'  # ffmpeg
+  'libwebp.so'     # libwebp
+  'libz.so'        # zlib
+  'libzip.so'      # libzip
+  'libzstd.so'     # zstd
   'qt6-multimedia'
   'qt6-svg'
   'qt6-websockets'
@@ -25,9 +34,9 @@ makedepends=(
 )
 
 conflicts=(
-  drawpile-client
-  drawpile-server
-  drawpile-tools
+  'drawpile-client'
+  'drawpile-server'
+  'drawpile-tools'
 )
 
 _pkgsrc="$_pkgname"
