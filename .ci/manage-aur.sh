@@ -72,7 +72,11 @@ for package in "${PACKAGES[@]}"; do
 
     # Clone via SSH to allow pushing
     if ! test -d "$TMPDIR/aur-push/$package"; then
-      git clone -q "ssh://aur@aur.archlinux.org/$package.git" "$TMPDIR/aur-push/$package"
+      if ! git clone -q "ssh://aur@aur.archlinux.org/$package.git" "$TMPDIR/aur-push/$package"; then
+        UTIL_PRINT_WARNING "Failed to clone AUR repository for $package, skipping push."
+        rm -rf "$TMPDIR/aur-push/$package"
+        continue
+      fi
     fi
 
     # We always run shfmt on the PKGBUILD. Two runs of shfmt on the same file should not change anything
