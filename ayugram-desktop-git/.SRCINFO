@@ -40,6 +40,7 @@ pkgbase = ayugram-desktop-git
 	depends = protobuf
 	depends = qt6-base
 	depends = qt6-imageformats
+	depends = qt6-shadertools
 	depends = qt6-svg
 	depends = qt6-wayland
 	depends = rnnoise

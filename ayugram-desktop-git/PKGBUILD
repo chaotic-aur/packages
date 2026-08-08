@@ -37,6 +37,7 @@ depends=(
   protobuf
   qt6-base
   qt6-imageformats
+  qt6-shadertools
   qt6-svg
   qt6-wayland
   rnnoise
