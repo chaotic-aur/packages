@@ -1,4 +1,0 @@
-depends=(
-  ${depends[@]//libjpeg*/libjpeg.so}
-  libgomp
-)
