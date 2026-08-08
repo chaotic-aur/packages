@@ -1,0 +1,7 @@
+url="https://github.com/joncampbell123/dosbox-x"
+license=('GPL-2.0-or-later')
+
+_pkgsrc="dosbox-x"
+prepare() {
+  sed -e '/sample_fmts/c if (false) (void)0;' -i "$_pkgsrc/src/hardware/hardware.cpp"
+}

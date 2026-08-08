@@ -1,6 +1,6 @@
-export CMAKE_POLICY_VERSION_MINIMUM=3.5
-
 url="https://github.com/mgba-emu/mgba"
+
+depends=(${depends[@]//gcc-libs*/})
 
 _pkgsrc="mgba"
 
@@ -37,8 +37,7 @@ build() {
   cmake --build build
 }
 
+# revise pkgdesc
 eval "$(declare -f package_libmgba-git | sed 's& (git build)&&')"
-
 eval "$(declare -f package_mgba-qt-git | sed 's& (git build)&&')"
-
 eval "$(declare -f package_mgba-sdl-git | sed 's& (git build)&&')"
