@@ -3,22 +3,20 @@
 _pkgname="vicinae"
 pkgname="$_pkgname"
 pkgver=0.24.0
-pkgrel=2
+pkgrel=3
 pkgdesc="A focused launcher for your desktop"
 url="https://github.com/vicinaehq/vicinae"
 license=('GPL-3.0-or-later')
 arch=('x86_64')
 
 depends=(
-  'abseil-cpp'
   'cmark-gfm'
+  'hicolor-icon-theme'
   'layer-shell-qt'
-  'libcrypto.so'   # openssl
-  'libprotobuf.so' # protobuf
+  'libcrypto.so' # openssl
   'libqalculate'
   'libwayland-client.so' # wayland
-  'minizip'
-  'nodejs' # for extensions
+  'nodejs'               # for extensions
   'qt6-base'
   'qt6-declarative'
   'qt6-svg'
@@ -33,6 +31,7 @@ makedepends=(
   'qt6-shadertools'
   'qt6-tools'
   'rapidfuzz-cpp'
+  'vulkan-headers'
 )
 
 _pkgsrc="$_pkgname-$pkgver"
@@ -47,9 +46,21 @@ build() {
     -G Ninja
     -DCMAKE_BUILD_TYPE=None
     -DCMAKE_INSTALL_PREFIX='/usr'
-    -Wno-dev
+    -DCMAKE_INSTALL_LIBEXECDIR='lib'
+    -Wno-author
 
+    -DUSE_SYSTEM_CMARK_GFM=ON
     -DUSE_SYSTEM_GLAZE=ON
+    -DUSE_SYSTEM_KF6=ON
+    -DUSE_SYSTEM_LAYER_SHELL=ON
+    -DUSE_SYSTEM_QT_KEYCHAIN=ON
+
+    -DVICINAE_PROVENANCE="chaotic-aur"
+    -DVICINAE_GIT_TAG="v${pkgver}"
+    -DVICINAE_GIT_COMMIT_HASH=$(
+      git ls-remote "$url.git" \
+        | grep -Pom1 "^\\S{7,7}(?=\\S+\\s+refs/tags/v$pkgver\$)"
+    )
   )
 
   cmake "${_cmake_options[@]}"

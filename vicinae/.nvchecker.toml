@@ -1,4 +1,5 @@
 [vicinae]
 source = "git"
 git = "https://github.com/vicinaehq/vicinae.git"
+include_regex = 'v[\d.]+'
 prefix = "v"
