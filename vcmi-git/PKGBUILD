@@ -2,8 +2,8 @@
 
 _pkgname="vcmi"
 pkgname="$_pkgname-git"
-pkgver=1.7.0.r4.gd5dd35e
-pkgrel=1
+pkgver=1.7.4.r1022.g83df53a
+pkgrel=2
 pkgdesc="Open-source game engine for Heroes of Might and Magic III"
 arch=('x86_64')
 url="https://github.com/vcmi/vcmi"
@@ -13,16 +13,19 @@ license=(
 )
 
 depends=(
-  'libavcodec.so'               # ffmpeg
-  'libavformat.so'              # ffmpeg
-  'libavutil.so'                # ffmpeg
-  'libboost_filesystem.so'      # boost-libs
-  'libboost_locale.so'          # boost-libs
-  'libboost_program_options.so' # boost-libs
+  'libavcodec.so'
+  'libavformat.so'
+  'libavutil.so'
+  'libboost_filesystem.so'
+  'libboost_iostreams.so'
+  'libboost_program_options.so'
+  'libfmt.so'
+  'liblzma.so'
   'libsquish'
-  'libswresample.so' # ffmpeg
-  'libswscale.so'    # ffmpeg
-  'luajit'
+  'libswresample.so'
+  'libswscale.so'
+  'libz.so'
+  'lua54'
   'minizip'
   'onetbb'
   'onnxruntime'
@@ -35,8 +38,11 @@ depends=(
 )
 makedepends=(
   'boost'
+  'clang'
   'cmake'
   'git'
+  'glaze'
+  'lld'
   'ninja'
   'qt6-tools'
 )
@@ -45,6 +51,8 @@ optdepends=(
   'unshield: required by vcmibuilder'
   'unzip: required by vcmibuilder'
 )
+
+options=('!lto')
 
 _pkgsrc="$_pkgname"
 source=("$_pkgsrc"::"git+$url.git")
@@ -55,7 +63,7 @@ prepare() {
   git submodule update --init --recursive --depth=1
 
   # force Qt6
-  sed -e 's/Qt6 Qt5/Qt6/' CMakeLists.txt
+  sed -e 's/Qt6 Qt5/Qt6/' -i CMakeLists.txt
 }
 
 pkgver() {
@@ -65,19 +73,22 @@ pkgver() {
 }
 
 build() {
+  # gcc generates internal compiler error
+  export CC CXX LDFLAGS
+  CC=clang
+  CXX=clang++
+  LDFLAGS+=" -fuse-ld=lld"
+
   local _cmake_options=(
     -B build
     -S "$_pkgsrc"
     -G Ninja
     -DCMAKE_BUILD_TYPE=None
     -DCMAKE_INSTALL_PREFIX='/usr'
-    -Wno-dev
+    -Wno-author
 
-    -DENABLE_ERM=ON
     -DENABLE_INNOEXTRACT=ON
-    -DENABLE_LUA=ON
     -DENABLE_TEST=$CHECKFUNC
-    -DFORCE_BUNDLED_FL=ON
   )
 
   cmake "${_cmake_options[@]}"
