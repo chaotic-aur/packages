@@ -1,1 +1,0 @@
-_build_limit_cores=$(nproc --ignore 4)
