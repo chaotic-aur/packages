@@ -1,9 +1,9 @@
 unset epoch
+
 pkgdesc="UCI/USI/UCCI Chess Protocol to XBoard/WinBoard adapter"
 
-makedepends+=(
-  'pod2man' # AUR
-)
+provides=("$_pkgname")
+conflicts=("$_pkgname")
 
 pkgver() {
   cd "$_srcname"
