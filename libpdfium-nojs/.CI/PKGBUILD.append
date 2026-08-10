@@ -1,6 +1,14 @@
+# metadata
 license=('Apache-2.0')
-
-depends=(${depends[@]//libjpeg*/libjpeg.so})
 
 provides=('libpdfium')
 conflicts=('libpdfium')
+
+# use sodep
+depends=(${depends[@]//libjpeg*/libjpeg.so})
+
+# fix typo, extra '('
+eval "$(declare -f prepare | sed -E -e 's&(is_component_build)\(&\1&')"
+
+# fix ninja, treats 'ar' as file
+eval "$(declare -f build | sed -e "/ninja -C/i sed -e '/inputs =\$/d' -e '/rebase_path(ar/d' -i \"\$srcdir/build/toolchain/gcc_toolchain.gni\"")"
