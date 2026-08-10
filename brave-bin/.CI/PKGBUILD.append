@@ -17,4 +17,4 @@ _bump() {
     pkgrel="${_new_rel:-1}"
   fi
 }
-_bump 1.93.134-1 f4e933b8e13149b87f6bed8789174745809e79301eb33fab0d643b848a9fde6f x86_64
+_bump 1.93.135-1 2563bd8760b7fe87df86d7f8df128d8b585f96b9a4f110f13ee988ebf3d6fb68 x86_64
