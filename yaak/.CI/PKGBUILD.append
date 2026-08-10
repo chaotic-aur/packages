@@ -1,4 +1,0 @@
-unset provides
-unset conflicts
-
-url="https://github.com/mountain-loop/yaak"
