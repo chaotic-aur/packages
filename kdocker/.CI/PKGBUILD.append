@@ -1,0 +1,4 @@
+license=('GPL-2.0-or-later')
+
+depends+=('hicolor-icon-theme')
+makedepends=(${makedepends[@]//pod2man*/})
