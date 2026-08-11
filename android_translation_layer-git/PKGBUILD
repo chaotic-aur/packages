@@ -14,14 +14,18 @@ depends=(
   alsa-lib
   art_standalone
   bionic_translation
+  cairo
   ffmpeg
+  fontconfig
+  gcc-libs
   gdk-pixbuf2
   glib2
   glibc
   graphene
-  gtk4
+  'gtk4>=4.14'
   gtk4-layer-shell
   java-runtime
+  libdrm
   libglvnd
   libgudev
   libopensles-standalone
@@ -29,10 +33,10 @@ depends=(
   pango
   sqlite
   vulkan-icd-loader
+  wayland
   webkitgtk-6.0
 )
 makedepends=(
-  cmake
   git
   glib2-devel
   java-runtime-common
@@ -40,7 +44,7 @@ makedepends=(
   meson
   openxr
   vulkan-headers
-  wayland-protocols
+  'wayland-protocols>=1.12'
 )
 provides=("${_pkgname}")
 conflicts=("${_pkgname}")
