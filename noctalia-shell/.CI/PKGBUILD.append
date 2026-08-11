@@ -1,4 +1,0 @@
-unset conflicts
-unset install
-
-depends=(${depends[@]//noctalia-qs*/noctalia-qs})
