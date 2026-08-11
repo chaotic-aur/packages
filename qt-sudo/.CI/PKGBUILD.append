@@ -1,0 +1,22 @@
+# metadata
+license=('LGPL-2.1-or-later')
+depends=(${depends[@]//gcc-libs*/})
+
+_bump() {
+  local _new_ver="${1%%-*}"
+  local _new_rel="${1##*-}"
+  local _new_hash="${2:?}"
+  local _type="${3:-}"
+
+  local _sumtype=$(grep -Pom1 "\\S+sums${_type:+_$_type}" PKGBUILD)
+  local _old_source=$(grep -Pom1 "source${_type:+_$_type} = \\K\\S+\$" .SRCINFO)
+
+  if [ "$(vercmp "${_new_ver:?}-${_new_rel:-1}" "$pkgver-$pkgrel")" -gt 0 ]; then
+    eval "source${_type:+_$_type}[0]='${_old_source//$pkgver/$_new_ver}'"
+    eval "${_sumtype}[0]='${_new_hash}'"
+
+    pkgver="$_new_ver"
+    pkgrel="${_new_rel:-1}"
+  fi
+}
+_bump 2.4.1-1 f859d9485170454b0ed156d44c44e56a30ef566be261ae105077eacbba24e61f
