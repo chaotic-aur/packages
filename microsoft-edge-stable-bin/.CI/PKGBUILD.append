@@ -14,4 +14,4 @@ _bump() {
     pkgrel="${_new_rel:-1}"
   fi
 }
-_bump 151.0.4129.72-1 babd5ea470a86c84615e23a7d5aaf4e1be6811b3af1229bc234d78bdc6b4f55a
+_bump 151.0.4129.78-1 38161c8c49dc88f1dc1c9797d78a63064611e1490b8c2ca290afa0677027ef8b
