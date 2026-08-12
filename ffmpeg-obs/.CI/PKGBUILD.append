@@ -28,4 +28,4 @@ _bump() {
     pkgrel="${_new_rel:-1}"
   fi
 }
-_bump 9.0-1 e8ac4e24aedf43918513e26332d0e96e0eaa581558e79d6be6c2f2b03a87f5b4
+_bump 9.0.1-1 34ff448bb8248df910c38958d7a3caa4f57ce884caf32dd16d149fb494f3f250
