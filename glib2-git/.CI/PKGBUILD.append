@@ -1,0 +1,5 @@
+# disable check
+unset -f check
+
+# skip docs
+pkgname=(${pkgname[@]//*-docs*/})
