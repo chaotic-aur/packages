@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+
+(yes | pacman -S glib2-git glib2-devel-git) || true
