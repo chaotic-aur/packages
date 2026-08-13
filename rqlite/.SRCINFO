@@ -1,12 +1,12 @@
 pkgbase = rqlite
-	pkgdesc = rqlite is a lightweight, distributed relational database, which uses SQLite as its storage engine
+	pkgdesc = A lightweight, distributed relational database, which uses SQLite as its storage engine
 	pkgver = 10.2.7
 	pkgrel = 1
 	url = http://rqlite.io/
 	arch = x86_64
 	arch = armv7h
 	arch = aarch64
-	license = custom:MIT
+	license = MIT
 	makedepends = go
 	depends = glibc
 	source = rqlite.service
