@@ -1,7 +1,7 @@
 # Maintainer: Joost Molenaar <jjm@j0057.nl>
 
 pkgname=bootc
-pkgver=1.16.6
+pkgver=1.16.8
 pkgrel=1
 pkgdesc='Boot and upgrade via container images'
 url='https://github.com/bootc-dev/bootc'
@@ -22,7 +22,7 @@ depends=(
 )
 arch=('x86_64')
 source=("https://github.com/bootc-dev/bootc/releases/download/v$pkgver/bootc-$pkgver.tar.zstd")
-sha256sums=('4e6f2b01af699dc635bb87ad0bb9dbd2c10adc65ce6acc4aeeafda4af8030c91')
+sha256sums=('e60e2b23a6e21cbea06a4ba1657ee7cdf2374bef9adce34905067d45444efac4')
 
 prepare() {
   cd $pkgname-$pkgver
