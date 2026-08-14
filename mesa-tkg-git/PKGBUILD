@@ -505,6 +505,13 @@ build() {
     _mediafoundation="-D gallium-mediafoundation=disabled"
   fi
 
+  # Force meson to resolve venus-protocol as a submodule instead of looking for a system install of it
+  if (cd "$srcdir/$_mesa_srcdir" && git merge-base --is-ancestor c7919be1fa9d99a75eb6ec6042fdff6265fe55e5 HEAD); then
+    _force_fallback_for="syn,paste,rustc-hash,venus-protocol"
+  else
+    _force_fallback_for="syn,paste,rustc-hash"
+  fi
+
   # /Selector fixes
 
   source "$_where"/frogminer
@@ -528,7 +535,7 @@ build() {
 
   arch-meson $_mesa_srcdir _build64 \
     --wrap-mode=nofallback \
-    --force-fallback-for=syn,paste,rustc-hash \
+    --force-fallback-for=${_force_fallback_for} \
     -D b_ndebug=true \
     -D platforms=${_platforms} \
     -D gallium-drivers=${_gallium_drivers} \
@@ -599,7 +606,7 @@ build() {
       ${_crossfile_flag} \
       --libdir=/usr/lib32 \
       --wrap-mode=nofallback \
-      --force-fallback-for=syn,paste,rustc-hash \
+      --force-fallback-for=${_force_fallback_for} \
       -D b_ndebug=true \
       -D platforms=${_platforms} \
       -D gallium-drivers=${_gallium_drivers} \
