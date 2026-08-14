@@ -14,6 +14,9 @@ export CARGO_PROFILE_RELEASE_LTO=false
 export CARGO_PROFILE_RELEASE_CODEGEN_UNITS=$_units
 export RUSTFLAGS="-C opt-level=2 -C codegen-units=$_units -C lto=off -Clink-arg=-fuse-ld=lld"
 
+# needed on build server? but not local chroot?
+depends+=('qt6-positioning')
+
 # extra/simdutf
 depends=(${depends[@]//simdutf*/simdutf})
 
