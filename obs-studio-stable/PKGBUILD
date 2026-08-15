@@ -22,7 +22,7 @@ depends=(
   'librist'
   'libvpl'
   'libxcomposite'
-  'mbedtls'
+  'mbedtls3'
   'pciutils'
   'qrcodegencpp-cmake'
   'qt6-svg'
@@ -132,12 +132,18 @@ build() (
     -DCMAKE_BUILD_TYPE=None
     -DCMAKE_INSTALL_PREFIX='/usr'
     -DCMAKE_INSTALL_LIBDIR='lib'
+    -Wno-author
+
+    -DMbedTLS_INCLUDE_DIR="/usr/include/mbedtls3"
+    -DMbedtls_LIBRARY="/usr/lib/mbedtls3/libmbedtls.so"
+    -DMbedcrypto_LIBRARY="/usr/lib/mbedtls3/libmbedcrypto.so"
+    -DMbedx509_LIBRARY="/usr/lib/mbedtls3/libmbedx509.so"
+
     -DCEF_ROOT_DIR="$srcdir/$_cef_src"
     -DOBS_VERSION_OVERRIDE="${pkgver%%.r*}"
     -DOBS_COMPILE_DEPRECATION_AS_WARNING=ON
     -DENABLE_BROWSER=ON # qrcodegencpp-cmake
     -DENABLE_LIBFDK=ON
-    -Wno-dev
 
     -DENABLE_AJA="${_plugin_aja:?}"
     -DENABLE_JACK=ON
