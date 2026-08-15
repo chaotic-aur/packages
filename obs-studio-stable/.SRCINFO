@@ -1,7 +1,7 @@
 pkgbase = obs-studio-stable
 	pkgdesc = Free, open source software for live streaming and recording - Browser enabled
 	pkgver = 32.2.2
-	pkgrel = 1
+	pkgrel = 2
 	url = https://github.com/obsproject/obs-studio
 	arch = x86_64
 	license = GPL-2.0-or-later
@@ -55,6 +55,7 @@ pkgbase = obs-studio-stable
 	optdepends = vlc: VLC Media Source
 	provides = obs-studio=32.2.2
 	conflicts = obs-studio
+	conflicts = obs-studio-plugin-browser
 	options = !lto
 	options = !strip
 	source = obs-studio::git+https://github.com/obsproject/obs-studio.git#tag=32.2.2

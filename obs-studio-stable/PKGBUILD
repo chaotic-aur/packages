@@ -6,7 +6,7 @@
 _pkgname="obs-studio"
 pkgname="$_pkgname-stable"
 pkgver=32.2.2
-pkgrel=1
+pkgrel=2
 pkgdesc="Free, open source software for live streaming and recording - Browser enabled"
 url="https://github.com/obsproject/obs-studio"
 license=("GPL-2.0-or-later")
@@ -70,7 +70,10 @@ else
 fi
 
 provides=("$_pkgname=${pkgver%%.g*}")
-conflicts=("$_pkgname")
+conflicts=(
+  "$_pkgname"
+  'obs-studio-plugin-browser'
+)
 
 options=('!lto' '!strip')
 
@@ -109,15 +112,6 @@ prepare() {
   cd "$_pkgsrc"
   git rm -r deps/libdshowcapture/src
   git submodule update --init --recursive --depth 1
-
-  # fix for Qt 6.10
-  sed -e 's&Qt::GuiPrivate&&' \
-    -i frontend/cmake/os-freebsd.cmake frontend/cmake/os-linux.cmake
-
-  sed -e '/GuiPrivate/d' \
-    -i plugins/aja-output-ui/CMakeLists.txt \
-    plugins/decklink-output-ui/CMakeLists.txt \
-    plugins/frontend-tools/CMakeLists.txt
 }
 
 build() (
