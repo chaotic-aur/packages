@@ -2,7 +2,7 @@
 
 _pkgname="vicinae"
 pkgname="$_pkgname"
-pkgver=0.26.0
+pkgver=0.26.2
 pkgrel=1
 pkgdesc="A focused launcher for your desktop"
 url="https://github.com/vicinaehq/vicinae"
@@ -37,7 +37,7 @@ makedepends=(
 _pkgsrc="$_pkgname-$pkgver"
 _pkgext="tar.gz"
 source=("$_pkgsrc.$_pkgext"::"$url/archive/refs/tags/v$pkgver.$_pkgext")
-sha256sums=('dd75830b2d6a483f41e7ceea8a0314c2e33ed64f8090a1143a768d6fa005ce64')
+sha256sums=('d182529b2cb3d081afed88fd4f2c8b9d94110fac30f15535653438c5044d95c9')
 
 build() {
   local _cmake_options=(
