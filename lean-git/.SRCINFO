@@ -1,4 +1,4 @@
-pkgbase = lean4-git
+pkgbase = lean-git
 	pkgdesc = An interactive theorem prover
 	pkgver = 4.22.0.rc3.r161.gd2e604f74d
 	pkgrel = 1
@@ -10,10 +10,10 @@ pkgbase = lean4-git
 	makedepends = cmake
 	depends = glibc
 	depends = gmp
-	provides = lean4=4.22.0.rc3.r161.gd2e604f74d
-	conflicts = lean4
+	provides = lean=4.22.0.rc3.r161.gd2e604f74d
+	conflicts = lean
 	options = staticlibs
 	source = git+https://github.com/leanprover/lean4.git
 	sha256sums = SKIP
 
-pkgname = lean4-git
+pkgname = lean-git

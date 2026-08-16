@@ -27,4 +27,4 @@ _check_status() (
   fi
 )
 
-_check_status || return $?
+#_check_status || return $?

@@ -1,0 +1,6 @@
+# metadata
+url="https://github.com/leanprover/lean4"
+
+# TODO: temporary
+conflicts+=('lean4' 'lean4-git')
+replaces=('lean4-git')
