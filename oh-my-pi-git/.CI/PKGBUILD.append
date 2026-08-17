@@ -1,1 +1,13 @@
 makedepends+=('bazelisk')
+
+# Upstream AUR pkgver() glues the commit count to the hash (r0+hash -> r037eee71,
+# r3+hash -> r3d187249), so vercmp sorts tag builds above later commits.
+# Keep the `g`/count separator for monotonic versions.
+pkgver() {
+  cd "oh-my-pi"
+  git describe --tags --long --abbrev=7 | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
+}
+
+# Existing installs carry v17.3.5.r037eee71 (count-0, sorts high); a fixed-scheme
+# r3.gd187249 still sorts below it. Epoch forces the new build above everything.
+epoch=1
