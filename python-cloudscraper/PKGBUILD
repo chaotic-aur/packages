@@ -1,4 +1,10 @@
 # Maintainer: aur.chaotic.cx
+# Contributor: Carl Smedstad <carl.smedstad at protonmail dot com>
+# Contributor: Carlos Aznarán <caznaranl@uni.pe>
+# Contributor: Antonio Rojas <arojas@archlinux.org>
+# Contributor: Eli Schwartz <eschwartz@archlinux.org>
+# Contributor: Mufeed Ali <fushinari@protonmail.com>
+# Contributor: lastweakness <lastweakness@tuta.io>
 
 _module="cloudscraper"
 _pkgname="python-$_module"
