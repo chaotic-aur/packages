@@ -52,6 +52,7 @@ PACKAGES=()
 declare -A AUR_TIMESTAMPS
 declare -A AUR_MAINTAINERS
 LAST_AUR_TIMESTAMP=0
+AUR_FETCH_FAILED=false
 MODIFIED_PACKAGES=()
 declare -A CHANGED_LIBS=()
 DELETE_BRANCHES=()
@@ -84,7 +85,6 @@ function collect_aur_info() {
   if [ -f .ci/aur-state ]; then
     LAST_AUR_TIMESTAMP="$(<.ci/aur-state)"
   fi
-  date +%s >.ci/aur-state
 
   for package in "${PACKAGES[@]}"; do
     unset VARIABLES
@@ -99,7 +99,14 @@ function collect_aur_info() {
     fi
   done
 
-  UTIL_FETCH_AUR_INFO collect_aur_timestamps_output collect_aur_maintainers_output "${AUR_PACKAGES[*]}"
+  # Only advance the watermark once a snapshot was actually fetched. Otherwise
+  # a failed fetch would silently make the next run skip updates that happened
+  # in the meantime.
+  if UTIL_FETCH_AUR_INFO collect_aur_timestamps_output collect_aur_maintainers_output "${AUR_PACKAGES[*]}"; then
+    date +%s >.ci/aur-state
+  else
+    AUR_FETCH_FAILED=true
+  fi
 }
 
 function collect_changed_libs() {
@@ -488,7 +495,9 @@ function update_pkgbuild() {
 
     # Fetch from optimized AUR RPC call
     if ! [ -v "AUR_TIMESTAMPS[$pkgbase]" ]; then
-      UTIL_PRINT_WARNING "Could not find $pkgbase in cached AUR timestamps."
+      if [ "$AUR_FETCH_FAILED" != "true" ]; then
+        UTIL_PRINT_WARNING "Could not find $pkgbase in cached AUR timestamps."
+      fi
       return 0
     fi
     local NEW_TIMESTAMP="${AUR_TIMESTAMPS[$pkgbase]}"

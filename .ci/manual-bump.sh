@@ -34,8 +34,13 @@ function collect_versions() {
   _TEMP_LIB="$(mktemp -d)"
 
   for repo in "${link_array[@]}"; do
-    UTIL_PARSE_DATABASE "${repo}" "${_TEMP_LIB}"
+    UTIL_PARSE_DATABASE "${repo}" "${_TEMP_LIB}" || true
   done
+
+  # Merge the per-repo state files. Always create the merged file so sort
+  # below never fails on a missing file, even when every database is unreachable.
+  : >"${_TEMP_LIB}/version-state"
+  cat "${_TEMP_LIB}"/version-state-* >>"${_TEMP_LIB}/version-state" 2>/dev/null || true
 
   # Sort versions file in-place because comm requires it
   sort -o "${_TEMP_LIB}/version-state"{,}

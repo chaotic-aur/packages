@@ -287,7 +287,7 @@ function UTIL_FETCH_AUR_INFO() {
 
     if ! http_proxy="$aur_proxy" https_proxy="$aur_proxy" curl -sf "$meta_url" -o "$dump_file"; then
         UTIL_PRINT_ERROR "Failed to fetch AUR metadata from $meta_url"
-        return 0
+        return 1
     fi
     gzip -dc "$dump_file" > "$json_file"
 
