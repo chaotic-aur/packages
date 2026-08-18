@@ -8,6 +8,7 @@ declare -A KNOWN_CONFIG_LIST=([BUILD_REPO]="chaotic-aur"
     [CI_CLONE_DELAY]="0"
     [CI_CLONE_DELAY]="0"
     [CI_CODE_SKIP]=123
+    [CI_MAX_PARALLEL]="8"
     [CI_DEFAULT_CLASS]=""
     [CI_HUMAN_REVIEW]="false"
     [CI_HUMAN_REVIEW_ASSIGNEE]=""
@@ -222,8 +223,46 @@ function UTIL_UPDATE_VCS_COMMIT() {
     fi
 }
 
-# $1: Output associative array
-# $2: array of pkgbases on AUR
+function UTIL_RESOLVE_MAX_PARALLEL() {
+    set -euo pipefail
+    local value="${CI_MAX_PARALLEL//\"}"
+    value="${value:-8}"
+    if ! [[ "$value" =~ ^[0-9]+$ ]]; then
+        UTIL_PRINT_WARNING "Invalid CI_MAX_PARALLEL value '$value', falling back to 8."
+        value=8
+    fi
+    [ "$value" -lt 1 ] && value=1
+    echo "$value"
+}
+
+# Usage: UTIL_RUN_PARALLEL <max> <item...> -- <command...>
+# Runs <command...> once per item (item passed as $1), bounded to <max> jobs.
+function UTIL_RUN_PARALLEL() {
+    set -euo pipefail
+    local max="$1"; shift
+    local -a items=()
+    while [ "$#" -gt 0 ] && [ "$1" != "--" ]; do
+        items+=("$1"); shift
+    done
+    shift  # drop "--"
+    local -a cmd=("$@")
+    local running=0 item
+    for item in "${items[@]}"; do
+        "${cmd[@]}" "$item" &
+        running=$((running + 1))
+        if [ "$running" -ge "$max" ]; then
+            wait -n || true
+            running=$((running - 1))
+        fi
+    done
+    wait || true
+}
+
+# Fetch timestamp and maintainer info for AUR packages from a single metadata
+# dump download instead of one RPC call per package.
+# $1: Output associative timestamp array
+# $2: Output associative maintainer array
+# $3: Pkgbases to look up (space-separated)
 function UTIL_FETCH_AUR_INFO() {
     set -euo pipefail
     local -n OUTPUT_ASSOC_TIMESTAMP_ARRAY=$1
@@ -237,46 +276,68 @@ function UTIL_FETCH_AUR_INFO() {
         return 0
     fi
 
-    local API_URL="https://aur.archlinux.org/rpc/v5/info"
-    local first=1
+    local meta_url="https://aur.archlinux.org/packages-meta-ext-v1.json.gz"
+    local work_dir
+    work_dir="$(mktemp -d)"
+    trap "rm -rf '${work_dir}'" RETURN
+    local dump_file="$work_dir/dump.json.gz" names_file="$work_dir/names.txt" json_file="$work_dir/meta.json"
 
-    # Loop through $2 but via index numbers. If index != 0, append &arg[]= to the URL
-    for i in "${!pkgbases[@]}"; do
-        if [ "$first" -eq 1 ]; then
-            API_URL+="?arg[]=${pkgbases[$i]}"
-            first=0
-        else
-            API_URL+="&arg[]=${pkgbases[$i]}"
-        fi
+    # The config reader keeps the surrounding quotes, so strip them first
+    local aur_proxy="${CI_AUR_PROXY//\"/}"
 
-        # Every 150 packages or at the end of the array, fetch the timestamps
-        if [ $((i % 150)) -eq 149 ] || [ "$i" -eq "$((${#pkgbases[@]} - 1))" ]; then
-            local response
+    if ! http_proxy="$aur_proxy" https_proxy="$aur_proxy" curl -sf "$meta_url" -o "$dump_file"; then
+        UTIL_PRINT_ERROR "Failed to fetch AUR metadata from $meta_url"
+        return 0
+    fi
+    gzip -dc "$dump_file" > "$json_file"
 
-            # Ensure also packages containing "+" can be fetched, since this is a special character in URLs
-            API_URL=${API_URL//+/%2B}
+    # Build the set of packages we care about and filter the dump in one jq pass
+    printf '%s\n' "${pkgbases[@]}" > "$names_file"
+    local wanted_names
+    wanted_names="$(jq -R -s 'split("\n") | map(select(length > 0)) | map({(.): true}) | add' "$names_file")"
 
-            UTIL_PRINT_INFO "Fetching AUR timestamps for $((i + 1))/${#pkgbases[@]} packages..."
-            if response="$(curl -sf "$API_URL")"; then
-                local -a res_timestamps
-                mapfile -t res_timestamps <<<"$(jq -r '.results[].LastModified' <<<"$response")"
-                local -a res_pkgbases
-                mapfile -t res_pkgbases <<<"$(jq -r '.results[].PackageBase' <<<"$response")"
-                local -a res_maintainers
-                mapfile -t res_maintainers < <(jq -r '.results[] | (.Maintainer // "unknown") as $m | ((.CoMaintainers // []) | join(",")) as $c | if $c != "" then "\($m),\($c)" else $m end' <<<"$response")
+    local -a aur_entries
+    mapfile -t aur_entries < <(
+        # shellcheck disable=SC2016
+        jq -r --argjson wanted "$wanted_names" '.[]
+            | select(.PackageBase as $pb | $wanted[$pb])
+            | [.PackageBase,
+               (.LastModified | tostring),
+               ((.Maintainer // "unknown") as $m | ((.CoMaintainers // []) | join(",")) as $c
+                | if $c != "" then "\($m),\($c)" else $m end)]
+            | @tsv' "$json_file"
+    )
 
-                # Loop through timestamps and pkgbases and add them to the associative array
-                for j in "${!res_timestamps[@]}"; do
-                    OUTPUT_ASSOC_TIMESTAMP_ARRAY["${res_pkgbases[$j]}"]="${res_timestamps[$j]}"
-                    OUTPUT_ASSOC_MAINTAINER_ARRAY["${res_pkgbases[$j]}"]="${res_maintainers[$j]}"
-                done
-            else
-                UTIL_PRINT_ERROR "Failed to fetch AUR timestamps from $API_URL"
-            fi
-            API_URL="https://aur.archlinux.org/rpc/v5/info"
-            first=1
-        fi
+    # Merge the entries into the output arrays
+    local entry pkgbase timestamp maintainers
+    for entry in "${aur_entries[@]}"; do
+        [ -n "$entry" ] || continue
+        IFS=$'\t' read -r pkgbase timestamp maintainers <<<"$entry"
+        OUTPUT_ASSOC_TIMESTAMP_ARRAY["$pkgbase"]="$timestamp"
+        OUTPUT_ASSOC_MAINTAINER_ARRAY["$pkgbase"]="$maintainers"
     done
+}
+
+# $1: package directory
+function UTIL_GET_LOCAL_SOURCE_FILES() {
+    set -euo pipefail
+    local srcinfo="$1/.SRCINFO"
+    if [ ! -f "$srcinfo" ]; then
+        return 0
+    fi
+    while IFS= read -r line; do
+        if [[ "$line" =~ ^[[:space:]]*(source(_[[:alnum:]_]+)?|install|changelog)[[:space:]]*=[[:space:]]*(.*)$ ]]; then
+            local value="${BASH_REMATCH[3]}"
+            # Unwrap the name::path rename syntax and use only the RHS
+            if [[ "$value" == *"::"* ]]; then
+                value="${value#*::}"
+            fi
+            if [[ "$value" == *"://"* ]]; then
+                continue
+            fi
+            [ -n "$value" ] && printf '%s\n' "$value"
+        fi
+    done < "$srcinfo"
 }
 
 # Generate exclude list for rsync, diff, etc.
@@ -356,6 +417,7 @@ function UTIL_PARSE_DATABASE() {
     tar -xf "${tmp_dir}/${repo}/${repo}.db" -C "${tmp_dir}/${repo}"
 
     # Use find with xargs instead of -exec to avoid pipeline issues
+    # Each repo writes to its own state file so invocations can run in parallel
     while read -r pkgbase version; do
         # Skip empty lines
         [[ -n "$pkgbase" && -n "$version" ]] || continue
@@ -366,7 +428,7 @@ function UTIL_PARSE_DATABASE() {
         if [[ -v already_parsed["${normalized_pkgbase}"] ]]; then
             continue
         else
-            echo "$pkgbase:$version" >>"${tmp_dir}/version-state"
+            echo "$pkgbase:$version" >>"${tmp_dir}/version-state-${repo}"
             already_parsed["$normalized_pkgbase"]="true"
         fi
     done < <(find "${tmp_dir}/${repo}" -maxdepth 2 -name 'desc' -print0 | xargs -0 gawk -f .ci/awk/parse-database.awk)
@@ -540,6 +602,10 @@ function UTIL_SET_GIT_IDENTITY() {
     # Silence some very insane log spam. Main is set by default and the silenced
     # message is declared as hint.
     git config --global init.defaultBranch "main"
+
+    # AUR packages often carry trailing whitespace in their PKGBUILD; the
+    # path-scoped stash applies the diff via git apply and warns about it.
+    git config --global apply.whitespace nowarn
 }
 
 function UTIL_SETUP_CLONE() {

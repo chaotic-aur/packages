@@ -2,9 +2,8 @@
 set -euo pipefail
 
 # $1: pkgbase
-# $2: Go one commit further back
-# $3: Assign to GitLab user id
-# $4: Review source (optional, "nvchecker" or default)
+# $2: Assign to GitLab user id
+# $3: Review source (optional, "nvchecker" or default)
 
 # shellcheck source=./util.shlib
 source .ci/util.shlib
@@ -28,7 +27,7 @@ function create_gitlab_pr() {
   # Require a list of all the merge request and take a look if there is already
   # one with the same source branch
   local _COUNTBRANCHES _LISTMR _MR_EXISTS BODY
-  if ! _LISTMR=$(curl --fail-with-body --silent "https://gitlab.com/api/v4/projects/${CI_PROJECT_ID}/merge_requests?state=opened" --header "PRIVATE-TOKEN:${ACCESS_TOKEN}"); then
+  if ! _LISTMR=$(curl --fail-with-body --silent "https://gitlab.com/api/v4/projects/${CI_PROJECT_ID}/merge_requests?state=opened&per_page=100" --header "PRIVATE-TOKEN:${ACCESS_TOKEN}"); then
     UTIL_PRINT_ERROR "$pkgbase: Failed to get list of merge requests."
     return
   fi
@@ -162,40 +161,45 @@ function create_github_pr() {
 }
 
 # $1: branch
-# $2: target branch
+# $2: base ref the PR branch is built on
 # $3: pkgbase
 function manage_branch() {
   local branch="$1"
-  local target_branch="$2"
+  local base_ref="$2"
   local pkgbase="$3"
+  local tmpwork
 
-  git stash -q
-  if git show-ref --quiet "origin/$branch"; then
-    git switch -q "$branch"
-    git checkout -q stash -- "$pkgbase"
-    git add "$pkgbase"
-    # Branch already exists, let's see if it's up to date
-    # Also check if previous parent commit is no longer ancestor of target_branch
-    if ! git diff --staged --exit-code --quiet || ! git merge-base --is-ancestor HEAD^ "origin/$target_branch"; then
-      # Not up to date
-      git reset -q --hard "origin/$target_branch"
-      git checkout stash -q -- "$pkgbase"
-      git add "$pkgbase"
-      git commit -q -m "chore(update): $pkgbase"
-      git push --force-with-lease origin "$CHANGE_BRANCH"
-    fi
-  else
-    # Branch does not exist, let's create it
-    git switch -q -C "$branch" "origin/$target_branch"
+  # Scope the stash to just this package: parallel Phase A leaves all other
+  # packages' updates in the worktree, and a global stash would drop them here.
+  git stash push -q -- "$pkgbase"
+
+  # Do all branch work in an isolated worktree: switching branches in the main
+  # worktree would refuse (or clobber) the other packages' pending changes.
+  tmpwork="$(mktemp -d)"
+  trap 'if [ -n "${tmpwork:-}" ]; then git worktree remove --force "$tmpwork" >/dev/null 2>&1 || true; rm -rf "$tmpwork"; fi' EXIT
+  git worktree add --quiet --detach "$tmpwork" "$base_ref"
+  (
+    cd "$tmpwork" || exit 1
     git checkout stash -q -- "$pkgbase"
     git add "$pkgbase"
-    git commit -q -m "chore(update): $pkgbase"
-    git push --force-with-lease origin "$CHANGE_BRANCH"
-  fi
+    # Skip when the branch already carries exactly these changes
+    if ! git diff --staged --exit-code --quiet; then
+      git commit -q -m "chore(update): $pkgbase"
+	  
+      if push_output=$(git push --quiet --force-with-lease origin "HEAD:refs/heads/$branch" 2>&1); then
+        UTIL_PRINT_INFO "$pkgbase: Pushed branch $branch for review."
+      else
+        UTIL_PRINT_ERROR "$pkgbase: Failed to push branch $branch:\n$push_output"
+        exit 1
+      fi
+    fi
+  )
+  git worktree remove --force "$tmpwork"
+  rm -rf "$tmpwork"
   git stash drop -q
 }
 PKGBASE="$1"
-REVIEW_SOURCE="${4:-regular}"
+REVIEW_SOURCE="${3:-regular}"
 
 PR_TITLE="chore(update): $PKGBASE"
 PR_DESCRIPTION="A recent update of this package requires human review! Please check whether any potentially dangerous changes were made."
@@ -219,15 +223,9 @@ else
   TARGET_BRANCH="$(git rev-parse --abbrev-ref HEAD)"
 fi
 
-ORIGINAL_REF="$(git rev-parse HEAD)"
 CHANGE_BRANCH="update-$PKGBASE"
 
-if [ "$2" == "true" ]; then
-  # Go one commit further back
-  git -c advice.detachedHead=false checkout -q HEAD^
-fi
-
-manage_branch "$CHANGE_BRANCH" "$TARGET_BRANCH" "$PKGBASE"
+manage_branch "$CHANGE_BRANCH" "origin/$TARGET_BRANCH" "$PKGBASE"
 
 if [ -v GITLAB_CI ]; then
   create_gitlab_pr "$PKGBASE" "$CHANGE_BRANCH" "$TARGET_BRANCH" "${ASSIGN_TO_ID:-}"
@@ -237,6 +235,3 @@ else
   UTIL_PRINT_WARNING "Pull request creation is only supported on GitLab CI/GitHub Actions. Please disable CI_HUMAN_REVIEW."
   exit 0
 fi
-
-# Switch back to the original branch
-git -c advice.detachedHead=false checkout -q "$ORIGINAL_REF"
