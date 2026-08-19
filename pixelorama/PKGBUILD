@@ -2,7 +2,7 @@
 
 _pkgname="pixelorama"
 pkgname="$_pkgname"
-pkgver=1.2
+pkgver=1.2.1
 pkgrel=1
 pkgdesc="A 2D sprite editor made with the Godot Engine"
 url="https://github.com/Orama-Interactive/Pixelorama"
@@ -21,7 +21,7 @@ makedepends=(
 _pkgsrc="${pkgname^}-$pkgver"
 _pkgext="tar.gz"
 source=("${_pkgsrc,,}.$_pkgext"::"$url/archive/v$pkgver.$_pkgext")
-sha256sums=('45accd447b0561003bf484725326df48223bdab9e695a1a510f9ac5ff82afd06')
+sha256sums=('0ef65894b481d8ab1c901624c9fe5e9b06a740f9971ab83bdcedf0d6d9cdcf22')
 
 build() {
   local _template=$(find /usr/share/godot/export_templates -type f -name "linux_release.x86_64" -print -quit)
