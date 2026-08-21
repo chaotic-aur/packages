@@ -171,7 +171,7 @@ function manage_branch() {
 
   # Scope the stash to just this package: parallel Phase A leaves all other
   # packages' updates in the worktree, and a global stash would drop them here.
-  git stash push -q -- "$pkgbase"
+  git stash push -q -u -- "$pkgbase"
 
   # Do all branch work in an isolated worktree: switching branches in the main
   # worktree would refuse (or clobber) the other packages' pending changes.
@@ -180,7 +180,10 @@ function manage_branch() {
   git worktree add --quiet --detach "$tmpwork" "$base_ref"
   (
     cd "$tmpwork" || exit 1
-    git checkout stash -q -- "$pkgbase"
+    # Restore tracked changes from the WIP commit, then untracked files
+    # from the untracked commit (stash@{0}^3, created by -u).
+    git checkout stash@{0} -- "$pkgbase"
+    git checkout stash@{0}^3 -- "$pkgbase" 2>/dev/null || true
     git add "$pkgbase"
     # Skip when the branch already carries exactly these changes
     if ! git diff --staged --exit-code --quiet; then
