@@ -14,8 +14,8 @@
 
 _pkgname="waterfox"
 pkgname="$_pkgname"
-pkgver=6.6.17
-pkgrel=2
+pkgver=6.7.0
+pkgrel=1
 pkgdesc="A customizable, privacy‑focused web browser"
 url="https://github.com/BrowserWorks/waterfox"
 license=('MPL-2.0')
@@ -115,8 +115,8 @@ source=(
   '0002-Fix-sandbox-to-build-with-glibc-2.43.patch'
   '0003-Add-FFmpeg-63-support.patch.xz'
 )
-sha256sums=('237123c36434e95a1a6f0c26620115108fc89f1d9a82ed420673df8b829c9673'
-            'e3f532fb33a31233a9c24e6f649cfaf77c2d1a0d0d916960c7c1f3a6418db8b7'
+sha256sums=('17bf07acf6548b38d81848443f808506d5177e4f1c801c50024925b2f1085a8f'
+            '54a69e8afa8903250a33125fb61ac90db6664f1a7e97b5dd7832a4b3e162102e'
             '9345cdf0e1a537d8ff23b5db0eadaaec5868f7588de86a260da27f5015c2d286'
             '157976ec4be8d723cd6240988b310bc8e1779b2272a258d886bc08389ceba852'
             '404e780b1488625989c6dd8e2234e50ed01401b7cb1e99e79dee87f4f4f584f8'
