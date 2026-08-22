@@ -1,12 +1,8 @@
 # Maintainer:
 
-: ${_build_x86_64_v2=false}
-: ${_build_x86_64_v3=true}
-: ${_build_x86_64_v4=false}
-
 _pkgname="libggml"
 pkgname="$_pkgname-git"
-pkgver=0.20.2.r0.g8c63e70
+pkgver=0.21.0.r2.gd99724f
 pkgrel=2
 pkgdesc="Tensor library for machine learning"
 url="https://github.com/ggml-org/ggml"
@@ -26,7 +22,10 @@ makedepends=(
   'vulkan-headers'
 )
 
-provides=("$_pkgname")
+provides=(
+  "$_pkgname"
+  'ggml'
+)
 conflicts=(
   "$_pkgname"
   'ggml'
