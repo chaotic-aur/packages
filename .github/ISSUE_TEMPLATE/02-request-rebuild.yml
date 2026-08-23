@@ -5,6 +5,7 @@ labels: ["request:rebuild-pkg"]
 title: "[Rebuild] package_name"
 body:
   - type: textarea
+    id: packages
     attributes:
       label: "Packages"
       description: |
@@ -16,6 +17,7 @@ body:
     validations:
       required: true
   - type: textarea
+    id: description
     attributes:
       label: "Description"
       description: |
