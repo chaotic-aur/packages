@@ -1,0 +1,1 @@
+_build_limit_cores=$(($(lscpu | grep -Pom1 'Core\(s\) per socket:\s*\K[0-9]+') - 4))
