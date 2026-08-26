@@ -1,4 +1,7 @@
-makedepends+=('bazelisk')
+# audiopus_sys builds bundled Opus via CMake with the Ninja generator
+# (see its build.rs), so `ninja` is required even though `cmake`/`make`
+# are present.
+makedepends+=('ninja')
 
 # Upstream AUR pkgver() glues the commit count to the hash (r0+hash -> r037eee71,
 # r3+hash -> r3d187249), so vercmp sorts tag builds above later commits.
