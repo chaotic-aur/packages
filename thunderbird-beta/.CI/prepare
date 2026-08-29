@@ -15,3 +15,5 @@ _check_update() {
 }
 
 _check_update || return $?
+
+sed -i "s/grep -E '\^Location:/grep -iE '^Location:/" PKGBUILD
