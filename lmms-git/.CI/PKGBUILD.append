@@ -2,6 +2,7 @@ url="https://github.com/LMMS/lmms"
 license=('GPL-2.0-or-later')
 
 makedepends+=('cairo')
+export CXXFLAGS="${CXXFLAGS} -I/usr/include/cairo"
 
 _pkgsrc="lmms"
 pkgver() {
