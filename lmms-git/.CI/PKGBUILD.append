@@ -1,6 +1,8 @@
 url="https://github.com/LMMS/lmms"
 license=('GPL-2.0-or-later')
 
+makedepends+=('cairo')
+
 _pkgsrc="lmms"
 pkgver() {
   cd "$_pkgsrc"
