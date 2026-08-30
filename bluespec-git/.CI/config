@@ -1,3 +1,4 @@
 CI_PACKAGE_BUMP=r1131.083dcb67-1/2
 CI_REBUILD_TRIGGERS=haskell-old-time:haskell-syb:haskell-regex-compat:haskell-split
 CI_PKGBUILD_SOURCE=aur
+BUILDER_CLASS=4
