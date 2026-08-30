@@ -1,2 +1,3 @@
 CI_PKGBUILD_CHANGE_ALLOW_REGEX=^source[^)]*https://github\.com/neovim/neovim/releases/download/nightly/nvim-linux
 CI_PKGBUILD_SOURCE=aur
+BUILDER_CLASS=0
