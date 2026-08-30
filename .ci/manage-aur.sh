@@ -95,8 +95,11 @@ manage_aur_package() {
   shfmt -w "$package/PKGBUILD"
 
   # Build the upload set from the package's .SRCINFO: local source files,
-  # install scripts, changelogs, plus PKGBUILD, .SRCINFO and .nvchecker.toml.
+  # install scripts, changelogs, plus PKGBUILD, .SRCINFO, .gitignore and .nvchecker.toml.
   declare -a upload_files=(PKGBUILD .SRCINFO)
+  if [ -f "$package/.gitignore" ]; then
+    upload_files+=(.gitignore)
+  fi
   if [ -f "$package/.nvchecker.toml" ]; then
     upload_files+=(.nvchecker.toml)
   fi

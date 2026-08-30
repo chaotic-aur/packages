@@ -509,6 +509,22 @@ function update_pkgbuild() {
   fi
 }
 
+# Ask the should-build endpoint for a package. The per-package setting
+# overrides the global CI_SHOULD_BUILD_CHECK. Returns non-zero when the
+# backend reports a failure loop for the package.
+# $1: VARIABLES array name
+function should_schedule() {
+  set -euo pipefail
+  local -n pkg_config=${1:-VARIABLES}
+  local check="${CI_SHOULD_BUILD_CHECK:-false}"
+  check="${check//\"/}"
+  if [ -v "pkg_config[CI_SHOULD_BUILD_CHECK]" ]; then
+    check="${pkg_config[CI_SHOULD_BUILD_CHECK]//\"/}"
+  fi
+  [ "$check" == "true" ] || return 0
+  UTIL_SHOULD_BUILD "${pkg_config[PKGBASE]}"
+}
+
 function update_vcs() {
   set -euo pipefail
   local -n VARIABLES_UPDATE_VCS=${1:-VARIABLES}
@@ -527,6 +543,12 @@ function update_vcs() {
 
   if [ -z "$_NEWEST_COMMIT" ]; then
     unset "VARIABLES_UPDATE_VCS[CI_GIT_COMMIT]"
+    return 0
+  fi
+
+  # Only this recurring git-hash update consults the endpoint. A deny keeps
+  # the old hash, so the next scheduled run asks again.
+  if ! should_schedule VARIABLES_UPDATE_VCS; then
     return 0
   fi
 
