@@ -28,6 +28,6 @@ pkgbase = bubblejail
 	source = bubblejail::git+https://github.com/igo95862/bubblejail.git#tag=0.10.4
 	source = 0096-expandvars-0.patch::https://github.com/igo95862/bubblejail/pull/96.diff
 	sha256sums = b03af0d0b12ec2596b6568d1cf98ae5e7c9ebf5a3604a2c129ed591f0ddc5441
-	sha256sums = 307d725976eea192742806452a57e56ca53f164f7ac60ec6b6d19c2c8db16378
+	sha256sums = a0ac5391eb3f3a289ca7e29f80a85a35c45c05e63069886c588a687a2916a65b
 
 pkgname = bubblejail

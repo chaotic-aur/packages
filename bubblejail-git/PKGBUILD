@@ -2,8 +2,8 @@
 
 _pkgname="bubblejail"
 pkgname="$_pkgname-git"
-pkgver=0.10.1.r0.ge6b902c
-pkgrel=2
+pkgver=0.10.4.r0.g53d5b2c
+pkgrel=1
 pkgdesc="Bubblewrap based sandboxing utility"
 url="https://github.com/igo95862/bubblejail"
 license=('GPL-3.0-or-later')
@@ -53,17 +53,27 @@ prepare() {
   cd "$_pkgsrc"
   git submodule update --init --recursive --depth=1
 
-  patch -Np1 -F100 -i "$srcdir/0096-expandvars-0.patch"
+  local src
+  for src in "${source[@]}"; do
+    src="${src%%::*}"
+    src="${src##*/}"
+    src="${src%.zst}"
+    if [[ $src == *.patch ]]; then
+      printf '\nApplying patch: %s\n' "$src"
+      patch -Np1 -F100 -i "${srcdir:?}/$src"
+    fi
+  done
 
   # change notification priority
   sed -E \
-    -e '/urgency/d' \
+    -e '/--urgency/d' \
     -e '/critical/d' \
     -i "src/bubblejail/bubblejail_cli.py"
 
   # enable extra features
   sed -E -e '/flags\s?=\s?ServiceFlags.(EXPERIMENTAL|NO_GUI)/d' \
-    -i "src/bubblejail/services.py"
+    -i "src/bubblejail/services.py" \
+    "src/bubblejail/bubblejail_gui_qt.py"
 }
 
 pkgver() {
