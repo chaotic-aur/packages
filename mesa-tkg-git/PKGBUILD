@@ -58,10 +58,10 @@ makedepends=('git' 'python-mako' 'python-ply' 'xorgproto' 'libxml2' 'libx11' 'li
 
 if [ "$_lib32" == "true" ]; then
   makedepends+=('lib32-libdisplay-info' 'lib32-libxml2' 'lib32-libx11' 'lib32-libdrm' 'lib32-libxshmfence'
-    'lib32-libxxf86vm' 'lib32-gcc-libs' 'lib32-libvdpau' 'lib32-libelf' 'lib32-libgcrypt'
-    'lib32-lm_sensors' 'lib32-libxdamage' 'gcc-multilib' 'lib32-libunwind' 'lib32-libglvnd'
-    'lib32-libva' 'lib32-wayland' 'lib32-libvdpau' 'lib32-libxrandr' 'lib32-expat'
-    'lib32-spirv-llvm-translator' 'lib32-rust-libs')
+    'lib32-libxxf86vm' 'lib32-gcc-libs' 'lib32-libelf' 'lib32-libgcrypt' 'lib32-lm_sensors'
+    'lib32-libxdamage' 'gcc-multilib' 'lib32-libunwind' 'lib32-libglvnd' 'lib32-libva'
+    'lib32-wayland' 'lib32-libxrandr' 'lib32-expat' 'lib32-spirv-llvm-translator'
+    'lib32-rust-libs')
 fi
 
 depends=('libdrm' 'libxxf86vm' 'libxdamage' 'libxshmfence' 'libelf' 'libomxil-bellagio' 'libunwind'
@@ -361,13 +361,19 @@ build() {
     _gallium_xa="${_enabled_}"
   fi
 
-  # gallium_vdpau requires either r300, r600, radeonsi or nouveau
+  # gallium_vdpau requires either r300, r600, radeonsi or nouveau + lib32-libvdpau dependency
   if (cd "$srcdir/$_mesa_srcdir" && ! git merge-base --is-ancestor 4b54277d2e9420e37cdce98b3a09e6cecf87300d HEAD); then
-    if [[ $_gallium_drivers != *r300* ]] && [[ $_gallium_drivers != *r600* ]] && [[ $_gallium_drivers != *radeonsi* ]] && [[ $_gallium_drivers != *nouveau* ]]; then
-      warning "Gallium VDPAU disabled (gallium driver r300, r600, radeonsi or nouveau required)"
+    if (! pacman -Qq lib32-libvdpau &> /dev/null && [ "$_lib32" == "true" ]); then
+      warning "Gallium VDPAU disabled (missing lib32-libvdpau dependency)"
+      warning "lib32-libvdpau was removed from multilib repositories, to fulfill this you may need to install an AUR package or a package from unofficial repositories"
       _gallium_vdpau="-D gallium-vdpau=${_disabled_}"
     else
-      _gallium_vdpau="-D gallium-vdpau=${_enabled_}"
+      if [[ $_gallium_drivers != *r300* ]] && [[ $_gallium_drivers != *r600* ]] && [[ $_gallium_drivers != *radeonsi* ]] && [[ $_gallium_drivers != *nouveau* ]]; then
+        warning "Gallium VDPAU disabled (gallium driver r300, r600, radeonsi or nouveau required)"
+        _gallium_vdpau="-D gallium-vdpau=${_disabled_}"
+      else
+        _gallium_vdpau="-D gallium-vdpau=${_enabled_}"
+      fi
     fi
   fi
 
