@@ -1,4 +1,0 @@
-[distroshelf]
-source = "git"
-git = "https://github.com/ranfdev/DistroShelf.git"
-prefix = "v"
