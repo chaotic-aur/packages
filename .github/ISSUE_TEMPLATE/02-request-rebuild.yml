@@ -1,8 +1,7 @@
----
-name: "Request rebuild 🏗️ / Report bugs 🐛"
-description: "Report bugs or request to rebuild package."
+name: "Request rebuild 🏗️"
+description: "Request to rebuild a package."
 labels: ["request:rebuild-pkg"]
-title: "[Rebuild] package_name"
+title: "[Rebuild] pkgbase"
 body:
   - type: textarea
     id: packages
@@ -13,7 +12,7 @@ body:
         Please ensure that the AUR package has already been updated before reporting.
         If a relevant issue already exists, please comment instead of opening a new one.
       value: |
-        https://aur.archlinux.org/pkgbase/package_name
+        https://aur.archlinux.org/pkgbase/pkgbase
     validations:
       required: true
   - type: textarea
@@ -21,10 +20,29 @@ body:
     attributes:
       label: "Description"
       description: |
-        Why does this package need to be rebuilt?
+        Why does this package need to be rebuilt? Broken/outdated — include current vs latest version + build log link.
+        Do NOT use for general packaging issues (wrong deps, install fails) — use "Package issue" instead.
       value: |
-        Broken?  Missing?  Outdated?  Etc.
+        Broken? Missing? Outdated? Etc.
         Include details, such as error messages, to aid troubleshooting.
         Include current and latest versions for outdated packages.
     validations:
       required: true
+  - type: checkboxes
+    id: confirmation
+    attributes:
+      label: Confirmation
+      description: |
+        Confirm this is a rebuild request.
+      options:
+        - label: I verified the AUR package itself is updated — this is a rebuild of the same pkgbase, not a packaging change.
+          required: true
+  - type: checkboxes
+    id: custom
+    attributes:
+      label: Custom package
+      description: |
+        Check if the package has no AUR counterpart.
+      options:
+        - label: This is a custom package that is not available on the AUR.
+          required: false

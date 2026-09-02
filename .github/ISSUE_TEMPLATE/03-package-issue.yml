@@ -1,0 +1,52 @@
+name: "Package issue 🐛"
+description: "General issue with a package that is NOT a rebuild (wrong deps, install fails, etc.)."
+title: "[Issue] pkgbase"
+labels: ["request:package-issue"]
+body:
+  - type: textarea
+    id: package
+    attributes:
+      label: "Package"
+      description: |
+        Link to the package base (AUR or chaotic-aur). For chaotic-aur packages a simple pkgbase name is enough.
+        If a relevant issue already exists, please comment instead of opening a new one.
+      value: |
+        pkgbase / https://aur.archlinux.org/pkgbase/pkgbase
+    validations:
+      required: true
+  - type: dropdown
+    id: issue_type
+    attributes:
+      label: "Issue type"
+      description: |
+        What kind of package problem is this? Not a rebuild — for rebuilds use "Request rebuild".
+      options:
+        - Build failure
+        - Wrong/missing dependency
+        - Install/runtime issue
+        - Other packaging issue
+      default: 3
+    validations:
+      required: true
+  - type: textarea
+    id: issue_description
+    attributes:
+      label: "Issue description"
+      description: |
+        Describe the packaging problem. For dependency issues: change package to use dep X because of Y, include current vs requested dep version and reason.
+      placeholder: |
+        Change pkgbase to use dep X because of Y
+        Current: dep X 1.0
+        Requested: dep Y 2.0
+        Reason: ...
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: "Logs"
+      description: |
+        Logs / error output. Required for build failures. Paste the relevant error or build log excerpt.
+      render: shell
+    validations:
+      required: false

@@ -1,4 +1,3 @@
----
 name: "👶 Request to add new package"
 description: "Request to add new package"
 labels: ["request:new-pkg"]
