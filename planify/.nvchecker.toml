@@ -1,5 +1,0 @@
-[planify]
-source = "git"
-git = "https://github.com/alainm23/planify.git"
-prefix = "v"
-ignored = "6.2.3"
