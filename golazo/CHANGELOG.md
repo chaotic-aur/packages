@@ -1,0 +1,424 @@
+# Changelog
+
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [Unreleased]
+
+### Added
+- **World Cup Top Scorers** — Press `s` in the World Cup view to open a ranked top scorers table with live goal tallies for the 2026 World Cup.
+
+### Changed
+
+### Fixed
+- **World Cup Bracket** — Penalty shootout results now correctly show the advancing team; tied matches decided on penalties are marked with `(p)` in the bracket.
+- **World Cup Bracket** — Remove arrow connector between matchup score and winner label
+
+## [0.30.0] - 2026-06-25
+
+> [!NOTE]
+> Update your Golazo app by running `golazo --update`; and visit the new project website: https://thegolazo.app
+
+### Added
+- **World Cup Bracket** — Symmetric bracket covering all rounds (R32 → Final for 2026, R16 → Final for 2022); auto-updates with winner/loser styling as matches progress. Select World Cup 2026 -> Bracket View(Press b)
+
+![wc-bracket-view](https://github.com/0xjuanma/golazo/blob/main/assets/wc-2026-knockout-bracket.png)
+
+### Changed
+
+### Fixed
+
+## [0.29.1] - 2026-06-17
+
+### Added
+
+### Changed
+
+### Fixed
+- **Team name derivation** - Fix bug causing mislabeling in WC team name derivation
+
+## [0.29.0] - 2026-06-15
+
+### Added
+
+### Changed
+- **Caching** — FotMob league page bodies are now cached for 60s and shared across the live, stats, World Cup, and standings views, reducing redundant network calls during quick navigation.
+- **Reddit goal-link retrieval** — goal replay links now load one-by-one in the match panel and recover gracefully when Reddit rate-limits the app, instead of all attempts failing in a burst.
+
+### Fixed
+- **Live matches view** — matches that kicked off before the user's UTC midnight (e.g. evening kickoffs for users in the Americas) are no longer dropped from the Live view.
+- **Live detection at kickoff** — matches flip to live the moment FotMob's `halfs.firstHalfStarted` timestamp moves into the past (the actual kickoff time), even if FotMob's `started` flag still lags. Future timestamps remain not-started, so scheduled matches with a published kickoff time are no longer misclassified as live.
+- **Right panel auto-load** — first match in the list auto-populates when the right panel is empty (live and finished views).
+- **Live matches refresh (R)** — pressing `r` on the live list (with no match opened) now force-refreshes the live list by bypassing the league-page cache. Previously `r` was a no-op on the list itself.
+
+## [0.28.0] - 2026-06-14
+
+### Added
+- **AFC Champions League Two** - Added the AFC Champions League Two (FotMob ID 9469) to the supported leagues list under the Asia region.
+
+### Changed
+- **Reddit goal-link retrieval** — improved coverage for World Cup and national-team matches, with looser team and scorer name matching across spellings, diacritics, and common r/soccer title formats.
+- **UI Refinements** — minor visual tweaks improving focus indicators and overall consistency.
+
+### Fixed
+
+## [0.27.1] - 2026-06-12
+
+### Added
+
+### Changed
+
+### Fixed
+- **World Cup Grid Alignment** - Reworked the World Cup grid to render consistently across terminals and cleared stale content when navigating between sub-views.
+
+## [0.27.0] - 2026-06-12
+
+### Added
+- **Agentic CLI Mode** - Golazo is now usable by agentic dev tools (Claude Code, Codex, etc). Adds JSON subcommands (`live`, `finished`, `match`, `leagues`, `capabilities`) with a stable envelope, typed error codes and self-describing contract. TUI behavior is unchanged. See [docs/CLI.md](docs/CLI.md).
+
+### Changed
+
+### Fixed
+- **World Cup Flags** - Fixed ambiguous FotMob short codes (e.g. South Africa/South Korea both `SOU`) and missing 2026 qualifier flags causing teams to render with the wrong code or no flag.
+
+## [0.26.0] - 2026-06-10
+
+### Added
+- **World Cup View** - New top-level view for the FIFA World Cup with a group-grid overview as the default sub-view, scrollable groups list (`t`), per-group detail, knockout bracket (`b`), and upcoming matches for the next 4 days (`u`). Flag emojis prefix team names across the grid, group detail, and upcoming views.
+
+### Changed
+
+### Fixed
+- **World Cup Team Labels** - All World Cup views now render teams as `<flag> <3-letter code>` (e.g. `🇦🇷 ARG`), with a local name-to-code map for teams missing a `shortName` from FotMob.
+- **Update Noop** - `golazo --update` now skips the Homebrew/install-script call when the running binary is already on the latest GitHub release (or is a dev build), printing an informative message instead of reinstalling. Network failures while checking the latest version still fall through to today's install behavior.
+- **Debug Log Hint** - The `--debug` banner and `--debug` flag help now display the platform-correct log path (`~/.config/golazo/golazo_debug.log` on Linux per XDG, `~/.golazo/golazo_debug.log` on macOS/Windows) instead of a hardcoded macOS path.
+- **World Cup Hints** - Removed a redundant tab hint above the groups list so each sub-view shows a single, accurate help line.
+
+## [0.25.0] - 2026-05-31
+
+### Added
+- **Aggregate Score** - Finished knockout matches (Champions League, Europa League, etc.) now display the aggregate score and eliminated team below the match score in the details panel
+
+### Changed
+
+### Fixed
+- **Homebrew Update** - Fixed `golazo -u` falling back to the install script when brew successfully built the new version but failed the link step due to a conflicting binary
+- **Link Rendering** - Fixed highlight and goal replay links not being clickable in macOS Terminal.app and other terminals that don't support OSC 8; links now render as visible bracketed URLs that Terminal.app detects natively on right-click
+
+## [0.24.0] - 2026-05-03
+
+### Added
+- **Live Statistics & Standings** - Press `x` for match statistics (possession, shots, etc.) or `s` for league standings while viewing any live match
+
+### Changed
+
+### Fixed
+- **High CPU usage** - Fixed continuously growing CPU after repeated live match refreshes caused by duplicate poll and render tick chains
+
+## [0.23.0] - 2026-04-08
+
+### Added
+- **Error Visibility** - API errors are now surfaced to the user with a retry hint instead of showing silent empty states
+
+### Changed
+- **Performance** - Reduced API overhead with connection pooling, goroutine limiting, pre-compiled regexes, memoized name normalization, and slice/map pre-allocation
+- **Internal Code Quality** - Extracted shared rate limiter and generic TTL cache packages, consolidated duplicated UI helpers, and replaced file-based debug logging with `log/slog`
+- **Concurrency** - In-flight API requests are now cancelled when navigating away from a view, preventing wasted work
+- **Test Coverage** - Added unit tests for fotmob client/types, reddit matcher, data settings, rate limiter, and cache packages
+
+### Fixed
+- **Silent Error Swallowing** - Settings save, notification, and Reddit client init errors are now logged instead of discarded
+- **Live Score Sync** - Fixed left panel score falling out of sync with the right panel between 5-minute list refreshes
+- **Match Details Broken** - Fixed match data returning empty after FotMob removed their JSON API endpoints
+- **Live View Upcoming Matches** - Fixed upcoming matches not showing unless stats view was visited first
+
+## [0.22.0] - 2026-02-20
+
+### Added
+- **Ligue 2** - Added support for French Ligue 2 (Thanks @hkajdan!)
+- **Add more German leagues** - Added support for German 2. Bundesliga and 3. Liga (Thanks @lukasgierth!)
+
+- **Substitutions in Finished View** - Finished match details now show a "Substitutions" section (after Goals and Cards) with the same styling as the live view (player in/out, minute)
+
+### Changed
+- **Substitution Rendering** - Live and finished views now share a single substitution content builder (`buildSubstitutionContent`) so behaviour and styling stay consistent
+
+### Fixed
+- **Half-Time Score** - Fixed HT score being overwritten with the final score when a match finishes
+- **Match Details & Scores** - Fixed match details returning nil and scores showing as empty due to FotMob API changes
+
+## [0.21.0] - 2026-02-07
+
+### Added
+- **Brazilian Leagues** - Added support for Copa do Nordeste and Campeonato Goiano (Thanks @gabriel7419!)
+
+### Changed
+- **Code Quality** - Resolved all golangci-lint warnings (errcheck, staticcheck, unused)
+- **Goal Replay Links** - Added a new Reddit search strategy using short/alternative team names, improving goal link discovery when standard queries miss
+
+### Fixed
+- **Stats View Focus** - Fixed focus state persisting when navigating away from stats view, ensuring fresh state on re-entry
+- **Standings for Multi-Season Leagues** - Fixed standings dialog returning empty results for leagues with multiple seasons per year (i.e, Liga MX, Liga Profesional, Liga 1, Primera A, etc.)
+
+## [0.20.0] - 2026-02-05
+
+### Added
+- **Italian Serie B** - Added support for Italian Serie B (second division)
+- **Finalissima** - Added support for CONMEBOL-UEFA Cup of Champions
+- **CONCACAF Competitions** - Added support for CONCACAF Champions Cup, Gold Cup, and Nations League
+- **AFC Champions League Elite** - Added support for the premier Asian club competition
+- **CAF Champions League** - Added support for the premier African club competition
+
+### Changed
+
+### Fixed
+- **Update Command** - Fixed detection logic failing to distinguish between Homebrew and script installations, now with automatic fallback if Homebrew update fails
+
+## [0.19.0] - 2026-02-03
+
+### Added
+- **Brazilian Leagues & Competitions** - Added support for Copa do Brasil, Supercopa do Brasil, Campeonato Carioca, Campeonato Mineiro, Campeonato Paulista, and Recopa Sudamericana (Thanks @rafaelrc7!)
+- **Nordic Leagues** - Added support for Eliteserien and 1. Divisjon (Norway), and 1. Division (Denmark)
+- **German League** - Added support for Regionalliga
+
+### Changed
+- **Code Quality** - Improved code quality by addressing golangci-lint recommendations (Thanks @rober0xf!)
+
+### Fixed
+- **Own Goal Display** - Goals are now correctly labeled as "OWN GOAL" when applicable
+
+## [0.18.0] - 2026-01-31
+
+### Added
+- **Dialog Overlay System** - New reusable dialog component for displaying overlay content on top of views(when right panel focused) 
+- **League Standings Dialog** - Press `s` to view current league standings with highlighted match teams
+- **Match Formations Dialog** - Press `f` to view both teams' formations and starting lineups with player ratings
+- **Full Statistics Dialog** - Press `x` to view full match statistics
+
+### Changed
+- **Unified Header Design** - All panel titles now use consistent compact header style with gradient text and diagonal fill pattern
+- **Visual Overhaul** - Refreshed main menu logo and updated styling across views
+
+### Fixed
+
+## [0.17.0] - 2026-01-24
+
+### Added
+
+### Changed
+- **Smart Update Detection** - The `--update` command now automatically detects whether golazo was installed via Homebrew or install script and uses the appropriate update method
+- **Unified Match Details Rendering** - Consolidated live and finished match views into a single rendering system with consistent styling
+
+### Fixed
+- **Finished Matches Hints** - Fixed missing keyboard hints in finished matches view and added tab focus indicator
+
+## [0.16.0] - 2026-01-22
+
+### Added
+- **Homebrew Support** - Install with `brew install 0xjuanma/tap/golazo`
+
+### Changed
+
+### Fixed
+- **Light Terminal Support** - Colors now automatically adapt to light terminal themes for improved visibility
+
+## [0.15.0] - 2026-01-14
+
+### Added
+- **Stoppage Time Display** - Goals in stoppage time now display properly (e.g., "45+2'")
+- **More Leagues Supported** - Added Gaucho Brasilian competition and multiple Portuguese leagues and competitions (Thanks @felipeolibon and @rmscoelho!)
+- **Official Match Highlights** - Finished matches now display clickable links to official highlight videos when available!
+- **Penalty Shootout Results** - Finished matches now display penalty scores when matches went to shootouts
+- **New Contributing Docs** - Added documentation for contributors, including contributing guidelines and process
+
+### Changed
+- **Go Version** - Updated minimum Go version 1.25
+
+### Fixed
+
+## [0.14.0] - 2026-01-10
+
+### Added
+- **South American Leagues** - Added support for Chilean Primera Division, Peruvian Liga 1, Ecuadorian Serie A, and Uruguayan Primera Division
+
+### Changed
+
+### Fixed
+- **Duplicate Matches** - Fixed duplicate matches appearing in the finished matches list by adding deduplication by match ID
+- **League IDs** - Corrected a few league IDs that were outdated
+
+## [0.13.1] - 2026-01-08
+
+### Added
+
+### Changed
+
+### Fixed
+- **Enhanced Version Management** - Fixed version comparison logic and organized version functionality into dedicated package
+
+## [0.13.0] - 2026-01-08
+
+### Added
+- **Regional League Settings Revamp** - Settings now organizes leagues by regions with tab navigation
+- **New Leagues & Competitions** - Added Ukrainian Premier League, Russian Premier League, Chinese Super League, Qatar Stars League, Premier Soccer League (South Africa), Botola Pro (Morocco), Supercopa de España, FIFA Club World Cup, UEFA Nations League, Club Friendlies, and International Friendlies support
+- **Scrollable Match Details** - Goals, Cards, and Statistics sections in finished matches view are now scrollable with Tab focus + arrow keys
+
+### Changed
+
+### Fixed
+- **Stale Cached Banner** – Resolved incorrect banner persistence when using stale cached versions
+- **Settings Filter Cursor Position** – Fixed filter cursor shift when filtering leagues in settings view by rendering checkbox independently
+
+## [0.12.0] - 2026-01-05
+
+### Added
+- **Debug Mode** - New `--debug` CLI flag with automatic log rotation, UI indicators, and comprehensive API failure logging
+- **Version Update Banner** - Automatic version checking with banner notifications when new Golazo versions are available
+
+### Changed
+- **Cache TTL Management** - Improved caching with separate TTL for successful links (7 days) and failures (5 minutes)
+
+### Fixed
+- **Goal Link Processing & Cache Expiration Logic** - Optimized goal processing logic and NOT_FOUND entries now properly expire and allow retry after 5 minutes
+- **Live Goal-replay Link** - Resolved inconsistent rendering of goal links in live view
+
+## [0.11.0] - 2026-01-03
+
+### Added
+
+### Changed
+- **Goal Link Indicator** - Replaced 📺 emoji with [▶REPLAY] text indicator for better terminal compatibility
+- **Goal Link Alignment** - Positioned replay links between player name and goal symbol for proper home/away expansion
+- **Goal Display** - Removed assist information from goal events, showing only the scorer's name
+
+### Fixed
+- **Goal Link Cache Logic** - Improved caching behavior for goal replay links and fixed cache expiration logic for not-found
+
+## [0.10.0] - 2026-01-03
+
+### Added
+- **Embedded Goal Replay Links** - Goal events now display clickable 📺 indicators that link to replay videos
+- **Nix Flake support** - Added initial Nix flake for reproducible builds and development (Thanks @jcmuller)
+- **13 New Leagues** - J. League (Japan), K League 1 (South Korea), Indian Super League, A-League (Australia), Egyptian Premier League, Brasileirão Série B, Copa Sudamericana, UEFA Conference League, EFL League One, EFL League Two, Allsvenskan (Sweden), Superligaen (Denmark), Super League 1 (Greece)
+
+### Changed
+
+### Fixed
+- **Austrian Bundesliga ID** - Corrected league ID from 109 to 38
+- **Duplicate "No items" message** - Resolve double "No items" message when no matches found (Thanks @neomantra)
+
+## [0.9.0] - 2026-01-01
+
+### Added
+- **New Leagues** - Add Colombian division A & B leagues, Ireland Premier & First Division (Thanks @jcmuller & @ryandeering)
+
+### Changed
+- **Center-Aligned Event Timeline** - Match events now display with centered time, home events expand left, away events expand right
+
+### Fixed
+- **Finished Matches Navigation** - H/left & L/right arrow keys now correctly cycle timeframe
+
+## [0.8.0] - 2025-12-31
+
+### Added
+
+### Changed
+- **Upcoming Matches in Live View** - Today's upcoming matches now display at the bottom of the Live View instead of the Finished Matches view
+
+### Fixed
+- **Windows Self-Update** - Fixed `--update` failing when golazo is already running
+- **Small Terminal Layout Overflow** - Fixed panel layout corruption when terminal window is too small to display all content
+- **Linux Cache Location** - Empty results cache now uses correct XDG config directory (`~/.config/golazo`)
+
+## [0.7.0] - 2025-12-28
+
+### Added
+- **Women's Leagues** - 10 new leagues: WSL, Liga F, Frauen-Bundesliga, Serie A Femminile, Première Ligue Féminine, NWSL, Women's UCL, UEFA Women's Euro, Women's DFB Pokal, Women's World Cup (Thanks @fkr!)
+- **Notification Icon** - Goal notifications now display the golazo logo on Linux and Windows
+
+### Changed
+- **Linux config location** - Now follows XDG spec at `~/.config/golazo`
+
+  > [!NOTE]
+  > **Existing Linux users, choose one:**
+  > - **Keep your settings**: `mv ~/.golazo ~/.config/golazo`
+  > - **Start fresh**: `rm -rf ~/.golazo` (old location will be ignored)
+
+### Fixed
+- **Windows Rendering** - Fixed layout shift issue when navigating between matches on Windows Terminal
+
+## [0.6.0] - 2025-12-26
+
+### Added
+- **Goal Notifications** - Desktop notifications and terminal beep for new goals in live matches using score-based detection (macOS, Linux, Windows)
+- **New CLI Flags** - Added `--version/-v` to display version info and `--update/-u` to self-update to latest release
+
+### Changed
+- **Poll Spinner Duration** - Increased "Updating..." spinner display time to 1 second for better visibility
+
+### Fixed
+- **Card Colors in All Events** - Yellow and red cards now display proper colors (yellow/red) instead of cyan in the FT view's All Events section
+- **Live Match Polling** - Poll refreshes now bypass cache to ensure fresh data every 90 seconds
+- **Substitution Display** - Fixed inverted player order & colour coding in substitutions
+
+## [0.5.0] - 2025-12-25
+
+### Added
+- **More Leagues & International Competitions** - EFL Championship, FA Cup, DFB Pokal, Coppa Italia, Coupe de France, Saudi Pro League, Africa Cup of Nations
+
+### Changed
+- **Settings UI Revamp** - League selection now uses scrollable list with fuzzy filtering (type `/` to search)
+
+### Fixed
+
+## [0.4.0] - 2025-12-24
+
+### Added
+- **Windows Support** - Added Windows builds (amd64, arm64) and PowerShell install script
+- **10 New Leagues** - Eredivisie, Primeira Liga, Belgian Pro League, Scottish Premiership, Süper Lig, Swiss Super League, Austrian Bundesliga, Ekstraklasa, Copa del Rey, Liga MX
+
+### Changed
+- **Cards Section Redesign** - Cards now display detailed list with player name, minute, and team instead of just counts
+- **Default Leagues** - When no leagues are selected in Settings, app now defaults to Premier League, La Liga, and Champions League (instead of all 24 leagues) for faster performance
+
+### Fixed
+
+## [0.3.0] - 2025-12-23
+
+### Added
+- **League Selection** - New settings customization to select and persist league preferences
+- **Result List Filtering** - New / filtering command for all result lists
+
+### Changed
+
+### Fixed
+
+## [0.2.0] - 2025-12-22
+
+### Added
+- **Polling Spinner** - Small gradient random spinner shows when live match data is being polled
+- **Kick-off Time** - Live matches now display kick-off time (KO) in the match list
+
+### Changed
+- **Event Styling** - Minimal styling added to live events to clearly denote each type
+- **Live View Layout** - Reordered match info: minute/league, teams, then large score display
+- **Large Score Display** - Score now rendered in prominent block-style digits for visibility
+
+### Fixed
+- **Live Events Order** - Events now sorted by time (descending) with proper uniqueness
+- **Match Navigation** - Spinner correctly resets when switching between live matches
+- **List Item Height** - Match list items now properly display 3 lines to show KO time
+
+## [0.1.0] - 2025-12-19
+
+### Added
+- Initial public release
+- Live match tracking with real-time updates
+- Match details view with events and statistics
+- Several major footbal leagues supported
+- Beautiful TUI with neon-styled interface
+- FotMob API integration for match data
+- Cross-platform support (macOS, Linux)
+
