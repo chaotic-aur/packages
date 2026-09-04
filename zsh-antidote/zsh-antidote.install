@@ -1,0 +1,15 @@
+function info() {
+  antidote_dir='/usr/share/zsh-antidote'
+  echo "--------------------------------------------------"
+  echo "antidote has been installed to $antidote_dir"
+  echo "put this in your zshrc to use it!"
+  echo "
+  source '"$antidote_dir"/antidote.zsh'
+  antidote load
+  "
+  echo "--------------------------------------------------"
+}
+
+function post_install() {
+  info
+}
