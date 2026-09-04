@@ -1,0 +1,14 @@
+# Fix _getdep() for electron range with space: ">=43.1.0 < 43.3.0"
+# Upstream uses ">=X < Y" now; old sed required "<Y" with no space and only handled "^X"
+# New sed extracts first integer after non-digits, handling "^", "~", ">=", and spaced "< Y"
+_getdep() {
+  local OLDPWD=$PWD TYPE
+  if [[ "$2" =~ ^-?p ]]; then
+    TYPE="dependencies"
+  else
+    TYPE="devDependencies"
+  fi
+  cd "${srcdir:?}/${pkgname%-git}"
+  echo $(($(npm pkg get $TYPE."$1" | sed 's~"\([^"]*\)"~\1~g; s~[^0-9]*\([0-9]\+\).*~\1~')))
+  cd "$OLDPWD"
+}
