@@ -1,0 +1,11 @@
+include:
+  - project: languitar-aur-packages/gitlab-templates
+    ref: main
+    file: PKGBUILD.gitlab-ci.yml
+
+variables:
+  PKGNAME: pass-git-helper
+
+test:
+  script:
+    - pass-git-helper -h
