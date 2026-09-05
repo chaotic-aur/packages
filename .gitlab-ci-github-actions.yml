@@ -1,0 +1,15 @@
+---
+github-actions:
+  stage: schedule
+  needs: ["do-schedule"]
+  image: curlimages/curl:latest
+  script:
+    - |
+      curl -X POST -H "Authorization: Bearer $GITHUB_TOKEN" \
+        -H "Accept: application/vnd.github+json" \
+        https://api.github.com/repos/chaotic-aur/builders/actions/workflows/builder.yml/dispatches \
+        -d '{"ref":"main","inputs":{"builders":"","builder_class":"6","manager_url":"https://builds.garudalinux.org","runtime":"340m"}}'
+  rules:
+    - if: $GITHUB_TOKEN == null
+      when: never
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && ($CI_PIPELINE_SOURCE == "push" || "$[[ inputs.operation ]]" == 'Schedule Packages' || "$[[ inputs.operation ]]" == 'Run Schedule')
