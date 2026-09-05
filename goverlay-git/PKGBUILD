@@ -1,6 +1,6 @@
 # Maintainer: Mark Wagie <mark dot wagie at proton dot me>
 pkgname=goverlay-git
-pkgver=1.8.10.r137.g52c46fc
+pkgver=1.9.0.r60.gc5826be
 pkgrel=1
 pkgdesc="A GUI to help manage Vulkan/OpenGL overlays"
 arch=('x86_64')
@@ -35,6 +35,7 @@ optdepends=(
   'protontricks: Proton prefix management'
   'vkbasalt: Vulkan post-processing effects'
   'vksumi: Alternative Vulkan post-processor with 15 tunable parameters'
+  'vulkan-low-latency-layer: Korthos low latency layer'
   'zenergy-dkms: Displays AMD CPU power metrics in MangoHud'
   'zenity: FGMod GUI'
 )
