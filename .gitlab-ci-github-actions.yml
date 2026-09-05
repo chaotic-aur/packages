@@ -2,7 +2,9 @@
 github-actions:
   stage: schedule
   needs: ["do-schedule"]
-  image: curlimages/curl:latest
+  image: alpine:latest
+  before_script:
+    - apk add --no-cache curl
   script:
     - |
       curl -X POST -H "Authorization: Bearer $GITHUB_TOKEN" \
