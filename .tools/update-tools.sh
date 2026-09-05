@@ -36,6 +36,7 @@ rsync -a --verbose --delete --include ".tools/update-tools.sh" \
     --include ".envrc" \
     --include ".gitignore" \
     --include ".gitlab-ci-sync-tools.yml" \
+    --include ".gitlab-ci-github-actions.yml" \
     --include ".markdownlint.yaml" \
     --include ".prettierignore" \
     --include ".shellcheckrc" \

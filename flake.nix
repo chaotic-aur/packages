@@ -89,8 +89,9 @@
                       jq
                       podman
                       skopeo
+                      trash-cli
                     ]
-                    ++ (if pkgs.system == "aarch64-darwin" then [ ] else [ fuse-overlayfs ]);
+                    ++ (if pkgs.stdenv.hostPlatform.system == "aarch64-darwin" then [ ] else [ fuse-overlayfs ]);
                   startup = {
                     preCommitHooks.text = self.checks.${system}.pre-commit-check.shellHook;
                     chaoticEnv.text = ''
@@ -139,7 +140,7 @@
                   }
                 ]
                 ++ (
-                  if pkgs.stdenv.isDarwin then
+                  if pkgs.stdenv.hostPlatform.isDarwin then
                     [ ]
                   else
                     [
