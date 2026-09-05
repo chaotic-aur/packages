@@ -1,6 +1,6 @@
 pkgbase = goverlay-git
 	pkgdesc = A GUI to help manage Vulkan/OpenGL overlays
-	pkgver = 1.8.10.r137.g52c46fc
+	pkgver = 1.9.0.r60.gc5826be
 	pkgrel = 1
 	url = https://github.com/benjamimgois/goverlay
 	arch = x86_64
@@ -29,6 +29,7 @@ pkgbase = goverlay-git
 	optdepends = protontricks: Proton prefix management
 	optdepends = vkbasalt: Vulkan post-processing effects
 	optdepends = vksumi: Alternative Vulkan post-processor with 15 tunable parameters
+	optdepends = vulkan-low-latency-layer: Korthos low latency layer
 	optdepends = zenergy-dkms: Displays AMD CPU power metrics in MangoHud
 	optdepends = zenity: FGMod GUI
 	provides = goverlay
