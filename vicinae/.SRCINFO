@@ -13,6 +13,7 @@ pkgbase = vicinae
 	makedepends = qt6-tools
 	makedepends = rapidfuzz-cpp
 	makedepends = vulkan-headers
+	makedepends = wayland-protocols
 	depends = cmark-gfm
 	depends = hicolor-icon-theme
 	depends = layer-shell-qt

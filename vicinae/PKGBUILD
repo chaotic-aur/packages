@@ -32,6 +32,7 @@ makedepends=(
   'qt6-tools'
   'rapidfuzz-cpp'
   'vulkan-headers'
+  'wayland-protocols'
 )
 
 _pkgsrc="$_pkgname-$pkgver"
