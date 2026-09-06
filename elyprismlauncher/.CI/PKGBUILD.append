@@ -1,0 +1,8 @@
+makedepends=(${makedepends[@]/jdk8-temurin/jdk17-openjdk})
+
+build() {
+  export PATH="/usr/lib/jvm/java-17-openjdk/bin:$PATH"
+  cd PineconeMC-${_pkgver}
+  cmake -DCMAKE_INSTALL_PREFIX=/usr --preset linux
+  cmake --build build --config Release -j$(nproc)
+}
