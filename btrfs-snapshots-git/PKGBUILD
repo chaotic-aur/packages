@@ -2,7 +2,7 @@
 
 pkgname=btrfs-snapshots-git
 pkgver=0.11.0.r0.2e828e1
-pkgrel=1
+pkgrel=2
 pkgdesc="Manage timestamped collections of btrfs snapshots"
 arch=('any')
 url="https://github.com/jmcantrell/${pkgname%-git}"
@@ -27,12 +27,7 @@ check() {
 
 prepare() {
   cd "$srcdir/${pkgname%-git}" || return
-  local file
-  while read -r file; do
-    sed -i "1s:#\!.*/env \(.*\)$:#\!/usr/bin/\1:" "$file" # use explicit shebang
-    sed -i "\:/usr/local/etc:s:/usr/local::g" "$file"     # use system etc
-    sed -i "\:/usr/local:s:/usr/local:/usr:g" "$file"     # use system prefix
-  done < <(git ls-files)
+  PREFIX=/usr ./scripts/prepare
 }
 
 build() {
