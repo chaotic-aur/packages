@@ -1,2 +1,1 @@
-CI_REBUILD_TRIGGERS=libdisplay-info
 CI_PKGBUILD_SOURCE=custom
