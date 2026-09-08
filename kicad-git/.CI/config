@@ -1,6 +1,5 @@
 BUILDER_CACHE_SOURCES=true
 CI_PACKAGE_BUMP=10.99.0.r3641.gb4cef0c-1/2
-# Manual trigger due to being a transitive dep, thus not being caught
 CI_REBUILD_TRIGGERS=poppler
 CI_PKGBUILD_SOURCE=aur
 BUILDER_CLASS=9
