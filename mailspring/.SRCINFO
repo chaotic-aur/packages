@@ -1,7 +1,7 @@
 pkgbase = mailspring
 	pkgdesc = A beautiful and fast mail client
-	pkgver = 1.23.0
-	pkgrel = 3
+	pkgver = 1.24.0
+	pkgrel = 1
 	url = https://github.com/Foundry376/Mailspring
 	arch = x86_64
 	license = GPL-3.0-only
@@ -11,8 +11,8 @@ pkgbase = mailspring
 	makedepends = patchelf
 	depends = db5.3
 	depends = gnome-keyring
-	source = mailspring::git+https://github.com/Foundry376/Mailspring.git#tag=1.23.0
-	sha256sums = d10372d596a37bfd587a3db5c28d2c263266f195e10c994ddd0f4cb4f00ed0b0
+	source = mailspring::git+https://github.com/Foundry376/Mailspring.git#tag=1.24.0
+	sha256sums = c4b0491b068548299fdfe0435ef51316339f34b233aed8df8550ae1a5250ad03
 
 pkgname = mailspring
 	depends = db5.3
