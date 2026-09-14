@@ -1,6 +1,6 @@
 pkgbase = easyeffects-git
 	pkgdesc = Audio Effects for PipeWire applications
-	pkgver = 8.0.0.r0.g2a3986ca4
+	pkgver = 8.2.9.r64.g9b89da035
 	pkgrel = 1
 	url = https://github.com/wwmm/easyeffects
 	arch = x86_64
