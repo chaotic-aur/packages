@@ -1,6 +1,0 @@
-[linux-vfio]
-source = "archpkg"
-archpkg = "linux"
-strip_release = "true"
-from_pattern = '\.arch[0-9.-]+$'
-to_pattern = ''
