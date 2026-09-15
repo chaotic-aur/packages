@@ -14,3 +14,19 @@ pkgver() {
 # Existing installs carry v17.3.5.r037eee71 (count-0, sorts high); a fixed-scheme
 # r3.gd187249 still sorts below it. Epoch forces the new build above everything.
 epoch=1
+
+prepare() {
+  cd "oh-my-pi"
+  git submodule update --init --recursive
+
+  # Bun 1.4.0 bytecode compilation produces an omp binary that fails at startup:
+  # "SyntaxError: import.meta is only valid inside modules."
+  # Compile without bytecode so the bundle retains module semantics.
+  sed -i 's/bytecode: true,/bytecode: false,/' \
+    packages/coding-agent/scripts/compile-binary.ts
+}
+
+check() {
+  "${srcdir}/oh-my-pi/packages/coding-agent/dist/omp" --version
+  "${srcdir}/oh-my-pi/packages/coding-agent/dist/omp" --help > /dev/null
+}
