@@ -26,13 +26,7 @@ noextract=("themes-${sha256sums[0]}.zip")
 
 pkgver() {
   curl --silent -L "https://api.github.com/repos/JanDeDobbeleer/oh-my-posh/releases/latest" \
-    |
-    # Get latest release from GitHub api
-    grep '"tag_name":' \
-    |
-    # Get tag line
-    sed -E 's/.*"([^"]+)".*/\1/' \
-    | sed 's/v//'
+    | sed -n 's/.*"tag_name": *"v\{0,1\}\([^"]*\)".*/\1/p'
 }
 
 package() {
