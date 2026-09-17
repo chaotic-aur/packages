@@ -118,7 +118,9 @@ manage_aur_package() {
 
   pushd "$TMPDIR/aur-push/$package"
   if [[ -n $(git status -uno --porcelain) ]]; then
-    git add .
+    # If .gitignore is a whitelist, we need to explicitly force adding new files. We won't have any junk in this repo anyways.
+    git add -f .
+
     if [ -v _CI_REPOSITORY_URL ]; then
       git commit -q -m "chore: update $package" \
         -m "This commit was automatically generated to reflect changes to this package in another repository." \
