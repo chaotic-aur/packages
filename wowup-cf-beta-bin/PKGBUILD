@@ -19,7 +19,7 @@ conflicts=("$_pkgname" 'wowup-cf-bin')
 options=(!strip !debug)
 source=(
   "WowUp-CF-${pkgver}.AppImage::https://github.com/WowUp/WowUp.CF/releases/download/v${pkgver//beta/-beta.}/WowUp-CF-${pkgver//beta/-beta.}.AppImage"
-  'https://raw.githubusercontent.com/WowUp/WowUp.CF/main/LICENSE'
+  'LICENSE'
   "${_desktopname}.desktop"
   "${_pkgname}"
 )
