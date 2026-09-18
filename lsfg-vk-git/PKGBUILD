@@ -2,11 +2,11 @@
 
 _pkgname="lsfg-vk"
 pkgname="$_pkgname-git"
-pkgver=1.0.0.r124.g6d2ed64
+pkgver=2.0.0.r11.gfd8c317
 pkgrel=1
-pkgdesc="Lossless Scaling Frame Generation on Linux via Vulkan"
-url="https://github.com/PancakeTAS/lsfg-vk"
-license=('GPL-3.0-or-later')
+pkgdesc="Lossless Scaling Frame Generation on Linux"
+url="https://lsfg-vk.dev"
+license=('CC-BY-NC-ND-4.0')
 arch=('x86_64')
 
 depends=(
@@ -25,10 +25,10 @@ makedepends=(
 provides=("$_pkgname")
 conflicts=("$_pkgname")
 
-options=('!lto' '!strip' '!debug')
+options=('!lto')
 
 _pkgsrc="$_pkgname"
-source=("$_pkgsrc"::"git+$url.git")
+source=("$_pkgsrc"::"git+https://git.lsfg-vk.dev/lsfg-vk.git")
 sha256sums=('SKIP')
 
 pkgver() {
@@ -44,14 +44,13 @@ build() {
     -G Ninja
     -DCMAKE_BUILD_TYPE=None
     -DCMAKE_INSTALL_PREFIX='/usr'
-    -Wno-dev
+    -Wno-author
 
-    -DLSFGVK_BUILD_VK_LAYER=ON
+    -DLSFGVK_BUILD_LAYER=ON
     -DLSFGVK_BUILD_UI=ON
     -DLSFGVK_BUILD_CLI=ON
-    -DLSFGVK_INSTALL_DEVELOP=OFF
-    -DLSFGVK_INSTALL_XDG_FILES=OFF
-    -DLSFGVK_LAYER_LIBRARY_PATH="/usr/lib/liblsfg-vk-layer.so"
+    -DLSFGVK_MANAGED=ON
+    -DLSFGVK_INSTALL_LIBRARIES=ON
   )
 
   cmake "${_cmake_options[@]}"
@@ -60,21 +59,5 @@ build() {
 
 package() {
   DESTDIR="$pkgdir" cmake --install build
-
-  install -Dm644 "$_pkgsrc/lsfg-vk-ui/rsc/gay.pancake.lsfg-vk-ui.png" "$pkgdir/usr/share/icons/hicolor/256x256/apps/lsfg-vk-ui.png"
-
-  install -Dm644 /dev/stdin "$pkgdir/usr/share/applications/lsfg-vk-ui.desktop" << END
-[Desktop Entry]
-Type=Application
-Name=lsfg-vk Configuration
-Comment=Configuration editor for lsfg-vk
-Exec=lsfg-vk-ui %U
-Icon=lsfg-vk-ui
-Terminal=false
-Categories=Settings;
-Keywords=gaming;graphics;configuration;
-StartupNotify=true
-StartupWMClass=gay.pancake.lsfg-vk-ui
-MimeType=application/x-lsfg-profile;
-END
+  install -Dm644 "$_pkgsrc"/LICENSE.txt "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
 }
