@@ -25,6 +25,7 @@ depends=(
 )
 makedepends=(
   'cmake'
+  'git'
   'glaze'
   'ninja'
   'npm'
