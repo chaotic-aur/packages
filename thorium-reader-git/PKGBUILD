@@ -1,143 +1,121 @@
-# Maintainer: aur.chaotic.cx
-
-## options
-: ${_electron_version=}
-: ${_nodeversion=}
-: ${_install_path:=usr/share}
-
-_pkgname="thorium-reader"
-pkgname="$_pkgname-git"
-pkgver=3.2.2.r167.g63fc4b6
+# Maintainer: zxp19821005 <zxp19821005 at 163 dot com>
+pkgname=thorium-reader-git
+_pkgname='Thorium Reader'
+_appname="EDRLab.${_pkgname// /}"
+pkgver=3.5.1.r13.g7004ea3
+_electronversion=41
+_nodeversion=24
 pkgrel=1
-pkgdesc="Cross-platform desktop reading app based on the Readium Desktop toolkit"
-url="https://github.com/edrlab/thorium-reader"
-license=('MIT')
+pkgdesc="Cross-platform desktop reading app based on the Readium Desktop toolkit."
 arch=('any')
-
+url="https://www.edrlab.org/software/thorium-reader/"
+_ghurl="https://github.com/edrlab/thorium-reader"
+license=('BSD-3-Clause')
+conflicts=("${pkgname%-git}")
+provides=("${pkgname%-git}=${pkgver%.r*}")
 depends=(
-  "electron${_electron_version:-}"
+  "electron${_electronversion}"
 )
 makedepends=(
+  'gendesk'
   'git'
   'nvm'
+  'npm'
+  'python-setuptools'
+  'curl'
+  'jq'
 )
-
-provides+=("$_pkgname")
-conflicts+=("$_pkgname")
-
-_pkgsrc="$_pkgname"
-source=("$_pkgsrc"::"git+$url.git")
-sha256sums=('SKIP')
-
-_nvm_env() {
-  export HOME="$SRCDEST/node-home"
-  export NVM_DIR="$SRCDEST/node-nvm"
-  export NODE_OPTIONS="--localstorage-file='$srcdir/localstorage.json'"
-
-  # set up nvm
-  source /usr/share/nvm/init-nvm.sh || [[ $? != 1 ]]
-  nvm install ${_nodeversion:-node}
-  nvm use ${_nodeversion:-node}
-}
-
-_electron_env() {
-  export ELECTRON_SKIP_BINARY_DOWNLOAD=1
-  export SYSTEM_ELECTRON_VERSION=$(< "/usr/lib/electron${_electron_version:-}/version")
-  export ELECTRON_VERSION=${SYSTEM_ELECTRON_VERSION%%.*}
-}
-
+source=(
+  "${pkgname%-git}.git::git+${_ghurl}.git"
+  "${pkgname%-git}.sh"
+)
+sha256sums=('SKIP'
+  'a774c2f54fbbeeaac3cefc0f7250796d30c86d27f0fd40b7eaf9c0fdb021623d')
 pkgver() {
-  cd "$_pkgsrc"
-  local _tag _version _revision _hash
-  _tag=$(git tag | grep -Ev '[a-z]{2}' | grep '^v' | sort -rV | head -1)
-  _version="${_tag#v}"
-  _revision=$(git rev-list --count --cherry-pick "$_tag"...HEAD)
-  _hash=$(git rev-parse --short=7 HEAD)
-  printf '%s.r%s.g%s' "${_version:?}" "${_revision:?}" "${_hash:?}"
+  cd "${pkgname%-git}.git"
+  set -o pipefail
+  git describe --long --tags --abbrev=7 --exclude='*[a-z][a-z]*' | sed -E 's/^v//g;s/([^-]*-g)/r\1/g;s/-/./g' \
+    || printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short=7 HEAD)"
 }
-
+_ensure_local_nvm() {
+  local NVM_DIR="${srcdir}/.nvm"
+  source /usr/share/nvm/init-nvm.sh || [[ $? != 1 ]]
+  nvm install "${_nodeversion}"
+  nvm use "${_nodeversion}"
+}
+_get_app_dir() {
+  find "${srcdir}" -type f -name "resources.pak" -exec dirname {} + | head -n 1
+}
+_set_build_env() {
+  export ELECTRON_DIST="/usr/lib/electron${_electronversion}"
+  export ELECTRON_OVERRIDE_DIST_PATH="${ELECTRON_DIST}"
+  export ELECTRON_SKIP_BINARY_DOWNLOAD=1
+  _ev="$(electron${_electronversion} -v)"
+  export SYSTEM_ELECTRON_VERSION="${_ev#v}"
+  export HOME="${srcdir}/.electron-gyp"
+  export XDG_CACHE_HOME="${srcdir}/.cache"
+  export XDG_CONFIG_HOME="${srcdir}/.config"
+  export XDG_DATA_HOME="${srcdir}/.local/share"
+  export npm_config_cache="${srcdir}/.npm_cache"
+  export npm_config_maxsockets=32
+  export npm_config_audit=false
+  export npm_config_fund=false
+  export npm_config_progress=false
+  export NODE_OPTIONS="--max-old-space-size=4096"
+  export npm_config_node_options="--max-old-space-size=4096"
+}
+_get_electron_version() {
+  _elec_ver=$(find "${srcdir}" -maxdepth 5 -name "package.json" ! -path "*/node_modules/*" \
+    -exec grep -l '"electron"' {} + | xargs -I{} jq -r '(.devDependencies.electron // .dependencies.electron) // empty' {} 2> /dev/null | head -1)
+  [[ -z "${_elec_ver}" ]] && return 1
+  echo -e "The electron version is: \033[1;31m${_elec_ver%%.*}\033[0m"
+}
 prepare() {
-  _electron_env
-
-  # set electron version
-  sed -E \
-    -e 's&^(\s*)("electron"): "(.*)"(,?)$&\1\2: "'"$SYSTEM_ELECTRON_VERSION"'"\4&' \
-    -i "$_pkgsrc/package.json"
-
-  # allow any npm version
-  sed -E \
-    -e 's&("npm"): \S+$&\1: ">=1.0.0"&' \
-    -i "$_pkgsrc/package.json"
+  cd "${srcdir}/${pkgname%-git}.git"
+  _get_electron_version
+  sed -i -e "
+        s/@electronversion@/${_electronversion}/g
+        s/@appname@/${pkgname%-git}/g
+        s/@runname@/app.asar/g
+        s/@cfgdirname@/${_appname}/g
+    " "${srcdir}/${pkgname%-git}.sh"
+  gendesk -q -f -n \
+    --pkgname="${pkgname%-git}" \
+    --pkgdesc="${pkgdesc}" \
+    --categories="Office" \
+    --name="${_pkgname}" \
+    --exec="${pkgname%-git} %U"
+  _set_build_env
+  _ensure_local_nvm
+  sed -i "s/\"electron\": \"[^\"]*\"/\"electron\": \"${SYSTEM_ELECTRON_VERSION}\"/g" package.json
+  sed -i 's/"version": ">=12.0.2"/"version": ">=11.0.0"/g' package.json
+  sed -i 's/"overrides": {/"overrides": {\n    "@jest\/core": "30.4.2",\n    "jest-cli": "30.4.2",/g' package.json
+  sed -i \
+    -e 's/onClick={() => zoomIn()}/onClick={() => void zoomIn()}/g' \
+    -e 's/onClick={() => zoomOut()}/onClick={() => void zoomOut()}/g' \
+    -e 's/onClick={() => resetTransform()}/onClick={() => void resetTransform()}/g' \
+    src/renderer/reader/components/ImageClickManagerViewerOnly.tsx
+  NODE_ENV=development npm install --legacy-peer-deps --ignore-scripts --foreground-scripts --min-release-age=0
+  NODE_ENV=development npm run clean
 }
-
-build() (
-  _nvm_env
-  _electron_env
-
-  local _builder_options=(
-    -c.electronDist="'/usr/lib/electron${ELECTRON_VERSION:-}'"
-    -c.electronVersion=${SYSTEM_ELECTRON_VERSION}
-  )
-
-  cd "$_pkgsrc"
-  npm install --no-audit --no-fund
-  npm run package:build
-  npm exec -c "electron-builder --linux --dir --publish never ${_builder_options[@]}"
-)
-
+build() {
+  cd "${srcdir}/${pkgname%-git}.git"
+  _set_build_env
+  _ensure_local_nvm
+  NODE_ENV=development npm run pre-package:linux
+  NODE_ENV=production npm exec -c "cross-env DEBUG=* CSC_IDENTITY_AUTO_DISCOVERY=false electron-builder --linux dir -c.electronDist=${ELECTRON_DIST}"
+}
 package() {
-  _electron_env
-
-  depends=("electron${ELECTRON_VERSION:-}")
-
-  install -Dm755 /dev/stdin "$pkgdir/usr/bin/$_pkgname" << END
-#!/usr/bin/env bash
-
-set -euo pipefail
-
-name=$_pkgname
-flags_file="\${XDG_CONFIG_HOME:-\$HOME/.config}/\${name}-flags.conf"
-
-lines=()
-if [[ -f "\${flags_file}" ]]; then
-  mapfile -t lines < "\${flags_file}"
-fi
-
-flags=()
-for line in "\${lines[@]}"; do
-  if [[ ! "\${line}" =~ ^[[:space:]]*#.* ]] && [[ -n "\${line}" ]]; then
-    flags+=("\${line}")
-  fi
-done
-
-: \${ELECTRON_IS_DEV:=0}
-export ELECTRON_IS_DEV
-: \${ELECTRON_FORCE_IS_PACKAGED:=true}
-export ELECTRON_FORCE_IS_PACKAGED
-
-if [ -z "\$@" ]; then
-  cd "/$_install_path/$_pkgname/"
-  exec electron${ELECTRON_VERSION:-} "\${flags[@]}" app.asar
-else
-  exec electron${ELECTRON_VERSION:-} "\${flags[@]}" "/$_install_path/$_pkgname/app.asar" "\$@"
-fi
-END
-
-  install -Dm644 /dev/stdin "$pkgdir/usr/share/applications/$_pkgname.desktop" << END
-[Desktop Entry]
-Type=Application
-Name=Thorium Reader
-Comment=Cross-platform desktop reading app based on the Readium Desktop toolkit
-Exec=$_pkgname %u
-Icon=$_pkgname
-Terminal=false
-StartupNotify=true
-Categories=Office;
-MimeType=application/epub+zip;
-StartupWMClass=EDRLab.ThoriumReader
-END
-
-  install -Dm644 "$_pkgsrc/release/linux-unpacked/resources/app.asar" -t "$pkgdir/$_install_path/$_pkgname/"
-  install -Dm644 "$_pkgsrc/resources/icon.png" "$pkgdir/usr/share/pixmaps/$_pkgname.png"
-  install -Dm644 "$_pkgsrc/LICENSE" -t "$pkgdir/usr/share/licenses/$pkgname"
+  install -Dm755 "${srcdir}/${pkgname%-git}.sh" "${pkgdir}/usr/bin/${pkgname%-git}"
+  install -Dm755 -d "${pkgdir}/usr/lib/${pkgname%-git}"
+  local _app_dir=$(_get_app_dir)
+  cp -a "${_app_dir}/resources/"* "${pkgdir}/usr/lib/${pkgname%-git}/"
+  rm -f "${pkgdir}/usr/lib/${pkgname%-git}/default_app.asar"
+  _icon_sizes=(256x256 512x512 1024x1024)
+  for _icons in "${_icon_sizes[@]}"; do
+    install -Dm644 "${srcdir}/${pkgname%-git}.git/resources/icons//${_icons}.png" \
+      "${pkgdir}/usr/share/icons/hicolor/${_icons}/apps/${pkgname%-git}.png"
+  done
+  install -Dm644 "${srcdir}/${pkgname%-git}.git/${pkgname%-git}.desktop" -t "${pkgdir}/usr/share/applications/"
+  install -Dm644 "${srcdir}/${pkgname%-git}.git/LICENSE" -t "${pkgdir}/usr/share/licenses/${pkgname}"
 }
