@@ -9,9 +9,11 @@ body:
       label: "Package"
       description: |
         Link to the package base in the AUR.  Include any known AUR dependencies.
+        Multiple packages must be added newline separated.
         If a relevant issue already exists, please comment instead of opening a new one.
       value: |
         https://aur.archlinux.org/pkgbase/package_name
+        https://aur.archlinux.org/pkgbase/package_dependency
     validations:
       required: true
   - type: textarea
@@ -32,8 +34,9 @@ body:
       description: |
         What is the name of the copyright license?
         Packages with licenses that prohibit redistribution will be rejected.
-        Only the name is needed for standard licenses, like GPL-2.0-only.
-        Include link for non-standard licenses and EULA.
+        This must be a valid license from https://spdx.org/licenses. For custom
+        licenses, add LicenseRef-Custom. Multiple licenses can be added like 
+        this: `GPL-3.0-only AND LicenseRef-Brother`.
       value: |
         GPL-3.0-or-later
     validations:
