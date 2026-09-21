@@ -1,0 +1,10 @@
+build() {
+  cd "$srcdir/$pkgname-$pkgver"
+
+  export PUPPETEER_SKIP_DOWNLOAD=1
+  export npm_config_yes=true
+
+  npm install && npm run compile
+  npm run compile-cli
+  npm run webpack-build -w packages/cli-repl
+}
