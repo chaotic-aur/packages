@@ -1,1 +1,0 @@
-eval "$(declare -f build | sed 's&lazbuild&lazbuild --opt="-O3 -Sa -CX -XX -k--sort-common -k--as-needed -k-z -krelro -k-z -know"&')"
