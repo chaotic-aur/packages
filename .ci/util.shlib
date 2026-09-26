@@ -269,10 +269,15 @@ function UTIL_RUN_PARALLEL() {
 # $1: Output associative timestamp array
 # $2: Output associative maintainer array
 # $3: Pkgbases to look up (space-separated)
+# $4: Output variable receiving how far the fetched snapshot reaches
 function UTIL_FETCH_AUR_INFO() {
     set -euo pipefail
     local -n OUTPUT_ASSOC_TIMESTAMP_ARRAY=$1
     local -n OUTPUT_ASSOC_MAINTAINER_ARRAY=$2
+    local -n OUTPUT_SNAPSHOT_TIMESTAMP=$4
+    # Stays empty unless a snapshot was actually read, so callers can tell
+    # "nothing fetched" apart from a real boundary and keep their watermark.
+    OUTPUT_SNAPSHOT_TIMESTAMP=""
     local pkgbases=()
 
     read -ra pkgbases <<<"$3"
@@ -296,6 +301,11 @@ function UTIL_FETCH_AUR_INFO() {
         return 1
     fi
     gzip -dc "$dump_file" > "$json_file"
+
+    # The dump is generated periodically and therefore lags behind the live AUR
+    # by a few minutes. The newest LastModified it contains - not the wall clock
+    # - marks how far it reaches, so report that as the snapshot boundary.
+    OUTPUT_SNAPSHOT_TIMESTAMP="$(jq -r '[.[].LastModified] | max // empty' "$json_file")"
 
     # Build the set of packages we care about and filter the dump in one jq pass
     printf '%s\n' "${pkgbases[@]}" > "$names_file"

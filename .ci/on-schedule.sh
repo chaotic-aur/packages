@@ -102,8 +102,14 @@ function collect_aur_info() {
   # Only advance the watermark once a snapshot was actually fetched. Otherwise
   # a failed fetch would silently make the next run skip updates that happened
   # in the meantime.
-  if UTIL_FETCH_AUR_INFO collect_aur_timestamps_output collect_aur_maintainers_output "${AUR_PACKAGES[*]}"; then
-    date +%s >.ci/aur-state
+  local AUR_SNAPSHOT_TIMESTAMP=""
+  if UTIL_FETCH_AUR_INFO collect_aur_timestamps_output collect_aur_maintainers_output "${AUR_PACKAGES[*]}" AUR_SNAPSHOT_TIMESTAMP; then
+    # Store how far the snapshot reaches instead of the wall clock. The dump lags
+    # behind the live AUR, so a wall clock watermark covers packages the snapshot
+    # never contained and skips them forever (e.g. zfs-dkms 2.4.4).
+    if [ -n "$AUR_SNAPSHOT_TIMESTAMP" ]; then
+      echo "$AUR_SNAPSHOT_TIMESTAMP" >.ci/aur-state
+    fi
   else
     AUR_FETCH_FAILED=true
   fi
