@@ -12,8 +12,8 @@ depends=('systemd>=255' 'glibc' 'gcc-libs' 'iproute2' 'nftables')
 makedepends=('cargo')
 options=('!lto')
 optdepends=('polkit: let users other than root drive nspawn'
-            'mkosi: build images with nspawn build'
-            'iptables-nft: keep the bridge reachable next to the forwarding rules of docker or ufw')
+  'mkosi: build images with nspawn build'
+  'iptables-nft: keep the bridge reachable next to the forwarding rules of docker or ufw')
 source=("${pkgname}-${pkgver}.tar.gz::${url}/archive/refs/tags/${pkgver}.tar.gz")
 sha256sums=('e543962a0a2ec5836d6a81a5a15f0b9cbefa97df24300b852ccd663901f7ca47')
 
@@ -49,4 +49,3 @@ package() {
   install -dm755 "${pkgdir}/etc/nspawn"
   install -dm711 "${pkgdir}/var/lib/nspawn"
 }
-
