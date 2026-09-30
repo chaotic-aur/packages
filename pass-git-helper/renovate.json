@@ -15,10 +15,13 @@
   "regexManagers": [
     {
       "fileMatch": ["^PKGBUILD$"],
-      "matchStrings": ["pkgver=(?<currentValue>.*?)\n"],
+      "matchStrings": [
+        "pkgver=(?<currentValue>.*?)\n"
+      ],
       "depNameTemplate": "languitar/pass-git-helper",
       "datasourceTemplate": "github-releases",
       "extractVersionTemplate": "^v(?<version>.*)$"
     }
   ]
 }
+
