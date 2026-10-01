@@ -1,0 +1,17 @@
+# AUR is still at 1.3.0; keep the synced PKGBUILD untouched.
+pkgver=1.4.1
+pkgrel=1
+source=("$url/archive/refs/tags/cvc5-$pkgver.tar.gz")
+sha256sums=('5448e82682a65ddbdd7148402f73d48725252e70c9a0e43999c3f305bfbb4f76')
+provides=("cvc5=$pkgver")
+# 1.4.1 enables MPFR for floating-point constant folding by default.
+depends+=(mpfr)
+
+# Even 1.4.1 requires CaDiCaL <=2.1.3; the repo provides 3.0.1.
+# Upstream verifies the bundled dependency downloads with pinned SHA-256 hashes.
+build() {
+  cd "$srcdir/$pkgname-cvc5-$pkgver"
+  ./configure.sh unrestricted --prefix=/usr --java-bindings --editline --auto-download
+  cd build
+  make
+}
