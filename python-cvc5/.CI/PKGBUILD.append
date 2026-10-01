@@ -1,0 +1,16 @@
+# AUR pins a CPython 3.13 wheel; Arch now uses CPython 3.14.
+pkgver=1.4.1
+pkgrel=1
+depends=('python>=3.14' 'python<3.15' 'gcc-libs' 'glibc')
+_wheel="cvc5-$pkgver-cp314-cp314-manylinux2014_x86_64.manylinux_2_17_x86_64.whl"
+source=("https://files.pythonhosted.org/packages/f0/cb/b090373b401f7f27cb55d58e616a933e287b854017937af57f96395add42/$_wheel")
+sha256sums=('dbd92fbf069b5cecb0a5ff84a736678c26c9bd244a3eff9a93d06dc586601a5b')
+unset source_x86_64 sha256sums_x86_64
+
+package() {
+  python -m installer --destdir="$pkgdir" "$srcdir/$_wheel"
+  local _site_packages
+  _site_packages=$(python -c 'import sysconfig; print(sysconfig.get_path("purelib"))')
+  install -Dm644 "$pkgdir$_site_packages/cvc5-$pkgver.dist-info/licenses/COPYING" \
+    "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+}
