@@ -6,7 +6,7 @@
 
 _pkgname="shadps4"
 pkgname="$_pkgname"
-pkgver=0.18.0
+pkgver=0.19.0
 pkgrel=1
 pkgdesc="Sony PlayStation 4 emulator"
 url="https://github.com/shadps4-emu/shadPS4"
@@ -59,7 +59,7 @@ options=('!lto')
 
 _pkgsrc="$_pkgname"
 source=("$_pkgsrc"::"git+$url.git#tag=v.$pkgver")
-sha256sums=('50ab7062e84d2fd8d1ad3bf3f749786881c037cca3a4d290fb29a1b3eb42b4b8')
+sha256sums=('a69e39388482a4186190723c08dfd200722a7f22620fbbec4ae3a65d96422ed4')
 
 prepare() {
   cd "$_pkgsrc"
