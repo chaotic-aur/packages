@@ -4,3 +4,8 @@ url="https://github.com/leanprover/lean4"
 # TODO: temporary
 conflicts+=('lean4' 'lean4-git')
 replaces=('lean4-git')
+
+# Use the cadical package's binary instead of installing a conflicting /usr/bin/cadical.
+# bv_decide finds it next to lean or on PATH; Lean's internal libcadical.a stays bundled.
+depends+=(cadical)
+eval "$(declare -f build | sed -E 's&(-DCMAKE_INSTALL_LIBDIR="lib")&\1 -DINSTALL_CADICAL=OFF&')"
