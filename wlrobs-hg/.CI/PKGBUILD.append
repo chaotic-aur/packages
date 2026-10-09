@@ -1,0 +1,3 @@
+
+# wlrobs ships its own protocol sources and never links wlroots; wlroots0.18 left the repos
+makedepends=(${makedepends[@]/wlroots0.18})
