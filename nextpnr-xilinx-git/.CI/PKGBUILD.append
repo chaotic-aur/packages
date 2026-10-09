@@ -6,4 +6,6 @@ license=('ISC')
 _pkgsrc="$_pkgname"
 prepare() {
   sed '1i #include <cstdint>' -i "$_pkgsrc"/3rdparty/json11/json11.cpp
+  # Boost 1.89+ no longer ships the boost_system stub library
+  sed -E 's&\bsystem\b&&g' -i "$_pkgsrc"/CMakeLists.txt "$_pkgsrc"/bba/CMakeLists.txt
 }
