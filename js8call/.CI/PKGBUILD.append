@@ -1,1 +1,4 @@
 export CMAKE_POLICY_VERSION_MINIMUM=3.5
+
+# CMakeLists.txt requires Boost headers (find_package(Boost 1.77 REQUIRED))
+makedepends+=(boost)
