@@ -1,0 +1,9 @@
+
+# Upstream tags pre-releases as vX.Y.Z-rcN; keep rcN glued to the version so it
+# sorts below the final release. Epoch supersedes already shipped .rcN builds.
+epoch=1
+pkgver() {
+  cd "$_pkgsrc"
+  git describe --long --tags --abbrev=7 \
+    | sed -E 's/^v//;s/-(rc[0-9]+)/\1/;s/([^-]*-g)/r\1/;s/-/./g'
+}
