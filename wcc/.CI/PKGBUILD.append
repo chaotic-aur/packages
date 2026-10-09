@@ -1,0 +1,15 @@
+
+# linenoise was dropped from the official repos; link a static copy instead
+depends=(${depends[@]/linenoise})
+source+=("linenoise-2.0.tar.gz::https://github.com/antirez/linenoise/archive/2.0.tar.gz")
+b2sums+=('348d16a12f4fb1624c491cb1dcb4c6fcc661b057eb1c6073185444b18049eae58d3a7b9671197ff06dcfcb20c72a6197fa8a68a22bd4752b09d44666af73c702')
+
+eval "_build_wcc() $(declare -f build | tail -n +2)"
+build() (
+  cd "$srcdir/linenoise-2.0"
+  ${CC:-gcc} ${CFLAGS} -fno-lto -fPIC -c linenoise.c -o linenoise.o
+  ar rcs liblinenoise.a linenoise.o
+  export C_INCLUDE_PATH="$srcdir/linenoise-2.0" LIBRARY_PATH="$srcdir/linenoise-2.0"
+  cd "$srcdir"
+  _build_wcc
+)
