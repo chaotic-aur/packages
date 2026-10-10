@@ -1,6 +1,6 @@
 pkgbase = wxwidgets-static
 	pkgdesc = wxWidgets suite, static libs
-	pkgver = 3.3.3.1
+	pkgver = 3.3.4
 	pkgrel = 1
 	url = https://github.com/wxWidgets/wxWidgets
 	arch = x86_64
@@ -12,7 +12,7 @@ pkgbase = wxwidgets-static
 	makedepends = qt6-base
 	options = !debug
 	options = !lto
-	source = wxwidgets::git+https://github.com/wxWidgets/wxWidgets.git#tag=v3.3.3.1
-	sha256sums = 5f1a964cb33609bd042bf3afaf07825f35ffe1e9ffd63ec1e95d7c726ed102c1
+	source = wxwidgets::git+https://github.com/wxWidgets/wxWidgets.git#tag=v3.3.4
+	sha256sums = 246d2ed25d54630a1bb721b8f81bb4cfe7b8210654bf258a72b16be7eba42881
 
 pkgname = wxwidgets-static
