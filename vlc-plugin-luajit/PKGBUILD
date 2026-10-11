@@ -2,7 +2,7 @@
 
 _pkgname="vlc-plugin-luajit"
 pkgname="$_pkgname"
-pkgver=3.0.23_2
+pkgver=3.0.24
 pkgrel=1
 pkgdesc="Multi-platform MPEG, VCD/DVD, and DivX player"
 url="https://github.com/videolan/vlc"
@@ -21,7 +21,7 @@ _tag="${pkgver//_/-}"
 _pkgsrc="vlc-$_tag"
 _pkgext="tar.gz"
 source=("$_pkgsrc.$_pkgext"::"$url/archive/refs/tags/$_tag.$_pkgext")
-sha256sums=('1a108be0511a0847c95a5ccccce263413db88839636b9cbfd05a173e115f05ae')
+sha256sums=('0ba29df0211e6fc826654eda3cece53a5d916d45198f137fc8831bb77aae2f76')
 
 prepare() {
   cd "$_pkgsrc"
