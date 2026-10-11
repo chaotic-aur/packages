@@ -1,6 +1,6 @@
 pkgbase = stockfish
 	pkgdesc = A strong UCI chess engine
-	pkgver = 20260630-60888387
+	pkgver = 20261011-31275420
 	pkgrel = 1
 	url = https://github.com/official-stockfish/Stockfish
 	arch = x86_64
@@ -11,7 +11,7 @@ pkgbase = stockfish
 	makedepends = llvm
 	depends = gcc-libs
 	optdepends = polyglot-winboard: xboard support
-	source = stockfish-20260630-60888387.zip::https://github.com/official-stockfish/Stockfish/archive/sf_20260630-60888387.zip
+	source = stockfish-20261011-31275420.zip::https://github.com/official-stockfish/Stockfish/archive/sf_20261011-31275420.zip
 	sha256sums = SKIP
 
 pkgname = stockfish
