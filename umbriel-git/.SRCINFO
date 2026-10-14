@@ -1,0 +1,42 @@
+pkgbase = umbriel-git
+	pkgdesc = A Wayland compositor designed for daily use, with scrolling, dwindle, and master layouts, per-output workspaces, window rules, blur, shadows, and fluid animations
+	pkgver = 0.1.0.r1225.2339fc3
+	pkgrel = 1
+	epoch = 1
+	url = https://github.com/noctalia-dev/umbriel
+	arch = x86_64
+	arch = aarch64
+	license = MIT
+	makedepends = git
+	makedepends = meson
+	makedepends = ninja
+	makedepends = nlohmann-json
+	makedepends = pkgconf
+	makedepends = wayland-protocols
+	depends = cairo
+	depends = gcc-libs
+	depends = glibc
+	depends = jemalloc
+	depends = lcms2
+	depends = libdrm
+	depends = libdisplay-info
+	depends = libglvnd
+	depends = libinput
+	depends = libxcb
+	depends = libxkbcommon
+	depends = mesa
+	depends = pango
+	depends = pixman
+	depends = systemd-libs
+	depends = tomlplusplus
+	depends = wayland
+	depends = xcb-util-wm
+	depends = xorg-xwayland
+	depends = xdg-desktop-portal-umbriel-git
+	depends = wlroots0.20>=0.20.1
+	provides = umbriel
+	conflicts = umbriel
+	source = git+https://github.com/noctalia-dev/umbriel.git#branch=main
+	b2sums = SKIP
+
+pkgname = umbriel-git
