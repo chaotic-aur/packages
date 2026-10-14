@@ -1,0 +1,5 @@
+[pattn]
+source = "git"
+git = "https://github.com/patterniha/PattN.git"
+from_pattern = "-"
+to_pattern = "."
