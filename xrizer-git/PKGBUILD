@@ -7,7 +7,7 @@ pkgname=(
   "xrizer-common-git"
   "lib32-xrizer-git"
 )
-pkgver="0.5.r24.g0989a7f"
+pkgver="0.6.r5.g63fc7eb"
 pkgrel="1"
 pkgdesc="Reimplementation of OpenVR, translating calls to OpenXR"
 arch=("x86_64")
@@ -78,7 +78,7 @@ package_xrizer-common-git() {
 
 package_xrizer-git() {
   depends=(
-    "xrizer-common"
+    "xrizer-common-git"
     "glibc"
     "libgcc"
     "libstdc++"
@@ -94,7 +94,7 @@ package_xrizer-git() {
 package_lib32-xrizer-git() {
   pkgdesc+=" (32-bit)"
   depends=(
-    "xrizer-common"
+    "xrizer-common-git"
     "lib32-glibc"
     "lib32-gcc-libs"
   )
