@@ -2,8 +2,8 @@
 
 _pkgname="azahar"
 pkgname="$_pkgname-git"
-pkgver=2123.3.r13.g068fec0
-pkgrel=2
+pkgver=2126.2.r73.gf570b53
+pkgrel=1
 pkgdesc="A 3DS emulator"
 url="https://github.com/azahar-emu/azahar"
 license=("GPL-2.0-or-later")
@@ -106,8 +106,13 @@ build() {
     -G Ninja
     -DCMAKE_BUILD_TYPE=None
     -DCMAKE_INSTALL_PREFIX='/usr'
+    -DBUILD_TESTING=OFF
+    -Wno-author
+
+    -DENABLE_FFMPEG=OFF
     -DENABLE_QT_TRANSLATION=OFF # translations have spurious errors
     -DUSE_DISCORD_PRESENCE=ON
+    -DUSE_SANITIZERS=OFF
     -DUSE_SYSTEM_BOOST=ON
     -DUSE_SYSTEM_CATCH2=ON
     -DUSE_SYSTEM_CPP_HTTPLIB=OFF
@@ -116,7 +121,6 @@ build() {
     -DUSE_SYSTEM_CUBEB=OFF
     -DUSE_SYSTEM_DYNARMIC=OFF
     -DUSE_SYSTEM_ENET=ON
-    -DUSE_SYSTEM_FFMPEG_HEADERS=OFF
     -DUSE_SYSTEM_FMT=ON
     -DUSE_SYSTEM_GLSLANG=OFF
     -DUSE_SYSTEM_INIH=ON
@@ -131,9 +135,6 @@ build() {
     -DUSE_SYSTEM_VULKAN_HEADERS=OFF
     -DUSE_SYSTEM_XBYAK=OFF
     -DUSE_SYSTEM_ZSTD=OFF
-    -DUSE_SANITIZERS=OFF
-    -DBUILD_TESTING=OFF
-    -Wno-dev
   )
 
   cmake "${_cmake_options[@]}"

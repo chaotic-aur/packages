@@ -1,7 +1,7 @@
 pkgbase = azahar-git
 	pkgdesc = A 3DS emulator
-	pkgver = 2123.3.r13.g068fec0
-	pkgrel = 2
+	pkgver = 2126.2.r73.gf570b53
+	pkgrel = 1
 	url = https://github.com/azahar-emu/azahar
 	arch = x86_64
 	license = GPL-2.0-or-later
