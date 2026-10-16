@@ -4,7 +4,7 @@
 
 _pkgname="vita3k"
 pkgname="$_pkgname-git"
-pkgver=r4066.5ded8c78f
+pkgver=r4188.86b8e2eb5
 pkgrel=1
 pkgdesc="Experimental PlayStation Vita emulator"
 url="https://github.com/Vita3K/Vita3K"
@@ -125,7 +125,7 @@ package() {
 
   install -Dm644 "build/bin/org.vita3k.vita3k.metainfo.xml" -t "$pkgdir/usr/share/metadata/"
 
-  install -Dm644 "$_pkgsrc/dist/image/org.vita3k.vita3k.svg" -t "$pkgdir/usr/share/icons/hicolor/scalable/apps/"
+  install -Dm644 "build/bin/org.vita3k.vita3k.svg" -t "$pkgdir/usr/share/icons/hicolor/scalable/apps/"
 
   install -Dm644 "$_pkgsrc/dist/linux/org.vita3k.vita3k.desktop" -t "$pkgdir/usr/share/applications/"
 }
