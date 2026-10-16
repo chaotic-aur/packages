@@ -8,7 +8,7 @@ pkgdesc="An application for managing BTRFS subvolumes and Snapper snapshots"
 arch=('x86_64' 'aarch64')
 url="https://gitlab.com/$_pkgname/$_pkgname"
 license=('GPL3')
-depends=('qt6-base' 'qt6-svg' 'ttf-font' 'polkit' 'util-linux' 'btrfs-progs' 'diffutils')
+depends=('qt6-base' 'qt6-svg' 'ttf-font' 'polkit' 'util-linux' 'hicolor-icon-theme' 'btrfs-progs' 'diffutils')
 optdepends=('snapper' 'btrfsmaintenance')
 makedepends=('git' 'cmake' 'qt6-tools')
 conflicts=('btrfs-assistant')
@@ -18,18 +18,17 @@ source=(git+$url.git)
 md5sums=('SKIP')
 
 pkgver() {
-    cd "$srcdir/$_pkgname"
-    git describe --long --tags | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
+  cd "$srcdir/$_pkgname"
+  git describe --long --tags | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
 }
 
-
 build() {
-    cd "$srcdir/$_pkgname"
-    cmake -B build -S . -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE='Release'
-	make -C build
+  cd "$srcdir/$_pkgname"
+  cmake -B build -S . -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE='Release'
+  make -C build
 }
 
 package() {
-    cd "$srcdir/$_pkgname"
-    make -C build DESTDIR="$pkgdir" install
+  cd "$srcdir/$_pkgname"
+  make -C build DESTDIR="$pkgdir" install
 }
