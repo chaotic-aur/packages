@@ -1,0 +1,50 @@
+# Replace the stale AUR release and unchecked build-time downloads together.
+if [[ $pkgver == 3.2.2 ]]; then
+  pkgver=3.2.4
+  pkgrel=1
+  _lingeling_commit=7d5db72420b95ab356c98ca7f7a4681ed2c59c70
+  _btor2tools_commit=037f1fa88fb439dca6f648ad48a3463256d69d8b
+  url='https://boolector.github.io/'
+  depends=('glibc' 'libgcc' 'libstdc++')
+  source=(
+    "boolector-$pkgver.tar.gz::https://github.com/Boolector/boolector/archive/$pkgver.tar.gz"
+    "lingeling-$_lingeling_commit.tar.gz::https://github.com/arminbiere/lingeling/archive/$_lingeling_commit.tar.gz"
+    "btor2tools-$_btor2tools_commit.tar.gz::https://github.com/Boolector/btor2tools/archive/$_btor2tools_commit.tar.gz"
+  )
+  sha256sums=(
+    '249c6dbf4e52ea6e8df1ddf7965d47f5c30f2c14905dce9b8f411756b05878bf'
+    'cf04c8f5706c14f00dd66e4db529c48513a450cc0f195242d8d0762b415f4427'
+    'd6a5836b9e26719c3b7fe1711d93d86ca4720dc9d4bac11d1fc006fa0a140965'
+  )
+  unset sha512sums
+
+  build() {
+    cd "$srcdir/lingeling-$_lingeling_commit"
+    ./configure.sh -fPIC
+    make liblgl.a
+
+    cd "$srcdir"
+    cmake -S "btor2tools-$_btor2tools_commit" -B btor2tools-build \
+      -DCMAKE_BUILD_TYPE=Release \
+      -DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
+      -DCMAKE_POSITION_INDEPENDENT_CODE=ON \
+      -DBUILD_SHARED_LIBS=OFF
+    cmake --build btor2tools-build --target btor2parser
+
+    cd "boolector-$pkgver"
+    install -Dm644 "$srcdir/lingeling-$_lingeling_commit/liblgl.a" deps/install/lib/liblgl.a
+    install -Dm644 "$srcdir/lingeling-$_lingeling_commit/lglib.h" deps/install/include/lglib.h
+    install -Dm644 "$srcdir/btor2tools-build/lib/libbtor2parser.a" deps/install/lib/libbtor2parser.a
+    install -Dm644 "$srcdir/btor2tools-$_btor2tools_commit/src/btor2parser/btor2parser.h" deps/install/include/btor2parser.h
+    CMAKE_OPTS='-DCMAKE_POLICY_VERSION_MINIMUM=3.5' ./configure.sh --shared --only-lingeling --prefix /usr
+    cmake --build build
+  }
+
+  package() {
+    cd "$srcdir/boolector-$pkgver"
+    DESTDIR="$pkgdir" cmake --install build
+    install -Dm644 COPYING "$pkgdir/usr/share/licenses/$pkgname/COPYING"
+    install -Dm644 "$srcdir/lingeling-$_lingeling_commit/COPYING" "$pkgdir/usr/share/licenses/$pkgname/LINGELING-COPYING"
+    install -Dm644 "$srcdir/btor2tools-$_btor2tools_commit/LICENSE.txt" "$pkgdir/usr/share/licenses/$pkgname/BTOR2TOOLS-LICENSE.txt"
+  }
+fi
