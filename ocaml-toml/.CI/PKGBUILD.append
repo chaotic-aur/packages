@@ -1,0 +1,10 @@
+# Bootstrap the library without the circular OCaml test dependency graph.
+if [[ $pkgver == 7.1.0 ]]; then
+  checkdepends=()
+  unset -f check
+
+  build() {
+    cd "${srcdir}/${pkgname}-${pkgver}"
+    dune build @install --release --verbose
+  }
+fi
