@@ -1,0 +1,5 @@
+# Bootstrap the library without the circular OCaml test dependency graph.
+if [[ $pkgver == 0.1.2 ]]; then
+  checkdepends=()
+  unset -f check
+fi
