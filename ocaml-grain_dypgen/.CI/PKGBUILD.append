@@ -1,0 +1,4 @@
+# Upstream Makefiles omit module dependencies and cannot build in parallel.
+if [[ $pkgver == 0.2 ]]; then
+  options+=('!makeflags')
+fi
