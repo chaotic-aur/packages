@@ -1,0 +1,4 @@
+# Verify the release archive instead of accepting AUR's skipped checksum.
+if [[ $pkgver == 0.2.6 ]]; then
+  b2sums=('21de5e81d6b1f76d0e30fe13d461f30c50363fa006450068e9bdac7655f97937e72423894c7f68112b1a65cc2acb3fb31f43db82c42555c62b58ae5ff8bbfab3')
+fi
