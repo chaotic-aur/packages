@@ -1,0 +1,13 @@
+pkgbase = ocaml-store
+	pkgdesc = Snapshottable data structures for OCaml
+	pkgver = 0.2
+	pkgrel = 1
+	url = https://gitlab.com/basile.clement/store
+	arch = x86_64
+	license = MIT
+	makedepends = dune>=3.7
+	depends = ocaml>=4.14
+	source = ocaml-store-0.2.tar.bz2::https://gitlab.com/basile.clement/store/-/archive/v0.2/store-v0.2.tar.bz2
+	sha256sums = a43b27547309ac95ce428a737428f18bf5f61f957d026e17500e5840dda01d8c
+
+pkgname = ocaml-store
