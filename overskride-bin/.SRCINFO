@@ -1,0 +1,16 @@
+pkgbase = overskride-bin
+	pkgdesc = A simple yet powerful bluetooth client (binary release)
+	pkgver = 0.6.6
+	pkgrel = 1
+	url = https://github.com/kaii-lb/overskride
+	arch = x86_64
+	license = GPL-3.0-or-later
+	depends = bluez
+	depends = libadwaita
+	depends = libpulse
+	provides = overskride
+	conflicts = overskride
+	source = overskride-0.6.6.tar.xz::https://github.com/kaii-lb/overskride/releases/download/v0.6.6/overskride.tar.xz
+	sha256sums = 2e86b8136f578edc52a547a3367da77fb29f803b9c954d59d30aa237000e492d
+
+pkgname = overskride-bin
