@@ -2,6 +2,8 @@
 if [[ $pkgver == 0.11.2 ]]; then
   pkgver=0.11.3
   pkgrel=1
+  depends+=('ocaml-mula')
+  makedepends=('dune>=3.18' 'ocaml-menhir>=20181113' 'ocaml-unisim_archisec')
   source=("$pkgname-$pkgver.tar.gz::https://github.com/binsec/binsec/archive/refs/tags/${pkgver}.tar.gz")
   b2sums=('0c07a16932eccdb12cf9f084b09fa0a08a666c7497f240ccca521ed3ec529eafc122b27964d3faeb01f22ba6c9933dc4b45607998ac25c3e06221e522198bcd1')
 
