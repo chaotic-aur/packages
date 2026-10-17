@@ -1,0 +1,8 @@
+# Retire this override automatically when AUR updates the package.
+if [[ $pkgver == 20250818 ]]; then
+  pkgver=20260226
+  pkgrel=1
+  source=("${pkgname}-${pkgver}.tar.gz::${url}/-/archive/${pkgver}/unionfind-${pkgver}.tar.gz")
+  b2sums=('8387682acd55afe778be917f84fe6b26c3040827c06203e80dcd5f3776779dc4d21508115b296900d3b5405d59df08a192f63b4d931dc7e4421a4bbaf48f1a26')
+  depends=('ocaml>=5.4' 'ocaml-store>=0.1')
+fi
