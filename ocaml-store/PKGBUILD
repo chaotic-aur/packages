@@ -12,11 +12,11 @@ sha256sums=('a43b27547309ac95ce428a737428f18bf5f61f957d026e17500e5840dda01d8c')
 
 build() {
   cd "store-v$pkgver"
-  dune build -p store --release
+  dune build -p store
 }
 
 package() {
   cd "store-v$pkgver"
-  DESTDIR="$pkgdir" dune install -p store --prefix /usr --libdir /usr/lib/ocaml --docdir /usr/share/doc --release
+  DESTDIR="$pkgdir" dune install -p store --prefix /usr --libdir /usr/lib/ocaml --docdir /usr/share/doc
   install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
 }
