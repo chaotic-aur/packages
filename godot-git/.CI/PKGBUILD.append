@@ -1,0 +1,9 @@
+# mbedtls2 is gone from Arch, godot uses the bundled mbedtls by default
+_depends=("${depends[@]/#mbedtls2}")
+
+unset depends
+for i in "${_depends[@]}"; do
+  if [ -n "$i" ]; then
+    depends+=("$i")
+  fi
+done
