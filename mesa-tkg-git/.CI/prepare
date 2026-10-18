@@ -1,2 +1,5 @@
 #!/usr/bin/env sh
 echo '_user_patches_no_confirm="true"' >> customization.cfg
+
+# mesa main dropped the anti-lag value from the vulkan-layers option
+echo '_antilag="false"' >> customization.cfg
