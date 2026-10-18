@@ -11,3 +11,8 @@ pkgver() {
   _hash=$(git rev-parse --short=7 HEAD)
   printf '%s.r%s.g%s' "${_version:?}" "${_revision:?}" "${_hash:?}"
 }
+
+# upstream moved icon.svg and LOGO_LICENSE.txt to misc/logo/ (godot 925fbbc5c)
+eval "$(declare -f package | sed -E \
+  -e 's&/godot/icon\.svg&/godot/misc/logo/icon.svg&' \
+  -e 's&install -D "\$\{srcdir\}"/godot/LOGO_LICENSE\.txt -t "\$\{pkgdir\}/usr/share/licenses/\$\{pkgname\}"&install -Dm644 "${srcdir}"/godot/misc/logo/LICENSE.txt "${pkgdir}/usr/share/licenses/${pkgname}/LOGO_LICENSE.txt"&')"
