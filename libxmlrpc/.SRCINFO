@@ -1,0 +1,21 @@
+pkgbase = libxmlrpc
+	pkgdesc = XML-RPC for C and C++
+	pkgver = 1.64.04
+	pkgrel = 1
+	epoch = 1
+	url = https://xmlrpc-c.sourceforge.net/
+	arch = x86_64
+	license = custom
+	makedepends = libtool
+	makedepends = setconf
+	depends = curl
+	depends = perl
+	depends = libxml2
+	provides = xmlrpc-c
+	conflicts = xmlrpc-c
+	replaces = xmlrpc-c
+	options = !emptydirs
+	source = xmlrpc-c-1.64.04.tgz::https://sourceforge.net/projects/xmlrpc-c/files/Xmlrpc-c%20Super%20Stable/1.64.04/xmlrpc-c-1.64.04.tgz/download
+	b2sums = 50d75deba12984bca300f189e85a18b96802c280f5551ae0b6408cc145abf46d5732e1ce0a2ef0d8bcd61f8ed61179e794022ae972441c2ed7229b987d0ea685
+
+pkgname = libxmlrpc
