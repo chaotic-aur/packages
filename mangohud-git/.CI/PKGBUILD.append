@@ -1,0 +1,2 @@
+# mangoapp needs libXi (meson dependency('xi'))
+depends+=('libxi')
