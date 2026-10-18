@@ -1,0 +1,4 @@
+# build() already fetches and validates the net via `make net`, so the manual download is obsolete.
+prepare() {
+  :
+}
