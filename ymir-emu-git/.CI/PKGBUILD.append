@@ -1,0 +1,11 @@
+# AUR patch no longer applies
+_ci_source=()
+_ci_sha256sums=()
+for _ci_i in "${!source[@]}"; do
+  [[ "${source[$_ci_i]}" == '0001_fix_for_semver_1.0.0.patch' ]] && continue
+  _ci_source+=("${source[$_ci_i]}")
+  _ci_sha256sums+=("${sha256sums[$_ci_i]}")
+done
+source=("${_ci_source[@]}")
+sha256sums=("${_ci_sha256sums[@]}")
+unset _ci_i _ci_source _ci_sha256sums
