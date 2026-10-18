@@ -7,3 +7,6 @@ makedepends+=('npm')
 
 unset provides
 unset conflicts
+
+# build() points electronDist at /usr/lib/electron37, but depends and prepare() use electron39
+eval "$(declare -f build | sed 's|/usr/lib/electron37|/usr/lib/electron39|g')"
