@@ -1,0 +1,6 @@
+eval _orig_"$(declare -f prepare)"
+prepare() {
+  _orig_prepare
+  cd "$srcdir/$pkgname"
+  sed -i 's|^#include <memory>$|#include <memory>\n#include <cstdint>|' rtsp-server/xop/media.h
+}
