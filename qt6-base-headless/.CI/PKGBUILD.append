@@ -1,1 +1,4 @@
 unset groups
+
+# shfmt in CI turns "$_pkgfn#tag=" into "$_pkgfn #tag=" (comment), restore the tag fragment
+source[0]="git+https://code.qt.io/qt/${_pkgfn}#tag=v${pkgver}"
