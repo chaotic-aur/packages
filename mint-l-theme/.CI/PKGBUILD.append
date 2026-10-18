@@ -1,0 +1,4 @@
+# 2.0.8 is gone from the Mint pool
+pkgver=2.0.9
+source=("${pkgname}_${pkgver}.tar.xz::${_url}/${pkgname}_${pkgver}.tar.xz")
+sha256sums=('1c462d830685ec8494fc386dbfd79b7c76551c0cd18937e83c3328af4faea7b1')
