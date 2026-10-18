@@ -8,6 +8,11 @@ license=(
 
 makedepends+=('xdg-utils')
 
+# jdk17-temurin is AUR-only
+depends=("${depends[@]/#jdk17-temurin/jdk17-openjdk}")
+eval "$(declare -f build | sed -E -e 's&java-17-temurin&java-17-openjdk&g')"
+eval "$(declare -f package_processing | sed -E -e 's&java-17-temurin&java-17-openjdk&g')"
+
 eval _orig_"$(declare -f package_processing)"
 
 package_processing() {
