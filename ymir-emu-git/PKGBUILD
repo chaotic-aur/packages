@@ -186,7 +186,7 @@ build() {
   )
 
   # Edit /etc/makepkg.conf to enable AVX2
-  if g++ -x c++ - $CXXFLAGS -o /dev/null &> /dev/null << 'END'
+  if g++ -x c++ - $CXXFLAGS -o /dev/null &> /dev/null << 'END'; then
 #include <immintrin.h>
 int main() {
   __m256i v = _mm256_add_epi32(_mm256_set1_epi32(1), _mm256_set1_epi32(2));
@@ -194,7 +194,6 @@ int main() {
   return 0;
 }
 END
-  then
     _cmake_options+=(-DYmir_AVX2=ON)
   else
     _cmake_options+=(-DYmir_AVX2=OFF)
