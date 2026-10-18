@@ -7,3 +7,7 @@ eval _orig_"$(declare -f check)"
 check() {
   _orig_check || true
 }
+
+# prepare() runs git cherry-pick, which needs a committer identity in the build chroot
+export GIT_COMMITTER_NAME="Chaotic-AUR builder"
+export GIT_COMMITTER_EMAIL="builder@localhost"
