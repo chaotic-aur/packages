@@ -5,3 +5,7 @@ pkgver() {
   git describe --long --tags --abbrev=7 --exclude='*[a-zA-Z][a-zA-Z]*' \
     | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
 }
+
+# gradle fails on JDK 27
+makedepends=("${makedepends[@]/#java-environment*/jdk21-openjdk}")
+export JAVA_HOME=/usr/lib/jvm/java-21-openjdk
