@@ -8,3 +8,11 @@ depends=(
 makedepends=(${makedepends[@]//gcc*/})
 
 eval "$(declare -f build | sed -e '/export [AC]/d')"
+
+# SYS_gettid and SYS_tgkill need <sys/syscall.h>, no longer included transitively (fixed on upstream master)
+eval _orig_"$(declare -f prepare)"
+prepare() {
+  _orig_prepare
+  cd "${srcdir}/mongo-r${pkgver}"
+  sed -i 's|^#include <unistd.h>$|#include <unistd.h>\n#include <sys/syscall.h>|' src/mongo/util/stacktrace_details.cpp
+}
