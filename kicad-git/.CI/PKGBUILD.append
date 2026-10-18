@@ -5,7 +5,11 @@ depends+=(
   'poppler-glib'
   'webkit2gtk-4.1'
 )
-makedepends+=('ninja')
+makedepends+=(
+  'glslang'
+  'ninja'
+  'spirv-tools'
+)
 
 provides=("kicad")
 conflicts=("kicad")
