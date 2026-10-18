@@ -1,0 +1,2 @@
+# luanti 5.18-dev requires libzip >= 1.7.2
+makedepends+=('libzip')
