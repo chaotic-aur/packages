@@ -1,7 +1,2 @@
 license=('AGPL-3.0-or-later')
 arch=('x86_64')
-
-depends=(
-  corepack
-  ${depends[@]//yarn-*/yarn}
-)
