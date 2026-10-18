@@ -1,6 +1,6 @@
 export CMAKE_POLICY_VERSION_MINIMUM=3.5
 
-makedepends+=('ninja')
+makedepends+=('ninja' 'python-jinja') # python-jinja: glad2 generator needs jinja2
 
 _pkgsrc="$_pkgname"
 
