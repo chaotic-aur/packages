@@ -7,3 +7,23 @@ pkgver() {
   git describe --long --tags --abbrev=7 --exclude='*[a-zA-Z][a-zA-Z]*' \
     | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
 }
+
+# upstream renamed the meson option 'gtkdoc' to 'api_docs' (gtk-doc -> gi-docgen port, 2026-10-14)
+build() {
+  cd flatpak
+  meson setup \
+    --prefix=/usr \
+    --sysconfdir=/etc \
+    --localstatedir=/var \
+    -Dselinux_module=disabled \
+    -Ddbus_config_dir=/usr/share/dbus-1/system.d \
+    -Dprivileged_group=sudo \
+    -Drun_media_dir=/media \
+    -Dsystem_bubblewrap=bwrap \
+    -Dsystem_dbus_proxy=xdg-dbus-proxy \
+    -Dsystemdsystemunitdir=/usr/lib/systemd/system \
+    -Dsystemdsystemenvgendir=/usr/lib/systemd/system-environment-generators \
+    -Dapi_docs=disabled \
+    build
+  meson compile -C build
+}
