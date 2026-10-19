@@ -1,0 +1,20 @@
+pkgbase = libeb
+	pkgdesc = C library for accessing CD-ROM books. Supports EB, EBG, EBXA, EBXA-C, S-EBXA and EPWING formats.
+	pkgver = 4.4.3
+	pkgrel = 12
+	url = http://www.mistys-internet.website/eb/index-en.html
+	arch = i686
+	arch = x86_64
+	license = BSD
+	depends = perl
+	depends = zlib
+	provides = libeb.so
+	provides = eb-library
+	conflicts = eb-library
+	replaces = eb-library
+	source = libeb-4.4.3.tar.bz2::https://github.com/mistydemeo/eb/releases/download/v4.4.3/eb-4.4.3.tar.bz2
+	source = libeb-4.4.3-14-010_debian.patch::https://sources.debian.org/data/main/e/eb/4.4.3-14/debian/patches/010_debian.patch
+	sha256sums = abe710a77c6fc3588232977bb2f30a2e69ddfbe9fa8d0b05b0d67d95e36f4b5f
+	sha256sums = dc98114f7bc7e7fc0da2fac5c741f91fb2a3079b0e096fbdf955755fc61c0f19
+
+pkgname = libeb
