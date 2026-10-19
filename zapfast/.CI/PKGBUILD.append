@@ -1,0 +1,2 @@
+unset install
+makedepends+=('ttf-liberation')
