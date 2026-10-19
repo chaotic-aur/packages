@@ -1,0 +1,12 @@
+diff --color -ura a/gale-bin/usr/share/applications/Gale.desktop b/gale-bin/usr/share/applications/Gale.desktop
+--- a/gale-bin/usr/share/applications/Gale.desktop      2025-03-27 15:10:48.000000000 -0400
++++ b/gale-bin/usr/share/applications/Gale.desktop      2025-03-28 18:45:45.922056613 -0400
+@@ -1,7 +1,7 @@
+ [Desktop Entry]
+ Categories=Game;
+ Comment=A modern mod manager for Thunderstore
+-Exec=gale
++Exec=env WEBKIT_DISABLE_COMPOSITING_MODE=1 gale
+ StartupWMClass=gale
+ Icon=gale
+ Name=Gale
