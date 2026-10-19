@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=XIVLauncher-RB (AUR)
+Comment=Custom launcher for Final Fantasy XIV Online with RB Patches
+Exec=/usr/bin/xivlauncher-rb
+Icon=xivlauncher-rb
+Terminal=false
+Type=Application
+Categories=Application;Game;
+StartupWMClass=XIVLauncher.Core
