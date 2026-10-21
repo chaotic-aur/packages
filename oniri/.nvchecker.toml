@@ -1,4 +1,0 @@
-[oniri]
-source = "git"
-git = "https://github.com/Antiz96/oniri.git"
-prefix = "v"
