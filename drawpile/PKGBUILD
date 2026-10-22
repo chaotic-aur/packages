@@ -2,8 +2,8 @@
 
 _pkgname='drawpile'
 pkgname="$_pkgname"
-pkgver=2.3.0
-pkgrel=3
+pkgver=2.3.1
+pkgrel=1
 pkgdesc="Collaborative drawing program specially made for use with pen tablets"
 url="https://github.com/drawpile/Drawpile"
 license=('GPL-3.0-or-later')
@@ -41,7 +41,7 @@ conflicts=(
 
 _pkgsrc="$_pkgname"
 source=("$_pkgsrc"::"git+$url.git#tag=$pkgver")
-sha256sums=('8f018c99b19621ce1639af3c808c8012916ad02e291e215c99fb482e9c3f78f5')
+sha256sums=('a48e18b08647a1316b2bafe7f8a35cd6d73570fbe89d238b129f02ed2994e9c5')
 
 prepare() {
   cd "$_pkgsrc"
