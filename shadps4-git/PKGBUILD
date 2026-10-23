@@ -5,7 +5,7 @@
 
 _pkgname="shadps4"
 pkgname="$_pkgname-git"
-pkgver=0.19.0.r68.ge0a4667
+pkgver=0.20.0.r65.g91e6afa
 pkgrel=1
 pkgdesc="Sony PlayStation 4 emulator"
 url="https://github.com/shadps4-emu/shadPS4"
@@ -28,7 +28,6 @@ depends=(
   'libuuid.so'       # util-linux-libs
   'libxxhash.so'     # xxhash
   'libz.so'          # zlib
-  'libzarchive.so'   # zarchive
   'miniz'
   'pugixml'
   'sdl3'
@@ -85,7 +84,6 @@ prepare() {
   git rm -r externals/toml11
   git rm -r externals/vulkan-headers
   git rm -r externals/xxhash
-  git rm -r externals/zarchive
   git rm -r externals/zlib-ng
   git rm -r externals/zstd
   git submodule update --init --recursive --depth 1
