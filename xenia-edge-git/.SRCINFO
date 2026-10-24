@@ -1,0 +1,24 @@
+pkgbase = xenia-edge-git
+	pkgdesc = An experimental emulator for the Xbox 360
+	pkgver = r10867.a0176d2
+	pkgrel = 1
+	url = https://github.com/has207/xenia-edge
+	arch = x86_64
+	license = BSD-3-Clause
+	makedepends = clang
+	makedepends = cmake
+	makedepends = git
+	makedepends = lld
+	makedepends = ninja
+	makedepends = python
+	makedepends = shader-slang
+	depends = gtk3
+	depends = hicolor-icon-theme
+	depends = sdl3
+	provides = xenia-edge
+	conflicts = xenia-edge
+	options = !lto
+	source = xenia-edge::git+https://github.com/has207/xenia-edge.git#branch=edge
+	sha256sums = SKIP
+
+pkgname = xenia-edge-git

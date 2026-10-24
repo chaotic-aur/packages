@@ -1,0 +1,128 @@
+# Maintainer: aur.chaotic.cx
+
+: ${_branch:=edge}
+
+_pkgname="xenia-edge"
+pkgname="$_pkgname-git"
+pkgver=r10867.a0176d2
+pkgrel=1
+pkgdesc="An experimental emulator for the Xbox 360"
+url="https://github.com/has207/xenia-edge"
+license=('BSD-3-Clause')
+arch=('x86_64')
+
+depends=(
+  gtk3
+  hicolor-icon-theme
+  sdl3
+)
+makedepends=(
+  clang
+  cmake
+  git
+  lld
+  ninja
+  python
+  shader-slang
+)
+
+provides=("$_pkgname")
+conflicts=("$_pkgname")
+
+options=('!lto')
+
+_pkgsrc="xenia-edge"
+source=(
+  "$_pkgsrc"::"git+$url.git#branch=$_branch"
+)
+sha256sums=(
+  'SKIP'
+)
+
+pkgver() {
+  cd "$_pkgsrc"
+  printf "r%s.%s" \
+    "$(git rev-list --count HEAD)" \
+    "$(git rev-parse --short=7 HEAD)"
+}
+
+prepare() {
+  cd "$_pkgsrc"
+  git rm -r third_party/DirectX-Headers
+  git rm -r third_party/DirectXShaderCompiler
+  git rm -r third_party/MoltenVK
+  git rm -r third_party/metal-cpp
+  git submodule update --init --depth=1
+}
+
+build() {
+  local _cflags=(
+    -Wno-error=unused-result
+  )
+
+  export CC CXX CXXFLAGS
+  CC=clang
+  CXX=clang++
+  CFLAGS+=" ${_cflags[*]}"
+  CXXFLAGS+=" ${_cflags[*]}"
+
+  export SLANGC_PATH=/usr/bin/slangc
+
+  local _cmake_options=(
+    -B build
+    -S "$_pkgsrc"
+    -G Ninja
+    -DCMAKE_BUILD_TYPE=Release
+    -DCMAKE_SKIP_RPATH=ON
+    -Wno-author
+
+    -DXENIA_BUILD_MISC=OFF
+    -DXENIA_BUILD_TESTS=$CHECKFUNC
+    -DXENIA_ENABLE_DTRACE=OFF
+    -DXENIA_ENABLE_FTRACE=OFF
+    -DXENIA_ENABLE_GPU_TRACE=OFF
+    -DXENIA_ENABLE_ITRACE=OFF
+    -DXENIA_ENABLE_LTO=OFF
+    -DXENIA_ENABLE_PROFILER=OFF
+  )
+
+  cmake "${_cmake_options[@]}"
+
+  cat /dev/stdin > "build/version.h" << END
+#ifndef GENERATED_VERSION_H_
+#define GENERATED_VERSION_H_
+#define XE_BUILD_BRANCH "${_branch}"
+#define XE_BUILD_COMMIT "${_pkgver##*.}"
+#define XE_BUILD_COMMIT_SHORT "${_pkgver##*.}"
+#define XE_BUILD_DATE __DATE__
+#endif
+END
+
+  cmake --build build
+}
+
+_check() {
+  build/bin/Linux/xenia-base-tests || true
+  build/bin/Linux/xenia-cpu-ppc-tests || true
+}
+
+package() {
+  install -Dm755 build/bin/Linux/xenia_edge "$pkgdir/usr/bin/$_pkgname"
+
+  cd "$_pkgsrc"
+
+  install -Dm644 LICENSE -t "$pkgdir/usr/share/licenses/$pkgname/"
+
+  install -Dm644 assets/icon/512.png "$pkgdir/usr/share/icons/hicolor/512x512/apps/$_pkgname.png"
+
+  install -Dm644 /dev/stdin "$pkgdir/usr/share/applications/$_pkgname.desktop" << END
+[Desktop Entry]
+Type=Application
+Name=Xenia Edge
+GenericName=Xbox 360 Emulator
+Comment=$pkgdesc
+Exec=$_pkgname
+Icon=$_pkgname
+Categories=Game;Emulator;
+END
+}
