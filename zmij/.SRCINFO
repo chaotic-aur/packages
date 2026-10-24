@@ -1,0 +1,16 @@
+pkgbase = zmij
+	pkgdesc = Fast double-to-string conversion library
+	pkgver = 1.2
+	pkgrel = 2
+	url = https://github.com/vitaut/zmij
+	arch = x86_64
+	license = MIT
+	makedepends = cmake
+	makedepends = git
+	makedepends = ninja
+	options = staticlibs
+	options = !lto
+	source = git+https://github.com/vitaut/zmij#tag=v1.2
+	sha256sums = SKIP
+
+pkgname = zmij
