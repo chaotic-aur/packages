@@ -1,7 +1,7 @@
 pkgbase = xenia-canary-git
 	pkgdesc = An experimental emulator for the Xbox 360
-	pkgver = r8599.22d91c8
-	pkgrel = 1
+	pkgver = r8845.9e03494
+	pkgrel = 2
 	url = https://github.com/xenia-canary/xenia-canary
 	arch = x86_64
 	license = BSD-3-Clause
@@ -16,8 +16,8 @@ pkgbase = xenia-canary-git
 	depends = gtk3
 	depends = hicolor-icon-theme
 	depends = sdl2
-	provides = xenia
-	conflicts = xenia
+	provides = xenia-canary
+	conflicts = xenia-canary
 	options = !lto
 	source = xenia-canary::git+https://github.com/xenia-canary/xenia-canary.git#branch=canary_experimental
 	sha256sums = SKIP
