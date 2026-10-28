@@ -2,7 +2,7 @@
 
 _pkgname="trustedqsl"
 pkgname="$_pkgname"
-pkgver=2.8.6
+pkgver=2.8.7
 pkgrel=1
 pkgdesc="QSO log signing data for the ARRL Logbook of The World (LoTW)"
 url="https://www.arrl.org/tqsl"
@@ -25,7 +25,7 @@ optdepends=(
 _pkgsrc="tqsl-$pkgver"
 _pkgext="tar.gz"
 source=("$_pkgsrc.$_pkgext"::"http://www.arrl.org/tqsl/$_pkgsrc.$_pkgext")
-sha256sums=('182e5f2ac35a3db8b409b45d96505e6bd265ae4668ed064754209c4b8e7bdf37')
+sha256sums=('666fa402794237c06d473ebb0fa4ec0642057682204a3a73386c40bec2ef82c7')
 
 build() {
   local _cmake_options=(
