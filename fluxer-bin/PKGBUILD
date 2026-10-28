@@ -4,15 +4,16 @@
 # https://github.com/Felitendo/PKGBUILDS
 
 pkgname=fluxer-bin
-# Upstream versions are date-based: this is the build of 2026-09-20 at
-# 04:13:03 UTC. They sort above the 0.0.x scheme the package used before.
+# Upstream versions are date-based (see pkg.sh). They sort above the 0.0.x
+# scheme the package used before.
 pkgver=2026.1026.24218
 pkgrel=1
 pkgdesc="Fluxer Desktop Application"
 arch=('x86_64' 'aarch64')
 url="https://fluxer.app"
 license=('AGPL-3.0-only')
-depends=('gtk3' 'nss' 'alsa-lib')
+# libpipewire and systemd-libs: two of the app's native modules link them
+depends=('gtk3' 'nss' 'alsa-lib' 'libpipewire' 'systemd-libs')
 # /usr/bin/fluxer is also installed by fluxer-git on the AUR and by the
 # "fluxer" package in upstream's own pacman repository:
 # provides/conflicts makes that an either/or instead of a file conflict
