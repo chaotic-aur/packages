@@ -2,7 +2,7 @@
 
 _pkgname="vicinae"
 pkgname="$_pkgname"
-pkgver=0.29.1
+pkgver=0.29.2
 pkgrel=1
 pkgdesc="A focused launcher for your desktop"
 url="https://github.com/vicinaehq/vicinae"
@@ -26,7 +26,6 @@ depends=(
 makedepends=(
   'cmake'
   'git'
-  'glaze'
   'ninja'
   'npm'
   'qt6-shadertools'
@@ -39,7 +38,7 @@ makedepends=(
 _pkgsrc="$_pkgname-$pkgver"
 _pkgext="tar.gz"
 source=("$_pkgsrc.$_pkgext"::"$url/archive/refs/tags/v$pkgver.$_pkgext")
-sha256sums=('ca79782e7c94faa9da1bd12ba1a361cea41970db781447773acb9a580a47cea8')
+sha256sums=('8836ab5f046a6f6b40c510e689834dd94c348129e102d867e07692c29b1da1dd')
 
 build() {
   local _cmake_options=(
@@ -52,7 +51,7 @@ build() {
     -Wno-author
 
     -DUSE_SYSTEM_CMARK_GFM=ON
-    -DUSE_SYSTEM_GLAZE=ON
+    -DUSE_SYSTEM_GLAZE=OFF
     -DUSE_SYSTEM_KF6=ON
     -DUSE_SYSTEM_LAYER_SHELL=ON
     -DUSE_SYSTEM_QT_KEYCHAIN=ON
