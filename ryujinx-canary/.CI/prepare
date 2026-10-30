@@ -13,7 +13,7 @@ _check_status() {
       | grep -Po '/tag/\KCanary-([0-9\.]+)' \
       | sort -rV | head -1
   )
-  _pkgver_new="${_tag:-}"
+  _pkgver_new="${_tag#*-}"
 
   if [ $(vercmp "${_pkgver_new:-0}" "${_pkgver:-0}") -gt 0 ]; then
     echo "New upstream release.  $_pkgver_new > $_pkgver"
