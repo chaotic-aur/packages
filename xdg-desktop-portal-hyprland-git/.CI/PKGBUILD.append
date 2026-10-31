@@ -1,0 +1,2 @@
+# hyprland-share-picker needs hyprtoolkit>=0.6.0
+depends+=('hyprtoolkit-git')
