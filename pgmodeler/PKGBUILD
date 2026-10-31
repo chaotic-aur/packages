@@ -2,8 +2,8 @@
 
 _pkgname="pgmodeler"
 pkgname="$_pkgname"
-pkgver=1.2.3
-pkgrel=2
+pkgver=2.0.0
+pkgrel=1
 pkgdesc="An open source CASE tool for modeling PostgreSQL databases"
 url="https://github.com/nullptrlabs/pgmodeler"
 license=('GPL-3.0-only')
@@ -21,7 +21,7 @@ makedepends=(
 _pkgsrc="$pkgname-$pkgver"
 _pkgext="tar.gz"
 source=("$pkgname-$pkgver.$_pkgext"::"$url/archive/v${pkgver}.$_pkgext")
-sha256sums=('862a8caf8d3822b62bc584ed17ba53d1a61733b92d3d5ba29e1be47eadf8f061')
+sha256sums=('074a9a508d5c8415464ab5c37bb8d1a9d511e23daa2ba15a4a05feb84463754a')
 
 prepare() {
   # normalize icon sizes
