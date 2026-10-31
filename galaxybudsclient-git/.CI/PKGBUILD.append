@@ -13,3 +13,10 @@ pkgver() {
   git describe --long --tags --abbrev=7 --exclude='*[a-zA-Z][a-zA-Z]*' \
     | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
 }
+
+# global.json pins the 10.0.3xx SDK band, allow newer feature bands
+eval "_orig_$(declare -f prepare)"
+prepare() {
+  sed -E -e 's&("rollForward":\s*)"latestPatch"&\1"latestFeature"&' -i "$srcdir/$pkgname/global.json"
+  _orig_prepare
+}
