@@ -1,0 +1,2 @@
+# upstream switched to npm (packageManager field), yarn 1 refuses without this
+export SKIP_YARN_COREPACK_CHECK=1
