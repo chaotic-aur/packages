@@ -1,0 +1,5 @@
+# electron-builder needs webapp.asar, upstream no longer builds it in "build"
+eval "$(declare -f build | sed -E -e 's&(pnpm run build --publish never)&ln -sfn ../web/webapp webapp\n  pnpm run asar-webapp\n  \1&')"
+
+# the system element-web-git package provides the webapp, drop the bundled asar
+eval "$(declare -f package_element-desktop-git | sed -E -e 's&(ln -s /usr/share/webapps/element )&rm -f "${pkgdir}"/usr/lib/element/webapp.asar\n  \1&')"
