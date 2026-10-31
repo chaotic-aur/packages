@@ -1,1 +1,1 @@
-depends+=('libxi')
+depends+=('libxi' 'libxrandr')
