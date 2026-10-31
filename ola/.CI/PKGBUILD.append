@@ -1,0 +1,2 @@
+# gcc 16 warns in the tests, -Werror turns it into an error
+CXXFLAGS+=' -Wno-error=array-bounds'
