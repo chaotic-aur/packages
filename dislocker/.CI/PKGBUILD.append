@@ -1,0 +1,22 @@
+# mbedtls 4 removed mbedtls/aes.h
+depends=("${depends[@]/#mbedtls/mbedtls3}")
+
+build() {
+  cd "$srcdir/$pkgname-$pkgver"
+
+  # Fix inapt variable naming
+  sed -i 's/true/trueval/g' src/config.c
+
+  cmake -DCMAKE_INSTALL_PREFIX=/usr \
+    -DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
+    -Dlibdir=/usr/lib \
+    -DC_INCLUDE_PATH="$C_INCLUDE_PATH:/usr/include/ruby-3.3.5/" \
+    -DPOLARSSL_INCLUDE_DIRS=/usr/include/mbedtls3 \
+    -DPOLARSSL_LIBRARIES=/usr/lib/mbedtls3/libmbedcrypto.so \
+    -D WARN_FLAGS:STRING="-Wall -Wextra"
+
+  # Fix mbedtls3 incompatibility
+  sed -i 's|mbedtls/config.h|mbedtls/mbedtls_config.h|;s|mbedtls_sha256_ret|mbedtls_sha256|' include/dislocker/ssl_bindings.h
+
+  make
+}
