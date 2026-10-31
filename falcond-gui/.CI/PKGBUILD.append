@@ -1,0 +1,11 @@
+# git.pika-os.com returns 403 for archive downloads, git clones still work
+makedepends+=('git')
+source=("$pkgname-$pkgver::git+$url.git#tag=v$pkgver")
+sha256sums=('SKIP')
+unset noextract
+
+prepare() {
+  cd "$pkgname-$pkgver/$pkgname"
+  export RUSTUP_TOOLCHAIN=stable
+  cargo fetch --locked --target host-tuple
+}
