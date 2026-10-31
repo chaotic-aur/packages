@@ -2,3 +2,6 @@
 
 # mangle replaces directive
 sed -E -e 's&^(\s*)(replaces\+?=)&\1 _ignore_\2&g' -i PKGBUILD
+
+# budgie-1.0 is not found with budgie 10.10, skip the budgie plugin
+sed -E -e 's&^_disable_budgie=0$&_disable_budgie=1&' -i PKGBUILD
