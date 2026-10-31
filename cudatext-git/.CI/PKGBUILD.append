@@ -1,0 +1,6 @@
+# TReader.SkipValue does not exist in fpc 3.2.2, the reader's driver has it
+eval "_orig_$(declare -f prepare)"
+prepare() {
+  _orig_prepare
+  sed -e 's&Reader\.SkipValue;&Reader.Driver.SkipValue;&' -i "$srcdir/EControl/econtrol/ec_syntanal.pas"
+}
