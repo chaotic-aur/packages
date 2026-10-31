@@ -1,0 +1,6 @@
+# the GitHub commit patch is unstable, add the same include by hand
+unset 'source[1]' 'sha256sums[1]'
+prepare() {
+  sed -e '/#include <semaphore.h>/a #include <cstdint>' \
+    -i "media-driver-intel-media-${pkgver}/media_common/linux/common/os/mos_defs_specific.h"
+}
