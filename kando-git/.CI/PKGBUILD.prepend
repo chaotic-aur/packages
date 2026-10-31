@@ -1,0 +1,2 @@
+# npm 12 (node 27) refuses git dependencies, node 24 ships npm 11
+_nodeversion=24
