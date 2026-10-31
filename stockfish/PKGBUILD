@@ -36,15 +36,12 @@ source=("$_pkgname-$pkgver.zip"::"$url/archive/sf_$pkgver.zip")
 sha256sums=('SKIP')
 
 prepare() {
-  # download nnue files
-  local _nnue_big=$(grep -Em1 'define EvalFileDefaultNameBig' "$_pkgsrc/src/evaluate.h" | sed -E 's&^.*"(\S+)".*$&\1&')
-  local _nnue_small=$(grep -Em1 'define EvalFileDefaultNameBig' "$_pkgsrc/src/evaluate.h" | sed -E 's&^.*"(\S+)".*$&\1&')
-
-  curl -qgC - -o "$_nnue_big" "https://tests.stockfishchess.org/api/nn/${_nnue_big}"
-  curl -qgC - -o "$_nnue_small" "https://tests.stockfishchess.org/api/nn/${_nnue_small}"
-
-  ln -sf "$srcdir/$_nnue_big" "$_pkgsrc/src/"
-  ln -sf "$srcdir/$_nnue_small" "$_pkgsrc/src/"
+  # download nnue files, sf_19 has one net, older releases had big and small
+  local _nnue
+  for _nnue in $(grep -Po '#define EvalFileDefaultName\w*\s+"\K[^"]+' "$_pkgsrc/src/evaluate.h" | sort -u); do
+    curl -qgC - -o "$_nnue" "https://tests.stockfishchess.org/api/nn/${_nnue}"
+    ln -sf "$srcdir/$_nnue" "$_pkgsrc/src/"
+  done
 }
 
 build() {
