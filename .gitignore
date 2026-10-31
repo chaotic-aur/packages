@@ -5,3 +5,11 @@ pkgbuilds
 src
 *.tar.zst
 *.tar.gz
+
+# chaotic-portable-builder
+/cache/
+/config
+/gpg/
+/logs/
+/pkgout/
+/repo/
