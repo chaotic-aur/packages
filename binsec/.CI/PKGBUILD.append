@@ -6,6 +6,14 @@ if [[ $pkgver == 0.11.2 ]]; then
   makedepends=('dune>=3.18' 'ocaml-menhir>=20181113' 'ocaml-unisim_archisec')
   source=("$pkgname-$pkgver.tar.gz::https://github.com/binsec/binsec/archive/refs/tags/${pkgver}.tar.gz")
   b2sums=('0c07a16932eccdb12cf9f084b09fa0a08a666c7497f240ccca521ed3ec529eafc122b27964d3faeb01f22ba6c9933dc4b45607998ac25c3e06221e522198bcd1')
+  # Remove when the XOR/shift simplifier fix is included upstream.
+  source+=("binsec-xor-shift-33eeaa5.patch::https://github.com/thotypous/binsec/commit/33eeaa57d41777fff0e99ce07649965956d7f7d9.patch")
+  b2sums+=('3a3885ff040a1d9b96458de9e8537b0471dc52a24f38f91f464a2cd9f104116ba4b0f7c900ff5bb148d6b277b243f7e5a57c176fb08c96b6bd50b384e623a03e')
+
+  prepare() {
+    cd "${srcdir}/${pkgname}-${pkgver}"
+    patch -Np1 -i "${srcdir}/binsec-xor-shift-33eeaa5.patch"
+  }
 
   # AUR disables check(); build installable targets without its unused test libraries.
   checkdepends=()
