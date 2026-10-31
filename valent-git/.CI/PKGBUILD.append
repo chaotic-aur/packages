@@ -12,3 +12,5 @@ prepare() {
   cd "${pkgname%-git}"
   git submodule update --init --depth=1
 }
+# gcc 16 turns these into errors
+CFLAGS+=' -Wno-error=switch-enum'
