@@ -5,3 +5,27 @@ pkgver() {
   cd "$_pkgsrc"
   printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short=7 HEAD)"
 }
+
+# https://aur.archlinux.org/packages/jellium-desktop-git#comment-1088686
+prepare() {
+  cd "$srcdir/$_pkgsrc"
+  git apply << 'EOF'
+diff --git a/src/xtask/src/cef.rs b/src/xtask/src/cef.rs
+--- a/src/xtask/src/cef.rs
++++ b/src/xtask/src/cef.rs
+@@ -91,6 +91,13 @@ pub fn sdk_proxy(real_dir: &Path) -> Result<(tempfile::TempDir, PathBuf)> {
+             .with_context(|| format!("link {} in cef-sdk-proxy", name.to_string_lossy()))?;
+     }
+
++    // Arch's cef package keeps the headers outside the runtime dir; cef-dll-sys reads include/cef_api_versions.h.
++    let include = proxy.join("include");
++    if !include.exists() {
++        create_link(Path::new("/usr/include/cef/include"), &include)
++            .context("link include in cef-sdk-proxy")?;
++    }
++
+     let cef_version = download_cef::default_version(&version::cef_package_version()?);
+     std::fs::write(
+         proxy.join("archive.json"),
+EOF
+}
