@@ -1,12 +1,12 @@
 # Maintainer: AlphaJack <alphajack at tuta dot io>
 # Maintainer: Vladislav Minakov <v@minakov.pro>
 # Contributor: Christian Pfeiffer <cpfeiffer at rev-crew dot info>
-# shellcheck disable=SC2034,SC2154,SC2164
+# shellcheck disable=SC2034,SC2154
 # shellcheck shell=bash
 
 pkgname="modsecurity-crs"
 pkgver=4.30.0
-pkgrel=3
+pkgrel=4
 pkgdesc="OWASP ModSecurity Core Rule Set"
 _modsecver=3.0.17
 url="https://github.com/coreruleset/coreruleset"
@@ -45,18 +45,18 @@ prepare() {
     -e "s|SecRuleEngine DetectionOnly|#&\nSecRuleEngine On|" \
     -e "s|SecAuditEngine RelevantOnly|#&\nSecAuditEngine Off|" \
     -e "s|SecStatusEngine On|#&\nSecStatusEngine Off|" \
-    > "$srcdir/modsecurity.conf"
+    >"$srcdir/modsecurity.conf"
 
   echo "
 Include /etc/modsecurity/crs/crs-setup.conf
 Include /usr/share/modsecurity/crs/plugins/*-config.conf
 Include /etc/modsecurity/crs/REQUEST-900-EXCLUSION-RULES-BEFORE-CRS.conf
 Include /usr/share/modsecurity/crs/rules/*.conf
-Include /etc/modsecurity/crs/RESPONSE-999-EXCLUSION-RULES-AFTER-CRS.conf" >> "$srcdir/modsecurity.conf"
+Include /etc/modsecurity/crs/RESPONSE-999-EXCLUSION-RULES-AFTER-CRS.conf" >>"$srcdir/modsecurity.conf"
 }
 
 package() {
-  cd "coreruleset-$pkgver"
+  cd "coreruleset-$pkgver" || exit
 
   # custom configurations
   # https://coreruleset.org/docs/deployment/quick_start/#setting-up-the-main-configuration-file
