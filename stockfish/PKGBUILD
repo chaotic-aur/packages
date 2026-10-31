@@ -6,7 +6,7 @@
 
 _pkgname=stockfish
 pkgname="$_pkgname"
-pkgver=20261011-31275420
+pkgver=19
 pkgrel=1
 pkgdesc="A strong UCI chess engine"
 url="https://github.com/official-stockfish/Stockfish"
