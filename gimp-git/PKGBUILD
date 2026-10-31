@@ -123,7 +123,6 @@ build() {
     -Dcheck-update=no
     -Dgi-docgen=disabled
     -Dheadless-tests=enabled
-    -Dilbm=disabled
     -Dlua=true
   )
 
