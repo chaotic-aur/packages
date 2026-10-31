@@ -1,0 +1,11 @@
+# python-anitopy is gone from Arch and the AUR, upstream treats it as optional
+_depends=()
+for _dep in "${depends[@]}"; do
+  [[ "$_dep" == "python-anitopy" ]] || _depends+=("$_dep")
+done
+depends=("${_depends[@]}")
+unset _depends _dep
+optdepends+=('python-anitopy: better filename parsing')
+
+# the wheel version (setuptools_scm) does not always match pkgver, install the built wheel
+eval "$(declare -f package | sed -E -e 's&"\$srcdir/\$pkgname/dist/\$\{pkgname%-git\}-.*-none-any\.whl"&"$srcdir/$pkgname"/dist/*.whl&')"
