@@ -7,7 +7,10 @@ depends=(
 )
 makedepends=(${makedepends[@]//gcc*/})
 
-eval "$(declare -f build | sed -e '/export [AC]/d')"
+# debug info is stripped anyway (!debug) and makes the mongos link run out of memory
+eval "$(declare -f build | sed -e '/export [AC]/d' \
+  -e 's|debug_symbols=True|debug_symbols=False|' \
+  -e 's|dbg_level=2|dbg_level=0|')"
 
 # SYS_gettid and SYS_tgkill need <sys/syscall.h>, no longer included transitively (fixed on upstream master)
 eval _orig_"$(declare -f prepare)"
