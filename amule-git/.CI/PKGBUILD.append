@@ -7,3 +7,6 @@ license=('GPL-2.0-or-later')
 
 # enable asserts for check()
 eval "$(declare -f build | sed -E -e 's&(cmake) (-B)&\1 -DCMAKE_BUILD_TYPE=None \2&')"
+
+# media probe needs MediaInfoLib since upstream made it required
+depends+=('libmediainfo')
