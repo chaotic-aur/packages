@@ -1,0 +1,8 @@
+# the AppImage runtime cannot run in the build container, extract the squashfs directly
+makedepends+=('squashfs-tools')
+prepare() {
+  cd "$srcdir"
+  local _appimage="WowUp-CF-${pkgver}.AppImage" _offset
+  _offset=$(LC_ALL=C readelf -h "$_appimage" | awk '/Start of section headers/{s=$5} /Size of section headers/{z=$5} /Number of section headers/{n=$5} END{print s+z*n}')
+  unsquashfs -q -n -o "$_offset" -d squashfs-root "$_appimage"
+}
