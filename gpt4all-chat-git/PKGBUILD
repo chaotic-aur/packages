@@ -67,6 +67,9 @@ prepare() {
   # remove duplicate declarations
   sed -E -e '/^extern /d' -i gpt4all-backend/deps/llama.cpp-mainline/ggml/src/kompute/external/bin/xxd.c
 
+  # fix for gcc 16, std::uint64_t needs <cstdint>
+  sed -E -e '1i #include <cstdint>' -i gpt4all-backend/deps/llama.cpp-mainline/ggml/src/kompute/src/Sequence.cpp
+
   # fix vulkan
   sed -E \
     -e 's&\bvk::(DynamicLoader)\b&vk::detail::\1&g' \
