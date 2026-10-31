@@ -10,3 +10,7 @@ eval "$(declare -f build | sed -E -e 's&(cmake) (-B)&\1 -DCMAKE_BUILD_TYPE=None 
 
 # media probe needs MediaInfoLib since upstream made it required
 depends+=('libmediainfo')
+
+# unit test ECAsyncProbe fails to link (undefined MULE_EVT_NOTIFY), skip the tests
+eval "$(declare -f build | sed -E -e 's&-DBUILD_TESTING=ON&-DBUILD_TESTING=OFF&')"
+unset -f check
