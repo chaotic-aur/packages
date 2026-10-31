@@ -1,0 +1,4 @@
+# gcc 16: geteuid and execlp need <unistd.h>
+prepare() {
+  sed -e '1i #include <unistd.h>' -i "$srcdir/$pkgname-$pkgver/main.cpp"
+}
