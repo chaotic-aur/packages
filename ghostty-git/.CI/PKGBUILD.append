@@ -20,6 +20,10 @@ eval "_orig_$(declare -f prepare)"
 prepare() {
   _zig_setup
   _orig_prepare
+
+  # zig 0.17: "zig fetch" also keeps the tarball in p/, and "zig build" unpacks it
+  # with its top folder kept, which gives a different hash. Keep only the unpacked dirs.
+  find "$srcdir/zig-global-cache/p" -maxdepth 1 -type f -delete
 }
 
 eval "_orig_$(declare -f build | sed -E -e 's&--system \S+&&')"
