@@ -8,7 +8,9 @@ depends=(
 makedepends=(${makedepends[@]//gcc*/})
 
 # debug info is stripped anyway (!debug) and makes the mongos link run out of memory
+# 16 parallel actions still get the bazel server OOM-killed while compiling
 eval "$(declare -f build | sed -e '/export [AC]/d' \
+  -e 's|local_resources=cpu=16|local_resources=cpu=10|' \
   -e 's|debug_symbols=True|debug_symbols=False|' \
   -e 's|dbg_level=2|dbg_level=0|')"
 
