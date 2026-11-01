@@ -1,0 +1,8 @@
+eval _orig_"$(declare -f prepare)"
+prepare() {
+  _orig_prepare
+
+  # SWIG 4.4 no longer defines the Python 2 PyInt_* compat macros
+  sed -E -e 's&\bPyInt_(Check|AsLong)\b&PyLong_\1&g' \
+    -i "$srcdir/$_pkgsrc/bindings/python/sigrok/core/classes.i"
+}
