@@ -1,0 +1,10 @@
+# "make dvbv3" fails on some dvb-s files (v4l-utils "value not supported").
+# Ship only the v5 tables.
+build() {
+  :
+}
+
+package() {
+  cd "$_pkgsrc"
+  make PREFIX="$pkgdir/usr" DVBV5DIR=dvb install
+}
