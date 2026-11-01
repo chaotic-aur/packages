@@ -5,10 +5,3 @@ pkgbuilds
 src
 *.tar.zst
 *.tar.gz
-
-# cbp
-/cache/
-/config
-/gpg/
-/logs/
-/repo/
