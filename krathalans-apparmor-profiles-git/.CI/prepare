@@ -1,2 +1,2 @@
-# remove "|| exit" constructs
-sed -E -e 's& ?\|\|.*$&&' -i PKGBUILD
+# remove "|| exit" constructs, keep the "|| printf" fallback in pkgver()
+sed -E -e 's& ?\|\| exit$&&' -i PKGBUILD
