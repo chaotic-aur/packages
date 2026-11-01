@@ -1,3 +1,6 @@
+# follow the toolchain pinned in upstream rust-toolchain.toml
+unset RUSTUP_TOOLCHAIN
+
 eval _orig_"$(declare -f prepare)"
 prepare() {
   (
