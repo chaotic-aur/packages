@@ -1,0 +1,7 @@
+# install.sh also installs the gnome-theme-switcher app to ${DESTDIR}/usr/bin.
+# Send it to a throwaway directory so the packages ship only the themes.
+for _fn in $(declare -F | awk '$3 ~ /^package_/ {print $3}'); do
+  eval "_orig_$(declare -f "$_fn")"
+  eval "$_fn() { DESTDIR=\"\$srcdir/_discard\" _orig_$_fn; }"
+done
+unset _fn
