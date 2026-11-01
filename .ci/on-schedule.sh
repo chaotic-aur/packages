@@ -206,7 +206,17 @@ function update-lib-bump() {
     UTIL_PRINT_INFO "$package: Bumping pkgrel of $package because of a detected library version change"
 
     local _PKGVER_IN_DB _DB_BASE _DB_BUMP
-    _PKGVER_IN_DB="$(grep "^$package:" ".state/.version-state" | cut -d ":" -f 2 || true)"
+
+    # A package can be listed in several databases (e.g. ours and Arch extra).
+    # Use the highest version, otherwise multiple lines end up in CI_PACKAGE_BUMP.
+    local _candidate
+    _PKGVER_IN_DB=""
+    while IFS= read -r _candidate; do
+      [ -n "$_candidate" ] || continue
+      if [ -z "$_PKGVER_IN_DB" ] || [ "$(vercmp "$_candidate" "$_PKGVER_IN_DB")" -gt 0 ]; then
+        _PKGVER_IN_DB="$_candidate"
+      fi
+    done < <(grep "^$package:" ".state/.version-state" | cut -d ":" -f 2 || true)
 
     if [[ "$_PKGVER_IN_DB" =~ ^(.+)-([0-9]+)(\.([0-9]+))?$ ]]; then
       _DB_BASE="${BASH_REMATCH[1]}-${BASH_REMATCH[2]}" # base: pkgver-pkgrel
