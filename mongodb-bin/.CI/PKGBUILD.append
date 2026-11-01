@@ -1,0 +1,2 @@
+# mongosh-bin is not in the repo, use the repo package mongosh instead
+depends=(${depends[@]//mongosh-bin/mongosh})
