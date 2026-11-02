@@ -1,0 +1,2 @@
+REQ_ORIGIN=chaotic/xiota
+REQ_REASON=request # extra/opensnitch still depends on Qt5
