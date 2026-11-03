@@ -1,0 +1,82 @@
+# Maintainer: Nico Jensch <root at dr460nf1r3 dot org>
+
+pkgname=qhostty
+pkgver=1.4.0
+pkgrel=1
+pkgdesc='Native Qt 6 frontend for the Ghostty terminal core'
+arch=(x86_64 aarch64)
+url='https://github.com/dr460nf1r3/qhostty'
+license=(MIT)
+depends=(fontconfig
+  gcc-libs
+  ghostty-shell-integration
+  ghostty-terminfo
+  glibc
+  hicolor-icon-theme
+  kglobalaccel
+  kwindowsystem
+  layer-shell-qt
+  libglvnd
+  libxkbcommon
+  qt6-base
+  qt6-multimedia)
+makedepends=(cmake
+  git
+  ninja
+  qt6-tools
+  zvm)
+optdepends=('ghostty: built-in color themes'
+  'qt6-wayland: native Wayland platform plugin')
+conflicts=('qhostty-git')
+source=("$pkgname-$pkgver.tar.gz::$url/archive/refs/tags/v$pkgver-qhostty.tar.gz")
+sha256sums=('3cb20c19ba5d89b1409fc384d7c5ee03bb1644f3d8d75bbdca5bb99836a5a306')
+
+_pkgsrc="$pkgname-$pkgver-qhostty"
+
+_zig_setup() {
+  export ZVM_PATH="${ZVM_PATH:-$SRCDEST/zvm-data}"
+  local _zigver _zigpath
+  _zigver="$(grep -Po '\.minimum_zig_version = "\K[0-9.]+' "$srcdir/$_pkgsrc/build.zig.zon")"
+  _zigpath="$ZVM_PATH/${_zigver:?zig version not found}"
+  [ ! -e "$_zigpath" ] && zvm install "$_zigver"
+  export PATH="$_zigpath:$PATH"
+}
+
+prepare() {
+  cd "$_pkgsrc"
+  _zig_setup
+  export ZIG_GLOBAL_CACHE_DIR="$srcdir/zig-global-cache"
+  ./nix/build-support/fetch-zig-cache.sh
+
+  # zig 0.17: "zig fetch" also keeps the tarball in p/, and "zig build" unpacks
+  # it with its top folder kept, which gives a different hash. Keep only the
+  # unpacked dirs.
+  find "$ZIG_GLOBAL_CACHE_DIR/p" -maxdepth 1 -type f -delete
+}
+
+build() {
+  cd "$_pkgsrc"
+  _zig_setup
+  export ZIG_GLOBAL_CACHE_DIR="$srcdir/zig-global-cache"
+
+  cmake -S qt -B build -G Ninja \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_INSTALL_PREFIX=/usr \
+    -DCMAKE_INSTALL_LIBDIR=lib \
+    -DQHOSTTY_GHOSTTY_OPTIMIZE=ReleaseFast \
+    -DQHOSTTY_GHOSTTY_CPU=baseline \
+    -DQHOSTTY_GHOSTTY_VERSION="$pkgver" \
+    -DQHOSTTY_INSTALL_GHOSTTY_RESOURCES=OFF
+  cmake --build build
+}
+
+check() {
+  cd "$_pkgsrc"
+  ctest --test-dir build --output-on-failure -E single_instance
+}
+
+package() {
+  cd "$_pkgsrc"
+  DESTDIR="$pkgdir" cmake --install build
+  install -Dm0644 -t "$pkgdir/usr/share/licenses/$pkgname" LICENSE
+}
