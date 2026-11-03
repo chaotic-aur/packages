@@ -5,3 +5,11 @@ pkgbuilds
 src
 *.tar.zst
 *.tar.gz
+
+# cpb
+/cache/
+/config/
+/gpg/
+/logs/
+/pkgout/
+/repo/
