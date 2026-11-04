@@ -1,0 +1,3 @@
+provides=(dms-shell dux-shell)
+conflicts=(dms-shell dux-shell)
+replaces=(dms-shell-git)

@@ -1,10 +1,10 @@
 post_upgrade() {
-  echo "==> DMS Shell"
+  echo "==> Dux Shell"
   echo "    The Quickshell UI is embedded in the dms binary."
   echo "    To run a custom copy: dms run -c /path/to/quickshell (or set DMS_SHELL_DIR)"
 }
 
 post_install() {
-  echo "==> DMS Shell: the Quickshell UI is embedded in the dms binary."
+  echo "==> Dux Shell: the Quickshell UI is embedded in the dms binary."
   echo "    To run a custom copy: dms run -c /path/to/quickshell (or set DMS_SHELL_DIR)"
 }

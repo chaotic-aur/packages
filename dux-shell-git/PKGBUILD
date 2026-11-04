@@ -1,30 +1,32 @@
 # Maintainer: Avenge Media <avengemediallc at gmail dot com>
 
-pkgbase=dms-shell-git
-_pkgbase=${pkgbase%-git}
+pkgname=dux-shell-git
 _pkgname=dux-shell
-pkgname=($_pkgbase-git)
-pkgver=1.6.0.r118.g0784bdb
+_binname=dms
+pkgver=2.1.0.r0.g7627111
 pkgrel=1
-pkgdesc='Desktop shell for wayland compositors built with Quickshell & GO'
+pkgdesc='Desktop shell for wayland compositors built with Quickshell & GO (git)'
 arch=(x86_64 aarch64)
 url="https://github.com/duxlabs-dev/$_pkgname"
 license=(MIT)
-depends=(dgop
-  quickshell
+depends=(quickshell
   accountsservice)
-optdepends=('cava: Audio visualizer'
+optdepends=('dux-gop: System monitoring backend for the process list and resource widgets'
+  'cava: Audio visualizer'
   'i2c-tools: External monitor brightness control'
   'matugen: Dynamic wallpaper-based theming'
   'qt6-multimedia: Sound effect support'
   'power-profiles-daemon: Set power profile'
   'qt6ct: Qt6 application theming'
-  'cups-pk-helper: Printer Management')
+  'cups-pk-helper: Printer Management'
+  'dux-greeter: Dux Shell login screen for greetd')
 makedepends=(git
   go
   make)
-provides=("$_pkgbase=$pkgver")
-conflicts=("dms-shell")
+provides=("dms-shell=$pkgver" "$_pkgname=$pkgver")
+conflicts=(dms-shell "$_pkgname" dms-shell-git)
+replaces=(dms-shell-git)
+install="$pkgname.install"
 source=("git+$url.git")
 sha256sums=('SKIP')
 
@@ -58,16 +60,14 @@ build() {
   make sync-shell
 
   GOFLAGS="-buildmode=pie -trimpath -mod=readonly -modcacherw"
-  go build -tags 'distro_binary withshell' -ldflags "${LDFLAGS_GO}" ${GOFLAGS} -o dms ./cmd/dms
+  go build -tags 'distro_binary withshell' -ldflags "${LDFLAGS_GO}" ${GOFLAGS} -o "$_binname" "./cmd/$_binname"
 }
 
-package_dms-shell-git() {
-  optdepends+=('greetd-dms-greeter: DMS Greeter')
-  install="$pkgname.install"
+package() {
   cd "$_pkgname"
-  install -Dm0755 -t "$pkgdir/usr/bin/" core/dms
+  install -Dm0755 -t "$pkgdir/usr/bin/" "core/$_binname"
   install -Dm0644 -t "$pkgdir/usr/share/doc/$pkgname/" README.md
-  install -Dm0644 assets/systemd/dms.service "$pkgdir/usr/lib/systemd/user/dms.service"
+  install -Dm0644 "assets/systemd/$_binname.service" "$pkgdir/usr/lib/systemd/user/$_binname.service"
   install -Dm0644 assets/dms-open.desktop "$pkgdir/usr/share/applications/dms-open.desktop"
   install -Dm0644 assets/dev.duxlabs.shell.desktop "$pkgdir/usr/share/applications/dev.duxlabs.shell.desktop"
   install -Dm0644 assets/dev.duxlabs.shell.notepad.desktop "$pkgdir/usr/share/applications/dev.duxlabs.shell.notepad.desktop"
@@ -76,7 +76,7 @@ package_dms-shell-git() {
   install -d "$pkgdir/usr/share/bash-completion/completions" \
     "$pkgdir/usr/share/zsh/site-functions" \
     "$pkgdir/usr/share/fish/vendor_completions.d"
-  core/dms completion bash > "$pkgdir/usr/share/bash-completion/completions/dms"
-  core/dms completion zsh > "$pkgdir/usr/share/zsh/site-functions/_dms"
-  core/dms completion fish > "$pkgdir/usr/share/fish/vendor_completions.d/dms.fish"
+  "core/$_binname" completion bash > "$pkgdir/usr/share/bash-completion/completions/$_binname"
+  "core/$_binname" completion zsh > "$pkgdir/usr/share/zsh/site-functions/_$_binname"
+  "core/$_binname" completion fish > "$pkgdir/usr/share/fish/vendor_completions.d/$_binname.fish"
 }
