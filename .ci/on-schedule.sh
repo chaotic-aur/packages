@@ -422,7 +422,7 @@ function update_via_git() {
     fi
     # Rsync: delete files in the destination that are not in the source. Exclude deleting .CI, exclude copying .git
     # shellcheck disable=SC2046
-    rsync -a --delete $(UTIL_GET_EXCLUDE_LIST "--exclude") "$pkgbuild_path/" "$pkgbase/"
+    rsync -a --checksum --delete $(UTIL_GET_EXCLUDE_LIST "--exclude") "$pkgbuild_path/" "$pkgbase/"
     VARIABLES_VIA_GIT[CI_ANY_UPDATE]=true
   fi
 }
@@ -605,7 +605,7 @@ function update_nvchecker() {
 
   local json_output exit_code
   exit_code=0
-  json_output="$(nvchecker --file "$config_file" --logger=json 2>/dev/null || exit_code=$?)"
+  json_output="$(nvchecker --file "$config_file" --logger=json 2>/dev/null)" || exit_code=$?
 
   if [ "$exit_code" -eq 3 ]; then
     UTIL_PRINT_WARNING "$pkgbase: nvchecker reported failures while checking updates."

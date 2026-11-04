@@ -109,7 +109,7 @@ manage_aur_package() {
     fi
   done < <(UTIL_GET_LOCAL_SOURCE_FILES "$package")
 
-  rsync_args=(-a --delete --delete-excluded --filter='P .git*' --filter='- .CI' --filter='- .ci')
+  rsync_args=(-a --checksum --delete --delete-excluded --filter='P .git*' --filter='- .CI' --filter='- .ci')
   for file in "${upload_files[@]}"; do
     rsync_args+=(--include="$file")
   done
