@@ -1,0 +1,2 @@
+REQ_ORIGIN=chaotic/xiota
+REQ_REASON=request # extra/onboard doesn't work with wayland yet

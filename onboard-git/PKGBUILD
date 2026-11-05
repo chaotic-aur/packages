@@ -1,0 +1,80 @@
+# Maintainer: aur.chaotic.cx
+
+_pkgname="onboard"
+pkgname="$_pkgname-git"
+pkgver=1.4.4.5.r20.g98c626c
+pkgrel=1
+pkgdesc="On-screen keyboard useful on tablet PCs or for mobility impaired users"
+url="https://github.com/onboard-osk/onboard"
+license=('GPL-3.0-or-later')
+arch=('x86_64')
+
+depends=(
+  'at-spi2-core'
+  'cairo'
+  'dconf'
+  'gdk-pixbuf2'
+  'glib2'
+  'glibc'
+  'gtk3'
+  'hicolor-icon-theme'
+  'hunspell'
+  'iso-codes'
+  'libcanberra'
+  'libgcc'
+  'libstdc++'
+  'libx11'
+  'libxi'
+  'libxkbfile'
+  'libxtst'
+  'pango'
+  'python'
+  'python-cairo'
+  'python-dbus'
+  'python-gobject'
+  'systemd-libs'
+)
+makedepends=(
+  'git'
+  'python-build'
+  'python-distutils-extra'
+  'python-installer'
+  'python-setuptools'
+  'python-wheel'
+)
+optdepends=(
+  'mousetweaks: hover click with mouse'
+)
+
+provides=("$_pkgname")
+conflicts=("$_pkgname")
+
+_pkgsrc="$_pkgname"
+source=("$_pkgsrc"::"git+$url.git")
+sha256sums=('SKIP')
+
+pkgver() {
+  cd "$_pkgsrc"
+  git describe --long --tags --abbrev=7 --exclude='*[a-zA-Z][a-zA-Z]*' \
+    | sed -E 's/^[^0-9]*//;s/([^-]*-g)/r\1/;s/-/./g'
+}
+
+build() {
+  cd "$_pkgsrc"
+  python -m build --wheel --no-isolation
+}
+
+package() {
+  cd "$_pkgsrc"
+  python -m installer --destdir="$pkgdir" dist/*.whl
+
+  # Move autostart desktop file to correct location
+  local python_version=$(python -c 'import sys; print(".".join(map(str, sys.version_info[:2])))')
+  local site_packages="$pkgdir/usr/lib/python$python_version/site-packages"
+  install -vDm644 -t "$pkgdir/etc/xdg/autostart/" \
+    "$site_packages/etc/xdg/autostart/onboard-autostart.desktop"
+  rm -vr "$site_packages/etc"
+
+  # unwanted
+  rm -rf "$pkgdir/usr/share/glib-2.0/schemas/gschemas.compiled"
+}
