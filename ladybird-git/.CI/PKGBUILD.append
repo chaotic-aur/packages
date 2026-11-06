@@ -30,3 +30,6 @@ _disable_cpptrace() {
   depends=(${depends[@]//cpptrace*/})
   eval "$(declare -f build | sed -E -e 's&(-DCMAKE_BUILD_TYPE)&-DLADYBIRD_ENABLE_CPPTRACE=OFF \1&')"
 }
+
+# tests fail with -Werror,-Wunused-but-set-global in TestWrapperWorld.cpp
+eval "$(declare -f build | sed -E -e 's&(-DCMAKE_BUILD_TYPE)&-DBUILD_TESTING=OFF \1&')"
