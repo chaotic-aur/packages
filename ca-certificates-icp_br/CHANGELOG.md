@@ -7,6 +7,18 @@ Certification Authorities (CA) certificates.
 The format is based on Keep a Changelog (see https://keepachangelog.com),
 and this project versioning is YYYYMMDD.
 
+## 20261106
+
+### Added:
+
+- Autoridade_Certificadora_INFOCOMEX_v2.crt
+
+## 20261022
+
+### Added:
+
+- AC_SOLUTI-JUS_v6.crt
+
 ## 20260828
 
 ### Changed:
