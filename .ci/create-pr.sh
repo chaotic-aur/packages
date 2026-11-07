@@ -182,7 +182,8 @@ function manage_branch() {
     cd "$tmpwork" || exit 1
     # Restore tracked changes from the WIP commit, then untracked files
     # from the untracked commit (stash@{0}^3, created by -u).
-    git checkout stash@{0} -- "$pkgbase"
+    # --no-overlay also removes files that were deleted in the package.
+    git checkout --no-overlay stash@{0} -- "$pkgbase"
     git checkout stash@{0}^3 -- "$pkgbase" 2>/dev/null || true
     git add "$pkgbase"
     # Skip when the branch already carries exactly these changes
