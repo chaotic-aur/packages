@@ -125,12 +125,6 @@
               ++ lib.optional (!isDarwin) fuse-overlayfs;
 
             shellHook = ''
-              ${self.checks.${system}.pre-commit-check.shellHook}
-
-              printf '\033[1;35mChaotic 4.0 devshell\033[0m ❄️\n'
-              printf '  \033[2mtools:\033[0m %s\n' "${lib.concatStringsSep " " tools}"
-              printf '  \033[2mdeps: \033[0m %s\n' "${lib.concatStringsSep " " deps}"
-
               export LC_ALL="C.UTF-8"
               export NIX_PATH=nixpkgs=${nixpkgs}
 
@@ -139,9 +133,17 @@
                 install -Dm755 ${pkgs.skopeo.src}/default-policy.json ~/.config/containers/policy.json
               fi
 
-              if [ ! -d ./pkgbuilds ]; then
-                echo "No pkgbuilds folder found. Symlinking this directory to ./pkgbuilds."
-                ln -s ./ ./pkgbuilds
+              if [ -f ./flake.nix ] && git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+                ${self.checks.${system}.pre-commit-check.shellHook}
+
+                printf '\033[1;35mChaotic 4.0 devshell\033[0m ❄️\n'
+                printf '  \033[2mtools:\033[0m %s\n' "${lib.concatStringsSep " " tools}"
+                printf '  \033[2mdeps: \033[0m %s\n' "${lib.concatStringsSep " " deps}"
+
+                if [ ! -d ./pkgbuilds ]; then
+                  echo "No pkgbuilds folder found. Symlinking this directory to ./pkgbuilds."
+                  ln -s ./ ./pkgbuilds
+                fi
               fi
             '';
           };
