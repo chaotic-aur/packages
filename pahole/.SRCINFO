@@ -1,0 +1,40 @@
+pkgbase = pahole
+	pkgdesc = Type info tools
+	pkgver = 1.32
+	pkgrel = 2
+	epoch = 1
+	url = https://git.kernel.org/pub/scm/devel/pahole/pahole.git
+	arch = x86_64
+	license = GPL-2.0-only
+	makedepends = cmake
+	makedepends = git
+	makedepends = ninja
+	makedepends = python
+	makedepends = python-matplotlib
+	depends = bash
+	depends = glibc
+	depends = libelf
+	depends = zlib
+	source = git+https://git.kernel.org/pub/scm/devel/pahole/pahole.git?signed#tag=v1.32
+	source = git+https://github.com/libbpf/libbpf
+	source = 0001-CMakeLists.txt-Install-ostra.py-into-Python3_SITELIB.patch
+	source = 0002-dwarf_loader-Take-the-merged-CU-language-from-a-CU-t.patch
+	source = 0003-dwarf_loader-Load-types-that-kept-CUs-use-from-exclu.patch
+	validpgpkeys = 2DBF5BAA46FB4DED338A335BD65016F35352AA40
+	b2sums = b9c66497f467bd5640738f3afc424bc3b9dd1646de50e778f17162e13965c7ef7ffe90cd31f163659b46a11d78cc59b07fbffa6cc5d476b418a3c34701bbc187
+	b2sums = SKIP
+	b2sums = 91a39841e4d432877a3ef384faf3eaffdeca6587c3002e50db20325075b1f438422a5ac30c2d9f344f0921f82473ae05bbb383870bc559b2c8caaf28d3e4470f
+	b2sums = ffd6de0f5cd49bd4350e4506d6d70e00e698d54750c291ed6717f7d5c88334a3bc2b3a4a66ec5b6625d594a123685bd8b098bf3f2860d989b2e1dc8168868b7f
+	b2sums = 99094a2029df23526f79dfa947db96b9ec918bad6cd1fde1e0159514c94a16306a8a93b1da5f25f63c5a3eda7a99cf3830c25e2af6d2ffd63e6f2cb7b9b014ca
+
+pkgname = pahole
+	optdepends = ostra-cg: Generate call graphs from encoded traces
+	provides = libdwarves.so
+	provides = libdwarves_emit.so
+	provides = libdwarves_reorganize.so
+
+pkgname = ostra-cg
+	pkgdesc = Generate call graphs from encoded traces
+	depends = pahole
+	depends = python
+	depends = python-matplotlib

@@ -1,0 +1,26 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: "Jan Alexander Steffens (heftig)" <heftig@archlinux.org>
+Date: Tue, 11 Jun 2024 23:57:52 +0200
+Subject: [PATCH] CMakeLists.txt: Install ostra.py into Python3_SITELIB dir
+
+Otherwise ostra-cg won't be able to find it. I'm not sure what
+the "/usr/share/dwarves/runtime/python/" directory is supposed to be.
+
+Signed-off-by: Jan Alexander Steffens (heftig) <heftig@archlinux.org>
+---
+ CMakeLists.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index bff332c1b30c..463d06e0a1b8 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -229,7 +229,7 @@ install(FILES man-pages/pahole.1 DESTINATION ${CMAKE_INSTALL_PREFIX}/share/man/m
+ install(FILES man-pages/pfunct.1 DESTINATION ${CMAKE_INSTALL_PREFIX}/share/man/man1/)
+ if(Python3_FOUND)
+ 	install(PROGRAMS ostra/ostra-cg DESTINATION ${CMAKE_INSTALL_PREFIX}/bin)
+-	install(FILES ostra/python/ostra.py DESTINATION ${CMAKE_INSTALL_PREFIX}/share/dwarves/runtime/python)
++	install(FILES ostra/python/ostra.py DESTINATION ${Python3_SITELIB})
+ endif()
+ install(PROGRAMS btfdiff fullcircle DESTINATION ${CMAKE_INSTALL_PREFIX}/bin)
+ install(FILES lib/Makefile lib/ctracer_relay.c lib/ctracer_relay.h lib/linux.blacklist.cu

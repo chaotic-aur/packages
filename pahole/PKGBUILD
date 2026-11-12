@@ -1,0 +1,111 @@
+# Maintainer: Peter Jung ptr1337 <admin@ptr1337.dev>
+# Contributor: Jan Alexander Steffens (heftig) <heftig@archlinux.org>
+
+pkgbase=pahole
+pkgname=(
+  pahole
+  ostra-cg
+)
+pkgver=1.32
+pkgrel=2
+epoch=1
+pkgdesc="Type info tools"
+url="https://git.kernel.org/pub/scm/devel/pahole/pahole.git"
+arch=(x86_64)
+license=(GPL-2.0-only)
+depends=(
+  bash
+  glibc
+  libelf
+  zlib
+)
+makedepends=(
+  cmake
+  git
+  ninja
+  python
+  python-matplotlib
+)
+source=(
+  "git+$url?signed#tag=v$pkgver"
+  "git+https://github.com/libbpf/libbpf"
+  0001-CMakeLists.txt-Install-ostra.py-into-Python3_SITELIB.patch
+  # Fix --lang_exclude on merged LTO CUs, needed for Rust modules with
+  # Clang LTO + DEBUG_INFO_BTF_MODULES
+  # https://lore.kernel.org/all/20261010005227.976-1-linux@alanderk.com/
+  0002-dwarf_loader-Take-the-merged-CU-language-from-a-CU-t.patch
+  0003-dwarf_loader-Load-types-that-kept-CUs-use-from-exclu.patch
+)
+b2sums=('b9c66497f467bd5640738f3afc424bc3b9dd1646de50e778f17162e13965c7ef7ffe90cd31f163659b46a11d78cc59b07fbffa6cc5d476b418a3c34701bbc187'
+        'SKIP'
+        '91a39841e4d432877a3ef384faf3eaffdeca6587c3002e50db20325075b1f438422a5ac30c2d9f344f0921f82473ae05bbb383870bc559b2c8caaf28d3e4470f'
+        'ffd6de0f5cd49bd4350e4506d6d70e00e698d54750c291ed6717f7d5c88334a3bc2b3a4a66ec5b6625d594a123685bd8b098bf3f2860d989b2e1dc8168868b7f'
+        '99094a2029df23526f79dfa947db96b9ec918bad6cd1fde1e0159514c94a16306a8a93b1da5f25f63c5a3eda7a99cf3830c25e2af6d2ffd63e6f2cb7b9b014ca')
+validpgpkeys=(
+  2DBF5BAA46FB4DED338A335BD65016F35352AA40  # Arnaldo Carvalho de Melo <acme@kernel.org>
+)
+
+prepare() {
+  cd pahole
+
+  # https://bugs.archlinux.org/task/70013
+  git apply -3 ../0001-CMakeLists.txt-Install-ostra.py-into-Python3_SITELIB.patch
+
+  git apply -3 ../0002-dwarf_loader-Take-the-merged-CU-language-from-a-CU-t.patch
+  git apply -3 ../0003-dwarf_loader-Load-types-that-kept-CUs-use-from-exclu.patch
+
+  git submodule init
+  git submodule set-url lib/bpf "$srcdir/libbpf"
+  git -c protocol.file.allow=always -c protocol.allow=never submodule update
+}
+
+build() {
+  local cmake_options=(
+    -D CMAKE_BUILD_TYPE=None
+    -D CMAKE_INSTALL_PREFIX=/usr
+    -D GIT_SUBMODULE=OFF
+    -D LIBBPF_EMBEDDED=ON
+  )
+
+  cmake -S pahole -B build -G Ninja "${cmake_options[@]}"
+  cmake --build build
+}
+
+check() {
+  ctest --test-dir build --output-on-failure --stop-on-failure -j$(nproc)
+}
+
+_pick() {
+  local p="$1" f d; shift
+  for f; do
+    d="$srcdir/$p/${f#$pkgdir/}"
+    mkdir -p "$(dirname "$d")"
+    mv "$f" "$d"
+    rmdir -p --ignore-fail-on-non-empty "$(dirname "$f")"
+  done
+}
+
+package_pahole() {
+  optdepends=('ostra-cg: Generate call graphs from encoded traces')
+  provides=(libdwarves{,_emit,_reorganize}.so)
+
+  DESTDIR="$pkgdir" cmake --install build
+
+  _pick ostra "$pkgdir"/usr/{bin/ostra-cg,lib/python*}
+}
+
+package_ostra-cg() {
+  pkgdesc="Generate call graphs from encoded traces"
+  depends=(
+    pahole
+    python
+    python-matplotlib
+  )
+
+  mv ostra/* "$pkgdir"
+
+  python -m compileall -d /usr/lib "$pkgdir/usr/lib"
+  python -O -m compileall -d /usr/lib "$pkgdir/usr/lib"
+}
+
+# vim:set sw=2 sts=-1 et:
