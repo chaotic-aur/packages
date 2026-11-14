@@ -2,7 +2,7 @@
 
 _pkgname="ppsspp"
 pkgname="$_pkgname-git"
-pkgver=1.20.4.r450.g26c20c1
+pkgver=1.20.4.r4911.gebc212e
 pkgrel=1
 pkgdesc='PSP emulator written in C++'
 url="https://github.com/hrydgard/ppsspp"
@@ -48,10 +48,7 @@ pkgver() {
 
 prepare() {
   cd "$_pkgsrc"
-
-  git rm -r SDL/macOS
   git rm -r pspautotests
-
   git submodule update --init --recursive --depth=1
 }
 
@@ -63,7 +60,7 @@ build() {
     -DCMAKE_BUILD_TYPE=None
     -DCMAKE_SKIP_RPATH=ON
     -DBUILD_TESTING=OFF
-    -Wno-dev
+    -Wno-author
 
     -DHEADLESS=OFF
     -DOpenGL_GL_PREFERENCE=GLVND
