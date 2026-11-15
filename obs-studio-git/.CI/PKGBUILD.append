@@ -1,0 +1,2 @@
+# ENABLE_VST3 (82e549d) needs the Steinberg VST3 SDK sources
+eval "$(declare -f build | sed -e 's|-DENABLE_VST=ON|& -DENABLE_VST3=OFF|')"
