@@ -1,1 +1,1 @@
-_build_limit_cores=$(nproc --ignore 4)
+_build_limit_cores=$(($(lscpu | grep -Pom1 'per socket:\s*\K[0-9]+') - 4))
