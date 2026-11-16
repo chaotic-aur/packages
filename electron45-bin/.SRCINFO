@@ -1,0 +1,34 @@
+pkgbase = electron45-bin
+	pkgdesc = Build cross platform desktop apps with web technologies — prebuilt
+	pkgver = 45.3.3
+	pkgrel = 1
+	url = https://electronjs.org
+	arch = aarch64
+	arch = x86_64
+	license = MIT
+	license = LicenseRef-custom
+	depends = alsa-lib
+	depends = gtk3
+	depends = nss
+	optdepends = kde-cli-tools: file deletion support (kioclient5)
+	optdepends = pipewire: WebRTC desktop sharing under Wayland
+	optdepends = qt6-base: enable Qt6 with --enable-features=AllowQt
+	optdepends = gtk4: for --gtk-version=4 (GTK4 IME might work better on Wayland)
+	optdepends = trash-cli: file deletion support (trash-put)
+	optdepends = xdg-utils: open URLs with desktop's default (xdg-email, xdg-open)
+	provides = electron45=45.3.3
+	conflicts = electron45
+	noextract = electron45-chromedriver-45.3.3-x86_64.zip
+	noextract = electron45-45.3.3-x86_64.zip
+	source = electron45.sh
+	sha256sums = cea9f99f6d0a9a8bab239ffd2192dca3adf4f769b3123a2f366983c82d572ac9
+	source_aarch64 = electron45-chromedriver-45.3.3-aarch64.zip::https://github.com/electron/electron/releases/download/v45.3.3/chromedriver-v45.3.3-linux-arm64.zip
+	source_aarch64 = electron45-45.3.3-aarch64.zip::https://github.com/electron/electron/releases/download/v45.3.3/electron-v45.3.3-linux-arm64.zip
+	sha256sums_aarch64 = 1850a436af0deee8b80660ada2fafaa89835ea7b92334bbe7daa7cb4632be82f
+	sha256sums_aarch64 = d0f66fca246ae244b8a9e08344b1d9383534e912ef364a80c5afe6e1698705a2
+	source_x86_64 = electron45-chromedriver-45.3.3-x86_64.zip::https://github.com/electron/electron/releases/download/v45.3.3/chromedriver-v45.3.3-linux-x64.zip
+	source_x86_64 = electron45-45.3.3-x86_64.zip::https://github.com/electron/electron/releases/download/v45.3.3/electron-v45.3.3-linux-x64.zip
+	sha256sums_x86_64 = edff855cbcebca93f64311e8a60e0f269050ea22435c5fda21e7637c76f0a5a8
+	sha256sums_x86_64 = 0a63ce0e2b6a69d6ced7194949934b8414a6dadeca82910f88dc8720a1433269
+
+pkgname = electron45-bin
