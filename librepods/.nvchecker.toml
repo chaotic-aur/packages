@@ -1,0 +1,6 @@
+[librepods]
+source = "git"
+git = "https://github.com/kavishdevar/librepods.git"
+from_pattern = '-'
+to_pattern = ''
+prefix = "v"
