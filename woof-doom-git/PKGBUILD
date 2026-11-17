@@ -1,8 +1,9 @@
 # Maintainer: aur.chaotic.cx
+# Contributor: Frederic Bezies <fredbezies at gmail dot com>
 
 _pkgname="woof-doom"
 pkgname="$_pkgname-git"
-pkgver=15.2.0.r254.g82b3349
+pkgver=16.0.0.r128.g7d8bef1
 pkgrel=1
 pkgdesc="Doom port remaining faithful to Lee Killough's MBF on DOS"
 arch=("x86_64")
