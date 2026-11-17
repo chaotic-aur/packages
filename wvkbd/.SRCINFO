@@ -1,0 +1,21 @@
+pkgbase = wvkbd
+	pkgdesc = On-screen keyboard for wlroots
+	pkgver = 0.21
+	pkgrel = 1
+	url = https://git.sr.ht/~proycon/wvkbd
+	arch = x86_64
+	arch = i686
+	arch = armv7h
+	arch = aarch64
+	license = GPL3
+	makedepends = fontconfig
+	makedepends = libxkbcommon
+	makedepends = scdoc
+	depends = wayland
+	depends = pango
+	depends = cairo
+	depends = glibc
+	source = wvkbd-0.21.tar.gz::https://git.sr.ht/~proycon/wvkbd/archive/v0.21.tar.gz
+	sha512sums = 891eeb14ba7c93a08e6dac8d534656d0ca67f150b3d9bd51da51186f8a4637c68d412a1091aba0449bac7da43afabcef00355dba0d6ddaaacc241b604be14bb1
+
+pkgname = wvkbd
