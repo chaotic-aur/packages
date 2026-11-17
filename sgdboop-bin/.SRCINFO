@@ -1,0 +1,22 @@
+pkgbase = sgdboop-bin
+	pkgdesc = automatically applies assets from SteamGridDB directly to your Steam library
+	pkgver = 1.4.4
+	pkgrel = 1
+	url = https://www.steamgriddb.com/boop
+	arch = x86_64
+	arch = aarch64
+	license = Zlib
+	depends = curl
+	depends = glib2
+	depends = gtk3
+	provides = sgdboop
+	conflicts = sgdboop
+	options = !debug
+	source = x-sgdboop.xml
+	sha512sums = 35f57bab67171e96fbe2b2a11b7a4c95f06083f95af683286eb2014f61c0ad8bbc3ce913a7adc0cfa15337725bdf414e5360ca6a813e72c1b1622171b0c0a62d
+	source_x86_64 = sgdboop-bin-1.4.4.tar.gz::https://github.com/SteamGridDB/SGDBoop/releases/download/v1.4.4/sgdboop-linux-x86_64.tar.gz
+	sha512sums_x86_64 = 60171994d6cc5ecc9e1e1260c3c09f46f8835c5237817db525a9d04b4aefdb5e5ad397732b412992129167b8403fcaccce0726fda199ba72735ea9d4fc3f5d1b
+	source_aarch64 = sgdboop-bin-1.4.4.tar.gz::https://github.com/SteamGridDB/SGDBoop/releases/download/v1.4.4/sgdboop-linux-aarch64.tar.gz
+	sha512sums_aarch64 = 1f29d8e621bddca79f71cc6e88673e5b6f9506000b693cdd5171c0793608c7dea7fdb181eb8eeb73eae4a54cd521dca7137719fcc90d5608d34002342e7659a2
+
+pkgname = sgdboop-bin
