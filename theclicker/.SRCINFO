@@ -1,0 +1,16 @@
+pkgbase = theclicker
+	pkgdesc = Autoclicker coded in Rust for Wayland and X11
+	pkgver = 0.4.0
+	pkgrel = 1
+	url = https://github.com/konkitoman/autoclicker
+	install = theclicker.install
+	arch = x86_64
+	license = MIT
+	makedepends = cargo
+	depends = glibc
+	depends = gcc-libs
+	options = !debug
+	source = theclicker-0.4.0.tar.gz::https://static.crates.io/crates/theclicker/theclicker-0.4.0.crate
+	sha512sums = 0b659da571da806c5ca269c594e9bc9398e1a6917bd852f6275f5df1c7915d9ca2a552f7ebaae499775d9769f3529aa6be882193bd1ebf4be33dbaa983770b02
+
+pkgname = theclicker
