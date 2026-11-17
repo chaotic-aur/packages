@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Opentrack
+Comment=Head tracking software
+Exec=opentrack
+Icon=/usr/share/doc/opentrack/contrib/cute-octopus-vector-material_15-1831.jpg
+Terminal=false
+StartupNotify=true
+Categories=Utility;
