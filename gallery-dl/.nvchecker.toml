@@ -1,6 +1,0 @@
-[gallery-dl]
-source = "gitea"
-host = "codeberg.org"
-gitea = "mikf/gallery-dl"
-prefix = "v"
-use_max_tag = true
