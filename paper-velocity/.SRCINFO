@@ -1,0 +1,24 @@
+pkgbase = paper-velocity
+	pkgdesc = The modern, next-generation Minecraft server proxy.
+	pkgver = 4.2.1_SNAPSHOT+b36
+	pkgrel = 1
+	url = https://papermc.io/software/velocity
+	install = paper-velocity.install
+	arch = any
+	license = GPL-3.0-or-later
+	depends = java-runtime-headless>=25
+	depends = tmux
+	depends = sudo
+	depends = bash
+	depends = awk
+	depends = sed
+	optdepends = netcat: required in order to suspend an idle server
+	conflicts = paper-velocity-git
+	noextract = velocity.4.2.1_SNAPSHOT+b36.jar
+	backup = etc/conf.d/velocity
+	source = velocity.4.2.1_SNAPSHOT+b36.jar::https://fill-data.papermc.io/v1/objects/62a06a6bbf3c48b72473ac64a1bdea38e940b82780a99998e83b42d34022b42c/velocity-4.2.1-SNAPSHOT-36.jar
+	source = velocity-proxy-mgmt-1.0.0.tar.gz::https://github.com/yuna0x0/velocity-proxy-mgmt/archive/refs/tags/v1.0.0.tar.gz
+	sha256sums = 62a06a6bbf3c48b72473ac64a1bdea38e940b82780a99998e83b42d34022b42c
+	sha256sums = 5b22bc55f350382e5c6e2b88c4a51247316814eb73fe3e9b8a45a265d3619ac8
+
+pkgname = paper-velocity

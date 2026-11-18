@@ -1,0 +1,17 @@
+_game="velocity"
+_user="velocity"
+_server_root="/srv/velocity"
+
+post_upgrade() {
+	if (( $(vercmp "$2" 4.0.0) < 0 )); then
+		echo "Velocity 4 requires Java 25 or newer."
+		echo "Set the java path in SERVER_START_CMD in /etc/conf.d/${_game},"
+		echo "or use \`archlinux-java\` to change the system default."
+	fi
+}
+
+post_install() {
+	echo "The server data is stored under ${_server_root} and the server runs as ${_user} user to increase security."
+	echo "Use the ${_game} script under /usr/bin/${_game} to start or stop the server."
+	echo "Adjust the configuration file under /etc/conf.d/${_game} to your liking."
+}
