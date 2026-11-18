@@ -4,7 +4,7 @@ _module=pygame-ce
 _pkgname="python-$_module"
 pkgname="$_pkgname"
 pkgver=2.5.8
-pkgrel=1
+pkgrel=2
 pkgdesc="Python game library - Community Edition"
 url="https://pyga.me/"
 license=('LGPL-2.1-or-later')
@@ -15,19 +15,19 @@ depends=(
   'libpng'
   'portmidi'
   'python'
-  'sdl3'
-  'sdl3_image'
-  'sdl3_mixer'
-  'sdl3_ttf'
+  'sdl2'
+  'sdl2_image'
+  'sdl2_mixer'
+  'sdl2_ttf'
 )
 makedepends=(
+  'cython'
+  'meson-python'
   'python-build'
   'python-installer'
   'python-setuptools'
-  'python-wheel'
-  'meson-python'
-  'cython'
   'python-sphinx-autoapi'
+  'python-wheel'
 )
 optdependsd=(
   'python-numpy: for examples'
@@ -41,17 +41,8 @@ source=("https://pypi.io/packages/source/p/$_module/${_module//-/_}-$pkgver.tar.
 sha256sums=('3c8e69088ead310037972c391306ea58e74d7296b35d1890067749235fd554ba')
 
 build() {
-  local _build_args=(
-    -m build
-    --wheel
-    --no-isolation
-    --skip-dependency-check
-
-    -Csetup-args="-Dsdl_api=3"
-  )
-
   cd "$_pkgsrc"
-  python "${_build_args[@]}"
+  python -m build --wheel --no-isolation --skip-dependency-check
 }
 
 package() {
