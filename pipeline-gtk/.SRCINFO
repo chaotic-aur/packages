@@ -1,0 +1,26 @@
+pkgbase = pipeline-gtk
+	pkgdesc = Watch YouTube and PeerTube videos in one place
+	pkgver = 4.1.1
+	pkgrel = 2
+	url = https://gitlab.com/schmiddi-on-mobile/pipeline
+	arch = x86_64
+	arch = aarch64
+	license = GPL-3.0-or-later
+	checkdepends = appstream
+	checkdepends = desktop-file-utils
+	makedepends = blueprint-compiler
+	makedepends = cargo
+	makedepends = meson
+	depends = clapper-enhancers
+	depends = gtk4
+	depends = libadwaita
+	depends = libclapper
+	depends = libclapper-gtk
+	depends = openssl-3
+	depends = sqlite
+	depends = yt-dlp
+	conflicts = tubefeeder
+	source = https://gitlab.com/schmiddi-on-mobile/pipeline/-/archive/4.1.1/pipeline-4.1.1.tar.gz
+	sha256sums = 2f62ed3a6f6606faa4c1d6dc87f9e5cfd37b6ab155df4d08019a0debc7e437ed
+
+pkgname = pipeline-gtk
