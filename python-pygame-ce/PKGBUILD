@@ -1,0 +1,60 @@
+# Maintainer: aur.chaotic.cx
+
+_module=pygame-ce
+_pkgname="python-$_module"
+pkgname="$_pkgname"
+pkgver=2.5.8
+pkgrel=1
+pkgdesc="Python game library - Community Edition"
+url="https://pyga.me/"
+license=('LGPL-2.1-or-later')
+arch=('x86_64')
+
+depends=(
+  'glibc'
+  'libpng'
+  'portmidi'
+  'python'
+  'sdl3'
+  'sdl3_image'
+  'sdl3_mixer'
+  'sdl3_ttf'
+)
+makedepends=(
+  'python-build'
+  'python-installer'
+  'python-setuptools'
+  'python-wheel'
+  'meson-python'
+  'cython'
+  'python-sphinx-autoapi'
+)
+optdependsd=(
+  'python-numpy: for examples'
+)
+
+provides=('python-pygame')
+conflicts=('python-pygame')
+
+_pkgsrc="${_module//-/_}-$pkgver"
+source=("https://pypi.io/packages/source/p/$_module/${_module//-/_}-$pkgver.tar.gz")
+sha256sums=('3c8e69088ead310037972c391306ea58e74d7296b35d1890067749235fd554ba')
+
+build() {
+  local _build_args=(
+    -m build
+    --wheel
+    --no-isolation
+    --skip-dependency-check
+
+    -Csetup-args="-Dsdl_api=3"
+  )
+
+  cd "$_pkgsrc"
+  python "${_build_args[@]}"
+}
+
+package() {
+  cd "$_pkgsrc"
+  python -m installer --destdir="$pkgdir" dist/*.whl
+}
