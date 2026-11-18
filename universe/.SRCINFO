@@ -1,0 +1,71 @@
+pkgbase = universe
+	pkgdesc = Gamepad-first game launcher: a Rust core, a PySide6 UI, games inside gamescope
+	pkgver = 0.0.15
+	pkgrel = 1
+	url = https://github.com/ilyasturki/universe
+	arch = x86_64
+	license = MIT
+	checkdepends = tzdata
+	checkdepends = xorg-server-xvfb
+	checkdepends = pipewire
+	checkdepends = wireplumber
+	makedepends = blueprint-compiler
+	makedepends = glib2-devel
+	makedepends = cargo
+	makedepends = gtk4
+	makedepends = libadwaita
+	makedepends = maturin
+	makedepends = python-build
+	makedepends = python-installer
+	makedepends = python-setuptools
+	makedepends = scdoc
+	options = !lto
+	options = !debug
+	source = universe-0.0.15.tar.gz::https://github.com/ilyasturki/universe/archive/v0.0.15.tar.gz
+	sha256sums = 5b0e527a6fe0671938584232814c2578cffb75ed74f0ac2de69051d23fdc9616
+
+pkgname = universe
+	depends = libgcc
+	depends = glibc
+	depends = hicolor-icon-theme
+	depends = python
+	depends = pyside6>=6.11
+	depends = python-qrcode
+	depends = python-xkbcommon
+	depends = qt6-5compat
+	depends = qt6-declarative
+	depends = qt6-imageformats
+	depends = qt6-multimedia
+	depends = qt6-svg
+	depends = qt6-wayland
+	depends = sdl3
+	depends = systemd
+	optdepends = gamescope: games run inside it
+	optdepends = mangohud: the frame rate limit and the in-game HUD
+	optdepends = lib32-mangohud: the HUD in 32-bit games, Proton's included
+	optdepends = umu-launcher: Proton launches; fetched on first use when missing
+	optdepends = heroic-gogdl: the GOG source; fetched on first use when missing
+	optdepends = legendary: the Epic Games source; fetched on first use when missing
+	optdepends = ludusavi: save backups; fetched on first use when missing
+	optdepends = butler: the itch.io source; fetched on first use when missing
+	optdepends = steam: the Steam source
+	optdepends = gpu-screen-recorder: the capture module's recordings
+	optdepends = ffmpeg: the capture module's thumbnails and cuts
+	optdepends = trash-cli: recordings deleted to the trash
+	optdepends = game-devices-udev: udev rules that make pads readable by your session
+	optdepends = grim: screenshots on sway, hyprland and niri
+	optdepends = spectacle: screenshots on KDE Plasma
+	optdepends = universe-desktop: the library in a GTK app for mouse and keyboard
+
+pkgname = universe-desktop
+	pkgdesc = The Universe game library for mouse and keyboard: a GTK 4 and libadwaita app
+	depends = libgcc
+	depends = glibc
+	depends = gst-plugins-base
+	depends = gst-plugins-good
+	depends = gtk4>=1:4.22
+	depends = hicolor-icon-theme
+	depends = libadwaita>=1:1.9
+	depends = universe=0.0.15
+	optdepends = gst-libav: recordings played in the app (H.264, HEVC)
+	optdepends = gst-plugins-bad: recordings played in the app (AV1, VA-API)
