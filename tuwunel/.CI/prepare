@@ -1,0 +1,1 @@
+sed '/cargo test --frozen --release --locked/s/$/ -- --test-threads=1/' -i PKGBUILD
