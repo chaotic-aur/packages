@@ -1,0 +1,5 @@
+[compressonator-git]
+source = "github"
+github = "GPUOpen-Tools/Compressonator"
+use_max_tag = true
+prefix = "V"
