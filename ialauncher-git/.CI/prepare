@@ -1,2 +1,0 @@
-# avoid interactive patch
-sed 's/patch -Np1/patch --batch -Np1/' -i PKGBUILD
