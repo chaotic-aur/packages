@@ -14,3 +14,13 @@ eval "$(declare -f build | sed -E -e 's&--testing&&g')"
 
 # remove extraneous files
 eval "$(declare -f package_bitwuzla | grep -Ev '(CONTRIBUTING|NEWS)')"
+
+# Link to Arch's CryptoMiniSat instead of installing Meson's bundled copy.
+eval "_orig_$(declare -f prepare)"
+prepare() {
+    _orig_prepare
+    sed -i -E "/^cms_dep = dependency\('cryptominisat5',/,/required:/ {
+        s/version: '([0-9.]+)'/version: '>=\1'/
+        s/required:/allow_fallback: false, required:/
+    }" "${srcdir}/${pkgbase}-${pkgver}/src/meson.build"
+}
