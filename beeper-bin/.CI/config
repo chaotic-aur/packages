@@ -1,2 +1,3 @@
 CI_PKGBUILD_SOURCE=aur
 BUILDER_CLASS=0
+CI_PKGBUILD_CHANGE_ALLOW_REGEX=^source=\('Beeper-[0-9.]+-x86_64\.AppImage::https://beeper-desktop\.download\.beeper\.com/builds/Beeper-[0-9.]+-x86_64\.AppImage'\)$
