@@ -1,2 +1,3 @@
 CI_PKGBUILD_SOURCE=aur
 BUILDER_CLASS=2
+CI_PKGBUILD_CHANGE_ALLOW_REGEX=^source=\("git\+\$url#commit=[0-9a-f]{7,40}"\)$

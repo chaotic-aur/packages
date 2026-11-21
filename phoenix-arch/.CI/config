@@ -1,2 +1,3 @@
 CI_PKGBUILD_SOURCE=aur
 BUILDER_CLASS=0
+CI_PKGBUILD_CHANGE_ALLOW_REGEX=^source=\("\$\{pkgname\}-\$\{pkgver\}-\$\{pkgrel\}\.tar\.xz::https://releases\.celenity\.dev/phoenix/releases/[0-9.]+/linux/phoenix-[0-9.]+-linux\.tar\.xz"\)$

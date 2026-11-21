@@ -1,1 +1,2 @@
 CI_PKGBUILD_SOURCE=aur
+CI_PKGBUILD_CHANGE_ALLOW_REGEX=^_nodeversion=[0-9]+$;^_electronversion=[0-9]+$
