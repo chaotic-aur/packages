@@ -1,0 +1,3 @@
+build() {
+  zig build -Doptimize=ReleaseSafe -Dtarget=x86_64-linux-gnu -Dcpu=x86_64
+}
