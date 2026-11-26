@@ -7,14 +7,17 @@ export CARGO_HOME CARGO_TARGET_DIR RUSTUP_TOOLCHAIN
 
 _pkgname="dnglab"
 pkgname="$_pkgname-git"
-pkgver=0.7.2.r92.gab646bc
+pkgver=0.8.0.r555.g4c64720
 pkgrel=1
 pkgdesc="Camera RAW to DNG file format converter"
 url="https://github.com/dnglab/dnglab"
 license=('LGPL-2.1-only')
 arch=('x86_64')
 
-depends=('libgcc')
+depends=(
+  'glibc'
+  'libgcc'
+)
 makedepends=(
   'cargo'
   'git'
@@ -47,6 +50,16 @@ build() {
 
   cd "$_pkgsrc"
   cargo build --frozen --release
+
+  # completions
+  local shell
+  for shell in bash fish zsh; do
+    "$CARGO_TARGET_DIR"/release/dnglab completions $shell
+     > "$CARGO_TARGET_DIR/release/dnglab.$shell"
+  done
+
+  # manpages
+  "$CARGO_TARGET_DIR"/release/dnglab-mangen "$CARGO_TARGET_DIR/release"
 }
 
 check() {
@@ -57,12 +70,9 @@ check() {
 package() {
   cd "$_pkgsrc"
   install -Dm755 "$CARGO_TARGET_DIR/release/dnglab" -t "$pkgdir/usr/bin/"
-  install -Dm644 bin/dnglab/manpages/*.1 -t "$pkgdir/usr/share/man/man1/"
+  install -Dm644 "$CARGO_TARGET_DIR/release"/*.1 -t "$pkgdir/usr/share/man/man1/"
 
-  install -Dm644 bin/dnglab/completions/dnglab.bash \
-    "$pkgdir/usr/share/bash-completion/completions/dnglab"
-  install -Dm644 bin/dnglab/completions/dnglab.fish \
-    "$pkgdir/usr/share/fish/vendor_completions.d/dnglab.fish"
-  install -Dm644 bin/dnglab/completions/_dnglab \
-    "$pkgdir/usr/share/zsh/site_functions/_dnglab"
+  install -Dm644 "$CARGO_TARGET_DIR/release"/dnglab.bash "$pkgdir/usr/share/bash-completion/completions/dnglab"
+  install -Dm644 "$CARGO_TARGET_DIR/release"/dnglab.fish "$pkgdir/usr/share/fish/vendor_completions.d/dnglab.fish"
+  install -Dm644 "$CARGO_TARGET_DIR/release"/dnglab.zsh "$pkgdir/usr/share/zsh/site_functions/_dnglab"
 }
