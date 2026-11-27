@@ -2,7 +2,7 @@
 
 _pkgname="shadps4-qtlauncher"
 pkgname="$_pkgname-git"
-pkgver=r334.ed013e9
+pkgver=r425.100ec89
 pkgrel=1
 pkgdesc="Qt-based launcher for shadps4 emulator"
 url="https://github.com/shadps4-emu/shadps4-qtlauncher"
@@ -18,9 +18,13 @@ depends=(
   'sdl3'
 )
 makedepends=(
+  'clang'
   'cmake'
   'git'
+  'lld'
+  'llvm'
   'ninja'
+
   'nlohmann-json'
   'qt6-tools'
   'toml11'
@@ -108,6 +112,13 @@ END
 }
 
 build() {
+  export CC CXX CFLAGS CXXFLAGS LDFLAGS
+  CC=clang
+  CXX=clang++
+  CFLAGS="${CFLAGS/auto/thin}"
+  CXXFLAGS="${CXXFLAGS/auto/thin}"
+  LDFLAGS+=" -fuse-ld=lld"
+
   local _cmake_options=(
     -B build
     -S "$_pkgsrc"

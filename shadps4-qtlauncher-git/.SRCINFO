@@ -1,12 +1,15 @@
 pkgbase = shadps4-qtlauncher-git
 	pkgdesc = Qt-based launcher for shadps4 emulator
-	pkgver = r334.ed013e9
+	pkgver = r425.100ec89
 	pkgrel = 1
 	url = https://github.com/shadps4-emu/shadps4-qtlauncher
 	arch = x86_64
 	license = GPL-2.0-or-later
+	makedepends = clang
 	makedepends = cmake
 	makedepends = git
+	makedepends = lld
+	makedepends = llvm
 	makedepends = ninja
 	makedepends = nlohmann-json
 	makedepends = qt6-tools
